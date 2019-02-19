@@ -1,1 +1,2 @@
 django >=1.9, <2
+fst_lookup >=2019.2.1

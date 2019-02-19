@@ -29,28 +29,39 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="API\admin.py" />
+    <Compile Include="API\apps.py" />
+    <Compile Include="API\migrations\__init__.py" />
+    <Compile Include="API\models.py" />
+    <Compile Include="API\tests.py" />
+    <Compile Include="API\views.py" />
+    <Compile Include="API\__init__.py" />
     <Compile Include="manage.py" />
     <Compile Include="CreeDictionary\__init__.py" />
     <Compile Include="CreeDictionary\settings.py" />
     <Compile Include="CreeDictionary\urls.py" />
     <Compile Include="CreeDictionary\wsgi.py" />
-    <Compile Include="React\admin.py" />
     <Compile Include="React\apps.py" />
     <Compile Include="React\migrations\__init__.py" />
-    <Compile Include="React\models.py" />
     <Compile Include="React\tests.py" />
     <Compile Include="React\views.py" />
     <Compile Include="React\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\templates\API\index.html" />
     <Content Include="React\templates\React\index.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="API\" />
+    <Folder Include="API\migrations\" />
+    <Folder Include="API\templates\" />
+    <Folder Include="API\templates\API\" />
     <Folder Include="CreeDictionary\" />
     <Folder Include="React\" />
     <Folder Include="React\migrations\" />
-    <Folder Include="React\components\" />
+    <Folder Include="React\src\components\" />
+    <Folder Include="React\src\" />
     <Folder Include="React\static\" />
     <Folder Include="React\templates\" />
     <Folder Include="React\templates\React\" />
