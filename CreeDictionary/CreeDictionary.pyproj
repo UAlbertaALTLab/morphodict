@@ -46,6 +46,7 @@
     <Compile Include="React\tests.py" />
     <Compile Include="React\views.py" />
     <Compile Include="React\__init__.py" />
+    <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="API\templates\API\index.html" />
