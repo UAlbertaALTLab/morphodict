@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 DictionaryImporter/Dictionaries/
+CreeDictionary/db.sqlite3
