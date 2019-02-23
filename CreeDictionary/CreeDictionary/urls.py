@@ -9,6 +9,7 @@ from django.conf.urls import include, url
 # admin.autodiscover()
 
 urlpatterns = [
+    path('', include('React.urls')),
     # Examples:
     # url(r'^$', CreeDictionary.views.home, name='home'),
     # url(r'^CreeDictionary/', include('CreeDictionary.CreeDictionary.urls')),

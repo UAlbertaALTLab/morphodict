@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'API.apps.APIConfig'
+    'API.apps.APIConfig',
+    'React',
 ]
 
 MIDDLEWARE_CLASSES = [

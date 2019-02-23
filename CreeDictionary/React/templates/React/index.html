@@ -1,9 +1,18 @@
 <html>
-<head><title></title></head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <title>Cree Dictionary</title>
+</head>
 
 <body>
-
-{{ content }}
-
+    <section class="section">
+        <div class="container">
+            <div id="app" class="columns"><!-- React --></div>
+        </div>
+    </section>
 </body>
+{% load static %}
+<script src="{% static "React/main.js" %}"></script>
 </html>
