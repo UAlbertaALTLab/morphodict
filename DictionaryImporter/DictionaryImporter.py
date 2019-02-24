@@ -20,7 +20,7 @@ from API.admin import *
 from fst_lookup import FST
 
 
-DEFAULT_PROCESS_COUNT = 3200
+DEFAULT_PROCESS_COUNT = 6
 
 class DictionaryImporter:
     def __init__(self, filename, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, language):
@@ -64,8 +64,8 @@ class DictionaryImporter:
         print("Element Count: " + str(elementCount))
         print("Process Chunk Size: " + str(chunkSize))
 
-        #for i in range(self.processCount):
-        for i in range(6):
+        for i in range(self.processCount):
+        #for i in range(6):
             lower = int(i * chunkSize)
             upper = int(min((i + 1) * chunkSize, elementCount))
             elements = root[lower: upper]
@@ -96,40 +96,50 @@ class DictionaryImporter:
     def _fillDB(self, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue):
         conn = sqlite3.connect(self.sqlFileName)
         cur = conn.cursor()
+        
         with open("SetUp.sql", "r", encoding="utf-8-sig") as file:
             script = file.read()
             cur.executescript(script)
             conn.commit()
         sqlSP = SqlSP(conn)
-
+        print("Done SQL SetUp")
+        
         while not lemmaQueue.empty():
             lemma = lemmaQueue.get()
             sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
             sqlSP.addLemma(lemma.id)
+        print("Done Inserting Lemma")
 
         while not attributeQueue.empty():
             attribute = attributeQueue.get()
             #sqlSP.addAttribute(attribute.id, attribute.name, attribute.lemmaID)
+        print("Done Inserting Attribute")
 
         while not inflectionQueue.empty():
             inflection = inflectionQueue.get()
             sqlSP.addWord(inflection.id, inflection.context, inflection.language, inflection.type)
             sqlSP.addInflection(inflection.id, inflection.lemmaID)
+        print("Done Inserting Inflection")
+            
 
         while not inflectionFormQueue.empty():
             inflectionForm = inflectionFormQueue.get()
             sqlSP.addInflectionForm(inflectionForm.id, inflectionForm.name, inflectionForm.inflectionID)
+        print("Done Inserting InflectionForm")
 
         while not definitionQueue.empty():
             definition = definitionQueue.get()
             sqlSP.addDefinition(definition.id, definition.context, definition.source, definition.wordID)
-
+        print("Done Inserting Definition")
+        
         conn.commit();
 
         with open("CleanUp.sql", "r", encoding="utf-8-sig") as file:
             script = file.read()
             cur.executescript(script)
             #conn.commit()
+            
+        print("Done SQL CleanUp")
 
     def _parseProcess(self, processID, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
         #Process Specific Vars
@@ -152,7 +162,7 @@ class DictionaryImporter:
                 if element.tag == "e":
                     futures.append(executor.submit(self._parseEntry, element))
                     initCounter += 1
-                    if initCounter % 10 == 0:
+                    if initCounter % 100 == 0:
                         print("Process " + str(processID) + " Initialized: " + str(initCounter))
             print("Process " + str(processID) + " Done Init: " + str(initCounter))
 
@@ -161,7 +171,7 @@ class DictionaryImporter:
                 try:
                     lemma = future.result()
                     addCounter += 1;
-                    if addCounter % 1 == 0:
+                    if addCounter % 25 == 0:
                         print("Process " + str(processID) + " Added: " + str(addCounter))
                 except Exception as e:
                     print("Exception: ", e)

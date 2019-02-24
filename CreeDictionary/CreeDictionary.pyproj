@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="API\templates\API\index.html" />
+    <Content Include="db.sqlite3" />
     <Content Include="React\templates\React\index.html" />
     <Content Include="requirements.txt" />
   </ItemGroup>
