@@ -7,6 +7,9 @@ class Word(models.Model):
 
     class Meta:
         select_on_save = True
+        indexes = [
+            models.Index(fields=["context"])
+            ]
 
 class Lemma(Word):
     pass
@@ -16,17 +19,17 @@ class Lemma(Word):
 
 class Attribute(models.Model):
     name = models.CharField(max_length=10)
-    fk_lemma = models.ForeignKey(Lemma)
+    fk_lemma = models.ForeignKey(Lemma, on_delete=models.CASCADE)
 
 class Inflection(Word):
-    fk_lemma = models.ForeignKey(Lemma)
+    fk_lemma = models.ForeignKey(Lemma, on_delete=models.CASCADE)
 
     class Meta:
         select_on_save = True
 
 class InflectionForm(models.Model):
     name = models.CharField(max_length=10)
-    fk_inflection = models.ForeignKey(Inflection)
+    fk_inflection = models.ForeignKey(Inflection, on_delete=models.CASCADE)
 
     class Meta:
         select_on_save = True
@@ -34,7 +37,7 @@ class InflectionForm(models.Model):
 class Definition(models.Model):
     context = models.CharField(max_length=200)
     source = models.CharField(max_length=8)
-    fk_word = models.ForeignKey(Word)
+    fk_word = models.ForeignKey(Word, on_delete=models.CASCADE)
 
     class Meta:
         select_on_save = True

@@ -35,14 +35,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dictionaries\" />
     <Folder Include="Paradigm\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="CleanUp.sql" />
-    <Content Include="Dictionaries\crk-analyzer.fomabin.gz" />
-    <Content Include="Dictionaries\crk-generator.fomabin.gz" />
-    <Content Include="Dictionaries\crkeng.xml" />
     <Content Include="Paradigm\noun-na.paradigm" />
     <Content Include="Paradigm\noun-nad.paradigm" />
     <Content Include="Paradigm\noun-ni.paradigm" />

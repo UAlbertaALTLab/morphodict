@@ -49,6 +49,17 @@
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\dictionaries\crk-analyzer.fomabin.gz" />
+    <Content Include="API\dictionaries\crk-generator.fomabin.gz" />
+    <Content Include="API\dictionaries\crkeng.xml" />
+    <Content Include="API\paradigm\noun-na.paradigm" />
+    <Content Include="API\paradigm\noun-nad.paradigm" />
+    <Content Include="API\paradigm\noun-ni.paradigm" />
+    <Content Include="API\paradigm\noun-nid.paradigm" />
+    <Content Include="API\paradigm\verb-ai.paradigm" />
+    <Content Include="API\paradigm\verb-ii.paradigm" />
+    <Content Include="API\paradigm\verb-ta.paradigm" />
+    <Content Include="API\paradigm\verb-ti.paradigm" />
     <Content Include="API\templates\API\index.html" />
     <Content Include="db.sqlite3" />
     <Content Include="React\templates\React\index.html" />
@@ -57,6 +68,8 @@
   <ItemGroup>
     <Folder Include="API\" />
     <Folder Include="API\migrations\" />
+    <Folder Include="API\dictionaries\" />
+    <Folder Include="API\paradigm\" />
     <Folder Include="API\templates\" />
     <Folder Include="API\templates\API\" />
     <Folder Include="CreeDictionary\" />

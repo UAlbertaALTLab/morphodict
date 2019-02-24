@@ -1,0 +1,60 @@
+name: "verbs - inanimate intransitive (VII)"
+morphology:
+  pos: V
+  animacy: II
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VII-v"
+    - "VII-n"
+--
+{{ lemma }}+V+II+Ind+Prs+3Sg
+{{ lemma }}+V+II+Ind+Prs+3Pl
+{{ lemma }}+V+II+Ind+Prs+4Sg
+{{ lemma }}+V+II+Ind+Prs+4Pl
+
+{{ lemma }}+V+II+Ind+Prt+3Sg
+{{ lemma }}+V+II+Ind+Prt+3Pl
+{{ lemma }}+V+II+Ind+Prt+4Sg
+{{ lemma }}+V+II+Ind+Prt+4Pl
+
+{{ lemma }}+V+II+Ind+Fut+Int+3Sg
+{{ lemma }}+V+II+Ind+Fut+Int+3Pl
+{{ lemma }}+V+II+Ind+Fut+Int+4Sg
+{{ lemma }}+V+II+Ind+Fut+Int+4Pl
+
+{{ lemma }}+V+II+Ind+Fut+Def+3Sg
+{{ lemma }}+V+II+Ind+Fut+Def+3Pl
+{{ lemma }}+V+II+Ind+Fut+Def+4Sg
+{{ lemma }}+V+II+Ind+Fut+Def+4Pl
+
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prs+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prs+4Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prs+4Pl
+
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prt+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Prt+4Sg
+PV/e+{{ lemma }}+V+II+Cnj+Prt+4Pl
+
+PV/ka+{{ lemma }}+V+II+Cnj+Prs+3Sg
+PV/ka+{{ lemma }}+V+II+Cnj+Prs+3Pl
+PV/ka+{{ lemma }}+V+II+Cnj+Prs+4Sg
+PV/ka+{{ lemma }}+V+II+Cnj+Prs+4Pl
+
+PV/ta+{{ lemma }}+V+II+Cnj+Prs+3Sg
+PV/ta+{{ lemma }}+V+II+Cnj+Prs+3Pl
+PV/ta+{{ lemma }}+V+II+Cnj+Prs+4Sg
+PV/ta+{{ lemma }}+V+II+Cnj+Prs+4Pl
+
+PV/e+{{ lemma }}+V+II+Cnj+Fut+Int+3Sg
+PV/e+{{ lemma }}+V+II+Cnj+Fut+Int+3Pl
+PV/e+{{ lemma }}+V+II+Cnj+Fut+Int+4Sg
+PV/e+{{ lemma }}+V+II+Cnj+Fut+Int+4Pl
+
+{{ lemma }}+V+II+Fut+Cond+3Sg
+{{ lemma }}+V+II+Fut+Cond+3Pl
+{{ lemma }}+V+II+Fut+Cond+4Sg
+{{ lemma }}+V+II+Fut+Cond+4Pl

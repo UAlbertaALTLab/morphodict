@@ -23,13 +23,14 @@ from fst_lookup import FST
 DEFAULT_PROCESS_COUNT = 6
 
 class DictionaryImporter:
-    def __init__(self, filename, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, language):
+    def __init__(self, filename, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, paradigmFolder, language):
         self.processCount = DEFAULT_PROCESS_COUNT
         self.filename = filename
         self.language = language
         self.sqlFileName = sqlFileName
         self.fstAnalyzerFileName = fstAnalyzerFileName
         self.fstGeneratorFileName = fstGeneratorFileName
+        self.paradigmFolder = paradigmFolder
         self.loadParadigmFiles()
         print("Done Paradigm Loading")
 
@@ -39,7 +40,7 @@ class DictionaryImporter:
                          "verb-ai", "verb-ii", "verb-ta", "verb-ti"]
         self.paradigmForms = dict()
         for filename in paradigmFiles:
-            with open("Paradigm/" + filename + ".paradigm", "r") as file:
+            with open(self.paradigmFolder + filename + ".paradigm", "r") as file:
                 content = file.read()
                 forms = list(filter(None, content.split("--\n")[1].split("\n")))
                 self.paradigmForms[filename] = forms
@@ -294,5 +295,7 @@ class DictionaryImporter:
                         #print("Definition Added for: " + word.context)
 
 if __name__ == '__main__':
-    importer = DictionaryImporter("Dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", "Dictionaries/crk-analyzer.fomabin.gz", "Dictionaries/crk-generator.fomabin.gz", "crk")
+    importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
+                                  "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz", "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz", 
+                                  "../CreeDictionary/API/paradigm/", "crk")
     importer.parse()

@@ -1,8 +1,9 @@
 """
 Definition of urls for CreeDictionary.
 """
-
+from API import views
 from django.conf.urls import include, url
+from django.urls import path
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -18,4 +19,9 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    path("", views.home, name="Home"),
+    path("Search/", views.search, name="Search"),
+    path("Search/<str:queryString>", views.search, name="Search"),
+    path("DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
+
 ]
