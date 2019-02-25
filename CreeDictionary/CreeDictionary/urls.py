@@ -10,8 +10,8 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = [
-               #path('', include('React.urls')),
-    url(r'^React',include('React.urls')),
+    path("React", include('React.urls')),
+    #url(r'^React',include('React.urls')),
     # Examples:
     # url(r'^$', CreeDictionary.views.home, name='home'),
     # url(r'^CreeDictionary/', include('CreeDictionary.CreeDictionary.urls')),
