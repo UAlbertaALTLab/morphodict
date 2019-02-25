@@ -38,18 +38,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Paradigm\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="CleanUp.sql" />
-    <Content Include="Paradigm\noun-na.paradigm" />
-    <Content Include="Paradigm\noun-nad.paradigm" />
-    <Content Include="Paradigm\noun-ni.paradigm" />
-    <Content Include="Paradigm\noun-nid.paradigm" />
-    <Content Include="Paradigm\verb-ai.paradigm" />
-    <Content Include="Paradigm\verb-ii.paradigm" />
-    <Content Include="Paradigm\verb-ta.paradigm" />
-    <Content Include="Paradigm\verb-ti.paradigm" />
     <Content Include="SetUp.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
