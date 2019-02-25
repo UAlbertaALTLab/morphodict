@@ -190,15 +190,18 @@ class DictionaryImporter:
                 # Generate Paradigms
                 #print("Generating Paradigms for: " + fstLemma)
                 print("Paradigm Generation Stared for: " + lemma.context)
-                startTime = time.time()
-
+                
+                totalTime = 0
                 for form in forms:
                     form = form.strip()
                     if form.startswith("{#"):
                         continue
                     generatorInput = form.replace("{{ lemma }}", fstLemma)
+                    startTime = time.time()
                     generatedResult = list(self.fstGenerator.generate(generatorInput))
-                    #generatedResult = ["asdasdas"]
+                    endTime = time.time()
+                    totalTime += endTime - startTime
+                    #generatedResult = ["mitasseawz"]
                     if len(generatedResult) < 1:
                         continue
                     
@@ -225,8 +228,7 @@ class DictionaryImporter:
                         self._parseDefinitions(inflection, entry)
                 
                 print("Paradigm Generation Ended for: " + lemma.context)
-                endTime = time.time()
-                print(endTime - startTime)
+                print(totalTime)
         return fstLemma
 
         
