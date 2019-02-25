@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DictionaryImporter.py" />
+    <Compile Include="FSTTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="sqlsp.py" />
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
@@ -35,22 +38,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Dictionaries\" />
-    <Folder Include="Paradigm\" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="CleanUp.sql" />
-    <Content Include="Dictionaries\crk-analyzer.fomabin.gz" />
-    <Content Include="Dictionaries\crk-generator.fomabin.gz" />
-    <Content Include="Dictionaries\crkeng.xml" />
-    <Content Include="Paradigm\noun-na.paradigm" />
-    <Content Include="Paradigm\noun-nad.paradigm" />
-    <Content Include="Paradigm\noun-ni.paradigm" />
-    <Content Include="Paradigm\noun-nid.paradigm" />
-    <Content Include="Paradigm\verb-ai.paradigm" />
-    <Content Include="Paradigm\verb-ii.paradigm" />
-    <Content Include="Paradigm\verb-ta.paradigm" />
-    <Content Include="Paradigm\verb-ti.paradigm" />
     <Content Include="SetUp.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

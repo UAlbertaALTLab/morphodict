@@ -5,6 +5,7 @@ from threading import Lock
 import math
 import sqlite3
 from sqlsp import SqlSP
+import time
 
 #Hack for importing relative projects
 import sys
@@ -20,7 +21,7 @@ from API.admin import *
 from fst_lookup import FST
 
 
-DEFAULT_PROCESS_COUNT = 6
+DEFAULT_PROCESS_COUNT = 1
 
 class DictionaryImporter:
     def __init__(self, filename, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, paradigmFolder, language):
@@ -70,27 +71,11 @@ class DictionaryImporter:
             lower = int(i * chunkSize)
             upper = int(min((i + 1) * chunkSize, elementCount))
             elements = root[lower: upper]
-            process = Process(target=self._parseProcess, args=[processCounter, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue])
-            process.start()
-            processes.append(process)
-            print("Process " + str(processCounter) + " Started")
-            processCounter += 1
+            self._parseProcess(processCounter, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
         print("Done Process Init: " + str(processCounter))
 
         #Subprocecsses will not join unless queue is emptied
-        finishedProcesses = list()
-        while True:
-            finishedProcess = finishedQueue.get(block=True)
-            finishedProcesses.append(finishedProcess)
-            if len(finishedProcesses) >= len(processes):
-                break
 
-        self._fillDB(lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue)
-
-        for i in range(len(processes)):
-            process = processes[i]
-            process.join()
-            print("Joined Process: " + str(i))
         print("Done Join")
 
 
@@ -156,29 +141,9 @@ class DictionaryImporter:
         self.entryIDLock = Lock()
         self.entryIDDict = dict()
 
-        initCounter = 0
-        with ThreadPoolExecutor(max_workers=4) as executor:
-            futures = list()
-            for element in elements:
-                if element.tag == "e":
-                    futures.append(executor.submit(self._parseEntry, element))
-                    initCounter += 1
-                    if initCounter % 100 == 0:
-                        print("Process " + str(processID) + " Initialized: " + str(initCounter))
-            print("Process " + str(processID) + " Done Init: " + str(initCounter))
-
-            addCounter = 0
-            for future in as_completed(futures):
-                try:
-                    lemma = future.result()
-                    addCounter += 1;
-                    if addCounter % 25 == 0:
-                        print("Process " + str(processID) + " Added: " + str(addCounter))
-                except Exception as e:
-                    print("Exception: ", e)
-                
-            print("Process " + str(processID) + " Done Adding: " + str(addCounter))
-            finishedQueue.put(processID)
+        for element in elements:
+            if element.tag == "e":
+                self._parseEntry(element)
 
     def _getEntryID(self, type):
         self.entryIDLock.acquire()
@@ -224,6 +189,9 @@ class DictionaryImporter:
                 forms = self.paradigmForms[paradigmFilename]
                 # Generate Paradigms
                 #print("Generating Paradigms for: " + fstLemma)
+                print("Paradigm Generation Stared for: " + lemma.context)
+                startTime = time.time()
+
                 for form in forms:
                     form = form.strip()
                     if form.startswith("{#"):
@@ -255,6 +223,10 @@ class DictionaryImporter:
 
                     if generatedInflection == wordContext and generatedInflection != fstLemma:
                         self._parseDefinitions(inflection, entry)
+                
+                print("Paradigm Generation Ended for: " + lemma.context)
+                endTime = time.time()
+                print(endTime - startTime)
         return fstLemma
 
         

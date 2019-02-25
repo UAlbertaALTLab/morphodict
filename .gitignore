@@ -260,5 +260,6 @@ paket-files/
 __pycache__/
 *.pyc
 
-DictionaryImporter/Dictionaries/
-CreeDictionary/db.sqlite3
+/CreeDictionary/API/dictionaries/
+/CreeDictionary/db.sqlite3
+/CreeDictionary/db.sqlite3.bak
