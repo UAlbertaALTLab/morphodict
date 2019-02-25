@@ -22,6 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DictionaryImporter.py" />
+    <Compile Include="FSTTest.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="sqlsp.py" />
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
