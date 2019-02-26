@@ -19,7 +19,7 @@ def search(request, queryString):
     queryString = unquote(queryString)
     queryString = unicodedata.normalize("NFC", queryString)
     print("Search: " + queryString)
-    words = Word.objects.filter(context__contains=queryString)
+    words = Lemma.objects.filter(context__contains=queryString)
     words = list(model_to_dict(word) for word in words)
     return HttpResponse(json.dumps({"words": words}))
 
