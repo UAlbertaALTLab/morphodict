@@ -4,23 +4,26 @@ import {SearchURL, DetailURL} from './url';
 
 var loaded = true;
 
-var data = [];
+var Data = [];
 
 function connect(url) {
     fetch(url)
         .then(response => {
-              if (response.status !== 200) {
-                  loaded = false;
-                  console.log(loaded);
-                  return loaded;
-              };
-              return response.json();
-              })
+            if (response.status !== 200) {
+                loaded = false;
+                console.log('util loaded: ' + loaded);
+                return loaded;
+            };
+            return response.json();
+        })
         .then(data => {
-            data = data;
-            console.log(data);
-            return data;
-        });
+            Data = data;
+            console.log('util data: ' + JSON.stringify(Data));
+            return Data;
+        })
+        .catch(function(error) {
+            console.log('Error: ', error.message);
+          });
 };
 
 export const searchWord = (word) => {
@@ -34,11 +37,11 @@ export const wordDetail = (word) => {
 };
 
 export const getData = () => {
-    console.log(data);
-    return data;
+    console.log('util getdata: ' + JSON.stringify(Data));
+    return Data;
 }
 
 export const getLoaded = () => {
-    console.log(data);
+    console.log('util getLoaded: ' + loaded);
     return loaded;
 }

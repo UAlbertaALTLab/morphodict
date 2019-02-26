@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './searchForm.css';
+import SearchList from './searchList';
 
 import { searchWord, getLoaded } from '../util';
 
@@ -11,8 +12,7 @@ class SearchForm extends React.Component{
     constructor(props) {
         super(props);
         this.state = {value: ''};
-        this.data = [];
-
+        
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -30,7 +30,7 @@ class SearchForm extends React.Component{
         searchWord(this.state.value);
         if (getLoaded() === false) {
           alert('Word not sent');
-          console.log(getLoaded());
+          console.log('SearchWord not sended: ' + getLoaded());
         }
       }
 
@@ -52,10 +52,10 @@ class SearchForm extends React.Component{
                 </label>
                 <input type="submit" value="Search" />
             </form>
+            <SearchList sended={this.state.sended}/>
             </div>
         );
       }
 }
-
 
 export default SearchForm;
