@@ -2,7 +2,7 @@ import React from 'react';
 
 import './searchForm.css';
 
-const url = '/api/form-submit-url';
+import { searchWord, getLoaded } from '../util';
 
 class SearchForm extends React.Component{
     state = {
@@ -11,7 +11,8 @@ class SearchForm extends React.Component{
     constructor(props) {
         super(props);
         this.state = {value: ''};
-    
+        this.data = [];
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
@@ -21,25 +22,16 @@ class SearchForm extends React.Component{
       }
     
       handleSubmit(event) {
-        /*alert('A keyword was submitted: ' + this.state.value);*/
         event.preventDefault();
-        const data = new FormData(event.target);
+        //const data = new FormData(event.target);
         this.setState({
             sended: true,
-        })
-        
-        fetch(url,{
-            method: 'POST',
-            body: data,
-        })
-        .then(response =>{
-            if (!response.ok) {
-                alert('Connection error a word "' + this.state.value + '" was not submitted');
-                console.log('connection error');
-            }
-            //response.json();
-        })
-        .catch(error => console.log('error') );
+        });
+        searchWord(this.state.value);
+        if (getLoaded() === false) {
+          alert('Word not sent');
+          console.log(getLoaded());
+        }
       }
 
       getClassNames() {
@@ -52,8 +44,8 @@ class SearchForm extends React.Component{
 
     render() {
         return (
-            <div className={this.getClassNames()}>
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            <div>
+            <form onSubmit={this.handleSubmit.bind(this)} className={this.getClassNames()}>
                 <label>
                     Word:
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
