@@ -36,7 +36,7 @@ export const searchWord = (word) => {
 export const wordDetail = (word) => {
     loaded = false;
     const url = DetailURL + word;
-    return connect(url);
+    return fetch(url);
 };
 
 export const getData = () => {

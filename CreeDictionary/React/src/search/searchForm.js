@@ -2,6 +2,7 @@ import React from 'react';
 
 import './searchForm.css';
 import SearchList from './searchList';
+import {reset} from './searchList';
 
 import { searchWord, getLoaded, getData } from '../util';
 
@@ -19,12 +20,16 @@ class SearchForm extends React.Component{
       }
     
       handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({
+          value: event.target.value,
+          sended: false,
+        });
       }
 
       handleSubmit(event) {
         event.preventDefault();
         //const data = new FormData(event.target);
+        reset();
         searchWord(this.state.value).then(response => {
           console.log(response)
           response.json().then(data => {
@@ -43,7 +48,7 @@ class SearchForm extends React.Component{
 
       getClassNames() {
         let classNames = 'search';
-        if (this.state.sended === true) {
+        if (this.state.Words) {
           classNames += 'isTrue';
         }
         return classNames;
