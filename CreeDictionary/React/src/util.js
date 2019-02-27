@@ -4,7 +4,7 @@ import {SearchURL, DetailURL} from './url';
 
 var loaded = true;
 
-var Data = [];
+var Data = null;
 
 function connect(url) {
     fetch(url)
@@ -18,6 +18,7 @@ function connect(url) {
         })
         .then(data => {
             Data = data;
+            loaded = true;
             console.log('util data: ' + JSON.stringify(Data));
             return Data;
         })
@@ -27,11 +28,13 @@ function connect(url) {
 };
 
 export const searchWord = (word) => {
+    loaded = false;
     const url = SearchURL + word;
-    connect(url);
+    return fetch(url);
 };
 
 export const wordDetail = (word) => {
+    loaded = false;
     const url = DetailURL + word;
     return connect(url);
 };

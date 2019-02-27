@@ -15,15 +15,12 @@ class SearchList extends React.Component{
         super(props);
 
         this.state = {
-            Words: [],
+            A: null,
         };
-        
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
       }
     
-      handleChange(event) {
-        this.setState({value: event.target.value});
+      detail(item){
+        alert(item);
       }
     
       handleSubmit(event) {
@@ -47,75 +44,42 @@ class SearchList extends React.Component{
         return classNames;
       }
 
-      renderTaskList () {
-        if (this.props.sended === true) {
-            if (getData() === []) {
-                return <p>No Result</p>
-            }
-            else {
-                this.setState({ Words: getData().words });
-            }
-        }
-        if (this.state.Words) {
-          return (
-            <ul>
-              {this.state.Words.map((words, i) => <li key={i}>{words.context}</li>)}
-            </ul>
-          )
-        }
-    
-        return <p>Loading tasks...</p>
-      }
-
-      /*StateChange () {
-        this.setState({ Words: getData().words})
-        return <ul>{this.state.Words}</ul>
-        if (this.props.sended === true) {
-            this.setState({ Words: getData().words});
-            /*
-            if (getData() === []) {
-                return <p>No Result</p>
-            }
-            else {
-                this.setState({ Words: getData().words});
-                return <ul>{this.state.Words}</ul>
-            }
-      }
-    }*/
-
     shouldComponentUpdate() {
-        if ((this.props.sended === true) && (getData().words !== this.state.Words)) {
+        if (!this.props.Words) {
             return true;
         }
         return false;
       }
 
-    componentDidUpdate() {
-        if (getData().words !== this.state.Words){
-            this.setState({ Words: getData().words});
-        }
-    }
-
-    render() {
+    render(props) {
         console.log('prop sended: ' + this.props.sended);
-        console.log('Data sended: ' + JSON.stringify(getData()));
-        console.log(this.state.Words);
-        return (
-            <div>
-                <ul>
-                    {this.state.Words.map(function(wordlist){
-                            return <li key={wordlist.id}>{wordlist.context}</li>;
-                        })
-                    }
-                </ul>
-            </div>
-        );
+        console.log('Data sended: ' + JSON.stringify(this.props.Words));
+        if (!this.props.Words) {
+            console.log('prop sended: ' + this.props.sended);
+            console.log('Data sended: ' + JSON.stringify(this.props.Words));
+            return (<div><h1>Hahaha</h1></div>);
+        }
+        if (this.props.Words) {
+            return (
+                <div className="centre"> 
+                <section>
+                    <ul className="centreli">
+                        {this.props.Words.map((wordlist) => {
+                                return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context}</li>
+                            })
+                        }
+                    </ul>
+                </section>
+                </div>
+            );
+        }
       }
 }
 
 export default SearchList;
 
 /*
+onClick = {() => {this.props.onClick(catName)}}
 {this.state.Words.map((task, i) => <li key={i}>{task.context}</li>)}
 
 constructor () {
