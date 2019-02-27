@@ -15,6 +15,7 @@ class SearchList extends React.Component{
         super(props);
 
         this.state = {
+            data: null,
             A: null,
         };
       }
@@ -44,12 +45,12 @@ class SearchList extends React.Component{
         return classNames;
       }
 
-    shouldComponentUpdate() {
-        if (!this.props.Words) {
+    /*shouldComponentUpdate() {
+        if ((!this.props.Words) || (this.props.Words !== this.state.data)) {
             return true;
         }
         return false;
-      }
+      }*/
 
     render(props) {
         console.log('prop sended: ' + this.props.sended);
@@ -57,7 +58,7 @@ class SearchList extends React.Component{
         if (!this.props.Words) {
             console.log('prop sended: ' + this.props.sended);
             console.log('Data sended: ' + JSON.stringify(this.props.Words));
-            return (<div><h1>Hahaha</h1></div>);
+            return (<div><h1>Error page</h1></div>);
         }
         if (this.props.Words) {
             return (
