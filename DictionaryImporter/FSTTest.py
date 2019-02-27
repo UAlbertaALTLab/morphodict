@@ -1,3 +1,9 @@
+"""
+    THIS CLASS IS USED TO TESTING TIME TAKEN FOR FST INFLECTION GENERATION
+    DO NOT USE THIS CLASS FOR OTHER PURPOSES
+    FOR DOCUMENTATION SEE DictionaryImporter.py INSTEAD
+"""
+
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from multiprocessing import Process, Queue
