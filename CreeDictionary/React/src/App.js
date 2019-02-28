@@ -1,3 +1,9 @@
+/*
+* App Class
+*   
+*   Returns top page when first load page
+*/
+
 import React, { Component } from 'react';
 import './App.css';
 
@@ -5,6 +11,7 @@ import SearchForm from './search/searchForm';
 
 class App extends Component {
 
+    //render
     render() {
         return (
             <div className="App">
@@ -12,7 +19,7 @@ class App extends Component {
                     <h1>Dictionary</h1>
                 </header>
                 <div>
-                <SearchForm/>
+                    <SearchForm />
                 </div>
             </div>
         );

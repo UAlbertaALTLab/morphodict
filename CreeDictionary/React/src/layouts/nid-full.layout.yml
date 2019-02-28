@@ -1,0 +1,14 @@
+name: "Inanimate dependent noun full paradigm"			
+paradigm: "noun-nid.paradigm"			
+layout:			
+  type: "full"			
+tooltips:			
+  eng:			
+    "1s": "1st person singular possessor"			
+    "2s": "2nd person singular possessor"			
+    "3s": "3rd person singular possessor"			
+    "1p": "1st person plural exclusive possessor"			
+    "21": "1st person plural inclusive possessor"			
+    "2p": "2nd person plural possessor"			
+    "3p": "3rd person plural possessor"			
+    "4": "Obviative possessor"			

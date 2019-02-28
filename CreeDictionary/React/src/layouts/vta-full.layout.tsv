@@ -1,0 +1,381 @@
+	"PRESENT TENSE"	
+"Speech act participants"	: "Independent"	: "Conjunct"
+"2s → 1s"	Ind+Prs+2Sg+1SgO	PV/e+*+Cnj+Prs+2Sg+1SgO
+"2s → 1p"	Ind+Prs+2Sg+1PlO	PV/e+*+Cnj+Prs+2Sg+1PlO
+"2p → 1s"	Ind+Prs+2Pl+1SgO	PV/e+*+Cnj+Prs+2Pl+1SgO
+"2p → 1p"	Ind+Prs+2Pl+1PlO	PV/e+*+Cnj+Prs+2Pl+1PlO
+		
+"1s → 2s"	Ind+Prs+1Sg+2SgO	PV/e+*+Cnj+Prs+1Sg+2SgO
+"1s → 2p"	Ind+Prs+1Sg+2PlO	PV/e+*+Cnj+Prs+1Sg+2PlO
+"1p → 2s"	Ind+Prs+1Pl+2SgO	PV/e+*+Cnj+Prs+1Pl+2SgO
+"1p → 2p"	Ind+Prs+1Pl+2PlO	PV/e+*+Cnj+Prs+1Pl+2PlO
+		
+"Mixed participants"	: "Independent"	: "Conjunct"
+"1s → 3s"	Ind+Prs+1Sg+3SgO	PV/e+*+Cnj+Prs+1Sg+3SgO
+"2s → 3s"	Ind+Prs+2Sg+3SgO	PV/e+*+Cnj+Prs+2Sg+3SgO
+"1p → 3s"	Ind+Prs+1Pl+3SgO	PV/e+*+Cnj+Prs+1Pl+3SgO
+"21 → 3s"	Ind+Prs+12Pl+3SgO	PV/e+*+Cnj+Prs+12Pl+3SgO
+"2p → 3s"	Ind+Prs+2Pl+3SgO	PV/e+*+Cnj+Prs+2Pl+3SgO
+		
+"1s → 3p"	Ind+Prs+1Sg+3PlO	PV/e+*+Cnj+Prs+1Sg+3PlO
+"2s → 3p"	Ind+Prs+2Sg+3PlO	PV/e+*+Cnj+Prs+2Sg+3PlO
+"1p → 3p"	Ind+Prs+1Pl+3PlO	PV/e+*+Cnj+Prs+1Pl+3PlO
+"21 → 3p"	Ind+Prs+12Pl+3PlO	PV/e+*+Cnj+Prs+12Pl+3PlO
+"2p → 3p"	Ind+Prs+2Pl+3PlO	PV/e+*+Cnj+Prs+2Pl+3PlO
+		
+"1s → 4"	Ind+Prs+1Sg+4Sg/PlO	PV/e+*+Cnj+Prs+1Sg+4Sg/PlO
+"2s → 4"	Ind+Prs+2Sg+4Sg/PlO	PV/e+*+Cnj+Prs+2Sg+4Sg/PlO
+"1p → 4"	Ind+Prs+1Pl+4Sg/PlO	PV/e+*+Cnj+Prs+1Pl+4Sg/PlO
+"21 → 4"	Ind+Prs+12Pl+4Sg/PlO	PV/e+*+Cnj+Prs+12Pl+4Sg/PlO
+"2p → 4"	Ind+Prs+2Pl+4Sg/PlO	PV/e+*+Cnj+Prs+2Pl+4Sg/PlO
+		
+"3s → 1s"	Ind+Prs+3Sg+1SgO	PV/e+*+Cnj+Prs+3Sg+1SgO
+"3s → 2s"	Ind+Prs+3Sg+2SgO	PV/e+*+Cnj+Prs+3Sg+2SgO
+"3s → 1p"	Ind+Prs+3Sg+1PlO	PV/e+*+Cnj+Prs+3Sg+1PlO
+"3s → 21"	Ind+Prs+3Sg+12PlO	PV/e+*+Cnj+Prs+3Sg+12PlO
+"3s → 2p"	Ind+Prs+3Sg+2PlO	PV/e+*+Cnj+Prs+3Sg+2PlO
+		
+"3p → 1s"	Ind+Prs+3Pl+1SgO	PV/e+*+Cnj+Prs+3Pl+1SgO
+"3p → 2s"	Ind+Prs+3Pl+2SgO	PV/e+*+Cnj+Prs+3Pl+2SgO
+"3p → 1p"	Ind+Prs+3Pl+1PlO	PV/e+*+Cnj+Prs+3Pl+1PlO
+"3p → 21"	Ind+Prs+3Pl+12PlO	PV/e+*+Cnj+Prs+3Pl+12PlO
+"3s → 2p"	Ind+Prs+3Pl+2PlO	PV/e+*+Cnj+Prs+3Pl+2PlO
+		
+"4 → 1s"	Ind+Prs+4Sg/Pl+1SgO	PV/e+*+Cnj+Prs+4Sg/Pl+1SgO
+"4 → 2s"	Ind+Prs+4Sg/Pl+2SgO	PV/e+*+Cnj+Prs+4Sg/Pl+2SgO
+"4 → 1p"	Ind+Prs+4Sg/Pl+1PlO	PV/e+*+Cnj+Prs+4Sg/Pl+1PlO
+"4 → 21"	Ind+Prs+4Sg/Pl+12PlO	PV/e+*+Cnj+Prs+4Sg/Pl+12PlO
+"4 → 2p"	Ind+Prs+4Sg/Pl+2PlO	PV/e+*+Cnj+Prs+4Sg/Pl+2PlO
+		
+"Third person participants"	: "Independent"	: "Conjunct"
+"3s → 4"	Ind+Prs+3Sg+4Sg/PlO	PV/e+*+Cnj+Prs+3Sg+4Sg/PlO
+"3p → 4"	Ind+Prs+3Pl+4Sg/PlO	PV/e+*+Cnj+Prs+3Pl+4Sg/PlO
+"4 → 5"	Ind+Prs+4Sg/Pl+5Sg/PlO	PV/e+*+Cnj+Prs+4Sg/Pl+5Sg/PlO
+		
+"4 → 3s"	Ind+Prs+4Sg/Pl+3SgO	PV/e+*+Cnj+Prs+4Sg/Pl+3SgO
+"4 → 3p"	Ind+Prs+4Sg/Pl+3PlO	PV/e+*+Cnj+Prs+4Sg/Pl+3PlO
+"5 → 4"	Ind+Prs+5Sg/Pl+4Sg/PlO	PV/e+*+Cnj+Prs+5Sg/Pl+4Sg/PlO
+		
+"Unspecified actor"	: "Independent"	: "Conjunct"
+"X → 1s"	Ind+Prs+X+1SgO	PV/e+*+Cnj+Prs+X+1SgO
+"X → 2s"	Ind+Prs+X+2SgO	PV/e+*+Cnj+Prs+X+2SgO
+"X → 3s"	Ind+Prs+X+3SgO	PV/e+*+Cnj+Prs+X+3SgO
+"X → 4"	Ind+Prs+X+4Sg/PlO	PV/e+*+Cnj+Prs+X+4Sg/PlO
+"X → 1p"	Ind+Prs+X+1PlO	PV/e+*+Cnj+Prs+X+1PlO
+"X → 21"	Ind+Prs+X+12PlO	PV/e+*+Cnj+Prs+X+12PlO
+"X → 2p"	Ind+Prs+X+2PlO	PV/e+*+Cnj+Prs+X+2PlO
+"X → 3p"	Ind+Prs+X+3PlO	PV/e+*+Cnj+Prs+X+3PlO
+		
+"Inanimate actor"		
+		
+	"PAST TENSE"	
+"Speech act participants"	: "Independent"	: "Conjunct"
+"2s → 1s"	Ind+Prt+2Sg+1SgO	Cnj+Prt+2Sg+1SgO
+"2s → 1p"	Ind+Prt+2Sg+1PlO	Cnj+Prt+2Sg+1PlO
+"2p → 1s"	Ind+Prt+2Pl+1SgO	Cnj+Prt+2Pl+1SgO
+"2p → 1p"	Ind+Prt+2Pl+1PlO	Cnj+Prt+2Pl+1PlO
+		
+"1s → 2s"	Ind+Prt+1Sg+2SgO	Cnj+Prt+1Sg+2SgO
+"1s → 2p"	Ind+Prt+1Sg+2PlO	Cnj+Prt+1Sg+2PlO
+"1p → 2s"	Ind+Prt+1Pl+2SgO	Cnj+Prt+1Pl+2SgO
+"1p → 2p"	Ind+Prt+1Pl+2PlO	Cnj+Prt+1Pl+2PlO
+		
+"Mixed participants"	: "Independent"	: "Conjunct"
+"1s → 3s"	Ind+Prt+1Sg+3SgO	Cnj+Prt+1Sg+3SgO
+"2s → 3s"	Ind+Prt+2Sg+3SgO	Cnj+Prt+2Sg+3SgO
+"1p → 3s"	Ind+Prt+1Pl+3SgO	Cnj+Prt+1Pl+3SgO
+"21 → 3s"	Ind+Prt+12Pl+3SgO	Cnj+Prt+12Pl+3SgO
+"2p → 3s"	Ind+Prt+2Pl+3SgO	Cnj+Prt+2Pl+3SgO
+		
+"1s → 3p"	Ind+Prt+1Sg+3PlO	Cnj+Prt+1Sg+3PlO
+"2s → 3p"	Ind+Prt+2Sg+3PlO	Cnj+Prt+2Sg+3PlO
+"1p → 3p"	Ind+Prt+1Pl+3PlO	Cnj+Prt+1Pl+3PlO
+"21 → 3p"	Ind+Prt+12Pl+3PlO	Cnj+Prt+12Pl+3PlO
+"2p → 3p"	Ind+Prt+2Pl+3PlO	Cnj+Prt+2Pl+3PlO
+		
+"1s → 4"	Ind+Prt+1Sg+4Sg/PlO	Cnj+Prt+1Sg+4Sg/PlO
+"2s → 4"	Ind+Prt+2Sg+4Sg/PlO	Cnj+Prt+2Sg+4Sg/PlO
+"1p → 4"	Ind+Prt+1Pl+4Sg/PlO	Cnj+Prt+1Pl+4Sg/PlO
+"21 → 4"	Ind+Prt+12Pl+4Sg/PlO	Cnj+Prt+12Pl+4Sg/PlO
+"2p → 4"	Ind+Prt+2Pl+4Sg/PlO	Cnj+Prt+2Pl+4Sg/PlO
+		
+"3s → 1s"	Ind+Prt+3Sg+1SgO	Cnj+Prt+3Sg+1SgO
+"3s → 2s"	Ind+Prt+3Sg+2SgO	Cnj+Prt+3Sg+2SgO
+"3s → 1p"	Ind+Prt+3Sg+1PlO	Cnj+Prt+3Sg+1PlO
+"3s → 21"	Ind+Prt+3Sg+12PlO	Cnj+Prt+3Sg+12PlO
+"3s → 2p"	Ind+Prt+3Sg+2PlO	Cnj+Prt+3Sg+2PlO
+		
+"3p → 1s"	Ind+Prt+3Pl+1SgO	Cnj+Prt+3Pl+1SgO
+"3p → 2s"	Ind+Prt+3Pl+2SgO	Cnj+Prt+3Pl+2SgO
+"3p → 1p"	Ind+Prt+3Pl+1PlO	Cnj+Prt+3Pl+1PlO
+"3p → 21"	Ind+Prt+3Pl+12PlO	Cnj+Prt+3Pl+12PlO
+"3s → 2p"	Ind+Prt+3Pl+2PlO	Cnj+Prt+3Pl+2PlO
+		
+"4 → 1s"	Ind+Prt+4Sg/Pl+1SgO	Cnj+Prt+4Sg/Pl+1SgO
+"4 → 2s"	Ind+Prt+4Sg/Pl+2SgO	Cnj+Prt+4Sg/Pl+2SgO
+"4 → 1p"	Ind+Prt+4Sg/Pl+1PlO	Cnj+Prt+4Sg/Pl+1PlO
+"4 → 21"	Ind+Prt+4Sg/Pl+12PlO	Cnj+Prt+4Sg/Pl+12PlO
+"4 → 2p"	Ind+Prt+4Sg/Pl+2PlO	Cnj+Prt+4Sg/Pl+2PlO
+		
+"Third person participants"	: "Independent"	: "Conjunct"
+"3s → 4"	Ind+Prt+3Sg+4Sg/PlO	Cnj+Prt+3Sg+4Sg/PlO
+"3p → 4"	Ind+Prt+3Pl+4Sg/PlO	Cnj+Prt+3Pl+4Sg/PlO
+"4 → 5"	Ind+Prt+4Sg/Pl+5Sg/PlO	Cnj+Prt+4Sg/Pl+5Sg/PlO
+		
+"4 → 3s"	Ind+Prt+4Sg/Pl+3SgO	Cnj+Prt+4Sg/Pl+3SgO
+"4 → 3p"	Ind+Prt+4Sg/Pl+3PlO	Cnj+Prt+4Sg/Pl+3PlO
+"5 → 4"	Ind+Prt+5Sg/Pl+4Sg/PlO	Cnj+Prt+5Sg/Pl+4Sg/PlO
+		
+		
+	"FUTURE INTENTIONAL TENSE"	
+"Speech act participants"	: "Independent"	: "Conjunct"
+"2s → 1s"	Ind+Fut+Int+2Sg+1SgO	Cnj+Fut+Int+2Sg+1SgO
+"2s → 1p"	Ind+Fut+Int+2Sg+1PlO	Cnj+Fut+Int+2Sg+1PlO
+"2p → 1s"	Ind+Fut+Int+2Pl+1SgO	Cnj+Fut+Int+2Pl+1SgO
+"2p → 1p"	Ind+Fut+Int+2Pl+1PlO	Cnj+Fut+Int+2Pl+1PlO
+		
+"1s → 2s"	Ind+Fut+Int+1Sg+2SgO	Cnj+Fut+Int+1Sg+2SgO
+"1s → 2p"	Ind+Fut+Int+1Sg+2PlO	Cnj+Fut+Int+1Sg+2PlO
+"1p → 2s"	Ind+Fut+Int+1Pl+2SgO	Cnj+Fut+Int+1Pl+2SgO
+"1p → 2p"	Ind+Fut+Int+1Pl+2PlO	Cnj+Fut+Int+1Pl+2PlO
+		
+"Mixed participants"	: "Independent"	: "Conjunct"
+"1s → 3s"	Ind+Fut+Int+1Sg+3SgO	Cnj+Fut+Int+1Sg+3SgO
+"2s → 3s"	Ind+Fut+Int+2Sg+3SgO	Cnj+Fut+Int+2Sg+3SgO
+"1p → 3s"	Ind+Fut+Int+1Pl+3SgO	Cnj+Fut+Int+1Pl+3SgO
+"21 → 3s"	Ind+Fut+Int+12Pl+3SgO	Cnj+Fut+Int+12Pl+3SgO
+"2p → 3s"	Ind+Fut+Int+2Pl+3SgO	Cnj+Fut+Int+2Pl+3SgO
+		
+"1s → 3p"	Ind+Fut+Int+1Sg+3PlO	Cnj+Fut+Int+1Sg+3PlO
+"2s → 3p"	Ind+Fut+Int+2Sg+3PlO	Cnj+Fut+Int+2Sg+3PlO
+"1p → 3p"	Ind+Fut+Int+1Pl+3PlO	Cnj+Fut+Int+1Pl+3PlO
+"21 → 3p"	Ind+Fut+Int+12Pl+3PlO	Cnj+Fut+Int+12Pl+3PlO
+"2p → 3p"	Ind+Fut+Int+2Pl+3PlO	Cnj+Fut+Int+2Pl+3PlO
+		
+"1s → 4"	Ind+Fut+Int+1Sg+4Sg/PlO	Cnj+Fut+Int+1Sg+4Sg/PlO
+"2s → 4"	Ind+Fut+Int+2Sg+4Sg/PlO	Cnj+Fut+Int+2Sg+4Sg/PlO
+"1p → 4"	Ind+Fut+Int+1Pl+4Sg/PlO	Cnj+Fut+Int+1Pl+4Sg/PlO
+"21 → 4"	Ind+Fut+Int+12Pl+4Sg/PlO	Cnj+Fut+Int+12Pl+4Sg/PlO
+"2p → 4"	Ind+Fut+Int+2Pl+4Sg/PlO	Cnj+Fut+Int+2Pl+4Sg/PlO
+		
+"3s → 1s"	Ind+Fut+Int+3Sg+1SgO	Cnj+Fut+Int+3Sg+1SgO
+"3s → 2s"	Ind+Fut+Int+3Sg+2SgO	Cnj+Fut+Int+3Sg+2SgO
+"3s → 1p"	Ind+Fut+Int+3Sg+1PlO	Cnj+Fut+Int+3Sg+1PlO
+"3s → 21"	Ind+Fut+Int+3Sg+12PlO	Cnj+Fut+Int+3Sg+12PlO
+"3s → 2p"	Ind+Fut+Int+3Sg+2PlO	Cnj+Fut+Int+3Sg+2PlO
+		
+"3p → 1s"	Ind+Fut+Int+3Pl+1SgO	Cnj+Fut+Int+3Pl+1SgO
+"3p → 2s"	Ind+Fut+Int+3Pl+2SgO	Cnj+Fut+Int+3Pl+2SgO
+"3p → 1p"	Ind+Fut+Int+3Pl+1PlO	Cnj+Fut+Int+3Pl+1PlO
+"3p → 21"	Ind+Fut+Int+3Pl+12PlO	Cnj+Fut+Int+3Pl+12PlO
+"3s → 2p"	Ind+Fut+Int+3Pl+2PlO	Cnj+Fut+Int+3Pl+2PlO
+		
+"4 → 1s"	Ind+Fut+Int+4Sg/Pl+1SgO	Cnj+Fut+Int+4Sg/Pl+1SgO
+"4 → 2s"	Ind+Fut+Int+4Sg/Pl+2SgO	Cnj+Fut+Int+4Sg/Pl+2SgO
+"4 → 1p"	Ind+Fut+Int+4Sg/Pl+1PlO	Cnj+Fut+Int+4Sg/Pl+1PlO
+"4 → 21"	Ind+Fut+Int+4Sg/Pl+12PlO	Cnj+Fut+Int+4Sg/Pl+12PlO
+"4 → 2p"	Ind+Fut+Int+4Sg/Pl+2PlO	Cnj+Fut+Int+4Sg/Pl+2PlO
+		
+"Third person participants"	: "Independent"	: "Conjunct"
+"3s → 4"	Ind+Fut+Int+3Sg+4Sg/PlO	Cnj+Fut+Int+3Sg+4Sg/PlO
+"3p → 4"	Ind+Fut+Int+3Pl+4Sg/PlO	Cnj+Fut+Int+3Pl+4Sg/PlO
+"4 → 5"	Ind+Fut+Int+4Sg/Pl+5Sg/PlO	Cnj+Fut+Int+4Sg/Pl+5Sg/PlO
+		
+"4 → 3s"	Ind+Fut+Int+4Sg/Pl+3SgO	Cnj+Fut+Int+4Sg/Pl+3SgO
+"4 → 3p"	Ind+Fut+Int+4Sg/Pl+3PlO	Cnj+Fut+Int+4Sg/Pl+3PlO
+"5 → 4"	Ind+Fut+Int+5Sg/Pl+4Sg/PlO	Cnj+Fut+Int+5Sg/Pl+4Sg/PlO
+		
+		
+	"FUTURE DEFINITE TENSE"	
+"Speech act participants"	: "Independent"	
+"2s → 1s"	Ind+Fut+Def+2Sg+1SgO	
+"2s → 1p"	Ind+Fut+Def+2Sg+1PlO	
+"2p → 1s"	Ind+Fut+Def+2Pl+1SgO	
+"2p → 1p"	Ind+Fut+Def+2Pl+1PlO	
+		
+"1s → 2s"	Ind+Fut+Def+1Sg+2SgO	
+"1s → 2p"	Ind+Fut+Def+1Sg+2PlO	
+"1p → 2s"	Ind+Fut+Def+1Pl+2SgO	
+"1p → 2p"	Ind+Fut+Def+1Pl+2PlO	
+		
+"Mixed participants"	: "Independent"	
+"1s → 3s"	Ind+Fut+Def+1Sg+3SgO	
+"2s → 3s"	Ind+Fut+Def+2Sg+3SgO	
+"1p → 3s"	Ind+Fut+Def+1Pl+3SgO	
+"21 → 3s"	Ind+Fut+Def+12Pl+3SgO	
+"2p → 3s"	Ind+Fut+Def+2Pl+3SgO	
+		
+"1s → 3p"	Ind+Fut+Def+1Sg+3PlO	
+"2s → 3p"	Ind+Fut+Def+2Sg+3PlO	
+"1p → 3p"	Ind+Fut+Def+1Pl+3PlO	
+"21 → 3p"	Ind+Fut+Def+12Pl+3PlO	
+"2p → 3p"	Ind+Fut+Def+2Pl+3PlO	
+		
+"1s → 4"	Ind+Fut+Def+1Sg+4Sg/PlO	
+"2s → 4"	Ind+Fut+Def+2Sg+4Sg/PlO	
+"1p → 4"	Ind+Fut+Def+1Pl+4Sg/PlO	
+"21 → 4"	Ind+Fut+Def+12Pl+4Sg/PlO	
+"2p → 4"	Ind+Fut+Def+2Pl+4Sg/PlO	
+		
+"3s → 1s"	Ind+Fut+Def+3Sg+1SgO	
+"3s → 2s"	Ind+Fut+Def+3Sg+2SgO	
+"3s → 1p"	Ind+Fut+Def+3Sg+1PlO	
+"3s → 21"	Ind+Fut+Def+3Sg+12PlO	
+"3s → 2p"	Ind+Fut+Def+3Sg+2PlO	
+		
+"3p → 1s"	Ind+Fut+Def+3Pl+1SgO	
+"3p → 2s"	Ind+Fut+Def+3Pl+2SgO	
+"3p → 1p"	Ind+Fut+Def+3Pl+1PlO	
+"3p → 21"	Ind+Fut+Def+3Pl+12PlO	
+"3s → 2p"	Ind+Fut+Def+3Pl+2PlO	
+		
+"4 → 1s"	Ind+Fut+Def+4Sg/Pl+1SgO	
+"4 → 2s"	Ind+Fut+Def+4Sg/Pl+2SgO	
+"4 → 1p"	Ind+Fut+Def+4Sg/Pl+1PlO	
+"4 → 21"	Ind+Fut+Def+4Sg/Pl+12PlO	
+"4 → 2p"	Ind+Fut+Def+4Sg/Pl+2PlO	
+		
+"Third person participants"	: "Independent"	
+"3s → 4"	Ind+Fut+Def+3Sg+4Sg/PlO	
+"3p → 4"	Ind+Fut+Def+3Pl+4Sg/PlO	
+"4 → 5"	Ind+Fut+Def+4Sg/Pl+5Sg/PlO	
+		
+"4 → 3s"	Ind+Fut+Def+4Sg/Pl+3SgO	
+"4 → 3p"	Ind+Fut+Def+4Sg/Pl+3PlO	
+"5 → 4"	Ind+Fut+Def+5Sg/Pl+4Sg/PlO	
+		
+		
+	"FUTURE/INFINITIVE"	
+"Speech act participants"	: "Conjunct: ka-"	: "Conjunct: ta-"
+"2s → 1s"	PV/ka+*+Cnj+Prs+2Sg+1SgO	PV/ta+*+Cnj+Prs+2Sg+1SgO
+"2s → 1p"	PV/ka+*+Cnj+Prs+2Sg+1PlO	PV/ta+*+Cnj+Prs+2Sg+1PlO
+"2p → 1s"	PV/ka+*+Cnj+Prs+2Pl+1SgO	PV/ta+*+Cnj+Prs+2Pl+1SgO
+"2p → 1p"	PV/ka+*+Cnj+Prs+2Pl+1PlO	PV/ta+*+Cnj+Prs+2Pl+1PlO
+		
+"1s → 2s"	PV/ka+*+Cnj+Prs+1Sg+2SgO	PV/ta+*+Cnj+Prs+1Sg+2SgO
+"1s → 2p"	PV/ka+*+Cnj+Prs+1Sg+2PlO	PV/ta+*+Cnj+Prs+1Sg+2PlO
+"1p → 2s"	PV/ka+*+Cnj+Prs+1Pl+2SgO	PV/ta+*+Cnj+Prs+1Pl+2SgO
+"1p → 2p"	PV/ka+*+Cnj+Prs+1Pl+2PlO	PV/ta+*+Cnj+Prs+1Pl+2PlO
+		
+"Mixed participants"	: "Conjunct: ka-"	: "Conjunct: ta-"
+"1s → 3s"	PV/ka+*+Cnj+Prs+1Sg+3SgO	PV/ta+*+Cnj+Prs+1Sg+3SgO
+"2s → 3s"	PV/ka+*+Cnj+Prs+2Sg+3SgO	PV/ta+*+Cnj+Prs+2Sg+3SgO
+"1p → 3s"	PV/ka+*+Cnj+Prs+1Pl+3SgO	PV/ta+*+Cnj+Prs+1Pl+3SgO
+"21 → 3s"	PV/ka+*+Cnj+Prs+12Pl+3SgO	PV/ta+*+Cnj+Prs+12Pl+3SgO
+"2p → 3s"	PV/ka+*+Cnj+Prs+2Pl+3SgO	PV/ta+*+Cnj+Prs+2Pl+3SgO
+		
+"1s → 3p"	PV/ka+*+Cnj+Prs+1Sg+3PlO	PV/ta+*+Cnj+Prs+1Sg+3PlO
+"2s → 3p"	PV/ka+*+Cnj+Prs+2Sg+3PlO	PV/ta+*+Cnj+Prs+2Sg+3PlO
+"1p → 3p"	PV/ka+*+Cnj+Prs+1Pl+3PlO	PV/ta+*+Cnj+Prs+1Pl+3PlO
+"21 → 3p"	PV/ka+*+Cnj+Prs+12Pl+3PlO	PV/ta+*+Cnj+Prs+12Pl+3PlO
+"2p → 3p"	PV/ka+*+Cnj+Prs+2Pl+3PlO	PV/ta+*+Cnj+Prs+2Pl+3PlO
+		
+"1s → 4"	PV/ka+*+Cnj+Prs+1Sg+4Sg/PlO	PV/ta+*+Cnj+Prs+1Sg+4Sg/PlO
+"2s → 4"	PV/ka+*+Cnj+Prs+2Sg+4Sg/PlO	PV/ta+*+Cnj+Prs+2Sg+4Sg/PlO
+"1p → 4"	PV/ka+*+Cnj+Prs+1Pl+4Sg/PlO	PV/ta+*+Cnj+Prs+1Pl+4Sg/PlO
+"21 → 4"	PV/ka+*+Cnj+Prs+12Pl+4Sg/PlO	PV/ta+*+Cnj+Prs+12Pl+4Sg/PlO
+"2p → 4"	PV/ka+*+Cnj+Prs+2Pl+4Sg/PlO	PV/ta+*+Cnj+Prs+2Pl+4Sg/PlO
+		
+"3s → 1s"	PV/ka+*+Cnj+Prs+3Sg+1SgO	PV/ta+*+Cnj+Prs+3Sg+1SgO
+"3s → 2s"	PV/ka+*+Cnj+Prs+3Sg+2SgO	PV/ta+*+Cnj+Prs+3Sg+2SgO
+"3s → 1p"	PV/ka+*+Cnj+Prs+3Sg+1PlO	PV/ta+*+Cnj+Prs+3Sg+1PlO
+"3s → 21"	PV/ka+*+Cnj+Prs+3Sg+12PlO	PV/ta+*+Cnj+Prs+3Sg+12PlO
+"3s → 2p"	PV/ka+*+Cnj+Prs+3Sg+2PlO	PV/ta+*+Cnj+Prs+3Sg+2PlO
+		
+"3p → 1s"	PV/ka+*+Cnj+Prs+3Pl+1SgO	PV/ta+*+Cnj+Prs+3Pl+1SgO
+"3p → 2s"	PV/ka+*+Cnj+Prs+3Pl+2SgO	PV/ta+*+Cnj+Prs+3Pl+2SgO
+"3p → 1p"	PV/ka+*+Cnj+Prs+3Pl+1PlO	PV/ta+*+Cnj+Prs+3Pl+1PlO
+"3p → 21"	PV/ka+*+Cnj+Prs+3Pl+12PlO	PV/ta+*+Cnj+Prs+3Pl+12PlO
+"3s → 2p"	PV/ka+*+Cnj+Prs+3Pl+2PlO	PV/ta+*+Cnj+Prs+3Pl+2PlO
+		
+"4 → 1s"	PV/ka+*+Cnj+Prs+4Sg/Pl+1SgO	PV/ta+*+Cnj+Prs+4Sg/Pl+1SgO
+"4 → 2s"	PV/ka+*+Cnj+Prs+4Sg/Pl+2SgO	PV/ta+*+Cnj+Prs+4Sg/Pl+2SgO
+"4 → 1p"	PV/ka+*+Cnj+Prs+4Sg/Pl+1PlO	PV/ta+*+Cnj+Prs+4Sg/Pl+1PlO
+"4 → 21"	PV/ka+*+Cnj+Prs+4Sg/Pl+12PlO	PV/ta+*+Cnj+Prs+4Sg/Pl+12PlO
+"4 → 2p"	PV/ka+*+Cnj+Prs+4Sg/Pl+2PlO	PV/ta+*+Cnj+Prs+4Sg/Pl+2PlO
+		
+"Third person participants"	: "Conjunct: ka-"	: "Conjunct: ta-"
+"3s → 4"	PV/ka+*+Cnj+Prs+3Sg+4Sg/PlO	PV/ta+*+Cnj+Prs+3Sg+4Sg/PlO
+"3p → 4"	PV/ka+*+Cnj+Prs+3Pl+4Sg/PlO	PV/ta+*+Cnj+Prs+3Pl+4Sg/PlO
+"4 → 5"	PV/ka+*+Cnj+Prs+4Sg/Pl+5Sg/PlO	PV/ta+*+Cnj+Prs+4Sg/Pl+5Sg/PlO
+		
+"4 → 3s"	PV/ka+*+Cnj+Prs+4Sg/Pl+3SgO	PV/ta+*+Cnj+Prs+4Sg/Pl+3SgO
+"4 → 3p"	PV/ka+*+Cnj+Prs+4Sg/Pl+3PlO	PV/ta+*+Cnj+Prs+4Sg/Pl+3PlO
+"5 → 4"	PV/ka+*+Cnj+Prs+5Sg/Pl+4Sg/PlO	PV/ta+*+Cnj+Prs+5Sg/Pl+4Sg/PlO
+		
+		
+	"FUTURE CONDITIONAL"	
+"Speech act participants"		
+"2s → 1s"	Fut+Cond+2Sg+1SgO	
+"2s → 1p"	Fut+Cond+2Sg+1PlO	
+"2p → 1s"	Fut+Cond+2Pl+1SgO	
+"2p → 1p"	Fut+Cond+2Pl+1PlO	
+		
+"1s → 2s"	Fut+Cond+1Sg+2SgO	
+"1s → 2p"	Fut+Cond+1Sg+2PlO	
+"1p → 2s"	Fut+Cond+1Pl+2SgO	
+"1p → 2p"	Fut+Cond+1Pl+2PlO	
+		
+"Mixed participants"		
+"1s → 3s"	Fut+Cond+1Sg+3SgO	
+"2s → 3s"	Fut+Cond+2Sg+3SgO	
+"1p → 3s"	Fut+Cond+1Pl+3SgO	
+"21 → 3s"	Fut+Cond+12Pl+3SgO	
+"2p → 3s"	Fut+Cond+2Pl+3SgO	
+		
+"1s → 3p"	Fut+Cond+1Sg+3PlO	
+"2s → 3p"	Fut+Cond+2Sg+3PlO	
+"1p → 3p"	Fut+Cond+1Pl+3PlO	
+"21 → 3p"	Fut+Cond+12Pl+3PlO	
+"2p → 3p"	Fut+Cond+2Pl+3PlO	
+		
+"1s → 4"	Fut+Cond+1Sg+4Sg/PlO	
+"2s → 4"	Fut+Cond+2Sg+4Sg/PlO	
+"1p → 4"	Fut+Cond+1Pl+4Sg/PlO	
+"21 → 4"	Fut+Cond+12Pl+4Sg/PlO	
+"2p → 4"	Fut+Cond+2Pl+4Sg/PlO	
+		
+"3s → 1s"	Fut+Cond+3Sg+1SgO	
+"3s → 2s"	Fut+Cond+3Sg+2SgO	
+"3s → 1p"	Fut+Cond+3Sg+1PlO	
+"3s → 21"	Fut+Cond+3Sg+12PlO	
+"3s → 2p"	Fut+Cond+3Sg+2PlO	
+		
+"3p → 1s"	Fut+Cond+3Pl+1SgO	
+"3p → 2s"	Fut+Cond+3Pl+2SgO	
+"3p → 1p"	Fut+Cond+3Pl+1PlO	
+"3p → 21"	Fut+Cond+3Pl+12PlO	
+"3p → 2p"	Fut+Cond+3Pl+2PlO	
+		
+"4 → 1s"	Fut+Cond+4Sg/Pl+1SgO	
+"4 → 2s"	Fut+Cond+4Sg/Pl+2SgO	
+"4 → 1p"	Fut+Cond+4Sg/Pl+1PlO	
+"4 → 21"	Fut+Cond+4Sg/Pl+12PlO	
+"4 → 2p"	Fut+Cond+4Sg/Pl+2PlO	
+		
+"Third person participants"		
+"3s → 4"	Fut+Cond+3Sg+4Sg/PlO	
+"3s → 5"	Fut+Cond+3Sg+5Sg/PlO	
+"3p → 4"	Fut+Cond+3Pl+4Sg/PlO	
+"3p → 5"	Fut+Cond+3Pl+5Sg/PlO	
+		
+"4 → 3s"	Fut+Cond+4Sg/Pl+3SgO	
+"4 → 3p"	Fut+Cond+4Sg/Pl+3PlO	
+"4 → 5"	Fut+Cond+4Sg/Pl+5Sg/PlO	
+"5 → 4"	Fut+Cond+5Sg/Pl+4Sg/PlO	
+		
+		
+	"IMPERATIVE"	
+"Local"	: "Immediate"	: "Delayed"
+"2s → 1s"	Imp+Imm+2Sg+1SgO	Imp+Del+2Sg+1SgO
+"2s → 1p"	Imp+Imm+2Sg+1PlO	Imp+Del+2Sg+1PlO
+"2p → 1s"	Imp+Imm+2Pl+1SgO	Imp+Del+2Pl+1SgO
+"2p → 1p"	Imp+Imm+2Pl+1PlO	Imp+Del+2Pl+1PlO
+		
+"Mixed"	: "Immediate"	: "Delayed"
+"2s → 3s"	Imp+Imm+2Sg+3SgO	Imp+Del+2Sg+3SgO
+"2s → 3p"	Imp+Imm+2Sg+3PlO	Imp+Del+2Sg+3PlO
+"21 → 3s"	Imp+Imm+12Pl+3SgO	Imp+Del+12Pl+3SgO
+"21 → 3p"	Imp+Imm+12Pl+3PlO	Imp+Del+12Pl+3PlO
+"2p → 3s"	Imp+Imm+2Pl+3SgO	Imp+Del+2Pl+3SgO
+"2p → 3p"	Imp+Imm+2Pl+3PlO	Imp+Del+2Pl+3PlO

@@ -1,3 +1,6 @@
+/*
+*From Online resource please ignore
+
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 class DataProvider extends Component {
@@ -25,4 +28,4 @@ class DataProvider extends Component {
         return loaded ? this.props.render(data) : <p>{placeholder}</p>;
     }
 }
-export default DataProvider;
+export default DataProvider;*/
