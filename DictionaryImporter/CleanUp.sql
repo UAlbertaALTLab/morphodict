@@ -1,4 +1,6 @@
-﻿PRAGMA foreign_keys = true;
+﻿--Re-enable FK
+PRAGMA foreign_keys = true;
+--Recreate Indexes
 CREATE INDEX IF NOT EXISTS API_inflectionform_fk_inflection_id ON API_inflectionform (
 	fk_inflection_id
 );
