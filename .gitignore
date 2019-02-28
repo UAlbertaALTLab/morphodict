@@ -260,6 +260,10 @@ paket-files/
 __pycache__/
 *.pyc
 
+#MacOS Files
+.DS_Store
+
+#Dicitonary Files
 /CreeDictionary/API/dictionaries/
 /CreeDictionary/db.sqlite3
 /CreeDictionary/db.sqlite3.bak
