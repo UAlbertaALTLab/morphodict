@@ -1,0 +1,25 @@
+.searchdiv {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+    flex-direction: column;
+  }
+
+  .searchli li {
+    list-style-type: none;
+    padding: 8px 16px;
+    border-bottom: 1px solid gray;
+  }
+
+  .searchli li:first-child {
+    border-top: 1px solid gray;
+  }
+
+  .searchli li:hover {
+    background-color: gray;
+  }

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'API.apps.APIConfig'
+    'API.apps.APIConfig',
+    'React',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -61,7 +62,7 @@ TEMPLATES = [
         'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
-            'threaded': True,
+             #'threaded': True,
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
