@@ -15,25 +15,48 @@ fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/c
 def home(request):
     return HttpResponse("")
 
+"""
+    Search View for /Search/:queryString:
+    :queryString: needs to be exactly contained in a lemma context 
+"""
 def search(request, queryString):
+    #URL Decode
     queryString = unquote(queryString)
+    #Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
     print("Search: " + queryString)
+
+    #Get lemmas that contains :queryString: in its context
     words = Lemma.objects.filter(context__contains=queryString)
+    #Convert to dict for json serialization
     words = list(model_to_dict(word) for word in words)
     return HttpResponse(json.dumps({"words": words}))
 
+"""
+    Display Word View for /DisplayWord/:queryString:
+    :queryString: needs to be exact lemma
+"""
 def displayWord(request, queryString):
+    #URL Decode
     queryString = unquote(queryString)
+    #Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
     print("DisplayWord: " + queryString)
-    lemma = Lemma.objects.filter(context__exact=queryString)[0]
+
+    #Get Lemma that exactly matches the :queryString:
+    #Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
+    lemma = Lemma.objects.filter(context__exact=queryString)[0] 
+
+    #Get inflections of such lemma
     inflections = Inflection.objects.filter(fk_lemma=lemma)
     inflections = [model_to_dict(inflection) for inflection in inflections]
+    #Fill inflections with InflectionForms
     for inflection in inflections:
         inflectionForms = [model_to_dict(form) for form in InflectionForm.objects.filter(fk_inflection_id=int(inflection["id"]))]
         for form in inflectionForms:
+            #Remove not used fields
             form.pop("id", None)
             form.pop("fk_inflection", None)
         inflection["inflectionForms"] = inflectionForms
+    #Serialize to {"lemma": LEMMA, "inflections": {...}}
     return HttpResponse(json.dumps({"lemma": model_to_dict(lemma), "inflections":inflections}))
