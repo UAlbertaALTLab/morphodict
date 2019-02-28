@@ -22,10 +22,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DictionaryImporter.py" />
+    <Compile Include="DictionaryParser.py" />
     <Compile Include="FSTTest.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sqlsp.py" />
+    <Compile Include="test\DictionaryImporter_test.py" />
+    <Compile Include="test\DictionaryParser_test.py" />
+    <Compile Include="test\__init__.py" />
     <Compile Include="__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -39,7 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CleanUp.sql" />
+    <Content Include="RunTest.sh" />
     <Content Include="SetUp.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="test\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

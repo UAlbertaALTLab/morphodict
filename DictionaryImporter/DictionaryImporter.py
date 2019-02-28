@@ -18,6 +18,7 @@ from API.models import *
 from API.admin import *
 
 from fst_lookup import FST
+from DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6
@@ -55,8 +56,6 @@ class DictionaryImporter:
         self.fstAnalyzerFileName = fstAnalyzerFileName
         self.fstGeneratorFileName = fstGeneratorFileName
         self.paradigmFolder = paradigmFolder
-        self._loadParadigmFiles()
-        print("Done Paradigm Loading")
 
     """
         Loads paradigm files into memory as strings in a dictionary
@@ -75,9 +74,52 @@ class DictionaryImporter:
                 self.paradigmForms[filename] = forms
 
     """
+        This is the synchronous version of parse
+        No threads or processes will be created
+        Should be used only for testing
+    """
+    def parseSync(self):
+        self._loadParadigmFiles()
+        print("Done Paradigm Loading")
+
+        #Parse the XML file
+        root = ET.parse(self.fileName).getroot()
+        #Total element count in the XML file
+        elementCount = len(root)
+        
+        #Queues
+        lemmaQueue = Queue(elementCount * 2)
+        definitionQueue = Queue(elementCount * 2 * 2)
+        attributeQueue = Queue(elementCount * 2 * 10)
+        inflectionQueue = Queue(elementCount * 2 * 100)
+        inflectionFormQueue = Queue(elementCount * 2 * 100 * 10)
+        finishedQueue = Queue(10)
+
+        #Get the number of elements each process should handle
+        chunkSize = elementCount / self.processCount
+        
+        print("Element Count: " + str(elementCount))
+
+        #Init Process Fields
+        self._initProcessFields(1, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
+
+        initCounter = 0
+        for element in root:
+            if element.tag == "e":
+                self._parseEntry(element)
+
+        self._fillDB(lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue)
+
+        print("Done Parse")
+
+
+    """
         Stars the parsing of XML dictionary, FST inflections generator and injects into SQL when done
     """
     def parse(self):
+        self._loadParadigmFiles()
+        print("Done Paradigm Loading")
+
         processCounter = 0
         processes = list()
 
@@ -205,6 +247,32 @@ class DictionaryImporter:
         print("Done SQL CleanUp")
 
     """
+        Initialized all fields that uniquely belong to the current process
+        Args:
+            processID (int): The process ID that is assigned to the process
+            lemmaQueue (Queue)
+            attributeQueue (Queue)
+            inflectionQueue (Queue)
+            inflectionFormQueue (Queue)
+            definitionQueue (Queue)
+            finishedQueue (Queue)
+    """
+    def _initProcessFields(self, processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
+        #Process Specific Fields
+        self.fstAnalyzer = FST.from_file(self.fstAnalyzerFileName)
+        self.fstGenerator = FST.from_file(self.fstGeneratorFileName)
+        print("Process " + str(processID) + " Done FST Loading")
+        self.parser = DictionaryParser(self.paradigmForms, self.fstAnalyzer, self.fstGenerator, self.language)
+        self.processID = processID
+        self.lemmaQueue = lemmaQueue
+        self.attributeQueue = attributeQueue
+        self.inflectionQueue = inflectionQueue
+        self.inflectionFormQueue = inflectionFormQueue
+        self.definitionQueue = definitionQueue
+        self.entryIDLock = Lock()
+        self.entryIDDict = dict()
+
+    """
         This should be the entry point when a new process is spawned
         Threads will be spawned to fully utilize the process
         Args:
@@ -219,18 +287,8 @@ class DictionaryImporter:
             
     """
     def _parseProcess(self, processID, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
-        #Process Specific Vars
-        self.fstAnalyzer = FST.from_file(self.fstAnalyzerFileName)
-        self.fstGenerator = FST.from_file(self.fstGeneratorFileName)
-        print("Process " + str(processID) + " Done FST Loading")
-        self.processID = processID
-        self.lemmaQueue = lemmaQueue
-        self.attributeQueue = attributeQueue
-        self.inflectionQueue = inflectionQueue
-        self.inflectionFormQueue = inflectionFormQueue
-        self.definitionQueue = definitionQueue
-        self.entryIDLock = Lock()
-        self.entryIDDict = dict()
+        #Init Process Fields
+        self._initProcessFields(processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
 
         initCounter = 0
         with ThreadPoolExecutor(max_workers=4) as executor:
@@ -287,84 +345,39 @@ class DictionaryImporter:
             fstLemma (str): The lemma for the entry
     """
     def _parseEntry(self, entry):
-        lemma = Lemma()
-        definitions = list()
-
-        #Lemma Check
-        lg = entry.find("lg")
-        l = lg.find("l")
-        wordContext = l.text
-        wordType = l.get("pos")
-        #FST is used to make sure the word is a lemma otherwise generate its lemma
-        fstResult = list(self.fstAnalyzer.analyze(wordContext))
-        bestFSTResult = None
-        # words without word type/pos should be treated as lemma without paradigm
-        if len(fstResult) > 0 and wordType != "":
-            bestFSTResult = fstResult[0]
-            fstLemma = bestFSTResult[0]
-        else:
-            fstLemma = wordContext
-        isLemma = wordContext == fstLemma
-
-        #Init Lemma Object
-        lemma.language = self.language
-        lemma.context = fstLemma
-        lemma.type = wordType
+        #Get Lemma and FST Result
+        lemmaResult = self.parser.parseLemma(entry)
+        lemma = lemmaResult[0]
+        wordContext = lemmaResult[1]
+        bestFSTResult = lemmaResult[2]
         lemma.id = self._getEntryID(Word)
         self.lemmaQueue.put(lemma)
         
         #Add definitions to current lemma if the entry is the lemma
-        if isLemma:
+        if wordContext == lemma.context:
             self._addDefinitions(lemma, entry)
 
         #If FST result does not exist for the word such as words without a type
         #Then skip inflection generation
         if bestFSTResult != None:
-            paradigmFilename = self._getParadigmFileName(wordType, bestFSTResult)
-            if paradigmFilename != None:
-                #Get paradigm
-                forms = self.paradigmForms[paradigmFilename]
-                # Generate Paradigms
-                #print("Generating Paradigms for: " + fstLemma)
-                for form in forms:
-                    form = form.strip()
-                    #Skip comments
-                    if form.startswith("{#"):
-                        continue
-                    #Replace placeholder with actual lemma
-                    generatorInput = form.replace("{{ lemma }}", fstLemma)
-                    #Generate inflection
-                    generatedResult = list(self.fstGenerator.generate(generatorInput))
-                    #generatedResult = ["asdasdas"]
-                    if len(generatedResult) < 1:
-                        continue
+            # Get Inflections
+            inflectionResult = self.parser.getInflections(lemma, bestFSTResult)
+            for inflectionPair in inflectionResult:
+                inflection = inflectionPair[0]
+                inflectionForms = inflectionPair[1]
+
+                #Add ID to Inflection
+                inflection.id = self._getEntryID(Word)
+                self.inflectionQueue.put(inflection)
+                for inflectionForm in inflectionForms:
+                    #Add ID and FK of Inflection to InflectionForm
+                    inflectionForm.id = self._getEntryID(InflectionForm)
+                    inflectionForm.inflectionID = inflection.id
+                    self.inflectionFormQueue.put(inflectionForm)
                     
-                    #Get the most probable inflection
-                    generatedInflection = generatedResult[0]
-
-                    #Init Inflection object
-                    inflection = Inflection()
-                    inflection.context = generatedInflection
-                    inflection.type = wordType
-                    inflection.language = self.language
-                    inflection.lemmaID = lemma.id
-                    inflection.id = self._getEntryID(Word)
-                    self.inflectionQueue.put(inflection)
-                    
-                    #Get inflection forms
-                    form = form.replace("{{ lemma }}+", "")
-                    inflectionFormStrings = form.split("+")
-
-                    #Init InflectionForm objects
-                    for inflectionFormString in inflectionFormStrings:
-                        inflectionForm = InflectionForm()
-                        inflectionForm.name = inflectionFormString
-                        inflectionForm.inflectionID = inflection.id
-                        self.inflectionFormQueue.put(inflectionForm)
-
-                    if generatedInflection == wordContext and generatedInflection != fstLemma:
-                        self._addDefinitions(inflection, entry)
-        return fstLemma
+                if inflection.context == wordContext and inflection.context != lemma.context:
+                    self._addDefinitions(inflection, entry)
+        return lemma.context
 
     """
         Parse the definition and add it to the queue.
@@ -373,68 +386,14 @@ class DictionaryImporter:
             entry (ElementTree): XML that contains definitions
     """
     def _addDefinitions(self, word, entry):
-        definitions = self._parseDefinitions(word, entry)
+        definitions = self.parser.parseDefinitions(word, entry)
         for definition in definitions:
+            definition.id = self._getEntryID(Definition)
             self.definitionQueue.put(definition)
-
-    """
-        Helper method for converting wordType and fstResult of a lemma to a paradigm file name
-        Args:
-            wordType (str): Lemma type, N, V (Does not handle IPV)
-            fstResult (list): The FST result for the lemma. Should contain different attributes for such lemma (+A, +I, ++II etc).
-        Returns:
-            paradigmFilename (str):  The paradigm file name for lemma.
-    """
-    def _getParadigmFileName(self, wordType, fstResult):
-            paradigmFileName = None
-            if wordType == "N":
-                if "+A" in fstResult and "+D" in fstResult:
-                    paradigmFileName = "noun-nad"
-                elif "+A" in fstResult:
-                    paradigmFileName = "noun-na"
-                elif "+I" in fstResult and "+D" in fstResult:
-                    paradigmFileName = "noun-nid"
-                elif "+I" in fstResult:
-                    paradigmFileName = "noun-ni"
-            elif wordType == "V":
-                if "+AI" in fstResult:
-                    paradigmFileName = "verb-ai"
-                elif "+II" in fstResult:
-                    paradigmFileName = "verb-ii"
-                elif "+TA" in fstResult:
-                    paradigmFileName = "verb-ta"
-                elif "+TI" in fstResult:
-                    paradigmFileName = "verb-ti"
-            return paradigmFileName
-
-    """
-        Returns a list of Definition objects extracted from the XML
-        Args:
-            word (Word): The word that the definitions belong to
-            entry (ElementTree): The XML that contains definitions
-        Returns:
-            definitions (list): List of Definition objects for word
-    """
-    def _parseDefinitions(self, word, entry):
-        definitions = list()
-        for mg in entry.findall("mg"):
-            for tg in mg.findall("tg"):
-                for t in tg.findall("t"):
-                    #Multiple sources for each definition. Such as CW MC with space in between
-                    sources = t.get("sources").split(" ")
-                    for source in sources:
-                        #Init Definition object
-                        definition = Definition()
-                        definition.context = t.text
-                        definition.source = source
-                        definition.wordID = word.id
-                        definition.id = self._getEntryID(Definition)
-                        definitions.append(definition)
-                        #print("Definition Added for: " + word.context)
-        return definitions
 
 if __name__ == '__main__':
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
                                   "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz", "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz", 
                                   "../CreeDictionary/API/paradigm/", "crk")
+    #importer.parseSync()
     importer.parse()
