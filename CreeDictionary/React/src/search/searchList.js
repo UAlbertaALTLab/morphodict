@@ -55,6 +55,23 @@ class SearchList extends React.Component {
         })
     }
 
+	//display language
+    language(word) {
+    	if (word === "crk"){
+    		return "Cree"
+    	}
+    }
+    
+    lcategory(word) {
+    	if (word ==="V"){
+    		return "Verb"
+    	} else if (word === "N"){
+    		return "Noun"
+    	} else {
+    		return word
+    	}
+    }
+
     //render
     render(props) {
         // While loadind data
@@ -68,7 +85,7 @@ class SearchList extends React.Component {
                     <section>
                         <ul className="searchli">
                             {this.props.Words.map((wordlist) => {
-                                return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context}</li>
+                                return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
                             })
                             }
                         </ul>
@@ -89,6 +106,7 @@ class SearchList extends React.Component {
         }
         return (<div><h1>Error page</h1></div>);
     }
+    
 }
 
 export default SearchList;
