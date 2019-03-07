@@ -13,6 +13,7 @@ class DetailWords extends React.Component {
     //renders
     render(props) {
         console.log('Detail: ' + JSON.stringify(this.props.det));
+        console.log('lemma: ' + JSON.stringify(this.props.lem));
 
         //While loading data returns below 
         if (!this.props.det) {
@@ -30,6 +31,9 @@ class DetailWords extends React.Component {
             <div className="detaildiv">
                 <section>
                     <h1>{this.props.word}</h1>
+                </section>
+                <section>
+                {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
                 </section>
                 <table>
                     <thead>

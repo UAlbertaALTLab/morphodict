@@ -28,6 +28,7 @@ class SearchList extends React.Component {
 
         this.state = {
             det: null,
+            lem: null,
             A: null,
             word: null,
         };
@@ -50,6 +51,7 @@ class SearchList extends React.Component {
                 //console.log(JSON.stringify(data))
                 this.setState({
                     det: data.inflections,
+                    lem: data.lemma,
                 }, () => console.log(this.state))
             })
         })
@@ -99,7 +101,8 @@ class SearchList extends React.Component {
                 <div className="searchdiv">
                     <DetailWords
                         det={this.state.det}
-                        word={this.state.word}>
+                        word={this.state.word}
+                        lem = {this.state.lem}>
                     </DetailWords>
                 </div>
             );
