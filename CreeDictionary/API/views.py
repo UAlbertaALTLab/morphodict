@@ -30,6 +30,9 @@ def search(request, queryString):
     words = Lemma.objects.filter(context__contains=queryString)
     #Convert to dict for json serialization
     words = list(model_to_dict(word) for word in words)
+
+    fillDefinitions(words)
+
     return HttpResponse(json.dumps({"words": words}))
 
 """
@@ -50,6 +53,14 @@ def displayWord(request, queryString):
     #Get inflections of such lemma
     inflections = Inflection.objects.filter(fk_lemma=lemma)
     inflections = [model_to_dict(inflection) for inflection in inflections]
+
+    #Fill Lemma Definitions
+    lemma = model_to_dict(lemma)
+    fillDefinitions([lemma])
+
+    #Fill Inflection Definitions
+    fillDefinitions(inflections)
+
     #Fill inflections with InflectionForms
     for inflection in inflections:
         inflectionForms = [model_to_dict(form) for form in InflectionForm.objects.filter(fk_inflection_id=int(inflection["id"]))]
@@ -58,5 +69,16 @@ def displayWord(request, queryString):
             form.pop("id", None)
             form.pop("fk_inflection", None)
         inflection["inflectionForms"] = inflectionForms
+    
     #Serialize to {"lemma": LEMMA, "inflections": {...}}
-    return HttpResponse(json.dumps({"lemma": model_to_dict(lemma), "inflections":inflections}))
+    return HttpResponse(json.dumps({"lemma": lemma, "inflections":inflections}))
+
+"""
+    Args:
+        words (list<dict>): List of words in dictionary form
+"""
+def fillDefinitions(words):
+    for word in words:
+        definitions = Definition.objects.filter(fk_word_id=int(word["id"]))
+        definitions = list(model_to_dict(definition) for definition in definitions)
+        word["definitions"] = definitions
