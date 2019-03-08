@@ -18,3 +18,7 @@
     text-align: center;
     padding: 8px;
   }
+
+  .detaildiv td:hover {
+    background-color: gray;
+  }

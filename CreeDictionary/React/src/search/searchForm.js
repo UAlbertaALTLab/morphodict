@@ -10,6 +10,7 @@ import React from 'react';
 import './searchForm.css';
 import SearchList from './searchList';
 import { reset } from './searchList';
+import { reset2 } from '../detail/detailWords';
 
 import { searchWord } from '../util';
 
@@ -45,6 +46,7 @@ class SearchForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     reset();
+    //reset2();
     searchWord(this.state.value).then(response => {
       console.log(response)
       response.json().then(data => {

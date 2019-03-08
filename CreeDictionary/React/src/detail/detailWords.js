@@ -7,14 +7,42 @@
 import React from 'react';
 
 import './detailWords.css';
+import SearchList from '../search/searchList';
+
+import { reset } from '../search/searchList';
+import { searchWord } from '../util';
+
+var sended = false;
+
+export const reset2 = () => {
+    sended = false;
+}
 
 class DetailWords extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.Words = null;
+      }
+
+    reSearch(item) {
+        sended = true;
+        reset();
+        searchWord(item).then(response => {
+            console.log(response)
+            response.json().then(data => {
+              //console.log(JSON.stringify(data))
+              this.setState({
+                Words: data.words,
+              }, () => console.log(this.state))
+            })
+        });
+    }
 
     //renders
     render(props) {
         console.log('Detail: ' + JSON.stringify(this.props.det));
         console.log('lemma: ' + JSON.stringify(this.props.lem));
-
         //While loading data returns below 
         if (!this.props.det) {
             return (
@@ -26,6 +54,13 @@ class DetailWords extends React.Component {
             );
         }
 
+        if (sended===true){
+            return (
+            <SearchList
+                Words={this.state.Words}>
+            </SearchList>
+            );
+        }
         //returns in Table Format
         return (
             <div className="detaildiv">
@@ -48,6 +83,9 @@ class DetailWords extends React.Component {
                                     if (key[0] === "inflectionForms") {
                                         return <td key={key}>Object</td>
                                     }
+                                    if (key[0] === "context"){
+                                        return <td key={key} onClick={() => this.reSearch(key[1])}>{key[1]}</td>
+                                    }
                                     return <td key={key}>{key[1]}</td>
                                 })
                                 }
@@ -57,8 +95,8 @@ class DetailWords extends React.Component {
                 </table>
             </div>
         );
+        }
     }
-}
 
 export default DetailWords;
 

@@ -10,6 +10,7 @@ import React from 'react';
 import './searchList.css';
 
 import { wordDetail } from '../util';
+import { reset2 } from '../detail/detailWords';
 
 import DetailWords from "../detail/detailWords";
 
@@ -42,6 +43,7 @@ class SearchList extends React.Component {
     detail(item) {
         //alert(item);
         loaded = true;
+        reset2();
         this.setState({
             word: item,
         })
