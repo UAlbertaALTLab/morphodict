@@ -212,11 +212,10 @@ class DictionaryImporter:
             sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
             sqlSP.addLemma(lemma.id)
         print("Done Inserting Lemma")
-
-        #TODO Add Attribute Parsing 
+ 
         while not attributeQueue.empty():
             attribute = attributeQueue.get()
-            #sqlSP.addAttribute(attribute.id, attribute.name, attribute.lemmaID)
+            sqlSP.addAttribute(attribute.id, attribute.name, attribute.lemmaID)
         print("Done Inserting Attribute")
 
         while not inflectionQueue.empty():
@@ -352,6 +351,13 @@ class DictionaryImporter:
         bestFSTResult = lemmaResult[2]
         lemma.id = self._getEntryID(Word)
         self.lemmaQueue.put(lemma)
+
+        # Parse Attributes
+        if bestFSTResult != None:
+            attributes = self.parser.parseAttribute(lemma, bestFSTResult)
+            for attribute in attributes:
+                attribute.id = self._getEntryID(Attribute)
+                self.attributeQueue.put(attribute)
         
         #Add definitions to current lemma if the entry is the lemma
         if wordContext == lemma.context:
@@ -395,5 +401,5 @@ if __name__ == '__main__':
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
                                   "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz", "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz", 
                                   "../CreeDictionary/API/paradigm/", "crk")
-    #importer.parseSync()
-    importer.parse()
+    importer.parseSync()
+    #importer.parse()

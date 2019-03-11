@@ -100,6 +100,24 @@ class DictionaryParser:
                         #print("Definition Added for: " + word.context)
         return definitions
 
+    """
+        Returns a list of Attribute objects extracted from the FST Result
+        Args:
+            lemma (Lemma): The lemma that the attributes belong to
+            bestFSTResult (set): The FST result for the lemma
+        Returns:
+            attributes (list): List of Attribute objects for lemma
+    """
+    def parseAttribute(self, lemma, bestFSTResult):
+        attributes = list()
+        for attributeName in bestFSTResult:
+                if attributeName == lemma.context:
+                    continue
+                attribute = Attribute()
+                attribute.name = attributeName.replace("+", "")
+                attribute.lemmaID = lemma.id
+                attributes.append(attribute)
+        return attributes
 
     """
         Returns a list of Inflection objects with InflectionForm objects associated with each
