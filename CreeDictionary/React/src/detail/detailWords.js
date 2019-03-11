@@ -6,7 +6,6 @@
 
 import React from 'react';
 
-import './detailWords.css';
 import SearchList from '../search/searchList';
 
 import { reset } from '../search/searchList';
@@ -63,14 +62,14 @@ class DetailWords extends React.Component {
         }
         //returns in Table Format
         return (
-            <div className="detaildiv">
+            <div className="container">
                 <section>
                     <h1>{this.props.word}</h1>
                 </section>
                 <section>
                 {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
                 </section>
-                <table>
+                <table className="table table-bordered">
                     <thead>
                         <tr>
                             {Object.entries(this.props.det[0]).map((key, val) => <th key={key}>{key[0]}</th>)}

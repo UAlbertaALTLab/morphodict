@@ -7,8 +7,6 @@
 
 import React from 'react';
 
-import './searchList.css';
-
 import { wordDetail } from '../util';
 import { reset2 } from '../detail/detailWords';
 
@@ -80,12 +78,12 @@ class SearchList extends React.Component {
     render(props) {
         // While loadind data
         if (!this.props.Words) {
-            return (<div><h1>Loading...</h1></div>);
+            return (<div></div>);
         }
         // Returns list of result
         if (this.props.Words && !loaded) {
             return (
-                <div className="searchdiv">
+                <div className="container">
                     <section>
                         <ul className="searchli">
                             {this.props.Words.map((wordlist) => {
@@ -100,13 +98,11 @@ class SearchList extends React.Component {
         // When onClicked and fetched data loaded
         if (this.props.Words && loaded) {
             return (
-                <div className="searchdiv">
                     <DetailWords
                         det={this.state.det}
                         word={this.state.word}
                         lem = {this.state.lem}>
                     </DetailWords>
-                </div>
             );
         }
         return (<div><h1>Error page</h1></div>);

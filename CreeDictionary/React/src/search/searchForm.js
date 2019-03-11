@@ -7,7 +7,6 @@
 
 import React from 'react';
 
-import './searchForm.css';
 import SearchList from './searchList';
 import { reset } from './searchList';
 import { reset2 } from '../detail/detailWords';
@@ -73,8 +72,7 @@ class SearchForm extends React.Component {
   //render
   render() {
     return (
-      <div>
-        <div>
+      <div className="container">
           <form onSubmit={this.handleSubmit.bind(this)} className={this.getClassNames()}>
             <label>
               Word:
@@ -82,7 +80,6 @@ class SearchForm extends React.Component {
               <input type="submit" value="Search" />
             </label>
           </form>
-        </div>
         <SearchList
           Words={this.state.Words}
           sended={this.state.sended}>

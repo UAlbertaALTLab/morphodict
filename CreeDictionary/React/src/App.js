@@ -5,7 +5,6 @@
 */
 
 import React, { Component } from 'react';
-import './App.css';
 
 import SearchForm from './search/searchForm';
 
@@ -14,13 +13,11 @@ class App extends Component {
     //render
     render() {
         return (
-            <div className="App">
-                <header className="App-header-text">
+            <div className="container">
+                <header>
                     <h1>Dictionary</h1>
                 </header>
-                <div>
-                    <SearchForm />
-                </div>
+                <SearchForm />
             </div>
         );
     }
