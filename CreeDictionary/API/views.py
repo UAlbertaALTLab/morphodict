@@ -31,6 +31,7 @@ def search(request, queryString):
     #Convert to dict for json serialization
     words = list(model_to_dict(word) for word in words)
 
+    fillAttributes(words)
     fillDefinitions(words)
 
     return HttpResponse(json.dumps({"words": words}))
@@ -56,6 +57,7 @@ def displayWord(request, queryString):
 
     #Fill Lemma Definitions
     lemma = model_to_dict(lemma)
+    fillAttributes([lemma])
     fillDefinitions([lemma])
 
     #Fill Inflection Definitions
@@ -82,3 +84,13 @@ def fillDefinitions(words):
         definitions = Definition.objects.filter(fk_word_id=int(word["id"]))
         definitions = list(model_to_dict(definition) for definition in definitions)
         word["definitions"] = definitions
+
+"""
+    Args:
+        words (list<dict>): List of words in dictionary form
+"""
+def fillAttributes(words):
+    for word in words:
+        attributes = Attribute.objects.filter(fk_lemma_id=int(word["id"]))
+        attributes = list(model_to_dict(attribute) for attribute in attributes)
+        word["attributes"] = attributes
