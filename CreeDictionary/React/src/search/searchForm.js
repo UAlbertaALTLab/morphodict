@@ -73,13 +73,17 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div className="container">
-          <form onSubmit={this.handleSubmit.bind(this)} className={this.getClassNames()}>
+          <div className="container-fluid">
+          <div className="row">
+          <div className="col-sm-4">
+          <form onSubmit={this.handleSubmit.bind(this)} className="form-group">
             <label>
-              Word:
-                  <input type="text" value={this.state.value} onChange={this.handleChange} />
-              <input type="submit" value="Search" />
+              Word:<input type="text" value={this.state.value} onChange={this.handleChange} className="form-control"/><button type="submit" className="btn btn-default">Search</button>
             </label>
           </form>
+          </div>
+          </div>
+          </div>
         <SearchList
           Words={this.state.Words}
           sended={this.state.sended}>
