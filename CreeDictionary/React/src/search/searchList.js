@@ -83,7 +83,7 @@ class SearchList extends React.Component {
         // Returns list of result
         if (this.props.Words && !loaded) {
             return (
-                <div className="container">
+                <div>
                     <section>
                         <ul className="searchli">
                             {this.props.Words.map((wordlist) => {
