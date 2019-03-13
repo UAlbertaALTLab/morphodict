@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
     "build": "webpack --mode production ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
-    "flush": "pipenv run python ./CreeDictionary/manage.py flush --no-input",
+    "flush": "pipenv run python3 ./CreeDictionary/manage.py flush --no-input",
     "e2e": "cypress open --project ./CreeDictionary/React/"
   },
   "repository": {
