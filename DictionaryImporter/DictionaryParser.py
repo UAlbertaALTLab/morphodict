@@ -1,5 +1,6 @@
 ﻿from API.models import *
 from API.admin import *
+import generate_forms_hfst as HFST
 
 class DictionaryParser:
     def __init__(self, paradigmForms, fstAnalyzer, fstGenerator, language):
@@ -173,3 +174,54 @@ class DictionaryParser:
                 inflections.append((inflection, inflectionForms))
         return inflections
 
+    """
+    Returns a list of Inflection objects with InflectionForm objects associated with each
+    Args:
+        lemma (Lemma): The lemma for the inflection
+        bestFSTResult: The best FST result for the lemma
+    Returns:
+        inflections (list): Each item in the list is a tuple of (Inflecction, list()). 
+                            The list contains all InflectionsForms of the Inflection.
+    """
+    def getInflectionsHFST(self, lemma, bestFSTResult):
+        inflections = list()
+        paradigmFilename = self._getParadigmFileName(lemma.type, bestFSTResult)
+        if paradigmFilename != None:
+            #Get paradigm
+            forms = self.paradigmForms[paradigmFilename]
+            # Generate Paradigms
+            #print("Generating Paradigms for: " + lemma.context)
+            generatorInputs = list()
+            for form in forms:
+                form = form.strip()
+                #Skip comments
+                if form.startswith("{#") or form == "":
+                    continue
+                #Replace placeholder with actual lemma
+                generatorInput = form.replace("{{ lemma }}", lemma.context)
+                generatorInputs.append(generatorInput)
+
+            results = HFST.generate(generatorInputs, fst_path="../CreeDictionary/API/dictionaries/crk-normative-generator.hfstol")
+            for form, generatedInflection in results.items():
+                if len(generatedInflection) < 1:
+                    continue
+                #Init Inflection object
+                inflection = Inflection()
+                inflection.context = generatedInflection.pop()
+                inflection.type = lemma.type
+                inflection.language = self.language
+                inflection.lemmaID = lemma.id
+                    
+                #Get inflection forms
+                form = form.replace(lemma.context + "+", "")
+                inflectionFormStrings = form.split("+")
+
+                inflectionForms = list()
+                #Init InflectionForm objects
+                for inflectionFormString in inflectionFormStrings:
+                    inflectionForm = InflectionForm()
+                    inflectionForm.name = inflectionFormString
+                    inflectionForms.append(inflectionForm)
+
+                inflections.append((inflection, inflectionForms))
+        return inflections

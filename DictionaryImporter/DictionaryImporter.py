@@ -18,6 +18,7 @@ from API.models import *
 from API.admin import *
 
 from fst_lookup import FST
+import generate_forms_hfst as HFST
 from DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
@@ -78,7 +79,7 @@ class DictionaryImporter:
         No threads or processes will be created
         Should be used only for testing
     """
-    def parseSync(self):
+    def parseSync(self, amount = 10):
         self._loadParadigmFiles()
         print("Done Paradigm Loading")
 
@@ -107,6 +108,9 @@ class DictionaryImporter:
         for element in root:
             if element.tag == "e":
                 self._parseEntry(element)
+            initCounter += 1
+            if initCounter > amount:
+                break
 
         self._fillDB(lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue)
 
@@ -205,10 +209,12 @@ class DictionaryImporter:
         sqlSP = SqlSP(conn)
         print("Done SQL SetUp")
         
-        #Insert Objects
-
+        lemmaList = list()
         while not lemmaQueue.empty():
-            lemma = lemmaQueue.get()
+            lemmaList.append(lemmaQueue.get())
+
+        #Insert Objects
+        for lemma in lemmaList:
             sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
             sqlSP.addLemma(lemma.id)
         print("Done Inserting Lemma")
@@ -290,7 +296,7 @@ class DictionaryImporter:
         self._initProcessFields(processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
 
         initCounter = 0
-        with ThreadPoolExecutor(max_workers=4) as executor:
+        with ThreadPoolExecutor(max_workers=1) as executor:
             futures = list()
             for element in elements:
                 if element.tag == "e":
@@ -367,7 +373,7 @@ class DictionaryImporter:
         #Then skip inflection generation
         if bestFSTResult != None:
             # Get Inflections
-            inflectionResult = self.parser.getInflections(lemma, bestFSTResult)
+            inflectionResult = self.parser.getInflectionsHFST(lemma, bestFSTResult)
             for inflectionPair in inflectionResult:
                 inflection = inflectionPair[0]
                 inflectionForms = inflectionPair[1]
@@ -401,5 +407,5 @@ if __name__ == '__main__':
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
                                   "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz", "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz", 
                                   "../CreeDictionary/API/paradigm/", "crk")
-    importer.parseSync()
-    #importer.parse()
+    #importer.parseSync()
+    importer.parse()

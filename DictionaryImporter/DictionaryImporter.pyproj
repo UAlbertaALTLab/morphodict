@@ -45,6 +45,7 @@
     <Content Include="CleanUp.sql" />
     <Content Include="RunTest.sh" />
     <Content Include="SetUp.sql" />
+    <Content Include="generate_forms_hfst.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />

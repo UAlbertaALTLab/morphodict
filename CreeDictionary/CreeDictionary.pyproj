@@ -52,6 +52,7 @@
   <ItemGroup>
     <Content Include="API\dictionaries\crk-analyzer.fomabin.gz" />
     <Content Include="API\dictionaries\crk-generator.fomabin.gz" />
+    <Content Include="API\dictionaries\crk-normative-generator.hfstol" />
     <Content Include="API\dictionaries\crkeng.xml" />
     <Content Include="API\paradigm\noun-na.paradigm" />
     <Content Include="API\paradigm\noun-nad.paradigm" />
