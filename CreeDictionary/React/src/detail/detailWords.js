@@ -95,7 +95,7 @@ class DetailWords extends React.Component {
                     <table className="table">
                         <thead>
                             <tr>
-                                {Object.entries(this.props.det[0]).map((key, val) => <th class="text-center" key={key}>{key[0]}</th>)}
+                                {Object.entries(this.props.det[0]).map((key, val) => <th className="text-center" key={key}>{key[0]}</th>)}
                             </tr>
                         </thead>
                         <tbody>
