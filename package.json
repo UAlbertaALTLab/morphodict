@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack --mode development ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
     "build": "webpack --mode production ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js"
+    "e2e": "cypress open --project ./CreeDictionary/React/"
   },
   "repository": {
     "type": "git",
