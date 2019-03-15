@@ -83,9 +83,9 @@ class SearchList extends React.Component {
         // Returns list of result
         if (this.props.Words && !loaded) {
             return (
-                <div>
+                <div className="form-row">
                     <section>
-                        <ul className="searchli">
+                        <ul className="list">
                             {this.props.Words.map((wordlist) => {
                                 return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
                             })
