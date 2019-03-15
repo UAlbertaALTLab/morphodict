@@ -85,17 +85,17 @@ class DetailWords extends React.Component {
         //returns in Table Format
         if (this.props.det !== []) {
             return (
-                <div className="container">
+                <div className="table-responsive">
                     <section>
                         <h1>{this.props.word}</h1>
                     </section>
                     <section>
                     {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
                     </section>
-                    <table className="table table-bordered">
+                    <table className="table">
                         <thead>
                             <tr>
-                                {Object.entries(this.props.det[0]).map((key, val) => <th key={key}>{key[0]}</th>)}
+                                {Object.entries(this.props.det[0]).map((key, val) => <th class="text-center" key={key}>{key[0]}</th>)}
                             </tr>
                         </thead>
                         <tbody>
@@ -103,12 +103,12 @@ class DetailWords extends React.Component {
                                 <tr key={e.id}>
                                     {Object.entries(e).map((key, val) => {
                                         if (key[0] === "inflectionForms") {
-                                            return <td key={key}>Object</td>
+                                            return <td className="text-left" key={key}>Object</td>
                                         }
                                         if (key[0] === "context"){
-                                            return <td key={key} onClick={() => this.reSearch(key[1])}>{key[1]}</td>
+                                            return <td className="td-actions text-left" key={key} onClick={() => this.reSearch(key[1])}>{key[1]}</td>
                                         }
-                                        return <td key={key}>{key[1]}</td>
+                                        return <td className="text-left" key={key}>{key[1]}</td>
                                     })
                                     }
                                 </tr>
