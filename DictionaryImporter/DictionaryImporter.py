@@ -209,36 +209,77 @@ class DictionaryImporter:
         sqlSP = SqlSP(conn)
         print("Done SQL SetUp")
         
-        lemmaList = list()
+        lemmaIDDict = dict()
+        lemmaContextDict = dict()
         while not lemmaQueue.empty():
-            lemmaList.append(lemmaQueue.get())
+            lemma = lemmaQueue.get()
+            lemmaIDDict[lemma.id] = lemma
+            if lemma.context not in lemmaContextDict:
+                lemmaContextDict[lemma.context] = set()
+            lemmaContextDict[lemma.context].add(lemma.id)
+
+        inflectionIDDict = dict()
+        inflectionContextDict = dict()
+        while not inflectionQueue.empty():
+            inflection = inflectionQueue.get()
+            inflectionIDDict[inflection.id] = inflection
+            if inflection.context not in inflectionContextDict:
+                inflectionContextDict[inflection.context] = set()
+            inflectionContextDict[inflection.context].add(inflection.id)
+        print("Done Building Lemma and Inflection Dictionaries")
 
         #Insert Objects
-        for lemma in lemmaList:
-            sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
-            sqlSP.addLemma(lemma.id)
+        addedLemmaID = set()
+        addedLemmaContext = set()
+        for id, lemma in lemmaIDDict.items():
+            if lemma.context not in addedLemmaContext:
+                sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
+                sqlSP.addLemma(lemma.id)
+                addedLemmaID.add(lemma.id)
+                addedLemmaContext.add(lemma.context)
         print("Done Inserting Lemma")
  
         while not attributeQueue.empty():
             attribute = attributeQueue.get()
-            sqlSP.addAttribute(attribute.id, attribute.name, attribute.lemmaID)
+            if attribute.lemmaID in addedLemmaID:
+                sqlSP.addAttribute(attribute.id, attribute.name, attribute.lemmaID)
         print("Done Inserting Attribute")
 
-        while not inflectionQueue.empty():
-            inflection = inflectionQueue.get()
-            sqlSP.addWord(inflection.id, inflection.context, inflection.language, inflection.type)
-            sqlSP.addInflection(inflection.id, inflection.lemmaID)
+        addedInflectionID = set()
+        for id, inflection in inflectionIDDict.items():
+            if inflection.lemmaID in addedLemmaID:
+                sqlSP.addWord(inflection.id, inflection.context, inflection.language, inflection.type)
+                sqlSP.addInflection(inflection.id, inflection.lemmaID)
+                addedInflectionID.add(inflection.id)
         print("Done Inserting Inflection")
             
 
         while not inflectionFormQueue.empty():
             inflectionForm = inflectionFormQueue.get()
-            sqlSP.addInflectionForm(inflectionForm.id, inflectionForm.name, inflectionForm.inflectionID)
+            if inflectionForm.inflectionID in addedInflectionID:
+                sqlSP.addInflectionForm(inflectionForm.id, inflectionForm.name, inflectionForm.inflectionID)
         print("Done Inserting InflectionForm")
 
         while not definitionQueue.empty():
             definition = definitionQueue.get()
-            sqlSP.addDefinition(definition.id, definition.context, definition.source, definition.wordID)
+            if definition.wordID in addedLemmaID or definition.wordID in addedInflectionID:
+                sqlSP.addDefinition(definition.id, definition.context, definition.source, definition.wordID)
+            else:
+                # Check wordID is lemma or inflection
+                if definition.wordID in lemmaIDDict:
+                    context = lemmaIDDict[definition.wordID].context
+                    # Get list of lemma that has the same context as the not added lemma for this defintion
+                    for lemmaID in lemmaContextDict[context]:
+                        if lemmaID in addedLemmaID:
+                            sqlSP.addDefinition(definition.id, definition.context, definition.source, lemmaID)
+                            break
+                elif definition.wordID in inflectionIDDict:
+                    context = inflectionIDDict[definition.wordID].context
+                    # Get list of inflection that has the same context as the not added inflection for this defintion
+                    for inflectionID in inflectionContextDict[context]:
+                        if inflectionID in addedInflectionID:
+                            sqlSP.addDefinition(definition.id, definition.context, definition.source, inflectionID)
+                            break
         print("Done Inserting Definition")
         
         conn.commit();
@@ -407,5 +448,5 @@ if __name__ == '__main__':
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
                                   "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz", "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz", 
                                   "../CreeDictionary/API/paradigm/", "crk")
-    #importer.parseSync()
-    importer.parse()
+    importer.parseSync(amount = 50)
+    #importer.parse()
