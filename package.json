@@ -25,13 +25,26 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
+    "cypress": "^3.1.5",
+    "file-loader": "^3.0.1",
+    "image-webpack-loader": "^4.6.0",
+    "img-loader": "^3.0.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
     "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
     "weak-key": "^1.0.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7"
   }
 }

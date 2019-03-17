@@ -7,9 +7,9 @@
 
 import React from 'react';
 
-import './searchForm.css';
 import SearchList from './searchList';
 import { reset } from './searchList';
+import { reset2 } from '../detail/detailWords';
 
 import { searchWord } from '../util';
 
@@ -45,6 +45,7 @@ class SearchForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     reset();
+    //reset2();
     searchWord(this.state.value).then(response => {
       console.log(response)
       response.json().then(data => {
@@ -71,16 +72,20 @@ class SearchForm extends React.Component {
   //render
   render() {
     return (
-      <div>
-        <div>
-          <form onSubmit={this.handleSubmit.bind(this)} className={this.getClassNames()}>
-            <label>
-              Word:
-                  <input type="text" value={this.state.value} onChange={this.handleChange} />
-              <input type="submit" value="Search" />
-            </label>
+      <div className="card">
+          <div className="card-body">
+          <form onSubmit={this.handleSubmit.bind(this)} className="form-group">
+            <div className="form-row">
+              <label> Word:</label>
+              <div className="col">
+              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control"/>
+              </div>
+              <div className="col">
+              <button type="submit" className="btn btn-default btn-sm">Search</button>
+              </div>
+            </div>
           </form>
-        </div>
+          </div>
         <SearchList
           Words={this.state.Words}
           sended={this.state.sended}>

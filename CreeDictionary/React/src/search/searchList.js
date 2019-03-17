@@ -7,9 +7,8 @@
 
 import React from 'react';
 
-import './searchList.css';
-
 import { wordDetail } from '../util';
+import { reset2 } from '../detail/detailWords';
 
 import DetailWords from "../detail/detailWords";
 
@@ -28,6 +27,7 @@ class SearchList extends React.Component {
 
         this.state = {
             det: null,
+            lem: null,
             A: null,
             word: null,
         };
@@ -41,6 +41,7 @@ class SearchList extends React.Component {
     detail(item) {
         //alert(item);
         loaded = true;
+        reset2();
         this.setState({
             word: item,
         })
@@ -50,6 +51,7 @@ class SearchList extends React.Component {
                 //console.log(JSON.stringify(data))
                 this.setState({
                     det: data.inflections,
+                    lem: data.lemma,
                 }, () => console.log(this.state))
             })
         })
@@ -72,18 +74,35 @@ class SearchList extends React.Component {
     	}
     }
 
+    isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     //render
     render(props) {
         // While loadind data
         if (!this.props.Words) {
-            return (<div><h1>Loading...</h1></div>);
+            return (<div></div>);
         }
         // Returns list of result
         if (this.props.Words && !loaded) {
+            if (this.isEmpty(this.props.Words) === true) {
+                return (
+                    <div className="container">
+                        <section>
+                            <h1>No Result</h1>
+                        </section>
+                    </div>
+                );
+                }
             return (
-                <div className="searchdiv">
+                <div className="form-row">
                     <section>
-                        <ul className="searchli">
+                        <ul className="list">
                             {this.props.Words.map((wordlist) => {
                                 return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
                             })
@@ -96,12 +115,11 @@ class SearchList extends React.Component {
         // When onClicked and fetched data loaded
         if (this.props.Words && loaded) {
             return (
-                <div className="searchdiv">
                     <DetailWords
                         det={this.state.det}
-                        word={this.state.word}>
+                        word={this.state.word}
+                        lem = {this.state.lem}>
                     </DetailWords>
-                </div>
             );
         }
         return (<div><h1>Error page</h1></div>);
