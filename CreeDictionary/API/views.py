@@ -37,18 +37,29 @@ def search(request, queryString):
     print("Search: " + queryString)
 
     fstResult = list(fstAnalyzer.analyze(queryString))
+    
+    creeWords = list()
+    englishWords = list()
     if len(fstResult) > 0:
         #Probably Cree
         lemma = fstResult[0][0]
         print("Cree: " + lemma)
-        words = list()
-        words += datafetch.fetchExactLemma(lemma)
-        words += datafetch.fetchContainsLemma(queryString)
-        words += datafetch.fetchLemmaContainsInflection(queryString)
+        creeWords += datafetch.fetchExactLemma(lemma)
     else:
         #Probably English
         print("English: " + queryString)
-        # TODO Add English Search
+        englishWords += datafetch.fetchLemmaContainsDefinition(queryString)
+
+    # Still searches contains since some cree like inputs can be inparsable by fst
+    creeWords += datafetch.fetchContainsLemma(queryString)
+    creeWords += datafetch.fetchLemmaContainsInflection(queryString)
+
+    if len(creeWords) >= len(englishWords):
+        words = creeWords
+        print("Return Cree")
+    else:
+        words = englishWords
+        print("Return English")
 
     # Convert to dict for json serialization
     words = list(model_to_dict(word) for word in words)
