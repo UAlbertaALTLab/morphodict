@@ -31,6 +31,9 @@
   <ItemGroup>
     <Compile Include="API\admin.py" />
     <Compile Include="API\apps.py" />
+    <Compile Include="API\datafetch.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="API\migrations\__init__.py" />
     <Compile Include="API\models.py" />
     <Compile Include="API\tests.py" />

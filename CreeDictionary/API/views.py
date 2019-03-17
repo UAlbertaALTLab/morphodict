@@ -8,6 +8,7 @@ from urllib.parse import unquote
 import unicodedata
 import json
 from django.forms.models import model_to_dict
+import API.datafetch as datafetch
 
 fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-analyzer.fomabin.gz"))
 fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-generator.fomabin.gz"))
@@ -18,6 +19,15 @@ def home(request):
 """
     Search View for /Search/:queryString:
     :queryString: needs to be exactly contained in a lemma context 
+
+    Ordering:
+        Cree:
+        Exact FST Lemma
+        Contains Query Lemma
+        Contains Query Inflection
+
+        English:
+        Definition
 """
 def search(request, queryString):
     #URL Decode
@@ -26,15 +36,37 @@ def search(request, queryString):
     queryString = unicodedata.normalize("NFC", queryString)
     print("Search: " + queryString)
 
-    #Get lemmas that contains :queryString: in its context
-    words = Lemma.objects.filter(context__contains=queryString)
-    #Convert to dict for json serialization
+    fstResult = list(fstAnalyzer.analyze(queryString))
+    if len(fstResult) > 0:
+        #Probably Cree
+        lemma = fstResult[0][0]
+        print("Cree: " + lemma)
+        words = list()
+        words += datafetch.fetchExactLemma(lemma)
+        words += datafetch.fetchContainsLemma(queryString)
+        words += datafetch.fetchLemmaContainsInflection(queryString)
+    else:
+        #Probably English
+        print("English: " + queryString)
+        # TODO Add English Search
+
+    # Convert to dict for json serialization
     words = list(model_to_dict(word) for word in words)
 
-    fillAttributes(words)
-    fillDefinitions(words)
+    # Remove Duplicated Lemmas
+    wordIDs = set()
+    uniqueWords = list()
+    for word in words:
+        wordID = word["id"]
+        if wordID not in wordIDs:
+            wordIDs.add(wordID)
+            uniqueWords.append(word)
 
-    return HttpResponse(json.dumps({"words": words}))
+    # Populate Fields
+    datafetch.fillAttributes(uniqueWords)
+    datafetch.fillDefinitions(uniqueWords)
+
+    return HttpResponse(json.dumps({"words": uniqueWords}))
 
 """
     Display Word View for /DisplayWord/:queryString:
@@ -57,11 +89,11 @@ def displayWord(request, queryString):
 
     #Fill Lemma Definitions
     lemma = model_to_dict(lemma)
-    fillAttributes([lemma])
-    fillDefinitions([lemma])
+    datafetch.fillAttributes([lemma])
+    datafetch.fillDefinitions([lemma])
 
     #Fill Inflection Definitions
-    fillDefinitions(inflections)
+    datafetch.fillDefinitions(inflections)
 
     #Fill inflections with InflectionForms
     for inflection in inflections:
@@ -74,23 +106,3 @@ def displayWord(request, queryString):
     
     #Serialize to {"lemma": LEMMA, "inflections": {...}}
     return HttpResponse(json.dumps({"lemma": lemma, "inflections":inflections}))
-
-"""
-    Args:
-        words (list<dict>): List of words in dictionary form
-"""
-def fillDefinitions(words):
-    for word in words:
-        definitions = Definition.objects.filter(fk_word_id=int(word["id"]))
-        definitions = list(model_to_dict(definition) for definition in definitions)
-        word["definitions"] = definitions
-
-"""
-    Args:
-        words (list<dict>): List of words in dictionary form
-"""
-def fillAttributes(words):
-    for word in words:
-        attributes = Attribute.objects.filter(fk_lemma_id=int(word["id"]))
-        attributes = list(model_to_dict(attribute) for attribute in attributes)
-        word["attributes"] = attributes
