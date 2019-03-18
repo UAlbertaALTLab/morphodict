@@ -74,7 +74,7 @@ class SearchForm extends React.Component {
     return (
       <div className="card">
           <div className="card-body">
-          <form onSubmit={this.handleSubmit.bind(this)} className="form-group">
+          <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search">
             <div className="form-row">
               <label> Word:</label>
               <div className="col">
