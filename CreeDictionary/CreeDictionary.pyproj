@@ -129,7 +129,6 @@
     <Content Include="React\src\util.js" />
     <Content Include="React\static\React\main.js" />
     <Content Include="React\templates\React\index.html" />
-    <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="API\" />
