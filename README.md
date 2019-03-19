@@ -35,3 +35,6 @@ Folder /DictionaryImporter/ Contains:
   - Tests for the classes
 - /DictionaryImporter/RunTest.sh
   - Simple script to run all tests for DictionaryImporter
+
+## License
+This project licensed under Apache License Version 2.0

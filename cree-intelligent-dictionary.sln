@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{624A9FD0-EA73-4458-B4E5-D5751716C256}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		LICENSE = LICENSE
+		NOTICE = NOTICE
 		package.json = package.json
 		README.md = README.md
 		CreeDictionary\requirements.txt = CreeDictionary\requirements.txt
