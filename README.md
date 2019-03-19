@@ -6,6 +6,13 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
+## Install Dependencies
+Python
+> pip install requirements.txt
+
+React Requirements
+> ...
+
 ## Project Structure
 The project is broken into two parts:
 - Django with React

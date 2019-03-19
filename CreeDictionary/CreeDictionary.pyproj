@@ -67,11 +67,9 @@
     <Content Include="API\paradigm\verb-ti.paradigm" />
     <Content Include="API\templates\API\index.html" />
     <Content Include="db.sqlite3" />
-    <Content Include="React\src\App.css" />
     <Content Include="React\src\App.js" />
     <Content Include="React\src\components\DataProvider.js" />
     <Content Include="React\src\components\Table.js" />
-    <Content Include="React\src\detail\detailWords.css" />
     <Content Include="React\src\detail\detailWords.js" />
     <Content Include="React\src\index.js" />
     <Content Include="React\src\layouts\na-basic.layout.tsv" />
