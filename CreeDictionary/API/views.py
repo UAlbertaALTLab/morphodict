@@ -9,6 +9,7 @@ import unicodedata
 import json
 from django.forms.models import model_to_dict
 import API.datafetch as datafetch
+from cree_sro_syllabics import syllabics2sro
 
 fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-analyzer.fomabin.gz"))
 fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-generator.fomabin.gz"))
@@ -35,6 +36,8 @@ def search(request, queryString):
     #Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
     print("Search: " + queryString)
+    queryString = syllabics2sro(queryString)
+    print("Search SRO: " + queryString)
 
     fstResult = list(fstAnalyzer.analyze(queryString))
     
