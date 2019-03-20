@@ -20,20 +20,23 @@
     "url": "https://github.com/cmput401-winter2019/cree-intelligent-dictionary/issues"
   },
   "homepage": "https://github.com/cmput401-winter2019/cree-intelligent-dictionary#readme",
-  "devDependencies": {
+  
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.7",
+    "react-router-dom": "^5.0.0",
+    "selenium-webdriver": "^4.0.0-alpha.1",
     "@babel/core": "^7.3.3",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "bootstrap": "^4.3.1",
     "css-loader": "^2.1.0",
     "cypress": "^3.1.5",
     "file-loader": "^3.0.1",
     "image-webpack-loader": "^4.6.0",
     "img-loader": "^3.0.1",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
@@ -43,12 +46,5 @@
     "weak-key": "^1.0.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
-  },
-  "dependencies": {
-    "bootstrap": "^4.3.1",
-    "jquery": "^3.3.1",
-    "popper.js": "^1.14.7",
-    "react-router-dom": "^5.0.0",
-    "selenium-webdriver": "^4.0.0-alpha.1"
   }
 }
