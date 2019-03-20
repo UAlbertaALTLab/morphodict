@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 import { searchWord } from '../util';
 
@@ -36,35 +36,35 @@ class SearchList extends React.Component {
     click(word) {
         //alert(item);
         event.preventDefault();
-        this.props.history.push('/definition/'+word);
+        this.props.history.push('/definition/' + word);
     }
 
-	//display language
+    //display language
     language(word) {
-    	if (word === "crk"){
-    		return "Cree"
-    	}
+        if (word === "crk") {
+            return "Cree"
+        }
     }
-    
+
     lcategory(word) {
-    	if (word ==="V"){
-    		return "Verb"
-    	} else if (word === "N"){
-    		return "Noun"
-    	} else {
-    		return word
-    	}
+        if (word === "V") {
+            return "Verb"
+        } else if (word === "N") {
+            return "Noun"
+        } else {
+            return word
+        }
     }
 
     isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
                 return false;
         }
         return true;
     }
 
-    getWord(){
+    getWord() {
         const word = this.props.location.pathname.split('/')[2];
         return word
     }
@@ -90,10 +90,10 @@ class SearchList extends React.Component {
         //console.log(prevprops.location.pathname.split('/'));
         // Typical usage (don't forget to compare props):
         if (this.props.location.pathname.split('/')[2] !== prevProps.location.pathname.split('/')[2]) {
-          //alert('its dif');
-          this.gainList();
+            //alert('its dif');
+            this.gainList();
         }
-      }
+    }
 
     componentDidMount() {
         this.gainList()
@@ -105,25 +105,25 @@ class SearchList extends React.Component {
         //console.log(this.gainList());
         console.log(this.props.location.pathname.split('/'));
         // While loadind data
-        if (this.isEmpty(this.state.list) === true){
-            return(<div><p>Loading...</p></div>)
+        if (this.isEmpty(this.state.list) === true) {
+            return (<div><p>Loading...</p></div>)
         }
-        else{
+        else {
             return (
-            <div className="form-row">
-                <section>
-                    <ul className="list">
-                        {this.state.list.map((wordlist) => {
-                            return <li key={wordlist.id} onClick={() => this.click(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
-                        })
-                        }
-                    </ul>
-                </section>
-            </div>
-        );
+                <div className="form-row">
+                    <section>
+                        <ul className="list">
+                            {this.state.list.map((wordlist) => {
+                                return <li key={wordlist.id} onClick={() => this.click(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
+                            })
+                            }
+                        </ul>
+                    </section>
+                </div>
+            );
         }
     }
-    
+
 }
 
 export default withRouter(SearchList);

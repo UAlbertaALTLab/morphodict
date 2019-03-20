@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-import { withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends React.Component {
   state = {
@@ -46,7 +46,7 @@ class SearchForm extends React.Component {
   */
   handleSubmit(event) {
     event.preventDefault();
-    this.props.history.push('/search/'+this.state.value);
+    this.props.history.push('/search/' + this.state.value);
   }
 
   /*
@@ -64,27 +64,27 @@ class SearchForm extends React.Component {
   render() {
     return (
       <div className="card-body">
-          <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search" method = 'POST'>
-            <div className="form-row">
-              <label> Word:</label>
-              <div className="col">
-              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control"/>
-              </div>
-              <div className="col">
+        <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search" method='POST'>
+          <div className="form-row">
+            <label> Word:</label>
+            <div className="col">
+              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control" />
+            </div>
+            <div className="col">
               <button type="submit" className="btn btn-primary btn-sm">Search</button>
-              </div>
             </div>
-            <div className="form-row">
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("â")}>â</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ê")}>ê</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("î")}>î</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ô")}>ô</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ā")}>ā</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ē")}>ē</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ī")}>ī</p>
-              <p className="btn btn-default btn-link" onClick={() => this.handleChar("ō")}>ō</p>
-            </div>
-          </form>
+          </div>
+          <div className="form-row">
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("â")}>â</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ê")}>ê</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("î")}>î</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ô")}>ô</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ā")}>ā</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ē")}>ē</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ī")}>ī</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ō")}>ō</p>
+          </div>
+        </form>
       </div>
     );
   }
