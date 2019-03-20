@@ -7,12 +7,9 @@
 
 import React from 'react';
 
-import { wordDetail } from '../util';
-import { reset2 } from '../detail/detailWords';
+import { withRouter} from 'react-router-dom';
 
-import DetailWords from "../detail/detailWords";
-
-import PropTypes from "prop-types";
+import { searchWord } from '../util';
 
 var loaded = false;
 
@@ -26,10 +23,8 @@ class SearchList extends React.Component {
         super(props);
 
         this.state = {
-            det: null,
-            lem: null,
-            A: null,
-            word: null,
+            list: null,
+            recieved: "aaa",
         };
     }
 
@@ -38,23 +33,10 @@ class SearchList extends React.Component {
     * Fetch the word user onClicked
     * Sets responce to state.det 
     */
-    detail(item) {
+    click(word) {
         //alert(item);
-        loaded = true;
-        reset2();
-        this.setState({
-            word: item,
-        })
-        wordDetail(item).then(response => {
-            console.log(response)
-            response.json().then(data => {
-                //console.log(JSON.stringify(data))
-                this.setState({
-                    det: data.inflections,
-                    lem: data.lemma,
-                }, () => console.log(this.state))
-            })
-        })
+        event.preventDefault();
+        this.props.history.push('/definition/'+word);
     }
 
 	//display language
@@ -82,49 +64,66 @@ class SearchList extends React.Component {
         return true;
     }
 
+    getWord(){
+        const word = this.props.location.pathname.split('/')[2];
+        return word
+    }
+
+    gainList() {
+        //alert(item);
+        searchWord(this.props.location.pathname.split('/')[2]).then(response => {
+            console.log(response)
+            response.json().then(data => {
+                //console.log(JSON.stringify(data))
+                this.setState({
+                    list: data.words,
+                    recieved: this.props.location.pathname.split('/')[2],
+                }, () => console.log(this.state))
+                loaded = true;
+            })
+        })
+        return this.state.list
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.isEmpty(prevProps));
+        //console.log(prevprops.location.pathname.split('/'));
+        // Typical usage (don't forget to compare props):
+        if (this.props.location.pathname.split('/')[2] !== prevProps.location.pathname.split('/')[2]) {
+          //alert('its dif');
+          this.gainList();
+        }
+      }
+
+    componentDidMount() {
+        this.gainList()
+        console.log('called');
+    }
+
     //render
-    render(props) {
+    render() {
+        //console.log(this.gainList());
+        console.log(this.props.location.pathname.split('/'));
         // While loadind data
-        if (!this.props.Words) {
-            return (<div></div>);
+        if (this.isEmpty(this.state.list) === true){
+            return(<div><p>Loading...</p></div>)
         }
-        // Returns list of result
-        if (this.props.Words && !loaded) {
-            if (this.isEmpty(this.props.Words) === true) {
-                return (
-                    <div className="container">
-                        <section>
-                            <h1>No Result</h1>
-                        </section>
-                    </div>
-                );
-                }
+        else{
             return (
-                <div className="form-row">
-                    <section>
-                        <ul className="list">
-                            {this.props.Words.map((wordlist) => {
-                                return <li key={wordlist.id} onClick={() => this.detail(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
-                            })
-                            }
-                        </ul>
-                    </section>
-                </div>
-            );
+            <div className="form-row">
+                <section>
+                    <ul className="list">
+                        {this.state.list.map((wordlist) => {
+                            return <li key={wordlist.id} onClick={() => this.click(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
+                        })
+                        }
+                    </ul>
+                </section>
+            </div>
+        );
         }
-        // When onClicked and fetched data loaded
-        if (this.props.Words && loaded) {
-            return (
-                    <DetailWords
-                        det={this.state.det}
-                        word={this.state.word}
-                        lem = {this.state.lem}>
-                    </DetailWords>
-            );
-        }
-        return (<div><h1>Error page</h1></div>);
     }
     
 }
 
-export default SearchList;
+export default withRouter(SearchList);

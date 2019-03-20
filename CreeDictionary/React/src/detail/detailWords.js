@@ -6,36 +6,25 @@
 
 import React from 'react';
 
-import SearchList from '../search/searchList';
-
-import { reset } from '../search/searchList';
-import { searchWord } from '../util';
-
-var sended = false;
-
-export const reset2 = () => {
-    sended = false;
-}
+import { wordDetail } from '../util';
+import { withRouter} from 'react-router-dom';
 
 class DetailWords extends React.Component {
 
     constructor(props) {
         super(props);
-        this.Words = null;
+
+        this.state = {
+            inflection: null,
+            lemma: null,
+        };
       }
 
+    //Search word again from table , for sprint 4
+    //Add onClick={() => this.reSearch(key[1]) in <td className="td-actions text-left" key={key}>{key[1]}</td>
     reSearch(item) {
-        sended = true;
-        reset();
-        searchWord(item).then(response => {
-            console.log(response)
-            response.json().then(data => {
-              //console.log(JSON.stringify(data))
-              this.setState({
-                Words: data.words,
-              }, () => console.log(this.state))
-            })
-        });
+        event.preventDefault();
+        this.props.history.push('/search/'+item);
     }
 
     isEmpty(obj) {
@@ -46,67 +35,71 @@ class DetailWords extends React.Component {
         return true;
     }
 
+    gainDetail() {
+        //alert(item);
+        wordDetail(this.props.location.pathname.split('/')[2]).then(response => {
+            console.log(response)
+            response.json().then(data => {
+                //console.log(JSON.stringify(data))
+                this.setState({
+                    inflection: data.inflections,
+                    lemma: data.lemma,
+                }, () => console.log(this.state))
+            })
+        })
+        return this.state.list
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.isEmpty(prevProps));
+        //console.log(prevprops.location.pathname.split('/'));
+        // Typical usage (don't forget to compare props):
+        if (this.props.location.pathname.split('/')[2] !== prevProps.location.pathname.split('/')[2]) {
+          //alert('its dif');
+          this.gainDetail();
+        }
+      }
+
+    componentDidMount() {
+        this.gainDetail()
+        console.log('called2');
+    }
+
     //renders
-    render(props) {
-        console.log('Detail: ' + JSON.stringify(this.props.det));
-        console.log('Detail2: ' + this.isEmpty(this.props.det));
-        console.log('lemma: ' + JSON.stringify(this.props.lem));
-        //While loading data returns below 
-        if (!this.props.det) {
-            return (
-                <div className="container">
+    render() {
+        console.log('Path : ' + this.props.location.pathname.split('/')[2]);
+        if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.lemma) === false)){
+            return(
+                <div className="card-body">
                     <section>
-                        <h1>{this.props.word}</h1>
+                    <h1>{this.props.location.pathname.split('/')[2]}</h1>
+                    <h3>{this.state.lemma.definitions.map(e => (<p key={e.id}>{e.context}</p>))}</h3>
                     </section>
                 </div>
             );
         }
-
-        if (this.isEmpty(this.props.det) === true) {
-            return (
-                <div className="container">
-                    <section>
-                        <h1>{this.props.word}</h1>
-                    </section>
-                    <section>
-                    {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
-                    </section>
-                </div>
-            );
-        }
-
-        if (sended===true){
-            return (
-            <SearchList
-                Words={this.state.Words}>
-            </SearchList>
-            );
-        }
-        //returns in Table Format
-        if (this.props.det !== []) {
-            return (
+        else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.lemma) === false))){
+            return(
                 <div className="table-responsive">
                     <section>
-                        <h1>{this.props.word}</h1>
-                    </section>
-                    <section>
-                    {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
+                        <h1>{this.props.location.pathname.split('/')[2]}</h1>
+                        <h3>{this.state.lemma.definitions.map(e => (<p key={e.id}>{e.context}</p>))}</h3>
                     </section>
                     <table className="table">
                         <thead>
                             <tr>
-                                {Object.entries(this.props.det[0]).map((key, val) => <th className="text-center" key={key}>{key[0]}</th>)}
+                                {Object.entries(this.state.inflection[0]).map((key, val) => <th className="text-center" key={key}>{key[0]}</th>)}
                             </tr>
                         </thead>
                         <tbody>
-                            {this.props.det.map(e => (
+                            {this.state.inflection.map(e => (
                                 <tr key={e.id}>
                                     {Object.entries(e).map((key, val) => {
                                         if (key[0] === "inflectionForms") {
                                             return <td className="text-left" key={key}>Object</td>
                                         }
                                         if (key[0] === "context"){
-                                            return <td className="td-actions text-left" key={key} onClick={() => this.reSearch(key[1])}>{key[1]}</td>
+                                            return <td className="td-actions text-left" key={key}>{key[1]}</td>
                                         }
                                         return <td className="text-left" key={key}>{key[1]}</td>
                                     })
@@ -116,30 +109,13 @@ class DetailWords extends React.Component {
                         </tbody>
                     </table>
                 </div>
+
             );
-            }
-            else{
-                return(<p>N</p>);
-            }
+        }
+        else{
+            return(<div><h1>{this.props.location.pathname.split('/')[2]}</h1></div>)
         }
     }
+}
 
-export default DetailWords;
-
-/* Please ignore
-return (
-            <div className="centre">
-                <div>
-                    <h1>{this.props.word}</h1>
-                </div>
-                <section>
-                    <ul className="centreli">
-                        {this.props.det.map((wordlist) => {
-                                return <li key={wordlist.id}>{wordlist.context}</li>
-                            })
-                        }
-                    </ul>
-                </section>
-            </div>
-        );
-*/
+export default withRouter(DetailWords);

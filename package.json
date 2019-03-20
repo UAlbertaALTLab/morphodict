@@ -37,6 +37,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
+    "react-router": "^5.0.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
     "weak-key": "^1.0.1",
@@ -47,6 +48,7 @@
     "bootstrap": "^4.3.1",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.7",
+    "react-router-dom": "^5.0.0",
     "selenium-webdriver": "^4.0.0-alpha.1"
   }
 }

@@ -22,6 +22,7 @@ describe("Django REST framework / cree intelligent dictionary app", () => {
    it("List the search result", () => {
       cy.get("input").type(state.word);
       cy.get("#Search").submit();
+      cy.wait(5000)
       cy.get("li").should("contain", state.word);
    });
    //Test for detail of selected word
