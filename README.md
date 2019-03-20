@@ -6,6 +6,32 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
+## Install Dependencies
+### Server
+Python
+> pip install requirements.txt
+
+React Requirements
+> npm install
+> npm run dev
+
+### Importer
+Place hfst into the root directory.
+ - Ex: cree-intelligent-dictionary\hfst
+
+## Run Tests
+### Django
+> cd CreeDictionary
+> python manage.py test
+
+### Front-end
+> npm run e2e
+
+### Importer
+> cd DictionaryImporter
+> ./RunTest.sh
+
+
 ## Project Structure
 The project is broken into two parts:
 - Django with React
@@ -28,3 +54,6 @@ Folder /DictionaryImporter/ Contains:
   - Tests for the classes
 - /DictionaryImporter/RunTest.sh
   - Simple script to run all tests for DictionaryImporter
+
+## License
+This project licensed under Apache License Version 2.0

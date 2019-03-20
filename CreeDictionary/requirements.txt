@@ -1,2 +1,0 @@
-django==2.1.7
-fst_lookup >=2019.2.1
