@@ -17,6 +17,7 @@ class DetailWords extends React.Component {
         this.state = {
             inflection: null,
             lemma: null,
+            definition: null,
         };
       }
 
@@ -44,6 +45,7 @@ class DetailWords extends React.Component {
                 this.setState({
                     inflection: data.inflections,
                     lemma: data.lemma,
+                    definition: data.lemma.definitions,
                 }, () => console.log(this.state))
             })
         })
@@ -68,23 +70,47 @@ class DetailWords extends React.Component {
     //renders
     render() {
         console.log('Path : ' + this.props.location.pathname.split('/')[2]);
-        if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.lemma) === false)){
+        if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.definition) === false)){
             return(
-                <div className="card-body">
+                <div className="row">
+                <div className="col-12">
                     <section>
                     <h1>{this.props.location.pathname.split('/')[2]}</h1>
-                    <h3>{this.state.lemma.definitions.map(e => (<p key={e.id}>{e.context}</p>))}</h3>
                     </section>
+                    <div className="card">
+                    <div className="card-header">
+                    <h2 className="card-title">Definition</h2>
+                    </div>
+                    <section className="card-body">
+                    {this.state.definition.map((e) => {
+                        return(
+                            <h3 key={e.id} className="text-center" >{e.context}<br/><sub>{e.source}</sub></h3>)
+                    })}
+                    </section>
+                    </div>
+                </div>
                 </div>
             );
         }
-        else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.lemma) === false))){
+        else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.definition) === false))){
             return(
-                <div className="table-responsive">
+                <div className="row">
+                <div className="col-12">
                     <section>
-                        <h1>{this.props.location.pathname.split('/')[2]}</h1>
-                        <h3>{this.state.lemma.definitions.map(e => (<p key={e.id}>{e.context}</p>))}</h3>
+                    <h1>{this.props.location.pathname.split('/')[2]}</h1>
                     </section>
+                    <div className="card">
+                    <div className="card-header">
+                    <h2 className="card-title">Definition</h2>
+                    </div>
+                    <section className="card-body">
+                    {this.state.definition.map((e) => {
+                        return(
+                            <h3 key={e.id}>{e.context}<br/><sub>{e.source}</sub></h3>)
+                    })}
+                    </section>
+                    </div>
+                <div className="table-responsive">
                     <table className="table">
                         <thead>
                             <tr>
@@ -101,6 +127,9 @@ class DetailWords extends React.Component {
                                         if (key[0] === "context"){
                                             return <td className="td-actions text-left" key={key}>{key[1]}</td>
                                         }
+                                        if (key[0] === "definitions"){
+                                            return <td className="td-actions text-left" key={key}>def</td>
+                                        }
                                         return <td className="text-left" key={key}>{key[1]}</td>
                                     })
                                     }
@@ -108,6 +137,8 @@ class DetailWords extends React.Component {
                             ))}
                         </tbody>
                     </table>
+                </div>
+                </div>
                 </div>
 
             );

@@ -21,13 +21,23 @@ class App extends Component {
         console.log("Route: "+Route);
         return (
             <HashRouter>
-            <div className="card-body">
-                <header>
-                    <h1>Dictionary</h1>
+            <div className="wrapper">
+            <div className="main-panel">
+            <div className="content">
+            <div className="row">
+            <div className="col-12">
+            <div className="card">
+                <header className="card-header">
+                    <h1 className="card-title">Dictionary</h1>
                 </header>
                 <Route exact component={SearchForm}/>
                 <Route path="/search" component={SearchList}/>
-                <Route path="/definition" component={DetailWords}/>
+            </div>
+            <Route path="/definition" component={DetailWords}/>
+            </div>
+            </div>
+            </div>
+            </div>
             </div>
             </HashRouter>
         );

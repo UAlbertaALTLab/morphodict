@@ -63,8 +63,7 @@ class SearchForm extends React.Component {
   //render
   render() {
     return (
-      <div className="card">
-          <div className="card-body">
+      <div className="card-body">
           <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search" method = 'POST'>
             <div className="form-row">
               <label> Word:</label>
@@ -86,7 +85,6 @@ class SearchForm extends React.Component {
               <p className="btn btn-default btn-link" onClick={() => this.handleChar("ō")}>ō</p>
             </div>
           </form>
-          </div>
       </div>
     );
   }
