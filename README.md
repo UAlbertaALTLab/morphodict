@@ -6,6 +6,13 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
+## Install Dependencies
+Python
+> pip install requirements.txt
+
+React Requirements
+> ...
+
 ## Project Structure
 The project is broken into two parts:
 - Django with React
@@ -28,3 +35,6 @@ Folder /DictionaryImporter/ Contains:
   - Tests for the classes
 - /DictionaryImporter/RunTest.sh
   - Simple script to run all tests for DictionaryImporter
+
+## License
+This project licensed under Apache License Version 2.0

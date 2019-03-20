@@ -267,3 +267,4 @@ __pycache__/
 /CreeDictionary/API/dictionaries/
 /CreeDictionary/db.sqlite3
 /CreeDictionary/db.sqlite3.bak
+/hfst

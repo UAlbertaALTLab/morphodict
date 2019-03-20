@@ -74,6 +74,14 @@ class SearchList extends React.Component {
     	}
     }
 
+    isEmpty(obj) {
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key))
+                return false;
+        }
+        return true;
+    }
+
     //render
     render(props) {
         // While loadind data
@@ -82,6 +90,15 @@ class SearchList extends React.Component {
         }
         // Returns list of result
         if (this.props.Words && !loaded) {
+            if (this.isEmpty(this.props.Words) === true) {
+                return (
+                    <div className="container">
+                        <section>
+                            <h1>No Result</h1>
+                        </section>
+                    </div>
+                );
+                }
             return (
                 <div className="form-row">
                     <section>
