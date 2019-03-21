@@ -1,2 +1,3 @@
 #!/bin/bash
-python3 -m unittest discover -p  "*_test.py"
+coverage run -m unittest discover -p  "*_test.py"
+coverage report -m
