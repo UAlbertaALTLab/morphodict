@@ -54,9 +54,9 @@
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="API\dictionaries\crk-analyzer.fomabin.gz" />
-    <Content Include="API\dictionaries\crk-generator.fomabin.gz" />
-    <Content Include="API\dictionaries\crk-normative-generator.hfstol" />
+    <Content Include="API\fst\crk-analyzer.fomabin.gz" />
+    <Content Include="API\fst\crk-generator.fomabin.gz" />
+    <Content Include="API\fst\crk-normative-generator.hfstol" />
     <Content Include="API\dictionaries\crkeng.xml" />
     <Content Include="API\paradigm\noun-na.paradigm" />
     <Content Include="API\paradigm\noun-nad.paradigm" />
@@ -136,6 +136,7 @@
     <Folder Include="API\migrations\" />
     <Folder Include="API\dictionaries\" />
     <Folder Include="API\tests\" />
+    <Folder Include="API\fst\" />
     <Folder Include="API\paradigm\" />
     <Folder Include="API\templates\" />
     <Folder Include="API\templates\API\" />

@@ -1,24 +1,26 @@
 ﻿import unittest
 from unittest import mock
-from DictionaryParser import *
 from DictionaryImporter import *
+from DictionaryParser import *
 from fst_lookup import FST
 import json
 
 """
 Tests should be run at the root folder of DictionaryImporter project
 """
+
+
 class DictionaryImporrterTestCase(unittest.TestCase):
-    #Shared fixture
-    fstAnalyzerFileName = "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz"
-    fstGeneratorFileName = "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz"
+    # Shared fixture
+    fstAnalyzerFileName = "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz"
+    fstGeneratorFileName = "../CreeDictionary/API/fst/crk-generator.fomabin.gz"
     fstAnalyzer = FST.from_file(fstAnalyzerFileName)
     fstGenerator = FST.from_file(fstGeneratorFileName)
 
     def setUp(self):
-        self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
-                                  self.fstAnalyzerFileName, self.fstGeneratorFileName, 
-                                  "../CreeDictionary/API/paradigm/", "crk")
+        self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
+                                           self.fstAnalyzerFileName, self.fstGeneratorFileName,
+                                           "../CreeDictionary/API/paradigm/", "crk")
         self.importer._loadParadigmFiles()
         self.parser = DictionaryParser(self.importer.paradigmForms, self.fstAnalyzer, self.fstGenerator, "crk")
 

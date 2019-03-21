@@ -1,18 +1,22 @@
-# Travis yml file taken some parts from https://github.com/travis-ci/travis-ci/issues/10118
+dist: xenial
 sudo: required
 language: python
 python:
   - "3.7"
-# command to install dependencies
 cache: pip
+
+before_install:
+  - chmod -R 777 .
+
 install:
   - pip install -r requirements.txt
 
-# command to run tests
 script:
+  - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
   - cd CreeDictionary
-  - python manage.py makemigrations
-  - python manage.py migrate
+#  - python manage.py makemigrations
+#  - python manage.py migrate
   - cd ../
   - cd DictionaryImporter
-  - ./RunTest.sh
+  - coverage run --source . -m unittest discover -p  "*_test.py"
+  - coverage report -m

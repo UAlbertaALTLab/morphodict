@@ -11,15 +11,20 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
-fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-analyzer.fomabin.gz"))
-fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/dictionaries/crk-generator.fomabin.gz"))
+fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-analyzer.fomabin.gz"))
+fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-generator.fomabin.gz"))
+
 
 def home(request):
     return HttpResponse("")
 
-"""
+
+def search(request, queryString):
+    """
     Search View for /Search/:queryString:
-    :queryString: needs to be exactly contained in a lemma context 
+    :queryString: needs to be exactly contained in a lemma context
+
+    See README for Detailed API Usage
 
     Ordering:
         Cree:
@@ -29,11 +34,10 @@ def home(request):
 
         English:
         Definition
-"""
-def search(request, queryString):
-    #URL Decode
+    """
+    # URL Decode
     queryString = unquote(queryString)
-    #Normalize to UTF8 NFC
+    # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
     print("Search: " + queryString)
     queryString = syllabics2sro(queryString)
@@ -42,16 +46,16 @@ def search(request, queryString):
     queryString = queryString.lower()
 
     fstResult = list(fstAnalyzer.analyze(queryString))
-    
+
     creeWords = list()
     englishWords = list()
     if len(fstResult) > 0:
-        #Probably Cree
+        # Probably Cree
         lemma = fstResult[0][0]
         print("Cree: " + lemma)
         creeWords += datafetch.fetchExactLemma(lemma)
     else:
-        #Probably English
+        # Probably English
         print("English: " + queryString)
         englishWords += datafetch.fetchLemmaContainsDefinition(queryString)
 
@@ -84,41 +88,42 @@ def search(request, queryString):
 
     return HttpResponse(json.dumps({"words": uniqueWords}))
 
-"""
+
+def displayWord(request, queryString):
+    """
     Display Word View for /DisplayWord/:queryString:
     :queryString: needs to be exact lemma
-"""
-def displayWord(request, queryString):
-    #URL Decode
+    """
+    # URL Decode
     queryString = unquote(queryString)
-    #Normalize to UTF8 NFC
+    # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
     print("DisplayWord: " + queryString)
 
-    #Get Lemma that exactly matches the :queryString:
-    #Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
-    lemma = Lemma.objects.filter(context__exact=queryString)[0] 
+    # Get Lemma that exactly matches the :queryString:
+    # Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
+    lemma = Lemma.objects.filter(context__exact=queryString)[0]
 
-    #Get inflections of such lemma
+    # Get inflections of such lemma
     inflections = Inflection.objects.filter(fk_lemma=lemma)
     inflections = [model_to_dict(inflection) for inflection in inflections]
 
-    #Fill Lemma Definitions
+    # Fill Lemma Definitions
     lemma = model_to_dict(lemma)
     datafetch.fillAttributes([lemma])
     datafetch.fillDefinitions([lemma])
 
-    #Fill Inflection Definitions
+    # Fill Inflection Definitions
     datafetch.fillDefinitions(inflections)
 
-    #Fill inflections with InflectionForms
+    # Fill inflections with InflectionForms
     for inflection in inflections:
         inflectionForms = [model_to_dict(form) for form in InflectionForm.objects.filter(fk_inflection_id=int(inflection["id"]))]
         for form in inflectionForms:
-            #Remove not used fields
+            # Remove not used fields
             form.pop("id", None)
             form.pop("fk_inflection", None)
         inflection["inflectionForms"] = inflectionForms
-    
-    #Serialize to {"lemma": LEMMA, "inflections": {...}}
-    return HttpResponse(json.dumps({"lemma": lemma, "inflections":inflections}))
+
+    # Serialize to {"lemma": LEMMA, "inflections": {...}}
+    return HttpResponse(json.dumps({"lemma": lemma, "inflections": inflections}))

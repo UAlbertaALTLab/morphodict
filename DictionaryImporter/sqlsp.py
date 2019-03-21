@@ -4,13 +4,16 @@ from sqlite3 import IntegrityError
     This class is a simple wrapper around a SQLite3 connection
     To execute predefined queries
 """
+
+
 class SqlSP():
     """
         Args:
             sqlConnection (SQLConnection): A SQLITE3 connection for the queries to run
     """
+
     def __init__(self, sqlConnection):
-        self.sqlConnection = sqlConnection;
+        self.sqlConnection = sqlConnection
 
     def getCursor(self):
         return self.sqlConnection.cursor()
@@ -18,19 +21,21 @@ class SqlSP():
     """
         Insert a word
     """
+
     def addWord(self, id, context, language, type):
         cur = self.getCursor()
         cur.execute('''
             INSERT INTO [API_word] (id, context, language, type) VALUES (
-            :id, 
+            :id,
             :context,
             :language,
             :type)
         ''', {"id": id, "context": context, "language": language, "type": type})
-    
+
     """
         Insert a lemma
     """
+
     def addLemma(self, wordID):
         cur = self.getCursor()
         cur.execute('''
@@ -41,6 +46,7 @@ class SqlSP():
     """
         Insert an inflection
     """
+
     def addInflection(self, wordID, lemmaID):
         cur = self.getCursor()
         cur.execute('''
@@ -52,6 +58,7 @@ class SqlSP():
     """
         Insert an inflection form
     """
+
     def addInflectionForm(self, id, name, inflectionID):
         cur = self.getCursor()
         cur.execute('''
@@ -64,6 +71,7 @@ class SqlSP():
     """
         Insert a definition
     """
+
     def addDefinition(self, id, context, source, wordID):
         cur = self.getCursor()
         cur.execute('''
@@ -77,6 +85,7 @@ class SqlSP():
     """
         Insert an attribute
     """
+
     def addAttribute(self, id, name, lemmaID):
         cur = self.getCursor()
         cur.execute('''

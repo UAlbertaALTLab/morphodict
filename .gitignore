@@ -269,3 +269,4 @@ __pycache__/
 /CreeDictionary/db.sqlite3.bak
 /hfst
 /CreeDictionary/static
+/env

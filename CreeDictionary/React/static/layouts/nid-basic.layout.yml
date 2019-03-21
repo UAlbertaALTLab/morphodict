@@ -1,0 +1,12 @@
+name: "Inanimate dependent noun basic paradigm"	
+paradigm: "noun-nid.paradigm"	
+layout:	
+  type: "basic"	
+tooltips:	
+  eng:	
+    "1s poss (sg)": "1st person singular possessor, singular noun"	
+    "2s poss (sg)": "2nd person singular possessor, singular noun"	
+    "3s poss (sg)": "3rd person singular possessor, singular noun"	
+    "X poss (sg)": "Unspecified person singular possessor, singular noun"	
+    "X poss (pl)": "Unspecified person singular possessor, plural noun"	
+    "X poss (loc)": "Unspecified person singular possessor, locative noun"	
