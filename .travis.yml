@@ -12,7 +12,7 @@ install:
   - pip install -r requirements.txt
 
 script:
-  - ./CodeStyle.sh
+  - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
   - cd CreeDictionary
 #  - python manage.py makemigrations
 #  - python manage.py migrate
