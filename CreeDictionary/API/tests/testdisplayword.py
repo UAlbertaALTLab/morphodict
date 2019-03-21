@@ -5,6 +5,7 @@ from API.models import *
 from urllib.parse import quote
 import json
 
+
 class DisplayWordTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -13,6 +14,7 @@ class DisplayWordTest(TestCase):
         Inflection.objects.create(id=2, fk_lemma_id=1, context="mitâsa", type="N", language="crk")
         InflectionForm.objects.create(id=1, fk_inflection_id=2, name="N")
         InflectionForm.objects.create(id=2, fk_inflection_id=2, name="A")
+
     @classmethod
     def setUpClass(cls):
         super(DisplayWordTest, cls).setUpClass()

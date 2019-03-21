@@ -42,7 +42,7 @@ def search(request, queryString):
     print("Search: " + queryString)
     queryString = syllabics2sro(queryString)
     print("Search SRO: " + queryString)
-    #To lower
+    # To lower
     queryString = queryString.lower()
 
     fstResult = list(fstAnalyzer.analyze(queryString))

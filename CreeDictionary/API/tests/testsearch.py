@@ -4,6 +4,7 @@ from API.views import search
 from API.models import *
 import json
 
+
 class SearchTest(TestCase):
     @classmethod
     def setUpTestData(cls):
@@ -39,4 +40,3 @@ class SearchTest(TestCase):
         self.assertEqual(response.status_code, 200)
         content = json.loads(response.content)
         self.assertEqual(len(content["words"]), 0)
-
