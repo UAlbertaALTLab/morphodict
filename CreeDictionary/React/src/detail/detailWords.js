@@ -119,7 +119,6 @@ class DetailWords extends React.Component {
     }
 	
 	generateParadigms(type,context,callback){
-		//console.log(type,"GENERATE PARADIGMS");
 		if (typeof type !== undefined){
 			var prev = [[],[],[]]
 			
@@ -140,54 +139,90 @@ class DetailWords extends React.Component {
 	}
 	
 	replaceParadigm(data,loc,context,words){
+		{/*
+			data: the unfilled paradigm tables received from fillParadigms
+			loc: 0 represents the basic inflectional table, 1 represents the extended inflectional table, and 2 represents the full inflectional table
+			context: the context of the application outside the callbacks
+			words: the list of inflections and their equation
+			
+			Iterates through both the paradigm table and the inflectional word list to find matches between their paradigm equations,
+			then sets the matched word as a replacement to the paradigm table.
+		*/}
+	
 		var type = ['basic','extended','full'];
 		return new Promise(function(resolve,reject) {
 			
-			var paradigm = data[loc];
+			var paradigm = data[loc];	/* Gets the data at the specific location to represent the particular inflectional form */
 						
-			
-			
-			for (var i=0;i<paradigm.length;i++){
-				for (var t=1;t<paradigm[i].length;t++){
-					var equation = paradigm[i][t].split("+");
-					if (equation.length > 1){
-						for (var a=0;a<words.length;a++){
-							var matches = 0;
-							var starfound = false;
-							for (var q=0;q<equation.length;q++){
-								for (var m=0;m<words[a][1].length;m++){
-									if (equation[q] === "*"){
+			for (var row=0;row<paradigm.length;row++){	/* Iterates through the rows of the paradigm table */
+				for (var col=1;col<paradigm[row].length;col++){	/* Iterates through the columns of the paradigm table */
+					var equation = paradigm[row][col].split("+");	/* Splits the paradigm equation by "+" */
+					if (equation.length > 1){	/* Checks if the column split by "+" is a paradigm equation (i.e. has more than 1 object) */
+						for (var word=0;word<words.length;word++){ /* Iterates through each word of the inflection list (words) */
+							var matches = 0;	/* Matches is used to count the number of inflectional portions matches between the paradigm and the inflectional form */
+							var starfound = false;	/* To accomodate the inflectional equations that contain a "*" to represent one or more lemma forms */
+							for (var part=0;part<equation.length;part++){	/* Iterates through each inflectional portion within equation */
+								for (var word_eq=0;word_eq<words[word][1].length;word_eq++){ /* Iterates through each inflectional equation portion connected to an inflectional form */
+									if (equation[part] === "*"){	/* Found a "*" representing 0 or more lemma types */
 										starfound = true;
 									}
-									if (equation[q] === words[a][1][m]){
+									if (equation[part] === words[word][1][word_eq]){	/* A match is found, so increment matches */
 										matches += 1;
 									}
 								}
 							};
 							if (starfound){
-								if (words[a][1][1] == "V"){
+								{/* 
+									Because paradigm equations occasionally contain a "*" meaning any lemma type can exist within them,
+									the lemma type is considered and the length of the matches will be adjusted to accomodate the 0 or more
+									that the "*" allows for.
+								 */}
+								if (words[word][1][1] === "V"){	/* the lemma type is vta, vti, vii, or vai */
 									matches += 2;
-								} else if (words[a][1][1] == "N"){
+								} else if (words[word][1][1] === "N"){ /* the lemma type is na, nad, ni, or nid */
+									if (words[word][1][3] === "D"){
+										matches += 3;
+									} else {
+										matches += 2;
+									}
+								};
+							} else {
+								if (words[word][1][1] === "V"){	/* the lemma type is vta, vti, vii, or vai */
+									matches += 2;
+								} else if (words[word][1][1] === "N"){ /* the lemma type is na, nad, ni, or nid */
 									matches += 3;
+								};
+							}
+							if (equation[0] === "Der/Dim"){
+								if (words[word][1][0] === "N" && words[word][1][3] === "D"){
+									matches += 3;
+								} else {
+									matches += 2;
 								}
 							}
 							if (matches === equation.length){
-								paradigm[i][t] = words[a][0];
-							} else {
+								paradigm[row][col] = words[word][0];	/* Sets the word in the paradigm table to the matches inflectional form */
 							};
+							
 						}
 					}
 				}
-			}		
+			}	
+			data[loc] = paradigm;	
 			resolve(data);
 		});
 	}
 	
 	fillParadigms(data,context,callback){
-		//console.log(data,"FILL PARADIGMS");
+		{/*
+			data: the paradigm tables received from fillParadigms
+			context: the context of the application outside the callbacks
+			callback: the function to be called on completion of the promises
+			
+			Takes in the unfilled paradigm tables, and for each table, fills in the words to their inflective equation
+		*/}
 		
 		var words = []
-	
 
 		for (var i=0;i<context.props.det.length;i++){
 			var inflections = []
@@ -199,7 +234,6 @@ class DetailWords extends React.Component {
 			words.push([context.props.det[i].context,inflections]);
 		}
 
-		
 		var basicparadigm = context.replaceParadigm(data,0,context,words);
 		
 		basicparadigm.then(function(result){
@@ -216,6 +250,13 @@ class DetailWords extends React.Component {
 	}
 	
 	generateTable = (data,element,context) => {
+		{/*
+			data: the paradigm tables received from displayParadigms
+			element: the name of the table in the HTML generation
+			context: the context of the application outside the callbacks
+			
+			Takes in the paradigm tables and generates HTML tables to be set for each Paradigm type 
+		*/}
     	var table = ""
     	
     	for (var i=0;i<data.length;i++){
@@ -246,6 +287,12 @@ class DetailWords extends React.Component {
     }
 	
 	displayParadigms(data,context){
+		{/*
+			data: the paradigm tables filled with their respective words received from fillParadigms
+			context: the context of the application outside the callbacks
+			
+			For each paradigm (basic,extended, and full) it passes that paradigm to be generated by generateTable
+		*/}
 		if (typeof data === undefined){
 			console.log("RECEIVED UNDEFINED DATA","DISPLAY PARADIGMS");
 		}else {
@@ -299,15 +346,6 @@ class DetailWords extends React.Component {
         if (this.props.det !== []) {
         	
         	this.getParadigms();
-        	
-        	/*
-        	try{
-        		inflections = this.getData(this.props.lem.attributes,"1");
-        		inflections = this.getInflections(inflections,"2");
-        		console.log(inflections,"FINAL RESULT");
-        	}catch(error){
-        		console.log("Oops")
-        	}*/
         	
             return (	
                 <div className="table-responsive">
