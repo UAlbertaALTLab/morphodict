@@ -228,6 +228,8 @@ class DetailWords extends React.Component {
     			for (var t=1;t<data[i].length;t++){
     				table += "<td>"+data[i][t]+"</td>";
     			}
+    		}else if (data[i][1] === undefined){
+    			console.log("FOUND UNDEFINED");
     		}else if ( data[i][1][0] === undefined){
     			console.log("FOUND UNDEFINED");
     		}else if (data[i][1][0] === ":"){
