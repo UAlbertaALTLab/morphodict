@@ -6,44 +6,60 @@
 
 import React from 'react';
 
-import SearchList from '../search/searchList';
-
-import { reset } from '../search/searchList';
-import { searchWord } from '../util';
-
-var sended = false;
-
-export const reset2 = () => {
-    sended = false;
-}
+import { wordDetail } from '../util';
+import { withRouter } from 'react-router-dom';
 
 class DetailWords extends React.Component {
 
     constructor(props) {
         super(props);
-        this.Words = null;
-      }
 
+        this.state = {
+            inflection: null,
+            lemma: null,
+            definition: null,
+        };
+    }
+
+    //Search word again from table , for sprint 4
+    //Add onClick={() => this.reSearch(key[1]) in <td className="td-actions text-left" key={key}>{key[1]}</td>
     reSearch(item) {
-        sended = true;
-        reset();
-        searchWord(item).then(response => {
-            console.log(response)
-            response.json().then(data => {
-              //console.log(JSON.stringify(data))
-              this.setState({
-                Words: data.words,
-              }, () => console.log(this.state))
-            })
-        });
+        event.preventDefault();
+        this.props.history.push('/search/' + item);
     }
 
     isEmpty(obj) {
-        for(var key in obj) {
-            if(obj.hasOwnProperty(key))
+        for (var key in obj) {
+            if (obj.hasOwnProperty(key))
                 return false;
         }
         return true;
+    }
+
+    gainDetail() {
+        //alert(item);
+        wordDetail(this.props.location.pathname.split('/')[2]).then(response => {
+            console.log(response)
+            response.json().then(data => {
+                //console.log(JSON.stringify(data))
+                this.setState({
+                    inflection: data.inflections,
+                    lemma: data.lemma,
+                    definition: data.lemma.definitions,
+                }, () => console.log(this.state))
+            })
+        })
+        return this.state.list
+    }
+
+    componentDidUpdate(prevProps) {
+        console.log(this.isEmpty(prevProps));
+        //console.log(prevprops.location.pathname.split('/'));
+        // Typical usage (don't forget to compare props):
+        if (this.props.location.pathname.split('/')[2] !== prevProps.location.pathname.split('/')[2]) {
+            //alert('its dif');
+            this.gainDetail();
+        }
     }
     
     getData(data,flag){
@@ -256,60 +272,58 @@ class DetailWords extends React.Component {
 		}
 	}
 	
+
+    componentDidMount() {
+        this.gainDetail()
+        console.log('called2');
+    }
+
     //renders
-    render(props) {
-        console.log('Detail: ' + JSON.stringify(this.props.det));
-        console.log('Detail2: ' + this.isEmpty(this.props.det));
-        console.log('lemma: ' + JSON.stringify(this.props.lem));
-        
-        //While loading data returns below 
-        if (!this.props.det) {
+    render() {
+        console.log('Path : ' + this.props.location.pathname.split('/')[2]);
+        if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.definition) === false)) {
             return (
-                <div className="container">
-                    <section>
-                        <h1>{this.props.word}</h1>
-                    </section>
+                <div className="row">
+                    <div className="col-12">
+                        <section>
+                            <h1>{this.props.location.pathname.split('/')[2]}</h1>
+                        </section>
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="card-title">Definition</h2>
+                            </div>
+                            <section className="card-body">
+                                {this.state.definition.map((e) => {
+                                    return (
+                                        <h3 key={e.id} className="text-center" >{e.context}<br /><sub>{e.source}</sub></h3>)
+                                })}
+                            </section>
+                        </div>
+                    </div>
                 </div>
             );
         }
 
-        if (this.isEmpty(this.props.det) === true) {
-            return (
-                <div className="container">
-                    <section>
-                        <h1>{this.props.word}</h1>
-                    </section>
-                    <section>
-                    {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
-                    </section>
-                </div>
-            );
-        }
-
-        if (sended===true){
-            return (
-            <SearchList
-                Words={this.state.Words}>
-            </SearchList>
-            );
-        }
-        
-        //returns in Table Format
-        
-        if (this.props.det !== []) {
-        	
-        	this.getParadigms();
-        	
-        	/*
-        	try{
-        		inflections = this.getData(this.props.lem.attributes,"1");
-        		inflections = this.getInflections(inflections,"2");
-        		console.log(inflections,"FINAL RESULT");
-        	}catch(error){
-        		console.log("Oops")
-        	}*/
-        	
-            return (	
+	else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.definition) === false))) {
+	    this.getParadigms();
+	    
+	    return (<div className="row">
+                    <div className="col-12">
+                        <section>
+                            <h1>{this.props.location.pathname.split('/')[2]}</h1>
+                        </section>
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="card-title">Definition</h2>
+                            </div>
+                            <section className="card-body">
+                                {this.state.definition.map((e) => {
+                                    return (
+                                        <h3 key={e.id}>{e.context}<br /><sub>{e.source}</sub></h3>)
+                                })}
+	    </section>
+    </div>
+      	
                 <div className="table-responsive">
                     <section>
                         <h1>{this.props.word}</h1>
@@ -336,55 +350,11 @@ class DetailWords extends React.Component {
                 	</div>
                 </div>
             );
-        } else{
-                return(<p>N</p>);
-            }
+        }
+        else {
+            return (<div><h1>{this.props.location.pathname.split('/')[2]}</h1></div>)
         }
     }
+}
 
-export default DetailWords;
-
-/* Please ignore
-return (
-            <div className="centre">
-                <div>
-                    <h1>{this.props.word}</h1>
-                </div>
-                <section>
-                    <ul className="centreli">
-                        {this.props.det.map((wordlist) => {
-                                return <li key={wordlist.id}>{wordlist.context}</li>
-                            })
-                        }
-                    </ul>
-                </section>
-            </div>
-        );
-        
-        
-        
-        
-        <table className="table">
-                        <thead>
-                            <tr>
-                                {Object.entries(this.props.det[0]).map((key, val) => <th class="text-center" key={key}>{key[0]}</th>)}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {this.props.det.map(e => (
-                                <tr key={e.id}>
-                                    {Object.entries(e).map((key, val) => {
-                                        if (key[0] === "inflectionForms") {
-                                            return <td className="text-left" key={key}>Object</td>
-                                        }
-                                        if (key[0] === "context"){
-                                            return <td className="td-actions text-left" key={key} onClick={() => this.reSearch(key[1])}>{key[1]}</td>
-                                        }
-                                        return <td className="text-left" key={key}>{key[1]}</td>
-                                    })
-                                    }
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-*/
+export default withRouter(DetailWords);

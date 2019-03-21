@@ -7,11 +7,7 @@
 
 import React from 'react';
 
-import SearchList from './searchList';
-import { reset } from './searchList';
-import { reset2 } from '../detail/detailWords';
-
-import { searchWord } from '../util';
+import { withRouter } from 'react-router-dom';
 
 class SearchForm extends React.Component {
   state = {
@@ -37,6 +33,12 @@ class SearchForm extends React.Component {
     });
   }
 
+  handleChar(char) {
+    this.setState({
+      value: this.state.value + char,
+    });
+  }
+
   /*
   * Used when user submits the word (When search the word)
   * Fetch the user input 
@@ -44,18 +46,7 @@ class SearchForm extends React.Component {
   */
   handleSubmit(event) {
     event.preventDefault();
-    reset();
-    //reset2();
-    searchWord(this.state.value).then(response => {
-      console.log(response)
-      response.json().then(data => {
-        //console.log(JSON.stringify(data))
-        this.setState({
-          sended: true,
-          Words: data.words,
-        }, () => console.log(this.state))
-      })
-    });
+    this.props.history.push('/search/' + this.state.value);
   }
 
   /*
@@ -72,27 +63,31 @@ class SearchForm extends React.Component {
   //render
   render() {
     return (
-      <div className="card">
-          <div className="card-body">
-          <form onSubmit={this.handleSubmit.bind(this)} className="form-group">
-            <div className="form-row">
-              <label> Word:</label>
-              <div className="col">
-              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control"/>
-              </div>
-              <div className="col">
-              <button type="submit" className="btn btn-default btn-sm">Search</button>
-              </div>
+      <div className="card-body">
+        <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search" method='POST'>
+          <div className="form-row">
+            <label> Word:</label>
+            <div className="col">
+              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control" />
             </div>
-          </form>
+            <div className="col">
+              <button type="submit" className="btn btn-primary btn-sm">Search</button>
+            </div>
           </div>
-        <SearchList
-          Words={this.state.Words}
-          sended={this.state.sended}>
-        </SearchList>
+          <div className="form-row">
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("â")}>â</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ê")}>ê</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("î")}>î</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ô")}>ô</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ā")}>ā</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ē")}>ē</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ī")}>ī</p>
+            <p className="btn btn-default btn-link" onClick={() => this.handleChar("ō")}>ō</p>
+          </div>
+        </form>
       </div>
     );
   }
 }
 
-export default SearchForm;
+export default withRouter(SearchForm);
