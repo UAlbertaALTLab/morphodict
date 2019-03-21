@@ -1,3 +1,9 @@
+from DictionaryParser import DictionaryParser
+import generate_forms_hfst as HFST
+from fst_lookup import FST
+from API.admin import *
+from API.models import *
+import django
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from multiprocessing import Process, Queue
@@ -6,20 +12,13 @@ import math
 import sqlite3
 from sqlsp import SqlSP
 
-#Hack for importing relative projects
+# Hack for importing relative projects
 import sys
 import os
 sys.path.append('../CreeDictionary')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CreeDictionary.settings")
-import django
 django.setup()
 
-from API.models import *
-from API.admin import *
-
-from fst_lookup import FST
-import generate_forms_hfst as HFST
-from DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6
@@ -27,13 +26,13 @@ DEFAULT_PROCESS_COUNT = 6
 
 class DictionaryImporter:
     """
-    This class is used to import XML dictionary into a SQLite3 Database using 
+    This class is used to import XML dictionary into a SQLite3 Database using
     FST generator to generate inflections for each lemma.
     The generation is multithreaded and multiprocessed.
-    Multiple processes are used due the the limitation of 
-    Python's GIL(GlobalInterpreterLock) which means all threads in 
+    Multiple processes are used due the the limitation of
+    Python's GIL(GlobalInterpreterLock) which means all threads in
     A single process will be ran on the same CPU core
-    
+
     This class can be scaled with more CPU resources.
 
     In most cases the bottleneck should be CPU with memeory useage around 6G.
@@ -41,7 +40,6 @@ class DictionaryImporter:
     The field processCount should be changed depending on number of cores a CPU
     has before running parse()
     """
-
 
     def __init__(self, fileName, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, paradigmFolder, language):
         """
@@ -61,7 +59,6 @@ class DictionaryImporter:
         self.fstGeneratorFileName = fstGeneratorFileName
         self.paradigmFolder = paradigmFolder
 
-
     def _loadParadigmFiles(self):
         """
             Loads paradigm files into memory as strings in a dictionary
@@ -72,13 +69,13 @@ class DictionaryImporter:
         for filename in paradigmFiles:
             with open(self.paradigmFolder + filename + ".paradigm", "r") as file:
                 content = file.read()
-                #Split the content by --\n first and get the second half
-                #then split by \n to get each form line
-                #None will be removed using filter
+                # Split the content by --\n first and get the second half
+                # then split by \n to get each form line
+                # None will be removed using filter
                 forms = list(filter(None, content.split("--\n")[1].split("\n")))
                 self.paradigmForms[filename] = forms
 
-    def parseSync(self, amount = 10):
+    def parseSync(self, amount=10):
         """
             This is the synchronous version of parse
             No threads or processes will be created
@@ -87,12 +84,12 @@ class DictionaryImporter:
         self._loadParadigmFiles()
         print("Done Paradigm Loading")
 
-        #Parse the XML file
+        # Parse the XML file
         root = ET.parse(self.fileName).getroot()
-        #Total element count in the XML file
+        # Total element count in the XML file
         elementCount = len(root)
-        
-        #Queues
+
+        # Queues
         lemmaQueue = Queue(elementCount * 2)
         definitionQueue = Queue(elementCount * 2 * 2)
         attributeQueue = Queue(elementCount * 2 * 10)
@@ -100,12 +97,12 @@ class DictionaryImporter:
         inflectionFormQueue = Queue(elementCount * 2 * 100 * 10)
         finishedQueue = Queue(10)
 
-        #Get the number of elements each process should handle
+        # Get the number of elements each process should handle
         chunkSize = elementCount / self.processCount
-        
+
         print("Element Count: " + str(elementCount))
 
-        #Init Process Fields
+        # Init Process Fields
         self._initProcessFields(1, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
 
         initCounter = 0
@@ -120,8 +117,6 @@ class DictionaryImporter:
 
         print("Done Parse")
 
-
-
     def parse(self):
         """
             Stars the parsing of XML dictionary, FST inflections generator and injects into SQL when done
@@ -132,13 +127,13 @@ class DictionaryImporter:
         processCounter = 0
         processes = list()
 
-        #Parse the XML file
+        # Parse the XML file
         root = ET.parse(self.fileName).getroot()
-        #Total element count in the XML file
+        # Total element count in the XML file
         elementCount = len(root)
-        
-        #Queues for storing data that is ready to be inserted into SQL DB
-        #Queues will be synchronized across threads and processes
+
+        # Queues for storing data that is ready to be inserted into SQL DB
+        # Queues will be synchronized across threads and processes
         finishedQueue = Queue(self.processCount)
         lemmaQueue = Queue(elementCount * 2)
         definitionQueue = Queue(elementCount * 2 * 2)
@@ -146,30 +141,40 @@ class DictionaryImporter:
         inflectionQueue = Queue(elementCount * 2 * 100)
         inflectionFormQueue = Queue(elementCount * 2 * 100 * 10)
 
-        #Get the number of elements each process should handle
+        # Get the number of elements each process should handle
         chunkSize = elementCount / self.processCount
         chunkSize = int(math.ceil(chunkSize))
-        
+
         print("Element Count: " + str(elementCount))
         print("Process Chunk Size: " + str(chunkSize))
 
-        #Create each process
+        # Create each process
         for i in range(self.processCount):
-            #The indexes for current chunk
+            # The indexes for current chunk
             lower = int(i * chunkSize)
             upper = int(min((i + 1) * chunkSize, elementCount))
             elements = root[lower: upper]
-            #Create the process and pass queues to it
-            process = Process(target=self._parseProcess, args=[processCounter, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue])
+            # Create the process and pass queues to it
+            process = Process(
+                target=self._parseProcess,
+                args=[
+                    processCounter,
+                    elements,
+                    lemmaQueue,
+                    attributeQueue,
+                    inflectionQueue,
+                    inflectionFormQueue,
+                    definitionQueue,
+                    finishedQueue])
             process.start()
             processes.append(process)
             print("Process " + str(processCounter) + " Started")
             processCounter += 1
         print("Done Process Init: " + str(processCounter))
 
-        #Subprocecsses will not join unless queue is emptied
-        #By using the finishedQueue, processes will pass their process ID to the queue
-        #So that the parent/main process can know when to start processing queues
+        # Subprocecsses will not join unless queue is emptied
+        # By using the finishedQueue, processes will pass their process ID to the queue
+        # So that the parent/main process can know when to start processing queues
         finishedProcesses = list()
         while True:
             finishedProcess = finishedQueue.get(block=True)
@@ -177,16 +182,15 @@ class DictionaryImporter:
             if len(finishedProcesses) >= len(processes):
                 break
 
-        #All processes are finished, starts importing objects into DB
+        # All processes are finished, starts importing objects into DB
         self._fillDB(lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue)
 
-        #Join the spawned processes
+        # Join the spawned processes
         for i in range(len(processes)):
             process = processes[i]
             process.join()
             print("Joined Process: " + str(i))
         print("Done Join")
-
 
     def _fillDB(self, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue):
         """
@@ -203,18 +207,18 @@ class DictionaryImporter:
                 definitionQueue (Queue)
 
         """
-        #Open connection
+        # Open connection
         conn = sqlite3.connect(self.sqlFileName)
         cur = conn.cursor()
-        
-        #Run SetUp.sql
+
+        # Run SetUp.sql
         with open("SetUp.sql", "r", encoding="utf-8-sig") as file:
             script = file.read()
             cur.executescript(script)
             conn.commit()
         sqlSP = SqlSP(conn)
         print("Done SQL SetUp")
-        
+
         lemmaIDDict = dict()
         lemmaContextDict = dict()
         while not lemmaQueue.empty():
@@ -234,7 +238,7 @@ class DictionaryImporter:
             inflectionContextDict[inflection.context].add(inflection.id)
         print("Done Building Lemma and Inflection Dictionaries")
 
-        #Insert Objects
+        # Insert Objects
         addedLemmaID = set()
         addedLemmaContext = set()
         for id, lemma in lemmaIDDict.items():
@@ -244,7 +248,7 @@ class DictionaryImporter:
                 addedLemmaID.add(lemma.id)
                 addedLemmaContext.add(lemma.context)
         print("Done Inserting Lemma")
- 
+
         while not attributeQueue.empty():
             attribute = attributeQueue.get()
             if attribute.lemmaID in addedLemmaID:
@@ -258,7 +262,6 @@ class DictionaryImporter:
                 sqlSP.addInflection(inflection.id, inflection.lemmaID)
                 addedInflectionID.add(inflection.id)
         print("Done Inserting Inflection")
-            
 
         while not inflectionFormQueue.empty():
             inflectionForm = inflectionFormQueue.get()
@@ -287,15 +290,15 @@ class DictionaryImporter:
                             sqlSP.addDefinition(definition.id, definition.context, definition.source, inflectionID)
                             break
         print("Done Inserting Definition")
-        
-        conn.commit();
 
-        #Run CleanUp.sql
+        conn.commit()
+
+        # Run CleanUp.sql
         with open("CleanUp.sql", "r", encoding="utf-8-sig") as file:
             script = file.read()
             cur.executescript(script)
-            #conn.commit()
-            
+            # conn.commit()
+
         print("Done SQL CleanUp")
 
     def _initProcessFields(self, processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
@@ -310,7 +313,7 @@ class DictionaryImporter:
                 definitionQueue (Queue)
                 finishedQueue (Queue)
         """
-        #Process Specific Fields
+        # Process Specific Fields
         self.fstAnalyzer = FST.from_file(self.fstAnalyzerFileName)
         self.fstGenerator = FST.from_file(self.fstGeneratorFileName)
         print("Process " + str(processID) + " Done FST Loading")
@@ -337,9 +340,9 @@ class DictionaryImporter:
                 inflectionFormQueue (Queue)
                 definitionQueue (Queue)
                 finishedQueue (Queue)
-            
+
         """
-        #Init Process Fields
+        # Init Process Fields
         self._initProcessFields(processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
 
         initCounter = 0
@@ -357,12 +360,12 @@ class DictionaryImporter:
             for future in as_completed(futures):
                 try:
                     lemma = future.result()
-                    addCounter += 1;
+                    addCounter += 1
                     if addCounter % 25 == 0:
                         print("Process " + str(processID) + " Added: " + str(addCounter))
                 except Exception as e:
                     print("Exception: ", e)
-                
+
             print("Process " + str(processID) + " Done Adding: " + str(addCounter))
             finishedQueue.put(processID)
 
@@ -375,18 +378,17 @@ class DictionaryImporter:
             Args:
                 type (Class but anything can be used): The type that the ID belongs to. Can be Lemma, Inflection, Word etc.
         """
-        #Locks so no two processes/threads can edit entryIDDict
+        # Locks so no two processes/threads can edit entryIDDict
         self.entryIDLock.acquire()
         if type not in self.entryIDDict:
-            #Initialize using the processID
+            # Initialize using the processID
             self.entryIDDict[type] = self.processID
         else:
             self.entryIDDict[type] += self.processCount
         entryID = self.entryIDDict[type]
-        #Release Lock
+        # Release Lock
         self.entryIDLock.release()
         return entryID
-
 
     def _parseEntry(self, entry):
         """
@@ -399,7 +401,7 @@ class DictionaryImporter:
             Returns:
                 fstLemma (str): The lemma for the entry
         """
-        #Get Lemma and FST Result
+        # Get Lemma and FST Result
         lemmaResult = self.parser.parseLemma(entry)
         lemma = lemmaResult[0]
         wordContext = lemmaResult[1]
@@ -408,38 +410,37 @@ class DictionaryImporter:
         self.lemmaQueue.put(lemma)
 
         # Parse Attributes
-        if bestFSTResult != None:
+        if bestFSTResult is not None:
             attributes = self.parser.parseAttribute(lemma, bestFSTResult)
             for attribute in attributes:
                 attribute.id = self._getEntryID(Attribute)
                 self.attributeQueue.put(attribute)
-        
-        #Add definitions to current lemma if the entry is the lemma
+
+        # Add definitions to current lemma if the entry is the lemma
         if wordContext == lemma.context:
             self._addDefinitions(lemma, entry)
 
-        #If FST result does not exist for the word such as words without a type
-        #Then skip inflection generation
-        if bestFSTResult != None:
+        # If FST result does not exist for the word such as words without a type
+        # Then skip inflection generation
+        if bestFSTResult is not None:
             # Get Inflections
             inflectionResult = self.parser.getInflectionsHFST(lemma, bestFSTResult)
             for inflectionPair in inflectionResult:
                 inflection = inflectionPair[0]
                 inflectionForms = inflectionPair[1]
 
-                #Add ID to Inflection
+                # Add ID to Inflection
                 inflection.id = self._getEntryID(Word)
                 self.inflectionQueue.put(inflection)
                 for inflectionForm in inflectionForms:
-                    #Add ID and FK of Inflection to InflectionForm
+                    # Add ID and FK of Inflection to InflectionForm
                     inflectionForm.id = self._getEntryID(InflectionForm)
                     inflectionForm.inflectionID = inflection.id
                     self.inflectionFormQueue.put(inflectionForm)
-                    
+
                 if inflection.context == wordContext and inflection.context != lemma.context:
                     self._addDefinitions(inflection, entry)
         return lemma.context
-
 
     def _addDefinitions(self, word, entry):
         """
@@ -453,9 +454,10 @@ class DictionaryImporter:
             definition.id = self._getEntryID(Definition)
             self.definitionQueue.put(definition)
 
+
 if __name__ == '__main__':
-    importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
-                                  "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz", "../CreeDictionary/API/fst/crk-generator.fomabin.gz", 
+    importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
+                                  "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz", "../CreeDictionary/API/fst/crk-generator.fomabin.gz",
                                   "../CreeDictionary/API/paradigm/", "crk")
-    importer.parseSync(amount = 50)
-    #importer.parse()
+    importer.parseSync(amount=50)
+    # importer.parse()

@@ -22,7 +22,11 @@ def fetchLemmaContainsInflection(inflection):
 
 def fetchLemmaContainsDefinition(definition):
     lemmas = list()
-    wordIDs = Definition.objects.filter(context__contains=definition).extra(select={'length':'Length(context)'}).order_by('length').values_list("fk_word_id", flat=True)
+    wordIDs = Definition.objects.filter(
+        context__contains=definition).extra(
+        select={
+            'length': 'Length(context)'}).order_by('length').values_list(
+                "fk_word_id", flat=True)
     lemmaResult = Lemma.objects.filter(word_ptr_id__in=wordIDs)
 
     # Sort Lemma Based on Definition Order

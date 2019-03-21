@@ -6,18 +6,20 @@ import json
 """
 Tests should be run at the root folder of DictionaryImporter project
 """
+
+
 class DictionaryImporrterTestCase(unittest.TestCase):
     def setUp(self):
-        self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3", 
-                                  "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz", "../CreeDictionary/API/fst/crk-generator.fomabin.gz", 
-                                  "../CreeDictionary/API/paradigm/", "crk")
+        self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
+                                           "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz", "../CreeDictionary/API/fst/crk-generator.fomabin.gz",
+                                           "../CreeDictionary/API/paradigm/", "crk")
         self.importer.processCount = 0
 
     def tearDown(self):
         self.importer = None
 
     def test_get_entry_id(self):
-        #Mock FST.from_file() to speed up test
+        # Mock FST.from_file() to speed up test
         with mock.patch('DictionaryImporter.FST.from_file') as mockFST:
             mockFST.return_value = None
             self.importer.processCount = 8

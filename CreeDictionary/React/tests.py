@@ -10,6 +10,7 @@ from django.test import TestCase
 
 # TODO: Configure your database in settings.py and sync before running tests.
 
+
 class SimpleTest(TestCase):
     """Tests for the application views."""
 
