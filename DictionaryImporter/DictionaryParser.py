@@ -201,7 +201,7 @@ class DictionaryParser:
                 generatorInput = form.replace("{{ lemma }}", lemma.context)
                 generatorInputs.append(generatorInput)
 
-            results = HFST.generate(generatorInputs, fst_path="../CreeDictionary/API/dictionaries/crk-normative-generator.hfstol")
+            results = HFST.generate(generatorInputs, fst_path="../CreeDictionary/API/fst/crk-normative-generator.hfstol")
             for form, generatedInflection in results.items():
                 if len(generatedInflection) < 1:
                     continue
