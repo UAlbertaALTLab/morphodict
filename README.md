@@ -33,7 +33,7 @@ Place hfst into the root directory.
 ## Run Tests
 ### Django
 > cd CreeDictionary\
-> python manage.py test
+> python manage.py test API
 
 ### Front-end
 > npm run e2e

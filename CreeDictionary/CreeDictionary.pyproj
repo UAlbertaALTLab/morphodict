@@ -36,8 +36,11 @@
     </Compile>
     <Compile Include="API\migrations\__init__.py" />
     <Compile Include="API\models.py" />
-    <Compile Include="API\tests\displayword_djtest.py" />
-    <Compile Include="API\tests\search_djtest.py" />
+    <Compile Include="API\tests\testdisplayword.py" />
+    <Compile Include="API\tests\testsearch.py" />
+    <Compile Include="API\tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="API\views.py" />
     <Compile Include="API\__init__.py" />
     <Compile Include="manage.py" />
