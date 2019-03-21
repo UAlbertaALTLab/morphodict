@@ -10,12 +10,12 @@ def fetchExactLemma(lemma):
 
 
 def fetchContainsLemma(lemma):
-    lemmas = Lemma.objects.filter(context__contains=lemma)
+    lemmas = Lemma.objects.filter(context__icontains=lemma)
     return lemmas
 
 
 def fetchLemmaContainsInflection(inflection):
-    lemmaIDs = Inflection.objects.filter(context__contains=inflection).values_list("fk_lemma_id", flat=True)
+    lemmaIDs = Inflection.objects.filter(context__icontains=inflection).values_list("fk_lemma_id", flat=True)
     lemmas = Lemma.objects.filter(word_ptr_id__in=lemmaIDs)
     return lemmas
 
@@ -23,7 +23,7 @@ def fetchLemmaContainsInflection(inflection):
 def fetchLemmaContainsDefinition(definition):
     lemmas = list()
     wordIDs = Definition.objects.filter(
-        context__contains=definition).extra(
+        context__icontains=definition).extra(
         select={
             'length': 'Length(context)'}).order_by('length').values_list(
                 "fk_word_id", flat=True)
