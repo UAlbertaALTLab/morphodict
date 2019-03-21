@@ -1,1 +1,2 @@
-﻿python -m unittest discover -p  "*_test.py"
+﻿#!/bin/bash
+python3 -m unittest discover -p  "*_test.py"
