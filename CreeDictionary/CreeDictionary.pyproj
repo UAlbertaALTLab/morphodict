@@ -36,7 +36,11 @@
     </Compile>
     <Compile Include="API\migrations\__init__.py" />
     <Compile Include="API\models.py" />
-    <Compile Include="API\tests.py" />
+    <Compile Include="API\tests\testdisplayword.py" />
+    <Compile Include="API\tests\testsearch.py" />
+    <Compile Include="API\tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="API\views.py" />
     <Compile Include="API\__init__.py" />
     <Compile Include="manage.py" />
@@ -134,6 +138,7 @@
     <Folder Include="API\" />
     <Folder Include="API\migrations\" />
     <Folder Include="API\dictionaries\" />
+    <Folder Include="API\tests\" />
     <Folder Include="API\fst\" />
     <Folder Include="API\paradigm\" />
     <Folder Include="API\templates\" />
