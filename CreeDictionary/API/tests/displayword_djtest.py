@@ -8,9 +8,7 @@ Replace this with more appropriate tests for your application.
 import django
 from django.test import TestCase
 
-# TODO: Configure your database in settings.py and sync before running tests.
-
-class SimpleTest(TestCase):
+class SearchTest(TestCase):
     """Tests for the application views."""
 
     # Django requires an explicit setup() when running tests in PTVS

@@ -36,7 +36,8 @@
     </Compile>
     <Compile Include="API\migrations\__init__.py" />
     <Compile Include="API\models.py" />
-    <Compile Include="API\tests.py" />
+    <Compile Include="API\tests\displayword_djtest.py" />
+    <Compile Include="API\tests\search_djtest.py" />
     <Compile Include="API\views.py" />
     <Compile Include="API\__init__.py" />
     <Compile Include="manage.py" />
@@ -134,6 +135,7 @@
     <Folder Include="API\" />
     <Folder Include="API\migrations\" />
     <Folder Include="API\dictionaries\" />
+    <Folder Include="API\tests\" />
     <Folder Include="API\paradigm\" />
     <Folder Include="API\templates\" />
     <Folder Include="API\templates\API\" />
