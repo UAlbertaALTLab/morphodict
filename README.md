@@ -6,14 +6,25 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
+## Run Development Server
+> cd CreeDictionary\
+> python manage.py runserver
+
 ## Install Dependencies
 ### Server
 Python
-> pip install requirements.txt
+> pip install requirements.txt\
 
 React Requirements
-> npm install
+> npm install\
 > npm run dev
+
+Other dependencies:
+- Dictionary XML
+- FST fomabin
+- Imported SQLITE3 File
+
+These must be obtained from other sources.
 
 ### Importer
 Place hfst into the root directory.
@@ -21,7 +32,7 @@ Place hfst into the root directory.
 
 ## Run Tests
 ### Django
-> cd CreeDictionary
+> cd CreeDictionary\
 > python manage.py test
 
 ### Front-end
