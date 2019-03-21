@@ -220,13 +220,17 @@ class DetailWords extends React.Component {
     	
     	for (var i=0;i<data.length;i++){
     		table += "<tr>";
-    		if (data[i][0] !== ""){
+    		if (data[i][0] === undefined){
+    			console.log("FOUND UNDEFINED");
+    		}else if (data[i][0] !== ""){
     			table += "<td>"+data[i][0]+"</td>";
     			
     			for (var t=1;t<data[i].length;t++){
     				table += "<td>"+data[i][t]+"</td>";
     			}
-    		} else if (data[i][1][0] === ":"){
+    		}else if ( data[i][1][0] === undefined){
+    			console.log("FOUND UNDEFINED");
+    		}else if (data[i][1][0] === ":"){
     			for (var t=0;t<data[i].length;t++){
     				table += "<th className='text-center'>"+data[i][t].substring(3,data[i][t].length-1)+"</th>";
     			}
