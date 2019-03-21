@@ -1,0 +1,19 @@
+"Singular"	=N+I+Sg	
+"Plural"	=N+I+Pl	
+"Locative"	=N+I+Loc	
+		
+	"DIMINUTIVE"	
+"Singular"	Der/Dim+N+I+Sg	
+"Plural"	Der/Dim+N+I+Pl	
+"Locative"	Der/Dim+N+I+Loc	
+		
+	"POSSESSION"	
+	: "Singular Noun"	: "Plural Noun"
+"1s"	=N+I+Px1Sg+Sg	=N+I+Px1Sg+Pl
+"2s"	=N+I+Px2Sg+Sg	=N+I+Px2Sg+Pl
+"3s"	=N+I+Px3Sg+Sg	=N+I+Px3Sg+Pl
+"1p"	=N+I+Px1Pl+Sg	=N+I+Px1Pl+Pl
+"21"	=N+I+Px12Pl+Sg	=N+I+Px12Pl+Pl
+"2p"	=N+I+Px2Pl+Sg	=N+I+Px2Pl+Pl
+"3p"	=N+I+Px3Pl+Sg	=N+I+Px3Pl+Pl
+"4"	=N+I+Px4Sg/Pl+Sg	=N+I+Px4Sg/Pl+Pl
