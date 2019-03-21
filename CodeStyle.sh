@@ -1,1 +1,1 @@
- pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py
+pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py
