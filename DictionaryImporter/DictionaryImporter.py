@@ -1,8 +1,3 @@
-from DictionaryParser import DictionaryParser
-import generate_forms_hfst as HFST
-from fst_lookup import FST
-from API.admin import *
-from API.models import *
 import django
 import xml.etree.ElementTree as ET
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -19,6 +14,11 @@ sys.path.append('../CreeDictionary')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CreeDictionary.settings")
 django.setup()
 
+from DictionaryParser import DictionaryParser
+import generate_forms_hfst as HFST
+from fst_lookup import FST
+from API.admin import *
+from API.models import *
 
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6
