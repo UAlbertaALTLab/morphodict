@@ -8,7 +8,6 @@ import sqlite3
 from sqlsp import SqlSP
 import generate_forms_hfst as HFST
 from fst_lookup import FST
-from DictionaryParser import DictionaryParser
 
 # Hack for importing relative projects
 import sys
@@ -20,6 +19,7 @@ django.setup()
 # MUST BE IMPORTED AFTER sys.path.append
 from API.admin import *
 from API.models import *
+from DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6

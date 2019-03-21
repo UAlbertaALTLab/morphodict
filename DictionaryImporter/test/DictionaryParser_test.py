@@ -1,7 +1,7 @@
 ﻿import unittest
 from unittest import mock
-from DictionaryParser import *
 from DictionaryImporter import *
+from DictionaryParser import *
 from fst_lookup import FST
 import json
 
