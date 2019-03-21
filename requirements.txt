@@ -3,4 +3,4 @@ fst_lookup>=2019.2.1
 pycodestyle>=2.5.0
 cree-sro-syllabics>=2019.2.18
 coverage>=4.5.3
-autopep8=>1.4.3
+autopep8>=1.4.3
