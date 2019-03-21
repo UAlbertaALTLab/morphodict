@@ -10,8 +10,8 @@ Tests should be run at the root folder of DictionaryImporter project
 """
 class DictionaryImporrterTestCase(unittest.TestCase):
     #Shared fixture
-    fstAnalyzerFileName = "../CreeDictionary/API/dictionaries/crk-analyzer.fomabin.gz"
-    fstGeneratorFileName = "../CreeDictionary/API/dictionaries/crk-generator.fomabin.gz"
+    fstAnalyzerFileName = "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz"
+    fstGeneratorFileName = "../CreeDictionary/API/fst/crk-generator.fomabin.gz"
     fstAnalyzer = FST.from_file(fstAnalyzerFileName)
     fstGenerator = FST.from_file(fstGeneratorFileName)
 
