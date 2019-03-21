@@ -6,6 +6,9 @@ from threading import Lock
 import math
 import sqlite3
 from sqlsp import SqlSP
+import generate_forms_hfst as HFST
+from fst_lookup import FST
+from DictionaryParser import DictionaryParser
 
 # Hack for importing relative projects
 import sys
@@ -14,9 +17,7 @@ sys.path.append('../CreeDictionary')
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CreeDictionary.settings")
 django.setup()
 
-from DictionaryParser import DictionaryParser
-import generate_forms_hfst as HFST
-from fst_lookup import FST
+# MUST BE IMPORTED AFTER sys.path.append
 from API.admin import *
 from API.models import *
 
