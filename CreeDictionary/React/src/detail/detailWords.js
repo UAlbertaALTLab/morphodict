@@ -70,13 +70,13 @@ class DetailWords extends React.Component {
     
     
     getParadigms(){
-    	var data = this.props.lem.attributes
+    	var data = this.state.lemma.attributes
     	//console.log(data,"GET PARADIGMS")
     	this.getType(data,this.generateParadigms);
     }
     
     getType(data,callback){
-		var initialData = this.getData(this.props.lem.attributes);
+		var initialData = this.getData(this.state.lemma.attributes);
         	
         let self = this;
         	
@@ -240,14 +240,14 @@ class DetailWords extends React.Component {
 		
 		var words = []
 
-		for (var i=0;i<context.props.det.length;i++){
+		for (var i=0;i<context.state.inflection.length;i++){
 			var inflections = []
 
-			for (var t=0;t<context.props.det[i].inflectionForms.length;t++){
-				inflections.push(context.props.det[i].inflectionForms[t].name);
+			for (var t=0;t<context.state.inflection[i].inflectionForms.length;t++){
+				inflections.push(context.state.inflection[i].inflectionForms[t].name);
 			}
 			
-			words.push([context.props.det[i].context,inflections]);
+			words.push([context.state.inflection[i].context,inflections]);
 		}
 
 		var basicparadigm = context.replaceParadigm(data,0,context,words);
@@ -273,7 +273,7 @@ class DetailWords extends React.Component {
 			
 			Takes in the paradigm tables and generates HTML tables to be set for each Paradigm type 
 		*/}
-    	var table = ""
+    	var table = ''
     	
     	for (var i=0;i<data.length;i++){
     		table += "<tr>";
@@ -298,7 +298,8 @@ class DetailWords extends React.Component {
     			table += "<th colspan='"+length+"' className='text-center'>"+data[i][1]+"</th>";
     		}
     		table += "</tr>";
-    	}
+        }
+        //table += '</table>';
     	document.getElementById(element).innerHTML = table;
     }
 	
@@ -352,6 +353,7 @@ class DetailWords extends React.Component {
         }
 
 	else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.definition) === false))) {
+
 	    this.getParadigms();
 	    
 	    return (<div className="row">
@@ -368,33 +370,28 @@ class DetailWords extends React.Component {
                                     return (
                                         <h3 key={e.id}>{e.context}<br /><sub>{e.source}</sub></h3>)
                                 })}
-	    </section>
-    </div>
-      	
+	                        </section>
+                        </div>
                 <div className="table-responsive">
-                    <section>
-                        <h1>{this.props.word}</h1>
-                    </section>
-                    <section>
-                    {this.props.lem.definitions.map(e => (<p key={e.id}>{e.context}</p>))}
-                    </section>
                 	<div>
                 		<div id="basic">
                 			<h1>Basic</h1>
-                			<table id = "basictable" classname = "table" border = "1" >
+                			<table id = "basictable" className = "table" border = "1" >
                 			</table>
                 		</div>
                 		<div id="extended">
                 			<h1>Extended</h1>
-                			<table id = "extendedtable" classname = "table" border = "1">
+                			<table id = "extendedtable" className = "table" border = "1">
                 			</table>
                 		</div>
                 		<div id="full">
                 			<h1>Full</h1>
-                			<table id = "fulltable" classname = "table" border = "1">
+                			<table id = "fulltable" className = "table" border = "1">
                 			</table>
                 		</div>
                 	</div>
+                </div>
+                </div>
                 </div>
             );
         }
