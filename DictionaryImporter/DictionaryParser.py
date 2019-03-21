@@ -10,15 +10,15 @@ class DictionaryParser:
         self.language = language
         
 
-    """
-        Helper method for converting wordType and fstResult of a lemma to a paradigm file name
-        Args:
-            wordType (str): Lemma type, N, V (Does not handle IPV)
-            fstResult (list): The FST result for the lemma. Should contain different attributes for such lemma (+A, +I, ++II etc).
-        Returns:
-            paradigmFilename (str):  The paradigm file name for lemma.
-    """
     def _getParadigmFileName(self, wordType, fstResult):
+        """
+            Helper method for converting wordType and fstResult of a lemma to a paradigm file name
+            Args:
+                wordType (str): Lemma type, N, V (Does not handle IPV)
+                fstResult (list): The FST result for the lemma. Should contain different attributes for such lemma (+A, +I, ++II etc).
+            Returns:
+                paradigmFilename (str):  The paradigm file name for lemma.
+        """
             paradigmFileName = None
             if wordType == "N":
                 if "+A" in fstResult and "+D" in fstResult:
@@ -40,18 +40,18 @@ class DictionaryParser:
                     paradigmFileName = "verb-ti"
             return paradigmFileName
 
-    """
-        Gets Lemma from an XML entry
-        The entry can contain an inflection instead of a lemma
-        FST will be used to get the inflection's lemma
-        Returns:
-            result (tuple): (lemma, wordContext, isLemma)
-                            lemma (Lemma): The Lemma object parsed from the entry
-                            wordContext (str): The orginal context that is stored inside the entry
-                            bestFSTResult (list): Most probable FST result returned from FST Analyzer
-                                                  Returns None when word has no type or FST cannot analyze
-    """
     def parseLemma(self, entry):
+        """
+            Gets Lemma from an XML entry
+            The entry can contain an inflection instead of a lemma
+            FST will be used to get the inflection's lemma
+            Returns:
+                result (tuple): (lemma, wordContext, isLemma)
+                                lemma (Lemma): The Lemma object parsed from the entry
+                                wordContext (str): The orginal context that is stored inside the entry
+                                bestFSTResult (list): Most probable FST result returned from FST Analyzer
+                                                      Returns None when word has no type or FST cannot analyze
+        """
         lemma = Lemma()
         #Get inner elements
         lg = entry.find("lg")
@@ -76,15 +76,15 @@ class DictionaryParser:
         return (lemma, wordContext, bestFSTResult)
     
 
-    """
-        Returns a list of Definition objects extracted from the XML
-        Args:
-            word (Word): The word that the definitions belong to
-            entry (ElementTree): The XML that contains definitions
-        Returns:
-            definitions (list): List of Definition objects for word
-    """
     def parseDefinitions(self, word, entry):
+        """
+            Returns a list of Definition objects extracted from the XML
+            Args:
+                word (Word): The word that the definitions belong to
+                entry (ElementTree): The XML that contains definitions
+            Returns:
+                definitions (list): List of Definition objects for word
+        """
         definitions = list()
         for mg in entry.findall("mg"):
             for tg in mg.findall("tg"):
@@ -101,15 +101,15 @@ class DictionaryParser:
                         #print("Definition Added for: " + word.context)
         return definitions
 
-    """
-        Returns a list of Attribute objects extracted from the FST Result
-        Args:
-            lemma (Lemma): The lemma that the attributes belong to
-            bestFSTResult (set): The FST result for the lemma
-        Returns:
-            attributes (list): List of Attribute objects for lemma
-    """
     def parseAttribute(self, lemma, bestFSTResult):
+        """
+            Returns a list of Attribute objects extracted from the FST Result
+            Args:
+                lemma (Lemma): The lemma that the attributes belong to
+                bestFSTResult (set): The FST result for the lemma
+            Returns:
+                attributes (list): List of Attribute objects for lemma
+        """
         attributes = list()
         for attributeName in bestFSTResult:
                 if attributeName == lemma.context:
@@ -120,16 +120,16 @@ class DictionaryParser:
                 attributes.append(attribute)
         return attributes
 
-    """
-        Returns a list of Inflection objects with InflectionForm objects associated with each
-        Args:
-            lemma (Lemma): The lemma for the inflection
-            bestFSTResult: The best FST result for the lemma
-        Returns:
-            inflections (list): Each item in the list is a tuple of (Inflecction, list()). 
-                                The list contains all InflectionsForms of the Inflection.
-    """
     def getInflections(self, lemma, bestFSTResult):
+        """
+            Returns a list of Inflection objects with InflectionForm objects associated with each
+            Args:
+                lemma (Lemma): The lemma for the inflection
+                bestFSTResult: The best FST result for the lemma
+            Returns:
+                inflections (list): Each item in the list is a tuple of (Inflecction, list()). 
+                                    The list contains all InflectionsForms of the Inflection.
+        """
         inflections = list()
         paradigmFilename = self._getParadigmFileName(lemma.type, bestFSTResult)
         if paradigmFilename != None:
@@ -174,16 +174,16 @@ class DictionaryParser:
                 inflections.append((inflection, inflectionForms))
         return inflections
 
-    """
-    Returns a list of Inflection objects with InflectionForm objects associated with each
-    Args:
-        lemma (Lemma): The lemma for the inflection
-        bestFSTResult: The best FST result for the lemma
-    Returns:
-        inflections (list): Each item in the list is a tuple of (Inflecction, list()). 
-                            The list contains all InflectionsForms of the Inflection.
-    """
     def getInflectionsHFST(self, lemma, bestFSTResult):
+        """
+        Returns a list of Inflection objects with InflectionForm objects associated with each
+        Args:
+            lemma (Lemma): The lemma for the inflection
+            bestFSTResult: The best FST result for the lemma
+        Returns:
+            inflections (list): Each item in the list is a tuple of (Inflecction, list()). 
+                                The list contains all InflectionsForms of the Inflection.
+        """
         inflections = list()
         paradigmFilename = self._getParadigmFileName(lemma.type, bestFSTResult)
         if paradigmFilename != None:

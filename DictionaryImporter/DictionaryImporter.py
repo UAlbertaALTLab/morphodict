@@ -24,7 +24,9 @@ from DictionaryParser import DictionaryParser
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6
 
-"""
+
+class DictionaryImporter:
+    """
     This class is used to import XML dictionary into a SQLite3 Database using 
     FST generator to generate inflections for each lemma.
     The generation is multithreaded and multiprocessed.
@@ -38,18 +40,19 @@ DEFAULT_PROCESS_COUNT = 6
 
     The field processCount should be changed depending on number of cores a CPU
     has before running parse()
-"""
-class DictionaryImporter:
     """
-    Args:
-        filename (str): The XML dictionary file name
-        sqlFileName (str): The SQLITE3 DB fle name
-        fstAnalyzerFileName (str): The FST Analyzer fomabin file
-        fstGeneratorFileName (str): The FST Generator  formabin file
-        paradigmFolder (str): The folder name that contains all paradigm files
-        language (str): The language code for the dictionary
-    """
+
+
     def __init__(self, fileName, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, paradigmFolder, language):
+        """
+        Args:
+            filename (str): The XML dictionary file name
+            sqlFileName (str): The SQLITE3 DB fle name
+            fstAnalyzerFileName (str): The FST Analyzer fomabin file
+            fstGeneratorFileName (str): The FST Generator  formabin file
+            paradigmFolder (str): The folder name that contains all paradigm files
+            language (str): The language code for the dictionary
+        """
         self.processCount = DEFAULT_PROCESS_COUNT
         self.fileName = fileName
         self.language = language
@@ -58,10 +61,11 @@ class DictionaryImporter:
         self.fstGeneratorFileName = fstGeneratorFileName
         self.paradigmFolder = paradigmFolder
 
-    """
-        Loads paradigm files into memory as strings in a dictionary
-    """
+
     def _loadParadigmFiles(self):
+        """
+            Loads paradigm files into memory as strings in a dictionary
+        """
         paradigmFiles = ["noun-nad", "noun-na", "noun-nid", "noun-ni",
                          "verb-ai", "verb-ii", "verb-ta", "verb-ti"]
         self.paradigmForms = dict()
@@ -74,12 +78,12 @@ class DictionaryImporter:
                 forms = list(filter(None, content.split("--\n")[1].split("\n")))
                 self.paradigmForms[filename] = forms
 
-    """
-        This is the synchronous version of parse
-        No threads or processes will be created
-        Should be used only for testing
-    """
     def parseSync(self, amount = 10):
+        """
+            This is the synchronous version of parse
+            No threads or processes will be created
+            Should be used only for testing
+        """
         self._loadParadigmFiles()
         print("Done Paradigm Loading")
 
@@ -117,10 +121,11 @@ class DictionaryImporter:
         print("Done Parse")
 
 
-    """
-        Stars the parsing of XML dictionary, FST inflections generator and injects into SQL when done
-    """
+
     def parse(self):
+        """
+            Stars the parsing of XML dictionary, FST inflections generator and injects into SQL when done
+        """
         self._loadParadigmFiles()
         print("Done Paradigm Loading")
 
@@ -182,21 +187,22 @@ class DictionaryImporter:
             print("Joined Process: " + str(i))
         print("Done Join")
 
-    """
-        Fills the DB with objects in the queues
-        Runs SetUp.sql before inserting and CleanUp when done
-        SetUp should remove indexes and disable FK to speed up insert
-        CleanUp should regenerate indexes
 
-        Agrs:
-            lemmaQueue (Queue)
-            attributeQueue (Queue)
-            inflectionQueue (Queue)
-            inflectionFormQueue (Queue)
-            definitionQueue (Queue)
-
-    """
     def _fillDB(self, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue):
+        """
+            Fills the DB with objects in the queues
+            Runs SetUp.sql before inserting and CleanUp when done
+            SetUp should remove indexes and disable FK to speed up insert
+            CleanUp should regenerate indexes
+
+            Agrs:
+                lemmaQueue (Queue)
+                attributeQueue (Queue)
+                inflectionQueue (Queue)
+                inflectionFormQueue (Queue)
+                definitionQueue (Queue)
+
+        """
         #Open connection
         conn = sqlite3.connect(self.sqlFileName)
         cur = conn.cursor()
@@ -292,18 +298,18 @@ class DictionaryImporter:
             
         print("Done SQL CleanUp")
 
-    """
-        Initialized all fields that uniquely belong to the current process
-        Args:
-            processID (int): The process ID that is assigned to the process
-            lemmaQueue (Queue)
-            attributeQueue (Queue)
-            inflectionQueue (Queue)
-            inflectionFormQueue (Queue)
-            definitionQueue (Queue)
-            finishedQueue (Queue)
-    """
     def _initProcessFields(self, processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
+        """
+            Initialized all fields that uniquely belong to the current process
+            Args:
+                processID (int): The process ID that is assigned to the process
+                lemmaQueue (Queue)
+                attributeQueue (Queue)
+                inflectionQueue (Queue)
+                inflectionFormQueue (Queue)
+                definitionQueue (Queue)
+                finishedQueue (Queue)
+        """
         #Process Specific Fields
         self.fstAnalyzer = FST.from_file(self.fstAnalyzerFileName)
         self.fstGenerator = FST.from_file(self.fstGeneratorFileName)
@@ -318,21 +324,21 @@ class DictionaryImporter:
         self.entryIDLock = Lock()
         self.entryIDDict = dict()
 
-    """
-        This should be the entry point when a new process is spawned
-        Threads will be spawned to fully utilize the process
-        Args:
-            processID (int): The process ID that is assigned to the process
-            elements (ElementTree): XML elements that contains lemma and inflection
-            lemmaQueue (Queue)
-            attributeQueue (Queue)
-            inflectionQueue (Queue)
-            inflectionFormQueue (Queue)
-            definitionQueue (Queue)
-            finishedQueue (Queue)
-            
-    """
     def _parseProcess(self, processID, elements, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
+        """
+            This should be the entry point when a new process is spawned
+            Threads will be spawned to fully utilize the process
+            Args:
+                processID (int): The process ID that is assigned to the process
+                elements (ElementTree): XML elements that contains lemma and inflection
+                lemmaQueue (Queue)
+                attributeQueue (Queue)
+                inflectionQueue (Queue)
+                inflectionFormQueue (Queue)
+                definitionQueue (Queue)
+                finishedQueue (Queue)
+            
+        """
         #Init Process Fields
         self._initProcessFields(processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue)
 
@@ -359,15 +365,16 @@ class DictionaryImporter:
                 
             print("Process " + str(processID) + " Done Adding: " + str(addCounter))
             finishedQueue.put(processID)
-    """
-        Get an ID for a type of object
-        This is used for generating DB ID without collision
-        Supports multiple processes by incrementing using the process count
 
-        Args:
-            type (Class but anything can be used): The type that the ID belongs to. Can be Lemma, Inflection, Word etc.
-    """
     def _getEntryID(self, type):
+        """
+            Get an ID for a type of object
+            This is used for generating DB ID without collision
+            Supports multiple processes by incrementing using the process count
+
+            Args:
+                type (Class but anything can be used): The type that the ID belongs to. Can be Lemma, Inflection, Word etc.
+        """
         #Locks so no two processes/threads can edit entryIDDict
         self.entryIDLock.acquire()
         if type not in self.entryIDDict:
@@ -380,17 +387,18 @@ class DictionaryImporter:
         self.entryIDLock.release()
         return entryID
 
-    """
-        Parse a single element in the XML dictionary and generate its inflections
-        Lemma, Definition, Inlfection and InflectionForm objects will be
-        Generated and put into the queues.
 
-        Args:
-            entry (ElementTree): The element to be parsed
-        Returns:
-            fstLemma (str): The lemma for the entry
-    """
     def _parseEntry(self, entry):
+        """
+            Parse a single element in the XML dictionary and generate its inflections
+            Lemma, Definition, Inlfection and InflectionForm objects will be
+            Generated and put into the queues.
+
+            Args:
+                entry (ElementTree): The element to be parsed
+            Returns:
+                fstLemma (str): The lemma for the entry
+        """
         #Get Lemma and FST Result
         lemmaResult = self.parser.parseLemma(entry)
         lemma = lemmaResult[0]
@@ -432,13 +440,14 @@ class DictionaryImporter:
                     self._addDefinitions(inflection, entry)
         return lemma.context
 
-    """
-        Parse the definition and add it to the queue.
-        Args:
-            word (Word): The word the definition belongs to
-            entry (ElementTree): XML that contains definitions
-    """
+
     def _addDefinitions(self, word, entry):
+        """
+            Parse the definition and add it to the queue.
+            Args:
+                word (Word): The word the definition belongs to
+                entry (ElementTree): XML that contains definitions
+        """
         definitions = self.parser.parseDefinitions(word, entry)
         for definition in definitions:
             definition.id = self._getEntryID(Definition)

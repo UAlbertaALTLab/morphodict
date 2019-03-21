@@ -17,9 +17,13 @@ fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-genera
 def home(request):
     return HttpResponse("")
 
-"""
+
+def search(request, queryString):
+    """
     Search View for /Search/:queryString:
     :queryString: needs to be exactly contained in a lemma context 
+
+    See README for Detailed API Usage
 
     Ordering:
         Cree:
@@ -29,8 +33,7 @@ def home(request):
 
         English:
         Definition
-"""
-def search(request, queryString):
+    """
     #URL Decode
     queryString = unquote(queryString)
     #Normalize to UTF8 NFC
@@ -82,11 +85,11 @@ def search(request, queryString):
 
     return HttpResponse(json.dumps({"words": uniqueWords}))
 
-"""
+def displayWord(request, queryString):
+    """
     Display Word View for /DisplayWord/:queryString:
     :queryString: needs to be exact lemma
-"""
-def displayWord(request, queryString):
+    """
     #URL Decode
     queryString = unquote(queryString)
     #Normalize to UTF8 NFC
