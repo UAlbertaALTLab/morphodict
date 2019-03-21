@@ -18,4 +18,5 @@ script:
 #  - python manage.py migrate
   - cd ../
   - cd DictionaryImporter
-  - ./RunTest.sh
+  - coverage run --source . -m unittest discover -p  "*_test.py"
+  - coverage report -m
