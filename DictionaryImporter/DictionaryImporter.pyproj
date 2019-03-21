@@ -23,9 +23,6 @@
   <ItemGroup>
     <Compile Include="DictionaryImporter.py" />
     <Compile Include="DictionaryParser.py" />
-    <Compile Include="FSTTest.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="sqlsp.py" />
     <Compile Include="test\DictionaryImporter_test.py" />
     <Compile Include="test\DictionaryParser_test.py" />
