@@ -50,7 +50,6 @@
     <Compile Include="CreeDictionary\wsgi.py" />
     <Compile Include="React\apps.py" />
     <Compile Include="React\migrations\__init__.py" />
-    <Compile Include="React\tests.py" />
     <Compile Include="React\urls.py" />
     <Compile Include="React\views.py" />
     <Compile Include="React\__init__.py" />

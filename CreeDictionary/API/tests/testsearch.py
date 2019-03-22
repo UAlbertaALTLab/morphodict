@@ -9,6 +9,8 @@ class SearchTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         Lemma.objects.create(id=1, context="mitâs", language="crk", type="N")
+        Lemma.objects.create(id=2, context="picikwâs", language="crk", type="N")
+        Definition.objects.create(id=1, fk_word_id=2, source="CW", context="apple")
 
     @classmethod
     def setUpClass(cls):
@@ -40,3 +42,19 @@ class SearchTest(TestCase):
         self.assertEqual(response.status_code, 200)
         content = json.loads(response.content)
         self.assertEqual(len(content["words"]), 0)
+
+    def test_english_definition(self):
+        queryString = "apple"
+        response = self.client.get("/Search/" + queryString)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(len(content["words"]), 1)
+        self.assertEqual(content["words"][0]["context"], "picikwâs")
+
+    def test_english_definition_case_sensitivity(self):
+        queryString = "APPlE"
+        response = self.client.get("/Search/" + queryString)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertEqual(len(content["words"]), 1)
+        self.assertEqual(content["words"][0]["context"], "picikwâs")
