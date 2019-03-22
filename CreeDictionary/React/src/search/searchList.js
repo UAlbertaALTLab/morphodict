@@ -74,7 +74,6 @@ class SearchList extends React.Component {
                 this.setState({
                     list: data.words,
                 }, () => console.log(this.state))
-                loaded = true;
             })
         })
         return this.state.list
@@ -97,10 +96,13 @@ class SearchList extends React.Component {
 
     //render
     render() {
-        //console.log(this.gainList());
-        console.log(this.props.location.pathname.split('/'));
+        //console.log(this.state.list);
+        //console.log(this.props.location.pathname.split('/'));
         /*If data not loaded */
-        if (this.isEmpty(this.state.list) === true) {
+        if (this.isEmpty(this.state.list) === true && this.state.list !== null) {
+            return (<div><h2>No Result</h2></div>)
+        }
+        else if (this.state.list === null){
             return (<div><p>Loading...</p></div>)
         }
         /* If data loaded*/
