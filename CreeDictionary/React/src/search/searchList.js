@@ -63,6 +63,8 @@ class SearchList extends React.Component {
         return word
     }
 
+    // Fetches on searching word 
+    // set list to returned data
     gainList() {
         //alert(item);
         searchWord(this.props.location.pathname.split('/')[2]).then(response => {
@@ -71,7 +73,6 @@ class SearchList extends React.Component {
                 //console.log(JSON.stringify(data))
                 this.setState({
                     list: data.words,
-                    recieved: this.props.location.pathname.split('/')[2],
                 }, () => console.log(this.state))
                 loaded = true;
             })
