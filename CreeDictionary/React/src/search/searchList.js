@@ -11,27 +11,18 @@ import { withRouter } from 'react-router-dom';
 
 import { searchWord } from '../util';
 
-var loaded = false;
-
-//Boolean function for to render DetailWords
-export const reset = () => {
-    loaded = false;
-}
-
 class SearchList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             list: null,
-            recieved: "aaa",
         };
     }
 
     /*  
     * Used when user onClicks on word listed
-    * Fetch the word user onClicked
-    * Sets responce to state.det 
+    * Sends clicked word to history as path
     */
     click(word) {
         //alert(item);
@@ -46,6 +37,7 @@ class SearchList extends React.Component {
         }
     }
 
+    //display category
     lcategory(word) {
         if (word === "V") {
             return "Verb"
@@ -56,6 +48,7 @@ class SearchList extends React.Component {
         }
     }
 
+    //Checks if data is empty
     isEmpty(obj) {
         for (var key in obj) {
             if (obj.hasOwnProperty(key))
@@ -64,6 +57,7 @@ class SearchList extends React.Component {
         return true;
     }
 
+    // returns word in path of current path(location)
     getWord() {
         const word = this.props.location.pathname.split('/')[2];
         return word
@@ -85,9 +79,8 @@ class SearchList extends React.Component {
         return this.state.list
     }
 
+    // Checks if the searchoing word changed, if it is reload(reRender)
     componentDidUpdate(prevProps) {
-        console.log(this.isEmpty(prevProps));
-        //console.log(prevprops.location.pathname.split('/'));
         // Typical usage (don't forget to compare props):
         if (this.props.location.pathname.split('/')[2] !== prevProps.location.pathname.split('/')[2]) {
             //alert('its dif');
@@ -95,6 +88,7 @@ class SearchList extends React.Component {
         }
     }
 
+    // Checks if componenet did mount
     componentDidMount() {
         this.gainList()
         console.log('called');
@@ -104,21 +98,26 @@ class SearchList extends React.Component {
     render() {
         //console.log(this.gainList());
         console.log(this.props.location.pathname.split('/'));
-        // While loadind data
+        /*If data not loaded */
         if (this.isEmpty(this.state.list) === true) {
             return (<div><p>Loading...</p></div>)
         }
+        /* If data loaded*/
         else {
             return (
-                <div className="form-row">
-                    <section>
-                        <ul className="list">
-                            {this.state.list.map((wordlist) => {
-                                return <li key={wordlist.id} onClick={() => this.click(wordlist.context)}>{wordlist.context} | {this.language(wordlist.language)} | {this.lcategory(wordlist.type)}</li>
-                            })
-                            }
-                        </ul>
-                    </section>
+                <div className="row">
+                    <div className="col-12">
+                        {this.state.list.map((wordlist) => {
+                            return (
+                                <div key={wordlist.id} onClick={() => this.click(wordlist.context)} className="card">
+                                    <h4 className="card-header">{wordlist.context}</h4>
+                                    <p className="card-body">{this.language(wordlist.language)} | {this.lcategory(wordlist.type)}<br/>
+                                    </p>
+                                </div>
+                            )
+                        })
+                        }
+                    </div>
                 </div>
             );
         }

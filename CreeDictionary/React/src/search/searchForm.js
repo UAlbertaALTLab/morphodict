@@ -10,10 +10,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 
 class SearchForm extends React.Component {
-  state = {
-    sended: false,
-    Words: null,
-  };
+
   constructor(props) {
     super(props);
     this.state = { value: '' };
@@ -29,7 +26,6 @@ class SearchForm extends React.Component {
   handleChange(event) {
     this.setState({
       value: event.target.value,
-      sended: false,
     });
   }
 
