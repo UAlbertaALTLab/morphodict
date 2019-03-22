@@ -28,6 +28,7 @@ class DetailWords extends React.Component {
         this.props.history.push('/search/' + item);
     }
 
+    // Check if sent object is empty
     isEmpty(obj) {
         for (var key in obj) {
             if (obj.hasOwnProperty(key))
@@ -36,6 +37,10 @@ class DetailWords extends React.Component {
         return true;
     }
 
+    // Fetches on searching word 
+    // set inflection to returned inflection data
+    // set lemma to returned lemma data
+    // set definition to returned list of definition
     gainDetail() {
         //alert(item);
         wordDetail(this.props.location.pathname.split('/')[2]).then(response => {
@@ -52,6 +57,8 @@ class DetailWords extends React.Component {
         return this.state.list
     }
 
+    // Checks if clicked word changed
+    // if did reloads(reRender)
     componentDidUpdate(prevProps) {
         console.log(this.isEmpty(prevProps));
         //console.log(prevprops.location.pathname.split('/'));
@@ -320,7 +327,7 @@ class DetailWords extends React.Component {
         }
     }
 
-
+    // checks if component did mount
     componentDidMount() {
         this.gainDetail()
         console.log('called2');
@@ -329,6 +336,7 @@ class DetailWords extends React.Component {
     //renders
     render() {
         console.log('Path : ' + this.props.location.pathname.split('/')[2]);
+        // If definition is not empty and inflection is empty
         if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.definition) === false)) {
             return (
                 <div className="row">
@@ -352,6 +360,7 @@ class DetailWords extends React.Component {
             );
         }
 
+        // if both inflection and definition is not empty
         else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.definition) === false))) {
 
             this.getParadigms();
@@ -405,6 +414,7 @@ class DetailWords extends React.Component {
                 </div>
             );
         }
+        //if both inflection and definition is empty
         else {
             return (<div><h1>{this.props.location.pathname.split('/')[2]}</h1></div>)
         }
