@@ -15,9 +15,6 @@ script:
   - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
   - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
   - coverage report -m
-#  - python manage.py makemigrations
-#  - python manage.py migrate
-  - cd ../
   - cd DictionaryImporter
   - coverage run --source . -m unittest discover -p  "*_test.py"
   - coverage report -m
