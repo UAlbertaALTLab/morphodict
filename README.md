@@ -6,6 +6,13 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
+
+## Production Server
+None Yet
+
+## Test Server
+http://144.202.103.53/
+
 ## Run Development Server
 > cd CreeDictionary\
 > python manage.py runserver
