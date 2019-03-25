@@ -4,23 +4,23 @@ from django.db.models.functions import Length
 
 
 # Exact Lemma
-def fetchExactLemma(lemma, limit = 1):
+def fetchExactLemma(lemma, limit=1):
     lemmas = Lemma.objects.filter(context__exact=lemma)[:limit]
     return lemmas
 
 
-def fetchContainsLemma(lemma, limit = 10):
+def fetchContainsLemma(lemma, limit=10):
     lemmas = Lemma.objects.filter(context__icontains=lemma)[:limit]
     return lemmas
 
 
-def fetchLemmaContainsInflection(inflection, limit = 10):
+def fetchLemmaContainsInflection(inflection, limit=10):
     lemmaIDs = Inflection.objects.filter(context__icontains=inflection)[:limit].values_list("fk_lemma_id", flat=True)
     lemmas = Lemma.objects.filter(word_ptr_id__in=lemmaIDs)
     return lemmas
 
 
-def fetchLemmaContainsDefinition(definition, limit = 10):
+def fetchLemmaContainsDefinition(definition, limit=10):
     lemmas = list()
     wordIDs = Definition.objects.filter(
         context__icontains=definition).extra(
