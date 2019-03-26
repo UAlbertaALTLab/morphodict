@@ -13,10 +13,8 @@ install:
 
 script:
   - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
-  - cd CreeDictionary
-#  - python manage.py makemigrations
-#  - python manage.py migrate
-  - cd ../
+  - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
+  - coverage report -m
   - cd DictionaryImporter
   - coverage run --source . -m unittest discover -p  "*_test.py"
   - coverage report -m

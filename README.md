@@ -1,10 +1,23 @@
 # Cree Intelligent Dictionary
 
+master:
+[![Build Status](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary)
+
+development:
+[![Build Status](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary.svg?branch=development)](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary)
+
 ## Project Description
 A Cree/Syllabic to English and English to Cree/Syllabic dictionary, 
 that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
+
+
+## Production Server
+None Yet
+
+## Test Server
+http://144.202.103.53/
 
 ## Run Development Server
 > cd CreeDictionary\
@@ -32,8 +45,7 @@ Place hfst into the root directory.
 
 ## Run Tests
 ### Django
-> cd CreeDictionary\
-> python manage.py test
+> python CreeDictionary/manage.py test API
 
 ### Front-end
 > npm run e2e
