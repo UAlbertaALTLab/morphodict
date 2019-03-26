@@ -460,5 +460,5 @@ if __name__ == '__main__':
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
                                   "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin", "../CreeDictionary/API/fst/crk-normative-generator.fomabin",
                                   "../CreeDictionary/API/paradigm/", "crk")
-    importer.parseSync(amount=50)
-    # importer.parse()
+    # importer.parseSync(amount=50)
+    importer.parse()
