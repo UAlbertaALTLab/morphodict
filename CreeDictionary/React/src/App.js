@@ -11,24 +11,66 @@ import SearchList from './search/searchList';
 import DetailWords from './detail/detailWords';
 
 //import { Router, Route, Switch } from "react-router";
+//import { TranslatorProvider, useTranslate, translate} from "react-translate"
+//import { setTranslations, setDefaultLanguage, translate } from 'react-multi-lang'
+/*import { IntlProvider, FormattedMessage, addLocaleData} from 'react-intl'
+import ja from "react-intl/locale-data/ja";
+addLocaleData([...ja]);
+
+import { LocalizeProvider } from "react-localize-redux";*/
 
 import { Route, HashRouter, BrowserRouter, Link } from "react-router-dom";
+import i18next from "./i8next";
+
+export var cree=false;
 
 class App extends Component {
 
+    /*constructor(prop) {
+        super(prop);
+        this.state = {
+          locale: 'ja',
+          message: {
+              "Hello": "こんにちは"},// 実際のメッセージファイル
+        }
+      }
+        <p>
+            <FormattedMessage id="Hello" defaultMessage="It's a beautiful day outside." />
+        </p>
+      */
+    
+
+    translate(){
+        cree = !cree;
+    }
+
+    getlang(){
+        if (this.translate() === true){
+            return "cree"
+        }else{
+            return "eng"
+        }
+    }
+
     //render
     render() {
-        console.log("Route: " + Route);
+        //console.log(translator('Hello world', 'es'));
+        i18next.changeLanguage("ja");
         return (
             <HashRouter>
                 <div className="wrapper">
-                    <div className="sidebar" data-color="orange">
+                    <div className="sidebar" data-color="green">
                         <div className="sidebar-wrapper">
                             <section className="nav">
-                                <li className="active" >
+                                <li>
                                 <a href="/">Back to the top</a>
                                 </li>
+                                <li>
+                                <a onClick={()=>this.translate()}>Cree</a>
+                                </li>
                             </section>
+                            <p>{i18next.t('hello')}
+                            </p>
                         </div>
                     </div>
                     <div className="main-panel">

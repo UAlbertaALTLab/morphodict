@@ -11,6 +11,8 @@ import { withRouter } from 'react-router-dom';
 
 import { searchWord } from '../util';
 
+import {cree}from '../App.js'
+
 class SearchList extends React.Component {
     constructor(props) {
         super(props);
@@ -33,7 +35,12 @@ class SearchList extends React.Component {
     //display language
     language(word) {
         if (word === "crk") {
+            if (cree === true){
+                return "nêhiyawi"
+            } 
             return "Cree"
+        } else {
+            return word
         }
     }
 
@@ -46,6 +53,18 @@ class SearchList extends React.Component {
         } else {
             return word
         }
+    }
+
+    getdefinition(definition){
+        console.log("A "+definition)
+        if (this.isEmpty(definition)===false){
+            return (<p>{definition.map((e) => {
+                return (
+                    <strong key={e.id}>{e.context}<br /><sub>{e.source}</sub><br /></strong>)
+            })}</p>)
+        }
+        return(<p></p>)
+
     }
 
     //Checks if data is empty
@@ -114,8 +133,10 @@ class SearchList extends React.Component {
                             return (
                                 <div key={wordlist.id} onClick={() => this.click(wordlist.context)} className="card">
                                     <h4 className="card-header">{wordlist.context}</h4>
-                                    <p className="card-body">{this.language(wordlist.language)} | {this.lcategory(wordlist.type)}<br/>
-                                    </p>
+                                    <section className="card-body">
+                                    <p>{this.language(wordlist.language)} | {this.lcategory(wordlist.type)}<br/></p>
+                                    {this.getdefinition(wordlist.definitions)}
+                                    </section>
                                 </div>
                             )
                         })

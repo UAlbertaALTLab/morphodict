@@ -9,6 +9,11 @@ import React from 'react';
 import { wordDetail } from '../util';
 import { withRouter } from 'react-router-dom';
 
+import { sro2syllabics } from 'cree-sro-syllabics';
+/*
+var CreeSROSyllabics = require('cree-sro-syllabics')
+console.log(CreeSROSyllabics.sro2syllabics("tân'si")) // logs ᑖᓂᓯ*/
+
 class DetailWords extends React.Component {
 
     constructor(props) {
@@ -369,7 +374,8 @@ class DetailWords extends React.Component {
                 <div className="row">
                     <div className="col-12">
                         <section>
-                            <h1>{this.props.location.pathname.split('/')[2]}</h1>
+                            <h1>{this.props.location.pathname.split('/')[2]}<br />
+                                <sub>{sro2syllabics(this.props.location.pathname.split('/')[2])}</sub></h1>
                         </section>
                         <div className="card">
                             <div className="card-header">
@@ -384,32 +390,27 @@ class DetailWords extends React.Component {
                         </div>
                     </div>
                     <div className="col-12">
-                        <div id="basic" className="card">
-                            <div className="card-header">
-                                <h1>Basic</h1>
-                            </div>
+                        <details id="basic" className="card">
+                            <summary className="card-header"><strong>Basic</strong></summary>
                             <div className="table-responsive">
                                 <table id="basictable" className="table" border="1" >
                                 </table>
                             </div>
-                        </div>
-                        <div id="extended" className="card">
-                            <div className="card-header">
-                                <h1>Extended</h1>
+                        </details>
+                        <details id="extended" className="card">
+                            <summary className="card-header"><strong>Extended</strong></summary>
+                            <div className="table-responsive">
+                                <table id="extendedtable" className="table" border="1">
+                                </table>
                             </div>
-                            <div className="table-responsive"></div>
-                            <table id="extendedtable" className="table" border="1">
-                            </table>
-                        </div>
-                        <div id="full" className="card">
-                            <div className="card-header">
-                                <h1>Full</h1>
-                            </div>
+                        </details>
+                        <details id="full" className="card">
+                            <summary className="card-header"><strong>Full</strong></summary>
                             <div className="table-responsive">
                                 <table id="fulltable" className="table" border="1">
                                 </table>
                             </div>
-                        </div>
+                        </details>
                     </div>
                 </div>
             );
