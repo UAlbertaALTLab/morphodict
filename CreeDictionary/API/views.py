@@ -11,7 +11,7 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
-fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-analyzer.fomabin"))
+fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin"))
 # fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-generator.fomabin"))
 
 
