@@ -11,7 +11,7 @@ Tests should be run at the root folder of DictionaryImporter project
 class DictionaryImporrterTestCase(unittest.TestCase):
     def setUp(self):
         self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
-                                           "../CreeDictionary/API/fst/crk-analyzer.fomabin.gz", "../CreeDictionary/API/fst/crk-generator.fomabin.gz",
+                                           "../CreeDictionary/API/fst/crk-analyzer.fomabin", "../CreeDictionary/API/fst/crk-generator.fomabin",
                                            "../CreeDictionary/API/paradigm/", "crk")
         self.importer.processCount = 0
 
