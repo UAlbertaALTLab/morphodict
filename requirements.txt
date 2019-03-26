@@ -1,5 +1,5 @@
 django==2.1.7
-fst_lookup>=2019.2.1
+fst_lookup>=2019.3.25
 pycodestyle>=2.5.0
 cree-sro-syllabics>=2019.2.18
 coverage>=4.5.3
