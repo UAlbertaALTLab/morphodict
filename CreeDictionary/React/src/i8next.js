@@ -18,6 +18,7 @@ import jaLocalesTranslationJson from './locals/ja/jaTranslations.json'
     });*/
 
     i18next.init({
+        lng: 'ja',
         fallbackLng: 'ja',
         debug: true,
         resources: {

@@ -42,20 +42,23 @@ class App extends Component {
 
     translate(){
         cree = !cree;
-    }
-
-    getlang(){
-        if (this.translate() === true){
-            return "cree"
+        if (cree === true){
+            i18next.changeLanguage("en");
         }else{
-            return "eng"
+            i18next.changeLanguage("ja");
         }
     }
 
     //render
     render() {
-        //console.log(translator('Hello world', 'es'));
-        i18next.changeLanguage("ja");
+        console.log("AAAAAA: "+i18next.language);
+        console.log("BBBBBB: "+i18next.languages);
+        if (cree === true){
+            i18next.changeLanguage("en");
+            console.log("CCCCC: "+i18next.language);
+        }else{
+            i18next.changeLanguage("ja");
+        }
         return (
             <HashRouter>
                 <div className="wrapper">
