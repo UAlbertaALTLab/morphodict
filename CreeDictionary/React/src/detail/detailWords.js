@@ -8,6 +8,7 @@ import React from 'react';
 
 import { wordDetail } from '../util';
 import { withRouter } from 'react-router-dom';
+import i18next from "../translate";
 
 import { sro2syllabics } from 'cree-sro-syllabics';
 /*
@@ -341,6 +342,9 @@ class DetailWords extends React.Component {
     //renders
     render() {
         console.log('Path : ' + this.props.location.pathname.split('/')[2]);
+        console.log('mitas' + sro2syllabics("mitas"))
+        console.log('mitâs' + sro2syllabics("mitãs"))
+        console.log('cree' + sro2syllabics("cree"))
         // If definition is not empty and inflection is empty
         if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.definition) === false)) {
             return (
@@ -351,7 +355,7 @@ class DetailWords extends React.Component {
                         </section>
                         <div className="card">
                             <div className="card-header">
-                                <h2 className="card-title">Definition</h2>
+                                <h2 className="card-title">{i18next.t('Definition')}</h2>
                             </div>
                             <section className="card-body">
                                 {this.state.definition.map((e) => {
@@ -379,7 +383,7 @@ class DetailWords extends React.Component {
                         </section>
                         <div className="card">
                             <div className="card-header">
-                                <h2 className="card-title">Definition</h2>
+                                <h2 className="card-title">{i18next.t('Definition')}</h2>
                             </div>
                             <section className="card-body">
                                 {this.state.definition.map((e) => {
@@ -391,21 +395,21 @@ class DetailWords extends React.Component {
                     </div>
                     <div className="col-12">
                         <details id="basic" className="card">
-                            <summary className="card-header"><strong>Basic</strong></summary>
+                            <summary className="card-header"><strong>{i18next.t('Basic')}</strong></summary>
                             <div className="table-responsive">
                                 <table id="basictable" className="table" border="1" >
                                 </table>
                             </div>
                         </details>
                         <details id="extended" className="card">
-                            <summary className="card-header"><strong>Extended</strong></summary>
+                            <summary className="card-header"><strong>{i18next.t('Extended')}</strong></summary>
                             <div className="table-responsive">
                                 <table id="extendedtable" className="table" border="1">
                                 </table>
                             </div>
                         </details>
                         <details id="full" className="card">
-                            <summary className="card-header"><strong>Full</strong></summary>
+                            <summary className="card-header"><strong>{i18next.t('Full')}</strong></summary>
                             <div className="table-responsive">
                                 <table id="fulltable" className="table" border="1">
                                 </table>

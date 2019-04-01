@@ -8,6 +8,7 @@
 import React from 'react';
 
 import { withRouter } from 'react-router-dom';
+import i18next from "../translate";
 
 import { searchWord } from '../util';
 
@@ -34,11 +35,10 @@ class SearchList extends React.Component {
 
     //display language
     language(word) {
-        if (word === "crk") {
-            if (cree === true){
-                return "nêhiyawi"
-            } 
-            return "Cree"
+        if (word === "crk") { 
+            return i18next.t('Cree')
+        } else if (word === "eng") {
+            return i18next.t('Eng')
         } else {
             return word
         }
@@ -47,9 +47,11 @@ class SearchList extends React.Component {
     //display category
     lcategory(word) {
         if (word === "V") {
-            return "Verb"
+            return i18next.t('Verb')
         } else if (word === "N") {
-            return "Noun"
+            return i18next.t('Noun')
+        } else if (word === "Ipc") {
+            return i18next.t('Ipc')
         } else {
             return word
         }
@@ -119,10 +121,10 @@ class SearchList extends React.Component {
         //console.log(this.props.location.pathname.split('/'));
         /*If data not loaded */
         if (this.isEmpty(this.state.list) === true && this.state.list !== null) {
-            return (<div><h2>No Result</h2></div>)
+            return (<div><h2>{i18next.t('NoResult')}</h2></div>)
         }
         else if (this.state.list === null){
-            return (<div><p>Loading...</p></div>)
+            return (<div><p>{i18next.t('Loading')}</p></div>)
         }
         /* If data loaded*/
         else {

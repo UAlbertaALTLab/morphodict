@@ -54,6 +54,7 @@
   "devDependencies": {
     "babel-preset-airbnb": "^3.2.1",
     "i18next": "^15.0.7",
+    "i18next-browser-languagedetector": "^3.0.1",
     "react-localize-redux": "^3.5.2",
     "react-multi-lang": "^1.0.2",
     "react-redux": "^6.0.1",

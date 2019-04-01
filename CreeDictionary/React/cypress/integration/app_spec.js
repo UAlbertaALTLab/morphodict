@@ -9,10 +9,10 @@ describe("Django REST framework / cree intelligent dictionary app", () => {
       wordCategory: "Noun",
    };
    //Connect to the web
-   before(() => {
+   /*before(() => {
       cy.exec("npm run dev");
       //cy.exec("npm run flush");
-   });
+   });*/
    //Test for Search form
    it("Search Area show up", () => {
       cy.visit("/React");
