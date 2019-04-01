@@ -6,11 +6,11 @@
 
 import React, { Component } from 'react';
 
-import SearchForm from './search/searchForm';
-import SearchList from './search/searchList';
-import DetailWords from './detail/detailWords';
-import NavSideBar from './navigation/navSideBar';
-import NavNavBar from './navigation/navNavBar';
+import SearchForm from './components/search/searchForm';
+import SearchList from './components/search/searchList';
+import DetailWords from './components/detail/detailWords';
+import NavSideBar from './components/navigation/navSideBar';
+import NavNavBar from './components/navigation/navNavBar';
 
 //import { Router, Route, Switch } from "react-router";
 //import { TranslatorProvider, useTranslate, translate} from "react-translate"
@@ -22,9 +22,9 @@ addLocaleData([...ja]);
 import { LocalizeProvider } from "react-localize-redux";*/
 
 import { Route, HashRouter, BrowserRouter, Link } from "react-router-dom";
-import i18next from "./translate";
+import i18next from "./utils/translate";
 
-export var cree=false;
+export var cree = false;
 
 class App extends Component {
 
@@ -33,13 +33,9 @@ class App extends Component {
         return (
             <HashRouter>
                 <div className="wrapper">
-                    <div className="sidebar">
-                        <NavSideBar/>
-                    </div>
+                    <NavSideBar />
                     <div className="main-panel">
-                        <nav className="navbar navbar-expanded-lg navbar-absolute navbar-transparent">
-                            <NavNavBar/>
-                        </nav>
+                        <NavNavBar />
                         <div className="content">
                             <div className="row">
                                 <div className="col-12">
