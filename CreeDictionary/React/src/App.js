@@ -7,7 +7,7 @@
 import React, { Component } from 'react';
 
 import SearchForm from './components/search/searchForm';
-import SearchList from './components/search/searchList';
+import SearchResult from './components/search/searchResult';
 import DetailWords from './components/detail/detailWords';
 import NavSideBar from './components/navigation/navSideBar';
 import NavNavBar from './components/navigation/navNavBar';
@@ -45,7 +45,7 @@ class App extends Component {
                                         </header>
                                         <Route exact component={SearchForm} />
                                     </div>
-                                    <Route path="/search" component={SearchList} />
+                                    <Route path="/search" component={SearchResult} />
                                     <Route path="/definition" component={DetailWords} />
                                 </div>
                             </div>

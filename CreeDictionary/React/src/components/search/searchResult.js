@@ -11,60 +11,15 @@ import { withRouter } from 'react-router-dom';
 import i18next from '../../utils/translate';
 
 import { searchWord } from '../../utils/network';
+import ResultDetail from './resultDetail';
 
-class SearchList extends React.Component {
+class SearchResult extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             list: null,
         };
-    }
-
-    /*  
-    * Used when user onClicks on word listed
-    * Sends clicked word to history as path
-    */
-    click(word) {
-        //alert(item);
-        event.preventDefault();
-        this.props.history.push('/definition/' + word);
-    }
-
-    //display language
-    language(word) {
-        if (word === "crk") { 
-            return i18next.t('Cree')
-        } else if (word === "eng") {
-            return i18next.t('Eng')
-        } else {
-            return word
-        }
-    }
-
-    //display category
-    lcategory(word) {
-        if (word === "V") {
-            return i18next.t('Verb')
-        } else if (word === "N") {
-            return i18next.t('Noun')
-        } else if (word === "Ipc") {
-            return i18next.t('Ipc')
-        } else {
-            return word
-        }
-    }
-
-    getdefinition(definition){
-        console.log("A "+definition)
-        if (this.isEmpty(definition)===false){
-            return (<p>{definition.map((e) => {
-                return (
-                    <strong key={e.id}>{e.context}<br /><sub>{e.source}</sub><br /></strong>)
-            })}</p>)
-        }
-        return(<p></p>)
-
     }
 
     //Checks if data is empty
@@ -129,15 +84,17 @@ class SearchList extends React.Component {
             return (
                 <div className="row">
                     <div className="col-12">
-                        {this.state.list.map((wordlist) => {
+                        {this.state.list.map((wordlist, index) => {
                             return (
-                                <div key={wordlist.id} onClick={() => this.click(wordlist.context)} className="card">
-                                    <h4 className="card-header">{wordlist.context}</h4>
-                                    <section className="card-body">
-                                    <p>{this.language(wordlist.language)} | {this.lcategory(wordlist.type)}<br/></p>
-                                    {this.getdefinition(wordlist.definitions)}
-                                    </section>
-                                </div>
+                                <ResultDetail
+                                key = {wordlist.id}
+                                id = {wordlist.id}
+                                word = {wordlist.context}
+                                definition = {wordlist.definitions}
+                                type = {wordlist.type}
+                                language = {wordlist.language}
+                                wordlist = {wordlist}
+                                />
                             )
                         })
                         }
@@ -149,4 +106,4 @@ class SearchList extends React.Component {
 
 }
 
-export default withRouter(SearchList);
+export default withRouter(SearchResult);
