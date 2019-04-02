@@ -29,6 +29,7 @@ matrix:
             directories:
             - ~/.cache
         install:
+            - npm install
             - npm ci
             - npm run install:test
         script:
