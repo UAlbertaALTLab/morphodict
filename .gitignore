@@ -260,13 +260,17 @@ paket-files/
 __pycache__/
 *.pyc
 
-#MacOS Files
+# MacOS Files
 .DS_Store
 
-#Dicitonary Files
+# Dicitonary Files
 /CreeDictionary/API/dictionaries/
 /CreeDictionary/db.sqlite3
 /CreeDictionary/db.sqlite3.bak
 /hfst
-/CreeDictionary/static
+
+# virtual env
 /env
+
+# React
+/CreeDictionary/React/static/React/main.js
