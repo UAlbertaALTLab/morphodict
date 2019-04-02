@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "django": "python ./CreeDictionary/manage.py runserver",
+    "django3:migrate": "python3 ./CreeDictionary/manage.py migrate",
     "django3": "python3 ./CreeDictionary/manage.py runserver",
     "dev": "webpack --mode development ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
     "build": "webpack --mode production ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
