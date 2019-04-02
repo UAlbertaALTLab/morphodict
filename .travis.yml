@@ -37,5 +37,5 @@ matrix:
             - npm ci
         script:
             - npm run build
-            - npm run django3 & wait-on http://localhost:8000
-            - npm run e2e:headless
+            - npm run django3 & $(npm bin)/wait-on http://localhost:8000
+            - $(npm bin)/cypress run --project ./CreeDictionary/React/
