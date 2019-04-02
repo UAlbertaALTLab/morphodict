@@ -313,6 +313,7 @@
     <Content Include="React\static\layouts\vti-extended.layout.yml" />
     <Content Include="React\static\layouts\vti-full.layout.tsv" />
     <Content Include="React\static\layouts\vti-full.layout.yml" />
+    <Content Include="React\static\React\main.js" />
     <Content Include="React\templates\React\index.html" />
   </ItemGroup>
   <ItemGroup>
