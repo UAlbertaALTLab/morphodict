@@ -11,6 +11,7 @@ import { withRouter } from 'react-router-dom';
 import { wordDetail } from '../../utils/network';
 import i18next from '../../utils/translate';
 
+import Definition from './definition';
 import { sro2syllabics } from 'cree-sro-syllabics';
 /*
 var CreeSROSyllabics = require('cree-sro-syllabics')
@@ -343,29 +344,14 @@ class DetailWords extends React.Component {
     //renders
     render() {
         console.log('Path : ' + this.props.location.pathname.split('/')[2]);
-        console.log('mitas' + sro2syllabics("mitas"))
-        console.log('mitâs' + sro2syllabics("mitãs"))
-        console.log('cree' + sro2syllabics("cree"))
         // If definition is not empty and inflection is empty
         if ((this.isEmpty(this.state.inflection) === true) && (this.isEmpty(this.state.definition) === false)) {
             return (
                 <div className="row">
-                    <div className="col-12">
-                        <section>
-                            <h1>{this.props.location.pathname.split('/')[2]}</h1>
-                        </section>
-                        <div className="card">
-                            <div className="card-header">
-                                <h2 className="card-title">{i18next.t('Definition')}</h2>
-                            </div>
-                            <section className="card-body">
-                                {this.state.definition.map((e) => {
-                                    return (
-                                        <h3 key={e.id} className="text-center" >{e.context}<br /><sub>{e.source}</sub></h3>)
-                                })}
-                            </section>
-                        </div>
-                    </div>
+                    <Definition
+                    word = {this.props.location.pathname.split('/')[2]}
+                    definition = {this.state.definition}
+                    />
                 </div>
             );
         }
@@ -377,23 +363,10 @@ class DetailWords extends React.Component {
 
             return (
                 <div className="row">
-                    <div className="col-12">
-                        <section>
-                            <h1>{this.props.location.pathname.split('/')[2]}<br />
-                                <sub>{sro2syllabics(this.props.location.pathname.split('/')[2])}</sub></h1>
-                        </section>
-                        <div className="card">
-                            <div className="card-header">
-                                <h2 className="card-title">{i18next.t('Definition')}</h2>
-                            </div>
-                            <section className="card-body">
-                                {this.state.definition.map((e) => {
-                                    return (
-                                        <h3 key={e.id}>{e.context}<br /><sub>{e.source}</sub></h3>)
-                                })}
-                            </section>
-                        </div>
-                    </div>
+                    <Definition
+                    word = {this.props.location.pathname.split('/')[2]}
+                    definition = {this.state.definition}
+                    />
                     <div className="col-12">
                         <details id="basic" className="card">
                             <summary className="card-header"><strong>{i18next.t('Basic')}</strong></summary>

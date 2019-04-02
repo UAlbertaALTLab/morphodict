@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { withRouter } from 'react-router-dom';
 import i18next from '../../utils/translate';
 
 class ResultDetail extends React.Component {
@@ -72,4 +73,4 @@ class ResultDetail extends React.Component {
     }
 }
 
-export default ResultDetail;
+export default withRouter(ResultDetail);
