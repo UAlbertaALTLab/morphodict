@@ -52,6 +52,7 @@ def search(request, queryString):
     englishWords = list()
     if len(fstResult) > 0:
         # Probably Cree
+        # Add FST analysis to response
         response["analysis"] = fstResult[0]
         lemma = fstResult[0][0]
         print("Cree: " + lemma)
