@@ -35,6 +35,6 @@ matrix:
             - npm ci
             - npm run install:test
         script:
-            - npm build
-            - npm django & wait-on http://localhost:8000
+            - npm run build
+            - npm run django & wait-on http://localhost:8000
             - npm run e2e:headless
