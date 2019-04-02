@@ -31,9 +31,9 @@ matrix:
             directories:
             - ~/.cache
         before_install:
-            - sudo apt-get -y install python3-pip python-dev
+            - sudo apt-get -y install python3-pip python3-setuptools python-dev
         install:
-            - sudo pip3 install -r requirements.txt
+            - sudo -H pip3 install -r requirements.txt
             - npm ci
         script:
             - npm run build
