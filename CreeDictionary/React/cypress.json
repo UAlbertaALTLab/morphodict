@@ -1,1 +1,4 @@
-{}
+{
+  "projectId": "creedict",
+  "baseUrl": "http://localhost:8000"
+}

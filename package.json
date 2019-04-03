@@ -4,10 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "django": "python ./CreeDictionary/manage.py runserver",
+    "django3:migrate": "python3 ./CreeDictionary/manage.py migrate",
+    "django3": "python3 ./CreeDictionary/manage.py runserver",
     "dev": "webpack --mode development ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
     "build": "webpack --mode production ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
-    "e2e": "cypress open --project ./CreeDictionary/React/cypressTest"
+    "e2e": "cypress open --project ./CreeDictionary/React/",
+    "e2e:headless": "cypress run --project ./CreeDictionary/React/",
+    "install:test": "npm install --no-save"
   },
   "repository": {
     "type": "git",
@@ -47,6 +51,7 @@
     "style-loader": "^0.23.1",
     "translate": "^1.0.4",
     "url-loader": "^1.1.2",
+    "wait-on": "^3.2.0",
     "weak-key": "^1.0.1",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
