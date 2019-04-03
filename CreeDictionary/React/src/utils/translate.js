@@ -5,14 +5,14 @@ import enTranslation from '../locals/en/enTranslations.json';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
     i18next
-    .use(LanguageDetector)
+    //.use(LanguageDetector)
     .init({
         lng: 'en',
         fallbackLng: 'en',
         debug: true,
         resources: {
             cree: {
-              translation: creeTranslation
+                translation: creeTranslation
             },
             en: {
                 translation: enTranslation

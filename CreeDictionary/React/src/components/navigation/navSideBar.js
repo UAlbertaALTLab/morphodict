@@ -26,10 +26,18 @@ class NavSideBar extends React.Component {
             })
         }
     }
+
+    componentDidUpdate(prevProps) {
+        // Typical usage (don't forget to compare props):
+        if (prevProps === null) {
+            alert('its dif');
+            //this.gainList();
+        }
+    }
     
     //render
     render() {
-        i18next.changeLanguage(this.state.Lang);
+        //i18next.changeLanguage(this.state.Lang);
         return (
             <div className="sidebar">
             <div className="sidebar-wrapper">
