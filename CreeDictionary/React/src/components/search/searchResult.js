@@ -56,7 +56,13 @@ class SearchResult extends React.Component {
     gainList() {
         //alert(item);
         searchWord(this.props.location.pathname.split('/')[2]).then(response => {
-            console.log(response)
+            console.log(response.status)
+            if (response.status === 500) {
+                this.setState({
+                    list: [],
+                }, () => console.log(this.state))
+                return (console.log('Error'))
+            }
             response.json().then(data => {
                 //console.log(JSON.stringify(data))
                 this.setState({
