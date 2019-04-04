@@ -302,6 +302,8 @@ class DictionaryImporter:
             cur.executescript(script)
             # conn.commit()
 
+        conn.commit()
+        conn.close()
         print("Done SQL CleanUp")
 
     def _initProcessFields(self, processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
