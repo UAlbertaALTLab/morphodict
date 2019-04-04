@@ -10,16 +10,17 @@ Tests should be run at the root folder of DictionaryImporter project
 """
 
 
-class DictionaryImporrterTestCase(unittest.TestCase):
+class DictionaryParserTestCase(unittest.TestCase):
     # Shared fixture
     fstAnalyzerFileName = "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin"
     fstGeneratorFileName = "../CreeDictionary/API/fst/crk-normative-generator.fomabin"
+    hfstFileName =  "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
     fstAnalyzer = FST.from_file(fstAnalyzerFileName)
     fstGenerator = FST.from_file(fstGeneratorFileName)
 
     def setUp(self):
         self.importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
-                                           self.fstAnalyzerFileName, self.fstGeneratorFileName,
+                                           self.fstAnalyzerFileName, self.fstGeneratorFileName, self.hfstFileName,
                                            "../CreeDictionary/API/paradigm/", "crk")
         self.importer._loadParadigmFiles()
         self.parser = DictionaryParser(self.importer.paradigmForms, self.fstAnalyzer, self.fstGenerator, "crk")
@@ -33,6 +34,3 @@ class DictionaryImporrterTestCase(unittest.TestCase):
         self.assertEqual(fileName, "noun-nid")
         fileName = self.parser._getParadigmFileName("N", {"+I"})
         self.assertEqual(fileName, "noun-ni")
-
-    def test_parse_definitions(self):
-        pass

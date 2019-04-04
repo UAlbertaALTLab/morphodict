@@ -16,8 +16,17 @@ Check wiki for detailed documentation.
 ## Production Server
 None Yet
 
-## Test Server
-http://144.202.103.53/
+## Deployment
+See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
+
+## Deployment
+See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
+
+## Deployment
+See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
+
+## Refactor Plan
+See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Refactor-Plan)
 
 ## Run Development Server
 > cd CreeDictionary\
