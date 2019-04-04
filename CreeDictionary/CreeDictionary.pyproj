@@ -63,6 +63,7 @@
     <Compile Include="__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="API\dictionaries\crkeng.test.xml" />
     <Content Include="API\fst\crk-descriptive-analyzer.fomabin" />
     <Content Include="API\fst\crk-descriptive-analyzer.hfstol" />
     <Content Include="API\fst\crk-normative-generator.fomabin" />
