@@ -14,7 +14,7 @@ class DictionaryParserTestCase(unittest.TestCase):
     # Shared fixture
     fstAnalyzerFileName = "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin"
     fstGeneratorFileName = "../CreeDictionary/API/fst/crk-normative-generator.fomabin"
-    hfstFileName =  "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
+    hfstFileName = "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
     fstAnalyzer = FST.from_file(fstAnalyzerFileName)
     fstGenerator = FST.from_file(fstGeneratorFileName)
 
