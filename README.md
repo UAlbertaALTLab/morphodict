@@ -12,15 +12,8 @@ that can define and return the linguistic analysis of each word.
 
 Check wiki for detailed documentation.
 
-
 ## Production Server
-None Yet
-
-## Deployment
-See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
-
-## Deployment
-See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
+http://162.246.157.191
 
 ## Deployment
 See [wiki](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
@@ -99,6 +92,8 @@ The parameter query string can be anything such as:
 - Misspelled Cree Words
 
 A JSON Object will be returned. The structure is:
+
+- "analysis" is an optional property that has an array of strings describing the FST result
 
 - "words" property has an array of lemma objects
   - "id" Lemma unique id
