@@ -42,7 +42,7 @@ class SearchResult extends React.Component {
         if (this.isEmpty(this.state.analysis) === true) {
             return (<p></p>);
         } else {
-            return (<h4>{this.state.analysis.join("")}</h4>)
+            return (<h4 className="card card-header card-title text-center border border-primary">{this.state.analysis.join("")}</h4>)
         }
     }
 

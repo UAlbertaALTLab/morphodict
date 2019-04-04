@@ -1,13 +1,15 @@
 import React from 'react';
 
 import i18next from '../../utils/translate';
+import { sro2syllabics } from 'cree-sro-syllabics';
 
 class Definition extends React.Component {
     render(){
         return(
             <div className="col-12">
                         <section>
-                            <h1>{this.props.word}</h1>
+                            <h1>{this.props.word}<br />
+                                <sub>{sro2syllabics(this.props.word)}</sub></h1>
                         </section>
                         <div className="card">
                             <div className="card-header">
