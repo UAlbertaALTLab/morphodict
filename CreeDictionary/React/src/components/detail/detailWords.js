@@ -192,47 +192,52 @@ class DetailWords extends React.Component {
                         for (var word = 0; word < words.length; word++) { /* Iterates through each word of the inflection list (words) */
                             var matches = 0;	/* Matches is used to count the number of inflectional portions matches between the paradigm and the inflectional form */
                             var starfound = false;	/* To accomodate the inflectional equations that contain a "*" to represent one or more lemma forms */
-                            for (var part = 0; part < equation.length; part++) {	/* Iterates through each inflectional portion within equation */
-                                for (var word_eq = 0; word_eq < words[word][1].length; word_eq++) { /* Iterates through each inflectional equation portion connected to an inflectional form */
-                                    if (equation[part] === "*") {	/* Found a "*" representing 0 or more lemma types */
-                                        starfound = true;
-                                    }
-                                    if (equation[part] === words[word][1][word_eq]) {	/* A match is found, so increment matches */
-                                        matches += 1;
-                                    }
-                                }
-                            };
-                            if (starfound) {
-                                {/* 
+                            if(paradigm[row][col][0] == "=" || paradigm[row][col][3] == "/"){
+                            	for (var part = 0; part < equation.length; part++) {	/* Iterates through each inflectional portion within equation */
+                                	for (var word_eq = 0; word_eq < words[word][1].length; word_eq++) { /* Iterates through each inflectional equation portion connected to an inflectional form */
+                                    	if (equation[part] === "*") {	/* Found a "*" representing 0 or more lemma types */
+                                        	starfound = true;
+                                    	}
+                                    	if (equation[part] === words[word][1][word_eq]) {	/* A match is found, so increment matches */
+                                        	matches += 1;
+                                    	}
+                                	}
+                            	};
+                            	if (starfound) {
+                                	{/* 
 									Because paradigm equations occasionally contain a "*" meaning any lemma type can exist within them,
 									the lemma type is considered and the length of the matches will be adjusted to accomodate the 0 or more
 									that the "*" allows for.
-								 */}
-                                if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
-                                    matches += 2;
-                                } else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
-                                    if (words[word][1][3] === "D") {
-                                        matches += 3;
-                                    } else {
-                                        matches += 2;
-                                    }
-                                };
-                            } else {
-                                if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
-                                    matches += 2;
-                                } else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
-                                    matches += 3;
-                                };
-                            }
-                            if (equation[0] === "Der/Dim") {
-                                if (words[word][1][0] === "N" && words[word][1][3] === "D") {
-                                    matches += 3;
-                                } else {
-                                    matches += 2;
-                                }
-                            }
-                            if (matches === equation.length) {
-                                paradigm[row][col] = words[word][0];	/* Sets the word in the paradigm table to the matches inflectional form */
+								 	*/}
+                                	if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
+                                    	matches += 2;
+                                	} else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
+                                    	if (words[word][1][3] === "D") {
+                                        	matches += 3;
+                                    	} else {
+                                        	matches += 2;
+                                    	}
+                                	};
+                            	} else {
+                                	if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
+                                    	matches += 2;
+                                	} else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
+                                    	matches += 3;
+                                	} else if (words[word][1][0] === "N") {
+                                		matches += 1;
+                                		console.log(paradigm[row][col],words[word][0],words[word][1],matches,equation.length,"FOUND");
+                                	};
+                            	}
+                            	if (equation[0] === "Der/Dim") {
+                                	if (words[word][1][0] === "N" && words[word][1][3] === "D") {
+                                    	matches += 3;
+                                	} else {
+                                    	matches += 2;
+                                	}
+                            	}
+                            	if (matches === equation.length) {
+                                	paradigm[row][col] = words[word][0];	/* Sets the word in the paradigm table to the matches inflectional form */
+                            	};
                             };
 
                         }
@@ -264,6 +269,7 @@ class DetailWords extends React.Component {
 
             words.push([context.state.inflection[i].context, inflections]);
         }
+        
 
         var basicparadigm = context.replaceParadigm(data, 0, context, words);
 
