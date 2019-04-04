@@ -19,6 +19,7 @@ class SearchResult extends React.Component {
 
         this.state = {
             list: null,
+            analysis: null,
         };
     }
 
@@ -37,6 +38,14 @@ class SearchResult extends React.Component {
         return word
     }
 
+    getAnalysis(){
+        if (this.isEmpty(this.state.analysis) === true){
+            return (<p></p>);
+        }else{
+            return (<h4>{this.state.analysis.join("")}</h4>)
+        }
+    }
+
     // Fetches on searching word 
     // set list to returned data
     gainList() {
@@ -47,6 +56,7 @@ class SearchResult extends React.Component {
                 //console.log(JSON.stringify(data))
                 this.setState({
                     list: data.words,
+                    analysis: data.analysis,
                 }, () => console.log(this.state))
             })
         })
@@ -82,8 +92,11 @@ class SearchResult extends React.Component {
         /* If data loaded*/
         else {
             return (
-                <div className="row">
-                    <div className="col-12">
+                <div className="row flex-lg-row-reverse">
+                <div className="col-lg-3">
+                        {this.getAnalysis()}
+                    </div>
+                    <div className="col-lg-9">
                         {this.state.list.map((wordlist, index) => {
                             return (
                                 <ResultDetail
