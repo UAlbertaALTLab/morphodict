@@ -26,7 +26,7 @@ class ResultDetail extends React.Component {
 
     //display language
     language(word) {
-        if (word === "crk") { 
+        if (word === "crk") {
             return i18next.t('Cree')
         } else if (word === "eng") {
             return i18next.t('Eng')
@@ -48,22 +48,31 @@ class ResultDetail extends React.Component {
         }
     }
 
-    getdefinition(definition){
-        console.log("A "+definition)
-        if (this.isEmpty(definition)===false){
+    getdefinition(definition) {
+        console.log("A " + definition)
+        if (this.isEmpty(definition) === false) {
             return (<p>{definition.map((e) => {
                 return (
                     <strong key={e.id}>{e.context}<br /><sub>{e.source}</sub><br /></strong>)
             })}</p>)
         }
-        return(<p></p>)
+        return (<p></p>)
 
     }
 
     render() {
         return (
             <div key={this.props.id} onClick={() => this.click(this.props.word)} className="card">
-                <h4 className="card-header">{this.props.word}</h4>
+                <div className="card-header">
+                    <div className="row">
+                        <div className="col-sm-6 text-left">
+                            <h3 className="card-title">{this.props.word}</h3>
+                        </div>
+                        <div className="col-sm-6 text-right">
+                            <p>nan</p>
+                        </div>
+                    </div>
+                </div>
                 <section className="card-body">
                     <p>{this.language(this.props.language)} | {this.lcategory(this.props.type)}<br /></p>
                     {this.getdefinition(this.props.definition)}

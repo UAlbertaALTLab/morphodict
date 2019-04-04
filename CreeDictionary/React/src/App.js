@@ -27,13 +27,30 @@ import i18next from "./utils/translate";
 export var cree = false;
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            language: null,
+        };
+    }
+
+    language = (stateValueFromNavSideBar) => {
+        this.setState({
+            language: stateValueFromNavSideBar
+        });
+    }
+
 
     //render
     render() {
+        i18next.changeLanguage(this.state.language);
         return (
             <HashRouter>
                 <div className="wrapper">
-                    <NavSideBar />
+                    <NavSideBar 
+                    language={this.language}
+                    />
                     <div className="main-panel">
                         <NavNavBar />
                         <div className="content">

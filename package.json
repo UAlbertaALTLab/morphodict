@@ -9,8 +9,8 @@
     "django3": "python3 ./CreeDictionary/manage.py runserver",
     "dev": "webpack --mode development ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
     "build": "webpack --mode production ./CreeDictionary/React/src/index.js --output ./CreeDictionary/React/static/React/main.js",
-    "e2e": "cypress open --project ./CreeDictionary/React/",
-    "e2e:headless": "cypress run --project ./CreeDictionary/React/",
+    "e2e": "cypress open --project ./CreeDictionary/React/cypressTest",
+    "e2e:headless": "cypress run --project ./CreeDictionary/React/cypressTest",
     "install:test": "npm install --no-save"
   },
   "repository": {

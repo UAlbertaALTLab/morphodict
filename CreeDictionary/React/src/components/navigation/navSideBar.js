@@ -25,11 +25,19 @@ class NavSideBar extends React.Component {
                 Lang: "en"
             })
         }
+        this.props.language(this.state.Lang);
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        // Typical usage (don't forget to compare state):
+        if (this.state.Lang !== prevState.Lang) {
+            this.props.language(this.state.Lang);
+        }
     }
     
     //render
     render() {
-        i18next.changeLanguage(this.state.Lang);
+        //i18next.changeLanguage(this.state.Lang);
         return (
             <div className="sidebar">
             <div className="sidebar-wrapper">
