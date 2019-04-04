@@ -17,7 +17,7 @@ describe("Django REST framework / cree intelligent dictionary app Desktop Ver cr
    });
    beforeEach(() => {
       cy.fixture("/cree/creeWordSearch.json").as("cree");
-    });
+   });
    //Test for Search form
    it("Search Area show up", () => {
       cy.visit("/");
@@ -25,7 +25,7 @@ describe("Django REST framework / cree intelligent dictionary app Desktop Ver cr
       cy.get("form").should("be.visible");
       cy.get('@cree').then((cree) => {
          cy.get("input").type(cree.word).should("have.value", cree.word);
-       })
+      })
    });
    //Test for return when search word
    it("List the search result", () => {
@@ -33,36 +33,36 @@ describe("Django REST framework / cree intelligent dictionary app Desktop Ver cr
       cy.get("div div.col-lg-9 div.card").should("be.visible");
       cy.get('@cree').then((cree) => {
          cy.get("div div.col-lg-9")
-         .get("div h3.card-header")
-         .contains(cree.word)
-         .should("be.visible");
-       })
+            .get("div h3.card-header")
+            .contains(cree.word)
+            .should("be.visible");
+      })
    });
    //Test for detail of selected word
    it("Onclick on word and gains detail", () => {
       cy.get('@cree').then((cree) => {
          cy.get("div div.col-lg-9")
-         .get("div h3.card-header")
-         .contains(cree.word)
-         .click();
+            .get("div h3.card-header")
+            .contains(cree.word)
+            .click();
          cy.get(".table").should("not.be.visible");
          cy.get(".card-body h3").should("be.visible");
-       })
+      })
    });
    //Test for table of selected word
    it("Onclick on arrow and shows table", () => {
       cy.get('@cree').then((cree) => {
          cy.get("#basic")
-         .click()
-         .get("#basictable")
-         .should("be.visible");
+            .click()
+            .get("#basictable")
+            .should("be.visible");
          cy.get("#extended").click()
-         .get("#basic .card-header").click()
-         .get("#basictable")
-         .should("not.be.visible")
-         .get("#extendedtable")
-         .should("be.visible");
-       })
+            .get("#basic .card-header").click()
+            .get("#basictable")
+            .should("not.be.visible")
+            .get("#extendedtable")
+            .should("be.visible");
+      })
    });
    // more tests here
    // The tests for layout, cree language, eng->cree, and cree->eng, backward and forward button will be added by sprint 4

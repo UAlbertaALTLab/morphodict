@@ -42,7 +42,12 @@ class SearchResult extends React.Component {
         if (this.isEmpty(this.state.analysis) === true) {
             return (<p></p>);
         } else {
-            return (<h4 className="card card-header card-title text-center border border-primary">{this.state.analysis.join("")}</h4>)
+            return (
+                <div className="card">
+                    <h3 className="card-header card-title">{i18next.t('LinguisticAnalysis')}</h3>
+                    <h4 className="card-body text-center">{this.state.analysis.join("")}</h4>
+                </div>
+            )
         }
     }
 

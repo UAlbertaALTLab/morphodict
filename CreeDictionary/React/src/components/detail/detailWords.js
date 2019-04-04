@@ -355,8 +355,8 @@ class DetailWords extends React.Component {
             return (
                 <div className="row">
                     <Definition
-                    word = {this.props.location.pathname.split('/')[2]}
-                    definition = {this.state.definition}
+                        word={this.props.location.pathname.split('/')[2]}
+                        definition={this.state.definition}
                     />
                 </div>
             );
@@ -370,8 +370,8 @@ class DetailWords extends React.Component {
             return (
                 <div className="row">
                     <Definition
-                    word = {this.props.location.pathname.split('/')[2]}
-                    definition = {this.state.definition}
+                        word={this.props.location.pathname.split('/')[2]}
+                        definition={this.state.definition}
                     />
                     <div className="col-12">
                         <details id="basic" className="card">
