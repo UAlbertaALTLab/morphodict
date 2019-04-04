@@ -1,7 +1,7 @@
 /// <reference types="Cypress" />
 describe("Django REST framework / cree intelligent dictionary app Mobile Ver eng->cree", () => {
     // Currently using...
-    //       word: apple
+    //       word: food
     //       width of screen: 375pixel
     //       height of screen: 812pixel
     // for testing
