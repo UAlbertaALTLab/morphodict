@@ -51,13 +51,14 @@ the terms of the Apache 2.0. license.
 import subprocess
 import shutil
 import os
+from subprocess import PIPE
 
 
 # Determine the location of hfst-optimized-lookup
 if os.name == "nt":
     HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup.exe"
 else:
-    HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup"
+    HFSTOL_PATH = shutil.which('hfst-optimized-lookup')
 if HFSTOL_PATH is None:
     raise ImportError(
         'hfst-optimized-lookup is not installed.\n'
@@ -109,7 +110,7 @@ def generate(analyses, fst_path='./crk-normative-generator.hfstol'):
     lines = '\n'.join(analyses).encode('UTF-8')
 
     status = subprocess.run([HFSTOL_PATH, '--quiet', '--pipe-mode', fst_path],
-                            input=lines, capture_output=True, shell=False)
+                            input=lines, stdout=PIPE, stderr=PIPE, shell=False)
 
     analysis2wordform = {}
     for line in status.stdout.decode('UTF-8').splitlines():

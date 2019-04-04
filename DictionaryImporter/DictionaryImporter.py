@@ -302,6 +302,8 @@ class DictionaryImporter:
             cur.executescript(script)
             # conn.commit()
 
+        conn.commit()
+        conn.close()
         print("Done SQL CleanUp")
 
     def _initProcessFields(self, processID, lemmaQueue, attributeQueue, inflectionQueue, inflectionFormQueue, definitionQueue, finishedQueue):
@@ -459,7 +461,7 @@ class DictionaryImporter:
 
 
 if __name__ == '__main__':
-    mode = "test"
+    mode = "normal"
     if len(sys.argv) > 1:
         mode = sys.argv[1].lower()
 
