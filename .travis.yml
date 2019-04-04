@@ -8,6 +8,7 @@ matrix:
         cache: pip
 
         before_install:
+            - sudo apt-get -y install hfst
             - chmod -R 777 .
 
         install:
