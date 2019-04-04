@@ -173,7 +173,7 @@ class DictionaryParser:
                 inflections.append((inflection, inflectionForms))
         return inflections
 
-    def getInflectionsHFST(self, lemma, bestFSTResult):
+    def getInflectionsHFST(self, lemma, bestFSTResult, fstPath):
         """
         Returns a list of Inflection objects with InflectionForm objects associated with each
         Args:
@@ -200,7 +200,7 @@ class DictionaryParser:
                 generatorInput = form.replace("{{ lemma }}", lemma.context)
                 generatorInputs.append(generatorInput)
 
-            results = HFST.generate(generatorInputs, fst_path="../CreeDictionary/API/fst/crk-normative-generator.hfstol")
+            results = HFST.generate(generatorInputs, fst_path=fstPath)
             for form, generatedInflection in results.items():
                 if len(generatedInflection) < 1:
                     continue

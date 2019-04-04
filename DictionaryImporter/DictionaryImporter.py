@@ -42,7 +42,7 @@ class DictionaryImporter:
     has before running parse()
     """
 
-    def __init__(self, fileName, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, paradigmFolder, language):
+    def __init__(self, fileName, sqlFileName, fstAnalyzerFileName, fstGeneratorFileName, hfstFileName, paradigmFolder, language):
         """
         Args:
             filename (str): The XML dictionary file name
@@ -58,6 +58,7 @@ class DictionaryImporter:
         self.sqlFileName = sqlFileName
         self.fstAnalyzerFileName = fstAnalyzerFileName
         self.fstGeneratorFileName = fstGeneratorFileName
+        self.hfstFileName = hfstFileName
         self.paradigmFolder = paradigmFolder
 
     def _loadParadigmFiles(self):
@@ -225,9 +226,9 @@ class DictionaryImporter:
         while not lemmaQueue.empty():
             lemma = lemmaQueue.get()
             lemmaIDDict[lemma.id] = lemma
-            if lemma.context not in lemmaContextDict:
-                lemmaContextDict[lemma.context] = set()
-            lemmaContextDict[lemma.context].add(lemma.id)
+            if (lemma.context, lemma.type) not in lemmaContextDict:
+                lemmaContextDict[(lemma.context, lemma.type)] = set()
+            lemmaContextDict[(lemma.context, lemma.type)].add(lemma.id)
 
         inflectionIDDict = dict()
         inflectionContextDict = dict()
@@ -243,11 +244,11 @@ class DictionaryImporter:
         addedLemmaID = set()
         addedLemmaContext = set()
         for id, lemma in lemmaIDDict.items():
-            if lemma.context not in addedLemmaContext:
+            if (lemma.context, lemma.type) not in addedLemmaContext:
                 sqlSP.addWord(lemma.id, lemma.context, lemma.language, lemma.type)
                 sqlSP.addLemma(lemma.id)
                 addedLemmaID.add(lemma.id)
-                addedLemmaContext.add(lemma.context)
+                addedLemmaContext.add((lemma.context, lemma.type))
         print("Done Inserting Lemma")
 
         while not attributeQueue.empty():
@@ -277,9 +278,10 @@ class DictionaryImporter:
             else:
                 # Check wordID is lemma or inflection
                 if definition.wordID in lemmaIDDict:
+                    type = lemmaIDDict[definition.wordID].type
                     context = lemmaIDDict[definition.wordID].context
-                    # Get list of lemma that has the same context as the not added lemma for this defintion
-                    for lemmaID in lemmaContextDict[context]:
+                    # Get list of lemma that has the same context and type as the not added lemma for this defintion
+                    for lemmaID in lemmaContextDict[(context, type)]:
                         if lemmaID in addedLemmaID:
                             sqlSP.addDefinition(definition.id, definition.context, definition.source, lemmaID)
                             break
@@ -425,7 +427,7 @@ class DictionaryImporter:
         # Then skip inflection generation
         if bestFSTResult is not None:
             # Get Inflections
-            inflectionResult = self.parser.getInflectionsHFST(lemma, bestFSTResult)
+            inflectionResult = self.parser.getInflectionsHFST(lemma, bestFSTResult, self.hfstFileName)
             for inflectionPair in inflectionResult:
                 inflection = inflectionPair[0]
                 inflectionForms = inflectionPair[1]
@@ -457,8 +459,19 @@ class DictionaryImporter:
 
 
 if __name__ == '__main__':
+    mode = "test"
+    if len(sys.argv) > 1:
+        mode = sys.argv[1].lower()
+
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
                                   "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin", "../CreeDictionary/API/fst/crk-normative-generator.fomabin",
+                                  "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
                                   "../CreeDictionary/API/paradigm/", "crk")
-    # importer.parseSync(amount=50)
-    importer.parse()
+    if mode == "test":
+        importer.fileName = "../CreeDictionary/API/dictionaries/crkeng.test.xml"
+        importer.sqlFileName = "../CreeDictionary/db.test.sqlite3"
+        importer.parseSync(amount=50)
+    elif mode == "normal":
+        importer.parse()
+    else:
+        print("Unknown Mode")

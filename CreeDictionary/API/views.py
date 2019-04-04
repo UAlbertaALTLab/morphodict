@@ -45,12 +45,15 @@ def search(request, queryString):
     # To lower
     queryString = queryString.lower()
 
-    fstResult = list(fstAnalyzer.analyze(queryString))
+    response = dict()
 
+    fstResult = list(fstAnalyzer.analyze(queryString))
     creeWords = list()
     englishWords = list()
     if len(fstResult) > 0:
         # Probably Cree
+        # Add FST analysis to response
+        response["analysis"] = fstResult[0]
         lemma = fstResult[0][0]
         print("Cree: " + lemma)
         creeWords += datafetch.fetchExactLemma(lemma)
@@ -85,8 +88,8 @@ def search(request, queryString):
     # Populate Fields
     datafetch.fillAttributes(uniqueWords)
     datafetch.fillDefinitions(uniqueWords)
-
-    return HttpResponse(json.dumps({"words": uniqueWords}))
+    response["words"] = uniqueWords
+    return HttpResponse(json.dumps(response))
 
 
 def displayWord(request, queryString):
