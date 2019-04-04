@@ -1,18 +1,18 @@
 {
-    "BackToTheTop": "Back to the top",
-    "Dictionary":"辞書",
-    "Word":"Word",
-    "Search":"Search",
-    "NoResult":"No Result",
-    "Loading":"Loading...",
-    "Cree":"Cree",
-    "Eng":"Eng",
-    "Verb":"Verb",
-    "Noun":"Noun",
-    "Ipc":"Ipc",
-    "Definition":"Definition",
-    "Basic":"Basic",
-    "Extended":"Extended",
-    "Full":"Full"
+    "BackToTheTop": "cree(Back to the top)",
+    "Dictionary":"cree(Dictionary)",
+    "EnterWord":"cree(Enter Word)",
+    "Search":"cree(Search)",
+    "NoResult":"cree(No Result)",
+    "Loading":"cree(Loading...)",
+    "Cree":"cree(Cree)",
+    "Eng":"cree(Eng)",
+    "Verb":"cree(Verb)",
+    "Noun":"cree(Noun)",
+    "Ipc":"cree(Ipc)",
+    "Definition":"cree(Definition)",
+    "Basic":"cree(Basic)",
+    "Extended":"cree(Extended)",
+    "Full":"cree(Full)"
 
 }

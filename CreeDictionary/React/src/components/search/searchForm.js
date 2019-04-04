@@ -63,9 +63,8 @@ class SearchForm extends React.Component {
       <div className="card-body">
         <form onSubmit={this.handleSubmit.bind(this)} className="form-group" id="Search" method='POST'>
           <div className="form-row">
-            <label> {i18next.t('Word')}:</label>
             <div className="col">
-              <input type="text" value={this.state.value} onChange={this.handleChange} className="form-control" />
+              <input type="text" value={this.state.value} onChange={this.handleChange} placeholder={i18next.t('EnterWord')} className="form-control" />
             </div>
             <div className="col">
               <button type="submit" className="btn btn-primary btn-sm">{i18next.t('Search')}</button>

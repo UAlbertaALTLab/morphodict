@@ -25,13 +25,13 @@ class NavSideBar extends React.Component {
                 Lang: "en"
             })
         }
+        this.props.language(this.state.Lang);
     }
 
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (prevProps === null) {
-            alert('its dif');
-            //this.gainList();
+    componentDidUpdate(prevProps, prevState) {
+        // Typical usage (don't forget to compare state):
+        if (this.state.Lang !== prevState.Lang) {
+            this.props.language(this.state.Lang);
         }
     }
     

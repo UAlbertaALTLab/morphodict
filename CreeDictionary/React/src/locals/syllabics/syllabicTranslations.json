@@ -1,18 +1,18 @@
 {
-    "BackToTheTop": "Back to the top",
-    "Dictionary":"Dictionary",
-    "Word":"Word",
-    "Search":"Search",
-    "NoResult":"No Result",
-    "Loading":"Loading...",
-    "Cree":"Cree",
-    "Eng":"Eng",
-    "Verb":"Verb",
-    "Noun":"Noun",
-    "Ipc":"Ipc",
-    "Definition":"Definition",
-    "Basic":"Basic",
-    "Extended":"Extended",
-    "Full":"Full"
+    "BackToTheTop": "syllabic(Back to the top)",
+    "Dictionary":"syllabic(Dictionary)",
+    "EnterWord":"syllabic(Enter Word)",
+    "Search":"syllabic(Search)",
+    "NoResult":"syllabic(No Result)",
+    "Loading":"syllabic(Loading...)",
+    "Cree":"syllabic(Cree)",
+    "Eng":"syllabic(Eng)",
+    "Verb":"syllabic(Verb)",
+    "Noun":"syllabic(Noun)",
+    "Ipc":"syllabic(Ipc)",
+    "Definition":"syllabic(Definition)",
+    "Basic":"syllabic(Basic)",
+    "Extended":"syllabic(Extended)",
+    "Full":"syllabic(Full)"
 
 }

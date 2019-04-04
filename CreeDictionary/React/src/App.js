@@ -41,15 +41,10 @@ class App extends Component {
         });
     }
 
-    componentDidMount() {
-        this.language()
-      }
-
 
     //render
     render() {
         i18next.changeLanguage(this.state.language);
-        console.log("Aaaaaaaaaaaa "+this.state.language)
         return (
             <HashRouter>
                 <div className="wrapper">
