@@ -45,7 +45,7 @@ class SearchResult extends React.Component {
             return (
                 <div className="card">
                     <h3 className="card-header card-title">{i18next.t('LinguisticAnalysis')}</h3>
-                    <h4 className="card card-body text-center border border-primary">{this.state.analysis.join("")}</h4>
+                    <h4 className="card-body text-center">{this.state.analysis.join("")}</h4>
                 </div>
             )
         }
