@@ -26,7 +26,7 @@ class ResultDetail extends React.Component {
 
     //display language
     language(word) {
-        if (word === "crk") { 
+        if (word === "crk") {
             return i18next.t('Cree')
         } else if (word === "eng") {
             return i18next.t('Eng')
@@ -48,15 +48,15 @@ class ResultDetail extends React.Component {
         }
     }
 
-    getdefinition(definition){
-        console.log("A "+definition)
-        if (this.isEmpty(definition)===false){
+    getdefinition(definition) {
+        console.log("A " + definition)
+        if (this.isEmpty(definition) === false) {
             return (<p>{definition.map((e) => {
                 return (
                     <strong key={e.id}>{e.context}<br /><sub>{e.source}</sub><br /></strong>)
             })}</p>)
         }
-        return(<p></p>)
+        return (<p></p>)
 
     }
 

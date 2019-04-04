@@ -11,16 +11,16 @@ class NavSideBar extends React.Component {
         };
     }
 
-    translate(lan){
-        if (lan === "cree"){
+    translate(lan) {
+        if (lan === "cree") {
             this.setState({
                 Lang: "cree"
             })
-        }else if (lan === "syllabic"){
+        } else if (lan === "syllabic") {
             this.setState({
                 Lang: "syllabic"
             })
-        }else{
+        } else {
             this.setState({
                 Lang: "en"
             })
@@ -34,28 +34,28 @@ class NavSideBar extends React.Component {
             this.props.language(this.state.Lang);
         }
     }
-    
+
     //render
     render() {
         //i18next.changeLanguage(this.state.Lang);
         return (
             <div className="sidebar">
-            <div className="sidebar-wrapper">
-                <section className="nav">
-                    <li>
-                        <a href="/">{i18next.t('BackToTheTop')}</a>
-                    </li>
-                    <li>
-                        <a onClick={() => this.translate("cree")}>Cree</a>
-                    </li>
-                    <li>
-                        <a onClick={() => this.translate("eng")}>English</a>
-                    </li>
-                    <li>
-                        <a onClick={() => this.translate("syllabic")}>Syllabic</a>
-                    </li>
-                </section>
-            </div>
+                <div className="sidebar-wrapper">
+                    <section className="nav">
+                        <li>
+                            <a href="/">{i18next.t('BackToTheTop')}</a>
+                        </li>
+                        <li>
+                            <a onClick={() => this.translate("cree")}>Cree</a>
+                        </li>
+                        <li>
+                            <a onClick={() => this.translate("eng")}>English</a>
+                        </li>
+                        <li>
+                            <a onClick={() => this.translate("syllabic")}>Syllabic</a>
+                        </li>
+                    </section>
+                </div>
             </div>
         );
     }
