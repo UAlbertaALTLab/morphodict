@@ -276,3 +276,4 @@ __pycache__/
 /CreeDictionary/React/static/React/main.js
 /CreeDictionary/React/cypress/videos
 /CreeDictionary/React/cypress/screenshots/app_spec.js
+/CreeDictionary/React/cypressTest/cypress/videos
