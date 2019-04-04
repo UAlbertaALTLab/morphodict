@@ -9,17 +9,17 @@ class NavNavBar extends React.Component {
         };
     }
 
-    toggledBool(){
+    toggledBool() {
         this.setState({
             toggled: !this.state.toggled,
         })
     }
 
-    toggled(){
-        if (this.state.toggled === true){
+    toggled() {
+        if (this.state.toggled === true) {
             document.documentElement.classList.add("nav-open")
             return "navbar-toggle d-inline toggled"
-        }else {
+        } else {
             document.documentElement.classList.remove("nav-open")
             return "navbar-toggle d-inline"
         }
@@ -29,17 +29,17 @@ class NavNavBar extends React.Component {
     render() {
         return (
             <nav className="navbar navbar-expanded-lg navbar-absolute navbar-transparent">
-            <div className="container-fluid">
-                <div className="navbar-wrapper">
-                    <div className={this.toggled()}>
-                        <button type="button" className="navbar-toggler" onClick={() => this.toggledBool()}>
-                            <span className="navbar-toggler-bar bar1"></span>
-                            <span className="navbar-toggler-bar bar2"></span>
-                            <span className="navbar-toggler-bar bar3"></span>
-                        </button>
+                <div className="container-fluid">
+                    <div className="navbar-wrapper">
+                        <div className={this.toggled()}>
+                            <button type="button" className="navbar-toggler" onClick={() => this.toggledBool()}>
+                                <span className="navbar-toggler-bar bar1"></span>
+                                <span className="navbar-toggler-bar bar2"></span>
+                                <span className="navbar-toggler-bar bar3"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
             </nav>
         );
     }
