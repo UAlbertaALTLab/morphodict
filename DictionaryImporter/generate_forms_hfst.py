@@ -50,10 +50,14 @@ the terms of the Apache 2.0. license.
 
 import subprocess
 import shutil
+import os
 
 
 # Determine the location of hfst-optimized-lookup
-HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup.exe"
+if os.name == "nt":
+    HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup.exe"
+else:
+    HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup"
 if HFSTOL_PATH is None:
     raise ImportError(
         'hfst-optimized-lookup is not installed.\n'
