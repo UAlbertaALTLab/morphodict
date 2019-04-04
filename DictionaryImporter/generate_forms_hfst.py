@@ -57,7 +57,7 @@ import os
 if os.name == "nt":
     HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup.exe"
 else:
-    HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup"
+    HFSTOL_PATH = shutil.which('hfst-optimized-lookup')
 if HFSTOL_PATH is None:
     raise ImportError(
         'hfst-optimized-lookup is not installed.\n'
