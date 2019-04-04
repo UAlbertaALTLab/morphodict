@@ -38,11 +38,11 @@ class SearchResult extends React.Component {
         return word
     }
 
-    getAnalysis(){
-        if (this.isEmpty(this.state.analysis) === true){
+    getAnalysis() {
+        if (this.isEmpty(this.state.analysis) === true) {
             return (<p></p>);
-        }else{
-            return (<h4>{this.state.analysis.join("")}</h4>)
+        } else {
+            return (<h4 className="card card-header card-title text-center border border-primary">{this.state.analysis.join("")}</h4>)
         }
     }
 
@@ -84,29 +84,49 @@ class SearchResult extends React.Component {
         //console.log(this.props.location.pathname.split('/'));
         /*If data not loaded */
         if (this.isEmpty(this.state.list) === true && this.state.list !== null) {
-            return (<div><h2>{i18next.t('NoResult')}</h2></div>)
+            return (
+                <div className="row">
+                    <div className="col-lg-9">
+                        <div className="card">
+                            <div className="card-header">
+                                <h2 className="card-title">{i18next.t('NoResult')}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
         }
-        else if (this.state.list === null){
-            return (<div><p>{i18next.t('Loading')}</p></div>)
+        else if (this.state.list === null) {
+            return (
+                <div>
+                    <div className="col-lg-9">
+                        <div className="card">
+                            <div className="card-header">
+                                <p className="card-title">{i18next.t('Loading')}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
         }
         /* If data loaded*/
         else {
             return (
                 <div className="row flex-lg-row-reverse">
-                <div className="col-lg-3">
+                    <div className="col-lg-3">
                         {this.getAnalysis()}
                     </div>
                     <div className="col-lg-9">
                         {this.state.list.map((wordlist, index) => {
                             return (
                                 <ResultDetail
-                                key = {wordlist.id}
-                                id = {wordlist.id}
-                                word = {wordlist.context}
-                                definition = {wordlist.definitions}
-                                type = {wordlist.type}
-                                language = {wordlist.language}
-                                wordlist = {wordlist}
+                                    key={wordlist.id}
+                                    id={wordlist.id}
+                                    word={wordlist.context}
+                                    definition={wordlist.definitions}
+                                    type={wordlist.type}
+                                    language={wordlist.language}
+                                    wordlist={wordlist}
                                 />
                             )
                         })

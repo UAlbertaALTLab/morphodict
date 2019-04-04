@@ -62,7 +62,7 @@ class ResultDetail extends React.Component {
 
     render() {
         return (
-            <div key={this.props.id} onClick={() => this.click(this.props.word)} className="card">
+            <div key={this.props.id} onClick={() => this.click(this.props.word)} className="card border border-dark">
                 <h3 className="card-header">{this.props.word}</h3>
                 <section className="card-body">
                     <p>{this.language(this.props.language)} | {this.lcategory(this.props.type)}<br /></p>
