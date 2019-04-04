@@ -464,9 +464,9 @@ if __name__ == '__main__':
         mode = sys.argv[1].lower()
 
     importer = DictionaryImporter("../CreeDictionary/API/dictionaries/crkeng.xml", "../CreeDictionary/db.sqlite3",
-                                    "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin", "../CreeDictionary/API/fst/crk-normative-generator.fomabin",
-                                    "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
-                                    "../CreeDictionary/API/paradigm/", "crk")
+                                  "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin", "../CreeDictionary/API/fst/crk-normative-generator.fomabin",
+                                  "../CreeDictionary/API/fst/crk-normative-generator.hfstol",
+                                  "../CreeDictionary/API/paradigm/", "crk")
     if mode == "test":
         importer.fileName = "../CreeDictionary/API/dictionaries/crkeng.test.xml"
         importer.sqlFileName = "../CreeDictionary/db.test.sqlite3"
