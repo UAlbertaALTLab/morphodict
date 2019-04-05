@@ -64,7 +64,9 @@ class DictionaryParser:
         # words without word type/pos should be treated as lemma without paradigm
         if len(fstResult) > 0 and wordType != "":
             bestFSTResult = fstResult[0]
-            fstLemma = bestFSTResult[0]
+            for item in bestFSTResult:
+                if "+" not in item:
+                    fstLemma = item
         else:
             fstLemma = wordContext
 
