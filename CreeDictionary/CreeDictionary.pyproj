@@ -80,6 +80,7 @@
     <Content Include="API\templates\API\index.html" />
     <Content Include="db.sqlite3" />
     <Content Include="db.sqlite3.bak" />
+    <Content Include="db.test.sqlite3" />
     <Content Include="React\cypress\fixtures\example.json" />
     <Content Include="React\cypress\integration\app_spec.js" />
     <Content Include="React\cypress\plugins\index.js" />
