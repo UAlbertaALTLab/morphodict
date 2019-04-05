@@ -463,6 +463,7 @@ class DictionaryImporter:
 if __name__ == '__main__':
 
     mode = "normal"
+    #mode = "test"
     if len(sys.argv) > 1:
         mode = sys.argv[1].lower()
 

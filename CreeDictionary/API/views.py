@@ -54,7 +54,9 @@ def search(request, queryString):
         # Probably Cree
         # Add FST analysis to response
         response["analysis"] = fstResult[0]
-        lemma = fstResult[0][0]
+        for item in fstResult[0]:
+            if "+" not in item:
+                lemma = item
         print("Cree: " + lemma)
         creeWords += datafetch.fetchExactLemma(lemma)
     else:
