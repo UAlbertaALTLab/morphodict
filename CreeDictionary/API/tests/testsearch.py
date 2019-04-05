@@ -58,3 +58,17 @@ class SearchTest(TestCase):
         content = json.loads(response.content)
         self.assertEqual(len(content["words"]), 1)
         self.assertEqual(content["words"][0]["context"], "picikwâs")
+
+    def test_cree_linguistic_analysis(self):
+        queryString = "mitas"
+        response = self.client.get("/Search/" + queryString)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertGreaterEqual(len(content["analysis"]), 1)
+
+    def test_english_linguistic_analysis(self):
+        queryString = "apple"
+        response = self.client.get("/Search/" + queryString)
+        self.assertEqual(response.status_code, 200)
+        content = json.loads(response.content)
+        self.assertFalse("analysis" in content)
