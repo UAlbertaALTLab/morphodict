@@ -53,7 +53,7 @@ class ResultDetail extends React.Component {
         if (this.isEmpty(definition) === false) {
             return (<p>{definition.map((e) => {
                 return (
-                    <strong key={e.id}>{e.context}<br /><sub>{e.source}</sub><br /></strong>)
+                    <strong key={e.id}>{e.context}<br /><sub className="text-muted">{e.source}</sub><br /></strong>)
             })}</p>)
         }
         return (<p></p>)
