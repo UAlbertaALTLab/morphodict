@@ -213,19 +213,19 @@ class DetailWords extends React.Component {
 						num +=1;
 						var num2 = 0;
 						return(
-							<tr key={num}>
+							<tr key={num} className="d-flex">
 								{Object.entries(row).map((col) => {
 									var thiscol = col[1];
 									num2 += 1;
 									if (thiscol[0] === undefined){
 										console.log("FOUND UNDEFINED");
 									} else if (thiscol[0] === ":"){
-										thiscol = thiscol.substring(3, thiscol.length - 1)
-										return<th key={num2}>{thiscol}</th>
+                                        thiscol = thiscol.substring(3, thiscol.length - 1)
+										return<th key={num2} className="text-center col-3">{thiscol}</th>
 									} else if (thiscol[0] === thiscol[0].toUpperCase()){
-										return<th key={num2}>{thiscol}</th>
+										return<th key={num2} className="text-center col-3">{thiscol}</th>
 									} else {
-										return<td key={num2}>{thiscol}</td>
+										return<td key={num2} className="text-center col-3">{thiscol}</td>
 									}
 								})}
 							</tr>

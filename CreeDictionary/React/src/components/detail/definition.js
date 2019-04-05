@@ -18,7 +18,7 @@ class Definition extends React.Component {
                     <section className="card-body">
                         {this.props.definition.map((e) => {
                             return (
-                                <h3 key={e.id} className="text-center" >{e.context}<br /><sub>{e.source}</sub></h3>)
+                                <h3 key={e.id} className="text-center" >{e.context}<br /><sub className="text-muted">{e.source}</sub></h3>)
                         })}
                     </section>
                 </div>
