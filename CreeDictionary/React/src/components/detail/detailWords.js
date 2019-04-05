@@ -84,13 +84,11 @@ class DetailWords extends React.Component {
     }
 
 
-    getParadigms() {
-        var data = this.state.lemma.attributes
-        //console.log(data,"GET PARADIGMS")
-        this.getType(data, this.generateParadigms);
+    getParadigms(paradigm) {
+        this.getType(paradigm,this.generateParadigms);
     }
 
-    getType(data, callback) {
+    getType(paradigm,callback) {
         var initialData = this.getData(this.state.lemma.attributes);
 
         let self = this;
@@ -133,43 +131,35 @@ class DetailWords extends React.Component {
             }
         }).then(function (result) {
             //console.log(result,"GET TYPE");
-            callback(result, self, self.fillParadigms);
+            callback(result, paradigm, self, self.fillParadigms);
         });
     }
 
-    loadParadigm(type, layout, prev, loc) {
+    loadParadigm(type, layout) {
         return new Promise(function (resolve, reject) {
+        
+        	var filled = []
 
             var route = "/static/layouts/" + type + "-" + layout + ".layout.tsv"
             d3.text(route, function (textString) {
-                prev[loc] = d3.tsvParseRows(textString);
+                filled = d3.tsvParseRows(textString);
 
-                resolve(prev);
+                resolve(filled);
             });
         });
     }
 
-    generateParadigms(type, context, callback) {
+    generateParadigms(type, paradigm, context, callback) {
         if (typeof type !== undefined) {
-            var prev = [[], [], []]
+            var thisparadigm = context.loadParadigm(type, paradigm);
 
-            var basicparadigm = context.loadParadigm(type, "basic", prev, 0);
-
-            basicparadigm.then(function (result) {
-                var extendedparadigm = context.loadParadigm(type, "extended", result, 1);
-
-                extendedparadigm.then(function (result) {
-                    var fullparadigm = context.loadParadigm(type, "full", prev, 2);
-
-                    fullparadigm.then(function (result) {
-                        callback(result, context, context.displayParadigms)
-                    });
-                });
+            thisparadigm.then(function (result) {
+                callback(result, context, paradigm, context.displayParadigms)
             });
         }
     }
 
-    replaceParadigm(data, loc, context, words) {
+    replaceParadigm(data, context, words) {
         {/*
 			data: the unfilled paradigm tables received from fillParadigms
 			loc: 0 represents the basic inflectional table, 1 represents the extended inflectional table, and 2 represents the full inflectional table
@@ -179,77 +169,67 @@ class DetailWords extends React.Component {
 			Iterates through both the paradigm table and the inflectional word list to find matches between their paradigm equations,
 			then sets the matched word as a replacement to the paradigm table.
 		*/}
-
-        var type = ['basic', 'extended', 'full'];
         return new Promise(function (resolve, reject) {
 
-            var paradigm = data[loc];	/* Gets the data at the specific location to represent the particular inflectional form */
-
-            for (var row = 0; row < paradigm.length; row++) {	/* Iterates through the rows of the paradigm table */
-                for (var col = 1; col < paradigm[row].length; col++) {	/* Iterates through the columns of the paradigm table */
-                    var equation = paradigm[row][col].split("+");	/* Splits the paradigm equation by "+" */
+            for (var row = 0; row < data.length; row++) {	/* Iterates through the rows of the paradigm table */
+                for (var col = 1; col < data[row].length; col++) {	/* Iterates through the columns of the paradigm table */
+                    var equation = data[row][col].split("+");	/* Splits the paradigm equation by "+" */
                     if (equation.length > 1) {	/* Checks if the column split by "+" is a paradigm equation (i.e. has more than 1 object) */
                         for (var word = 0; word < words.length; word++) { /* Iterates through each word of the inflection list (words) */
                             var matches = 0;	/* Matches is used to count the number of inflectional portions matches between the paradigm and the inflectional form */
                             var starfound = false;	/* To accomodate the inflectional equations that contain a "*" to represent one or more lemma forms */
-                            if(paradigm[row][col][0] == "=" || paradigm[row][col][3] == "/"){
-                            	for (var part = 0; part < equation.length; part++) {	/* Iterates through each inflectional portion within equation */
-                                	for (var word_eq = 0; word_eq < words[word][1].length; word_eq++) { /* Iterates through each inflectional equation portion connected to an inflectional form */
-                                    	if (equation[part] === "*") {	/* Found a "*" representing 0 or more lemma types */
-                                        	starfound = true;
-                                    	}
-                                    	if (equation[part] === words[word][1][word_eq]) {	/* A match is found, so increment matches */
-                                        	matches += 1;
-                                    	}
-                                	}
-                            	};
-                            	if (starfound) {
-                                	{/* 
+                            for (var part = 0; part < equation.length; part++) {	/* Iterates through each inflectional portion within equation */
+                                for (var word_eq = 0; word_eq < words[word][1].length; word_eq++) { /* Iterates through each inflectional equation portion connected to an inflectional form */
+                                    if (equation[part] === "*") {	/* Found a "*" representing 0 or more lemma types */
+                                        starfound = true;
+                                    }
+                                    if (equation[part] === words[word][1][word_eq]) {	/* A match is found, so increment matches */
+                                        matches += 1;
+                                    }
+                                }
+                            };
+                            if (starfound) {
+                                {/* 
 									Because paradigm equations occasionally contain a "*" meaning any lemma type can exist within them,
 									the lemma type is considered and the length of the matches will be adjusted to accomodate the 0 or more
 									that the "*" allows for.
-								 	*/}
-                                	if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
-                                    	matches += 2;
-                                	} else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
-                                    	if (words[word][1][3] === "D") {
-                                        	matches += 3;
-                                    	} else {
-                                        	matches += 2;
-                                    	}
-                                	};
-                            	} else {
-                                	if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
-                                    	matches += 2;
-                                	} else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
-                                    	matches += 3;
-                                	} else if (words[word][1][0] === "N") {
-                                		matches += 1;
-                                		console.log(paradigm[row][col],words[word][0],words[word][1],matches,equation.length,"FOUND");
-                                	};
-                            	}
-                            	if (equation[0] === "Der/Dim") {
-                                	if (words[word][1][0] === "N" && words[word][1][3] === "D") {
-                                    	matches += 3;
-                                	} else {
-                                    	matches += 2;
-                                	}
-                            	}
-                            	if (matches === equation.length) {
-                                	paradigm[row][col] = words[word][0];	/* Sets the word in the paradigm table to the matches inflectional form */
-                            	};
+								 */}
+                                if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
+                                    matches += 2;
+                                } else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
+                                    if (words[word][1][3] === "D") {
+                                        matches += 3;
+                                    } else {
+                                        matches += 2;
+                                    }
+                                };
+                            } else {
+                                if (words[word][1][1] === "V") {	/* the lemma type is vta, vti, vii, or vai */
+                                    matches += 2;
+                                } else if (words[word][1][1] === "N") { /* the lemma type is na, nad, ni, or nid */
+                                    matches += 3;
+                                };
+                            }
+                            if (equation[0] === "Der/Dim") {
+                                if (words[word][1][0] === "N" && words[word][1][3] === "D") {
+                                    matches += 3;
+                                } else {
+                                    matches += 2;
+                                }
+                            }
+                            if (matches === equation.length) {
+                                data[row][col] = words[word][0];	/* Sets the word in the paradigm table to the matches inflectional form */
                             };
 
                         }
                     }
                 }
             }
-            data[loc] = paradigm;
             resolve(data);
         });
     }
 
-    fillParadigms(data, context, callback) {
+    fillParadigms(data, context, paradigm, callback) {
         {/*
 			data: the paradigm tables received from fillParadigms
 			context: the context of the application outside the callbacks
@@ -269,20 +249,11 @@ class DetailWords extends React.Component {
 
             words.push([context.state.inflection[i].context, inflections]);
         }
-        
 
-        var basicparadigm = context.replaceParadigm(data, 0, context, words);
+        var basicparadigm = context.replaceParadigm(data, context, words);
 
         basicparadigm.then(function (result) {
-            var extendedparadigm = context.replaceParadigm(result, 1, context, words);
-
-            extendedparadigm.then(function (result) {
-                var fullparadigm = context.replaceParadigm(result, 2, context, words);
-
-                fullparadigm.then(function (result) {
-                    callback(data, context);
-                });
-            });
+            callback(data, paradigm, context);
         });
     }
 
@@ -324,7 +295,7 @@ class DetailWords extends React.Component {
         document.getElementById(element).innerHTML = table;
     }
 
-    displayParadigms(data, context) {
+    displayParadigms(data, paradigm,context) {
         {/*
 			data: the paradigm tables filled with their respective words received from fillParadigms
 			context: the context of the application outside the callbacks
@@ -334,10 +305,9 @@ class DetailWords extends React.Component {
         if (typeof data === undefined) {
             console.log("RECEIVED UNDEFINED DATA", "DISPLAY PARADIGMS");
         } else {
-            var types = ['basictable', 'extendedtable', 'fulltable'];
-            for (var i = 0; i < data.length; i++) {
-                context.generateTable(data[i], types[i], context);
-            }
+            var name = paradigm+"table"
+
+            context.generateTable(data, name, context);
         }
     }
 
@@ -355,8 +325,8 @@ class DetailWords extends React.Component {
             return (
                 <div className="row">
                     <Definition
-                        word={this.props.location.pathname.split('/')[2]}
-                        definition={this.state.definition}
+                    word = {this.props.location.pathname.split('/')[2]}
+                    definition = {this.state.definition}
                     />
                 </div>
             );
@@ -365,13 +335,15 @@ class DetailWords extends React.Component {
         // if both inflection and definition is not empty
         else if ((this.isEmpty(this.state.inflection) === false) && ((this.isEmpty(this.state.definition) === false))) {
 
-            this.getParadigms();
+            this.getParadigms("basic");
+            this.getParadigms("extended");
+            this.getParadigms("full");
 
             return (
                 <div className="row">
                     <Definition
-                        word={this.props.location.pathname.split('/')[2]}
-                        definition={this.state.definition}
+                    word = {this.props.location.pathname.split('/')[2]}
+                    definition = {this.state.definition}
                     />
                     <div className="col-12">
                         <details id="basic" className="card">
