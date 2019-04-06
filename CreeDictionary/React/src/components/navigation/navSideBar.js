@@ -39,22 +39,22 @@ class NavSideBar extends React.Component {
     render() {
         //i18next.changeLanguage(this.state.Lang);
         return (
-            <div className="sidebar">
+            <div className="sidebar row col-6">
                 <div className="sidebar-wrapper">
-                    <section className="nav">
+                    <ul className="nav">
                         <li>
-                            <a href="/">{i18next.t('BackToTheTop')}</a>
+                            <a href="/"><h4 className="text-default">{i18next.t('Home')}</h4></a>
                         </li>
                         <li>
-                            <a onClick={() => this.translate("cree")}>Cree</a>
+                            <a onClick={() => this.translate("cree")}><h4 className="text-default">Cree</h4></a>
                         </li>
                         <li>
-                            <a onClick={() => this.translate("eng")}>English</a>
+                            <a onClick={() => this.translate("eng")}><h4 className="text-default">English</h4></a>
                         </li>
                         <li>
-                            <a onClick={() => this.translate("syllabic")}>Syllabic</a>
+                            <a onClick={() => this.translate("syllabic")}><h4 className="text-default">Syllabic</h4></a>
                         </li>
-                    </section>
+                    </ul>
                 </div>
             </div>
         );
