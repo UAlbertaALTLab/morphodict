@@ -204,7 +204,19 @@ class DetailWords extends React.Component {
         if (typeof data === undefined) {
             console.log("RECEIVED UNDEFINED DATA", "DISPLAY PARADIGMS");
         } else {
-            var name = paradigm+"table"
+            var name = paradigm + "table"
+            console.log("DATA");
+            console.log(data);
+
+            // Dirty Hack for Table
+            for (var i = 0; i < data.length; i++) {
+                var y = data[i];
+                for (var j = 0; j < y.length; j++) {
+                    if (data[i][j] === "") {
+                        data[i][j] = " ";
+                    }
+                }
+            }
 
             var num = 0;
     		const table = (
@@ -213,7 +225,7 @@ class DetailWords extends React.Component {
 						num +=1;
 						var num2 = 0;
 						return(
-							<tr key={num} className="d-flex">
+							<tr key={num}>
 								{Object.entries(row).map((col) => {
 									var thiscol = col[1];
 									num2 += 1;
@@ -221,11 +233,11 @@ class DetailWords extends React.Component {
 										console.log("FOUND UNDEFINED");
 									} else if (thiscol[0] === ":"){
                                         thiscol = thiscol.substring(3, thiscol.length - 1)
-										return<th key={num2} className="text-center col-3">{thiscol}</th>
+                                        return <th key={num2} className={"text-center col-auto"}>{thiscol}</th>
 									} else if (thiscol[0] === thiscol[0].toUpperCase()){
-										return<th key={num2} className="text-center col-3">{thiscol}</th>
+                                        return <th key={num2} className={"text-center col-auto"}>{thiscol}</th>
 									} else {
-										return<td key={num2} className="text-center col-3">{thiscol}</td>
+                                        return <td key={num2} className={"text-center col-auto"}>{thiscol}</td>
 									}
 								})}
 							</tr>
