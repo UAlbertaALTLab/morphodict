@@ -30,8 +30,10 @@ if bool(strtobool(os.environ.get('Production', 'false'))):
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
-
+if DEBUG:
+    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+else:
+    ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
