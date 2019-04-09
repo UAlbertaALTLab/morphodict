@@ -39,6 +39,7 @@ def search(request, queryString):
     queryString = unquote(queryString)
     # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
+    queryString = queryString.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
     print("Search: " + queryString)
     queryString = syllabics2sro(queryString)
     print("Search SRO: " + queryString)

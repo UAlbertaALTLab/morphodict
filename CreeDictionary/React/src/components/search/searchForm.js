@@ -75,6 +75,10 @@ class SearchForm extends React.Component {
             <p className="btn text-white btn-link" onClick={() => this.handleChar("ê")}>ê</p>
             <p className="btn text-white btn-link" onClick={() => this.handleChar("î")}>î</p>
             <p className="btn text-white btn-link" onClick={() => this.handleChar("ô")}>ô</p>
+            <p className="btn text-white btn-link" onClick={() => this.handleChar("ā")}>ā</p>
+            <p className="btn text-white btn-link" onClick={() => this.handleChar("ē")}>ē</p>
+            <p className="btn text-white btn-link" onClick={() => this.handleChar("ī")}>ī</p>
+            <p className="btn text-white btn-link" onClick={() => this.handleChar("ō")}>ō</p>
           </div>
         </form>
       </div>
