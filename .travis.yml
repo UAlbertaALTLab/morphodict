@@ -15,7 +15,7 @@ matrix:
             - pip install -r requirements.txt
 
         script:
-            - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
+            # - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
             - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
             - coverage report -m
             - cd DictionaryImporter
