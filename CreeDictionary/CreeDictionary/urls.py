@@ -25,8 +25,10 @@ urlpatterns = [
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
+    path("cree-dictionary/Search/", views.search, name="Search"),
     path("Search/", views.search, name="Search"),
     path("Search/<str:queryString>", views.search, name="Search"),
+    path("cree-dictionary/DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
     path("DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
