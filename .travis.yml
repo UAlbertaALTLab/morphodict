@@ -8,14 +8,15 @@ matrix:
         cache: pip
 
         before_install:
-            - sudo apt-get -y install hfst
-            - chmod -R 777 .
+          - sudo apt-get -y install apache2-dev
+          - sudo apt-get -y install hfst
+          - chmod -R 777 .
 
         install:
             - pip install -r requirements.txt
 
         script:
-            # - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
+            - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
             - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
             - coverage report -m
             - cd DictionaryImporter
@@ -32,7 +33,7 @@ matrix:
             directories:
             - ~/.cache
         before_install:
-            - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2
+            - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 apache2-dev
         install:
             - sudo -H pip3 install -r requirements.txt
             - npm ci
