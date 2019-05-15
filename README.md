@@ -1,10 +1,7 @@
 # Cree Intelligent Dictionary
 
-master:
-[![Build Status](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary)
-
-development:
-[![Build Status](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary.svg?branch=development)](https://travis-ci.com/cmput401-winter2019/cree-intelligent-dictionary)
+Development:
+[![Build Status](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary)
 
 ## Project Description
 A Cree/Syllabic to English and English to Cree/Syllabic dictionary, 
