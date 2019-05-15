@@ -272,6 +272,10 @@ __pycache__/
 # virtual env
 /env
 
+/venv/
+
+CreeDictionary/static/
+
 # React
 /CreeDictionary/React/static/React/main.js
 /CreeDictionary/React/cypress/videos
