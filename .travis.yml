@@ -40,5 +40,6 @@ matrix:
         script:
             - npm run build
             - npm run django3:migrate
+            - npm run django3:collectstatic
             - npm run django3 & $(npm bin)/wait-on http-get://127.0.0.1:8000
             - $(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest
