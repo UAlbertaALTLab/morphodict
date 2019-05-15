@@ -7,6 +7,9 @@ from django.urls import path
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -26,4 +29,4 @@ urlpatterns = [
     path("Search/<str:queryString>", views.search, name="Search"),
     path("DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
 
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
