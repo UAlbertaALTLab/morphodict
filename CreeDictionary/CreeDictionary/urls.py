@@ -13,22 +13,23 @@ from django.conf.urls.static import static
 admin.autodiscover()
 
 urlpatterns = [
-    path("", include('React.urls')),
-    path("React", include('React.urls')),
+    path("", include("React.urls")),
+    path("React", include("React.urls")),
     # url(r'^React',include('React.urls')),
     # Examples:
     # url(r'^$', CreeDictionary.views.home, name='home'),
     # url(r'^CreeDictionary/', include('CreeDictionary.CreeDictionary.urls')),
-
     # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+    url(r"^admin/doc/", include("django.contrib.admindocs.urls")),
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
-    path("cree-dictionary/Search/", views.search, name="Search"),
+    path("cree-dictionary/Search/<str:queryString>", views.search, name="Search"),
     path("Search/", views.search, name="Search"),
     path("Search/<str:queryString>", views.search, name="Search"),
-    path("cree-dictionary/DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
+    path(
+        "cree-dictionary/DisplayWord/<str:queryString>",
+        views.displayWord,
+        name="DisplayWord",
+    ),
     path("DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
-
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
