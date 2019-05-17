@@ -43,3 +43,6 @@ matrix:
 before_install:
 - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv
   -in cree-dictionary.key.enc -out /opt/redeploy/cree-dictionary.key -d
+after_success:
+- sudo apt-get -y install curl
+- curl -XPOST -dsecret=$(cat cree-dictionary.key) https://sapir.artrsn.ualberta.ca/redeploy/cree-dictionary
