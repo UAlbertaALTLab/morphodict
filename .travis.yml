@@ -1,47 +1,45 @@
 env:
-  - Production=false
-
+- Production=false
 matrix:
-    include:
-      - dist: xenial
-        sudo: required
-        language: python
-        python:
-            - "3.7"
-        cache: pip
-
-        before_install:
-          - sudo apt-get -y install apache2-dev
-          - sudo apt-get -y install hfst
-          - chmod -R 777 .
-
-        install:
-            - pip install -r requirements.txt
-
-        script:
-            # - pycodestyle . --exclude=./CreeDictionary/API/migrations/*.py,./env/
-            - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
-            - coverage report -m
-            - cd DictionaryImporter
-            - coverage run --source . -m unittest discover -p  "*_test.py"
-            - coverage report -m
-
-      - dist: xenial
-        sudo: required
-        language: node_js
-        node_js:
-            - 10
-        cache:
-            npm: true
-            directories:
-            - ~/.cache
-        before_install:
-            - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 apache2-dev
-        install:
-            - sudo -H pip3 install -r requirements.txt
-            - npm ci
-        script:
-            - npm run build
-            - npm run django3:migrate
-            - npm run django3 & $(npm bin)/wait-on http-get://127.0.0.1:8000
-            - $(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest
+  include:
+  - dist: xenial
+    sudo: required
+    language: python
+    python:
+    - '3.7'
+    cache: pip
+    before_install:
+    - sudo apt-get -y install apache2-dev
+    - sudo apt-get -y install hfst
+    - chmod -R 777 .
+    install:
+    - pip install -r requirements.txt
+    script:
+    - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API
+    - coverage report -m
+    - cd DictionaryImporter
+    - coverage run --source . -m unittest discover -p  "*_test.py"
+    - coverage report -m
+  - dist: xenial
+    sudo: required
+    language: node_js
+    node_js:
+    - 10
+    cache:
+      npm: true
+      directories:
+      - "~/.cache"
+    before_install:
+    - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0
+      libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 apache2-dev
+    install:
+    - sudo -H pip3 install -r requirements.txt
+    - npm ci
+    script:
+    - npm run build
+    - npm run django3:migrate
+    - npm run django3 & $(npm bin)/wait-on http-get://127.0.0.1:8000
+    - "$(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest"
+before_install:
+- openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv
+  -in cree-dictionary.key.enc -out /opt/redeploy/cree-dictionary.key -d
