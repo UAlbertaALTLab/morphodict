@@ -51,6 +51,7 @@ stages:
     - "$(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest"
 
   - deploy
+    if: branch = master
     install: sudo apt-get -y install curl
     script: curl -XPOST -dsecret=$(sudo cat cree-dictionary.key) sapir.artrsn.ualberta.ca/redeploy/cree-dictionary
 
