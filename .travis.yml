@@ -31,23 +31,23 @@ jobs:
           - coverage run --source . -m unittest discover -p  "*_test.py"
           - coverage report -m
 
-    - language: node_js
-      node_js:
-          - "10"
-      cache:
-          npm: true
-          directories:
-          - ~/.cache
-      before_install:
-          - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 apache2-dev
-      install:
-          - sudo -H pip3 install -r requirements.txt
-          - npm ci
-      script:
-          - npm run build
-          - npm run django3:migrate
-          - npm run django3 & $(npm bin)/wait-on http-get://127.0.0.1:8000
-          - $(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest
+#    - language: node_js
+#      node_js:
+#          - "10"
+#      cache:
+#          npm: true
+#          directories:
+#          - ~/.cache
+#      before_install:
+#          - sudo apt-get -y install python3-pip python3-setuptools python-dev xvfb libgtk2.0-0 libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 apache2-dev
+#      install:
+#          - sudo -H pip3 install -r requirements.txt
+#          - npm ci
+#      script:
+#          - npm run build
+#          - npm run django3:migrate
+#          - npm run django3 & $(npm bin)/wait-on http-get://127.0.0.1:8000
+#          - $(npm bin)/cypress run --project ./CreeDictionary/React/cypressTest
 
 
     - stage: deploy
