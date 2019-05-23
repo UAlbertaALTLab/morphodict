@@ -11,7 +11,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 import API.views as api_views
-import views
+from CreeDictionary import views
 
 admin.autodiscover()
 
