@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from fst_lookup import FST
 from django.conf import settings
 from API.models import *
@@ -11,7 +11,9 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
-fstAnalyzer = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin"))
+fstAnalyzer = FST.from_file(
+    os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin")
+)
 # fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-generator.fomabin"))
 
 
@@ -39,7 +41,12 @@ def search(request, queryString):
     queryString = unquote(queryString)
     # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
-    queryString = queryString.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
+    queryString = (
+        queryString.replace("ā", "â")
+        .replace("ē", "ê")
+        .replace("ī", "î")
+        .replace("ō", "ô")
+    )
     print("Search: " + queryString)
     queryString = syllabics2sro(queryString)
     print("Search SRO: " + queryString)
@@ -92,7 +99,7 @@ def search(request, queryString):
     datafetch.fillAttributes(uniqueWords)
     datafetch.fillDefinitions(uniqueWords)
     response["words"] = uniqueWords
-    return HttpResponse(json.dumps(response))
+    return JsonResponse(response)
 
 
 def displayWord(request, queryString):
@@ -124,7 +131,12 @@ def displayWord(request, queryString):
 
     # Fill inflections with InflectionForms
     for inflection in inflections:
-        inflectionForms = [model_to_dict(form) for form in InflectionForm.objects.filter(fk_inflection_id=int(inflection["id"]))]
+        inflectionForms = [
+            model_to_dict(form)
+            for form in InflectionForm.objects.filter(
+                fk_inflection_id=int(inflection["id"])
+            )
+        ]
         for form in inflectionForms:
             # Remove not used fields
             form.pop("id", None)
@@ -132,4 +144,4 @@ def displayWord(request, queryString):
         inflection["inflectionForms"] = inflectionForms
 
     # Serialize to {"lemma": LEMMA, "inflections": {...}}
-    return HttpResponse(json.dumps({"lemma": lemma, "inflections": inflections}))
+    return JsonResponse({"lemma": lemma, "inflections": inflections})

@@ -21,6 +21,13 @@ from django.urls import include, path, re_path
 from CreeDictionary.settings import DEBUG
 
 if DEBUG:
-    urlpatterns = [path("cree-dictionary/", include("CreeDictionary.urls"))]
+    urlpatterns = [
+        path("cree-dictionary", include("CreeDictionary.urls")),
+        path("cree-dictionary/", include("CreeDictionary.urls")),
+    ]
+
 else:
-    urlpatterns = [path("/", include("CreeDictionary.urls"))]
+    urlpatterns = [
+        path("", include("CreeDictionary.urls")),
+        path("/", include("CreeDictionary.urls")),
+    ]

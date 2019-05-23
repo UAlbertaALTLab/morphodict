@@ -93,20 +93,16 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
-    "main": {
+    "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-    },
-    "test": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.test.sqlite3"),
-    },
+    }
 }
 
-if bool(strtobool(os.environ.get("CI", "false"))):
-    DATABASES["default"] = DATABASES["test"]
-else:
-    DATABASES["default"] = DATABASES["main"]
+# if bool(strtobool(os.environ.get("CI", "false"))):
+#     DATABASES["default"] = DATABASES["test"]
+# else:
+#     DATABASES["default"] = DATABASES["main"]
 
 
 # Password validation
@@ -136,9 +132,12 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# as commented in cree-intelligent-dictionary/CreeDictionary/urls.py The production server strips away cree-dictionary/
+# on the server end, as the app is served by its own apache, "static/"
+# was manually added to its own apache configuration as an alias to the static root.
 
+# server system apache receives: /cree-dictionary/static/. It strips away the "/cree-dictionary" and sends the app
+# apache "static/". The "static/" is then aliased to STATIC_ROOT below in the configuration files.
 STATIC_URL = "/cree-dictionary/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")

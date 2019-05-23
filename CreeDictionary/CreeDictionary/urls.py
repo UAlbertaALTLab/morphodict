@@ -10,7 +10,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from . import views
+import API.views as api_views
+import views
 
 admin.autodiscover()
 
@@ -42,8 +43,27 @@ admin.autodiscover()
 # every "cree-dictionary/" is rewritten to "cree-dictionary/cree-dictionary/" so that only the first is stripped away.
 
 urlpatterns = [
+    # user interface
     path("", views.index),
     path("cree-dictionary", views.index, name="cree-dictionary-index"),
+    # word search api which returns roughly matching
+    # dictionary entries for an arbitrary string. \
+    # It's also used in html templates to display to user
+    path("Search/<str:queryString>", api_views.search),
+    path(
+        "cree-dictionary/Search/<str:queryString>",
+        api_views.search,
+        name="cree-dictionary-search-api",
+    ),
+    # API which returns detailed definition/ inflection/ paradigms of a word
+    # the query string has to be an existing cree word from the dictionary.
+    # It's also used in html templates to display to user
+    path(
+        "cree-dictionary/DisplayWord/<str:queryString>",
+        api_views.displayWord,
+        name="cree-dictionary-word-detail-api",
+    ),
+    path("DisplayWord/<str:queryString>", api_views.displayWord),
     # path("", views.index, name="index"),
     # # path("React", include("React.urls")),
     # # url(r'^React',include('React.urls')),
@@ -54,15 +74,6 @@ urlpatterns = [
     # url(r"^admin/doc/", include("django.contrib.admindocs.urls")),
     # # Uncomment the next line to enable the admin:
     # # url(r'^admin/', include(admin.site.urls)),
-    # path("cree-dictionary/Search/<str:queryString>", views.search, name="Search"),
-    # path("Search/", views.search, name="Search"),
-    # path("Search/<str:queryString>", views.search, name="Search"),
-    # path(
-    #     "cree-dictionary/DisplayWord/<str:queryString>",
-    #     views.displayWord,
-    #     name="DisplayWord",
-    # ),
-    # path("DisplayWord/<str:queryString>", views.displayWord, name="DisplayWord"),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
