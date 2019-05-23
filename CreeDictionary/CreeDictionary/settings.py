@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
-    "React",
     "mod_wsgi.server",
 ]
 

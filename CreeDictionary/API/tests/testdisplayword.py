@@ -2,7 +2,6 @@ import django
 from django.test import TestCase, Client
 from django.urls import reverse
 
-from API.views import displayWord
 from API.models import *
 from urllib.parse import quote
 import json
