@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
+    "CreeDictionary.apps.CreeDictionaryConfig",
     "mod_wsgi.server",
 ]
 

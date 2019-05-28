@@ -1,7 +1,10 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 from django.urls import reverse
 
+from forms import WordSearchForm
 
-# the reason for *args: when re_path is used in urls.py, matched groups will be passed as extra positional arguments
-def index(request, *args):
-    return HttpResponse("damn")
+
+def index(request):
+    context = {"word_search_form": WordSearchForm()}
+    return HttpResponse(render(request, "CreeDictionary/index.html", context))

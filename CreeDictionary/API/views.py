@@ -98,8 +98,11 @@ def search(request, queryString):
     # Populate Fields
     datafetch.fillAttributes(uniqueWords)
     datafetch.fillDefinitions(uniqueWords)
-    response["words"] = uniqueWords
-    return JsonResponse(response)
+    if request.GET.get("render-html", False) == "true":
+        return render(request, "API/word-entries.html", {"words": uniqueWords})
+    else:
+        response["words"] = uniqueWords
+        return JsonResponse(response)
 
 
 def displayWord(request, queryString):
@@ -145,3 +148,37 @@ def displayWord(request, queryString):
 
     # Serialize to {"lemma": LEMMA, "inflections": {...}}
     return JsonResponse({"lemma": lemma, "inflections": inflections})
+
+
+c = {
+    "words": [
+        {
+            "id": 201607,
+            "context": "t\u00e2nisi",
+            "type": "Ipc",
+            "language": "crk",
+            "word_ptr": 201607,
+            "attributes": [{"id": 5479, "name": "Ipc", "fk_lemma": 201607}],
+            "definitions": [
+                {
+                    "id": 1933,
+                    "context": "How are you?",
+                    "source": "MD",
+                    "fk_word": 201607,
+                },
+                {
+                    "id": 1936,
+                    "context": "how, in what way",
+                    "source": "CW",
+                    "fk_word": 201607,
+                },
+                {
+                    "id": 1939,
+                    "context": "hello, how are you",
+                    "source": "CW",
+                    "fk_word": 201607,
+                },
+            ],
+        }
+    ]
+}

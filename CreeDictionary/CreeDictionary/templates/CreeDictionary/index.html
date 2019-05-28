@@ -1,0 +1,52 @@
+{% extends 'CreeDictionary/base.html' %}
+
+{% load static %}
+
+{% block header %}
+    <div class="page-header-title-container">
+        <h1 class="header-title">itwêwina - Plains Cree Dictionary</h1>
+    </div>
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="search-page-middle-container">
+
+        <div class="search-page-middle-container-top-margin"></div>
+
+        <div class="search-form-container">
+
+
+            <span class="search-form-container-label">&#x1f50d</span>
+            <form class="word-search-form" action="javascript:void(0)">
+                {% csrf_token %}
+                {{ word_search_form }}
+                <button type="submit" class="word-search-button" onclick="javascript:void(0)">SEARCH</button>
+            </form>
+
+
+        </div>
+
+        <div class="search-page-middle-container-lower-margin">
+            <p id="instruction-text">Search by English word or romanized Cree word (with or without accents)</p>
+            <p class="hint-text" hidden>Displaying results for: <span id="searching-word">cat<sup>mark</sup></span></p>
+
+            <div id="search-results">
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <div class="search-page-logo-collection-container">
+        <img src="{% static 'CreeDictionary/images/ualogo-color-small.png' %}" class="bottom-logo" alt="logo">
+        <img src="{% static 'CreeDictionary/images/mesc-color.png' %}" class="bottom-logo" alt="logo">
+        <img src="{% static 'CreeDictionary/images/fnuclogo-color-transp.png' %}" class="bottom-logo" alt="logo">
+    </div>
+{% endblock %}

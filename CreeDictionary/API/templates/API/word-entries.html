@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/word-card.css' %}">
+
+{% for word in words %}
+    <div class="word-card">
+        <div class="title-row-container">
+            <p class="title-text">{{ word.context }}
+                <span class="definition-text">
+                ({% for definition in word.definitions %}
+                    {% if forloop.first %}
+                        {{ definition.context }} <sup class="source-tag">{{ definition.source }}</sup>
+                    {% endif %}
+                {% endfor %})
+            </span>
+
+            </p>
+        </div>
+
+    </div>
+
+{% endfor %}
