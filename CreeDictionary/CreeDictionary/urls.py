@@ -48,7 +48,7 @@ urlpatterns = [
     path("cree-dictionary", views.index, name="cree-dictionary-index"),
     # word search api which returns roughly matching
     # dictionary entries for an arbitrary string. \
-    # It's also used in html templates to display to user
+    # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
     path("Search/<str:queryString>", api_views.search),
     path(
         "cree-dictionary/Search/<str:queryString>",
@@ -57,7 +57,7 @@ urlpatterns = [
     ),
     # API which returns detailed definition/ inflection/ paradigms of a word
     # the query string has to be an existing cree word from the dictionary.
-    # It's also used in html templates to display to user
+    # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
     path(
         "cree-dictionary/DisplayWord/<str:queryString>",
         api_views.displayWord,

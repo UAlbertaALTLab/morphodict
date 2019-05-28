@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Cree Dictionary</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/app.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/word-card.css' %}">
+
+        <script src={% static 'CreeDictionary/js/app.js' %}></script>
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+            crossorigin="anonymous"></script>
+
+    </head>
+    <body>
+        <div class="page-header-container">
+            {% block header %}
+            {% endblock %}
+        </div>
+
+
+        <div class="content-container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>
+
+

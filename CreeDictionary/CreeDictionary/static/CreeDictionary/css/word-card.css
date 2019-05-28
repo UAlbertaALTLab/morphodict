@@ -1,0 +1,44 @@
+
+
+
+.word-card{
+    border-radius: 10px;
+    width: 70vw;
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
+p.title-text{
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size:50px;
+}
+
+span.definition-text{
+    font-family: Arial, sans-serif;
+    font-size:45px;
+}
+
+.word-card > .title-row-container{
+
+}
+
+.word-card > .loading-title-row{
+    background: #ababab;
+    border-radius: 5px;
+}
+
+
+.source-tag{
+    padding:3px;
+    border-radius: 5px;
+    border: solid dimgrey 1px;
+    background: dimgrey;
+    color:white;
+    font-size: 20px;
+}
+
+
