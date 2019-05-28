@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 
-from forms import WordSearchForm
+from CreeDictionary.forms import WordSearchForm
 
 
 def index(request):
