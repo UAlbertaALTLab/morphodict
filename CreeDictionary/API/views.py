@@ -146,8 +146,18 @@ def displayWord(request, queryString):
             form.pop("fk_inflection", None)
         inflection["inflectionForms"] = inflectionForms
 
-    # Serialize to {"lemma": LEMMA, "inflections": {...}}
-    return JsonResponse({"lemma": lemma, "inflections": inflections})
+    print(inflections)
+    print("ye")
+
+    if request.GET.get("render-html", False) == "true":
+
+        return render(
+            request, "API/paradigm.html", {"lemma": lemma, "inflections": inflections}
+        )
+    else:
+        # Serialize to {"lemma": LEMMA, "inflections": {...}}
+
+        return JsonResponse({"lemma": lemma, "inflections": inflections})
 
 
 c = {

@@ -1,0 +1,62 @@
+{% extends 'CreeDictionary/base.html' %}
+
+{% load static %}
+
+{# todo: class names needs to be refactored #}
+
+
+{% block header %}
+    <div class="page-header-title-container">
+        <h1 class="header-title">itwêwina - Plains Cree Dictionary</h1>
+    </div>
+
+    {% if query_string %}
+        <script>
+            function load_initial_word(){
+                document.getElementById("search-input").value = "{{ query_string }}";
+                load_results("{{ query_string }}")
+            }
+
+            window.onload = load_initial_word
+        </script>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/display-word.css' %}">
+
+
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="search-page-middle-container">
+
+        <div class="search-page-middle-container-top-margin"></div>
+
+        <div class="search-form-container">
+
+
+        </div>
+
+        <div class="search-page-middle-container-lower-margin">
+            <p class="hint-text" hidden>Displaying results for: <span id="searching-word">cat<sup>mark</sup></span></p>
+
+            <div id="search-results">
+                <p class="default-entry">analysis:</p>
+
+                <div class="default-entry inflection-box">
+                    <p class="default-entry">context:</p>
+                    <p class="default-entry">type:</p>
+                    <p class="default-entry">context:</p>
+                    <p class="default-entry">type:</p>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+{% endblock %}
