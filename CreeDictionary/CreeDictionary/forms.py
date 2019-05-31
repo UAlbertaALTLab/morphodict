@@ -9,6 +9,7 @@ class WordSearchForm(forms.Form):
             attrs={
                 "placeholder": "Search for a word",
                 "oninput": "load_results(this.value)",
+                "id": "search-input",
             }
         ),
     )

@@ -4,7 +4,8 @@
 {% for word in words %}
     <div class="word-card">
         <div class="title-row-container">
-            <p class="title-text">{{ word.context }}
+{#        onclick="window.location.href='http://www.google.com'"#}
+            <p class="title-text" >{{ word.context }}
                 <span class="definition-text">
                 ({% for definition in word.definitions %}
                     {% if forloop.first %}

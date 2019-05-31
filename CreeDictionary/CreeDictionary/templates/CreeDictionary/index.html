@@ -2,10 +2,24 @@
 
 {% load static %}
 
+
+
+
 {% block header %}
     <div class="page-header-title-container">
         <h1 class="header-title">itwêwina - Plains Cree Dictionary</h1>
     </div>
+
+    {% if query_string %}
+        <script>
+            function load_initial_word(){
+                document.getElementById("search-input").value = "{{ query_string }}";
+                load_results("{{ query_string }}")
+            }
+
+            window.onload = load_initial_word
+        </script>
+    {% endif %}
 
 {% endblock %}
 
@@ -33,10 +47,16 @@
             <p id="instruction-text">Search by English word or romanized Cree word (with or without accents)</p>
             <p class="hint-text" hidden>Displaying results for: <span id="searching-word">cat<sup>mark</sup></span></p>
 
+            <div id="search-result-loading-card">
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
+            </div>
+
             <div id="search-results">
-                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
-                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
-                <div class="word-card"><div class="title-row-container loading-title-row" hidden></div></div>
             </div>
 
 

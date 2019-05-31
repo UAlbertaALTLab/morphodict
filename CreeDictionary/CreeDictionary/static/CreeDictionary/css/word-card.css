@@ -27,8 +27,11 @@ span.definition-text{
 }
 
 .word-card > .loading-title-row{
-    background: #ababab;
+    background: #e0e0e0;
     border-radius: 5px;
+    height: 50px;
+    margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 

@@ -95,7 +95,7 @@ body{
 }
 
 
-#search-results{
+#search-results #search-result-loading-card{
     flex-grow: 1;
 }
 
@@ -182,4 +182,8 @@ body{
     font-weight: bold;
     flex-grow:0;
 
+}
+
+.word-search-button{
+    text-align: center;
 }

@@ -1,0 +1,38 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/display-word.css' %}">
+
+
+    <div class="lemma-box">
+        <h1>Lemma:</h1>
+        <div class="lemma-box-upper">
+            <p>Analysis: {% for component in lemma.analysis %}<span>{{ component }} </span>{% endfor %}</p>
+            <p>Lemma: {{ lemma.context }}</p>
+            <p>Lemma Type: {{ lemma.type }}</p>
+            <p>Attributes: {% for attribute in lemma.attributes %}<span>{{ attribute.name }} </span>{% endfor %}</p>
+        </div>
+
+        <div class="definition-box">
+            {% for definition in lemma.definitions %}
+                <p>Definition(source: {{ definition.source }}):{{ definition.context }}</p>
+            {% endfor %}
+        </div>
+
+    </div>
+
+
+{% for inflection in inflections %}
+
+    <div class="inflection-box">
+        <h2>Inflection:</h2>
+
+        <p>Inflection: {{ inflection.context }}</p>
+        <p>Inflection Type: {{ inflection.type }}</p>
+        <p>Inflection Forms: {% for form_name in inflection.inflectionForms %}<span>{{ form_name.name }} </span>{% endfor %}</p>
+
+        {% for definition in inflection.definitions %}
+            <p>Definition(source: {{ definition.source }}):{{ definition.context }}</p>
+        {% endfor %}
+
+    </div>
+
+{% endfor %}

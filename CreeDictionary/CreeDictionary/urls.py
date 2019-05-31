@@ -46,12 +46,24 @@ urlpatterns = [
     # user interface
     path("", views.index),
     path("cree-dictionary", views.index, name="cree-dictionary-index"),
+    path("search/<str:query_string>", views.index),
+    path(
+        "cree-dictionary/search/<str:query_string>",
+        views.index,
+        name="cree-dictionary-index-with-word",
+    ),
+    path(
+        "cree-dictionary/displayWord/<str:queryString>",
+        views.display_word,
+        name="cree-dictionary-word-detail",
+    ),
+    path("displayWord/<str:queryString>", views.display_word),
     # word search api which returns roughly matching
     # dictionary entries for an arbitrary string. \
     # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
-    path("Search/<str:queryString>", api_views.search),
+    path("_search/<str:queryString>", api_views.search),
     path(
-        "cree-dictionary/Search/<str:queryString>",
+        "cree-dictionary/_search/<str:queryString>",
         api_views.search,
         name="cree-dictionary-search-api",
     ),
@@ -59,11 +71,11 @@ urlpatterns = [
     # the query string has to be an existing cree word from the dictionary.
     # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
     path(
-        "cree-dictionary/DisplayWord/<str:queryString>",
+        "cree-dictionary/_displayWord/<str:queryString>",
         api_views.displayWord,
         name="cree-dictionary-word-detail-api",
     ),
-    path("DisplayWord/<str:queryString>", api_views.displayWord),
+    path("_displayWord/<str:queryString>", api_views.displayWord),
     # path("", views.index, name="index"),
     # # path("React", include("React.urls")),
     # # url(r'^React',include('React.urls')),
