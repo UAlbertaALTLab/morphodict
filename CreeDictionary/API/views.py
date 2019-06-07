@@ -14,13 +14,13 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
-from layout_filler.fill import ParadigmFiller
+from API.layout_filler import fill
 
 fstAnalyzer = FST.from_file(
     os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin")
 )
 
-paradigm_filler = ParadigmFiller.default_filler()
+paradigm_filler = fill.ParadigmFiller.default_filler()
 
 
 def home(request):
