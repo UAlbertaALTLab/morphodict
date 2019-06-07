@@ -149,14 +149,16 @@ def displayWord(request, queryString):
         # pprint(lemma)
         print(lemma)
         if lemma_tags:
-            lemma_layout_class = re.match(
-                "^(NAD?|NID?|VAI|VII|VT[AI]|Ipc)", tags
-            ).groups()[0]
-
+            groups = re.match("(NAD?|NID?|VAI|VII|VT[AI]|Ipc)", tags).groups()
+            if groups:
+                lemma_layout_class = groups[0]
+                table = paradigm_filler.fill_paradigm(
+                    lemma_layout_class.lower() + "-full", lemma_name
+                )
+            else:
+                table = []
             # print(lemma_tags)
-            table = paradigm_filler.fill_paradigm(
-                lemma_layout_class.lower() + "-full", lemma_name
-            )
+
         else:
             lemma_tags = lemma["type"]
             table = []

@@ -27,7 +27,7 @@ def convert_layout_name_to_layout_class(layout_name: str) -> List[str]:
     :returns: eg. ['V', 'II'], ['N', 'I', 'D']
 
     """
-    layout_class = re.match("^(nad?|nid?|vai|vii|vt[ai]|ipc)", layout_name).groups()[0]
+    layout_class = re.match("(nad?|nid?|vai|vii|vt[ai]|ipc)", layout_name).groups()[0]
     if layout_class[0] == "n":
         return list(layout_class.upper())
     elif layout_class[0] == "v":
