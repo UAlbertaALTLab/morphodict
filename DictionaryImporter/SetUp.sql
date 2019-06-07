@@ -13,6 +13,7 @@ DROP INDEX IF EXISTS API_definition_fk_word_id;
 DROP INDEX IF EXISTS API_attribute_fk_lemma_id;
 
 --Remove all existing data from tables
+
 DELETE FROM API_attribute;
 DELETE FROM API_definition;
 DELETE FROM API_inflectionform;

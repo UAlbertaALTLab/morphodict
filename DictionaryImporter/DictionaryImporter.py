@@ -23,7 +23,7 @@ from API.models import *
 from DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
-DEFAULT_PROCESS_COUNT = 3
+DEFAULT_PROCESS_COUNT = 6
 
 
 class DictionaryImporter:

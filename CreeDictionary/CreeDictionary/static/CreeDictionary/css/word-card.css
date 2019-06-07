@@ -23,7 +23,13 @@ span.definition-text{
 }
 
 .word-card > .title-row-container{
+    border-radius: 20px;
+    padding: 20px;
+}
 
+.word-card > .title-row-container:hover{
+    background-color: #dfdfdf;
+    cursor: pointer;
 }
 
 .word-card > .loading-title-row{

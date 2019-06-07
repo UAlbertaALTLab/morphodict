@@ -154,10 +154,9 @@ class DetailWords extends React.Component {
     	
     	var filled;
 
-        var route = "cree-dictionary/static/layouts/" + type + "-" + paradigm + ".layout.tsv"
+        var route = "cree-dictionary/static/layouts/" + type + "-" + paradigm + ".layout.tsv";
         d3.text(route, function (textString) {
             filled = d3.tsvParseRows(textString);
-
             callback(filled,words,context, paradigm, context.displayParadigms)
         });
     	

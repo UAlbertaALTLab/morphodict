@@ -1,3 +1,6 @@
+import re
+from pprint import pprint
+
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from fst_lookup import FST
@@ -11,10 +14,13 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
+from layout_filler.fill import ParadigmFiller
+
 fstAnalyzer = FST.from_file(
     os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin")
 )
-# fstGenerator = FST.from_file(os.path.join(settings.BASE_DIR, "API/fst/crk-generator.fomabin"))
+
+paradigm_filler = ParadigmFiller.default_filler()
 
 
 def home(request):
@@ -114,50 +120,104 @@ def displayWord(request, queryString):
     queryString = unquote(queryString)
     # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
-    print("DisplayWord: " + queryString)
-
-    # Get Lemma that exactly matches the :queryString:
-    # Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
-    lemma = Lemma.objects.filter(context__exact=queryString)[0]
-
-    # Get inflections of such lemma
-    inflections = Inflection.objects.filter(fk_lemma=lemma)
-    inflections = [model_to_dict(inflection) for inflection in inflections]
-
-    # Fill Lemma Definitions
-    lemma = model_to_dict(lemma)
-    datafetch.fillAttributes([lemma])
-    datafetch.fillDefinitions([lemma])
-
-    # Fill Inflection Definitions
-    datafetch.fillDefinitions(inflections)
-
-    # Fill inflections with InflectionForms
-    for inflection in inflections:
-        inflectionForms = [
-            model_to_dict(form)
-            for form in InflectionForm.objects.filter(
-                fk_inflection_id=int(inflection["id"])
-            )
-        ]
-        for form in inflectionForms:
-            # Remove not used fields
-            form.pop("id", None)
-            form.pop("fk_inflection", None)
-        inflection["inflectionForms"] = inflectionForms
-
-    print(inflections)
-    print("ye")
 
     if request.GET.get("render-html", False) == "true":
 
+        lemma = model_to_dict(Lemma.objects.filter(context__exact=queryString)[0])
+        lemma_name = lemma["context"]
+
+        tags = ""
+        datafetch.fillAttributes([lemma])
+        datafetch.fillDefinitions([lemma])
+        lemma_definitions = []
+        for definition in lemma["definitions"]:
+            lemma_definitions.append(
+                {"context": definition["context"], "source": definition["source"]}
+            )
+
+        lemma_tags = []
+        for tag in lemma["attributes"]:
+            tags += tag["name"]
+            lemma_tags.append(tag["name"])
+        # print("dang")
+        # print(tags)
+        # pprint(lemma)
+
+        if lemma_tags:
+            lemma_layout_class = re.match(
+                "^(NAD?|NID?|VAI|VII|VT[AI]|Ipc)", tags
+            ).groups()[0]
+
+            # print(lemma_tags)
+            table = paradigm_filler.fill_paradigm(
+                lemma_layout_class.lower() + "-full", lemma_name
+            )
+        else:
+            lemma_tags = lemma["type"]
+            table = []
+
         return render(
-            request, "API/paradigm.html", {"lemma": lemma, "inflections": inflections}
+            request,
+            "API/paradigm.html",
+            {
+                "lemma_name": lemma_name,
+                "lemma_definitions": lemma_definitions,
+                "table": table,
+                "lemma_tags": lemma_tags,
+            },
         )
     else:
         # Serialize to {"lemma": LEMMA, "inflections": {...}}
+        print("DisplayWord: " + queryString)
+
+        # Get Lemma that exactly matches the :queryString:
+        # Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
+        lemma = Lemma.objects.filter(context__exact=queryString)[0]
+
+        # Get inflections of such lemma
+        inflections = Inflection.objects.filter(fk_lemma=lemma)
+        inflections = [model_to_dict(inflection) for inflection in inflections]
+
+        print(inflections)
+
+        # Fill Lemma Definitions
+        lemma = model_to_dict(lemma)
+        datafetch.fillAttributes([lemma])
+        datafetch.fillDefinitions([lemma])
+
+        # Fill Inflection Definitions
+        datafetch.fillDefinitions(inflections)
+
+        # Fill inflections with InflectionForms
+        for inflection in inflections:
+            inflectionForms = [
+                model_to_dict(form)
+                for form in InflectionForm.objects.filter(
+                    fk_inflection_id=int(inflection["id"])
+                )
+            ]
+            for form in inflectionForms:
+                # Remove not used fields
+                form.pop("id", None)
+                form.pop("fk_inflection", None)
+            inflection["inflectionForms"] = inflectionForms
+
+        print(inflections)
 
         return JsonResponse({"lemma": lemma, "inflections": inflections})
+
+
+# def analyze_tags(word: str):
+#     """
+#
+#     :param word: cree word, non exact forms allowed
+#     """
+#     res = list(fstAnalyzer.analyze(word))
+#     if res:
+#         for r in fstAnalyzer.analyze(word):
+#             print("".join(r))
+#     else:
+#         print("Analyzer returned no result")
 
 
 c = {

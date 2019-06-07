@@ -1,0 +1,7 @@
+"Singular"	=N+I+Sg
+"Plural"	=N+I+Pl
+"Locative"	=N+I+Loc
+	: "POSSESSION"
+"1s poss (sg)"	=N+I+Px1Sg+Sg
+"2s poss (sg)"	=N+I+Px2Sg+Sg
+"3s poss (sg)"	=N+I+Px3Sg+Sg
