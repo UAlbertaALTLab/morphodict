@@ -121,6 +121,8 @@ def displayWord(request, queryString):
     # Normalize to UTF8 NFC
     queryString = unicodedata.normalize("NFC", queryString)
 
+    print(queryString)
+
     if request.GET.get("render-html", False) == "true":
 
         lemma = model_to_dict(Lemma.objects.filter(context__exact=queryString)[0])
@@ -137,12 +139,15 @@ def displayWord(request, queryString):
 
         lemma_tags = []
         for tag in lemma["attributes"]:
-            tags += tag["name"]
-            lemma_tags.append(tag["name"])
+
+            # 06/07/2019 fst analyzer gives 'tânisi+Err/Orth+Ipc' that breaks this part
+            if tag["name"] != "Err/Orth":
+                tags += tag["name"]
+                lemma_tags.append(tag["name"])
         # print("dang")
         # print(tags)
         # pprint(lemma)
-
+        print(lemma)
         if lemma_tags:
             lemma_layout_class = re.match(
                 "^(NAD?|NID?|VAI|VII|VT[AI]|Ipc)", tags
