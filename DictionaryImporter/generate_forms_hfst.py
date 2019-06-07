@@ -58,17 +58,17 @@ from subprocess import PIPE
 if os.name == "nt":
     HFSTOL_PATH = "../hfst/bin/hfst-optimized-lookup.exe"
 else:
-    HFSTOL_PATH = shutil.which('hfst-optimized-lookup')
+    HFSTOL_PATH = shutil.which("hfst-optimized-lookup")
 if HFSTOL_PATH is None:
     raise ImportError(
-        'hfst-optimized-lookup is not installed.\n'
-        'Please install the HFST suite on your system '
-        'before importing this module.\n'
-        'See: https://github.com/hfst/hfst#installation'
+        "hfst-optimized-lookup is not installed.\n"
+        "Please install the HFST suite on your system "
+        "before importing this module.\n"
+        "See: https://github.com/hfst/hfst#installation"
     )
 
 
-def generate(analyses, fst_path='./crk-normative-generator.hfstol'):
+def generate(analyses, fst_path="./crk-normative-generator.hfstol"):
     """
     Given one or more analyses, returns a dictionary with keys being the input
     parameters, and values being the set of returned analyses.
@@ -83,7 +83,7 @@ def generate(analyses, fst_path='./crk-normative-generator.hfstol'):
         fst_path (str): path to the *.hfstol file
 
     Returns:
-        dict of anaylsis (keys) and a set of its word forms (values)
+        dict of analysis (keys) and a set of its word forms (values)
 
     Example: Generate from exactly one anaylsis:
     >>> generate(['nôhkom+N+A+D+Px1Pl+Sg'])
@@ -107,13 +107,18 @@ def generate(analyses, fst_path='./crk-normative-generator.hfstol'):
     """
 
     # hfst-optimized-lookup expects each analysis on a separate line:
-    lines = '\n'.join(analyses).encode('UTF-8')
+    lines = "\n".join(analyses).encode("UTF-8")
 
-    status = subprocess.run([HFSTOL_PATH, '--quiet', '--pipe-mode', fst_path],
-                            input=lines, stdout=PIPE, stderr=PIPE, shell=False)
+    status = subprocess.run(
+        [HFSTOL_PATH, "--quiet", "--pipe-mode", fst_path],
+        input=lines,
+        stdout=PIPE,
+        stderr=PIPE,
+        shell=False,
+    )
 
     analysis2wordform = {}
-    for line in status.stdout.decode('UTF-8').splitlines():
+    for line in status.stdout.decode("UTF-8").splitlines():
         # Remove extraneous whitespace.
         line = line.strip()
         # Skip empty lines.
@@ -128,14 +133,14 @@ def generate(analyses, fst_path='./crk-normative-generator.hfstol'):
         # If the analysis doesn't match, the transduction will have +?:
         # e.g.,
         #   nôhkom+N+A+I+Px1Pl+Sg	nôhkom+N+A+I+Px1Pl+Sg	+?
-        analysis, word_form, *rest = line.split('\t')
+        analysis, word_form, *rest = line.split("\t")
 
         # ensure the set exists:
         if analysis not in analysis2wordform:
             analysis2wordform[analysis] = set()
 
         # Generating this word form failed!
-        if '+?' in rest:
+        if "+?" in rest:
             continue
 
         analysis2wordform[analysis].add(word_form)

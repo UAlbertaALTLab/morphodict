@@ -62,13 +62,12 @@ class DictionaryParser:
         fstResult = list(self.fstAnalyzer.analyze(wordContext))
         bestFSTResult = None
         # words without word type/pos should be treated as lemma without paradigm
+        fstLemma = wordContext
         if len(fstResult) > 0 and wordType != "":
             bestFSTResult = fstResult[0]
             for item in bestFSTResult:
                 if "+" not in item:
                     fstLemma = item
-        else:
-            fstLemma = wordContext
 
         # Init Lemma Object
         lemma.language = self.language

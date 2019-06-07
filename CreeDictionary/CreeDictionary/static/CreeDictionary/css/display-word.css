@@ -1,6 +1,8 @@
 .inflection-box{
+    padding: 20px;
     border: solid blue 2px;
     border-radius: 10px;
+    margin-top: 20px;
 }
 
 .lemma-box{

@@ -1,0 +1,19 @@
+	"PRESENT TENSE"	
+"Speech Act Participants"	: "Independent"	: "Conjunct"
+"2s → 1s"	Ind+Prs+2Sg+1SgO	PV/e+*+Cnj+Prs+2Sg+1SgO
+"1s → 2s"	Ind+Prs+1Sg+2SgO	PV/e+*+Cnj+Prs+1Sg+2SgO
+		
+"Mixed participants"	: "Independent"	: "Conjunct"
+"1s → 3s"	Ind+Prs+1Sg+3SgO	PV/e+*+Cnj+Prs+1Sg+3SgO
+"2s → 3s"	Ind+Prs+2Sg+3SgO	PV/e+*+Cnj+Prs+2Sg+3SgO
+"3s → 1s"	Ind+Prs+3Sg+1SgO	PV/e+*+Cnj+Prs+3Sg+1SgO
+"3s → 2s"	Ind+Prs+3Sg+2SgO	PV/e+*+Cnj+Prs+3Sg+2SgO
+		
+"Third person participants"	: "Independent"	: "Conjunct"
+"3s → 4"	Ind+Prs+3Sg+4Sg/PlO	PV/e+*+Cnj+Prs+3Sg+4Sg/PlO
+"4 → 3s"	Ind+Prs+4Sg/Pl+3SgO	PV/e+*+Cnj+Prs+4Sg/Pl+3SgO
+		
+	"IMPERATIVE"	
+	"Immediate"	
+"2s → 1s"	Imp+Imm+2Sg+1SgO	
+"2s → 3s"	Imp+Imm+2Sg+3SgO	
