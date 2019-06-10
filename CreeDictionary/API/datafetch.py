@@ -15,18 +15,21 @@ def fetchContainsLemma(lemma, limit=10):
 
 
 def fetchLemmaContainsInflection(inflection, limit=10):
-    lemmaIDs = Inflection.objects.filter(context__icontains=inflection)[:limit].values_list("fk_lemma_id", flat=True)
+    lemmaIDs = Inflection.objects.filter(context__icontains=inflection)[
+        :limit
+    ].values_list("fk_lemma_id", flat=True)
     lemmas = Lemma.objects.filter(word_ptr_id__in=lemmaIDs)
     return lemmas
 
 
 def fetchLemmaContainsDefinition(definition, limit=10):
     lemmas = list()
-    wordIDs = Definition.objects.filter(
-        context__icontains=definition).extra(
-        select={
-            'length': 'Length(context)'}).order_by('length').values_list(
-                "fk_word_id", flat=True)[:10]
+    wordIDs = (
+        Definition.objects.filter(context__icontains=definition)
+        .extra(select={"length": "Length(context)"})
+        .order_by("length")
+        .values_list("fk_word_id", flat=True)[:10]
+    )
     lemmaResult = Lemma.objects.filter(word_ptr_id__in=wordIDs)
 
     # Sort Lemma Based on Definition Order
@@ -36,7 +39,9 @@ def fetchLemmaContainsDefinition(definition, limit=10):
                 lemmas.append(lemma)
                 break
 
-    lemmaIDs = Inflection.objects.filter(word_ptr_id__in=wordIDs).values_list("fk_lemma_id", flat=True)
+    lemmaIDs = Inflection.objects.filter(word_ptr_id__in=wordIDs).values_list(
+        "fk_lemma_id", flat=True
+    )
     lemmas += Lemma.objects.filter(word_ptr_id__in=lemmaIDs)
 
     print(list(lemmas))
