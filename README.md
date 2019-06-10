@@ -10,7 +10,7 @@ that can define and return the linguistic analysis of each word.
 Check wiki for detailed documentation.
 
 ## Production Server
-http://162.246.157.191
+http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 ## [Development Installation](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Development-Installation)
 
