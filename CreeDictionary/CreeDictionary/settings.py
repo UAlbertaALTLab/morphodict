@@ -36,7 +36,7 @@ else:
 
 
 if DEBUG:
-    ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+    ALLOWED_HOSTS = ["*"]
 else:
     ALLOWED_HOSTS = ["*"]
 
@@ -98,11 +98,6 @@ DATABASES = {
         "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
-
-# if bool(strtobool(os.environ.get("CI", "false"))):
-#     DATABASES["default"] = DATABASES["test"]
-# else:
-#     DATABASES["default"] = DATABASES["main"]
 
 
 # Password validation

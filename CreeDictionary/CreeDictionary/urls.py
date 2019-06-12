@@ -15,7 +15,6 @@ from CreeDictionary import views
 
 admin.autodiscover()
 
-
 # 2019/May/21 Matt Yan:
 # to add/modify any url, say 'some/url', you should add/modify two versions of it
 # 1. path("some/url", views.some_view)
@@ -76,6 +75,13 @@ urlpatterns = [
         name="cree-dictionary-word-detail-api",
     ),
     path("_displayWord/<str:queryString>", api_views.displayWord),
+    # cree word translation for click-in-text
+    path("_translate-cree/<str:queryString>", api_views.translate_cree),
+    path(
+        "cree-dictionary/_translate-cree/<str:queryString>",
+        api_views.translate_cree,
+        name="cree-dictionary-word-translation-api",
+    ),
     # path("", views.index, name="index"),
     # # path("React", include("React.urls")),
     # # url(r'^React',include('React.urls')),
