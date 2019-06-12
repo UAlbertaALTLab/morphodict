@@ -1,5 +1,7 @@
 import re
 from pprint import pprint
+from sys import stderr
+from typing import Dict, List
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -72,7 +74,7 @@ def search(request, queryString):
             if "+" not in item:
                 lemma = item
         print("Cree: " + lemma)
-        creeWords += datafetch.fetchExactLemma(lemma)
+        creeWords += [datafetch.fetch_exact_lemma(lemma)]
     else:
         # Probably English
         print("English: " + queryString)
@@ -109,6 +111,43 @@ def search(request, queryString):
     else:
         response["words"] = uniqueWords
         return JsonResponse(response)
+
+
+def translate_cree(request, queryString: str) -> JsonResponse:
+    """
+    note: returned definition is for lemma, not the queried inflected form.
+    result looks like:
+    [{'lemma':'niskak','analysis':'niska+N+A+Pl', 'definitions':{'definition':'goose', 'source':'cw'}},
+    {...},]
+
+    :param request:
+    :param queryString:
+    """
+
+    queryString = unquote(queryString)
+    queryString = unicodedata.normalize("NFC", queryString)
+
+    response = {"translation": []}
+
+    res = list(fstAnalyzer.analyze(queryString))
+
+    for r in res:
+        try:
+            definitions = datafetch.fetch_definitions_with_exact_lemma(r[0])
+
+        except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
+            print(
+                "Warning: During API query, may due to incomplete database:",
+                file=stderr,
+            )
+            print(e, file=stderr)
+            continue
+        else:
+            response["translation"].append(
+                {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
+            )
+
+    return JsonResponse(response)
 
 
 def displayWord(request, queryString):
@@ -257,5 +296,227 @@ c = {
                 },
             ],
         }
+    ]
+}
+
+
+{
+    "words": [
+        {
+            "id": 694110,
+            "context": "cahkipehikanisak",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 694110,
+            "attributes": [],
+            "definitions": [
+                {
+                    "id": 6282,
+                    "context": "All the syllabgic symbol endings (finals). [Plural]",
+                    "source": "MD",
+                    "fk_word": 694110,
+                }
+            ],
+        },
+        {
+            "id": 1473966,
+            "context": "kaspipakwesikanisak",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 1473966,
+            "attributes": [],
+            "definitions": [
+                {
+                    "id": 13794,
+                    "context": "Crackers for soup.",
+                    "source": "MD",
+                    "fk_word": 1473966,
+                }
+            ],
+        },
+        {
+            "id": 96531,
+            "context": "iskot\u00eawit\u00e2p\u00e2n",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 96531,
+            "attributes": [
+                {"id": 3711, "name": "N", "fk_lemma": 96531},
+                {"id": 3717, "name": "A", "fk_lemma": 96531},
+                {"id": 3723, "name": "Sg", "fk_lemma": 96531},
+            ],
+            "definitions": [
+                {"id": 1107, "context": "train", "source": "CW", "fk_word": 96531}
+            ],
+        },
+        {
+            "id": 118065,
+            "context": "iskw\u00easisihk\u00e2n",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 118065,
+            "attributes": [
+                {"id": 4509, "name": "N", "fk_lemma": 118065},
+                {"id": 4515, "name": "A", "fk_lemma": 118065},
+                {"id": 4521, "name": "Sg", "fk_lemma": 118065},
+            ],
+            "definitions": [
+                {"id": 1281, "context": "barley", "source": "CW", "fk_word": 118065},
+                {"id": 1287, "context": "girl doll", "source": "CW", "fk_word": 118065},
+            ],
+        },
+        {
+            "id": 120705,
+            "context": "iskw\u00eaw-atosk\u00eay\u00e2kan",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 120705,
+            "attributes": [
+                {"id": 4653, "name": "N", "fk_lemma": 120705},
+                {"id": 4659, "name": "A", "fk_lemma": 120705},
+                {"id": 4665, "name": "Sg", "fk_lemma": 120705},
+            ],
+            "definitions": [
+                {
+                    "id": 1323,
+                    "context": "maid, female servant; woman's servant",
+                    "source": "CW",
+                    "fk_word": 120705,
+                }
+            ],
+        },
+        {
+            "id": 314232,
+            "context": "asikan",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 314232,
+            "attributes": [
+                {"id": 7428, "name": "N", "fk_lemma": 314232},
+                {"id": 7434, "name": "A", "fk_lemma": 314232},
+                {"id": 7440, "name": "Sg", "fk_lemma": 314232},
+            ],
+            "definitions": [
+                {"id": 2466, "context": "Sock.", "source": "MD", "fk_word": 314232},
+                {
+                    "id": 2472,
+                    "context": "sock, stocking",
+                    "source": "CW",
+                    "fk_word": 314232,
+                },
+            ],
+        },
+        {
+            "id": 328908,
+            "context": "askihkohk\u00e2n",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 328908,
+            "attributes": [
+                {"id": 7890, "name": "N", "fk_lemma": 328908},
+                {"id": 7896, "name": "A", "fk_lemma": 328908},
+                {"id": 7902, "name": "Sg", "fk_lemma": 328908},
+            ],
+            "definitions": [
+                {
+                    "id": 17090,
+                    "context": "train engine, steam engine; engine, motor",
+                    "source": "CW",
+                    "fk_word": 328908,
+                }
+            ],
+        },
+        {
+            "id": 329286,
+            "context": "askihkohk\u00e2nis",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 329286,
+            "attributes": [
+                {"id": 7908, "name": "N", "fk_lemma": 329286},
+                {"id": 7914, "name": "A", "fk_lemma": 329286},
+                {"id": 7920, "name": "Sg", "fk_lemma": 329286},
+            ],
+            "definitions": [
+                {
+                    "id": 17096,
+                    "context": "tractor; motor",
+                    "source": "CW",
+                    "fk_word": 329286,
+                }
+            ],
+        },
+        {
+            "id": 471182,
+            "context": "t\u00e2sahikan",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 471182,
+            "attributes": [
+                {"id": 12692, "name": "N", "fk_lemma": 471182},
+                {"id": 12698, "name": "A", "fk_lemma": 471182},
+                {"id": 12704, "name": "Sg", "fk_lemma": 471182},
+            ],
+            "definitions": [
+                {
+                    "id": 4712,
+                    "context": "A file or a grindstone.",
+                    "source": "MD",
+                    "fk_word": 471182,
+                },
+                {
+                    "id": 4718,
+                    "context": "whetstone, file, grind stone",
+                    "source": "CW",
+                    "fk_word": 471182,
+                },
+            ],
+        },
+        {
+            "id": 607281,
+            "context": "kaskit\u00eawistikw\u00e2n",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 607281,
+            "attributes": [
+                {"id": 20121, "name": "N", "fk_lemma": 607281},
+                {"id": 20127, "name": "A", "fk_lemma": 607281},
+                {"id": 20133, "name": "Sg", "fk_lemma": 607281},
+            ],
+            "definitions": [
+                {
+                    "id": 4689,
+                    "context": "brunette, one with dark hair",
+                    "source": "CW",
+                    "fk_word": 607281,
+                }
+            ],
+        },
+        {
+            "id": 1009026,
+            "context": "iskw\u00eac\u00e2kan",
+            "type": "N",
+            "language": "crk",
+            "word_ptr": 1009026,
+            "attributes": [
+                {"id": 27126, "name": "N", "fk_lemma": 1009026},
+                {"id": 27132, "name": "A", "fk_lemma": 1009026},
+                {"id": 27138, "name": "Sg", "fk_lemma": 1009026},
+            ],
+            "definitions": [
+                {
+                    "id": 9540,
+                    "context": "A girl child ina family.",
+                    "source": "MD",
+                    "fk_word": 1009026,
+                },
+                {
+                    "id": 9546,
+                    "context": "last child, youngest child",
+                    "source": "CW",
+                    "fk_word": 1009026,
+                },
+            ],
+        },
     ]
 }

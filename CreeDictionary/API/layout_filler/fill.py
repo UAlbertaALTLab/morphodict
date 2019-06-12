@@ -330,4 +330,5 @@ if __name__ == "__main__":
 
     # print(convert_layout_name_to_layout_class("nid-full"))
 
-    pass
+    paradigm_filler = ParadigmFiller.default_filler()
+    print(paradigm_filler.layout_tables)

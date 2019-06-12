@@ -1,12 +1,68 @@
+from sys import stderr
+from typing import List, Dict
+
+from django.db.models import QuerySet
+
 from API.models import *
 from django.forms.models import model_to_dict
 from django.db.models.functions import Length
 
 
-# Exact Lemma
-def fetchExactLemma(lemma, limit=1):
-    lemmas = Lemma.objects.filter(context__exact=lemma)[:limit]
-    return lemmas
+class LemmaDoesNotExist(Exception):
+    def __init__(self, query_string):
+        self.msg = "No Lemma exists that matches the query string %s" % query_string
+
+    def __str__(self):
+        return self.msg
+
+
+class DefinitionDoesNotExist(Exception):
+    def __init__(self, query_string):
+        self.msg = "No Definition exists for the lemma %s" % query_string
+
+    def __str__(self):
+        return self.msg
+
+
+def fetch_exact_lemma(lemma_string: str) -> Lemma:
+    """
+
+    :raise LemmaDoesNotExist: The lemma doesn't exist in the database
+    :param lemma_string:
+    :return: Lemma object
+    """
+    results = Lemma.objects.filter(context__exact=lemma_string)
+    if len(results) == 1:
+        return results[0]
+    elif len(results) > 1:
+        print(
+            "warning: fetch_exact_lemma returns two or more lemmas on query_string %s. Adopted the first result"
+            % lemma_string,
+            file=stderr,
+        )
+        return results[0]
+    else:
+        raise LemmaDoesNotExist(lemma_string)
+
+
+def fetch_definitions_with_exact_lemma(lemma_string: str) -> List[Dict[str, str]]:
+    """
+    :raise LemmaDoesNotExist: The lemma doesn't exist in the database
+    :param lemma_string:
+    """
+    lemma = fetch_exact_lemma(lemma_string)
+    definitions = dict()
+
+    definition_models = Definition.objects.filter(fk_word=lemma)
+    definition_list = []
+    for definition in definition_models:
+        definition_list.append(
+            {"definition": definition.context, "source": definition.source}
+        )
+    if len(definition_list) == 0:
+        raise DefinitionDoesNotExist(lemma_string)
+    else:
+        return definition_list
 
 
 def fetchContainsLemma(lemma, limit=10):
