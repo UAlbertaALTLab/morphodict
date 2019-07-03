@@ -125,7 +125,7 @@ def translate_cree(request, queryString: str) -> JsonResponse:
     queryString = unquote(queryString)
     queryString = unicodedata.normalize("NFC", queryString)
 
-    response = {"translation": [], "Access-Control-Allow-Origin": "*"}
+    response = {"translation": []}
 
     res = list(fstAnalyzer.analyze(queryString))
 
@@ -144,8 +144,9 @@ def translate_cree(request, queryString: str) -> JsonResponse:
             response["translation"].append(
                 {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
             )
-
-    return JsonResponse(response)
+    response = JsonResponse(response)
+    response["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 def displayWord(request, queryString):
