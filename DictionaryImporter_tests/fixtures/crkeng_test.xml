@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+<!-- The dictionary sources -->
+   <source id="CW">
+      <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+   </source>
+   <source id="MD">
+      <title>Maskwacîs Cree Dictionary</title>
+   </source>
+
+<!-- Dictionary entries from Maskwacîs Dictionary also in Cree Words -->
+<e>
+   <lg>
+      <l pos="Ipc">â</l>
+      <lc>IPJ</lc>
+      <stem>-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="Ipc" sources="MD">To mean continuous action. Means always or keeps doing.</t>
+   </tg>
+   </mg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="Ipc" sources="CW">ah, well, oh</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="N">acâhkos</l>
+      <lc>NA-1</lc>
+      <stem>acâhkos-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="N" sources="MD CW">star</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcihtin</l>
+      <lc>VII-n</lc>
+      <stem>âcihtin-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">It does not fit through.</t>
+   </tg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="CW">it catches in the corners so as to be blocked or stuck</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcim</l>
+      <lc></lc>
+      <stem>-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">Tell about him.</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">acimaw</l>
+      <lc></lc>
+      <stem>md_stem[nr]</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">A story is told about him.</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcimêw</l>
+      <lc>VTA-1</lc>
+      <stem>âcim-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD CW">s/he tells about s.o., s/he talks about s.o.; s/he narrates about s.o.</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcimêwak</l>
+      <lc></lc>
+      <stem>-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">They are telling a story about him or them.</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcimôh</l>
+      <lc></lc>
+      <stem>-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">You tell a story</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">âcimok</l>
+      <lc></lc>
+      <stem>-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="MD">All of you tell a story.</t>
+   </tg>
+   </mg>
+</e>
+
+
+<e>
+   <lg>
+      <l pos="V">yôtinipêstâw</l>
+      <lc>VII-v</lc>
+      <stem>yôtinipêstâ-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="CW">it rains with wind</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">yôwahtam</l>
+      <lc>VTI-1</lc>
+      <stem>yôwaht-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="CW">s/he draws at s.t. by suction</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="V">yôwamêw</l>
+      <lc>VTA-1</lc>
+      <stem>yôwam-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="V" sources="CW">s/he draws at s.o. by suction</t>
+   </tg>
+   </mg>
+</e>
+
+</r>

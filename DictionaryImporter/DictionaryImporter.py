@@ -5,22 +5,20 @@ from multiprocessing import Process, Queue
 from threading import Lock
 import math
 import sqlite3
-from sqlsp import SqlSP
-import generate_forms_hfst as HFST
+from DictionaryImporter.sqlsp import SqlSP
 from fst_lookup import FST
 
 # Hack for importing relative projects
 import sys
 import os
 
-sys.path.append("../CreeDictionary")
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CreeDictionary.settings")
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "CreeDictionary.CreeDictionary.settings")
 django.setup()
 
 # MUST BE IMPORTED AFTER sys.path.append
-from API.admin import *
-from API.models import *
-from DictionaryParser import DictionaryParser
+# from CreeDictionary.API.models import *
+from DictionaryImporter.DictionaryParser import DictionaryParser
 
 # The defaault number of processes that will be spawned for FST generation
 DEFAULT_PROCESS_COUNT = 6
@@ -45,7 +43,7 @@ class DictionaryImporter:
 
     def __init__(
         self,
-        fileName,
+        xml_filename,
         sqlFileName,
         fstAnalyzerFileName,
         fstGeneratorFileName,
@@ -63,7 +61,7 @@ class DictionaryImporter:
             language (str): The language code for the dictionary
         """
         self.processCount = DEFAULT_PROCESS_COUNT
-        self.fileName = fileName
+        self.xml_filename = xml_filename
         self.language = language
         self.sqlFileName = sqlFileName
         self.fstAnalyzerFileName = fstAnalyzerFileName
@@ -71,64 +69,46 @@ class DictionaryImporter:
         self.hfstFileName = hfstFileName
         self.paradigmFolder = paradigmFolder
 
-    def _loadParadigmFiles(self):
-        """
-            Loads paradigm files into memory as strings in a dictionary
-        """
-        paradigmFiles = [
-            "noun-nad",
-            "noun-na",
-            "noun-nid",
-            "noun-ni",
-            "verb-ai",
-            "verb-ii",
-            "verb-ta",
-            "verb-ti",
-        ]
-        self.paradigmForms = dict()
-        for filename in paradigmFiles:
-            with open(self.paradigmFolder + filename + ".paradigm", "r") as file:
-                content = file.read()
-                # Split the content by --\n first and get the second half
-                # then split by \n to get each form line
-                # None will be removed using filter
-                forms = list(filter(None, content.split("--\n")[1].split("\n")))
-                self.paradigmForms[filename] = forms
+    # def _loadParadigmFiles(self):
+    #     """
+    #         Loads paradigm files into memory as strings in a dictionary
+    #     """
+    #     paradigmFiles = [
+    #         "noun-nad",
+    #         "noun-na",
+    #         "noun-nid",
+    #         "noun-ni",
+    #         "verb-ai",
+    #         "verb-ii",
+    #         "verb-ta",
+    #         "verb-ti",
+    #     ]
+    #     self.paradigmForms = dict()
+    #     for filename in paradigmFiles:
+    #         with open(self.paradigmFolder + filename + ".paradigm", "r") as file:
+    #             content = file.read()
+    #             # Split the content by --\n first and get the second half
+    #             # then split by \n to get each form line
+    #             # None will be removed using filter
+    #             forms = list(filter(None, content.split("--\n")[1].split("\n")))
+    #             self.paradigmForms[filename] = forms
 
-    def parseSync(self, amount=10):
-        """
-            This is the synchronous version of parse
-            No threads or processes will be created
-            Should be used only for testing
-        """
-        self._loadParadigmFiles()
-        print("Done Paradigm Loading")
+    def parseSync(self):
 
         # Parse the XML file
-        root = ET.parse(self.fileName).getroot()
+        root = ET.parse(self.xml_filename).getroot()
         # Total element count in the XML file
         elementCount = len(root)
 
         # Queues
         lemmaQueue = Queue(elementCount * 2)
         definitionQueue = Queue(elementCount * 2 * 2)
-        attributeQueue = Queue(elementCount * 2 * 10)
-        inflectionQueue = Queue(elementCount * 2 * 100)
-        inflectionFormQueue = Queue(elementCount * 2 * 100 * 10)
         finishedQueue = Queue(10)
-
-        # Get the number of elements each process should handle
-        chunkSize = elementCount / self.processCount
-
-        print("Element Count: " + str(elementCount))
 
         # Init Process Fields
         self._initProcessFields(
             1,
             lemmaQueue,
-            attributeQueue,
-            inflectionQueue,
-            inflectionFormQueue,
             definitionQueue,
             finishedQueue,
         )
@@ -137,15 +117,9 @@ class DictionaryImporter:
         for element in root:
             if element.tag == "e":
                 self._parseEntry(element)
-            initCounter += 1
-            if initCounter > amount:
-                break
 
         self._fillDB(
             lemmaQueue,
-            attributeQueue,
-            inflectionQueue,
-            inflectionFormQueue,
             definitionQueue,
         )
 
@@ -155,14 +129,14 @@ class DictionaryImporter:
         """
             Stars the parsing of XML dictionary, FST inflections generator and injects into SQL when done
         """
-        self._loadParadigmFiles()
-        print("Done Paradigm Loading")
+        # self._loadParadigmFiles()
+        # print("Done Paradigm Loading")
 
         processCounter = 0
         processes = list()
 
         # Parse the XML file
-        root = ET.parse(self.fileName).getroot()
+        root = ET.parse(self.xml_filename).getroot()
         # Total element count in the XML file
         elementCount = len(root)
 
@@ -221,10 +195,7 @@ class DictionaryImporter:
         # All processes are finished, starts importing objects into DB
         self._fillDB(
             lemmaQueue,
-            attributeQueue,
-            inflectionQueue,
-            inflectionFormQueue,
-            definitionQueue,
+            attributeQueue
         )
 
         # Join the spawned processes
@@ -237,9 +208,6 @@ class DictionaryImporter:
     def _fillDB(
         self,
         lemmaQueue,
-        attributeQueue,
-        inflectionQueue,
-        inflectionFormQueue,
         definitionQueue,
     ):
         """
@@ -265,11 +233,13 @@ class DictionaryImporter:
             script = file.read()
             cur.executescript(script)
             conn.commit()
+
         sqlSP = SqlSP(conn)
         print("Done SQL SetUp")
 
         lemmaIDDict = dict()
         lemmaContextDict = dict()
+
         while not lemmaQueue.empty():
             lemma = lemmaQueue.get()
             lemmaIDDict[lemma.id] = lemma
@@ -380,12 +350,7 @@ class DictionaryImporter:
 
     def _initProcessFields(
         self,
-        processID,
         lemmaQueue,
-        attributeQueue,
-        inflectionQueue,
-        inflectionFormQueue,
-        definitionQueue,
         finishedQueue,
     ):
         """
@@ -393,25 +358,15 @@ class DictionaryImporter:
             Args:
                 processID (int): The process ID that is assigned to the process
                 lemmaQueue (Queue)
-                attributeQueue (Queue)
-                inflectionQueue (Queue)
-                inflectionFormQueue (Queue)
-                definitionQueue (Queue)
                 finishedQueue (Queue)
         """
         # Process Specific Fields
-        self.fstAnalyzer = FST.from_file(self.fstAnalyzerFileName)
-        self.fstGenerator = FST.from_file(self.fstGeneratorFileName)
-        print("Process " + str(processID) + " Done FST Loading")
+        # print("Process " + str(processID) + " Done FST Loading")
         self.parser = DictionaryParser(
             self.paradigmForms, self.fstAnalyzer, self.fstGenerator, self.language
         )
-        self.processID = processID
+
         self.lemmaQueue = lemmaQueue
-        self.attributeQueue = attributeQueue
-        self.inflectionQueue = inflectionQueue
-        self.inflectionFormQueue = inflectionFormQueue
-        self.definitionQueue = definitionQueue
         self.entryIDLock = Lock()
         self.entryIDDict = dict()
 
@@ -574,8 +529,7 @@ class DictionaryImporter:
 
 
 if __name__ == "__main__":
-
-    mode = "normal"
+    mode = "test"
     # mode = "test"
     if len(sys.argv) > 1:
         mode = sys.argv[1].lower()
@@ -590,7 +544,7 @@ if __name__ == "__main__":
         "crk",
     )
     if mode == "test":
-        importer.fileName = "../CreeDictionary/API/dictionaries/crkeng.test.xml"
+        importer.xml_filename = "../CreeDictionary/API/dictionaries/crkeng.test.xml"
         importer.sqlFileName = "../CreeDictionary/db.test.sqlite3"
         importer.parseSync(amount=50)
     elif mode == "normal":
