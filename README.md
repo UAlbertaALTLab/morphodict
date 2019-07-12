@@ -1,13 +1,11 @@
 # Cree Intelligent Dictionary
 
-Development:
 [![Build Status](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary)
 
 ## Project Description
 A Cree/Syllabic to English and English to Cree/Syllabic dictionary, 
 that can define and return the linguistic analysis of each word.
 
-Check wiki for detailed documentation.
 
 ## Production Server
 http://sapir.artsrn.ualberta.ca/cree-dictionary
