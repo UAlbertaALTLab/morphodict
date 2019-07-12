@@ -1,6 +1,6 @@
-﻿from API.models import *
-from API.admin import *
-import generate_forms_hfst as HFST
+﻿from CreeDictionary.API.models import *
+from CreeDictionary.API.admin import *
+import DictionaryImporter.generate_forms_hfst as HFST
 
 
 class DictionaryParser:

@@ -1,6 +1,6 @@
 ﻿import unittest
 from unittest import mock
-from DictionaryImporter import *
+from DictionaryImporter.DictionaryImporter import *
 import json
 
 """
