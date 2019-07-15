@@ -1,3 +1,4 @@
+# https://gist.github.com/Arachnid/491973
 import bisect
 
 
