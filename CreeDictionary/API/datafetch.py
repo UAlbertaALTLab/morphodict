@@ -24,7 +24,7 @@ class DefinitionDoesNotExist(Exception):
         return self.msg
 
 
-def fetch_exact_lemma(lemma_string: str) -> Lemma:
+def fetch_exact_lemma(lemma_string: str):
     """
 
     :raise LemmaDoesNotExist: The lemma doesn't exist in the database

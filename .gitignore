@@ -264,7 +264,9 @@ __pycache__/
 .DS_Store
 
 # Dicitonary Files
-/CreeDictionary/API/dictionaries/
+/CreeDictionary/res/dictionaries/
+crkeng.xml
+engcrk.xml
 /CreeDictionary/db.sqlite3
 /CreeDictionary/db.sqlite3.bak
 /hfst

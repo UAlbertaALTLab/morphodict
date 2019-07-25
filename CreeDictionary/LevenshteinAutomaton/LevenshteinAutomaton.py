@@ -1,8 +1,10 @@
 # https://gist.github.com/Arachnid/491973
 import bisect
+from typing import List
+from os import PathLike
 
 
-class NFA(object):
+class NFA:
     EPSILON = object()
     ANY = object()
 
@@ -68,8 +70,7 @@ class NFA(object):
                     dfa.add_transition(current, input, new_state)
         return dfa
 
-
-class DFA(object):
+class DFA:
     def __init__(self, start_state):
         self.start_state = start_state
         self.transitions = {}
@@ -170,27 +171,66 @@ def find_all_matches(word, k, lookup_func):
     lev = levenshtein_automata(word, k).to_dfa()
     match = lev.next_valid_string(u'\0')
     while match:
-        next = lookup_func(match)
-        if not next:
+        next_word = lookup_func(match)
+        if not next_word:
             return
-        if match == next:
+        if match == next_word:
             yield match
-            next = next + u'\0'
-        match = lev.next_valid_string(next)
+            next_word = next_word + u'\0'
+        match = lev.next_valid_string(next_word)
 
 
-class Matcher(object):
-  def __init__(self, l):
-    self.l = l
-    self.probes = 0
-  def __call__(self, w):
-    self.probes += 1
-    pos = bisect.bisect_left(self.l, w)
-    if pos < len(self.l):
-      return self.l[pos]
-    else:
-      return None
+class Matcher:
+    def __init__(self, words: List[str]):
+        """
+        :param words: a list of database entries you want to include
+        """
 
-words = sorted(['banana', 'banann','banne', 'canana', 'bbbnana', 'baxana', 'xbananax'])
+        self._words = sorted(words)
+        self._probes = 0
 
+    def find_all_matches(self, word, k):
+        """Uses lookup_func to find all words within levenshtein distance k of word.
+
+        Args:
+          word: The word to look up
+          k: Maximum edit distance
+          lookup_func: A single argument function that returns the first word in the
+            database that is greater than or equal to the input argument.
+        Yields:
+          Every matching word within levenshtein distance k from the database.
+        """
+        lev = levenshtein_automata(word, k).to_dfa()
+        match = lev.next_valid_string(u'\0')
+        while match:
+            next_word = self._next_bigger_word(match)
+            if not next_word:
+                return
+            if match == next_word:
+                yield match
+                next_word = next_word + u'\0'
+            match = lev.next_valid_string(next_word)
+
+    def _next_bigger_word(self, w):
+        self._probes += 1
+        pos = bisect.bisect_left(self._words, w)
+        if pos < len(self._words):
+            return self._words[pos]
+        else:
+            return None
+
+
+class CreeMatcher(Matcher):
+    """
+    __init__ parses and loads crkeng.xml from file system and .find_all_matches returns cree words within a certain
+    levenshtein distance to a given word
+    """
+
+    def __init__(self):
+
+
+        super().__init__(words)
+
+
+words = ['banana', 'banann', 'banne', 'canana', 'bbbnana', 'baxana', 'xbananax']
 m = Matcher(words)

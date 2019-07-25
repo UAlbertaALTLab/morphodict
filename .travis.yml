@@ -8,6 +8,10 @@ stages:
   - name: deploy
     if: branch = master
 
+branches:
+  except:
+    - broken
+
 jobs:
   include:
     - language: python

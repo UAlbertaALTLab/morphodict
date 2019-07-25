@@ -6,6 +6,7 @@ from os import path
 from pprint import pprint
 from subprocess import PIPE
 from typing import Dict, Any, List, Tuple, FrozenSet
+from constants import InflectionCategory
 
 
 # paradigm files names are inconsistent

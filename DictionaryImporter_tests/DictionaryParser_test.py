@@ -10,7 +10,6 @@ import xml.etree.ElementTree as ET
 Tests should be run at the root folder of DictionaryImporter project
 """
 
-
 class DictionaryParserTestCase(unittest.TestCase):
     # Shared fixture
     fstAnalyzerFileName = "../CreeDictionary/API/fst/crk-descriptive-analyzer.fomabin"
