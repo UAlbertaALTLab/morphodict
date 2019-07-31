@@ -31,7 +31,7 @@ def analyze_in_bulk(surface_forms: Iterable[str]):
             HFSTOL_PATH,
             "--verbose",
             "--pipe-mode",
-            path.join(FILE_DIR, '..', 'res', 'fst', 'crk-descriptive-analyzer.hfstol'),
+            path.join(FILE_DIR, "..", "res", "fst", "crk-descriptive-analyzer.hfstol"),
         ],
         input=lines,
         stdout=subprocess.PIPE,
@@ -68,7 +68,7 @@ def analyze_in_bulk(surface_forms: Iterable[str]):
         old_surface_form = surface_form
         # Generating this word form failed!
         if "+?" in rest:
-            analyses[-1].append('')
+            analyses[-1].append("")
         else:
             analyses[-1].append(word_form)
             analyses[-1].append(surface_form)

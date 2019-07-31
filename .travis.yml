@@ -3,14 +3,15 @@ env:
 sudo: required
 dist: xenial
 
+branches:
+  only:
+    - master
+
 stages:
   - test
   - name: deploy
     if: branch = master
 
-branches:
-  except:
-    - broken
 
 jobs:
   include:

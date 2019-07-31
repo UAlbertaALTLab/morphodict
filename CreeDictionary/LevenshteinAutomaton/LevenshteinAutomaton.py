@@ -30,7 +30,11 @@ class NFA:
         frontier = set(states)
         while frontier:
             state = frontier.pop()
-            new_states = self.transitions.get(state, {}).get(NFA.EPSILON, set()).difference(states)
+            new_states = (
+                self.transitions.get(state, {})
+                .get(NFA.EPSILON, set())
+                .difference(states)
+            )
             frontier.update(new_states)
             states.update(new_states)
         return states
@@ -57,7 +61,8 @@ class NFA:
             current = frontier.pop()
             inputs = self.get_inputs(current)
             for input in inputs:
-                if input == NFA.EPSILON: continue
+                if input == NFA.EPSILON:
+                    continue
                 new_state = self.next_state(current, input)
                 if new_state not in seen:
                     frontier.append(new_state)
@@ -69,6 +74,7 @@ class NFA:
                 else:
                     dfa.add_transition(current, input, new_state)
         return dfa
+
 
 class DFA:
     def __init__(self, start_state):
@@ -101,9 +107,10 @@ class DFA:
         for i, x in enumerate(input):
             stack.append((input[:i], state, x))
             state = self.next_state(state, x)
-            if not state: break
+            if not state:
+                break
         else:
-            stack.append((input[:i + 1], state, None))
+            stack.append((input[: i + 1], state, None))
 
         if self.is_final(state):
             # Input word is already valid
@@ -124,7 +131,7 @@ class DFA:
 
     def find_next_edge(self, s, x):
         if x is None:
-            x = u'\0'
+            x = u"\0"
         else:
             x = chr(ord(x) + 1)
         state_transitions = self.transitions.get(s, {})
@@ -169,14 +176,14 @@ def find_all_matches(word, k, lookup_func):
       Every matching word within levenshtein distance k from the database.
     """
     lev = levenshtein_automata(word, k).to_dfa()
-    match = lev.next_valid_string(u'\0')
+    match = lev.next_valid_string(u"\0")
     while match:
         next_word = lookup_func(match)
         if not next_word:
             return
         if match == next_word:
             yield match
-            next_word = next_word + u'\0'
+            next_word = next_word + u"\0"
         match = lev.next_valid_string(next_word)
 
 
@@ -201,14 +208,14 @@ class Matcher:
           Every matching word within levenshtein distance k from the database.
         """
         lev = levenshtein_automata(word, k).to_dfa()
-        match = lev.next_valid_string(u'\0')
+        match = lev.next_valid_string(u"\0")
         while match:
             next_word = self._next_bigger_word(match)
             if not next_word:
                 return
             if match == next_word:
                 yield match
-                next_word = next_word + u'\0'
+                next_word = next_word + u"\0"
             match = lev.next_valid_string(next_word)
 
     def _next_bigger_word(self, w):
@@ -228,9 +235,8 @@ class CreeMatcher(Matcher):
 
     def __init__(self):
 
-
         super().__init__(words)
 
 
-words = ['banana', 'banann', 'banne', 'canana', 'bbbnana', 'baxana', 'xbananax']
+words = ["banana", "banann", "banne", "canana", "bbbnana", "baxana", "xbananax"]
 m = Matcher(words)
