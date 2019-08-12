@@ -33,6 +33,14 @@ check_parser.add_argument(
     help="only check for lemma - analysis ambiguities",
 )
 
+check_parser.add_argument(
+    "--duplication",
+    "-d",
+    dest="check_only",
+    action="store_const",
+    const="duplication",
+    help="only check for xml entry duplication (different <e> with the same lc and pos)",
+)
 # import_parser.add_parser('import', help='import from xml')
 
 args = parser.parse_args()

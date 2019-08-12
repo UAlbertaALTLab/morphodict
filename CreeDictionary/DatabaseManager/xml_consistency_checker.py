@@ -79,136 +79,188 @@ def does_hfstol_xml_pos_match(
         return False
 
 
-def check_xml(filename: PathLike, verbose, check_only: Optional[str]):
-    root = ET.parse(filename).getroot()
-    # there are entries that look the same, thus `List`[...]
+def check_duplication(entries: List[ET.Element]) -> Tuple[str, str]:
+
     xml_lemma_to_pos_lc = dict()  # type: Dict[str, List[Tuple[str,str]]]
-    elements = root.findall(".//e")
+
+    xml_lemma_pos_lc_to_tree_string = dict()
 
     xml_lemma_pos_lc = set()
     counter = 0
-    for element in elements:
+
+    detail_string = ""
+
+    duplicate_xml_lemma_pos_lc = set()
+    for element in entries:
         l = element.find("lg/l")
         lc_str = element.find("lg/lc").text
         xml_lemma, pos_str = l.text, l.get("pos")
         xml_lemma_pos_lc.add((xml_lemma, pos_str, lc_str))
+
+        if (xml_lemma, pos_str, lc_str) in xml_lemma_pos_lc_to_tree_string:
+            xml_lemma_pos_lc_to_tree_string[(xml_lemma, pos_str, lc_str)].append(
+                element
+            )
+        else:
+            xml_lemma_pos_lc_to_tree_string[(xml_lemma, pos_str, lc_str)] = [element]
+
         if xml_lemma in xml_lemma_to_pos_lc:
+            if (pos_str, lc_str) in xml_lemma_to_pos_lc[xml_lemma]:
+                duplicate_xml_lemma_pos_lc.add((xml_lemma, pos_str, lc_str))
+
             xml_lemma_to_pos_lc[xml_lemma].append((pos_str, lc_str))
         else:
             xml_lemma_to_pos_lc[xml_lemma] = [(pos_str, lc_str)]
         counter += 1
 
-    inflections = xml_lemma_to_pos_lc.keys()
-    print(len(xml_lemma_to_pos_lc))
-    strict_xml_lemma_to_analyses = strict_analyzer.feed_in_bulk_fast(inflections)
-    # descriptive_xml_lemma_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
-    #     inflections
-    # )
+    for i, d in enumerate(duplicate_xml_lemma_pos_lc):
+        detail_string += "group %d\n\n" % i
+        for e in xml_lemma_pos_lc_to_tree_string[d]:
+            detail_string += ET.tostring(e, encoding="unicode")
+        detail_string += "\n"
 
-    lemmas_wo_analysis = set()
-
-    inconsistent_xml_pos_lc = set()
-
-    ambiguous_xml_pos_lc_to_analyses_lemmas = (
-        dict()
-    )  # type: Dict[Tuple[str, str, str], Tuple[Set[str], Set[str]]]
-
-    dup_counter = 0
-
-    pos_set = set()
-    for xml_lemma, analyses in strict_xml_lemma_to_analyses.items():
-
-        if len(analyses) == 0:
-            lemmas_wo_analysis.add(xml_lemma)
-        elif len(analyses) >= 1:  # determine which is `the` analysis
-
-            # possible pos
-            # {'', 'IPV', 'Pron', 'N', 'Ipc', 'V', '-'}
-
-            # possible lc
-            # {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
-            # 'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
-            # 'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
-            # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
-            # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
-
-            for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
-
-                ambiguous_analyses = set()
-                ambiguous_lemmas = set()
-                lemma_analyses = hfstol_analysis_parser.identify_lemma_analysis(
-                    analyses
-                )
-
-                for (
-                    analysis
-                ) in (
-                    lemma_analyses
-                ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
-
-                    category = utils.extract_category(analysis)
-                    assert category is not None
-                    is_match = does_hfstol_xml_pos_match(category, pos, lc)
-
-                    if is_match:
-                        analysis_lemma = hfstol_analysis_parser.extract_lemma(analysis)
-                        ambiguous_lemmas.add(analysis_lemma)
-                        ambiguous_analyses.add(analysis)
-
-                if len(ambiguous_analyses) == 0:
-
-                    inconsistent_xml_pos_lc.add((xml_lemma, pos, lc))
-
-                elif len(ambiguous_analyses) == 1:  # nice
-                    pass
-                else:
-                    ambiguous_xml_pos_lc_to_analyses_lemmas[(xml_lemma, pos, lc)] = (
-                        ambiguous_analyses,
-                        ambiguous_lemmas,
-                    )
-
-    rere = descriptive_analyzer.feed_in_bulk_fast(lemmas_wo_analysis)
-    saved = 0
-    for l in lemmas_wo_analysis:
-        if rere[l]:
-            saved += 1
-
-    check_name_to_summary_results = dict()  # type: Dict[str, Tuple[str, str]]
-
-    ambiguity_res = "Ambiguous xml entries:\n"
-    if len(ambiguous_xml_pos_lc_to_analyses_lemmas) >= 10 and not verbose:
-        sample_size = 5
-    else:
-        sample_size = len(ambiguous_xml_pos_lc_to_analyses_lemmas)
-
-    for (lemma, pos, lc), (analyses, lemmas) in list(
-        ambiguous_xml_pos_lc_to_analyses_lemmas.items()
-    )[:sample_size]:
-        ambiguity_res += "xml: %s\tpos: %s\tlc: %s\n" % (lemma, pos, lc)
-        # ambiguity_res += "fst output: %s\n" % strict_xml_lemma_to_analyses[lemma]
-        ambiguity_res += "which is the preferred lemma: %s\n" % analyses
-        if len(lemmas) > 1:
-            ambiguity_res += "which is the actually lemma: %s\n" % lemmas
-        ambiguity_res += "\n"
-
-    if sample_size < len(ambiguous_xml_pos_lc_to_analyses_lemmas):
-        ambiguity_res += "...[the rest %d items omitted]\n\n" % (
-            len(ambiguous_xml_pos_lc_to_analyses_lemmas) - 5
-        )
-    ambiguity_summary = (
-        "Can't determine the lemma for %d entries in crkeng.xml\n"
-        % len(ambiguous_xml_pos_lc_to_analyses_lemmas)
+    summary_str = (
+        "There are %d groups of duplicate entries in the xml. (<e> with the same lc and pos). They were probably not merged properly."
+        % len(duplicate_xml_lemma_pos_lc)
     )
 
-    check_name_to_summary_results["ambiguity"] = (ambiguity_summary, ambiguity_res)
+    return summary_str, detail_string
 
-    if check_only == "ambiguity":
-        name = "ambiguity_check"
+
+def check_xml(filename: PathLike, verbose, check_only: Optional[str]):
+    root = ET.parse(filename).getroot()
+    # there are entries that look the same, thus `List`[...]
+    xml_lemma_to_pos_lc = dict()  # type: Dict[str, List[Tuple[str,str]]]
+    elements = root.findall(".//e")
+    check_name_to_summary_results = dict()  # type: Dict[str, Tuple[str, str]]
+
+    if check_only == "duplication":
+        check_name_to_summary_results["duplication"] = check_duplication(elements)
     else:
-        name = "inconsistency"
 
-    if verbose:
-        name += "_verbose"
+        xml_lemma_pos_lc = set()
+        counter = 0
+        for element in elements:
+            l = element.find("lg/l")
+            lc_str = element.find("lg/lc").text
+            xml_lemma, pos_str = l.text, l.get("pos")
+            xml_lemma_pos_lc.add((xml_lemma, pos_str, lc_str))
+            if xml_lemma in xml_lemma_to_pos_lc:
+                if (pos_str, lc_str) in xml_lemma_to_pos_lc[xml_lemma]:
+                    pass  # todo: do something
+
+                xml_lemma_to_pos_lc[xml_lemma].append((pos_str, lc_str))
+            else:
+                xml_lemma_to_pos_lc[xml_lemma] = [(pos_str, lc_str)]
+            counter += 1
+
+        inflections = xml_lemma_to_pos_lc.keys()
+        print(len(xml_lemma_to_pos_lc))
+        strict_xml_lemma_to_analyses = strict_analyzer.feed_in_bulk_fast(inflections)
+        # descriptive_xml_lemma_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
+        #     inflections
+        # )
+
+        lemmas_wo_analysis = set()
+
+        inconsistent_xml_pos_lc = set()
+
+        ambiguous_xml_pos_lc_to_analyses_lemmas = (
+            dict()
+        )  # type: Dict[Tuple[str, str, str], Tuple[Set[str], Set[str]]]
+
+        dup_counter = 0
+
+        pos_set = set()
+        for xml_lemma, analyses in strict_xml_lemma_to_analyses.items():
+
+            if len(analyses) == 0:
+                lemmas_wo_analysis.add(xml_lemma)
+            elif len(analyses) >= 1:  # determine which is `the` analysis
+
+                # possible pos
+                # {'', 'IPV', 'Pron', 'N', 'Ipc', 'V', '-'}
+
+                # possible lc
+                # {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
+                # 'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
+                # 'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
+                # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
+                # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
+
+                for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
+
+                    ambiguous_analyses = set()
+                    ambiguous_lemmas = set()
+                    lemma_analyses = hfstol_analysis_parser.identify_lemma_analysis(
+                        analyses
+                    )
+
+                    for (
+                        analysis
+                    ) in (
+                        lemma_analyses
+                    ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
+
+                        category = utils.extract_category(analysis)
+                        assert category is not None
+                        is_match = does_hfstol_xml_pos_match(category, pos, lc)
+
+                        if is_match:
+                            analysis_lemma = hfstol_analysis_parser.extract_lemma(
+                                analysis
+                            )
+                            ambiguous_lemmas.add(analysis_lemma)
+                            ambiguous_analyses.add(analysis)
+
+                    if len(ambiguous_analyses) == 0:
+
+                        inconsistent_xml_pos_lc.add((xml_lemma, pos, lc))
+
+                    elif len(ambiguous_analyses) == 1:  # nice
+                        pass
+                    else:
+                        ambiguous_xml_pos_lc_to_analyses_lemmas[
+                            (xml_lemma, pos, lc)
+                        ] = (ambiguous_analyses, ambiguous_lemmas)
+
+        rere = descriptive_analyzer.feed_in_bulk_fast(lemmas_wo_analysis)
+        saved = 0
+        for l in lemmas_wo_analysis:
+            if rere[l]:
+                saved += 1
+
+        ambiguity_res = "Ambiguous xml entries:\n"
+        if len(ambiguous_xml_pos_lc_to_analyses_lemmas) >= 10 and not verbose:
+            sample_size = 5
+        else:
+            sample_size = len(ambiguous_xml_pos_lc_to_analyses_lemmas)
+
+        for (lemma, pos, lc), (analyses, lemmas) in list(
+            ambiguous_xml_pos_lc_to_analyses_lemmas.items()
+        )[:sample_size]:
+            ambiguity_res += "xml: %s\tpos: %s\tlc: %s\n" % (lemma, pos, lc)
+            # ambiguity_res += "fst output: %s\n" % strict_xml_lemma_to_analyses[lemma]
+            ambiguity_res += "which is the preferred lemma: %s\n" % analyses
+            if len(lemmas) > 1:
+                ambiguity_res += "which is the actually lemma: %s\n" % lemmas
+            ambiguity_res += "\n"
+
+        if sample_size < len(ambiguous_xml_pos_lc_to_analyses_lemmas):
+            ambiguity_res += "...[the rest %d items omitted]\n\n" % (
+                len(ambiguous_xml_pos_lc_to_analyses_lemmas) - 5
+            )
+        ambiguity_summary = (
+            "Can't determine the lemma for %d entries in crkeng.xml\n"
+            % len(ambiguous_xml_pos_lc_to_analyses_lemmas)
+        )
+
+        check_name_to_summary_results["ambiguity"] = (ambiguity_summary, ambiguity_res)
+
+    if check_only is None:
+        name = "inconsistency"
+    else:
+        name = check_only + "_check"
 
     name += ".txt"
 
@@ -222,7 +274,7 @@ def check_xml(filename: PathLike, verbose, check_only: Optional[str]):
 
         for summary in summaries:
             file.write(summary)
-        file.write("\n")
+        file.write("\n\n")
         for detail in details:
             file.write(detail)
 
@@ -232,7 +284,7 @@ def check_xml(filename: PathLike, verbose, check_only: Optional[str]):
         #     "There are %d entries in crkeng.xml that crk-strict-analyzer.hfstol can not give any analyses. %d out of them can be recognized by descriptive analyzers and may be caused by spelling issues\n"
         #     % (len(lemmas_wo_analysis), saved)
         # )
-        #
+
         # file.write(
         #     "There are %d entries in crkeng.xml that has 'pos' and <lc> not consistent with any analysis given by crk-strict-analyzer.hfstol\n"
         #     % len(inconsistent_xml_pos_lc)

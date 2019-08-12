@@ -16,8 +16,9 @@ class DefinitionInline(admin.TabularInline):
 
 
 class InflectionAdmin(admin.ModelAdmin):
-    pass
+    search_fields = ("context",)
 
 
 admin.site.register(Source)
-admin.site.register(Inflection)
+admin.site.register(Inflection, InflectionAdmin)
+admin.site.register(Definition)

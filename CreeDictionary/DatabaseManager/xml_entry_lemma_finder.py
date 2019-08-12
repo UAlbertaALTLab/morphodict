@@ -1,6 +1,7 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
+from colorama import Fore
 from os.path import dirname
 from pathlib import Path
 from typing import List, Dict, Tuple, Set, Optional
@@ -62,16 +63,20 @@ def parse_xml_pos(pos: str) -> str:
     pass
 
 
-def expand(
+def extract_fst_lemmas(
     xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]]
-) -> Dict[str, Tuple[str, List[str]]]:
+) -> Dict[Tuple[str, str, str], str]:
     """
-    for every (xml_lemma, pos, lc), generate its analysis and inflections
-    <pos> and <lc> from xml file are used to determine the paradigm to use for every lemma
+    for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
     """
-    xml_lemma_to_analyses_inflections = (
-        dict()
-    )  # type: Dict[str, List[Tuple[str,List[str]]]]
+
+    print("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
+
+    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], str]
+
+    # xml_lemma_to_analyses_inflections = (
+    #     dict()
+    # )  # type: Dict[str, List[Tuple[str,List[str]]]]
 
     inflections = xml_lemma_to_pos_lc.keys()
 
@@ -83,16 +88,18 @@ def expand(
     success_counter = 0
     dup_counter = 0
 
-    mmm = 0
-    rrr = 0
     for xml_lemma, analyses in xml_lemma_to_analyses.items():
 
         if len(analyses) == 0:
-            if xml_lemma in xml_lemma_to_analyses_inflections:
-                xml_lemma_to_analyses_inflections[xml_lemma].append(("", []))
-            else:
-                xml_lemma_to_analyses_inflections[xml_lemma] = [("", [])]
-            no_analysis_counter += 1
+
+            if xml_lemma in xml_lemma_to_pos_lc:
+                for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
+                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ""
+                    # print(
+                    #     "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
+                    #     % (xml_lemma, pos, lc)
+                    # )
+                    no_analysis_counter += 1
 
         else:
 
@@ -128,26 +135,42 @@ def expand(
                     if is_match:
                         ambiguous_analyses.add(analysis)
 
-                the_analysis = ""
-                the_inflections = []
                 if len(ambiguous_analyses) == 0:
+                    # print(
+                    #     "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. None of the analyses are preferred lemma inflection"
+                    #     % (xml_lemma, pos, lc)
+                    # )
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
                     no_match_counter += 1
 
                 elif len(ambiguous_analyses) == 1:  # nice
                     the_analysis = ambiguous_analyses.pop()
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = the_analysis
                     success_counter += 1
                 else:
+                    # print(
+                    #     "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
+                    #     % (xml_lemma, pos, lc)
+                    # )
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
                     dup_counter += 1
+    print(Fore.GREEN)
+    print("%d (lemma, pos, lc) found proper lemma analysis" % success_counter)
+    print(Fore.BLUE)
+    print(
+        "There are %d (lemma, pos, lc) that the fst can not give any analyses."
+        % no_analysis_counter
+    )
+    print(
+        "There are %d (lemma, pos, lc) that do not have proper lemma analysis by fst"
+        % no_match_counter
+    )
 
-                if xml_lemma in xml_lemma_to_analyses_inflections:
-                    xml_lemma_to_analyses_inflections[xml_lemma].append(
-                        (the_analysis, the_inflections)
-                    )
-                else:
-                    xml_lemma_to_analyses_inflections[xml_lemma] = [
-                        (the_analysis, the_inflections)
-                    ]
-    print(no_analysis_counter, no_match_counter, success_counter, dup_counter)
-    print("lmao piece of cake")
-    # print(mmm, "amb")
-    # print(rrr, "resolved")
+    print(
+        "There are %d (lemma, pos, lc) that have ambiguous lemma analyses" % dup_counter
+    )
+    print("These words will be shown 'as-is' without analyses and paradigm tables")
+
+    print(Fore.RESET)
+
+    return xml_lemma_pos_lc_to_analysis
