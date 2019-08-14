@@ -16,13 +16,13 @@ from django.forms.models import model_to_dict
 import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
-from API.layout_filler import fill
+from utils.paradigm import ParadigmFiller
 
 fstAnalyzer = FST.from_file(
     os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin")
 )
 
-paradigm_filler = fill.ParadigmFiller.default_filler()
+paradigm_filler = ParadigmFiller.default_filler()
 
 
 def home(request):
@@ -190,9 +190,7 @@ def displayWord(request, queryString):
             groups = re.match(".*(NAD?|NID?|VAI|VII|VT[AI]|Ipc).*", tags).groups()
             if groups:
                 lemma_layout_class = groups[0]
-                table = paradigm_filler.fill_paradigm(
-                    lemma_layout_class.lower() + "-full", lemma_name
-                )
+                table = paradigm_filler.fill_paradigm(lemma_name)
             else:
                 table = []
             # print(lemma_tags)

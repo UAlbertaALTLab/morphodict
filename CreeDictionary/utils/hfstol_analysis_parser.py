@@ -1,5 +1,5 @@
 import re
-from typing import Optional
+from typing import Optional, Tuple
 from constants import InflectionCategory
 
 from os.path import dirname
@@ -10,7 +10,7 @@ import re
 
 inflection_category_to_pattern = dict()  # type: Dict[InflectionCategory, Pattern[str]]
 
-with open(Path(dirname(__file__)) / "lemma-tags.tsv") as f:
+with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
     lines = f.readlines()
     for line in lines:
         line = line.strip()
@@ -58,6 +58,40 @@ def extract_lemma(analysis: str) -> Optional[str]:
         return None
 
 
+def extract_lemma_and_category(
+    analysis: str
+) -> Optional[Tuple[str, InflectionCategory]]:
+    """
+    faster than calling `extract_lemma` and `extract_category` separately
+    """
+    res = re.search(analysis_pattern, analysis)
+    if res is not None:
+
+        group = res.group("category")
+        if group:
+            end = res.span("category")[0]
+            # print(res.groups())
+            cursor = end - 1
+
+            while cursor > 0 and analysis[cursor] != "+":
+                cursor -= 1
+            if analysis[cursor] == "+":
+                cursor += 1
+
+            lemma = analysis[cursor:end]
+
+            if group.startswith("+Num"):  # special case
+                group = group[4:]
+            inflection_category = InflectionCategory(group.replace("+", "").upper())
+
+            return lemma, inflection_category
+
+        else:
+            return None
+    else:
+        return None
+
+
 def extract_category(analysis: str) -> Optional[InflectionCategory]:
     """
 
@@ -81,12 +115,12 @@ def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
     """
     An example:
 
-    for cree lemma wâpi-maskwa, hfstol gives the below analyses:
+    for cree wâpi-maskwa, hfstol gives the below analyses:
 
     ['wâpi-maskwa+N+A+Obv', 'wâpi-maskwa+N+A+Sg']
 
     both inflections look the same as the lemma, but which is the preference for a lemma?
-    this function returns the preferred lemma analyses according to lemma-tags.tsv
+    this function returns the preferred lemma analyses according to res/lemma-tags.tsv
     """
     possible_analyses = set()
 

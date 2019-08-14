@@ -7,18 +7,22 @@ class InflectionInline(admin.TabularInline):
 
 
 #
-# class InfelctionFormInline(admin.TabularInline):
-#     model = InflectionForm
-
-
 class DefinitionInline(admin.TabularInline):
     model = Definition
+    exclude = ("id",)
+    extra = 0
 
 
+@admin.register(Inflection)
 class InflectionAdmin(admin.ModelAdmin):
-    search_fields = ("context",)
+    search_fields = ("text",)
+
+    list_display = ("text", "is_lemma", "as_is")
+    list_filter = ("is_lemma", "as_is")
+    exclude = ("id",)
+    inlines = [DefinitionInline]
+    # list_display = ("text",)
 
 
-admin.site.register(Source)
-admin.site.register(Inflection, InflectionAdmin)
-admin.site.register(Definition)
+# admin.site.register(Definition, InflectionAdmin)
+# admin.site.register(Inflection, InflectionAdmin)

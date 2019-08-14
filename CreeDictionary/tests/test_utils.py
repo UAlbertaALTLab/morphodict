@@ -1,7 +1,12 @@
-from constants import InflectionCategory
-from utils import extract_category, identify_lemma_analysis
+from os.path import dirname
+from pathlib import Path
+
+from constants import InflectionCategory, ParadigmSize
+from utils import extract_category, identify_lemma_analysis, paradigm
 from utils import hfstol_analysis_parser
 import pytest
+
+from utils.paradigm import ParadigmFiller
 
 
 @pytest.mark.parametrize(
@@ -74,3 +79,123 @@ def test_identify(analyses, lemma_analyses_index):
     assert len(lemma_analyses_index) == len(res)
     for i in lemma_analyses_index:
         assert analyses[i] in res
+
+
+@pytest.mark.parametrize(
+    "lemma,  inflection_category, paradigm_size, expected_table",
+    [
+        (
+            "niska",
+            InflectionCategory.NA,
+            ParadigmSize.FULL,
+            [
+                ['"Singular"', "niska", "", "", ""],
+                ['"Plural"', "niskak", "", "", ""],
+                ['"Obviative"', "niska", "", "", ""],
+                ['"Locative"', "niskihk", "", "", ""],
+                ['"Distributive"', "niskinâhk", "", "", ""],
+                ["", "", "", "", ""],
+                ["", '"DIMINUTIVE"', "", "", ""],
+                ['"Singular"', "niskis / niskisis", "", "", ""],
+                ['"Plural"', "niskisak / niskisisak", "", "", ""],
+                ['"Obviative"', "niskisa / niskisisa", "", "", ""],
+                ['"Locative"', "niskisihk / niskisisihk", "", "", ""],
+                ['"Distributive"', "niskisinâhk / niskisisinâhk", "", "", ""],
+                ["", "", "", "", ""],
+                ["", '"POSSESSION"', "", "", ""],
+                ["", ': "Singular"', ': "Plural"', ': "Obviative"', ': "Locative"'],
+                ['"1s"', "niniskim", "niniskimak", "niniskima", "niniskimihk"],
+                ['"2s"', "kiniskim", "kiniskimak", "kiniskima", "kiniskimihk"],
+                ['"3s"', "", "", "oniskima", "oniskimihk"],
+                [
+                    '"1p"',
+                    "niniskiminân",
+                    "niniskiminânak",
+                    "niniskiminâna",
+                    "niniskiminâhk",
+                ],
+                [
+                    '"21"',
+                    "kiniskiminaw",
+                    "kiniskiminawak",
+                    "kiniskiminawa",
+                    "kiniskiminâhk",
+                ],
+                [
+                    '"2p"',
+                    "kiniskimiwâw",
+                    "kiniskimiwâwak",
+                    "kiniskimiwâwa",
+                    "kiniskimiwâhk",
+                ],
+                ['"3p"', "", "", "oniskimiwâwa", "oniskimiwâhk"],
+                ['"4"', "", "", "oniskimiyiwa", "oniskimiyihk"],
+                ["", "", "", "", ""],
+                ["", '"DIMINUTIVE POSSESSION"', "", "", ""],
+                ["", ': "Singular"', ': "Plural"', ': "Obviative"', ': "Locative"'],
+                [
+                    '"1s"',
+                    "niniskimis / niniskimisis",
+                    "niniskimisak / niniskimisisak",
+                    "niniskimisa / niniskimisisa",
+                    "niniskimisihk / niniskimisisihk",
+                ],
+                [
+                    '"2s"',
+                    "kiniskimis / kiniskimisis",
+                    "kiniskimisak / kiniskimisisak",
+                    "kiniskimisa / kiniskimisisa",
+                    "kiniskimisihk / kiniskimisisihk",
+                ],
+                [
+                    '"3s"',
+                    "",
+                    "",
+                    "oniskimisa / oniskimisisa",
+                    "oniskimisihk / oniskimisisihk",
+                ],
+                [
+                    '"1p"',
+                    "niniskimisinân / niniskimisisinân",
+                    "niniskimisinânak / niniskimisisinânak",
+                    "niniskimisinâna / niniskimisisinâna",
+                    "niniskimisinâhk / niniskimisisinâhk",
+                ],
+                [
+                    '"21"',
+                    "kiniskimisinaw / kiniskimisisinaw",
+                    "kiniskimisinawak / kiniskimisisinawak",
+                    "kiniskimisinawa / kiniskimisisinawa",
+                    "kiniskimisinâhk / kiniskimisisinâhk",
+                ],
+                [
+                    '"2p"',
+                    "kiniskimisisiwâw / kiniskimisiwâw",
+                    "kiniskimisisiwâwak / kiniskimisiwâwak",
+                    "kiniskimisisiwâwa / kiniskimisiwâwa",
+                    "kiniskimisisiwâhk / kiniskimisiwâhk",
+                ],
+                [
+                    '"3p"',
+                    "",
+                    "",
+                    "oniskimisisiwâwa / oniskimisiwâwa",
+                    "oniskimisisiwâhk / oniskimisiwâhk",
+                ],
+                [
+                    '"4"',
+                    "",
+                    "",
+                    "oniskimisisiyiwa / oniskimisiyiwa",
+                    "oniskimisisiyihk / oniskimisiyihk",
+                ],
+            ],
+        )
+    ],
+)
+def test_paradigm_utils(lemma, inflection_category, paradigm_size, expected_table):
+    paradigm_filler = ParadigmFiller.default_filler()
+    assert (
+        paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
+        == expected_table
+    )

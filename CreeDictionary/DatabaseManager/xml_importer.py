@@ -13,18 +13,17 @@ from typing import Union, Dict, List, Set, Tuple
 import django
 import os
 
-from DatabaseManager.cree_inflection_generator import expand
+from DatabaseManager.cree_inflection_generator import expand_inflections
 
 sys.path.append(path.join(path.dirname(__file__), ".."))
 os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
 django.setup()
 
-from API.models import Definition, Source, Inflection
+from API.models import Definition, Inflection
 
 
 def clear_database():
     Definition.objects.all().delete()
-    Source.objects.all().delete()
     Inflection.objects.all().delete()
     print("All Objects deleted from Database")
 
@@ -67,13 +66,6 @@ def import_crkeng_xml(filename: PathLike):
     source_ids = [s.get("id") for s in root.findall(".//source")]
 
     print("Sources parsed:", *source_ids)
-
-    source_id_to_obj = {
-        source_id: Source(name=source_id) for source_id in source_ids
-    }  # type: Dict[str, Source]
-
-    for s in source_id_to_obj.values():
-        s.save()
 
     # value is definition object and its source as string
     xml_lemma_pos_lc_to_str_definitions = (
@@ -177,40 +169,79 @@ def import_crkeng_xml(filename: PathLike):
     )
     print(Fore.RESET)
 
+    inflection_counter = 1
+    definition_counter = 1
+
+    db_inflections = []  # type: List[Inflection]
+    db_definitions = []  # type: List[Definition]
     for xml_lemma, pos, lc in tqdm(
-        as_is_xml_lemma_pos_lc, desc="importing 'as-is' words and definition"
+        as_is_xml_lemma_pos_lc, desc="importing 'as-is' words"
     ):
+
         db_inflection = Inflection(
-            context=xml_lemma,
+            id=inflection_counter,
+            text=xml_lemma,
             analysis=generate_as_is_analysis(pos, lc),
-            is_lemma=False,
+            is_lemma=True,
             as_is=True,
         )
-
-        db_inflection.save()
+        inflection_counter += 1
+        db_inflections.append(db_inflection)
 
         str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
             (xml_lemma, pos, lc)
         ]
-        for str_definition, source_strs in str_definitions_source_strings:
-            db_definition = Definition(context=str_definition, lemma=db_inflection)
-            db_definition.save()
-            for source_id in source_strs:
-                db_definition.sources.add(source_id_to_obj[source_id])
+        for str_definition, source_strings in str_definitions_source_strings:
+            db_definition = Definition(
+                id=definition_counter,
+                text=str_definition,
+                sources=" ".join(source_strings),
+                lemma=db_inflection,
+            )
+            definition_counter += 1
+            db_definitions.append(db_definition)
+    # print(len(db_inflections))
 
-    # print(list(xml_lemma_pos_lc_to_analysis.items())[:10])
+    expanded = expand_inflections(
+        list(true_lemma_analyses_to_xml_lemma_pos_lc.keys())[:10]
+    )
 
-    # expanded = expand(xml_lemma_to_pos_lc)
+    for true_lemma_analysis, xml_lemma_pos_lcs in tqdm(
+        list(true_lemma_analyses_to_xml_lemma_pos_lc.items())[:10],
+        desc="importing generated inflections",
+    ):
+        for generated_analysis, generated_inflections in expanded[true_lemma_analysis]:
+            db_lemmas = []
+            if generated_analysis != true_lemma_analysis:
+                is_lemma = False
+            else:
+                is_lemma = True
 
-    # pos_set.add(pos_str)
-    # lc_set.add(lc_str)
+            for generated_inflection in generated_inflections:
+                db_inflection = Inflection(
+                    text=generated_inflection,
+                    analysis=generated_analysis,
+                    is_lemma=is_lemma,
+                    as_is=False,
+                )
 
-    pass
-    # print(pos_set)
-    # print(lc_set)
-    # todo: save defs
+                db_inflection.save()
+                if is_lemma:
+                    db_lemmas.append(db_inflection)
 
-    # b = root.findall(".//e//mg//tg/t")
-    # print(a[0].text)
-    # print(a[0].get('pos'))
-    # print(xmlLemmas[:3])
+            if is_lemma:
+
+                str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
+                    xml_lemma_pos_lcs[0]
+                ]
+
+                for str_definition, source_strs in str_definitions_source_strings:
+                    db_definition = Definition(context=str_definition)
+                    db_definition.save()
+                    for source_id in source_strs:
+                        db_definition.sources.add(source_id_to_obj[source_id])
+                    for db_lemma in db_lemmas:
+                        db_lemma.definitions.add(db_definition)
+
+    Inflection.objects.bulk_create(db_inflections)
+    Definition.objects.bulk_create(db_definitions)
