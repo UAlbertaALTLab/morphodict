@@ -24,6 +24,16 @@ check_parser.add_argument(
 
 import_parser.add_argument("xml_filename")
 
+import_parser.add_argument(
+    "--multi-processing",
+    "-m",
+    dest="process_count",
+    type=int,
+    action="store",
+    default=1,
+    help="Use multi-processing to accelerate importing. Default is 1, which is no multi-processing. A rule is to use as many processes as the number of cores of the machine.",
+)
+
 check_parser.add_argument(
     "--ambiguity",
     "-a",
@@ -49,6 +59,6 @@ args = parser.parse_args()
 if args.command_name == "clear":
     clear_database()
 elif args.command_name == "import":
-    import_crkeng_xml(args.xml_filename)
+    import_crkeng_xml(args.xml_filename, args.process_count)
 elif args.command_name == "check":
     check_xml(args.xml_filename, args.verbose, args.check_only)

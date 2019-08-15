@@ -64,7 +64,7 @@ def parse_xml_pos(pos: str) -> str:
 
 
 def extract_fst_lemmas(
-    xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]]
+    xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]], multi_processing: int = 1
 ) -> Dict[Tuple[str, str, str], str]:
     """
     for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
@@ -80,7 +80,7 @@ def extract_fst_lemmas(
 
     inflections = xml_lemma_to_pos_lc.keys()
 
-    xml_lemma_to_analyses = analyzer.feed_in_bulk_fast(inflections)
+    xml_lemma_to_analyses = analyzer.feed_in_bulk_fast(inflections, multi_processing)
 
     no_analysis_counter = 0
 

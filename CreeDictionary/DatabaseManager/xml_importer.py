@@ -1,4 +1,6 @@
+import datetime
 import sys
+import time
 from os import path
 
 import xml.etree.ElementTree as ET
@@ -53,10 +55,11 @@ def generate_as_is_analysis(pos: str, lc: str):
         return pos
 
 
-def import_crkeng_xml(filename: PathLike):
+def import_crkeng_xml(filename: PathLike, multi_processing: int):
     """
     CLEARS the database and import from an xml file
     """
+    start_time = time.time()
 
     clear_database()
     print("Database cleared")
@@ -129,8 +132,9 @@ def import_crkeng_xml(filename: PathLike):
     )
     print(Fore.RESET)
     print("%d (xml_lemma, pos, lc) tuples extracted" % tuple_count)
+
     xml_lemma_pos_lc_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
-        xml_lemma_to_pos_lc
+        xml_lemma_to_pos_lc, multi_processing
     )
 
     # these two will be imported to the database
@@ -199,12 +203,13 @@ def import_crkeng_xml(filename: PathLike):
             db_definitions.append(db_definition)
 
     expanded = expand_inflections(
-        list(true_lemma_analyses_to_xml_lemma_pos_lc.keys())[:10]
+        true_lemma_analyses_to_xml_lemma_pos_lc.keys(), multi_processing
     )
 
-    for true_lemma_analysis, xml_lemma_pos_lcs in list(
-        true_lemma_analyses_to_xml_lemma_pos_lc.items()
-    )[:10]:
+    for (
+        true_lemma_analysis,
+        xml_lemma_pos_lcs,
+    ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
         for generated_analysis, generated_inflections in expanded[true_lemma_analysis]:
             # db_lemmas could be of length more than one
             # for example peepeepoopoo+N+A+Sg may generate two spellings: pepepopo / peepeepoopoo
@@ -251,5 +256,15 @@ def import_crkeng_xml(filename: PathLike):
                     # for db_lemma in db_lemmas:
                     #     db_lemma.definitions.add(db_definition)
 
+    print("Inserting generated inflections to database...")
     Inflection.objects.bulk_create(db_inflections)
+    print("Done inserting.")
+
+    print("Inserting definition to database...")
     Definition.objects.bulk_create(db_definitions)
+    print("Done inserting.")
+
+    seconds = datetime.timedelta(seconds=time.time() - start_time).seconds
+    print(Fore.GREEN)
+    print("Import finished in %d min %d sec" % (seconds // 60, seconds % 60))
+    print(Fore.RESET)

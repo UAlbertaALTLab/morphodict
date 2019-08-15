@@ -50,7 +50,7 @@ def import_flattened_prefilled_layouts(
 
 
 def expand_inflections(
-    analyses: Iterable[str]
+    analyses: Iterable[str], multi_processing: int = 1
 ) -> Dict[str, List[Tuple[str, Set[str]]]]:
     """
     for every lemma fst analysis, generate all inflections according to paradigm files
@@ -85,9 +85,9 @@ def expand_inflections(
         to_generated[analysis] = generated_analyses
         fat_generated_analyses.extend(generated_analyses)
 
-    print("Generating inflections...")
+    print("Generating inflections using %d processes..." % multi_processing)
     generated_analyses_to_inflections = generator.feed_in_bulk_fast(
-        fat_generated_analyses
+        fat_generated_analyses, multi_processing
     )
     print("Done generating inflections")
 
