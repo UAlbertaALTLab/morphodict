@@ -113,7 +113,6 @@ def import_crkeng_xml(filename: PathLike):
             tuple_count += 1
             xml_lemma_to_pos_lc[xml_lemma] = [(pos_str, lc_str)]
 
-        # todo: tests if definition are really merged
         if duplicate_lemma_pos_lc:
             xml_lemma_pos_lc_to_str_definitions[(xml_lemma, pos_str, lc_str)].extend(
                 str_definitions_for_entry
@@ -174,10 +173,8 @@ def import_crkeng_xml(filename: PathLike):
 
     db_inflections = []  # type: List[Inflection]
     db_definitions = []  # type: List[Definition]
-    for xml_lemma, pos, lc in tqdm(
-        as_is_xml_lemma_pos_lc, desc="importing 'as-is' words"
-    ):
 
+    for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         db_inflection = Inflection(
             id=inflection_counter,
             text=xml_lemma,
@@ -200,17 +197,17 @@ def import_crkeng_xml(filename: PathLike):
             )
             definition_counter += 1
             db_definitions.append(db_definition)
-    # print(len(db_inflections))
 
     expanded = expand_inflections(
         list(true_lemma_analyses_to_xml_lemma_pos_lc.keys())[:10]
     )
 
-    for true_lemma_analysis, xml_lemma_pos_lcs in tqdm(
-        list(true_lemma_analyses_to_xml_lemma_pos_lc.items())[:10],
-        desc="importing generated inflections",
-    ):
+    for true_lemma_analysis, xml_lemma_pos_lcs in list(
+        true_lemma_analyses_to_xml_lemma_pos_lc.items()
+    )[:10]:
         for generated_analysis, generated_inflections in expanded[true_lemma_analysis]:
+            # db_lemmas could be of length more than one
+            # for example peepeepoopoo+N+A+Sg may generate two spellings: pepepopo / peepeepoopoo
             db_lemmas = []
             if generated_analysis != true_lemma_analysis:
                 is_lemma = False
@@ -219,29 +216,40 @@ def import_crkeng_xml(filename: PathLike):
 
             for generated_inflection in generated_inflections:
                 db_inflection = Inflection(
+                    id=inflection_counter,
                     text=generated_inflection,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
                     as_is=False,
                 )
 
-                db_inflection.save()
+                inflection_counter += 1
+                db_inflections.append(db_inflection)
+
                 if is_lemma:
                     db_lemmas.append(db_inflection)
 
             if is_lemma:
+                for db_lemma in db_lemmas:
+                    str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
+                        xml_lemma_pos_lcs[0]
+                    ]
 
-                str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
-                    xml_lemma_pos_lcs[0]
-                ]
+                    for (
+                        str_definition,
+                        source_strings,
+                    ) in str_definitions_source_strings:
+                        db_definition = Definition(
+                            id=definition_counter,
+                            text=str_definition,
+                            sources=" ".join(source_strings),
+                            lemma=db_lemma,
+                        )
+                        definition_counter += 1
+                        db_definitions.append(db_definition)
 
-                for str_definition, source_strs in str_definitions_source_strings:
-                    db_definition = Definition(context=str_definition)
-                    db_definition.save()
-                    for source_id in source_strs:
-                        db_definition.sources.add(source_id_to_obj[source_id])
-                    for db_lemma in db_lemmas:
-                        db_lemma.definitions.add(db_definition)
+                    # for db_lemma in db_lemmas:
+                    #     db_lemma.definitions.add(db_definition)
 
     Inflection.objects.bulk_create(db_inflections)
     Definition.objects.bulk_create(db_definitions)
