@@ -6,6 +6,7 @@ from os import path
 import xml.etree.ElementTree as ET
 
 from colorama import Fore
+from django.db import connection
 from tqdm import tqdm
 
 from DatabaseManager import xml_entry_lemma_finder
@@ -25,8 +26,14 @@ from API.models import Definition, Inflection
 
 
 def clear_database():
-    Definition.objects.all().delete()
-    Inflection.objects.all().delete()
+    print("Deleting objects from the database")
+
+    cursor = connection.cursor()
+
+    # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
+    cursor.execute("DELETE FROM API_definition")
+    cursor.execute("DELETE FROM API_inflection")
+
     print("All Objects deleted from Database")
 
 
