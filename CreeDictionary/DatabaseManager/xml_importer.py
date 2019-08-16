@@ -263,7 +263,7 @@ def import_crkeng_xml(filename: PathLike, multi_processing: int):
                     # for db_lemma in db_lemmas:
                     #     db_lemma.definitions.add(db_definition)
 
-    print("Inserting generated inflections to database...")
+    print("Inserting %d inflections to database..." % len(db_inflections))
     Inflection.objects.bulk_create(db_inflections)
     print("Done inserting.")
 

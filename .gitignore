@@ -267,8 +267,7 @@ __pycache__/
 /CreeDictionary/res/dictionaries/
 crkeng.xml
 engcrk.xml
-/CreeDictionary/db.sqlite3
-/CreeDictionary/db.sqlite3.bak
+*.sqlite3
 /hfst
 
 # virtual env

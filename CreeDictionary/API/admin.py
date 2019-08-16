@@ -50,6 +50,7 @@ class HasParadigmListFilter(admin.SimpleListFilter):
 
 @admin.register(Inflection)
 class InflectionAdmin(admin.ModelAdmin):
+    # todo: use fuzzy search and spell relax in the admin
     search_fields = ("text",)
 
     list_display = ("text", "is_lemma", "has_paradigm", "get_definitions")

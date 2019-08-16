@@ -1,19 +1,15 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
-from colorama import Fore
 from os.path import dirname
 from pathlib import Path
-from typing import List, Dict, Tuple, Set, Optional
+from typing import List, Dict, Tuple
+
+from colorama import Fore
 from hfstol import HFSTOL
 
 import utils
 from DatabaseManager.xml_consistency_checker import does_hfstol_xml_pos_match
-from constants import InflectionCategory
-
-# analyzer_file = (
-#     Path(dirname(__file__)) / ".." / "res" / "fst" / "crk-descriptive-analyzer.hfstol"
-# )
 from utils import hfstol_analysis_parser
 
 analyzer_file = (
@@ -21,46 +17,6 @@ analyzer_file = (
 )
 
 analyzer = HFSTOL.from_file(analyzer_file)
-
-
-def parse_xml_lc(lc_text: str) -> Optional[InflectionCategory]:
-    """
-    return recognized lc
-    :param lc_text: 2019 July, all lc from crkeng.xml are
-        {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
-        'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
-        'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
-        'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
-        'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
-    :return:
-    """
-    if lc_text is None:
-        return None
-    if lc_text.startswith("VTA"):
-        return InflectionCategory.VTA
-    if lc_text.startswith("VTI"):
-        return InflectionCategory.VTI
-    if lc_text.startswith("VAI"):
-        return InflectionCategory.VAI
-    if lc_text.startswith("VII"):
-        return InflectionCategory.VII
-    if lc_text.startswith("NDA"):
-        return InflectionCategory.NAD
-    if lc_text.startswith("NI"):
-        return InflectionCategory.NI
-    if lc_text.startswith("NDI"):
-        return InflectionCategory.NID
-    if lc_text.startswith("NA"):
-        return InflectionCategory.NA
-
-    if lc_text.startswith("IPC"):
-        return InflectionCategory.IPC
-
-    return None
-
-
-def parse_xml_pos(pos: str) -> str:
-    pass
 
 
 def extract_fst_lemmas(
