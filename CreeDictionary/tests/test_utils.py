@@ -1,11 +1,8 @@
-from os.path import dirname
-from pathlib import Path
-
-from constants import InflectionCategory, ParadigmSize
-from utils import extract_category, identify_lemma_analysis, paradigm
-from utils import hfstol_analysis_parser
 import pytest
 
+from constants import InflectionCategory, ParadigmSize
+from utils import extract_category, identify_lemma_analysis
+from utils import hfstol_analysis_parser
 from utils.paradigm import ParadigmFiller
 
 

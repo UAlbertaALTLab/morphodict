@@ -29,7 +29,7 @@ def home(request):
     return HttpResponse("")
 
 
-def search(request, queryString):
+def search(request, query_string):
     """
     Search View for /Search/:queryString:
     :queryString: needs to be exactly contained in a lemma context
@@ -46,24 +46,23 @@ def search(request, queryString):
         Definition
     """
     # URL Decode
-    queryString = unquote(queryString)
+    query_string = unquote(query_string)
     # Normalize to UTF8 NFC
-    queryString = unicodedata.normalize("NFC", queryString)
-    queryString = (
-        queryString.replace("ā", "â")
+    query_string = unicodedata.normalize("NFC", query_string)
+    query_string = (
+        query_string.replace("ā", "â")
         .replace("ē", "ê")
         .replace("ī", "î")
         .replace("ō", "ô")
     )
-    print("Search: " + queryString)
-    queryString = syllabics2sro(queryString)
-    print("Search SRO: " + queryString)
+    query_string = syllabics2sro(query_string)
+    print("Search SRO: " + query_string)
     # To lower
-    queryString = queryString.lower()
+    query_string = query_string.lower()
 
     response = dict()
 
-    fstResult = list(fstAnalyzer.analyze(queryString))
+    fstResult = list(fstAnalyzer.analyze(query_string))
     creeWords = list()
     englishWords = list()
     if len(fstResult) > 0:
@@ -77,12 +76,12 @@ def search(request, queryString):
         creeWords += [datafetch.fetch_exact_lemma(lemma)]
     else:
         # Probably English
-        print("English: " + queryString)
-        englishWords += datafetch.fetchLemmaContainsDefinition(queryString)
+        print("English: " + query_string)
+        englishWords += datafetch.fetchLemmaContainsDefinition(query_string)
 
     # Still searches contains since some cree like inputs can be inparsable by fst
-    creeWords += datafetch.fetchContainsLemma(queryString)
-    creeWords += datafetch.fetchLemmaContainsInflection(queryString)
+    creeWords += datafetch.fetchContainsLemma(query_string)
+    creeWords += datafetch.fetchLemmaContainsInflection(query_string)
 
     if len(creeWords) >= len(englishWords):
         words = creeWords

@@ -6,6 +6,7 @@ from DatabaseManager.xml_importer import clear_database, import_crkeng_xml
 parser = argparse.ArgumentParser(description="cli to manage django sqlite dictionary")
 
 subparsers = parser.add_subparsers(dest="command_name")
+subparsers.required = True
 
 clear_parser = subparsers.add_parser(
     "clear",
@@ -29,9 +30,7 @@ import_parser.add_argument(
     help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. A rule is to use as many processes as the number of cores of the machine.",
 )
 
-
 args = parser.parse_args()
-
 
 if args.command_name == "clear":
     clear_database()

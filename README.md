@@ -14,8 +14,8 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 - `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
 - `$ cd cree-intelligent-dictionary`
-- Use your python environment of choice with python 3.5+ (venv/pipenv/system interpreter)
-- `$ pip install -r requirements.txt`
+- Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
+- `$ pipenv install --dev`
 - Install HFST
 
     Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
@@ -42,11 +42,11 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 - Build Database
     - `cd CreeDictionary`
-    - `python -m DatabaseManager import res/dictionaries/crkeng.xml` 
+    - `python DatabaseManager import res/dictionaries/crkeng.xml` 
     
         It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-        `python -m DatabaseManager import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+        `python DatabaseManager import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
         
 - Run development server
     - `cd CreeDictionary`

@@ -1,3 +1,4 @@
+# todo: use pipenv; update tests
 env:
   - Production=false
 sudo: required
