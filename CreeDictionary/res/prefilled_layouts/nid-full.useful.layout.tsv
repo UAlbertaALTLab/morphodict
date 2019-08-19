@@ -1,0 +1,30 @@
+"Singular"	{{ lemma }}+N+I+D+PxX+Sg		
+"Plural"	{{ lemma }}+N+I+D+PxX+Pl		
+"Locative"	{{ lemma }}+N+I+D+PxX+Loc		
+			
+	"DIMINUTIVE"		
+"Singular"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Sg		
+"Plural"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Pl		
+"Locative"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Loc		
+			
+	"POSSESSION"		
+	: "Singular Noun"	: "Plural Noun"	: "Locative"
+"1s"	{{ lemma }}+N+I+D+Px1Sg+Sg	{{ lemma }}+N+I+D+Px1Sg+Pl	{{ lemma }}+N+I+D+Px1Sg+Loc
+"2s"	{{ lemma }}+N+I+D+Px2Sg+Sg	{{ lemma }}+N+I+D+Px2Sg+Pl	{{ lemma }}+N+I+D+Px2Sg+Loc
+"3s"	{{ lemma }}+N+I+D+Px3Sg+Sg	{{ lemma }}+N+I+D+Px3Sg+Pl	{{ lemma }}+N+I+D+Px3Sg+Loc
+"1p"	{{ lemma }}+N+I+D+Px1Pl+Sg	{{ lemma }}+N+I+D+Px1Pl+Pl	{{ lemma }}+N+I+D+Px1Pl+Loc
+"21"	{{ lemma }}+N+I+D+Px12Pl+Sg	{{ lemma }}+N+I+D+Px12Pl+Pl	{{ lemma }}+N+I+D+Px12Pl+Loc
+"2p"	{{ lemma }}+N+I+D+Px2Pl+Sg	{{ lemma }}+N+I+D+Px2Pl+Pl	{{ lemma }}+N+I+D+Px2Pl+Loc
+"3p"	{{ lemma }}+N+I+D+Px3Pl+Sg	{{ lemma }}+N+I+D+Px3Pl+Pl	{{ lemma }}+N+I+D+Px3Pl+Loc
+"4"	{{ lemma }}+N+I+D+Px4Sg/Pl+Sg	{{ lemma }}+N+I+D+Px4Sg/Pl+Pl	{{ lemma }}+N+I+D+Px4Sg/Pl+Loc
+			
+	"DIMINUTIVE POSSESSION"		
+	: "Singular Noun"	: "Plural Noun"	: "Locative"
+"1s"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Loc
+"2s"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Loc
+"3s"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Loc
+"1p"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Loc
+"21"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Loc
+"2p"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Loc
+"3p"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Loc
+"4"	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Sg	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Pl	{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Loc

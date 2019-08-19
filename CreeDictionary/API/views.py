@@ -5,7 +5,6 @@ from typing import Dict, List
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
-from fst_lookup import FST
 from django.conf import settings
 from API.models import *
 import os
@@ -18,9 +17,7 @@ from cree_sro_syllabics import syllabics2sro
 
 from utils.paradigm import ParadigmFiller
 
-fstAnalyzer = FST.from_file(
-    os.path.join(settings.BASE_DIR, "API/fst/crk-descriptive-analyzer.fomabin")
-)
+
 
 paradigm_filler = ParadigmFiller.default_filler()
 

@@ -273,6 +273,8 @@ engcrk.xml
 # virtual env
 /env
 
+.env
+
 /venv/
 
 CreeDictionary/static/

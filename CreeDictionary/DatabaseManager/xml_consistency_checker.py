@@ -6,7 +6,7 @@ from constants import InflectionCategory
 
 def parse_xml_lc(lc_text: str) -> Optional[InflectionCategory]:
     """
-    return recognized lc
+    return recognized lc, None if not recognized
 
     :param lc_text: 2019 July, all lc from crkeng.xml are
         {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
@@ -43,7 +43,26 @@ def parse_xml_lc(lc_text: str) -> Optional[InflectionCategory]:
 
 def does_hfstol_xml_pos_match(
     hfstol_category: InflectionCategory, xml_pos: str, xml_lc: str
-):
+) -> bool:
+    """
+    check whether a xml entry is "compatible" with an `InflectionCategory`
+
+    Note: xml entries are underspecified: meaning they can say 'V' in pos but nothing in lc
+
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, 'V', '')
+    True
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, 'V', 'VTI-?')
+    True
+
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, '', '')
+    False
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, 'V', 'VAI-2')
+    False
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, 'N', '')
+    False
+    >>> does_hfstol_xml_pos_match(InflectionCategory.VTI, 'V', 'Nonsense Garbage Garbage')
+    False
+    """
 
     if (
         (xml_pos == "V" and hfstol_category.is_verb())
@@ -53,7 +72,7 @@ def does_hfstol_xml_pos_match(
     ):
         lc_category = parse_xml_lc(xml_lc)
 
-        if lc_category is None or hfstol_category is lc_category:
+        if xml_lc == "" or hfstol_category is lc_category:
             return True
         else:
             return False

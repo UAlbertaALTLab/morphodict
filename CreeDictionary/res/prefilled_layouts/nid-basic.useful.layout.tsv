@@ -1,0 +1,7 @@
+"1s poss (sg)"	{{ lemma }}+N+I+D+Px1Sg+Sg
+"2s poss (sg)"	{{ lemma }}+N+I+D+Px2Sg+Sg
+"3s poss (sg)"	{{ lemma }}+N+I+D+Px3Sg+Sg
+	: "Unspecified possessor"
+"X poss (sg)"	{{ lemma }}+N+I+D+PxX+Sg
+"X poss (pl)"	{{ lemma }}+N+I+D+PxX+Pl
+"X poss (loc)"	{{ lemma }}+N+I+D+PxX+Loc

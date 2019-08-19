@@ -1,0 +1,24 @@
+	"Unspecified possessor"		
+"Singular"	{{ lemma }}+N+A+D+PxX+Sg		
+"Plural"	{{ lemma }}+N+A+D+PxX+Pl		
+"Obviative"	{{ lemma }}+N+A+D+PxX+Obv		
+"Locative"	{{ lemma }}+N+A+D+PxX+Loc		
+"Distributive"	{{ lemma }}+N+A+D+PxX+Distr		
+			
+	"POSSESSION"		
+	: "Singular Noun"	: "Plural Noun"	: "Obviative Noun"
+"1s"	{{ lemma }}+N+A+D+Px1Sg+Sg	{{ lemma }}+N+A+D+Px1Sg+Pl	{{ lemma }}+N+A+D+Px1Sg+Obv
+"2s"	{{ lemma }}+N+A+D+Px2Sg+Sg	{{ lemma }}+N+A+D+Px2Sg+Pl	{{ lemma }}+N+A+D+Px2Sg+Obv
+"3s"			{{ lemma }}+N+A+D+Px3Sg+Obv
+"1p"	{{ lemma }}+N+A+D+Px1Pl+Sg	{{ lemma }}+N+A+D+Px1Pl+Pl	{{ lemma }}+N+A+D+Px1Pl+Obv
+"21"	{{ lemma }}+N+A+D+Px12Pl+Sg	{{ lemma }}+N+A+D+Px12Pl+Pl	{{ lemma }}+N+A+D+Px12Pl+Obv
+"2p"	{{ lemma }}+N+A+D+Px2Pl+Sg	{{ lemma }}+N+A+D+Px2Pl+Pl	{{ lemma }}+N+A+D+Px2Pl+Obv
+"3p"			{{ lemma }}+N+A+D+Px3Pl+Obv
+"4"			{{ lemma }}+N+A+D+Px4Sg/Pl+Obv
+"X"	{{ lemma }}+N+A+D+PxX+Sg	{{ lemma }}+N+A+D+PxX+Pl	{{ lemma }}+N+A+D+PxX+Obv
+			
+	"DIMINUTIVE"		
+	"Singular noun"		
+"1s"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Sg+Sg		
+"2s"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Sg+Pl		
+"3s"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+PxX+Obv		

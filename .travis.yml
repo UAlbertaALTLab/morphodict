@@ -13,7 +13,6 @@ stages:
   - name: deploy
     if: branch = master
 
-
 jobs:
   include:
     - language: python

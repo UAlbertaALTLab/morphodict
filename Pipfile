@@ -1,0 +1,30 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+black = "==19.3b0"
+pytest = "~=5.1"
+pytest-django = "~=3.5"
+creedictionary = {editable = true,path = "./CreeDictionary"}
+
+[packages]
+colorama = "~=0.4"
+coverage = "~=4.5"
+cree-sro-syllabics = "==2019.2.18"
+hfstol = "~=1.1"
+mod-wsgi = "~=4.6"
+pytz = "==2019.2"
+tqdm = "~=4.33"
+Django = "~=2.2"
+
+[scripts]
+# reminders. you can just use $ manage-db
+manage-db = "manage-db"
+clear-db = "manage-db clear"
+import-xml = "manage-db import"
+
+
+[requires]
+python_version = "3.6"

@@ -1,0 +1,40 @@
+	"PRESENT TENSE"	
+	: "Independent"	: "Conjunct"
+"1s"	{{ lemma }}+V+AI+Ind+Prs+1Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prs+1Sg
+"2s"	{{ lemma }}+V+AI+Ind+Prs+2Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prs+2Sg
+"3s"	{{ lemma }}+V+AI+Ind+Prs+3Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prs+3Sg
+"1p"	{{ lemma }}+V+AI+Ind+Prs+1Pl	PV/e+{{ lemma }}+V+AI+Cnj+Prs+1Pl
+"21"	{{ lemma }}+V+AI+Ind+Prs+12Pl	PV/e+{{ lemma }}+V+AI+Cnj+Prs+12Pl
+"2p"	{{ lemma }}+V+AI+Ind+Prs+2Pl	PV/e+{{ lemma }}+V+AI+Cnj+Prs+2Pl
+"3p"	{{ lemma }}+V+AI+Ind+Prs+3Pl	PV/e+{{ lemma }}+V+AI+Cnj+Prs+3Pl
+"4"	{{ lemma }}+V+AI+Ind+Prs+4Sg/Pl	PV/e+{{ lemma }}+V+AI+Cnj+Prs+4Sg/Pl
+"X"	{{ lemma }}+V+AI+Ind+Prs+X	PV/e+{{ lemma }}+V+AI+Cnj+Prs+X
+		
+	"PAST TENSE"	
+	: "Independent"	: "Conjunct"
+"1s"	{{ lemma }}+V+AI+Ind+Prt+1Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prt+1Sg
+"2s"	{{ lemma }}+V+AI+Ind+Prt+2Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prt+2Sg
+"3s"	{{ lemma }}+V+AI+Ind+Prt+3Sg	PV/e+{{ lemma }}+V+AI+Cnj+Prt+3Sg
+		
+	"FUTURE INTENTIONAL TENSE"	
+	: "Independent"	: "Conjunct"
+"1s"	{{ lemma }}+V+AI+Ind+Fut+Int+1Sg	PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+1Sg
+"2s"	{{ lemma }}+V+AI+Ind+Fut+Int+2Sg	PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+2Sg
+"3s"	{{ lemma }}+V+AI+Ind+Fut+Int+3Sg	PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+3Sg
+		
+	"FUTURE DEFINITE TENSE"	
+	: "Independent"	
+"1s"	{{ lemma }}+V+AI+Ind+Fut+Def+1Sg	
+"2s"	{{ lemma }}+V+AI+Ind+Fut+Def+2Sg	
+"3s"	{{ lemma }}+V+AI+Ind+Fut+Def+3Sg	
+		
+	"FUTURE CONDITIONAL"	
+"1s"	{{ lemma }}+V+AI+Fut+Cond+1Sg	
+"2s"	{{ lemma }}+V+AI+Fut+Cond+2Sg	
+"3s"	{{ lemma }}+V+AI+Fut+Cond+3Sg	
+		
+	"IMPERATIVE"	
+	: "Immediate"	: "Delayed"
+"2s"	{{ lemma }}+V+AI+Imp+Imm+2Sg	{{ lemma }}+V+AI+Imp+Del+2Sg
+"21"	{{ lemma }}+V+AI+Imp+Imm+12Pl	{{ lemma }}+V+AI+Imp+Del+12Pl
+"2p"	{{ lemma }}+V+AI+Imp+Imm+2Pl	{{ lemma }}+V+AI+Imp+Del+2Pl

@@ -1,0 +1,63 @@
+import pytest
+
+from DatabaseManager.xml_consistency_checker import parse_xml_lc
+from constants import InflectionCategory
+
+
+@pytest.mark.parametrize(
+    ("lc_string", "expected_ic_obj"),
+    [
+        ("NDA-1", InflectionCategory.NAD),
+        ("NDI-?", InflectionCategory.NID),
+        ("NA-3", InflectionCategory.NA),
+        ("NA-4w", InflectionCategory.NA),
+        ("NDA-2", InflectionCategory.NAD),
+        ("VTI-2", InflectionCategory.VTI),
+        ("NDI-3", InflectionCategory.NID),
+        ("NDI-x", InflectionCategory.NID),
+        ("NDA-x", InflectionCategory.NAD),
+        ("IPJ  Exclamation", None),
+        ("NI-5", InflectionCategory.NI),
+        ("NDA-4", InflectionCategory.NAD),
+        ("VII-n", InflectionCategory.VII),
+        ("NDI-4", InflectionCategory.NID),
+        ("VTA-2", InflectionCategory.VTA),
+        ("IPH", None),
+        ("IPC ;; IPJ", InflectionCategory.IPC),
+        ("VAI-v", InflectionCategory.VAI),
+        ("VTA-1", InflectionCategory.VTA),
+        ("NI-3", InflectionCategory.NI),
+        ("VAI-n", InflectionCategory.VAI),
+        ("NDA-4w", InflectionCategory.NAD),
+        ("IPJ", None),
+        ("PrI", None),
+        ("NA-2", InflectionCategory.NA),
+        ("IPN", None),
+        ("PR", None),
+        ("IPV", None),
+        ("NA-?", InflectionCategory.NA),
+        ("NI-1", InflectionCategory.NI),
+        ("VTA-3", InflectionCategory.VTA),
+        ("NI-?", InflectionCategory.NI),
+        ("VTA-4", InflectionCategory.VTA),
+        ("VTI-3", InflectionCategory.VTI),
+        ("NI-2", InflectionCategory.NI),
+        ("NA-4", InflectionCategory.NA),
+        ("NDI-1", InflectionCategory.NID),
+        ("NA-1", InflectionCategory.NA),
+        ("IPP", None),
+        ("NI-4w", InflectionCategory.NI),
+        ("INM", None),
+        ("VTA-5", InflectionCategory.VTA),
+        ("PrA", None),
+        ("NDI-2", InflectionCategory.NID),
+        ("IPC", InflectionCategory.IPC),
+        ("VTI-1", InflectionCategory.VTI),
+        ("NI-4", InflectionCategory.NI),
+        ("NDA-3", InflectionCategory.NAD),
+        ("VII-v", InflectionCategory.VII),
+        ("Interr", None),
+    ],
+)
+def test_parse_xml_lc(lc_string, expected_ic_obj):
+    print(lc_string, expected_ic_obj)

@@ -2,20 +2,22 @@
 
 A package that manages db.sqlite3 and imports xml files.
 
+If installed as a package, command `manage-db` will be added to python environment and should be accessible from a terminal cross-platform. In case `manage-db` is not accessible, use `python -m DatabaseManager` instead. 
+
 ## Examples
 
 - Import crkeng.xml to the database
 
-    `python DatabaseManager import /res/dictionaries/crkeng.xml`
+    `manage-db import /res/dictionaries/crkeng.xml`
     
 - Import crkeng.xml to the database with multi-process acceleration
 
-    `python DatabaseManager import /res/dictionaries/crkeng.xml --multi-process 3`
+    `manage-db import /res/dictionaries/crkeng.xml --multi-process 3`
     
 - Help for sub-command `import`
 
-    `python DatabaseManager import --help`
+    `manage-db import --help`
 
 - Clear imported old data (normally unnecessary as `import` also clears data at start)
 
-    `python DatabaseManager clear`
+    `manage-db clear`
