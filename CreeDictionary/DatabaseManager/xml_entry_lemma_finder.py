@@ -20,7 +20,9 @@ analyzer = HFSTOL.from_file(analyzer_file)
 
 
 def extract_fst_lemmas(
-    xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]], multi_processing: int = 1
+    xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]],
+    multi_processing: int = 1,
+    verbose=True,
 ) -> Dict[Tuple[str, str, str], str]:
     """
     for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
@@ -110,23 +112,25 @@ def extract_fst_lemmas(
                     # )
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
                     dup_counter += 1
-    print(Fore.GREEN)
-    print("%d (lemma, pos, lc) found proper lemma analysis" % success_counter)
-    print(Fore.BLUE)
-    print(
-        "There are %d (lemma, pos, lc) that the fst can not give any analyses."
-        % no_analysis_counter
-    )
-    print(
-        "There are %d (lemma, pos, lc) that do not have proper lemma analysis by fst"
-        % no_match_counter
-    )
+    if verbose:
+        print(Fore.GREEN)
+        print("%d (lemma, pos, lc) found proper lemma analysis" % success_counter)
+        print(Fore.BLUE)
+        print(
+            "There are %d (lemma, pos, lc) that the fst can not give any analyses."
+            % no_analysis_counter
+        )
+        print(
+            "There are %d (lemma, pos, lc) that do not have proper lemma analysis by fst"
+            % no_match_counter
+        )
 
-    print(
-        "There are %d (lemma, pos, lc) that have ambiguous lemma analyses" % dup_counter
-    )
-    print("These words will be shown 'as-is' without analyses and paradigm tables")
+        print(
+            "There are %d (lemma, pos, lc) that have ambiguous lemma analyses"
+            % dup_counter
+        )
+        print("These words will be shown 'as-is' without analyses and paradigm tables")
 
-    print(Fore.RESET)
+        print(Fore.RESET)
 
     return xml_lemma_pos_lc_to_analysis

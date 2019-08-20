@@ -1,6 +1,7 @@
 # todo: command line
 import argparse
 
+from DatabaseManager.testfile import doshit
 from DatabaseManager.xml_importer import clear_database, import_crkeng_xml
 
 parser = argparse.ArgumentParser(description="cli to manage django sqlite dictionary")
@@ -30,12 +31,14 @@ import_parser.add_argument(
     help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. A rule is to use as many processes as the number of cores of the machine.",
 )
 
+
 def cmd_entry():
     args = parser.parse_args()
     if args.command_name == "clear":
         clear_database()
     elif args.command_name == "import":
         import_crkeng_xml(args.xml_filename, args.process_count)
+
 
 if __name__ == "__main__":
     cmd_entry()
