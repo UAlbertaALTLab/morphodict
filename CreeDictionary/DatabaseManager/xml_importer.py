@@ -1,32 +1,31 @@
 import datetime
-import sys
+import os
 import time
-from os import path
-
 import xml.etree.ElementTree as ET
-
-from colorama import Fore
-from django.db import connection
-from tqdm import tqdm
-
-from DatabaseManager import xml_entry_lemma_finder
-from constants import PathLike
-from typing import Union, Dict, List, Set, Tuple
+from pathlib import Path
+from typing import Dict, List, Tuple
 
 import django
-import os
+from colorama import Fore, init
+from django.db import connection
 
+from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
+from DatabaseManager.log import DatabaseManagerLogger
 
-sys.path.append(path.join(path.dirname(__file__), ".."))
+init()  # for windows compatibility
+
 os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
 django.setup()
 
 from API.models import Definition, Inflection
 
+logger = DatabaseManagerLogger(__name__)
 
-def clear_database():
-    print("Deleting objects from the database")
+
+def clear_database(verbose=True):
+    logger.set_print_info_on_console(verbose)
+    logger.info("Deleting objects from the database")
 
     cursor = connection.cursor()
 
@@ -34,13 +33,19 @@ def clear_database():
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
 
-    print("All Objects deleted from Database")
+    logger.info("All Objects deleted from Database")
 
 
-def generate_as_is_analysis(pos: str, lc: str):
+def generate_as_is_analysis(pos: str, lc: str) -> str:
     """
     generate analysis for xml entries whose fst analysis cannot be determined.
     The philosophy is to show lc if possible (which is more detailed), with pos being the fall back
+    >>> generate_as_is_analysis('N', 'NI-2')
+    'NI'
+    >>> generate_as_is_analysis('N', '')
+    'N'
+    >>> generate_as_is_analysis('V', 'VTI')
+    'VTI'
     """
 
     # possible parsed pos str
@@ -62,20 +67,20 @@ def generate_as_is_analysis(pos: str, lc: str):
         return pos
 
 
-def import_crkeng_xml(filename: PathLike, multi_processing: int):
+def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
     """
     CLEARS the database and import from an xml file
     """
     start_time = time.time()
-
+    logger.set_print_info_on_console(verbose)
     clear_database()
-    print("Database cleared")
+    logger.info("Database cleared")
 
-    root = ET.parse(filename).getroot()
+    root = ET.parse(str(filename)).getroot()
 
     source_ids = [s.get("id") for s in root.findall(".//source")]
 
-    print("Sources parsed:", *source_ids)
+    logger.info("Sources parsed: " + str(source_ids))
 
     # value is definition object and its source as string
     xml_lemma_pos_lc_to_str_definitions = (
@@ -89,10 +94,10 @@ def import_crkeng_xml(filename: PathLike, multi_processing: int):
     # xml_lemma_to_inflections = dict()  # type: Dict[str, List[str]]
 
     elements = root.findall(".//e")
-    print("%d dictionary entries found" % len(elements))
+    logger.info("%d dictionary entries found" % len(elements))
 
     duplicate_xml_lemma_pos_lc_count = 0
-    print("extracting (xml_lemma, pos, lc) tuples")
+    logger.info("extracting (xml_lemma, pos, lc) tuples")
     tuple_count = 0
     for element in elements:
 
@@ -132,13 +137,11 @@ def import_crkeng_xml(filename: PathLike, multi_processing: int):
                 (xml_lemma, pos_str, lc_str)
             ] = str_definitions_for_entry
 
-    print(Fore.BLUE)
-    print(
-        "%d entries have (lemma, pos, lc) duplicate to others. Their definition will be merged"
+    logger.info(
+        f"{Fore.BLUE}%d entries have (lemma, pos, lc) duplicate to others. Their definition will be merged{Fore.RESET}"
         % duplicate_xml_lemma_pos_lc_count
     )
-    print(Fore.RESET)
-    print("%d (xml_lemma, pos, lc) tuples extracted" % tuple_count)
+    logger.info("%d (xml_lemma, pos, lc) tuples extracted" % tuple_count)
 
     xml_lemma_pos_lc_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
         xml_lemma_to_pos_lc, multi_processing
@@ -172,12 +175,10 @@ def import_crkeng_xml(filename: PathLike, multi_processing: int):
         else:
             as_is_xml_lemma_pos_lc.append((xml_lemma, pos, lc))
 
-    print(Fore.BLUE)
-    print(
-        "%d (lemma, pos, lc) have duplicate fst lemma analysis to others.\nTheir definition will be merged"
+    logger.info(
+        f"{Fore.BLUE}%d (lemma, pos, lc) have duplicate fst lemma analysis to others.\nTheir definition will be merged{Fore.RESET}"
         % dup_analysis_xml_lemma_pos_lc_count
     )
-    print(Fore.RESET)
 
     inflection_counter = 1
     definition_counter = 1
@@ -263,15 +264,17 @@ def import_crkeng_xml(filename: PathLike, multi_processing: int):
                     # for db_lemma in db_lemmas:
                     #     db_lemma.definitions.add(db_definition)
 
-    print("Inserting %d inflections to database..." % len(db_inflections))
+    logger.info("Inserting %d inflections to database..." % len(db_inflections))
     Inflection.objects.bulk_create(db_inflections)
-    print("Done inserting.")
+    logger.info("Done inserting.")
 
-    print("Inserting definition to database...")
+    logger.info("Inserting definition to database...")
     Definition.objects.bulk_create(db_definitions)
-    print("Done inserting.")
+    logger.info("Done inserting.")
 
     seconds = datetime.timedelta(seconds=time.time() - start_time).seconds
-    print(Fore.GREEN)
-    print("Import finished in %d min %d sec" % (seconds // 60, seconds % 60))
-    print(Fore.RESET)
+
+    logger.info(
+        f"{Fore.GREEN}Import finished in %d min %d sec{Fore.RESET}"
+        % (seconds // 60, seconds % 60)
+    )

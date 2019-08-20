@@ -25,8 +25,8 @@ def get_file_handler():
 
 
 class DatabaseManagerLogger(logging.Logger):
-    def __init__(self, print_info_on_console: bool = True):
-        super().__init__(__name__)
+    def __init__(self, name: str, print_info_on_console: bool = True):
+        super().__init__(name)
         self.setLevel(logging.DEBUG)  # better to have too much log than not enough
         self._console_handler = get_console_handler()
         self.addHandler(self._console_handler)
@@ -35,9 +35,9 @@ class DatabaseManagerLogger(logging.Logger):
         # with this pattern, it's not necessary to propagate the error up to parent
         self.propagate = False
 
-        self.print_info_on_console(print_info_on_console)
+        self.set_print_info_on_console(print_info_on_console)
 
-    def print_info_on_console(self, value: bool):
+    def set_print_info_on_console(self, value: bool):
         if value:
             self._console_handler.setLevel(logging.INFO)
         else:

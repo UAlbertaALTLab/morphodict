@@ -3,6 +3,7 @@ import pytest
 from constants import InflectionCategory, ParadigmSize
 from utils import extract_category, identify_lemma_analysis
 from utils import hfstol_analysis_parser
+from utils.crkeng_xml_utils import get_xml_lemma_set
 from utils.paradigm import ParadigmFiller
 
 
@@ -196,3 +197,10 @@ def test_paradigm_utils(lemma, inflection_category, paradigm_size, expected_tabl
         paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
         == expected_table
     )
+
+
+def test_crkeng_xml_utils(shared_datadir):
+    assert get_xml_lemma_set(shared_datadir / "crkeng-util-tests.xml") == {
+        "yôwamêw",
+        "yôtinipahtâw",
+    }

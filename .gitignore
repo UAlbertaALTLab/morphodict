@@ -284,3 +284,5 @@ CreeDictionary/static/
 /CreeDictionary/React/cypress/videos
 /CreeDictionary/React/cypress/screenshots/app_spec.js
 /CreeDictionary/React/cypressTest/cypress/videos
+
+!.idea/

@@ -60,4 +60,4 @@ from constants import InflectionCategory
     ],
 )
 def test_parse_xml_lc(lc_string, expected_ic_obj):
-    print(lc_string, expected_ic_obj)
+    assert parse_xml_lc(lc_string) == expected_ic_obj

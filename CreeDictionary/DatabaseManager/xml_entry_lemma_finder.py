@@ -5,12 +5,16 @@ from os.path import dirname
 from pathlib import Path
 from typing import List, Dict, Tuple
 
-from colorama import Fore
+from colorama import Fore, init
+
 from hfstol import HFSTOL
 
 import utils
+from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_hfstol_xml_pos_match
 from utils import hfstol_analysis_parser
+
+init()  # for windows compatibility
 
 analyzer_file = (
     Path(dirname(__file__)) / ".." / "res" / "fst" / "crk-strict-analyzer.hfstol"
@@ -28,7 +32,9 @@ def extract_fst_lemmas(
     for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
     """
 
-    print("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
+    logger = DatabaseManagerLogger(__name__, verbose)
+
+    logger.info("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
 
     xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], str]
 
@@ -53,10 +59,10 @@ def extract_fst_lemmas(
             if xml_lemma in xml_lemma_to_pos_lc:
                 for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
                     xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ""
-                    # print(
-                    #     "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
-                    #     % (xml_lemma, pos, lc)
-                    # )
+                    logger.debug(
+                        "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
+                        % (xml_lemma, pos, lc)
+                    )
                     no_analysis_counter += 1
 
         else:
@@ -94,10 +100,10 @@ def extract_fst_lemmas(
                         ambiguous_analyses.add(analysis)
 
                 if len(ambiguous_analyses) == 0:
-                    # print(
-                    #     "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. None of the analyses are preferred lemma inflection"
-                    #     % (xml_lemma, pos, lc)
-                    # )
+                    logger.debug(
+                        "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. None of the analyses are preferred lemma inflection"
+                        % (xml_lemma, pos, lc)
+                    )
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
                     no_match_counter += 1
 
@@ -106,31 +112,32 @@ def extract_fst_lemmas(
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = the_analysis
                     success_counter += 1
                 else:
-                    # print(
-                    #     "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
-                    #     % (xml_lemma, pos, lc)
-                    # )
+                    logger.debug(
+                        "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
+                        % (xml_lemma, pos, lc)
+                    )
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
                     dup_counter += 1
-    if verbose:
-        print(Fore.GREEN)
-        print("%d (lemma, pos, lc) found proper lemma analysis" % success_counter)
-        print(Fore.BLUE)
-        print(
-            "There are %d (lemma, pos, lc) that the fst can not give any analyses."
-            % no_analysis_counter
-        )
-        print(
-            "There are %d (lemma, pos, lc) that do not have proper lemma analysis by fst"
-            % no_match_counter
-        )
 
-        print(
-            "There are %d (lemma, pos, lc) that have ambiguous lemma analyses"
-            % dup_counter
-        )
-        print("These words will be shown 'as-is' without analyses and paradigm tables")
+    logger.info(
+        f"{Fore.GREEN}%d (lemma, pos, lc) found proper lemma analysis{Fore.RESET}"
+        % success_counter
+    )
+    logger.info(
+        f"{Fore.BLUE}There are %d (lemma, pos, lc) that the fst can not give any analyses.{Fore.RESET}"
+        % no_analysis_counter
+    )
+    logger.info(
+        f"{Fore.BLUE}There are %d (lemma, pos, lc) that do not have proper lemma analysis by fst{Fore.RESET}"
+        % no_match_counter
+    )
 
-        print(Fore.RESET)
+    logger.info(
+        f"{Fore.BLUE}There are %d (lemma, pos, lc) that have ambiguous lemma analyses{Fore.RESET}"
+        % dup_counter
+    )
+    logger.info(
+        "These words will be shown 'as-is' without analyses and paradigm tables"
+    )
 
     return xml_lemma_pos_lc_to_analysis

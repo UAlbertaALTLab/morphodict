@@ -10,6 +10,7 @@ from typing import List, Dict, Tuple, Set, Iterable
 
 from hfstol import HFSTOL
 
+from DatabaseManager.log import DatabaseManagerLogger
 from constants import InflectionCategory
 from utils import hfstol_analysis_parser
 
@@ -56,6 +57,8 @@ def expand_inflections(
     >>> expand_inflections(['tastawayakap+Ipc'], verbose=False)
     {'tastawayakap+Ipc': [('tastawayakap+Ipc', {'tastawayakap'})]}
     """
+    logger = DatabaseManagerLogger(__name__, verbose)
+
     # optimized for efficiency by calling hfstol once and for all
     flattened_layouts = import_flattened_prefilled_layouts(
         Path(dirname(__file__)) / ".." / "res" / "prefilled_layouts"
@@ -80,13 +83,12 @@ def expand_inflections(
         to_generated[analysis] = generated_analyses
         fat_generated_analyses.extend(generated_analyses)
 
-    if verbose:
-        print("Generating inflections using %d processes..." % multi_processing)
+    logger.info("Generating inflections using %d processes..." % multi_processing)
     generated_analyses_to_inflections = generator.feed_in_bulk_fast(
         fat_generated_analyses, multi_processing
     )
-    if verbose:
-        print("Done generating inflections")
+
+    logger.info("Done generating inflections")
 
     expanded = dict()
 

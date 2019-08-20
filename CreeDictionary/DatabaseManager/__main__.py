@@ -1,7 +1,6 @@
 # todo: command line
 import argparse
 
-from DatabaseManager.testfile import doshit
 from DatabaseManager.xml_importer import clear_database, import_crkeng_xml
 
 parser = argparse.ArgumentParser(description="cli to manage django sqlite dictionary")
