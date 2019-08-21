@@ -31,18 +31,19 @@ def fetch_exact_lemma(lemma_string: str):
     :param lemma_string:
     :return: Lemma object
     """
-    results = Lemma.objects.filter(context__exact=lemma_string)
-    if len(results) == 1:
-        return results[0]
-    elif len(results) > 1:
-        print(
-            "warning: fetch_exact_lemma returns two or more lemmas on query_string %s. Adopted the first result"
-            % lemma_string,
-            file=stderr,
-        )
-        return results[0]
-    else:
-        raise LemmaDoesNotExist(lemma_string)
+    pass
+    # results = Lemma.objects.filter(context__exact=lemma_string)
+    # if len(results) == 1:
+    #     return results[0]
+    # elif len(results) > 1:
+    #     print(
+    #         "warning: fetch_exact_lemma returns two or more lemmas on query_string %s. Adopted the first result"
+    #         % lemma_string,
+    #         file=stderr,
+    #     )
+    #     return results[0]
+    # else:
+    #     raise LemmaDoesNotExist(lemma_string)
 
 
 def fetch_definitions_with_exact_lemma(lemma_string: str) -> List[Dict[str, str]]:
@@ -50,19 +51,20 @@ def fetch_definitions_with_exact_lemma(lemma_string: str) -> List[Dict[str, str]
     :raise LemmaDoesNotExist: The lemma doesn't exist in the database
     :param lemma_string:
     """
-    lemma = fetch_exact_lemma(lemma_string)
-    definitions = dict()
-
-    definition_models = Definition.objects.filter(fk_word=lemma)
-    definition_list = []
-    for definition in definition_models:
-        definition_list.append(
-            {"definition": definition.context, "source": definition.source}
-        )
-    if len(definition_list) == 0:
-        raise DefinitionDoesNotExist(lemma_string)
-    else:
-        return definition_list
+    pass
+    # lemma = fetch_exact_lemma(lemma_string)
+    # definitions = dict()
+    #
+    # definition_models = Definition.objects.filter(fk_word=lemma)
+    # definition_list = []
+    # for definition in definition_models:
+    #     definition_list.append(
+    #         {"definition": definition.context, "source": definition.source}
+    #     )
+    # if len(definition_list) == 0:
+    #     raise DefinitionDoesNotExist(lemma_string)
+    # else:
+    #     return definition_list
 
 
 def fetchContainsLemma(lemma, limit=10):

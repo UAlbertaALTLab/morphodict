@@ -1,9 +1,10 @@
 import pytest
 
+import xml.etree.ElementTree as ET
 from constants import InflectionCategory, ParadigmSize
 from utils import extract_category, identify_lemma_analysis
 from utils import hfstol_analysis_parser
-from utils.crkeng_xml_utils import get_xml_lemma_set
+from utils.crkeng_xml_utils import get_xml_lemma_set, extract_l_str
 from utils.paradigm import ParadigmFiller
 
 
@@ -199,8 +200,30 @@ def test_paradigm_utils(lemma, inflection_category, paradigm_size, expected_tabl
     )
 
 
-def test_crkeng_xml_utils(shared_datadir):
-    assert get_xml_lemma_set(shared_datadir / "crkeng-util-tests.xml") == {
+def test_get_xml_lemma_set(shared_datadir):
+    assert get_xml_lemma_set(shared_datadir / "crkeng-util-tests-nice-0.xml") == {
         "yôwamêw",
         "yôtinipahtâw",
     }
+
+
+def test_l_text_extraction(shared_datadir):
+    elements = (
+        ET.parse(str(shared_datadir / "crkeng-util-tests-missing-l-0.xml"))
+        .getroot()
+        .findall(".//e")
+    )
+    for element in elements:
+        with pytest.raises(ValueError) as err:
+            extract_l_str(element)
+
+    elements = (
+        ET.parse(str(shared_datadir / "crkeng-util-tests-nice-0.xml"))
+        .getroot()
+        .findall(".//e")
+    )
+    results = []
+    for element in elements:
+        results.append(extract_l_str(element))
+
+    assert results == ["yôwamêw", "yôtinipahtâw"]

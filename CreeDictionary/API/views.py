@@ -1,7 +1,7 @@
 import re
 from pprint import pprint
 from sys import stderr
-from typing import Dict, List
+from typing import Dict, List, Any
 
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
@@ -16,7 +16,6 @@ import API.datafetch as datafetch
 from cree_sro_syllabics import syllabics2sro
 
 from utils.paradigm import ParadigmFiller
-
 
 
 paradigm_filler = ParadigmFiller.default_filler()
@@ -121,28 +120,29 @@ def translate_cree(request, queryString: str) -> JsonResponse:
     queryString = unquote(queryString)
     queryString = unicodedata.normalize("NFC", queryString)
 
-    response = {"translation": []}
+    response: Dict[str, Any] = {"translation": []}
 
-    res = list(fstAnalyzer.analyze(queryString))
+    # res = list(fstAnalyzer.analyze(queryString))
 
-    for r in res:
-        try:
-            definitions = datafetch.fetch_definitions_with_exact_lemma(r[0])
+    # for r in res:
+    #     try:
+    #         definitions = datafetch.fetch_definitions_with_exact_lemma(r[0])
+    #
+    #     except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
+    #         print(
+    #             "Warning: During API query, may due to incomplete database:",
+    #             file=stderr,
+    #         )
+    #         print(e, file=stderr)
+    #         continue
+    #     else:
+    #         response["translation"].append(
+    #             {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
+    #         )
 
-        except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
-            print(
-                "Warning: During API query, may due to incomplete database:",
-                file=stderr,
-            )
-            print(e, file=stderr)
-            continue
-        else:
-            response["translation"].append(
-                {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
-            )
-    response = JsonResponse(response)
-    response["Access-Control-Allow-Origin"] = "*"
-    return response
+    json_response = JsonResponse(response)
+    json_response["Access-Control-Allow-Origin"] = "*"
+    return json_response
 
 
 def displayWord(request, queryString):

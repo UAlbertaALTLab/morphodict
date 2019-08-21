@@ -2,5 +2,6 @@
 <project version="4">
   <component name="MypyConfigService">
     <option name="mypyConfigFilePath" value="$PROJECT_DIR$/mypy.ini" />
+    <option name="scanBeforeCheckin" value="true" />
   </component>
 </project>

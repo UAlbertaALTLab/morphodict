@@ -12,6 +12,7 @@ from django.db import connection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
+from utils.crkeng_xml_utils import extract_l_str
 
 init()  # for windows compatibility
 
@@ -90,9 +91,6 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
     # One lemma could have multiple entries with different pos and lc
     xml_lemma_to_pos_lc = {}  # type: Dict[str, List[Tuple[str,str]]]
 
-    # def_to_inflections = dict()  # type: Dict[str, List[str]]
-    # xml_lemma_to_inflections = dict()  # type: Dict[str, List[str]]
-
     elements = root.findall(".//e")
     logger.info("%d dictionary entries found" % len(elements))
 
@@ -103,16 +101,33 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
 
         str_definitions_for_entry = []  # type: List[Tuple[str, List[str]]]
         for t in element.findall(".//mg//tg//t"):
-            # definition.save()
-            # for source_id in t.get("sources").split(" "):
-            #     definition.sources.add(source_id_to_obj[source_id])
-            str_definitions_for_entry.append((t.text, t.get("sources").split(" ")))
+            sources = t.get("sources")
+            assert (
+                sources is not None
+            ), f"<t> does not have a source attribute in entry \n {ET.tostring(element)}"
+            assert (
+                t.text is not None
+            ), f"<t> has empty content in entry \n {ET.tostring(element)}"
+            str_definitions_for_entry.append((t.text, sources.split(" ")))
+        # yôwamêw
+        l_element = element.find("lg/l")
+        assert (
+            l_element is not None
+        ), f"Missing <l> element in entry \n {ET.tostring(element)}"
+        lc_element = element.find("lg/lc")
+        assert (
+            lc_element is not None
+        ), f"Missing <lc> element in entry \n {ET.tostring(element)}"
+        lc_str = lc_element.text
 
-        l = element.find("lg/l")
-        lc_str = element.find("lg/lc").text
         if lc_str is None:
             lc_str = ""
-        xml_lemma, pos_str = l.text, l.get("pos")
+        xml_lemma = extract_l_str(element)
+        pos_attr = l_element.get("pos")
+        assert (
+            pos_attr is not None
+        ), f"<l> lacks pos attribute in entry \n {ET.tostring(element)}"
+        pos_str = pos_attr
 
         duplicate_lemma_pos_lc = False
 

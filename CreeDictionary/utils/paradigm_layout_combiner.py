@@ -70,7 +70,7 @@ def import_paradigms(
         with open(file, "r") as f:
             lines = f.read().splitlines()
 
-            class_paradigm = dict()
+            class_paradigm: Dict[FrozenSet[str], List[str]] = dict()
 
             assert len(lines) >= 1, "malformed paradigm file %s" % file
 

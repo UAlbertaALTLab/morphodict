@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from .models import *
+from .models import Definition, Inflection
 
 
 # @admin.register(Definition)
@@ -59,7 +59,7 @@ class InflectionAdmin(admin.ModelAdmin):
         return not obj.as_is
 
     # noinspection Mypy
-    has_paradigm.boolean = True
+    has_paradigm.boolean = True  # type: ignore
 
     def get_definitions(self, obj: Inflection):
         definition_texts = [d.text for d in obj.definition_set.all()]
@@ -68,9 +68,8 @@ class InflectionAdmin(admin.ModelAdmin):
             % tuple(definition_texts)
         )
 
-    a = "lmao test"
     # noinspection Mypy
-    get_definitions.short_description = "DEFINITION"
+    get_definitions.short_description = "DEFINITION"  # type: ignore
     list_filter = ("is_lemma", HasParadigmListFilter)
 
     # list_display = ("text",)

@@ -7,9 +7,10 @@
       <title>Maskwacîs Cree Dictionary</title>
    </source>
 
+    {#    empty text #}
     <e>
        <lg>
-          <l pos="V">yôwamêw</l>
+           <l pos="V"></l>
           <lc>VTA-1</lc>
           <stem>yôwam-</stem>
        </lg>
@@ -20,10 +21,11 @@
        </mg>
     </e>
 
+    {#    straight gone #}
     <e>
        <lg>
-          <l pos="V">yôtinipahtâw</l>
-          <lc>VAI-v</lc>
+
+           <lc>VAI-v</lc>
           <stem>yôtinipahtâ-</stem>
        </lg>
        <mg>

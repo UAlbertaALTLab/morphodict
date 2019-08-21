@@ -121,12 +121,17 @@ def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
 
     both inflections look the same as the lemma, but which is the preference for a lemma?
     this function returns the preferred lemma analyses according to res/lemma-tags.tsv
+
+    :raise ValueError if an analysis can not be understood
     """
     possible_analyses = set()
 
     for analysis in analyses:
         cat = extract_category(analysis)
-
+        if cat is None:
+            raise ValueError(
+                f"Can not recognize the category of fst analysis {analysis}"
+            )
         if cat is InflectionCategory.Pron:
             if "+Pron" in analysis:
                 possible_analyses.add(analysis)
