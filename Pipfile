@@ -34,5 +34,8 @@ analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-strict-analyzer.hfst
 # tests
 test = "pytest --doctest-modules --mypy"
 
+# run dev server
+dev = "env Production=False python manage.py runserver"
+
 [requires]
 python_version = "3.6"

@@ -41,16 +41,15 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
 - Build Database
-    - `cd CreeDictionary`
-    - `python DatabaseManager import res/dictionaries/crkeng.xml` 
+
+    - `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml` 
     
         It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-        `python DatabaseManager import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+        `manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
         
 - Run development server
-    - `cd CreeDictionary`
-    - `Production=False python manage.py runserver`
+    - `pipenv run dev`
     - Default homepage: http://127.0.0.1:8000/cree-dictionary 
     - Default admin: http://127.0.0.1:8000/cree-dictionary/admin
 

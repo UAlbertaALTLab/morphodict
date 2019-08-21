@@ -21,3 +21,8 @@ If installed as a package, command `manage-db` will be added to python environme
 - Clear imported old data (normally unnecessary as `import` also clears data at start)
 
     `manage-db clear`
+
+## My word isn't imported to the database :(
+
+- `cd DatabaseManager/logs`
+- search and find out what happened to your word
