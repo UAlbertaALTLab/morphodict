@@ -2,13 +2,13 @@
 Definition of urls for CreeDictionary.
 """
 
-from django.conf.urls import include, url
-from django.urls import path, re_path
+from django.conf import settings
+from django.conf.urls import url
+from django.conf.urls.static import static
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from django.conf import settings
-from django.conf.urls.static import static
+from django.urls import path
 
 import API.views as api_views
 from CreeDictionary import views

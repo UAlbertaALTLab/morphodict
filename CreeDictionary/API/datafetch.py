@@ -1,11 +1,8 @@
-from sys import stderr
 from typing import List, Dict
 
-from django.db.models import QuerySet
+from django.forms.models import model_to_dict
 
 from API.models import *
-from django.forms.models import model_to_dict
-from django.db.models.functions import Length
 
 
 class LemmaDoesNotExist(Exception):

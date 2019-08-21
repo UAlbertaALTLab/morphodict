@@ -3,7 +3,7 @@ According to .layout files and .paradigm files. Generate pre-filled layout table
 """
 import csv
 import glob
-from os import path, mkdir
+from os import path
 from os.path import dirname
 from pathlib import Path
 from typing import Dict, List, Tuple, FrozenSet

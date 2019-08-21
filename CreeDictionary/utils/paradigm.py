@@ -6,7 +6,7 @@ import glob
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple, FrozenSet
+from typing import Dict, List, Tuple
 
 import hfstol
 

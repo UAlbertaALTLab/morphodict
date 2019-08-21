@@ -1,12 +1,10 @@
 import re
-from typing import Optional, Tuple
-from constants import InflectionCategory
-
 from os.path import dirname
 from pathlib import Path
 from typing import Iterable, Dict, Optional, Set, Pattern
+from typing import Tuple
+
 from constants import InflectionCategory
-import re
 
 inflection_category_to_pattern = dict()  # type: Dict[InflectionCategory, Pattern[str]]
 

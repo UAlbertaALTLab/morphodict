@@ -1,10 +1,10 @@
+import json
+
 import django
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse
 
-from API.views import search
 from API.models import *
-import json
 
 
 class SearchTest(TestCase):

@@ -1,6 +1,7 @@
+import xml.etree.ElementTree as ET
+
 import pytest
 
-import xml.etree.ElementTree as ET
 from constants import InflectionCategory, ParadigmSize
 from utils import extract_category, identify_lemma_analysis
 from utils import hfstol_analysis_parser

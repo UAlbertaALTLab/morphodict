@@ -6,7 +6,6 @@ from pathlib import Path
 from typing import List, Dict, Tuple
 
 from colorama import Fore, init
-
 from hfstol import HFSTOL
 
 import utils

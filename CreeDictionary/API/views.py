@@ -1,22 +1,16 @@
 import re
-from pprint import pprint
-from sys import stderr
-from typing import Dict, List, Any
-
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
-from django.conf import settings
-from API.models import *
-import os
-from urllib.parse import unquote
 import unicodedata
-import json
-from django.forms.models import model_to_dict
-import API.datafetch as datafetch
+from typing import Dict, Any
+from urllib.parse import unquote
+
 from cree_sro_syllabics import syllabics2sro
+from django.forms.models import model_to_dict
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import render
 
+import API.datafetch as datafetch
+from API.models import *
 from utils.paradigm import ParadigmFiller
-
 
 paradigm_filler = ParadigmFiller.default_filler()
 

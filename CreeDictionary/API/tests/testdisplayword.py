@@ -1,10 +1,11 @@
+import json
+from urllib.parse import quote
+
 import django
 from django.test import TestCase, Client
 from django.urls import reverse
 
 from API.models import *
-from urllib.parse import quote
-import json
 
 
 class DisplayWordTest(TestCase):
