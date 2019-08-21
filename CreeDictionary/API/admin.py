@@ -58,6 +58,7 @@ class InflectionAdmin(admin.ModelAdmin):
     def has_paradigm(self, obj: Inflection):
         return not obj.as_is
 
+    # noinspection Mypy
     has_paradigm.boolean = True
 
     def get_definitions(self, obj: Inflection):
@@ -67,6 +68,7 @@ class InflectionAdmin(admin.ModelAdmin):
             % tuple(definition_texts)
         )
 
+    # noinspection Mypy
     get_definitions.short_description = "DEFINITION"
     list_filter = ("is_lemma", HasParadigmListFilter)
 
