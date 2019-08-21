@@ -3,7 +3,7 @@ import os
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, Set
 
 import django
 from colorama import Fore, init
@@ -83,10 +83,10 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
 
     logger.info("Sources parsed: " + str(source_ids))
 
-    # value is definition object and its source as string
+    # value is definition string as key and its source as value
     xml_lemma_pos_lc_to_str_definitions = (
         {}
-    )  # type: Dict[Tuple[str,str,str], List[Tuple[str, List[str]]]]
+    )  # type: Dict[Tuple[str,str,str], Dict[str, Set[str]]]
 
     # One lemma could have multiple entries with different pos and lc
     xml_lemma_to_pos_lc = {}  # type: Dict[str, List[Tuple[str,str]]]
@@ -99,25 +99,29 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
     tuple_count = 0
     for element in elements:
 
-        str_definitions_for_entry = []  # type: List[Tuple[str, List[str]]]
+        str_definitions_for_entry = {}  # type: Dict[str, Set[str]]
         for t in element.findall(".//mg//tg//t"):
             sources = t.get("sources")
             assert (
                 sources is not None
-            ), f"<t> does not have a source attribute in entry \n {ET.tostring(element)}"
+            ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
             assert (
                 t.text is not None
-            ), f"<t> has empty content in entry \n {ET.tostring(element)}"
-            str_definitions_for_entry.append((t.text, sources.split(" ")))
-        # yôwamêw
+            ), f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
+            if (
+                t.text in str_definitions_for_entry
+            ):  # duplicate definition within one <e>, not likely to happen
+                str_definitions_for_entry[t.text] |= set(sources.split(" "))
+            else:
+                str_definitions_for_entry[t.text] = set(sources.split(" "))
         l_element = element.find("lg/l")
         assert (
             l_element is not None
-        ), f"Missing <l> element in entry \n {ET.tostring(element)}"
+        ), f"Missing <l> element in entry \n {ET.tostring(element, encoding='unicode')}"
         lc_element = element.find("lg/lc")
         assert (
             lc_element is not None
-        ), f"Missing <lc> element in entry \n {ET.tostring(element)}"
+        ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
         lc_str = lc_element.text
 
         if lc_str is None:
@@ -126,7 +130,7 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
         pos_attr = l_element.get("pos")
         assert (
             pos_attr is not None
-        ), f"<l> lacks pos attribute in entry \n {ET.tostring(element)}"
+        ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
         pos_str = pos_attr
 
         duplicate_lemma_pos_lc = False
@@ -144,9 +148,18 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
             xml_lemma_to_pos_lc[xml_lemma] = [(pos_str, lc_str)]
 
         if duplicate_lemma_pos_lc:
-            xml_lemma_pos_lc_to_str_definitions[(xml_lemma, pos_str, lc_str)].extend(
-                str_definitions_for_entry
+            logger.debug(
+                f"xml_lemma: {xml_lemma} pos: {pos_str} lc: {lc_str} is a duplicate tuple"
             )
+
+            tuple_definitions = xml_lemma_pos_lc_to_str_definitions[
+                (xml_lemma, pos_str, lc_str)
+            ]
+            for str_definition, source_set in str_definitions_for_entry.items():
+                if str_definition in tuple_definitions:
+                    tuple_definitions[str_definition] |= source_set
+                else:
+                    tuple_definitions[str_definition] = source_set
         else:
             xml_lemma_pos_lc_to_str_definitions[
                 (xml_lemma, pos_str, lc_str)
@@ -174,11 +187,22 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
         if analysis != "":
             if analysis in true_lemma_analyses_to_xml_lemma_pos_lc:
                 dup_analysis_xml_lemma_pos_lc_count += 1
+                existing_tuple = true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
+                logger.debug(
+                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma: {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}. Their Definition will be merged."
+                )
 
-                # merge definition to the first (lemma, pos, lc)
-                xml_lemma_pos_lc_to_str_definitions[
+                # merge definition to first tuple
+                target = xml_lemma_pos_lc_to_str_definitions[
                     true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
-                ].extend(xml_lemma_pos_lc_to_str_definitions[(xml_lemma, pos, lc)])
+                ]
+                extra = xml_lemma_pos_lc_to_str_definitions[(xml_lemma, pos, lc)]
+
+                for str_definition, source_set in extra.items():
+                    if str_definition in target:
+                        target[str_definition] |= source_set
+                    else:
+                        target[str_definition] = source_set
 
                 true_lemma_analyses_to_xml_lemma_pos_lc[analysis].append(
                     (xml_lemma, pos, lc)
@@ -215,7 +239,7 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
         str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
             (xml_lemma, pos, lc)
         ]
-        for str_definition, source_strings in str_definitions_source_strings:
+        for str_definition, source_strings in str_definitions_source_strings.items():
             db_definition = Definition(
                 id=definition_counter,
                 text=str_definition,
@@ -266,7 +290,7 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
                     for (
                         str_definition,
                         source_strings,
-                    ) in str_definitions_source_strings:
+                    ) in str_definitions_source_strings.items():
                         db_definition = Definition(
                             id=definition_counter,
                             text=str_definition,
