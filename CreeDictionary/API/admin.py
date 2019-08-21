@@ -68,6 +68,7 @@ class InflectionAdmin(admin.ModelAdmin):
             % tuple(definition_texts)
         )
 
+    a = "lmao test"
     # noinspection Mypy
     get_definitions.short_description = "DEFINITION"
     list_filter = ("is_lemma", HasParadigmListFilter)
