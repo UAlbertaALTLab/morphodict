@@ -1,6 +1,24 @@
 # https://gist.github.com/Arachnid/491973
 import bisect
-from typing import List
+import time
+from typing import List, TypeVar, Iterator, Optional, Iterable, Generic, Type
+
+from django.db.models import QuerySet
+from typing_extensions import Protocol
+
+from API.models import Inflection
+
+
+class Textual(Protocol):
+    """
+    word object that's fed into the automaton
+    """
+
+    def get_text(self) -> str:
+        """
+        :return: the word
+        """
+        ...
 
 
 class NFA:
@@ -143,7 +161,7 @@ class DFA:
         return None
 
 
-def levenshtein_automata(term, k):
+def levenshtein_automata(term: str, k):
     nfa = NFA((0, 0))
     for i, c in enumerate(term):
         for e in range(k + 1):
@@ -157,9 +175,10 @@ def levenshtein_automata(term, k):
                 # Substitution
                 nfa.add_transition((i, e), NFA.ANY, (i + 1, e + 1))
     for e in range(k + 1):
+        term_len = len(term)
         if e < k:
-            nfa.add_transition((len(term), e), NFA.ANY, (len(term), e + 1))
-        nfa.add_final_state((len(term), e))
+            nfa.add_transition((term_len, e), NFA.ANY, (term_len, e + 1))
+        nfa.add_final_state((term_len, e))
     return nfa
 
 
@@ -186,56 +205,137 @@ def find_all_matches(word, k, lookup_func):
         match = lev.next_valid_string(next_word)
 
 
-class Matcher:
-    def __init__(self, words: List[str]):
+T = TypeVar("T", covariant=True)
+
+
+class OrderedIterableCorpus(Protocol[T]):
+    """
+    A corpus where T is the type of component
+    """
+
+    def get_next_bigger(self, lookup_string: str) -> Optional[Textual]:
+        """
+        needed to perform fuzzy search
+        """
+        ...
+
+    def strings_to_elements(self, results: List[str]) -> Iterable[T]:
+        """
+        how to convert the result strings to the
+        """
+        ...
+
+
+WordType = TypeVar("WordType")
+
+
+# todo: biset to get next fast
+
+
+class FuzzySearcher(Generic[WordType]):
+    def __init__(self, words: OrderedIterableCorpus[WordType]):
         """
         :param words: a list of database entries you want to include
         """
-
-        self._words = sorted(words)
+        self._words = words
         self._probes = 0
 
-    def find_all_matches(self, word, k):
+    def find_all_matches(self, word_string: str, k: int) -> Iterable[WordType]:
         """Uses lookup_func to find all words within levenshtein distance k of word.
 
         Args:
-          word: The word to look up
+          word_string: The word to look up
           k: Maximum edit distance
           lookup_func: A single argument function that returns the first word in the
             database that is greater than or equal to the input argument.
         Yields:
           Every matching word within levenshtein distance k from the database.
         """
-        lev = levenshtein_automata(word, k).to_dfa()
+        print("do this")
+        lev = levenshtein_automata(word_string, k).to_dfa()
         match = lev.next_valid_string(u"\0")
+        strings = []
         while match:
-            next_word = self._next_bigger_word(match)
+            next_word = self._words.get_next_bigger(match)
+            # print(next_word)
             if not next_word:
-                return
-            if match == next_word:
-                yield match
-                next_word = next_word + u"\0"
-            match = lev.next_valid_string(next_word)
+                break
+            next_word_text = next_word.get_text()
+            if match == next_word.get_text():
+                strings.append(match)
+                next_word_text += u"\0"
+            match = lev.next_valid_string(next_word_text)
+        return self._words.strings_to_elements(strings)
 
-    def _next_bigger_word(self, w):
-        self._probes += 1
-        pos = bisect.bisect_left(self._words, w)
-        if pos < len(self._words):
-            return self._words[pos]
+
+class TextualInflection:
+    def __init__(self, inflection: Inflection):
+        self._inflection = inflection
+
+    def get_text(self) -> str:
+        return self._inflection.text
+
+
+class OrderedInflectionQuerySet(QuerySet):
+    # noinspection PyArgumentList
+    def __new__(cls, query_set: QuerySet):
+        query_set.get_next_bigger = lambda lookup_string: cls.get_next_bigger(
+            query_set, lookup_string
+        )
+        print(hasattr(query_set, "get_next_bigger"))
+        return query_set
+
+    @classmethod
+    def from_query_set(
+            cls, ordered_inflection_query_set: QuerySet
+    ) -> "OrderedInflectionQuerySet":
+        return cls(ordered_inflection_query_set)
+
+    def get_next_bigger(self, this_string: str) -> Optional[TextualInflection]:
+        bigger_inflections = self.filter(text__gt=this_string)
+        if bigger_inflections.count() > 1:
+            return TextualInflection(bigger_inflections[0])
         else:
             return None
 
+    def strings_to_elements(self, results: List[str]) -> QuerySet:
+        """
+        how to convert the result strings to the
+        """
+        return self.filter(text__in=results)
 
-class CreeMatcher(Matcher):
-    """
-    __init__ parses and loads crkeng.xml from file system and .find_all_matches returns cree words within a certain
-    levenshtein distance to a given word
-    """
+
+# pythonic singleton pattern
+
+
+class CreeFuzzySearcher(FuzzySearcher):
+    _instance = None
 
     def __init__(self):
+        if CreeFuzzySearcher._instance is None:
+            super().__init__(CreeFuzzySearcher._load_sorted_from_db())
+            CreeFuzzySearcher._instance = self
 
-        super().__init__(words)
+    def __new__(cls):
+        if cls._instance is None:
+            _instance = super().__new__(cls)
+        else:
+            _instance = cls._instance
+        return _instance
+
+    @staticmethod
+    def _load_sorted_from_db() -> OrderedInflectionQuerySet:
+        return OrderedInflectionQuerySet.from_query_set(
+            Inflection.objects.all().order_by("text")
+        )
 
 
-words = ["banana", "banann", "banne", "canana", "bbbnana", "baxana", "xbananax"]
-m = Matcher(words)
+time1 = time.time()
+cree_matcher_1 = CreeFuzzySearcher()
+print(time.time() - time1)
+
+time2 = time.time()
+cree_matcher_2 = CreeFuzzySearcher()
+print(time.time() - time2)
+
+print(cree_matcher_1 is cree_matcher_2)

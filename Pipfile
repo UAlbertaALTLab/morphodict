@@ -21,19 +21,17 @@ pytz = "==2019.2"
 tqdm = "~=4.33"
 Django = "~=2.2"
 creedictionary = {editable = true,path = "./CreeDictionary"}
+typing-extensions = "~=3.7"
 
 [scripts]
 # reminders. you can just use $ manage-db
 manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
-
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-strict-analyzer.hfstol"
-
 # tests
 test = "pytest --doctest-modules --mypy"
-
 # run dev server
 dev = "env Production=False python manage.py runserver"
 

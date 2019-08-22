@@ -1,8 +1,9 @@
 from typing import List, Dict
 
+from django.db.models import QuerySet
 from django.forms.models import model_to_dict
 
-from API.models import *
+from API.models import Definition, Inflection
 
 
 class LemmaDoesNotExist(Exception):
@@ -77,29 +78,29 @@ def fetchLemmaContainsInflection(inflection, limit=10):
     return lemmas
 
 
-def fetchLemmaContainsDefinition(definition, limit=10):
-    lemmas = list()
-    wordIDs = (
-        Definition.objects.filter(context__icontains=definition)
-        .extra(select={"length": "Length(context)"})
-        .order_by("length")
-        .values_list("fk_word_id", flat=True)[:10]
+def fetch_lemma_contains_definition(definition, limit=10) -> QuerySet:
+    """
+    used for finding Cree words by English
+    """
+
+    # fixme: better search-by-English?
+    # see: https://docs.djangoproject.com/en/2.2/topics/db/search/#document-based-search
+
+    # philosophy of ordering by the length of definition:
+    # while searching by a certain keyword. The shorter the definition, the more
+    # likely the lemma is close to the meaning of the keyword.
+    # e.g. searching 'hello' gives the following results
+    # {'text': 'hello, how are you'}
+    # {'text': 's/he greets s.o., s/he sends greetings to s.o.; s/he says hello to s.o.; s/he shakes hands with s.o.;
+    # s/he hugs s.o. in greeting, s/he kisses s.o. in greeting; s/he bids s.o. farewell'}
+    # The first is apparently what we want
+    lemmas = (
+        Definition.objects.filter(text__icontains=definition)
+        .extra(select={"length": "Length(text)"})
+        .order_by("length")[:limit]
+        .values("lemma")
     )
-    lemmaResult = Lemma.objects.filter(word_ptr_id__in=wordIDs)
 
-    # Sort Lemma Based on Definition Order
-    for wordID in wordIDs:
-        for lemma in lemmaResult:
-            if wordID == lemma.id:
-                lemmas.append(lemma)
-                break
-
-    lemmaIDs = Inflection.objects.filter(word_ptr_id__in=wordIDs).values_list(
-        "fk_lemma_id", flat=True
-    )
-    lemmas += Lemma.objects.filter(word_ptr_id__in=lemmaIDs)
-
-    print(list(lemmas))
     return lemmas
 
 

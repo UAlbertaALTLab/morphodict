@@ -67,7 +67,7 @@ def search(request, query_string):
     else:
         # Probably English
         print("English: " + query_string)
-        englishWords += datafetch.fetchLemmaContainsDefinition(query_string)
+        englishWords += datafetch.fetch_lemma_contains_definition(query_string)
 
     # Still searches contains since some cree like inputs can be inparsable by fst
     creeWords += datafetch.fetchContainsLemma(query_string)
