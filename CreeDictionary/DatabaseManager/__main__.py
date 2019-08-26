@@ -1,5 +1,6 @@
 # todo: command line
 import argparse
+import sys
 
 from DatabaseManager.xml_importer import clear_database, import_crkeng_xml
 
@@ -31,8 +32,8 @@ import_parser.add_argument(
 )
 
 
-def cmd_entry():
-    args = parser.parse_args()
+def cmd_entry(argv=sys.argv):
+    args = parser.parse_args(argv[1:])
     if args.command_name == "clear":
         clear_database()
     elif args.command_name == "import":
@@ -40,4 +41,4 @@ def cmd_entry():
 
 
 if __name__ == "__main__":
-    cmd_entry()
+    cmd_entry(argv=sys.argv)

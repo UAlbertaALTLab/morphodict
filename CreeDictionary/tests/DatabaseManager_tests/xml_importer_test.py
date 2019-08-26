@@ -5,9 +5,6 @@ from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import import_crkeng_xml
 
 
-# fixme: pytest must have done some magic. The logger will still print to console despite verbose=False is set
-
-
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
 
@@ -84,9 +81,3 @@ def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
         )
         == 2
     )
-
-
-#
-# @pytest.mark.django_db
-# def test_clear_database():
-#     clear_database(verbose=False)

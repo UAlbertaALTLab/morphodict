@@ -1,20 +1,16 @@
 # https://gist.github.com/Arachnid/491973
 import bisect
-import time
-from typing import List, TypeVar, Iterator, Optional, Iterable, Generic, Type
+from typing import List, TypeVar, Optional, Iterable, Generic
 
-from django.db.models import QuerySet
 from typing_extensions import Protocol
 
-from API.models import Inflection
 
-
-class Textual(Protocol):
+class SupportsStr(Protocol):
     """
     word object that's fed into the automaton
     """
 
-    def get_text(self) -> str:
+    def __str__(self) -> str:
         """
         :return: the word
         """
@@ -182,29 +178,6 @@ def levenshtein_automata(term: str, k):
     return nfa
 
 
-def find_all_matches(word, k, lookup_func):
-    """Uses lookup_func to find all words within levenshtein distance k of word.
-
-    Args:
-      word: The word to look up
-      k: Maximum edit distance
-      lookup_func: A single argument function that returns the first word in the
-        database that is greater than or equal to the input argument.
-    Yields:
-      Every matching word within levenshtein distance k from the database.
-    """
-    lev = levenshtein_automata(word, k).to_dfa()
-    match = lev.next_valid_string(u"\0")
-    while match:
-        next_word = lookup_func(match)
-        if not next_word:
-            return
-        if match == next_word:
-            yield match
-            next_word = next_word + u"\0"
-        match = lev.next_valid_string(next_word)
-
-
 T = TypeVar("T", covariant=True)
 
 
@@ -213,7 +186,7 @@ class OrderedIterableCorpus(Protocol[T]):
     A corpus where T is the type of component
     """
 
-    def get_next_bigger(self, lookup_string: str) -> Optional[Textual]:
+    def get_next_smaller(self, lookup_string: str) -> Optional[SupportsStr]:
         """
         needed to perform fuzzy search
         """
@@ -229,9 +202,6 @@ class OrderedIterableCorpus(Protocol[T]):
 WordType = TypeVar("WordType")
 
 
-# todo: biset to get next fast
-
-
 class FuzzySearcher(Generic[WordType]):
     def __init__(self, words: OrderedIterableCorpus[WordType]):
         """
@@ -240,102 +210,27 @@ class FuzzySearcher(Generic[WordType]):
         self._words = words
         self._probes = 0
 
-    def find_all_matches(self, word_string: str, k: int) -> Iterable[WordType]:
+    def search(self, word_string: str, k: int) -> Iterable[WordType]:
         """Uses lookup_func to find all words within levenshtein distance k of word.
 
         Args:
           word_string: The word to look up
           k: Maximum edit distance
           lookup_func: A single argument function that returns the first word in the
-            database that is greater than or equal to the input argument.
+            database that is less than or equal to the input argument.
         Yields:
           Every matching word within levenshtein distance k from the database.
         """
-        print("do this")
         lev = levenshtein_automata(word_string, k).to_dfa()
         match = lev.next_valid_string(u"\0")
         strings = []
         while match:
-            next_word = self._words.get_next_bigger(match)
-            # print(next_word)
+            next_word = self._words.get_next_smaller(match)
             if not next_word:
                 break
-            next_word_text = next_word.get_text()
-            if match == next_word.get_text():
+            next_word_text = str(next_word)
+            if match == str(next_word):
                 strings.append(match)
                 next_word_text += u"\0"
             match = lev.next_valid_string(next_word_text)
         return self._words.strings_to_elements(strings)
-
-
-class TextualInflection:
-    def __init__(self, inflection: Inflection):
-        self._inflection = inflection
-
-    def get_text(self) -> str:
-        return self._inflection.text
-
-
-class OrderedInflectionQuerySet(QuerySet):
-    # noinspection PyArgumentList
-    def __new__(cls, query_set: QuerySet):
-        query_set.get_next_bigger = lambda lookup_string: cls.get_next_bigger(
-            query_set, lookup_string
-        )
-        print(hasattr(query_set, "get_next_bigger"))
-        return query_set
-
-    @classmethod
-    def from_query_set(
-            cls, ordered_inflection_query_set: QuerySet
-    ) -> "OrderedInflectionQuerySet":
-        return cls(ordered_inflection_query_set)
-
-    def get_next_bigger(self, this_string: str) -> Optional[TextualInflection]:
-        bigger_inflections = self.filter(text__gt=this_string)
-        if bigger_inflections.count() > 1:
-            return TextualInflection(bigger_inflections[0])
-        else:
-            return None
-
-    def strings_to_elements(self, results: List[str]) -> QuerySet:
-        """
-        how to convert the result strings to the
-        """
-        return self.filter(text__in=results)
-
-
-# pythonic singleton pattern
-
-
-class CreeFuzzySearcher(FuzzySearcher):
-    _instance = None
-
-    def __init__(self):
-        if CreeFuzzySearcher._instance is None:
-            super().__init__(CreeFuzzySearcher._load_sorted_from_db())
-            CreeFuzzySearcher._instance = self
-
-    def __new__(cls):
-        if cls._instance is None:
-            _instance = super().__new__(cls)
-        else:
-            _instance = cls._instance
-        return _instance
-
-    @staticmethod
-    def _load_sorted_from_db() -> OrderedInflectionQuerySet:
-        return OrderedInflectionQuerySet.from_query_set(
-            Inflection.objects.all().order_by("text")
-        )
-
-
-time1 = time.time()
-cree_matcher_1 = CreeFuzzySearcher()
-print(time.time() - time1)
-
-time2 = time.time()
-cree_matcher_2 = CreeFuzzySearcher()
-print(time.time() - time2)
-
-print(cree_matcher_1 is cree_matcher_2)
