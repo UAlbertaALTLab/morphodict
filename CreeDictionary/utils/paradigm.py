@@ -10,13 +10,13 @@ from typing import Dict, List, Tuple
 
 import hfstol
 
-from constants import InflectionCategory, ParadigmSize
+from constants import LexicalCategory, ParadigmSize
 
 
 def import_layouts(layout_file_dir: Path):
     """
     >>> a = import_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')
-    >>> a[(InflectionCategory.VTA, ParadigmSize.BASIC)]
+    >>> a[(LexicalCategory.VTA, ParadigmSize.BASIC)]
     [['', '"PRESENT TENSE"', ''], ['"Speech Act Participants"', ': "Independent"', ': "Conjunct"'], ['"2s → 1s"', '{{ lemma }}+V+TA+Ind+Prs+2Sg+1SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO'], ['"1s → 2s"', '{{ lemma }}+V+TA+Ind+Prs+1Sg+2SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO'], ['', '', ''], ['"Mixed participants"', ': "Independent"', ': "Conjunct"'], ['"1s → 3s"', '{{ lemma }}+V+TA+Ind+Prs+1Sg+3SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO'], ['"2s → 3s"', '{{ lemma }}+V+TA+Ind+Prs+2Sg+3SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO'], ['"3s → 1s"', '{{ lemma }}+V+TA+Ind+Prs+3Sg+1SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1SgO'], ['"3s → 2s"', '{{ lemma }}+V+TA+Ind+Prs+3Sg+2SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2SgO'], ['', '', ''], ['"Third person participants"', ': "Independent"', ': "Conjunct"'], ['"3s → 4"', '{{ lemma }}+V+TA+Ind+Prs+3Sg+4Sg/PlO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO'], ['"4 → 3s"', '{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+3SgO', 'PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO'], ['', '', ''], ['', '"IMPERATIVE"', ''], ['', '"Immediate"', ''], ['"2s → 1s"', '{{ lemma }}+V+TA+Imp+Imm+2Sg+1SgO', ''], ['"2s → 3s"', '{{ lemma }}+V+TA+Imp+Imm+2Sg+3SgO', '']]
     """
     layout_tables = dict()
@@ -31,14 +31,13 @@ def import_layouts(layout_file_dir: Path):
             layout_list = list(reader)
             ic_str, size_str = name_wo_extension.split("-")
             layout_tables[
-                (InflectionCategory(ic_str.upper()), ParadigmSize(size_str.upper()))
+                (LexicalCategory(ic_str.upper()), ParadigmSize(size_str.upper()))
             ] = layout_list
     return layout_tables
 
 
 class ParadigmFiller:
-
-    _layout_tables: Dict[Tuple[InflectionCategory, ParadigmSize], List[List[str]]]
+    _layout_tables: Dict[Tuple[LexicalCategory, ParadigmSize], List[List[str]]]
 
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
@@ -61,7 +60,7 @@ class ParadigmFiller:
         )
 
     def fill_paradigm(
-        self, lemma: str, category: InflectionCategory, paradigm_size: ParadigmSize
+        self, lemma: str, category: LexicalCategory, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         returns a paradigm table filled with words
@@ -71,7 +70,7 @@ class ParadigmFiller:
         lookup_strings: List[str] = []
         string_locations: List[Tuple[int, int]] = []
 
-        if category is InflectionCategory.IPC or category is InflectionCategory.Pron:
+        if category is LexicalCategory.IPC or category is LexicalCategory.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]

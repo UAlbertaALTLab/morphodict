@@ -10,18 +10,18 @@ from typing import Dict, List, Tuple, FrozenSet
 
 import hfstol
 
-from constants import InflectionCategory, ParadigmSize
+from constants import LexicalCategory, ParadigmSize
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
-    "noun-na": InflectionCategory.NA,
-    "noun-nad": InflectionCategory.NAD,
-    "noun-ni": InflectionCategory.NI,
-    "noun-nid": InflectionCategory.NID,
-    "verb-ai": InflectionCategory.VAI,
-    "verb-ii": InflectionCategory.VII,
-    "verb-ta": InflectionCategory.VTA,
-    "verb-ti": InflectionCategory.VTI,
+    "noun-na": LexicalCategory.NA,
+    "noun-nad": LexicalCategory.NAD,
+    "noun-ni": LexicalCategory.NI,
+    "noun-nid": LexicalCategory.NID,
+    "verb-ai": LexicalCategory.VAI,
+    "verb-ii": LexicalCategory.VII,
+    "verb-ta": LexicalCategory.VTA,
+    "verb-ti": LexicalCategory.VTI,
 }
 
 
@@ -53,14 +53,14 @@ def import_layouts(layout_file_dir: Path):
 
             ic_str, size_str = name_wo_extension.split("-")
             layout_tables[
-                (InflectionCategory(ic_str.upper()), ParadigmSize(size_str.upper()))
+                (LexicalCategory(ic_str.upper()), ParadigmSize(size_str.upper()))
             ] = layout_list
     return layout_tables
 
 
 def import_paradigms(
     paradigm_files_dir: Path
-) -> Dict[InflectionCategory, Dict[FrozenSet[str], List[str]]]:
+) -> Dict[LexicalCategory, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
 
@@ -95,13 +95,13 @@ def import_paradigms(
 
 
 class Combiner:
-    _paradigm_tables: Dict[InflectionCategory, Dict[FrozenSet[str], List[str]]]
+    _paradigm_tables: Dict[LexicalCategory, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[InflectionCategory, ParadigmSize], List[List[str]]]
+    _layout_tables: Dict[Tuple[LexicalCategory, ParadigmSize], List[List[str]]]
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
                       ['"1s"', 'Ind+Prs+1Sg', 'PV/e+*+Cnj+Prs+1Sg'], ['"2s"', 'Ind+Prs+2Sg', 'PV/e+*+Cnj+Prs+2Sg'],
@@ -165,7 +165,7 @@ class Combiner:
         )
 
     def get_combined_table(
-        self, category: InflectionCategory, paradigm_size: ParadigmSize
+        self, category: LexicalCategory, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         returns a paradigm table filled with words
@@ -173,7 +173,7 @@ class Combiner:
         :returns: filled paradigm table
         """
 
-        if category is InflectionCategory.IPC or category is InflectionCategory.Pron:
+        if category is LexicalCategory.IPC or category is LexicalCategory.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]
@@ -217,8 +217,8 @@ class Combiner:
 if __name__ == "__main__":
     filler = Combiner.default_filler()
 
-    for ic in InflectionCategory:
-        if ic is InflectionCategory.Pron or ic is InflectionCategory.IPC:
+    for ic in LexicalCategory:
+        if ic is LexicalCategory.Pron or ic is LexicalCategory.IPC:
             continue
         for size in ParadigmSize:
             with open(

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "12f5a4bb693efe962ec7dfb2e88e94330466dc53f9b45dbd888c3e2f1a5e59f5"
+            "sha256": "56445ce48bb9c6646c8d48df42e49eee49cfee791f3132829c5258e47e0c29f1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -84,10 +84,10 @@
         },
         "hfstol": {
             "hashes": [
-                "sha256:189871d0482ddf4153812c7ba41daa4be379f11f10ac68a556ed092ec308c245"
+                "sha256:78e6804f65d06fc7f3e6389dd995e5f2e33c7166a28e3998a77940b81fd5056f"
             ],
             "index": "pypi",
-            "version": "==1.1.4"
+            "version": "==1.2.2"
         },
         "mod-wsgi": {
             "hashes": [
@@ -113,11 +113,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:438d6a735167099d75e5fd9a55175c6727c4dbba345ae406b2886c2728fe3e80",
-                "sha256:ebc205051d79b49989140f5f6c73ec23fce5f590cbc4d9cd6e4c47f168fa0f10"
+                "sha256:1be3e4e3198f2d0e47b928e9d9a8ec1b63525db29095cec1467f4c5a4ea8ebf9",
+                "sha256:7e39a30e3d34a7a6539378e39d7490326253b7ee354878a92255656dc4284457"
             ],
             "index": "pypi",
-            "version": "==4.34.0"
+            "version": "==4.35.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -305,11 +305,11 @@
         },
         "pytest-mypy": {
             "hashes": [
-                "sha256:419d1d4877d41a6a80f0eb31faa7c50bb9445557f7ff1b02a1a26d10d7dc7691",
-                "sha256:917438af835beb87f14c9f6261137f8e992b3bf87ebf73f836ac7ede03424a0f"
+                "sha256:a82b0f6243f84c9aa5ecce373891f6d4ac02ca8b689e7c34aa78cbd78f7a53e2",
+                "sha256:df6289a2af6852af2e1513198c36026feba81b19a097a4c7f35c3c642c00ebdd"
             ],
             "index": "pypi",
-            "version": "==0.3.3"
+            "version": "==0.4.0"
         },
         "six": {
             "hashes": [
@@ -363,10 +363,10 @@
         },
         "zipp": {
             "hashes": [
-                "sha256:4970c3758f4e89a7857a973b1e2a5d75bcdc47794442f2e2dd4fe8e0466e809a",
-                "sha256:8a5712cfd3bb4248015eb3b0b3c54a5f6ee3f2425963ef2a0125b8bc40aafaec"
+                "sha256:3718b1cbcd963c7d4c5511a8240812904164b7f381b647143a89d3b98f9bcd8e",
+                "sha256:f06903e9f1f43b12d371004b4ac7b06ab39a44adc747266928ae6debfa7b3335"
             ],
-            "version": "==0.5.2"
+            "version": "==0.6.0"
         }
     }
 }

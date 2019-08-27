@@ -4,9 +4,9 @@ from pathlib import Path
 from typing import Iterable, Dict, Optional, Set, Pattern
 from typing import Tuple
 
-from constants import InflectionCategory
+from constants import LexicalCategory
 
-inflection_category_to_pattern = dict()  # type: Dict[InflectionCategory, Pattern[str]]
+inflection_category_to_pattern = dict()  # type: Dict[LexicalCategory, Pattern[str]]
 
 with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
     lines = f.readlines()
@@ -14,12 +14,12 @@ with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
         line = line.strip()
         if line:
             cells = line.split("\t")
-            category = InflectionCategory(cells[0].upper())
+            category = LexicalCategory(cells[0].upper())
 
             # IPC and Pron are special cases
             if (
-                category is not InflectionCategory.IPC
-                and category is not InflectionCategory.Pron
+                category is not LexicalCategory.IPC
+                and category is not LexicalCategory.Pron
             ):
                 inflection_category_to_pattern[category] = re.compile(
                     "[^+]+" + re.escape(cells[1].split("{{ lemma }}")[-1])
@@ -56,9 +56,7 @@ def extract_lemma(analysis: str) -> Optional[str]:
         return None
 
 
-def extract_lemma_and_category(
-    analysis: str
-) -> Optional[Tuple[str, InflectionCategory]]:
+def extract_lemma_and_category(analysis: str) -> Optional[Tuple[str, LexicalCategory]]:
     """
     faster than calling `extract_lemma` and `extract_category` separately
     """
@@ -80,7 +78,7 @@ def extract_lemma_and_category(
 
             if group.startswith("+Num"):  # special case
                 group = group[4:]
-            inflection_category = InflectionCategory(group.replace("+", "").upper())
+            inflection_category = LexicalCategory(group.replace("+", "").upper())
 
             return lemma, inflection_category
 
@@ -90,7 +88,7 @@ def extract_lemma_and_category(
         return None
 
 
-def extract_category(analysis: str) -> Optional[InflectionCategory]:
+def extract_category(analysis: str) -> Optional[LexicalCategory]:
     """
 
     :param analysis: in the form of 'a+VAI+b+c'
@@ -102,7 +100,7 @@ def extract_category(analysis: str) -> Optional[InflectionCategory]:
         if group:
             if group.startswith("+Num"):  # special case
                 group = group[4:]
-            return InflectionCategory(group.replace("+", "").upper())
+            return LexicalCategory(group.replace("+", "").upper())
         else:
             return None
     else:
@@ -130,10 +128,10 @@ def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
             raise ValueError(
                 f"Can not recognize the category of fst analysis {analysis}"
             )
-        if cat is InflectionCategory.Pron:
+        if cat is LexicalCategory.Pron:
             if "+Pron" in analysis:
                 possible_analyses.add(analysis)
-        elif cat is InflectionCategory.IPC:
+        elif cat is LexicalCategory.IPC:
 
             if "+Ipc" in analysis and not analysis.endswith("+Num+Ipc"):
                 possible_analyses.add(analysis)

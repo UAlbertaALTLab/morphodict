@@ -7,6 +7,8 @@ class Inflection(models.Model):
 
     text = models.CharField(max_length=40)
     analysis = models.CharField(max_length=50, default="")
+    pos = models.CharField(max_length=6, default="")
+    lc = models.CharField(max_length=15, default="")
     is_lemma = models.BooleanField(
         default=False, help_text="Lemma or non-lemma inflection"
     )

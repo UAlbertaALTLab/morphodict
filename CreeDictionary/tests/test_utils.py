@@ -2,7 +2,7 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from constants import InflectionCategory, ParadigmSize
+from constants import LexicalCategory, ParadigmSize
 from utils import extract_category, identify_lemma_analysis
 from utils import hfstol_analysis_parser
 from utils.crkeng_xml_utils import get_xml_lemma_set, extract_l_str
@@ -31,14 +31,14 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
 @pytest.mark.parametrize(
     "analysis, category",
     [
-        ("nôhkom+N+A+D+Px1Sg+Sg", InflectionCategory("NAD")),
-        ("wâhkwa+N+A+Sg", InflectionCategory("NA")),
-        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", InflectionCategory("VTA")),
-        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", InflectionCategory("VTI")),
-        ("yîkatêpayin+V+II+Ind+Prs+3Sg", InflectionCategory("VII")),
-        ("tânisi+Ipc", InflectionCategory("IPC")),
-        ("mitêh+N+I+D+PxX+Sg", InflectionCategory("NID")),
-        ("ôma+Pron+Def+Med+IN+Pl", InflectionCategory("PRON")),
+        ("nôhkom+N+A+D+Px1Sg+Sg", LexicalCategory("NAD")),
+        ("wâhkwa+N+A+Sg", LexicalCategory("NA")),
+        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", LexicalCategory("VTA")),
+        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", LexicalCategory("VTI")),
+        ("yîkatêpayin+V+II+Ind+Prs+3Sg", LexicalCategory("VII")),
+        ("tânisi+Ipc", LexicalCategory("IPC")),
+        ("mitêh+N+I+D+PxX+Sg", LexicalCategory("NID")),
+        ("ôma+Pron+Def+Med+IN+Pl", LexicalCategory("PRON")),
     ],
 )
 def test_hfstol_analysis_category_extraction(analysis, category):
@@ -86,7 +86,7 @@ def test_identify(analyses, lemma_analyses_index):
     [
         (
             "niska",
-            InflectionCategory.NA,
+            LexicalCategory.NA,
             ParadigmSize.FULL,
             [
                 ['"Singular"', "niska", "", "", ""],

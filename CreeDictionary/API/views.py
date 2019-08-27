@@ -10,13 +10,15 @@ from django.shortcuts import render
 
 import API.datafetch as datafetch
 from API.models import *
+from utils import hfstol_analysis_parser
 from utils.paradigm import ParadigmFiller
+from hfstol import HFSTOL
+from utils.shared_res_dir import shared_res_dir
 
-paradigm_filler = ParadigmFiller.default_filler()
-
-
-def home(request):
-    return HttpResponse("")
+# paradigm_filler = ParadigmFiller.default_filler()
+descriptive_analyzer = HFSTOL.from_file(
+    shared_res_dir / "fst" / "crk-descriptive-analyzer.hfstol"
+)
 
 
 def search(request, query_string):
@@ -116,23 +118,29 @@ def translate_cree(request, queryString: str) -> JsonResponse:
 
     response: Dict[str, Any] = {"translation": []}
 
-    # res = list(fstAnalyzer.analyze(queryString))
+    res = descriptive_analyzer.feed_in_bulk_fast([queryString])[queryString]
 
-    # for r in res:
-    #     try:
-    #         definitions = datafetch.fetch_definitions_with_exact_lemma(r[0])
-    #
-    #     except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
-    #         print(
-    #             "Warning: During API query, may due to incomplete database:",
-    #             file=stderr,
-    #         )
-    #         print(e, file=stderr)
-    #         continue
-    #     else:
-    #         response["translation"].append(
-    #             {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
-    #         )
+    for analysis in res:
+
+        lemma_category = hfstol_analysis_parser.extract_lemma_and_category(analysis)
+        if lemma_category is None:
+            continue
+        lemma, category = lemma_category
+
+        # try:
+        #     definitions = datafetch.fetch_definitions_by_exact_lemma_and_category(lemma)
+
+        # except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
+        #     print(
+        #         "Warning: During API query, may due to incomplete database:",
+        #         file=stderr,
+        #     )
+        #     print(e, file=stderr)
+        #     continue
+        # else:
+        #     response["translation"].append(
+        #         {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
+        #     )
 
     json_response = JsonResponse(response)
     json_response["Access-Control-Allow-Origin"] = "*"

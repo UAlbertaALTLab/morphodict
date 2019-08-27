@@ -44,10 +44,13 @@ def fetch_exact_lemma(lemma_string: str):
     #     raise LemmaDoesNotExist(lemma_string)
 
 
-def fetch_definitions_with_exact_lemma(lemma_string: str) -> List[Dict[str, str]]:
+def fetch_definitions_by_exact_lemma_and_category(
+    lemma_string: str
+) -> List[Dict[str, str]]:
     """
     :raise LemmaDoesNotExist: The lemma doesn't exist in the database
-    :param lemma_string:
+    :param lemma_string: exact form of the lemma
+    :return: [{'definition': blah, 'source': blah}, {...}, {...}]
     """
     pass
     # lemma = fetch_exact_lemma(lemma_string)

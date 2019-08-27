@@ -11,7 +11,7 @@ class ParadigmSize(Enum):
     EXTENDED = "EXTENDED"
 
 
-class InflectionCategory(Enum):
+class LexicalCategory(Enum):
 
     NA = "NA"
     NAD = "NAD"
@@ -34,11 +34,11 @@ class InflectionCategory(Enum):
 
     def to_fst_output_style(self):
         """
-        >>> InflectionCategory.VAI.to_fst_output_style()
+        >>> LexicalCategory.VAI.to_fst_output_style()
         '+V+AI'
-        >>> InflectionCategory.NID.to_fst_output_style()
+        >>> LexicalCategory.NID.to_fst_output_style()
         '+N+I+D'
-        >>> InflectionCategory.IPC.to_fst_output_style()
+        >>> LexicalCategory.IPC.to_fst_output_style()
         '+IPC'
         """
 
@@ -51,9 +51,9 @@ class InflectionCategory(Enum):
 
     def to_layout_table_name(self, paradigm_size: ParadigmSize):
         """
-        >>> InflectionCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
+        >>> LexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
         'vai-basic'
-        >>> InflectionCategory.NID.to_layout_table_name(ParadigmSize.EXTENDED)
+        >>> LexicalCategory.NID.to_layout_table_name(ParadigmSize.EXTENDED)
         'nid-extended'
         """
 
