@@ -10,6 +10,7 @@ pytest-django = "~=3.5"
 pytest-cov = "~=2.7"
 pytest-datadir = "~=1.3"
 pytest-mypy = "~=0.4"
+hypothesis = {extras = ["django"],version = "~=4.34"}
 
 [packages]
 colorama = "~=0.4"
@@ -20,8 +21,9 @@ mod-wsgi = "~=4.6"
 pytz = "==2019.2"
 tqdm = "~=4.33"
 Django = "~=2.2"
-creedictionary = {editable = true,path = "./CreeDictionary"}
+creedictionary = {editable = true,path = "./CreeDictionary"} # needed to install and use database manager
 typing-extensions = "~=3.7"
+attrs = "~=19.1"
 
 [scripts]
 # reminders. you can just use $ manage-db
@@ -29,7 +31,7 @@ manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
 # look stuff up
-analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-strict-analyzer.hfstol"
+analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
 # tests
 test = "pytest --doctest-modules --mypy"
 # run dev server

@@ -1,10 +1,12 @@
 import bisect
+import os
 from typing import Optional, List
 
+import django
 from django.db.models import QuerySet
 
 from API.models import Inflection
-from FuzzySearcher.FuzzySearcher import FuzzySearcher
+from fuzzy_search.fuzzy_searcher import FuzzySearcher
 
 
 class OrderedInflectionQuerySet(QuerySet):

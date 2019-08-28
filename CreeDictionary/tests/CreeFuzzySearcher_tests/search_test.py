@@ -3,7 +3,7 @@ from typing import Iterable
 import pytest
 
 from API.models import Inflection
-from FuzzySearcher.CreeFuzzySearcher import CreeFuzzySearcher
+from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
 
 
 @pytest.mark.django_db

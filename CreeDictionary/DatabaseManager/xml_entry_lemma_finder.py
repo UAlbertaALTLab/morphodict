@@ -12,14 +12,9 @@ import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_hfstol_xml_pos_match
 from utils import hfstol_analysis_parser
+from shared import strict_analyzer
 
 init()  # for windows compatibility
-
-analyzer_file = (
-    Path(dirname(__file__)) / ".." / "res" / "fst" / "crk-strict-analyzer.hfstol"
-)
-
-analyzer = HFSTOL.from_file(analyzer_file)
 
 
 def extract_fst_lemmas(
@@ -43,7 +38,9 @@ def extract_fst_lemmas(
 
     inflections = xml_lemma_to_pos_lc.keys()
 
-    xml_lemma_to_analyses = analyzer.feed_in_bulk_fast(inflections, multi_processing)
+    xml_lemma_to_analyses = strict_analyzer.feed_in_bulk_fast(
+        inflections, multi_processing
+    )
 
     no_analysis_counter = 0
 

@@ -13,12 +13,7 @@ from hfstol import HFSTOL
 from DatabaseManager.log import DatabaseManagerLogger
 from constants import LexicalCategory
 from utils import hfstol_analysis_parser
-
-generator_file = (
-    Path(dirname(__file__)) / ".." / "res" / "fst" / "crk-normative-generator.hfstol"
-)
-
-generator = HFSTOL.from_file(generator_file)
+from shared import generator
 
 
 def import_flattened_prefilled_layouts(
