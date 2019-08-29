@@ -3,12 +3,14 @@
     <words>
       <w>asctime</w>
       <w>crkeng</w>
+      <w>datadir</w>
       <w>hfstol</w>
       <w>levelname</w>
       <w>mypy</w>
       <w>prefilled</w>
       <w>pytest</w>
       <w>pythonic</w>
+      <w>subsetter</w>
       <w>wordform</w>
     </words>
   </dictionary>
