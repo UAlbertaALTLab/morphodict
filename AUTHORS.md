@@ -15,7 +15,7 @@ User experience and interface design (UX/UI).
 
 #### [Atticus Harrigan](https://a.ttic.us/)
 
-Cree linguist and doggo enthusiast.
+Quantitative linguist and doggo enthusiast.
 
 
 #### [Eddie Antonio Santos](https://eddieantonio.ca/)
@@ -27,7 +27,7 @@ Lead of software development. Part of the National Research Council Canada's [Ca
 
 #### Katherine Schmirler
 
-Cree linguist
+Algonquian language linguist.
 
 
 #### [Matt Yan](https://github.com/Madoshakalaka)
