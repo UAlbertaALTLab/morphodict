@@ -61,3 +61,7 @@ class LexicalCategory(Enum):
         """
 
         return self.value.lower() + "-" + paradigm_size.value.lower()
+
+
+# alias
+LC = LexicalCategory

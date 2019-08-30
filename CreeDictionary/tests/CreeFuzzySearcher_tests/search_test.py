@@ -20,6 +20,8 @@ from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
 def test_search(
     corpus: Iterable[str], query: str, distance: int, expected: Iterable[int]
 ):
+    print("oh no")
+    print(Inflection.objects.all().count())
     for i, word in enumerate(corpus):
         Inflection(id=i, text=word, analysis="", is_lemma=True, as_is=True).save()
 

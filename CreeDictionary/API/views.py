@@ -9,7 +9,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 
 import API.datafetch as datafetch
-from API.models import *
+from API.models import Inflection, Definition
 from utils import hfstol_analysis_parser
 from utils.paradigm import ParadigmFiller
 from hfstol import HFSTOL
@@ -104,23 +104,21 @@ def search(request, query_string):
         return JsonResponse(response)
 
 
-def translate_cree(request, queryString: str) -> JsonResponse:
+def translate_cree(request, query_string: str) -> JsonResponse:
     """
     note: returned definition is for lemma, not the queried inflected form.
     see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/wiki/Web-API for API specifications
-
-    :param request:
-    :param queryString:
     """
 
-    queryString = unquote(queryString)
-    queryString = unicodedata.normalize("NFC", queryString)
+    query_string = unquote(query_string)
+    query_string = unicodedata.normalize("NFC", query_string)
 
     response: Dict[str, Any] = {"translation": []}
 
-    res = descriptive_analyzer.feed_in_bulk_fast([queryString])[queryString]
+    res = descriptive_analyzer.feed_in_bulk_fast([query_string])[query_string]
 
     for analysis in res:
+        non_as_is_lemmas = Inflection.fetch_non_as_is_lemmas_by_fst_analysis(analysis)
 
         lemma_category = hfstol_analysis_parser.extract_lemma_and_category(analysis)
         if lemma_category is None:

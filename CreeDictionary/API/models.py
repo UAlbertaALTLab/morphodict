@@ -48,7 +48,9 @@ class Inflection(models.Model):
         return category is lc
 
     @classmethod
-    def fetch_lemmas_by_fst_analysis(cls, analysis: str) -> List["Inflection"]:
+    def fetch_non_as_is_lemmas_by_fst_analysis(
+        cls, analysis: str
+    ) -> List["Inflection"]:
         """
         :return: can be empty
         """
@@ -58,8 +60,8 @@ class Inflection(models.Model):
         lemma, category = lemma_category
 
         matched_lemmas: List[Inflection] = []
-        for db_lemma in cls.objects.filter(text=lemma, is_lemma=True):
-            if db_lemma.is_category(lemma_category):
+        for db_lemma in cls.objects.filter(text=lemma, is_lemma=True, as_is=False):
+            if db_lemma.is_category(category):
                 matched_lemmas.append(db_lemma)
 
         return matched_lemmas

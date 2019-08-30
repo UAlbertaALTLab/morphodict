@@ -3,16 +3,56 @@ from pathlib import Path
 
 import pytest
 import xml_subsetter
+from django.db import transaction
+from hypothesis import assume
+from hypothesis._strategies import composite, integers
 
-from utils import shared_res_dir
+from API.models import Inflection
+from DatabaseManager.xml_importer import import_crkeng_xml
+from constants import LexicalCategory
+from utils import shared_res_dir, hfstol_analysis_parser
 
 
-@pytest.fixture
+@pytest.fixture(scope="session")
 def topmost_datadir():
     return Path(dirname(__file__)) / "data"
 
 
-@pytest.fixture
+@composite
+def random_inflections(draw) -> Inflection:
+    """
+    hypothesis strategy to supply random inflections
+    """
+    inflection_objects = Inflection.objects.all()
+    id = draw(integers(min_value=1, max_value=inflection_objects.count()))
+    return inflection_objects.get(id=id)
+
+
+@composite
+def analyzable_inflections(draw) -> Inflection:
+    """
+    inflections with as_is field being False, meaning they have an analysis field from fst analyzer
+    """
+    inflection_objects = Inflection.objects.all()
+
+    pk_id = draw(integers(min_value=1, max_value=inflection_objects.count()))
+    the_inflection = inflection_objects.get(id=pk_id)
+    assume(not the_inflection.as_is)
+    return the_inflection
+
+
+@composite
+def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
+    """
+    hypothesis strategy to supply random inflections
+    """
+    inflection = draw(random_inflections())
+    assume(not inflection.as_is)
+    assume(hfstol_analysis_parser.extract_category(inflection.analysis) is lc)
+    return inflection
+
+
+@pytest.fixture(scope="session")
 def crk_eng_hundredth_file(topmost_datadir) -> Path:
     """
     1/100 of the entries in the real crkeng.xml

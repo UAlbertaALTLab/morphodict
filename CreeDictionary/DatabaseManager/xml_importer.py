@@ -37,16 +37,20 @@ def clear_database(verbose=True):
     logger.info("All Objects deleted from Database")
 
 
-def generate_as_is_analysis(pos: str, lc: str) -> str:
+def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     """
     generate analysis for xml entries whose fst analysis cannot be determined.
-    The philosophy is to show lc if possible (which is more detailed), with pos being the fall back
-    >>> generate_as_is_analysis('N', 'NI-2')
-    'NI'
-    >>> generate_as_is_analysis('N', '')
-    'N'
-    >>> generate_as_is_analysis('V', 'VTI')
-    'VTI'
+    The philosophy is to match the appearance an fst analysis
+    in the following examples, the xml_lemmas are not necessarily un-analyzable. They are just examples to show the
+    behaviour of this function.
+
+    >>> generate_as_is_analysis('ihtatwêwitam', 'V', 'VTI') # adopt more detailed lc if possible
+    'ihtatwêwitam+V+TI'
+    >>> generate_as_is_analysis('wayawîwin', 'N', 'NI-2') # adopt more detailed lc if possible
+    'wayawîwin+N+I'
+    >>> generate_as_is_analysis('wayawîwin', 'N', '') # use pos only as a fallback
+    'wayawîwin+N'
+    # todo: this
     """
 
     # possible parsed pos str
@@ -68,7 +72,7 @@ def generate_as_is_analysis(pos: str, lc: str) -> str:
         return pos
 
 
-def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
+def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
     """
     CLEARS the database and import from an xml file
     """
@@ -229,7 +233,7 @@ def import_crkeng_xml(filename: Path, multi_processing: int, verbose=True):
         db_inflection = Inflection(
             id=inflection_counter,
             text=xml_lemma,
-            analysis=generate_as_is_analysis(pos, lc),
+            analysis=generate_as_is_analysis(xml_lemma, pos, lc),
             is_lemma=True,
             as_is=True,
         )
