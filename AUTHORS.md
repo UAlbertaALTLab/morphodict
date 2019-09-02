@@ -22,7 +22,7 @@ Quantitative linguist and doggo enthusiast.
 
 Lead of software development. Part of the National Research Council Canada's [Canadian Indigenous languages technology project][ILT].
 
-[ILT]: https://nrc.canada.ca/en/node/1378.
+[ILT]: https://nrc.canada.ca/en/node/1378
 
 
 #### Katherine Schmirler
@@ -55,3 +55,5 @@ Special Thanks
 --------------
 
 [Eleni Stroulia](https://www.ualberta.ca/science/about-us/contact-us/faculty-directory/eleni-stroulia), and [Daniel Chui](https://github.com/dchui1) (CMPUT 401 instructor and teaching assistant).
+
+[Roland Khun][ILT]
