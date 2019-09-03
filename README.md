@@ -15,7 +15,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 - `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
 - `$ cd cree-intelligent-dictionary`
 - Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
-- `$ pipenv install --dev` or `$ pipenv install --dev --skip-lock` on Windows
+- `$ pipenv install --dev` or `$ pipenv install --dev --skip-lock` on Windows for [a bug of pipenv](https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/feat/DictionaryImporter/README.md#known-issues).
 - Install HFST
 
     Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
