@@ -65,3 +65,16 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 ## License
 This project licensed under Apache License Version 2.0
+
+## Known issues
+
+### Pipenv install on Windows
+On Windows, pipenv locking doesn't respect os_name marker and will error.
+
+If you are doing development on windows. do `pipenv install --dev --skip-lock`
+
+```pipfile
+# mod-wsgi is a dependency in Pipfile
+mod-wsgi = {version="~=4.6", os_name = "=='posix'"}
+```
+See the [pipenv issue](https://github.com/pypa/pipenv/issues/3929#issue-488682330) here

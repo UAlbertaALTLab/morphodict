@@ -18,7 +18,9 @@ colorama = "~=0.4"
 coverage = "~=4.5"
 cree-sro-syllabics = "==2019.2.18"
 hfstol = "~=1.2.2"
-mod-wsgi = "~=4.6"
+# encountered bug: on Windows system pipenv locking doesn't respect os_name marker and will error.
+# If you are doing development on windows. do `pipenv install --dev --skip-lock`
+mod-wsgi = {version="~=4.6", os_name = "=='posix'"}
 pytz = "==2019.2"
 tqdm = "~=4.33"
 Django = "~=2.2"
@@ -38,5 +40,3 @@ test = "pytest --doctest-modules --mypy"
 # run dev server
 dev = "env Production=False python manage.py runserver"
 
-[requires]
-python_version = "3.6"
