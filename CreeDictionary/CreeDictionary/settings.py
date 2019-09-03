@@ -52,8 +52,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
-    "mod_wsgi.server",
+
 ]
+if not DEBUG:
+    INSTALLED_APPS.append("mod_wsgi.server")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

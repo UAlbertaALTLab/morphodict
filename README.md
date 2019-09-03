@@ -40,13 +40,19 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
+- creat a file called `.env` with `Production=False` on first line.
+
+- Initialize Database
+
+    `python manage.py makemigrations && python manage.py migrate`
+
 - Build Database
 
-    - `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml` 
+    `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml` 
     
-        It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
+    It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-        `manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+    `manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
         
 - Run development server
     - `pipenv run dev`

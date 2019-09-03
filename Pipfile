@@ -33,10 +33,15 @@ attrs = "~=19.1"
 manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
+
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
+
 # tests
 test = "pytest --doctest-modules --mypy"
 # run dev server
-dev = "env Production=False python manage.py runserver"
+dev = "python CreeDictionary/manage.py runserver"
+
+make-migrations = "python ./CreeDictionary/manage.py makemigrations"
+migrate = "python ./CreeDictionary/manage.py migrate"
 
