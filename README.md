@@ -15,7 +15,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 - `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
 - `$ cd cree-intelligent-dictionary`
 - Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
-- `$ pipenv install --dev`
+- `$ pipenv install --dev` or `$ pipenv install --dev --skip-lock` on Windows
 - Install HFST
 
     Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
@@ -30,7 +30,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
     On Windows:
 
-    > Not tested. Download hfstol binary file. Use `doskey` to alias as `hfst-optimized-lookup` if nessasary.
+    > Download hfstol binary file. Add bin folder to system path.
 
     For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu)
 
