@@ -40,11 +40,13 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-- creat a file called `.env` with `Production=False` on first line.
+- creat a file named `.env` under project root with `Production=False` on first line.
+
+- `pipenv shell`
 
 - Initialize Database
 
-    `python manage.py makemigrations && python manage.py migrate`
+    `pipenv run make-migrations && pipenv run migrate`
 
 - Build Database
 
@@ -52,12 +54,14 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
     
     It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-    `manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+    `$ manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
         
 - Run development server
     - `pipenv run dev`
     - Default homepage: http://127.0.0.1:8000/cree-dictionary 
     - Default admin: http://127.0.0.1:8000/cree-dictionary/admin
+    
+    There will be a warning about "non-unique admin url" which does not cause problems. [See the comments](./CreeDictionary/urls.py)
 
 ## [Deployment](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
 

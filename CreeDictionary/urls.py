@@ -24,5 +24,4 @@ if DEBUG:
 else:
     urlpatterns = [
         path("", include("CreeDictionary.urls")),
-        # path("/", include("CreeDictionary.urls"))
     ]
