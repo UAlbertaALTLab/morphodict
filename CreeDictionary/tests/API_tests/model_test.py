@@ -1,18 +1,12 @@
-import random
-
-from django.db import transaction
-from hypothesis import given, example, assume
-from hypothesis._strategies import composite, integers, just
-from hypothesis.extra.django import from_model
 import pytest
+from django.db import transaction
+from hypothesis import given, assume
+from hypothesis._strategies import just, composite, integers
+from hypothesis.extra.django import from_model
+from tests.conftest import topmost_datadir, crk_eng_hundredth_file, random_inflections
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_crkeng_xml
-from constants import LexicalCategory, LC
-from tests.conftest import (
-    random_inflections,
-    inflections_of_category,
-    analyzable_inflections,
-)
+from constants import LC
 
 # https://github.com/pytest-dev/pytest-django/issues/514#issuecomment-497874174
 from utils import hfstol_analysis_parser

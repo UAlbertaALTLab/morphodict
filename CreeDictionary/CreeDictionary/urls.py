@@ -1,6 +1,8 @@
 """
 Definition of urls for CreeDictionary.
 """
+import os
+from distutils.util import strtobool
 
 from django.conf import settings
 from django.conf.urls import url
@@ -16,82 +18,64 @@ from CreeDictionary import views
 admin.autodiscover()
 
 # 2019/May/21 Matt Yan:
-# to add/modify any url, say 'some/url', you should add/modify two versions of it
-# 1. path("some/url", views.some_view)
-# 2. path("cree-dictionary/some/url", views.some_view, name='some_name')
 
-# The latter is named so that it can be "reversed" by django. See how it works at
-# https://docs.djangoproject.com/en/2.2/topics/http/urls/#reverse-resolution-of-urls
-# you should not hard code urls in html or code but use {url} tag/reverse() all the time.
+# The reason to have different rules in development/production:
 
-# The reason to have duplicate urls:
-# as commented in cree-intelligent-dictionary/urls.py The production server strips away "cree-dictionary/"
-# We have 'some/url' so that the django app can cope with the stripped url.
-# The second named url "cree-dictionary/some/url" is for the proxy setup on server sapir
-# To embed urls in templates/code, we should use  {% url 'some_name' %} /reverse('some_name'),
-# which gives "cree-dictionary/some/url" so that the url is preceded by "cree-dictionary/". This makes sure
-# server sapir can recognize the url and proxy the rest of the url to the app.
+# static file urls / web-page urls / API urls in this project all begin with "cree-dictionary"
+# so that in production on server sapir, the cree-dictionary service can be proxy-ed by looking for
+# initial "cree-dictionary" in the url.
+# on sapir, the initial "cree-dictionary/" will be stripped away when it
+# reaches this django app. That's how apache proxy works.
+# example:
+# http://sapir.artsrn.ualberta.ca/cree-dictionary/Search/hello
+# what reaches the app on sapir is "Search/hello"
+# in development, though, the initial "cree-dictionary" is not stripped away
+# Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
+# url reversion
 
-# Note: use re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a solution. It messes up with
-# url reverse and may not generate the preceding 'cree-dictionary/'
-
-# todo:
-# 3 better solutions:
-# 1. Have this run on a isolated environment in production. Instead of sapir where it's crowded with services so we
-# have to use a proxy to redirect cree-dictionary/ urls.
-# 2. Set up a url rewrite rule in .conf file on server sapir. We can make a rule where
-# every "cree-dictionary/" is rewritten to "cree-dictionary/cree-dictionary/" so that only the first is stripped away.
-# 3. Have a better rule here
-
-urlpatterns = [
+_urlpatterns = [
     # user interface
-    path("", views.index),
-    path("cree-dictionary", views.index, name="cree-dictionary-index"),
-
-    path("search/<str:query_string>", views.index),
-    path(
-        "cree-dictionary/search/<str:query_string>",
-        views.index,
-        name="cree-dictionary-index-with-word",
-    ),
-
-    path(
-        "cree-dictionary/displayWord/<str:queryString>",
+    ("", views.index, "cree-dictionary-index"),
+    ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
+    (
+        "displayWord/<str:queryString>/",
         views.display_word,
-        name="cree-dictionary-word-detail",
+        "cree-dictionary-word-detail",
     ),
-    path("displayWord/<str:queryString>", views.display_word),
-
     # word search api which returns roughly matching
     # dictionary entries for an arbitrary string. \
-    # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
-    path("_search/<str:queryString>", api_views.search),
-    path(
-        "cree-dictionary/_search/<str:queryString>",
-        api_views.search,
-        name="cree-dictionary-search-api",
-    ),
-
+    # It's also used in html templates to display to user. If this is changed,
+    # static/CreeDictionary/js/app.js (which hard codes this url) needs to be updated
+    # fixme: figure out url reversing in javascript.
+    # A fix on stack-overflow is to render javascript with django template
+    ("_search/<str:queryString>/", api_views.search, "cree-dictionary-search-api"),
     # API which returns detailed definition/ inflection/ paradigms of a word
     # the query string has to be an existing cree word from the dictionary.
     # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
-    path(
-        "cree-dictionary/_displayWord/<str:queryString>",
+    (
+        "_displayWord/<str:queryString>/",
         api_views.displayWord,
-        name="cree-dictionary-word-detail-api",
+        "cree-dictionary-word-detail-api",
     ),
-    path("_displayWord/<str:queryString>", api_views.displayWord),
-
     # cree word translation for click-in-text
-    path("_translate-cree/<str:queryString>", api_views.translate_cree),
-    path(
-        "cree-dictionary/_translate-cree/<str:queryString>",
+    (
+        "_translate-cree/<str:queryString>/",
         api_views.translate_cree,
-        name="cree-dictionary-word-translation-api",
+        "cree-dictionary-word-translation-api",
     ),
-
-    url("admin", admin.site.urls),
-    url("cree-dictionary/admin", admin.site.urls, name='admin'),
+    ("admin/", admin.site.urls, "admin"),
 ]
+
+urlpatterns = []
+prefix = ""
+
+DEBUG = settings.DEBUG
+
+for route, view, name in _urlpatterns:
+
+    # kwarg `name` for url reversion in html/py code
+    urlpatterns.append(path("cree-dictionary/" + route, view, name=name))
+    if not DEBUG:
+        urlpatterns.append(path(route, view))
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

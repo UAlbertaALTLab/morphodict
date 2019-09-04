@@ -16,7 +16,17 @@ class Inflection(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=40)
-    analysis = models.CharField(max_length=50, default="")
+
+    RECOGNIZABLE_LC = [(lc.value,) * 2 for lc in LexicalCategory] + [("", "")]
+    lc = models.CharField(max_length=4, choices=RECOGNIZABLE_LC)
+    RECOGNIZABLE_POS = ((p,) * 2 for p in ("IPV", "PRON", "N", "IPC", "V", ""))
+    pos = models.CharField(max_length=4, choices=RECOGNIZABLE_POS)
+
+    analysis = models.CharField(
+        max_length=50,
+        default="",
+        help_text="fst analysis or the best possible if the source is not analyzable",
+    )
     is_lemma = models.BooleanField(
         default=False, help_text="Lemma or non-lemma inflection"
     )

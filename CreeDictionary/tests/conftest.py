@@ -19,16 +19,6 @@ def topmost_datadir():
 
 
 @composite
-def random_inflections(draw) -> Inflection:
-    """
-    hypothesis strategy to supply random inflections
-    """
-    inflection_objects = Inflection.objects.all()
-    id = draw(integers(min_value=1, max_value=inflection_objects.count()))
-    return inflection_objects.get(id=id)
-
-
-@composite
 def analyzable_inflections(draw) -> Inflection:
     """
     inflections with as_is field being False, meaning they have an analysis field from fst analyzer
@@ -42,6 +32,16 @@ def analyzable_inflections(draw) -> Inflection:
 
 
 @composite
+def random_inflections(draw) -> Inflection:
+    """
+    hypothesis strategy to supply random inflections
+    """
+    inflection_objects = Inflection.objects.all()
+    id = draw(integers(min_value=1, max_value=inflection_objects.count()))
+    return inflection_objects.get(id=id)
+
+
+@composite
 def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
     """
     hypothesis strategy to supply random inflections
@@ -52,7 +52,7 @@ def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
     return inflection
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture()
 def crk_eng_hundredth_file(topmost_datadir) -> Path:
     """
     1/100 of the entries in the real crkeng.xml

@@ -29,6 +29,7 @@ SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 # export Production=false while in development
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# todo: Production and DEBUG ?? refactor them to be one and the same
 if bool(strtobool(os.environ.get("Production", "true"))):
     DEBUG = False
 else:
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
-
 ]
 if not DEBUG:
     INSTALLED_APPS.append("mod_wsgi.server")
@@ -67,7 +67,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "urls"
+ROOT_URLCONF = "CreeDictionary.urls"
 
 TEMPLATES = [
     {

@@ -12,7 +12,8 @@ from django.db import connection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from utils.crkeng_xml_utils import extract_l_str
+from constants import LC
+from utils.crkeng_xml_utils import extract_l_str, convert_lc_str
 
 init()  # for windows compatibility
 
@@ -22,6 +23,8 @@ django.setup()
 from API.models import Definition, Inflection
 
 logger = DatabaseManagerLogger(__name__)
+
+RECOGNIZABLE_POS: Set[str] = {p[0] for p in Inflection.RECOGNIZABLE_POS}
 
 
 def clear_database(verbose=True):
@@ -46,11 +49,18 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
 
     >>> generate_as_is_analysis('ihtatwêwitam', 'V', 'VTI') # adopt more detailed lc if possible
     'ihtatwêwitam+V+TI'
-    >>> generate_as_is_analysis('wayawîwin', 'N', 'NI-2') # adopt more detailed lc if possible
+    >>> generate_as_is_analysis('wayawîwin', 'N', 'NI-2') # adopt more detailed lc if possible, strip dash-x to simulate fst analysis
     'wayawîwin+N+I'
+    >>> generate_as_is_analysis('wayawîwin', '', 'NI') # adopt more detailed lc if possible, strip dash-x to simulate fst analysis
+    'wayawîwin+N+I'
+    >>> generate_as_is_analysis('wayawîwin', 'N', 'IPP') # ignore lc outside constants.LexicalCategory Enum
+    'wayawîwin+N'
     >>> generate_as_is_analysis('wayawîwin', 'N', '') # use pos only as a fallback
     'wayawîwin+N'
-    # todo: this
+    >>> generate_as_is_analysis('wayawîwin', '', '') # no analysis when there's no pos nor lc
+    ''
+    >>> generate_as_is_analysis('wayawîwin', '', 'IPP') # ignore lc outside constants.LexicalCategory Enum
+    ''
     """
 
     # possible parsed pos str
@@ -63,13 +73,17 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
     # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
 
-    if lc != "":
-        if "-" in lc:
-            return lc.split("-")[0]
+    lc = lc.split("-")[0]
+
+    recognized_lc = convert_lc_str(lc)
+
+    if recognized_lc is None:
+        if pos not in ("", "-"):
+            return xml_lemma + "+" + pos
         else:
-            return lc
+            return ""
     else:
-        return pos
+        return xml_lemma + recognized_lc.to_fst_output_style()
 
 
 def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
@@ -230,10 +244,17 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
     db_definitions = []  # type: List[Definition]
 
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
+        recognizable_lc = convert_lc_str(lc)
+        normalized_lc = ""
+        normalized_pos = pos.upper()
+        if recognizable_lc is not None:
+            normalized_lc = recognizable_lc.value
         db_inflection = Inflection(
             id=inflection_counter,
             text=xml_lemma,
             analysis=generate_as_is_analysis(xml_lemma, pos, lc),
+            pos=normalized_pos if normalized_pos in RECOGNIZABLE_POS else "",
+            lc=normalized_lc,
             is_lemma=True,
             as_is=True,
         )
@@ -271,11 +292,20 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
                 is_lemma = True
 
             for generated_inflection in generated_inflections:
+                pos, lc = xml_lemma_pos_lcs[0][1:]
+                normalized_pos = pos.upper()
+                recognizable_lc = convert_lc_str(lc)
+                normalized_lc = ""
+                if recognizable_lc is not None:
+                    normalized_lc = recognizable_lc.value
+
                 db_inflection = Inflection(
                     id=inflection_counter,
                     text=generated_inflection,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
+                    pos=normalized_pos if normalized_pos in RECOGNIZABLE_POS else "",
+                    lc=normalized_lc,
                     as_is=False,
                 )
 

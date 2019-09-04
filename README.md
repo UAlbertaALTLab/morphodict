@@ -54,24 +54,27 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
     
     It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-    `$ manage-db import res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
-        
+    `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+
+    optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin  
+
 - Run development server
     - `pipenv run dev`
     - Default homepage: http://127.0.0.1:8000/cree-dictionary 
     - Default admin: http://127.0.0.1:8000/cree-dictionary/admin
     
-    There will be a warning about "non-unique admin url" which does not cause problems. [See the comments](./CreeDictionary/urls.py)
+    note the **cree-dictionary/** part
 
-## [Deployment](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Deployment)
+## Run Tests
 
-## [Maintenance](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Maintenance)
+`pipenv run test` 
 
-## [Refactor Plan](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Refactor-Plan)
+It recognizes the following:
 
-## [Project Structure](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Project-Structure)
+- django settings in pytest.ini (for `pytest-django` to work)
+- --doctest-modules --mypy in `Pipfile [script]` (to enable doctest and mypy tests)
+- Production=False in `.env`
 
-## [Web API](https://github.com/cmput401-winter2019/cree-intelligent-dictionary/wiki/Web-API)
 
 ## License
 This project licensed under Apache License Version 2.0

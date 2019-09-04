@@ -38,7 +38,7 @@ import-xml = "manage-db import"
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
 
 # tests
-test = "pytest --doctest-modules --mypy"
+test = "pytest --doctest-modules --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
 

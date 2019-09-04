@@ -1,11 +1,41 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Set
+from typing import Set, Optional
+
+from constants import LC
 
 
 def get_xml_lemma_set(filename: Path) -> Set[str]:
     elements = ET.parse(str(filename)).getroot().findall(".//e")
     return {extract_l_str(element) for element in elements}
+
+
+def convert_lc_str(lc: str) -> Optional[LC]:
+    """
+    convert <lc> in xml to one of the recognizable LexicalCategory Enum. Or None if not recognizable
+    """
+
+    if lc.startswith("VTA"):
+        return LC.VTA
+    if lc.startswith("VTI"):
+        return LC.VTI
+    if lc.startswith("VAI"):
+        return LC.VAI
+    if lc.startswith("VII"):
+        return LC.VII
+    if lc.startswith("NDA"):
+        return LC.NAD
+    if lc.startswith("NI"):
+        return LC.NI
+    if lc.startswith("NDI"):
+        return LC.NID
+    if lc.startswith("NA"):
+        return LC.NA
+
+    if lc.startswith("IPC"):
+        return LC.IPC
+
+    return None
 
 
 def extract_l_str(element: ET.Element) -> str:

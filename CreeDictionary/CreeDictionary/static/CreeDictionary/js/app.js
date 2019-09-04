@@ -7,7 +7,7 @@ function load_results(query_string){
 
     if (query_string !== ""){
         document.getElementById("search-results").innerHTML = "";
-        window.history.replaceState(query_string, "", "/cree-dictionary/search/"+query_string);
+        window.history.replaceState(query_string, "", "/cree-dictionary/search/"+query_string + '/');
 
         // document.getElementById("instruction-text").innerHTML = val;
 
@@ -47,7 +47,7 @@ function load_results(query_string){
         };
 
         // url is hardcoded, future change to the url needs to be updated here
-        xhttp.open("GET", "/cree-dictionary/cree-dictionary/_search/" + query_string + "?render-html=true", true);
+        xhttp.open("GET", "/cree-dictionary/cree-dictionary/_search/" + query_string + "?render-html=true/", true);
         xhttp.send();
 
 
