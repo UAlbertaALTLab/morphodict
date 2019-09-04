@@ -5,14 +5,13 @@ from urllib.parse import unquote
 
 from cree_sro_syllabics import syllabics2sro
 from django.forms.models import model_to_dict
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django.shortcuts import render
+from hfstol import HFSTOL
 
 import API.datafetch as datafetch
-from API.models import Inflection, Definition
+from API.models import Inflection
 from utils import hfstol_analysis_parser
-from utils.paradigm import ParadigmFiller
-from hfstol import HFSTOL
 from utils.shared_res_dir import shared_res_dir
 
 # paradigm_filler = ParadigmFiller.default_filler()
@@ -106,6 +105,8 @@ def search(request, query_string):
 
 def translate_cree(request, query_string: str) -> JsonResponse:
     """
+    click-in-text api
+
     note: returned definition is for lemma, not the queried inflected form.
     see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/wiki/Web-API for API specifications
     """
@@ -124,7 +125,7 @@ def translate_cree(request, query_string: str) -> JsonResponse:
         if lemma_category is None:
             continue
         lemma, category = lemma_category
-
+        # todo (for matt): finish this
         # try:
         #     definitions = datafetch.fetch_definitions_by_exact_lemma_and_category(lemma)
 
