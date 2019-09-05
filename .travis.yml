@@ -1,12 +1,6 @@
-# todo: use pipenv; update tests
-env:
-  - Production=false
+env: Production=false
 sudo: required
 dist: xenial
-
-branches:
-  only:
-    - master
 
 stages:
   - test
@@ -16,24 +10,14 @@ stages:
 jobs:
   include:
     - language: python
-      python:
-          - "3.7"
-      cache: pip
+      python: "3.7"
 
-      before_install:
-        - sudo apt-get -y install apache2-dev
-        - sudo apt-get -y install hfst
-        - chmod -R 777 .
+      before_install: sudo apt-get -y install hfst
 
-      install:
-          - pip install -r requirements.txt
+      install: pipenv install --dev
 
-      script:
-          - coverage run --source CreeDictionary/ CreeDictionary/manage.py test API.tests
-          - coverage report -m
-          - cd DictionaryImporter
-          - coverage run --source . -m unittest discover -p  "*_test.py"
-          - coverage report -m
+      script: pipenv run test --cov=CreeDictionary
+      after_success: codecov
 
     - stage: deploy
       install: sudo apt-get -y install curl

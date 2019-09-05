@@ -12,6 +12,7 @@ pytest-datadir = "~=1.3"
 pytest-mypy = "~=0.4"
 hypothesis = {extras = ["django"],version = "~=4.34"}
 xml-subsetter = "~=0.0"
+codecov = "*"
 
 [packages]
 colorama = "~=0.4"
@@ -20,7 +21,7 @@ cree-sro-syllabics = "==2019.2.18"
 hfstol = "~=1.2.2"
 # encountered bug: on Windows system pipenv locking doesn't respect os_name marker and will error.
 # If you are doing development on windows. do `pipenv install --dev --skip-lock`
-mod-wsgi = {version="~=4.6", os_name = "=='posix'"}
+mod-wsgi = {version = "~=4.6",os_name = "=='posix'"}
 pytz = "==2019.2"
 tqdm = "~=4.33"
 Django = "~=2.2"
@@ -33,15 +34,11 @@ attrs = "~=19.1"
 manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
-
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
-
 # tests
 test = "pytest --doctest-modules --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
-
 make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
-
