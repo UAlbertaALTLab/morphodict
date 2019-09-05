@@ -129,7 +129,7 @@ class Inflection(models.Model):
             hfstol_analysis_parser.extract_lemma_and_category(a) for a in fst_analyses
         ]
         recognized_lemma_and_categories: List[Tuple[str, LC]] = list(
-            filter(lambda x: x is not None, lemma_and_categories)
+            filter(lambda x: x is not None, lemma_and_categories)  # type: ignore
         )
         recognized_lemmas = [l_lc[0] for l_lc in recognized_lemma_and_categories]
 

@@ -130,12 +130,14 @@ class InflectionAdmin(admin.ModelAdmin):
     def get_lemma_form(self, obj: Inflection) -> str:
         return obj.lemma.text
 
-    get_lemma_form.short_description = "Lemma form"
+    # noinspection Mypy,PyTypeHints
+    get_lemma_form.short_description = "Lemma form"  # type: ignore
 
     def get_default_spelling(self, obj: Inflection) -> str:
         return obj.default_spelling.text
 
-    get_default_spelling.short_description = "Default spelling"
+    # noinspection Mypy,PyTypeHints
+    get_default_spelling.short_description = "Default spelling"  # type: ignore
 
     def get_lemma_definitions(self, obj: Inflection) -> str:
         definition_texts = [d.text for d in obj.lemma.definition_set.all()]
@@ -144,7 +146,8 @@ class InflectionAdmin(admin.ModelAdmin):
             % tuple(definition_texts)
         )
 
-    get_lemma_definitions.short_description = "Lemma definition"
+    # noinspection Mypy,PyTypeHints
+    get_lemma_definitions.short_description = "Lemma definition"  # type: ignore
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
         self.fields = ["text", "analysis", "is_lemma", "as_is"]
