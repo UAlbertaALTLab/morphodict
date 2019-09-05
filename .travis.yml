@@ -17,7 +17,7 @@ jobs:
         - sudo apt-get -y install hfst
 
       install: pipenv install --dev
-
+      before_script: pipenv run make-migrations && pipenv run migrate
       script: pipenv run test --cov=CreeDictionary
       after_success: codecov
 
