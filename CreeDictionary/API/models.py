@@ -3,7 +3,7 @@ from typing import List, Optional, Set
 from urllib.parse import unquote
 
 from cree_sro_syllabics import syllabics2sro
-from django.db import models
+from django.db import models, connection
 
 # todo: override save() to automatically increase id
 # see: https://docs.djangoproject.com/en/2.2/topics/db/models/#overriding-predefined-model-methods
@@ -191,4 +191,7 @@ class Definition(models.Model):
         return self.text
 
 
-Inflection.init_fuzzy_searcher()
+if "API_inflection" in connection.introspection.table_names():
+    # without the guard
+    # on travis this line of code will be run before a database exist and will error
+    Inflection.init_fuzzy_searcher()
