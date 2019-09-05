@@ -1,12 +1,11 @@
 import pytest
 from django.db import transaction
 from hypothesis import given, assume
-from hypothesis._strategies import just, composite, integers
-from hypothesis.extra.django import from_model
-from tests.conftest import topmost_datadir, crk_eng_hundredth_file, random_inflections
+
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_crkeng_xml
 from constants import LC
+from tests.conftest import random_inflections
 
 # https://github.com/pytest-dev/pytest-django/issues/514#issuecomment-497874174
 from utils import hfstol_analysis_parser
@@ -22,6 +21,7 @@ def hundredth_test_database(crk_eng_hundredth_file, django_db_setup, django_db_b
             yield
 
 
+# todo: over-engineered and slow. refactor this
 @pytest.mark.django_db
 @given(inflection=random_inflections())
 def test_stuff(inflection: Inflection, hundredth_test_database):
@@ -33,9 +33,14 @@ def test_stuff(inflection: Inflection, hundredth_test_database):
             assert inflection.is_category(cat)
 
 
+# todo: over-engineered and slow. refactor this
 @pytest.mark.django_db
-@given(inflection=from_model(Inflection, as_is=just(False)))
-def test_malformed_inflection_analysis_field(inflection: Inflection):
+@given(inflection=random_inflections())
+def test_malformed_inflection_analysis_field(
+    inflection: Inflection, hundredth_test_database
+):
+    inflection.as_is = False
+    inflection.analysis = "ijfasdjfie"
     assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)
     with pytest.raises(ValueError):
         inflection.is_category(LC.VTA)
@@ -49,6 +54,8 @@ def test_lemma_fetching_by_analysis():
         analysis="yôtinipahtâw+V+AI+Ind+Prs+3Sg",
         as_is=False,
         is_lemma=True,
+        default_spelling_id=0,  # irrelavant
+        lemma_id=0,
     )
     lemma.save()
 

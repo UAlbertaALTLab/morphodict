@@ -168,9 +168,7 @@ class Combiner:
         self, category: LexicalCategory, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
-        returns a paradigm table filled with words
-
-        :returns: filled paradigm table
+        returns a paradigm table
         """
 
         if category is LexicalCategory.IPC or category is LexicalCategory.Pron:

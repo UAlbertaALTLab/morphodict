@@ -90,3 +90,6 @@ class ParadigmFiller:
             )
 
         return layout_table
+
+
+paradigm_filler = ParadigmFiller.default_filler()

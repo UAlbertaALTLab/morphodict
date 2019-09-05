@@ -5,13 +5,13 @@
     <div class="lemma-box">
         <h1>Lemma:</h1>
         <div class="lemma-box-upper">
-            <p>Lemma: {{ lemma_name }}</p>
-            <p>Tags: {{ lemma_tags|join:"+" }}</p>
+            <p>Lemma: {{ lemma.text }}</p>
+            <p>Analysis: {{ lemma.analysis }}</p>
         </div>
 
         <div class="definition-box">
-            {% for definition in lemma_definitions %}
-                <p>Definition(source: {{ definition.source }}):{{ definition.context }}</p>
+            {% for definition in lemma.definition_set.all %}
+                <p>Definition(source: {{ definition.sources }}):{{ definition.text }}</p>
             {% endfor %}
         </div>
 
@@ -46,7 +46,7 @@
             </table>
 
         {% else %}
-            <p>No analysis</p>
+            <p>No paradigm can be shown</p>
 
         {% endif %}
 

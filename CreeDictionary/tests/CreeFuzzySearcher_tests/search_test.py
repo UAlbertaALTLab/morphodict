@@ -20,15 +20,19 @@ from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
 def test_search(
     corpus: Iterable[str], query: str, distance: int, expected: Iterable[int]
 ):
-    print("oh no")
-    print(Inflection.objects.all().count())
-    for i, word in enumerate(corpus):
-        Inflection(id=i, text=word, analysis="", is_lemma=True, as_is=True).save()
 
-    fuzzy_searcher = CreeFuzzySearcher()
+    for i, word in enumerate(corpus):
+        Inflection(
+            id=i,
+            text=word,
+            analysis="",
+            is_lemma=True,
+            as_is=True,
+            default_spelling_id=0,
+            lemma_id=0,
+        ).save()
+
+    fuzzy_searcher = CreeFuzzySearcher(Inflection.objects.all())
     assert set(fuzzy_searcher.search(query, distance)) == set(
         Inflection.objects.filter(id__in=expected)
     )
-    # CreeFuzzySearcher is a singleton class. Destroy the created instance
-    assert CreeFuzzySearcher() is fuzzy_searcher
-    CreeFuzzySearcher._instance = None

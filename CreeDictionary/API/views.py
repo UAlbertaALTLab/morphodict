@@ -1,19 +1,15 @@
-import re
-import unicodedata
-from typing import Dict, Any
-from urllib.parse import unquote
+from typing import Dict
 
-from django.forms.models import model_to_dict
+from django.db.models import QuerySet
 from django.http import JsonResponse
 from django.shortcuts import render
 from hfstol import HFSTOL
 
-import API.datafetch as datafetch
 from API.models import Inflection
-from utils import hfstol_analysis_parser
+from constants import LC
+from utils import paradigm_filler, ParadigmSize
 from utils.shared_res_dir import shared_res_dir
 
-# paradigm_filler = ParadigmFiller.default_filler()
 descriptive_analyzer = HFSTOL.from_file(
     shared_res_dir / "fst" / "crk-descriptive-analyzer.hfstol"
 )
@@ -23,37 +19,15 @@ def search(request, query_string):
     """
     api and for internal use when render-html=true is specified
     """
-    # todo: change api documentation (is a git wiki page)
-    # Still searches contains since some cree like inputs can be inparsable by fst
-    creeWords += datafetch.fetchContainsLemma(query_string)
-    creeWords += datafetch.fetchLemmaContainsInflection(query_string)
+    # todo: change api documentation (originally a git wiki page)
+    lemmas: QuerySet = Inflection.fetch_lemmas_by_user_query(query_string)
 
-    if len(creeWords) >= len(englishWords):
-        words = creeWords
-        print("Return Cree")
-    else:
-        words = englishWords
-        print("Return English")
+    response: Dict[str, list] = {}
 
-    # Convert to dict for json serialization
-    words = list(model_to_dict(word) for word in words)
-
-    # Remove Duplicated Lemmas
-    wordIDs = set()
-    uniqueWords = list()
-    for word in words:
-        wordID = word["id"]
-        if wordID not in wordIDs:
-            wordIDs.add(wordID)
-            uniqueWords.append(word)
-
-    # Populate Fields
-    datafetch.fillAttributes(uniqueWords)
-    datafetch.fillDefinitions(uniqueWords)
     if request.GET.get("render-html", False) == "true":
-        return render(request, "API/word-entries.html", {"words": uniqueWords})
+        return render(request, "API/word-entries.html", {"words": lemmas})
     else:
-        response["words"] = uniqueWords
+        response["words"] = [lemma.serialize() for lemma in lemmas]
         return JsonResponse(response)
 
 
@@ -64,141 +38,28 @@ def translate_cree(request, query_string: str) -> JsonResponse:
     note: returned definition is for lemma, not the queried inflected form.
     see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/wiki/Web-API for API specifications
     """
-
-    query_string = unquote(query_string)
-    query_string = unicodedata.normalize("NFC", query_string)
-
-    response: Dict[str, Any] = {"translation": []}
-
-    res = descriptive_analyzer.feed_in_bulk_fast([query_string])[query_string]
-
-    for analysis in res:
-        non_as_is_lemmas = Inflection.fetch_non_as_is_lemmas_by_fst_analysis(analysis)
-
-        lemma_category = hfstol_analysis_parser.extract_lemma_and_category(analysis)
-        if lemma_category is None:
-            continue
-        lemma, category = lemma_category
-        # todo (for matt): finish this
-        # try:
-        #     definitions = datafetch.fetch_definitions_by_exact_lemma_and_category(lemma)
-
-        # except (datafetch.LemmaDoesNotExist, datafetch.DefinitionDoesNotExist) as e:
-        #     print(
-        #         "Warning: During API query, may due to incomplete database:",
-        #         file=stderr,
-        #     )
-        #     print(e, file=stderr)
-        #     continue
-        # else:
-        #     response["translation"].append(
-        #         {"lemma": r[0], "analysis": "".join(r[1:]), "definitions": definitions}
-        #     )
-
-    json_response = JsonResponse(response)
-    json_response["Access-Control-Allow-Origin"] = "*"
-    return json_response
+    # todo (for matt): rewrite this
+    pass
 
 
-def displayWord(request, queryString):
+def lemma_details(request, lemma_id: int):
     """
-    Display Word View for /DisplayWord/:queryString:
-    :queryString: needs to be exact lemma
+    for internal use
+    render paradigm table
     """
-    # URL Decode
-    queryString = unquote(queryString)
-    # Normalize to UTF8 NFC
-    queryString = unicodedata.normalize("NFC", queryString)
+    # todo (for matt): api documentation
 
-    print(queryString)
+    lemma = Inflection.objects.get(id=lemma_id)
 
-    if request.GET.get("render-html", False) == "true":
-
-        lemma = model_to_dict(Lemma.objects.filter(context__exact=queryString)[0])
-        lemma_name = lemma["context"]
-
-        tags = ""
-        datafetch.fillAttributes([lemma])
-        datafetch.fillDefinitions([lemma])
-        lemma_definitions = []
-        for definition in lemma["definitions"]:
-            lemma_definitions.append(
-                {"context": definition["context"], "source": definition["source"]}
-            )
-
-        lemma_tags = []
-        for tag in lemma["attributes"]:
-
-            # 06/07/2019 fst analyzer gives 'tânisi+Err/Orth+Ipc' that breaks this part
-            if tag["name"] != "Err/Orth":
-                tags += tag["name"]
-                lemma_tags.append(tag["name"])
-        # print("dang")
-        # print(tags)
-        # pprint(lemma)
-        print(lemma)
-        if lemma_tags:
-            groups = re.match(".*(NAD?|NID?|VAI|VII|VT[AI]|Ipc).*", tags).groups()
-            if groups:
-                lemma_layout_class = groups[0]
-                table = paradigm_filler.fill_paradigm(lemma_name)
-            else:
-                table = []
-            # print(lemma_tags)
-
-        else:
-            lemma_tags = lemma["type"]
-            table = []
-
-        return render(
-            request,
-            "API/paradigm.html",
-            {
-                "lemma_name": lemma_name,
-                "lemma_definitions": lemma_definitions,
-                "table": table,
-                "lemma_tags": lemma_tags,
-            },
+    if lemma.lc != "":
+        table = paradigm_filler.fill_paradigm(
+            lemma.text, LC(lemma.lc), ParadigmSize.FULL
         )
+
     else:
-        # Serialize to {"lemma": LEMMA, "inflections": {...}}
-        print("DisplayWord: " + queryString)
+        table = []
 
-        # Get Lemma that exactly matches the :queryString:
-        # Might return multiple lemmas, get the first one. Better fix will be implmeneted on the Importer
-        lemma = Lemma.objects.filter(context__exact=queryString)[0]
-
-        # Get inflections of such lemma
-        inflections = Inflection.objects.filter(fk_lemma=lemma)
-        inflections = [model_to_dict(inflection) for inflection in inflections]
-
-        print(inflections)
-
-        # Fill Lemma Definitions
-        lemma = model_to_dict(lemma)
-        datafetch.fillAttributes([lemma])
-        datafetch.fillDefinitions([lemma])
-
-        # Fill Inflection Definitions
-        datafetch.fillDefinitions(inflections)
-
-        # Fill inflections with InflectionForms
-        for inflection in inflections:
-            inflectionForms = [
-                model_to_dict(form)
-                for form in InflectionForm.objects.filter(
-                    fk_inflection_id=int(inflection["id"])
-                )
-            ]
-            for form in inflectionForms:
-                # Remove not used fields
-                form.pop("id", None)
-                form.pop("fk_inflection", None)
-            inflection["inflectionForms"] = inflectionForms
-
-        print(inflections)
-
-        return JsonResponse({"lemma": lemma, "inflections": inflections})
+    return render(request, "API/paradigm.html", {"lemma": lemma, "table": table})
 
 
 # def analyze_tags(word: str):

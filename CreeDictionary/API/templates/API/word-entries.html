@@ -3,13 +3,13 @@
 
 {% for word in words %}
     <div class="word-card">
-        <div class="title-row-container" onclick="window.location.href='{% url 'cree-dictionary-word-detail-api' word.context %}?render-html=true'">
+        <div class="title-row-container" onclick="window.location.href='{% url 'cree-dictionary-lemma-detail-api' word.id %}'">
 {#        onclick="window.location.href='http://www.google.com'"#}
-            <p class="title-text" >{{ word.context }}
+            <p class="title-text" >{{ word.text }}
                 <span class="definition-text">
-                ({% for definition in word.definitions %}
+                ({% for definition in word.definition_set.all %}
                     {% if forloop.first %}
-                        {{ definition.context }} <sup class="source-tag">{{ definition.source }}</sup>
+                        {{ definition.text }} <sup class="source-tag">{{ definition.sources }}</sup>
                     {% endif %}
                 {% endfor %})
             </span>

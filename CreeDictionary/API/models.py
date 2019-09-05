@@ -1,5 +1,5 @@
 import unicodedata
-from typing import List, Optional, Set, Tuple, Iterable
+from typing import List, Optional, Set
 from urllib.parse import unquote
 
 from cree_sro_syllabics import syllabics2sro
@@ -7,7 +7,10 @@ from django.db import models
 
 # todo: override save() to automatically increase id
 # see: https://docs.djangoproject.com/en/2.2/topics/db/models/#overriding-predefined-model-methods
-from constants import LexicalCategory, LC
+from django.db.models import QuerySet
+from django.forms import model_to_dict
+
+from constants import LexicalCategory
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer
 from utils import hfstol_analysis_parser
@@ -17,9 +20,14 @@ class Inflection(models.Model):
     _cree_fuzzy_searcher = None
 
     @classmethod
-    def fuzzy_search(cls, query: str, distance: int):
+    def init_fuzzy_searcher(cls):
         if cls._cree_fuzzy_searcher is None:
             cls._cree_fuzzy_searcher = CreeFuzzySearcher(cls.objects.all())
+
+    @classmethod
+    def fuzzy_search(cls, query: str, distance: int) -> QuerySet:
+        if cls._cree_fuzzy_searcher is None:
+            return Inflection.objects.none()
         return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
@@ -98,13 +106,13 @@ class Inflection(models.Model):
         return matched_lemmas
 
     @classmethod
-    def fetch_by_user_query(cls, user_query: str) -> List["Inflection"]:
+    def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
         """
 
         :param user_query: can be English or Cree (syllabics or not)
         :return: can be empty
         """
-        # todo: tests?
+        # todo: tests
 
         # URL Decode
         user_query = unquote(user_query)
@@ -122,43 +130,51 @@ class Inflection(models.Model):
         # make fuzzy search treat capital letters the same as lower case letters
         user_query = user_query.lower()
 
+        # build up result_lemmas in 3 ways
+        # 1. spell relax in descriptive fst
+        # 2. fuzzy search
+        #
+        # 3. definition containment of the query word
+        result_lemmas = Inflection.objects.none()
+
+        # utilize the spell relax in descriptive_analyzer
         fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([user_query])[
             user_query
         ]
-        lemma_and_categories = [
-            hfstol_analysis_parser.extract_lemma_and_category(a) for a in fst_analyses
-        ]
-        recognized_lemma_and_categories: List[Tuple[str, LC]] = list(
-            filter(lambda x: x is not None, lemma_and_categories)  # type: ignore
+        lemma_ids = Inflection.objects.filter(analysis__in=fst_analyses).values(
+            "lemma__id"
         )
-        recognized_lemmas = [l_lc[0] for l_lc in recognized_lemma_and_categories]
 
-        fetched_lemmas = []
+        result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
-        if len(user_query) > 2:
+        lemma_ids = Inflection.objects.filter(text__iexact=user_query).values(
+            "lemma__id"
+        )
+        result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
-            fuzzy_inflections: Iterable[Inflection] = CreeFuzzySearcher().search(
-                user_query, 1
-            )
-
-        if len(recognized_lemmas) > 0:
+        # todo: remind user "are you searching in cree/english?"
+        # or enable user to set query language
+        if result_lemmas.count() > 0:
             # Probably Cree
-            fetched_lemmas.extend(
-                list(
-                    Inflection.objects.filter(is_lemma=True, text__in=recognized_lemmas)
-                )
-            )
+            # add fuzzy search results
+            lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
+            result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
         else:
             # Probably English
-            fetched_lemmas.extend(
-                list(
-                    Inflection.objects.filter(
-                        is_lemma=True, definition__text__icontains=user_query
-                    )
-                )
+            result_lemmas |= Inflection.objects.filter(
+                is_lemma=True, definition__text__icontains=user_query
             )
 
-        return fetched_lemmas
+        return result_lemmas
+
+    def serialize(self) -> dict:
+        """
+        for api
+        """
+        res = model_to_dict(self, exclude=("id", "lc", "pos"))
+        res["default_spelling"] = self.default_spelling.text
+        res["lemma"] = self.lemma.text
+        return res
 
 
 class Definition(models.Model):
@@ -173,3 +189,6 @@ class Definition(models.Model):
 
     def __str__(self):
         return self.text
+
+
+Inflection.init_fuzzy_searcher()

@@ -46,18 +46,17 @@ _urlpatterns = [
     # static/CreeDictionary/js/app.js (which hard codes this url) needs to be updated
     # fixme: figure out url reversing in javascript.
     # A fix on stack-overflow is to render javascript with django template
-    ("_search/<str:queryString>/", api_views.search, "cree-dictionary-search-api"),
-    # API which returns detailed definition/ inflection/ paradigms of a word
-    # the query string has to be an existing cree word from the dictionary.
-    # It's also used in html templates to display to user. If this is changed, app.js needs to be updated
+    ("_search/<str:query_string>/", api_views.search, "cree-dictionary-search-api"),
+    # API which renders detailed definition/ inflection/ paradigms for a lemma
+    # internal use
     (
-        "_displayWord/<str:queryString>/",
-        api_views.displayWord,
-        "cree-dictionary-word-detail-api",
+        "_lemma_details/<int:lemma_id>/",
+        api_views.lemma_details,
+        "cree-dictionary-lemma-detail-api",
     ),
-    # cree word translation for click-in-text
+    # cree word translation for click-in-text #todo (for matt): this
     (
-        "_translate-cree/<str:queryString>/",
+        "_translate-cree/<str:query_string>/",
         api_views.translate_cree,
         "cree-dictionary-word-translation-api",
     ),

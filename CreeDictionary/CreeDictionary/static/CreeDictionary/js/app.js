@@ -50,7 +50,7 @@ function load_results(query_string){
         };
 
         // url is hardcoded, future change to the url needs to be updated here
-        xhttp.open("GET", "/cree-dictionary/cree-dictionary/_search/" + query_string + "?render-html=true/", true);
+        xhttp.open("GET", "/cree-dictionary/_search/" + query_string + "?render-html=true", true);
         xhttp.send();
 
 

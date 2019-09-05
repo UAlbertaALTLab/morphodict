@@ -35,11 +35,11 @@ class OrderedInflectionQuerySet(QuerySet):
         else:
             return None
 
-    def strings_to_elements(self, results: List[str]) -> list:
+    def strings_to_elements(self, results: List[str]) -> QuerySet:
         """
         how to convert the result strings to the
         """
-        return list(self.filter(text__in=results))
+        return self.filter(text__in=results)
 
 
 class CreeFuzzySearcher(FuzzySearcher):
