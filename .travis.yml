@@ -12,9 +12,7 @@ jobs:
     - language: python
       python: "3.7"
 
-      before_install:
-        - sudo apt-get -y install apache2-dev
-        - sudo apt-get -y install hfst
+      before_install: sudo apt-get -y install hfst
 
       install: pipenv install --dev
       before_script: pipenv run make-migrations && pipenv run migrate

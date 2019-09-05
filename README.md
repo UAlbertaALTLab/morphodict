@@ -15,7 +15,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 - `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
 - `$ cd cree-intelligent-dictionary`
 - Get Python 3.6+ and [Pipenv](https://github.com/pypa/pipenv#installation).
-- `$ pipenv install --dev` or `$ pipenv install --dev --skip-lock` on Windows for [a behaviour of pipenv](https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/feat/DictionaryImporter/README.md#known-issues).
+- `$ pipenv install --dev`
 - Install HFST
 
     Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
@@ -78,16 +78,3 @@ It recognizes the following:
 
 ## License
 This project licensed under Apache License Version 2.0
-
-## Known issues
-
-### Pipenv install on Windows
-On Windows, pipenv locking doesn't respect os_name marker and will error.
-
-If you are doing development on windows. do `pipenv install --dev --skip-lock`
-
-```pipfile
-# mod-wsgi is a dependency in Pipfile
-mod-wsgi = {version="~=4.6", os_name = "=='posix'"}
-```
-See the [pipenv issue](https://github.com/pypa/pipenv/issues/3929#issue-488682330) here
