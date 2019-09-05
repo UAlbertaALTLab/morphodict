@@ -14,4 +14,6 @@ strict_analyzer = HFSTOL.from_file(
     shared_res_dir / "fst" / "crk-strict-analyzer.hfstol"
 )
 
-generator = HFSTOL.from_file(shared_res_dir / "fst" / "crk-normative-generator.hfstol")
+normative_generator = HFSTOL.from_file(
+    shared_res_dir / "fst" / "crk-normative-generator.hfstol"
+)

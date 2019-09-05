@@ -1,11 +1,8 @@
 """
 Definition of urls for CreeDictionary.
 """
-import os
-from distutils.util import strtobool
 
 from django.conf import settings
-from django.conf.urls import url
 from django.conf.urls.static import static
 
 # Uncomment the next two lines to enable the admin:
@@ -37,11 +34,12 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
-    (
-        "displayWord/<str:queryString>/",
-        views.display_word,
-        "cree-dictionary-word-detail",
-    ),
+    # todo: re-direct?
+    # (
+    #     "displayWord/<str:query_string>/",
+    #     views.display_word,
+    #     "cree-dictionary-word-detail",
+    # ),
     # word search api which returns roughly matching
     # dictionary entries for an arbitrary string. \
     # It's also used in html templates to display to user. If this is changed,

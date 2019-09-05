@@ -6,6 +6,9 @@ from django.forms.models import model_to_dict
 from API.models import Definition, Inflection
 
 
+# todo (for matt): not used. Move this to models class
+
+
 class LemmaDoesNotExist(Exception):
     def __init__(self, query_string):
         self.msg = "No Lemma exists that matches the query string %s" % query_string

@@ -8,12 +8,10 @@ from os.path import dirname
 from pathlib import Path
 from typing import List, Dict, Tuple, Set, Iterable
 
-from hfstol import HFSTOL
-
 from DatabaseManager.log import DatabaseManagerLogger
 from constants import LexicalCategory
+from shared import normative_generator
 from utils import hfstol_analysis_parser
-from shared import generator
 
 
 def import_flattened_prefilled_layouts(
@@ -79,7 +77,7 @@ def expand_inflections(
         fat_generated_analyses.extend(generated_analyses)
 
     logger.info("Generating inflections using %d processes..." % multi_processing)
-    generated_analyses_to_inflections = generator.feed_in_bulk_fast(
+    generated_analyses_to_inflections = normative_generator.feed_in_bulk_fast(
         fat_generated_analyses, multi_processing
     )
 

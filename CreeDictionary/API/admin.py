@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.db.models import F, Q
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
@@ -14,6 +15,42 @@ class DefinitionInline(admin.TabularInline):
     model = Definition
     exclude = ("id",)
     extra = 0
+
+
+class AlternativeSpellingFilter(admin.SimpleListFilter):
+    # Human-readable title which will be displayed in the
+    # right admin sidebar just above the filter options.
+    title = _("spelling")
+
+    # Parameter for the filter that will be used in the URL query.
+    parameter_name = "spelling_is"
+
+    def lookups(self, request, model_admin):
+        """
+        Returns a list of tuples. The first element in each
+        tuple is the coded value for the option that will
+        appear in the URL query. The second element is the
+        human-readable name for the option that will appear
+        in the right sidebar.
+        """
+        return (
+            ("default", _("Default Spelling")),
+            ("alternative", _("Alternative Spelling")),
+        )
+
+    def queryset(self, request, queryset):
+        """
+        Returns the filtered queryset based on the value
+        provided in the query string and retrievable via
+        `self.value()`.
+        """
+        # Compare the requested value (either '80s' or '90s')
+        # to decide how to filter the queryset.
+        if self.value() == "default":
+            return queryset.filter(Q(default_spelling__id=F("id")))
+
+        if self.value() == "alternative":
+            return queryset.filter(~Q(default_spelling__id=F("id")))
 
 
 class HasParadigmListFilter(admin.SimpleListFilter):
@@ -54,33 +91,79 @@ class InflectionAdmin(admin.ModelAdmin):
     # todo: use fuzzy search and spell relax in the admin
     search_fields = ("text",)
 
-    list_display = ("text", "is_lemma", "has_paradigm", "get_definitions")
+    list_display = (
+        "text",
+        "is_lemma",
+        "has_paradigm",
+        "is_default_spelling",
+        "get_definitions",
+    )
 
     def has_paradigm(self, obj: Inflection):
         return not obj.as_is
 
-    # noinspection Mypy
+    # noinspection Mypy,PyTypeHints
     has_paradigm.boolean = True  # type: ignore
 
+    def is_default_spelling(self, obj: Inflection):
+        return obj.default_spelling == obj
+
+    # noinspection Mypy,PyTypeHints
+    is_default_spelling.boolean = True  # type: ignore
+
     def get_definitions(self, obj: Inflection):
-        definition_texts = [d.text for d in obj.definition_set.all()]
+        if obj.is_lemma:
+            lemma = obj
+        else:
+            lemma = obj.lemma
+
+        definition_texts = [d.text for d in lemma.definition_set.all()]
         return format_html(
             ("<br/><br/>".join(["<span>%s</span>"] * len(definition_texts)))
             % tuple(definition_texts)
         )
 
-    # noinspection Mypy
-    get_definitions.short_description = "DEFINITION"  # type: ignore
-    list_filter = ("is_lemma", HasParadigmListFilter)
+    # noinspection Mypy,PyTypeHints
+    get_definitions.short_description = "LEMMA DEFINITION"  # type: ignore
+    list_filter = ("is_lemma", HasParadigmListFilter, AlternativeSpellingFilter)
 
-    # list_display = ("text",)
-    exclude = ("id",)
+    def get_lemma_form(self, obj: Inflection) -> str:
+        return obj.lemma.text
+
+    get_lemma_form.short_description = "Lemma form"
+
+    def get_default_spelling(self, obj: Inflection) -> str:
+        return obj.default_spelling.text
+
+    get_default_spelling.short_description = "Default spelling"
+
+    def get_lemma_definitions(self, obj: Inflection) -> str:
+        definition_texts = [d.text for d in obj.lemma.definition_set.all()]
+        return format_html(
+            ("<br/><br/>".join(["<span>%s</span>"] * len(definition_texts)))
+            % tuple(definition_texts)
+        )
+
+    get_lemma_definitions.short_description = "Lemma definition"
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
-        if Inflection.objects.get(pk=object_id).is_lemma:
+        self.fields = ["text", "analysis", "is_lemma", "as_is"]
+        self.readonly_fields = []
+
+        inflection = Inflection.objects.get(pk=object_id)
+        if inflection.is_lemma:
             self.inlines = [DefinitionInline]
         else:
+            self.fields.append("get_lemma_form")
+            self.fields.append("get_lemma_definitions")
+
+            self.readonly_fields.append("get_lemma_form")
+            self.readonly_fields.append("get_lemma_definitions")
             self.inlines = []
+
+        if inflection.is_non_default_spelling():
+            self.fields.append("get_default_spelling")
+            self.readonly_fields.append("get_default_spelling")
 
         return super(InflectionAdmin, self).change_view(
             request, object_id, form_url, extra_context

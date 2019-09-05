@@ -3,7 +3,7 @@ import os
 import time
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Dict, List, Tuple, Set
+from typing import Dict, List, Tuple, Set, Optional
 
 import django
 from colorama import Fore, init
@@ -12,7 +12,6 @@ from django.db import connection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from constants import LC
 from utils.crkeng_xml_utils import extract_l_str, convert_lc_str
 
 init()  # for windows compatibility
@@ -258,6 +257,9 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
             is_lemma=True,
             as_is=True,
         )
+        db_inflection.lemma = db_inflection
+        db_inflection.default_spelling = db_inflection
+
         inflection_counter += 1
         db_inflections.append(db_inflection)
 
@@ -282,16 +284,21 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
         true_lemma_analysis,
         xml_lemma_pos_lcs,
     ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
+
+        db_lemmas = []
+        db_inflections_for_analysis = []
         for generated_analysis, generated_inflections in expanded[true_lemma_analysis]:
             # db_lemmas could be of length more than one
             # for example peepeepoopoo+N+A+Sg may generate two spellings: pepepopo / peepeepoopoo
-            db_lemmas = []
+
             if generated_analysis != true_lemma_analysis:
                 is_lemma = False
             else:
                 is_lemma = True
 
-            for generated_inflection in generated_inflections:
+            default_spelling: Optional[Inflection] = None
+            for i, generated_inflection in enumerate(generated_inflections):
+                # generated_inflections contain different spellings of one fst analysis
                 pos, lc = xml_lemma_pos_lcs[0][1:]
                 normalized_pos = pos.upper()
                 recognizable_lc = convert_lc_str(lc)
@@ -308,7 +315,10 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
                     lc=normalized_lc,
                     as_is=False,
                 )
-
+                if i == 0:
+                    default_spelling = db_inflection
+                db_inflection.default_spelling = default_spelling
+                db_inflections_for_analysis.append(db_inflection)
                 inflection_counter += 1
                 db_inflections.append(db_inflection)
 
@@ -334,8 +344,8 @@ def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
                         definition_counter += 1
                         db_definitions.append(db_definition)
 
-                    # for db_lemma in db_lemmas:
-                    #     db_lemma.definitions.add(db_definition)
+        for inflection in db_inflections_for_analysis:
+            inflection.lemma = db_lemmas[0]
 
     logger.info("Inserting %d inflections to database..." % len(db_inflections))
     Inflection.objects.bulk_create(db_inflections)

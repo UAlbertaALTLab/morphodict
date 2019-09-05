@@ -3,7 +3,6 @@ import unicodedata
 from typing import Dict, Any
 from urllib.parse import unquote
 
-from cree_sro_syllabics import syllabics2sro
 from django.forms.models import model_to_dict
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -22,54 +21,9 @@ descriptive_analyzer = HFSTOL.from_file(
 
 def search(request, query_string):
     """
-    Search View for /Search/:queryString:
-    :queryString: needs to be exactly contained in a lemma context
-
-    See README for Detailed API Usage
-
-    Ordering:
-        Cree:
-        Exact FST Lemma
-        Contains Query Lemma
-        Contains Query Inflection
-
-        English:
-        Definition
+    api and for internal use when render-html=true is specified
     """
-    # URL Decode
-    query_string = unquote(query_string)
-    # Normalize to UTF8 NFC
-    query_string = unicodedata.normalize("NFC", query_string)
-    query_string = (
-        query_string.replace("ā", "â")
-        .replace("ē", "ê")
-        .replace("ī", "î")
-        .replace("ō", "ô")
-    )
-    query_string = syllabics2sro(query_string)
-    print("Search SRO: " + query_string)
-    # To lower
-    query_string = query_string.lower()
-
-    response = dict()
-
-    fstResult = list(fstAnalyzer.analyze(query_string))
-    creeWords = list()
-    englishWords = list()
-    if len(fstResult) > 0:
-        # Probably Cree
-        # Add FST analysis to response
-        response["analysis"] = fstResult[0]
-        for item in fstResult[0]:
-            if "+" not in item:
-                lemma = item
-        print("Cree: " + lemma)
-        creeWords += [datafetch.fetch_exact_lemma(lemma)]
-    else:
-        # Probably English
-        print("English: " + query_string)
-        englishWords += datafetch.fetch_lemma_contains_definition(query_string)
-
+    # todo: change api documentation (is a git wiki page)
     # Still searches contains since some cree like inputs can be inparsable by fst
     creeWords += datafetch.fetchContainsLemma(query_string)
     creeWords += datafetch.fetchLemmaContainsInflection(query_string)

@@ -1,5 +1,8 @@
-
-
+/**
+ * use ajax to
+ *
+ * @param {string} query_string
+ */
 function load_results(query_string){
     let instruction_text = document.getElementById("instruction-text");
     let loading_cards = document.getElementsByClassName("title-row-container loading-title-row");
