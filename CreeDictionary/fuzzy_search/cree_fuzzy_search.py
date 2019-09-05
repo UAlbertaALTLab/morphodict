@@ -3,7 +3,6 @@ from typing import Optional, List
 
 from django.db.models import QuerySet
 
-from API.models import Inflection
 from fuzzy_search.fuzzy_searcher import FuzzySearcher
 
 
@@ -36,31 +35,17 @@ class OrderedInflectionQuerySet(QuerySet):
         else:
             return None
 
-    def strings_to_elements(self, results: List[str]) -> List[Inflection]:
+    def strings_to_elements(self, results: List[str]) -> list:
         """
         how to convert the result strings to the
         """
         return list(self.filter(text__in=results))
 
 
-# pythonic singleton pattern
 class CreeFuzzySearcher(FuzzySearcher):
-    _instance = None
-
-    def __init__(self):
-        if CreeFuzzySearcher._instance is None:
-            super().__init__(CreeFuzzySearcher._load_sorted_from_db())
-            CreeFuzzySearcher._instance = self
-
-    def __new__(cls):
-        if cls._instance is None:
-            _instance = super().__new__(cls)
-        else:
-            _instance = cls._instance
-        return _instance
+    def __init__(self, inflections: QuerySet):
+        super().__init__(CreeFuzzySearcher._load_sorted_from_db(inflections))
 
     @staticmethod
-    def _load_sorted_from_db() -> OrderedInflectionQuerySet:
-        return OrderedInflectionQuerySet.from_query_set(
-            Inflection.objects.all().order_by("text")
-        )
+    def _load_sorted_from_db(inflections) -> OrderedInflectionQuerySet:
+        return OrderedInflectionQuerySet.from_query_set(inflections.order_by("text"))

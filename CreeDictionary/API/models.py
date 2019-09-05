@@ -8,11 +8,20 @@ from django.db import models
 # todo: override save() to automatically increase id
 # see: https://docs.djangoproject.com/en/2.2/topics/db/models/#overriding-predefined-model-methods
 from constants import LexicalCategory, LC
+from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer
 from utils import hfstol_analysis_parser
 
 
 class Inflection(models.Model):
+    _cree_fuzzy_searcher = None
+
+    @classmethod
+    def fuzzy_search(cls, query: str, distance: int):
+        if cls._cree_fuzzy_searcher is None:
+            cls._cree_fuzzy_searcher = CreeFuzzySearcher(cls.objects.all())
+        return cls._cree_fuzzy_searcher.search(query, distance)
+
     # override pk to allow use of bulk_create
     id = models.PositiveIntegerField(primary_key=True)
 
@@ -88,14 +97,6 @@ class Inflection(models.Model):
 
         return matched_lemmas
 
-    def find_lemma(self) -> List["Inflection"]:
-        """
-        should be implemented in the Inflection class
-        """
-        # todo: factor out Lemma class and Inflection class.
-        # each
-        pass
-
     @classmethod
     def fetch_by_user_query(cls, user_query: str) -> List["Inflection"]:
         """
@@ -117,9 +118,8 @@ class Inflection(models.Model):
         )
         user_query = syllabics2sro(user_query)
 
-        # todo: there are capped words in xml.
-        # 1. make fuzzy search treat capital letters the same as lower case letters
-        # 2. make data-fetching classmethods in Inflection model class treat capital letters the same as lower case letters
+        # todo (for matt): there are capped words in xml.
+        # make fuzzy search treat capital letters the same as lower case letters
         user_query = user_query.lower()
 
         fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([user_query])[
@@ -136,7 +136,6 @@ class Inflection(models.Model):
         fetched_lemmas = []
 
         if len(user_query) > 2:
-            from fuzzy_search import CreeFuzzySearcher
 
             fuzzy_inflections: Iterable[Inflection] = CreeFuzzySearcher().search(
                 user_query, 1
