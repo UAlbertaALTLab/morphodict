@@ -1,7 +1,7 @@
 import pytest
 from django.db import transaction
 from hypothesis import given, assume
-
+from tests.conftest import crk_eng_hundredth_file, topmost_datadir
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_crkeng_xml
 from constants import LC
