@@ -5,7 +5,7 @@ from urllib.parse import unquote
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, connection
 
-# todo: override save() to automatically increase id
+# todo: override save() to automatically increase id (so that people can add words on django admin)
 # see: https://docs.djangoproject.com/en/2.2/topics/db/models/#overriding-predefined-model-methods
 from django.db.models import QuerySet
 from django.forms import model_to_dict
@@ -113,6 +113,7 @@ class Inflection(models.Model):
         :return: can be empty
         """
         # todo: tests
+        # fixme: paradigm for niska vanishes the second time you click
 
         # URL Decode
         user_query = unquote(user_query)
@@ -144,26 +145,16 @@ class Inflection(models.Model):
         lemma_ids = Inflection.objects.filter(analysis__in=fst_analyses).values(
             "lemma__id"
         )
-
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
-        lemma_ids = Inflection.objects.filter(text__iexact=user_query).values(
-            "lemma__id"
-        )
+        lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
         # todo: remind user "are you searching in cree/english?"
-        # or enable user to set query language
-        if result_lemmas.count() > 0:
-            # Probably Cree
-            # add fuzzy search results
-            lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
-            result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
-        else:
-            # Probably English
-            result_lemmas |= Inflection.objects.filter(
-                is_lemma=True, definition__text__icontains=user_query
-            )
+
+        result_lemmas |= Inflection.objects.filter(
+            is_lemma=True, definition__text__icontains=user_query
+        )
 
         return result_lemmas
 

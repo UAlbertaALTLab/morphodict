@@ -6,11 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from .models import Definition, Inflection
 
 
-# @admin.register(Definition)
-# class DefinitionAdmin(admin.ModelAdmin):
-#     model = Definition
-
-
 class DefinitionInline(admin.TabularInline):
     model = Definition
     exclude = ("id",)

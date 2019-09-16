@@ -1,3 +1,4 @@
+import time
 from typing import Dict
 
 from django.db.models import QuerySet
@@ -21,9 +22,7 @@ def search(request, query_string):
     """
     # todo: change api documentation (originally a git wiki page)
     lemmas: QuerySet = Inflection.fetch_lemmas_by_user_query(query_string)
-
     response: Dict[str, list] = {}
-
     if request.GET.get("render-html", False) == "true":
         return render(request, "API/word-entries.html", {"words": lemmas})
     else:
@@ -60,16 +59,3 @@ def lemma_details(request, lemma_id: int):
         table = []
 
     return render(request, "API/paradigm.html", {"lemma": lemma, "table": table})
-
-
-# def analyze_tags(word: str):
-#     """
-#
-#     :param word: cree word, non exact forms allowed
-#     """
-#     res = list(fstAnalyzer.analyze(word))
-#     if res:
-#         for r in fstAnalyzer.analyze(word):
-#             print("".join(r))
-#     else:
-#         print("Analyzer returned no result")

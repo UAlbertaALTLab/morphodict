@@ -13,6 +13,7 @@ pytest-mypy = "~=0.4"
 hypothesis = {extras = ["django"],version = "~=4.34"}
 xml-subsetter = "~=0.0"
 codecov = "*"
+snakeviz = "~=2.0"
 
 [packages]
 colorama = "~=0.4"
@@ -27,15 +28,19 @@ typing-extensions = "~=3.7"
 attrs = "~=19.1"
 
 [scripts]
-# reminders. you can just use $ manage-db
-manage-db = "manage-db"
-clear-db = "manage-db clear"
-import-xml = "manage-db import"
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
 # tests
-test = "pytest --doctest-modules --mypy CreeDictionary/"
+test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
 make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
+
+profile = "python -m profiling"
+
+
+# reminders. you can just use $ manage-db
+manage-db = "manage-db"
+clear-db = "manage-db clear"
+import-xml = "manage-db import"

@@ -76,5 +76,17 @@ It recognizes the following:
 - Production=False in `.env`
 
 
+## Profiling Code
+
+`pipenv run profile <script_name>`
+
+with `<script_name>` being one of the scripts from `profiling` folder
+
+e.g.
+
+`pipenv run profile word_search[.py]`
+
+You can come up with profiling scripts yourself
+
 ## License
 This project licensed under Apache License Version 2.0

@@ -1,4 +1,3 @@
-# todo: command line
 import argparse
 import sys
 
