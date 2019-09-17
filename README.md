@@ -88,5 +88,70 @@ e.g.
 
 You can come up with profiling scripts yourself
 
+## Production on Sapir
+
+### Redeployment Script
+
+`.travis.yml` is configured so that after a successful build on master, sapir will execute a sequence of script to
+update and restart the app.
+
+- to change the script
+    
+    on sapir `vim /opt/redeploy/redeploy/cree-dictionary`  (a python file without extension)
+   
+- to know details of how redeployment works, check the [repository of the tool](https://github.com/eddieantonio/redeploy)
+
+### What 
+
+### Set up
+
+This only needs to be done once and is probably already done. This serves for documentation purpose.
+
+- pull the code
+- `sudo PIPENV_VENV_IN_PROJECT=1 pipenv install` 
+    
+    This creates `.venv` folder under current directory. Without the environment variable pipenv will create virtual 
+    environment under the users home, which causes permission issues.
+    
+- `sudo pipenv run pip install mod_wsgi` 
+
+    DO NOT use `pipenv install`. mod_wsgi is used on sapir only to serve the application
+    
+- setup mod_wsgi
+
+    ```.bash
+    $ sudo pipenv run python CreeDictionary/manage.py runmodwsgi --setup-only --port=8091 --user www-data --group www-data --server-root=mod_wsgi-express-8091
+    ```
+  
+    this creates folder `mod_wsgi-express-8091`, which contains a separate apache to serve the application.
+
+- Create a service file `mod_wsgi-express-8091/cree-dictionary.service` with the following content
+
+    ```
+    [Unit]
+    Description=Cree Dictionary HTTP service
+    
+    [Service]
+    Type=forking
+    EnvironmentFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/envvars
+    PIDFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/httpd.pid
+    ExecStart=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl start
+    ExecReload=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl graceful
+    ExecStop=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl stop
+    KillSignal=SIGCONT
+    PrivateTmp=true
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+
+- `sudo pipenv run collect-static`
+
+- `sudo systemctl enable $(realpath ./mod_wsgi-express-8091/cree-dictionary.service)`
+
+- `sudo mkdir CreeDictionary/res/dictionaries`
+
+- `cd .. & sudo chown -R www-data:www-data cree-intelligent-dictionary/`
+
 ## License
 This project licensed under Apache License Version 2.0
