@@ -112,11 +112,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:1be3e4e3198f2d0e47b928e9d9a8ec1b63525db29095cec1467f4c5a4ea8ebf9",
-                "sha256:7e39a30e3d34a7a6539378e39d7490326253b7ee354878a92255656dc4284457"
+                "sha256:4c34f077399736e5dbf403183b5f0f1bda46e06433a3f93812386a9d56b28004",
+                "sha256:74d40d49cab95a93735323e450161f1e580dac42b25bf39770f6e3501d36ebfb"
             ],
             "index": "pypi",
-            "version": "==4.35.0"
+            "version": "==4.36.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -239,11 +239,11 @@
                 "django"
             ],
             "hashes": [
-                "sha256:d1296d14870a71c1407e8a028ebb1ac75e44fcc528eb08761fae4cd1a373ab2c",
-                "sha256:e4d70db2086215c90d8235c764ccf2371e34837e03daf2b14ea5fb227b47fa55"
+                "sha256:644cdb2964cacab7989d609e6d474be8ae3018a08f95e784bd98807387199806",
+                "sha256:832b9fbd44a8b1a784c5081b803e8cc91ebaac095ac1c84bea62877dce02971c"
             ],
             "index": "pypi",
-            "version": "==4.36.0"
+            "version": "==4.36.1"
         },
         "idna": {
             "hashes": [
