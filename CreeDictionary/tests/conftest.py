@@ -8,7 +8,7 @@ from hypothesis import assume
 from hypothesis._strategies import composite, integers
 
 from API.models import Inflection
-from DatabaseManager.xml_importer import import_crkeng_xml
+from DatabaseManager.xml_importer import import_xmls
 from constants import LexicalCategory
 from utils import shared_res_dir, hfstol_analysis_parser
 
@@ -53,23 +53,30 @@ def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
 
 
 @pytest.fixture()
-def crk_eng_hundredth_file(topmost_datadir) -> Path:
+def one_hundredth_xml_dir(topmost_datadir) -> Path:
     """
     1/100 of the entries in the real crkeng.xml
     """
 
-    hundredths_file = Path(topmost_datadir) / "crkeng_hundredth.xml"
+    hundredth_dir = Path(topmost_datadir) / "one_hundredth_xmls"
+    one_hundredth_crkeng = hundredth_dir / "crkeng.xml"
+    one_hundredth_engcrk = hundredth_dir / "engcrk.xml"
 
-    def create_crkeng_hundredth():
+    def create_hundredth_file(source: Path, target_file: Path):
         """
         create the file if it does not already exist
         """
-        crkeng_file = shared_res_dir / "dictionaries" / "crkeng.xml"
-        if not crkeng_file.exists():
-            raise FileNotFoundError("%s not found" % crkeng_file)
-        xml_subsetter.subset_head(crkeng_file, hundredths_file, "e", 0.01)
+        if not source.exists():
+            raise FileNotFoundError("%s not found" % source)
+        xml_subsetter.subset_head(source, target_file, "e", 0.01)
 
-    if not hundredths_file.exists():
-        create_crkeng_hundredth()
+    if not one_hundredth_crkeng.exists():
+        create_hundredth_file(
+            shared_res_dir / "dictionaries" / "crkeng.xml", one_hundredth_crkeng
+        )
+    if not one_hundredth_engcrk.exists():
+        create_hundredth_file(
+            shared_res_dir / "dictionaries" / "engcrk.xml", one_hundredth_engcrk
+        )
 
-    return hundredths_file
+    return hundredth_dir

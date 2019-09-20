@@ -1,9 +1,9 @@
 import pytest
 from django.db import transaction
 from hypothesis import given, assume
-from tests.conftest import crk_eng_hundredth_file, topmost_datadir
+from tests.conftest import one_hundredth_xml_dir, topmost_datadir
 from API.models import Inflection
-from DatabaseManager.xml_importer import import_crkeng_xml
+from DatabaseManager.xml_importer import import_xmls
 from constants import LC
 from tests.conftest import random_inflections
 
@@ -14,10 +14,10 @@ from utils import hfstol_analysis_parser
 # weird: setting scope to "module" will let the tests in creefuzzySearcher_tests/search_tests.py access the contaminated database
 # setting scope to "function" removes that effect. while introduces overheads for tests in this file. (re-imported the xml for every test function)
 @pytest.fixture(scope="function")
-def hundredth_test_database(crk_eng_hundredth_file, django_db_setup, django_db_blocker):
+def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
         with transaction.atomic():
-            import_crkeng_xml(crk_eng_hundredth_file, verbose=False)
+            import_xmls(one_hundredth_xml_dir, verbose=False)
             yield
 
 

@@ -2,8 +2,9 @@ import datetime
 import os
 import time
 import xml.etree.ElementTree as ET
+from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Tuple, Set, Optional
+from typing import Dict, List, Tuple, Set, Optional, DefaultDict
 
 import django
 from colorama import Fore, init
@@ -35,6 +36,7 @@ def clear_database(verbose=True):
     # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
+    # todo: delete English
 
     logger.info("All Objects deleted from Database")
 
@@ -85,16 +87,63 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
         return xml_lemma + recognized_lc.to_fst_output_style()
 
 
-def import_crkeng_xml(filename: Path, multi_processing: int = 1, verbose=True):
+def format_element_error(msg: str, element: ET.Element) -> str:
+    """
+    format a message about an element and prettified xml for the element
+
+    e.g.
+
+    missing <lc> element
+
+    <e>
+        <t>blah</t>
+    </e>
+    """
+    return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
+
+
+def load_engcrk_xml(filename: Path) -> Dict[str, List[str]]:
+    """
+
+    :return: Dict[definition, [english1, english2, english3 ...]]
+    """
+
+    assert filename.exists(), "%s does not exist" % filename
+
+    res: DefaultDict[str, List[str]] = defaultdict(list)
+
+    root = ET.parse(str(filename)).getroot()
+    elements = root.findall(".//e")
+
+    for element in elements:
+        l_element = element.find("lg/l")
+        assert l_element is not None, format_element_error(
+            f"<e> lacks an <l> in file {filename}", element
+        )
+
+        assert l_element.text is not None, format_element_error(
+            "<l> does not have text", element
+        )
+
+        res[l_element.text].append("blu")
+
+    return res
+
+
+def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
     CLEARS the database and import from an xml file
     """
+    crkeng_filename = dir_name / "crkeng.xml"
+    engcrk_filename = dir_name / "engcrk.xml"
+
+    assert crkeng_filename.exists() and engcrk_filename.exists()
     start_time = time.time()
     logger.set_print_info_on_console(verbose)
     clear_database()
     logger.info("Database cleared")
 
-    root = ET.parse(str(filename)).getroot()
+    root = ET.parse(str(crkeng_filename)).getroot()
 
     source_ids = [s.get("id") for s in root.findall(".//source")]
 

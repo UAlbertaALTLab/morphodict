@@ -6,13 +6,13 @@ If installed as a package, command `manage-db` will be added to python environme
 
 ## Examples
 
-- Import crkeng.xml to the database
+- Import crkeng.xml and engcrk.xml to the database
 
-    `manage-db import /res/dictionaries/crkeng.xml`
+    `manage-db import /res/dictionaries/`
     
-- Import crkeng.xml to the database with multi-process acceleration
+- Use multi-process acceleration
 
-    `manage-db import /res/dictionaries/crkeng.xml --multi-process 3`
+    `manage-db import /res/dictionaries/ --multi-process 2`
     
 - Help for sub-command `import`
 

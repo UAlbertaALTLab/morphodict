@@ -50,11 +50,11 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 - Build Database
 
-    `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml` 
+    `$ manage-db import CreeDictionary/res/dictionaries/` 
     
     It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-    `$ manage-db import CreeDictionary/res/dictionaries/crkeng.xml --muti-processing PROCESS_COUNT` 
+    `$ manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT` 
 
     optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin  
 
@@ -93,15 +93,29 @@ You can come up with profiling scripts yourself
 ### Redeployment Script
 
 `.travis.yml` is configured so that after a successful build on master, sapir will execute a sequence of script to
-update and restart the app.
+update and restart the app. This is enabled by a tool`redeploy`, maintained by [Eddie](https://github.com/eddieantonio)
+
+- The script does the following in sequence
+
+   - pull code
+   - collect static
+   - touch wsgi.py to restart service
 
 - to change the script
     
-    on sapir `vim /opt/redeploy/redeploy/cree-dictionary`  (a python file without extension)
+    `vim scp://sapir.artsrn.ualberta.ca//opt/redeploy/redeploy/cree-dictionary`  (it's a python file without extension)
    
-- to know details of how redeployment works, check the [repository of the tool](https://github.com/eddieantonio/redeploy)
+- to know details of how redeployment works, check the [repository of redeploy](https://github.com/eddieantonio/redeploy)
 
-### What 
+### Limit of `redeploy`
+
+`redeploy` does not sync database file. After making changes to the database or the model file, we need to either
+do migrations on Sapir or sync our database file, which is possible as sqlite database is operating system independent.
+ 
+When you've made changes to the database, do `$ pipenv run push-database` to upload your database to Sapir
+
+Just make sure your user is in `www-data` group on Sapir. If your username on Sapir is different from your user name
+on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
 
 ### Set up
 

@@ -1,10 +1,11 @@
 import os
 import django
+from django.test import Client
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
 django.setup()
 
-from API.models import Inflection
-
 if __name__ == "__main__":
-    Inflection.fetch_lemmas_by_user_query("miteh")
+    c = Client()
+
+    c.get("/cree-dictionary/search/miteh")

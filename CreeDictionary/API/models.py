@@ -1,5 +1,6 @@
+import time
 import unicodedata
-from typing import List, Optional, Set
+from typing import List, Optional, Set, Dict
 from urllib.parse import unquote
 
 from cree_sro_syllabics import syllabics2sro
@@ -62,7 +63,9 @@ class Inflection(models.Model):
     )
 
     class Meta:
-        indexes = [models.Index(fields=["text"])]
+        # analysis is for faster user query (in function fetch_lemmas_by_user_query below)
+        # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
+        indexes = [models.Index(fields=["analysis"]), models.Index(fields=["text"])]
 
     def __str__(self):
         return self.text
@@ -106,7 +109,7 @@ class Inflection(models.Model):
         return matched_lemmas
 
     @classmethod
-    def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
+    def fetch_lemmas_by_user_query(cls, user_query: str) -> List[dict]:
         """
 
         :param user_query: can be English or Cree (syllabics or not)
@@ -145,6 +148,7 @@ class Inflection(models.Model):
         lemma_ids = Inflection.objects.filter(analysis__in=fst_analyses).values(
             "lemma__id"
         )
+
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
         lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
@@ -152,11 +156,26 @@ class Inflection(models.Model):
 
         # todo: remind user "are you searching in cree/english?"
 
-        result_lemmas |= Inflection.objects.filter(
-            is_lemma=True, definition__text__icontains=user_query
-        )
+        # result_lemmas |= Inflection.objects.filter(
+        #     is_lemma=True, definition__text__icontains=user_query
+        # )
 
-        return result_lemmas
+        results: List[dict] = []
+        a = time.time()
+        for lemma in result_lemmas:
+            print(time.time() - a)
+            first_def = lemma.definition_set.all()[0]
+
+            results.append(
+                {
+                    "id": lemma.id,
+                    "text": lemma.text,
+                    "first_definition": first_def.text,
+                    "sources": first_def.sources,
+                }
+            )
+
+        return results
 
     def serialize(self) -> dict:
         """
@@ -182,7 +201,15 @@ class Definition(models.Model):
         return self.text
 
 
-if "API_inflection" in connection.introspection.table_names():
-    # without the guard
-    # on travis this line of code will be run before a database exist and will error
-    Inflection.init_fuzzy_searcher()
+class EnglishKeyword(models.Model):
+    # override pk to allow use of bulk_create
+    id = models.PositiveIntegerField(primary_key=True)
+
+    text = models.CharField(max_length=20)
+
+    lemma = models.ForeignKey(
+        Inflection, on_delete=models.CASCADE, related_name="English"
+    )
+
+    class Meta:
+        indexes = [models.Index(fields=["text"])]

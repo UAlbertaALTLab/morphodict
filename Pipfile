@@ -47,7 +47,10 @@ manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
 
-upload-database = 'scp CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
+# todo: ensure rsync preserves www-data owner and group on Sapir
+# todo: add touch
+# todo: paramiko
+push-database = 'rsync -g -o --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
 
 [requires]
 python_version = "3.6" # sapir uses python 3.6.9

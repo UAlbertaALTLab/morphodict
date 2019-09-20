@@ -2,14 +2,13 @@ import pytest
 
 from API.models import Inflection
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import import_crkeng_xml
+from DatabaseManager.xml_importer import import_xmls, load_engcrk_xml
 
 
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
-
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-nice-0.xml", multi_processing=1, verbose=False
+    import_xmls(
+        shared_datadir / "crkeng-small-nice-0", multi_processing=1, verbose=False
     )
 
     expanded = expand_inflections(
@@ -23,8 +22,8 @@ def test_import_nice_xml(shared_datadir):
 
 @pytest.mark.django_db
 def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-lemma-w-multiple-spelling.xml",
+    import_xmls(
+        shared_datadir / "crkeng-small-lemma-w-multiple-spelling",
         multi_processing=1,
         verbose=False,
     )
@@ -34,8 +33,8 @@ def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
 
 @pytest.mark.django_db
 def test_import_xml_fst_no_analysis(shared_datadir):
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-fst-can-not-analyze.xml",
+    import_xmls(
+        shared_datadir / "crkeng-small-fst-can-not-analyze",
         multi_processing=1,
         verbose=False,
     )
@@ -46,8 +45,8 @@ def test_import_xml_fst_no_analysis(shared_datadir):
 
 @pytest.mark.django_db
 def test_import_xml_common_analysis_definition_merge(shared_datadir):
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-common-analysis-different-lc.xml",
+    import_xmls(
+        shared_datadir / "crkeng-small-common-analysis-different-lc",
         multi_processing=1,
         verbose=False,
     )
@@ -56,8 +55,8 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
 
 @pytest.mark.django_db
 def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_datadir):
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-duplicate-l-pos-lc-definition-merge.xml",
+    import_xmls(
+        shared_datadir / "crkeng-small-duplicate-l-pos-lc-definition-merge",
         multi_processing=1,
         verbose=False,
     )
@@ -66,8 +65,8 @@ def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_data
 
 @pytest.mark.django_db
 def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
-    import_crkeng_xml(
-        shared_datadir / "crkeng-small-common-xml-lemma-different-lc.xml",
+    import_xmls(
+        shared_datadir / "crkeng-small-common-xml-lemma-different-lc",
         multi_processing=1,
         verbose=False,
     )
@@ -81,3 +80,8 @@ def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
         )
         == 2
     )
+
+
+def test_load_engcrk(one_hundredth_xml_dir):
+    res = load_engcrk_xml(one_hundredth_xml_dir / "engcrk.xml")
+    print(res)
