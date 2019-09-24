@@ -13,6 +13,7 @@ from django.db import connection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
+from constants import PathLike
 from utils.crkeng_xml_utils import extract_l_str, convert_lc_str
 
 init()  # for windows compatibility
@@ -20,7 +21,7 @@ init()  # for windows compatibility
 os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
 django.setup()
 
-from API.models import Definition, Inflection
+from API.models import Definition, Inflection, EnglishKeyword
 
 logger = DatabaseManagerLogger(__name__)
 
@@ -36,6 +37,7 @@ def clear_database(verbose=True):
     # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
+    cursor.execute("DELETE FROM API_englishkeyword")
     # todo: delete English
 
     logger.info("All Objects deleted from Database")
@@ -102,11 +104,11 @@ def format_element_error(msg: str, element: ET.Element) -> str:
     return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
 
 
-def load_engcrk_xml(filename: Path) -> Dict[str, List[str]]:
+def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
     """
-
     :return: Dict[definition, [english1, english2, english3 ...]]
     """
+    filename = Path(filename)
 
     assert filename.exists(), "%s does not exist" % filename
 
@@ -117,15 +119,33 @@ def load_engcrk_xml(filename: Path) -> Dict[str, List[str]]:
 
     for element in elements:
         l_element = element.find("lg/l")
-        assert l_element is not None, format_element_error(
-            f"<e> lacks an <l> in file {filename}", element
-        )
+        if l_element is None:
+            logger.debug(
+                format_element_error(f"<e> lacks an <l> in file {filename}", element)
+            )
+            continue
 
-        assert l_element.text is not None, format_element_error(
-            "<l> does not have text", element
-        )
+        if l_element.text is None:
+            logger.debug(format_element_error("<l> does not have text", element))
+            continue
 
-        res[l_element.text].append("blu")
+        trunc_elements = element.findall("mg/tg/trunc")
+
+        if not trunc_elements:
+            logger.debug(
+                format_element_error(f"<e> lacks <trunc> in file {filename}", element)
+            )
+            continue
+        for trunc_element in trunc_elements:
+            if trunc_element.text is None:
+                logger.debug(
+                    format_element_error(
+                        f"<trunc> does not have text in file {filename}", element
+                    )
+                )
+                continue
+
+            res[trunc_element.text].append(l_element.text)
 
     return res
 
@@ -133,6 +153,8 @@ def load_engcrk_xml(filename: Path) -> Dict[str, List[str]]:
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
     CLEARS the database and import from an xml file
+
+    :keyword verbose: print to stdout or not
     """
     crkeng_filename = dir_name / "crkeng.xml"
     engcrk_filename = dir_name / "engcrk.xml"
@@ -148,6 +170,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     source_ids = [s.get("id") for s in root.findall(".//source")]
 
     logger.info("Sources parsed: " + str(source_ids))
+
+    logger.info("Loading English keywords...")
+    def_to_keywords = load_engcrk_xml(engcrk_filename)
+    logger.info("English keywords loaded")
 
     # value is definition string as key and its source as value
     xml_lemma_pos_lc_to_str_definitions = (
@@ -287,9 +313,11 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     inflection_counter = 1
     definition_counter = 1
+    keyword_counter = 1
 
-    db_inflections = []  # type: List[Inflection]
-    db_definitions = []  # type: List[Definition]
+    db_inflections: List[Inflection] = []
+    db_definitions: List[Definition] = []
+    db_keywords: List[EnglishKeyword] = []
 
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         recognizable_lc = convert_lc_str(lc)
@@ -322,6 +350,18 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 sources=" ".join(source_strings),
                 lemma=db_inflection,
             )
+            keyword_texts = def_to_keywords[str_definition]
+            if keyword_texts:
+                for keyword_text in keyword_texts:
+                    db_keyword = EnglishKeyword(
+                        id=keyword_counter, text=keyword_text, lemma=db_inflection
+                    )
+                    db_keywords.append(db_keyword)
+                    keyword_counter += 1
+            else:
+                logger.debug(
+                    f"Definition {str_definition} does not have associated English keyword"
+                )
             definition_counter += 1
             db_definitions.append(db_definition)
 
@@ -393,6 +433,21 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         definition_counter += 1
                         db_definitions.append(db_definition)
 
+                        keyword_texts = def_to_keywords[str_definition]
+                        if keyword_texts:
+                            for keyword_text in keyword_texts:
+                                db_keyword = EnglishKeyword(
+                                    id=keyword_counter,
+                                    text=keyword_text,
+                                    lemma=db_lemma,
+                                )
+                                db_keywords.append(db_keyword)
+                                keyword_counter += 1
+                        else:
+                            logger.debug(
+                                f"Definition {str_definition} does not have associated English keyword"
+                            )
+
         for inflection in db_inflections_for_analysis:
             inflection.lemma = db_lemmas[0]
 
@@ -402,6 +457,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     logger.info("Inserting definition to database...")
     Definition.objects.bulk_create(db_definitions)
+    logger.info("Done inserting.")
+
+    logger.info("Inserting English keywords to database...")
+    EnglishKeyword.objects.bulk_create(db_keywords)
     logger.info("Done inserting.")
 
     seconds = datetime.timedelta(seconds=time.time() - start_time).seconds
