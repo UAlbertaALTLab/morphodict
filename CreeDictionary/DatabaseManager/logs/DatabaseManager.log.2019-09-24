@@ -1,0 +1,26 @@
+2019-09-24 21:12:58,947 — DatabaseManager.xml_importer — DEBUG — <l> does not have text 
+ <e>
+   <lg xml:lang="eng">
+      <l pos="(" />
+   </lg>
+   <mg>
+   <tg xml:lang="crk">
+      <trunc sources="CW">[single] hair of otter</trunc>
+      <t pos="N" rank="1.0">nikikopîway</t>
+   </tg>
+   </mg>
+</e>
+
+2019-09-24 21:12:58,947 — DatabaseManager.xml_importer — DEBUG — <l> does not have text 
+ <e>
+   <lg xml:lang="eng">
+      <l pos=")" />
+   </lg>
+   <mg>
+   <tg xml:lang="crk">
+      <trunc sources="CW">[single] hair of otter</trunc>
+      <t pos="N" rank="1.0">nikikopîway</t>
+   </tg>
+   </mg>
+</e>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    {# behaving entry 1: unique lemma analysis #}
+    {# analysis: yôwamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO #}
+    <e>
+        <lg>
+            <l pos="V">yôwamêw</l>
+            <lc>VTA-1</lc>
+            <stem>yôwam-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="CW">s/he draws at s.o. by suction</t>
+            </tg>
+        </mg>
+    </e>
+
+
+</r>
