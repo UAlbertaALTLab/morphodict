@@ -3,6 +3,7 @@ According to .layout files and .paradigm files. Generate paradigm tables filled 
 """
 import csv
 import glob
+from copy import deepcopy
 from os import path
 from os.path import dirname
 from pathlib import Path
@@ -73,7 +74,7 @@ class ParadigmFiller:
         if category is LexicalCategory.IPC or category is LexicalCategory.Pron:
             return []
 
-        layout_table = self._layout_tables[(category, paradigm_size)]
+        layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])
 
         for rowInd, row in enumerate(layout_table):
             for colInd, cell in enumerate(row):

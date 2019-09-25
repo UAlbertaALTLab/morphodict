@@ -109,7 +109,7 @@ class Inflection(models.Model):
         return matched_lemmas
 
     @classmethod
-    def fetch_lemmas_by_user_query(cls, user_query: str) -> List[dict]:
+    def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
         """
 
         :param user_query: can be English or Cree (syllabics or not)
@@ -150,41 +150,20 @@ class Inflection(models.Model):
         )
 
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
-
-        lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
+        if len(user_query) > 1:
+            # fuzzy search does not make sense for a single letter, it will just give every single letter word
+            lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
         # todo: remind user "are you searching in cree/english?"
+        if " " not in user_query:  # a whole word
 
-        # result_lemmas |= Inflection.objects.filter(
-        #     is_lemma=True, definition__text__icontains=user_query
-        # )
-
-        results: List[dict] = []
-        a = time.time()
-        for lemma in result_lemmas:
-            print(time.time() - a)
-            first_def = lemma.definition_set.all()[0]
-
-            results.append(
-                {
-                    "id": lemma.id,
-                    "text": lemma.text,
-                    "first_definition": first_def.text,
-                    "sources": first_def.sources,
-                }
+            lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
+                "lemma__id"
             )
+            result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
-        return results
-
-    def serialize(self) -> dict:
-        """
-        for api
-        """
-        res = model_to_dict(self, exclude=("id", "lc", "pos"))
-        res["default_spelling"] = self.default_spelling.text
-        res["lemma"] = self.lemma.text
-        return res
+        return result_lemmas
 
 
 class Definition(models.Model):

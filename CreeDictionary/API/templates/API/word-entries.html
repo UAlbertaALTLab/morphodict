@@ -7,8 +7,9 @@
             <p class="title-text" >{{ word.text }}
                 <span class="definition-text">
 
-                    {{ word.first_definition }} <sup class="source-tag">{{ word.sources }}</sup>
-
+                    {% with word.definition_set.all|first as def %}
+                        ({{ def }} <sup class="source-tag">{{ def.sources }}</sup>)
+                    {% endwith %}
 
             </span>
 

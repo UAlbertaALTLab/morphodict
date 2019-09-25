@@ -92,6 +92,7 @@ class InflectionAdmin(admin.ModelAdmin):
         "has_paradigm",
         "is_default_spelling",
         "get_definitions",
+        "get_keywords",
     )
 
     def has_paradigm(self, obj: Inflection):
@@ -105,6 +106,21 @@ class InflectionAdmin(admin.ModelAdmin):
 
     # noinspection Mypy,PyTypeHints
     is_default_spelling.boolean = True  # type: ignore
+
+    def get_keywords(self, obj: Inflection):
+        if obj.is_lemma:
+            lemma = obj
+        else:
+            lemma = obj.lemma
+
+        keyword_texts = tuple(set([d.text for d in lemma.English.all()]))
+        return format_html(
+            ("<br/><br/>".join(["<span>%s</span>"] * len(keyword_texts)))
+            % keyword_texts
+        )
+
+    # noinspection Mypy,PyTypeHints
+    get_keywords.short_description = "ENGLISH KEYWORDS"  # type: ignore
 
     def get_definitions(self, obj: Inflection):
         if obj.is_lemma:

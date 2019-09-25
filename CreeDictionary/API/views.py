@@ -14,28 +14,12 @@ def search(request, query_string):
     """
     api and for internal use when render-html=true is specified
     """
-    # todo: change api documentation (originally a git wiki page)
-    # fixme or not: performance issue
-    #   2019/09/18 Matt Yan: for query_string "miteh", fetch_lemmas_by_user_query takes 0.1 seconds on my laptop
-    #   render(request, "API/word-entries.html", {"words": lemmas}) takes a whopping 1 full second
-    #   side note: somehow I had a hard time finding render() in the report of `pipenv run profile client_query`
-    #   I used time.time() in this function instead.
-
-    #   This StackOverflow post talks about how to optimize render()
-    #   https://stackoverflow.com/questions/8569387/django-guidelines-for-speeding-up-template-rendering-performance
-    #
-    #   It was substantially faster previously when the variables passed in were
-
-    # optimization: django template
+    # todo: delete api documentation
 
     # Templating
-    response: Dict[str, list] = {}
-    # todo: remove render html
-    if request.GET.get("render-html", False) == "true":
-        a = time.time()
-        r = Inflection.fetch_lemmas_by_user_query(query_string)
-        print(time.time() - a)
-        return render(request, "API/word-entries.html", {"words": r})
+
+    lemmas = Inflection.fetch_lemmas_by_user_query(query_string)
+    return render(request, "API/word-entries.html", {"words": lemmas})
 
 
 def translate_cree(request, query_string: str) -> JsonResponse:

@@ -34,12 +34,7 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
-    # todo: re-direct?
-    # (
-    #     "displayWord/<str:query_string>/",
-    #     views.display_word,
-    #     "cree-dictionary-word-detail",
-    # ),
+    #
     # word search api which returns roughly matching
     # dictionary entries for an arbitrary string. \
     # It's also used in html templates to display to user. If this is changed,
@@ -66,13 +61,10 @@ _urlpatterns = [
 urlpatterns = []
 prefix = ""
 
-DEBUG = settings.DEBUG
 
 for route, view, name in _urlpatterns:
 
     # kwarg `name` for url reversion in html/py code
     urlpatterns.append(path("cree-dictionary/" + route, view, name=name))
-    if not DEBUG:
-        urlpatterns.append(path(route, view))
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
