@@ -12,22 +12,23 @@ jobs:
     - language: python
       python: "3.6"
 
-      before_install: sudo apt-get -y install hfst
-
-      install: pipenv install --dev
-      before_script: pipenv run make-migrations && pipenv run migrate
-      script: pipenv run test --cov=CreeDictionary
-      after_success: codecov
-
-    - language: python
-      python: "3.6"
       cache:
         npm: true
         directories:
           - $HOME/.cache
+
+      before_install: sudo apt-get -y install hfst
+      install:
+        - pipenv install --dev
+        - npm install
+      before_script:
+        - pipenv run migrate
+        - npm run build
       script:
+        - pipenv run test --cov=CreeDictionary
         - npm start & $(npm bin)/wait-on tcp:127.0.0.1:8000
         - $(npm run)/cypress run
+      after_success: codecov
 
     - stage: deploy
       install: sudo apt-get -y install curl

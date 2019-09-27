@@ -4,6 +4,7 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "pipenv run dev",
+    "build": "echo 'no build commands specified'",
     "test": "cypress test"
   },
   "repository": {
