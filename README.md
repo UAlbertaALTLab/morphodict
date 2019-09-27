@@ -167,7 +167,7 @@ This only needs to be done once and is probably already done. This serves for do
 
 - `sudo mkdir CreeDictionary/res/dictionaries`
 
-- `cd .. & sudo chown -R www-data:www-data cree-intelligent-dictionary/`
+- `cd .. && sudo chown -R www-data:www-data cree-intelligent-dictionary/`
 
 ## License
 This project licensed under Apache License Version 2.0
