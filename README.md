@@ -27,7 +27,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
     On Mac:
 
-    > Not tested. `$ brew install UAlbertaALTLab/hfst/hfst`
+    > `$ brew install UAlbertaALTLab/hfst/hfst`
 
     On Windows:
 
@@ -41,7 +41,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-- create a file named `.env` under project root with `Production=False` on first line.
+- create a file named `.env` under project root with `Production=False`.
 
 - `pipenv shell`
 
@@ -98,7 +98,8 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
 - The script does the following in sequence
 
-   - pull code
+   - pull the code
+   - `pipenv install` to update dependencies
    - collect static
    - touch wsgi.py to restart service
 
@@ -112,11 +113,11 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
 `redeploy` does not sync database file. After making changes to the database or the model file, we need to either
 do migrations on Sapir or sync our database file, which is possible as sqlite database is operating system independent.
+ 
+When you've made changes to the database, do `$ pipenv run push-db` to upload your database to Sapir
 
-When you've made changes to the database, do `$ pipenv run push-database` to upload your database to Sapir
-
-Just make sure your user is in `www-data` group on Sapir. If your username on Sapir is different from your user name
-on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
+Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database. 
+If your username on Sapir is different from your username on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
 
 ### Set up
 

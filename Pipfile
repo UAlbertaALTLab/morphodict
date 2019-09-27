@@ -14,6 +14,7 @@ hypothesis = {extras = ["django"],version = "~=4.34"}
 xml-subsetter = "~=0.0"
 codecov = "*"
 snakeviz = "~=2.0"
+paramiko = "~=2.6"
 
 [packages]
 colorama = "~=0.4"
@@ -34,23 +35,18 @@ analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer
 test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
-
 make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
 collect-static = "python ./CreeDictionary/manage.py collectstatic --clear --no-input"
-
 profile = "python -m profiling"
-
-
 # reminders. you can just use $ manage-db
 manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
 
-# todo: ensure rsync preserves www-data owner and group on Sapir
-# todo: add touch
-# todo: paramiko
-push-database = 'rsync -g -o --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
+# about permissions: db.sqlite3 file django generates has -rw-r--r--
+# As long as the user on Sapir belongs to www-data group. www-data will be able to read the database
+push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
 
 [requires]
 python_version = "3.6" # sapir uses python 3.6.9
