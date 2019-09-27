@@ -1,6 +1,7 @@
 # Cree Intelligent Dictionary
 
 [![Build Status](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary)
+[![codecov](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary/branch/master/graph/badge.svg)](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary)
 
 ## Project Description
 A Cree/Syllabic to English and English to Cree/Syllabic dictionary,
