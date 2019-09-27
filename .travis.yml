@@ -19,6 +19,16 @@ jobs:
       script: pipenv run test --cov=CreeDictionary
       after_success: codecov
 
+    - language: python
+      python: "3.6"
+      cache:
+        npm: true
+        directories:
+          - $HOME/.cache
+      script:
+        - npm start & $(npm bin)/wait-on tcp:127.0.0.1:8000
+        - $(npm run)/cypress run
+
     - stage: deploy
       install: sudo apt-get -y install curl
       script:
