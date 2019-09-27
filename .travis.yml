@@ -27,7 +27,7 @@ jobs:
       script:
         - pipenv run test --cov=CreeDictionary
         - npm start & $(npm bin)/wait-on tcp:127.0.0.1:8000
-        - $(npm run)/cypress run
+        - $(npm bin)/cypress run
       after_success: codecov
 
     - stage: deploy
