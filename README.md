@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary)
 
 ## Project Description
-A Cree/Syllabic to English and English to Cree/Syllabic dictionary, 
+A Cree/Syllabic to English and English to Cree/Syllabic dictionary,
 that can define and return the linguistic analysis of each word.
 
 
@@ -26,7 +26,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
     On Mac:
 
-    > Not tested. `$ brew install hfst`
+    > Not tested. `$ brew install UAlbertaALTLab/hfst/hfst`
 
     On Windows:
 
@@ -40,7 +40,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-- creat a file named `.env` under project root with `Production=False` on first line.
+- create a file named `.env` under project root with `Production=False` on first line.
 
 - `pipenv shell`
 
@@ -50,24 +50,24 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 - Build Database
 
-    `$ manage-db import CreeDictionary/res/dictionaries/` 
-    
+    `$ manage-db import CreeDictionary/res/dictionaries/`
+
     It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-    `$ manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT` 
+    `$ manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT`
 
-    optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin  
+    optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin
 
 - Run development server
     - `pipenv run dev`
-    - Default homepage: http://127.0.0.1:8000/cree-dictionary 
+    - Default homepage: http://127.0.0.1:8000/cree-dictionary
     - Default admin: http://127.0.0.1:8000/cree-dictionary/admin
-    
+
     note the **cree-dictionary/** part
 
 ## Run Tests
 
-`pipenv run test` 
+`pipenv run test`
 
 It recognizes the following:
 
@@ -102,16 +102,16 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
    - touch wsgi.py to restart service
 
 - to change the script
-    
+
     `vim scp://sapir.artsrn.ualberta.ca//opt/redeploy/redeploy/cree-dictionary`  (it's a python file without extension)
-   
+
 - to know details of how redeployment works, check the [repository of redeploy](https://github.com/eddieantonio/redeploy)
 
 ### Limit of `redeploy`
 
 `redeploy` does not sync database file. After making changes to the database or the model file, we need to either
 do migrations on Sapir or sync our database file, which is possible as sqlite database is operating system independent.
- 
+
 When you've made changes to the database, do `$ pipenv run push-database` to upload your database to Sapir
 
 Just make sure your user is in `www-data` group on Sapir. If your username on Sapir is different from your user name
@@ -122,21 +122,21 @@ on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env
 This only needs to be done once and is probably already done. This serves for documentation purpose.
 
 - pull the code
-- `sudo PIPENV_VENV_IN_PROJECT=1 pipenv install` 
-    
-    This creates `.venv` folder under current directory. Without the environment variable pipenv will create virtual 
+- `sudo PIPENV_VENV_IN_PROJECT=1 pipenv install`
+
+    This creates `.venv` folder under current directory. Without the environment variable pipenv will create virtual
     environment under the users home, which causes permission issues.
-    
-- `sudo pipenv run pip install mod_wsgi` 
+
+- `sudo pipenv run pip install mod_wsgi`
 
     DO NOT use `pipenv install`. mod_wsgi is used on sapir only to serve the application
-    
+
 - setup mod_wsgi
 
     ```.bash
     $ sudo pipenv run python CreeDictionary/manage.py runmodwsgi --setup-only --port=8091 --user www-data --group www-data --server-root=mod_wsgi-express-8091
     ```
-  
+
     this creates folder `mod_wsgi-express-8091`, which contains a separate apache to serve the application.
 
 - Create a service file `mod_wsgi-express-8091/cree-dictionary.service` with the following content
@@ -144,7 +144,7 @@ This only needs to be done once and is probably already done. This serves for do
     ```
     [Unit]
     Description=Cree Dictionary HTTP service
-    
+
     [Service]
     Type=forking
     EnvironmentFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/envvars
@@ -154,7 +154,7 @@ This only needs to be done once and is probably already done. This serves for do
     ExecStop=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl stop
     KillSignal=SIGCONT
     PrivateTmp=true
-    
+
     [Install]
     WantedBy=multi-user.target
     ```
