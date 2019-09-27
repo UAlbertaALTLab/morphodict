@@ -71,9 +71,9 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 It recognizes the following:
 
-- django settings in pytest.ini (for `pytest-django` to work)
-- --doctest-modules --mypy in `Pipfile [script]` (to enable doctest and mypy tests)
-- Production=False in `.env`
+- The Django settings module in `setup.cfg` (for `pytest-django` to work)
+- `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
+- `Production=False` in `.env`
 
 
 ## Profiling Code
