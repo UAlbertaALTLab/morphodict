@@ -1,6 +1,12 @@
 env: Production=false
-sudo: required
 dist: xenial
+
+addons:
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4
+      - hfst
 
 stages:
   - test
@@ -11,16 +17,15 @@ jobs:
   include:
     - language: python
       python: "3.6"
-
       cache:
-        npm: true
+        pip: true
         directories:
           - $HOME/.cache
+          - node_modules # NPM packages
 
-      before_install: sudo apt-get -y install hfst
       install:
         - pipenv install --dev
-        - npm install
+        - npm ci
       before_script:
         - pipenv run migrate
         - npm run build
