@@ -15,7 +15,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
 - `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
 - `$ cd cree-intelligent-dictionary`
-- Get Python 3.6+ and [Pipenv](https://github.com/pypa/pipenv#installation).
+- Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
 - `$ pipenv install --dev`
 - Install HFST
 
