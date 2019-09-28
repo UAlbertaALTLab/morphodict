@@ -37,10 +37,6 @@ venv/
 *~
 *.sw[po]
 
-# Web stuff
-.sass-cache/
-node_modules/
-
 # JetBrains Rider
 *.sln.iml
 # Matt likes to persist his PyCharm settings ¯\_(ツ)_/¯
@@ -48,6 +44,12 @@ node_modules/
 
 # MacOS Files
 .DS_Store
+
+# Node and Cypress stuff
+.sass-cache/
+node_modules/
+cypress/screenshots
+cypress/videos
 
 ########################## Project-specific ignores ##########################
 

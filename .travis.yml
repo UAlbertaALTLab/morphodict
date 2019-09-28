@@ -1,6 +1,12 @@
 env: Production=false
-sudo: required
 dist: xenial
+
+addons:
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4
+      - hfst
 
 stages:
   - test
@@ -11,12 +17,22 @@ jobs:
   include:
     - language: python
       python: "3.6"
+      cache:
+        pip: true
+        directories:
+          - $HOME/.cache
+          - node_modules # NPM packages
 
-      before_install: sudo apt-get -y install hfst
-
-      install: pipenv install --dev
-      before_script: pipenv run make-migrations && pipenv run migrate
-      script: pipenv run test --cov=CreeDictionary
+      install:
+        - pipenv install --dev
+        - npm ci
+      before_script:
+        - pipenv run migrate
+        - npm run build
+      script:
+        - pipenv run test --cov=CreeDictionary
+        - npm start & $(npm bin)/wait-on tcp:127.0.0.1:8000
+        - $(npm bin)/cypress run
       after_success: codecov
 
     - stage: deploy
