@@ -22,7 +22,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# todo: Secret Key
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 
@@ -32,7 +31,6 @@ SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(strtobool(os.environ.get("DEBUG", "False")))
 
-# todo: allowed hosts
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
@@ -51,6 +49,8 @@ INSTALLED_APPS = [
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
 ]
+
+# sapir uses `wsgi_express` that requires mod_wsgi
 if not DEBUG:
     INSTALLED_APPS.append("mod_wsgi.server")
 

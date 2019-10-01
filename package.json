@@ -4,7 +4,7 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "pipenv run dev",
-    "build": "echo 'no build commands specified'",
+    "build": "pipenv run manage-db import CreeDictionary/tests/data/one_hundredth_xmls",
     "test": "cypress test"
   },
   "repository": {
