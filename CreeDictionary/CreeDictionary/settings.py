@@ -22,24 +22,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
+# todo: Secret Key
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 
-# Production is defaulted as true
-# export Production=false while in development
+# Debug is default to False
+# Turn it to True in development
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# todo: Production and DEBUG ?? refactor them to be one and the same
-if bool(strtobool(os.environ.get("Production", "true"))):
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = bool(strtobool(os.environ.get("DEBUG", "False")))
 
-
+# todo: allowed hosts
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
-    ALLOWED_HOSTS = ["*"]
+    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
 
 # Application definition
 

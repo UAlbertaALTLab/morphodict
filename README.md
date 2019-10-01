@@ -41,7 +41,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-- create a file named `.env` under project root with `Production=False`.
+- create a file named `.env` under project root with `DEBUG=true`.
 
 - `pipenv shell`
 

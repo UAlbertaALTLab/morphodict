@@ -12,7 +12,7 @@ from utils import paradigm_filler, ParadigmSize
 
 def search(request, query_string):
     """
-    api and for internal use when render-html=true is specified
+    for internal use to render search results on the home page
     """
     # todo: delete api documentation
 
