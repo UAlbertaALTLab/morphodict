@@ -1,4 +1,4 @@
-env: Production=false
+env: DEBUG=True
 dist: xenial
 
 addons:
