@@ -27,6 +27,7 @@ Django = "~=2.2"
 creedictionary = {editable = true,path = "./CreeDictionary"} # needed to install and use database manager
 typing-extensions = "~=3.7"
 attrs = "~=19.1"
+django-js-reverse = "~=0.9"
 
 [scripts]
 # look stuff up
@@ -43,7 +44,6 @@ profile = "python -m profiling"
 manage-db = "manage-db"
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
-
 # about permissions: db.sqlite3 file django generates has -rw-r--r--
 # As long as the user on Sapir belongs to www-data group. www-data will be able to read the database
 push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'

@@ -6,7 +6,8 @@
         <title>Cree Dictionary</title>
         <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/app.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/word-card.css' %}">
-
+        {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
+        <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
         <script src={% static 'CreeDictionary/js/app.js' %}></script>
 
     </head>

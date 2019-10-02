@@ -18,7 +18,6 @@ from sys import stderr
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
+    "django_js_reverse",
 ]
 
 # sapir uses `wsgi_express` that requires mod_wsgi
@@ -90,14 +90,23 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+USE_TEST_DB = bool(strtobool(os.environ.get("UES_TEST_DB", "False")))
+# if this is set, then use the test database built from tests/data/one_hundredth_xml/
+
+if not USE_TEST_DB:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        }
     }
-}
-
-
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
+        }
+    }
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
@@ -124,13 +133,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# as commented in cree-intelligent-dictionary/CreeDictionary/urls.py The production server strips away cree-dictionary/
-# on the server end, as the app is served by its own apache, "static/"
-# was manually added to its own apache configuration as an alias to the static root.
-
-# server system apache receives: /cree-dictionary/static/. It strips away the "/cree-dictionary" and sends the app
-# apache "static/". The "static/" is then aliased to STATIC_ROOT below in the configuration files.
-STATIC_URL = "/cree-dictionary/static/"
+STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")

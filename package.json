@@ -4,8 +4,7 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "pipenv run dev",
-    "build": "pipenv run manage-db import CreeDictionary/tests/data/one_hundredth_xmls",
-    "test": "cypress test"
+    "test": "USE_TEST_DB=true npm start & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
   },
   "repository": {
     "type": "git",

@@ -1,23 +1,24 @@
+// "Urls" is a magic variable that allows use to reverse urls in javascript
+// See https://github.com/ierror/django-js-reverse
+
 /**
- * use ajax to
+ * use ajax to load search results
  *
  * @param {string} query_string
  */
 function load_results(query_string){
     let instruction_text = document.getElementById("instruction-text");
     let loading_cards = document.getElementsByClassName("title-row-container loading-title-row");
-    console.log(loading_cards);
 
     if (query_string !== ""){
         document.getElementById("search-results").innerHTML = "";
-        window.history.replaceState(query_string, "", "/cree-dictionary/search/"+query_string + '/');
+        window.history.replaceState(query_string, "", Urls['cree-dictionary-index-with-word'](query_string));
 
         // document.getElementById("instruction-text").innerHTML = val;
 
 
         let hidden_att = document.createAttribute("hidden");
         instruction_text.setAttributeNode(hidden_att);
-
 
 
         let hint_text = document.getElementsByClassName("hint-text");
@@ -50,19 +51,17 @@ function load_results(query_string){
         };
 
         // url is hardcoded, future change to the url needs to be updated here
-        xhttp.open("GET", "/cree-dictionary/_search/" + query_string + "?render-html=true", true);
+        xhttp.open("GET", Urls['cree-dictionary-search-api'](query_string), true);
         xhttp.send();
 
 
-
-    }
-    else{
+    } else{
         let hint_text = document.getElementsByClassName("hint-text");
         let hint_hidden_att = document.createAttribute("hidden");
         hint_text[0].setAttributeNode(hint_hidden_att);
 
         document.getElementById("search-results").innerHTML = "";
-        window.history.replaceState(query_string, "", "/cree-dictionary/");
+        window.history.replaceState(query_string, "", "/");
         instruction_text.removeAttribute("hidden");
 
         let i;
@@ -73,6 +72,5 @@ function load_results(query_string){
 
 
     }
-
 
 }
