@@ -1,6 +1,13 @@
 env: DEBUG=True
 dist: xenial
 
+addons:
+  apt:
+    packages:
+      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
+      - libgconf-2-4
+      - hfst
+
 after_success: codecov
 
 cache:
@@ -16,25 +23,26 @@ stages:
 
 jobs:
   include:
-    - language: python
+    - name: "Unit Tests"
+      language: python
 
       install: pipenv install --dev
 
       python: "3.6"
 
-      addons:
-        apt:
-          packages:
-            - hfst
-
       script: pipenv run test --cov=CreeDictionary
 
-    - language: node_js
+    - name: "Integration Tests"
+      # turns out it's harder to configure python with language: node_js
+      # it's easier to configure node_js with language: python instead
+      language: python
+      python: "3.6"
 
-      node_js:
-        - "7"
+      install:
+        - pipenv install
+        - npm ci
 
-      before_script: pip3 install pipenv && pipenv install
+      script: npm test
 
     - stage: deploy
       addons:
