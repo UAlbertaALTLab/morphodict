@@ -1,7 +1,6 @@
 env: DEBUG=True
 dist: xenial
 
-install: pipenv install --dev
 after_success: codecov
 
 cache:
@@ -19,6 +18,8 @@ jobs:
   include:
     - language: python
 
+      install: pipenv install --dev
+
       python: "3.6"
 
       addons:
@@ -30,12 +31,18 @@ jobs:
 
     - language: node_js
 
+      addons:
+        apt:
+          packages:
+            - pipenv
+
+      before_script: pipenv install
+
     - stage: deploy
       addons:
         apt:
           packages:
             - curl
-      install: ""
 
       script:
         - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv -in cree-dictionary.key.enc -out cree-dictionary.key -d
