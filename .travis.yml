@@ -31,12 +31,7 @@ jobs:
 
     - language: node_js
 
-      addons:
-        apt:
-          packages:
-            - pipenv
-
-      before_script: pipenv install
+      before_script: pip install pipenv && pipenv install
 
     - stage: deploy
       addons:
