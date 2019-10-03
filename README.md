@@ -169,5 +169,22 @@ This only needs to be done once and is probably already done. This serves for do
 
 - `cd .. && sudo chown -R www-data:www-data cree-intelligent-dictionary/`
 
+
+- Have a `cree-dictionary.conf` with the following content under `etc/apache2/sites-available/`
+
+    ```.conf
+    # Add a trailing slash if it's missing.
+    RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
+    
+    
+    # A proxy for the cree-dictionary service, "sudo systemctl status cree-dictionary"
+    ProxyPreserveHost On
+    ProxyPass /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
+    ProxyPassReverse /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
+    ```
+
+- `sudo a2ensite cree-dictionary`
+
+
 ## License
 This project licensed under Apache License Version 2.0

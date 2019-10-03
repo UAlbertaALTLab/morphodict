@@ -110,8 +110,6 @@ class Inflection(models.Model):
         )
         user_query = syllabics2sro(user_query)
 
-        # todo (for matt): there are capped words in xml.
-        # make fuzzy search treat capital letters the same as lower case letters
         user_query = user_query.lower()
 
         # build up result_lemmas in 3 ways
