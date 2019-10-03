@@ -90,33 +90,13 @@ class Inflection(models.Model):
         return category is lc
 
     @classmethod
-    def fetch_non_as_is_lemmas_by_fst_analysis(
-        cls, analysis: str
-    ) -> List["Inflection"]:
-        """
-        :return: can be empty
-        """
-        lemma_category = hfstol_analysis_parser.extract_lemma_and_category(analysis)
-        if lemma_category is None:
-            return []
-        lemma, category = lemma_category
-
-        matched_lemmas: List[Inflection] = []
-        for db_lemma in cls.objects.filter(text=lemma, is_lemma=True, as_is=False):
-            if db_lemma.is_category(category):
-                matched_lemmas.append(db_lemma)
-
-        return matched_lemmas
-
-    @classmethod
     def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
         """
 
         :param user_query: can be English or Cree (syllabics or not)
         :return: can be empty
         """
-        # todo: tests
-        # fixme: paradigm for niska vanishes the second time you click
+        # todo: test after searching strategy is fixed
 
         # URL Decode
         user_query = unquote(user_query)

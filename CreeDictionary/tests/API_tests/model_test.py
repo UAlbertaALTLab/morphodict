@@ -44,25 +44,3 @@ def test_malformed_inflection_analysis_field(
     assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)
     with pytest.raises(ValueError):
         inflection.is_category(LC.VTA)
-
-
-@pytest.mark.django_db
-def test_lemma_fetching_by_analysis():
-    lemma = Inflection(
-        id=0,
-        text="yôtinipahtâw",
-        analysis="yôtinipahtâw+V+AI+Ind+Prs+3Sg",
-        as_is=False,
-        is_lemma=True,
-        default_spelling_id=0,  # irrelavant
-        lemma_id=0,
-    )
-    lemma.save()
-
-    fetched_lemmas = Inflection.fetch_non_as_is_lemmas_by_fst_analysis(
-        "yôtinipahtâw+V+AI+Ind+Prs+3Sg"
-    )
-    assert fetched_lemmas[0].id == 0
-
-    fetched_lemmas = Inflection.fetch_non_as_is_lemmas_by_fst_analysis("A+B+C")
-    assert fetched_lemmas == []
