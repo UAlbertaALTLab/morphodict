@@ -1,29 +1,110 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Cree Dictionary</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/app.css' %}">
-        <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/word-card.css' %}">
-        {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
-        <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-        <script src={% static 'CreeDictionary/js/app.js' %}></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Cree Dictionary</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
+    {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
+    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+    <script src={% static 'CreeDictionary/js/app.js' %}></script>
 
-    </head>
+</head>
 
-    <body>
-        <div class="page-header-container">
-            {% block header %}
-            {% endblock %}
+
+<body class="app">
+
+<div class="top-bar app__header">
+    <header class="branding top-bar__heading "><a href="/"><h1 class="branding__heading branding__title"><span
+            lang="cr">itwêwina</span></h1>
+        <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p></a></header>
+    <nav class="top-bar__nav">
+        <details class="toggle-box toggle-box--with-menu">
+            <summary id="language-button" class="toggle-box__toggle" aria-haspopup="menu" role="button">English (êîôâ)
+            </summary>
+            <div class="menu toggle-box__menu" role="menu" aria-labelledby="language-button">
+                <fieldset class="menu__category">
+                    <legend class="menu__caption">Language</legend>
+                    <label class="menu-choice"><input class="menu-choice__input" type="radio" name="lang" value="en"
+                                                      checked=""> <span
+                            class="menu-choice__label"> English </span></label> <label class="menu-choice"><input
+                        class="menu-choice__input" type="radio" name="lang" value="cr"> <span
+                        class="menu-choice__label">Cree/<span lang="cr">nêhiyawêwin</span></span></label></fieldset>
+                <fieldset class="menu__category">
+                    <legend class="menu__caption">Show Cree words in</legend>
+                    <label class="menu-choice"><input class="menu-choice__input" type="radio" value="Latn"> <span
+                            class="menu-choice__label">SRO (êîôâ)</span></label> <label class="menu-choice"><input
+                        class="menu-choice__input" type="radio" value="Latn-x-macron"> <span class="menu-choice__label">SRO (ēīōā)</span></label>
+                    <label class="menu-choice"><input class="menu-choice__input" type="radio" value="Cans"> <span
+                            class="menu-choice__label">Syllabics (ᒐᐦᑭᐯᐦᐃᑲᓇ)</span></label></fieldset>
+            </div>
+        </details>
+    </nav>
+</div>
+
+<nav class="search app__pane">
+    <form class="search__search-bar search-bar" action="search" method="GET"><label class="search-bar__label"
+                                                                                    for="search">Search</label> <input
+            id="search" class="search-bar__input" type="text" name="q" required=""
+            placeholder="Search in Cree or English">
+        <button class="search-bar__button" type="submit"><img src="img/fa/search.svg" alt="Search"></button>
+    </form>
+    <details class="search__advanced toggle-box toggle-box--large toggle-box--link-like">
+        <summary class="toggle-box__toggle">
+            Advanced search
+        </summary>
+        <div class="menu menu--wide toggle-box__menu">
+            <fieldset class="menu__category">
+                <legend class="menu__caption"> Dictionary Source</legend>
+                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
+                                                  checked="">
+                    <div class="menu-choice__label"><h2> Include Cree : Words (<span class="cite-dict">CW</span>) </h2>
+                        <p class="reference"> Wolvengery, A. (2011). <i>Cree: Words.</i>
+                            Regina: University of Regina Press.
+                        </p></div>
+                </label> <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang"
+                                                           value="en" checked="">
+                <div class="menu-choice__label"><h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>) </h2>
+                    <p class="reference"><i>Maskwacîs Dictionary of Cree
+                        Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
+                        Cultural College. </p></div>
+            </label> <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
+                                                       checked="">
+                <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary (<span
+                        class="cite-dict">EC</span>) </h2>
+                    <p class="reference"> LeClaire, N., &amp; Cardinal, G. (2002).
+                        <i>Alberta Elders' Cree Dictionary/alperta ohci kehtehayak nehiyaw
+                            otwestamâkewasinahikan.</i> E. Waugh (Ed.). Edmonton: The
+                        University of Alberta Press.
+                    </p></div>
+            </label></fieldset>
         </div>
+    </details>
+</nav>
 
+{% block content %}
+{% endblock %}
 
-        <div class="content-container">
-            {% block content %}
-            {% endblock %}
-        </div>
-    </body>
+<footer class="app-footer">
+    <div class="partner-logos"><a class="partner-logos__logo" href="https://www.maskwacised.ca/"><img
+            src="img/mesc-logo.svg" alt="MESC"></a> <a class="partner-logos__logo"
+                                                       href="https://altlab.artsrn.ualberta.ca/"><img
+            src="img/uofa-logo.svg" alt="University of Alberta"></a> <a class="partner-logos__logo"
+                                                                        href="http://fnuniv.ca/"><img
+            src="img/fnu-logo.png" alt="FNU"></a></div>
+    <p class="app-footer__about">
+        2019 © University of Alberta.
+    </p>
+    <p class="app-footer__about"> Some icons from
+        <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">
+            Font Awesome Free</a>, licensed under
+        <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+    </p>
+    <nav class="app-footer__advanced-nav"><a href="/change-locale?en-x-linguist">Enable Linguist Mode</a></nav>
+</footer>
+
+</body>
 </html>
 
 
