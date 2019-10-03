@@ -14,7 +14,6 @@ from django.urls import path
 import API.views as api_views
 from CreeDictionary import views
 
-admin.autodiscover()
 # 2019/May/21 Matt Yan:
 
 # The reason to have different rules in development/production:
@@ -22,12 +21,12 @@ admin.autodiscover()
 # static file urls / web-page urls / API urls in this project all begin with "cree-dictionary"
 # so that in production on server sapir, the cree-dictionary service can be proxy-ed by looking for
 # initial "cree-dictionary" in the url.
-# on sapir, the initial "cree-dictionary/" will be stripped away when it
-# reaches this django app.
-# example:
-# http://sapir.artsrn.ualberta.ca/cree-dictionary/Search/hello
-# what reaches the app on sapir is "Search/hello"
-# in development, though, the initial "cree-dictionary" is not needed
+
+# example url:
+# http://sapir.artsrn.ualberta.ca/cree-dictionary/search/hello
+
+# in development, though, the initial "cree-dictionary" is not needed, example:
+# http://localhost:8000/search/hello
 # Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
 # url reversion
 
@@ -49,6 +48,7 @@ _urlpatterns = [
         api_views.translate_cree,
         "cree-dictionary-word-translation-api",
     ),
+    ("admin/", admin.site.urls, "admin"),
 ]
 
 urlpatterns = []
@@ -59,7 +59,7 @@ for route, view, name in _urlpatterns:
     urlpatterns.append(path(prefix + route, view, name=name))
 
 # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
-urlpatterns.append(url(r"^jsreverse/$", urls_js, name="js_reverse"))
+urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
