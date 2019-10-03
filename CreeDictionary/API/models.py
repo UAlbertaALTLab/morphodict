@@ -152,7 +152,7 @@ class Inflection(models.Model):
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
         if len(user_query) > 1:
             # fuzzy search does not make sense for a single letter, it will just give every single letter word
-            lemma_ids = Inflection.fuzzy_search(user_query, 1).values("lemma__id")
+            lemma_ids = Inflection.fuzzy_search(user_query, 0).values("lemma__id")
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
         # todo: remind user "are you searching in cree/english?"
