@@ -20,6 +20,7 @@ pip-delete-this-directory.txt
 .mypy_cache/
 
 # Django stuff
+DatabaseManager.log*
 *.log
 local_settings.py
 *.sqlite3
