@@ -24,7 +24,6 @@
     --app-title-color: #0091FF; /* Color of the "itwêwina" title. */
     --app-body-color: #000000; /* Color of body text. */
     --cite-text-color: #1A2635; /* Color of dictionary citation element. */
-    --footer-text-color: #404040; /* Color of text of footer */
     --footer-bg-color: #EBE9E9; /* Background color of the "sunken" footer. */
     --header-stripe-color: var(--app-title-color); /* Color of the "stripe" to the left of the title. */
     --search-border-color: #979797; /* Color of the search bar's (unfocused) border */
@@ -580,7 +579,7 @@
 }
 
 .toggle-box__toggle::after {
-    content: url("../images/fa/chevron-circle-down.svg");
+    content: url("img/fa/chevron-circle-down.svg");
 
     display: inline-block;
     width: 11px;
