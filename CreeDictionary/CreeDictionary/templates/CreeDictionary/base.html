@@ -1,15 +1,18 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cree Dictionary</title>
+    <title>itwêwina: the online Cree dictionary</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0091FF">
     <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
     {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
     <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
     <script src={% static 'CreeDictionary/js/app.js' %}></script>
-
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700|Raleway&display=swap&subset=latin-ext"
+          rel="stylesheet">
 </head>
 
 
@@ -48,7 +51,8 @@
                                                                                     for="search">Search</label> <input
             id="search" class="search-bar__input" type="text" name="q" required=""
             placeholder="Search in Cree or English">
-        <button class="search-bar__button" type="submit"><img src="img/fa/search.svg" alt="Search"></button>
+        <button class="search-bar__button" type="submit"><img src="{% static 'CreeDictionary/images/fa/search.svg' %}"
+                                                              alt="Search"></button>
     </form>
     <details class="search__advanced toggle-box toggle-box--large toggle-box--link-like">
         <summary class="toggle-box__toggle">
@@ -57,19 +61,24 @@
         <div class="menu menu--wide toggle-box__menu">
             <fieldset class="menu__category">
                 <legend class="menu__caption"> Dictionary Source</legend>
+
                 <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
                                                   checked="">
                     <div class="menu-choice__label"><h2> Include Cree : Words (<span class="cite-dict">CW</span>) </h2>
                         <p class="reference"> Wolvengery, A. (2011). <i>Cree: Words.</i>
                             Regina: University of Regina Press.
                         </p></div>
-                </label> <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang"
+                </label>
+
+                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang"
                                                            value="en" checked="">
                 <div class="menu-choice__label"><h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>) </h2>
                     <p class="reference"><i>Maskwacîs Dictionary of Cree
                         Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
                         Cultural College. </p></div>
-            </label> <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
+                </label>
+
+                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
                                                        checked="">
                 <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary (<span
                         class="cite-dict">EC</span>) </h2>
@@ -88,11 +97,12 @@
 
 <footer class="app-footer">
     <div class="partner-logos"><a class="partner-logos__logo" href="https://www.maskwacised.ca/"><img
-            src="img/mesc-logo.svg" alt="MESC"></a> <a class="partner-logos__logo"
-                                                       href="https://altlab.artsrn.ualberta.ca/"><img
-            src="img/uofa-logo.svg" alt="University of Alberta"></a> <a class="partner-logos__logo"
-                                                                        href="http://fnuniv.ca/"><img
-            src="img/fnu-logo.png" alt="FNU"></a></div>
+            src="{% static 'CreeDictionary/images/mesc-logo.svg' %}" alt="MESC"></a> <a class="partner-logos__logo"
+                                                                                        href="https://altlab.artsrn.ualberta.ca/"><img
+            src="{% static 'CreeDictionary/images/uofa-logo.svg' %}" alt="University of Alberta"></a> <a
+            class="partner-logos__logo"
+            href="http://fnuniv.ca/"><img
+            src="{% static 'CreeDictionary/images/fnu-logo.png' %}" alt="FNU"></a></div>
     <p class="app-footer__about">
         2019 © University of Alberta.
     </p>
