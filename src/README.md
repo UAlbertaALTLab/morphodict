@@ -1,0 +1,1 @@
+This folder is for javascript files that are going to be webpacked into static folders
