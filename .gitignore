@@ -23,7 +23,7 @@ pip-delete-this-directory.txt
 DatabaseManager.log*
 *.log
 local_settings.py
-*.sqlite3
+db.sqlite3
 *.sqlite3-journal
 
 # pyenv
@@ -40,7 +40,7 @@ venv/
 
 # JetBrains Rider
 *.sln.iml
-# Matt likes to persist his PyCharm settings ¯\_(ツ)_/¯
+# Matt likes to persist his PyCharm settings ¯\_(ツ)_/¯ ¯\_(ツ)_/¯ ¯\_(ツ)_/¯
 #.idea/
 
 # MacOS Files
