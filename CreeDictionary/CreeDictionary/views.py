@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from API.models import Inflection
 from CreeDictionary.forms import WordSearchForm
 
 
@@ -18,16 +19,9 @@ def index(request, query_string=None):
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
-def display_word(request, query_string=None):
+def search_results(request, query_string: str):
     """
-    display paradigms for a word
-
-    :param request:
-    :param query_string: word to display paradigm for
-    :return:
+    returns rendered boxes of search results according to user query
     """
-    context = {}
-    if query_string is not None:
-        context.update({"query_string": query_string})
-
-    return HttpResponse(render(request, "CreeDictionary/display-word.html", context))
+    lemmas = Inflection.fetch_lemmas_by_user_query(query_string)
+    return render(request, "CreeDictionary/word-entries.html", {"words": lemmas})

@@ -34,7 +34,11 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
-    ("_search/<str:query_string>/", api_views.search, "cree-dictionary-search-api"),
+    (
+        "_search_results/<str:query_string>/",
+        views.search_results,
+        "cree-dictionary-search-results",
+    ),
     # API which renders detailed definition/ inflection/ paradigms for a lemma
     # internal use
     (

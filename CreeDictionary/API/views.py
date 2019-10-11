@@ -10,16 +10,7 @@ from constants import LC
 from utils import paradigm_filler, ParadigmSize
 
 
-def search(request, query_string):
-    """
-    for internal use to render search results on the home page
-    """
-    # todo: delete api documentation
-
-    # Templating
-
-    lemmas = Inflection.fetch_lemmas_by_user_query(query_string)
-    return render(request, "API/word-entries.html", {"words": lemmas})
+# todo: update api documentation
 
 
 def translate_cree(request, query_string: str) -> JsonResponse:
@@ -38,8 +29,7 @@ def lemma_details(request, lemma_id: int):
     for internal use
     render paradigm table
     """
-    # todo (for matt): api documentation
-
+    # todo (for matt): move to CreeDictionary
     lemma = Inflection.objects.get(id=lemma_id)
 
     if lemma.lc != "":

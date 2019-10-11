@@ -1,8 +1,12 @@
+from typing import Set
+
+from cree_sro_syllabics import syllabics2sro
 from django.contrib import admin
 from django.db.models import F, Q
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
+from shared import descriptive_analyzer
 from .models import Definition, Inflection
 
 
@@ -86,6 +90,32 @@ class InflectionAdmin(admin.ModelAdmin):
     # todo: use fuzzy search and spell relax in the admin
     search_fields = ("text",)
 
+    def get_search_results(self, request, queryset, search_term):
+        """
+
+        :param request:
+        :param queryset: queryset is search results
+        :param search_term: what you input in admin site
+        :return:
+        """
+        search_term = (
+            search_term.replace("ā", "â")
+                .replace("ē", "ê")
+                .replace("ī", "î")
+                .replace("ō", "ô")
+        )
+        search_term = syllabics2sro(search_term)
+
+        search_term = search_term.lower()
+
+        # utilize the spell relax in descriptive_analyzer
+        fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([search_term])[
+            search_term
+        ]
+        queryset = Inflection.objects.filter(analysis__in=fst_analyses)
+        queryset |= Inflection.objects.filter(text=search_term)
+        return queryset, True
+
     list_display = (
         "text",
         "is_lemma",
@@ -93,6 +123,7 @@ class InflectionAdmin(admin.ModelAdmin):
         "is_default_spelling",
         "get_definitions",
         "get_keywords",
+        "id",
     )
 
     def has_paradigm(self, obj: Inflection):
@@ -161,8 +192,8 @@ class InflectionAdmin(admin.ModelAdmin):
     get_lemma_definitions.short_description = "Lemma definition"  # type: ignore
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
-        self.fields = ["text", "analysis", "is_lemma", "as_is"]
-        self.readonly_fields = []
+        self.fields = ["text", "analysis", "is_lemma", "as_is", "pos", "lc", "id"]
+        self.readonly_fields = ["id"]
 
         inflection = Inflection.objects.get(pk=object_id)
         if inflection.is_lemma:
@@ -183,10 +214,11 @@ class InflectionAdmin(admin.ModelAdmin):
             request, object_id, form_url, extra_context
         )
 
-    # todo: automatically increase id using transaction
     def add_view(self, request, form_url="", extra_context=None):
         # id is auto incremented upon save
         # default_spelling and lemma takes too long to load
+        # default_spelling will default to self
+        # if is_lemma is set to true, lemma will also be set to self
         self.exclude = ("id", "default_spelling", "lemma")
 
         return super(InflectionAdmin, self).add_view(request, form_url, extra_context)
