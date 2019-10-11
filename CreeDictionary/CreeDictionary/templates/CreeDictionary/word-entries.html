@@ -12,8 +12,7 @@
                 <span class="definition-title__pos">({{ word|presentational_pos }})</span></h2></header>
             <ol class="meanings meanings--search-result">
                 {% with word.definition_set.all|first as def %}
-                    <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite> <cite
-                            class="cite-dict">MD</cite></li>
+                    <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite></li>
                 {% endwith %}
 
 
