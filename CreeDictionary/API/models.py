@@ -11,6 +11,7 @@ from django.db import models, connection, transaction
 from django.db.models import QuerySet, Max
 from django.forms import model_to_dict
 
+
 from constants import LexicalCategory, LC
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer
@@ -38,9 +39,17 @@ class Inflection(models.Model):
     text = models.CharField(max_length=40)
 
     RECOGNIZABLE_LC = [(lc.value,) * 2 for lc in LexicalCategory] + [("", "")]
-    lc = models.CharField(max_length=4, choices=RECOGNIZABLE_LC)
-    RECOGNIZABLE_POS = ((p,) * 2 for p in ("IPV", "PRON", "N", "IPC", "V", ""))
-    pos = models.CharField(max_length=4, choices=RECOGNIZABLE_POS)
+    lc = models.CharField(
+        max_length=4,
+        choices=RECOGNIZABLE_LC,
+        help_text="lexical category parsed from xml",
+    )
+    RECOGNIZABLE_POS = [(p,) * 2 for p in ("IPV", "PRON", "N", "IPC", "V", "")]
+    pos = models.CharField(
+        max_length=4,
+        choices=RECOGNIZABLE_POS,
+        help_text="part of speech parsed from xml",
+    )
 
     analysis = models.CharField(
         max_length=50,
@@ -73,43 +82,6 @@ class Inflection(models.Model):
 
     def is_non_default_spelling(self) -> bool:
         return self.default_spelling != self
-
-    def get_presentational_pos(self):
-        """
-
-        :return: a pos that is shown to users. like Noun, Verb, etc
-        """
-        if self.as_is:  # then self.analysis is just created from lc and pos
-            if self.lc != "":
-
-                lc = LC(self.lc)
-
-                if lc.is_noun():
-                    return "Noun"
-                elif lc.is_verb():
-                    return "Verb"
-                elif lc is LC.IPC:
-                    return "Ipc"
-                elif lc is LC.Pron:
-                    return "Pronoun"
-                else:
-                    raise NotImplementedError
-
-            else:
-                if self.pos == "N":
-                    return "Noun"
-                elif self.pos == "V":
-                    return "Verb"
-                elif self.pos == "IPC":
-                    return "Ipc"
-                elif self.pos == "PRON":
-                    return "Pronoun"
-                elif self.pos == "IPV":
-                    return "Ipv"
-                else:
-                    raise ValueError(f"can not representational pos for {self}")
-        else:
-            return hfstol_analysis_parser.extract_category(self.analysis)
 
     def is_category(self, lc: LexicalCategory) -> Optional[bool]:
         """

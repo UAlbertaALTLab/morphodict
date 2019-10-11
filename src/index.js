@@ -16,34 +16,37 @@ function load_results($input) {
   let instruction = $('#introduction-text')
   // let loading_cards = document.getElementsByClassName('title-row-container loading-title-row')
 
+  let $search_result_list = $('#search-result-list').html(this.responseText)
+
   if (text !== '') {
-    // remove existing boxes
 
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
     instruction.hide()
 
-    // show loading cards
+    // todo: show loading cards
 
     let xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function () {
-      if (this.readyState === 4 && this.status === 200) {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
         // user input may have changed during the request
         const inputNow = $input.val()
         if (inputNow === text) { // hasn't changed
-          // remove loading cards
+          // todo: remove loading cards
 
+          $search_result_list.html(xhttp.responseText)
         }
       }
     }
-    xhttp.open('GET', Urls['cree-dictionary-search-api'](text), true)
+    xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
 
 
   } else {
     window.history.replaceState(text, '', Urls['cree-dictionary-index']())
     instruction.show()
-    //  remove loading cards if any
+    // todo: remove loading cards if any
+    $search_result_list.empty()
   }
 }
 
