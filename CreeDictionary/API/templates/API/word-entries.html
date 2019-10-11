@@ -3,19 +3,32 @@
 
 {% for word in words %}
     <div class="word-card">
-        <div class="title-row-container" onclick="window.location.href='{% url 'cree-dictionary-lemma-detail-api' word.id %}'">
-            <p class="title-text" >{{ word.text }}
+        <div class="title-row-container"
+             onclick="window.location.href='{% url 'cree-dictionary-lemma-detail-api' word.id %}'">
+            <p class="title-text">{{ word.text }}
                 <span class="definition-text">
 
                     {% with word.definition_set.all|first as def %}
                         ({{ def }} <sup class="source-tag">{{ def.sources }}</sup>)
                     {% endwith %}
-
             </span>
-
             </p>
         </div>
 
     </div>
+
+
+    <li class="search-results__result">
+        <article class="definition box box--rounded">
+            <header class="definition__header"><h2 class="definition-title definition-title--search-result">
+                <dfn class="definition-title__word"><a href="{% static 'CreeDictionary/css/word-card.css' %}"><span
+                        lang="cr">{{ word.text }}</span></a></dfn>
+                <span class="definition-title__pos">(Noun)</span></h2></header>
+            <ol class="meanings meanings--search-result">
+                <li class="meanings__meaning">goose <cite class="cite-dict">CW</cite> <cite
+                        class="cite-dict">MD</cite></li>
+            </ol>
+        </article>
+    </li>
 
 {% endfor %}

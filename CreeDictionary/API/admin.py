@@ -185,6 +185,8 @@ class InflectionAdmin(admin.ModelAdmin):
 
     # todo: automatically increase id using transaction
     def add_view(self, request, form_url="", extra_context=None):
+        # id is auto incremented upon save
+        # default_spelling and lemma takes too long to load
+        self.exclude = ("id", "default_spelling", "lemma")
 
-        self.exclude = ()
         return super(InflectionAdmin, self).add_view(request, form_url, extra_context)

@@ -41,7 +41,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
 
    These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-- create a file named `.env` under project root with `DEBUG=true`.
+- create a file named `.env` under project root with `DEBUG=true`. (used both by npm and pipenv)
 
 - `pipenv shell`
 
@@ -60,11 +60,9 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
     optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin
 
 - Run development server
-    - `pipenv run dev`
-    - Default homepage: http://127.0.0.1:8000/cree-dictionary
-    - Default admin: http://127.0.0.1:8000/cree-dictionary/admin
-
-    note the **cree-dictionary/** part
+    - `npm run start`
+    - index: http://127.0.0.1:8000/
+    - admin: http://127.0.0.1:8000/admin
 
 ## Run Tests
 
@@ -99,6 +97,8 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 - The script does the following in sequence
 
    - pull the code
+   - npm install
+   - npm build (webpack js)
    - `pipenv install` to update dependencies
    - collect static
    - touch wsgi.py to restart service

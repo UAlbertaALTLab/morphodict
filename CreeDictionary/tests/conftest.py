@@ -52,7 +52,7 @@ def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
     return inflection
 
 
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def one_hundredth_xml_dir(topmost_datadir) -> Path:
     """
     1/100 of the entries in the real crkeng.xml

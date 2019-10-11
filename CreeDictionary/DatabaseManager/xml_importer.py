@@ -35,10 +35,11 @@ def clear_database(verbose=True):
     cursor = connection.cursor()
 
     # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
+    cursor.execute("PRAGMA foreign_keys = OFF")
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
     cursor.execute("DELETE FROM API_englishkeyword")
-    # todo: delete English
+    cursor.execute("PRAGMA foreign_keys = ON")
 
     logger.info("All Objects deleted from Database")
 
