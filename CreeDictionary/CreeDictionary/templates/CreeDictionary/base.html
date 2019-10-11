@@ -47,10 +47,10 @@
 </div>
 
 <nav class="search app__pane">
-    <form class="search__search-bar search-bar" action="search" method="GET"><label class="search-bar__label"
-                                                                                    for="search">Search</label> <input
+    <form class="search__search-bar search-bar"><label class="search-bar__label"
+                                                       for="search">Search</label> <input
             id="search" class="search-bar__input" type="text" name="q" required=""
-            placeholder="Search in Cree or English">
+            placeholder="Search in Cree or English" value="{{ query_string }}">
         <button class="search-bar__button" type="submit"><img src="{% static 'CreeDictionary/images/fa/search.svg' %}"
                                                               alt="Search"></button>
     </form>
@@ -71,23 +71,24 @@
                 </label>
 
                 <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang"
-                                                           value="en" checked="">
-                <div class="menu-choice__label"><h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>) </h2>
-                    <p class="reference"><i>Maskwacîs Dictionary of Cree
-                        Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
-                        Cultural College. </p></div>
+                                                  value="en" checked="">
+                    <div class="menu-choice__label"><h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>)
+                    </h2>
+                        <p class="reference"><i>Maskwacîs Dictionary of Cree
+                            Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
+                            Cultural College. </p></div>
                 </label>
 
                 <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
-                                                       checked="">
-                <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary (<span
-                        class="cite-dict">EC</span>) </h2>
-                    <p class="reference"> LeClaire, N., &amp; Cardinal, G. (2002).
-                        <i>Alberta Elders' Cree Dictionary/alperta ohci kehtehayak nehiyaw
-                            otwestamâkewasinahikan.</i> E. Waugh (Ed.). Edmonton: The
-                        University of Alberta Press.
-                    </p></div>
-            </label></fieldset>
+                                                  checked="">
+                    <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary (<span
+                            class="cite-dict">EC</span>) </h2>
+                        <p class="reference"> LeClaire, N., &amp; Cardinal, G. (2002).
+                            <i>Alberta Elders' Cree Dictionary/alperta ohci kehtehayak nehiyaw
+                                otwestamâkewasinahikan.</i> E. Waugh (Ed.). Edmonton: The
+                            University of Alberta Press.
+                        </p></div>
+                </label></fieldset>
         </div>
     </details>
 </nav>

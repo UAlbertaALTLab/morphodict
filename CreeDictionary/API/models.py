@@ -4,14 +4,14 @@ from typing import List, Optional, Set, Dict
 from urllib.parse import unquote
 
 from cree_sro_syllabics import syllabics2sro
-from django.db import models, connection
+from django.db import models, connection, transaction
 
 # todo: override save() to automatically increase id (so that people can add words on django admin)
 # see: https://docs.djangoproject.com/en/2.2/topics/db/models/#overriding-predefined-model-methods
-from django.db.models import QuerySet
+from django.db.models import QuerySet, Max
 from django.forms import model_to_dict
 
-from constants import LexicalCategory
+from constants import LexicalCategory, LC
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer
 from utils import hfstol_analysis_parser
@@ -32,6 +32,7 @@ class Inflection(models.Model):
         return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
+    # auto-increment is also implemented in the overridden save below
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=40)
@@ -73,6 +74,43 @@ class Inflection(models.Model):
     def is_non_default_spelling(self) -> bool:
         return self.default_spelling != self
 
+    def get_presentational_pos(self):
+        """
+
+        :return: a pos that is shown to users. like Noun, Verb, etc
+        """
+        if self.as_is:  # then self.analysis is just created from lc and pos
+            if self.lc != "":
+
+                lc = LC(self.lc)
+
+                if lc.is_noun():
+                    return "Noun"
+                elif lc.is_verb():
+                    return "Verb"
+                elif lc is LC.IPC:
+                    return "Ipc"
+                elif lc is LC.Pron:
+                    return "Pronoun"
+                else:
+                    raise NotImplementedError
+
+            else:
+                if self.pos == "N":
+                    return "Noun"
+                elif self.pos == "V":
+                    return "Verb"
+                elif self.pos == "IPC":
+                    return "Ipc"
+                elif self.pos == "PRON":
+                    return "Pronoun"
+                elif self.pos == "IPV":
+                    return "Ipv"
+                else:
+                    raise ValueError(f"can not representational pos for {self}")
+        else:
+            return hfstol_analysis_parser.extract_category(self.analysis)
+
     def is_category(self, lc: LexicalCategory) -> Optional[bool]:
         """
         :return: None if self.as_is is true. Meaning the analysis is simply the lc and the pos from the xml
@@ -88,6 +126,31 @@ class Inflection(models.Model):
                 % self
             )
         return category is lc
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        """
+        ensures id is auto-incrementing. infer foreign key 'lemma' to be self if self.is_lemma is set to True.
+         Default foreign key "default spelling" to self.
+        """
+        max_id = Inflection.objects.aggregate(Max("id"))
+        if max_id["id__max"] is None:
+            self.id = 0
+        else:
+            self.id = max_id["id__max"] + 1
+
+        # infer foreign keys default spelling and lemma if they are not set.
+        # this helps with adding entries in django admin as the ui for
+        # foreign keys default spelling and lemma takes forever to
+        # load.
+        # Also helps with tests as it's now easier to create entries
+        if self.default_spelling_id is None:
+            self.default_spelling_id = self.id
+
+        if self.is_lemma:
+            self.lemma_id = self.id
+
+        super(Inflection, self).save(*args, **kwargs)
 
     @classmethod
     def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
@@ -131,7 +194,7 @@ class Inflection(models.Model):
         if len(user_query) > 1:
             # fuzzy search does not make sense for a single letter, it will just give every single letter word
             lemma_ids = Inflection.fuzzy_search(user_query, 0).values("lemma__id")
-        result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
+            result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
 
         # todo: remind user "are you searching in cree/english?"
         if " " not in user_query:  # a whole word

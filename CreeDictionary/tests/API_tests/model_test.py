@@ -1,6 +1,10 @@
 import pytest
-from django.db import transaction
 from hypothesis import given, assume
+
+from DatabaseManager.__main__ import cmd_entry
+
+# don not remove theses lines. Stuff gets undefined
+# noinspection PyUnresolvedReferences
 from tests.conftest import one_hundredth_xml_dir, topmost_datadir
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_xmls
@@ -11,20 +15,19 @@ from tests.conftest import random_inflections
 from utils import hfstol_analysis_parser
 
 
-# weird: setting scope to "module" will let the tests in creefuzzySearcher_tests/search_tests.py access the contaminated database
-# setting scope to "function" removes that effect. while introduces overheads for tests in this file. (re-imported the xml for every test function)
-@pytest.fixture(scope="function")
+# this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
+@pytest.fixture(autouse=True, scope="module")
 def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
     with django_db_blocker.unblock():
-        with transaction.atomic():
-            import_xmls(one_hundredth_xml_dir, verbose=False)
-            yield
+        import_xmls(one_hundredth_xml_dir, verbose=False)
+        yield
+        cmd_entry([..., "clear"])
 
 
-# todo: over-engineered and slow. refactor this
+# this cool `random_inflections` draws random inflection from the database
 @pytest.mark.django_db
 @given(inflection=random_inflections())
-def test_stuff(inflection: Inflection, hundredth_test_database):
+def test_extract_category(inflection: Inflection):
     cat = hfstol_analysis_parser.extract_category(inflection.analysis)
     if cat is not None:
         if inflection.as_is:
@@ -33,12 +36,9 @@ def test_stuff(inflection: Inflection, hundredth_test_database):
             assert inflection.is_category(cat)
 
 
-# todo: over-engineered and slow. refactor this
 @pytest.mark.django_db
 @given(inflection=random_inflections())
-def test_malformed_inflection_analysis_field(
-    inflection: Inflection, hundredth_test_database
-):
+def test_malformed_inflection_analysis_field(inflection: Inflection):
     inflection.as_is = False
     inflection.analysis = "ijfasdjfie"
     assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)

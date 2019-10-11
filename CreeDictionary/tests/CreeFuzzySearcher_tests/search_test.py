@@ -22,15 +22,7 @@ def test_search(
 ):
 
     for i, word in enumerate(corpus):
-        Inflection(
-            id=i,
-            text=word,
-            analysis="",
-            is_lemma=True,
-            as_is=True,
-            default_spelling_id=0,
-            lemma_id=0,
-        ).save()
+        Inflection(text=word, analysis="", is_lemma=True, as_is=True).save()
 
     fuzzy_searcher = CreeFuzzySearcher(Inflection.objects.all())
     assert set(fuzzy_searcher.search(query, distance)) == set(
