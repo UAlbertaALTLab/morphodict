@@ -36,6 +36,9 @@ analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer
 test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
+# format
+format = "black CreeDictionary"
+# Django stuff
 make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
 collect-static = "python ./CreeDictionary/manage.py collectstatic --clear --no-input"

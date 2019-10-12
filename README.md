@@ -87,6 +87,16 @@ e.g.
 
 You can come up with profiling scripts yourself
 
+## Format Python code
+
+We format all Python code with [Black](https://black.readthedocs.io/en/stable/)
+
+To run it on all of the files:
+
+    pipenv run format
+
+> **Protip**! Make this a part of your git pre-commit hook!
+
 ## Production on Sapir
 
 ### Redeployment Script
@@ -113,10 +123,10 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
 `redeploy` does not sync database file. After making changes to the database or the model file, we need to either
 do migrations on Sapir or sync our database file, which is possible as sqlite database is operating system independent.
- 
+
 When you've made changes to the database, do `$ pipenv run push-db` to upload your database to Sapir
 
-Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database. 
+Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database.
 If your username on Sapir is different from your username on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
 
 ### Set up
@@ -175,8 +185,8 @@ This only needs to be done once and is probably already done. This serves for do
     ```.conf
     # Add a trailing slash if it's missing.
     RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
-    
-    
+
+
     # A proxy for the cree-dictionary service, "sudo systemctl status cree-dictionary"
     ProxyPreserveHost On
     ProxyPass /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
