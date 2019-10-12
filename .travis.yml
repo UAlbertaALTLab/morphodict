@@ -18,18 +18,16 @@ cache:
 
 stages:
   - test
-  - name: deploy
-    # note for PRs this is the base branch name :/
-    if: branch = master
+  - deploy:
+    if: branch = master AND type != pull_request
 
 jobs:
   include:
     - name: "Unit Tests"
       language: python
+      python: "3.6"
 
       install: pipenv install --dev
-
-      python: "3.6"
 
       script: pipenv run test --cov=CreeDictionary
 
@@ -45,7 +43,9 @@ jobs:
 
       script: npm test
 
-    - stage: deploy
+    - stage: deploy:
+      on:
+        branch: master
       addons:
         apt:
           packages:
