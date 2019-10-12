@@ -19,6 +19,7 @@ cache:
 stages:
   - test
   - name: deploy
+    # note for PRs this is the base branch name :/
     if: branch = master
 
 jobs:
@@ -45,8 +46,6 @@ jobs:
       script: npm test
 
     - stage: deploy
-      on:
-        branch: master
       addons:
         apt:
           packages:
