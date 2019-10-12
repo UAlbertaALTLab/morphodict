@@ -10,8 +10,7 @@ context('Searching', () => {
         .type('acâhkos')
 
       cy.get('[data-cy=search-results]')
-        .should('contain', 's/he sleeps')
-        .should('contain', 's/he is sleeping')
+        .should('contain', 'star')
     })
   })
 })
