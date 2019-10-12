@@ -13,20 +13,7 @@
         English (êîôâ)
       </summary>
       <div class="menu toggle-box__menu" aria-labelledby="language-selector__button">
-        <section class="menu__category" aria-labelledby="language-selector__language">
-          <h2 class="menu__caption" id="language-selector__language"> Language </h2>
-          <ul class="menu__choices" data-cy="language-choices">
-            <li class="menu-choice menu-choice--selected">
-              <a href="?hl=en" class="menu-choice__label" aria-current="true">English</a>
-            </li>
-            <li class="menu-choice">
-              <a href="?hl=crk" class="menu-choice__label">
-                Cree/<span lang="cr">nêhiyawêwin</span>
-              </a>
-            </li>
-          </ul>
-        </section>
-
+        {% include './language-select__language.html' %}
         {# <OrthographySelector /> #}
       </div>
     </details>
