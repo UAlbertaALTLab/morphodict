@@ -33,4 +33,19 @@ context('General', () => {
       // TODO: assert we're in Cree!
     })
   })
+
+  describe('I want see all written Cree in Western Cree Syllabics', () => {
+    it('should be accessible from the language selector', () => {
+      cy.get('[data-cy=language-selector]')
+        .type('{enter}')
+
+      cy.get('[data-cy=orthography-choices]')
+        .should('be.visible')
+        .contains('ᒐᐦᑭᐯᐦᐃᑲᓇ')
+        .click()
+
+      cy.get('h1')
+        .contains('ᐃᑘᐏᓇ')
+    })
+  })
 })
