@@ -16,47 +16,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext" rel="stylesheet">
 </head>
 <body class="app">
-  <div class="top-bar app__header">
-    <header class="branding top-bar__heading "><a href="/">
-        <h1 class="branding__heading branding__title">
-          <span lang="cr">itwêwina</span>
-        </h1>
-        <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p>
-    </a></header>
-    <nav class="top-bar__nav">
-      <details class="toggle-box toggle-box--with-menu">
-        <summary id="language-button" class="toggle-box__toggle" aria-haspopup="menu" role="button">English (êîôâ)
-        </summary>
-        <div class="menu toggle-box__menu" role="menu" aria-labelledby="language-button">
-          <fieldset class="menu__category">
-            <legend class="menu__caption">Language</legend>
-            <label class="menu-choice">
-              <input class="menu-choice__input" type="radio" name="lang" value="en" checked="">
-              <span class="menu-choice__label"> English </span></label>
-            <label class="menu-choice">
-              <input class="menu-choice__input" type="radio" name="lang" value="cr">
-              <span class="menu-choice__label">Cree/<span lang="cr">nêhiyawêwin</span></span>
-            </label>
-          </fieldset>
-          <fieldset class="menu__category">
-            <legend class="menu__caption">Show Cree words in</legend>
-            <label class="menu-choice">
-              <input class="menu-choice__input" type="radio" value="Latn">
-              <span class="menu-choice__label">SRO (êîôâ)</span>
-            </label>
-            <label class="menu-choice">
-              <input class="menu-choice__input" type="radio" value="Latn-x-macron">
-              <span class="menu-choice__label">SRO (ēīōā)</span>
-            </label>
-            <label class="menu-choice">
-              <input class="menu-choice__input" type="radio" value="Cans">
-              <span class="menu-choice__label">Syllabics (ᒐᐦᑭᐯᐦᐃᑲᓇ)</span>
-            </label>
-          </fieldset>
-        </div>
-      </details>
-    </nav>
-  </div>
+  <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
+  {% include './components/header.html' %}
 
 <nav class="search app__pane">
     <form class="search__search-bar search-bar">
