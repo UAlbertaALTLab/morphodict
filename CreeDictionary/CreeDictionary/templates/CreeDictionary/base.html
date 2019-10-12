@@ -2,23 +2,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>itwêwina: the online Cree dictionary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0091FF">
-    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
-    {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
-    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-    <script src={% static 'CreeDictionary/js/index.js' %}></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700|Raleway&display=swap&subset=latin-ext"
-          rel="stylesheet">
+  <meta charset="UTF-8">
+  {#- TODO: change the title on each page -#}
+  <title>itwêwina: the online Cree dictionary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0091FF">
+  {#- TODO: get webpack/rollup to package these -#}
+  <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
+  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
+  <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+  <script src={% static 'CreeDictionary/js/index.js' %}></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext" rel="stylesheet">
 </head>
-
-
 <body class="app">
-
-<div class="top-bar app__header">
+  <div class="top-bar app__header">
     <header class="branding top-bar__heading "><a href="/"><h1 class="branding__heading branding__title"><span
             lang="cr">itwêwina</span></h1>
         <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p></a></header>
@@ -113,9 +111,6 @@
         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
     </p>
     <nav class="app-footer__advanced-nav"><a href="/change-locale?en-x-linguist">Enable Linguist Mode</a></nav>
-</footer>
-
+  </footer>
 </body>
 </html>
-
-
