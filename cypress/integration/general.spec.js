@@ -19,4 +19,18 @@ context('General', () => {
         .should('be.visible')
     })
   })
+
+  describe('Changing the language', () => {
+    it('should be accessible from a menu', () => {
+      cy.get('[data-cy=language-selector]')
+        .type('{enter}')
+
+      cy.get('[data-cy=language-choices]')
+        .should('be.visible')
+        .contains('nêhiyawêwin')
+        .click()
+
+      // TODO: assert we're in Cree!
+    })
+  })
 })

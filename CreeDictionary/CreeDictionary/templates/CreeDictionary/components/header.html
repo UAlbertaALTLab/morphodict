@@ -7,34 +7,27 @@
   </a></header>
   <nav class="top-bar__nav">
     <details class="toggle-box toggle-box--with-menu">
-      <summary id="language-button" class="toggle-box__toggle" aria-haspopup="menu" role="button">English (êîôâ)
+      <summary id="language-selector__button" class="toggle-box__toggle" data-cy="language-selector"
+               aria-haspopup="menu" role="button" tabindex="0"
+               aria-label="Select language and writing system">
+        English (êîôâ)
       </summary>
-      <div class="menu toggle-box__menu" role="menu" aria-labelledby="language-button">
-        <fieldset class="menu__category">
-          <legend class="menu__caption">Language</legend>
-          <label class="menu-choice">
-            <input class="menu-choice__input" type="radio" name="lang" value="en" checked="">
-            <span class="menu-choice__label"> English </span></label>
-          <label class="menu-choice">
-            <input class="menu-choice__input" type="radio" name="lang" value="cr">
-            <span class="menu-choice__label">Cree/<span lang="cr">nêhiyawêwin</span></span>
-          </label>
-        </fieldset>
-        <fieldset class="menu__category">
-          <legend class="menu__caption">Show Cree words in</legend>
-          <label class="menu-choice">
-            <input class="menu-choice__input" type="radio" value="Latn">
-            <span class="menu-choice__label">SRO (êîôâ)</span>
-          </label>
-          <label class="menu-choice">
-            <input class="menu-choice__input" type="radio" value="Latn-x-macron">
-            <span class="menu-choice__label">SRO (ēīōā)</span>
-          </label>
-          <label class="menu-choice">
-            <input class="menu-choice__input" type="radio" value="Cans">
-            <span class="menu-choice__label">Syllabics (ᒐᐦᑭᐯᐦᐃᑲᓇ)</span>
-          </label>
-        </fieldset>
+      <div class="menu toggle-box__menu" aria-labelledby="language-selector__button">
+        <section class="menu__category" aria-labelledby="language-selector__language">
+          <h2 class="menu__caption" id="language-selector__language"> Language </h2>
+          <ul class="menu__choices" data-cy="language-choices">
+            <li class="menu-choice menu-choice--selected">
+              <a href="?hl=en" class="menu-choice__label" aria-current="true">English</a>
+            </li>
+            <li class="menu-choice">
+              <a href="?hl=crk" class="menu-choice__label">
+                Cree/<span lang="cr">nêhiyawêwin</span>
+              </a>
+            </li>
+          </ul>
+        </section>
+
+        {# <OrthographySelector /> #}
       </div>
     </details>
   </nav>
