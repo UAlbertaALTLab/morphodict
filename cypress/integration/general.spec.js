@@ -1,8 +1,8 @@
 /**
  * General tests about the website's behaviour as a regular website.
  */
-context('General', () => {
-  beforeEach(() => {
+context('General', function () {
+  beforeEach(function () {
     cy.visit('/')
   })
 
@@ -20,8 +20,10 @@ context('General', () => {
     })
   })
 
-  describe('Changing the language', () => {
-    it('should be accessible from a menu', () => {
+  describe('Changing the language', function () {
+    it('should be accessible from a menu', function () {
+      this.skip('language selector not implemented')
+
       cy.get('[data-cy=language-selector]')
         .type('{enter}')
 
@@ -34,8 +36,10 @@ context('General', () => {
     })
   })
 
-  describe('I want see all written Cree in Western Cree Syllabics', () => {
-    it('should be accessible from the language selector', () => {
+  describe('I want see all written Cree in Western Cree Syllabics', function () {
+    it('should be accessible from the language selector', function () {
+      this.skip('orthography selector is currently not enabled')
+
       cy.get('[data-cy=language-selector]')
         .type('{enter}')
 
