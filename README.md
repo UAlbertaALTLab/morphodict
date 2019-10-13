@@ -64,7 +64,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
     - index: http://127.0.0.1:8000/
     - admin: http://127.0.0.1:8000/admin
 
-## Run Tests
+## Unit Tests
 
 `pipenv run test`
 
@@ -72,8 +72,13 @@ It recognizes the following:
 
 - The Django settings module in `setup.cfg` (for `pytest-django` to work)
 - `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
-- `Production=False` in `.env`
+- `DEBUG=False` in `.env`
 
+## Cypress integration tests
+
+`npm test`
+
+It also takes in variables from `.env` file
 
 ## Profiling Code
 
