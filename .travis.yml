@@ -18,8 +18,7 @@ cache:
 
 stages:
   - test
-  - deploy:
-    if: branch = master AND type != pull_request
+  - deploy
 
 jobs:
   include:
@@ -44,6 +43,7 @@ jobs:
       script: npm test
 
     - stage: deploy
+      if: branch = master AND type != pull_request
       addons:
         apt:
           packages:
