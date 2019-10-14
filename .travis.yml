@@ -41,7 +41,4 @@ jobs:
       # deploy stage :/
       deploy:
         provider: script
-        skip_cleanup: true
-        script:
-          - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv -in cree-dictionary.key.enc -out cree-dictionary.key -d
-          - curl -dsecret=$(cat cree-dictionary.key) https://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+        script: bash ./libexec/deploy
