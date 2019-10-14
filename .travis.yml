@@ -41,4 +41,4 @@ jobs:
       # deploy stage :/
       deploy:
         provider: script
-        script: bash ./libexec/deploy
+        script: bash ./libexec/deploy-to-sapir
