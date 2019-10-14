@@ -10,8 +10,6 @@ addons:
       - libgconf-2-4
       - hfst
 
-after_success: codecov
-
 cache:
   pip: true
   directories:
@@ -27,6 +25,7 @@ jobs:
     - name: "Unit Tests"
       install: pipenv install --dev
       script: pipenv run test --cov=CreeDictionary
+      after_success: codecov
 
     - name: "Integration Tests"
       # turns out it's harder to configure python with language: node_js
@@ -34,7 +33,6 @@ jobs:
       install:
         - pipenv install
         - npm ci
-
       script: npm test
 
     - stage: deploy
@@ -43,6 +41,7 @@ jobs:
       # deploy stage :/
       deploy:
         provider: script
+        skip_cleanup: true
         script:
           - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv -in cree-dictionary.key.enc -out cree-dictionary.key -d
-          - curl -dsecret=$(sudo cat cree-dictionary.key) sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+          - curl -dsecret=$(cat cree-dictionary.key) https://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
