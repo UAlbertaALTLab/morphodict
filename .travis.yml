@@ -1,5 +1,7 @@
 env: DEBUG=True
 dist: xenial
+language: python
+python: "3.6"
 
 addons:
   apt:
@@ -7,6 +9,7 @@ addons:
       # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
       - libgconf-2-4
       - hfst
+      - curl
 
 after_success: codecov
 
@@ -16,39 +19,23 @@ cache:
     - $HOME/.cache
     - node_modules # NPM packages
 
-stages:
-  - test
-  - deploy
-
 jobs:
   include:
     - name: "Unit Tests"
-      language: python
-      python: "3.6"
-
       install: pipenv install --dev
-
       script: pipenv run test --cov=CreeDictionary
 
     - name: "Integration Tests"
       # turns out it's harder to configure python with language: node_js
       # it's easier to configure node_js with language: python instead
-      language: python
-      python: "3.6"
-
       install:
         - pipenv install
         - npm ci
 
       script: npm test
 
-    - stage: deploy
-      if: branch = master AND type != pull_request
-      addons:
-        apt:
-          packages:
-            - curl
-
-      script:
-        - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv -in cree-dictionary.key.enc -out cree-dictionary.key -d
-        - curl -dsecret=$(sudo cat cree-dictionary.key) sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+deploy:
+  provider: script
+  script:
+    - openssl aes-256-cbc -K $encrypted_49b37942e026_key -iv $encrypted_49b37942e026_iv -in cree-dictionary.key.enc -out cree-dictionary.key -d
+    - curl -dsecret=$(sudo cat cree-dictionary.key) sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
