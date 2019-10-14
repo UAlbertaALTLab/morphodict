@@ -9,7 +9,6 @@ addons:
       # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
       - libgconf-2-4
       - hfst
-      - curl
 
 after_success: codecov
 
@@ -39,6 +38,7 @@ jobs:
       script: npm test
 
     - stage: deploy
+      language: minimal
       # This is not redundant. You need a 'deploy' key IN ADDITION to the
       # deploy stage :/
       deploy:
