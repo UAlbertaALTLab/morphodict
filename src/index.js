@@ -11,6 +11,9 @@ let $ = require('jquery')
  * @param {jQuery} $input
  */
 function loadResults($input) {
+  const ERROR_CLASS = 'search-progress--error'
+  const LOADING_CLASS = 'search-progress--loading'
+
   let text = $input.val()
   let instruction = $('#introduction-text')
   let progress = document.getElementById('loading-indicator')
@@ -68,21 +71,27 @@ function loadResults($input) {
   }
 
   function indicateLoading() {
-    progress.classList.remove('search-progress--error')
-    progress.classList.add('search-progress--loading')
+    // Make a 10% progress bar. We actually don't know how much
+    // there is left, but make it seem like it's thinking about it!
+    progress.max = 100
+    progress.value = 10
+    progress.classList.remove(ERROR_CLASS)
+    progress.classList.add(LOADING_CLASS)
   }
 
   function indicateLoadedSuccessfully() {
+    progress.value = 100
     hideLoadingIndicator()
   }
 
   function indicateLoadingFailure() {
-    progress.value = ''
-    progress.classList.add('search-progress--error')
+    // makes the loading state "indeterminate", like it's loading forever.
+    progress.removeAttribute('value')
+    progress.classList.add(ERROR_CLASS)
   }
 
   function hideLoadingIndicator() {
-    progress.classList.remove('search-progress--loading')
+    progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
   }
 }
 

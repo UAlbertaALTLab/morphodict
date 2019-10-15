@@ -782,7 +782,16 @@ a.menu-choice__label:active {
 }
 
 .search-progress--error {
-  background-color: red;
+  animation: pulse 2s ease infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.25
+  }
+  to {
+    opactiy: 1;
+  }
 }
 
 /******************************* INLINE MARKUP ******************************/

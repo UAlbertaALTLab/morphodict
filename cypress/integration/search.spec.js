@@ -28,7 +28,7 @@ context('Searching', () => {
     it('should display a loading indicator', () => {
       cy.route({
         url: '/_search_results/amisk',
-        delay: 100, // milliseconds of delay
+        delay: 200, // milliseconds of delay
         response: `<ol><li data-cy="search-results">
             <span lang="cr">amisk</span>: beaver
         </li></ol>`
