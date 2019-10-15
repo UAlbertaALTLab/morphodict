@@ -58,7 +58,6 @@ cypress/videos
 .env
 
 # Dictionary Files
-/CreeDictionary/res/dictionaries/
 /hfst
 
 # Django collectstatic

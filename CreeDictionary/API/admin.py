@@ -100,9 +100,9 @@ class InflectionAdmin(admin.ModelAdmin):
         """
         search_term = (
             search_term.replace("ā", "â")
-                .replace("ē", "ê")
-                .replace("ī", "î")
-                .replace("ō", "ô")
+            .replace("ē", "ê")
+            .replace("ī", "î")
+            .replace("ō", "ô")
         )
         search_term = syllabics2sro(search_term)
 

@@ -2,93 +2,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>itwêwina: the online Cree dictionary</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#0091FF">
-    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
-    {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
-    <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
-    <script src={% static 'CreeDictionary/js/index.js' %}></script>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,700|Raleway&display=swap&subset=latin-ext"
-          rel="stylesheet">
+  <meta charset="UTF-8">
+  {#- TODO: change the title on each page -#}
+  <title>itwêwina: the online Cree dictionary</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0091FF">
+  {#- TODO: get webpack/rollup to package these -#}
+  <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/styles.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/normalize.css' %}">
+  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
+  <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+  <script src={% static 'CreeDictionary/js/index.js' %}></script>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext" rel="stylesheet">
 </head>
-
-
 <body class="app">
-
-<div class="top-bar app__header">
-    <header class="branding top-bar__heading "><a href="/"><h1 class="branding__heading branding__title"><span
-            lang="cr">itwêwina</span></h1>
-        <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p></a></header>
-    <nav class="top-bar__nav">
-        <details class="toggle-box toggle-box--with-menu">
-            <summary id="language-button" class="toggle-box__toggle" aria-haspopup="menu" role="button">English (êîôâ)
-            </summary>
-            <div class="menu toggle-box__menu" role="menu" aria-labelledby="language-button">
-                <fieldset class="menu__category">
-                    <legend class="menu__caption">Language</legend>
-                    <label class="menu-choice"><input class="menu-choice__input" type="radio" name="lang" value="en"
-                                                      checked=""> <span
-                            class="menu-choice__label"> English </span></label> <label class="menu-choice"><input
-                        class="menu-choice__input" type="radio" name="lang" value="cr"> <span
-                        class="menu-choice__label">Cree/<span lang="cr">nêhiyawêwin</span></span></label></fieldset>
-                <fieldset class="menu__category">
-                    <legend class="menu__caption">Show Cree words in</legend>
-                    <label class="menu-choice"><input class="menu-choice__input" type="radio" value="Latn"> <span
-                            class="menu-choice__label">SRO (êîôâ)</span></label> <label class="menu-choice"><input
-                        class="menu-choice__input" type="radio" value="Latn-x-macron"> <span class="menu-choice__label">SRO (ēīōā)</span></label>
-                    <label class="menu-choice"><input class="menu-choice__input" type="radio" value="Cans"> <span
-                            class="menu-choice__label">Syllabics (ᒐᐦᑭᐯᐦᐃᑲᓇ)</span></label></fieldset>
-            </div>
-        </details>
-    </nav>
-</div>
+  <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
+  {% include './components/header.html' %}
 
 <nav class="search app__pane">
-    <form class="search__search-bar search-bar"><label class="search-bar__label"
-                                                       for="search">Search</label> <input
-            id="search" class="search-bar__input" type="text" name="q" required=""
-            placeholder="Search in Cree or English" value="{{ query_string }}">
-        <button class="search-bar__button" type="submit"><img src="{% static 'CreeDictionary/images/fa/search.svg' %}"
-                                                              alt="Search"></button>
+    <form class="search__search-bar search-bar">
+      <label class="search-bar__label" for="search">Search</label>
+      <input id="search" class="search-bar__input" data-cy="search"
+             type="text" required name="q"
+             placeholder="Search in Cree or English"
+             autocomplete="off" spellcheck="false"
+             value="{{ query_string }}">
+      <button class="search-bar__button" type="submit">
+        <img src="{% static 'CreeDictionary/images/fa/search.svg' %}" alt="Search">
+      </button>
     </form>
-    <details class="search__advanced toggle-box toggle-box--large toggle-box--link-like">
+    {% comment %}
+     TODO: Advanced search is disabled until the following issues are closed:
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/125
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/126
+    {% endcomment %}
+    <details style="display: none" class="search__advanced toggle-box toggle-box--large toggle-box--link-like">
         <summary class="toggle-box__toggle">
             Advanced search
         </summary>
+        {# This HTML and the associated CSS is not ready yet :( #}
         <div class="menu menu--wide toggle-box__menu">
-            <fieldset class="menu__category">
-                <legend class="menu__caption"> Dictionary Source</legend>
+          <fieldset class="menu__category">
+            <legend class="menu__caption"> Dictionary Source</legend>
+            {# TODO: these sources must be generated from the database: #}
+            {# Blocked by: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/125 #}
+            <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en" checked>
+              <div class="menu-choice__label"><h2> Include Cree : Words (<span class="cite-dict">CW</span>) </h2>
+                  <p class="reference"> Wolvengery, A. (2011). <i>Cree: Words.</i>
+                      Regina: University of Regina Press.
+                  </p></div>
+            </label>
 
-                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
-                                                  checked="">
-                    <div class="menu-choice__label"><h2> Include Cree : Words (<span class="cite-dict">CW</span>) </h2>
-                        <p class="reference"> Wolvengery, A. (2011). <i>Cree: Words.</i>
-                            Regina: University of Regina Press.
-                        </p></div>
-                </label>
+            <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en" checked>
+              <div class="menu-choice__label">
+                <h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>)</h2>
+                <p class="reference"><i>Maskwacîs Dictionary of Cree
+                    Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
+                    Cultural College. </p>
+              </div>
+            </label>
 
-                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang"
-                                                  value="en" checked="">
-                    <div class="menu-choice__label"><h2> Include Maskwacîs : Words (<span class="cite-dict">MD</span>)
-                    </h2>
-                        <p class="reference"><i>Maskwacîs Dictionary of Cree
-                            Words/Nehiyaw Pîkiskweninisa.</i> (2009). Maskwacîs: Maskwachees
-                            Cultural College. </p></div>
-                </label>
-
-                <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en"
-                                                  checked="">
-                    <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary (<span
-                            class="cite-dict">EC</span>) </h2>
-                        <p class="reference"> LeClaire, N., &amp; Cardinal, G. (2002).
-                            <i>Alberta Elders' Cree Dictionary/alperta ohci kehtehayak nehiyaw
-                                otwestamâkewasinahikan.</i> E. Waugh (Ed.). Edmonton: The
-                            University of Alberta Press.
-                        </p></div>
-                </label></fieldset>
+            <label class="menu-choice"><input class="menu-choice__check" type="checkbox" name="lang" value="en" checked>
+              <div class="menu-choice__label"><h2> Include Alberta Elders' Cree Dictionary
+                 (<span class="cite-dict">EC</span>) </h2>
+                <p class="reference"> LeClaire, N., &amp; Cardinal, G. (2002).
+                    <i>Alberta Elders' Cree Dictionary/alperta ohci kehtehayak nehiyaw
+                        otwestamâkewasinahikan.</i> E. Waugh (Ed.). Edmonton: The
+                    University of Alberta Press.
+                </p></div>
+            </label></fieldset>
         </div>
     </details>
 </nav>
@@ -113,9 +95,7 @@
         <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
     </p>
     <nav class="app-footer__advanced-nav"><a href="/change-locale?en-x-linguist">Enable Linguist Mode</a></nav>
-</footer>
-
+  </footer>
 </body>
 </html>
-
-
+{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}

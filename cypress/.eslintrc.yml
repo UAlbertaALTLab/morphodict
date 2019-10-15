@@ -7,12 +7,16 @@ env:
   jquery: true
 globals:
   XRegExp: true
+  # Cypress/Mocha globals
+  describe: true
+  it: true
+  beforeEach: true
+  cy: true
+  context: true
 extends: 'eslint:recommended'
 parserOptions:
   ecmaVersion: 2016
   sourceType: module
-# These rules seem to generally follow the StandardJS style:
-# https://standardjs.com/rules.html
 rules:
   indent:
     - error
@@ -26,6 +30,4 @@ rules:
   semi:
     - error
     - never
-  camelcase:
-    - error
   no-console: "warn"

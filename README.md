@@ -64,7 +64,7 @@ http://sapir.artsrn.ualberta.ca/cree-dictionary
     - index: http://127.0.0.1:8000/
     - admin: http://127.0.0.1:8000/admin
 
-## Run Tests
+## Unit Tests
 
 `pipenv run test`
 
@@ -72,8 +72,13 @@ It recognizes the following:
 
 - The Django settings module in `setup.cfg` (for `pytest-django` to work)
 - `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
-- `Production=False` in `.env`
+- `DEBUG=False` in `.env`
 
+## Cypress integration tests
+
+`npm test`
+
+It also takes in variables from `.env` file
 
 ## Profiling Code
 
@@ -86,6 +91,16 @@ e.g.
 `pipenv run profile word_search[.py]`
 
 You can come up with profiling scripts yourself
+
+## Format Python code
+
+We format all Python code with [Black](https://black.readthedocs.io/en/stable/)
+
+To run it on all of the files:
+
+    pipenv run format
+
+> **Protip**! Make this a part of your git pre-commit hook!
 
 ## Production on Sapir
 
@@ -113,10 +128,10 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
 `redeploy` does not sync database file. After making changes to the database or the model file, we need to either
 do migrations on Sapir or sync our database file, which is possible as sqlite database is operating system independent.
- 
+
 When you've made changes to the database, do `$ pipenv run push-db` to upload your database to Sapir
 
-Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database. 
+Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database.
 If your username on Sapir is different from your username on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
 
 ### Set up
@@ -175,8 +190,8 @@ This only needs to be done once and is probably already done. This serves for do
     ```.conf
     # Add a trailing slash if it's missing.
     RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
-    
-    
+
+
     # A proxy for the cree-dictionary service, "sudo systemctl status cree-dictionary"
     ProxyPreserveHost On
     ProxyPass /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/

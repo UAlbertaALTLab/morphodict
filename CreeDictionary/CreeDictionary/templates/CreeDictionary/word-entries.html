@@ -1,24 +1,19 @@
 {% load static %}
 {% load inflection_extras %}
-
 {% for word in words %}
-
-
-    <li class="search-results__result">
-        <article class="definition box box--rounded">
-            <header class="definition__header"><h2 class="definition-title definition-title--search-result">
-                <dfn class="definition-title__word"><a href="{% url 'cree-dictionary-lemma-detail-api' word.id %}"><span
-                        lang="cr">{{ word.text }}</span></a></dfn>
-                <span class="definition-title__pos">({{ word|presentational_pos }})</span></h2></header>
-            <ol class="meanings meanings--search-result">
-                {% with word.definition_set.all|first as def %}
-                    <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite> <cite
-                            class="cite-dict">MD</cite></li>
-                {% endwith %}
-
-
-            </ol>
-        </article>
-    </li>
-
+<li class="search-results__result" data-cy="search-results">
+  <article class="definition box box--rounded">
+    <header class="definition__header">
+      <h2 class="definition-title definition-title--search-result">
+        <dfn class="definition-title__word">
+          <a href="{% url 'cree-dictionary-lemma-detail-api' word.id %}">
+            <span lang="cr">{{ word.text }}</span></a></dfn>
+            <span class="definition-title__pos">({{ word|presentational_pos }})</span></h2></header>
+        <ol class="meanings meanings--search-result">
+            {% with word.definition_set.all|first as def %}
+                <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite></li>
+            {% endwith %}
+        </ol>
+    </article>
+</li>
 {% endfor %}

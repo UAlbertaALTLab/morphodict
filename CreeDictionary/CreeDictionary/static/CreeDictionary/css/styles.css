@@ -9,44 +9,44 @@
  * http://getbem.com/naming/
  */
 
-/* TODO: use 400 font-weights as default instead of 300 (light). */
-
 :root {
-    /* Positioning and sizes */
-    --page-gutter: 1rem; /* Space on either side of the viewport. */
-    --header-stripe-width: 8px; /* Width of the "stripe" to the left of the title. */
-    --small-pad: 4px;
-    --medium-gap: 6px;
-    --search-focus-outline-size: 4px; /* How far the focus colour should expand. */
+  /* Positioning and sizes */
+  --page-gutter:               1rem; /* Space on either side of the viewport. */
+  --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
+  --small-pad:                  4px;
+  --medium-gap:                 6px;
+  --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
 
-    /* Colors */
-    --app-bg-color: #F7F7F7; /* Background color of the entire application. */
-    --app-title-color: #0091FF; /* Color of the "itwêwina" title. */
-    --app-body-color: #000000; /* Color of body text. */
-    --cite-text-color: #1A2635; /* Color of dictionary citation element. */
-    --footer-text-color: #404040; /* Color of text of footer */
-    --footer-bg-color: #EBE9E9; /* Background color of the "sunken" footer. */
-    --header-stripe-color: var(--app-title-color); /* Color of the "stripe" to the left of the title. */
-    --search-border-color: #979797; /* Color of the search bar's (unfocused) border */
-    --search-focus-color: #1C9DFE; /* Color of the search bar when focused */
-    --box-bg-color: #FFFDFD; /* Background color of "boxes" */
-    --menu-caption-color: #626262; /* Color of text for menu captions. */
-    --paradigm-border-color: #283C95; /* Color of the paradigm border and button. */
-    /* TODO: match this to be a different grey border colour: */
-    /* --paradigm-border-color:  #828A95; */
-    --prose-title-color: #283C95;
-    --link-color: #189cda; /* Regular links */
-    --link-action-color: #0F2657; /* A link that implies an immediate action. */
+  /* Colors */
+  --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
+  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
+  --app-body-color:         #000000; /* Color of body text. */
+  --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
+  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
+  --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
+  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
+  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
+  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
+  --menu-caption-color:     #626262; /* Color of text for menu captions. */
+  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
+  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
+  --prose-title-color:      #283C95;
+  --link-color:             #189cda; /* Regular links */
+  --link-action-color:      #0F2657; /* A link that implies an immediate action. */
+  --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
 
-    /* Font sizes */
-    --definition-title-size: 28px;
-    --prominent-font-size: 24px; /* For text that should be prominent! */
-    /* Font families */
-    --heading-font-family: Raleway, Euphemia UCAS sans-serif;
-    --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
+  /* Font sizes */
+  --definition-title-size:     28px;
+  --prominent-font-size:       24px; /* For text that should be prominent! */
+  /* Font families */
+  --heading-font-family: Raleway, Euphemia UCAS, sans-serif;
+  --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
+  /* Font weights */
+  --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
+  --strong-font-weight:         700;
 
-    --search-input-border-radius: 15px;
-    --border-radius: 4px;
+  --search-input-border-radius: 15px;
+  --border-radius:      4px;
 }
 
 /**
@@ -54,23 +54,28 @@
  * to make selecting things on this page unique!
  */
 ::selection {
-    color: #FFF;
-    background-color: var(--app-title-color);
+  color: #FFF;
+  background-color: var(--app-title-color);
 }
 
-* {
-    box-sizing: border-box;
+/* See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
 /**
  * Use this template to make your own BEM rule:
  */
 .block, .block__element, .block--modifier {
-    /* Positioning */
-    /* Display & Box Model */
-    /* Color */
-    /* Text */
-    /* Other */
+  /* Positioning */
+  /* Display & Box Model */
+  /* Color */
+  /* Text */
+  /* Other */
 }
 
 /*********************************** APP ***********************************/
@@ -81,27 +86,27 @@
  * A block containing the ENTIRE application.
  */
 .app {
-    /* Display & Box Model */
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
+  /* Display & Box Model */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 
-    /* Color */
-    color: var(--app-body-color);
-    background: var(--app-bg-color);
+  /* Color */
+  color: var(--app-body-color);
+  background: var(--app-bg-color);
 
-    /* Text */
-    font: normal 300 14px/normal var(--body-font-family);
+  /* Text */
+  font: normal var(--body-font-weight) 14px/normal var(--body-font-family);
 }
 
 /**
  * Link styles for the application.
  */
 .app a:link,
-.app a:visited {
-    color: var(--link-color);
+.app a:visited
+{
+  color: var(--link-color);
 }
-
 /* TODO: figure out highlight color of links */
 
 /**
@@ -110,9 +115,9 @@
  * The header for the entire application.
  */
 .app__header {
-    /* Display & Box Model */
-    width: 100vw;
-    margin: 0 0 .75rem;
+  /* Display & Box Model */
+  width: 100vw;
+  margin: 0 0 .75rem;
 }
 
 /**
@@ -123,8 +128,8 @@
  * with the application.
  */
 .app__content {
-    flex: 1;
-    margin-top: var(--medium-gap);
+  flex: 1;
+  margin-top: var(--medium-gap);
 }
 
 /**
@@ -135,7 +140,7 @@
  * The header and footer are exceptions to this.
  */
 .app__pane {
-    padding: 0 var(--page-gutter);
+  padding: 0 var(--page-gutter);
 }
 
 /********************************* TOP BAR *********************************/
@@ -146,8 +151,8 @@
  * A bar that runs across the top of the application.
  */
 .top-bar {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 /**
@@ -156,18 +161,18 @@
  * Space within the top-bar in which site branding can appear.
  */
 .top-bar__heading {
-    flex: 1;
-    padding: 0 var(--page-gutter);
+  flex: 1;
+  padding: 0 var(--page-gutter);
 
-    background: transparent; /* Fallback */
-    background: linear-gradient(to right, var(--header-stripe-color) 0%,
-    var(--header-stripe-color) var(--header-stripe-width),
-    rgba(0, 0, 0, 0) var(--header-stripe-width),
-    rgba(0, 0, 0, 0) 100%);
+  background: transparent;  /* Fallback */
+  background: linear-gradient(to right, var(--header-stripe-color) 0%,
+                                        var(--header-stripe-color) var(--header-stripe-width),
+                                        rgba(0,0,0,0) var(--header-stripe-width),
+                                        rgba(0,0,0,0) 100%);
 }
 
 .top-bar__nav {
-    margin-right: var(--small-pad);
+  margin-right: var(--small-pad);
 }
 
 /********************************* BRANDING *********************************/
@@ -184,7 +189,7 @@
  * A heading that makes up the branding.
  */
 .branding__heading {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 /* Make the links in the heading look consistent, regardless of its state: */
@@ -193,8 +198,8 @@
 .branding a:hover,
 .branding a:visited,
 .branding a:active {
-    color: inherit;
-    text-decoration: none;
+  color: inherit;
+  text-decoration: none;
 }
 
 /**
@@ -203,12 +208,12 @@
  * Contains the primary title of the application.
  */
 .branding__title {
-    /* Color */
-    color: var(--app-title-color);
+  /* Color */
+  color: var(--app-title-color);
 
-    /* Text */
-    font: 400 24px/normal var(--heading-font-family);
-    letter-spacing: 4px;
+  /* Text */
+  font: 400 24px/normal var(--heading-font-family);
+  letter-spacing: 4px;
 }
 
 /**
@@ -217,9 +222,9 @@
  * Contains the subtitle or tagline of the application.
  */
 .branding__subtitle {
-    /* Text */
-    font-weight: 300;
-    font-size: 12px;
+  /* Text */
+  font-weight: var(--body-font-weight);
+  font-size: 12px;
 }
 
 
@@ -236,9 +241,9 @@
  *
  * Shows options for advance search.
  */
-.search__advanced {
-    /* Text */
-    text-align: right;
+.search__advanced  {
+  /* Text */
+  text-align: right;
 }
 
 /**
@@ -247,13 +252,13 @@
  * Contains the input and controls to input a search query.
  */
 .search-bar {
-    /* Positioning */
-    position: relative;
-    /* Display & Box Model */
-    display: flex;
-    width: 100%;
-    /* Text */
-    font-size: var(--prominent-font-size);
+  /* Positioning */
+  position: relative;
+  /* Display & Box Model */
+  display: flex;
+  width: 100%;
+  /* Text */
+  font-size: var(--prominent-font-size);
 }
 
 /**
@@ -261,10 +266,16 @@
  *
  * The label that says "Search: "
  */
-@media screen {
-    .search-bar__label {
-        display: none;
-    }
+@media screen, print {
+  /* Hide the label on the screen */
+  .search-bar__label {
+    /* I tried display: none and visibilty: hidden, but my accessiblily linter
+     * kept complaining, so let it have zero size and don't display content
+     * outside its zero-sized box: */
+    width: 0;
+
+    overflow: hidden;
+  }
 }
 
 /**
@@ -273,21 +284,21 @@
  * The actual input element that the user types the query into.
  */
 .search-bar__input {
-    /* Display & Box Model */
-    flex: 1;
-    min-width: 50vw; /* The max width actually was way too big before; make it relative to the viewport. */
-    padding: var(--small-pad) 1rem;
-    padding-right: 1em;
-    border: solid 1px var(--search-border-color);
+  /* Display & Box Model */
+  flex: 1;
+  min-width: 50vw; /* The max width actually was way too big before; make it relative to the viewport. */
+  padding: var(--small-pad) 1rem;
+  padding-right: 1em;
+  border: solid 1px var(--search-border-color);
 
-    /* Text */
-    text-overflow: ellipsis;
+  /* Text */
+  text-overflow: ellipsis;
 
-    /* Other */
-    border-radius: var(--search-input-border-radius);
-    /* Has a nice animation when the search bar receives focus. */
-    box-shadow: 0 0 0 transparent;
-    transition: box-shadow .125s;
+  /* Other */
+  border-radius: var(--search-input-border-radius);
+  /* Has a nice animation when the search bar receives focus. */
+  box-shadow: 0 0 0 transparent;
+  transition: box-shadow .125s;
 }
 
 /**
@@ -295,20 +306,20 @@
  * search input:
  */
 .search-bar__input:placeholder-shown {
-    /* Color */
-    color: #959595;
+  /* Color */
+  color: var(--placeholder-text-color);
 
-    /* Text */
-    font-style: italic;
-    font-weight: 300;
+  /* Text */
+  font-style: italic;
+  font-weight: var(--body-font-weight);
 }
 
 /**
  * Make it abundantly clear that the search input has focus.
  */
 .search-bar__input:focus {
-    box-shadow: 0 0 0 1px white,
-    0 0 0 var(--search-focus-outline-size) var(--search-focus-color);
+  box-shadow: 0 0 0 1px white,
+              0 0 0 var(--search-focus-outline-size) var(--search-focus-color);
 }
 
 /**
@@ -317,144 +328,144 @@
  * The button to press to execute the search.
  */
 .search-bar__button {
-    position: absolute;
-    right: 0;
+  position: absolute;
+  right: 0;
 
-    display: inline-block;
-    height: 100%;
-    width: 2em;
-    border: 0;
+  display: inline-block;
+  height: 100%;
+  width: 2em;
+  border: 0;
 
-    background: transparent;
+  background: transparent;
 
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .search-bar__button > img {
-    margin-top: .125em;
-    height: 1.125em;
+  margin-top: .125em;
+  height: 1.125em;
 }
 
 /**
  * Make the search icon look unusable when the user has not typed any query.
  */
 .search-bar:invalid .search-bar__button {
-    opacity: 50%;
-    cursor: not-allowed;
+  opacity: 50%;
+  cursor: not-allowed;
 }
 
 
 /****************************** SEARCH RESULTS ******************************/
 
 .search-results__results {
-    padding: 0;
+  padding: 0;
 
-    list-style: none;
+  list-style: none;
 }
 
 .search-results__result {
-    margin-top: 19px;
+  margin-top: 19px;
 }
 
 .search-results__result:first-of-type {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 
 /******************************** DEFINITION ********************************/
 
 .definition-title {
-    font-size: var(--definition-title-size);
+  font-size: var(--definition-title-size);
 }
 
 .definition-title--search-result {
-    margin: 0;
+  margin: 0;
 }
 
 .definition-title__word {
-    /* Text */
-    font-style: normal;
-    font-weight: bold;
+  /* Text */
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
 }
 
 .definition-title__pos {
-    /* Text */
-    font-style: normal;
-    font-weight: normal;
+  /* Text */
+  font-style: normal;
+  font-weight: normal;
 }
 
 .meanings {
-    /* Display & Box model */
-    padding: 0;
+  /* Display & Box model */
+  padding: 0;
 
-    /* Text */
-    font-size: var(--prominent-font-size);
+  /* Text */
+  font-size: var(--prominent-font-size);
 
-    /* Other */
-    list-style-position: inside;
+  /* Other */
+  list-style-position: inside;
 }
 
 .meanings--search-result {
-    /* Display & Box model */
-    padding: 0 .5em;
+  /* Display & Box model */
+  padding: 0 .5em;
 
-    /* Text */
-    font-size: 22px;
+  /* Text */
+  font-size: 22px;
 }
 
 .paradigm {
-    /* Display & Box model */
-    border: solid 1px var(--paradigm-border-color);
+  /* Display & Box model */
+  border: solid 1px var(--paradigm-border-color);
 
-    /* Color */
-    background: var(--box-bg-color);
+  /* Color */
+  background: var(--box-bg-color);
 
-    /* Other */
-    border-radius: var(--border-radius);
+  /* Other */
+  border-radius: var(--border-radius);
 }
 
 .paradigm__table {
-    /* Display & Box model */
-    margin: 0 auto 15px;
-    max-width: calc(100% - 2 * 22px); /* Have an 'inner margin' of 22px; */
+  /* Display & Box model */
+  margin: 0 auto 15px;
+  max-width: calc(100% - 2 * 22px); /* Have an 'inner margin' of 22px; */
 
-    /* Text */
-    line-height: 1.5;
+  /* Text */
+  line-height: 1.5;
 
-    /* Other */
-    border-spacing: 2em 0.5rem;
+  /* Other */
+  border-spacing: 2em 0.5rem;
 }
 
 .paradigm__more-button {
-    /* Display & Box model */
-    display: block;
-    width: 100%;
-    border: 0;
-    padding-bottom: var(--border-radius);
+  /* Display & Box model */
+  display: block;
+  width: 100%;
+  border: 0;
+  padding-bottom: var(--border-radius);
 
-    /* Color */
-    color: #FFF;
-    background-color: var(--paradigm-border-color);
+  /* Color */
+  color: #FFF;
+  background-color: var(--paradigm-button-color);
 
-    /* Text */
-    text-align: center;
-    font-weight: inherit;
-    line-height: 1.5;
+  /* Text */
+  text-align: center;
+  font-weight: inherit;
+  line-height: 1.5;
 
-    /* Hack to make the rounded border look like it belongs to the parent. If we
-     * don't make the radius a bit tighter, this border protrudes in a weird
-     * way. */
-    --tighter-br: calc(var(--border-radius) - 2px);
-    border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+  /* Hack to make the rounded border look like it belongs to the parent. If we
+   * don't make the radius a bit tighter, this border protrudes in a weird
+   * way. */
+  --tighter-br: calc(var(--border-radius) - 2px);
+  border-radius: 0 0 var(--tighter-br) var(--tighter-br);
 }
 
 .paradigm__more-button::before {
-    content: "+ ";
-    font-weight: bold;
+  content: "+ ";
+  font-weight: var(--strong-font-weight);
 }
 
 .paradigm__panel-description {
-    text-align: left;
+  text-align: left;
 }
 
 /********************************** PROSE **********************************/
@@ -465,20 +476,20 @@
  * A bunch of readable text.
  */
 .prose__heading {
-    font: bold 18px var(--body-font-family);
+  font: var(--strong-font-weight) 18px var(--body-font-family);
 
-    color: var(--prose-title-color);
+  color: var(--prose-title-color);
 }
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
-    margin-top: 1rem;
-    margin-bottom: 0;
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 /* also anti-BEM ¯\_(ツ)_/¯ */
 .prose p [lang] {
-    font-style: italic;
+  font-style: italic;
 }
 
 
@@ -490,36 +501,36 @@
  * The footer at the bottom of the app.
  */
 .app-footer {
-    /* Display & Box Model */
-    width: 100vw;
-    margin-top: 1rem;
-    padding-bottom: var(--small-pad);
+  /* Display & Box Model */
+  width: 100vw;
+  margin-top: 1rem;
+  padding-bottom: var(--small-pad);
 
-    line-height: 1.2;
+  line-height: 1.2;
 
-    /* Color */
-    background-color: var(--footer-bg-color);
-    box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
+  /* Color */
+  background-color: var(--footer-bg-color);
+  box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 
 .app-footer__about,
 .app-footer__advanced-nav {
-    margin: .1rem var(--page-gutter);
+  margin: .1rem var(--page-gutter);
 
-    font-size: 10px;
-    text-align: left;
+  font-size: 10px;
+  text-align: left;
 }
 
 .app-footer__about,
 .app-footer__advanced-nav,
 .app-footer__about a:link,
 .app-footer__advanced-nav a:link {
-    color: var(--footer-text-color);
+  color: var(--footer-text-color);
 }
 
 .app-footer__advanced-nav a:link {
-    font-weight: 700;
+    font-weight: var(--strong-font-weight);
 }
 
 /**
@@ -528,14 +539,14 @@
  * Contains logos, primarily in the footer.
  */
 .partner-logos {
-    /* Display & Box Model */
-    display: flex;
-    width: 100%;
-    margin-top: var(--small-pad);
+  /* Display & Box Model */
+  display: flex;
+  width: 100%;
+  margin-top: var(--small-pad);
 
-    /* Other */
-    flex-wrap: wrap;
-    align-items: center;
+  /* Other */
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /**
@@ -544,61 +555,61 @@
  * One particular logo.
  */
 .partner-logos__logo {
-    /* Positioning */
-    flex: 1;
-    /* Display & Box Model */
-    margin: var(--small-pad) .5rem;
-    /* Text */
-    text-align: center;
+  /* Positioning */
+  flex: 1;
+  /* Display & Box Model */
+  margin: var(--small-pad) .5rem;
+  /* Text */
+  text-align: center;
 }
 
 .partner-logos__logo > img {
-    max-width: 33vw;
-    max-height: 8em;
+  max-width: 33vw;
+  max-height: 8em;
 }
 
 
 /****************************** UTILITY CLASSES *****************************/
 
 .toggle-box__toggle {
-    /* Display & Box Model */
-    display: block;
+  /* Display & Box Model */
+  display: block;
 
-    /* Text */
-    font-weight: 600;
-    text-decoration: underline;
+  /* Text */
+  font-weight: 600;
+  text-decoration: underline;
 
-    /* Color */
-    color: #000;
+  /* Color */
+  color: #000;
 
-    /* Other */
-    cursor: pointer;
+  /* Other */
+  cursor: pointer;
 }
 
 .toggle-box__toggle::-webkit-details-marker {
-    display: none;
+  display: none;
 }
 
 .toggle-box__toggle::after {
-    content: url("../images/fa/chevron-circle-down.svg");
+  content: url("img/fa/chevron-circle-down.svg");
 
-    display: inline-block;
-    width: 11px;
-    margin-left: var(--small-pad);
+  display: inline-block;
+  width: 11px;
+  margin-left: var(--small-pad);
 
-    transition: transform .25s;
-    transform: rotate(-90deg);
+  transition: transform .25s;
+  transform: rotate(-90deg);
 }
 
 .toggle-box[open] > .toggle-box__toggle::after {
-    transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 /**
  * Makes the toggle look like a link.
  */
 .toggle-box--link-like > .toggle-box__toggle {
-    color: var(--link-action-color);
+  color: var(--link-action-color);
 }
 
 /**
@@ -607,7 +618,7 @@
  * A slightly larger toggle-box.
  */
 .toggle-box--large > .toggle-box__toggle {
-    font-size: 16px;
+  font-size: 16px;
 }
 
 
@@ -617,13 +628,13 @@
  * Makes it so that the menu can be absolutely positioned.
  */
 .toggle-box--with-menu {
-    position: relative;
+  position: relative;
 }
 
 .toggle-box__menu {
-    position: absolute;
-    right: 0;
-    z-index: 100;
+  position: absolute;
+  right: 0;
+  z-index: 100;
 }
 
 /**
@@ -631,24 +642,24 @@
  * inadvertently toggle the menu away.
  */
 .toggle-box[open] > .toggle-box__toggle::before {
-    content: " ";
+  content: " ";
 
-    /* Position */
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+  /* Position */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 
-    /* Display & Box model */
-    display: block;
-    z-index: 80;
+  /* Display & Box model */
+  display: block;
+  z-index: 80;
 
-    /* Color */
-    background: transparent;
+  /* Color */
+  background: transparent;
 
-    /* Other */
-    cursor: default;
+  /* Other */
+  cursor: default;
 }
 
 
@@ -656,45 +667,56 @@
 
 /* TODO: Steal from GitHub's settings page for making an accessible menu! */
 /* e.g., https://github.com/eddieantonio/proto-itwewina/settings */
+/* See also: https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html */
 
 .menu {
-    min-width: 10rem;
-    border: solid 1px rgba(209, 209, 209, 0.33);
+  min-width: 10rem;
+  border: solid 1px rgba(209, 209, 209, 0.33);
 
-    text-align: left;
+  text-align: left;
 
-    background-color: var(--box-bg-color);
-    box-shadow: 4px 4px 8px 0 rgba(74, 74, 74, 0.24);
+  background-color: var(--box-bg-color);
+  box-shadow: 4px 4px 8px 0 rgba(74, 74, 74, 0.24);
 
-    border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
 }
 
 .menu__caption {
-    color: var(--menu-caption-color);
-    padding: 9px;
+  color: var(--menu-caption-color);
+  padding: 9px;
+  margin: 0;
 
-    font-size: 12px;
-    font-weight: 600;
+  font-size: 12px;
+  font-weight: var(--strong-font-weight);
 }
 
-.menu__category {
-    padding: 0;
-    border: 0;
+.menu__choices {
+  list-style: none;
 }
 
-.menu-choice__input {
-    display: none;
+.menu__category, .menu__choices {
+  margin: 0;
+  padding: 0;
+  border: 0;
 }
 
 .menu-choice__label {
-    display: block;
-    padding: 9px;
+  display: block;
+  padding: 9px;
 }
 
-.menu-choice__input:checked + .menu-choice__label {
-    font-weight: 600;
+a.menu-choice__label:link,
+a.menu-choice__label:visited,
+a.menu-choice__label:hover,
+a.menu-choice__label:active {
+  color: inherit;
+  text-decoration: none;
+}
 
-    background-color: #DEE4F9;
+.menu-choice--selected {
+  font-weight: var(--strong-font-weight);
+
+  background-color: #DEE4F9;
 }
 
 /*********************************** BOX ************************************/
@@ -703,18 +725,74 @@
  * A panel that stands out from its background, as it's in a box!
  */
 .box {
-    padding: var(--medium-gap) var(--page-gutter);
-    padding-bottom: 1rem;
+  padding: var(--medium-gap) var(--page-gutter);
+  padding-bottom: 1rem;
 
-    background-color: var(--box-bg-color);
+  background-color: var(--box-bg-color);
 
-    box-shadow: 0 1px 1px 0 rgba(129, 127, 127, 0.5);
+  box-shadow: 0 1px 1px 0 rgba(129, 127, 127, 0.5);
 }
 
 .box--rounded {
-    border-radius: var(--border-radius);
+  border-radius: var(--border-radius);
 }
 
+/***************************** SKIP TO CONTENT *****************************/
+
+.skip-to-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+
+  font-size: larger;
+
+  background-color: white;
+}
+.skip-to-content:focus {
+  clip: auto;
+  z-index: 100;
+  width: auto;
+  height: auto;
+}
+
+@media screen, print {
+  .skip-to-content {
+    clip: rect(1px, 1px, 1px, 1px);
+  }
+}
+
+
+/***************************** SEARCH PROGRESS *****************************/
+
+.search-progress {
+  width: 100%;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms;
+}
+
+.search-progress--loading {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-progress--error {
+  animation: pulse 2s ease infinite alternate;
+}
+
+@keyframes pulse {
+  from {
+    opacity: 0.25
+  }
+  to {
+    opactiy: 1;
+  }
+}
 
 /******************************* INLINE MARKUP ******************************/
 
@@ -724,12 +802,12 @@
  * A block that cites a dictionary source.
  */
 .cite-dict {
-    /* Color */
-    color: var(--cite-text-color);
-    /* Text */
-    font-size: 11px;
-    font-style: normal;
-    font-weight: 700;
+  /* Color */
+  color: var(--cite-text-color);
+  /* Text */
+  font-size: 11px;
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
 }
 
 /**
@@ -737,5 +815,5 @@
  */
 
 td[rowspan] {
-    vertical-align: top;
+  vertical-align: top;
 }

@@ -10,55 +10,97 @@ let $ = require('jquery')
  *
  * @param {jQuery} $input
  */
-function load_results($input) {
+function loadResults($input) {
+  const ERROR_CLASS = 'search-progress--error'
+  const LOADING_CLASS = 'search-progress--loading'
 
   let text = $input.val()
   let instruction = $('#introduction-text')
-  // let loading_cards = document.getElementsByClassName('title-row-container loading-title-row')
+  let progress = document.getElementById('loading-indicator')
 
-  let $search_result_list = $('#search-result-list').html(this.responseText)
+  let $searchResultList = $('#search-result-list').html(this.responseText)
 
   if (text !== '') {
+    issueSearch()
+  } else {
+    goToHomePage()
+  }
 
+  function issueSearch() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
     instruction.hide()
-
     // todo: show loading cards
 
     let xhttp = new XMLHttpRequest()
-    xhttp.onreadystatechange = function () {
-      if (xhttp.readyState === 4 && xhttp.status === 200) {
+
+    xhttp.onloadstart = function () {
+      // Show the loading indicator:
+      indicateLoading()
+    }
+
+    xhttp.onload = function () {
+      if (xhttp.status === 200) {
         // user input may have changed during the request
         const inputNow = $input.val()
         if (inputNow === text) { // hasn't changed
-          // todo: remove loading cards
+          // Remove loading cards
+          indicateLoadedSuccessfully()
 
-          $search_result_list.html(xhttp.responseText)
+          $searchResultList.html(xhttp.responseText)
         }
+      } else {
+        indicateLoadingFailure()
       }
     }
+
+    xhttp.onerror = function () {
+    }
+
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
+  }
 
-
-  } else {
+  function goToHomePage() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index']())
+
     instruction.show()
-    // todo: remove loading cards if any
-    $search_result_list.empty()
+
+    hideLoadingIndicator()
+    $searchResultList.empty()
+  }
+
+  function indicateLoading() {
+    // Make a 10% progress bar. We actually don't know how much
+    // there is left, but make it seem like it's thinking about it!
+    progress.max = 100
+    progress.value = 10
+    progress.classList.remove(ERROR_CLASS)
+    progress.classList.add(LOADING_CLASS)
+  }
+
+  function indicateLoadedSuccessfully() {
+    progress.value = 100
+    hideLoadingIndicator()
+  }
+
+  function indicateLoadingFailure() {
+    // makes the loading state "indeterminate", like it's loading forever.
+    progress.removeAttribute('value')
+    progress.classList.add(ERROR_CLASS)
+  }
+
+  function hideLoadingIndicator() {
+    progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
   }
 }
 
 // document.ready is deprecated, this is the shorthand
 $(() => {
-
   let input = $('#search')
-  load_results(input)
+  loadResults(input)
 
   input.on('input', () => {
-    load_results(input)
+    loadResults(input)
   })
-
-
 })
