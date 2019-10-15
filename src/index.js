@@ -18,6 +18,12 @@ function loadResults($input) {
   let $searchResultList = $('#search-result-list').html(this.responseText)
 
   if (text !== '') {
+    issueSearch()
+  } else {
+    goToHomePage()
+  }
+
+  function issueSearch() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
     instruction.hide()
@@ -37,9 +43,13 @@ function loadResults($input) {
     }
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
-  } else {
+  }
+
+  function goToHomePage() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index']())
+
     instruction.show()
+
     // todo: remove loading cards if any
     $searchResultList.empty()
   }
