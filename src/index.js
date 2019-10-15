@@ -47,8 +47,7 @@ function loadResults($input) {
           $searchResultList.html(xhttp.responseText)
         }
       } else {
-        progress.value = ''
-        progress.classList.add('search-progress--error')
+        indicateLoadingFailure()
       }
     }
 
@@ -75,6 +74,11 @@ function loadResults($input) {
 
   function indicateLoadedSuccessfully() {
     hideLoadingIndicator()
+  }
+
+  function indicateLoadingFailure() {
+    progress.value = ''
+    progress.classList.add('search-progress--error')
   }
 
   function hideLoadingIndicator() {
