@@ -2,7 +2,7 @@
 
 {% load static %}
 
-
+{# TODO: fix make this prettier #}
 {% block content %}
 
     <main class="app__content app__pane">
@@ -21,15 +21,16 @@
                 Arok Wolvengrey and MESC.</p></article>
 
         <section class="search-results">
+          {% comment %}
+            Let JavaScript apply .search-progress--loading or
+            .search-progress-error to the classes, and also to change the
+            value.
+          {% endcomment %}
+            <progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
             <ol class="search-results__results" id="search-result-list">
-
             </ol>
         </section>
     </main>
 
 {% endblock %}
-
-
-
-
-
+{# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}

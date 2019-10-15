@@ -27,30 +27,33 @@ context('Searching', () => {
 
     it('should display a loading indicator', () => {
       cy.route({
-        url: '/_search_results/**',
+        url: '/_search_results/amisk',
         delay: 100, // milliseconds of delay
         response: `<ol><li data-cy="search-results">
             <span lang="cr">amisk</span>: beaver
         </li></ol>`
       }).as('search')
 
+      // We have typed all but ONE character of the search string:
       cy.get('[data-cy=search]')
+        .invoke('val', 'amis')
         .as('searchBox')
 
-      // Initially, there should be no search results visible:
-      cy.get('body')
-        .not('[data-cy=search-results]')
-      // We type our search, like normal:
+      // Initially, there should be no loading indicator visible
+      cy.get('[data-cy=loading-indicator]')
+        .should('not.be.visible')
+
+      // Type the last character of the search string, as normal:
       cy.get('@searchBox')
-        .type('amisk')
+        .type('k')
 
       // This the loading indicator should be visible!
-      cy.get('[data-loading-indicator]')
+      cy.get('[data-cy=loading-indicator]')
         .should('be.visible')
 
       // Wait for the results to come back
       cy.wait('@search')
-      cy.get('[data-loading-indicator]')
+      cy.get('[data-cy=loading-indicator]')
         .should('not.be.visible')
     })
   })

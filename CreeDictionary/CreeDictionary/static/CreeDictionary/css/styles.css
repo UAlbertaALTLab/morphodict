@@ -766,6 +766,25 @@ a.menu-choice__label:active {
 }
 
 
+/***************************** SEARCH PROGRESS *****************************/
+
+.search-progress {
+  width: 100%;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms;
+}
+
+.search-progress--loading {
+  opacity: 1;
+  visibility: visible;
+}
+
+.search-progress--error {
+  background-color: red;
+}
+
 /******************************* INLINE MARKUP ******************************/
 
 /**

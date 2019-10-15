@@ -13,7 +13,7 @@ let $ = require('jquery')
 function loadResults($input) {
   let text = $input.val()
   let instruction = $('#introduction-text')
-  // let loading_cards = document.getElementsByClassName('title-row-container loading-title-row')
+  let progress = document.getElementById('loading-indicator')
 
   let $searchResultList = $('#search-result-list').html(this.responseText)
 
@@ -35,7 +35,8 @@ function loadResults($input) {
         // user input may have changed during the request
         const inputNow = $input.val()
         if (inputNow === text) { // hasn't changed
-          // todo: remove loading cards
+          // Remove loading cards
+          progress.classList.remove('search-progress--loading')
 
           $searchResultList.html(xhttp.responseText)
         }
@@ -43,6 +44,8 @@ function loadResults($input) {
     }
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
+    // Show the loading indicator:
+    progress.classList.add('search-progress--loading')
   }
 
   function goToHomePage() {
@@ -51,6 +54,7 @@ function loadResults($input) {
     instruction.show()
 
     // todo: remove loading cards if any
+    progress.classList.remove('search-progress--loading')
     $searchResultList.empty()
   }
 }
