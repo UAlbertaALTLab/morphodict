@@ -36,7 +36,7 @@ function loadResults($input) {
         const inputNow = $input.val()
         if (inputNow === text) { // hasn't changed
           // Remove loading cards
-          progress.classList.remove('search-progress--loading')
+          indicateLoadedSuccessfully()
 
           $searchResultList.html(xhttp.responseText)
         }
@@ -45,7 +45,7 @@ function loadResults($input) {
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
     // Show the loading indicator:
-    progress.classList.add('search-progress--loading')
+    indicateLoading()
   }
 
   function goToHomePage() {
@@ -53,9 +53,20 @@ function loadResults($input) {
 
     instruction.show()
 
-    // todo: remove loading cards if any
-    progress.classList.remove('search-progress--loading')
+    hideLoadingIndicator()
     $searchResultList.empty()
+  }
+
+  function indicateLoading() {
+    progress.classList.add('search-progress--loading')
+  }
+
+  function indicateLoadedSuccessfully() {
+    hideLoadingIndicator()
+  }
+
+  function hideLoadingIndicator() {
+    progress.classList.remove('search-progress--loading')
   }
 }
 
