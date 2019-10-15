@@ -10,20 +10,17 @@ let $ = require('jquery')
  *
  * @param {jQuery} $input
  */
-function load_results($input) {
-
+function loadResults($input) {
   let text = $input.val()
   let instruction = $('#introduction-text')
   // let loading_cards = document.getElementsByClassName('title-row-container loading-title-row')
 
-  let $search_result_list = $('#search-result-list').html(this.responseText)
+  let $searchResultList = $('#search-result-list').html(this.responseText)
 
   if (text !== '') {
-
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
     instruction.hide()
-
     // todo: show loading cards
 
     let xhttp = new XMLHttpRequest()
@@ -34,31 +31,26 @@ function load_results($input) {
         if (inputNow === text) { // hasn't changed
           // todo: remove loading cards
 
-          $search_result_list.html(xhttp.responseText)
+          $searchResultList.html(xhttp.responseText)
         }
       }
     }
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
-
-
   } else {
     window.history.replaceState(text, '', Urls['cree-dictionary-index']())
     instruction.show()
     // todo: remove loading cards if any
-    $search_result_list.empty()
+    $searchResultList.empty()
   }
 }
 
 // document.ready is deprecated, this is the shorthand
 $(() => {
-
   let input = $('#search')
-  load_results(input)
+  loadResults(input)
 
   input.on('input', () => {
-    load_results(input)
+    loadResults(input)
   })
-
-
 })
