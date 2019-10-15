@@ -30,26 +30,33 @@ function loadResults($input) {
     // todo: show loading cards
 
     let xhttp = new XMLHttpRequest()
-    xhttp.onreadystatechange = function () {
-      if (xhttp.readyState === 4) {
-        if (xhttp.status === 200) {
-          // user input may have changed during the request
-          const inputNow = $input.val()
-          if (inputNow === text) { // hasn't changed
-            // Remove loading cards
-            indicateLoadedSuccessfully()
 
-            $searchResultList.html(xhttp.responseText)
-          }
-        } else if (xhttp.status >= 400) {
-          progress.classList.add('search-progress--error')
+    xhttp.onloadstart = function () {
+      // Show the loading indicator:
+      indicateLoading()
+    }
+
+    xhttp.onload = function () {
+      if (xhttp.status === 200) {
+        // user input may have changed during the request
+        const inputNow = $input.val()
+        if (inputNow === text) { // hasn't changed
+          // Remove loading cards
+          indicateLoadedSuccessfully()
+
+          $searchResultList.html(xhttp.responseText)
         }
+      } else {
+        progress.value = ''
+        progress.classList.add('search-progress--error')
       }
     }
+
+    xhttp.onerror = function () {
+    }
+
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
-    // Show the loading indicator:
-    indicateLoading()
   }
 
   function goToHomePage() {
@@ -62,6 +69,7 @@ function loadResults($input) {
   }
 
   function indicateLoading() {
+    progress.classList.remove('search-progress--error')
     progress.classList.add('search-progress--loading')
   }
 
