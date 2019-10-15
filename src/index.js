@@ -31,14 +31,18 @@ function loadResults($input) {
 
     let xhttp = new XMLHttpRequest()
     xhttp.onreadystatechange = function () {
-      if (xhttp.readyState === 4 && xhttp.status === 200) {
-        // user input may have changed during the request
-        const inputNow = $input.val()
-        if (inputNow === text) { // hasn't changed
-          // Remove loading cards
-          indicateLoadedSuccessfully()
+      if (xhttp.readyState === 4) {
+        if (xhttp.status === 200) {
+          // user input may have changed during the request
+          const inputNow = $input.val()
+          if (inputNow === text) { // hasn't changed
+            // Remove loading cards
+            indicateLoadedSuccessfully()
 
-          $searchResultList.html(xhttp.responseText)
+            $searchResultList.html(xhttp.responseText)
+          }
+        } else if (xhttp.status >= 400) {
+          progress.classList.add('search-progress--error')
         }
       }
     }
