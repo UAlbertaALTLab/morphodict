@@ -413,6 +413,8 @@ html {
   font-size: 22px;
 }
 
+/********************************* PARADIGM *********************************/
+
 .paradigm {
   /* Display & Box model */
   border: solid 1px var(--paradigm-border-color);
@@ -467,6 +469,18 @@ html {
 .paradigm__panel-description {
   text-align: left;
 }
+
+.paradigm-row__label {
+  text-align: left;
+  font-weight: var(--body-font-weight);
+
+  color: #4A4D52;
+}
+
+.paradigm-row__wordform {
+  font-weight: 700;
+}
+
 
 /********************************** PROSE **********************************/
 
