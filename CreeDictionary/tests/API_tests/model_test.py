@@ -1,5 +1,6 @@
 import pytest
 from hypothesis import given, assume
+from hypothesis.strategies import from_regex
 
 from DatabaseManager.__main__ import cmd_entry
 
@@ -44,3 +45,25 @@ def test_malformed_inflection_analysis_field(inflection: Inflection):
     assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)
     with pytest.raises(ValueError):
         inflection.is_category(LC.VTA)
+
+
+#### Tests for Inflection.fetch_lemmas_by_user_query()
+
+
+@pytest.mark.django_db
+@given(word=random_inflections(), ws=from_regex(r"\s{1,4}", fullmatch=True))
+def test_query_with_extraneous_whitespace(word: Inflection, ws: str):
+    """
+    Adding whitespace to a query should not affect the results.
+    """
+    user_query = word.text
+
+    normal_results = Inflection.fetch_lemmas_by_user_query(user_query)
+    normal_result_ids = set(res.id for res in normal_results)
+    assert len(normal_result_ids) >= 1
+
+    results_with_ws = Inflection.fetch_lemmas_by_user_query(user_query + ws)
+    result_ids_with_ws = set(res.id for res in results_with_ws)
+    assert len(result_ids_with_ws) >= 1
+
+    assert normal_result_ids == result_ids_with_ws
