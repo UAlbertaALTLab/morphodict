@@ -10,7 +10,7 @@ from tests.conftest import one_hundredth_xml_dir, topmost_datadir
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_xmls
 from constants import LC
-from tests.conftest import random_inflections
+from tests.conftest import random_inflections, random_lemmas
 
 # https://github.com/pytest-dev/pytest-django/issues/514#issuecomment-497874174
 from utils import hfstol_analysis_parser
@@ -51,22 +51,17 @@ def test_malformed_inflection_analysis_field(inflection: Inflection):
 
 
 @pytest.mark.django_db
-@given(word=random_inflections())
-def test_query_exact_wordform_in_database(word: Inflection):
+@given(lemma=random_lemmas())
+def test_query_exact_wordform_in_database(lemma: Inflection):
     """
-    Sanity check: querying a word by its EXACT text returns that word.
-    This should work regardless if the queried wordform is a lemma or just a
-    plain-old inflection.
+    Sanity check: querying a lemma by its EXACT text returns that lemma.
     """
 
-    query = word.text
+    query = lemma.text
     results = Inflection.fetch_lemmas_by_user_query(query)
     assert len(results) >= 1, f"Could not find {query!r} in the database"
-    rs = [(m.id, m.text) for m in results]
-    print("word.id ==", word.id, "result_and_ids =", rs)
 
-    results = Inflection.fetch_lemmas_by_user_query(query)
-    exact_matches = [match for match in results if match.id == word.id]
+    exact_matches = [match for match in results if match.id == lemma.id]
     assert len(exact_matches) >= 1, f"No exact matches for {query!r} in {results}"
 
     match, *_ = exact_matches

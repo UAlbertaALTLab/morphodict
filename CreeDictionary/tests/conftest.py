@@ -5,7 +5,7 @@ import pytest
 import xml_subsetter
 from django.db import transaction
 from hypothesis import assume
-from hypothesis._strategies import composite, integers
+from hypothesis._strategies import composite, integers, sampled_from
 
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_xmls
@@ -39,6 +39,15 @@ def random_inflections(draw) -> Inflection:
     inflection_objects = Inflection.objects.all()
     id = draw(integers(min_value=1, max_value=inflection_objects.count()))
     return inflection_objects.get(id=id)
+
+
+@composite
+def random_lemmas(draw) -> Inflection:
+    """
+    Strategy that supplies wordforms that are also lemmas!
+    """
+    lemmas = list(Inflection.objects.filter(is_lemma=True))
+    return draw(sampled_from(lemmas))
 
 
 @composite
