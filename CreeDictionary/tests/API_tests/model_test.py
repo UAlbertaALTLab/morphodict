@@ -51,6 +51,29 @@ def test_malformed_inflection_analysis_field(inflection: Inflection):
 
 
 @pytest.mark.django_db
+@given(word=random_inflections())
+def test_query_exact_wordform_in_database(word: Inflection):
+    """
+    Sanity check: querying a word by its EXACT text returns that word.
+    This should work regardless if the queried wordform is a lemma or just a
+    plain-old inflection.
+    """
+
+    query = word.text
+    results = Inflection.fetch_lemmas_by_user_query(query)
+    assert len(results) >= 1, f"Could not find {query!r} in the database"
+    rs = [(m.id, m.text) for m in results]
+    print("word.id ==", word.id, "result_and_ids =", rs)
+
+    results = Inflection.fetch_lemmas_by_user_query(query)
+    exact_matches = [match for match in results if match.id == word.id]
+    assert len(exact_matches) >= 1, f"No exact matches for {query!r} in {results}"
+
+    match, *_ = exact_matches
+    assert query == match.text
+
+
+@pytest.mark.django_db
 @given(word=random_inflections(), ws=from_regex(r"\s{1,4}", fullmatch=True))
 def test_query_with_extraneous_whitespace(word: Inflection, ws: str):
     """
