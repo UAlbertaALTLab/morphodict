@@ -124,6 +124,7 @@ class Inflection(models.Model):
 
         super(Inflection, self).save(*args, **kwargs)
 
+    # TODO: make this a static method, since it doesn't use cls.
     @classmethod
     def fetch_lemmas_by_user_query(cls, user_query: str) -> QuerySet:
         """
@@ -135,6 +136,8 @@ class Inflection(models.Model):
 
         # URL Decode
         user_query = unquote(user_query)
+        # Whitespace won't affect results, but the FST can't deal with it:
+        user_query = user_query.strip()
         # Normalize to UTF8 NFC
         user_query = unicodedata.normalize("NFC", user_query)
         user_query = (
@@ -158,9 +161,16 @@ class Inflection(models.Model):
         fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([user_query])[
             user_query
         ]
+        # TODO: rename variable to exact_match_lemma_ids
+        # These are the lemmas for which the wordform has an EXACT match in
+        # the stored wordforms. Note: we should also query for anything with
         lemma_ids = Inflection.objects.filter(analysis__in=fst_analyses).values(
             "lemma__id"
         )
+
+        # TODO: get lemma ids for any analyses that do not EXACTLY match
+        # something stored.
+        # See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/130
 
         result_lemmas |= Inflection.objects.filter(id__in=lemma_ids)
         if len(user_query) > 1:
