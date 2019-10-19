@@ -46,7 +46,14 @@ def random_lemmas(draw) -> Inflection:
     """
     Strategy that supplies wordforms that are also lemmas!
     """
-    lemmas = list(Inflection.objects.filter(is_lemma=True))
+    lemmas = list(Inflection.objects.filter(is_lemma=True, as_is=False))
+    # Sometimes two different wordforms are marked as lemmas of the same word,
+    # and yet they have different spelling. (Ed: that's not... what the word
+    # "lemma" means, but okay...). So make sure to get the DEFAULT spelling
+    # only!
+    # e.g., akocin and akociniw are both two different spellings of the same
+    # lemma.
+    lemmas = [lemma for lemma in lemmas if lemma.default_spelling.id == lemma.id]
     return draw(sampled_from(lemmas))
 
 
