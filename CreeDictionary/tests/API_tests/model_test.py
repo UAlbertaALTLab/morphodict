@@ -69,18 +69,19 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
 
 
 @pytest.mark.django_db
-@given(word=random_inflections(), ws=from_regex(r"\s{1,4}", fullmatch=True))
-def test_query_with_extraneous_whitespace(word: Inflection, ws: str):
+@given(lemma=random_lemmas(), ws=from_regex(r"\s{1,4}", fullmatch=True))
+def test_query_with_extraneous_whitespace(lemma: Inflection, ws: str):
     """
     Adding whitespace to a query should not affect the results.
     """
-    user_query = word.text
+    user_query = lemma.text
 
     normal_results = Inflection.fetch_lemmas_by_user_query(user_query)
     normal_result_ids = set(res.id for res in normal_results)
     assert len(normal_result_ids) >= 1
 
-    results_with_ws = Inflection.fetch_lemmas_by_user_query(user_query + ws)
+    query_with_ws = user_query + ws
+    results_with_ws = Inflection.fetch_lemmas_by_user_query(query_with_ws)
     result_ids_with_ws = set(res.id for res in results_with_ws)
     assert len(result_ids_with_ws) >= 1
 
