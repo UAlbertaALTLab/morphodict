@@ -18,7 +18,7 @@ cache:
 
 stages:
   - test
-  - deploy
+  - name: deploy
     if: branch = master && type = push
 
 jobs:
