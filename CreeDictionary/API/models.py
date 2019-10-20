@@ -149,6 +149,7 @@ class Inflection(models.Model):
         user_query = syllabics2sro(user_query)
 
         user_query = user_query.lower()
+        print(f"got: {user_query}")
 
         # build up result_lemmas in 3 ways
         # 1. spell relax in descriptive fst
