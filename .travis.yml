@@ -43,4 +43,6 @@ jobs:
       # deploy stage :/
       deploy:
         provider: script
-        script: bash ./libexec/deploy-to-sapir
+        script: if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ./libexec/deploy-to-sapir; else echo "PR skip deploy"; fi
+        on:
+          branch: master
