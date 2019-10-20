@@ -25,7 +25,7 @@ jobs:
     - name: "Unit Tests"
       install: pipenv install --dev
       script:
-        - hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol <<< "acâhkos"
+        - hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol <<< "acâhko"
         - pipenv run test --cov=CreeDictionary
       after_success: codecov
 
