@@ -100,10 +100,10 @@
         },
         "hfstol": {
             "hashes": [
-                "sha256:1c4f515374cdf12919a2c3fa075fb5b829f8ca798bc09483d88ecb3ba8e5a087"
+                "sha256:6d51d9b545b8bfd5fb68f41e9f803a0202e5102241286e2828645b900e200d0d"
             ],
             "index": "pypi",
-            "version": "==1.2.9"
+            "version": "==1.2.10"
         },
         "pytz": {
             "hashes": [
@@ -419,8 +419,7 @@
         },
         "pycparser": {
             "hashes": [
-                "sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3",
-                "sha256:ad1f4f6a87669805aacfdf0bd2b4d395e46285dfa973818ee5e0aa4844f1e38f"
+                "sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
             ],
             "version": "==2.19"
         },

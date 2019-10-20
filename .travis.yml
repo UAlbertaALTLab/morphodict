@@ -19,6 +19,7 @@ cache:
 stages:
   - test
   - deploy
+    if: branch = master && type = push
 
 jobs:
   include:
@@ -44,6 +45,3 @@ jobs:
       deploy:
         provider: script
         script: bash ./libexec/deploy-to-sapir
-        on:
-          branch: master
-          condition: $TRAVIS_PULL_REQUEST = false
