@@ -31,8 +31,7 @@ def search_results(request, query_string: str):
 
 def lemma_details(request, lemma_id: int):
     """
-    for internal use
-    render paradigm table
+    render paradigm table and detailed info of a lemma
     """
     lemma = Inflection.objects.get(id=lemma_id)
 

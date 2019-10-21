@@ -39,7 +39,7 @@ _urlpatterns = [
         views.search_results,
         "cree-dictionary-search-results",
     ),
-    # definition/paradigm page for a lemma
+    # internal use to render paradigm and detailed info for a lemma
     (
         "_lemma_details/<int:lemma_id>/",
         views.lemma_details,

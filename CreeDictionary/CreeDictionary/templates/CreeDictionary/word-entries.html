@@ -1,19 +1,26 @@
 {% load static %}
 {% load inflection_extras %}
 {% for word in words %}
-<li class="search-results__result" data-cy="search-results">
-  <article class="definition box box--rounded">
-    <header class="definition__header">
-      <h2 class="definition-title definition-title--search-result">
-        <dfn class="definition-title__word">
-          <a href="{% url 'cree-dictionary-lemma-detail-api' word.id %}">
-            <span lang="cr">{{ word.text }}</span></a></dfn>
-            <span class="definition-title__pos">({{ word|presentational_pos }})</span></h2></header>
-        <ol class="meanings meanings--search-result">
-            {% with word.definition_set.all|first as def %}
-                <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite></li>
-            {% endwith %}
-        </ol>
-    </article>
-</li>
+    <li class="search-results__result" data-cy="search-results">
+        <article class="definition box box--rounded">
+            <header class="definition__header">
+                <h2 class="definition-title definition-title--search-result">
+
+                    <dfn class="definition-title__word">
+                        {# upon loaded, this <a> will be attached to onclick handler that loads #}
+                        {# detailed lemma page. <a> is used for accessible styling #}
+                        <a class="definition-title__link" href="javascript:void(0)" data-paradigm-link="{% url 'cree-dictionary-lemma-detail-api' word.id %}">
+                            {# data- attributes are supported in HTML5 not in XHTML #}
+                            <span lang="cr">{{ word.text }}</span>
+                        </a>
+                    </dfn>
+
+                    <span class="definition-title__pos">({{ word|presentational_pos }})</span></h2></header>
+            <ol class="meanings meanings--search-result">
+                {% for def in word.definition_set.all %}
+                    <li class="meanings__meaning">{{ def }} <cite class="cite-dict">{{ def.sources }}</cite></li>
+                {% endfor %}
+            </ol>
+        </article>
+    </li>
 {% endfor %}

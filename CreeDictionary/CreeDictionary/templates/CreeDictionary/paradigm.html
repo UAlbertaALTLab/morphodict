@@ -1,8 +1,42 @@
-{% extends 'CreeDictionary/base.html' %}
-
 {% load static %}
-
-{% block content %}
-
-{% endblock %}
-{# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}
+{% load inflection_extras %}
+{# should be palced inside <main> #}
+<article class="definition" id="paradigm">
+    <header class="definition__header">
+        <h1 class="definition-title">
+            <dfn class="definition-title__word">
+                <span lang="cr">{{ lemma.text }}</span>
+            </dfn>
+            <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
+        </h1>
+    </header>
+    <section class="definition__recordings">TODO</section>
+    <section class="definition__meanings">
+        <ol class="meanings">
+            <li class="meanings__meaning">cat <cite class="cite-dict">CW</cite> <cite
+                    class="cite-dict">MD</cite></li>
+        </ol>
+    </section>
+    <section class="definition__paradigm paradigm">
+        <table class="paradigm__table">
+            <tbody>
+            <tr>
+                <th class="paradigm__panel-description" colspan="2"> Basic</th>
+            </tr>
+            <tr class="paradigm-row">
+                <th scope="row" class="paradigm-row__label">One</th>
+                <td class="paradigm-row__wordform"><span lang="cr">mînos</span></td>
+            </tr>
+            <tr class="paradigm-row">
+                <th scope="row" class="paradigm-row__label">Many</th>
+                <td class="paradigm-row__wordform"><span lang="cr">minôsak</span></td>
+            </tr>
+            <tr class="paradigm-row">
+                <th scope="row" class="paradigm-row__label">Further</th>
+                <td class="paradigm-row__wordform"><span lang="cr">minôsa</span></td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="paradigm__more-button">show more</button>
+    </section>
+</article>

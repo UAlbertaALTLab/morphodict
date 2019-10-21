@@ -6,17 +6,97 @@
 let $ = require('jquery')
 
 /**
- * use ajax to load search results
+ * request server-end rendered paradigm and plunk it in place
+ *
+ * @param paradigmLink {string} the absolute address (w/o domain) of the paradigm
+ */
+function loadParadigm(paradigmLink) {
+
+  let xhttp = new XMLHttpRequest()
+
+  xhttp.onloadstart = function () {
+    // Show the loading indicator:
+    indicateLoading()
+  }
+
+  xhttp.onload = function () {
+    if (xhttp.status === 200) {
+      window.history.pushState('', '', paradigmLink)
+      emptySearchResultList()
+      $('main').append(xhttp.responseText)
+
+      indicateLoadedSuccessfully()
+    } else {
+      indicateLoadingFailure()
+    }
+  }
+
+  xhttp.onerror = function () {
+  }
+
+  xhttp.open('GET', paradigmLink, true)
+  xhttp.send()
+}
+
+const ERROR_CLASS = 'search-progress--error'
+const LOADING_CLASS = 'search-progress--loading'
+
+/**
+ * Make a 10% progress bar. We actually don't know how much there is left,
+ * but make it seem like it's thinking about it!
+ */
+function indicateLoading() {
+  let progress = document.getElementById('loading-indicator')
+  progress.max = 100
+  progress.value = 10
+  progress.classList.remove(ERROR_CLASS)
+  progress.classList.add(LOADING_CLASS)
+}
+
+
+function indicateLoadedSuccessfully() {
+  let progress = document.getElementById('loading-indicator')
+  progress.value = 100
+  hideLoadingIndicator()
+}
+
+function indicateLoadingFailure() {
+  // makes the loading state "indeterminate", like it's loading forever.
+  let progress = document.getElementById('loading-indicator')
+  progress.removeAttribute('value')
+  progress.classList.add(ERROR_CLASS)
+}
+
+function hideLoadingIndicator() {
+  let progress = document.getElementById('loading-indicator')
+  progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
+}
+
+/**
+ * clean search results (boxed shaped entries)
+ */
+function emptySearchResultList(){
+  $('#search-result-list').html('')
+}
+
+/**
+ * clean paradigm details
+ */
+function cleanParadigm(){
+  $('#paradigm').remove()
+}
+
+/**
+ * use xhttp to load search results in place
  *
  * @param {jQuery} $input
  */
 function loadResults($input) {
-  const ERROR_CLASS = 'search-progress--error'
-  const LOADING_CLASS = 'search-progress--loading'
+
 
   let text = $input.val()
   let instruction = $('#introduction-text')
-  let progress = document.getElementById('loading-indicator')
+
 
   let $searchResultList = $('#search-result-list').html(this.responseText)
 
@@ -45,8 +125,13 @@ function loadResults($input) {
         if (inputNow === text) { // hasn't changed
           // Remove loading cards
           indicateLoadedSuccessfully()
-
+          cleanParadigm()
           $searchResultList.html(xhttp.responseText)
+          $searchResultList.find('.definition-title__link').on('click', function () {
+            loadParadigm($(this).data('paradigm-link'))
+          })
+
+        } else { // changed. Do nothing
         }
       } else {
         indicateLoadingFailure()
@@ -55,7 +140,6 @@ function loadResults($input) {
 
     xhttp.onerror = function () {
     }
-
     xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
     xhttp.send()
   }
@@ -69,29 +153,6 @@ function loadResults($input) {
     $searchResultList.empty()
   }
 
-  function indicateLoading() {
-    // Make a 10% progress bar. We actually don't know how much
-    // there is left, but make it seem like it's thinking about it!
-    progress.max = 100
-    progress.value = 10
-    progress.classList.remove(ERROR_CLASS)
-    progress.classList.add(LOADING_CLASS)
-  }
-
-  function indicateLoadedSuccessfully() {
-    progress.value = 100
-    hideLoadingIndicator()
-  }
-
-  function indicateLoadingFailure() {
-    // makes the loading state "indeterminate", like it's loading forever.
-    progress.removeAttribute('value')
-    progress.classList.add(ERROR_CLASS)
-  }
-
-  function hideLoadingIndicator() {
-    progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
-  }
 }
 
 /**
