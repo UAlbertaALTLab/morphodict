@@ -55,6 +55,8 @@ _urlpatterns = [
     ("admin/", admin.site.urls, "admin"),
 ]
 
+# XXX: ugly hack to make this work on a local instance and on Sapir
+# TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
 prefix = "" if settings.DEBUG else "cree-dictionary/"
 
