@@ -10,7 +10,7 @@
             <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
         </h1>
     </header>
-    <section class="definition__recordings">TODO</section>
+    {# TODO: .definition_recordings #}
     <section class="definition__meanings">
         <ol class="meanings">
             {% for def in lemma.definition_set.all %}
@@ -21,6 +21,7 @@
     <section class="definition__paradigm paradigm">
         <table class="paradigm__table">
             <tbody>
+            {# TODO: these must be generated from the basic paradigm #}
             <tr>
                 <th class="paradigm__panel-description" colspan="2"> Basic</th>
             </tr>
