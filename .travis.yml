@@ -34,6 +34,7 @@ jobs:
       install:
         - pipenv install
         - npm ci
+        - npm run build
       script: npm test
 
     - stage: deploy
