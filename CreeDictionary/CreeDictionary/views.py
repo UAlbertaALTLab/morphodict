@@ -3,6 +3,8 @@ from django.shortcuts import render
 
 from API.models import Inflection
 from CreeDictionary.forms import WordSearchForm
+from constants import LC, ParadigmSize
+from utils import paradigm_filler
 
 
 def index(request, query_string=None):
@@ -25,3 +27,23 @@ def search_results(request, query_string: str):
     """
     lemmas = Inflection.fetch_lemmas_by_user_query(query_string)
     return render(request, "CreeDictionary/word-entries.html", {"words": lemmas})
+
+
+def lemma_details(request, lemma_id: int):
+    """
+    for internal use
+    render paradigm table
+    """
+    lemma = Inflection.objects.get(id=lemma_id)
+
+    if lemma.lc != "":
+        table = paradigm_filler.fill_paradigm(
+            lemma.text, LC(lemma.lc), ParadigmSize.BASIC
+        )
+
+    else:
+        table = []
+
+    return render(
+        request, "CreeDictionary/paradigm.html", {"lemma": lemma, "table": table}
+    )

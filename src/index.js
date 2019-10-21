@@ -30,7 +30,6 @@ function loadResults($input) {
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
     instruction.hide()
-    // todo: show loading cards
 
     let xhttp = new XMLHttpRequest()
 
@@ -95,12 +94,25 @@ function loadResults($input) {
   }
 }
 
+/**
+ * Change tab title according to user input in the search bar
+ *
+ * @param inputVal {string}
+ */
+function changeTitleByInput(inputVal) {
+  let defaultTitle = 'itwêwina: the online Cree dictionary'
+  document.title = inputVal ? inputVal + ' — ' + defaultTitle : defaultTitle
+}
+
+
 // document.ready is deprecated, this is the shorthand
 $(() => {
-  let input = $('#search')
-  loadResults(input)
+  let $input = $('#search')
+  loadResults($input)
+  changeTitleByInput($input.val())
 
-  input.on('input', () => {
-    loadResults(input)
+  $input.on('input', () => {
+    loadResults($input)
+    changeTitleByInput($input.val())
   })
 })

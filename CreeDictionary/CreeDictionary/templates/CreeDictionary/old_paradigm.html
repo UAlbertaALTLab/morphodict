@@ -1,0 +1,53 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'CreeDictionary/css/display-word.css' %}">
+
+
+<div class="lemma-box">
+    <h1>Lemma:</h1>
+    <div class="lemma-box-upper">
+        <p>Lemma: {{ lemma.text }}</p>
+        <p>Analysis: {{ lemma.analysis }}</p>
+    </div>
+
+    <div class="definition-box">
+        {% for definition in lemma.definition_set.all %}
+            <p>Definition(source: {{ definition.sources }}):{{ definition.text }}</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+
+<div class="inflection-box">
+    {% if table %}
+
+
+        <table>
+            {% for row in table %}
+                <tr>
+                    {% for cell in row %}
+                        {% if '"' in cell %}
+                            <th style="font-weight: bold;">
+                                {{ cell|cut:'"'|cut:":" }}
+                            </th>
+                        {% else %}
+                            <th style="font-weight: normal;">
+                                {{ cell }}
+                            </th>
+
+
+                        {% endif %}
+
+
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    {% else %}
+        <p>No paradigm can be shown</p>
+
+    {% endif %}
+
+
+</div>

@@ -22,22 +22,3 @@ def translate_cree(request, query_string: str) -> JsonResponse:
     """
     # todo (for matt): rewrite this
     pass
-
-
-def lemma_details(request, lemma_id: int):
-    """
-    for internal use
-    render paradigm table
-    """
-    # todo (for matt): move to CreeDictionary
-    lemma = Inflection.objects.get(id=lemma_id)
-
-    if lemma.lc != "":
-        table = paradigm_filler.fill_paradigm(
-            lemma.text, LC(lemma.lc), ParadigmSize.FULL
-        )
-
-    else:
-        table = []
-
-    return render(request, "API/paradigm.html", {"lemma": lemma, "table": table})
