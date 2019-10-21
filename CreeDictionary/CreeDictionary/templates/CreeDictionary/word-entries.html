@@ -9,7 +9,7 @@
                     <dfn class="definition-title__word">
                         {# upon loaded, this <a> will be attached to onclick handler that loads #}
                         {# detailed lemma page. <a> is used for accessible styling #}
-                        <a class="definition-title__link" href="javascript:void(0)" data-paradigm-link="{% url 'cree-dictionary-lemma-detail-api' word.id %}">
+                        <a class="definition-title__link" href="javascript:void(0)" data-lemma-id="{{ word.id }}">
                             {# data- attributes are supported in HTML5 not in XHTML #}
                             <span lang="cr">{{ word.text }}</span>
                         </a>

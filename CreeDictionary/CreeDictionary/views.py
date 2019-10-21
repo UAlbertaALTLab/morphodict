@@ -7,17 +7,20 @@ from constants import LC, ParadigmSize
 from utils import paradigm_filler
 
 
-def index(request, query_string=None):
+def index(request, query_string=None, lemma_id=None):
     """
-    homepage with optional initial query
+    homepage with optional initial query or initial lemma. query_string and lemma_id can not both be given
 
     :param request:
-    :param query_string: initial word and search results to display
+    :param query_string: initial search results to display
+    :param lemma_id: initial paradigm page to display
     :return:
     """
     context = {"word_search_form": WordSearchForm()}
     if query_string is not None:
         context.update({"query_string": query_string})
+    elif lemma_id is not None:
+        context.update({"lemma_id": lemma_id})
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
@@ -31,7 +34,7 @@ def search_results(request, query_string: str):
 
 def lemma_details(request, lemma_id: int):
     """
-    render paradigm table and detailed info of a lemma
+    render paradigm table for a lemma
     """
     lemma = Inflection.objects.get(id=lemma_id)
 

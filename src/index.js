@@ -8,9 +8,9 @@ let $ = require('jquery')
 /**
  * request server-end rendered paradigm and plunk it in place
  *
- * @param paradigmLink {string} the absolute address (w/o domain) of the paradigm
+ * @param lemmaID {number} the id of the lemma in database
  */
-function loadParadigm(paradigmLink) {
+function loadParadigm(lemmaID) {
 
   let xhttp = new XMLHttpRequest()
 
@@ -21,7 +21,8 @@ function loadParadigm(paradigmLink) {
 
   xhttp.onload = function () {
     if (xhttp.status === 200) {
-      window.history.pushState('', '', paradigmLink)
+      window.history.pushState('', '', Urls['cree-dictionary-index-with-lemma'](lemmaID))
+      hideInstruction()
       emptySearchResultList()
       $('main').append(xhttp.responseText)
 
@@ -34,7 +35,7 @@ function loadParadigm(paradigmLink) {
   xhttp.onerror = function () {
   }
 
-  xhttp.open('GET', paradigmLink, true)
+  xhttp.open('GET', Urls['cree-dictionary-lemma-detail'](lemmaID), true)
   xhttp.send()
 }
 
@@ -86,6 +87,16 @@ function cleanParadigm(){
   $('#paradigm').remove()
 }
 
+
+function showInstruction(){
+  let instruction = $('#introduction-text')
+  instruction.show()
+}
+function hideInstruction(){
+  let instruction = $('#introduction-text')
+  instruction.hide()
+}
+
 /**
  * use xhttp to load search results in place
  *
@@ -95,7 +106,7 @@ function loadResults($input) {
 
 
   let text = $input.val()
-  let instruction = $('#introduction-text')
+
 
 
   let $searchResultList = $('#search-result-list').html(this.responseText)
@@ -109,7 +120,7 @@ function loadResults($input) {
   function issueSearch() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
 
-    instruction.hide()
+    hideInstruction()
 
     let xhttp = new XMLHttpRequest()
 
@@ -128,7 +139,7 @@ function loadResults($input) {
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
           $searchResultList.find('.definition-title__link').on('click', function () {
-            loadParadigm($(this).data('paradigm-link'))
+            loadParadigm($(this).data('lemma-id'))
           })
 
         } else { // changed. Do nothing
@@ -147,7 +158,7 @@ function loadResults($input) {
   function goToHomePage() {
     window.history.replaceState(text, '', Urls['cree-dictionary-index']())
 
-    instruction.show()
+    showInstruction()
 
     hideLoadingIndicator()
     $searchResultList.empty()
@@ -169,8 +180,14 @@ function changeTitleByInput(inputVal) {
 // document.ready is deprecated, this is the shorthand
 $(() => {
   let $input = $('#search')
-  loadResults($input)
-  changeTitleByInput($input.val())
+  let initialLemmaID = $('#initial-lemma-id').val()
+  if (initialLemmaID){
+    loadParadigm(parseInt(initialLemmaID))
+  }else{
+    loadResults($input)
+    changeTitleByInput($input.val())
+  }
+
 
   $input.on('input', () => {
     loadResults($input)
