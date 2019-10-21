@@ -173,7 +173,7 @@ function loadResults($input) {
  */
 function changeTitleByInput(inputVal) {
   let defaultTitle = 'itwêwina: the online Cree dictionary'
-  document.title = inputVal ? inputVal + ' — ' + defaultTitle : defaultTitle
+  document.title = inputVal ? '🔎 ' + inputVal + ' — ' + defaultTitle : defaultTitle
 }
 
 
