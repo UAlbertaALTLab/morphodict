@@ -29,6 +29,7 @@ creedictionary = {editable = true,path = "./CreeDictionary"} # needed to install
 typing-extensions = "~=3.7"
 attrs = "~=19.1"
 django-js-reverse = "~=0.9"
+fst-lookup = "*"
 
 [scripts]
 # look stuff up

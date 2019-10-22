@@ -1,6 +1,7 @@
 import unicodedata
 from typing import Optional, Set
 from urllib.parse import unquote
+from pathlib import Path
 
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
@@ -8,8 +9,9 @@ from django.db.models import QuerySet, Max
 
 from constants import LC
 from fuzzy_search import CreeFuzzySearcher
-from shared import descriptive_analyzer
+from shared import descriptive_analyzer_foma
 from utils import hfstol_analysis_parser
+
 
 
 class Inflection(models.Model):
@@ -152,10 +154,11 @@ class Inflection(models.Model):
         result_lemmas = Inflection.objects.none()
 
         # utilize the spell relax in descriptive_analyzer
-        fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([user_query])[
-            user_query
-        ]
-        # TODO: rename variable to exact_match_lemma_ids
+        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is
+        # fixed:
+        # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+        fst_analyses: Set[str] = set(''.join(a) for a in descriptive_analyzer_foma.analyze(user_query))
+
         # These are the lemmas for which the wordform has an EXACT match in
         # the stored wordforms. Note: we should also query for anything with
         exact_match_lemma_ids = Inflection.objects.filter(
