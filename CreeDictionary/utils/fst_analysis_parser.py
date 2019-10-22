@@ -90,7 +90,6 @@ def extract_lemma_and_category(analysis: str) -> Optional[Tuple[str, LexicalCate
 
 def extract_category(analysis: str) -> Optional[LexicalCategory]:
     """
-
     :param analysis: in the form of 'a+VAI+b+c'
     """
     res = re.search(analysis_pattern, analysis)

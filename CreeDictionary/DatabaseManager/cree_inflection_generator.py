@@ -11,7 +11,7 @@ from typing import List, Dict, Tuple, Set, Iterable
 from DatabaseManager.log import DatabaseManagerLogger
 from constants import LexicalCategory
 from shared import normative_generator
-from utils import hfstol_analysis_parser
+from utils import fst_analysis_parser
 
 
 def import_flattened_prefilled_layouts(

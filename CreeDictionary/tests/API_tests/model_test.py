@@ -12,8 +12,7 @@ from DatabaseManager.xml_importer import import_xmls
 from constants import LC
 from tests.conftest import random_inflections, random_lemmas
 
-# https://github.com/pytest-dev/pytest-django/issues/514#issuecomment-497874174
-from utils import hfstol_analysis_parser
+from utils import fst_analysis_parser
 
 
 # this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
@@ -29,7 +28,7 @@ def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_bl
 @pytest.mark.django_db
 @given(inflection=random_inflections())
 def test_extract_category(inflection: Inflection):
-    cat = hfstol_analysis_parser.extract_category(inflection.analysis)
+    cat = fst_analysis_parser.extract_category(inflection.analysis)
     if cat is not None:
         if inflection.as_is:
             assert inflection.is_category(cat) is None
@@ -42,7 +41,7 @@ def test_extract_category(inflection: Inflection):
 def test_malformed_inflection_analysis_field(inflection: Inflection):
     inflection.as_is = False
     inflection.analysis = "ijfasdjfie"
-    assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)
+    assume(fst_analysis_parser.extract_category(inflection.analysis) is None)
     with pytest.raises(ValueError):
         inflection.is_category(LC.VTA)
 
@@ -58,7 +57,7 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
     """
 
     query = lemma.text
-    results = Inflection.fetch_lemmas_by_user_query(query)
+    results = Inflection.fetch_lemma_by_user_query(query)
     assert len(results) >= 1, f"Could not find {query!r} in the database"
 
     exact_matches = [match for match in results if match.id == lemma.id]
@@ -76,12 +75,12 @@ def test_query_with_extraneous_whitespace(lemma: Inflection, ws: str):
     """
     user_query = lemma.text
 
-    normal_results = Inflection.fetch_lemmas_by_user_query(user_query)
+    normal_results = Inflection.fetch_lemma_by_user_query(user_query)
     normal_result_ids = set(res.id for res in normal_results)
     assert len(normal_result_ids) >= 1
 
     query_with_ws = user_query + ws
-    results_with_ws = Inflection.fetch_lemmas_by_user_query(query_with_ws)
+    results_with_ws = Inflection.fetch_lemma_by_user_query(query_with_ws)
     result_ids_with_ws = set(res.id for res in results_with_ws)
     assert len(result_ids_with_ws) >= 1
 

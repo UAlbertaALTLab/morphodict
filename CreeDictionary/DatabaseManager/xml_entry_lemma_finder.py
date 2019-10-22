@@ -11,7 +11,7 @@ from hfstol import HFSTOL
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_hfstol_xml_pos_match
-from utils import hfstol_analysis_parser
+from utils import fst_analysis_parser
 from shared import strict_analyzer
 
 init()  # for windows compatibility

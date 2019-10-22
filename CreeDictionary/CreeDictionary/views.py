@@ -28,7 +28,7 @@ def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
     """
-    lemmas = Inflection.fetch_lemmas_by_user_query(query_string)
+    lemmas = Inflection.fetch_lemma_by_user_query(query_string)
     return render(request, "CreeDictionary/word-entries.html", {"words": lemmas})
 
 
