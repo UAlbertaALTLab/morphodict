@@ -474,6 +474,8 @@ html {
   text-align: left;
   font-weight: var(--body-font-weight);
 
+  vertical-align: top; /* When a label applies to multiple wordforms */
+
   color: #4A4D52;
 }
 
@@ -822,12 +824,4 @@ a.menu-choice__label:active {
   font-size: 11px;
   font-style: normal;
   font-weight: var(--strong-font-weight);
-}
-
-/**
- * Non-BEM styles.
- */
-
-td[rowspan] {
-  vertical-align: top;
 }
