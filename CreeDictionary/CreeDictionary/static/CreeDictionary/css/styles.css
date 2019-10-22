@@ -392,7 +392,7 @@ html {
 .definition-title__pos {
   /* Text */
   font-style: normal;
-  font-weight: normal;
+  font-weight: var(--body-font-weight);
 }
 
 .meanings {
@@ -481,7 +481,7 @@ html {
 }
 
 .paradigm-row__wordform {
-  font-weight: 700;
+  font-weight: var(--strong-font-weight);
 }
 
 
@@ -593,7 +593,7 @@ html {
   display: block;
 
   /* Text */
-  font-weight: 600;
+  font-weight: var(--strong-font-weight);
   text-decoration: underline;
 
   /* Color */
