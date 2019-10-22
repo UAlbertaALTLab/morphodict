@@ -31,8 +31,11 @@
   --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
   --prose-title-color:      #283C95;
-  --link-color:             #189cda; /* Regular links */
-  --link-action-color:      #0F2657; /* A link that implies an immediate action. */
+  --link-color:             #0095DC; /* Regular links */
+  --link-visited-color:     #A568DB; /* Visited link */
+  --link-hover-color:       #5E8DC3; /* Hover over a link. */
+  --link-active-color:      #0E6790; /* Currently active link. */
+  --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
 
   /* Font sizes */
@@ -102,12 +105,10 @@ html {
 /**
  * Link styles for the application.
  */
-.app a:link,
-.app a:visited
-{
-  color: var(--link-color);
-}
-/* TODO: figure out highlight color of links */
+.app a:link { color: var(--link-color) }
+.app a:visited { color: var(--link-visited-color) }
+.app a:hover { color: var(--link-hover-color) }
+.app a:active { color: var(--link-active-color) }
 
 /**
  * ELEMENT app__header
