@@ -1,5 +1,6 @@
 import pytest
 from hypothesis import given, assume
+from hypothesis.strategies import from_regex
 
 from DatabaseManager.__main__ import cmd_entry
 
@@ -9,7 +10,7 @@ from tests.conftest import one_hundredth_xml_dir, topmost_datadir
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_xmls
 from constants import LC
-from tests.conftest import random_inflections
+from tests.conftest import random_inflections, random_lemmas
 
 # https://github.com/pytest-dev/pytest-django/issues/514#issuecomment-497874174
 from utils import hfstol_analysis_parser
@@ -44,3 +45,44 @@ def test_malformed_inflection_analysis_field(inflection: Inflection):
     assume(hfstol_analysis_parser.extract_category(inflection.analysis) is None)
     with pytest.raises(ValueError):
         inflection.is_category(LC.VTA)
+
+
+#### Tests for Inflection.fetch_lemmas_by_user_query()
+
+
+@pytest.mark.django_db
+@given(lemma=random_lemmas())
+def test_query_exact_wordform_in_database(lemma: Inflection):
+    """
+    Sanity check: querying a lemma by its EXACT text returns that lemma.
+    """
+
+    query = lemma.text
+    results = Inflection.fetch_lemmas_by_user_query(query)
+    assert len(results) >= 1, f"Could not find {query!r} in the database"
+
+    exact_matches = [match for match in results if match.id == lemma.id]
+    assert len(exact_matches) >= 1, f"No exact matches for {query!r} in {results}"
+
+    match, *_ = exact_matches
+    assert query == match.text
+
+
+@pytest.mark.django_db
+@given(lemma=random_lemmas(), ws=from_regex(r"\s{1,4}", fullmatch=True))
+def test_query_with_extraneous_whitespace(lemma: Inflection, ws: str):
+    """
+    Adding whitespace to a query should not affect the results.
+    """
+    user_query = lemma.text
+
+    normal_results = Inflection.fetch_lemmas_by_user_query(user_query)
+    normal_result_ids = set(res.id for res in normal_results)
+    assert len(normal_result_ids) >= 1
+
+    query_with_ws = user_query + ws
+    results_with_ws = Inflection.fetch_lemmas_by_user_query(query_with_ws)
+    result_ids_with_ws = set(res.id for res in results_with_ws)
+    assert len(result_ids_with_ws) >= 1
+
+    assert normal_result_ids == result_ids_with_ws

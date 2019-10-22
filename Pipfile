@@ -15,6 +15,7 @@ xml-subsetter = "~=0.0"
 codecov = "*"
 snakeviz = "~=2.0"
 paramiko = "~=2.6"
+pysnooper = "*"
 
 [packages]
 colorama = "~=0.4"

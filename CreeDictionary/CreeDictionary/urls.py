@@ -33,17 +33,18 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
+    ("lemma/<int:lemma_id>/", views.index, "cree-dictionary-index-with-lemma"),
+    # internal use to render boxes of search results
     (
         "_search_results/<str:query_string>/",
         views.search_results,
         "cree-dictionary-search-results",
     ),
-    # API which renders detailed definition/ inflection/ paradigms for a lemma
-    # internal use
+    # internal use to render paradigm and detailed info for a lemma
     (
         "_lemma_details/<int:lemma_id>/",
-        api_views.lemma_details,
-        "cree-dictionary-lemma-detail-api",
+        views.lemma_details,
+        "cree-dictionary-lemma-detail",
     ),
     # cree word translation for click-in-text #todo (for matt): this
     (
@@ -54,6 +55,8 @@ _urlpatterns = [
     ("admin/", admin.site.urls, "admin"),
 ]
 
+# XXX: ugly hack to make this work on a local instance and on Sapir
+# TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
 prefix = "" if settings.DEBUG else "cree-dictionary/"
 
