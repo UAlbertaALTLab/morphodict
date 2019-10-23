@@ -473,11 +473,10 @@ html {
 
 .paradigm-row__label {
   text-align: left;
+  font-style: italic;
   font-weight: var(--body-font-weight);
 
   vertical-align: top; /* When a label applies to multiple wordforms */
-
-  color: #4A4D52;
 }
 
 .paradigm-row__wordform {
