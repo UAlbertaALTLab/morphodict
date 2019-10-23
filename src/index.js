@@ -5,6 +5,7 @@
 
 let $ = require('jquery')
 
+
 /**
  * request server-end rendered paradigm and plunk it in place
  *
@@ -21,7 +22,7 @@ function loadParadigm(lemmaID) {
 
   xhttp.onload = function () {
     if (xhttp.status === 200) {
-      window.history.pushState('', '', Urls['cree-dictionary-index-with-lemma'](lemmaID))
+      window.history.pushState('', document.title, Urls['cree-dictionary-index-with-lemma'](lemmaID))
       hideInstruction()
       emptySearchResultList()
       $('main').append(xhttp.responseText)
@@ -76,23 +77,24 @@ function hideLoadingIndicator() {
 /**
  * clean search results (boxed shaped entries)
  */
-function emptySearchResultList(){
+function emptySearchResultList() {
   $('#search-result-list').html('')
 }
 
 /**
  * clean paradigm details
  */
-function cleanParadigm(){
+function cleanParadigm() {
   $('#paradigm').remove()
 }
 
 
-function showInstruction(){
+function showInstruction() {
   let instruction = $('#introduction-text')
   instruction.show()
 }
-function hideInstruction(){
+
+function hideInstruction() {
   let instruction = $('#introduction-text')
   instruction.hide()
 }
@@ -108,7 +110,6 @@ function loadResults($input) {
   let text = $input.val()
 
 
-
   let $searchResultList = $('#search-result-list').html(this.responseText)
 
   if (text !== '') {
@@ -118,7 +119,7 @@ function loadResults($input) {
   }
 
   function issueSearch() {
-    window.history.replaceState(text, '', Urls['cree-dictionary-index-with-word'](text))
+    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-word'](text))
 
     hideInstruction()
 
@@ -156,7 +157,7 @@ function loadResults($input) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(text, '', Urls['cree-dictionary-index']())
+    window.history.replaceState(text, document.title, Urls['cree-dictionary-index']())
 
     showInstruction()
 
@@ -179,11 +180,17 @@ function changeTitleByInput(inputVal) {
 
 // document.ready is deprecated, this is the shorthand
 $(() => {
+
+  $(window).on('popstate', function () {
+    location.reload()
+  })
+
+
   let $input = $('#search')
   let initialLemmaID = $('#initial-lemma-id').val()
-  if (initialLemmaID){
+  if (initialLemmaID) {
     loadParadigm(parseInt(initialLemmaID))
-  }else{
+  } else {
     loadResults($input)
     changeTitleByInput($input.val())
   }

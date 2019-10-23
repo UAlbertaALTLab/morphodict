@@ -74,6 +74,7 @@ class Inflection(models.Model):
     class Meta:
         # analysis is for faster user query (in function fetch_lemmas_by_user_query below)
         # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
+        # text index also benefits fast lemma matching
         indexes = [models.Index(fields=["analysis"]), models.Index(fields=["text"])]
 
     def __str__(self):

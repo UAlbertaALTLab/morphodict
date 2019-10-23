@@ -9,11 +9,12 @@ class APIConfig(AppConfig):
         """
         initialize fuzzy search (build the data structure)
         """
-
-        # without the guard
-        # on travis this line of code will be run before a database exist and will error
-        if "API_inflection" in connection.introspection.table_names():
-            # Have to do it locally, or will get error (apps aren't loaded yet)
-            from API.models import Inflection
-
-            Inflection.init_fuzzy_searcher()
+        # todo: fuzzy search is for now not used. Use it in the future
+        pass
+        # # without the guard
+        # # on travis this line of code will be run before a database exist and will error
+        # if "API_inflection" in connection.introspection.table_names():
+        #     # Have to do it locally, or will get error (apps aren't loaded yet)
+        #     from API.models import Inflection
+        #
+        #     Inflection.init_fuzzy_searcher()
