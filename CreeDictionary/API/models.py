@@ -7,7 +7,7 @@ from pathlib import Path
 
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
-from django.db.models import QuerySet, Max
+from django.db.models import QuerySet, Max, Q, F
 
 from constants import LC
 from fuzzy_search import CreeFuzzySearcher
@@ -15,17 +15,6 @@ from shared import descriptive_analyzer_foma
 from utils import fst_analysis_parser
 
 import logging
-
-# fixme: please give this class a better name
-class Part(Enum):
-    """
-    corresponds to extra information we show to
-    the user when user query matches an inflected form rather than a lemma
-    like IC, Preverb, Reduplication, and Err/Orth
-    """
-
-    IC = "IC"  # initial change
-    PRE = "PRE"  # preverbs
 
 
 class Inflection(models.Model):
@@ -92,22 +81,6 @@ class Inflection(models.Model):
 
     def is_non_default_spelling(self) -> bool:
         return self.default_spelling != self
-
-    def is_category(self, lc: LC) -> Optional[bool]:
-        """
-        :return: None if self.as_is is true. Meaning the analysis is simply the lc and the pos from the xml
-
-        :raise ValueError: the lexical category of the lemma can not be recognized
-        """
-        if self.as_is:  # meaning the analysis is simply the lc and the pos from the xml
-            return None
-        category = hfstol_analysis_parser.extract_category(self.analysis)
-        if category is None:
-            raise ValueError(
-                "The lexical category of the inflection %s can not be recognized. (A malformed analysis field?)"
-                % self
-            )
-        return category is lc
 
     @transaction.atomic
     def save(self, *args, **kwargs):
@@ -186,19 +159,23 @@ class Inflection(models.Model):
 
         for analysis in fst_analyses:
             # todo: test
-            if Inflection.objects.filter(analysis=analysis).first() is not None:
+            exact_matched_wordform_ids = Inflection.objects.filter(
+                analysis=analysis
+            ).values("lemma__id")
+            exact_matched_lemmas = Inflection.objects.filter(
+                id__in=exact_matched_wordform_ids
+            )
+
+            if exact_matched_lemmas.exists():
                 # there can be multiple matches when there are different spellings
                 # akocin|akocin+V+AI+Ind+Prs+3Sg
                 # akociniw|akocin+V+AI+Ind+Prs+3Sg
-                # In that case use the default_spelling field of either is ok,
-                # both point correctly to the default spelling
 
-                exact_match_lemma = (
-                    Inflection.objects.filter(analysis=analysis)
-                    .first()
-                    .lemma.default_spelling
+                exact_match_lemma = exact_matched_lemmas.filter(
+                    Q(default_spelling__id=F("id"))
                 )
-                lemmas_by_analysis[analysis].append(exact_match_lemma)
+
+                lemmas_by_analysis[analysis].extend(list(exact_match_lemma))
             else:
                 # When the user query is outside of paradigm tables
                 # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
@@ -213,30 +190,23 @@ class Inflection(models.Model):
                     continue
 
                 lemma, lc = lemma_lc
-                matched_lemmas = Inflection.objects.filter(text=lemma, is_lemma=True)
-
-                # to eliminate alternative spellings
-                met_lemma_analysis: Set[str] = set()
-                for matched_lemma in matched_lemmas:
-                    if (
-                        matched_lemma.lc == "" or matched_lemma.lc == lc.value
-                    ):  # underspecified or the same lc
-                        if matched_lemma.analysis not in met_lemma_analysis:
-                            lemmas_by_analysis[analysis].append(matched_lemma)
-                        met_lemma_analysis.add(matched_lemma.analysis)
+                matched_lemmas = Inflection.objects.filter(
+                    Q(default_spelling__id=F("id")), text=lemma, is_lemma=True
+                )
+                lemmas_by_analysis[analysis].extend(list(matched_lemmas))
 
         # todo: remind user "are you searching in cree/english?"
-        lemmas_by_english = []
+        lemmas_by_english: List["Inflection"] = []
         if " " not in user_query:  # a whole word
             lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
                 "lemma__id"
             )
-            lemmas_by_english = (
-                Inflection.objects.filter(id__in=lemma_ids)
-                .order_by("analysis")
-                .distinct("analysis")
-            )  # distinct analysis to remove alternative spellings
-            # (note order_by is necessary for distinct to work by django docs)
+
+            lemmas_by_english = list(
+                Inflection.objects.filter(
+                    Q(default_spelling__id=F("id")), id__in=lemma_ids
+                )
+            )
 
         return lemmas_by_analysis, lemmas_by_english
 

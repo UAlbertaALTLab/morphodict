@@ -11,7 +11,7 @@ from hypothesis._strategies import composite, integers, sampled_from
 from API.models import Inflection
 from DatabaseManager.xml_importer import import_xmls
 from constants import LexicalCategory
-from utils import shared_res_dir, hfstol_analysis_parser
+from utils import shared_res_dir, fst_analysis_parser
 
 
 @pytest.fixture(scope="session")
@@ -57,17 +57,6 @@ def random_lemmas(draw) -> Inflection:
         is_lemma=True, as_is=False, pk=F("default_spelling__pk")
     )
     return draw(sampled_from(list(lemmas)))
-
-
-@composite
-def inflections_of_category(draw, lc: LexicalCategory) -> Inflection:
-    """
-    hypothesis strategy to supply random inflections
-    """
-    inflection = draw(random_inflections())
-    assume(not inflection.as_is)
-    assume(hfstol_analysis_parser.extract_category(inflection.analysis) is lc)
-    return inflection
 
 
 @pytest.fixture(scope="session")

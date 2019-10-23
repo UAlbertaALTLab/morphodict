@@ -28,8 +28,19 @@ def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
     """
-    lemmas = Inflection.fetch_lemma_by_user_query(query_string)
-    return render(request, "CreeDictionary/word-entries.html", {"words": lemmas})
+    # todo: use the keys of analysis_to_lemmas to show user input analysis (Preverb, reduplication, IC ...)
+    analysis_to_lemmas, lemmas_by_english = Inflection.fetch_lemma_by_user_query(
+        query_string
+    )
+    print(analysis_to_lemmas)
+    return render(
+        request,
+        "CreeDictionary/word-entries.html",
+        {
+            "words": [b for a in analysis_to_lemmas.values() for b in a]
+            + lemmas_by_english
+        },
+    )
 
 
 def lemma_details(request, lemma_id: int):

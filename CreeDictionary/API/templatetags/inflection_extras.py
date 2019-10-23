@@ -4,7 +4,7 @@ from django import template
 
 from API.models import Inflection
 from constants import LC
-from utils import hfstol_analysis_parser
+from utils import fst_analysis_parser
 
 register = template.Library()
 
@@ -31,7 +31,7 @@ def presentational_pos(inflection: Inflection):
     if inflection.lc != "":
         lc = LC(inflection.lc)
     else:
-        lc = hfstol_analysis_parser.extract_category(inflection.analysis)
+        lc = fst_analysis_parser.extract_category(inflection.analysis)
     if lc is not None:
         if lc.is_noun():
             return "Noun"

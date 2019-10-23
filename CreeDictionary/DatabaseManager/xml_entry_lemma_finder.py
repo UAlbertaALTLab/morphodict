@@ -79,14 +79,14 @@ def extract_fst_lemmas(
 
                 ambiguous_analyses = set()
 
-                hfstol_lemma_analyses = hfstol_analysis_parser.identify_lemma_analysis(
+                fst_lemma_analyses = fst_analysis_parser.identify_lemma_analysis(
                     analyses
                 )
 
                 for (
                     analysis
                 ) in (
-                    hfstol_lemma_analyses
+                    fst_lemma_analyses
                 ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
                     category = utils.extract_category(analysis)
                     assert category is not None

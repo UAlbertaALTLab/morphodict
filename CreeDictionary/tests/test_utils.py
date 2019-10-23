@@ -4,7 +4,7 @@ import pytest
 
 from constants import LexicalCategory, ParadigmSize
 from utils import extract_category, identify_lemma_analysis
-from utils import hfstol_analysis_parser
+from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import get_xml_lemma_set, extract_l_str
 from utils.paradigm import ParadigmFiller
 
@@ -24,7 +24,7 @@ from utils.paradigm import ParadigmFiller
     ],
 )
 def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
-    claimed = hfstol_analysis_parser.extract_lemma(analysis)
+    claimed = fst_analysis_parser.extract_lemma(analysis)
     assert claimed == real_lemma
 
 
