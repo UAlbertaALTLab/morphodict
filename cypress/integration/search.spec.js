@@ -16,8 +16,26 @@ context('Searching', () => {
       cy.get('[data-cy=search-results]')
         .should('contain', 'beaver')
     })
-
   })
+
+  describe('I want to TODO', () => {
+    it.skip('should search the normatized form of the matched search string', () => {
+      // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+Prs+1Sg
+      const searchTerm = 'nipe-acimon'
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type(searchTerm)
+
+      cy.get('[data-cy=search-results]')
+        .contains('[data-cy=search-result]', /Form of/i)
+        .as('searchResult')
+
+      // normatized form:
+      cy.get('@searchResult')
+        .contains('[data-cy=definition-title]', 'nipê-âcimon')
+    })
+  })
+
   describe('Loading indicator', () => {
     beforeEach(() => {
       cy.server()

@@ -24,22 +24,22 @@ def index(request, query_string=None, lemma_id=None):
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
+import pysnooper
+
 def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
     """
     # todo: use the keys of analysis_to_lemmas to show user input analysis (Preverb, reduplication, IC ...)
-    analysis_to_lemmas, lemmas_by_english = Inflection.fetch_lemma_by_user_query(
-        query_string
-    )
-    print(analysis_to_lemmas)
+    with pysnooper.snoop():
+        analysis_to_lemmas, lemmas_by_english = Inflection.fetch_lemma_by_user_query(
+            query_string
+        )
+        words = [b for a in analysis_to_lemmas.values() for b in a] + lemmas_by_english
     return render(
         request,
         "CreeDictionary/word-entries.html",
-        {
-            "words": [b for a in analysis_to_lemmas.values() for b in a]
-            + lemmas_by_english
-        },
+        { "words": words },
     )
 
 
