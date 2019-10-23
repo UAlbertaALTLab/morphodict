@@ -5,7 +5,8 @@
   "scripts": {
     "start": "webpack --watch & pipenv run dev",
     "build": "webpack",
-    "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
+    "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
+    "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
   },
   "repository": {
     "type": "git",

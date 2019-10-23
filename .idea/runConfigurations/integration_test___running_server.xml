@@ -1,7 +1,10 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="start" type="js.build_tools.npm" nameIsGenerated="true">
+  <configuration default="false" name="integration test | running server" type="js.build_tools.npm">
     <package-json value="$PROJECT_DIR$/package.json" />
-    <command value="start" />
+    <command value="run" />
+    <scripts>
+      <script value="cypress" />
+    </scripts>
     <node-interpreter value="project" />
     <envs />
     <method v="2" />

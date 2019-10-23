@@ -24,9 +24,6 @@ def index(request, query_string=None, lemma_id=None):
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
-import pysnooper
-
-
 def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
