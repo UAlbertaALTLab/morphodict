@@ -86,3 +86,29 @@ def test_search_for_english() -> None:
     matched_language, search_results = Inflection.search("story")
 
     assert matched_language == "en"
+
+
+@pytest.mark.django_db
+def test_search_for_stored_non_lemma():
+    """
+    A "stored non-lemma" is a wordform in the database that is NOT a lemma.
+    """
+    # "S/he would tell us stories."
+    lemma = "âcimêw"
+    query = "ê-kî-âcimikoyâhk"
+    matched_language, search_results = Inflection.search(query)
+
+    assert matched_language == "crk", "We should have gotten results for Cree"
+    assert len(search_results) >= 1
+
+    exact_matches = [result for result in search_results if result.wordform == query]
+    assert len(exact_matches) >= 1
+
+    # Let's look at that search result in more detail
+    result = exact_matches[0]
+    assert result.wordform == query
+    assert not result.is_lemma
+    assert result.lemma == lemma
+    assert not result.preverbs
+    assert not result.reduplication_tags
+    assert not result.initial_change_tags

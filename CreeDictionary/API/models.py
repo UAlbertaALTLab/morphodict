@@ -267,8 +267,6 @@ class Inflection(models.Model):
         """
         cree_results, english_results = Inflection.fetch_lemma_by_user_query(user_query)
 
-        print(cree_results)
-        print(english_results)
         if len(cree_results) < len(english_results):
             raise NotImplementedError(
                 "I don't know how to deal with English search results"
