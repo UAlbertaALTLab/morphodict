@@ -1,10 +1,11 @@
 import unicodedata
 from collections import defaultdict
 from enum import Enum, auto
-from typing import Optional, Set, List, Tuple, Dict
+from typing import Optional, Set, List, Tuple, Dict, NamedTuple
 from urllib.parse import unquote
 from pathlib import Path
 
+from attr import attrs, attrib
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import QuerySet, Max, Q, F
@@ -14,7 +15,22 @@ from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma
 from utils import fst_analysis_parser
 
+
+# TODO: make the appropriate logger.
 import logging
+
+
+class CreeAndEnglish(NamedTuple):
+    """
+    Duct tapes together two kinds of search results:
+
+     - cree results -- a dict of analyses to the LEMMAS that match that analysis!
+                    -- duplicate spellings are removed
+     - english results -- a list of lemmas that match
+    """
+
+    cree_results: Dict[str, List["Inflection"]]
+    english_results: List["Inflection"]
 
 
 class Inflection(models.Model):
@@ -109,9 +125,7 @@ class Inflection(models.Model):
         super(Inflection, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(
-        user_query: str
-    ) -> Tuple[Dict[str, List["Inflection"]], List["Inflection"]]:
+    def fetch_lemma_by_user_query(user_query: str) -> CreeAndEnglish:
         """
         treat the user query as cree and:
 
@@ -209,7 +223,7 @@ class Inflection(models.Model):
                 )
             )
 
-        return lemmas_by_analysis, lemmas_by_english
+        return CreeAndEnglish(lemmas_by_analysis, lemmas_by_english)
 
 
 class Definition(models.Model):
@@ -238,3 +252,38 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
+
+
+@attrs
+class SearchResult:
+    """
+    TODO: search result
+    """
+
+    # the text of the matche
+    wordform = attrib(type=str)
+
+    part_of_speech = attrib(type=str)
+
+    # Is this the lemma?
+    is_lemma = attrib(type=bool)
+
+    # The text of the matched lemma
+    lemma = attrib(type=str)
+
+    # Sequence of all preverb tags, in order
+    preverbs = attrib(type=tuple)  # tuple of strs
+
+    # TODO: there are things to be figured out for this :/
+    # Sequence of all reduplication tags present, in order
+    reduplication_tags = attrib(type=tuple)  # tuple of strs
+    # Sequence of all initial change tags
+    initial_change_tags = attrib(type=tuple)  # tuple of strs
+
+    @property
+    def is_inflection(self) -> bool:
+        """
+        Is this an inflected form? That is, is this a wordform that is NOT the
+        lemma?
+        """
+        return not self.is_lemma
