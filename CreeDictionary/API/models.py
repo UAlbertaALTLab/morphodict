@@ -1,23 +1,21 @@
+# TODO: make the appropriate logger.
+import logging
 import unicodedata
 from collections import defaultdict
 from enum import Enum, auto
-from typing import Optional, Set, List, Tuple, Dict, NamedTuple
-from urllib.parse import unquote
 from pathlib import Path
+from typing import Dict, List, NamedTuple, Optional, Set, Tuple
+from urllib.parse import unquote
 
-from attr import attrs, attrib
+from attr import attrib, attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
-from django.db.models import QuerySet, Max, Q, F
+from django.db.models import F, Max, Q, QuerySet
 
 from constants import LC
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma
 from utils import fst_analysis_parser
-
-
-# TODO: make the appropriate logger.
-import logging
 
 
 class CreeAndEnglish(NamedTuple):
