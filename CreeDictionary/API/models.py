@@ -1,4 +1,3 @@
-# TODO: make the appropriate logger.
 import logging
 import unicodedata
 from collections import defaultdict
@@ -16,6 +15,9 @@ from constants import LC
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma
 from utils import fst_analysis_parser
+
+
+logger = logging.getLogger(__name__)
 
 
 class CreeAndEnglish(NamedTuple):
@@ -197,7 +199,7 @@ class Inflection(models.Model):
 
                 lemma_lc = fst_analysis_parser.extract_lemma_and_category(analysis)
                 if lemma_lc is None:
-                    logging.error(
+                    logger.error(
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
                     continue
