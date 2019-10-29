@@ -17,6 +17,41 @@ from utils import fst_analysis_parser
 logger = logging.getLogger(__name__)
 
 
+@attrs
+class SearchResult:
+    """
+    TODO: search result
+    """
+
+    # the text of the matche
+    wordform = attrib(type=str)
+
+    part_of_speech = attrib(type=str)
+
+    # Is this the lemma?
+    is_lemma = attrib(type=bool)
+
+    # The text of the matched lemma
+    lemma = attrib(type=str)
+
+    # Sequence of all preverb tags, in order
+    preverbs = attrib(type=tuple)  # tuple of strs
+
+    # TODO: there are things to be figured out for this :/
+    # Sequence of all reduplication tags present, in order
+    reduplication_tags = attrib(type=tuple)  # tuple of strs
+    # Sequence of all initial change tags
+    initial_change_tags = attrib(type=tuple)  # tuple of strs
+
+    @property
+    def is_inflection(self) -> bool:
+        """
+        Is this an inflected form? That is, is this a wordform that is NOT the
+        lemma?
+        """
+        return not self.is_lemma
+
+
 class CreeAndEnglish(NamedTuple):
     """
     Duct tapes together two kinds of search results:
@@ -85,7 +120,7 @@ class Inflection(models.Model):
     )
 
     class Meta:
-        # analysis is for faster user query (in function fetch_lemmas_by_user_query below)
+        # analysis is for faster user query (in function fetch_lemma_by_user_query below)
         # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
         # text index also benefits fast lemma matching
         indexes = [models.Index(fields=["analysis"]), models.Index(fields=["text"])]
@@ -224,6 +259,47 @@ class Inflection(models.Model):
 
         return CreeAndEnglish(lemmas_by_analysis, lemmas_by_english)
 
+    @staticmethod
+    def search(user_query: str) -> Tuple[str, List[SearchResult]]:
+        """
+        Returns the matched language (as an ISO 639 code), and list of search
+        results.
+        """
+        cree_results, english_results = Inflection.fetch_lemma_by_user_query(user_query)
+
+        if len(cree_results) < len(english_results):
+            raise NotImplementedError(
+                "I don't know how to deal with English search results"
+            )
+
+        results: List[SearchResult] = []
+
+        for analysis, lemmas in cree_results.items():
+            if len(lemmas) != 1:
+                logger.warning(
+                    "Do not know how to deal with result: (%r) %r %r",
+                    user_query,
+                    analysis,
+                    lemmas,
+                )
+                continue
+
+            wordform, = lemmas
+            assert wordform.is_lemma
+            results.append(
+                SearchResult(
+                    wordform=wordform.text,
+                    part_of_speech=wordform.lc,
+                    is_lemma=True,
+                    lemma=wordform.text,
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                )
+            )
+
+        return "crk", results
+
 
 class Definition(models.Model):
     # override pk to allow use of bulk_create
@@ -251,38 +327,3 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
-
-
-@attrs
-class SearchResult:
-    """
-    TODO: search result
-    """
-
-    # the text of the matche
-    wordform = attrib(type=str)
-
-    part_of_speech = attrib(type=str)
-
-    # Is this the lemma?
-    is_lemma = attrib(type=bool)
-
-    # The text of the matched lemma
-    lemma = attrib(type=str)
-
-    # Sequence of all preverb tags, in order
-    preverbs = attrib(type=tuple)  # tuple of strs
-
-    # TODO: there are things to be figured out for this :/
-    # Sequence of all reduplication tags present, in order
-    reduplication_tags = attrib(type=tuple)  # tuple of strs
-    # Sequence of all initial change tags
-    initial_change_tags = attrib(type=tuple)  # tuple of strs
-
-    @property
-    def is_inflection(self) -> bool:
-        """
-        Is this an inflected form? That is, is this a wordform that is NOT the
-        lemma?
-        """
-        return not self.is_lemma

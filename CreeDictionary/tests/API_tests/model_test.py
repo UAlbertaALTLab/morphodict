@@ -47,3 +47,31 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
 
     assert matched_lemma_count >= 1, f"Could not find {query!r} in the database"
     assert exact_match, f"No exact matches for {query!r} in {analysis_to_lemmas}"
+
+
+@pytest.mark.django_db
+@given(lemma=random_lemmas())
+def test_search_for_exact_lemma(lemma: Inflection):
+    """
+    Check that we get a search result that matches the exact query.
+    """
+    assert lemma.is_lemma
+    query = lemma.text
+
+    matched_language, search_results = Inflection.search(query)
+
+    assert matched_language == "crk", "We should have gotten results for Cree"
+
+    exact_matches = [
+        result for result in search_results if result.wordform == lemma.text
+    ]
+    assert len(exact_matches) >= 1
+
+    # Let's look at that search result in more detail
+    result = exact_matches[0]
+    assert result.wordform == lemma.text
+    assert result.is_lemma
+    assert result.lemma == lemma.text
+    assert not result.preverbs
+    assert not result.reduplication_tags
+    assert not result.initial_change_tags
