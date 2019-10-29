@@ -1,17 +1,15 @@
 import pytest
-from hypothesis import given, assume
+from hypothesis import assume, given
 from hypothesis.strategies import from_regex
 
+from API.models import Inflection
+from constants import LC
 from DatabaseManager.__main__ import cmd_entry
-
+from DatabaseManager.xml_importer import import_xmls
 # don not remove theses lines. Stuff gets undefined
 # noinspection PyUnresolvedReferences
-from tests.conftest import one_hundredth_xml_dir, topmost_datadir
-from API.models import Inflection
-from DatabaseManager.xml_importer import import_xmls
-from constants import LC
-from tests.conftest import random_inflections, random_lemmas
-
+from tests.conftest import (one_hundredth_xml_dir, random_inflections,
+                            random_lemmas, topmost_datadir)
 from utils import fst_analysis_parser
 
 
@@ -75,3 +73,16 @@ def test_search_for_exact_lemma(lemma: Inflection):
     assert not result.preverbs
     assert not result.reduplication_tags
     assert not result.initial_change_tags
+
+
+@pytest.mark.skip(reason="The test DB does not contain matching English content :/")
+@pytest.mark.django_db
+def test_search_for_english() -> None:
+    """
+    Search for a word that is definitely in English.
+    """
+
+    # This should match "âcimowin" and related words:
+    matched_language, search_results = Inflection.search("story")
+
+    assert matched_language == "en"
