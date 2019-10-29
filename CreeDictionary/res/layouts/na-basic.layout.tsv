@@ -1,9 +1,0 @@
-"Singular"	=N+A+Sg
-"Plural"	=N+A+Pl
-"Obviative"	=N+A+Obv
-"Locative"	=N+A+Loc
-"Distributive"	=N+A+Distr
-	: "POSSESSION"
-"1s poss (sg)"	=N+A+Px1Sg+Sg
-"2s poss (sg)"	=N+A+Px2Sg+Sg
-"3s poss (obv)"	=N+A+Px3Sg+Obv

@@ -1,0 +1,34 @@
+#!/usr/bin/env python
+"""
+Pull layout AND paradigm files from itwewina and place them correctly
+https://github.com/UAlbertaALTLab/itwewina/tree/development/neahtta/configs/language_specific_rules/paradigms/crk
+"""
+import subprocess
+import sys
+from glob import glob
+from os import chdir, getcwd
+from shutil import move
+from tempfile import TemporaryDirectory
+
+from utils import shared_res_dir
+
+with TemporaryDirectory() as temp_dir:
+    wd = getcwd()
+    chdir(temp_dir)
+    subprocess.run(
+        [
+            "gitdir",
+            "--flatten",
+            "https://github.com/UAlbertaALTLab/itwewina/tree/development/neahtta/configs/language_specific_rules/paradigms/crk",
+        ],
+        stderr=sys.stderr,
+        stdout=sys.stdout,
+    )
+    layouts = glob("*.layout")
+    paradigms = glob("*.paradigm")
+    for layout in layouts:
+        move(layout, str(shared_res_dir / "layouts"))
+    for paradigm in paradigms:
+        move(paradigm, str(shared_res_dir / "paradigms"))
+
+chdir(wd)
