@@ -9,9 +9,9 @@ from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import F, Max, Q, QuerySet
 
-from constants import LC
+from constants import LC, LexicalCategory
 from fuzzy_search import CreeFuzzySearcher
-from shared import descriptive_analyzer_foma
+from shared import descriptive_analyzer_foma, normative_generator
 from utils import fst_analysis_parser
 
 logger = logging.getLogger(__name__)
@@ -26,7 +26,7 @@ class SearchResult:
     # the text of the matche
     wordform = attrib(type=str)
 
-    part_of_speech = attrib(type=str)
+    part_of_speech = attrib(type=LexicalCategory)
 
     # Is this the lemma?
     is_lemma = attrib(type=bool)
@@ -127,6 +127,10 @@ class Inflection(models.Model):
 
     def __str__(self):
         return self.text
+
+    def __repr__(self):
+        clsname = type(self).__name__
+        return f"<{clsname}: {self.text} {self.analysis}>"
 
     def is_non_default_spelling(self) -> bool:
         return self.default_spelling != self
@@ -274,17 +278,16 @@ class Inflection(models.Model):
 
         results: List[SearchResult] = []
 
-        for analysis, lemmas in cree_results.items():
-            if len(lemmas) != 1:
-                logger.warning(
-                    "Do not know how to deal with result: (%r) %r %r",
-                    user_query,
-                    analysis,
-                    lemmas,
-                )
-                continue
+        # What lemmas have we in the returned results?
+        lemmas_seen: Set[str] = set()
+        # What lemmas do we NEED to return in the search results?
+        lemmas_required: Set[str] = set()
+        # Post-condition: lemmas_required ⊆ lemmas_seen
 
-            wordform, = lemmas
+        def add_lemma_to_results(wordform: Inflection):
+            """
+            Adds a DEFINITE lemma to the search results.
+            """
             assert wordform.is_lemma
             results.append(
                 SearchResult(
@@ -297,7 +300,56 @@ class Inflection(models.Model):
                     initial_change_tags=(),
                 )
             )
+            lemmas_seen.add(wordform.text)
 
+        def add_result_from_analysis(analysis: str):
+            """
+            We don't actually HAVE the lemma, so synthesize it from the
+            analysis.
+            """
+            result = fst_analysis_parser.extract_lemma_and_category(analysis)
+            assert (
+                result is not None
+            ), f"Could not parse lemma and category from {analysis}"
+            lemma, pos = result
+            normatized_forms: List[Tuple[str]] = normative_generator.feed(analysis)
+            wordform: str = min(normatized_forms, key=len)[0]
+
+            if wordform == lemma:
+                raise NotImplementedError
+
+            results.append(
+                SearchResult(
+                    wordform=wordform,
+                    part_of_speech=pos,
+                    is_lemma=False,
+                    lemma=lemma,
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                )
+            )
+
+            lemmas_required.add(lemma)
+
+        for analysis, lemmas in cree_results.items():
+            assert all(wf.is_lemma for wf in lemmas)
+
+            if len(lemmas) == 0:
+                # ¯\_(ツ)_/¯
+                add_result_from_analysis(analysis)
+                continue
+
+            for lemma in lemmas:
+                if analysis == lemma.analysis:
+                    add_lemma_to_results(lemma)
+                else:
+                    add_result_from_analysis(analysis)
+
+        if not (lemmas_required <= lemmas_seen):
+            logger.warning(
+                "expected to see %r but only got %r", lemmas_required, lemmas_seen
+            )
         return "crk", results
 
 
