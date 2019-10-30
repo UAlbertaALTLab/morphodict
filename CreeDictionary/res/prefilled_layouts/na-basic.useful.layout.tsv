@@ -1,9 +1,0 @@
-"Singular"	{{ lemma }}+N+A+Sg
-"Plural"	{{ lemma }}+N+A+Pl
-"Obviative"	{{ lemma }}+N+A+Obv
-"Locative"	{{ lemma }}+N+A+Loc
-"Distributive"	{{ lemma }}+N+A+Distr
-	: "POSSESSION"
-"1s poss (sg)"	{{ lemma }}+N+A+Px1Sg+Sg
-"2s poss (sg)"	{{ lemma }}+N+A+Px2Sg+Sg
-"3s poss (obv)"	{{ lemma }}+N+A+Px3Sg+Obv

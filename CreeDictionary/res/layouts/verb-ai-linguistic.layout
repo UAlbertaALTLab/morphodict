@@ -1,0 +1,87 @@
+name: "Animate intransitive verb full (linguistic) paradigm"
+paradigm: "verb-ai.paradigm"
+layout:
+  type: "linguistic"
+tooltips:
+  eng:
+    "1s": "1st person singular actor"
+    "2s": "2nd person singular actor"
+    "3s": "3rd person singular actor"
+    "1p": "1st person plural exclusive actor"
+    "21": "1st person plural inclusive actor"
+    "2p": "2nd person plural actor"
+    "3p": "3rd person plural actor"
+    "4": "3rd person obviative actor"
+    "X": "Unspecified actor"
+--
+|      | "PRESENT TENSE"            |                           |
+|      | : "Independent"            | : "Conjunct"              |
+| "1s" | Ind+Prs+1Sg                | PV/e+*+Cnj+Prs+1Sg        |
+| "2s" | Ind+Prs+2Sg                | PV/e+*+Cnj+Prs+2Sg        |
+| "3s" | Ind+Prs+3Sg                | PV/e+*+Cnj+Prs+3Sg        |
+| "1p" | Ind+Prs+1Pl                | PV/e+*+Cnj+Prs+1Pl        |
+| "21" | Ind+Prs+12Pl               | PV/e+*+Cnj+Prs+12Pl       |
+| "2p" | Ind+Prs+2Pl                | PV/e+*+Cnj+Prs+2Pl        |
+| "3p" | Ind+Prs+3Pl                | PV/e+*+Cnj+Prs+3Pl        |
+| "4"  | Ind+Prs+4Sg/Pl             | PV/e+*+Cnj+Prs+4Sg/Pl     |
+| "X"  | Ind+Prs+X                  | PV/e+*+Cnj+Prs+X          |
+|      |                            |                           |
+|      | "PAST TENSE"               |                           |
+|      | : "Independent"            | : "Conjunct"              |
+| "1s" | Ind+Prt+1Sg                | PV/e+*+Cnj+Prt+1Sg        |
+| "2s" | Ind+Prt+2Sg                | PV/e+*+Cnj+Prt+2Sg        |
+| "3s" | Ind+Prt+3Sg                | PV/e+*+Cnj+Prt+3Sg        |
+| "1p" | Ind+Prt+1Pl                | PV/e+*+Cnj+Prt+1Pl        |
+| "21" | Ind+Prt+12Pl               | PV/e+*+Cnj+Prt+12Pl       |
+| "2p" | Ind+Prt+2Pl                | PV/e+*+Cnj+Prt+2Pl        |
+| "3p" | Ind+Prt+3Pl                | PV/e+*+Cnj+Prt+3Pl        |
+| "4"  | Ind+Prt+4Sg/Pl             | PV/e+*+Cnj+Prt+4Sg/Pl     |
+|      |                            |                           |
+|      | "FUTURE INTENTIONAL TENSE" |                           |
+|      | : "Independent"            | : "Conjunct"              |
+| "1s" | Ind+Fut+Int+1Sg            | PV/e+*+Cnj+Fut+Int+1Sg    |
+| "2s" | Ind+Fut+Int+2Sg            | PV/e+*+Cnj+Fut+Int+2Sg    |
+| "3s" | Ind+Fut+Int+3Sg            | PV/e+*+Cnj+Fut+Int+3Sg    |
+| "1p" | Ind+Fut+Int+1Pl            | PV/e+*+Cnj+Fut+Int+1Pl    |
+| "21" | Ind+Fut+Int+12Pl           | PV/e+*+Cnj+Fut+Int+12Pl   |
+| "2p" | Ind+Fut+Int+2Pl            | PV/e+*+Cnj+Fut+Int+2Pl    |
+| "3p" | Ind+Fut+Int+3Pl            | PV/e+*+Cnj+Fut+Int+3Pl    |
+| "4"  | Ind+Fut+Int+4Sg/Pl         | PV/e+*+Cnj+Fut+Int+4Sg/Pl |
+|      |                            |                           |
+|      | "FUTURE DEFINITE TENSE"    |                           |
+|      | : "Independent"            |                           |
+| "1s" | Ind+Fut+Def+1Sg            |                           |
+| "2s" | Ind+Fut+Def+2Sg            |                           |
+| "3s" | Ind+Fut+Def+3Sg            |                           |
+| "1p" | Ind+Fut+Def+1Pl            |                           |
+| "21" | Ind+Fut+Def+12P            |                           |
+| "2p" | Ind+Fut+Def+2Pl            |                           |
+| "3p" | Ind+Fut+Def+3Pl            |                           |
+| "4"  | Ind+Fut+Def+4Sg/Pl         |                           |
+|      |                            |                           |
+|      | "FUTURE/INFINITIVE"        |                           |
+|      | : "Conjunct: ka-"          | : "Conjunct: ta-"         |
+| "1s" | PV/ka+*+Cnj+Prs+1Sg        | PV/ta+*+Cnj+Prs+1Sg       |
+| "2s" | PV/ka+*+Cnj+Prs+2Sg        | PV/ta+*+Cnj+Prs+2Sg       |
+| "3s" | PV/ka+*+Cnj+Prs+3Sg        | PV/ta+*+Cnj+Prs+3Sg       |
+| "1p" | PV/ka+*+Cnj+Prs+1Pl        | PV/ta+*+Cnj+Prs+1Pl       |
+| "21" | PV/ka+*+Cnj+Prs+12Pl       | PV/ta+*+Cnj+Prs+12Pl      |
+| "2p" | PV/ka+*+Cnj+Prs+2Pl        | PV/ta+*+Cnj+Prs+2Pl       |
+| "3p" | PV/ka+*+Cnj+Prs+3Pl        | PV/ta+*+Cnj+Prs+3Pl       |
+| "4"  | PV/ka+*+Cnj+Prs+4Sg/Pl     | PV/ta+*+Cnj+Prs+4Sg/Pl    |
+|      |                            |                           |
+|      | "FUTURE CONDITIONAL"       |                           |
+| "1s" | Fut+Cond+1Sg               |                           |
+| "2s" | Fut+Cond+2Sg               |                           |
+| "3s" | Fut+Cond+3Sg               |                           |
+| "1p" | Fut+Cond+1Pl               |                           |
+| "21" | Fut+Cond+12Pl              |                           |
+| "2p" | Fut+Cond+2Pl               |                           |
+| "3p" | Fut+Cond+3Pl               |                           |
+| "4"  | Fut+Cond+4Sg/Pl            |                           |
+|      |                            |                           |
+|      | "IMPERATIVE"               |                           |
+|      | : "Immediate"              | : "Delayed"               |
+| "2s" | Imp+Imm+2Sg                | Imp+Del+2Sg               |
+| "21" | Imp+Imm+12Pl               | Imp+Del+12Pl              |
+| "2p" | Imp+Imm+2Pl                | Imp+Del+2Pl               |

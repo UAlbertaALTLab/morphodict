@@ -4,7 +4,7 @@ from django.shortcuts import render
 from API.models import Inflection
 from CreeDictionary.forms import WordSearchForm
 from constants import LC, ParadigmSize
-from utils import paradigm_filler
+from shared import paradigm_filler
 
 
 def index(request, query_string=None, lemma_id=None):
@@ -37,6 +37,7 @@ def search_results(request, query_string: str):
     return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 
+# todo: allow different paradigm size
 def lemma_details(request, lemma_id: int):
     """
     render paradigm table for a lemma
@@ -47,10 +48,15 @@ def lemma_details(request, lemma_id: int):
         table = paradigm_filler.fill_paradigm(
             lemma.text, LC(lemma.lc), ParadigmSize.BASIC
         )
-
     else:
         table = []
 
     return render(
-        request, "CreeDictionary/paradigm.html", {"lemma": lemma, "table": table}
+        request,
+        "CreeDictionary/paradigm.html",
+        {
+            "lemma": lemma,
+            "paradigm_size": ParadigmSize.BASIC.display_form,
+            "table": table,
+        },
     )

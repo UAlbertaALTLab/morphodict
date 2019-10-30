@@ -1,0 +1,38 @@
+name: "Animate dependent noun full (linguistic) paradigm"
+paradigm: "noun-nad.paradigm"
+layout:
+  type: "linguistic"
+tooltips:
+  eng:
+    "1s": "1st person singular possessor"
+    "2s": "2nd person singular possessor"
+    "3s": "3rd person singular possessor"
+    "1p": "1st person plural exclusive possessor"
+    "21": "1st person plural inclusive possessor"
+    "2p": "2nd person plural possessor"
+    "3p": "3rd person plural possessor"
+    "4": "obviative possessor"
+    "X": "unspecified possessor"
+--
+|      | : "Singular Noun"       | : "Plural Noun"         | : "Obviative"              | : "Locative"               |
+| "X"  | =N+A+D+PxX+Sg           | =N+A+D+PxX+Pl           | =N+A+D+PxX+Obv             | =N+A+D+PxX+Loc             |
+| "1s" | =N+A+D+Px1Sg+Sg         | =N+A+D+Px1Sg+Pl         | =N+A+D+Px1Sg+Obv           | =N+A+D+Px1Sg+Loc           |
+| "2s" | =N+A+D+Px2Sg+Sg         | =N+A+D+Px2Sg+Pl         | =N+A+D+Px2Sg+Obv           | =N+A+D+Px2Sg+Loc           |
+| "3s" |                         |                         | =N+A+D+Px3Sg+Obv           | =N+A+D+Px3Sg+Loc           |
+| "1p" | =N+A+D+Px1Pl+Sg         | =N+A+D+Px1Pl+Pl         | =N+A+D+Px1Pl+Obv           | =N+A+D+Px1Pl+Loc           |
+| "21" | =N+A+D+Px12Pl+Sg        | =N+A+D+Px12Pl+Pl        | =N+A+D+Px12Pl+Obv          | =N+A+D+Px12Pl+Loc          |
+| "2p" | =N+A+D+Px2Pl+Sg         | =N+A+D+Px2Pl+Pl         | =N+A+D+Px2Pl+Obv           | =N+A+D+Px2Pl+Loc           |
+| "3p" |                         |                         | =N+A+D+Px3Pl+Obv           | =N+A+D+Px3Pl+Loc           |
+| "4"  |                         |                         | =N+A+D+Px4Sg/Pl+Obv        | =N+A+D+Px4Sg/Pl+Loc        |
+|      |                         |                         |                            |                            |
+|      | "DIMINUTIVE"            |                         |                            |                            |
+|      | : "Singular Noun"       | : "Plural Noun"         | :"Obviative"               | : "Locative"               |
+| "X"  | Der/Dim+N+A+D+PxX+Sg    | Der/Dim+N+A+D+PxX+Pl    | Der/Dim+N+A+D+PxX+Obv      | Der/Dim+N+A+D+PxX+Loc      |
+| "1s" | Der/Dim+N+A+D+Px1Sg+Sg  | Der/Dim+N+A+D+Px1Sg+Pl  | Der/Dim+N+A+D+Px1Sg+Obv    | Der/Dim+N+A+D+Px1Sg+Loc    |
+| "2s" | Der/Dim+N+A+D+Px2Sg+Sg  | Der/Dim+N+A+D+Px2Sg+Pl  | Der/Dim+N+A+D+Px2Sg+Obv    | Der/Dim+N+A+D+Px2Sg+Loc    |
+| "3s" |                         |                         | Der/Dim+N+A+D+Px3Sg+Obv    | Der/Dim+N+A+D+Px3Sg+Loc    |
+| "1p" | Der/Dim+N+A+D+Px1Pl+Sg  | Der/Dim+N+A+D+Px1Pl+Pl  | Der/Dim+N+A+D+Px1Pl+Obv    | Der/Dim+N+A+D+Px1Pl+Loc    |
+| "21" | Der/Dim+N+A+D+Px12Pl+Sg | Der/Dim+N+A+D+Px12Pl+Pl | Der/Dim+N+A+D+Px12Pl+Obv   | Der/Dim+N+A+D+Px12Pl+Loc   |
+| "2p" | Der/Dim+N+A+D+Px2Pl+Sg  | Der/Dim+N+A+D+Px2Pl+Pl  | Der/Dim+N+A+D+Px2Pl+Obv    | Der/Dim+N+A+D+Px2Pl+Loc    |
+| "3p" |                         |                         | Der/Dim+N+A+D+Px3Pl+Obv    | Der/Dim+N+A+D+Px3Pl+Loc    |
+| "4"  |                         |                         | Der/Dim+N+A+D+Px4Sg/Pl+Obv | Der/Dim+N+A+D+Px4Sg/Pl+Loc |

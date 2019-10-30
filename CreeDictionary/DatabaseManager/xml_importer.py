@@ -1,5 +1,6 @@
 import datetime
 import os
+from os import PathLike
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -13,7 +14,6 @@ from django.db import connection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from constants import PathLike
 from utils.crkeng_xml_utils import extract_l_str, convert_lc_str
 
 init()  # for windows compatibility

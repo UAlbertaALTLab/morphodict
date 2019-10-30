@@ -1,0 +1,77 @@
+name: "Inanimate dependent noun paradigm (NID)"
+morphology:
+  pos: N
+  noun_animacy: I
+  dependency: D
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "NDI-1"
+    - "NDI-2"
+    - "NDI-3"
+    - "NDI-4"
+    - "NDI-?"
+    - "NDI-x"
+--
+{{ lemma }}+N+I+D+PxX+Sg
+{{ lemma }}+N+I+D+PxX+Pl
+{{ lemma }}+N+I+D+PxX+Loc
+
+{{ lemma }}+N+I+D+Px1Sg+Sg
+{{ lemma }}+N+I+D+Px2Sg+Sg
+{{ lemma }}+N+I+D+Px1Pl+Sg
+{{ lemma }}+N+I+D+Px12Pl+Sg
+{{ lemma }}+N+I+D+Px2Pl+Sg
+{{ lemma }}+N+I+D+Px3Sg+Sg
+{{ lemma }}+N+I+D+Px3Pl+Sg
+{{ lemma }}+N+I+D+Px4Sg/Pl+Sg
+
+{{ lemma }}+N+I+D+Px1Sg+Pl
+{{ lemma }}+N+I+D+Px2Sg+Pl
+{{ lemma }}+N+I+D+Px1Pl+Pl
+{{ lemma }}+N+I+D+Px12Pl+Pl
+{{ lemma }}+N+I+D+Px2Pl+Pl
+{{ lemma }}+N+I+D+Px3Sg+Pl
+{{ lemma }}+N+I+D+Px3Pl+Pl
+{{ lemma }}+N+I+D+Px4Sg/Pl+Pl
+
+{{ lemma }}+N+I+D+Px1Sg+Loc
+{{ lemma }}+N+I+D+Px2Sg+Loc
+{{ lemma }}+N+I+D+Px1Pl+Loc
+{{ lemma }}+N+I+D+Px12Pl+Loc
+{{ lemma }}+N+I+D+Px2Pl+Loc
+{{ lemma }}+N+I+D+Px3Sg+Loc
+{{ lemma }}+N+I+D+Px3Pl+Loc
+{{ lemma }}+N+I+D+Px4Sg/Pl+Loc
+
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Loc
+
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Sg
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Sg
+
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Pl
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Pl
+
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Loc
+{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Loc
