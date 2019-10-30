@@ -16,6 +16,7 @@ codecov = "*"
 snakeviz = "~=2.0"
 paramiko = "~=2.6"
 pysnooper = "*"
+isort = "*"
 
 [packages]
 colorama = "~=0.4"
