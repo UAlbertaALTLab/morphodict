@@ -15,7 +15,7 @@ from constants import LC, ParadigmSize, Table
 
 
 def import_prefilled_layouts(
-        layout_file_dir: Path
+    layout_file_dir: Path
 ) -> Dict[Tuple[LC, ParadigmSize], Table]:
     layout_tables = dict()
     files = glob.glob(str(layout_file_dir / "*.tsv"))
@@ -35,7 +35,7 @@ def import_prefilled_layouts(
 
 
 class ParadigmFiller:
-    _layout_tables: Dict[Tuple[LC, ParadigmSize], List[List[str]]]
+    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
 
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
@@ -58,33 +58,44 @@ class ParadigmFiller:
         )
 
     def fill_paradigm(
-            self, lemma: str, category: LC, paradigm_size: ParadigmSize
-    ) -> List[List[str]]:
+        self, lemma: str, category: LC, paradigm_size: ParadigmSize
+    ) -> List[Table]:
         """
         returns a paradigm table filled with words
 
-        :returns: filled paradigm table
+        :returns: filled paradigm tables
         """
         lookup_strings: List[str] = []
-        string_locations: List[Tuple[int, int]] = []
+        string_locations: List[Tuple[int, int, int]] = []
 
         if category is LC.IPC or category is LC.Pron:
             return []
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])
 
-        for rowInd, row in enumerate(layout_table):
-            for colInd, cell in enumerate(row):
-                if '"' not in cell and cell != "":  # it's a inflection form pattern
-                    lookup_strings.append(cell.replace("{{ lemma }}", lemma))
-                    string_locations.append((rowInd, colInd))
+        tables: List[Table] = [[]]
+
+        table_index = 0
+        row_index = 0
+        for row in layout_table:
+            if not any(row):
+                tables.append([])
+                table_index += 1
+                row_index = 0
+            else:
+                tables[-1].append(row.copy())
+                for colInd, cell in enumerate(row):
+                    if '"' not in cell and cell != "":  # it's a inflection form pattern
+                        lookup_strings.append(cell.replace("{{ lemma }}", lemma))
+                        string_locations.append((table_index, row_index, colInd))
+                row_index += 1
 
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
         for i, locations in enumerate(string_locations):
-            row_ind, col_ind = locations
-            layout_table[row_ind][col_ind] = " / ".join(
+            table_index, row_ind, col_ind = locations
+            tables[table_index][row_ind][col_ind] = " / ".join(
                 sorted(results[lookup_strings[i]])
             )
 
-        return layout_table
+        return tables

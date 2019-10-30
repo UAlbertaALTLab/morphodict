@@ -29,27 +29,36 @@ def test_import_prefilled_layouts():
     "lemma,  inflection_category, paradigm_size, expected_table",
     [
         (
-                "niska",
-                LC.NA,
-                ParadigmSize.FULL,
+            "niska",
+            LC.NA,
+            ParadigmSize.FULL,
+            [
                 [
                     ['"One"', "niska", "", "", ""],
                     ['"Many"', "niskak", "", "", ""],
                     ['"Further"', "niska", "", "", ""],
                     ['"In/On"', "niskihk", "", "", ""],
                     ['"Among"', "niskinâhk", "", "", ""],
-                    ["", "", "", "", ""],
+                ],
+                [
                     ["", '"Smaller/Lesser/Younger"', "", "", ""],
                     ['"One"', "niskis / niskisis", "", "", ""],
                     ['"Many"', "niskisak / niskisisak", "", "", ""],
                     ['"Further"', "niskisa / niskisisa", "", "", ""],
                     ['"In/On"', "niskisihk / niskisisihk", "", "", ""],
                     ['"Among"', "niskisinâhk / niskisisinâhk", "", "", ""],
-                    ["", "", "", "", ""],
+                ],
+                [
                     ["", '"Ownership"', "", "", ""],
                     ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
                     ['"my"', "niniskim", "niniskimak", "niniskima", "niniskimihk"],
-                    ['"your (one)"', "kiniskim", "kiniskimak", "kiniskima", "kiniskimihk"],
+                    [
+                        '"your (one)"',
+                        "kiniskim",
+                        "kiniskimak",
+                        "kiniskima",
+                        "kiniskimihk",
+                    ],
                     ['"his/her"', "", "", "oniskima", "oniskimihk"],
                     [
                         '"our"',
@@ -73,8 +82,15 @@ def test_import_prefilled_layouts():
                         "kiniskimiwâhk",
                     ],
                     ['"their"', "", "", "oniskimiwâwa", "oniskimiwâhk"],
-                    ['"his/her/their (further)"', "", "", "oniskimiyiwa", "oniskimiyihk"],
-                    ["", "", "", "", ""],
+                    [
+                        '"his/her/their (further)"',
+                        "",
+                        "",
+                        "oniskimiyiwa",
+                        "oniskimiyihk",
+                    ],
+                ],
+                [
                     ["", '"Smaller/Lesser/Younger"', "", "", ""],
                     ["", '"Ownership"', "", "", ""],
                     ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
@@ -135,11 +151,12 @@ def test_import_prefilled_layouts():
                         "oniskimisisiyihk / oniskimisiyihk",
                     ],
                 ],
+            ],
         )
     ],
 )
 def test_fill_NA_Full(lemma, inflection_category, paradigm_size, expected_table):
     assert (
-            paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
-            == expected_table
+        paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
+        == expected_table
     )
