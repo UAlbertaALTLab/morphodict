@@ -52,6 +52,16 @@ class SearchResult:
         return not self.is_lemma
 
 
+class EntryKey(NamedTuple):
+    """
+    A wordform, its matched lemma, and the lexical category.
+    """
+
+    wordform: str
+    lemma: str
+    lc: LexicalCategory
+
+
 class CreeAndEnglish(NamedTuple):
     """
     Duct tapes together two kinds of search results:
@@ -276,80 +286,43 @@ class Inflection(models.Model):
                 "I don't know how to deal with English search results"
             )
 
+        matched_wordforms: Set[EntryKey] = set()
+
+        # First, let's add all matched analyses:
+        for analysis in cree_results.keys():
+            for entry in determine_entries_from_analysis(analysis):
+                matched_wordforms.add(entry)
+
         results: List[SearchResult] = []
 
-        # What lemmas have we in the returned results?
-        lemmas_seen: Set[str] = set()
-        # What lemmas do we NEED to return in the search results?
-        lemmas_required: Set[str] = set()
-        # Post-condition: lemmas_required ⊆ lemmas_seen
-
-        def add_lemma_to_results(wordform: Inflection):
-            """
-            Adds a DEFINITE lemma to the search results.
-            """
-            assert wordform.is_lemma
-            results.append(
-                SearchResult(
-                    wordform=wordform.text,
-                    part_of_speech=wordform.lc,
-                    is_lemma=True,
-                    lemma=wordform.text,
-                    preverbs=(),
-                    reduplication_tags=(),
-                    initial_change_tags=(),
+        # Create the search results
+        for entry in matched_wordforms:
+            try:
+                lemma = Inflection.objects.get(text=entry.lemma, is_lemma=True)
+            except Inflection.DoesNotExist:
+                logging.warning(
+                    "Could not find matching inflection for %r "
+                    "searched from %r (results: %r)",
+                    entry,
+                    user_query,
+                    cree_results,
                 )
-            )
-            lemmas_seen.add(wordform.text)
-
-        def add_result_from_analysis(analysis: str):
-            """
-            We don't actually HAVE the lemma, so synthesize it from the
-            analysis.
-            """
-            result = fst_analysis_parser.extract_lemma_and_category(analysis)
-            assert (
-                result is not None
-            ), f"Could not parse lemma and category from {analysis}"
-            lemma, pos = result
-            normatized_forms: List[Tuple[str]] = normative_generator.feed(analysis)
-            wordform: str = min(normatized_forms, key=len)[0]
-
-            if wordform == lemma:
-                raise NotImplementedError
-
-            results.append(
-                SearchResult(
-                    wordform=wordform,
-                    part_of_speech=pos,
-                    is_lemma=False,
-                    lemma=lemma,
-                    preverbs=(),
-                    reduplication_tags=(),
-                    initial_change_tags=(),
-                )
-            )
-
-            lemmas_required.add(lemma)
-
-        for analysis, lemmas in cree_results.items():
-            assert all(wf.is_lemma for wf in lemmas)
-
-            if len(lemmas) == 0:
-                # ¯\_(ツ)_/¯
-                add_result_from_analysis(analysis)
                 continue
 
-            for lemma in lemmas:
-                if analysis == lemma.analysis:
-                    add_lemma_to_results(lemma)
-                else:
-                    add_result_from_analysis(analysis)
-
-        if not (lemmas_required <= lemmas_seen):
-            logger.warning(
-                "expected to see %r but only got %r", lemmas_required, lemmas_seen
+            results.append(
+                SearchResult(
+                    wordform=entry.wordform,
+                    part_of_speech=lemma.lc,
+                    is_lemma=entry.wordform == lemma.text,
+                    lemma=lemma.text,
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                )
             )
+
+        # TODO: sort them!
+
         return "crk", results
 
 
@@ -379,3 +352,18 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
+
+
+################################## Helpers ##################################
+
+
+def determine_entries_from_analysis(analysis: str):
+    """
+    Given a analysis, returns an entry.
+    """
+    result = fst_analysis_parser.extract_lemma_and_category(analysis)
+    assert result is not None, f"Could not parse lemma and category from {analysis}"
+    lemma, pos = result
+    normatized_forms: List[Tuple[str]] = normative_generator.feed(analysis)
+    for (wordform,) in normatized_forms:
+        yield EntryKey(wordform, lemma, pos)
