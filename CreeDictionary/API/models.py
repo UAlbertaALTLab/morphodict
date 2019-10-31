@@ -338,6 +338,49 @@ class Inflection(models.Model):
         return "crk", results
 
 
+class DictionarySource(models.Model):
+    """
+    Represents bibliographic information for a set of definitions.
+
+    A Definition is said to cite a DictionarySource.
+    """
+
+    # A short, unique, uppercased ID. This will be exposed to users!
+    #  e.g., CW for "Cree: Words"
+    #     or MD for "Maskwacîs Dictionary"
+    abbrv = models.CharField(max_length=8, primary_key=True)
+
+    # Bibliographic information:
+    title = models.CharField(
+        max_length=256,
+        null=False,
+        blank=False,
+        help_text="What is the primary title of the dictionary source?",
+    )
+    author = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text="Separate multiple authors with commas. See also: editor",
+    )
+    editor = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text=(
+            "Who edited or compiled this volume? "
+            "Separate multiple editors with commas."
+        ),
+    )
+    year = models.IntegerField(
+        null=True, help_text="What year was this dictionary published?"
+    )
+    publisher = models.CharField(
+        max_length=128, blank=True, help_text="What was the publisher?"
+    )
+    city = models.CharField(
+        max_length=64, blank=True, help_text="What is the city of the publisher?"
+    )
+
+
 class Definition(models.Model):
     # override pk to allow use of bulk_create
     id = models.PositiveIntegerField(primary_key=True)
