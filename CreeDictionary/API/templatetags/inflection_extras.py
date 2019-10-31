@@ -1,3 +1,4 @@
+import logging
 from typing import Optional
 
 from django import template
@@ -21,7 +22,7 @@ def presentational_pos(inflection: Inflection):
         elif inflection.pos == "V":
             return "Verb"
         elif inflection.pos == "IPC":
-            return "Ipc"
+            return "Particle"
         elif inflection.pos == "PRON":
             return "Pronoun"
         elif inflection.pos == "IPV":
@@ -42,6 +43,7 @@ def presentational_pos(inflection: Inflection):
         elif lc is LC.Pron:
             return "Pronoun"
 
-    raise ValueError(
+    logging.error(
         f"can not determine presentational pos for {inflection}, id={inflection.id}"
     )
+    return ""

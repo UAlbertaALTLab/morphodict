@@ -1,20 +1,78 @@
+import logging
 import unicodedata
 from collections import defaultdict
-from enum import Enum, auto
-from typing import Optional, Set, List, Tuple, Dict
+from typing import Dict, List, NamedTuple, Set, Tuple
 from urllib.parse import unquote
-from pathlib import Path
 
+from attr import attrib, attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
-from django.db.models import QuerySet, Max, Q, F
+from django.db.models import F, Max, Q, QuerySet
 
-from constants import LC
+from constants import LC, LexicalCategory
 from fuzzy_search import CreeFuzzySearcher
-from shared import descriptive_analyzer_foma
+from shared import descriptive_analyzer_foma, normative_generator
 from utils import fst_analysis_parser
 
-import logging
+logger = logging.getLogger(__name__)
+
+
+@attrs
+class SearchResult:
+    """
+    TODO: search result
+    """
+
+    # the text of the matche
+    wordform = attrib(type=str)
+
+    part_of_speech = attrib(type=LexicalCategory)
+
+    # Is this the lemma?
+    is_lemma = attrib(type=bool)
+
+    # The text of the matched lemma
+    lemma = attrib(type=str)
+
+    # Sequence of all preverb tags, in order
+    preverbs = attrib(type=tuple)  # tuple of strs
+
+    # TODO: there are things to be figured out for this :/
+    # Sequence of all reduplication tags present, in order
+    reduplication_tags = attrib(type=tuple)  # tuple of strs
+    # Sequence of all initial change tags
+    initial_change_tags = attrib(type=tuple)  # tuple of strs
+
+    @property
+    def is_inflection(self) -> bool:
+        """
+        Is this an inflected form? That is, is this a wordform that is NOT the
+        lemma?
+        """
+        return not self.is_lemma
+
+
+class EntryKey(NamedTuple):
+    """
+    A wordform, its matched lemma, and the lexical category.
+    """
+
+    wordform: str
+    lemma: str
+    lc: LexicalCategory
+
+
+class CreeAndEnglish(NamedTuple):
+    """
+    Duct tapes together two kinds of search results:
+
+     - cree results -- a dict of analyses to the LEMMAS that match that analysis!
+                    -- duplicate spellings are removed
+     - english results -- a list of lemmas that match
+    """
+
+    cree_results: Dict[str, List["Inflection"]]
+    english_results: List["Inflection"]
 
 
 class Inflection(models.Model):
@@ -72,13 +130,17 @@ class Inflection(models.Model):
     )
 
     class Meta:
-        # analysis is for faster user query (in function fetch_lemmas_by_user_query below)
+        # analysis is for faster user query (in function fetch_lemma_by_user_query below)
         # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
         # text index also benefits fast lemma matching
         indexes = [models.Index(fields=["analysis"]), models.Index(fields=["text"])]
 
     def __str__(self):
         return self.text
+
+    def __repr__(self):
+        clsname = type(self).__name__
+        return f"<{clsname}: {self.text} {self.analysis}>"
 
     def is_non_default_spelling(self) -> bool:
         return self.default_spelling != self
@@ -109,9 +171,7 @@ class Inflection(models.Model):
         super(Inflection, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(
-        user_query: str
-    ) -> Tuple[Dict[str, List["Inflection"]], List["Inflection"]]:
+    def fetch_lemma_by_user_query(user_query: str) -> CreeAndEnglish:
         """
         treat the user query as cree and:
 
@@ -130,6 +190,8 @@ class Inflection(models.Model):
         """
 
         # URL Decode
+        # TODO: why is this URL decode here? Shouldn't the user query already
+        # be decoded? 🤔🤔🤔
         user_query = unquote(user_query)
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
@@ -185,7 +247,7 @@ class Inflection(models.Model):
 
                 lemma_lc = fst_analysis_parser.extract_lemma_and_category(analysis)
                 if lemma_lc is None:
-                    logging.error(
+                    logger.error(
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
                     continue
@@ -209,7 +271,59 @@ class Inflection(models.Model):
                 )
             )
 
-        return lemmas_by_analysis, lemmas_by_english
+        return CreeAndEnglish(lemmas_by_analysis, lemmas_by_english)
+
+    @staticmethod
+    def search(user_query: str) -> Tuple[str, List[SearchResult]]:
+        """
+        Returns the matched language (as an ISO 639 code), and list of search
+        results.
+        """
+        cree_results, english_results = Inflection.fetch_lemma_by_user_query(user_query)
+
+        if len(cree_results) < len(english_results):
+            raise NotImplementedError(
+                "I don't know how to deal with English search results"
+            )
+
+        matched_wordforms: Set[EntryKey] = set()
+
+        # First, let's add all matched analyses:
+        for analysis in cree_results.keys():
+            for entry in determine_entries_from_analysis(analysis):
+                matched_wordforms.add(entry)
+
+        results: List[SearchResult] = []
+
+        # Create the search results
+        for entry in matched_wordforms:
+            try:
+                lemma = Inflection.objects.get(text=entry.lemma, is_lemma=True)
+            except Inflection.DoesNotExist:
+                logging.warning(
+                    "Could not find matching inflection for %r "
+                    "searched from %r (results: %r)",
+                    entry,
+                    user_query,
+                    cree_results,
+                )
+                continue
+
+            results.append(
+                SearchResult(
+                    wordform=entry.wordform,
+                    part_of_speech=lemma.lc,
+                    is_lemma=entry.wordform == lemma.text,
+                    lemma=lemma.text,
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                )
+            )
+
+        # TODO: sort them!
+
+        return "crk", results
 
 
 class Definition(models.Model):
@@ -238,3 +352,18 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
+
+
+################################## Helpers ##################################
+
+
+def determine_entries_from_analysis(analysis: str):
+    """
+    Given a analysis, returns an entry.
+    """
+    result = fst_analysis_parser.extract_lemma_and_category(analysis)
+    assert result is not None, f"Could not parse lemma and category from {analysis}"
+    lemma, pos = result
+    normatized_forms: List[Tuple[str]] = normative_generator.feed(analysis)
+    for (wordform,) in normatized_forms:
+        yield EntryKey(wordform, lemma, pos)

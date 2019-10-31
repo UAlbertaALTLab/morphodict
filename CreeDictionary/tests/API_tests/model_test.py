@@ -1,17 +1,15 @@
 import pytest
-from hypothesis import given, assume
+from hypothesis import assume, given
 from hypothesis.strategies import from_regex
 
+from API.models import Inflection
+from constants import LC
 from DatabaseManager.__main__ import cmd_entry
-
+from DatabaseManager.xml_importer import import_xmls
 # don not remove theses lines. Stuff gets undefined
 # noinspection PyUnresolvedReferences
-from tests.conftest import one_hundredth_xml_dir, topmost_datadir
-from API.models import Inflection
-from DatabaseManager.xml_importer import import_xmls
-from constants import LC
-from tests.conftest import random_inflections, random_lemmas
-
+from tests.conftest import (one_hundredth_xml_dir, random_inflections,
+                            random_lemmas, topmost_datadir)
 from utils import fst_analysis_parser
 
 
@@ -47,3 +45,76 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
 
     assert matched_lemma_count >= 1, f"Could not find {query!r} in the database"
     assert exact_match, f"No exact matches for {query!r} in {analysis_to_lemmas}"
+
+
+@pytest.mark.django_db
+@given(lemma=random_lemmas())
+def test_search_for_exact_lemma(lemma: Inflection):
+    """
+    Check that we get a search result that matches the exact query.
+    """
+
+    assert lemma.is_lemma
+    # XXX: there is something weird where a lemma is not a lemma...
+    # bug in the FST? bug in the dictionary? Either way, it's inconvenient.
+    lemma_from_analysis, _, _ = lemma.analysis.partition("+")
+    assert all(c == c.lower() for c in lemma_from_analysis)
+    assume(lemma.text == lemma_from_analysis)
+
+    query = lemma.text
+    matched_language, search_results = Inflection.search(query)
+
+    assert matched_language == "crk", "We should have gotten results for Cree"
+
+    exact_matches = [
+        result for result in search_results if result.wordform == lemma.text
+    ]
+    assert len(exact_matches) >= 1
+
+    # Let's look at that search result in more detail
+    result = exact_matches[0]
+    assert result.wordform == lemma.text
+    assert result.is_lemma
+    assert result.lemma == lemma.text
+    assert not result.preverbs
+    assert not result.reduplication_tags
+    assert not result.initial_change_tags
+
+
+@pytest.mark.skip(reason="The test DB does not contain matching English content :/")
+@pytest.mark.django_db
+def test_search_for_english() -> None:
+    """
+    Search for a word that is definitely in English.
+    """
+
+    # This should match "âcimowin" and related words:
+    matched_language, search_results = Inflection.search("story")
+
+    assert matched_language == "en"
+
+
+@pytest.mark.django_db
+def test_search_for_stored_non_lemma():
+    """
+    A "stored non-lemma" is a wordform in the database that is NOT a lemma.
+    """
+    # "S/he would tell us stories."
+    lemma = "âcimêw"
+    query = "ê-kî-âcimikoyâhk"
+    matched_language, search_results = Inflection.search(query)
+
+    assert matched_language == "crk", "We should have gotten results for Cree"
+    assert len(search_results) >= 1
+
+    exact_matches = [result for result in search_results if result.wordform == query]
+    assert len(exact_matches) >= 1
+
+    # Let's look at that search result in more detail
+    result = exact_matches[0]
+    assert result.wordform == query
+    assert not result.is_lemma
+    assert result.lemma == lemma
+    assert not result.preverbs
+    assert not result.reduplication_tags
+    assert not result.initial_change_tags
