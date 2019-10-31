@@ -5,11 +5,6 @@ from typing import Set, Optional
 from constants import LC
 
 
-def get_xml_lemma_set(filename: Path) -> Set[str]:
-    elements = ET.parse(str(filename)).getroot().findall(".//e")
-    return {extract_l_str(element) for element in elements}
-
-
 def convert_lc_str(lc: str) -> Optional[LC]:
     """
     convert <lc> in xml to one of the recognizable LexicalCategory Enum. Or None if not recognizable

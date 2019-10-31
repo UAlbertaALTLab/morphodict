@@ -1,0 +1,24 @@
+	"Ownership"			
+	: "One"	: "Many"	: "Further"	: "In/On"
+'"someone''s"'	{{ lemma }}+N+A+D+PxX+Sg	{{ lemma }}+N+A+D+PxX+Pl	{{ lemma }}+N+A+D+PxX+Obv	{{ lemma }}+N+A+D+PxX+Loc
+"my"	{{ lemma }}+N+A+D+Px1Sg+Sg	{{ lemma }}+N+A+D+Px1Sg+Pl	{{ lemma }}+N+A+D+Px1Sg+Obv	{{ lemma }}+N+A+D+Px1Sg+Loc
+"your (one)"	{{ lemma }}+N+A+D+Px2Sg+Sg	{{ lemma }}+N+A+D+Px2Sg+Pl	{{ lemma }}+N+A+D+Px2Sg+Obv	{{ lemma }}+N+A+D+Px2Sg+Loc
+"his/her"			{{ lemma }}+N+A+D+Px3Sg+Obv	{{ lemma }}+N+A+D+Px3Sg+Loc
+"our"	{{ lemma }}+N+A+D+Px1Pl+Sg	{{ lemma }}+N+A+D+Px1Pl+Pl	{{ lemma }}+N+A+D+Px1Pl+Obv	{{ lemma }}+N+A+D+Px1Pl+Loc
+"your and our"	{{ lemma }}+N+A+D+Px12Pl+Sg	{{ lemma }}+N+A+D+Px12Pl+Pl	{{ lemma }}+N+A+D+Px12Pl+Obv	{{ lemma }}+N+A+D+Px12Pl+Loc
+"your (all)"	{{ lemma }}+N+A+D+Px2Pl+Sg	{{ lemma }}+N+A+D+Px2Pl+Pl	{{ lemma }}+N+A+D+Px2Pl+Obv	{{ lemma }}+N+A+D+Px2Pl+Loc
+"their"			{{ lemma }}+N+A+D+Px3Pl+Obv	{{ lemma }}+N+A+D+Px3Pl+Loc
+"his/her/their (further)"			{{ lemma }}+N+A+D+Px4Sg/Pl+Obv	{{ lemma }}+N+A+D+Px4Sg/Pl+Loc
+				
+	"Smaller/Lesser/Younger"			
+	"Ownership"			
+	: "One"	: "Many"	: "Further"	: "In/On"
+'"someone''s"'	{{ lemma }}+N+A+D+Der/Dim+N+A+D+PxX+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+PxX+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+PxX+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+PxX+Loc
+"my"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Sg+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Sg+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Sg+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Sg+Loc
+"your (one)"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Sg+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Sg+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Sg+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Sg+Loc
+"his/her"			{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px3Sg+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px3Sg+Loc
+"our"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Pl+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Pl+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Pl+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px1Pl+Loc
+"your and our"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px12Pl+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px12Pl+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px12Pl+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px12Pl+Loc
+"your (all)"	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Pl+Sg	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Pl+Pl	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Pl+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px2Pl+Loc
+"their"			{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px3Pl+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px3Pl+Loc
+"his/her/their (further)"			{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px4Sg/Pl+Obv	{{ lemma }}+N+A+D+Der/Dim+N+A+D+Px4Sg/Pl+Loc

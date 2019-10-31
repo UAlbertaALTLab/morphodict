@@ -2,16 +2,23 @@
 constants
 """
 from enum import Enum
-from pathlib import Path
-from typing import Union
+from typing import List
 
-PathLike = Union[str, Path]  # python 3.5 compatible
+Table = List[List[str]]
+""" a paradigm table"""
 
 
 class ParadigmSize(Enum):
     BASIC = "BASIC"
     FULL = "FULL"
-    EXTENDED = "EXTENDED"
+    LINGUISTIC = "LINGUISTIC"
+
+    @property
+    def display_form(self):
+        """
+        the form that we show to users on paradigm table
+        """
+        return self.value.capitalize()
 
 
 class LexicalCategory(Enum):
@@ -56,8 +63,8 @@ class LexicalCategory(Enum):
         """
         >>> LexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
         'vai-basic'
-        >>> LexicalCategory.NID.to_layout_table_name(ParadigmSize.EXTENDED)
-        'nid-extended'
+        >>> LexicalCategory.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
+        'nid-linguistic'
         """
 
         return self.value.lower() + "-" + paradigm_size.value.lower()

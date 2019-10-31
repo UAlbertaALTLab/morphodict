@@ -5,8 +5,9 @@ shared (expensive) instances
 from hfstol import HFSTOL
 from fst_lookup import FST
 
-from utils import shared_res_dir
+from utils import shared_res_dir, paradigm_filler as pf
 
+paradigm_filler = pf.ParadigmFiller.default_filler()
 
 descriptive_analyzer_foma = FST.from_file(
     shared_res_dir / "fst/crk-descriptive-analyzer.fomabin"

@@ -1,0 +1,51 @@
+name: "Inanimate noun full (plain) paradigm"
+paradigm: "noun-ni.paradigm"
+layout:
+  type: "full"
+tooltips:
+  eng:
+    "my": "1st person singular possessor"
+    "your (one)": "2nd person singular possessor"
+    "his/her": "3rd person singular possessor"
+    "our": "myt person plural exclusive possessor"
+    "your and our": "myt person plural inclusive possessor"
+    "your (all)": "2nd person plural possessor"
+    "their": "3rd person plural possessor"
+    "his/her/their (further)": "3rd person obviative possessor"
+    "One": "One"
+    "Many": "Many"
+    "In/On": "In/On"
+    "Smaller/younger/lesser": "Diminutive"
+    "Ownership": "Possession"
+--
+| "One"                     | =N+I+Sg                  |                         |                          |
+| "Many"                    | =N+I+Pl                  |                         |                          |
+| "In/On"                   | =N+I+Loc                 |                         |                          |
+|                           |                          |                         |                          |
+|                           | "Smaller/younger/lesser" |                         |                          |
+| "One"                     | Der/Dim+N+I+Sg           |                         |                          |
+| "Many"                    | Der/Dim+N+I+Pl           |                         |                          |
+| "In/On"                   | Der/Dim+N+I+Loc          |                         |                          |
+|                           |                          |                         |                          |
+|                           | "Ownership"              |                         |                          |
+|                           | : "One"                  | : "Many"                | : "In/On"                |
+| "my"                      | =N+I+Px1Sg+Sg            | =N+I+Px1Sg+Pl           | =N+I+Px1Sg+Loc           |
+| "your (one)"              | =N+I+Px2Sg+Sg            | =N+I+Px2Sg+Pl           | =N+I+Px2Sg+Loc           |
+| "his/her"                 | =N+I+Px3Sg+Sg            | =N+I+Px3Sg+Pl           | =N+I+Px3Sg+Loc           |
+| "our"                     | =N+I+Px1Pl+Sg            | =N+I+Px1Pl+Pl           | =N+I+Px1Pl+Loc           |
+| "your and our"            | =N+I+Px12Pl+Sg           | =N+I+Px12Pl+Pl          | =N+I+Px12Pl+Loc          |
+| "your (all)"              | =N+I+Px2Pl+Sg            | =N+I+Px2Pl+Pl           | =N+I+Px2Pl+Loc           |
+| "their"                   | =N+I+Px3Pl+Sg            | =N+I+Px3Pl+Pl           | =N+I+Px3Pl+Loc           |
+| "his/her/their (further)" | =N+I+Px4Sg/Pl+Sg         | =N+I+Px4Sg/Pl+Pl        | =N+I+Px4Sg/Pl+Loc        |
+|                           |                          |                         |                          |
+|                           | "Smaller/younger/lesser" |                         |                          |
+|                           | "Ownership"              |                         |                          |
+|                           | : "One"                  | : "Many"                | : "In/On"                |
+| "my"                      | Der/Dim+N+I+Px1Sg+Sg     | Der/Dim+N+I+Px1Sg+Pl    | Der/Dim+N+I+Px1Sg+Loc    |
+| "your (one)"              | Der/Dim+N+I+Px2Sg+Sg     | Der/Dim+N+I+Px2Sg+Pl    | Der/Dim+N+I+Px2Sg+Loc    |
+| "his/her"                 | Der/Dim+N+I+Px3Sg+Sg     | Der/Dim+N+I+Px3Sg+Pl    | Der/Dim+N+I+Px3Sg+Loc    |
+| "our"                     | Der/Dim+N+I+Px1Pl+Sg     | Der/Dim+N+I+Px1Pl+Pl    | Der/Dim+N+I+Px1Pl+Loc    |
+| "your and our"            | Der/Dim+N+I+Px12Pl+Sg    | Der/Dim+N+I+Px12Pl+Pl   | Der/Dim+N+I+Px12Pl+Loc   |
+| "your (all)"              | Der/Dim+N+I+Px2Pl+Sg     | Der/Dim+N+I+Px2Pl+Pl    | Der/Dim+N+I+Px2Pl+Loc    |
+| "their"                   | Der/Dim+N+I+Px3Pl+Sg     | Der/Dim+N+I+Px3Pl+Pl    | Der/Dim+N+I+Px3Pl+Loc    |
+| "his/her/their (further)" | Der/Dim+N+I+Px4Sg/Pl+Sg  | Der/Dim+N+I+Px4Sg/Pl+Pl | Der/Dim+N+I+Px4Sg/Pl+Loc |

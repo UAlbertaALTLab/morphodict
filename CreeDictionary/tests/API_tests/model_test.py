@@ -6,10 +6,15 @@ from API.models import Inflection
 from constants import LC
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.xml_importer import import_xmls
+
 # don not remove theses lines. Stuff gets undefined
 # noinspection PyUnresolvedReferences
-from tests.conftest import (one_hundredth_xml_dir, random_inflections,
-                            random_lemmas, topmost_datadir)
+from tests.conftest import (
+    one_hundredth_xml_dir,
+    random_inflections,
+    random_lemmas,
+    topmost_datadir,
+)
 from utils import fst_analysis_parser
 
 

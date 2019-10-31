@@ -1,0 +1,31 @@
+"One"	{{ lemma }}+N+I+Sg		
+"Many"	{{ lemma }}+N+I+Pl		
+"In/On"	{{ lemma }}+N+I+Loc		
+			
+	"Smaller/younger/lesser"		
+"One"	{{ lemma }}+N+I+Der/Dim+N+I+Sg		
+"Many"	{{ lemma }}+N+I+Der/Dim+N+I+Pl		
+"In/On"	{{ lemma }}+N+I+Der/Dim+N+I+Loc		
+			
+	"Ownership"		
+	: "One"	: "Many"	: "In/On"
+"my"	{{ lemma }}+N+I+Px1Sg+Sg	{{ lemma }}+N+I+Px1Sg+Pl	{{ lemma }}+N+I+Px1Sg+Loc
+"your (one)"	{{ lemma }}+N+I+Px2Sg+Sg	{{ lemma }}+N+I+Px2Sg+Pl	{{ lemma }}+N+I+Px2Sg+Loc
+"his/her"	{{ lemma }}+N+I+Px3Sg+Sg	{{ lemma }}+N+I+Px3Sg+Pl	{{ lemma }}+N+I+Px3Sg+Loc
+"our"	{{ lemma }}+N+I+Px1Pl+Sg	{{ lemma }}+N+I+Px1Pl+Pl	{{ lemma }}+N+I+Px1Pl+Loc
+"your and our"	{{ lemma }}+N+I+Px12Pl+Sg	{{ lemma }}+N+I+Px12Pl+Pl	{{ lemma }}+N+I+Px12Pl+Loc
+"your (all)"	{{ lemma }}+N+I+Px2Pl+Sg	{{ lemma }}+N+I+Px2Pl+Pl	{{ lemma }}+N+I+Px2Pl+Loc
+"their"	{{ lemma }}+N+I+Px3Pl+Sg	{{ lemma }}+N+I+Px3Pl+Pl	{{ lemma }}+N+I+Px3Pl+Loc
+"his/her/their (further)"	{{ lemma }}+N+I+Px4Sg/Pl+Sg	{{ lemma }}+N+I+Px4Sg/Pl+Pl	{{ lemma }}+N+I+Px4Sg/Pl+Loc
+			
+	"Smaller/younger/lesser"		
+	"Ownership"		
+	: "One"	: "Many"	: "In/On"
+"my"	{{ lemma }}+N+I+Der/Dim+N+I+Px1Sg+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px1Sg+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px1Sg+Loc
+"your (one)"	{{ lemma }}+N+I+Der/Dim+N+I+Px2Sg+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px2Sg+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px2Sg+Loc
+"his/her"	{{ lemma }}+N+I+Der/Dim+N+I+Px3Sg+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px3Sg+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px3Sg+Loc
+"our"	{{ lemma }}+N+I+Der/Dim+N+I+Px1Pl+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px1Pl+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px1Pl+Loc
+"your and our"	{{ lemma }}+N+I+Der/Dim+N+I+Px12Pl+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px12Pl+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px12Pl+Loc
+"your (all)"	{{ lemma }}+N+I+Der/Dim+N+I+Px2Pl+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px2Pl+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px2Pl+Loc
+"their"	{{ lemma }}+N+I+Der/Dim+N+I+Px3Pl+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px3Pl+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px3Pl+Loc
+"his/her/their (further)"	{{ lemma }}+N+I+Der/Dim+N+I+Px4Sg/Pl+Sg	{{ lemma }}+N+I+Der/Dim+N+I+Px4Sg/Pl+Pl	{{ lemma }}+N+I+Der/Dim+N+I+Px4Sg/Pl+Loc
