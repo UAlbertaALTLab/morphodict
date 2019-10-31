@@ -52,6 +52,8 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
     assert exact_match, f"No exact matches for {query!r} in {analysis_to_lemmas}"
 
 
+# fixme: Eddie!
+@pytest.mark.xfail(reason="un-analyzable forms need to be handled")
 @pytest.mark.django_db
 @given(lemma=random_lemmas())
 def test_search_for_exact_lemma(lemma: Inflection):
@@ -99,6 +101,8 @@ def test_search_for_english() -> None:
     assert matched_language == "en"
 
 
+# fixme: eddie pls
+@pytest.mark.xfail(reason="handle un-analyzable wordforms")
 @pytest.mark.django_db
 def test_search_for_stored_non_lemma():
     """

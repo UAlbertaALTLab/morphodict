@@ -228,6 +228,8 @@ class Inflection(models.Model):
                 # there can be multiple matches when there are different spellings
                 # akocin|akocin+V+AI+Ind+Prs+3Sg
                 # akociniw|akocin+V+AI+Ind+Prs+3Sg
+                # these two are stored in the database as Inflection object with different IDs
+                # Q(default_spelling__id=F("id")) below keeps only one of them in the search result
 
                 exact_match_lemma = exact_matched_lemmas.filter(
                     Q(default_spelling__id=F("id")), as_is=False
