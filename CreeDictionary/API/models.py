@@ -371,7 +371,7 @@ class DictionarySource(models.Model):
         ),
     )
     year = models.IntegerField(
-        null=True, help_text="What year was this dictionary published?"
+        null=True, blank=True, help_text="What year was this dictionary published?"
     )
     publisher = models.CharField(
         max_length=128, blank=True, help_text="What was the publisher?"
@@ -381,8 +381,16 @@ class DictionarySource(models.Model):
     )
 
     def __str__(self):
-        title = self.title
+        """
+        Will print a short citation like:
+
+            [CW] “Cree : Words” (Ed. Arok Wolvengrey)
+        """
+        # These should ALWAYS be present
         abbrv = self.abbrv
+        title = self.title
+
+        # Both of these are optional:
         author = self.author
         editor = self.editor
 
@@ -392,7 +400,7 @@ class DictionarySource(models.Model):
         if editor:
             author_or_editor += f" (Ed. {editor})"
 
-        return f"[{abbrv}] “{title}”{author_or_editor}"
+        return f"[{abbrv}]: “{title}”{author_or_editor}"
 
 
 class Definition(models.Model):
