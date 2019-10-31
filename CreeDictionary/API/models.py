@@ -380,6 +380,20 @@ class DictionarySource(models.Model):
         max_length=64, blank=True, help_text="What is the city of the publisher?"
     )
 
+    def __str__(self):
+        title = self.title
+        abbrv = self.abbrv
+        author = self.author
+        editor = self.editor
+
+        author_or_editor = ""
+        if author:
+            author_or_editor += f" by {author}"
+        if editor:
+            author_or_editor += f" (Ed. {editor})"
+
+        return f"[{abbrv}] “{title}”{author_or_editor}"
+
 
 class Definition(models.Model):
     # override pk to allow use of bulk_create
