@@ -55,7 +55,8 @@ import-xml = "manage-db import"
 # Add SAPIR_USER to your .env file
 push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
 
-# NOTE: When ever you want to make changes to the database. Do `$ pull-db` first, otherwise admin
+# NOTE: Whenever you want to make changes to the database. Do `$ pull-db` first, otherwise admin data and modified data
+# on sapir may get lost
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # reminders/alias. you can just use $ update-layouts after pipenv shell
 # 1. Pull layout AND paradigm files from itwewina and place them correctly

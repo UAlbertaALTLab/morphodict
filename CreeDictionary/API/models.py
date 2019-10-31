@@ -68,7 +68,6 @@ class CreeAndEnglish(NamedTuple):
 
      - cree results -- a dict of analyses to the LEMMAS that match that analysis!
                     -- duplicate spellings are removed
-                    -- analysis may be an empty string which means not analyzable matches
      - english results -- a list of lemmas that match
     """
 
@@ -258,11 +257,11 @@ class Inflection(models.Model):
                 )
                 lemmas_by_analysis[analysis].extend(list(matched_lemmas))
 
-        # non-analyzable matches
-        matched_lemmas = Inflection.objects.filter(
-            text=user_query, is_lemma=True, as_is=True
-        )
-        lemmas_by_analysis[""].extend(list(matched_lemmas))
+        # Note:
+        # non-analyzable matches should not be displayed
+        # like "nipa" kill him
+        # suggested by Arok Wolvengrey
+        # We should not show words that are not analyzable by fst (majorly Maskwacîs words)
 
         # todo: remind user "are you searching in cree/english?"
         lemmas_by_english: List["Inflection"] = []
