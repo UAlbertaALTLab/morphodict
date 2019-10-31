@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 @attrs
 class SearchResult:
     """
-    TODO: search result
+    Contains all of the information needed to display a search result.
     """
 
     # the text of the matche
@@ -42,6 +42,8 @@ class SearchResult:
     reduplication_tags = attrib(type=tuple)  # tuple of strs
     # Sequence of all initial change tags
     initial_change_tags = attrib(type=tuple)  # tuple of strs
+
+    definitions = attrib(type=tuple)  # tuple of Definition instances
 
     @property
     def is_inflection(self) -> bool:
@@ -309,6 +311,15 @@ class Inflection(models.Model):
                 )
                 continue
 
+            definitions = tuple(Definition.objects.filter(lemma=lemma))
+            if len(definitions) < 1:
+                logging.warning(
+                    "Could not find definitions for %r (lemma: %r)",
+                    entry.wordform,
+                    lemma,
+                )
+                continue
+
             results.append(
                 SearchResult(
                     wordform=entry.wordform,
@@ -318,6 +329,7 @@ class Inflection(models.Model):
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
+                    definitions=definitions,
                 )
             )
 
