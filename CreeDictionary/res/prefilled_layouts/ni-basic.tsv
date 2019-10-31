@@ -1,8 +1,8 @@
-"One"  	{{ lemma }}+N+I+Sg
-"Many" 	{{ lemma }}+N+I+Pl
+"One"	{{ lemma }}+N+I+Sg
+"Many"	{{ lemma }}+N+I+Pl
 "In/On"	{{ lemma }}+N+I+Loc
-       	
-       	: "Smaller/younger/lesser"
+	
+	: "Smaller/younger/lesser"
 "One"	{{ lemma }}+N+I+Der/Dim+N+I+Sg
 	
 	: "Ownership"

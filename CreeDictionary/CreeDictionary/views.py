@@ -45,11 +45,11 @@ def lemma_details(request, lemma_id: int):
     lemma = Inflection.objects.get(id=lemma_id)
 
     if lemma.lc != "":
-        table = paradigm_filler.fill_paradigm(
+        tables = paradigm_filler.fill_paradigm(
             lemma.text, LC(lemma.lc), ParadigmSize.BASIC
         )
     else:
-        table = []
+        tables = []
 
     return render(
         request,
@@ -57,6 +57,6 @@ def lemma_details(request, lemma_id: int):
         {
             "lemma": lemma,
             "paradigm_size": ParadigmSize.BASIC.display_form,
-            "table": table,
+            "tables": tables,
         },
     )

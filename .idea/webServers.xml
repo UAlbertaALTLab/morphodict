@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="0aaeba7c-ba5d-440a-8363-504b1490364d" name="sapir" url="http://sapir.artsrn.ualberta.ca">
+        <fileTransfer host="sapir.artsrn.ualberta.ca" port="22" rootFolder="/data/texts/opt/cree-intelligent-dictionary" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

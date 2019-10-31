@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d09490bf94d3d56446e410c1c6a94a56f70ceb74c5e13004bced855975bf89ea"
+            "sha256": "77c8b3833f70ad62a318c0e374d32454a5ff60e993a9a941b9b7371965e661a9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -338,16 +338,23 @@
             "index": "pypi",
             "version": "==2.2.6"
         },
+        "gitdir": {
+            "hashes": [
+                "sha256:ddd347185b27b7a1711bcb3576dc8769fde143c2c11355216616969618f4e538"
+            ],
+            "index": "pypi",
+            "version": "==1.1.2"
+        },
         "hypothesis": {
             "extras": [
                 "django"
             ],
             "hashes": [
-                "sha256:70a80436bdf844e2e9aaabe74100cc62b7e90c150fdd4dd864c64fcfc9bde273",
-                "sha256:9663f911d0a0ccb0b602b424d1b599e1a3637cba0e28d669d3d2b8d33ca44516"
+                "sha256:7385185ceeada55746a406a90fc84bfc22481fd570cc4bbcf8401ea93ce574e3",
+                "sha256:c32f79ba3b587a210de4f17e88d704b712c4301a554d4f5d7a67d01076dce1d0"
             ],
             "index": "pypi",
-            "version": "==4.42.0"
+            "version": "==4.42.3"
         },
         "idna": {
             "hashes": [
@@ -429,6 +436,7 @@
         },
         "pycparser": {
             "hashes": [
+                "sha256:7e4f1d3ab8f15f2358b56670b4d4ac519b048692d71ad8f5e03e74d4869cd57c",
                 "sha256:a988718abfad80b6b157acce7bf130a30876d27603738ac39f140993246b25b3"
             ],
             "version": "==2.19"

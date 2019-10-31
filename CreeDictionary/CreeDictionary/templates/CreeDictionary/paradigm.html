@@ -24,24 +24,33 @@
             <tr>
                 <th class="paradigm__panel-description" colspan="2"> {{ paradigm_size }}</th>
             </tr>
-            {# see files in res/prefilled_layouts to understand this for loop #}
-            {% for row in table %}
-                <tr class="paradigm-row">
-                    {% for cell in row %}
-                        {% if '"' in cell %}
 
-                            <th scope="row" class="paradigm-row__label">
-                                {{ cell|cut:'"'|cut:":" }}
-                            </th>
-                        {% else %}
-                            <td class="paradigm-row__wordform">
-                                <span lang="cr">{{ cell }}</span>
-                            </td>
-                        {% endif %}
+            {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
+                {% for row in table %}
+                    <tr class="paradigm-row">
 
-                    {% endfor %}
-                </tr>
+                        {% for cell in row %}
+                            {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
+                            {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
+                            {% if ':' in cell %}
+                                <th scope="row" class="paradigm-row__label">
+                                    {{ cell|cut:'"'|cut:":" }}
+                                </th>
+                            {% elif '"' in cell %}
+                                <th scope="row" class="paradigm-row__label">
+                                    {{ cell|cut:'"' }}
+                                </th>
+                            {% else %}
+                                <td class="paradigm-row__wordform">
+                                    <span lang="cr">{{ cell }}</span>
+                                </td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
             {% endfor %}
+
             </tbody>
         </table>
         <button class="paradigm__more-button">show more</button>

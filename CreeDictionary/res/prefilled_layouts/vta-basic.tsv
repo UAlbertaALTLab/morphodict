@@ -1,4 +1,4 @@
-                         	"Something is happening now"
+	"Something is happening now"	
 "Speech act participants"	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (one) → me"	{{ lemma }}+V+TA+Ind+Prs+2Sg+1SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
 "I → you (one)"	{{ lemma }}+V+TA+Ind+Prs+1Sg+2SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
