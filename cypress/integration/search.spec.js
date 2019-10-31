@@ -18,6 +18,35 @@ context('Searching', () => {
     })
   })
 
+  describe('I want the search for a Cree word to tolerate a query which may be spelled in a non-standard or slightly incorrect way.', () => {
+    it('should treat apostrophes as short-Is ', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('âc\'mêw')
+
+      cy.get('[data-cy=search-results]')
+        .contains('âcimêw')
+    })
+
+    it('should forgive omitted long vowel marking', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('acimew')
+
+      cy.get('[data-cy=search-results]')
+        .contains('âcimêw')
+    })
+
+    it('should handle English-influenced spelling', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('atchakosuk')
+
+      cy.get('[data-cy=search-results]')
+        .contains('acâhkos')
+    })
+  })
+
   describe('I want to TODO', () => {
     it.skip('should search the normatized form of the matched search string', () => {
       // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+Prs+1Sg

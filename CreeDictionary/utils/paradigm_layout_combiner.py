@@ -39,7 +39,7 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table
         dash_line_index = 0
         while lines[dash_line_index] != "--":
             dash_line_index += 1
-        celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1:]]
+        celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
         maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
 
         for cells in celled_lines:
@@ -170,7 +170,7 @@ class Combiner:
         )
 
     def get_combined_table(
-            self, category: LC, paradigm_size: ParadigmSize
+        self, category: LC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         returns a paradigm table
