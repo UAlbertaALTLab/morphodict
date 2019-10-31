@@ -80,6 +80,7 @@ def test_search_for_exact_lemma(lemma: Inflection):
     assert not result.reduplication_tags
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
 
 
 @pytest.mark.skip(reason="The test DB does not contain matching English content :/")
@@ -120,3 +121,4 @@ def test_search_for_stored_non_lemma():
     assert not result.reduplication_tags
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)

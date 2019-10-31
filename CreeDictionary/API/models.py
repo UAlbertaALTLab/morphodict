@@ -348,6 +348,17 @@ class Definition(models.Model):
 
     lemma = models.ForeignKey(Inflection, on_delete=models.CASCADE)
 
+    # Why this property exists:
+    # because DictionarySource should be its own model, but most code only
+    # cares about the source IDs. So this removes the coupling to how sources
+    # are stored and returns the source IDs right away.
+    @property
+    def source_ids(self):
+        """
+        A tuple of the source IDs that this definition cites.
+        """
+        return tuple(self.sources.split())
+
     def __str__(self):
         return self.text
 
