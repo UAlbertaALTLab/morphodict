@@ -18,9 +18,33 @@ context('Searching', () => {
     })
   })
 
+  describe('As an Administrator, I want to integrate words from multiple dictionary sources.', () => {
+    it('should display the dictionary source on the page', () => {
+      // acâhkos should be defined, both in the CW dictionary and the MD
+      // dictionary:
+      let lemma = 'acâhkos'
+      let dicts = ['CW', 'MD']
+
+      cy.visit(`/search/${lemma}`)
+      cy.get('[data-cy=search-results]')
+        .contains('[data-cy=search-result]', lemma)
+        .as('definition')
+
+      // Check each citation.
+      for (let id of dicts) {
+        cy.get('@definition')
+          .contains('cite.cite-dict', id)
+          .should('be.visible')
+          .should($cite => {
+            expect($cite.text()).to.match(/^\s*\w+\s*$/)
+          })
+      }
+    })
+  })
+
   // todo: the spell relax is not well integrated into the fst yet
   describe('I want the search for a Cree word to tolerate a query which may be spelled in a non-standard or slightly incorrect way.', () => {
-    it.skip('should treat apostrophes as short-Is ', () => {
+    it('should treat apostrophes as short-Is ', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type('âc\'mêw')
@@ -38,7 +62,7 @@ context('Searching', () => {
         .contains('âcimêw')
     })
     // todo: the spell relax is not well integrated into the fst yet
-    it.skip('should handle English-influenced spelling', () => {
+    it('should handle English-influenced spelling', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type('atchakosuk')

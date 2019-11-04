@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 @attrs
 class SearchResult:
     """
-    TODO: search result
+    Contains all of the information needed to display a search result.
     """
 
     # the text of the matche
@@ -42,6 +42,8 @@ class SearchResult:
     reduplication_tags = attrib(type=tuple)  # tuple of strs
     # Sequence of all initial change tags
     initial_change_tags = attrib(type=tuple)  # tuple of strs
+
+    definitions = attrib(type=tuple)  # tuple of Definition instances
 
     @property
     def is_inflection(self) -> bool:
@@ -314,6 +316,15 @@ class Inflection(models.Model):
                 )
                 continue
 
+            definitions = tuple(Definition.objects.filter(lemma=lemma))
+            if len(definitions) < 1:
+                logging.warning(
+                    "Could not find definitions for %r (lemma: %r)",
+                    entry.wordform,
+                    lemma,
+                )
+                continue
+
             results.append(
                 SearchResult(
                     wordform=entry.wordform,
@@ -323,6 +334,7 @@ class Inflection(models.Model):
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
+                    definitions=definitions,
                 )
             )
 
@@ -331,15 +343,93 @@ class Inflection(models.Model):
         return "crk", results
 
 
+class DictionarySource(models.Model):
+    """
+    Represents bibliographic information for a set of definitions.
+
+    A Definition is said to cite a DictionarySource.
+    """
+
+    # A short, unique, uppercased ID. This will be exposed to users!
+    #  e.g., CW for "Cree: Words"
+    #     or MD for "Maskwacîs Dictionary"
+    abbrv = models.CharField(max_length=8, primary_key=True)
+
+    # Bibliographic information:
+    title = models.CharField(
+        max_length=256,
+        null=False,
+        blank=False,
+        help_text="What is the primary title of the dictionary source?",
+    )
+    author = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text="Separate multiple authors with commas. See also: editor",
+    )
+    editor = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text=(
+            "Who edited or compiled this volume? "
+            "Separate multiple editors with commas."
+        ),
+    )
+    year = models.IntegerField(
+        null=True, blank=True, help_text="What year was this dictionary published?"
+    )
+    publisher = models.CharField(
+        max_length=128, blank=True, help_text="What was the publisher?"
+    )
+    city = models.CharField(
+        max_length=64, blank=True, help_text="What is the city of the publisher?"
+    )
+
+    def __str__(self):
+        """
+        Will print a short citation like:
+
+            [CW] “Cree : Words” (Ed. Arok Wolvengrey)
+        """
+        # These should ALWAYS be present
+        abbrv = self.abbrv
+        title = self.title
+
+        # Both of these are optional:
+        author = self.author
+        editor = self.editor
+
+        author_or_editor = ""
+        if author:
+            author_or_editor += f" by {author}"
+        if editor:
+            author_or_editor += f" (Ed. {editor})"
+
+        return f"[{abbrv}]: “{title}”{author_or_editor}"
+
+
 class Definition(models.Model):
     # override pk to allow use of bulk_create
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=200)
-    # space separated acronyms
-    sources = models.CharField(max_length=5)
 
+    # A definition **cites** one or more dictionary sources.
+    citations = models.ManyToManyField(DictionarySource)
+
+    # A definition defines a particular word form (usually a lemma)
     lemma = models.ForeignKey(Inflection, on_delete=models.CASCADE)
+
+    # Why this property exists:
+    # because DictionarySource should be its own model, but most code only
+    # cares about the source IDs. So this removes the coupling to how sources
+    # are stored and returns the source IDs right away.
+    @property
+    def source_ids(self):
+        """
+        A tuple of the source IDs that this definition cites.
+        """
+        return tuple(sorted(source.abbrv for source in self.citations.all()))
 
     def __str__(self):
         return self.text

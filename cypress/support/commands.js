@@ -23,3 +23,18 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+// TODO: fix bug in Cypress: always encodeURIComponent in call to visit:
+Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
+  let newURL = url.split('/').map(encodeURIComponent).join('/')
+  if (newURL != url) {
+    Cypress.log({
+      name: 'visit',
+      message:`‼️  Rewriting ${url} -> ${newURL}`
+    })
+  }
+
+  return originalVisit(newURL, options)
+})
+
+/*global Cypress */

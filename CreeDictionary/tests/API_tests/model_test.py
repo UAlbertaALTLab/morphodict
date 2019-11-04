@@ -6,15 +6,10 @@ from API.models import Inflection
 from constants import LC
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.xml_importer import import_xmls
-
 # don not remove theses lines. Stuff gets undefined
 # noinspection PyUnresolvedReferences
-from tests.conftest import (
-    one_hundredth_xml_dir,
-    random_inflections,
-    random_lemmas,
-    topmost_datadir,
-)
+from tests.conftest import (one_hundredth_xml_dir, random_inflections,
+                            random_lemmas, topmost_datadir)
 from utils import fst_analysis_parser
 
 
@@ -52,8 +47,6 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
     assert exact_match, f"No exact matches for {query!r} in {analysis_to_lemmas}"
 
 
-# fixme: Eddie!
-@pytest.mark.xfail(reason="un-analyzable forms need to be handled")
 @pytest.mark.django_db
 @given(lemma=random_lemmas())
 def test_search_for_exact_lemma(lemma: Inflection):
@@ -86,6 +79,8 @@ def test_search_for_exact_lemma(lemma: Inflection):
     assert not result.preverbs
     assert not result.reduplication_tags
     assert not result.initial_change_tags
+    assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
 
 
 @pytest.mark.skip(reason="The test DB does not contain matching English content :/")
@@ -101,8 +96,6 @@ def test_search_for_english() -> None:
     assert matched_language == "en"
 
 
-# fixme: eddie pls
-@pytest.mark.xfail(reason="handle un-analyzable wordforms")
 @pytest.mark.django_db
 def test_search_for_stored_non_lemma():
     """
@@ -127,3 +120,5 @@ def test_search_for_stored_non_lemma():
     assert not result.preverbs
     assert not result.reduplication_tags
     assert not result.initial_change_tags
+    assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)

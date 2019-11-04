@@ -129,12 +129,15 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 `redeploy` does not sync database file. To make changes to the database, we need to sync our database file, which is 
 guaranteed to work as sqlite database is operating system independent.
 
-When you want to make changes to the database, do a `$ pipenv run pull-db` first to pull database from Sapir. It has admin
-authentication information stored and shouldn't be overwritten. And it probably has edited tables. After the changes, do
- `$ pipenv run push-db` to upload the changed database back to Sapir
+When you want to make changes to the database, do a `$ pipenv run pull-db` first to pull database from Sapir.
 
 Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database.
 If your username on Sapir is different from your username on you local machine. Add environment variable `SAPIR_USER=<your name>` in `.env` file.
+
+It has admin authentication information stored and shouldn't be
+overwritten. And it probably has edited tables. After the changes, do
+ `$ pipenv run push-db` to upload the changed database back to Sapir
+
 
 ### Set up
 

@@ -7,7 +7,8 @@ from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from shared import descriptive_analyzer
-from .models import Definition, Inflection
+
+from .models import Definition, DictionarySource, Inflection
 
 
 class DefinitionInline(admin.TabularInline):
@@ -222,3 +223,10 @@ class InflectionAdmin(admin.ModelAdmin):
         self.exclude = ("id", "default_spelling", "lemma")
 
         return super(InflectionAdmin, self).add_view(request, form_url, extra_context)
+
+
+@admin.register(DictionarySource)
+class DictionarySourceAdmin(admin.ModelAdmin):
+    """
+    Allows you to edit the bibliographic details of a dictionary source.
+    """
