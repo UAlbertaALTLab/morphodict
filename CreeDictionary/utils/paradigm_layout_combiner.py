@@ -6,7 +6,7 @@ import glob
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple, FrozenSet
+from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
@@ -28,13 +28,11 @@ PARADIGM_NAME_TO_IC = {
 def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table]:
     layout_tables = dict()
     files = layout_file_dir.glob("*.layout")
-    for file in files:
-
-        lines = file.read_text().splitlines()
+    for layout_file in files:
+        lines = layout_file.read_text().splitlines()
+        assert len(lines) >= 1, f"malformed layout file: {layout_file}"
 
         layout_list = []
-
-        assert len(lines) >= 1, "malformed layout file %s" % file
 
         dash_line_index = 0
         while lines[dash_line_index] != "--":
@@ -51,7 +49,7 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table
                     cells + ["" for _ in range(maximum_column_count - len(cells))]
                 )
 
-        *lc_str, size_str = file.stem.split("-")
+        *lc_str, size_str = layout_file.stem.split("-")
 
         try:
             layout_tables[
