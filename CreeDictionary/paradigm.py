@@ -5,10 +5,7 @@
 Dataclasses for paradigms.
 """
 
-from typing import Any, Iterable, List
-
-Row = List[str]
-Layout = List[Row]
+from typing import Any, Iterable, List, Sized
 
 
 class Pane(Iterable[Row]):
@@ -35,3 +32,31 @@ class Pane(Iterable[Row]):
             return False
 
         return self._rows == other._rows
+
+
+class Row:
+    is_empty_row: bool = False
+
+
+class EmptyRow(Row):
+    is_empty_row = True
+
+
+class ContentRow(Row, Iterable[str], Sized):
+    def __init__(self, columns: List[str]):
+        self._cols = columns.copy()
+
+    def __iter__(self):
+        return iter(self._cols)
+
+    def __len___(self):
+        return len(self._cols)
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, ContentRow):
+            return False
+
+        return self._cols == other._cols
+
+
+Layout = List[Row]
