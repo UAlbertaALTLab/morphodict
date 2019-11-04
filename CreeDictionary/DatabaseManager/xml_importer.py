@@ -323,6 +323,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     db_inflections: List[Inflection] = []
     db_definitions: List[Definition] = []
     db_keywords: List[EnglishKeyword] = []
+    citations: Dict[int, Set[str]] = {}
 
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         recognizable_lc = convert_lc_str(lc)
@@ -348,8 +349,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
             (xml_lemma, pos, lc)
         ]
-
-        citations: Dict[int, Set[str]] = {}
 
         for str_definition, source_strings in str_definitions_source_strings.items():
             db_definition = Definition(
