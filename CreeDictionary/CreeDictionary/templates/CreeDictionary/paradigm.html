@@ -18,6 +18,7 @@
             {% endfor %}
         </ol>
     </section>
+    {% if tables %}
     <section class="definition__paradigm paradigm">
         <table class="paradigm__table">
             <tbody>
@@ -55,4 +56,6 @@
         </table>
         <button class="paradigm__more-button">show more</button>
     </section>
+    {% else %}
+    {% endif %}
 </article>
