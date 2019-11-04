@@ -3,6 +3,7 @@ According to .layout files and .paradigm files. Generate pre-filled paradigm tab
 """
 import csv
 import glob
+import logging
 from os import path
 from os.path import dirname
 from pathlib import Path
@@ -11,6 +12,8 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize, Table
+
+logger = logging.getLogger(__name__)
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
@@ -26,38 +29,49 @@ PARADIGM_NAME_TO_IC = {
 
 
 def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table]:
-    layout_tables = dict()
+    layout_tables = {}
     files = layout_file_dir.glob("*.layout")
+
     for layout_file in files:
-        lines = layout_file.read_text().splitlines()
-        assert len(lines) >= 1, f"malformed layout file: {layout_file}"
-
-        layout_list = []
-
-        dash_line_index = 0
-        while lines[dash_line_index] != "--":
-            dash_line_index += 1
-        celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
-        maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
-
-        for cells in celled_lines:
-            cells = list(map(lambda x: x.strip(), cells))
-            if len(cells) == maximum_column_count:
-                layout_list.append(cells)
-            else:
-                layout_list.append(
-                    cells + ["" for _ in range(maximum_column_count - len(cells))]
-                )
-
+        # Figure out if it's worth converting layout.
         *lc_str, size_str = layout_file.stem.split("-")
-
         try:
-            layout_tables[
-                (PARADIGM_NAME_TO_IC["-".join(lc_str)], ParadigmSize(size_str.upper()))
-            ] = layout_list
-        except ValueError:  # not yet in ParadigmSize, e.g. nehiyawewin
-            pass
+            size = ParadigmSize(size_str.upper())
+        except ValueError:
+            # Unsupported "sizes" include: nehiyawewin, extended
+            logger.info("unsupported paradigm size for %s", layout_file)
+            continue
+        lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
+
+        table = create_layout_list(layout_file)
+
+        layout_tables[(lc, size)] = table
+
     return layout_tables
+
+
+def create_layout_list(layout_file: Path) -> Table:
+    lines = layout_file.read_text().splitlines()
+    assert len(lines) >= 1, f"malformed layout file: {layout_file}"
+
+    layout_list = []
+
+    dash_line_index = 0
+    while lines[dash_line_index] != "--":
+        dash_line_index += 1
+    celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
+    maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
+
+    for cells in celled_lines:
+        cells = list(map(lambda x: x.strip(), cells))
+        if len(cells) == maximum_column_count:
+            layout_list.append(cells)
+        else:
+            layout_list.append(
+                cells + ["" for _ in range(maximum_column_count - len(cells))]
+            )
+
+    return layout_list
 
 
 def import_paradigms(
