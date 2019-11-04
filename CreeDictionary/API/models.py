@@ -431,7 +431,7 @@ class Definition(models.Model):
         """
         A tuple of the source IDs that this definition cites.
         """
-        return tuple(sorted(self.sources.split()))
+        return tuple(sorted(source.abbrv for source in self.citations.all()))
 
     def __str__(self):
         return self.text
