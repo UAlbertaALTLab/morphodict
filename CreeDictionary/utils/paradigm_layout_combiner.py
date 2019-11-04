@@ -6,11 +6,12 @@ import glob
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple, FrozenSet
+from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from constants import LC, ParadigmSize, Table
+from constants import LC, ParadigmSize
+from paradigm import Table
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
