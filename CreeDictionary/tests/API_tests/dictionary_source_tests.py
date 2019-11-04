@@ -7,13 +7,13 @@ Tests things related to the dictionary sources.
 
 import pytest
 
-from API.models import Definition, DictionarySource
+from API.models import Definition, DictionarySource, Inflection
 
 
 @pytest.mark.django_db
 def test_create_dictionary_source():
     """
-    Sanity test: make sure we can create a DictionarySource instance and save
+    Sanity check: make sure we can create a DictionarySource instance and save
     it.
     """
 
@@ -21,3 +21,24 @@ def test_create_dictionary_source():
     source.save()
 
     assert source.pk == "CW"
+
+
+@pytest.mark.django_db
+def test_link_definition_to_dictionary():
+    """
+    Ensure a definition can exist with a dictionary source.
+    """
+
+    # Create a lemma and a definition for it.
+    acâhkos = Inflection(id=0, text="acâhkos", lemma_id=0)
+    acâhkos.save()
+
+    dfn = Definition(id=0, text="little star", lemma=acâhkos)
+    dfn.save()
+
+    cw = DictionarySource("CW")
+    cw.save()
+
+    dfn.citations.add(cw)
+
+    assert dfn.source_ids == ("CW",)

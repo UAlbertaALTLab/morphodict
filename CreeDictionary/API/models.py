@@ -413,9 +413,13 @@ class Definition(models.Model):
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=200)
-    # space separated acronyms
+    # space separated acronyms: DEPRECATED:
     sources = models.CharField(max_length=5)
 
+    # A definition **cites** one or more dictionary sources.
+    citations = models.ManyToManyField(DictionarySource)
+
+    # A definition defines a particular word form (usually a lemma)
     lemma = models.ForeignKey(Inflection, on_delete=models.CASCADE)
 
     # Why this property exists:
