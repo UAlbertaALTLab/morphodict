@@ -12,7 +12,7 @@ from typing import Dict, Iterable, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import ContentRow, EmptyRow, Layout, Pane, Row
+from paradigm import Layout, Pane, Row
 
 
 def import_prefilled_layouts(
@@ -74,7 +74,7 @@ class ParadigmFiller:
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])
 
-        tables: List[List[Row]] = [[]]
+        tables: List[List[List[str]]] = [[]]
 
         table_index = 0
         row_index = 0
@@ -84,9 +84,6 @@ class ParadigmFiller:
                 table_index += 1
                 row_index = 0
             else:
-                import pdb
-
-                pdb.set_trace()
                 tables[-1].append(row.copy())
                 for colInd, cell in enumerate(row):
                     if '"' not in cell and cell != "":  # it's a inflection form pattern
