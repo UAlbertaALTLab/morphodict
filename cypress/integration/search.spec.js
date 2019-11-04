@@ -19,28 +19,26 @@ context('Searching', () => {
   })
 
   describe('As an Administrator, I want to integrate words from multiple dictionary sources.', () => {
-    it.only('should display the dictionary source on the page', () => {
+    it('should display the dictionary source on the page', () => {
       // acâhkos should be defined, both in the CW dictionary and the MD
       // dictionary:
       let lemma = 'acâhkos'
+      let dicts = ['CW', 'MD']
+
       cy.visit(`/search/${lemma}`)
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', lemma)
         .as('definition')
 
-      cy.get('@definition')
-        .contains('cite.cite-dict', 'CW')
-        .should('be.visible')
-        .should($cite => {
-          expect($cite.text()).to.match(/^\s*\w+\s*$/)
-        })
-
-      cy.get('@definition')
-        .contains('cite.cite-dict', 'MD')
-        .should('be.visible')
-        .should($cite => {
-          expect($cite.text()).to.match(/^\s*\w+\s*$/)
-        })
+      // Check each citation.
+      for (let id of dicts) {
+        cy.get('@definition')
+          .contains('cite.cite-dict', id)
+          .should('be.visible')
+          .should($cite => {
+            expect($cite.text()).to.match(/^\s*\w+\s*$/)
+          })
+      }
     })
   })
 
