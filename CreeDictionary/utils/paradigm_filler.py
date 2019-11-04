@@ -7,12 +7,11 @@ from copy import deepcopy
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, List, Tuple
 
 import hfstol
 
-from constants import LC, ParadigmSize
-from paradigm import Row, Table
+from constants import LC, ParadigmSize, Table
 
 
 def import_prefilled_layouts(

@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from API.models import Inflection
-from constants import LC, ParadigmSize
 from CreeDictionary.forms import WordSearchForm
+from constants import LC, ParadigmSize
 from shared import paradigm_filler
 
 
@@ -40,7 +40,7 @@ def search_results(request, query_string: str):
 # todo: allow different paradigm size
 def lemma_details(request, lemma_id: int):
     """
-    Render paradigm table for a lemma.
+    render paradigm table for a lemma
     """
     lemma = Inflection.objects.get(id=lemma_id)
 
