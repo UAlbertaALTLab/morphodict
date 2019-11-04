@@ -36,9 +36,15 @@ def clear_database(verbose=True):
 
     # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
     cursor.execute("PRAGMA foreign_keys = OFF")
+
+    # Delete Many-to-Many field first:
+    cursor.execute("DELETE FROM API_definition_citations")
+
+    # Then delete the rest:
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
     cursor.execute("DELETE FROM API_englishkeyword")
+    cursor.execute("DELETE FROM API_dictionarysource")
     cursor.execute("PRAGMA foreign_keys = ON")
 
     logger.info("All Objects deleted from Database")
