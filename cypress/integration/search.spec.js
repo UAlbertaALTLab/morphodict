@@ -18,6 +18,24 @@ context('Searching', () => {
     })
   })
 
+  describe('As an Administrator, I want to integrate words from multiple dictionary sources.', () => {
+    it.only('should display the dictionary source on the page', () => {
+      // acâhkos should be defined, both in the CW dictionary and the MD
+      // dictionary:
+      let lemma = 'acâhkos'
+      cy.visit(`/search/${lemma}`)
+      cy.get('[data-cy=search-results]')
+        .contains('[data-cy=search-result]', lemma)
+        .as('definition')
+
+      cy.get('@definition')
+        .contains('cite', 'CW')
+
+      cy.get('@definition')
+        .contains('cite', 'MD')
+    })
+  })
+
   // todo: the spell relax is not well integrated into the fst yet
   describe('I want the search for a Cree word to tolerate a query which may be spelled in a non-standard or slightly incorrect way.', () => {
     it('should treat apostrophes as short-Is ', () => {
