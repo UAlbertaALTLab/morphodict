@@ -5,10 +5,10 @@
 Dataclasses for paradigms.
 """
 
-from typing import Any, Iterable, List
+from typing import Iterable, List
 
 Row = List[str]
-Layout = List[Row]
+Table = List[Row]
 
 
 class Pane(Iterable[Row]):
@@ -29,9 +29,3 @@ class Pane(Iterable[Row]):
 
     def __repr__(self) -> str:
         return f"Pane(rows={self._rows})"
-
-    def __eq__(self, other: Any) -> bool:
-        if not isinstance(other, Pane):
-            return False
-
-        return self._rows == other._rows

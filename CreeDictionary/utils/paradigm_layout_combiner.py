@@ -11,7 +11,7 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Layout
+from paradigm import Table
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
@@ -26,7 +26,7 @@ PARADIGM_NAME_TO_IC = {
 }
 
 
-def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Layout]:
+def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table]:
     layout_tables = dict()
     files = layout_file_dir.glob("*.layout")
     for file in files:
@@ -106,7 +106,7 @@ class Combiner:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[LC, ParadigmSize], Layout]
+    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
     # todo: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],

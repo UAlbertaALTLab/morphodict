@@ -12,12 +12,12 @@ from typing import Dict, Iterable, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Layout, Pane, Row
+from paradigm import Row, Table
 
 
 def import_prefilled_layouts(
     layout_file_dir: Path
-) -> Dict[Tuple[LC, ParadigmSize], Layout]:
+) -> Dict[Tuple[LC, ParadigmSize], Table]:
     layout_tables = dict()
     files = glob.glob(str(layout_file_dir / "*.tsv"))
     for file in files:
@@ -36,7 +36,7 @@ def import_prefilled_layouts(
 
 
 class ParadigmFiller:
-    _layout_tables: Dict[Tuple[LC, ParadigmSize], Layout]
+    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
 
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
@@ -60,7 +60,7 @@ class ParadigmFiller:
 
     def fill_paradigm(
         self, lemma: str, category: LC, paradigm_size: ParadigmSize
-    ) -> List[Pane]:
+    ) -> List[Table]:
         """
         returns a paradigm table filled with words
 
@@ -74,7 +74,7 @@ class ParadigmFiller:
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])
 
-        tables: List[List[List[str]]] = [[]]
+        tables: List[Table] = [[]]
 
         table_index = 0
         row_index = 0
@@ -99,4 +99,4 @@ class ParadigmFiller:
                 sorted(results[lookup_strings[i]])
             )
 
-        return [Pane(pane_data) for pane_data in tables]
+        return tables
