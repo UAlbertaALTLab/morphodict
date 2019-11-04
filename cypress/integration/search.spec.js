@@ -29,10 +29,18 @@ context('Searching', () => {
         .as('definition')
 
       cy.get('@definition')
-        .contains('cite', 'CW')
+        .contains('cite.cite-dict', 'CW')
+        .should('be.visible')
+        .should($cite => {
+          expect($cite.text()).to.match(/^\s*\w+\s*$/)
+        })
 
       cy.get('@definition')
-        .contains('cite', 'MD')
+        .contains('cite.cite-dict', 'MD')
+        .should('be.visible')
+        .should($cite => {
+          expect($cite.text()).to.match(/^\s*\w+\s*$/)
+        })
     })
   })
 
