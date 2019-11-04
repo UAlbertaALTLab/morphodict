@@ -187,14 +187,8 @@ class Inflection(models.Model):
         Give a list of matched lemmas
 
         :param user_query: can be English or Cree (syllabics or not)
-        :return: Dict with key being analysis for user query, values being lemmas. List of lemmas matched as if query is
-         English word
         """
 
-        # URL Decode
-        # TODO: why is this URL decode here? Shouldn't the user query already
-        # be decoded? 🤔🤔🤔
-        user_query = unquote(user_query)
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
         # Normalize to UTF8 NFC
@@ -235,9 +229,11 @@ class Inflection(models.Model):
                 # there can be multiple matches when there are different spellings
                 # akocin|akocin+V+AI+Ind+Prs+3Sg
                 # akociniw|akocin+V+AI+Ind+Prs+3Sg
+                # these two are stored in the database as Inflection object with different IDs
+                # Q(default_spelling__id=F("id")) below keeps only one of them in the search result
 
                 exact_match_lemma = exact_matched_lemmas.filter(
-                    Q(default_spelling__id=F("id"))
+                    Q(default_spelling__id=F("id")), as_is=False
                 )
 
                 lemmas_by_analysis[analysis].extend(list(exact_match_lemma))
@@ -256,9 +252,18 @@ class Inflection(models.Model):
 
                 lemma, lc = lemma_lc
                 matched_lemmas = Inflection.objects.filter(
-                    Q(default_spelling__id=F("id")), text=lemma, is_lemma=True
+                    Q(default_spelling__id=F("id")),
+                    text=lemma,
+                    is_lemma=True,
+                    as_is=False,
                 )
                 lemmas_by_analysis[analysis].extend(list(matched_lemmas))
+
+        # Note:
+        # non-analyzable matches should not be displayed
+        # like "nipa" kill him
+        # suggested by Arok Wolvengrey
+        # We should not show words that are not analyzable by fst (majorly Maskwacîs words)
 
         # todo: remind user "are you searching in cree/english?"
         lemmas_by_english: List["Inflection"] = []

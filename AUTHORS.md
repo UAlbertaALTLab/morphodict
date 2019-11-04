@@ -56,4 +56,7 @@ Special Thanks
 
 [Eleni Stroulia](https://www.ualberta.ca/science/about-us/contact-us/faculty-directory/eleni-stroulia), and [Daniel Chui](https://github.com/dchui1) (CMPUT 401 instructor and teaching assistant).
 
+[Anna Kazantseva][ILT]
+
 [Roland Khun][ILT]
+
