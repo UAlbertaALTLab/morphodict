@@ -74,3 +74,7 @@ del EmptyRowType
 
 # TODO: Make a class for this:
 Layout = List[List[str]]
+
+
+def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
+    return list(rows)

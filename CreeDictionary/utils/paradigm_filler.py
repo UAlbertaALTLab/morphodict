@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Layout, Table
+from paradigm import Layout, Table, rows_to_layout
 
 LayoutID = Tuple[LC, ParadigmSize]
 
@@ -32,7 +32,7 @@ def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Layout]:
         with open(layout_file, "r") as f:
             reader = csv.reader(f, delimiter="\t", quotechar="'")
             # TODO: convert the raw layout into a normal layout
-            layout = list(reader)
+            layout = rows_to_layout(reader)
         layout_tables[(lc, size)] = layout
 
     return layout_tables
