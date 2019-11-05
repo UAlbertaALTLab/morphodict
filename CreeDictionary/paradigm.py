@@ -76,7 +76,7 @@ del EmptyRowType
 
 
 @attrs(frozen=True)
-class TitleCell:
+class Label:
     """
     A section title in the paradigm field.
     """
@@ -88,7 +88,7 @@ class TitleCell:
 
 
 # TODO: Make a class for this:
-Cell = Union[str, TitleCell]
+Cell = Union[str, Label]
 Layout = List[List[Cell]]
 
 
@@ -97,4 +97,19 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     Takes rows (e.g., from a TSV file), and creates a well-formatted layout
     file.
     """
-    return list(rows)
+    return [[determine_cell(cell) for cell in row] for row in rows]
+
+
+def determine_cell(raw_cell: str) -> Cell:
+    # something like:
+    #   "Something is happening now"
+    #   "Speech act participants"
+    if raw_cell.startswith('"') and raw_cell.endswith('"'):
+        assert len(raw_cell) > 2
+        return Label(raw_cell[1:-1])
+    # TODO:
+    # Column header
+    #  : "ni-/ki- word"
+    # TODO: empty cells.
+    else:
+        return raw_cell

@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Layout, Table, rows_to_layout
+from paradigm import Label, Layout, Table, rows_to_layout
 
 LayoutID = Tuple[LC, ParadigmSize]
 
@@ -82,6 +82,7 @@ class ParadigmFiller:
         table_index = 0
         row_index = 0
         for row in layout_table:
+            # TODO: empty row
             if not any(row):
                 tables.append([])
                 table_index += 1
@@ -89,7 +90,9 @@ class ParadigmFiller:
             else:
                 tables[-1].append(row.copy())
                 for colInd, cell in enumerate(row):
-                    if '"' not in cell and cell != "":  # it's a inflection form pattern
+                    if (
+                        not isinstance(cell, Label) and '"' not in cell and cell != ""
+                    ):  # it's a inflection form pattern
                         lookup_strings.append(cell.replace("{{ lemma }}", lemma))
                         string_locations.append((table_index, row_index, colInd))
                 row_index += 1
