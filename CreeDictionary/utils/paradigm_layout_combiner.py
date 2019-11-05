@@ -13,7 +13,7 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import EmptyRow, Table
+from paradigm import EmptyRow, RowWithContent, Table
 
 logger = logging.getLogger(__name__)
 
@@ -75,7 +75,7 @@ def parse_layout(layout_file: Path) -> Table:
     for cells in celled_lines:
         cells = [cell.strip() for cell in cells]
         if len(cells) == maximum_column_count:
-            layout_list.append(cells)
+            layout_list.append(RowWithContent(cells))
         else:
             layout_list.append(EmptyRow)
 
