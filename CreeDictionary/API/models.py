@@ -346,8 +346,8 @@ class EnglishKeyword(models.Model):
 
     text = models.CharField(max_length=20)
 
-    lemma = models.ForeignKey(
-        Inflection, on_delete=models.CASCADE, related_name="English"
+    inflection = models.ForeignKey(
+        Inflection, on_delete=models.CASCADE, related_name="english_keyword"
     )
 
     class Meta:

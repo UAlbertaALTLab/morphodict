@@ -29,7 +29,8 @@ import_parser.add_argument(
     type=int,
     action="store",
     default=1,
-    help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. A rule is to use as many processes as the number of cores of the machine.",
+    help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. "
+    "A rule is to use as many processes as the number of cores of the machine.",
 )
 
 

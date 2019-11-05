@@ -29,6 +29,9 @@ RECOGNIZABLE_POS: Set[str] = {p[0] for p in Inflection.RECOGNIZABLE_POS}
 
 
 def clear_database(verbose=True):
+    """
+    Delete data from database but keep admin authentication data
+    """
     logger.set_print_info_on_console(verbose)
     logger.info("Deleting objects from the database")
 
@@ -105,15 +108,17 @@ def format_element_error(msg: str, element: ET.Element) -> str:
     return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
 
 
-def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
+def load_engcrk_xml(filename: PathLike) -> DefaultDict[Tuple[str, str], List[str]]:
     """
-    :return: Dict[definition, [english1, english2, english3 ...]]
+    pos is in uppercase
+
+    :return: Dict[(word_form, pos) , [english1, english2, english3 ...]]
     """
     filename = Path(filename)
 
     assert filename.exists(), "%s does not exist" % filename
 
-    res: DefaultDict[str, List[str]] = defaultdict(list)
+    res: DefaultDict[Tuple[str, str], List[str]] = defaultdict(list)
 
     root = ET.parse(str(filename)).getroot()
     elements = root.findall(".//e")
@@ -130,18 +135,18 @@ def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
             logger.debug(format_element_error("<l> does not have text", element))
             continue
 
-        trunc_elements = element.findall("mg/tg/trunc")
+        t_elements = element.findall("mg/tg/t")
 
-        if not trunc_elements:
+        if not t_elements:
             logger.debug(
-                format_element_error(f"<e> lacks <trunc> in file {filename}", element)
+                format_element_error(f"<e> lacks <t> in file {filename}", element)
             )
             continue
-        for trunc_element in trunc_elements:
-            if trunc_element.text is None:
+        for t_element in t_elements:
+            if t_element.text is None:
                 logger.debug(
                     format_element_error(
-                        f"<trunc> does not have text in file {filename}", element
+                        f"<t> does not have text in file {filename}", element
                     )
                 )
                 continue
@@ -153,7 +158,7 @@ def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
 
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
-    CLEARS the database and import from an xml file
+    CLEARS the database (except admin authentication data) and import from an xml file
 
     :keyword verbose: print to stdout or not
     """
@@ -282,7 +287,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 dup_analysis_xml_lemma_pos_lc_count += 1
                 existing_tuple = true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
                 logger.debug(
-                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma: {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}. Their Definition will be merged."
+                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma:"
+                    f" {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}."
+                    f" Their Definition will be merged."
                 )
 
                 # merge definition to first tuple
