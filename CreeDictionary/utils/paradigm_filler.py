@@ -7,7 +7,7 @@ from copy import deepcopy
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Tuple, cast
 
 import hfstol
 
@@ -104,10 +104,11 @@ class ParadigmFiller:
 
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
-        for i, locations in enumerate(string_locations):
-            table_index, row_ind, col_ind = locations
-            tables[table_index][row_ind][col_ind] = " / ".join(
-                sorted(results[lookup_strings[i]])
-            )
+        for i, location in enumerate(string_locations):
+            table_index, row_ind, col_ind = location
+            # TODO: this should actually produce TWO rows!
+            cast(List[List[List[str]]], tables)[table_index][row_ind][
+                col_ind
+            ] = " / ".join(sorted(results[lookup_strings[i]]))
 
         return tables
