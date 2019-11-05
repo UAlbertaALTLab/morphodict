@@ -14,11 +14,14 @@ import hfstol
 from constants import LC, ParadigmSize
 from paradigm import Table
 
+LayoutID = Tuple[LC, ParadigmSize]
 
-def import_prefilled_layouts(
-    layout_file_dir: Path
-) -> Dict[Tuple[LC, ParadigmSize], Table]:
-    layout_tables = dict()
+
+def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Table]:
+    """
+    TODO
+    """
+    layout_tables = {}
     files = glob.glob(str(layout_file_dir / "*.tsv"))
     for file in files:
 

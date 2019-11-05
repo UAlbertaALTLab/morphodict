@@ -7,6 +7,11 @@ from utils.paradigm_filler import import_prefilled_layouts
 
 
 def test_import_prefilled_layouts():
+    """
+    Imports ALL of the layouts, and makes sure a NA gets filled out.
+
+    Note: if the upstream layouts change, so will this test!
+    """
     prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
     assert prefilled_layouts[LC.NA, ParadigmSize.BASIC] == [
         ['"One"', "{{ lemma }}+N+A+Sg"],
