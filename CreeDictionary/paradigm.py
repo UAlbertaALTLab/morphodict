@@ -6,7 +6,7 @@ Classes related to paradigms: both layouts and the filled paradigms.
 """
 
 import warnings
-from typing import Iterator, List, Sequence, Union, overload
+from typing import Iterable, List, Sequence, Union, overload
 
 Row = Union["RowWithContent", "EmptyRowType"]
 Table = List[Row]
@@ -53,7 +53,7 @@ class RowWithContent(Sequence[str]):
         else:
             return False
 
-    def __iter__(self) -> Iterator[str]:
+    def __iter__(self):
         return iter(self.cells)
 
     def __len__(self) -> int:
@@ -71,3 +71,6 @@ class EmptyRowType:
 
 EmptyRow = EmptyRowType()
 del EmptyRowType
+
+# TODO: Make a class for this:
+Layout = List[List[str]]
