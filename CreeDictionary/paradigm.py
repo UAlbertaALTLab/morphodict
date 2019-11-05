@@ -8,6 +8,8 @@ Classes related to paradigms: both layouts and the filled paradigms.
 import warnings
 from typing import Iterable, List, Sequence, Union, overload
 
+from attr import attrib, attrs
+
 Row = Union["RowWithContent", "EmptyRowType"]
 Table = List[Row]
 
@@ -72,9 +74,27 @@ class EmptyRowType:
 EmptyRow = EmptyRowType()
 del EmptyRowType
 
+
+@attrs(frozen=True)
+class TitleCell:
+    """
+    A section title in the paradigm field.
+    """
+
+    text = attrib(type=str)
+
+    def __str__(self) -> str:
+        return self.text
+
+
 # TODO: Make a class for this:
-Layout = List[List[str]]
+Cell = Union[str, TitleCell]
+Layout = List[List[Cell]]
 
 
 def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
+    """
+    Takes rows (e.g., from a TSV file), and creates a well-formatted layout
+    file.
+    """
     return list(rows)
