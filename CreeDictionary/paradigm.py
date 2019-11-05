@@ -111,7 +111,7 @@ class Heading(StaticCell):
         return self.text
 
 
-Cell = Union[str, Label, Heading]
+Cell = Union[str, StaticCell]
 # TODO: Make a class for this:
 Layout = List[List[Cell]]
 
