@@ -74,10 +74,11 @@ def parse_layout(layout_file: Path) -> Table:
 
     for cells in celled_lines:
         cells = [cell.strip() for cell in cells]
-        if len(cells) == maximum_column_count:
-            layout_list.append(RowWithContent(cells))
-        else:
+        assert len(cells) == maximum_column_count
+        if all(cell == "" for cell in cells):
             layout_list.append(EmptyRow)
+        else:
+            layout_list.append(RowWithContent(cells))
 
     return layout_list
 

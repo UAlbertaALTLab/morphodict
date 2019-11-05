@@ -7,6 +7,7 @@ from utils.paradigm_layout_combiner import import_layouts
 def test_import_layouts_na_basic():
     imported_layout = import_layouts(shared_res_dir / "layouts")
     assert imported_layout[LC.NA, ParadigmSize.BASIC] == [
+        # TODO: this should have some labels and some slots
         RowWithContent(['"One"', "=N+A+Sg"]),
         RowWithContent(['"Many"', "=N+A+Pl"]),
         RowWithContent(['"Further"', "=N+A+Obv"]),
