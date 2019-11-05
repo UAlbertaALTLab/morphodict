@@ -94,7 +94,7 @@ class Heading:
     A section header in the rendered paradigm.
     """
 
-    is_header = True
+    is_heading = True
     text = attrib(type=str)
 
     def __str__(self) -> str:

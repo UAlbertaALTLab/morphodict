@@ -477,18 +477,24 @@ html {
   text-align: left;
 }
 
-.paradigm-row__label {
+.paradigm-label {
   text-align: left;
+}
+ w
+.paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
 
   vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
-.paradigm-row__wordform {
+.paradigm-label--col {
   font-weight: var(--strong-font-weight);
 }
 
+.paradigm-cell {
+  font-weight: var(--body-font-weight);
+}
 
 /********************************** PROSE **********************************/
 

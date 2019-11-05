@@ -39,19 +39,17 @@
                             {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
                             {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
                             {% if cell.is_label %}
-                                <th scope="row" class="paradigm-row__label">
+                                <th scope="row" class="paradigm-label paradigm-label--row">
                                     {{ cell }}
                                 </th>
-                            {% elif ':' in cell %}
-                                <th scope="row" class="paradigm-row__label">
-                                    {{ cell|cut:'"'|cut:":" }}
+                            {% elif cell.is_heading %}
+                                <th scope="col" class="paradigm-label paradigm-label--col">
+                                    {{ cell }}
                                 </th>
-                            {% elif '"' in cell %}
-                                <th scope="row" class="paradigm-row__label">
-                                    {{ cell|cut:'"' }}
-                                </th>
+                            {% elif cell == "" %}
+                                <td class="paradigm-cell paradigm-cell--empty"></td>
                             {% else %}
-                                <td class="paradigm-row__wordform">
+                                <td class="paradigm-cell">
                                     <span lang="cr">{{ cell }}</span>
                                 </td>
                             {% endif %}
