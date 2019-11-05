@@ -33,40 +33,49 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table
     files = layout_file_dir.glob("*.layout")
 
     for layout_file in files:
-        # Figure out if it's worth converting layout.
         *lc_str, size_str = layout_file.stem.split("-")
+
+        # Figure out if it's worth converting layout this layout.
         try:
             size = ParadigmSize(size_str.upper())
         except ValueError:
             # Unsupported "sizes" include: nehiyawewin, extended
             logger.info("unsupported paradigm size for %s", layout_file)
             continue
-        lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
 
-        table = create_layout_list(layout_file)
+        lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
+        table = parse_layout(layout_file)
 
         layout_tables[(lc, size)] = table
 
     return layout_tables
 
 
-def create_layout_list(layout_file: Path) -> Table:
+def parse_layout(layout_file: Path) -> Table:
+    """
+    Parses a layout and returns a "layout".
+    """
     lines = layout_file.read_text().splitlines()
     assert len(lines) >= 1, f"malformed layout file: {layout_file}"
 
     layout_list = []
 
+    # Figure out where the YAML header ends:
     dash_line_index = 0
     while lines[dash_line_index] != "--":
         dash_line_index += 1
-    celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
-    maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
+
+    # file to -> rows with columns
+    layout_lines = lines[dash_line_index + 1 :]
+    celled_lines = [line.split("|")[1:-1] for line in layout_lines]
+    maximum_column_count = max(len(line) for line in celled_lines)
 
     for cells in celled_lines:
-        cells = list(map(lambda x: x.strip(), cells))
+        cells = [cell.strip() for cell in cells]
         if len(cells) == maximum_column_count:
             layout_list.append(cells)
         else:
+            # TODO: create EmptyRow
             layout_list.append(
                 cells + ["" for _ in range(maximum_column_count - len(cells))]
             )
