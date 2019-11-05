@@ -66,7 +66,7 @@ class EmptyRowType:
     """
 
     def __repr__(self) -> str:
-        "EmptyRow"
+        return "EmptyRow"
 
 
 EmptyRow = EmptyRowType()
