@@ -1,5 +1,8 @@
 """
-According to .layout files and .paradigm files. Generate pre-filled paradigm tables
+Compiles the source Neahttadigesánit .layout files and .paradigm files to a
+"pre-filled" form.
+
+Generate pre-filled paradigm tables
 """
 
 import csv
@@ -13,7 +16,8 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import EmptyRow, RowWithContent, Table
+
+Table = List[List[str]]
 
 logger = logging.getLogger(__name__)
 
@@ -76,9 +80,9 @@ def parse_layout(layout_file: Path) -> Table:
         cells = [cell.strip() for cell in cells]
         assert len(cells) == maximum_column_count
         if all(cell == "" for cell in cells):
-            layout_list.append(EmptyRow)
+            layout_list.append([""] * maximum_column_count)
         else:
-            layout_list.append(RowWithContent(cells))
+            layout_list.append(cells)
 
     return layout_list
 
@@ -122,10 +126,12 @@ def import_paradigms(
 class Combiner:
     """
     Ties together the paradigm layouts, the expected forms from the .paradigm
-    file, and a generator to help you fill the layout.
+    file, and a generator to create "pre-filled" layout files.
 
-    An instance of this class should generally only be instantiated once per
-    application, and used as a service.
+    This is a "compilation" step and happens before the server is started.
+    Generally, this is when importing the raw files from Neahttadigesánit.
+
+    That is, the combiner should NOT be used in the Django server.
     """
 
     _paradigm_tables: Dict[LC, Dict[FrozenSet[str], List[str]]]
