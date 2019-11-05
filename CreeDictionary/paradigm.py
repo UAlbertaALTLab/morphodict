@@ -75,8 +75,18 @@ EmptyRow = EmptyRowType()
 del EmptyRowType
 
 
+class StaticCell:
+    """
+    A cell that undergoes no change in the when rendering a layout to a
+    paradigm.
+    """
+
+    is_heading: bool = False
+    is_label = False
+
+
 @attrs(frozen=True)
-class Label:
+class Label(StaticCell):
     """
     A title in the rendered paradigm.
     """
@@ -89,7 +99,7 @@ class Label:
 
 
 @attrs(frozen=True)
-class Heading:
+class Heading(StaticCell):
     """
     A section header in the rendered paradigm.
     """
