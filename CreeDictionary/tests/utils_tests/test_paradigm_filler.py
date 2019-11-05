@@ -1,13 +1,13 @@
 import pytest
 
 from constants import LC, ParadigmSize
-from paradigm import Label
+from paradigm import Heading, Label
 from shared import paradigm_filler
 from utils import shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
 
 
-def test_import_prefilled_layouts():
+def test_import_prefilled_layouts() -> None:
     """
     Imports ALL of the layouts, and makes sure a NA gets filled out.
 
@@ -19,14 +19,14 @@ def test_import_prefilled_layouts():
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
         [Label("Further"), "{{ lemma }}+N+A+Obv"],
         ["", ""],
-        ["", ': "Smaller/Lesser/Younger"'],
+        ["", Heading("Smaller/Lesser/Younger")],
         [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
         ["", ""],
-        ["", ': "Ownership"'],
-        ["", ': "One"'],
+        ["", Heading("Ownership")],
+        ["", Heading("One")],
         [Label("my"), "{{ lemma }}+N+A+Px1Sg+Sg"],
         [Label("your (one)"), "{{ lemma }}+N+A+Px2Sg+Sg"],
-        ["", ': "Further"'],
+        ["", Heading("Further")],
         [Label("his/her"), "{{ lemma }}+N+A+Px3Sg+Obv"],
     ]
 
@@ -56,7 +56,13 @@ def test_import_prefilled_layouts():
                 ],
                 [
                     ["", Label("Ownership"), "", "", ""],
-                    ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
+                    [
+                        "",
+                        Heading("One"),
+                        Heading("Many"),
+                        Heading("Further"),
+                        Heading("In/On"),
+                    ],
                     [Label("my"), "niniskim", "niniskimak", "niniskima", "niniskimihk"],
                     [
                         Label("your (one)"),
@@ -99,7 +105,13 @@ def test_import_prefilled_layouts():
                 [
                     ["", Label("Smaller/Lesser/Younger"), "", "", ""],
                     ["", Label("Ownership"), "", "", ""],
-                    ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
+                    [
+                        "",
+                        Heading("One"),
+                        Heading("Many"),
+                        Heading("Further"),
+                        Heading("In/On"),
+                    ],
                     [
                         Label("my"),
                         "niniskimis / niniskimisis",

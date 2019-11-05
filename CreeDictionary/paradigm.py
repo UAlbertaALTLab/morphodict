@@ -78,7 +78,7 @@ del EmptyRowType
 @attrs(frozen=True)
 class Label:
     """
-    A section title in the paradigm field.
+    A title in the rendered paradigm.
     """
 
     is_label = True
@@ -88,8 +88,21 @@ class Label:
         return self.text
 
 
+@attrs(frozen=True)
+class Heading:
+    """
+    A section header in the rendered paradigm.
+    """
+
+    is_header = True
+    text = attrib(type=str)
+
+    def __str__(self) -> str:
+        return self.text
+
+
+Cell = Union[str, Label, Heading]
 # TODO: Make a class for this:
-Cell = Union[str, Label]
 Layout = List[List[Cell]]
 
 
@@ -108,9 +121,10 @@ def determine_cell(raw_cell: str) -> Cell:
     if raw_cell.startswith('"') and raw_cell.endswith('"'):
         assert len(raw_cell) > 2
         return Label(raw_cell[1:-1])
+    elif raw_cell.startswith(":"):
+        _colon, content, _empty = raw_cell.split('"')
+        return Heading(content)
     # TODO:
-    # Column header
-    #  : "ni-/ki- word"
     # TODO: empty cells.
     else:
         return raw_cell
