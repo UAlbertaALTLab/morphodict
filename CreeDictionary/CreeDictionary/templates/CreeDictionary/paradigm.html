@@ -10,6 +10,7 @@
             <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
         </h1>
     </header>
+
     {# TODO: .definition_recordings #}
     <section class="definition__meanings">
         <ol class="meanings">
@@ -22,8 +23,9 @@
             {% endfor %}
         </ol>
     </section>
+
     {% if tables %}
-    <section class="definition__paradigm paradigm">
+    <section class="definition__paradigm paradigm" data-cy="paradigm">
         <table class="paradigm__table">
             <tbody>
             <tr>
