@@ -22,18 +22,18 @@ def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Table]:
 
     """
     layout_tables = {}
-    files = glob.glob(str(layout_file_dir / "*.tsv"))
 
-    for layout_file in files:
-        name_wo_extension = str(path.split(layout_file)[1]).split(".")[0]
+    for layout_file in layout_file_dir.glob("*.tsv"):
+        name_wo_extension = layout_file.stem
 
         with open(layout_file, "r") as f:
             reader = csv.reader(f, delimiter="\t", quotechar="'")
-            layout_list = list(reader)
+            # TODO: convert the raw layout into a normal layout
             ic_str, size_str = name_wo_extension.split("-")
-            layout_tables[
-                (LC(ic_str.upper()), ParadigmSize(size_str.upper()))
-            ] = layout_list
+            lc = LC(ic_str.upper())
+            size = ParadigmSize(size_str.upper())
+            layout_list = list(reader)
+            layout_tables[(lc, size)] = layout_list
 
     return layout_tables
 
