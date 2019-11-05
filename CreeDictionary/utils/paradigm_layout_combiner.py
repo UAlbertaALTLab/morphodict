@@ -119,6 +119,14 @@ def import_paradigms(
 
 
 class Combiner:
+    """
+    Ties together the paradigm layouts, the expected forms from the .paradigm
+    file, and a generator to help you fill the layout.
+
+    An instance of this class should generally only be instantiated once per
+    application, and used as a service.
+    """
+
     _paradigm_tables: Dict[LC, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
@@ -126,7 +134,8 @@ class Combiner:
     }
     """
     _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
-    # todo: update how it looks like
+
+    # TODO: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
                       ['"1s"', 'Ind+Prs+1Sg', 'PV/e+*+Cnj+Prs+1Sg'], ['"2s"', 'Ind+Prs+2Sg', 'PV/e+*+Cnj+Prs+2Sg'],
@@ -168,8 +177,7 @@ class Combiner:
         generator_hfstol_path: Path,
     ):
         """
-        reads all of .tsv layout files into memory.
-        inits fst generator
+        Reads ALL of the .tsv layout files into memory and initializes the FST generator
 
         :param layout_absolute_dir: the absolute directory of your .tsv layout files
         """
@@ -180,7 +188,7 @@ class Combiner:
     @classmethod
     def default_combiner(cls):
         """
-        This returns a combiner that uses paradigm files, layout files, and hfstol files from `res` folder
+        Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
         """
         res = Path(dirname(__file__)) / ".." / "res"
         return Combiner(
@@ -193,7 +201,7 @@ class Combiner:
         self, category: LC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
-        returns a paradigm table
+        Return the appropriate layout.
         """
 
         if category is LC.IPC or category is LC.Pron:
