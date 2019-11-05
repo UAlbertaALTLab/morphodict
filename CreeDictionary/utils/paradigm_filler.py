@@ -19,22 +19,22 @@ LayoutID = Tuple[LC, ParadigmSize]
 
 def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Table]:
     """
-    TODO
+
     """
     layout_tables = {}
     files = glob.glob(str(layout_file_dir / "*.tsv"))
-    for file in files:
 
-        name_wo_extension = str(path.split(file)[1]).split(".")[0]
+    for layout_file in files:
+        name_wo_extension = str(path.split(layout_file)[1]).split(".")[0]
 
-        with open(file, "r") as f:
-
+        with open(layout_file, "r") as f:
             reader = csv.reader(f, delimiter="\t", quotechar="'")
             layout_list = list(reader)
             ic_str, size_str = name_wo_extension.split("-")
             layout_tables[
                 (LC(ic_str.upper()), ParadigmSize(size_str.upper()))
             ] = layout_list
+
     return layout_tables
 
 
