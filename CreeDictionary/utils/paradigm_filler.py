@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Layout, StaticCell, Table, rows_to_layout
+from paradigm import EmptyRow, Layout, StaticCell, Table, rows_to_layout
 
 LayoutID = Tuple[LC, ParadigmSize]
 
@@ -83,12 +83,12 @@ class ParadigmFiller:
         row_index = 0
 
         for row in layout_table:
-            # TODO: empty row
-            if not any(row):
+            if row is EmptyRow:
                 tables.append([])
                 table_index += 1
                 row_index = 0
             else:
+                assert isinstance(row, list)
                 tables[-1].append(row.copy())
                 for colInd, cell in enumerate(row):
                     if isinstance(cell, StaticCell) or cell == "":

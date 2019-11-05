@@ -1,7 +1,7 @@
 import pytest
 
 from constants import LC, ParadigmSize
-from paradigm import Heading, Label
+from paradigm import EmptyRow, Heading, Label
 from shared import paradigm_filler
 from utils import shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
@@ -18,10 +18,10 @@ def test_import_prefilled_layouts() -> None:
         [Label("One"), "{{ lemma }}+N+A+Sg"],
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
         [Label("Further"), "{{ lemma }}+N+A+Obv"],
-        ["", ""],
+        EmptyRow,
         ["", Heading("Smaller/Lesser/Younger")],
         [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
-        ["", ""],
+        EmptyRow,
         ["", Heading("Ownership")],
         ["", Heading("One")],
         [Label("my"), "{{ lemma }}+N+A+Px1Sg+Sg"],
