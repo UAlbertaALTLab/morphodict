@@ -11,7 +11,8 @@ from typing import Dict, List, Tuple
 
 import hfstol
 
-from constants import LC, ParadigmSize, Table
+from constants import LC, ParadigmSize
+from paradigm import Table
 
 
 def import_prefilled_layouts(

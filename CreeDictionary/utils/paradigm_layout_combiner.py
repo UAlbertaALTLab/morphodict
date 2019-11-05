@@ -1,6 +1,7 @@
 """
 According to .layout files and .paradigm files. Generate pre-filled paradigm tables
 """
+
 import csv
 import glob
 import logging
@@ -11,7 +12,8 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from constants import LC, ParadigmSize, Table
+from constants import LC, ParadigmSize
+from paradigm import Table
 
 logger = logging.getLogger(__name__)
 
