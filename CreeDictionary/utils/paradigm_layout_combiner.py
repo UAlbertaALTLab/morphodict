@@ -1,8 +1,13 @@
 """
-Compiles the source Neahttadigesánit .layout files and .paradigm files to a
+Compiles the source Neahttadigisánit .layout files and .paradigm files to a
 "pre-filled" form.
 
-Generate pre-filled paradigm tables
+This generate pre-filled paradigm layouts, which are subsequently used in the
+web application.
+
+DO NOT import this file in the Django web application.
+
+See: paradigm_filler instead.
 """
 
 import csv
@@ -17,6 +22,7 @@ import hfstol
 
 from constants import LC, ParadigmSize
 
+# A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
 
 logger = logging.getLogger(__name__)
@@ -129,7 +135,7 @@ class Combiner:
     file, and a generator to create "pre-filled" layout files.
 
     This is a "compilation" step and happens before the server is started.
-    Generally, this is when importing the raw files from Neahttadigesánit.
+    Generally, this is when importing the raw files from Neahttadigisánit.
 
     That is, the combiner should NOT be used in the Django server.
     """
