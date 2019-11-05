@@ -81,6 +81,7 @@ class Label:
     A section title in the paradigm field.
     """
 
+    is_label = True
     text = attrib(type=str)
 
     def __str__(self) -> str:

@@ -13,6 +13,9 @@ context('Paradigms', () => {
         .should('contain', 'acâhkos')
         .and('contain', 'acâhkosak')
         .and('contain', 'acâhkosa')
+
+      cy.get('@paradigm')
+        .contains('th[scope=row]', 'Further')
     })
   })
 })

@@ -35,11 +35,14 @@
             {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
                 {% for row in table %}
                     <tr class="paradigm-row">
-
                         {% for cell in row %}
                             {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
                             {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
-                            {% if ':' in cell %}
+                            {% if cell.is_label %}
+                                <th scope="row" class="paradigm-row__label">
+                                    {{ cell }}
+                                </th>
+                            {% elif ':' in cell %}
                                 <th scope="row" class="paradigm-row__label">
                                     {{ cell|cut:'"'|cut:":" }}
                                 </th>
