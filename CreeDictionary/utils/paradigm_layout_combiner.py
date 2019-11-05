@@ -13,7 +13,7 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Table
+from paradigm import EmptyRow, Table
 
 logger = logging.getLogger(__name__)
 
@@ -60,7 +60,7 @@ def parse_layout(layout_file: Path) -> Table:
     lines = layout_file.read_text().splitlines()
     assert len(lines) >= 1, f"malformed layout file: {layout_file}"
 
-    layout_list = []
+    layout_list: Table = []
 
     # Figure out where the YAML header ends:
     dash_line_index = 0
@@ -77,10 +77,7 @@ def parse_layout(layout_file: Path) -> Table:
         if len(cells) == maximum_column_count:
             layout_list.append(cells)
         else:
-            # TODO: create EmptyRow
-            layout_list.append(
-                cells + ["" for _ in range(maximum_column_count - len(cells))]
-            )
+            layout_list.append(EmptyRow)
 
     return layout_list
 

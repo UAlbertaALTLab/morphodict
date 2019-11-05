@@ -5,6 +5,21 @@
 Classes related to paradigms: both layouts and the filled paradigms.
 """
 
-from typing import List
+from typing import List, Union
 
-Table = List[List[str]]
+RowWithContent = List[str]
+Row = Union[RowWithContent, "EmptyRowType"]
+Table = List[Row]
+
+
+class EmptyRowType:
+    """
+    A completely empty row!
+    """
+
+    def __repr__(self) -> str:
+        "EmptyRow"
+
+
+EmptyRow = EmptyRowType()
+del EmptyRowType
