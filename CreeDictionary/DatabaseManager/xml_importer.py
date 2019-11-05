@@ -3,9 +3,8 @@ import os
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from os import PathLike
 from pathlib import Path
-from typing import DefaultDict, Dict, List, Optional, Set, Tuple
+from typing import DefaultDict, Dict, List, Optional, Set, Tuple, NamedTuple
 
 import django
 from colorama import Fore, init
@@ -15,6 +14,7 @@ from API.models import Definition, DictionarySource, EnglishKeyword, Inflection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
+from constants import POS
 from utils.crkeng_xml_utils import convert_lc_str, extract_l_str
 
 init()  # for windows compatibility
@@ -114,17 +114,51 @@ def format_element_error(msg: str, element: ET.Element) -> str:
     return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
 
 
-def load_engcrk_xml(filename: PathLike) -> DefaultDict[Tuple[str, str], List[str]]:
+class EngcrkCree(NamedTuple):
     """
-    pos is in uppercase
+    A cree word extracted from engcrk.xml.
+    The corresponding wordform in the database is to be determined later
+    """
 
-    :return: Dict[(word_form, pos) , [english1, english2, english3 ...]]
+    wordform: str
+    pos: POS
+
+
+def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
     """
+    :return: Dict[EngcrkCree , [english1, english2, english3 ...]] pos is in uppercase
+    """
+
+    # The structure in engcrk.xml
+
+    """
+        <e>
+
+            <lg xml:lang="eng">
+                <l pos="N">August</l>
+            </lg>
+
+            <mg>
+                <tg xml:lang="crk">
+                    <trunc sources="MD">august. [The flying month].</trunc>
+                    <t pos="N" rank="1.0">Ohpahow-pisim</t>
+                </tg>
+            </mg>
+
+            <mg>
+                <tg xml:lang="crk">
+                    <trunc sources="CW">Flying-Up Moon; August</trunc>
+                    <t pos="N" rank="1.0">ohpahowi-pîsim</t>
+                </tg>
+            </mg>
+        </e>
+    """
+
     filename = Path(filename)
 
     assert filename.exists(), "%s does not exist" % filename
 
-    res: DefaultDict[Tuple[str, str], List[str]] = defaultdict(list)
+    res: DefaultDict[EngcrkCree, List[str]] = defaultdict(list)
 
     root = ET.parse(str(filename)).getroot()
     elements = root.findall(".//e")
@@ -148,6 +182,7 @@ def load_engcrk_xml(filename: PathLike) -> DefaultDict[Tuple[str, str], List[str
                 format_element_error(f"<e> lacks <t> in file {filename}", element)
             )
             continue
+
         for t_element in t_elements:
             if t_element.text is None:
                 logger.debug(
@@ -156,8 +191,21 @@ def load_engcrk_xml(filename: PathLike) -> DefaultDict[Tuple[str, str], List[str
                     )
                 )
                 continue
+            cree_word = t_element.text
+            pos_str = t_element.get("pos")
+            assert pos_str is not None
+            try:
+                pos = POS(pos_str.upper())
+            except ValueError:
+                logger.debug(
+                    format_element_error(
+                        f"Cree word {cree_word} has a unrecognizable pos {pos_str}",
+                        element,
+                    )
+                )
+                continue
 
-            res[trunc_element.text].append(l_element.text)
+            res[EngcrkCree(cree_word, pos)].append(l_element.text)
 
     return res
 

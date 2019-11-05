@@ -21,6 +21,18 @@ class ParadigmSize(Enum):
         return self.value.capitalize()
 
 
+class PartOfSpeech(Enum):
+    IPV = "IPV"
+    PRON = "PRON"
+    N = "N"
+    IPC = "IPC"
+    V = "V"
+
+
+# alias
+POS = PartOfSpeech
+
+
 class LexicalCategory(Enum):
 
     NA = "NA"
