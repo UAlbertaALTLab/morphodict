@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "53b46b93dbfa78c0f65a75dd91d3d4d9e22336919d3e0e125a5c0b0cd3376786"
+            "sha256": "77c8b3833f70ad62a318c0e374d32454a5ff60e993a9a941b9b7371965e661a9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -130,11 +130,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:abc25d0ce2397d070ef07d8c7e706aede7920da163c64997585d42d3537ece3d",
-                "sha256:dd3fcca8488bb1d416aa7469d2f277902f26260c45aa86b667b074cd44b3b115"
+                "sha256:94d2a64582150f503a294b3b8889413e7e56d6043473d6a5672d46185b043902",
+                "sha256:fca09992116d6dc3ad9789cf601a254081eb40d5c14c1863ab6cd10e15c2cb26"
             ],
             "index": "pypi",
-            "version": "==4.36.1"
+            "version": "==4.37.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -338,16 +338,23 @@
             "index": "pypi",
             "version": "==2.2.6"
         },
+        "gitdir": {
+            "hashes": [
+                "sha256:ddd347185b27b7a1711bcb3576dc8769fde143c2c11355216616969618f4e538"
+            ],
+            "index": "pypi",
+            "version": "==1.1.2"
+        },
         "hypothesis": {
             "extras": [
                 "django"
             ],
             "hashes": [
-                "sha256:70a80436bdf844e2e9aaabe74100cc62b7e90c150fdd4dd864c64fcfc9bde273",
-                "sha256:9663f911d0a0ccb0b602b424d1b599e1a3637cba0e28d669d3d2b8d33ca44516"
+                "sha256:7385185ceeada55746a406a90fc84bfc22481fd570cc4bbcf8401ea93ce574e3",
+                "sha256:c32f79ba3b587a210de4f17e88d704b712c4301a554d4f5d7a67d01076dce1d0"
             ],
             "index": "pypi",
-            "version": "==4.42.0"
+            "version": "==4.42.3"
         },
         "idna": {
             "hashes": [
@@ -363,14 +370,6 @@
             ],
             "markers": "python_version < '3.8'",
             "version": "==0.23"
-        },
-        "isort": {
-            "hashes": [
-                "sha256:54da7e92468955c4fceacd0c86bd0ec997b0e1ee80d97f67c35a78b719dccab1",
-                "sha256:6e811fcb295968434526407adb8796944f1988c5b65e8139058f2014cbe100fd"
-            ],
-            "index": "pypi",
-            "version": "==4.3.21"
         },
         "more-itertools": {
             "hashes": [

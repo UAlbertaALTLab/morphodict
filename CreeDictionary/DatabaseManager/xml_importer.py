@@ -3,25 +3,25 @@ import os
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
+from os import PathLike
 from pathlib import Path
-from typing import Dict, List, Tuple, Set, Optional, DefaultDict
+from typing import DefaultDict, Dict, List, Optional, Set, Tuple
 
 import django
 from colorama import Fore, init
 from django.db import connection
 
+from API.models import Definition, DictionarySource, EnglishKeyword, Inflection
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from constants import PathLike
-from utils.crkeng_xml_utils import extract_l_str, convert_lc_str
+from utils.crkeng_xml_utils import convert_lc_str, extract_l_str
 
 init()  # for windows compatibility
 
 os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
 django.setup()
 
-from API.models import Definition, Inflection, EnglishKeyword
 
 logger = DatabaseManagerLogger(__name__)
 
@@ -39,9 +39,15 @@ def clear_database(verbose=True):
 
     # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
     cursor.execute("PRAGMA foreign_keys = OFF")
+
+    # Delete Many-to-Many field first:
+    cursor.execute("DELETE FROM API_definition_citations")
+
+    # Then delete the rest:
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
     cursor.execute("DELETE FROM API_englishkeyword")
+    cursor.execute("DELETE FROM API_dictionarysource")
     cursor.execute("PRAGMA foreign_keys = ON")
 
     logger.info("All Objects deleted from Database")
@@ -175,7 +181,11 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     source_ids = [s.get("id") for s in root.findall(".//source")]
 
-    logger.info("Sources parsed: " + str(source_ids))
+    logger.info("Sources parsed: %r", source_ids)
+    for source_id in source_ids:
+        src = DictionarySource(abbrv=source_id)
+        src.save()
+        logger.info("Created source: %s", source_id)
 
     logger.info("Loading English keywords...")
     def_to_keywords = load_engcrk_xml(engcrk_filename)
@@ -326,6 +336,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     db_inflections: List[Inflection] = []
     db_definitions: List[Definition] = []
     db_keywords: List[EnglishKeyword] = []
+    citations: Dict[int, Set[str]] = {}
 
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         recognizable_lc = convert_lc_str(lc)
@@ -351,13 +362,16 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
             (xml_lemma, pos, lc)
         ]
+
         for str_definition, source_strings in str_definitions_source_strings.items():
             db_definition = Definition(
-                id=definition_counter,
-                text=str_definition,
-                sources=" ".join(source_strings),
-                lemma=db_inflection,
+                id=definition_counter, text=str_definition, lemma=db_inflection
             )
+
+            # Figure out what citations we should be making.
+            assert definition_counter not in citations
+            citations[definition_counter] = set(source_strings)
+
             keyword_texts = def_to_keywords[str_definition]
             if keyword_texts:
                 for keyword_text in keyword_texts:
@@ -433,11 +447,11 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         source_strings,
                     ) in str_definitions_source_strings.items():
                         db_definition = Definition(
-                            id=definition_counter,
-                            text=str_definition,
-                            sources=" ".join(source_strings),
-                            lemma=db_lemma,
+                            id=definition_counter, text=str_definition, lemma=db_lemma
                         )
+                        assert definition_counter not in citations
+                        citations[definition_counter] = set(source_strings)
+
                         definition_counter += 1
                         db_definitions.append(db_definition)
 
@@ -465,6 +479,20 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     logger.info("Inserting definition to database...")
     Definition.objects.bulk_create(db_definitions)
+    logger.info("Done inserting.")
+
+    logger.info("Inserting citations [definition -> dictionary source] to database...")
+    # ThroughModel is the "hidden" model that manages the Many-to-Many
+    # relationship
+    ThroughModel = Definition.citations.through
+
+    def _generate_through_models():
+        "Yields all associations between Definitions and DictionarySources"
+        for dfn_id, src_ids in citations.items():
+            for src_pk in src_ids:
+                yield ThroughModel(definition_id=dfn_id, dictionarysource_id=src_pk)
+
+    ThroughModel.objects.bulk_create(_generate_through_models())
     logger.info("Done inserting.")
 
     logger.info("Inserting English keywords to database...")

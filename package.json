@@ -4,6 +4,7 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "webpack --watch & pipenv run dev",
+    "bg-watch": "webpack --watch &",
     "build": "webpack",
     "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
@@ -19,7 +20,7 @@
   },
   "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
   "devDependencies": {
-    "cypress": "^3.5.0",
+    "cypress": "^3.6.0",
     "eslint": "^6.5.1",
     "node-sass": "^4.12.0",
     "wait-on": "^3.3.0",

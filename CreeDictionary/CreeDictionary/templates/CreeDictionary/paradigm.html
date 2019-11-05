@@ -14,29 +14,47 @@
     <section class="definition__meanings">
         <ol class="meanings">
             {% for def in lemma.definition_set.all %}
-                <li class="meanings__meaning">{{ def.text }} <cite class="cite-dict">{{ def.sources }}</cite></li>
+                <li class="meanings__meaning">{{ def.text }}
+                    {% for source in def.source_ids %}
+                        <cite class="cite-dict">{{ source }}</cite>
+                    {% endfor %}
+                </li>
             {% endfor %}
         </ol>
     </section>
     <section class="definition__paradigm paradigm">
         <table class="paradigm__table">
             <tbody>
-            {# TODO: these must be generated from the basic paradigm #}
             <tr>
-                <th class="paradigm__panel-description" colspan="2"> Basic</th>
+                <th class="paradigm__panel-description" colspan="2"> {{ paradigm_size }}</th>
             </tr>
-            <tr class="paradigm-row">
-                <th scope="row" class="paradigm-row__label">One</th>
-                <td class="paradigm-row__wordform"><span lang="cr">mînos</span></td>
-            </tr>
-            <tr class="paradigm-row">
-                <th scope="row" class="paradigm-row__label">Many</th>
-                <td class="paradigm-row__wordform"><span lang="cr">minôsak</span></td>
-            </tr>
-            <tr class="paradigm-row">
-                <th scope="row" class="paradigm-row__label">Further</th>
-                <td class="paradigm-row__wordform"><span lang="cr">minôsa</span></td>
-            </tr>
+
+            {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
+                {% for row in table %}
+                    <tr class="paradigm-row">
+
+                        {% for cell in row %}
+                            {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
+                            {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
+                            {% if ':' in cell %}
+                                <th scope="row" class="paradigm-row__label">
+                                    {{ cell|cut:'"'|cut:":" }}
+                                </th>
+                            {% elif '"' in cell %}
+                                <th scope="row" class="paradigm-row__label">
+                                    {{ cell|cut:'"' }}
+                                </th>
+                            {% else %}
+                                <td class="paradigm-row__wordform">
+                                    <span lang="cr">{{ cell }}</span>
+                                </td>
+                            {% endif %}
+
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            {% endfor %}
+
             </tbody>
         </table>
         <button class="paradigm__more-button">show more</button>

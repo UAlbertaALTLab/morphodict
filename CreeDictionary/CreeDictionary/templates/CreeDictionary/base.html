@@ -24,7 +24,7 @@
       <input id="search" class="search-bar__input" data-cy="search"
              type="text" required name="q"
              placeholder="Search in Cree or English"
-             autocomplete="off" spellcheck="false"
+             autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"
              value="{{ query_string }}">
       <button class="search-bar__button" type="submit">
         <img src="{% static 'CreeDictionary/images/fa/search.svg' %}" alt="Search">

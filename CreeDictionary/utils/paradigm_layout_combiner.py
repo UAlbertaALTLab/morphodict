@@ -1,5 +1,5 @@
 """
-According to .layout files and .paradigm files. Generate pre-filled layout tables
+According to .layout files and .paradigm files. Generate pre-filled paradigm tables
 """
 import csv
 import glob
@@ -10,57 +10,61 @@ from typing import Dict, List, Tuple, FrozenSet
 
 import hfstol
 
-from constants import LexicalCategory, ParadigmSize
+from constants import LC, ParadigmSize, Table
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
-    "noun-na": LexicalCategory.NA,
-    "noun-nad": LexicalCategory.NAD,
-    "noun-ni": LexicalCategory.NI,
-    "noun-nid": LexicalCategory.NID,
-    "verb-ai": LexicalCategory.VAI,
-    "verb-ii": LexicalCategory.VII,
-    "verb-ta": LexicalCategory.VTA,
-    "verb-ti": LexicalCategory.VTI,
+    "noun-na": LC.NA,
+    "noun-nad": LC.NAD,
+    "noun-ni": LC.NI,
+    "noun-nid": LC.NID,
+    "verb-ai": LC.VAI,
+    "verb-ii": LC.VII,
+    "verb-ta": LC.VTA,
+    "verb-ti": LC.VTI,
 }
 
 
-def import_layouts(layout_file_dir: Path):
+def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table]:
     layout_tables = dict()
-    files = glob.glob(str(layout_file_dir / "*.tsv"))
+    files = layout_file_dir.glob("*.layout")
     for file in files:
 
-        name_wo_extension = str(path.split(file)[1]).split(".")[0]
+        lines = file.read_text().splitlines()
 
-        with open(file, "r") as f:
-            lines = f.read().splitlines()
+        layout_list = []
 
-            layout_list = []
+        assert len(lines) >= 1, "malformed layout file %s" % file
 
-            assert len(lines) >= 1, "malformed layout file %s" % file
-            celled_lines = list(map(lambda l: l.split("\t"), lines))
-            # print(file, list(map(lambda cells: len(cells), celled_lines)))
-            maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
+        dash_line_index = 0
+        while lines[dash_line_index] != "--":
+            dash_line_index += 1
+        celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
+        maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
 
-            for cells in celled_lines:
-                cells = list(map(lambda x: x.strip(), cells))
-                if len(cells) == maximum_column_count:
-                    layout_list.append(cells)
-                else:
-                    layout_list.append(
-                        cells + ["" for _ in range(maximum_column_count - len(cells))]
-                    )
+        for cells in celled_lines:
+            cells = list(map(lambda x: x.strip(), cells))
+            if len(cells) == maximum_column_count:
+                layout_list.append(cells)
+            else:
+                layout_list.append(
+                    cells + ["" for _ in range(maximum_column_count - len(cells))]
+                )
 
-            ic_str, size_str = name_wo_extension.split("-")
+        *lc_str, size_str = file.stem.split("-")
+
+        try:
             layout_tables[
-                (LexicalCategory(ic_str.upper()), ParadigmSize(size_str.upper()))
+                (PARADIGM_NAME_TO_IC["-".join(lc_str)], ParadigmSize(size_str.upper()))
             ] = layout_list
+        except ValueError:  # not yet in ParadigmSize, e.g. nehiyawewin
+            pass
     return layout_tables
 
 
 def import_paradigms(
     paradigm_files_dir: Path
-) -> Dict[LexicalCategory, Dict[FrozenSet[str], List[str]]]:
+) -> Dict[LC, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
 
@@ -95,13 +99,14 @@ def import_paradigms(
 
 
 class Combiner:
-    _paradigm_tables: Dict[LexicalCategory, Dict[FrozenSet[str], List[str]]]
+    _paradigm_tables: Dict[LC, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[LexicalCategory, ParadigmSize], List[List[str]]]
+    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
+    # todo: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
                       ['"1s"', 'Ind+Prs+1Sg', 'PV/e+*+Cnj+Prs+1Sg'], ['"2s"', 'Ind+Prs+2Sg', 'PV/e+*+Cnj+Prs+2Sg'],
@@ -153,7 +158,7 @@ class Combiner:
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
-    def default_filler(cls):
+    def default_combiner(cls):
         """
         This returns a combiner that uses paradigm files, layout files, and hfstol files from `res` folder
         """
@@ -165,13 +170,13 @@ class Combiner:
         )
 
     def get_combined_table(
-        self, category: LexicalCategory, paradigm_size: ParadigmSize
+        self, category: LC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         returns a paradigm table
         """
 
-        if category is LexicalCategory.IPC or category is LexicalCategory.Pron:
+        if category is LC.IPC or category is LC.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]
@@ -212,25 +217,21 @@ class Combiner:
         return layout_table
 
 
-if __name__ == "__main__":
-    filler = Combiner.default_filler()
+def combine_layout_paradigm():
+    combiner = Combiner.default_combiner()
 
-    for ic in LexicalCategory:
-        if ic is LexicalCategory.Pron or ic is LexicalCategory.IPC:
+    for ic in LC:
+        if ic is LC.Pron or ic is LC.IPC:
             continue
         for size in ParadigmSize:
             with open(
                 path.join(
-                    dirname(__file__),
-                    "..",
-                    "res",
-                    "prefilled_layouts",
-                    "%s-%s.useful.layout.tsv",
+                    dirname(__file__), "..", "res", "prefilled_layouts", "%s-%s.tsv"
                 )
                 % (ic.value.lower(), size.value.lower()),
                 "w",
                 newline="",
             ) as file:
-                a = filler.get_combined_table(ic, size)
+                a = combiner.get_combined_table(ic, size)
                 writer = csv.writer(file, delimiter="\t", quotechar="'")
                 writer.writerows(a)

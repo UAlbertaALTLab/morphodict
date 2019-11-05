@@ -1,13 +1,4 @@
-import time
-from typing import Dict, List
-
-from django.db.models import QuerySet
 from django.http import JsonResponse
-from django.shortcuts import render
-
-from API.models import Inflection
-from constants import LC
-from utils import paradigm_filler, ParadigmSize
 
 
 # todo: update api documentation

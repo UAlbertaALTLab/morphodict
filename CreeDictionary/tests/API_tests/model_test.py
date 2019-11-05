@@ -53,9 +53,15 @@ def test_search_for_exact_lemma(lemma: Inflection):
     """
     Check that we get a search result that matches the exact query.
     """
-    assert lemma.is_lemma
-    query = lemma.text
 
+    assert lemma.is_lemma
+    # XXX: there is something weird where a lemma is not a lemma...
+    # bug in the FST? bug in the dictionary? Either way, it's inconvenient.
+    lemma_from_analysis, _, _ = lemma.analysis.partition("+")
+    assert all(c == c.lower() for c in lemma_from_analysis)
+    assume(lemma.text == lemma_from_analysis)
+
+    query = lemma.text
     matched_language, search_results = Inflection.search(query)
 
     assert matched_language == "crk", "We should have gotten results for Cree"
@@ -73,6 +79,8 @@ def test_search_for_exact_lemma(lemma: Inflection):
     assert not result.preverbs
     assert not result.reduplication_tags
     assert not result.initial_change_tags
+    assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
 
 
 @pytest.mark.skip(reason="The test DB does not contain matching English content :/")
@@ -112,3 +120,5 @@ def test_search_for_stored_non_lemma():
     assert not result.preverbs
     assert not result.reduplication_tags
     assert not result.initial_change_tags
+    assert len(result.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)

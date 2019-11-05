@@ -7,12 +7,13 @@ env:
   jquery: true
 globals:
   XRegExp: true
-  # Cypress/Mocha globals
+  # Cypress/chai/Mocha globals
   describe: true
   it: true
   beforeEach: true
   cy: true
   context: true
+  expect: true
 extends: 'eslint:recommended'
 parserOptions:
   ecmaVersion: 2016

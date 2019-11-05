@@ -1,0 +1,57 @@
+name: "Animate noun full (plain) paradigm"
+paradigm: "noun-na.paradigm"
+layout:
+  type: "full"
+tooltips:
+  eng:
+    "my": "1st person singular possessor"
+    "your (one)": "2nd person singular possessor"
+    "his/her": "3rd person singular possessor"
+    "our": "myt person plural exclusive possessor"
+    "your and our": "myt person plural inclusive possessor"
+    "your (all)": "2nd person plural possessor"
+    "their": "3rd person plural possessor"
+    "his/her/their (further)": "Obviative possessor"
+    "One": "Singular"
+    "Many": "Plural"
+    "Further": "Obviative"
+    "In/On": "Locative"
+    "Among": "Distributive"
+    "Smaller/Lesser/Younger": "Diminutive"
+    "Ownership": "Possession"
+--
+| "One"                     | =N+A+Sg                  |                       |                          |                          |
+| "Many"                    | =N+A+Pl                  |                       |                          |                          |
+| "Further"                 | =N+A+Obv                 |                       |                          |                          |
+| "In/On"                   | =N+A+Loc                 |                       |                          |                          |
+| "Among"                   | =N+A+Distr               |                       |                          |                          |
+|                           |                          |                       |                          |                          |
+|                           | "Smaller/Lesser/Younger" |                       |                          |                          |
+| "One"                     | Der/Dim+N+A+Sg           |                       |                          |                          |
+| "Many"                    | Der/Dim+N+A+Pl           |                       |                          |                          |
+| "Further"                 | Der/Dim+N+A+Obv          |                       |                          |                          |
+| "In/On"                   | Der/Dim+N+A+Loc          |                       |                          |                          |
+| "Among"                   | Der/Dim+N+A+Distr        |                       |                          |                          |
+|                           |                          |                       |                          |                          |
+|                           | "Ownership"              |                       |                          |                          |
+|                           | : "One"                  | : "Many"              | : "Further"              | : "In/On"                |
+| "my"                      | =N+A+Px1Sg+Sg            | =N+A+Px1Sg+Pl         | =N+A+Px1Sg+Obv           | =N+A+Px1Sg+Loc           |
+| "your (one)"              | =N+A+Px2Sg+Sg            | =N+A+Px2Sg+Pl         | =N+A+Px2Sg+Obv           | =N+A+Px2Sg+Loc           |
+| "his/her"                 |                          |                       | =N+A+Px3Sg+Obv           | =N+A+Px3Sg+Loc           |
+| "our"                     | =N+A+Px1Pl+Sg            | =N+A+Px1Pl+Pl         | =N+A+Px1Pl+Obv           | =N+A+Px1Pl+Loc           |
+| "your and our"            | =N+A+Px12Pl+Sg           | =N+A+Px12Pl+Pl        | =N+A+Px12Pl+Obv          | =N+A+Px12Pl+Loc          |
+| "your (all)"              | =N+A+Px2Pl+Sg            | =N+A+Px2Pl+Pl         | =N+A+Px2Pl+Obv           | =N+A+Px2Pl+Loc           |
+| "their"                   |                          |                       | =N+A+Px3Pl+Obv           | =N+A+Px3Pl+Loc           |
+| "his/her/their (further)" |                          |                       | =N+A+Px4Sg/Pl+Obv        | =N+A+Px4Sg/Pl+Loc        |
+|                           |                          |                       |                          |                          |
+|                           | "Smaller/Lesser/Younger" |                       |                          |                          |
+|                           | "Ownership"              |                       |                          |                          |
+|                           | : "One"                  | : "Many"              | : "Further"              | : "In/On"                |
+| "my"                      | Der/Dim+N+A+Px1Sg+Sg     | Der/Dim+N+A+Px1Sg+Pl  | Der/Dim+N+A+Px1Sg+Obv    | Der/Dim+N+A+Px1Sg+Loc    |
+| "your (one)"              | Der/Dim+N+A+Px2Sg+Sg     | Der/Dim+N+A+Px2Sg+Pl  | Der/Dim+N+A+Px2Sg+Obv    | Der/Dim+N+A+Px2Sg+Loc    |
+| "his/her"                 |                          |                       | Der/Dim+N+A+Px3Sg+Obv    | Der/Dim+N+A+Px3Sg+Loc    |
+| "our"                     | Der/Dim+N+A+Px1Pl+Sg     | Der/Dim+N+A+Px1Pl+Pl  | Der/Dim+N+A+Px1Pl+Obv    | Der/Dim+N+A+Px1Pl+Loc    |
+| "your and our"            | Der/Dim+N+A+Px12Pl+Sg    | Der/Dim+N+A+Px12Pl+Pl | Der/Dim+N+A+Px12Pl+Obv   | Der/Dim+N+A+Px12Pl+Loc   |
+| "your (all)"              | Der/Dim+N+A+Px2Pl+Sg     | Der/Dim+N+A+Px2Pl+Pl  | Der/Dim+N+A+Px2Pl+Obv    | Der/Dim+N+A+Px2Pl+Loc    |
+| "their"                   |                          |                       | Der/Dim+N+A+Px3Pl+Obv    | Der/Dim+N+A+Px3Pl+Loc    |
+| "his/her/their (further)" |                          |                       | Der/Dim+N+A+Px4Sg/Pl+Obv | Der/Dim+N+A+Px4Sg/Pl+Loc |

@@ -1,0 +1,19 @@
+	"Something is happening now"	
+"Speech act participants"	: "ni-/ki- word"	: "ê-/kâ- word"
+"you (one) → me"	{{ lemma }}+V+TA+Ind+Prs+2Sg+1SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+"I → you (one)"	{{ lemma }}+V+TA+Ind+Prs+1Sg+2SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
+		
+"Mixed participants"	: "ni-/ki- word"	: "ê-/kâ- word"
+"I → him/her"	{{ lemma }}+V+TA+Ind+Prs+1Sg+3SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO
+"you (one) → him/her"	{{ lemma }}+V+TA+Ind+Prs+2Sg+3SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO
+"s/he/they (further) → me"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+1SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1SgO
+"s/he/they (further) → you (one)"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+2SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2SgO
+		
+"Third person participants"	: "ni-/ki- word"	: "ê-/kâ- word"
+"s/he → him/her/them (further)"	{{ lemma }}+V+TA+Ind+Prs+3Sg+4Sg/PlO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO
+"s/he/they (further) → him/her"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+3SgO	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO
+		
+	"Command/Request"	
+"Speech act participants"	: "Right now"	
+"you (one) → me"	{{ lemma }}+V+TA+Imp+Imm+2Sg+1SgO	
+"you (one) → him/her"	{{ lemma }}+V+TA+Imp+Imm+2Sg+3SgO	

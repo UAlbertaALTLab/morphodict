@@ -1,0 +1,45 @@
+name: "Inanimate noun full (plain) paradigm"
+paradigm: "noun-nid.paradigm"
+layout:
+  type: "full"
+tooltips:
+  eng:
+    "my": "1st person singular possessor"
+    "your (one)": "2nd person singular possessor"
+    "his/her": "3rd person singular possessor"
+    "our": "1st person plural exclusive possessor"
+    "your and our": "1st person plural inclusive possessor"
+    "your (all)": "2nd person plural possessor"
+    "their": "3rd person plural possessor"
+    "his/her/their (further)": "obviative possessor"
+    "someone's": "unspecified possessor"
+    "One": "Singular"
+    "Many": "Plural"
+    "In/On": "Locative"
+    "Smaller/Lesser/Younger": "Diminutive"
+    "Ownership": "Possession"
+--
+|                           | "Ownership"              |                         |                            |
+|                           | : "One"                  | : "Many"                | : "In/On"                  |
+| "someone's"               | =N+I+D+PxX+Sg            | =N+I+D+PxX+Pl           | =N+I+D+PxX+Loc             |
+| "my"                      | =N+I+D+Px1Sg+Sg          | =N+I+D+Px1Sg+Pl         | =N+I+D+Px1Sg+Loc           |
+| "your (one)"              | =N+I+D+Px2Sg+Sg          | =N+I+D+Px2Sg+Pl         | =N+I+D+Px2Sg+Loc           |
+| "his/her"                 |                          |                         | =N+I+D+Px3Sg+Loc           |
+| "our"                     | =N+I+D+Px1Pl+Sg          | =N+I+D+Px1Pl+Pl         | =N+I+D+Px1Pl+Loc           |
+| "your and our"            | =N+I+D+Px12Pl+Sg         | =N+I+D+Px12Pl+Pl        | =N+I+D+Px12Pl+Loc          |
+| "your (all)"              | =N+I+D+Px2Pl+Sg          | =N+I+D+Px2Pl+Pl         | =N+I+D+Px2Pl+Loc           |
+| "their"                   | =N+I+D+Px3Pl+Sg          | =N+I+D+Px3Pl+Pl         | =N+I+D+Px3Pl+Loc           |
+| "his/her/their (further)" | =N+I+D+Px3Pl+Sg          | =N+I+D+Px3Pl+Pl         | =N+I+D+Px4Sg/Pl+Loc        |
+|                           |                          |                         |                            |
+|                           | "Smaller/Lesser/Younger" |                         |                            |
+|                           | "Ownership"              |                         |                            |
+|                           | : "One"                  | : "Many"                | : "In/On"                  |
+| "someone's"               | Der/Dim+N+I+D+PxX+Sg     | Der/Dim+N+I+D+PxX+Pl    | Der/Dim+N+I+D+PxX+Loc      |
+| "my"                      | Der/Dim+N+I+D+Px1Sg+Sg   | Der/Dim+N+I+D+Px1Sg+Pl  | Der/Dim+N+I+D+Px1Sg+Loc    |
+| "your (one)"              | Der/Dim+N+I+D+Px2Sg+Sg   | Der/Dim+N+I+D+Px2Sg+Pl  | Der/Dim+N+I+D+Px2Sg+Loc    |
+| "his/her"                 |                          |                         | Der/Dim+N+I+D+Px3Sg+Loc    |
+| "our"                     | Der/Dim+N+I+D+Px1Pl+Sg   | Der/Dim+N+I+D+Px1Pl+Pl  | Der/Dim+N+I+D+Px1Pl+Loc    |
+| "your and our"            | Der/Dim+N+I+D+Px12Pl+Sg  | Der/Dim+N+I+D+Px12Pl+Pl | Der/Dim+N+I+D+Px12Pl+Loc   |
+| "your (all)"              | Der/Dim+N+I+D+Px2Pl+Sg   | Der/Dim+N+I+D+Px2Pl+Pl  | Der/Dim+N+I+D+Px2Pl+Loc    |
+| "their"                   | Der/Dim+N+I+D+Px3Pl+Sg   | Der/Dim+N+I+D+Px3Pl+Pl  | Der/Dim+N+I+D+Px3Pl+Loc    |
+| "his/her/their (further)" | Der/Dim+N+I+D+Px3Pl+Sg   | Der/Dim+N+I+D+Px3Pl+Pl  | Der/Dim+N+I+D+Px4Sg/Pl+Loc |
