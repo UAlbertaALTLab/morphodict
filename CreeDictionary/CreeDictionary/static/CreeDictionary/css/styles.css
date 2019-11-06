@@ -477,6 +477,11 @@ html {
   text-align: left;
 }
 
+.paradigm-title {
+  text-align: center;
+  font-family: var(--strong-font-weight);
+}
+
 .paradigm-label {
   text-align: left;
 }

@@ -16,6 +16,12 @@ context('Paradigms', () => {
 
       cy.get('@paradigm')
         .contains('th[scope=row]', 'Further')
+
+      cy.get('@paradigm')
+        .contains('.paradigm-title', 'Ownership')
+
+      // TODO: acâhkos is already diminutive, so it should not display the
+      // diminutive paradigm.
     })
   })
 })

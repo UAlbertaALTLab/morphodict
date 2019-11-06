@@ -49,6 +49,10 @@ class TitleRow:
     title = attrib(type=str)
     span = attrib(type=int)
 
+    # Makes it so that the Django template can easily determine that this is a
+    # title:
+    is_title = True
+
 
 class StaticCell:
     """
