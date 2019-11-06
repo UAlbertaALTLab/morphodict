@@ -7,8 +7,8 @@
     "bg-watch": "webpack --watch &",
     "build": "webpack",
     "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
-    "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
-    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --record --key 4972d4f8-1f44-45ba-a3f4-6408fb383f82",
+    "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
+    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --record --key 4972d4f8-1f44-45ba-a3f4-6408fb383f82"
   },
   "repository": {
     "type": "git",
