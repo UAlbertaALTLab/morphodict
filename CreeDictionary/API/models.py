@@ -118,6 +118,9 @@ class Inflection(models.Model):
     is_lemma = models.BooleanField(
         default=False, help_text="Lemma or non-lemma inflection"
     )
+
+    # if as_is is false. lc and pos fields are guaranteed to be nice.
+    # i.e. lc will be from `constants.LC`, pos will be from `constants.POS`
     as_is = models.BooleanField(
         default=False,
         help_text="Fst can not determine the lemma. Paradigm table will not be shown to the user for this entry",

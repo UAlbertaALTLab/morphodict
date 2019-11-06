@@ -15,6 +15,7 @@ from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
 from constants import POS
+from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import convert_lc_str, extract_l_str
 
 init()  # for windows compatibility
@@ -236,7 +237,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         logger.info("Created source: %s", source_id)
 
     logger.info("Loading English keywords...")
-    def_to_keywords = load_engcrk_xml(engcrk_filename)
+    engcrk_cree_to_keywords = load_engcrk_xml(engcrk_filename)
     logger.info("English keywords loaded")
 
     # value is definition string as key and its source as value
@@ -392,6 +393,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         normalized_pos = pos.upper()
         if recognizable_lc is not None:
             normalized_lc = recognizable_lc.value
+
+        # is_lemma field defaults to true
         db_inflection = Inflection(
             id=inflection_counter,
             text=xml_lemma,
@@ -401,6 +404,11 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             is_lemma=True,
             as_is=True,
         )
+
+        # todo: create English Keywords for as-is lemmas
+        # currently as_is words are not shown to users
+        # so it's not necessary to add it here
+
         db_inflection.lemma = db_inflection
         db_inflection.default_spelling = db_inflection
 
@@ -420,18 +428,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             assert definition_counter not in citations
             citations[definition_counter] = set(source_strings)
 
-            keyword_texts = def_to_keywords[str_definition]
-            if keyword_texts:
-                for keyword_text in keyword_texts:
-                    db_keyword = EnglishKeyword(
-                        id=keyword_counter, text=keyword_text, lemma=db_inflection
-                    )
-                    db_keywords.append(db_keyword)
-                    keyword_counter += 1
-            else:
-                logger.debug(
-                    f"Definition {str_definition} does not have associated English keyword"
-                )
             definition_counter += 1
             db_definitions.append(db_definition)
 
@@ -455,23 +451,20 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             else:
                 is_lemma = True
 
+            generated_lc = fst_analysis_parser.extract_category(generated_analysis)
+            assert generated_lc is not None
+
             default_spelling: Optional[Inflection] = None
             for i, generated_inflection in enumerate(generated_inflections):
                 # generated_inflections contain different spellings of one fst analysis
-                pos, lc = xml_lemma_pos_lcs[0][1:]
-                normalized_pos = pos.upper()
-                recognizable_lc = convert_lc_str(lc)
-                normalized_lc = ""
-                if recognizable_lc is not None:
-                    normalized_lc = recognizable_lc.value
 
                 db_inflection = Inflection(
                     id=inflection_counter,
                     text=generated_inflection,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
-                    pos=normalized_pos if normalized_pos in RECOGNIZABLE_POS else "",
-                    lc=normalized_lc,
+                    pos=generated_lc.get_pos().value,
+                    lc=generated_lc.value,
                     as_is=False,
                 )
                 if i == 0:
@@ -502,21 +495,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                         definition_counter += 1
                         db_definitions.append(db_definition)
-
-                        keyword_texts = def_to_keywords[str_definition]
-                        if keyword_texts:
-                            for keyword_text in keyword_texts:
-                                db_keyword = EnglishKeyword(
-                                    id=keyword_counter,
-                                    text=keyword_text,
-                                    lemma=db_lemma,
-                                )
-                                db_keywords.append(db_keyword)
-                                keyword_counter += 1
-                        else:
-                            logger.debug(
-                                f"Definition {str_definition} does not have associated English keyword"
-                            )
 
         for inflection in db_inflections_for_analysis:
             inflection.lemma = db_lemmas[0]

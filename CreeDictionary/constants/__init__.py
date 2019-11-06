@@ -48,6 +48,16 @@ class LexicalCategory(Enum):
 
     Pron = "PRON"  # Pronoun
 
+    def get_pos(self) -> POS:
+        if self.is_verb():
+            return POS.V
+        elif self.is_noun():
+            return POS.N
+        elif self is LexicalCategory.IPC:
+            return POS.IPC
+        else:
+            raise ValueError
+
     def is_verb(self):
         return self.value[0] == "V"
 
