@@ -83,14 +83,10 @@ class ParadigmFiller:
 
         tables: List[Layout] = [[]]
 
-        table_index = 0
-        row_index = 0
-
         for row in layout_table:
             if row is EmptyRow:
+                # Create a new "pane"
                 tables.append([])
-                table_index += 1
-                row_index = 0
             else:
                 assert isinstance(row, list)
                 row_with_replacements = row.copy()
@@ -105,8 +101,7 @@ class ParadigmFiller:
                     lookup_strings.append(cell.replace("{{ lemma }}", lemma))
                     string_locations.append((row_with_replacements, col_ind))
 
-                row_index += 1
-
+        # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
         # string locations and lookup_strings have parallel indices.
