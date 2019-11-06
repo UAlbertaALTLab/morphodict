@@ -12,7 +12,7 @@ from typing import Dict, List, Tuple, cast
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import EmptyRow, Layout, StaticCell, Table, rows_to_layout
+from paradigm import Cell, EmptyRow, Layout, StaticCell, rows_to_layout
 
 LayoutID = Tuple[LC, ParadigmSize]
 
@@ -69,8 +69,12 @@ class ParadigmFiller:
 
         :returns: filled paradigm tables
         """
+        # We want to lookup all of the inflections in bulk,
+        # so set up some data structures that will allow us to:
+        #  - store all unique things to lookup
+        #  - remember which strings need to be replaced after lookups
         lookup_strings: List[str] = []
-        string_locations: List[Tuple[int, int, int]] = []
+        string_locations: List[Tuple[List[Cell], int]] = []
 
         if category is LC.IPC or category is LC.Pron:
             return []
@@ -89,8 +93,9 @@ class ParadigmFiller:
                 row_index = 0
             else:
                 assert isinstance(row, list)
-                tables[-1].append(row.copy())
-                for colInd, cell in enumerate(row):
+                row_with_replacements = row.copy()
+                tables[-1].append(row_with_replacements)
+                for col_ind, cell in enumerate(row):
                     if isinstance(cell, StaticCell) or cell == "":
                         # We do nothing to static and empty cells.
                         continue
@@ -98,17 +103,19 @@ class ParadigmFiller:
                     # It's a inflection form pattern
                     assert '"' not in cell
                     lookup_strings.append(cell.replace("{{ lemma }}", lemma))
-                    string_locations.append((table_index, row_index, colInd))
+                    string_locations.append((row_with_replacements, col_ind))
 
                 row_index += 1
 
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
+        # string locations and lookup_strings have parallel indices.
+        assert len(string_locations) == len(lookup_strings)
         for i, location in enumerate(string_locations):
-            table_index, row_ind, col_ind = location
+            row, col_ind = location
+            analysis = lookup_strings[i]
+            results_for_cell = sorted(results[analysis])
             # TODO: this should actually produce TWO rows!
-            cast(List[List[List[str]]], tables)[table_index][row_ind][
-                col_ind
-            ] = " / ".join(sorted(results[lookup_strings[i]]))
+            row[col_ind] = " / ".join(results_for_cell)
 
         return tables
