@@ -2,67 +2,65 @@
 {% load inflection_extras %}
 {# should be placed inside <main> #}
 <article class="definition" id="paradigm">
-    <header class="definition__header">
-        <h1 class="definition-title">
-            <dfn class="definition-title__word">
-                <span lang="cr">{{ lemma.text }}</span>
-            </dfn>
-            <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
-        </h1>
-    </header>
+  <header class="definition__header">
+    <h1 class="definition-title">
+      <dfn class="definition-title__word"><span lang="cr">{{ lemma.text }}</span></dfn>
+      <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
+    </h1>
+  </header>
 
-    {# TODO: .definition_recordings #}
-    <section class="definition__meanings">
-        <ol class="meanings">
-            {% for def in lemma.definition_set.all %}
-                <li class="meanings__meaning">{{ def.text }}
-                    {% for source in def.source_ids %}
-                        <cite class="cite-dict">{{ source }}</cite>
-                    {% endfor %}
-                </li>
-            {% endfor %}
-        </ol>
-    </section>
+  {# TODO: .definition_recordings #}
 
-    {% if tables %}
-    <section class="definition__paradigm paradigm" data-cy="paradigm">
-        <table class="paradigm__table">
-            <tbody>
-            <tr>
-                <th class="paradigm__panel-description" colspan="2"> {{ paradigm_size }}</th>
-            </tr>
+  <section class="definition__meanings">
+    <ol class="meanings">
+      {% for def in lemma.definition_set.all %}
+      <li class="meanings__meaning">{{ def.text }}
+        {% for source in def.source_ids %}
+        <cite class="cite-dict">{{ source }}</cite>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
 
-            {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
-                {% for row in table %}
-                    <tr class="paradigm-row">
-                        {% for cell in row %}
-                            {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
-                            {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
-                            {% if cell.is_label %}
-                                <th scope="row" class="paradigm-label paradigm-label--row">
-                                    {{ cell }}
-                                </th>
-                            {% elif cell.is_heading %}
-                                <th scope="col" class="paradigm-label paradigm-label--col">
-                                    {{ cell }}
-                                </th>
-                            {% elif cell == "" %}
-                                <td class="paradigm-cell paradigm-cell--empty"></td>
-                            {% else %}
-                                <td class="paradigm-cell">
-                                    <span lang="cr">{{ cell }}</span>
-                                </td>
-                            {% endif %}
+  {% if tables %}{# TODO: split this up into its own file? #}
+  <section class="definition__paradigm paradigm" data-cy="paradigm">
+    <table class="paradigm__table">
+      <tbody>
+        <tr>
+          <th class="paradigm__panel-description" colspan="2"> {{ paradigm_size }}</th>
+        </tr>
 
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            {% endfor %}
+        {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
+        {% for row in table %}
+        <tr class="paradigm-row">
+          {% for cell in row %}
+          {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
+          {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
+          {% if cell.is_label %}
+          <th scope="row" class="paradigm-label paradigm-label--row">
+            {{ cell }}
+          </th>
+          {% elif cell.is_heading %}
+          <th scope="col" class="paradigm-label paradigm-label--col">
+            {{ cell }}
+          </th>
+          {% elif cell == "" %}
+          <td class="paradigm-cell paradigm-cell--empty"></td>
+          {% else %}
+          <td class="paradigm-cell">
+            <span lang="cr">{{ cell }}</span>
+          </td>
+          {% endif %}
 
-            </tbody>
-        </table>
-        <button class="paradigm__more-button">show more</button>
-    </section>
-    {% else %}
-    {% endif %}
+          {% endfor %}
+        </tr>
+        {% endfor %}
+        {% endfor %}
+
+      </tbody>
+    </table>
+    <button class="paradigm__more-button">show more</button>
+  </section>
+  {% endif %}
 </article>
