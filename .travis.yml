@@ -35,7 +35,7 @@ jobs:
         - pipenv install
         - npm ci
         - npm run build
-      script: npm test
+      script: npm run test:ci
 
     - stage: deploy
       language: minimal
