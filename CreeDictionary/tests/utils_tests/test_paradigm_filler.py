@@ -1,7 +1,7 @@
 import pytest
 
 from constants import LC, ParadigmSize
-from paradigm import EmptyRow, Heading, Label
+from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
@@ -19,9 +19,12 @@ def test_import_prefilled_layouts() -> None:
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
         [Label("Further"), "{{ lemma }}+N+A+Obv"],
         EmptyRow,
+        # TODO: I think there's a mistake with the source material here:
+        # This should be a title row, not a label ¯\_(ツ)_/¯
         ["", Heading("Smaller/Lesser/Younger")],
         [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
         EmptyRow,
+        # TODO: Again, only the "ownership" part should be a label. This is weird.
         ["", Heading("Ownership")],
         ["", Heading("One")],
         [Label("my"), "{{ lemma }}+N+A+Px1Sg+Sg"],
@@ -47,7 +50,7 @@ def test_import_prefilled_layouts() -> None:
                     [Label("Among"), "niskinâhk", "", "", ""],
                 ],
                 [
-                    ["", Label("Smaller/Lesser/Younger"), "", "", ""],
+                    TitleRow("Smaller/Lesser/Younger", span=5),
                     [Label("One"), "niskis / niskisis", "", "", ""],
                     [Label("Many"), "niskisak / niskisisak", "", "", ""],
                     [Label("Further"), "niskisa / niskisisa", "", "", ""],
@@ -55,7 +58,7 @@ def test_import_prefilled_layouts() -> None:
                     [Label("Among"), "niskisinâhk / niskisisinâhk", "", "", ""],
                 ],
                 [
-                    ["", Label("Ownership"), "", "", ""],
+                    TitleRow("Ownership", span=5),
                     [
                         "",
                         Heading("One"),
@@ -103,8 +106,8 @@ def test_import_prefilled_layouts() -> None:
                     ],
                 ],
                 [
-                    ["", Label("Smaller/Lesser/Younger"), "", "", ""],
-                    ["", Label("Ownership"), "", "", ""],
+                    TitleRow("Smaller/Lesser/Younger", span=5),
+                    TitleRow("Ownership", span=5),
                     [
                         "",
                         Heading("One"),

@@ -40,6 +40,16 @@ class EmptyRowType:
 EmptyRow = EmptyRowType()
 
 
+@attrs
+class TitleRow:
+    """
+    A row containing only a title -- no inflections of table headers.
+    """
+
+    title = attrib(type=str)
+    span = attrib(type=int)
+
+
 class StaticCell:
     """
     A cell that undergoes no change in the when rendering a layout to a
@@ -48,6 +58,11 @@ class StaticCell:
 
     is_heading: bool = False
     is_label = False
+
+    text: str
+
+    def __str__(self) -> str:
+        return self.text
 
 
 @attrs(frozen=True)
@@ -59,9 +74,6 @@ class Label(StaticCell):
     is_label = True
     text = attrib(type=str)
 
-    def __str__(self) -> str:
-        return self.text
-
 
 @attrs(frozen=True)
 class Heading(StaticCell):
@@ -72,13 +84,10 @@ class Heading(StaticCell):
     is_heading = True
     text = attrib(type=str)
 
-    def __str__(self) -> str:
-        return self.text
-
 
 Cell = Union[str, StaticCell]
 
-Row = Union[List[Cell], EmptyRowType]
+Row = Union[List[Cell], EmptyRowType, TitleRow]
 # TODO: delete this type:
 Table = List[Row]
 
@@ -93,10 +102,25 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     """
     layout: Layout = []
     for raw_row in rows:
-        if all(cell == "" for cell in raw_row):
+        row = [determine_cell(cell) for cell in raw_row]
+
+        has_content = False
+        n_labels = 0
+        last_label: str
+
+        for cell in row:
+            if isinstance(cell, Label):
+                n_labels += 1
+                last_label = cell.text
+            elif cell != "":
+                has_content = True
+
+        if not has_content and n_labels == 0:
             layout.append(EmptyRow)
+        elif not has_content and n_labels == 1:
+            layout.append(TitleRow(last_label, span=len(row)))
         else:
-            layout.append([determine_cell(cell) for cell in raw_row])
+            layout.append(row)
 
     return layout
 

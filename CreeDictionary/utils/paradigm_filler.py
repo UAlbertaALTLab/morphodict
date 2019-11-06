@@ -12,7 +12,8 @@ from typing import Dict, List, Tuple, cast
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import Cell, EmptyRow, Layout, StaticCell, rows_to_layout
+from paradigm import (Cell, EmptyRow, Layout, StaticCell, TitleRow,
+                      rows_to_layout)
 
 LayoutID = Tuple[LC, ParadigmSize]
 
@@ -87,6 +88,8 @@ class ParadigmFiller:
             if row is EmptyRow:
                 # Create a new "pane"
                 tables.append([])
+            elif isinstance(row, TitleRow):
+                tables[-1].append(row)
             else:
                 assert isinstance(row, list)
                 row_with_replacements = row.copy()
