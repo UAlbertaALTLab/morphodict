@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "==19.3b0"
+black = ">=19.10b0"
 pytest = "~=5.1"
 pytest-django = "~=3.5"
 pytest-cov = "~=2.7"
@@ -65,3 +65,7 @@ update-layouts = 'update-layouts'
 
 [requires]
 python_version = "3.6" # sapir uses python 3.6.9
+
+[pipenv]
+# this allows "black>=19.10b0" to work
+allow_prereleases = true
