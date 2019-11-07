@@ -88,7 +88,6 @@ class HasParadigmListFilter(admin.SimpleListFilter):
 
 @admin.register(Inflection)
 class InflectionAdmin(admin.ModelAdmin):
-    # todo: use fuzzy search and spell relax in the admin
     search_fields = ("text",)
 
     def get_search_results(self, request, queryset, search_term):
@@ -99,6 +98,13 @@ class InflectionAdmin(admin.ModelAdmin):
         :param search_term: what you input in admin site
         :return:
         """
+
+        queryset, use_distinct = super(InflectionAdmin, self).get_search_results(
+            request, queryset, search_term
+        )
+        if not search_term:
+            return queryset, use_distinct
+
         search_term = (
             search_term.replace("ā", "â")
             .replace("ē", "ê")
@@ -113,9 +119,9 @@ class InflectionAdmin(admin.ModelAdmin):
         fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([search_term])[
             search_term
         ]
-        queryset = Inflection.objects.filter(analysis__in=fst_analyses)
-        queryset |= Inflection.objects.filter(text=search_term)
-        return queryset, True
+        unfiltered_queryset = Inflection.objects.filter(analysis__in=fst_analyses)
+        unfiltered_queryset |= Inflection.objects.filter(text=search_term)
+        return unfiltered_queryset & queryset, True
 
     list_display = (
         "text",
@@ -145,7 +151,7 @@ class InflectionAdmin(admin.ModelAdmin):
         else:
             lemma = obj.lemma
 
-        keyword_texts = tuple(set([d.text for d in lemma.English.all()]))
+        keyword_texts = tuple(set([d.text for d in lemma.english_keyword.all()]))
         return format_html(
             ("<br/><br/>".join(["<span>%s</span>"] * len(keyword_texts)))
             % keyword_texts
