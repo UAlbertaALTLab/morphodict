@@ -1,12 +1,10 @@
 import datetime
-import os
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
 from typing import DefaultDict, Dict, List, Optional, Set, Tuple, NamedTuple
 
-import django
 from colorama import Fore, init
 from django.db import connection
 
@@ -19,9 +17,6 @@ from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import convert_lc_str, extract_l_str
 
 init()  # for windows compatibility
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
-django.setup()
 
 
 logger = DatabaseManagerLogger(__name__)
@@ -48,7 +43,8 @@ def clear_database(verbose=True):
     cursor.execute("DELETE FROM API_definition")
     cursor.execute("DELETE FROM API_inflection")
     cursor.execute("DELETE FROM API_englishkeyword")
-    cursor.execute("DELETE FROM API_dictionarysource")
+    # do not delete dictionarysource, since it's editted on admin console and should persist
+    # cursor.execute("DELETE FROM API_dictionarysource")
     cursor.execute("PRAGMA foreign_keys = ON")
 
     logger.info("All Objects deleted from Database")
@@ -435,6 +431,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         true_lemma_analyses_to_xml_lemma_pos_lc.keys(), multi_processing
     )
 
+    logger.info("Structuring wordforms, english keywords, and definition objects...")
     for (
         true_lemma_analysis,
         xml_lemma_pos_lcs,
@@ -453,6 +450,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
             generated_lc = fst_analysis_parser.extract_category(generated_analysis)
             assert generated_lc is not None
+            generated_pos = generated_lc.pos
 
             default_spelling: Optional[Inflection] = None
             for i, generated_inflection in enumerate(generated_inflections):
@@ -463,10 +461,23 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     text=generated_inflection,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
-                    pos=generated_lc.get_pos().value,
+                    pos=generated_pos.value,
                     lc=generated_lc.value,
                     as_is=False,
                 )
+                for english_keywords in engcrk_cree_to_keywords[
+                    EngcrkCree(generated_inflection, generated_pos)
+                ]:
+                    db_keywords.append(
+                        EnglishKeyword(
+                            id=keyword_counter,
+                            text=english_keywords,
+                            lemma=db_inflection,
+                        )
+                    )
+
+                    keyword_counter += 1
+
                 if i == 0:
                     default_spelling = db_inflection
                 db_inflection.default_spelling = default_spelling
