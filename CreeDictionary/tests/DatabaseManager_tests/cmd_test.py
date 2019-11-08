@@ -1,6 +1,6 @@
 import pytest
 
-from API.models import Inflection, Definition
+from API.models import Wordform, Definition
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import import_xmls
@@ -16,7 +16,7 @@ def test_import_nice_xml(shared_datadir):
     for analysis_and_inflections in expanded.values():
         for analysis, inflections in analysis_and_inflections:
             for inflection in inflections:
-                assert len(Inflection.objects.filter(text=inflection)) >= 1
+                assert len(Wordform.objects.filter(text=inflection)) >= 1
 
 
 @pytest.mark.django_db
@@ -24,10 +24,10 @@ def test_clear_database(shared_datadir):
     import_xmls(
         shared_datadir / "crkeng-small-nice-0", multi_processing=1, verbose=False
     )
-    assert Inflection.objects.all().count() != 0
+    assert Wordform.objects.all().count() != 0
     assert Definition.objects.all().count() != 0
 
     cmd_entry([..., "clear"])
 
-    assert Inflection.objects.all().count() == 0
+    assert Wordform.objects.all().count() == 0
     assert Definition.objects.all().count() == 0

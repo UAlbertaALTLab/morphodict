@@ -11,12 +11,12 @@ from typing import Dict, List, Tuple
 
 import hfstol
 
-from constants import LC, ParadigmSize, Table
+from constants import SimpleLC, ParadigmSize, Table
 
 
 def import_prefilled_layouts(
     layout_file_dir: Path
-) -> Dict[Tuple[LC, ParadigmSize], Table]:
+) -> Dict[Tuple[SimpleLC, ParadigmSize], Table]:
     layout_tables = dict()
     files = glob.glob(str(layout_file_dir / "*.tsv"))
     for file in files:
@@ -29,13 +29,13 @@ def import_prefilled_layouts(
             layout_list = list(reader)
             ic_str, size_str = name_wo_extension.split("-")
             layout_tables[
-                (LC(ic_str.upper()), ParadigmSize(size_str.upper()))
+                (SimpleLC(ic_str.upper()), ParadigmSize(size_str.upper()))
             ] = layout_list
     return layout_tables
 
 
 class ParadigmFiller:
-    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
+    _layout_tables: Dict[Tuple[SimpleLC, ParadigmSize], Table]
 
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
@@ -58,7 +58,7 @@ class ParadigmFiller:
         )
 
     def fill_paradigm(
-        self, lemma: str, category: LC, paradigm_size: ParadigmSize
+            self, lemma: str, category: SimpleLC, paradigm_size: ParadigmSize
     ) -> List[Table]:
         """
         returns a paradigm table filled with words
@@ -68,7 +68,7 @@ class ParadigmFiller:
         lookup_strings: List[str] = []
         string_locations: List[Tuple[int, int, int]] = []
 
-        if category is LC.IPC or category is LC.Pron:
+        if category is SimpleLC.IPC or category is SimpleLC.Pron:
             return []
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])

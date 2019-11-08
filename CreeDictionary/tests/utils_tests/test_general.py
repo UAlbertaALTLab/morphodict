@@ -6,8 +6,8 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from constants import LexicalCategory
-from utils import extract_category, identify_lemma_analysis
+from constants import SimpleLexicalCategory
+from utils import extract_simple_lc, identify_lemma_analysis
 from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str
 
@@ -34,18 +34,18 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
 @pytest.mark.parametrize(
     "analysis, category",
     [
-        ("nôhkom+N+A+D+Px1Sg+Sg", LexicalCategory("NAD")),
-        ("wâhkwa+N+A+Sg", LexicalCategory("NA")),
-        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", LexicalCategory("VTA")),
-        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", LexicalCategory("VTI")),
-        ("yîkatêpayin+V+II+Ind+Prs+3Sg", LexicalCategory("VII")),
-        ("tânisi+Ipc", LexicalCategory("IPC")),
-        ("mitêh+N+I+D+PxX+Sg", LexicalCategory("NID")),
-        ("ôma+Pron+Def+Med+IN+Pl", LexicalCategory("PRON")),
+        ("nôhkom+N+A+D+Px1Sg+Sg", SimpleLexicalCategory("NAD")),
+        ("wâhkwa+N+A+Sg", SimpleLexicalCategory("NA")),
+        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", SimpleLexicalCategory("VTA")),
+        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", SimpleLexicalCategory("VTI")),
+        ("yîkatêpayin+V+II+Ind+Prs+3Sg", SimpleLexicalCategory("VII")),
+        ("tânisi+Ipc", SimpleLexicalCategory("IPC")),
+        ("mitêh+N+I+D+PxX+Sg", SimpleLexicalCategory("NID")),
+        ("ôma+Pron+Def+Med+IN+Pl", SimpleLexicalCategory("PRON")),
     ],
 )
 def test_hfstol_analysis_category_extraction(analysis, category):
-    actual = extract_category(analysis)
+    actual = extract_simple_lc(analysis)
     assert actual == category
 
 

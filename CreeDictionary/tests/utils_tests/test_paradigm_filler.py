@@ -1,6 +1,6 @@
 import pytest
 
-from constants import LC, ParadigmSize
+from constants import SimpleLC, ParadigmSize
 from shared import paradigm_filler
 from utils import shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
@@ -8,7 +8,7 @@ from utils.paradigm_filler import import_prefilled_layouts
 
 def test_import_prefilled_layouts():
     prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
-    assert prefilled_layouts[LC.NA, ParadigmSize.BASIC] == [
+    assert prefilled_layouts[SimpleLC.NA, ParadigmSize.BASIC] == [
         ['"One"', "{{ lemma }}+N+A+Sg"],
         ['"Many"', "{{ lemma }}+N+A+Pl"],
         ['"Further"', "{{ lemma }}+N+A+Obv"],
@@ -30,7 +30,7 @@ def test_import_prefilled_layouts():
     [
         (
             "niska",
-            LC.NA,
+            SimpleLC.NA,
             ParadigmSize.FULL,
             [
                 [

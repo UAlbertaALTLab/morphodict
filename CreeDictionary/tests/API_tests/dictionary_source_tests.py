@@ -7,7 +7,7 @@ Tests things related to the dictionary sources.
 
 import pytest
 
-from API.models import Definition, DictionarySource, Inflection
+from API.models import Definition, DictionarySource, Wordform
 
 
 @pytest.mark.django_db
@@ -30,7 +30,7 @@ def test_link_definition_to_dictionary():
     """
 
     # Create a lemma and a definition for it.
-    acâhkos = Inflection(id=0, text="acâhkos", lemma_id=0)
+    acâhkos = Wordform(id=0, text="acâhkos", lemma_id=0)
     acâhkos.save()
 
     dfn = Definition(id=0, text="little star", lemma=acâhkos)

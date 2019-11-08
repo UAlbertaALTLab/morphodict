@@ -1,6 +1,6 @@
 import pytest
 
-from API.models import Inflection
+from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import import_xmls, load_engcrk_xml
 from constants import POS
@@ -18,7 +18,7 @@ def test_import_nice_xml(shared_datadir):
     for analysis_and_inflections in expanded.values():
         for analysis, inflections in analysis_and_inflections:
             for inflection in inflections:
-                assert len(Inflection.objects.filter(text=inflection)) >= 1
+                assert len(Wordform.objects.filter(text=inflection)) >= 1
 
 
 @pytest.mark.django_db
@@ -28,8 +28,12 @@ def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
         multi_processing=1,
         verbose=False,
     )
-    assert len(Inflection.objects.filter(text="pisin", is_lemma=True)) == 1
-    assert len(Inflection.objects.filter(text="pisiniw", is_lemma=True)) == 1
+
+    pisin_lemma = Wordform.objects.filter(text="pisin", is_lemma=True).get()
+
+    assert Wordform.objects.filter(
+        text="pisiniw", is_lemma=False, lemma__id=pisin_lemma.id
+    ).exists()
 
 
 @pytest.mark.django_db
@@ -39,9 +43,9 @@ def test_import_xml_fst_no_analysis(shared_datadir):
         multi_processing=1,
         verbose=False,
     )
-    assert len(Inflection.objects.all()) == 1
-    assert Inflection.objects.get(text="miwapisin").as_is == True
-    assert Inflection.objects.get(text="miwapisin").is_lemma == True
+    assert len(Wordform.objects.all()) == 1
+    assert Wordform.objects.get(text="miwapisin").as_is is True
+    assert Wordform.objects.get(text="miwapisin").is_lemma is True
 
 
 @pytest.mark.django_db
@@ -51,7 +55,7 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
         multi_processing=1,
         verbose=False,
     )
-    assert len(Inflection.objects.get(text="pisiniw").definition_set.all()) == 2
+    assert len(Wordform.objects.get(text="pisin").definition_set.all()) == 2
 
 
 @pytest.mark.django_db
@@ -61,7 +65,7 @@ def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_data
         multi_processing=1,
         verbose=False,
     )
-    assert len(Inflection.objects.get(text="asawâpiwin").definition_set.all()) == 3
+    assert len(Wordform.objects.get(text="asawâpiwin").definition_set.all()) == 3
 
 
 @pytest.mark.django_db
@@ -72,10 +76,10 @@ def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
         verbose=False,
     )
 
-    assert len(Inflection.objects.filter(text="pisiw", is_lemma=True)) == 1
+    assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 1
     assert (
         len(
-            Inflection.objects.filter(text="pisiw", is_lemma=True)
+            Wordform.objects.filter(text="pisiw", is_lemma=True)
             .get()
             .definition_set.all()
         )

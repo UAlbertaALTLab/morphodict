@@ -10,7 +10,7 @@ from hfstol import HFSTOL
 
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
-from DatabaseManager.xml_consistency_checker import does_hfstol_xml_pos_match
+from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
 from utils import fst_analysis_parser
 from shared import strict_analyzer
 
@@ -31,10 +31,6 @@ def extract_fst_lemmas(
     logger.info("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
 
     xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], str]
-
-    # xml_lemma_to_analyses_inflections = (
-    #     dict()
-    # )  # type: Dict[str, List[Tuple[str,List[str]]]]
 
     inflections = xml_lemma_to_pos_lc.keys()
 
@@ -88,10 +84,10 @@ def extract_fst_lemmas(
                 ) in (
                     fst_lemma_analyses
                 ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
-                    category = utils.extract_category(analysis)
+                    category = utils.extract_simple_lc(analysis)
                     assert category is not None
 
-                    is_match = does_hfstol_xml_pos_match(category, pos, lc)
+                    is_match = does_lc_match_xml_entry(category, pos, lc)
                     if is_match:
                         ambiguous_analyses.add(analysis)
 

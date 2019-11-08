@@ -10,22 +10,22 @@ from typing import Dict, List, Tuple, FrozenSet
 
 import hfstol
 
-from constants import LC, ParadigmSize, Table
+from constants import SimpleLC, ParadigmSize, Table
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
-    "noun-na": LC.NA,
-    "noun-nad": LC.NAD,
-    "noun-ni": LC.NI,
-    "noun-nid": LC.NID,
-    "verb-ai": LC.VAI,
-    "verb-ii": LC.VII,
-    "verb-ta": LC.VTA,
-    "verb-ti": LC.VTI,
+    "noun-na": SimpleLC.NA,
+    "noun-nad": SimpleLC.NAD,
+    "noun-ni": SimpleLC.NI,
+    "noun-nid": SimpleLC.NID,
+    "verb-ai": SimpleLC.VAI,
+    "verb-ii": SimpleLC.VII,
+    "verb-ta": SimpleLC.VTA,
+    "verb-ti": SimpleLC.VTI,
 }
 
 
-def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table]:
+def import_layouts(layout_file_dir: Path) -> Dict[Tuple[SimpleLC, ParadigmSize], Table]:
     layout_tables = dict()
     files = layout_file_dir.glob("*.layout")
     for file in files:
@@ -64,7 +64,7 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[LC, ParadigmSize], Table
 
 def import_paradigms(
     paradigm_files_dir: Path
-) -> Dict[LC, Dict[FrozenSet[str], List[str]]]:
+) -> Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
 
@@ -99,13 +99,13 @@ def import_paradigms(
 
 
 class Combiner:
-    _paradigm_tables: Dict[LC, Dict[FrozenSet[str], List[str]]]
+    _paradigm_tables: Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[LC, ParadigmSize], Table]
+    _layout_tables: Dict[Tuple[SimpleLC, ParadigmSize], Table]
     # todo: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
@@ -170,13 +170,13 @@ class Combiner:
         )
 
     def get_combined_table(
-        self, category: LC, paradigm_size: ParadigmSize
+            self, category: SimpleLC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         returns a paradigm table
         """
 
-        if category is LC.IPC or category is LC.Pron:
+        if category is SimpleLC.IPC or category is SimpleLC.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]
@@ -220,8 +220,8 @@ class Combiner:
 def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
-    for ic in LC:
-        if ic is LC.Pron or ic is LC.IPC:
+    for ic in SimpleLC:
+        if ic is SimpleLC.Pron or ic is SimpleLC.IPC:
             continue
         for size in ParadigmSize:
             with open(
