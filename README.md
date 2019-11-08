@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary.svg?branch=master)](https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary)
 [![codecov](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary/branch/master/graph/badge.svg)](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary)
+[![cypress.io](https://img.shields.io/badge/cypress.io-view-blue)](https://dashboard.cypress.io/#/projects/8r2xra/runs)
 
 ## Project Description
 A Cree/Syllabic to English and English to Cree/Syllabic dictionary,
@@ -126,7 +127,7 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
 ### Limit of `redeploy`
 
-`redeploy` does not sync database file. To make changes to the database, we need to sync our database file, which is 
+`redeploy` does not sync database file. To make changes to the database, we need to sync our database file, which is
 guaranteed to work as sqlite database is operating system independent.
 
 When you want to make changes to the database, do a `$ pipenv run pull-db` first to pull database from Sapir.
