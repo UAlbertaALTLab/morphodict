@@ -1,11 +1,11 @@
 Production on Sapir
 -------------------
 
-As of <time datetime="2019-11-18">November 18, 2019</time> the Cree
-Dictionary is deployed on a machine called **Sapir**. You can visit the
+As of <time datetime="2019-11-18">November 18, 2019</time>, the Cree
+Dictionary is deployed on a server called **Sapir**. You can visit the
 production website here:
 
-<http://sapir.artsrn.ualberta.ca/cree-dictionary>
+<https://sapir.artsrn.ualberta.ca/cree-dictionary>
 
 
 ## Redeployment Script
