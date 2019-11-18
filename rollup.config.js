@@ -38,6 +38,8 @@ module.exports = {
     postcss({
       // Save the CSS here.
       extract: path.join(STATIC_DIR, 'css', 'styles.css'),
+      minimize: production,
+      sourcemap: true,
     }),
     production && terser() // minify, but only in production
   ]

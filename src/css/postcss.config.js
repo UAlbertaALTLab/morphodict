@@ -4,7 +4,6 @@
 
 const postcssCustomProperties = require('postcss-custom-properties')
 const postcssImport = require('postcss-import')
-const cssnano = require('cssnano')
 
 module.exports = {
   map: { inline: true },
@@ -33,9 +32,6 @@ module.exports = {
      */
     postcssCustomProperties(),
 
-    /**
-     * Minify CSS. Default settings are fine.
-     */
-    cssnano({ preset: 'default' })
+    // NOTE: minification is handled by Rollup!
   ]
 }
