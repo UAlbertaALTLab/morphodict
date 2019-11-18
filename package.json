@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
   "devDependencies": {
+    "cssnano": "^4.1.10",
     "cypress": "^3.6.0",
     "eslint": "^6.5.1",
     "node-sass": "^4.12.0",

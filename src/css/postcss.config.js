@@ -4,8 +4,11 @@
 
 const postcssCustomProperties = require('postcss-custom-properties')
 const postcssImport = require('postcss-import')
+const cssnano = require('cssnano')
 
 module.exports = {
+  map: { inline: true },
+
   plugins: [
     /**
      * Inline @import rules (e.g., @import "normalize.css").
@@ -29,5 +32,10 @@ module.exports = {
      *  }
      */
     postcssCustomProperties(),
+
+    /**
+     * Minify CSS. Default settings are fine.
+     */
+    cssnano({ preset: 'default' })
   ]
 }
