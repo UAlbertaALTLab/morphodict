@@ -1,10 +1,12 @@
 /* global Urls:readable */
-
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
 
 import $ from 'jquery'
 
+// Process CSS with PostCSS automatically. See rollup.config.js for more
+// details.
+import './css/styles.css';
 
 /**
  * request server-end rendered paradigm and plunk it in place
