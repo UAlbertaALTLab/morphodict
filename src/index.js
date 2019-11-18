@@ -14,7 +14,6 @@ import './css/styles.css';
  * @param lemmaID {number} the id of the lemma in database
  */
 function loadParadigm(lemmaID) {
-
   let xhttp = new XMLHttpRequest()
 
   xhttp.onloadstart = function () {
@@ -171,28 +170,38 @@ function loadResults($input) {
  * @param inputVal {string}
  */
 function changeTitleByInput(inputVal) {
-  let defaultTitle = 'itwêwina: the online Cree dictionary'
-  document.title = inputVal ? '🔎 ' + inputVal + ' — ' + defaultTitle : defaultTitle
+  setSubtitle(inputVal ? '🔎 ' + inputVal : null);
 }
 
+function setSubtitle(subtitle) {
+  let defaultTitle = 'itwêwina: the online Cree dictionary'
+  document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle
+}
 
-// document.ready is deprecated, this is the shorthand
 $(() => {
-
+  // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
 
-
+  let route = window.location.pathname;
   let $input = $('#search')
-  let initialLemmaID = $('#initial-lemma-id').val()
-  if (initialLemmaID) {
-    loadParadigm(parseInt(initialLemmaID))
-  } else {
-    loadResults($input)
-    changeTitleByInput($input.val())
-  }
 
+  // Tiny router.
+  if (route === '/') {
+    // Homepage
+    setSubtitle(null)
+  } else if (route === '/about') {
+    // About page
+    setSubtitle('About')
+  } else if (route.match(/^[/]lemma[/].+/)) {
+    let initialLemmaID = $('#initial-lemma-id').val()
+    loadParadigm(parseInt(initialLemmaID))
+  } else if (route.match(/^[/]search[/].+/)) {
+    loadResults($input)
+  } else {
+    console.assert('not sure what page this is: ' + route);
+  }
 
   $input.on('input', () => {
     loadResults($input)
