@@ -2,8 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from API.models import Inflection
-from CreeDictionary.forms import WordSearchForm
 from constants import LC, ParadigmSize
+from CreeDictionary.forms import WordSearchForm
 from shared import paradigm_filler
 
 
@@ -60,3 +60,10 @@ def lemma_details(request, lemma_id: int):
             "tables": tables,
         },
     )
+
+
+def about(request):
+    """
+    About page.
+    """
+    return render(request, "CreeDictionary/about.html")
