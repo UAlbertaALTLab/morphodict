@@ -33,7 +33,7 @@ _urlpatterns = [
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
     ("lemma/<int:lemma_id>/", views.index, "cree-dictionary-index-with-lemma"),
-    ("about", views.about, "cree-dictionary:about"),
+    ("about", views.about, "cree-dictionary-about"),
     # internal use to render boxes of search results
     (
         "_search_results/<str:query_string>/",
