@@ -27,7 +27,7 @@ module.exports = {
   input: 'src/index.js',
   output: {
     file: path.join(STATIC_DIR, 'js', 'index.js'),
-    name: 'CREE_DICTONARY',
+    name: null, // The script does not export anything.
     format: 'iife',
     sourcemap: true
   },
