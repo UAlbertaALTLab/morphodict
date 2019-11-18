@@ -114,7 +114,7 @@ update and restart the app. This is enabled by a tool`redeploy`, maintained by [
 
    - pull the code
    - npm install
-   - npm build (webpack js)
+   - npm build (runs [Rollup](https://rollupjs.org/guide/en/))
    - `pipenv install` to update dependencies
    - collect static
    - touch wsgi.py to restart service
