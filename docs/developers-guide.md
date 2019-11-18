@@ -93,6 +93,28 @@ This starts both the Django server, and the Rollup watch process.
  - Admin: <http://127.0.0.1:8000/admin>
 
 
+Where are the JavaScript files?
+-------------------------------
+
+They're located in `src/`. They're compiled by [Rollup][] to the
+appropriate static directory. Note that Rollup allows you to `import` or
+`require()` npm modules in to the frontend JavaScript code; use this
+power wisely!
+
+Rollup also minifies the JavaScript when `DEBUG=False`.
+
+
+Where are the CSS files?
+-------------------------------
+
+They're located in `src/css`.  They're compiled by [Rollup][] to the
+appropriate static directory. We're using [PostCSS][] to inline
+any `@import`'d CSS, and to provide a fallback for
+[CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) (a.k.a., CSS Variables).
+
+Rollup/PostCSS also minifies the CSS when `DEBUG=False`.
+
+
 Unit Tests
 ----------
 
@@ -104,6 +126,7 @@ It recognizes the following:
  - `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
  - `DEBUG=False` in `.env`
 
+
 Cypress integration tests
 -------------------------
 
@@ -111,7 +134,7 @@ Cypress integration tests
 
 Or, for interactive use:
 
-   npx cypress open
+    npx cypress open
 
 
 Profiling Code
@@ -122,9 +145,10 @@ Profiling Code
 ...with `<script_name>` being one of the scripts from `profiling`
 folder.
 
+
 ### Example
 
-   pipenv run profile word_search.py
+    pipenv run profile word_search.py
 
 You can come up with profiling scripts yourself.
 
@@ -139,3 +163,9 @@ To run it on all of the files:
     pipenv run format
 
 > **Protip**! Make this a part of your git pre-commit hook!
+
+
+<!-- links -->
+
+[Rollup]: https://rollupjs.org/guide/en/
+[PostCSS]: https://postcss.org/
