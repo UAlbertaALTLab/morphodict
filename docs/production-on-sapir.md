@@ -1,7 +1,7 @@
 Production on Sapir
 -------------------
 
-As of <time date="2019-11-18">November 18, 2019</time> the Cree
+As of <time datetime="2019-11-18">November 18, 2019</time> the Cree
 Dictionary is deployed on a machine called **Sapir**. You can visit the
 production website here:
 

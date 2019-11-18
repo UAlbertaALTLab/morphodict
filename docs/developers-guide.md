@@ -1,85 +1,136 @@
-## Development
+Developer’s Guide
+=================
 
-- `$ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git`
-- `$ cd cree-intelligent-dictionary`
-- Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
-- `$ pipenv install --dev`
-- Install HFST
+Use this guide to work on the **Cree Intelligent Dictionary** repo.
 
-    Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
 
-    On Linux:
+Installing for the first time
+-----------------------------
 
-    > `$ sudo apt-get install -y hfst`
+Clone the repo and `cd` into it, as usual.
 
-    On Mac:
+    git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git
+    cd cree-intelligent-dictionary
 
-    > `$ brew install UAlbertaALTLab/hfst/hfst`
+Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
 
-    On Windows:
+Within the directory, install all Python dependencies:
 
-    > Download hfstol binary file. Add bin folder to system path.
+    pipenv install --dev
 
-    For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu)
 
-- XML Dictionary Files
+### Install HFST
 
-   Download `crkeng.xml` and `engcrk.xml` and place them under `CreeDictionary/res/dictionaries/`
+Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
 
-   These files are copyright protected and not allowed on github. Ask coworkers or download from production server under the same directory. On server sapir, the direcotry is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
+On Linux:
 
-- create a file named `.env` under project root with `DEBUG=true`. (used both by npm and pipenv)
+>     sudo apt-get install -y hfst
 
-- `pipenv shell`
+On Mac:
 
-- Initialize Database
+>     brew install UAlbertaALTLab/hfst/hfst
 
-    `pipenv run make-migrations && pipenv run migrate`
+On Windows:
 
-- Build Database
+> Download hfstol binary file. Add bin folder to system path.
 
-    `$ manage-db import CreeDictionary/res/dictionaries/`
+For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu).
 
-    It takes several minutes to process the xml file and write into the database. For better performance, enable multi-processing with `PROCESS_COUNT` being at most your cpu core count
 
-    `$ manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT`
+### XML Dictionary Files
 
-    optionally `python ./CreeDictionary/manage.py createsuperuser` to use django admin
+Download `crkeng.xml` and `engcrk.xml` and place them under `CreeDictionary/res/dictionaries/`
 
-- Run development server
-    - `npm run start`
-    - index: http://127.0.0.1:8000/
-    - admin: http://127.0.0.1:8000/admin
+These files are copyright protected and not allowed on GitHub. Ask coworkers or download from production server under the same directory. On Sapir, the directory is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 
-## Unit Tests
+### Environment
 
-`pipenv run test`
+Create a file named `.env` under project root with `DEBUG=true`.
+(Required for both both by npm and pipenv).
+
+
+### The development environment
+
+Run `pipenv shell` so that all of the Python dependencies work:
+
+    pipenv shell
+
+### Initialize Database
+
+As with any Django app, you must create and apply all migrations.
+
+    pipenv run make-migrations && pipenv run migrate
+
+### Build Database
+
+Now import the dictionaries into the database:
+
+    manage-db import CreeDictionary/res/dictionaries/
+
+It takes several minutes to process the XML file and write into the
+database. For better performance, enable multi-processing with
+`PROCESS_COUNT` being at most your CPU core count:
+
+    manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT
+
+### Create an admin account (optional)
+
+To use the Django admin interface, you need to make yourself an admin
+account:
+
+    python ./CreeDictionary/manage.py createsuperuser
+
+
+Running the development server
+------------------------------
+
+    npm start
+
+This starts both the Django server, and the Rollup watch process.
+
+ - Homepage: <http://127.0.0.1:8000/>
+ - Admin: <http://127.0.0.1:8000/admin>
+
+
+Unit Tests
+----------
+
+    pipenv run test
 
 It recognizes the following:
 
-- The Django settings module in `setup.cfg` (for `pytest-django` to work)
-- `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
-- `DEBUG=False` in `.env`
+ - The Django settings module in `setup.cfg` (for `pytest-django` to work)
+ - `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
+ - `DEBUG=False` in `.env`
 
-## Cypress integration tests
+Cypress integration tests
+-------------------------
 
-`npm test`
+    npm test
 
-It also takes in variables from `.env` file
+Or, for interactive use:
 
-## Profiling Code
+   npx cypress open
 
-`pipenv run profile <script_name>`
 
-with `<script_name>` being one of the scripts from `profiling` folder
+Profiling Code
+--------------
 
-e.g.
+    pipenv run profile <script_name>
 
-`pipenv run profile word_search[.py]`
+...with `<script_name>` being one of the scripts from `profiling`
+folder.
 
-You can come up with profiling scripts yourself
+### Example
 
-## Format Python code
+   pipenv run profile word_search.py
+
+You can come up with profiling scripts yourself.
+
+
+Format Python code
+------------------
 
 We format all Python code with [Black](https://black.readthedocs.io/en/stable/)
 
@@ -88,5 +139,3 @@ To run it on all of the files:
     pipenv run format
 
 > **Protip**! Make this a part of your git pre-commit hook!
-
-
