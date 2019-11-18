@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "Cree Intelligent Dictionary",
   "scripts": {
-    "start": "webpack --watch & pipenv run dev",
-    "bg-watch": "webpack --watch &",
-    "build": "npm run build:css && npm run build:js",
-    "build:css": "postcss -o CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css src/css/styles.css ",
-    "build:js": "webpack",
+    "start": "rollup --config --watch & pipenv run dev",
+    "bg-watch": "rollup --watch &",
+    "build": "rollup -c",
     "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --record"
