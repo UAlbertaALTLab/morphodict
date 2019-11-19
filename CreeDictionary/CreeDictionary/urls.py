@@ -1,14 +1,13 @@
 """
 Definition of urls for CreeDictionary.
 """
-from django_js_reverse.views import urls_js
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
-
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path
+from django_js_reverse.views import urls_js
 
 import API.views as api_views
 from CreeDictionary import views
@@ -34,6 +33,7 @@ _urlpatterns = [
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
     ("lemma/<int:lemma_id>/", views.index, "cree-dictionary-index-with-lemma"),
+    ("about", views.about, "cree-dictionary-about"),
     # internal use to render boxes of search results
     (
         "_search_results/<str:query_string>/",

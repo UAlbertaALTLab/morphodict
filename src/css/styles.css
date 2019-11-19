@@ -16,6 +16,7 @@
   --small-pad:                  4px;
   --medium-gap:                 6px;
   --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
+    --footer-link-gap: 2rem; /* How far link sections in the footer should be. */
 
   /* Colors */
   --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
@@ -23,6 +24,7 @@
   --app-body-color:         #000000; /* Color of body text. */
   --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
   --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
+    --footer-text-color: #404040; /* Background color of the "sunken" footer. */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
   --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
@@ -30,7 +32,8 @@
   --menu-caption-color:     #626262; /* Color of text for menu captions. */
   --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
-  --prose-title-color:      #283C95;
+    --prose-heading-color: #283C95;
+    --prose-title-color: #1D2D72; /* For BIG section titles. */
   --link-color:             #0095DC; /* Regular links */
   --link-visited-color:     #A568DB; /* Visited link */
   --link-hover-color:       #5E8DC3; /* Hover over a link. */
@@ -55,7 +58,7 @@
   /* Breakpoints */
   --min-phone-width: 320px;     /* e.g., iPhone SE */
   --min-tablet-width: 768px;    /* e.g., iPad Mini */
-  --min-desktop-width: 1024px;  /* e.g., 13" laptop */
+    --min-desktop-width: 1366px; /* e.g., 13" laptop */
 }
 
 /**
@@ -477,31 +480,58 @@ html {
   text-align: left;
 }
 
-.paradigm-row__label {
+.paradigm-title {
+    text-align: center;
+    font-family: var(--strong-font-weight);
+}
+
+.paradigm-label {
   text-align: left;
+}
+
+.paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
 
   vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
-.paradigm-row__wordform {
+.paradigm-label--col {
   font-weight: var(--strong-font-weight);
 }
 
+.paradigm-cell {
+    font-weight: var(--body-font-weight);
+}
 
 /********************************** PROSE **********************************/
 
 /**
  * BLOCK prose
  *
- * A bunch of readable text.
+ * A big hunk of readable text.
  */
+.prose__heading, .prose__section-title {
+    font-weight: var(--strong-font-weight);
+    font-family: var(--body-font-family);
+}
+
 .prose__heading {
-  font: var(--strong-font-weight) 18px var(--body-font-family);
+    font-size: 18px;
+
+    color: var(--prose-heading-color);
+}
+
+.prose__section-title {
+    /* Let the padding take care of the spacing */
+    margin-top: 0;
+    margin-block-start: 0;
+
+    font-size: 22px;
 
   color: var(--prose-title-color);
 }
+
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
@@ -526,34 +556,69 @@ html {
   /* Display & Box Model */
   width: 100vw;
   margin-top: 1rem;
-  padding-bottom: var(--small-pad);
+    margin-block-start: 1rem;
+    padding: 1rem var(--page-gutter) var(--small-pad);
+    padding-block-start: 1rem;
+    padding-inline: var(--page-gutter);
+    padding-block-end: var(--small-pad);
 
+    /* Font */
+    font-size: 12px;
   line-height: 1.2;
 
   /* Color */
+    color: var(--footer-text-color);
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-.app-footer__about,
-.app-footer__advanced-nav {
-  margin: .1rem var(--page-gutter);
-
-  font-size: 10px;
-  text-align: left;
-}
-
-.app-footer__about,
-.app-footer__advanced-nav,
-.app-footer__about a:link,
-.app-footer__advanced-nav a:link {
+.app-footer a:link {
   color: var(--footer-text-color);
 }
 
-.app-footer__advanced-nav a:link {
+.app-footer__copyright {
+    margin-top: 1rem;
+    margin-block-start: 1rem;
+}
+
+/**
+ * BLOCK footer-links
+ */
+.footer-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.footer-links__list {
+    margin: 0;
+    margin-left: var(--footer-link-gap);
+    margin-inline-start: var(--footer-link-gap);
+    padding: 0;
+
+    list-style: none;
+}
+
+.footer-links__list:first-of-type {
+    margin-left: 0;
+    margin-block-start: 0;
+}
+
+
+.footer-links__link {
     font-weight: var(--strong-font-weight);
 }
+
+/**
+ * BLOCK copyright
+ *
+ * Write copyright copy.
+ */
+.copyright__line {
+    margin: 0;
+    margin-bottom: .5rem;
+    margin-block-end: .5rem;
+}
+
 
 /**
  * BLOCK partner-logos
@@ -562,6 +627,7 @@ html {
  */
 .partner-logos {
   /* Display & Box Model */
+    color: var(--prose-title-color);
   display: flex;
   width: 100%;
   margin-top: var(--small-pad);
@@ -583,6 +649,11 @@ html {
   margin: var(--small-pad) .5rem;
   /* Text */
   text-align: center;
+}
+
+.partner-logos__logo:hover {
+    /* Make it have a hover effect like a link, to make it look clickable. */
+    backdrop-filter: brightness(95%);
 }
 
 .partner-logos__logo > img {
@@ -744,7 +815,9 @@ a.menu-choice__label:active {
 /*********************************** BOX ************************************/
 
 /**
- * A panel that stands out from its background, as it's in a box!
+ * BLOCK box
+ *
+ * A panel that stands out from its background, as if it's in a box!
  */
 .box {
   padding: var(--medium-gap) var(--page-gutter);
@@ -758,6 +831,33 @@ a.menu-choice__label:active {
 .box--rounded {
   border-radius: var(--border-radius);
 }
+
+/**
+ * MODIFIER spaced
+ *
+ * Add a little margin AFTER the box.
+ */
+.box--spaced {
+    margin-bottom: 16px;
+    margin-block-end: 16px;
+}
+
+
+/******************************** ABOUT PAGE ********************************/
+
+/**
+ * ELEMENT link
+ *
+ * A link in the about page should have a heavy font weight.
+ */
+.about__link {
+    font-weight: var(--strong-font-weight);
+}
+
+.about__citation {
+    font-style: italic;
+}
+
 
 /***************************** SKIP TO CONTENT *****************************/
 
@@ -830,4 +930,20 @@ a.menu-choice__label:active {
   font-size: 11px;
   font-style: normal;
   font-weight: var(--strong-font-weight);
+}
+
+/**
+ * BLOCK
+ *
+ * A title of a citation source.
+ */
+.source-title {
+    font-style: italic;
+}
+
+/******************************** UTILITIES *********************************/
+
+/* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
+.feature-unavailable {
+    display: none;
 }

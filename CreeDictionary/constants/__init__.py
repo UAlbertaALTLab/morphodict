@@ -2,9 +2,7 @@
 constants
 """
 from enum import Enum
-from typing import List
 
-Table = List[List[str]]
 """ a paradigm table"""
 
 

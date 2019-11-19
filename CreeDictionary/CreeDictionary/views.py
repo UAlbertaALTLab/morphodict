@@ -60,3 +60,10 @@ def lemma_details(request, lemma_id: int):
             "tables": tables,
         },
     )
+
+
+def about(request):
+    """
+    About page.
+    """
+    return render(request, "CreeDictionary/about.html")

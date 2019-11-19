@@ -1,16 +1,31 @@
 """
-According to .layout files and .paradigm files. Generate pre-filled paradigm tables
+Compiles the source Neahttadigisánit .layout files and .paradigm files to a
+"pre-filled" form.
+
+This generate pre-filled paradigm layouts, which are subsequently used in the
+web application.
+
+DO NOT import this file in the Django web application.
+
+See: paradigm_filler instead.
 """
+
 import csv
 import glob
+import logging
 from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple, FrozenSet
+from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from constants import SimpleLC, ParadigmSize, Table
+from constants import SimpleLC, ParadigmSize
+
+# A raw paradigm layout from Neahttadigisánit.
+Table = List[List[str]]
+
+logger = logging.getLogger(__name__)
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_IC = {
@@ -26,44 +41,60 @@ PARADIGM_NAME_TO_IC = {
 
 
 def import_layouts(layout_file_dir: Path) -> Dict[Tuple[SimpleLC, ParadigmSize], Table]:
-    layout_tables = dict()
+    layout_tables = {}
     files = layout_file_dir.glob("*.layout")
-    for file in files:
 
-        lines = file.read_text().splitlines()
+    for layout_file in files:
+        *lc_str, size_str = layout_file.stem.split("-")
 
-        layout_list = []
-
-        assert len(lines) >= 1, "malformed layout file %s" % file
-
-        dash_line_index = 0
-        while lines[dash_line_index] != "--":
-            dash_line_index += 1
-        celled_lines = [line.split("|")[1:-1] for line in lines[dash_line_index + 1 :]]
-        maximum_column_count = max(list(map(lambda c: len(c), celled_lines)))
-
-        for cells in celled_lines:
-            cells = list(map(lambda x: x.strip(), cells))
-            if len(cells) == maximum_column_count:
-                layout_list.append(cells)
-            else:
-                layout_list.append(
-                    cells + ["" for _ in range(maximum_column_count - len(cells))]
-                )
-
-        *lc_str, size_str = file.stem.split("-")
-
+        # Figure out if it's worth converting layout this layout.
         try:
-            layout_tables[
-                (PARADIGM_NAME_TO_IC["-".join(lc_str)], ParadigmSize(size_str.upper()))
-            ] = layout_list
-        except ValueError:  # not yet in ParadigmSize, e.g. nehiyawewin
-            pass
+            size = ParadigmSize(size_str.upper())
+        except ValueError:
+            # Unsupported "sizes" include: nehiyawewin, extended
+            logger.info("unsupported paradigm size for %s", layout_file)
+            continue
+
+        lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
+        table = parse_layout(layout_file)
+
+        layout_tables[(lc, size)] = table
+
     return layout_tables
 
 
+def parse_layout(layout_file: Path) -> Table:
+    """
+    Parses a layout and returns a "layout".
+    """
+    lines = layout_file.read_text().splitlines()
+    assert len(lines) >= 1, f"malformed layout file: {layout_file}"
+
+    layout_list: Table = []
+
+    # Figure out where the YAML header ends:
+    dash_line_index = 0
+    while lines[dash_line_index] != "--":
+        dash_line_index += 1
+
+    # file to -> rows with columns
+    layout_lines = lines[dash_line_index + 1 :]
+    celled_lines = [line.split("|")[1:-1] for line in layout_lines]
+    maximum_column_count = max(len(line) for line in celled_lines)
+
+    for cells in celled_lines:
+        cells = [cell.strip() for cell in cells]
+        assert len(cells) == maximum_column_count
+        if all(cell == "" for cell in cells):
+            layout_list.append([""] * maximum_column_count)
+        else:
+            layout_list.append(cells)
+
+    return layout_list
+
+
 def import_paradigms(
-    paradigm_files_dir: Path
+    paradigm_files_dir: Path,
 ) -> Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
@@ -99,6 +130,16 @@ def import_paradigms(
 
 
 class Combiner:
+    """
+    Ties together the paradigm layouts, the expected forms from the .paradigm
+    file, and a generator to create "pre-filled" layout files.
+
+    This is a "compilation" step and happens before the server is started.
+    Generally, this is when importing the raw files from Neahttadigisánit.
+
+    That is, the combiner should NOT be used in the Django server.
+    """
+
     _paradigm_tables: Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
@@ -148,8 +189,7 @@ class Combiner:
         generator_hfstol_path: Path,
     ):
         """
-        reads all of .tsv layout files into memory.
-        inits fst generator
+        Reads ALL of the .tsv layout files into memory and initializes the FST generator
 
         :param layout_absolute_dir: the absolute directory of your .tsv layout files
         """
@@ -160,7 +200,7 @@ class Combiner:
     @classmethod
     def default_combiner(cls):
         """
-        This returns a combiner that uses paradigm files, layout files, and hfstol files from `res` folder
+        Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
         """
         res = Path(dirname(__file__)) / ".." / "res"
         return Combiner(
@@ -170,10 +210,10 @@ class Combiner:
         )
 
     def get_combined_table(
-            self, category: SimpleLC, paradigm_size: ParadigmSize
+        self, category: SimpleLC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
-        returns a paradigm table
+        Return the appropriate layout.
         """
 
         if category is SimpleLC.IPC or category is SimpleLC.Pron:

@@ -7,9 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0091FF">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext">
-  {#- TODO: get webpack/rollup to package these -#}
   <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
-  <link rel="stylesheet" href="{% static 'CreeDictionary/css/normalize.css' %}">
   {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
   <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
   <script src={% static 'CreeDictionary/js/index.js' %}></script>
@@ -78,23 +76,28 @@
 {% endblock %}
 
 <footer class="app-footer">
-    <div class="partner-logos"><a class="partner-logos__logo" href="https://www.maskwacised.ca/"><img
-            src="{% static 'CreeDictionary/images/mesc-logo.svg' %}" alt="MESC"></a> <a class="partner-logos__logo"
-                                                                                        href="https://altlab.artsrn.ualberta.ca/"><img
-            src="{% static 'CreeDictionary/images/uofa-logo.svg' %}" alt="University of Alberta"></a> <a
-            class="partner-logos__logo"
-            href="http://fnuniv.ca/"><img
-            src="{% static 'CreeDictionary/images/fnu-logo.png' %}" alt="FNU"></a></div>
-    <p class="app-footer__about">
-        2019 © University of Alberta.
+    <div class="app-footer__links footer-links app-footer__site-links">
+    </div>
+
+    <nav class="footer-links app-footer__links">
+        <ul class="footer-links__list footer-links--site-links ">
+            <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
+        </ul>
+
+        <ul class="footer-links__list footer-links--advanced-links">
+            <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist
+                Mode</a></li>
+        </ul>
+    </nav>
+
+    <div class="app-footer__copyright copyright">
+        <p class="copyright__line">2019 © University of Alberta.</p>
+        <p class="copyright__line"> Modified icons copyright © 2019
+            <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">Font Awesome</a>,
+            licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
     </p>
-    <p class="app-footer__about"> Some icons from
-        <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">
-            Font Awesome Free</a>, licensed under
-        <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
-    </p>
-    <nav class="app-footer__advanced-nav"><a href="/change-locale?en-x-linguist">Enable Linguist Mode</a></nav>
-  </footer>
+    </div>
+</footer>
 </body>
 </html>
 {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}

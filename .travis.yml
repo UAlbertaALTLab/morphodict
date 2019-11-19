@@ -1,7 +1,12 @@
-env: DEBUG=True
+os: linux
 dist: xenial
 language: python
 python: "3.6"
+
+# Note: this Travis feature might be deprecated in the future:
+# https://github.com/travis-ci/travis-yml/pull/121
+env:
+  global: DEBUG=True
 
 addons:
   apt:
@@ -35,10 +40,10 @@ jobs:
         - pipenv install
         - npm ci
         - npm run build
-      script: npm test
+      script: npm run test:ci
 
     - stage: deploy
-      language: minimal
+      language: shell
       # This is not redundant. You need a 'deploy' key IN ADDITION to the
       # deploy stage :/
       deploy:

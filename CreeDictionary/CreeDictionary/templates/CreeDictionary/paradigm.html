@@ -4,13 +4,13 @@
 <article class="definition" id="paradigm">
     <header class="definition__header">
         <h1 class="definition-title">
-            <dfn class="definition-title__word">
-                <span lang="cr">{{ lemma.text }}</span>
-            </dfn>
+            <dfn class="definition-title__word"><span lang="cr">{{ lemma.text }}</span></dfn>
             <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
         </h1>
     </header>
+
     {# TODO: .definition_recordings #}
+
     <section class="definition__meanings">
         <ol class="meanings">
             {% for def in lemma.definition_set.all %}
@@ -22,41 +22,39 @@
             {% endfor %}
         </ol>
     </section>
-    <section class="definition__paradigm paradigm">
-        <table class="paradigm__table">
-            <tbody>
-            <tr>
-                <th class="paradigm__panel-description" colspan="2"> {{ paradigm_size }}</th>
-            </tr>
 
-            {% for table in tables %} {# fixme: Eddie: each table (pane) should have extra margin #}
-                {% for row in table %}
-                    <tr class="paradigm-row">
-
-                        {% for cell in row %}
-                            {# fixme: Eddie: "double qoute" and "double qoute and colon" should have different styles #}
-                            {# fixme: Eddie: see res/prefilled_layouts to have an idea what the table look like #}
-                            {% if ':' in cell %}
-                                <th scope="row" class="paradigm-row__label">
-                                    {{ cell|cut:'"'|cut:":" }}
-                                </th>
-                            {% elif '"' in cell %}
-                                <th scope="row" class="paradigm-row__label">
-                                    {{ cell|cut:'"' }}
-                                </th>
-                            {% else %}
-                                <td class="paradigm-row__wordform">
-                                    <span lang="cr">{{ cell }}</span>
-                                </td>
-                            {% endif %}
-
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
+    {% if tables %}{# TODO: split this up into its own file? #}
+        <section class="definition__paradigm paradigm" data-cy="paradigm">
+            {% for table in tables %}
+                <table class="paradigm__table">
+                    {% for row in table %}
+                        {% if row.is_title %}
+                            <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+                        {% else %}
+                            <tr class="paradigm-row">
+                                {% for cell in row %}
+                                    {% if cell.is_label %}
+                                        <th scope="row" class="paradigm-label paradigm-label--row">
+                                            {{ cell }}
+                                        </th>
+                                    {% elif cell.is_heading %}
+                                        <th scope="col" class="paradigm-label paradigm-label--col">
+                                            {{ cell }}
+                                        </th>
+                                    {% elif cell == "" %}
+                                        <td class="paradigm-cell paradigm-cell--empty"></td>
+                                    {% else %}
+                                        <td class="paradigm-cell">
+                                            <span lang="cr">{{ cell }}</span>
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
             {% endfor %}
-
-            </tbody>
-        </table>
-        <button class="paradigm__more-button">show more</button>
-    </section>
+            <button class="paradigm__more-button">show more</button>
+        </section>
+    {% endif %}
 </article>

@@ -1,27 +1,36 @@
 import pytest
 
 from constants import SimpleLC, ParadigmSize
+from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
 
 
-def test_import_prefilled_layouts():
+def test_import_prefilled_layouts() -> None:
+    """
+    Imports ALL of the layouts, and makes sure a NA gets filled out.
+
+    Note: if the upstream layouts change, so will this test!
+    """
     prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
     assert prefilled_layouts[SimpleLC.NA, ParadigmSize.BASIC] == [
-        ['"One"', "{{ lemma }}+N+A+Sg"],
-        ['"Many"', "{{ lemma }}+N+A+Pl"],
-        ['"Further"', "{{ lemma }}+N+A+Obv"],
-        ["", ""],
-        ["", ': "Smaller/Lesser/Younger"'],
-        ['"One"', "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
-        ["", ""],
-        ["", ': "Ownership"'],
-        ["", ': "One"'],
-        ['"my"', "{{ lemma }}+N+A+Px1Sg+Sg"],
-        ['"your (one)"', "{{ lemma }}+N+A+Px2Sg+Sg"],
-        ["", ': "Further"'],
-        ['"his/her"', "{{ lemma }}+N+A+Px3Sg+Obv"],
+        [Label("One"), "{{ lemma }}+N+A+Sg"],
+        [Label("Many"), "{{ lemma }}+N+A+Pl"],
+        [Label("Further"), "{{ lemma }}+N+A+Obv"],
+        EmptyRow,
+        # TODO: I think there's a mistake with the source material here:
+        # This should be a title row, not a label ¯\_(ツ)_/¯
+        ["", Heading("Smaller/Lesser/Younger")],
+        [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
+        EmptyRow,
+        # TODO: Again, only the "ownership" part should be a label. This is weird.
+        ["", Heading("Ownership")],
+        ["", Heading("One")],
+        [Label("my"), "{{ lemma }}+N+A+Px1Sg+Sg"],
+        [Label("your (one)"), "{{ lemma }}+N+A+Px2Sg+Sg"],
+        ["", Heading("Further")],
+        [Label("his/her"), "{{ lemma }}+N+A+Px3Sg+Obv"],
     ]
 
 
@@ -34,56 +43,62 @@ def test_import_prefilled_layouts():
             ParadigmSize.FULL,
             [
                 [
-                    ['"One"', "niska", "", "", ""],
-                    ['"Many"', "niskak", "", "", ""],
-                    ['"Further"', "niska", "", "", ""],
-                    ['"In/On"', "niskihk", "", "", ""],
-                    ['"Among"', "niskinâhk", "", "", ""],
+                    [Label("One"), "niska", "", "", ""],
+                    [Label("Many"), "niskak", "", "", ""],
+                    [Label("Further"), "niska", "", "", ""],
+                    [Label("In/On"), "niskihk", "", "", ""],
+                    [Label("Among"), "niskinâhk", "", "", ""],
                 ],
                 [
-                    ["", '"Smaller/Lesser/Younger"', "", "", ""],
-                    ['"One"', "niskis / niskisis", "", "", ""],
-                    ['"Many"', "niskisak / niskisisak", "", "", ""],
-                    ['"Further"', "niskisa / niskisisa", "", "", ""],
-                    ['"In/On"', "niskisihk / niskisisihk", "", "", ""],
-                    ['"Among"', "niskisinâhk / niskisisinâhk", "", "", ""],
+                    TitleRow("Smaller/Lesser/Younger", span=5),
+                    [Label("One"), "niskis / niskisis", "", "", ""],
+                    [Label("Many"), "niskisak / niskisisak", "", "", ""],
+                    [Label("Further"), "niskisa / niskisisa", "", "", ""],
+                    [Label("In/On"), "niskisihk / niskisisihk", "", "", ""],
+                    [Label("Among"), "niskisinâhk / niskisisinâhk", "", "", ""],
                 ],
                 [
-                    ["", '"Ownership"', "", "", ""],
-                    ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
-                    ['"my"', "niniskim", "niniskimak", "niniskima", "niniskimihk"],
+                    TitleRow("Ownership", span=5),
                     [
-                        '"your (one)"',
+                        "",
+                        Heading("One"),
+                        Heading("Many"),
+                        Heading("Further"),
+                        Heading("In/On"),
+                    ],
+                    [Label("my"), "niniskim", "niniskimak", "niniskima", "niniskimihk"],
+                    [
+                        Label("your (one)"),
                         "kiniskim",
                         "kiniskimak",
                         "kiniskima",
                         "kiniskimihk",
                     ],
-                    ['"his/her"', "", "", "oniskima", "oniskimihk"],
+                    [Label("his/her"), "", "", "oniskima", "oniskimihk"],
                     [
-                        '"our"',
+                        Label("our"),
                         "niniskiminân",
                         "niniskiminânak",
                         "niniskiminâna",
                         "niniskiminâhk",
                     ],
                     [
-                        '"your and our"',
+                        Label("your and our"),
                         "kiniskiminaw",
                         "kiniskiminawak",
                         "kiniskiminawa",
                         "kiniskiminâhk",
                     ],
                     [
-                        '"your (all)"',
+                        Label("your (all)"),
                         "kiniskimiwâw",
                         "kiniskimiwâwak",
                         "kiniskimiwâwa",
                         "kiniskimiwâhk",
                     ],
-                    ['"their"', "", "", "oniskimiwâwa", "oniskimiwâhk"],
+                    [Label("their"), "", "", "oniskimiwâwa", "oniskimiwâhk"],
                     [
-                        '"his/her/their (further)"',
+                        Label("his/her/their (further)"),
                         "",
                         "",
                         "oniskimiyiwa",
@@ -91,60 +106,66 @@ def test_import_prefilled_layouts():
                     ],
                 ],
                 [
-                    ["", '"Smaller/Lesser/Younger"', "", "", ""],
-                    ["", '"Ownership"', "", "", ""],
-                    ["", ': "One"', ': "Many"', ': "Further"', ': "In/On"'],
+                    TitleRow("Smaller/Lesser/Younger", span=5),
+                    TitleRow("Ownership", span=5),
                     [
-                        '"my"',
+                        "",
+                        Heading("One"),
+                        Heading("Many"),
+                        Heading("Further"),
+                        Heading("In/On"),
+                    ],
+                    [
+                        Label("my"),
                         "niniskimis / niniskimisis",
                         "niniskimisak / niniskimisisak",
                         "niniskimisa / niniskimisisa",
                         "niniskimisihk / niniskimisisihk",
                     ],
                     [
-                        '"your (one)"',
+                        Label("your (one)"),
                         "kiniskimis / kiniskimisis",
                         "kiniskimisak / kiniskimisisak",
                         "kiniskimisa / kiniskimisisa",
                         "kiniskimisihk / kiniskimisisihk",
                     ],
                     [
-                        '"his/her"',
+                        Label("his/her"),
                         "",
                         "",
                         "oniskimisa / oniskimisisa",
                         "oniskimisihk / oniskimisisihk",
                     ],
                     [
-                        '"our"',
+                        Label("our"),
                         "niniskimisinân / niniskimisisinân",
                         "niniskimisinânak / niniskimisisinânak",
                         "niniskimisinâna / niniskimisisinâna",
                         "niniskimisinâhk / niniskimisisinâhk",
                     ],
                     [
-                        '"your and our"',
+                        Label("your and our"),
                         "kiniskimisinaw / kiniskimisisinaw",
                         "kiniskimisinawak / kiniskimisisinawak",
                         "kiniskimisinawa / kiniskimisisinawa",
                         "kiniskimisinâhk / kiniskimisisinâhk",
                     ],
                     [
-                        '"your (all)"',
+                        Label("your (all)"),
                         "kiniskimisisiwâw / kiniskimisiwâw",
                         "kiniskimisisiwâwak / kiniskimisiwâwak",
                         "kiniskimisisiwâwa / kiniskimisiwâwa",
                         "kiniskimisisiwâhk / kiniskimisiwâhk",
                     ],
                     [
-                        '"their"',
+                        Label("their"),
                         "",
                         "",
                         "oniskimisisiwâwa / oniskimisiwâwa",
                         "oniskimisisiwâhk / oniskimisiwâhk",
                     ],
                     [
-                        '"his/her/their (further)"',
+                        Label("his/her/their (further)"),
                         "",
                         "",
                         "oniskimisisiyiwa / oniskimisiyiwa",
