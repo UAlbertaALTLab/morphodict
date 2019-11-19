@@ -22,6 +22,15 @@ context('The About page', function () {
       cy.get('main').contains('h2', /Contact Us/i)
     })
 
-    it('should have sponsers logos')
+    it('should have partner logos', () => {
+      cy.get('main .partner-logos')
+        .should('be.visible')
+        .as('logos')
+
+      cy.get('@logos').get('img[alt="MESC"]')
+      cy.get('@logos').get('img[alt="University of Alberta"]')
+      cy.get('@logos').get('img[alt="National Research Council Canada"]')
+      cy.get('@logos').get('img[alt="First Nations University"]')
+    });
   })
 })
