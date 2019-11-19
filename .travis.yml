@@ -3,6 +3,10 @@ dist: xenial
 language: python
 python: "3.6"
 
+# Note: this Travis feature might be deprecated in the future:
+# https://github.com/travis-ci/travis-yml/pull/121
+env: DEBUG=True
+
 addons:
   apt:
     packages:
@@ -24,13 +28,11 @@ stages:
 jobs:
   include:
     - name: "Unit Tests"
-      env: DEBUG=True
       install: pipenv install --dev
       script: pipenv run test --cov=CreeDictionary
       after_success: codecov
 
     - name: "Integration Tests"
-      env: DEBUG=True
       # turns out it's harder to configure python with language: node_js
       # it's easier to configure node_js with language: python instead
       install:
