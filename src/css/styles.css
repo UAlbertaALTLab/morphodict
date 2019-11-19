@@ -23,6 +23,7 @@
   --app-body-color:         #000000; /* Color of body text. */
   --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
   --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
+  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
   --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
@@ -554,34 +555,50 @@ html {
   /* Display & Box Model */
   width: 100vw;
   margin-top: 1rem;
-  padding-bottom: var(--small-pad);
+  margin-block-start: 1rem;
+  padding: 1rem var(--page-gutter) var(--small-pad);
+  padding-block-start: 1rem;
+  padding-inline: var(--page-gutter);
+  padding-block-end: var(--small-pad);
 
+  /* Font */
+  font-size: 12px;
   line-height: 1.2;
 
   /* Color */
+  color: var(--footer-text-color);
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-
-.app-footer__about,
-.app-footer__advanced-nav {
-  margin: .1rem var(--page-gutter);
-
-  font-size: 10px;
+.app-footer__links {
   text-align: left;
 }
 
-.app-footer__about,
-.app-footer__advanced-nav,
-.app-footer__about a:link,
-.app-footer__advanced-nav a:link {
+.app-footer__links a {
+  font-weight: var(--strong-font-weight);
+}
+
+.app-footer a:link {
   color: var(--footer-text-color);
 }
 
-.app-footer__advanced-nav a:link {
-    font-weight: var(--strong-font-weight);
+.app-footer__copyright {
+  margin-top: 1.5rem;
+  margin-block-start: 1.5rem;
 }
+
+/**
+ * BLOCK copyright
+ *
+ * Write copyright copy.
+ */
+.copyright__line {
+  margin: 0;
+  margin-bottom: .5rem;
+  margin-block-end: .5rem;
+}
+
 
 /**
  * BLOCK partner-logos
