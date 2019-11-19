@@ -30,7 +30,8 @@
   --menu-caption-color:     #626262; /* Color of text for menu captions. */
   --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
-  --prose-title-color:      #283C95;
+  --prose-heading-color:    #283C95;
+  --prose-title-color:      #1D2D72; /* For BIG section titles. */
   --link-color:             #0095DC; /* Regular links */
   --link-visited-color:     #A568DB; /* Visited link */
   --link-hover-color:       #5E8DC3; /* Hover over a link. */
@@ -506,13 +507,29 @@ html {
 /**
  * BLOCK prose
  *
- * A bunch of readable text.
+ * A big hunk of readable text.
  */
+.prose__heading, .prose__section-title {
+  font-weight: var(--strong-font-weight);
+  font-family: var(--body-font-family);
+}
+
 .prose__heading {
-  font: var(--strong-font-weight) 18px var(--body-font-family);
+  font-size: 18px;
+
+  color: var(--prose-heading-color);
+}
+
+.prose__section-title {
+  /* Let the padding take care of the spacing */
+  margin-top: 0;
+  margin-block-start: 0;
+
+  font-size: 22px;
 
   color: var(--prose-title-color);
 }
+
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
@@ -573,6 +590,7 @@ html {
  */
 .partner-logos {
   /* Display & Box Model */
+  color: var(--prose-title-color);
   display: flex;
   width: 100%;
   margin-top: var(--small-pad);
@@ -594,6 +612,11 @@ html {
   margin: var(--small-pad) .5rem;
   /* Text */
   text-align: center;
+}
+
+.partner-logos__logo:hover {
+  /* Make it have a hover effect like a link, to make it look clickable. */
+  backdrop-filter: brightness(95%);
 }
 
 .partner-logos__logo > img {
@@ -755,7 +778,9 @@ a.menu-choice__label:active {
 /*********************************** BOX ************************************/
 
 /**
- * A panel that stands out from its background, as it's in a box!
+ * BLOCK box
+ *
+ * A panel that stands out from its background, as if it's in a box!
  */
 .box {
   padding: var(--medium-gap) var(--page-gutter);
@@ -769,6 +794,33 @@ a.menu-choice__label:active {
 .box--rounded {
   border-radius: var(--border-radius);
 }
+
+/**
+ * MODIFIER spaced
+ *
+ * Add a little margin AFTER the box.
+ */
+.box--spaced {
+  margin-bottom: 16px;
+  margin-block-end: 16px;
+}
+
+
+/******************************** ABOUT PAGE ********************************/
+
+/**
+ * ELEMENT link
+ *
+ * A link in the about page should have a heavy font weight.
+ */
+.about__link {
+  font-weight: var(--strong-font-weight);
+}
+
+.about__citation {
+  font-style: italic;
+}
+
 
 /***************************** SKIP TO CONTENT *****************************/
 
