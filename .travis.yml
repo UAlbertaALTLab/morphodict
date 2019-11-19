@@ -5,7 +5,8 @@ python: "3.6"
 
 # Note: this Travis feature might be deprecated in the future:
 # https://github.com/travis-ci/travis-yml/pull/121
-env: DEBUG=True
+env:
+  global: DEBUG=True
 
 addons:
   apt:
