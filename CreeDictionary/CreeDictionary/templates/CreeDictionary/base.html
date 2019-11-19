@@ -76,12 +76,17 @@
 {% endblock %}
 
 <footer class="app-footer">
-  <div class="app-footer__links app-footer__site-links">
-    <a href="{% url 'cree-dictionary-about' %}">About</a>
+  <div class="app-footer__links footer-links app-footer__site-links">
   </div>
 
-  <nav class="app-footer__links app-footer__advanced-nav">
-    <a href="/change-locale?en-x-linguist">Enable Linguist Mode</a>
+  <nav class="footer-links app-footer__links">
+    <ul class="footer-links__list footer-links--site-links ">
+      <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
+    </ul>
+
+    <ul class="footer-links__list footer-links--advanced-links">
+      <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist Mode</a></li>
+    </ul>
   </nav>
 
   <div class="app-footer__copyright copyright">

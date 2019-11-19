@@ -16,6 +16,7 @@
   --small-pad:                  4px;
   --medium-gap:                 6px;
   --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
+  --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
 
   /* Colors */
   --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
@@ -571,21 +572,40 @@ html {
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
 }
 
-.app-footer__links {
-  text-align: left;
-}
-
-.app-footer__links a {
-  font-weight: var(--strong-font-weight);
-}
-
 .app-footer a:link {
   color: var(--footer-text-color);
 }
 
 .app-footer__copyright {
-  margin-top: 1.5rem;
-  margin-block-start: 1.5rem;
+  margin-top: 1rem;
+  margin-block-start: 1rem;
+}
+
+/**
+ * BLOCK footer-links
+ */
+.footer-links {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-links__list {
+  margin: 0;
+  margin-left: var(--footer-link-gap);
+  margin-inline-start: var(--footer-link-gap);
+  padding: 0;
+
+  list-style: none;
+}
+
+.footer-links__list:first-of-type {
+  margin-left: 0;
+  margin-block-start: 0;
+}
+
+
+.footer-links__link {
+  font-weight: var(--strong-font-weight);
 }
 
 /**
@@ -910,4 +930,12 @@ a.menu-choice__label:active {
   font-size: 11px;
   font-style: normal;
   font-weight: var(--strong-font-weight);
+}
+
+
+/******************************** UTILITIES *********************************/
+
+/* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
+.feature-unavailable {
+  display: none;
 }
