@@ -12,8 +12,7 @@ from typing import Dict, List, Tuple, cast
 import hfstol
 
 from constants import LC, ParadigmSize
-from paradigm import (Cell, EmptyRow, Layout, StaticCell, TitleRow,
-                      rows_to_layout)
+from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 
 LayoutID = Tuple[LC, ParadigmSize]
 
