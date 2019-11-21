@@ -9,8 +9,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: say the event type
+        run: echo the event type is ${{ event_type }}$
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
