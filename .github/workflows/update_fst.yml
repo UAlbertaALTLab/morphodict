@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: say the event type
-        run: echo the event type is ${{ event_type }}$
+        run: echo the event type is ${{ github.event.repository_dispatch.event_type }}$
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
