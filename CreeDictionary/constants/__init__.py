@@ -19,7 +19,24 @@ class ParadigmSize(Enum):
         return self.value.capitalize()
 
 
-class LexicalCategory(Enum):
+class PartOfSpeech(Enum):
+    IPV = "IPV"
+    PRON = "PRON"
+    N = "N"
+    IPC = "IPC"
+    V = "V"
+
+
+# alias
+POS = PartOfSpeech
+
+
+class SimpleLexicalCategory(Enum):
+    """
+    a simplified list of lexical categories.
+
+    i.e. without the nuances of dash number like NA-1 VTA-3
+    """
 
     NA = "NA"
     NAD = "NAD"
@@ -31,8 +48,24 @@ class LexicalCategory(Enum):
     VTI = "VTI"
 
     IPC = "IPC"
+    IPV = "IPV"
 
     Pron = "PRON"  # Pronoun
+
+    @property
+    def pos(self) -> POS:
+        if self.is_verb():
+            return POS.V
+        elif self.is_noun():
+            return POS.N
+        elif self is SimpleLexicalCategory.IPC:
+            return POS.IPC
+        elif self is SimpleLexicalCategory.Pron:
+            return POS.PRON
+        elif self is SimpleLexicalCategory.IPV:
+            return POS.IPV
+        else:
+            raise ValueError
 
     def is_verb(self):
         return self.value[0] == "V"
@@ -42,11 +75,11 @@ class LexicalCategory(Enum):
 
     def to_fst_output_style(self):
         """
-        >>> LexicalCategory.VAI.to_fst_output_style()
+        >>> SimpleLexicalCategory.VAI.to_fst_output_style()
         '+V+AI'
-        >>> LexicalCategory.NID.to_fst_output_style()
+        >>> SimpleLexicalCategory.NID.to_fst_output_style()
         '+N+I+D'
-        >>> LexicalCategory.IPC.to_fst_output_style()
+        >>> SimpleLexicalCategory.IPC.to_fst_output_style()
         '+IPC'
         """
 
@@ -59,9 +92,9 @@ class LexicalCategory(Enum):
 
     def to_layout_table_name(self, paradigm_size: ParadigmSize):
         """
-        >>> LexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
+        >>> SimpleLexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
         'vai-basic'
-        >>> LexicalCategory.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
+        >>> SimpleLexicalCategory.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
         'nid-linguistic'
         """
 
@@ -69,4 +102,4 @@ class LexicalCategory(Enum):
 
 
 # alias
-LC = LexicalCategory
+SimpleLC = SimpleLexicalCategory

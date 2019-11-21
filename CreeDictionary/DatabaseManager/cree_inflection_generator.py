@@ -9,16 +9,16 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Set, Iterable
 
 from DatabaseManager.log import DatabaseManagerLogger
-from constants import LexicalCategory
+from constants import SimpleLexicalCategory
 from shared import normative_generator
 from utils import fst_analysis_parser
 
 
 def import_flattened_prefilled_layouts(
     layout_file_dir: Path
-) -> Dict[LexicalCategory, List[str]]:
+) -> Dict[SimpleLexicalCategory, List[str]]:
     """
-    >>> import_flattened_prefilled_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')[LexicalCategory.NID]
+    >>> import_flattened_prefilled_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')[SimpleLexicalCategory.NID]
     ['{{ lemma }}+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Px4Sg/Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Loc']
     """
     flattened_layouts = dict()
@@ -34,7 +34,7 @@ def import_flattened_prefilled_layouts(
                 cell for row in reader for cell in row if '"' not in cell and cell != ""
             ]
             ic_str, size_str = name_wo_extension.split("-")
-            flattened_layouts[LexicalCategory(ic_str.upper())] = flattened_layout
+            flattened_layouts[SimpleLexicalCategory(ic_str.upper())] = flattened_layout
     return flattened_layouts
 
 

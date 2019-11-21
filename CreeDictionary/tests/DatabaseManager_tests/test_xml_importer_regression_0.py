@@ -1,6 +1,6 @@
 import pytest
 
-from API.models import Inflection
+from API.models import Wordform
 from DatabaseManager.xml_importer import import_xmls
 
 
@@ -10,7 +10,7 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
         shared_datadir / "crkeng-regression-0", multi_processing=1, verbose=False
     )
 
-    query_set = Inflection.objects.filter(text="nipa")
+    query_set = Wordform.objects.filter(text="nipa")
 
     kill_him_inflections = []
     for inflection in query_set:

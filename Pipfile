@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "==19.3b0"
+black = ">=19.10b0"
 pytest = "~=5.1"
 pytest-django = "~=3.5"
 pytest-cov = "~=2.7"
@@ -35,6 +35,7 @@ fst-lookup = "*"
 [scripts]
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
+generate = "hfst-optimized-lookup CreeDictionary/res/fst/crk-normative-generator.hfstol"
 # tests
 test = "pytest --mypy CreeDictionary/"
 # run dev server
@@ -60,8 +61,12 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # reminders/alias. you can just use $ update-layouts after pipenv shell
 # 1. Pull layout AND paradigm files from itwewina and place them correctly
-# 2. combine them to res/prefilled-layouts/
+# 2. combine them to res/prefilled-layouts/, which is then used at runtime
 update-layouts = 'update-layouts'
 
 [requires]
 python_version = "3.6" # sapir uses python 3.6.9
+
+[pipenv]
+# this allows "black>=19.10b0" to work
+allow_prereleases = true

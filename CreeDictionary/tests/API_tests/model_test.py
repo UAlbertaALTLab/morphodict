@@ -2,8 +2,8 @@ import pytest
 from hypothesis import assume, given
 from hypothesis.strategies import from_regex
 
-from API.models import Inflection
-from constants import LC
+from API.models import Wordform
+from constants import SimpleLC
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.xml_importer import import_xmls
 
@@ -32,13 +32,13 @@ def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_bl
 
 @pytest.mark.django_db
 @given(lemma=random_lemmas())
-def test_query_exact_wordform_in_database(lemma: Inflection):
+def test_query_exact_wordform_in_database(lemma: Wordform):
     """
     Sanity check: querying a lemma by its EXACT text returns that lemma.
     """
 
     query = lemma.text
-    analysis_to_lemmas, _ = Inflection.fetch_lemma_by_user_query(query)
+    analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(query)
 
     exact_match = False
     matched_lemma_count = 0
@@ -54,7 +54,7 @@ def test_query_exact_wordform_in_database(lemma: Inflection):
 
 @pytest.mark.django_db
 @given(lemma=random_lemmas())
-def test_search_for_exact_lemma(lemma: Inflection):
+def test_search_for_exact_lemma(lemma: Wordform):
     """
     Check that we get a search result that matches the exact query.
     """
@@ -67,7 +67,7 @@ def test_search_for_exact_lemma(lemma: Inflection):
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    matched_language, search_results = Inflection.search(query)
+    matched_language, search_results = Wordform.search(query)
 
     assert matched_language == "crk", "We should have gotten results for Cree"
 
@@ -96,7 +96,7 @@ def test_search_for_english() -> None:
     """
 
     # This should match "âcimowin" and related words:
-    matched_language, search_results = Inflection.search("story")
+    matched_language, search_results = Wordform.search("story")
 
     assert matched_language == "en"
 
@@ -109,7 +109,7 @@ def test_search_for_stored_non_lemma():
     # "S/he would tell us stories."
     lemma = "âcimêw"
     query = "ê-kî-âcimikoyâhk"
-    matched_language, search_results = Inflection.search(query)
+    matched_language, search_results = Wordform.search(query)
 
     assert matched_language == "crk", "We should have gotten results for Cree"
     assert len(search_results) >= 1

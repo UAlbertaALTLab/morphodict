@@ -2,7 +2,7 @@ from typing import Iterable
 
 import pytest
 
-from API.models import Inflection
+from API.models import Wordform
 from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
 
 
@@ -22,9 +22,9 @@ def test_search(
 ):
 
     for i, word in enumerate(corpus):
-        Inflection(text=word, analysis="", is_lemma=True, as_is=True).save()
+        Wordform(text=word, analysis="", is_lemma=True, as_is=True).save()
 
-    fuzzy_searcher = CreeFuzzySearcher(Inflection.objects.all())
+    fuzzy_searcher = CreeFuzzySearcher(Wordform.objects.all())
     assert set(fuzzy_searcher.search(query, distance)) == set(
-        Inflection.objects.filter(id__in=expected)
+        Wordform.objects.filter(id__in=expected)
     )

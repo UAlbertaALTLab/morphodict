@@ -5,10 +5,11 @@
  */
 
 import * as path from 'path'
-require('dotenv').config()  // Load environment variables from .env
+
+require('dotenv').config();  // Load environment variables from .env
 
 /////////////////////////////// Rollup plugins ///////////////////////////////
-import { terser } from 'rollup-plugin-terser'
+import {terser} from 'rollup-plugin-terser'
 import resolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
@@ -16,10 +17,10 @@ import postcss from 'rollup-plugin-postcss'
 
 ///////////////////////////////// Constants //////////////////////////////////
 
-const STATIC_DIR = './CreeDictionary/CreeDictionary/static/CreeDictionary/'
+const STATIC_DIR = './CreeDictionary/CreeDictionary/static/CreeDictionary/';
 
 // Production mode when debug is false.
-const production = !process.env.DEBUG
+const production = !process.env.DEBUG;
 
 
 /////////////////////////////////// Config ///////////////////////////////////
@@ -43,4 +44,4 @@ module.exports = {
     }),
     production && terser() // minify, but only in production
   ]
-}
+};

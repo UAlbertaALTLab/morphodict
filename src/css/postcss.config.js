@@ -2,11 +2,11 @@
  * PostCSS config.
  */
 
-const postcssCustomProperties = require('postcss-custom-properties')
-const postcssImport = require('postcss-import')
+const postcssCustomProperties = require('postcss-custom-properties');
+const postcssImport = require('postcss-import');
 
 module.exports = {
-  map: { inline: true },
+  map: {inline: true},
 
   plugins: [
     /**
@@ -34,4 +34,4 @@ module.exports = {
 
     // NOTE: minification is handled by Rollup!
   ]
-}
+};
