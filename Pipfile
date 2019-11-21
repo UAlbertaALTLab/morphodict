@@ -35,6 +35,7 @@ fst-lookup = "*"
 [scripts]
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
+generate = "hfst-optimized-lookup CreeDictionary/res/fst/crk-normative-generator.hfstol"
 # tests
 test = "pytest --mypy CreeDictionary/"
 # run dev server
