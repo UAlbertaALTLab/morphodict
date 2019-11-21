@@ -32,8 +32,17 @@
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
 
   /* Font sizes */
-  --definition-title-size:     28px;
-  --prominent-font-size:       24px; /* For text that should be prominent! */
+  --root-font-size:                 14px;
+  --branding-font-size:             24px; /* the title, e.g., "itwêwina" */
+  --branding-subtitle-font-size:    12px; /* the subtitle, e.g., "Plains Cree Dictionary" */
+  --definition-title-size:          28px;
+  --prominent-font-size:            24px; /* For text that should be prominent! */
+  --prose-heading-font-size:        18px;
+  --prose-section-title-font-size:  22px;
+  --search-result-font-size:        22px;
+  --footer-font-size:               12px;
+  --toggle-box-large-font-size:     16px;
+  --cite-text-font-size:            11px;
   /* Font families */
   --heading-font-family: Raleway, Euphemia UCAS, sans-serif;
   --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
@@ -42,11 +51,10 @@
   --strong-font-weight:         700;
 
   --search-input-border-radius: 15px;
-  --border-radius:      4px;
-
+  --border-radius:               4px;
 
   /* Breakpoints */
-  --min-phone-width: 320px;     /* e.g., iPhone SE */
-  --min-tablet-width: 768px;    /* e.g., iPad Mini */
+  --min-phone-width:    320px;  /* e.g., iPhone SE */
+  --min-tablet-width:   768px;  /* e.g., iPad Mini */
   --min-desktop-width: 1366px;  /* e.g., 13" laptop */
 }
