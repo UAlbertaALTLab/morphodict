@@ -890,6 +890,7 @@ a.menu-choice__label:active {
   font-size: var(--cite-text-font-size);
   font-style: normal;
   font-weight: var(--strong-font-weight);
+  vertical-align: middle;
 }
 
 /**
