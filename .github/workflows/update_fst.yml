@@ -12,7 +12,7 @@ jobs:
       - name: update fsts
         run: |
           cd CreeDictionary/res/fst
-          rm *.foma
+          rm *.fomabin
           rm *.hfstol
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.fomabin" | cut -d: -f 2,3 | tr -d \" | wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
