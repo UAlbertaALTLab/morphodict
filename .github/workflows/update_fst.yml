@@ -28,7 +28,7 @@ jobs:
           git config --global user.email "syan4@ualberta.ca"
           git config --global user.name "matt"
           git checkout -b new-fst-release-$(date +%s)
-          git add .
+          git add CreeDictionary/res/fst/*
           git commit -m "new fst release"
           git push -u origin new-fst-release-$(date +%s)
 
