@@ -9,17 +9,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: Cd to res folder
-        run: |
-          cd CreeDictionary/res/fst
-          ls
       - name: remove old fomabins and hfstols
         run: |
-          ls
+          cd CreeDictionary/res/fst
           rm *.fomabin
           rm *.hfstol
       - name: Update fsts
         run: |
+          cd CreeDictionary/res/fst
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.fomabin" | cut -d: -f 2,3 | tr -d \" | wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-normative-generator.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
