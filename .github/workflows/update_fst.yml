@@ -22,8 +22,9 @@ jobs:
           - git add *
           - git commit
           - git push origin new-fst-branch
-      - name: Run a multi-line script
+          -
+      - name: Submit a pull request
         run: |
-          curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          --data "{\"event_type\": \"${ACTION}\"}"
+          curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/pulls \
+          -H 'Accept: application/vnd.github.shadow-cat-preview+json' \
+          --data "{\"title\": \"New FST releases available\", \"head\": \"master\", \"base\": \"new-fst-branch\"}"
