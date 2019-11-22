@@ -36,4 +36,4 @@ jobs:
         run: |
           curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}" -X POST https://api.github.com/repos/UAlbertaALTLab/cree-intelligent-dictionary/pulls \
           -H 'Accept: application/vnd.github.shadow-cat-preview+json' \
-          --data '{"title": "new fst releases available","head":"master","base": "new-fst-release"}'
+          --data '{"title": "new fst releases available","head":"new-fst-release","base": "master", "body":"this pull request is automated and triggered by new fst releases"}'
