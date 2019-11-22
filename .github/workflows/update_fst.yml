@@ -27,13 +27,13 @@ jobs:
         run: |
           git config --global user.email "syan4@ualberta.ca"
           git config --global user.name "matt"
-          git checkout -b new-fst-release-$(date +%F)
-          git add *
+          git checkout -b new-fst-release-$(date +%s)
+          git add .
           git commit -m "new fst release"
-          git push -u origin new-fst-release-$(date +%F)
+          git push -u origin new-fst-release-$(date +%s)
 
       - name: Submit a pull request
         run: |
           curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}" -X POST https://api.github.com/repos/UAlbertaALTLab/cree-intelligent-dictionary/pulls \
           -H 'Accept: application/vnd.github.shadow-cat-preview+json' \
-          --data '{"title": "new fst releases available","head":"new-fst-release-$(date +%F)","base": "master", "body":"this pull request is automated and triggered by new fst releases"}'
+          --data '{"title": "new fst releases available","head":"new-fst-release-$(date +%s)","base": "master", "body":"this pull request is automated and triggered by new fst releases"}'
