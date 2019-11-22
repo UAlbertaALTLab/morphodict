@@ -22,7 +22,6 @@ jobs:
           - git add *
           - git commit
           - git push origin new-fst-branch
-          -
       - name: Submit a pull request
         run: |
           curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/pulls \
