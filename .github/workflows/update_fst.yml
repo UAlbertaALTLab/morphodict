@@ -1,4 +1,4 @@
-name: Update FST files under construction
+name: Update FST files
 
 on: repository_dispatch
 
