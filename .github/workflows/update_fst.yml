@@ -20,8 +20,8 @@ jobs:
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-strict-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
           git checkout -b new-fst-branch
           git add *
-          git commit
-          git push origin new-fst-branch
+          git commit -m "new fst release"
+          git push -u origin new-fst-branch
       - name: Submit a pull request
         run: |
           curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/pulls \
