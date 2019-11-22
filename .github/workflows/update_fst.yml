@@ -10,9 +10,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Cd to res folder
-        run: cd CreeDictionary/res/fst
+        run: |
+          cd CreeDictionary/res/fst
+          ls
       - name: remove old fomabins and hfstols
         run: |
+          ls
           rm *.fomabin
           rm *.hfstol
       - name: Update fsts
