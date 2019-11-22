@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
-@import "normalize.css";
+@import "./vendor/normalize.css";
+@import "./variables.css";
 
 /**
  * Preliminary styles for the application.
@@ -8,58 +9,6 @@
  * This uses the BEM methodology:
  * http://getbem.com/naming/
  */
-
-:root {
-  /* Positioning and sizes */
-  --page-gutter:               1rem; /* Space on either side of the viewport. */
-  --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
-  --small-pad:                  4px;
-  --medium-gap:                 6px;
-  --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
-  --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
-
-  /* Colors */
-  --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
-  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
-  --app-body-color:         #000000; /* Color of body text. */
-  --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
-  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
-  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
-  --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
-  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
-  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
-  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
-  --menu-caption-color:     #626262; /* Color of text for menu captions. */
-  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
-  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
-  --prose-heading-color:    #283C95;
-  --prose-title-color:      #1D2D72; /* For BIG section titles. */
-  --link-color:             #0095DC; /* Regular links */
-  --link-visited-color:     #A568DB; /* Visited link */
-  --link-hover-color:       #5E8DC3; /* Hover over a link. */
-  --link-active-color:      #0E6790; /* Currently active link. */
-  --link-action-color:      #A568DB; /* A link that implies an immediate action. */
-  --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
-
-  /* Font sizes */
-  --definition-title-size:     28px;
-  --prominent-font-size:       24px; /* For text that should be prominent! */
-  /* Font families */
-  --heading-font-family: Raleway, Euphemia UCAS, sans-serif;
-  --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
-  /* Font weights */
-  --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
-  --strong-font-weight:         700;
-
-  --search-input-border-radius: 15px;
-  --border-radius:      4px;
-
-
-  /* Breakpoints */
-  --min-phone-width: 320px;     /* e.g., iPhone SE */
-  --min-tablet-width: 768px;    /* e.g., iPad Mini */
-  --min-desktop-width: 1366px;  /* e.g., 13" laptop */
-}
 
 /**
  * When selecting text on the page, use the branding color as the background,
@@ -93,6 +42,17 @@ html {
 /*********************************** APP ***********************************/
 
 /**
+ * Set up the root font for the entire page.
+ */
+:root {
+  font-style: normal;
+  font-weight: var(--body-font-weight);
+  font-size: var(--root-font-size);
+  line-height: normal;
+  font-family: var(--body-font-family);
+}
+
+/**
  * BLOCK app
  *
  * A block containing the ENTIRE application.
@@ -106,9 +66,6 @@ html {
   /* Color */
   color: var(--app-body-color);
   background: var(--app-bg-color);
-
-  /* Text */
-  font: normal var(--body-font-weight) 14px/normal var(--body-font-family);
 }
 
 /**
@@ -216,13 +173,17 @@ html {
  * ELEMENT branding__title
  *
  * Contains the primary title of the application.
+ * e.g., "itwêwina"
  */
 .branding__title {
   /* Color */
   color: var(--app-title-color);
 
   /* Text */
-  font: 400 24px/normal var(--heading-font-family);
+  font-weight: 400;
+  font-size: var(--branding-font-size);
+  line-height: normal;
+  font-family: var(--heading-font-family);
   letter-spacing: 4px;
 }
 
@@ -234,7 +195,7 @@ html {
 .branding__subtitle {
   /* Text */
   font-weight: var(--body-font-weight);
-  font-size: 12px;
+  font-size: var(--branding-subtitle-font-size);;
 }
 
 
@@ -420,7 +381,7 @@ html {
   padding: 0 .5em;
 
   /* Text */
-  font-size: 22px;
+  font-size: var(--search-result-font-size);
 }
 
 /********************************* PARADIGM *********************************/
@@ -517,7 +478,7 @@ html {
 }
 
 .prose__heading {
-  font-size: 18px;
+  font-size: var(--prose-heading-font-size);
 
   color: var(--prose-heading-color);
 }
@@ -527,7 +488,7 @@ html {
   margin-top: 0;
   margin-block-start: 0;
 
-  font-size: 22px;
+  font-size: var(--prose-section-title-font-size);
 
   color: var(--prose-title-color);
 }
@@ -563,8 +524,7 @@ html {
   padding-block-end: var(--small-pad);
 
   /* Font */
-  font-size: 12px;
-  line-height: 1.2;
+  font-size: var(--footer-font-size);
 
   /* Color */
   color: var(--footer-text-color);
@@ -711,7 +671,7 @@ html {
  * A slightly larger toggle-box.
  */
 .toggle-box--large > .toggle-box__toggle {
-  font-size: 16px;
+  font-size: var(--toggle-box-large-font-size);
 }
 
 
@@ -927,9 +887,10 @@ a.menu-choice__label:active {
   /* Color */
   color: var(--cite-text-color);
   /* Text */
-  font-size: 11px;
+  font-size: var(--cite-text-font-size);
   font-style: normal;
   font-weight: var(--strong-font-weight);
+  vertical-align: middle;
 }
 
 /**

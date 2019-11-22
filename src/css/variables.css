@@ -1,0 +1,65 @@
+/**
+ * Variables used for itwêwina.
+ *
+ * Change colours and fonts here!
+ */
+
+:root {
+  /* Positioning and sizes */
+  --page-gutter:               1rem; /* Space on either side of the viewport. */
+  --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
+  --small-pad:                  4px;
+  --medium-gap:                 6px;
+  --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
+  --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
+
+  /* Colors */
+  --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
+  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
+  --app-body-color:         #000000; /* Color of body text. */
+  --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
+  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
+  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
+  --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
+  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
+  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
+  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
+  --menu-caption-color:     #626262; /* Color of text for menu captions. */
+  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
+  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
+  --prose-heading-color:    #283C95;
+  --prose-title-color:      #1D2D72; /* For BIG section titles. */
+  --link-color:             #0095DC; /* Regular links */
+  --link-visited-color:     #A568DB; /* Visited link */
+  --link-hover-color:       #5E8DC3; /* Hover over a link. */
+  --link-active-color:      #0E6790; /* Currently active link. */
+  --link-action-color:      #A568DB; /* A link that implies an immediate action. */
+  --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
+
+  /* Font sizes */
+  --root-font-size:                 14px;
+  --branding-font-size:             24px; /* the title, e.g., "itwêwina" */
+  --branding-subtitle-font-size:    12px; /* the subtitle, e.g., "Plains Cree Dictionary" */
+  --definition-title-size:          28px;
+  --prominent-font-size:            24px; /* For text that should be prominent! */
+  --prose-heading-font-size:        18px;
+  --prose-section-title-font-size:  22px;
+  --search-result-font-size:        22px;
+  --footer-font-size:               12px;
+  --toggle-box-large-font-size:     16px;
+  --cite-text-font-size:            11px;
+  /* Font families */
+  --heading-font-family: Raleway, Euphemia UCAS, sans-serif;
+  --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
+  /* Font weights */
+  --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
+  --strong-font-weight:         700;
+
+  --search-input-border-radius: 15px;
+  --border-radius:               4px;
+
+  /* Breakpoints */
+  --min-phone-width:    320px;  /* e.g., iPhone SE */
+  --min-tablet-width:   768px;  /* e.g., iPad Mini */
+  --min-desktop-width: 1366px;  /* e.g., 13" laptop */
+}
