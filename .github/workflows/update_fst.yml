@@ -22,7 +22,7 @@ jobs:
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-normative-generator.hfstol" | cut -d: -f 2,3 | tr -d \" | tail -1 |wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-strict-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | tail -1 | wget -qi -
       - name: Authenticate github
-        run: git remote set-url origin https://Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$@github.com/UAlbertaALTLab/cree-intelligent-dictionary
+        run: git remote set-url origin https://Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}@github.com/UAlbertaALTLab/cree-intelligent-dictionary
       - name: Create and push a new branch
         run: |
           git config --global user.email "syan4@ualberta.ca"
@@ -34,6 +34,6 @@ jobs:
 
       - name: Submit a pull request
         run: |
-          curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/pulls \
+          curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}" -X POST https://api.github.com/repos/UAlbertaALTLab/pulls \
           -H 'Accept: application/vnd.github.shadow-cat-preview+json' \
           --data "{\"title\": \"New FST releases available\", \"head\": \"master\", \"base\": \"new-fst-branch\"}"
