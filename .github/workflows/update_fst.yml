@@ -24,6 +24,8 @@ jobs:
 
       - name: Create and push a new branch
         run: |
+          git config --global user.email "syan4@ualberta.ca"
+          git config --global user.name "fst release bot"
           git checkout -b new-fst-branch
           git add *
           git commit -m "new fst release"
