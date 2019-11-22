@@ -1,0 +1,29 @@
+name: Update FST files under construction
+
+on: repository_dispatch
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: update fsts
+        run:
+          - cd CreeDictionary/res/fst
+          - rm *.foma
+          - rm *.hfstol
+          - curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.fomabin" | cut -d: -f 2,3 | tr -d \" | wget -qi -
+          - curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
+          - curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-normative-generator.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
+          - curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-strict-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | wget -qi -
+          - git checkout -b new-fst-branch
+          - git add *
+          - git commit
+          - git push origin new-fst-branch
+      - name: Run a multi-line script
+        run: |
+          curl --fail -u "Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}$" -X POST https://api.github.com/repos/UAlbertaALTLab/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          --data "{\"event_type\": \"${ACTION}\"}"
