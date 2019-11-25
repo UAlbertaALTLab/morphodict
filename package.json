@@ -8,7 +8,7 @@
     "build": "rollup -c",
     "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
-    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --record"
+    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run"
   },
   "repository": {
     "type": "git",
