@@ -135,10 +135,15 @@ USE_L10N = True
 
 USE_TZ = True
 
+
+############################## staticfiles app ###############################
+
 if DEBUG:
     STATIC_URL = "/static/"
 else:
     # on sapir /cree-dictionary/ is used to identify the service of the app
+    # XXX: this is kind of a hack :/
     STATIC_URL = "/cree-dictionary/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"

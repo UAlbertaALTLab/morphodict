@@ -61,7 +61,7 @@ cypress/videos
 /hfst
 
 # Django collectstatic
-CreeDictionary/static/
+/CreeDictionary/static/
 
 # Generated files:
 CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
