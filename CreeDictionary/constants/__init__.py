@@ -3,7 +3,12 @@ constants
 """
 from enum import Enum
 
-""" a paradigm table"""
+# type alias
+from typing import NewType
+
+# types
+Analysis = NewType("Analysis", str)
+FSTLemma = NewType("FSTLemma", str)
 
 
 class ParadigmSize(Enum):

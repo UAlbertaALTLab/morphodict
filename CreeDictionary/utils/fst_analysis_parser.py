@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Iterable, Dict, Optional, Set, Pattern
 from typing import Tuple
 
-from constants import SimpleLexicalCategory
+from constants import SimpleLexicalCategory, FSTLemma
 
 inflection_category_to_pattern = (
     dict()
@@ -36,7 +36,7 @@ analysis_pattern = re.compile(
 )
 
 
-def extract_lemma(analysis: str) -> Optional[str]:
+def extract_lemma(analysis: str) -> Optional[FSTLemma]:
     res = re.search(analysis_pattern, analysis)
     if res is not None:
 
@@ -51,7 +51,7 @@ def extract_lemma(analysis: str) -> Optional[str]:
             if analysis[cursor] == "+":
                 cursor += 1
             # print(cursor, end)
-            return analysis[cursor:end]
+            return FSTLemma(analysis[cursor:end])
         else:
             return None
     else:
@@ -60,9 +60,9 @@ def extract_lemma(analysis: str) -> Optional[str]:
 
 def extract_lemma_and_category(
     analysis: str,
-) -> Optional[Tuple[str, SimpleLexicalCategory]]:
+) -> Optional[Tuple[FSTLemma, SimpleLexicalCategory]]:
     """
-    faster than calling `extract_lemma` and `extract_category` separately
+    less overhead than calling `extract_lemma` and `extract_simple_lc` separately
     """
     res = re.search(analysis_pattern, analysis)
     if res is not None:
@@ -84,7 +84,7 @@ def extract_lemma_and_category(
                 group = group[4:]
             inflection_category = SimpleLexicalCategory(group.replace("+", "").upper())
 
-            return lemma, inflection_category
+            return FSTLemma(lemma), inflection_category
 
         else:
             return None
@@ -108,42 +108,3 @@ def extract_simple_lc(analysis: str) -> Optional[SimpleLexicalCategory]:
             return None
     else:
         return None
-
-
-def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
-    """
-    An example:
-
-    for cree wâpi-maskwa, hfstol gives the below analyses:
-
-    ['wâpi-maskwa+N+A+Obv', 'wâpi-maskwa+N+A+Sg']
-
-    both inflections look the same as the lemma, but which is the preference for a lemma?
-    this function returns the preferred lemma analyses according to res/lemma-tags.tsv
-
-    For Pronouns and IPCs, as lemma-tags.tsv do not specify, this function basically returns the analyses as is.
-
-    :raise ValueError if an analysis can not be understood
-    """
-    possible_analyses = set()
-
-    for analysis in analyses:
-        cat = extract_simple_lc(analysis)
-        if cat is None:
-            raise ValueError(
-                f"Can not recognize the category of fst analysis {analysis}"
-            )
-        if cat is SimpleLexicalCategory.Pron:
-            if "+Pron" in analysis:
-                possible_analyses.add(analysis)
-        elif cat is SimpleLexicalCategory.IPC:
-            # +Num+IPC is a specially case. They are frequently used numbers and they are not lemmas
-            if "+Ipc" in analysis and not analysis.endswith("+Num+Ipc"):
-                possible_analyses.add(analysis)
-        else:
-            pattern = inflection_category_to_pattern[cat]
-            if re.fullmatch(pattern, analysis):
-
-                possible_analyses.add(analysis)
-
-    return possible_analyses
