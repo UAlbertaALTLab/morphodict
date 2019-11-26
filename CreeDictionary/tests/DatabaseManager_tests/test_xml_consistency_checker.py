@@ -34,7 +34,7 @@ from constants import SimpleLexicalCategory
         ("NA-2", SimpleLexicalCategory.NA),
         ("IPN", None),
         ("PR", None),
-        ("IPV", None),
+        ("IPV", SimpleLexicalCategory.IPV),
         ("NA-?", SimpleLexicalCategory.NA),
         ("NI-1", SimpleLexicalCategory.NI),
         ("VTA-3", SimpleLexicalCategory.VTA),

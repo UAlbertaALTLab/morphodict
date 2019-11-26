@@ -6,7 +6,9 @@ from typing import Tuple
 
 from constants import SimpleLexicalCategory
 
-inflection_category_to_pattern = dict()  # type: Dict[SimpleLexicalCategory, Pattern[str]]
+inflection_category_to_pattern = (
+    dict()
+)  # type: Dict[SimpleLexicalCategory, Pattern[str]]
 
 with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
     lines = f.readlines()
@@ -18,8 +20,8 @@ with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
 
             # IPC and Pron are special cases
             if (
-                    category is not SimpleLexicalCategory.IPC
-                    and category is not SimpleLexicalCategory.Pron
+                category is not SimpleLexicalCategory.IPC
+                and category is not SimpleLexicalCategory.Pron
             ):
                 inflection_category_to_pattern[category] = re.compile(
                     "[^+]+" + re.escape(cells[1].split("{{ lemma }}")[-1])
@@ -56,7 +58,9 @@ def extract_lemma(analysis: str) -> Optional[str]:
         return None
 
 
-def extract_lemma_and_category(analysis: str) -> Optional[Tuple[str, SimpleLexicalCategory]]:
+def extract_lemma_and_category(
+    analysis: str,
+) -> Optional[Tuple[str, SimpleLexicalCategory]]:
     """
     faster than calling `extract_lemma` and `extract_category` separately
     """
@@ -117,6 +121,8 @@ def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
     both inflections look the same as the lemma, but which is the preference for a lemma?
     this function returns the preferred lemma analyses according to res/lemma-tags.tsv
 
+    For Pronouns and IPCs, as lemma-tags.tsv do not specify, this function basically returns the analyses as is.
+
     :raise ValueError if an analysis can not be understood
     """
     possible_analyses = set()
@@ -131,7 +137,7 @@ def identify_lemma_analysis(analyses: Iterable[str]) -> Set[str]:
             if "+Pron" in analysis:
                 possible_analyses.add(analysis)
         elif cat is SimpleLexicalCategory.IPC:
-
+            # +Num+IPC is a specially case. They are frequently used numbers and they are not lemmas
             if "+Ipc" in analysis and not analysis.endswith("+Num+Ipc"):
                 possible_analyses.add(analysis)
         else:

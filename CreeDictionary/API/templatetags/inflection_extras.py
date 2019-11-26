@@ -29,7 +29,7 @@ def presentational_pos(wordform: Wordform):
             return "Preverb"
 
     lc: Optional[SimpleLC]
-    lc = crkeng_xml_utils.parse_xml_lc(wordform.lc)
+    lc = crkeng_xml_utils.parse_xml_lc(wordform.full_lc)
     if lc is None:
         lc = fst_analysis_parser.extract_simple_lc(wordform.analysis)
 

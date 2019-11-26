@@ -33,7 +33,9 @@ def search_results(request, query_string: str):
     analysis_to_lemmas, lemmas_by_english = Wordform.fetch_lemma_by_user_query(
         query_string
     )
+    # flatten list of list
     words = [b for a in analysis_to_lemmas.values() for b in a] + lemmas_by_english
+    print(words)
     return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 

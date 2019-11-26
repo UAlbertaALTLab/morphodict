@@ -11,6 +11,7 @@ from hfstol import HFSTOL
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
+from constants import SimpleLC
 from utils import fst_analysis_parser
 from shared import strict_analyzer
 
@@ -23,12 +24,16 @@ def extract_fst_lemmas(
     verbose=True,
 ) -> Dict[Tuple[str, str, str], str]:
     """
-    for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
+    For every (xml_lemma, xml_pos, xml_lc), find the its lemma analysis and according to fst file.
+
+    For words that are not nouns and verbs (pronouns, IPCs, ...), no extraction or identification will be done,
+    as we don't have the expert rules required to determine their lemmas. res/lemma-tags.tsv is what we rely on.
+
+    Also only noun analysis and verb analysis will appear in the result
     """
 
     logger = DatabaseManagerLogger(__name__, verbose)
-
-    logger.info("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
+    logger.info("Determining lemma analysis for (xml_lemma, xml_pos, xml_lc) tuples...")
 
     xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], str]
 
@@ -41,6 +46,10 @@ def extract_fst_lemmas(
     no_analysis_counter = 0
 
     no_match_counter = 0
+
+    other_words_counter = 0
+    "words that are not verbs or nouns"
+
     success_counter = 0
     dup_counter = 0
 
@@ -71,7 +80,18 @@ def extract_fst_lemmas(
 
             for pos, lc in xml_lemma_to_pos_lc[
                 xml_lemma
-            ]:  # determine which is `the` analysis
+            ]:  # for each pos, lc determine which is the analysis
+
+                # words that are not nouns or verbs
+                if (pos != "" and pos not in {"N", "V"}) or (
+                    lc != "" and (not lc.startswith("V") and not lc.startswith("N"))
+                ):
+                    logger.debug(
+                        "xml entry %s with pos %s lc %s is neither noun nor verb. No lemma identification carried"
+                        % (xml_lemma, pos, lc)
+                    )
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
+                    other_words_counter += 1
 
                 ambiguous_analyses = set()
 
@@ -86,6 +106,8 @@ def extract_fst_lemmas(
                 ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
                     category = utils.extract_simple_lc(analysis)
                     assert category is not None
+                    if not category.is_noun() and not category.is_verb():
+                        continue
 
                     is_match = does_lc_match_xml_entry(category, pos, lc)
                     if is_match:
@@ -93,7 +115,8 @@ def extract_fst_lemmas(
 
                 if len(ambiguous_analyses) == 0:
                     logger.debug(
-                        "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. None of the analyses are preferred lemma inflection"
+                        "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. "
+                        "None of the analyses are preferred lemma inflection"
                         % (xml_lemma, pos, lc)
                     )
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
@@ -116,6 +139,10 @@ def extract_fst_lemmas(
         % success_counter
     )
     logger.info(
+        f"{Fore.BLUE}There are %d (lemma, pos, lc) that neither nouns nor verbs. Lemma is not identified for them.{Fore.RESET}"
+        % other_words_counter
+    )
+    logger.info(
         f"{Fore.BLUE}There are %d (lemma, pos, lc) that the fst can not give any analyses.{Fore.RESET}"
         % no_analysis_counter
     )
@@ -128,8 +155,6 @@ def extract_fst_lemmas(
         f"{Fore.BLUE}There are %d (lemma, pos, lc) that have ambiguous lemma analyses{Fore.RESET}"
         % dup_counter
     )
-    logger.info(
-        "These words will be shown 'as-is' without analyses and paradigm tables"
-    )
+    logger.info("These words will be label 'as-is' without paradigm tables.")
 
     return xml_lemma_pos_lc_to_analysis

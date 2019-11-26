@@ -97,10 +97,14 @@ class Wordform(models.Model):
 
     text = models.CharField(max_length=40)
 
-    lc = models.CharField(max_length=10, help_text="Full lexical category from source", )
+    full_lc = models.CharField(
+        max_length=10, help_text="Full lexical category from source"
+    )
     RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
     pos = models.CharField(
-        max_length=4, choices=RECOGNIZABLE_POS, help_text="part of speech",
+        max_length=4,
+        choices=RECOGNIZABLE_POS,
+        help_text="Part of speech parsed from source.",
     )
 
     analysis = models.CharField(
@@ -115,10 +119,11 @@ class Wordform(models.Model):
     # if as_is is False. pos field is guaranteed to be not empty
     # and will be values from `constants.POS` enum class
 
-    # if as_is is True, lc and pos fields can be under-specified, i.e. they can be empty strings
+    # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
-        help_text="Fst can not determine the lemma. Paradigm table will not be shown to the user for this entry",
+        help_text="The lemma is not determined during the importing process."
+        "Paradigm table will not be shown for this entry",
     )
 
     lemma = models.ForeignKey(
@@ -141,8 +146,8 @@ class Wordform(models.Model):
     @transaction.atomic
     def save(self, *args, **kwargs):
         """
-        ensures id is auto-incrementing. infer foreign key 'lemma' to be self if self.is_lemma is set to True.
-         Default foreign key "default spelling" to self.
+        Ensure id is auto-incrementing.
+        Infer foreign key 'lemma' to be self if self.is_lemma is set to True. (friendly to test creation)
         """
         max_id = Wordform.objects.aggregate(Max("id"))
         if max_id["id__max"] is None:
@@ -197,8 +202,7 @@ class Wordform(models.Model):
         lemmas_by_analysis: Dict[str, List["Wordform"]] = defaultdict(list)
 
         # utilize the spell relax in descriptive_analyzer
-        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is
-        # fixed:
+        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
         # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
         fst_analyses: Set[str] = set(
             "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
@@ -207,13 +211,6 @@ class Wordform(models.Model):
         for analysis in fst_analyses:
             # todo: test
 
-            # `analysis=analysis` is not enough
-            # there can be multiple matches when there are different spellings
-            # akocin|akocin+V+AI+Ind+Prs+3Sg
-            # akociniw|akocin+V+AI+Ind+Prs+3Sg
-            # these two are stored in the database as Inflection objects with different IDs
-            # is_lemma is set True to only the first
-            # finally: as_is=False filters out part of MD content that can't be standardized
             exact_matched_wordform_ids = Wordform.objects.filter(
                 analysis=analysis, is_lemma=True, as_is=False
             ).values("lemma__id")
@@ -237,17 +234,32 @@ class Wordform(models.Model):
                     continue
 
                 lemma, lc = lemma_lc
-                matched_lemmas = Wordform.objects.filter(
-                    text=lemma, is_lemma=True, as_is=False, lc=lc.value
+                matched_lemmas = Wordform.objects.filter(text=lemma, is_lemma=True)
+                lemmas_by_analysis[analysis].extend(
+                    list(matched_lemmas.filter(as_is=False, pos=lc.pos.name))
                 )
-                lemmas_by_analysis[analysis].extend(list(matched_lemmas))
 
-        # Note:
-        # non-analyzable matches should not be displayed (mostly from MD)
-        # like "nipa" kill him
-        # those results are filtered out by `as_is=False`
+                # Note:
+                # non-analyzable matches should not be displayed (mostly from MD)
+                # like "nipa", which means kill him
+                # those results are filtered out by `as_is=False`
 
-        # suggested by Arok Wolvengrey
+                # suggested by Arok Wolvengrey
+
+                # words that DO have specified lc or pos but are neither verbs nor nouns, including pronouns and IPCs,
+                # also don't have their lemma identified. We don't have enough expert rules to identify their lemma.
+                # They have as_is set to True.
+
+                # Pronouns and IPCs are important so we specifically also include them in search results.
+                for db_lemma in matched_lemmas.filter(as_is=True):
+                    # see xml_importer.py::generate_as_is_analysis
+                    # as_is=True wordforms have analysis field produced according to fst style
+                    if (
+                        "Pron" in db_lemma.analysis
+                        or "Ipc" in db_lemma.analysis
+                        or "IPV" in db_lemma.analysis
+                    ):
+                        lemmas_by_analysis[analysis].append(db_lemma)
 
         # todo: remind user "are you searching in cree/english?"
         lemmas_by_english: List["Wordform"] = []
@@ -308,7 +320,7 @@ class Wordform(models.Model):
             results.append(
                 SearchResult(
                     wordform=entry.wordform,
-                    part_of_speech=lemma.lc,
+                    part_of_speech=lemma.full_lc,
                     is_lemma=entry.wordform == lemma.text,
                     lemma=lemma.text,
                     preverbs=(),
