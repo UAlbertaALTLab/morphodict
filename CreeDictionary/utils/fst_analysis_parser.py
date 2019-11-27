@@ -6,30 +6,6 @@ from typing import Tuple
 
 from constants import SimpleLexicalCategory, FSTLemma
 
-inflection_category_to_pattern = (
-    dict()
-)  # type: Dict[SimpleLexicalCategory, Pattern[str]]
-
-with open(Path(dirname(__file__)) / ".." / "res" / "lemma-tags.tsv") as f:
-    lines = f.readlines()
-    for line in lines:
-        line = line.strip()
-        if line:
-            cells = line.split("\t")
-            category = SimpleLexicalCategory(cells[0].upper())
-
-            # IPC and Pron are special cases
-            if (
-                category is not SimpleLexicalCategory.IPC
-                and category is not SimpleLexicalCategory.Pron
-            ):
-                inflection_category_to_pattern[category] = re.compile(
-                    "[^+]+" + re.escape(cells[1].split("{{ lemma }}")[-1])
-                )
-
-
-# layout_class = re.match("(nad?|nid?|vai|vii|vt[ai]|ipc)", layout_name).groups()[0]
-
 
 analysis_pattern = re.compile(
     r"(?P<category>\+N\+A(\+D)?|\+N\+I(\+D)?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"
@@ -95,6 +71,7 @@ def extract_lemma_and_category(
 def extract_simple_lc(analysis: str) -> Optional[SimpleLexicalCategory]:
     """
     :param analysis: in the form of 'a+VAI+b+c'
+    :return: None if extraction fails
     """
     res = re.search(analysis_pattern, analysis)
     if res is not None:

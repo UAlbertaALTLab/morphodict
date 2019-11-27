@@ -3,7 +3,7 @@ import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
-from typing import DefaultDict, Dict, List, Optional, Set, Tuple, NamedTuple
+from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple
 
 from colorama import Fore, init
 from django.db import connection
@@ -390,7 +390,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         upper_pos = pos.upper()
 
-        # is_lemma field defaults to true
+        # is_lemma field should default to true
         db_inflection = Wordform(
             id=wordform_counter,
             text=xml_lemma,
@@ -400,13 +400,19 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             is_lemma=True,
             as_is=True,
         )
+        if upper_pos in RECOGNIZABLE_POS:
+            for english_keywords in engcrk_cree_to_keywords[
+                EngcrkCree(xml_lemma, POS(upper_pos))
+            ]:
+                db_keywords.append(
+                    EnglishKeyword(
+                        id=keyword_counter, text=english_keywords, lemma=db_inflection,
+                    )
+                )
 
-        # todo: create English Keywords for as-is lemmas
-        # currently as_is words are not shown to users
-        # so it's not necessary to add it here
+                keyword_counter += 1
 
         db_inflection.lemma = db_inflection
-        db_inflection.default_spelling = db_inflection
 
         wordform_counter += 1
         db_inflections.append(db_inflection)

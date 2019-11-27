@@ -5,6 +5,7 @@ from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
 from constants import SimpleLC, ParadigmSize
 from shared import paradigm_filler
+from utils import fst_analysis_parser
 
 
 def index(request, query_string=None, lemma_id=None):
@@ -34,8 +35,9 @@ def search_results(request, query_string: str):
         query_string
     )
     # flatten list of list
-    words = [b for a in analysis_to_lemmas.values() for b in a] + lemmas_by_english
-    print(words)
+    words = [b for a in analysis_to_lemmas.values() for b in a] + list(
+        lemmas_by_english
+    )
     return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 
@@ -45,11 +47,9 @@ def lemma_details(request, lemma_id: int):
     render paradigm table for a lemma
     """
     lemma = Wordform.objects.get(id=lemma_id)
-
-    if lemma.lc != "":
-        tables = paradigm_filler.fill_paradigm(
-            lemma.text, SimpleLC(lemma.lc), ParadigmSize.BASIC
-        )
+    slc = fst_analysis_parser.extract_simple_lc(lemma.analysis)
+    if slc is not None:
+        tables = paradigm_filler.fill_paradigm(lemma.text, slc, ParadigmSize.BASIC)
     else:
         tables = []
 
