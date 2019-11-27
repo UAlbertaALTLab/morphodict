@@ -98,22 +98,25 @@ class Wordform(models.Model):
     text = models.CharField(max_length=40)
 
     full_lc = models.CharField(
-        max_length=10, help_text="Full lexical category from source"
+        max_length=10,
+        help_text="Full lexical category directly from source",  # e.g. NI-3
     )
     RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
     pos = models.CharField(
         max_length=4,
         choices=RECOGNIZABLE_POS,
-        help_text="Part of speech parsed from source.",
+        help_text="Part of speech parsed from source. Can be unspecified",
     )
 
     analysis = models.CharField(
         max_length=50,
         default="",
-        help_text="fst analysis or the best possible if the source is not analyzable",
+        help_text="fst analysis or the best possible generated if the source is not analyzable",  # see xml_importer.py::generate_as_is_analysis
     )
     is_lemma = models.BooleanField(
-        default=False, help_text="Lemma or non-lemma inflection"
+        default=False,
+        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
+        " analyzable or it's ambiguous",
     )
 
     # if as_is is False. pos field is guaranteed to be not empty
@@ -122,12 +125,15 @@ class Wordform(models.Model):
     # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
-        help_text="The lemma is not determined during the importing process."
-        "Paradigm table will not be shown for this entry",
+        help_text="It can not be determined whether this wordform is lemma or not during the importing process. "
+        "is_lemma defaults to true and lemma field defaults to self",
     )
 
     lemma = models.ForeignKey(
-        "self", on_delete=models.CASCADE, related_name="inflections"
+        "self",
+        on_delete=models.CASCADE,
+        related_name="inflections",
+        help_text="The identified lemma of this wordform. Defaults to self",
     )
 
     class Meta:
