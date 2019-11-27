@@ -19,6 +19,7 @@ Contributing
 
  - [Developer's guide](./docs/developers-guide.md)
  - [Production server: Sapir](./docs/production-on-sapir.md)
+ - [Continuous Integration](./docs/ci.md)
 
 Credits
 -------
