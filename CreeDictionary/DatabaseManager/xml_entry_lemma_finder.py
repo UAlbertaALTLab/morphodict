@@ -1,17 +1,15 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
-from os.path import dirname
-from pathlib import Path
-from typing import List, Dict, Tuple
+from itertools import chain
+from typing import List, Dict, Tuple, Set
 
 from colorama import Fore, init
-from hfstol import HFSTOL
 
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from utils import fst_analysis_parser
+from constants import Analysis, FSTLemma, SimpleLC
 from shared import strict_analyzer
 
 init()  # for windows compatibility
@@ -21,16 +19,16 @@ def extract_fst_lemmas(
     xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]],
     multi_processing: int = 1,
     verbose=True,
-) -> Dict[Tuple[str, str, str], str]:
+) -> Dict[Tuple[str, str, str], Analysis]:
     """
-    for every (xml_lemma, pos, lc), find the analysis of its lemma and according to fst.
+    For every (xml_lemma, xml_pos, xml_lc), try to find its lemma analysis and according to fst. Analysis may be empty
+    string if the lemma analysis can't be decided
     """
 
     logger = DatabaseManagerLogger(__name__, verbose)
+    logger.info("Determining lemma analysis for (xml_lemma, xml_pos, xml_lc) tuples...")
 
-    logger.info("Determining lemma analysis for (xml_lemma, pos, lc) tuples...")
-
-    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], str]
+    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], Analysis]
 
     inflections = xml_lemma_to_pos_lc.keys()
 
@@ -38,9 +36,34 @@ def extract_fst_lemmas(
         inflections, multi_processing
     )
 
+    produced_extra_lemmas: List[FSTLemma] = []
+
+    fst_analysis_to_fst_lemma_slc: Dict[Analysis, Tuple[FSTLemma, SimpleLC]] = dict()
+    for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
+        x = utils.extract_lemma_and_category(fst_analysis)
+        assert x is not None
+        produced_lemma, slc = x
+        fst_analysis_to_fst_lemma_slc[fst_analysis] = produced_lemma, slc
+        if produced_lemma not in xml_lemma_to_analyses:
+            produced_extra_lemmas.append(produced_lemma)
+
+    produced_extra_lemma_to_analysis: Dict[
+        FSTLemma, Set[Analysis]
+    ] = strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas)
+
+    for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
+        x = utils.extract_lemma_and_category(fst_analysis)
+        assert x is not None
+        produced_lemma, slc = x
+        fst_analysis_to_fst_lemma_slc[fst_analysis] = produced_lemma, slc
+
+    all_lemma_to_analysis = xml_lemma_to_analyses.copy()
+    all_lemma_to_analysis.update(produced_extra_lemma_to_analysis)
+
     no_analysis_counter = 0
 
     no_match_counter = 0
+
     success_counter = 0
     dup_counter = 0
 
@@ -50,7 +73,7 @@ def extract_fst_lemmas(
 
             if xml_lemma in xml_lemma_to_pos_lc:
                 for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
-                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ""
+                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = Analysis("")
                     logger.debug(
                         "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
                         % (xml_lemma, pos, lc)
@@ -69,46 +92,56 @@ def extract_fst_lemmas(
             # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
             # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
 
+            possible_lemma_analyses: List[Analysis] = []
+            for analysis in analyses:
+                fst_lemma, slc = fst_analysis_to_fst_lemma_slc[analysis]
+                fst_lemma_analyses = all_lemma_to_analysis[fst_lemma]
+
+                for fst_lemma_analysis in fst_lemma_analyses:
+                    x = utils.extract_lemma_and_category(fst_lemma_analysis)
+                    assert x is not None
+                    wordform, slc = x
+                    if slc is slc and wordform == fst_lemma:
+                        possible_lemma_analyses.append(fst_lemma_analysis)
+
             for pos, lc in xml_lemma_to_pos_lc[
                 xml_lemma
-            ]:  # determine which is `the` analysis
+            ]:  # for each pos, lc determine which is the analysis
 
-                ambiguous_analyses = set()
-
-                fst_lemma_analyses = fst_analysis_parser.identify_lemma_analysis(
-                    analyses
-                )
+                ambiguities: List[Analysis] = []
 
                 for (
                     analysis
                 ) in (
-                    fst_lemma_analyses
+                    possible_lemma_analyses
                 ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
-                    category = utils.extract_simple_lc(analysis)
-                    assert category is not None
+                    slc = fst_analysis_to_fst_lemma_slc[analysis][1]
 
-                    is_match = does_lc_match_xml_entry(category, pos, lc)
+                    is_match = does_lc_match_xml_entry(slc, pos, lc)
                     if is_match:
-                        ambiguous_analyses.add(analysis)
+                        ambiguities.append(analysis)
 
-                if len(ambiguous_analyses) == 0:
+                if len(ambiguities) == 0:
                     logger.debug(
-                        "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. None of the analyses are preferred lemma inflection"
+                        "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. "
+                        "None of the analyses are preferred lemma inflection"
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis("")
                     no_match_counter += 1
 
-                elif len(ambiguous_analyses) == 1:  # nice
-                    the_analysis = ambiguous_analyses.pop()
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = the_analysis
+                elif len(ambiguities) == 1:  # nice
+                    fst_analysis = ambiguities.pop()
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis(
+                        fst_analysis
+                    )
                     success_counter += 1
                 else:
                     logger.debug(
                         "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ""
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis("")
                     dup_counter += 1
 
     logger.info(
@@ -128,8 +161,6 @@ def extract_fst_lemmas(
         f"{Fore.BLUE}There are %d (lemma, pos, lc) that have ambiguous lemma analyses{Fore.RESET}"
         % dup_counter
     )
-    logger.info(
-        "These words will be shown 'as-is' without analyses and paradigm tables"
-    )
+    logger.info("These words will be label 'as-is' without paradigm tables.")
 
     return xml_lemma_pos_lc_to_analysis

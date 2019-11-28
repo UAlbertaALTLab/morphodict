@@ -54,5 +54,7 @@ def parse_xml_lc(lc_text: str) -> Optional[SimpleLexicalCategory]:
 
     if lc_text.startswith("IPC"):
         return SimpleLexicalCategory.IPC
+    if lc_text.startswith("IPV"):
+        return SimpleLexicalCategory.IPV
 
     return None

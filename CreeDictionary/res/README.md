@@ -6,4 +6,6 @@
 
 newline separated cree words that goes into `test_db.sqlite3`
 
-Comments should be added using preceding hash sign
+Comments should be added using preceding hash sign.
+
+Empty lines are allowed and will be ignored

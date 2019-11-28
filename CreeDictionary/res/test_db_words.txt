@@ -1,0 +1,46 @@
+# VTA examples
+wâpamêw
+
+# VTI examples
+wâpahtam
+
+# VAI examples
+wâpiw
+
+# VII examples
+nîpin
+
+# NAD examples
+nôhkom
+
+# NID examples
+mîpit
+
+# NA examples
+mînos
+
+# NI examples
+nipiy
+
+# IPC examples
+êkwa
+
+# Pronoun examples
+niya
+
+# preverb examples
+nitawi-
+nitaw
+
+# reduplication stem examples (fixme: are they also preverbs?)
+sa
+poni
+pe
+
+# regression testing
+atâhk
+acâhkos
+nipâw
+amisk
+amiskwaciy-wâskahikan
+

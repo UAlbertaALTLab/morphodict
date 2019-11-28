@@ -47,15 +47,7 @@ def random_lemmas(draw) -> Wordform:
     """
     Strategy that supplies wordforms that are also lemmas!
     """
-    # Sometimes two different wordforms are marked as lemmas of the same word,
-    # and yet they have different spelling. (Ed: that's not... what the word
-    # "lemma" means, but okay...). So make sure to get the DEFAULT spelling
-    # only!
-    # e.g., akocin and akociniw are both two different spellings of the same
-    # lemma.
-    lemmas = Wordform.objects.filter(
-        is_lemma=True, as_is=False, pk=F("default_spelling__pk")
-    )
+    lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
     return draw(sampled_from(list(lemmas)))
 
 
