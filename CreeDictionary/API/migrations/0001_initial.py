@@ -8,62 +8,161 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='DictionarySource',
+            name="DictionarySource",
             fields=[
-                ('abbrv', models.CharField(max_length=8, primary_key=True, serialize=False)),
-                ('title', models.CharField(help_text='What is the primary title of the dictionary source?', max_length=256)),
-                ('author', models.CharField(blank=True, help_text='Separate multiple authors with commas. See also: editor', max_length=512)),
-                ('editor', models.CharField(blank=True, help_text='Who edited or compiled this volume? Separate multiple editors with commas.', max_length=512)),
-                ('year', models.IntegerField(blank=True, help_text='What year was this dictionary published?', null=True)),
-                ('publisher', models.CharField(blank=True, help_text='What was the publisher?', max_length=128)),
-                ('city', models.CharField(blank=True, help_text='What is the city of the publisher?', max_length=64)),
+                (
+                    "abbrv",
+                    models.CharField(max_length=8, primary_key=True, serialize=False),
+                ),
+                (
+                    "title",
+                    models.CharField(
+                        help_text="What is the primary title of the dictionary source?",
+                        max_length=256,
+                    ),
+                ),
+                (
+                    "author",
+                    models.CharField(
+                        blank=True,
+                        help_text="Separate multiple authors with commas. See also: editor",
+                        max_length=512,
+                    ),
+                ),
+                (
+                    "editor",
+                    models.CharField(
+                        blank=True,
+                        help_text="Who edited or compiled this volume? Separate multiple editors with commas.",
+                        max_length=512,
+                    ),
+                ),
+                (
+                    "year",
+                    models.IntegerField(
+                        blank=True,
+                        help_text="What year was this dictionary published?",
+                        null=True,
+                    ),
+                ),
+                (
+                    "publisher",
+                    models.CharField(
+                        blank=True, help_text="What was the publisher?", max_length=128
+                    ),
+                ),
+                (
+                    "city",
+                    models.CharField(
+                        blank=True,
+                        help_text="What is the city of the publisher?",
+                        max_length=64,
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Wordform',
+            name="Wordform",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('text', models.CharField(max_length=40)),
-                ('full_lc', models.CharField(help_text='Full lexical category from source', max_length=10)),
-                ('pos', models.CharField(choices=[('IPV', 'IPV'), ('PRON', 'PRON'), ('N', 'N'), ('IPC', 'IPC'), ('V', 'V'), ('', '')], help_text='Part of speech parsed from source. ', max_length=4)),
-                ('analysis', models.CharField(default='', help_text='fst analysis or the best possible if the source is not analyzable', max_length=50)),
-                ('is_lemma', models.BooleanField(default=False, help_text='Lemma or non-lemma inflection')),
-                ('as_is', models.BooleanField(default=False, help_text='Fst can not determine the lemma. Paradigm table will not be shown to the user for this entry')),
-                ('lemma', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='inflections', to='API.Wordform')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("text", models.CharField(max_length=40)),
+                (
+                    "full_lc",
+                    models.CharField(
+                        help_text="Full lexical category from source", max_length=10
+                    ),
+                ),
+                (
+                    "pos",
+                    models.CharField(
+                        choices=[
+                            ("IPV", "IPV"),
+                            ("PRON", "PRON"),
+                            ("N", "N"),
+                            ("IPC", "IPC"),
+                            ("V", "V"),
+                            ("", ""),
+                        ],
+                        help_text="Part of speech parsed from source. ",
+                        max_length=4,
+                    ),
+                ),
+                (
+                    "analysis",
+                    models.CharField(
+                        default="",
+                        help_text="fst analysis or the best possible if the source is not analyzable",
+                        max_length=50,
+                    ),
+                ),
+                (
+                    "is_lemma",
+                    models.BooleanField(
+                        default=False, help_text="Lemma or non-lemma inflection"
+                    ),
+                ),
+                (
+                    "as_is",
+                    models.BooleanField(
+                        default=False,
+                        help_text="Fst can not determine the lemma. Paradigm table will not be shown to the user for this entry",
+                    ),
+                ),
+                (
+                    "lemma",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="inflections",
+                        to="API.Wordform",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='EnglishKeyword',
+            name="EnglishKeyword",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('text', models.CharField(max_length=20)),
-                ('lemma', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='english_keyword', to='API.Wordform')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("text", models.CharField(max_length=20)),
+                (
+                    "lemma",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="english_keyword",
+                        to="API.Wordform",
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Definition',
+            name="Definition",
             fields=[
-                ('id', models.PositiveIntegerField(primary_key=True, serialize=False)),
-                ('text', models.CharField(max_length=200)),
-                ('citations', models.ManyToManyField(to='API.DictionarySource')),
-                ('lemma', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='API.Wordform')),
+                ("id", models.PositiveIntegerField(primary_key=True, serialize=False)),
+                ("text", models.CharField(max_length=200)),
+                ("citations", models.ManyToManyField(to="API.DictionarySource")),
+                (
+                    "lemma",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="API.Wordform"
+                    ),
+                ),
             ],
         ),
         migrations.AddIndex(
-            model_name='wordform',
-            index=models.Index(fields=['analysis'], name='API_wordfor_analysi_57b0eb_idx'),
+            model_name="wordform",
+            index=models.Index(
+                fields=["analysis"], name="API_wordfor_analysi_57b0eb_idx"
+            ),
         ),
         migrations.AddIndex(
-            model_name='wordform',
-            index=models.Index(fields=['text'], name='API_wordfor_text_5ba76a_idx'),
+            model_name="wordform",
+            index=models.Index(fields=["text"], name="API_wordfor_text_5ba76a_idx"),
         ),
         migrations.AddIndex(
-            model_name='englishkeyword',
-            index=models.Index(fields=['text'], name='API_english_text_16bd44_idx'),
+            model_name="englishkeyword",
+            index=models.Index(fields=["text"], name="API_english_text_16bd44_idx"),
         ),
     ]

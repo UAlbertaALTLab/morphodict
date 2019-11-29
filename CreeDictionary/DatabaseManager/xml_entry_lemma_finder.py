@@ -161,6 +161,8 @@ def extract_fst_lemmas(
         f"{Fore.BLUE}There are %d (lemma, pos, lc) that have ambiguous lemma analyses{Fore.RESET}"
         % dup_counter
     )
-    logger.info("These words will be label 'as-is' without paradigm tables.")
+    logger.info(
+        "These words will be label 'as-is', meaning their lemmas are undetermined."
+    )
 
     return xml_lemma_pos_lc_to_analysis

@@ -27,12 +27,20 @@ nipiy
 
 # Pronoun examples
 niya
+awa
+ôma
+awîna
+niyanân
 
 # preverb examples
 nitawi-
 nitaw
+ati-
+poni-
+nitawi-
+pê-
 
-# reduplication stem examples (fixme: are they also preverbs?)
+# reduplication stem examples
 sa
 poni
 pe
@@ -44,3 +52,9 @@ nipâw
 amisk
 amiskwaciy-wâskahikan
 
+# particles
+ispîhk
+ohci
+anohc
+pêyak
+nisto

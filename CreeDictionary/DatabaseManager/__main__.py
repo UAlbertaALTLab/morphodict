@@ -1,5 +1,7 @@
 import argparse
 import sys
+from distutils.util import strtobool
+from os import environ
 from pathlib import Path
 
 from DatabaseManager.xml_importer import clear_database, import_xmls
@@ -16,6 +18,10 @@ clear_parser = subparsers.add_parser(
 
 import_parser = subparsers.add_parser(
     "import", help="import from xml. Old dictionary data will be CLEARED"
+)
+
+build_test_db_parser = subparsers.add_parser(
+    "build-test-db", help="build test_db.sqlite3 from res/test_db_words.txt"
 )
 
 import_parser.add_argument(
@@ -40,6 +46,11 @@ def cmd_entry(argv=sys.argv):
         clear_database()
     elif args.command_name == "import":
         import_xmls(Path(args.xml_directory_name), args.process_count)
+    elif args.command_name == "build-test-db":
+        assert (
+            strtobool(environ.get("USE_TEST_DB", "false")) is True
+        ), "USE_TEST_DB has to be True to create test_db.sqlite3"
+        pass
 
 
 if __name__ == "__main__":
