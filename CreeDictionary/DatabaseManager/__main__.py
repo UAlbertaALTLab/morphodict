@@ -1,10 +1,25 @@
 import argparse
+from argparse import ArgumentParser
 import sys
 from distutils.util import strtobool
 from os import environ
 from pathlib import Path
 
 from DatabaseManager.xml_importer import clear_database, import_xmls
+
+
+def add_multi_processing_argument(ap: ArgumentParser):
+    ap.add_argument(
+        "--multi-processing",
+        "-m",
+        dest="process_count",
+        type=int,
+        action="store",
+        default=1,
+        help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. "
+        "A rule is to use as many processes as the number of cores in the machine.",
+    )
+
 
 parser = argparse.ArgumentParser(description="cli to manage django sqlite dictionary")
 
@@ -23,21 +38,13 @@ import_parser = subparsers.add_parser(
 build_test_db_parser = subparsers.add_parser(
     "build-test-db", help="build test_db.sqlite3 from res/test_db_words.txt"
 )
+add_multi_processing_argument(build_test_db_parser)
 
 import_parser.add_argument(
     "xml_directory_name", help="The directory that has crkeng.xml and engcrk.xml"
 )
 
-import_parser.add_argument(
-    "--multi-processing",
-    "-m",
-    dest="process_count",
-    type=int,
-    action="store",
-    default=1,
-    help="Use multi-processing to accelerate import. Default is 1, which is no multi-processing. "
-    "A rule is to use as many processes as the number of cores of the machine.",
-)
+add_multi_processing_argument(import_parser)
 
 
 def cmd_entry(argv=sys.argv):
@@ -49,7 +56,7 @@ def cmd_entry(argv=sys.argv):
     elif args.command_name == "build-test-db":
         assert (
             strtobool(environ.get("USE_TEST_DB", "false")) is True
-        ), "USE_TEST_DB has to be True to create test_db.sqlite3"
+        ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
         pass
 
 
