@@ -1,11 +1,12 @@
 import argparse
-from argparse import ArgumentParser
 import sys
-from distutils.util import strtobool
+from argparse import ArgumentParser
 from os import environ
 from pathlib import Path
 
+from DatabaseManager.test_db_builder import build_test_xml
 from DatabaseManager.xml_importer import clear_database, import_xmls
+from utils import shared_res_dir
 
 
 def add_multi_processing_argument(ap: ArgumentParser):
@@ -55,9 +56,10 @@ def cmd_entry(argv=sys.argv):
         import_xmls(Path(args.xml_directory_name), args.process_count)
     elif args.command_name == "build-test-db":
         assert (
-            strtobool(environ.get("USE_TEST_DB", "false")) is True
+            environ.get("USE_TEST_DB", "false").lower() == "true"
         ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
-        pass
+        build_test_xml(args.process_count)
+        import_xmls(shared_res_dir / "test_dictionaries", args.process_count)
 
 
 if __name__ == "__main__":

@@ -1,11 +1,19 @@
+# Test database is build in a very inclusive manner. Any relevant word to this list will gets imported.
+# You can write spell relaxed version here too, like "acimew" instead of "âcimêw"
+
 # VTA examples
 wâpamêw
+mowêw
 
 # VTI examples
+mîciw
 wâpahtam
 
 # VAI examples
+mîcisow
+âcimêw
 wâpiw
+nipâw
 
 # VII examples
 nîpin
@@ -17,13 +25,15 @@ nôhkom
 mîpit
 
 # NA examples
-mînos
+acâhkos
+minôs
 
 # NI examples
 nipiy
 
 # IPC examples
 êkwa
+tânisi
 
 # Pronoun examples
 niya
