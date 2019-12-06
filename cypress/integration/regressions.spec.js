@@ -11,8 +11,35 @@ context('Regressions', () => {
       .should('contain', 'atâhk')
   })
 
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+  it.skip('should allow space characters in exact strings', () => {
+    cy.visit('/search/acâhkos kâ-osôsit')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'acâhkos kâ-osôsit')
+
+    cy.visit('/search/acâhkosa kâ-otakohpit')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'acâhkosa kâ-otakohpit')
+  })
+
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+  it('should allow space characters in spell-relaxed results', () => {
+    cy.visit('/search/niki nitawi kiskinwahamakosin')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'kiskinwahamâkosiw')
+
+    cy.visit('/search/ka ki awasisiwiyan')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'awâsisîwiw')
+
+    cy.visit('/search/na nipat')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'nipâw')
+  })
+
+
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
-  it('should basic relevant English results', () => {
+  it('should display relevant English results', () => {
     cy.visit('/search/see')
     cy.get('[data-cy=search-results]')
       .should('contain', 'wâpiw')
