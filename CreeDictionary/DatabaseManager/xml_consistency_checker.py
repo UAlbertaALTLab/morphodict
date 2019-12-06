@@ -1,78 +1,50 @@
 """check the consistency of a xml source with a fst"""
-from typing import Optional
 
-from constants import LexicalCategory
-
-
-def parse_xml_lc(lc_text: str) -> Optional[LexicalCategory]:
-    """
-    return recognized lc, None if not recognized
-
-    :param lc_text: 2019 July, all lc from crkeng.xml are
-        {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
-        'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
-        'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
-        'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
-        'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
-    :return:
-    """
-    if lc_text is None:
-        return None
-    if lc_text.startswith("VTA"):
-        return LexicalCategory.VTA
-    if lc_text.startswith("VTI"):
-        return LexicalCategory.VTI
-    if lc_text.startswith("VAI"):
-        return LexicalCategory.VAI
-    if lc_text.startswith("VII"):
-        return LexicalCategory.VII
-    if lc_text.startswith("NDA"):
-        return LexicalCategory.NAD
-    if lc_text.startswith("NI"):
-        return LexicalCategory.NI
-    if lc_text.startswith("NDI"):
-        return LexicalCategory.NID
-    if lc_text.startswith("NA"):
-        return LexicalCategory.NA
-
-    if lc_text.startswith("IPC"):
-        return LexicalCategory.IPC
-
-    return None
+from constants import SimpleLexicalCategory
+from utils.crkeng_xml_utils import parse_xml_lc
 
 
-def does_hfstol_xml_pos_match(
-    hfstol_category: LexicalCategory, xml_pos: str, xml_lc: str
+def does_lc_match_xml_entry(
+        lc: SimpleLexicalCategory, xml_pos: str, xml_lc: str
 ) -> bool:
     """
-    check whether a xml entry is "compatible" with an `InflectionCategory`
+    check whether an xml entry matches with an `InflectionCategory`
+        if neither xml_pos and xml_lc are understood: False
+        
+        if only xml_pos is understood: check if xml_pos matches lc
 
-    Note: xml entries are underspecified: meaning they can say 'V' in pos but nothing in lc
+        if both xml_pos and xml_lc are understood: check both
 
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, 'V', '')
+    xml entries are underspecified: both xml_pos xml_lc can be empty string
+
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', '')
     True
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, 'V', 'VTI-?')
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'VTI-?')
     True
-
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, '', '')
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, '', '')
     False
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, 'V', 'VAI-2')
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'VAI-2')
     False
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, 'N', '')
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'N', '')
     False
-    >>> does_hfstol_xml_pos_match(LexicalCategory.VTI, 'V', 'Nonsense Garbage Garbage')
-    False
+    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'IJFIJFIJSAJDIAIDJRN')
+    True
     """
 
     if (
-        (xml_pos == "V" and hfstol_category.is_verb())
-        or (xml_pos == "N" and hfstol_category.is_noun())
-        or (xml_pos == "Ipc" and hfstol_category is LexicalCategory.IPC)
-        or (xml_pos == "Pron" and hfstol_category is LexicalCategory.Pron)
+            (xml_pos == "V" and lc.is_verb())
+            or (xml_pos == "N" and lc.is_noun())
+            or (xml_pos == "Ipc" and lc is SimpleLexicalCategory.IPC)
+            or (xml_pos == "Pron" and lc is SimpleLexicalCategory.Pron)
     ):
-        lc_category = parse_xml_lc(xml_lc)
+        simple_lc = parse_xml_lc(xml_lc)
 
-        if xml_lc == "" or hfstol_category is lc_category:
+        if (
+                simple_lc is None or xml_lc == ""
+        ):  # e.g. niya has xml_pos Pron, xml_lc PrA, PrA will gives None
+            return True
+
+        if lc is simple_lc:
             return True
         else:
             return False

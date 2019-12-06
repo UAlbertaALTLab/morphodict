@@ -1,34 +1,33 @@
 import datetime
-import os
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
-from os import PathLike
 from pathlib import Path
-from typing import DefaultDict, Dict, List, Optional, Set, Tuple
+from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple
 
-import django
 from colorama import Fore, init
 from django.db import connection
 
-from API.models import Definition, DictionarySource, EnglishKeyword, Inflection
+from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from utils.crkeng_xml_utils import convert_lc_str, extract_l_str
+from constants import POS
+from utils import fst_analysis_parser
+from utils.crkeng_xml_utils import extract_l_str, parse_xml_lc
 
 init()  # for windows compatibility
-
-os.environ["DJANGO_SETTINGS_MODULE"] = "CreeDictionary.settings"
-django.setup()
 
 
 logger = DatabaseManagerLogger(__name__)
 
-RECOGNIZABLE_POS: Set[str] = {p[0] for p in Inflection.RECOGNIZABLE_POS}
+RECOGNIZABLE_POS: Set[str] = {p.value for p in POS}
 
 
 def clear_database(verbose=True):
+    """
+    Delete data from database but keep admin authentication data
+    """
     logger.set_print_info_on_console(verbose)
     logger.info("Deleting objects from the database")
 
@@ -42,9 +41,11 @@ def clear_database(verbose=True):
 
     # Then delete the rest:
     cursor.execute("DELETE FROM API_definition")
-    cursor.execute("DELETE FROM API_inflection")
+    cursor.execute("DELETE FROM API_definition_citations")
+    cursor.execute("DELETE FROM API_wordform")
     cursor.execute("DELETE FROM API_englishkeyword")
-    cursor.execute("DELETE FROM API_dictionarysource")
+    # do not delete dictionarysource, since it's editted on admin console and should persist
+    # cursor.execute("DELETE FROM API_dictionarysource")
     cursor.execute("PRAGMA foreign_keys = ON")
 
     logger.info("All Objects deleted from Database")
@@ -85,7 +86,7 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
 
     lc = lc.split("-")[0]
 
-    recognized_lc = convert_lc_str(lc)
+    recognized_lc = parse_xml_lc(lc)
 
     if recognized_lc is None:
         if pos not in ("", "-"):
@@ -111,15 +112,51 @@ def format_element_error(msg: str, element: ET.Element) -> str:
     return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
 
 
-def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
+class EngcrkCree(NamedTuple):
     """
-    :return: Dict[definition, [english1, english2, english3 ...]]
+    A cree word extracted from engcrk.xml.
+    The corresponding wordform in the database is to be determined later
     """
+
+    wordform: str
+    pos: POS
+
+
+def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
+    """
+    :return: Dict[EngcrkCree , [english1, english2, english3 ...]] pos is in uppercase
+    """
+
+    # The structure in engcrk.xml
+
+    """
+        <e>
+
+            <lg xml:lang="eng">
+                <l pos="N">August</l>
+            </lg>
+
+            <mg>
+                <tg xml:lang="crk">
+                    <trunc sources="MD">august. [The flying month].</trunc>
+                    <t pos="N" rank="1.0">Ohpahow-pisim</t>
+                </tg>
+            </mg>
+
+            <mg>
+                <tg xml:lang="crk">
+                    <trunc sources="CW">Flying-Up Moon; August</trunc>
+                    <t pos="N" rank="1.0">ohpahowi-pîsim</t>
+                </tg>
+            </mg>
+        </e>
+    """
+
     filename = Path(filename)
 
     assert filename.exists(), "%s does not exist" % filename
 
-    res: DefaultDict[str, List[str]] = defaultdict(list)
+    res: DefaultDict[EngcrkCree, List[str]] = defaultdict(list)
 
     root = ET.parse(str(filename)).getroot()
     elements = root.findall(".//e")
@@ -136,30 +173,47 @@ def load_engcrk_xml(filename: PathLike) -> DefaultDict[str, List[str]]:
             logger.debug(format_element_error("<l> does not have text", element))
             continue
 
-        trunc_elements = element.findall("mg/tg/trunc")
+        t_elements = element.findall("mg/tg/t")
 
-        if not trunc_elements:
+        if not t_elements:
             logger.debug(
-                format_element_error(f"<e> lacks <trunc> in file {filename}", element)
+                format_element_error(f"<e> lacks <t> in file {filename}", element)
             )
             continue
-        for trunc_element in trunc_elements:
-            if trunc_element.text is None:
+
+        for t_element in t_elements:
+            if t_element.text is None:
                 logger.debug(
                     format_element_error(
-                        f"<trunc> does not have text in file {filename}", element
+                        f"<t> does not have text in file {filename}", element
+                    )
+                )
+                continue
+            cree_word = t_element.text
+            pos_str = t_element.get("pos")
+            assert pos_str is not None
+            try:
+                pos = POS(pos_str.upper())
+            except ValueError:
+                logger.debug(
+                    format_element_error(
+                        f"Cree word {cree_word} has a unrecognizable pos {pos_str}",
+                        element,
                     )
                 )
                 continue
 
-            res[trunc_element.text].append(l_element.text)
+            res[EngcrkCree(cree_word, pos)].append(l_element.text)
 
     return res
 
 
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
-    CLEARS the database and import from an xml file
+    CLEARS the database (except admin authentication data and dictionary source data) first
+    and import from an xml file
+
+    Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, lc) tuples
 
     :keyword verbose: print to stdout or not
     """
@@ -183,7 +237,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         logger.info("Created source: %s", source_id)
 
     logger.info("Loading English keywords...")
-    def_to_keywords = load_engcrk_xml(engcrk_filename)
+    engcrk_cree_to_keywords = load_engcrk_xml(engcrk_filename)
     logger.info("English keywords loaded")
 
     # value is definition string as key and its source as value
@@ -292,7 +346,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 dup_analysis_xml_lemma_pos_lc_count += 1
                 existing_tuple = true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
                 logger.debug(
-                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma: {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}. Their Definition will be merged."
+                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma:"
+                    f" {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}."
+                    f" Their Definition will be merged."
                 )
 
                 # merge definition to first tuple
@@ -322,34 +378,43 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         % dup_analysis_xml_lemma_pos_lc_count
     )
 
-    inflection_counter = 1
+    wordform_counter = 1
     definition_counter = 1
     keyword_counter = 1
 
-    db_inflections: List[Inflection] = []
+    db_inflections: List[Wordform] = []
     db_definitions: List[Definition] = []
     db_keywords: List[EnglishKeyword] = []
     citations: Dict[int, Set[str]] = {}
 
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
-        recognizable_lc = convert_lc_str(lc)
-        normalized_lc = ""
-        normalized_pos = pos.upper()
-        if recognizable_lc is not None:
-            normalized_lc = recognizable_lc.value
-        db_inflection = Inflection(
-            id=inflection_counter,
+        upper_pos = pos.upper()
+
+        # is_lemma field should default to true
+        db_inflection = Wordform(
+            id=wordform_counter,
             text=xml_lemma,
             analysis=generate_as_is_analysis(xml_lemma, pos, lc),
-            pos=normalized_pos if normalized_pos in RECOGNIZABLE_POS else "",
-            lc=normalized_lc,
+            pos=upper_pos if upper_pos in RECOGNIZABLE_POS else "",
+            full_lc=lc,
             is_lemma=True,
             as_is=True,
         )
-        db_inflection.lemma = db_inflection
-        db_inflection.default_spelling = db_inflection
+        if upper_pos in RECOGNIZABLE_POS:
+            for english_keywords in engcrk_cree_to_keywords[
+                EngcrkCree(xml_lemma, POS(upper_pos))
+            ]:
+                db_keywords.append(
+                    EnglishKeyword(
+                        id=keyword_counter, text=english_keywords, lemma=db_inflection,
+                    )
+                )
 
-        inflection_counter += 1
+                keyword_counter += 1
+
+        db_inflection.lemma = db_inflection
+
+        wordform_counter += 1
         db_inflections.append(db_inflection)
 
         str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
@@ -365,18 +430,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             assert definition_counter not in citations
             citations[definition_counter] = set(source_strings)
 
-            keyword_texts = def_to_keywords[str_definition]
-            if keyword_texts:
-                for keyword_text in keyword_texts:
-                    db_keyword = EnglishKeyword(
-                        id=keyword_counter, text=keyword_text, lemma=db_inflection
-                    )
-                    db_keywords.append(db_keyword)
-                    keyword_counter += 1
-            else:
-                logger.debug(
-                    f"Definition {str_definition} does not have associated English keyword"
-                )
             definition_counter += 1
             db_definitions.append(db_definition)
 
@@ -384,53 +437,67 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         true_lemma_analyses_to_xml_lemma_pos_lc.keys(), multi_processing
     )
 
+    logger.info("Structuring wordforms, english keywords, and definition objects...")
     for (
         true_lemma_analysis,
         xml_lemma_pos_lcs,
     ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
+        lemma_wordform_simple_lc = fst_analysis_parser.extract_lemma_and_category(
+            true_lemma_analysis
+        )
+        assert lemma_wordform_simple_lc is not None
 
-        db_lemmas = []
-        db_inflections_for_analysis = []
-        for generated_analysis, generated_inflections in expanded[true_lemma_analysis]:
-            # db_lemmas could be of length more than one
-            # for example peepeepoopoo+N+A+Sg may generate two spellings: pepepopo / peepeepoopoo
+        lemma_wordform, simple_lc = lemma_wordform_simple_lc
+        generated_pos = simple_lc.pos
 
-            if generated_analysis != true_lemma_analysis:
-                is_lemma = False
-            else:
-                is_lemma = True
+        db_wordforms_for_analysis = []
+        db_lemma = None
+        _, xml_pos, xml_lc = xml_lemma_pos_lcs[0]
+        for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
 
-            default_spelling: Optional[Inflection] = None
-            for i, generated_inflection in enumerate(generated_inflections):
+            generated_lemma = fst_analysis_parser.extract_lemma(generated_analysis)
+            assert generated_lemma is not None
+
+            for generated_wordform in generated_wordforms:
                 # generated_inflections contain different spellings of one fst analysis
-                pos, lc = xml_lemma_pos_lcs[0][1:]
-                normalized_pos = pos.upper()
-                recognizable_lc = convert_lc_str(lc)
-                normalized_lc = ""
-                if recognizable_lc is not None:
-                    normalized_lc = recognizable_lc.value
+                if (
+                    generated_wordform == lemma_wordform
+                    and generated_analysis == true_lemma_analysis
+                ):
+                    is_lemma = True
+                else:
+                    is_lemma = False
 
-                db_inflection = Inflection(
-                    id=inflection_counter,
-                    text=generated_inflection,
+                db_inflection = Wordform(
+                    id=wordform_counter,
+                    text=generated_wordform,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
-                    pos=normalized_pos if normalized_pos in RECOGNIZABLE_POS else "",
-                    lc=normalized_lc,
+                    pos=generated_pos.name,
+                    full_lc=xml_lc,
                     as_is=False,
                 )
-                if i == 0:
-                    default_spelling = db_inflection
-                db_inflection.default_spelling = default_spelling
-                db_inflections_for_analysis.append(db_inflection)
-                inflection_counter += 1
+
+                db_wordforms_for_analysis.append(db_inflection)
+                wordform_counter += 1
                 db_inflections.append(db_inflection)
 
                 if is_lemma:
-                    db_lemmas.append(db_inflection)
+                    db_lemma = db_inflection
 
-            if is_lemma:
-                for db_lemma in db_lemmas:
+                    for english_keywords in engcrk_cree_to_keywords[
+                        EngcrkCree(generated_wordform, generated_pos)
+                    ]:
+                        db_keywords.append(
+                            EnglishKeyword(
+                                id=keyword_counter,
+                                text=english_keywords,
+                                lemma=db_inflection,
+                            )
+                        )
+
+                        keyword_counter += 1
+
                     str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
                         xml_lemma_pos_lcs[0]
                     ]
@@ -440,7 +507,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         source_strings,
                     ) in str_definitions_source_strings.items():
                         db_definition = Definition(
-                            id=definition_counter, text=str_definition, lemma=db_lemma
+                            id=definition_counter,
+                            text=str_definition,
+                            lemma=db_inflection,
                         )
                         assert definition_counter not in citations
                         citations[definition_counter] = set(source_strings)
@@ -448,26 +517,17 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         definition_counter += 1
                         db_definitions.append(db_definition)
 
-                        keyword_texts = def_to_keywords[str_definition]
-                        if keyword_texts:
-                            for keyword_text in keyword_texts:
-                                db_keyword = EnglishKeyword(
-                                    id=keyword_counter,
-                                    text=keyword_text,
-                                    lemma=db_lemma,
-                                )
-                                db_keywords.append(db_keyword)
-                                keyword_counter += 1
-                        else:
-                            logger.debug(
-                                f"Definition {str_definition} does not have associated English keyword"
-                            )
-
-        for inflection in db_inflections_for_analysis:
-            inflection.lemma = db_lemmas[0]
+        if db_lemma is None:
+            print("lemma wordform", lemma_wordform)
+            print("lemma analysis", true_lemma_analysis)
+            print("dooches:")
+            print(expanded[true_lemma_analysis])
+        assert db_lemma is not None
+        for wordform in db_wordforms_for_analysis:
+            wordform.lemma = db_lemma
 
     logger.info("Inserting %d inflections to database..." % len(db_inflections))
-    Inflection.objects.bulk_create(db_inflections)
+    Wordform.objects.bulk_create(db_inflections)
     logger.info("Done inserting.")
 
     logger.info("Inserting definition to database...")

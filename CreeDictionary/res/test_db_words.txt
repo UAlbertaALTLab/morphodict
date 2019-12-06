@@ -1,0 +1,70 @@
+# Test database is build in a very inclusive manner. Any relevant word to this list will gets imported.
+# You can write spell relaxed version here too, like "acimew" instead of "âcimêw"
+
+# VTA examples
+wâpamêw
+mowêw
+
+# VTI examples
+mîciw
+wâpahtam
+
+# VAI examples
+mîcisow
+âcimêw
+wâpiw
+nipâw
+
+# VII examples
+nîpin
+
+# NAD examples
+nôhkom
+
+# NID examples
+mîpit
+
+# NA examples
+acâhkos
+minôs
+
+# NI examples
+nipiy
+
+# IPC examples
+êkwa
+tânisi
+
+# Pronoun examples
+niya
+awa
+ôma
+awîna
+niyanân
+
+# preverb examples
+nitawi-
+nitaw
+ati-
+poni-
+nitawi-
+pê-
+
+# reduplication stem examples
+sa
+poni
+pe
+
+# regression testing
+atâhk
+acâhkos
+nipâw
+amisk
+amiskwaciy-wâskahikan
+
+# particles
+ispîhk
+ohci
+anohc
+pêyak
+nisto

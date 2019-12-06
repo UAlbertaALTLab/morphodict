@@ -8,9 +8,9 @@ from django.db.models import F
 from hypothesis import assume
 from hypothesis._strategies import composite, integers, sampled_from
 
-from API.models import Inflection
+from API.models import Wordform
 from DatabaseManager.xml_importer import import_xmls
-from constants import LexicalCategory
+from constants import SimpleLexicalCategory
 from utils import shared_res_dir, fst_analysis_parser
 
 
@@ -20,11 +20,11 @@ def topmost_datadir():
 
 
 @composite
-def analyzable_inflections(draw) -> Inflection:
+def analyzable_inflections(draw) -> Wordform:
     """
     inflections with as_is field being False, meaning they have an analysis field from fst analyzer
     """
-    inflection_objects = Inflection.objects.all()
+    inflection_objects = Wordform.objects.all()
 
     pk_id = draw(integers(min_value=1, max_value=inflection_objects.count()))
     the_inflection = inflection_objects.get(id=pk_id)
@@ -33,29 +33,21 @@ def analyzable_inflections(draw) -> Inflection:
 
 
 @composite
-def random_inflections(draw) -> Inflection:
+def random_inflections(draw) -> Wordform:
     """
     hypothesis strategy to supply random inflections
     """
-    inflection_objects = Inflection.objects.all()
+    inflection_objects = Wordform.objects.all()
     id = draw(integers(min_value=1, max_value=inflection_objects.count()))
     return inflection_objects.get(id=id)
 
 
 @composite
-def random_lemmas(draw) -> Inflection:
+def random_lemmas(draw) -> Wordform:
     """
     Strategy that supplies wordforms that are also lemmas!
     """
-    # Sometimes two different wordforms are marked as lemmas of the same word,
-    # and yet they have different spelling. (Ed: that's not... what the word
-    # "lemma" means, but okay...). So make sure to get the DEFAULT spelling
-    # only!
-    # e.g., akocin and akociniw are both two different spellings of the same
-    # lemma.
-    lemmas = Inflection.objects.filter(
-        is_lemma=True, as_is=False, pk=F("default_spelling__pk")
-    )
+    lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
     return draw(sampled_from(list(lemmas)))
 
 

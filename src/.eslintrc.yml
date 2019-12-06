@@ -7,7 +7,6 @@ env:
 
 parserOptions:
   ecmaVersion: 2016
-  sourceType: script
 
 # These rules seem to generally follow the StandardJS style:
 # https://standardjs.com/rules.html

@@ -1,11 +1,11 @@
-from constants import LC, ParadigmSize
 from shared import shared_res_dir
 from utils.paradigm_layout_combiner import import_layouts
+from constants import SimpleLC, ParadigmSize
 
 
 def test_import_layouts_na_basic():
     imported_layout = import_layouts(shared_res_dir / "layouts")
-    assert imported_layout[LC.NA, ParadigmSize.BASIC] == [
+    assert imported_layout[SimpleLC.NA, ParadigmSize.BASIC] == [
         # TODO: this should have some labels and some slots
         ['"One"', "=N+A+Sg"],
         ['"Many"', "=N+A+Pl"],

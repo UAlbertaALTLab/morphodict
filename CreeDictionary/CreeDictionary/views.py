@@ -1,10 +1,11 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from API.models import Inflection
-from constants import LC, ParadigmSize
+from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
+from constants import SimpleLC, ParadigmSize
 from shared import paradigm_filler
+from utils import fst_analysis_parser
 
 
 def index(request, query_string=None, lemma_id=None):
@@ -30,10 +31,13 @@ def search_results(request, query_string: str):
     """
     # todo: use the keys of analysis_to_lemmas to show user input analysis (Preverb, reduplication, IC ...)
 
-    analysis_to_lemmas, lemmas_by_english = Inflection.fetch_lemma_by_user_query(
+    analysis_to_lemmas, lemmas_by_english = Wordform.fetch_lemma_by_user_query(
         query_string
     )
-    words = [b for a in analysis_to_lemmas.values() for b in a] + lemmas_by_english
+    # flatten list of list
+    words = [b for a in analysis_to_lemmas.values() for b in a] + list(
+        lemmas_by_english
+    )
     return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 
@@ -42,12 +46,10 @@ def lemma_details(request, lemma_id: int):
     """
     render paradigm table for a lemma
     """
-    lemma = Inflection.objects.get(id=lemma_id)
-
-    if lemma.lc != "":
-        tables = paradigm_filler.fill_paradigm(
-            lemma.text, LC(lemma.lc), ParadigmSize.BASIC
-        )
+    lemma = Wordform.objects.get(id=lemma_id)
+    slc = fst_analysis_parser.extract_simple_lc(lemma.analysis)
+    if slc is not None:
+        tables = paradigm_filler.fill_paradigm(lemma.text, slc, ParadigmSize.BASIC)
     else:
         tables = []
 

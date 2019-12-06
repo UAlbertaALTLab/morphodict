@@ -1,7 +1,7 @@
 import logging
 import unicodedata
 from collections import defaultdict
-from typing import Dict, List, NamedTuple, Set, Tuple
+from typing import Dict, List, NamedTuple, Set, Tuple, Iterable
 from urllib.parse import unquote
 
 from attr import attrib, attrs
@@ -9,7 +9,7 @@ from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import F, Max, Q, QuerySet
 
-from constants import LC, LexicalCategory
+from constants import SimpleLC, SimpleLexicalCategory, POS
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator
 from utils import fst_analysis_parser
@@ -26,7 +26,7 @@ class SearchResult:
     # the text of the matche
     wordform = attrib(type=str)
 
-    part_of_speech = attrib(type=LexicalCategory)
+    part_of_speech = attrib(type=SimpleLexicalCategory)
 
     # Is this the lemma?
     is_lemma = attrib(type=bool)
@@ -61,7 +61,7 @@ class EntryKey(NamedTuple):
 
     wordform: str
     lemma: str
-    lc: LexicalCategory
+    lc: SimpleLexicalCategory
 
 
 class CreeAndEnglish(NamedTuple):
@@ -73,11 +73,11 @@ class CreeAndEnglish(NamedTuple):
      - english results -- a list of lemmas that match
     """
 
-    cree_results: Dict[str, List["Inflection"]]
-    english_results: List["Inflection"]
+    cree_results: Dict[str, Set["Wordform"]]
+    english_results: Set["Wordform"]
 
 
-class Inflection(models.Model):
+class Wordform(models.Model):
     _cree_fuzzy_searcher = None
 
     @classmethod
@@ -88,7 +88,7 @@ class Inflection(models.Model):
     @classmethod
     def fuzzy_search(cls, query: str, distance: int) -> QuerySet:
         if cls._cree_fuzzy_searcher is None:
-            return Inflection.objects.none()
+            return Wordform.objects.none()
         return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
@@ -97,80 +97,79 @@ class Inflection(models.Model):
 
     text = models.CharField(max_length=40)
 
-    RECOGNIZABLE_LC = [(lc.value,) * 2 for lc in LC] + [("", "")]
-    lc = models.CharField(
-        max_length=4,
-        choices=RECOGNIZABLE_LC,
-        help_text="lexical category parsed from xml",
+    full_lc = models.CharField(
+        max_length=10,
+        help_text="Full lexical category directly from source",  # e.g. NI-3
     )
-    RECOGNIZABLE_POS = [(p,) * 2 for p in ("IPV", "PRON", "N", "IPC", "V", "")]
+    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
     pos = models.CharField(
         max_length=4,
         choices=RECOGNIZABLE_POS,
-        help_text="part of speech parsed from xml",
+        help_text="Part of speech parsed from source. Can be unspecified",
     )
 
     analysis = models.CharField(
         max_length=50,
         default="",
-        help_text="fst analysis or the best possible if the source is not analyzable",
+        help_text="fst analysis or the best possible generated if the source is not analyzable",  # see xml_importer.py::generate_as_is_analysis
     )
     is_lemma = models.BooleanField(
-        default=False, help_text="Lemma or non-lemma inflection"
-    )
-    as_is = models.BooleanField(
         default=False,
-        help_text="Fst can not determine the lemma. Paradigm table will not be shown to the user for this entry",
+        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
+        " analyzable or it's ambiguous",
     )
 
-    default_spelling = models.ForeignKey(
-        "self", on_delete=models.CASCADE, related_name="alt_spellings"
+    # if as_is is False. pos field is guaranteed to be not empty
+    # and will be values from `constants.POS` enum class
+
+    # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
+    as_is = models.BooleanField(
+        default=False,
+        help_text="It can not be determined whether this wordform is lemma or not during the importing process. "
+        "is_lemma defaults to true and lemma field defaults to self",
     )
 
     lemma = models.ForeignKey(
-        "self", on_delete=models.CASCADE, related_name="inflections"
+        "self",
+        on_delete=models.CASCADE,
+        related_name="inflections",
+        help_text="The identified lemma of this wordform. Defaults to self",
     )
 
     class Meta:
         # analysis is for faster user query (in function fetch_lemma_by_user_query below)
         # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
-        # text index also benefits fast lemma matching
+        # text index also benefits fast lemma matching in function fetch_lemma_by_user_query
         indexes = [models.Index(fields=["analysis"]), models.Index(fields=["text"])]
 
     def __str__(self):
         return self.text
 
     def __repr__(self):
-        clsname = type(self).__name__
-        return f"<{clsname}: {self.text} {self.analysis}>"
-
-    def is_non_default_spelling(self) -> bool:
-        return self.default_spelling != self
+        cls_name = type(self).__name__
+        return f"<{cls_name}: {self.text} {self.analysis}>"
 
     @transaction.atomic
     def save(self, *args, **kwargs):
         """
-        ensures id is auto-incrementing. infer foreign key 'lemma' to be self if self.is_lemma is set to True.
-         Default foreign key "default spelling" to self.
+        Ensure id is auto-incrementing.
+        Infer foreign key 'lemma' to be self if self.is_lemma is set to True. (friendly to test creation)
         """
-        max_id = Inflection.objects.aggregate(Max("id"))
+        max_id = Wordform.objects.aggregate(Max("id"))
         if max_id["id__max"] is None:
             self.id = 0
         else:
             self.id = max_id["id__max"] + 1
 
-        # infer foreign keys default spelling and lemma if they are not set.
+        # infer lemma if it is not set.
         # this helps with adding entries in django admin as the ui for
-        # foreign keys default spelling and lemma takes forever to
-        # load.
+        # `lemma` takes forever to load.
         # Also helps with tests as it's now easier to create entries
-        if self.default_spelling_id is None:
-            self.default_spelling_id = self.id
 
         if self.is_lemma:
             self.lemma_id = self.id
 
-        super(Inflection, self).save(*args, **kwargs)
+        super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
     def fetch_lemma_by_user_query(user_query: str) -> CreeAndEnglish:
@@ -206,11 +205,10 @@ class Inflection(models.Model):
         # build up result_lemmas in 2 ways
         # 1. spell relax in descriptive fst
         # 2. definition containment of the query word
-        lemmas_by_analysis: Dict[str, List["Inflection"]] = defaultdict(list)
+        lemmas_by_analysis: Dict[str, List["Wordform"]] = defaultdict(list)
 
         # utilize the spell relax in descriptive_analyzer
-        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is
-        # fixed:
+        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
         # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
         fst_analyses: Set[str] = set(
             "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
@@ -218,25 +216,16 @@ class Inflection(models.Model):
 
         for analysis in fst_analyses:
             # todo: test
-            exact_matched_wordform_ids = Inflection.objects.filter(
-                analysis=analysis
+
+            exact_matched_wordform_ids = Wordform.objects.filter(
+                analysis=analysis, is_lemma=True, as_is=False
             ).values("lemma__id")
-            exact_matched_lemmas = Inflection.objects.filter(
+            exact_matched_lemmas = Wordform.objects.filter(
                 id__in=exact_matched_wordform_ids
             )
 
             if exact_matched_lemmas.exists():
-                # there can be multiple matches when there are different spellings
-                # akocin|akocin+V+AI+Ind+Prs+3Sg
-                # akociniw|akocin+V+AI+Ind+Prs+3Sg
-                # these two are stored in the database as Inflection object with different IDs
-                # Q(default_spelling__id=F("id")) below keeps only one of them in the search result
-
-                exact_match_lemma = exact_matched_lemmas.filter(
-                    Q(default_spelling__id=F("id")), as_is=False
-                )
-
-                lemmas_by_analysis[analysis].extend(list(exact_match_lemma))
+                lemmas_by_analysis[analysis].extend(list(exact_matched_lemmas))
             else:
                 # When the user query is outside of paradigm tables
                 # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
@@ -250,35 +239,79 @@ class Inflection(models.Model):
                     )
                     continue
 
-                lemma, lc = lemma_lc
-                matched_lemmas = Inflection.objects.filter(
-                    Q(default_spelling__id=F("id")),
-                    text=lemma,
-                    is_lemma=True,
-                    as_is=False,
-                )
-                lemmas_by_analysis[analysis].extend(list(matched_lemmas))
+                # Note:
+                # non-analyzable matches should not be displayed (mostly from MD)
+                # like "nipa", which means kill him
+                # those results are filtered out by `as_is=False` below
+                # suggested by Arok Wolvengrey
 
-        # Note:
-        # non-analyzable matches should not be displayed
-        # like "nipa" kill him
-        # suggested by Arok Wolvengrey
-        # We should not show words that are not analyzable by fst (majorly Maskwacîs words)
+                lemma, lc = lemma_lc
+                matched_lemmas = Wordform.objects.filter(text=lemma, is_lemma=True)
+                if lc.pos is POS.PRON:
+                    # specially handle pronouns.
+                    # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
+                    # "ôma" has multiple analysis
+                    # ôma+Ipc+Foc
+                    # ôma+Pron+Dem+Prox+I+Sg
+                    # ôma+Pron+Def+Prox+I+Sg
+                    # it's ambiguous which one is the lemma in the importing process thus it's labeled "as_is"
+
+                    # a more permanent fix requires every pronouns lemma to be listed and specified
+                    lemmas_by_analysis[analysis].extend(
+                        list(matched_lemmas.filter(pos="PRON"))
+                    )
+                else:
+                    lemmas_by_analysis[analysis].extend(
+                        list(matched_lemmas.filter(as_is=False, pos=lc.pos.name))
+                    )
+
+        # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
+        # preverbs should be presented
+        # exhaustively search preverbs here (since we can't use fst on preverbs.)
+
+        # for preverbs
+        # A consistent filtering mechanism is full_lc=IPV OR pos="IPV". Don't rely on a single one
+        # due to the inconsistent labelling in the source crkeng.xml.
+        # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
+        # For "sa", the source gives pos=IPV lc="" (unspecified)
+
+        # A imperfection here is preverbs with diacritics won't be matched.
+        # todo: consider exhaustively match preverbs with diacritics
+
+        for preverb in Wordform.objects.filter(
+            Q(full_lc="IPV") | Q(pos="IPV"),
+            Q(text=user_query) | Q(text=user_query + "-"),
+        ):  # regarding the appending dash, see:
+            # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
+            # these are as_is analysis generated by xml_importer.py::generate_as_is_analysis
+            lemmas_by_analysis[preverb.analysis].append(preverb)
 
         # todo: remind user "are you searching in cree/english?"
-        lemmas_by_english: List["Inflection"] = []
+        lemmas_by_english: List["Wordform"] = []
         if " " not in user_query:  # a whole word
             lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
                 "lemma__id"
             )
 
-            lemmas_by_english = list(
-                Inflection.objects.filter(
-                    Q(default_spelling__id=F("id")), id__in=lemma_ids
+            lemmas_by_english.extend(
+                list(Wordform.objects.filter(id__in=lemma_ids, as_is=False))
+            )
+
+            # explain above, preverbs should be presented
+            lemmas_by_english.extend(
+                list(
+                    Wordform.objects.filter(
+                        Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
+                        id__in=lemma_ids,
+                        as_is=True,
+                    )
                 )
             )
 
-        return CreeAndEnglish(lemmas_by_analysis, lemmas_by_english)
+        return CreeAndEnglish(
+            {analysis: set(lemmas) for analysis, lemmas in lemmas_by_analysis.items()},
+            set(lemmas_by_english),
+        )
 
     @staticmethod
     def search(user_query: str) -> Tuple[str, List[SearchResult]]:
@@ -286,7 +319,7 @@ class Inflection(models.Model):
         Returns the matched language (as an ISO 639 code), and list of search
         results.
         """
-        cree_results, english_results = Inflection.fetch_lemma_by_user_query(user_query)
+        cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
 
         if len(cree_results) < len(english_results):
             raise NotImplementedError(
@@ -305,8 +338,8 @@ class Inflection(models.Model):
         # Create the search results
         for entry in matched_wordforms:
             try:
-                lemma = Inflection.objects.get(text=entry.lemma, is_lemma=True)
-            except Inflection.DoesNotExist:
+                lemma = Wordform.objects.get(text=entry.lemma, is_lemma=True)
+            except Wordform.DoesNotExist:
                 logging.warning(
                     "Could not find matching inflection for %r "
                     "searched from %r (results: %r)",
@@ -328,7 +361,7 @@ class Inflection(models.Model):
             results.append(
                 SearchResult(
                     wordform=entry.wordform,
-                    part_of_speech=lemma.lc,
+                    part_of_speech=lemma.full_lc,
                     is_lemma=entry.wordform == lemma.text,
                     lemma=lemma.text,
                     preverbs=(),
@@ -418,7 +451,7 @@ class Definition(models.Model):
     citations = models.ManyToManyField(DictionarySource)
 
     # A definition defines a particular word form (usually a lemma)
-    lemma = models.ForeignKey(Inflection, on_delete=models.CASCADE)
+    lemma = models.ForeignKey(Wordform, on_delete=models.CASCADE)
 
     # Why this property exists:
     # because DictionarySource should be its own model, but most code only
@@ -442,7 +475,7 @@ class EnglishKeyword(models.Model):
     text = models.CharField(max_length=20)
 
     lemma = models.ForeignKey(
-        Inflection, on_delete=models.CASCADE, related_name="English"
+        Wordform, on_delete=models.CASCADE, related_name="english_keyword"
     )
 
     class Meta:

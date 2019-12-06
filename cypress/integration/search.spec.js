@@ -4,25 +4,25 @@ context('Searching', () => {
     it('should search for an exact lemma', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
-        .type('acâhkos')
+        .type('minos')
 
       cy.get('[data-cy=search-results]')
-        .should('contain', 'star')
+        .should('contain', 'cat')
     })
 
     it('should perform the search by going directly to the URL', () => {
-      cy.visit('/search/amisk')
+      cy.visit('/search/minos')
 
       cy.get('[data-cy=search-results]')
-        .should('contain', 'beaver')
+        .should('contain', 'cat')
     })
   })
 
   describe('As an Administrator, I want to integrate words from multiple dictionary sources.', () => {
     it('should display the dictionary source on the page', () => {
-      // acâhkos should be defined, both in the CW dictionary and the MD
+      // atâhk should be defined, both in the CW dictionary and the MD
       // dictionary:
-      let lemma = 'acâhkos'
+      let lemma = 'atâhk'
       let dicts = ['CW', 'MD']
 
       cy.visit(`/search/${lemma}`)
@@ -42,15 +42,14 @@ context('Searching', () => {
     })
   })
 
-  // todo: the spell relax is not well integrated into the fst yet
   describe('I want the search for a Cree word to tolerate a query which may be spelled in a non-standard or slightly incorrect way.', () => {
     it('should treat apostrophes as short-Is ', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
-        .type('âc\'mêw')
+        .type('tan\'si')
 
       cy.get('[data-cy=search-results]')
-        .contains('âcimêw')
+        .contains('tânisi')
     })
 
     it('should forgive omitted long vowel marking', () => {
@@ -61,18 +60,19 @@ context('Searching', () => {
       cy.get('[data-cy=search-results]')
         .contains('âcimêw')
     })
-    // todo: the spell relax is not well integrated into the fst yet
+
     it('should handle English-influenced spelling', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type('atchakosuk')
 
       cy.get('[data-cy=search-results]')
-        .contains('acâhkos')
+        .contains('atâhk')
     })
   })
 
-  describe('I want to TODO', () => {
+  // todo: this
+  describe('I want to see the normatize form of my search', () => {
     it.skip('should search the normatized form of the matched search string', () => {
       // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+Prs+1Sg
       const searchTerm = 'nipe-acimon'
@@ -88,6 +88,15 @@ context('Searching', () => {
       cy.get('@searchResult')
         .contains('[data-cy=definition-title]', 'nipê-âcimon')
     })
+  })
+
+  it('should leave out not normatized content', () => {
+    // nipa means "Kill Him" in MD
+    cy.visit('/search/nipa')
+
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'Sleep')
+      .and('not.contain', 'Kill')
   })
 
   describe('Loading indicator', () => {
