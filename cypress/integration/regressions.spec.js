@@ -1,11 +1,17 @@
 context('Regressions', () => {
+  /**
+   * Cypress does not URL-encode non-ASCII components in URLs automatically,
+   * but many of our test cases become dramatically easier to write if this
+   * magic is done for us. So, test that this is the case!
+   */
   it('should handle a non-ASCII letter in the URL properly', () => {
     cy.visit('/search/acâhkos')
 
     cy.get('[data-cy=search-results]')
       .should('contain', 'atâhk')
   })
-  // # 158
+
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should basic relevant English results', () => {
     cy.visit('/search/see')
     cy.get('[data-cy=search-results]')
@@ -24,7 +30,7 @@ context('Regressions', () => {
       .should('contain', 'nipâw')
   })
 
-  // # 159
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
   it('should show preverbs', () => {
     cy.visit('/search/ati')
     cy.get('[data-cy=search-results]')
@@ -48,7 +54,7 @@ context('Regressions', () => {
 
   })
 
-  // # 160
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/160
   it('should show results for pronouns', () => {
     cy.visit('/search/oma')
     cy.get('[data-cy=search-results]')
@@ -63,6 +69,7 @@ context('Regressions', () => {
       .should('contain', 'niya')
   })
 
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
   it.skip('should show results for lexicalized diminutive forms', () => {
     // todo: enable this after lemma resolution process is fixed. See #176
     cy.visit('/search/acâhkos')
