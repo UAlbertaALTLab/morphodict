@@ -14,6 +14,7 @@ mîcisow
 âcimêw
 wâpiw
 nipâw
+kiskinwahamâkosiw
 
 # VII examples
 nîpin
@@ -27,6 +28,7 @@ mîpit
 # NA examples
 acâhkos
 minôs
+awâsisîwiw
 
 # NI examples
 nipiy
@@ -61,6 +63,9 @@ acâhkos
 nipâw
 amisk
 amiskwaciy-wâskahikan
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+acâhkos kâ-osôsit
+acâhkosa kâ-otakohpit
 
 # particles
 ispîhk
