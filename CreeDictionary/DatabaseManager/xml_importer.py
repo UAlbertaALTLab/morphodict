@@ -406,7 +406,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             ]:
                 db_keywords.append(
                     EnglishKeyword(
-                        id=keyword_counter, text=english_keywords, lemma=db_inflection,
+                        id=keyword_counter, text=english_keywords, lemma=db_inflection
                     )
                 )
 

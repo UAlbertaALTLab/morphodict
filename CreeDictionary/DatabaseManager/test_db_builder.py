@@ -146,5 +146,5 @@ def build_test_xml(multi_processing: int = 2):
     )
 
     crkeng_xml_utils.write_xml_from_elements(
-        relevant_engcrk_entries, shared_res_dir / "test_dictionaries" / "engcrk.xml",
+        relevant_engcrk_entries, shared_res_dir / "test_dictionaries" / "engcrk.xml"
     )

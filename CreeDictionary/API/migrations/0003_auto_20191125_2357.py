@@ -5,14 +5,15 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('API', '0002_insert_sources'),
-    ]
+    dependencies = [("API", "0002_insert_sources")]
 
     operations = [
         migrations.AlterField(
-            model_name='wordform',
-            name='as_is',
-            field=models.BooleanField(default=False, help_text='The lemma is not determined during the importing process.Paradigm table will not be shown for this entry'),
-        ),
+            model_name="wordform",
+            name="as_is",
+            field=models.BooleanField(
+                default=False,
+                help_text="The lemma is not determined during the importing process.Paradigm table will not be shown for this entry",
+            ),
+        )
     ]
