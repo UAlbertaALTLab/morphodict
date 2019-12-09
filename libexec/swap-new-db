@@ -31,7 +31,7 @@ if not new_db.exists():
 backup_db = prod_db.with_suffix('.sqlite3.bak')
 if backup_db.exists():
     logger.info('Replacing backup db: %s', backup_db)
-os.link(prod_db, backup_db)
+os.link(str(prod_db), str(backup_db))
 
 # Replace the new database!
 new_db.replace(prod_db)
