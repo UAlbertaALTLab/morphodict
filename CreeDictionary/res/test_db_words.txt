@@ -1,4 +1,9 @@
 # Test database is build in a very inclusive manner. Any relevant word to this list will gets imported.
+# however it's more ensuring to include all your test words if you got multiple
+# e.g. include both "ayiwinisa" "ayiwinis" if you want to ensure both words are present in the test database
+
+# when not sure about the importing process of a certain word, you can look for the word in DatabaseManager/log/
+
 # You can write spell relaxed version here too, like "acimew" instead of "âcimêw"
 
 # VTA examples
@@ -60,6 +65,12 @@ pe
 # regression testing
 atâhk
 acâhkos
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+ayiwinisa
+ayiwinis
+minôs
+minôsis
+
 nipâw
 amisk
 amiskwaciy-wâskahikan

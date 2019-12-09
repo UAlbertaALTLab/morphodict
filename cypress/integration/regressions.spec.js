@@ -97,10 +97,46 @@ context('Regressions', () => {
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
-  it.skip('should show results for lexicalized diminutive forms', () => {
-    // todo: enable this after lemma resolution process is fixed. See #176
+  it('should show results for lexicalized diminutive forms', () => {
     cy.visit('/search/acâhkos')
     cy.get('[data-cy=search-results]')
       .should('contain', 'atâhk')
   })
+  
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+  describe('should show idiomatic lemmas', ()=>{
+    it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
+      cy.visit('/search/ayiwinis')
+      cy.get('[data-cy=search-results]')
+        .should('contain', 'ayiwinisa')
+    })
+  })
+  
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+  describe('should show at least two lemmas for lexicalized diminutive forms', ()=>{
+    it('should show atâhk and acâhkos for acâhkos', () => {
+      cy.visit('/search/acâhkos')
+      cy.get('[data-cy=search-results]')
+        .should('contain', 'atâhk')
+        .and('contain', 'acâhkos')
+    })
+
+    // todo: enable this test when fst recognized minôsis as diminutive minôs
+    // see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176#issuecomment-563336151
+    it.skip('should show minôs and minôsis for minôsis', () => {
+      cy.visit('/search/minôsis')
+      cy.get('[data-cy=search-results]')
+        .should('contain', 'minôsis')
+        .and('contain', 'minôs')
+    }
+    )
+    
+    
+    it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
+      cy.visit('/search/ayiwinis')
+      cy.get('[data-cy=search-results]')
+        .should('contain', 'ayiwinisa')
+    })
+  })
+
 })
