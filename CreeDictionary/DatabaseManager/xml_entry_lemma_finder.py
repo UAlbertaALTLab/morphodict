@@ -1,6 +1,7 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
+from collections import defaultdict
 from itertools import chain
 from typing import List, Dict, Tuple, Set
 
@@ -110,21 +111,40 @@ def extract_fst_lemmas(
 
                 ambiguities: List[Analysis] = []
 
+                # put priority in looking for an unique and identical wordform
+                # this principle is used in the hope that it will help with lemma resolution
+                # of diminutive nouns.
+                # see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+                # Otherwise a lot of diminutive nouns will have no analysis
+                wordform_to_ambiguous_analyses: Dict[
+                    FSTLemma, List[Analysis]
+                ] = defaultdict(list)
+
                 for (
                     analysis
                 ) in (
                     possible_lemma_analyses
                 ):  # build potential analyses in the loop, ideally len(potential_analyses) == 1
-                    slc = fst_analysis_to_fst_lemma_slc[analysis][1]
+                    fst_lemma, slc = fst_analysis_to_fst_lemma_slc[analysis]
 
                     is_match = does_lc_match_xml_entry(slc, pos, lc)
                     if is_match:
                         ambiguities.append(analysis)
+                        wordform_to_ambiguous_analyses[fst_lemma].append(analysis)
+
+                # there's only one identically matching wordform, just use that one
+                for (
+                    wordform,
+                    ambiguous_analyses,
+                ) in wordform_to_ambiguous_analyses.items():
+                    if wordform == xml_lemma and len(ambiguous_analyses) == 1:
+                        ambiguities = ambiguous_analyses
+                        break
 
                 if len(ambiguities) == 0:
                     logger.debug(
                         "xml entry %s with pos %s lc %s have analyses by fst strict analyzer. "
-                        "None of the analyses are preferred lemma inflection"
+                        "Yet all analyses conflict with the pos/lc in xml file"
                         % (xml_lemma, pos, lc)
                     )
                     xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis("")
