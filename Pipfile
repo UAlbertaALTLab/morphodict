@@ -47,11 +47,13 @@ make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
 collect-static = "python ./CreeDictionary/manage.py collectstatic --clear --no-input"
 profile = "python -m profiling"
+
 # reminders/aliases. you can just use $ manage-db after pipenv shell
-#
-manage-db = "manage-db"
+# see DatabaseManager/readme.md or provide --help to see help
+manage-db = "manage-db" # example usage: manage-db import /res/dictionaries/ --multi-process 2
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
+
 # do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
 # you need to supply USE_TEST_DB=True. Supply `-m|--multi-processing N` to speed up
 # It takes about half a minute with -m 2
