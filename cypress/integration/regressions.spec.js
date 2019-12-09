@@ -121,8 +121,9 @@ context('Regressions', () => {
         .and('contain', 'acâhkos')
     })
 
-    // todo: enable this test when fst recognized minôsis as diminutive minôs
     // see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176#issuecomment-563336151
+    // Note: It's in dispute whether minôsis should be treated as a diminutive form of minôs
+    // todo: enable this test if fst recognized minôsis as diminutive minôs
     it.skip('should show minôs and minôsis for minôsis', () => {
       cy.visit('/search/minôsis')
       cy.get('[data-cy=search-results]')
@@ -130,13 +131,13 @@ context('Regressions', () => {
         .and('contain', 'minôs')
     }
     )
-    
-    
-    it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
-      cy.visit('/search/ayiwinis')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'ayiwinisa')
-    })
   })
+    
+  it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
+    cy.visit('/search/ayiwinis')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'ayiwinisa')
+  })
+  
 
 })
