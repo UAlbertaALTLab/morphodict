@@ -111,7 +111,7 @@ def extract_fst_lemmas(
 
                 ambiguities: List[Analysis] = []
 
-                # put priority in looking for an unique and identical wordform
+                # put priority in looking for a unique and identical wordform
                 # this principle is used in the hope that it will help with lemma resolution
                 # of diminutive nouns.
                 # see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
