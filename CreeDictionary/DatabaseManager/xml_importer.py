@@ -53,7 +53,7 @@ def clear_database(verbose=True):
 
 def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     """
-    generate analysis for xml entries whose fst analysis cannot be determined.
+    generate analysis for xml entries whose lemmas cannot be determined.
     The philosophy is to match the appearance an fst analysis
     in the following examples, the xml_lemmas are not necessarily un-analyzable. They are just examples to show the
     behaviour of this function.

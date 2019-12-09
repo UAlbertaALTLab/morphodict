@@ -1813,6 +1813,89 @@
 		<lg>
 			
       
+			<l pos="N">ayiwinis</l>
+			
+      
+			<lc/>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">article of clothing; [plural:] clothing, apparel</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">ayiwinisa</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>ayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">Clothes.</t>
+				
+   
+			</tg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">clothes; clothing, apparel; [singular:] article of clothing</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">ayocihaw</l>
 			
       
@@ -4057,6 +4140,43 @@
 		<lg>
 			
       
+			<l pos="N">kiskisopayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>kiskisopayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">recollection</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kitâpahtam</l>
 			
       
@@ -5770,6 +5890,58 @@
 				
        
 				<t pos="N" sources="MD">A lunch. Not a full meal.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">miyopayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>miyopayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">Prosperity and good luck.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">good luck; welfare; prosperity; good heart</t>
 				
    
 			</tg>
@@ -11602,6 +11774,58 @@
 		<lg>
 			
       
+			<l pos="N">pâkipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>pâkipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">a quick swelling on a body part.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">swelling</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">papâm-âcimêw</l>
 			
       
@@ -15949,6 +16173,43 @@
 		<lg>
 			
       
+			<l pos="N">ahpîhtipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>ahpîhtipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">bruise</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">ahtay</l>
 			
       
@@ -18727,6 +18988,117 @@
 		<lg>
 			
       
+			<l pos="N">ayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>ayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">article of clothing; [plural:] clothing, apparel</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">ayiwinisi-akocikan</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>ayiwinisi-akocikan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">clothes closet</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">ayiwinisis</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>ayiwinisis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">small article of clothing; [plural:] children's clothes; child's clothing, child's apparel</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">ayîtawakâm</l>
 			
       
@@ -20984,6 +21356,43 @@
 		<lg>
 			
       
+			<l pos="V">kêtayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>kêtayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he takes his/her own clothes off</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">kihci-awasi-otâkosîhk</l>
 			
       
@@ -21132,6 +21541,43 @@
 		<lg>
 			
       
+			<l pos="N">kipihcipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>kipihcipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">stop sign, detour sign</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kipihtawakêw</l>
 			
       
@@ -21151,6 +21597,43 @@
 				
        
 				<t pos="V" sources="CW">s/he is unable to hear, s/he has a blockage of the ear</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">kisipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>kisipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">end, termination</t>
 				
    
 			</tg>
@@ -21262,6 +21745,43 @@
 				
        
 				<t pos="V" sources="CW">s/he speaks angrily</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kisîpêkinayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>kisîpêkinayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he washes clothing</t>
 				
    
 			</tg>
@@ -22131,6 +22651,43 @@
 		<lg>
 			
       
+			<l pos="N">kîsipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>kîsipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">end, termination</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">kîskihtawakay</l>
 			
       
@@ -22649,6 +23206,43 @@
 		<lg>
 			
       
+			<l pos="N">macipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>macipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">bad experience</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">manâcimâkan</l>
 			
       
@@ -22668,6 +23262,43 @@
 				
        
 				<t pos="N" sources="CW">parent-in-law; child-in-law; person to whom speech is avoided</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">masinipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>masinipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">picture, photograph</t>
 				
    
 			</tg>
@@ -22927,6 +23558,43 @@
 				
        
 				<t pos="V" sources="CW">s/he starts sleeping</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mâcipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>mâcipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">the beginning</t>
 				
    
 			</tg>
@@ -23241,6 +23909,43 @@
 		<lg>
 			
       
+			<l pos="N">mâmawipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>mâmawipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">togetherness; a union, gathering</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">mâmiywâkâcimêw</l>
 			
       
@@ -23260,6 +23965,80 @@
 				
        
 				<t pos="V" sources="CW">s/he argues with s.o.; s/he questions s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mâskipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>mâskipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">limping</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mâyipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>mâyipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">misfortune</t>
 				
    
 			</tg>
@@ -23500,6 +24279,43 @@
 		<lg>
 			
       
+			<l pos="V">mêskotayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>mêskotayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he changes his/her clothes</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">mihcawakâs</l>
 			
       
@@ -23667,6 +24483,43 @@
 				
        
 				<t pos="N" sources="CW">exposition, revealing the truth, tattling</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">misiwê-ayiwinisa</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>misiwê-ayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">coveralls, skidoo suit</t>
 				
    
 			</tg>
@@ -24314,6 +25167,43 @@
 		<lg>
 			
       
+			<l pos="N">mîkisayiwinisa</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>mîkisayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">beaded clothing</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">mîpitâpoy</l>
 			
       
@@ -24333,6 +25223,43 @@
 				
        
 				<t pos="N" sources="CW">saliva (from teething)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">mîskotayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>mîskotayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he changes his/her clothes</t>
 				
    
 			</tg>
@@ -25128,6 +26055,43 @@
 		<lg>
 			
       
+			<l pos="N">nanayêhtâwipayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>nanayêhtâwipayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">misfortune, breakdown</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">nanâtawâpahtam</l>
 			
       
@@ -25295,6 +26259,43 @@
 				
        
 				<t pos="V" sources="CW">s/he goes to take a look at s.t.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">natopayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>natopayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">scouting party (during tribal wars)</t>
 				
    
 			</tg>
@@ -28532,6 +29533,80 @@
 		<lg>
 			
       
+			<l pos="N">nitopayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>nitopayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">warpath, raid</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">nitopayiwinihkêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>nitopayiwinihkê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">he leads a war-party, he conducts a war-party; he arranges a raid</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Pron">niyanân</l>
 			
       
@@ -30919,6 +31994,43 @@
 				
        
 				<t pos="V" sources="CW">it contains gold; it is made of gold</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">oskayiwinis</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>oskayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">new article of clothing</t>
 				
    
 			</tg>
@@ -34529,6 +35641,43 @@
 		<lg>
 			
       
+			<l pos="N">pîhtawêwayiwinisa</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>pîhtawêwayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">underwear, underclothes</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">pîhtokêtâcimow</l>
 			
       
@@ -34548,6 +35697,43 @@
 				
        
 				<t pos="V" sources="CW">s/he crawls in</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">pîmayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>pîmayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he makes a fold in his/her garment</t>
 				
    
 			</tg>
@@ -34659,6 +35845,117 @@
 				
        
 				<t pos="V" sources="CW">s/he shovels s.o. in</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">postayiwinisahêw</l>
+			
+      
+			<lc>VTA-1</lc>
+			
+      
+			<stem>postayiwinisah-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he dresses s.o., s/he makes s.o. put clothes on; s/he clothes s.o., s/he makes clothes for s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">postayiwinisahisow</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>postayiwinisahiso-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he dresses him/herself, s/he clothes him/herself, s/he makes clothes for him/herself</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">postayiwinisêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>postayiwinisê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he puts his/her own clothing on, s/he gets dressed</t>
 				
    
 			</tg>
@@ -36065,6 +37362,43 @@
 				
        
 				<t pos="V" sources="CW">s/he lies on the top of something</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">takopayiwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>takopayiwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">arrival</t>
 				
    
 			</tg>
@@ -38066,6 +39400,80 @@
 				
        
 				<t pos="N" sources="CW">dirty ear</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">wîpayiwinis</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>wîpayiwinis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">dirty clothing, dirty article of clothing</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">wîpâtayiwinis</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>wîpâtayiwinis</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">dirty clothing, dirty article of clothing</t>
 				
    
 			</tg>
