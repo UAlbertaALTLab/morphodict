@@ -9,9 +9,9 @@ from hypothesis import assume
 from hypothesis._strategies import composite, integers, sampled_from
 
 from API.models import Wordform
-from DatabaseManager.xml_importer import import_xmls
 from constants import SimpleLexicalCategory
-from utils import shared_res_dir, fst_analysis_parser
+from DatabaseManager.xml_importer import import_xmls
+from utils import fst_analysis_parser, shared_res_dir
 
 
 @pytest.fixture(scope="session")
@@ -49,6 +49,14 @@ def random_lemmas(draw) -> Wordform:
     """
     lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
     return draw(sampled_from(list(lemmas)))
+
+
+@pytest.fixture(scope="session")
+def test_xml_dir() -> Path:
+    """
+    XML for the test database, with curated test data.
+    """
+    return shared_res_dir / "test_dictionaries"
 
 
 @pytest.fixture(scope="session")

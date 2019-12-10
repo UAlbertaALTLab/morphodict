@@ -1,30 +1,25 @@
+import os
+
 import pytest
 from hypothesis import assume, given
-from hypothesis.strategies import from_regex
 
 from API.models import Wordform
-from constants import SimpleLC
-from DatabaseManager.__main__ import cmd_entry
-from DatabaseManager.xml_importer import import_xmls
-
-# don not remove theses lines. Stuff gets undefined
-# noinspection PyUnresolvedReferences
-from tests.conftest import (
-    one_hundredth_xml_dir,
-    random_inflections,
-    random_lemmas,
-    topmost_datadir,
-)
-from utils import fst_analysis_parser
+from CreeDictionary import settings
+from tests.conftest import random_lemmas
 
 
-# this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
-@pytest.fixture(autouse=True, scope="module")
-def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        import_xmls(one_hundredth_xml_dir, verbose=False)
-        yield
-        cmd_entry([..., "clear"])
+@pytest.fixture(scope="module")
+def django_db_setup():
+    """
+    This very cool fixture works with pytest-django. This fixture enforces
+    all functions marked with pytest.mark.django_db in this file will use existing test_db.sqlite3.
+    Instead of by default, an empty database in memory.
+    """
+
+    settings.DATABASES["default"] = {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(settings.BASE_DIR, "test_db.sqlite3"),
+    }
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
@@ -129,3 +124,15 @@ def test_search_for_stored_non_lemma():
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
     assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("term", ["acâhkos kâ-osôsit", "acâhkosa kâ-otakohpit"])
+def test_search_space_characters_in_matched_term(term):
+    """
+    The search should find results with spaces in them.
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+    """
+
+    word = Wordform.objects.get(text=term)
+    assert word is not None
