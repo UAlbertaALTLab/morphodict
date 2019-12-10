@@ -1,30 +1,25 @@
+import os
+
 import pytest
 from hypothesis import assume, given
-from hypothesis.strategies import from_regex
 
 from API.models import Wordform
-from constants import SimpleLC
-from DatabaseManager.__main__ import cmd_entry
-from DatabaseManager.xml_importer import import_xmls
-# don not remove theses lines. Stuff gets undefined
-# XXX: is there a way to tell PyCharm to chill about this? Surely, people
-# write pytest tests with PyCharm and this stuff is fixed, right?
-# noinspection PyUnresolvedReferences
-from tests.conftest import (one_hundredth_xml_dir, random_inflections,
-                            random_lemmas, topmost_datadir)
-from utils import fst_analysis_parser
+from CreeDictionary import settings
+from tests.conftest import random_lemmas
 
 
-@pytest.fixture(autouse=True, scope="module")
-def test_database(test_xml_dir, django_db_blocker):
+@pytest.fixture(scope="module")
+def django_db_setup():
     """
-    This very cool fixture provides the tests in this file with a database
-    that's imported from one hundreths of the xml
+    This very cool fixture works with pytest-django. This fixture enforces
+    all functions marked with pytest.mark.django_db in this file will use existing test_db.sqlite3.
+    Instead of by default, an empty database in memory.
     """
-    with django_db_blocker.unblock():
-        import_xmls(test_xml_dir, verbose=False)
-        yield
-        cmd_entry([..., "clear"])
+
+    settings.DATABASES["default"] = {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(settings.BASE_DIR, "test_db.sqlite3"),
+    }
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
