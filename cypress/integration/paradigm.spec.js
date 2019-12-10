@@ -1,6 +1,6 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
-    it.skip('should display the paradigm for an NA word', () => {
+    it('should display the paradigm for an NA word', () => {
 
       cy.visit('/search/minos')
       cy.get('[data-cy=search-results]')
@@ -31,11 +31,11 @@ context('Paradigms', () => {
       cy.get('[data-cy=paradigm]')
         .as('paradigm')
 
+      // TODO: the layouts should be able to differentiate between titles and
+      // labels; currently, the specificiation is ambigous, hence, it's seen
+      // as a .paradigm-label, when it should be a .paradigm-title :/
       cy.get('@paradigm')
         .contains('.paradigm-title', 'Ownership')
-
-      // TODO: acâhkos is already diminutive, so it should not display the
-      // diminutive paradigm.
     })
   })
 })
