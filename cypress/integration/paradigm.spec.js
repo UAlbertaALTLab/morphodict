@@ -1,7 +1,22 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
-    it('should display the paradigm for an NA word', () => {
+    it('should display the paradigm for an VTA word', () => {
+      cy.visit('/search/mowêw')
+      cy.get('[data-cy=search-results]')
+        .contains('a', 'mowêw')
+        .click()
 
+      cy.get('[data-cy=paradigm]')
+        .as('paradigm')
+
+      cy.get('@paradigm')
+        .should('contain', 'mowêw')
+        .and('contain', 'kimowin')
+        .and('contain', 'kimowitin')
+        .and('contain', 'ê-mowât')
+    })
+
+    it('should display the paradigm for an NA word', () => {
       cy.visit('/search/minos')
       cy.get('[data-cy=search-results]')
         .contains('a', 'minôs')
@@ -16,7 +31,7 @@ context('Paradigms', () => {
         .and('contain', 'minôsa')
 
       cy.get('@paradigm')
-        .contains('th[scope=row]', 'Further')
+        .contains('th[scope=row]', /further/i)
     })
 
     // TODO: the next test should be here, but it is broken because the
@@ -37,5 +52,7 @@ context('Paradigms', () => {
       cy.get('@paradigm')
         .contains('.paradigm-title', 'Ownership')
     })
+
+
   })
 })
