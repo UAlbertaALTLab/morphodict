@@ -1,38 +1,28 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
-    it('should display the paradigm for an VTA word', () => {
-      cy.visit('/search/mowêw')
-      cy.get('[data-cy=search-results]')
-        .contains('a', 'mowêw')
-        .click()
+    const testCases = [
+      {pos: 'VTA', lemma: 'mowêw', inflections: ['kimowin', 'kimowitin', 'ê-mowât']},
+      {pos: 'NA', lemma: 'minôs', inflections: ['minôsak', 'minôsa']},
+    ]
 
-      cy.get('[data-cy=paradigm]')
-        .as('paradigm')
+    // Create test cases for each word above
+    for (let {pos, lemma, inflections} of testCases) {
+      it(`should display the paradigm for an ${pos} word`, () => {
+        cy.visit(`/search/${lemma}`)
+        cy.get('[data-cy=search-results]')
+          .contains('a', lemma)
+          .click()
 
-      cy.get('@paradigm')
-        .should('contain', 'mowêw')
-        .and('contain', 'kimowin')
-        .and('contain', 'kimowitin')
-        .and('contain', 'ê-mowât')
-    })
+        cy.get('[data-cy=paradigm]')
+          .as('paradigm')
 
-    it('should display the paradigm for an NA word', () => {
-      cy.visit('/search/minos')
-      cy.get('[data-cy=search-results]')
-        .contains('a', 'minôs')
-        .click()
-
-      cy.get('[data-cy=paradigm]')
-        .as('paradigm')
-
-      cy.get('@paradigm')
-        .should('contain', 'minôs')
-        .and('contain', 'minôsak')
-        .and('contain', 'minôsa')
-
-      cy.get('@paradigm')
-        .contains('th[scope=row]', /further/i)
-    })
+        let ctx = cy.get('@paradigm')
+          .should('contain', lemma)
+        for (let wordform of inflections) {
+          ctx = ctx.and('contain', wordform)
+        }
+      })
+    }
 
     // TODO: the next test should be here, but it is broken because the
     // upstream layouts are broken :/
@@ -52,7 +42,5 @@ context('Paradigms', () => {
       cy.get('@paradigm')
         .contains('.paradigm-title', 'Ownership')
     })
-
-
   })
 })
