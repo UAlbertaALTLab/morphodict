@@ -3,6 +3,12 @@
 ###############################################################################
 * text=auto
 
+# Treat the database files as binaries.
+crkeng.xml	binary
+engcrk.xml	binary
+*.sqlite3	binary
+
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #

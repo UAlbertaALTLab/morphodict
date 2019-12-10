@@ -1,7 +1,27 @@
 import xml.etree.ElementTree as ET
+from pathlib import Path
 from typing import Optional
+from typing import Iterable
+from xml.dom import minidom
 
 from constants import SimpleLexicalCategory
+
+
+def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
+    """
+    It also creates parent directories if they don't exist. It overwrites existing xml file of the same name.
+
+    :param elements:
+    :param target_file: creates directories if not already exist
+    :return:
+    """
+    text = "<r>"
+    for element in elements:
+        text += ET.tostring(element, encoding="unicode")
+    text += "</r>"
+    pretty_text = minidom.parseString(text).toprettyxml()
+    target_file.parent.mkdir(exist_ok=True, parents=True)
+    target_file.write_text(pretty_text)
 
 
 def extract_l_str(element: ET.Element) -> str:
@@ -54,5 +74,7 @@ def parse_xml_lc(lc_text: str) -> Optional[SimpleLexicalCategory]:
 
     if lc_text.startswith("IPC"):
         return SimpleLexicalCategory.IPC
+    if lc_text.startswith("IPV"):
+        return SimpleLexicalCategory.IPV
 
     return None

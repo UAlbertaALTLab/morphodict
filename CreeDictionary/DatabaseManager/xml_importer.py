@@ -3,7 +3,7 @@ import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
-from typing import DefaultDict, Dict, List, Optional, Set, Tuple, NamedTuple
+from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple
 
 from colorama import Fore, init
 from django.db import connection
@@ -53,7 +53,7 @@ def clear_database(verbose=True):
 
 def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     """
-    generate analysis for xml entries whose fst analysis cannot be determined.
+    generate analysis for xml entries whose lemmas cannot be determined.
     The philosophy is to match the appearance an fst analysis
     in the following examples, the xml_lemmas are not necessarily un-analyzable. They are just examples to show the
     behaviour of this function.
@@ -390,23 +390,29 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
         upper_pos = pos.upper()
 
-        # is_lemma field defaults to true
+        # is_lemma field should default to true
         db_inflection = Wordform(
             id=wordform_counter,
             text=xml_lemma,
             analysis=generate_as_is_analysis(xml_lemma, pos, lc),
             pos=upper_pos if upper_pos in RECOGNIZABLE_POS else "",
-            lc=lc,
+            full_lc=lc,
             is_lemma=True,
             as_is=True,
         )
+        if upper_pos in RECOGNIZABLE_POS:
+            for english_keywords in engcrk_cree_to_keywords[
+                EngcrkCree(xml_lemma, POS(upper_pos))
+            ]:
+                db_keywords.append(
+                    EnglishKeyword(
+                        id=keyword_counter, text=english_keywords, lemma=db_inflection
+                    )
+                )
 
-        # todo: create English Keywords for as-is lemmas
-        # currently as_is words are not shown to users
-        # so it's not necessary to add it here
+                keyword_counter += 1
 
         db_inflection.lemma = db_inflection
-        db_inflection.default_spelling = db_inflection
 
         wordform_counter += 1
         db_inflections.append(db_inflection)
@@ -436,17 +442,21 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         true_lemma_analysis,
         xml_lemma_pos_lcs,
     ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
-        lemma_wordform = fst_analysis_parser.extract_lemma(true_lemma_analysis)
-        assert lemma_wordform is not None
+        lemma_wordform_simple_lc = fst_analysis_parser.extract_lemma_and_category(
+            true_lemma_analysis
+        )
+        assert lemma_wordform_simple_lc is not None
+
+        lemma_wordform, simple_lc = lemma_wordform_simple_lc
+        generated_pos = simple_lc.pos
 
         db_wordforms_for_analysis = []
         db_lemma = None
         _, xml_pos, xml_lc = xml_lemma_pos_lcs[0]
         for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
+
             generated_lemma = fst_analysis_parser.extract_lemma(generated_analysis)
             assert generated_lemma is not None
-
-            upper_pos = xml_pos.upper()
 
             for generated_wordform in generated_wordforms:
                 # generated_inflections contain different spellings of one fst analysis
@@ -463,8 +473,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     text=generated_wordform,
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
-                    pos=upper_pos if upper_pos in RECOGNIZABLE_POS else "",
-                    lc=xml_lc,
+                    pos=generated_pos.name,
+                    full_lc=xml_lc,
                     as_is=False,
                 )
 
@@ -474,19 +484,19 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                 if is_lemma:
                     db_lemma = db_inflection
-                    if upper_pos in RECOGNIZABLE_POS:
-                        for english_keywords in engcrk_cree_to_keywords[
-                            EngcrkCree(generated_wordform, POS(upper_pos))
-                        ]:
-                            db_keywords.append(
-                                EnglishKeyword(
-                                    id=keyword_counter,
-                                    text=english_keywords,
-                                    lemma=db_inflection,
-                                )
-                            )
 
-                            keyword_counter += 1
+                    for english_keywords in engcrk_cree_to_keywords[
+                        EngcrkCree(generated_wordform, generated_pos)
+                    ]:
+                        db_keywords.append(
+                            EnglishKeyword(
+                                id=keyword_counter,
+                                text=english_keywords,
+                                lemma=db_inflection,
+                            )
+                        )
+
+                        keyword_counter += 1
 
                     str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
                         xml_lemma_pos_lcs[0]

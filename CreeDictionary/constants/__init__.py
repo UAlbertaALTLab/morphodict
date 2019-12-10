@@ -3,7 +3,12 @@ constants
 """
 from enum import Enum
 
-""" a paradigm table"""
+# type alias
+from typing import NewType
+
+# types
+Analysis = NewType("Analysis", str)
+FSTLemma = NewType("FSTLemma", str)
 
 
 class ParadigmSize(Enum):
@@ -20,10 +25,11 @@ class ParadigmSize(Enum):
 
 
 class PartOfSpeech(Enum):
-    IPV = "IPV"
+
+    IPV = "IPV"  # preverbs
     PRON = "PRON"
     N = "N"
-    IPC = "IPC"
+    IPC = "IPC"  # particles like "tanisi (hello)"
     V = "V"
 
 
@@ -47,8 +53,8 @@ class SimpleLexicalCategory(Enum):
     VTA = "VTA"
     VTI = "VTI"
 
-    IPC = "IPC"
-    IPV = "IPV"
+    IPC = "IPC"  # particles like "tanisi (hello)"
+    IPV = "IPV"  # preverbs
 
     Pron = "PRON"  # Pronoun
 

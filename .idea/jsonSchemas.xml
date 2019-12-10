@@ -12,7 +12,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value=".github/workflows/fst-updater.yml" />
+                    <option name="path" value=".github/workflows/update_fst.yml" />
                   </Item>
                 </list>
               </option>

@@ -1,0 +1,39 @@
+#!/usr/bin/env python3
+
+"""
+If there is a new database, swap it!
+"""
+
+import logging
+import os
+import sys
+from pathlib import Path
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger('swap-new-db')
+
+here = Path(__file__).parent
+base = here.parent / 'CreeDictionary'
+assert base.is_dir()
+
+prod_db = base / 'db.sqlite3'
+assert prod_db.exists()
+
+new_db = base / 'new_db.sqlite3'
+
+# No swap needs to be done.
+if not new_db.exists():
+    logger.info('No new database found. Exiting')
+    sys.exit(0)
+
+# Make a backup to the original database. Really, we're just giving it another
+# name.
+backup_db = prod_db.with_suffix('.sqlite3.bak')
+if backup_db.exists():
+    logger.info('Replacing backup db: %s', backup_db)
+    backup_db.unlink()
+os.link(str(prod_db), str(backup_db))
+
+# Replace the new database!
+new_db.replace(prod_db)
+logger.info('Done database swap')

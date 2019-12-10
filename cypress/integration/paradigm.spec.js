@@ -1,44 +1,41 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
     it('should display the paradigm for an NA word', () => {
-      cy.visit('/search/acâhkos');
+
+      cy.visit('/search/minos')
       cy.get('[data-cy=search-results]')
-        .contains('a', 'acâhkos')
-        .click();
+        .contains('a', 'minôs')
+        .click()
 
       cy.get('[data-cy=paradigm]')
-        .as('paradigm');
+        .as('paradigm')
 
       cy.get('@paradigm')
-        .should('contain', 'acâhkos')
-        .and('contain', 'acâhkosak')
-        .and('contain', 'acâhkosa');
+        .should('contain', 'minôs')
+        .and('contain', 'minôsak')
+        .and('contain', 'minôsa')
 
       cy.get('@paradigm')
         .contains('th[scope=row]', 'Further')
+    })
 
-      // TODO: the next test should be here, but it is broken because the
-      // upstream layouts are broken :/ 
-
-      // TODO: acâhkos is already diminutive, so it should not display the
-      // diminutive paradigm.
-    });
-
+    // TODO: the next test should be here, but it is broken because the
+    // upstream layouts are broken :/
     it.skip('should display titles within the paradigm', () => {
       // TODO: move this test into the previous test when the layout is fixed.
-      cy.visit('/search/acâhkos');
+      cy.visit('/search/minôsis')
       cy.get('[data-cy=search-results]')
-        .contains('a', 'acâhkos')
-        .click();
+        .contains('a', 'minôsis')
+        .click()
 
       cy.get('[data-cy=paradigm]')
-        .as('paradigm');
+        .as('paradigm')
 
+      // TODO: the layouts should be able to differentiate between titles and
+      // labels; currently, the specificiation is ambigous, hence, it's seen
+      // as a .paradigm-label, when it should be a .paradigm-title :/
       cy.get('@paradigm')
         .contains('.paradigm-title', 'Ownership')
-
-      // TODO: acâhkos is already diminutive, so it should not display the
-      // diminutive paradigm.
     })
   })
-});
+})

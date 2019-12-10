@@ -12,8 +12,7 @@ from typing import Dict, List, Tuple, cast
 import hfstol
 
 from constants import SimpleLC, ParadigmSize
-from paradigm import (Cell, EmptyRow, Layout, StaticCell, TitleRow,
-                      rows_to_layout)
+from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 
 LayoutID = Tuple[SimpleLC, ParadigmSize]
 
@@ -63,7 +62,7 @@ class ParadigmFiller:
         )
 
     def fill_paradigm(
-            self, lemma: str, category: SimpleLC, paradigm_size: ParadigmSize
+        self, lemma: str, category: SimpleLC, paradigm_size: ParadigmSize
     ) -> List[Layout]:
         """
         returns a paradigm table filled with words

@@ -5,7 +5,7 @@ from utils.crkeng_xml_utils import parse_xml_lc
 
 
 def does_lc_match_xml_entry(
-        lc: SimpleLexicalCategory, xml_pos: str, xml_lc: str
+    lc: SimpleLexicalCategory, xml_pos: str, xml_lc: str
 ) -> bool:
     """
     check whether an xml entry matches with an `InflectionCategory`
@@ -32,15 +32,15 @@ def does_lc_match_xml_entry(
     """
 
     if (
-            (xml_pos == "V" and lc.is_verb())
-            or (xml_pos == "N" and lc.is_noun())
-            or (xml_pos == "Ipc" and lc is SimpleLexicalCategory.IPC)
-            or (xml_pos == "Pron" and lc is SimpleLexicalCategory.Pron)
+        (xml_pos == "V" and lc.is_verb())
+        or (xml_pos == "N" and lc.is_noun())
+        or (xml_pos == "Ipc" and lc is SimpleLexicalCategory.IPC)
+        or (xml_pos == "Pron" and lc is SimpleLexicalCategory.Pron)
     ):
         simple_lc = parse_xml_lc(xml_lc)
 
         if (
-                simple_lc is None or xml_lc == ""
+            simple_lc is None or xml_lc == ""
         ):  # e.g. niya has xml_pos Pron, xml_lc PrA, PrA will gives None
             return True
 

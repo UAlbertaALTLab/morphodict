@@ -4,11 +4,11 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "rollup --config --watch & pipenv run dev",
-    "bg-watch": "rollup --watch &",
+    "bg-watch": "rollup -c && rollup --watch &",
     "build": "rollup -c",
     "test": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
-    "cypress": "$(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
-    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --record"
+    "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",
+    "test:ci": "USE_TEST_DB=true pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,9 @@
   },
   "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
   "devDependencies": {
+    "acorn": "^7.1.0",
     "cssnano": "^4.1.10",
-    "cypress": "^3.6.1",
+    "cypress": "^3.7.0",
     "dotenv": "^8.1.0",
     "eslint": "^6.5.1",
     "node-sass": "^4.12.0",
