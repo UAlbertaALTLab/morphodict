@@ -1,8 +1,15 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
+    // Test at least one word from each lexical class/part-of-speech:
     const testCases = [
       {pos: 'VTA', lemma: 'mowêw', inflections: ['kimowin', 'kimowitin', 'ê-mowât']},
+      {pos: 'VAI', lemma: 'wâpiw', inflections: ['niwâpin', 'kiwâpin', 'ê-wâpiyit']},
+      {pos: 'VTI', lemma: 'mîcisow', inflections: ['nimîcison', 'kimîcison', 'ê-mîcisoyit']},
+      {pos: 'VII', lemma: 'nîpin', inflections: ['nîpin', 'ê-nîpihk']},
+      {pos: 'NAD', lemma: 'nôhkom', inflections: ['kôhkom', 'ohkoma']},
+      {pos: 'NID', lemma: 'mîpit', inflections: ['nîpit', 'kîpit', 'wîpit']},
       {pos: 'NA', lemma: 'minôs', inflections: ['minôsak', 'minôsa']},
+      {pos: 'NI', lemma: 'nipiy', inflections: ['nipîhk', 'ninipiy', 'kinipiy']},
     ]
 
     // Create test cases for each word above
