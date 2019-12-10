@@ -126,6 +126,9 @@ def test_search_for_stored_non_lemma():
     assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
 
 
+# TODO: some of these should really be in a dedicated "test_search" file.
+
+
 @pytest.mark.django_db
 @pytest.mark.parametrize("term", ["acâhkos kâ-osôsit", "acâhkosa kâ-otakohpit"])
 def test_search_space_characters_in_matched_term(term):
@@ -134,5 +137,10 @@ def test_search_space_characters_in_matched_term(term):
     See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
     """
 
+    # Ensure the word is in the database to begin with...
     word = Wordform.objects.get(text=term)
     assert word is not None
+
+    # Now try searching for it:
+    analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(term)
+    assert len(analysis_to_lemmas) > 0
