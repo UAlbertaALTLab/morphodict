@@ -7,17 +7,22 @@ from constants import SimpleLC
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.xml_importer import import_xmls
 # don not remove theses lines. Stuff gets undefined
+# XXX: is there a way to tell PyCharm to chill about this? Surely, people
+# write pytest tests with PyCharm and this stuff is fixed, right?
 # noinspection PyUnresolvedReferences
 from tests.conftest import (one_hundredth_xml_dir, random_inflections,
                             random_lemmas, topmost_datadir)
 from utils import fst_analysis_parser
 
 
-# this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
 @pytest.fixture(autouse=True, scope="module")
-def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
+def test_database(test_xml_dir, django_db_blocker):
+    """
+    This very cool fixture provides the tests in this file with a database
+    that's imported from one hundreths of the xml
+    """
     with django_db_blocker.unblock():
-        import_xmls(one_hundredth_xml_dir, verbose=False)
+        import_xmls(test_xml_dir, verbose=False)
         yield
         cmd_entry([..., "clear"])
 
@@ -134,10 +139,5 @@ def test_search_space_characters_in_matched_term(term):
     See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
     """
 
-    print(term)
-    word = Wordform.objects.get(id=102)
-    print(word)
-    word = Wordform.objects.get(id=103)
-    print(word)
     word = Wordform.objects.get(text=term)
     assert word is not None
