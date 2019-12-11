@@ -110,6 +110,22 @@ html {
   padding: 0 var(--page-gutter);
 }
 
+/* On larger screens, change to a margin: auto (to horizontally
+ * center)/max-width scheme. */
+@media (min-width: 768px) {
+  .app__pane {
+    padding: 0 0;
+    margin: auto;
+    width: var(--tablet-search-bar-width);
+  }
+}
+
+@media (min-width: 1366px) {
+  .app__pane {
+    width: var(--desktop-search-bar-width);
+  }
+}
+
 /********************************* TOP BAR *********************************/
 
 /**
@@ -121,16 +137,18 @@ html {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-content: flex-start;
   align-items: center;
 }
 
 /**
- * ELEMENT top-bar__title
+ * ELEMENT top-bar__logo
  *
  * Where the title (itwêwina -- Plains Cree Dictionary) goes.
  */
-.top-bar__title {
-  order: 1; /* The title should ALWAYS be the first thing! */
+.top-bar__logo {
+  order: -1; /* The title should ALWAYS be the first thing! */
+  align-self: flex-start;
 }
 
 /**
@@ -157,16 +175,18 @@ html {
  * bar all into one long line.
  */
 @media (min-width: 1366px) {
-  .top-bar__title {
-    flex: 0;
+  .top-bar__logo {
+    flex: 0 200px;
+    order: 1;
   }
 
   .top-bar__search {
-    flex: 1;  /* Make it WIDE! */
+    flex: 2 1 var(--desktop-search-bar-width);  /* Make it WIDE! */
     order: 2;
   }
 
   .top-bar__nav {
+    flex: 0 200px;
     order: 3;
   }
 }
