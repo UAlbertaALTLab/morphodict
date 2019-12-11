@@ -152,17 +152,17 @@ html {
   margin-right: var(--small-pad);
 }
 
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
 @media (min-width: 1366px) {
   .top-bar__title {
     flex: 0;
   }
 
   .top-bar__search {
-    flex: 1;
-    flex-basis: auto;
-
-    max-width: 800px; /* TODO: get from zeplin, make variable. */
-
+    flex: 1;  /* Make it WIDE! */
     order: 2;
   }
 
@@ -170,6 +170,8 @@ html {
     order: 3;
   }
 }
+
+
 
 /********************************* BRANDING *********************************/
 
@@ -252,8 +254,24 @@ html {
  * Contains the search bar.
  */
 .search__search-bar {
-  margin: var(--small-pad) auto;
+  margin: var(--gap) auto;
   max-width: calc(100vw - 2 * var(--page-gutter));
+}
+
+@media (min-width: 768px) {
+  .search__search-bar {
+    max-width: var(--tablet-search-bar-width);
+  }
+}
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+@media (min-width: 1366px) {
+  .search__search-bar {
+    max-width: var(--desktop-search-bar-width);
+  }
 }
 
 /**

@@ -10,8 +10,14 @@
   --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
   --small-pad:                  4px;
   --medium-gap:                 6px;
+  --gap:                        8px;
   --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
   --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
+
+  /* Responsive sizes */
+  /* Diane went to great effort to figure out these exact pixel values ¯\_(ツ)_/¯ */
+  --desktop-search-bar-width: 827px;
+  --tablet-search-bar-width:  561px;
 
   /* Colors */
   --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
