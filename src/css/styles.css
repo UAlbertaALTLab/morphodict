@@ -119,26 +119,41 @@ html {
  */
 .top-bar {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 
 /**
- * BLOCK top-bar
+ * ELEMENT top-bar__title
  *
- * Space within the top-bar in which site branding can appear.
+ * Where the title (itwêwina -- Plains Cree Dictionary) goes.
  */
-.top-bar__heading {
-  flex: 1;
-  padding: 0 var(--page-gutter);
-
-  background: transparent;  /* Fallback */
-  background: linear-gradient(to right, var(--header-stripe-color) 0%,
-                                        var(--header-stripe-color) var(--header-stripe-width),
-                                        rgba(0,0,0,0) var(--header-stripe-width),
-                                        rgba(0,0,0,0) 100%);
+.top-bar__title {
+  flex: 0;
+  order: 1;
 }
 
+/**
+ * ELEMENT top-bar__search
+ *
+ * Where the search bar.
+ */
+.top-bar__search {
+  flex: 1;
+  order: 2;
+
+  margin: 0 3rem;
+}
+
+/**
+ * ELEMENT top-bar__nav
+ *
+ * Where the navigation (e.g., language selector) goes.
+ */
 .top-bar__nav {
+  order: 3;
+
   margin-right: var(--small-pad);
 }
 
@@ -149,6 +164,15 @@ html {
  *
  * Displays the title and subtitle/tagline of the application.
  */
+.branding {
+  padding: 0 var(--page-gutter);
+
+  background: transparent;  /* Fallback */
+  background: linear-gradient(to right, var(--header-stripe-color) 0%,
+                                        var(--header-stripe-color) var(--header-stripe-width),
+                                        rgba(0,0,0,0) var(--header-stripe-width),
+                                        rgba(0,0,0,0) 100%);
+}
 
 /**
  * ELEMENT
