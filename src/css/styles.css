@@ -120,7 +120,7 @@ html {
   }
 }
 
-@media (min-width: 1366px) {
+@media (min-width: 960px) {
   .app__pane {
     width: var(--desktop-search-bar-width);
   }
@@ -174,7 +174,7 @@ html {
  * The top-bar collapses both the logo, the language picker, AND the search
  * bar all into one long line.
  */
-@media (min-width: 1366px) {
+@media (min-width: 960px) {
   .top-bar__logo {
     flex: 0 200px;
     order: 1;
@@ -288,7 +288,7 @@ html {
  * The top-bar collapses both the logo, the language picker, AND the search
  * bar all into one long line.
  */
-@media (min-width: 1366px) {
+@media (min-width: 960px) {
   .search__search-bar {
     max-width: var(--desktop-search-bar-width);
   }
