@@ -1,30 +1,25 @@
+import os
+
 import pytest
 from hypothesis import assume, given
-from hypothesis.strategies import from_regex
 
-from API.models import Wordform
-from constants import SimpleLC
-from DatabaseManager.__main__ import cmd_entry
-from DatabaseManager.xml_importer import import_xmls
-
-# don not remove theses lines. Stuff gets undefined
-# noinspection PyUnresolvedReferences
-from tests.conftest import (
-    one_hundredth_xml_dir,
-    random_inflections,
-    random_lemmas,
-    topmost_datadir,
-)
-from utils import fst_analysis_parser
+from API.models import Wordform, filter_cw_wordforms
+from CreeDictionary import settings
+from CreeDictionary.settings import BASE_DIR
+from tests.conftest import random_lemmas
 
 
-# this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
-@pytest.fixture(autouse=True, scope="module")
-def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        import_xmls(one_hundredth_xml_dir, verbose=False)
-        yield
-        cmd_entry([..., "clear"])
+@pytest.fixture(scope="module")
+def django_db_setup():
+    """
+    django_db_setup is a magic function that works with pytest-django plugin. This fixture automatically works on
+    all functions in this file who is labeled with pytest.mark.django_db. These functions will use the existing
+    test_db.sqlite3. Instead of by default, an empty database in memory.
+    """
+    settings.DATABASES["default"] = {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
+    }
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
@@ -129,3 +124,29 @@ def test_search_for_stored_non_lemma():
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
     assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+
+
+@pytest.mark.django_db
+def test_filter_cw_content():
+    # assumptions
+    # print(settings.DATABASES)
+    # print("bobo:", Wordform.objects.all().count())
+    mowew_queryset = Wordform.objects.filter(text="mowêw", is_lemma=True)
+    assert mowew_queryset.count() == 1
+    assert {
+        ("s/he eats s.o. (e.g. bread)", "CW"),
+        ("1. That's where he scolds from. (A location). 2. He scolds about it.", "MD"),
+        ("s/he eats s.o. (e.g. bread)", "MD"),
+        ("All of you eat it. Animate. [Command]", "MD"),
+    } == {
+        tuple(definition_dict.values())
+        for definition_dict in mowew_queryset.get()
+        .definition_set.all()
+        .values("text", "citations")
+    }
+
+    # test
+    filtered = filter_cw_wordforms(mowew_queryset)
+    assert (
+        len(list(filtered)) == 1
+    )  # mowew should still be there because mowew has definition from cw
