@@ -16,7 +16,6 @@ from utils import fst_analysis_parser
 
 logger = logging.getLogger(__name__)
 
-
 def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
     """
     return the wordforms that has definition from CW dictionary
@@ -29,34 +28,33 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
                 yield wordform
                 break
 
-
-@attrs
+@attrs(auto_attribs=True)
 class SearchResult:
     """
     Contains all of the information needed to display a search result.
     """
 
-    # the text of the matche
-    wordform = attrib(type=str)
+    # the text of the match
+    wordform: str
 
-    part_of_speech = attrib(type=SimpleLexicalCategory)
+    part_of_speech: SimpleLC
 
     # Is this the lemma?
-    is_lemma = attrib(type=bool)
+    is_lemma: bool
 
     # The text of the matched lemma
-    lemma = attrib(type=str)
+    lemma: str
 
     # Sequence of all preverb tags, in order
-    preverbs = attrib(type=tuple)  # tuple of strs
+    preverbs: Tuple[str]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
-    reduplication_tags = attrib(type=tuple)  # tuple of strs
+    reduplication_tags: Tuple[str]
     # Sequence of all initial change tags
-    initial_change_tags = attrib(type=tuple)  # tuple of strs
+    initial_change_tags: Tuple[str]
 
-    definitions = attrib(type=tuple)  # tuple of Definition instances
+    definitions: Tuple["Definition"]
 
     @property
     def is_inflection(self) -> bool:

@@ -5,20 +5,20 @@ from hypothesis import assume, given
 
 from API.models import Wordform, filter_cw_wordforms
 from CreeDictionary import settings
-from CreeDictionary.settings import BASE_DIR
+from CreeDictionary import settings
 from tests.conftest import random_lemmas
-
 
 @pytest.fixture(scope="module")
 def django_db_setup():
     """
-    django_db_setup is a magic function that works with pytest-django plugin. This fixture automatically works on
-    all functions in this file who is labeled with pytest.mark.django_db. These functions will use the existing
-    test_db.sqlite3. Instead of by default, an empty database in memory.
+    This very cool fixture works with pytest-django. This fixture enforces
+    all functions marked with pytest.mark.django_db in this file will use existing test_db.sqlite3.
+    Instead of by default, an empty database in memory.
     """
+
     settings.DATABASES["default"] = {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
+        "NAME": os.path.join(settings.BASE_DIR, "test_db.sqlite3"),
     }
 
 
@@ -124,6 +124,18 @@ def test_search_for_stored_non_lemma():
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
     assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("term", ["acâhkos kâ-osôsit", "acâhkosa kâ-otakohpit"])
+def test_search_space_characters_in_matched_term(term):
+    """
+    The search should find results with spaces in them.
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+    """
+
+    word = Wordform.objects.get(text=term)
+    assert word is not None
 
 
 @pytest.mark.django_db
