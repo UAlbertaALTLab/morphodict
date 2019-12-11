@@ -227,9 +227,6 @@ class Wordform(models.Model):
             "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
         )
 
-        # we choose to trust CW and show those matches with definition from CW
-        as_is_matches: List["Wordform"] = []
-
         for analysis in fst_analyses:
             # todo: test
 
@@ -254,6 +251,8 @@ class Wordform(models.Model):
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
                     continue
+                lemma, lc = lemma_lc
+                matched_lemmas = Wordform.objects.filter(text=lemma, is_lemma=True)
 
                 # Note:
                 # non-analyzable matches should not be displayed (mostly from MD)
@@ -261,8 +260,6 @@ class Wordform(models.Model):
                 # those results are filtered out by `as_is=False` below
                 # suggested by Arok Wolvengrey
 
-                lemma, lc = lemma_lc
-                matched_lemmas = Wordform.objects.filter(text=lemma, is_lemma=True)
                 if lc.pos is POS.PRON:
                     # specially handle pronouns.
                     # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
@@ -280,6 +277,13 @@ class Wordform(models.Model):
                     lemmas_by_analysis[analysis].extend(
                         list(matched_lemmas.filter(as_is=False, pos=lc.pos.name))
                     )
+
+        # we choose to trust CW and show those matches with definition from CW.
+        # this majorly includes the entries with spaces in it, which fst can't analyze
+        for cw_as_is_word in filter_cw_wordforms(
+            Wordform.objects.filter(text=user_query, as_is=True, is_lemma=True)
+        ):
+            lemmas_by_analysis[cw_as_is_word.analysis].append(cw_as_is_word)
 
         # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
         # preverbs should be presented
