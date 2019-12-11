@@ -16,6 +16,7 @@ from utils import fst_analysis_parser
 
 logger = logging.getLogger(__name__)
 
+
 def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
     """
     return the wordforms that has definition from CW dictionary
@@ -27,6 +28,7 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
             if "CW" in definition.source_ids:
                 yield wordform
                 break
+
 
 @attrs(auto_attribs=True)
 class SearchResult:
@@ -382,12 +384,13 @@ class Wordform(models.Model):
                     part_of_speech=lemma.full_lc,
                     is_lemma=entry.wordform == lemma.text,
                     lemma=lemma.text,
-                    preverbs=(),
-                    reduplication_tags=(),
-                    initial_change_tags=(),
-                    definitions=definitions,
+                    preverbs=(),  # type: ignore
+                    reduplication_tags=(),  # type: ignore
+                    initial_change_tags=(),  # type: ignore
+                    definitions=definitions,  # type: ignore
                 )
             )
+            # fixme: Eddie: remove all these type ignores and let mypy shut up
 
         # TODO: sort them!
 

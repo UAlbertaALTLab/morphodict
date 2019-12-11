@@ -90,8 +90,7 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 USE_TEST_DB = os.environ.get("USE_TEST_DB", "False").lower() == "true"
-# if this is set, then use the test database built from tests/data/one_hundredth_xml/
-# Note: test_db is for cypress only. python tests use in-memory database and build things from scratch
+# if this is set, then use existing test database
 
 
 if not USE_TEST_DB:

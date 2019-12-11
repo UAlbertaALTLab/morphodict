@@ -5,6 +5,7 @@
     <option name="PARENT_ENVS" value="true" />
     <envs>
       <env name="DEBUG" value="True" />
+      <env name="USE_TEST_DB" value="true" />
     </envs>
     <option name="SDK_HOME" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
