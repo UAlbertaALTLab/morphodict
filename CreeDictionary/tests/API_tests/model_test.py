@@ -11,15 +11,17 @@ from tests.conftest import random_lemmas
 @pytest.fixture(scope="module")
 def django_db_setup():
     """
-    This very cool fixture works with pytest-django. This fixture enforces
-    all functions marked with pytest.mark.django_db in this file will use existing test_db.sqlite3.
+    This works with pytest-django plugin.
+    This fixture tells all functions marked with pytest.mark.django_db in this file
+    to use the database specified in settings.py
+    which is the existing test_db.sqlite3 if USE_TEST_DB=True is passed.
+
     Instead of by default, an empty database in memory.
     """
 
-    settings.DATABASES["default"] = {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(settings.BASE_DIR, "test_db.sqlite3"),
-    }
+    # all functions in this file should use the existing test_db.sqlite3
+    assert settings.USE_TEST_DB
+    pass
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
