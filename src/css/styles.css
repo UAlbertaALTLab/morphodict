@@ -324,10 +324,10 @@ html {
 .search-bar__input {
   /* Display & Box Model */
   flex: 1;
-  min-width: 50vw; /* The max width actually was way too big before; make it relative to the viewport. */
   padding: var(--small-pad) 1rem;
-  padding-right: 1em;
+  padding-right: 1rem;
   border: solid 1px var(--search-border-color);
+  max-width: 100%;
 
   /* Text */
   text-overflow: ellipsis;
