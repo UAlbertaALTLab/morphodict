@@ -141,8 +141,6 @@ html {
 .top-bar__search {
   /* Note: larger breakpoints mess around with the flex-basis: */
   flex: 1 100vw; /* Try to grow as much and have a basis of the full-width */
-
-  margin: var(--small-pad) var(--page-gutter);
 }
 
 /**
@@ -246,6 +244,17 @@ html {
  *
  * The main search panel.
  */
+
+
+/**
+ * BLOCK search__search-bar
+ *
+ * Contains the search bar.
+ */
+.search__search-bar {
+  margin: var(--small-pad) auto;
+  max-width: calc(100vw - 2 * var(--page-gutter));
+}
 
 /**
  * ELEMENT advanced search.
