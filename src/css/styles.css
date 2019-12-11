@@ -130,8 +130,7 @@ html {
  * Where the title (itwêwina -- Plains Cree Dictionary) goes.
  */
 .top-bar__title {
-  flex: 0;
-  order: 1;
+  order: 1; /* The title should ALWAYS be the first thing! */
 }
 
 /**
@@ -140,10 +139,10 @@ html {
  * Where the search bar.
  */
 .top-bar__search {
-  flex: 1;
-  order: 2;
+  /* Note: larger breakpoints mess around with the flex-basis: */
+  flex: 1 100vw; /* Try to grow as much and have a basis of the full-width */
 
-  margin: 0 3rem;
+  margin: var(--small-pad) var(--page-gutter);
 }
 
 /**
@@ -152,9 +151,26 @@ html {
  * Where the navigation (e.g., language selector) goes.
  */
 .top-bar__nav {
-  order: 3;
-
   margin-right: var(--small-pad);
+}
+
+@media (min-width: 1366px) {
+  .top-bar__title {
+    flex: 0;
+  }
+
+  .top-bar__search {
+    flex: 1;
+    flex-basis: auto;
+
+    max-width: 800px; /* TODO: get from zeplin, make variable. */
+
+    order: 2;
+  }
+
+  .top-bar__nav {
+    order: 3;
+  }
 }
 
 /********************************* BRANDING *********************************/
