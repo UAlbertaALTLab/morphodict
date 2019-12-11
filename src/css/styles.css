@@ -110,6 +110,22 @@ html {
   padding: 0 var(--page-gutter);
 }
 
+/* On larger screens, change to a margin: auto (to horizontally
+ * center)/max-width scheme. */
+@media (min-width: 768px) {
+  .app__pane {
+    padding: 0 0;
+    margin: auto;
+    width: var(--tablet-search-bar-width);
+  }
+}
+
+@media (min-width: 960px) {
+  .app__pane {
+    width: var(--desktop-search-bar-width);
+  }
+}
+
 /********************************* TOP BAR *********************************/
 
 /**
@@ -119,28 +135,63 @@ html {
  */
 .top-bar {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-content: flex-start;
+  align-items: center;
 }
 
 /**
- * BLOCK top-bar
+ * ELEMENT top-bar__logo
  *
- * Space within the top-bar in which site branding can appear.
+ * Where the title (itwêwina -- Plains Cree Dictionary) goes.
  */
-.top-bar__heading {
-  flex: 1;
-  padding: 0 var(--page-gutter);
-
-  background: transparent;  /* Fallback */
-  background: linear-gradient(to right, var(--header-stripe-color) 0%,
-                                        var(--header-stripe-color) var(--header-stripe-width),
-                                        rgba(0,0,0,0) var(--header-stripe-width),
-                                        rgba(0,0,0,0) 100%);
+.top-bar__logo {
+  order: -1; /* The title should ALWAYS be the first thing! */
+  align-self: flex-start;
 }
 
+/**
+ * ELEMENT top-bar__search
+ *
+ * Where the search bar.
+ */
+.top-bar__search {
+  /* Note: larger breakpoints mess around with the flex-basis: */
+  flex: 1 100vw; /* Try to grow as much and have a basis of the full-width */
+}
+
+/**
+ * ELEMENT top-bar__nav
+ *
+ * Where the navigation (e.g., language selector) goes.
+ */
 .top-bar__nav {
   margin-right: var(--small-pad);
 }
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+@media (min-width: 960px) {
+  .top-bar__logo {
+    flex: 0 200px;
+    order: 1;
+  }
+
+  .top-bar__search {
+    flex: 2 1 var(--desktop-search-bar-width);  /* Make it WIDE! */
+    order: 2;
+  }
+
+  .top-bar__nav {
+    flex: 0 200px;
+    order: 3;
+  }
+}
+
+
 
 /********************************* BRANDING *********************************/
 
@@ -149,6 +200,15 @@ html {
  *
  * Displays the title and subtitle/tagline of the application.
  */
+.branding {
+  padding: 0 var(--page-gutter);
+
+  background: transparent;  /* Fallback */
+  background: linear-gradient(to right, var(--header-stripe-color) 0%,
+                                        var(--header-stripe-color) var(--header-stripe-width),
+                                        rgba(0,0,0,0) var(--header-stripe-width),
+                                        rgba(0,0,0,0) 100%);
+}
 
 /**
  * ELEMENT
@@ -207,6 +267,33 @@ html {
  * The main search panel.
  */
 
+
+/**
+ * BLOCK search__search-bar
+ *
+ * Contains the search bar.
+ */
+.search__search-bar {
+  margin: var(--gap) auto;
+  max-width: calc(100vw - 2 * var(--page-gutter));
+}
+
+@media (min-width: 768px) {
+  .search__search-bar {
+    max-width: var(--tablet-search-bar-width);
+  }
+}
+
+/**
+ * The top-bar collapses both the logo, the language picker, AND the search
+ * bar all into one long line.
+ */
+@media (min-width: 960px) {
+  .search__search-bar {
+    max-width: var(--desktop-search-bar-width);
+  }
+}
+
 /**
  * ELEMENT advanced search.
  *
@@ -257,10 +344,10 @@ html {
 .search-bar__input {
   /* Display & Box Model */
   flex: 1;
-  min-width: 50vw; /* The max width actually was way too big before; make it relative to the viewport. */
   padding: var(--small-pad) 1rem;
-  padding-right: 1em;
+  padding-right: 1rem;
   border: solid 1px var(--search-border-color);
+  max-width: 100%;
 
   /* Text */
   text-overflow: ellipsis;

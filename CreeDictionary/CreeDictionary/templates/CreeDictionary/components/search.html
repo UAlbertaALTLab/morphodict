@@ -1,0 +1,19 @@
+{% load static %}
+<nav class="search top-bar__search">
+  <form class="search-bar search__search-bar">
+    <label class="search-bar__label" for="search">Search</label>
+    <input id="search" class="search-bar__input" data-cy="search"
+           type="text" required name="q"
+           placeholder="Search in Cree or English"
+           autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"
+           value="{{ query_string }}">
+    <button class="search-bar__button" type="submit">
+      <img src="{% static 'CreeDictionary/images/fa/search.svg' %}" alt="Search">
+    </button>
+  </form>
+  {% comment %}
+   TODO: Advanced search cannot be implemented until the following issue is closed:
+   - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/126
+  {% endcomment %}
+</nav>
+{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
