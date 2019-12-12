@@ -91,7 +91,28 @@ def parse_csv_layout(layout_file: Path) -> Table:
     """
     Parses a layout in the CSV/TSV format.
     """
-    raise NotImplementedError
+    # Throw out the YAML header; we don't need it.
+    _yaml_header, _divider, table_csv = layout_file.read_text(
+        encoding="UTF-8"
+    ).partition("\n--")
+
+    lines = table_csv.splitlines()
+    # the first line is part of the divider; get rid of it!
+    del lines[0]
+
+    # Not much parsing to do here: mostly
+    table: Table = []
+    last_row_len = None
+    for line in lines:
+        row = [cell.strip() for cell in line.split("\t")]
+        table.append(row)
+        row_len = len(row)
+        assert (
+            last_row_len is None or row_len == last_row_len
+        ), f"expected length {last_row_len}; got: {row_len}"
+        last_row_len = row_len
+
+    return table
 
 
 def parse_legacy_layout(layout_file: Path) -> Table:
