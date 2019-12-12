@@ -28,7 +28,7 @@ Table = List[List[str]]
 logger = logging.getLogger(__name__)
 
 # paradigm files names are inconsistent
-PARADIGM_NAME_TO_IC = {
+PARADIGM_NAME_TO_SLC = {
     "noun-na": SimpleLC.NA,
     "noun-nad": SimpleLC.NAD,
     "noun-ni": SimpleLC.NI,
@@ -64,7 +64,7 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
             logger.info("unsupported paradigm size for %s", layout_file)
             continue
 
-        lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
+        lc = PARADIGM_NAME_TO_SLC["-".join(lc_str)]
         table = parse_layout(layout_file)
 
         if (lc, size) in layout_tables:
@@ -176,7 +176,7 @@ def import_paradigms(
                     else:
                         class_paradigm[frozenset(component_tuple)] = [line]
 
-        paradigm_table[PARADIGM_NAME_TO_IC[name_wo_extension]] = class_paradigm
+        paradigm_table[PARADIGM_NAME_TO_SLC[name_wo_extension]] = class_paradigm
 
     return paradigm_table
 
@@ -235,18 +235,15 @@ class Combiner:
     """
 
     def __init__(
-        self,
-        layout_absolute_dir: Path,
-        paradigm_absolute_dir: Path,
-        generator_hfstol_path: Path,
+        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path,
     ):
         """
         Reads ALL of the .tsv layout files into memory and initializes the FST generator
 
-        :param layout_absolute_dir: the absolute directory of your .tsv layout files
+        :param layout_dir: the absolute directory of your .tsv layout files
         """
-        self._paradigm_tables = import_paradigms(paradigm_absolute_dir)
-        self._layout_tables = import_layouts(layout_absolute_dir)
+        self._paradigm_tables = import_paradigms(paradigm_dir)
+        self._layout_tables = import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
