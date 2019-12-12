@@ -1,5 +1,3 @@
-import os
-
 import pytest
 from hypothesis import assume, given
 
@@ -145,6 +143,7 @@ def test_search_space_characters_in_matched_term(term):
     # Now try searching for it:
     analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(term)
     assert len(analysis_to_lemmas) > 0
+
 
 @pytest.mark.django_db
 def test_filter_cw_content():
