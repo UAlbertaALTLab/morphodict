@@ -1,4 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+
+"""
+Updates layout files. Can download them from the old itwêwina -- not
+recommended.
+"""
+
 import subprocess
 import sys
 from glob import glob
@@ -11,6 +17,10 @@ from utils.paradigm_layout_combiner import combine_layout_paradigm
 
 
 def update():
+    update_from_old_itwewina()
+
+
+def update_from_old_itwewina():
     """
     1. Pull layout AND paradigm files from itwewina and place them correctly
     2. combine them to res/prefilled-layouts/
