@@ -2,12 +2,11 @@ import logging
 import unicodedata
 from collections import defaultdict
 from typing import Dict, List, NamedTuple, Set, Tuple, Iterable
-from urllib.parse import unquote
 
-from attr import attrib, attrs
+from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
-from django.db.models import F, Max, Q, QuerySet
+from django.db.models import Max, Q, QuerySet
 
 from constants import SimpleLC, SimpleLexicalCategory, POS
 from fuzzy_search import CreeFuzzySearcher
@@ -47,16 +46,18 @@ class SearchResult:
     # The text of the matched lemma
     lemma: str
 
+    # triple dots in type annotation means they can be empty
+
     # Sequence of all preverb tags, in order
-    preverbs: Tuple[str]
+    preverbs: Tuple[str, ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
-    reduplication_tags: Tuple[str]
+    reduplication_tags: Tuple[str, ...]
     # Sequence of all initial change tags
-    initial_change_tags: Tuple[str]
+    initial_change_tags: Tuple[str, ...]
 
-    definitions: Tuple["Definition"]
+    definitions: Tuple["Definition", ...]
 
     @property
     def is_inflection(self) -> bool:
@@ -388,13 +389,12 @@ class Wordform(models.Model):
                     part_of_speech=lemma.full_lc,
                     is_lemma=entry.wordform == lemma.text,
                     lemma=lemma.text,
-                    preverbs=(),  # type: ignore
-                    reduplication_tags=(),  # type: ignore
-                    initial_change_tags=(),  # type: ignore
-                    definitions=definitions,  # type: ignore
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                    definitions=definitions,
                 )
             )
-            # fixme: Eddie: remove all these type ignores and let mypy shut up
 
         # TODO: sort them!
 
