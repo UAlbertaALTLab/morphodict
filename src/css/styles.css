@@ -134,11 +134,12 @@ html {
  * A bar that runs across the top of the application.
  */
 .top-bar {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-content: flex-start;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "logo nav"
+   "search search";
 }
 
 /**
@@ -147,8 +148,7 @@ html {
  * Where the title (itwêwina -- Plains Cree Dictionary) goes.
  */
 .top-bar__logo {
-  order: -1; /* The title should ALWAYS be the first thing! */
-  align-self: flex-start;
+  grid-area: logo;
 }
 
 /**
@@ -157,8 +157,7 @@ html {
  * Where the search bar.
  */
 .top-bar__search {
-  /* Note: larger breakpoints mess around with the flex-basis: */
-  flex: 1 100vw; /* Try to grow as much and have a basis of the full-width */
+  grid-area: search;
 }
 
 /**
@@ -167,6 +166,10 @@ html {
  * Where the navigation (e.g., language selector) goes.
  */
 .top-bar__nav {
+  grid-area: nav;
+
+  text-align: right; /* So that it's flush with the right side of the page. */
+
   margin-right: var(--small-pad);
 }
 
@@ -175,19 +178,9 @@ html {
  * bar all into one long line.
  */
 @media (min-width: 960px) {
-  .top-bar__logo {
-    flex: 0 200px;
-    order: 1;
-  }
-
-  .top-bar__search {
-    flex: 2 1 var(--desktop-search-bar-width);  /* Make it WIDE! */
-    order: 2;
-  }
-
-  .top-bar__nav {
-    flex: 0 200px;
-    order: 3;
+  .top-bar {
+    grid-template-columns: 200px auto 200px;
+    grid-template-areas: "logo search nav";
   }
 }
 
