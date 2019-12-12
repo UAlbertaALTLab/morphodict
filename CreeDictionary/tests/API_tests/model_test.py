@@ -1,30 +1,24 @@
 import pytest
 from hypothesis import assume, given
-from hypothesis.strategies import from_regex
 
-from API.models import Wordform
-from constants import SimpleLC
-from DatabaseManager.__main__ import cmd_entry
-from DatabaseManager.xml_importer import import_xmls
-
-# don not remove theses lines. Stuff gets undefined
-# noinspection PyUnresolvedReferences
-from tests.conftest import (
-    one_hundredth_xml_dir,
-    random_inflections,
-    random_lemmas,
-    topmost_datadir,
-)
-from utils import fst_analysis_parser
+from API.models import Wordform, filter_cw_wordforms
+from CreeDictionary import settings
+from tests.conftest import random_lemmas
 
 
-# this very cool fixture provides the tests in this file with a database that's imported from one hundreths of the xml
-@pytest.fixture(autouse=True, scope="module")
-def hundredth_test_database(one_hundredth_xml_dir, django_db_setup, django_db_blocker):
-    with django_db_blocker.unblock():
-        import_xmls(one_hundredth_xml_dir, verbose=False)
-        yield
-        cmd_entry([..., "clear"])
+@pytest.fixture(scope="module")
+def django_db_setup():
+    """
+    This works with pytest-django plugin.
+    This fixture tells all functions marked with pytest.mark.django_db in this file
+    to use the database specified in settings.py
+    which is the existing test_db.sqlite3 if USE_TEST_DB=True is passed.
+
+    Instead of by default, an empty database in memory.
+    """
+
+    # all functions in this file should use the existing test_db.sqlite3
+    assert settings.USE_TEST_DB
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
@@ -129,3 +123,55 @@ def test_search_for_stored_non_lemma():
     assert not result.initial_change_tags
     assert len(result.definitions) >= 1
     assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+
+
+# TODO: some of these should really be in a dedicated "test_search" file.
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("term", ["acâhkos kâ-osôsit", "acâhkosa kâ-otakohpit"])
+def test_search_space_characters_in_matched_term(term):
+    """
+    The search should find results with spaces in them.
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+    """
+
+    # Ensure the word is in the database to begin with...
+    word = Wordform.objects.get(text=term)
+    assert word is not None
+
+    # Now try searching for it:
+    analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(term)
+    assert len(analysis_to_lemmas) > 0
+
+
+@pytest.mark.django_db
+def test_filter_cw_content():
+    # test 1
+    # assumptions
+    mowew_queryset = Wordform.objects.filter(text="mowêw", is_lemma=True)
+    assert mowew_queryset.count() == 1
+    assert {
+        ("s/he eats s.o. (e.g. bread)", "CW"),
+        ("1. That's where he scolds from. (A location). 2. He scolds about it.", "MD"),
+        ("s/he eats s.o. (e.g. bread)", "MD"),
+        ("All of you eat it. Animate. [Command]", "MD"),
+    } == {
+        tuple(definition_dict.values())
+        for definition_dict in mowew_queryset.get()
+        .definition_set.all()
+        .values("text", "citations")
+    }
+
+    # test 2
+    # assumption
+    nipa_queryset = Wordform.objects.filter(text="nipa", full_lc="IPV")
+    assert (
+        nipa_queryset.count() == 1
+    )  # there should only be one preverb meaning "during the night", it's from MD
+
+    # test
+    filtered = filter_cw_wordforms(nipa_queryset)
+    assert (
+        len(list(filtered)) == 0
+    )  # nipa should no longer be there because the preverb nipa is a MD only word

@@ -7,6 +7,14 @@ from constants import POS
 
 
 @pytest.mark.django_db
+def test_ensure_clean_db():
+    """
+    ensure functions in this file has a clean starting database
+    """
+    assert Wordform.objects.count() == 0
+
+
+@pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
     import_xmls(
         shared_datadir / "crkeng-small-nice-0", multi_processing=1, verbose=False

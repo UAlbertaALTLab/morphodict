@@ -46,7 +46,7 @@ These files are copyright protected and not allowed on GitHub. Ask coworkers or 
 
 ### Environment
 
-Create a file named `.env` under project root with `DEBUG=true`.
+Create a file named `.env` under project root with `DEBUG=true` and `USE_TEST_DB=true`.
 (Required for both both by npm and pipenv).
 
 
