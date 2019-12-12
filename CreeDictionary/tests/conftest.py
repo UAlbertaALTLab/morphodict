@@ -52,14 +52,6 @@ def random_lemmas(draw) -> Wordform:
 
 
 @pytest.fixture(scope="session")
-def test_xml_dir() -> Path:
-    """
-    XML for the test database, with curated test data.
-    """
-    return shared_res_dir / "test_dictionaries"
-
-
-@pytest.fixture(scope="session")
 def one_hundredth_xml_dir(topmost_datadir) -> Path:
     """
     1/100 of the entries in the real crkeng.xml
