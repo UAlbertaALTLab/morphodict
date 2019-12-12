@@ -20,7 +20,7 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from constants import SimpleLC, ParadigmSize
+from constants import ParadigmSize, SimpleLC
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
@@ -40,12 +40,21 @@ PARADIGM_NAME_TO_IC = {
 }
 
 
-def import_layouts(layout_file_dir: Path) -> Dict[Tuple[SimpleLC, ParadigmSize], Table]:
-    layout_tables = {}
-    files = layout_file_dir.glob("*.layout")
+LayoutTable = Dict[Tuple[SimpleLC, ParadigmSize], Table]
+
+
+def import_layouts(layout_file_dir: Path) -> LayoutTable:
+    layout_tables: LayoutTable = {}
+
+    legacy_neahtta_layout_files = list(layout_file_dir.glob("*.layout"))
+    simple_tsv_files = list(layout_file_dir.glob("*.layout.csv"))
+    assert len(simple_tsv_files) > 0
+    files = legacy_neahtta_layout_files + simple_tsv_files
 
     for layout_file in files:
-        *lc_str, size_str = layout_file.stem.split("-")
+        # Get rid of .layout or .csv
+        stem, _dot, _extensions = layout_file.name.partition(".")
+        *lc_str, size_str = stem.split("-")
 
         # Figure out if it's worth converting layout this layout.
         try:
@@ -58,6 +67,10 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[SimpleLC, ParadigmSize],
         lc = PARADIGM_NAME_TO_IC["-".join(lc_str)]
         table = parse_layout(layout_file)
 
+        if (lc, size) in layout_tables:
+            logger.warning(
+                "%s-%s already in table; replacing with %s", lc, size, layout_file
+            )
         layout_tables[(lc, size)] = table
 
     return layout_tables
@@ -66,6 +79,24 @@ def import_layouts(layout_file_dir: Path) -> Dict[Tuple[SimpleLC, ParadigmSize],
 def parse_layout(layout_file: Path) -> Table:
     """
     Parses a layout and returns a "layout".
+    """
+    if layout_file.match("*.csv"):
+        return parse_csv_layout(layout_file)
+    else:
+        assert layout_file.match("*.layout")
+        return parse_legacy_layout(layout_file)
+
+
+def parse_csv_layout(layout_file: Path) -> Table:
+    """
+    Parses a layout in the CSV/TSV format.
+    """
+    raise NotImplementedError
+
+
+def parse_legacy_layout(layout_file: Path) -> Table:
+    """
+    Parses a legacy in the format the Neahttadigisánit expects.
     """
     lines = layout_file.read_text().splitlines()
     assert len(lines) >= 1, f"malformed layout file: {layout_file}"
@@ -261,7 +292,7 @@ def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
     for ic in SimpleLC:
-        if ic is SimpleLC.Pron or ic is SimpleLC.IPC:
+        if ic in (SimpleLC.Pron, SimpleLC.IPC, SimpleLC.IPV):
             continue
         for size in ParadigmSize:
             with open(
