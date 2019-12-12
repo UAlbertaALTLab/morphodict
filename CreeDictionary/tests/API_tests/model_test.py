@@ -21,7 +21,6 @@ def django_db_setup():
 
     # all functions in this file should use the existing test_db.sqlite3
     assert settings.USE_TEST_DB
-    pass
 
 
 #### Tests for Inflection.fetch_lemmas_by_user_query()
