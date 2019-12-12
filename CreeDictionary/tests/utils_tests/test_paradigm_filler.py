@@ -1,6 +1,6 @@
 import pytest
 
-from constants import SimpleLC, ParadigmSize
+from constants import ParadigmSize, SimpleLC
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import shared_res_dir
@@ -21,16 +21,16 @@ def test_import_prefilled_layouts() -> None:
         EmptyRow,
         # TODO: I think there's a mistake with the source material here:
         # This should be a title row, not a label ¯\_(ツ)_/¯
-        ["", Heading("Smaller/Lesser/Younger")],
-        [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
-        EmptyRow,
-        # TODO: Again, only the "ownership" part should be a label. This is weird.
         ["", Heading("Ownership")],
         ["", Heading("One")],
         [Label("my"), "{{ lemma }}+N+A+Px1Sg+Sg"],
         [Label("your (one)"), "{{ lemma }}+N+A+Px2Sg+Sg"],
         ["", Heading("Further")],
         [Label("his/her"), "{{ lemma }}+N+A+Px3Sg+Obv"],
+        EmptyRow,
+        # TODO: This should be a title, not a heading
+        ["", Heading("Smaller/Lesser/Younger")],
+        [Label("One"), "{{ lemma }}+N+A+Der/Dim+N+A+Sg"],
     ]
 
 
