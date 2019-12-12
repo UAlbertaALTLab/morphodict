@@ -7,6 +7,7 @@
 crkeng.xml	binary
 engcrk.xml	binary
 *.sqlite3	binary
+.idea/** binary
 
 
 ###############################################################################
