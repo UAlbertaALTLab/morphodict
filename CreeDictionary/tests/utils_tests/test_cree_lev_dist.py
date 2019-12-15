@@ -28,6 +28,7 @@ def test_get_distance_basic_lev(spelling: str, normal_form: str):
     )
 
 
+# todo: use real world spelling examples here
 @pytest.mark.parametrize(
     ("spelling", "normal_form", "expected_distance"),
     (

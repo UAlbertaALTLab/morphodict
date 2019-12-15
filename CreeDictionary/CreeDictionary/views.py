@@ -5,7 +5,7 @@ from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
 from constants import SimpleLC, ParadigmSize
 from shared import paradigm_filler
-from utils import fst_analysis_parser
+from utils import fst_analysis_parser, get_modified_distance
 
 
 def index(request, query_string=None, lemma_id=None):
@@ -35,9 +35,9 @@ def search_results(request, query_string: str):
         query_string
     )
     # flatten list of list
-    words = [b for a in analysis_to_lemmas.values() for b in a] + list(
-        lemmas_by_english
-    )
+    lemmas_by_cree = [b for a in analysis_to_lemmas.values() for b in a]
+    lemmas_by_cree.sort(key=lambda w: get_modified_distance(query_string, w.text))
+    words = lemmas_by_cree + list(lemmas_by_english)
     return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 
