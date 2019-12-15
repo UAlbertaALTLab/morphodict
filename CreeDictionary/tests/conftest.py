@@ -6,7 +6,7 @@ import xml_subsetter
 from django.db import transaction
 from django.db.models import F
 from hypothesis import assume
-from hypothesis._strategies import composite, integers, sampled_from
+from hypothesis.strategies import composite, integers, sampled_from
 
 from API.models import Wordform
 from constants import SimpleLexicalCategory
