@@ -74,7 +74,7 @@ def get_modified_distance(spelling: str, normal_form: str) -> float:
     normal_form = normal_form.lower()
 
     ops: List[EditOp] = editops(spelling, normal_form)
-    dist = 0
+    dist = 0.0
 
     spelling_list = list(spelling)
     insertion_buffers = ["" for _ in range(len(spelling) + 1)]
