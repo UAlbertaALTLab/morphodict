@@ -17,6 +17,17 @@ context('Searching', () => {
         .should('contain', 'cat')
     })
   })
+  
+  describe('search results should be ranked by modified levenshtein distance', () => {
+    it('should show nipa before nipaw if the search string is nipa', () => {
+      // on the previous implementation nipaw is showed first
+      cy.visit('/search/nipa')
+
+      cy.get('[data-cy=search-results]').first()
+        .should('contain', 'nipa')
+        .and('contain', 'Means, during the night')
+    })
+  })
 
   describe('As an Administrator, I want to integrate words from multiple dictionary sources.', () => {
     it('should display the dictionary source on the page', () => {
