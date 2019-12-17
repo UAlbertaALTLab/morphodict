@@ -69,7 +69,7 @@ This only needs to be done once and is probably already done. This serves for do
 
     this creates folder `mod_wsgi-express-8091`, which contains a separate apache to serve the application.
 
-- Create a service file `mod_wsgi-express-8091/cree-dictionary.service` with the following content
+- Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
 
     ```
     [Unit]
@@ -91,7 +91,7 @@ This only needs to be done once and is probably already done. This serves for do
 
 - `sudo pipenv run collect-static`
 
-- `sudo systemctl enable $(realpath ./mod_wsgi-express-8091/cree-dictionary.service)`
+- `sudo systemctl enable cree-dictionary.service`
 
 - `sudo mkdir CreeDictionary/res/dictionaries`
 
