@@ -8,6 +8,9 @@ crkeng.xml	binary
 engcrk.xml	binary
 *.sqlite3	binary
 
+# Treat the ide files as binaries
+.idea/**    binary
+
 
 ###############################################################################
 # Set default behavior for command prompt diff.

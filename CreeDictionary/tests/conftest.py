@@ -9,9 +9,9 @@ from hypothesis import assume
 from hypothesis._strategies import composite, integers, sampled_from
 
 from API.models import Wordform
-from DatabaseManager.xml_importer import import_xmls
 from constants import SimpleLexicalCategory
-from utils import shared_res_dir, fst_analysis_parser
+from DatabaseManager.xml_importer import import_xmls
+from utils import fst_analysis_parser, shared_res_dir
 
 
 @pytest.fixture(scope="session")

@@ -1,23 +1,35 @@
 context('Paradigms', () => {
   describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
-    it('should display the paradigm for an NA word', () => {
+    // Test at least one word from each lexical class/part-of-speech:
+    const testCases = [
+      {pos: 'VTA', lemma: 'mowêw', inflections: ['kimowin', 'kimowitin', 'ê-mowât']},
+      {pos: 'VAI', lemma: 'wâpiw', inflections: ['niwâpin', 'kiwâpin', 'ê-wâpiyit']},
+      {pos: 'VTI', lemma: 'mîcisow', inflections: ['nimîcison', 'kimîcison', 'ê-mîcisoyit']},
+      {pos: 'VII', lemma: 'nîpin', inflections: ['nîpin', 'ê-nîpihk']},
+      {pos: 'NAD', lemma: 'nôhkom', inflections: ['kôhkom', 'ohkoma']},
+      {pos: 'NID', lemma: 'mîpit', inflections: ['nîpit', 'kîpit', 'wîpit']},
+      {pos: 'NA', lemma: 'minôs', inflections: ['minôsak', 'minôsa']},
+      {pos: 'NI', lemma: 'nipiy', inflections: ['nipîhk', 'ninipiy', 'kinipiy']},
+    ]
 
-      cy.visit('/search/minos')
-      cy.get('[data-cy=search-results]')
-        .contains('a', 'minôs')
-        .click()
+    // Create test cases for each word above
+    for (let {pos, lemma, inflections} of testCases) {
+      it(`should display the paradigm for an ${pos} word`, () => {
+        cy.visit(`/search/${lemma}`)
+        cy.get('[data-cy=search-results]')
+          .contains('a', lemma)
+          .click()
 
-      cy.get('[data-cy=paradigm]')
-        .as('paradigm')
+        cy.get('[data-cy=paradigm]')
+          .as('paradigm')
 
-      cy.get('@paradigm')
-        .should('contain', 'minôs')
-        .and('contain', 'minôsak')
-        .and('contain', 'minôsa')
-
-      cy.get('@paradigm')
-        .contains('th[scope=row]', 'Further')
-    })
+        let ctx = cy.get('@paradigm')
+          .should('contain', lemma)
+        for (let wordform of inflections) {
+          ctx = ctx.and('contain', wordform)
+        }
+      })
+    }
 
     // TODO: the next test should be here, but it is broken because the
     // upstream layouts are broken :/

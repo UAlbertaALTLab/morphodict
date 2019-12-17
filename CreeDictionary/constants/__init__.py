@@ -2,7 +2,6 @@
 constants
 """
 from enum import Enum
-
 # type alias
 from typing import NewType
 
@@ -25,7 +24,8 @@ class ParadigmSize(Enum):
 
 
 class PartOfSpeech(Enum):
-
+    # TODO: tell me if the preverb is declinable or not.
+    # i.e., whether it can have a paradigm.
     IPV = "IPV"  # preverbs
     PRON = "PRON"
     N = "N"

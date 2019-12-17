@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import posixpath
-from distutils.util import strtobool
 from sys import stderr
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,7 +27,7 @@ SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 # Turn it to True in development
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(strtobool(os.environ.get("DEBUG", "False")))
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
@@ -90,9 +89,8 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-USE_TEST_DB = bool(strtobool(os.environ.get("USE_TEST_DB", "False")))
-# if this is set, then use the test database built from tests/data/one_hundredth_xml/
-# Note: test_db is for cypress only. python tests use in-memory database and build things from scratch
+USE_TEST_DB = os.environ.get("USE_TEST_DB", "False").lower() == "true"
+# if this is set, then use existing test database
 
 
 if not USE_TEST_DB:

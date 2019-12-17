@@ -1,0 +1,99 @@
+name: "Transitive animate verb basic (mobile/plain) paradigm"	
+paradigm: verb-ta.paradigm	
+layout:	
+  type: "basic"	
+tooltips:	
+  eng:	
+    "you (one) → me": "2nd person singular actor → 1st person singular goal"	
+    "you (one) → us": "2nd person singular actor → 1st person plural goal"	
+    "you (all) → me": "2nd person plural actor → 1st person singular goal"	
+    "you (all) → us": "2nd person plural actor → 1st person plural goal"	
+    "I → you (one)": "1st person singular actor → 2nd person singular goal"	
+    "I → you (all)": "1st person singular actor → 2nd person plural goal"	
+    "we → you (one)": "1st person plural actor → 2nd person singular goal"	
+    "we → you (all)": "1st person plural actor → 2nd person plural goal"	
+    "I → him/her": "1st person singular actor → 3rd person singular goal"	
+    "you (one) → him/her": "2nd person singular actor → 3rd person singular goal"	
+    "we → him/her": "1st person plural exclusive actor → 3rd person singular goal"	
+    "you and we → him/her": "1st person plural inclusive actor → 3rd person singular goal"	
+    "you (all) → him/her": "2nd person plural actor → 3rd person singular goal"	
+    "I → them": "1st person singular actor → 3rd person plural goal"	
+    "you (one) → them": "2nd person singular actor → 3rd person plural goal"	
+    "we → them": "1st person plural exclusive actor → 3rd person plural goal"	
+    "you and we → them": "1st person plural inclusive actor → 3rd person plural goal"	
+    "you (all) → them": "2nd person plural actor → 3rd person plural goal"	
+    "I → him/her/them (further)": "1st person singular actor → 3rd person obviative goal"	
+    "you (one) → him/her/them (further)": "2nd person singular actor → 3rd person obviative goal"	
+    "we → him/her/them (further)": "1st person plural exclusive actor → 3rd person obviative goal"	
+    "you and we → him/her/them (further)": "1st person plural inclusive actor → 3rd person obviative goal"	
+    "you (all) → him/her/them (further)": "2nd person plural actor → 3rd person obviative goal"	
+    "s/he → me": "3rd person singular actor → 1st person singular goal"	
+    "s/he → you (one)": "3rd person singular actor → 2nd person singular goal"	
+    "s/he → us": "3rd person singular actor → 1st person plural exclusive goal"	
+    "s/he → you and us": "3rd person singular actor → 1st person plural inclusive goal"	
+    "s/he → you (all)": "3rd person singular actor → 2nd person plural goal"	
+    "s/he → him/her/them (further)": "3rd person singular actor → 3rd person obviative goal"	
+    "s/he → him/her/them (furthest": "3rd person singular actor → 3rd person obviative goal"	
+    "they → me": "3rd person plural actor → 1st person singular goal"	
+    "they → you (one)": "3rd person plural actor → 2nd person singular goal"	
+    "they → us": "3rd person plural actor → 1st person plural exclusive goal"	
+    "they → you and us": "3rd person plural actor → 1st person plural inclusive goal"	
+    "they → you (all)": "3rd person plural actor → 2nd person plural goal"	
+    "they → him/her/them (further)": "3rd person plural actor → 3rd person obviative goal"	
+    "they → him/her/them (furthest": "3rd person plural actor → 3rd person further obviative goal"	
+    "s/he/they (further) → me": "3rd person obviative actor → 1st person singular goal"	
+    "s/he/they (further) → you (one)": "3rd person obviative actor → 2nd person singular goal"	
+    "s/he/they (further) → us": "3rd person obviative actor → 1st person plural exclusive goal"	
+    "s/he/they (further) → you and us": "3rd person obviative actor → 1st person plural inclusive goal"	
+    "s/he/they (further) → you (all)": "3rd person obviative actor → 2nd person plural goal"	
+    "s/he/they (further) → him/her/them (furthest": "3rd person obviative actor → 3rd person further obviative goal"	
+    "s/he/they (further) → him/her": "3rd person obviatve actor → 3rd person singular goal"	
+    "s/he/they (further) → them": "3rd person obviative actor → 3rd person plural goal"	
+    "s/he/they (furthest) → him/her/them (further)": "3rd person further obviative actor → 3rd person obviative goal"	
+    "someone → me": "Unspecified actor → 1st person singular goal"	
+    "someone → you (one)": "Unspecified actor → 2nd person singular goal"	
+    "someone → him/her": "Unspecified actor → 3rd person singular goal"	
+    "someone → him/her/them (further)": "Unspecified actor → 3rd person obviative goal"	
+    "someone → us": "Unspecified actor → 1st person plural exclusive goal"	
+    "someone → you and us": "Unspecified actor → 1st person plural inclusive goal"	
+    "someone → you (all)": "Unspecified actor → 2nd person plural goal"	
+    "someone → them": "Unspecified actor → 3rd person plural goal"	
+    "Something is happening now": "Present Tense"	
+    "Something happened earlier": "Past Tense"	
+    "Someone wants something to happen": "Future Intentional Tense"	
+    "Something will certainly happen": "Future Definite Tense" 	
+    "For something to happen": "Future/Infinitive"	
+    "When something happens": "Future Conditional"	
+    "Command/Request": "Imperative"	
+    "Right now": "Immediate"	
+    "Later on": "Delayed"	
+    "ni-/ki- word": "Independent"	
+    "ê-/kâ- word": "Conjunct"	
+    "ka- word": "ka-conjunct"	
+    "ta- word": "ta-conjunct"	
+--	
+	"Something is happening now"
+"Actor → Goal"	: "ni-/ki- word"
+"I → you (one)"	Ind+Prs+1Sg+2SgO
+"I → him/her"	Ind+Prs+1Sg+3SgO
+"you (one) → me"	Ind+Prs+2Sg+1SgO
+"you (one) → him/her"	Ind+Prs+2Sg+3SgO
+"s/he → him/her/them (further)"	Ind+Prs+3Sg+4Sg/PlO
+"s/he/they (further) → me"	Ind+Prs+4Sg/Pl+1SgO
+"s/he/they (further) → you (one)"	Ind+Prs+4Sg/Pl+2SgO
+"s/he/they (further) → him/her"	Ind+Prs+4Sg/Pl+3SgO
+	
+"Actor → Goal"	: "ê-/kâ- word"
+"I → you (one)"	PV/e+*+Cnj+Prs+1Sg+2SgO
+"I → him/her"	PV/e+*+Cnj+Prs+1Sg+3SgO
+"you (one) → me"	PV/e+*+Cnj+Prs+2Sg+1SgO
+"you (one) → him/her"	PV/e+*+Cnj+Prs+2Sg+3SgO
+"s/he → him/her/them (further)"	PV/e+*+Cnj+Prs+3Sg+4Sg/PlO
+"s/he/they (further) → me"	PV/e+*+Cnj+Prs+4Sg/Pl+1SgO
+"s/he/they (further) → you (one)"	PV/e+*+Cnj+Prs+4Sg/Pl+2SgO
+"s/he/they (further) → him/her"	PV/e+*+Cnj+Prs+4Sg/Pl+3SgO
+	
+	"Command/Request"
+"Actor → Goal"	: "Right now"
+"you (one) → me"	Imp+Imm+2Sg+1SgO
+"you (one) → him/her"	Imp+Imm+2Sg+3SgO

@@ -12,7 +12,7 @@ context('Regressions', () => {
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
-  it.skip('should allow space characters in exact strings', () => {
+  it('should allow space characters in exact strings', () => {
     cy.visit('/search/acâhkos kâ-osôsit')
     cy.get('[data-cy=search-results]')
       .should('contain', 'acâhkos kâ-osôsit')
