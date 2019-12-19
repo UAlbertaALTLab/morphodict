@@ -32,10 +32,15 @@ def test_get_distance_basic_lev(spelling: str, normal_form: str):
 @pytest.mark.parametrize(
     ("spelling", "normal_form", "expected_distance"),
     (
-        ["a", "ab", 1],  # plain lev distance
-        ["a", "ah", 0.5],  # an 'h' in a rime is not added
-        ["ah", "a", 0.5],  # an 'h' in a rime is added
-        ["a", "ā", 0.5],  # a macron is not added
+        ["atâk", "atâhk", 0.5],  # an 'h' in a rime is not added
+        ["ah", "a", 0.5],  # an extra 'h' in a rime is added
+        ["atahk", "atâhk", 0.5],  # a circumflex is not added
+        ["atak", "atâhk", 1],  # both circumflex and h in a rime is not added
+        [
+            "adak",
+            "atâhk",
+            2,
+        ],  # both circumflex and h in a rime is not added and spelling error t -> d
     ),
 )
 def test_get_distance(spelling: str, normal_form: str, expected_distance):

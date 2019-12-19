@@ -60,7 +60,9 @@ def get_modified_distance(spelling: str, normal_form: str) -> float:
 
     A substitution should have a distance of 1: e.g., ekwa vs. ikwa
 
-    A vowel lengths change incur a distance of ½
+    A vowel diacritics on {a i o} change incur a distance of ½
+
+    A vowel diacritics change on "e" should be treated as distance 0
 
     An addition or deletion of an 'h' in a rime should incur a distance of ½
 
@@ -138,8 +140,15 @@ def get_modified_distance(spelling: str, normal_form: str) -> float:
 
         if op_name == "replace":
             n_char = normal_form[n_index]
-            if remove_cree_diacritics(n_char) == remove_cree_diacritics(o_char):
-                dist += 0.5
+            stripped_n_char, stripped_o_char = (
+                remove_cree_diacritics(n_char),
+                remove_cree_diacritics(o_char),
+            )
+            if stripped_n_char == stripped_o_char:
+                if stripped_n_char == "e":
+                    pass
+                else:
+                    dist += 0.5
             else:
                 dist += 1
 
