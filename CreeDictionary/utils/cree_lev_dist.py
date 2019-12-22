@@ -17,7 +17,8 @@ def remove_cree_diacritics(input_str) -> str:
 
 def del_dist(string, i):
     """
-    custom distance for deleting a character at index i from string
+    custom distance for deleting a character at index i from string.
+    The string is guaranteed non-empty and i is not out of bound
     """
     if i > 0 and remove_cree_diacritics(string[i - 1]) in VOWELS and string[i] == "h":
         return 0.5
@@ -26,7 +27,8 @@ def del_dist(string, i):
 
 def sub_dist(string, new_char, i):
     """
-    custom distance for substituting a character at index i for a new character
+    custom distance for substituting a character at index i for a new character.
+    Note the string is guaranteed non-empty and i is not out-of-bound
     """
     if new_char == string[i]:
         return 0
@@ -41,12 +43,11 @@ def sub_dist(string, new_char, i):
 
 def ins_dist(string, char, i):
     """
-    custom distance for inserting a character at index i
+    custom distance for inserting a character at index i to a non-empty string
+    Note the string is guaranteed non-empty and  0 <= i <= len(string)
     """
-    if string == "":
-        return 1
-    elif (
-        remove_cree_diacritics(string[min(i - 1, len(string) - 1)]) in VOWELS
+    if (
+        remove_cree_diacritics(string[min(i, len(string)) - 1]) in VOWELS
         and char == "h"
     ):
         return 0.5

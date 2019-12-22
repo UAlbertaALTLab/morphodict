@@ -2,13 +2,15 @@ from string import ascii_letters
 
 import pytest
 from Levenshtein import distance
-from hypothesis import given, assume
+from hypothesis import given, assume, example
 from hypothesis.strategies import text
 
 from utils import get_modified_distance
 
 
 @given(text(alphabet=ascii_letters), text(alphabet=ascii_letters))
+@example("", "")
+@example("some_word", "")
 def test_get_distance_basic_lev(spelling: str, normal_form: str):
     """
     make sure the modified distance gets basic lev distance right
