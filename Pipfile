@@ -66,7 +66,7 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 # on sapir may get lost
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # reminders/alias. you can just use $ update-layouts after pipenv shell
-# 1. Pull layout AND paradigm files from itwewina and place them correctly
+# 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
 update-layouts = 'update-layouts'
 
