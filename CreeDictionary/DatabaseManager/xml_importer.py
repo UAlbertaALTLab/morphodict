@@ -423,7 +423,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
         for str_definition, source_strings in str_definitions_source_strings.items():
             db_definition = Definition(
-                id=definition_counter, text=str_definition, lemma=db_inflection
+                id=definition_counter, text=str_definition, wordform=db_inflection
             )
 
             # Figure out what citations we should be making.
@@ -509,7 +509,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         db_definition = Definition(
                             id=definition_counter,
                             text=str_definition,
-                            lemma=db_inflection,
+                            wordform=db_inflection,
                         )
                         assert definition_counter not in citations
                         citations[definition_counter] = set(source_strings)

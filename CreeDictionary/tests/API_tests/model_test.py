@@ -159,7 +159,7 @@ def test_filter_cw_content():
     } == {
         tuple(definition_dict.values())
         for definition_dict in mowew_queryset.get()
-        .definition_set.all()
+        .definitions.all()
         .values("text", "citations")
     }
 

@@ -23,7 +23,7 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
     :param q: a QuerySet of Wordforms
     """
     for wordform in q:
-        for definition in wordform.definition_set.all():
+        for definition in wordform.definitions.all():
             if "CW" in definition.source_ids:
                 yield wordform
                 break
@@ -374,7 +374,7 @@ class Wordform(models.Model):
                 )
                 continue
 
-            definitions = tuple(Definition.objects.filter(lemma=lemma))
+            definitions = tuple(Definition.objects.filter(wordform=lemma))
             if len(definitions) < 1:
                 logging.warning(
                     "Could not find definitions for %r (lemma: %r)",
@@ -475,8 +475,10 @@ class Definition(models.Model):
     # A definition **cites** one or more dictionary sources.
     citations = models.ManyToManyField(DictionarySource)
 
-    # A definition defines a particular word form (usually a lemma)
-    lemma = models.ForeignKey(Wordform, on_delete=models.CASCADE)
+    # A definition defines a particular wordform
+    wordform = models.ForeignKey(
+        Wordform, on_delete=models.CASCADE, related_name="definitions"
+    )
 
     # Why this property exists:
     # because DictionarySource should be its own model, but most code only
