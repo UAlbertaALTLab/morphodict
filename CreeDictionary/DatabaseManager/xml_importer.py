@@ -3,7 +3,7 @@ import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
-from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple
+from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple, NewType
 
 from colorama import Fore, init
 from django.db import connection
@@ -18,10 +18,13 @@ from utils.crkeng_xml_utils import extract_l_str, parse_xml_lc
 
 init()  # for windows compatibility
 
-
 logger = DatabaseManagerLogger(__name__)
 
 RECOGNIZABLE_POS: Set[str] = {p.value for p in POS}
+
+# todo: refactor and use this
+XmlTuple = NewType("XmlTuple", Tuple[str, str, str])
+"Tuple of xml_lemma, xml_pos, xml_lc extracted from crkeng.xml"
 
 
 def clear_database(verbose=True):
@@ -334,49 +337,18 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     # these two will be imported to the database
     as_is_xml_lemma_pos_lc = []  # type: List[Tuple[str, str, str]]
-    true_lemma_analyses_to_xml_lemma_pos_lc = (
-        dict()
+    true_lemma_analyses_to_xml_lemma_pos_lc = defaultdict(
+        list
     )  # type: Dict[str, List[Tuple[str, str, str]]]
-
-    dup_analysis_xml_lemma_pos_lc_count = 0
 
     for (xml_lemma, pos, lc), analysis in xml_lemma_pos_lc_to_analysis.items():
         if analysis != "":
-            if analysis in true_lemma_analyses_to_xml_lemma_pos_lc:
-                dup_analysis_xml_lemma_pos_lc_count += 1
-                existing_tuple = true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
-                logger.debug(
-                    f"xml_lemma: {xml_lemma} pos: {pos} lc: {lc} has duplicate fst lemma analysis to xml_lemma:"
-                    f" {existing_tuple[0]} pos: {existing_tuple[1]} lc: {existing_tuple[2]}."
-                    f" Their Definition will be merged."
-                )
+            true_lemma_analyses_to_xml_lemma_pos_lc[analysis].append(
+                (xml_lemma, pos, lc)
+            )
 
-                # merge definition to first tuple
-                target = xml_lemma_pos_lc_to_str_definitions[
-                    true_lemma_analyses_to_xml_lemma_pos_lc[analysis][0]
-                ]
-                extra = xml_lemma_pos_lc_to_str_definitions[(xml_lemma, pos, lc)]
-
-                for str_definition, source_set in extra.items():
-                    if str_definition in target:
-                        target[str_definition] |= source_set
-                    else:
-                        target[str_definition] = source_set
-
-                true_lemma_analyses_to_xml_lemma_pos_lc[analysis].append(
-                    (xml_lemma, pos, lc)
-                )
-            else:
-                true_lemma_analyses_to_xml_lemma_pos_lc[analysis] = [
-                    (xml_lemma, pos, lc)
-                ]
         else:
             as_is_xml_lemma_pos_lc.append((xml_lemma, pos, lc))
-
-    logger.info(
-        f"{Fore.BLUE}%d (lemma, pos, lc) have duplicate fst lemma analysis to others.\nTheir definition will be merged{Fore.RESET}"
-        % dup_analysis_xml_lemma_pos_lc_count
-    )
 
     wordform_counter = 1
     definition_counter = 1
@@ -452,7 +424,20 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
         db_wordforms_for_analysis = []
         db_lemma = None
-        _, xml_pos, xml_lc = xml_lemma_pos_lcs[0]
+        _, _, xml_lc = xml_lemma_pos_lcs[0]
+
+        # for use in building/merging definition
+        xml_lemmas = {t[0] for t in xml_lemma_pos_lcs}
+
+        xml_lemma_to_definition_src_dicts: Dict[str, List[Dict[str, Set[str]]]] = {
+            xml_lemma: [
+                xml_lemma_pos_lc_to_str_definitions[(xml_lemma,) + pos_lc_tuple]
+                for pos_lc_tuple in xml_lemma_to_pos_lc[xml_lemma]
+            ]
+            for xml_lemma in xml_lemmas
+        }
+
+        # build wordforms and definition in db
         for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
 
             generated_lemma = fst_analysis_parser.extract_lemma(generated_analysis)
@@ -498,30 +483,24 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                         keyword_counter += 1
 
-                    str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
-                        xml_lemma_pos_lcs[0]
-                    ]
+                # now we create definition for all (possibly inflected) entries in xml that are forms of this lemma.
+                d_s_dicts = xml_lemma_to_definition_src_dicts.get(generated_wordform)
 
-                    for (
-                        str_definition,
-                        source_strings,
-                    ) in str_definitions_source_strings.items():
-                        db_definition = Definition(
-                            id=definition_counter,
-                            text=str_definition,
-                            wordform=db_inflection,
-                        )
-                        assert definition_counter not in citations
-                        citations[definition_counter] = set(source_strings)
+                if d_s_dicts is not None:
+                    for d_s_dict in d_s_dicts:
 
-                        definition_counter += 1
-                        db_definitions.append(db_definition)
+                        for (str_definition, source_strings,) in d_s_dict.items():
+                            db_definition = Definition(
+                                id=definition_counter,
+                                text=str_definition,
+                                wordform=db_inflection,
+                            )
+                            assert definition_counter not in citations
+                            citations[definition_counter] = set(source_strings)
 
-        if db_lemma is None:
-            print("lemma wordform", lemma_wordform)
-            print("lemma analysis", true_lemma_analysis)
-            print("dooches:")
-            print(expanded[true_lemma_analysis])
+                            definition_counter += 1
+                            db_definitions.append(db_definition)
+
         assert db_lemma is not None
         for wordform in db_wordforms_for_analysis:
             wordform.lemma = db_lemma

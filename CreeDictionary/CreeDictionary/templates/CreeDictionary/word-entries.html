@@ -33,7 +33,7 @@
       {% endif %}
 
     <ol class="meanings meanings--search-result">
-    {% for def in word.definition_set.all %}
+    {% for def in word.definitions.all %}
       <li class="meanings__meaning">{{ def.text }}
         {% for source in def.source_ids %}
           <cite class="cite-dict">{{ source }}</cite>

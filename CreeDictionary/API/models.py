@@ -106,7 +106,7 @@ class Wordform(models.Model):
         return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
-    # auto-increment is also implemented in the overridden save below
+    # auto-increment is also implemented in the overridden save() method below
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=40)
@@ -139,7 +139,7 @@ class Wordform(models.Model):
     # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
-        help_text="It can not be determined whether this wordform is lemma or not during the importing process. "
+        help_text="The lemma of this wordform is not determined during the importing process."
         "is_lemma defaults to true and lemma field defaults to self",
     )
 
