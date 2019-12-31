@@ -48,8 +48,8 @@ class HasParadigmListFilter(admin.SimpleListFilter):
             return queryset.filter(as_is=True)
 
 
-# todo: make admin search "extended"
-# todo: show inflection definition instead of lemma definition
+# todo: make admin search "extended", searching for "nipa" should give result "nipâ"
+# todo: show inflection definition when possible instead of always showing lemma definition
 @admin.register(Wordform)
 class InflectionAdmin(admin.ModelAdmin):
     search_fields = ("text",)
