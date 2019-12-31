@@ -1,17 +1,10 @@
-from enum import Enum
-from typing import List, Tuple, Optional, NamedTuple
-
-from attr import attrs
-from Levenshtein import editops
 import unicodedata
 
 VOWELS = {"a", "e", "i", "o"}
-CIRCUMFLEX_VOWELS = {"â", "ê", "î", "ô"}
-MACRON_VOWELS = {"ā", "ē", "ī", "ō"}
 
 
 def remove_cree_diacritics(input_str) -> str:
-    """    
+    """
     >>> remove_cree_diacritics('ā')
     'a'
     >>> remove_cree_diacritics('â')
@@ -22,32 +15,44 @@ def remove_cree_diacritics(input_str) -> str:
     return only_ascii
 
 
-class EditOp(NamedTuple):
-    op_name: str
-    source_index: int
-    """The original index of the character in the original string"""
-    target_index: int
-    """the index of the character in the target string"""
+def del_dist(string, i):
+    """
+    custom distance for deleting a character at index i from string.
+    The string is guaranteed non-empty and i is not out of bound
+    """
+    if i > 0 and remove_cree_diacritics(string[i - 1]) in VOWELS and string[i] == "h":
+        return 0.5
+    return 1
 
-    @staticmethod
-    def apply_ops(ops: List["EditOp"], s: str, t: str) -> str:
-        """This function exists to show how to interpret of EditOps obtained from `Levenshtein.editops()`"""
-        s_list = list(s)
-        insertion_buffers = ["" for _ in range(len(s) + 1)]
 
-        for op_name, s_i, t_i in ops:
-            if op_name == "insert":
-                insertion_buffers[s_i] += t[t_i]
-            elif op_name == "replace":
-                s_list[s_i] = t[t_i]
-            else:  # delete
-                s_list[s_i] = ""
+def sub_dist(string, new_char, i):
+    """
+    custom distance for substituting a character at index i for a new character.
+    Note the string is guaranteed non-empty and i is not out-of-bound
+    """
+    if new_char == string[i]:
+        return 0
+    elif remove_cree_diacritics(string[i]) == remove_cree_diacritics(new_char):
+        if remove_cree_diacritics(new_char) == "e":
+            return 0
+        else:
+            return 0.5
+    else:
+        return 1
 
-        result = ""
-        for a, b in zip([""] + s_list, insertion_buffers):
-            result += a + b
 
-        return result
+def ins_dist(string, char, i):
+    """
+    custom distance for inserting a character at index i to a non-empty string
+    Note the string is guaranteed non-empty and  0 <= i <= len(string)
+    """
+    if (
+        remove_cree_diacritics(string[min(i, len(string)) - 1]) in VOWELS
+        and char == "h"
+    ):
+        return 0.5
+    else:
+        return 1
 
 
 def get_modified_distance(spelling: str, normal_form: str) -> float:
@@ -60,7 +65,9 @@ def get_modified_distance(spelling: str, normal_form: str) -> float:
 
     A substitution should have a distance of 1: e.g., ekwa vs. ikwa
 
-    A vowel lengths change incur a distance of ½
+    A vowel diacritics on {a i o} change incur a distance of ½
+
+    A vowel diacritics change on "e" should be treated as distance 0
 
     An addition or deletion of an 'h' in a rime should incur a distance of ½
 
@@ -70,94 +77,22 @@ def get_modified_distance(spelling: str, normal_form: str) -> float:
     :param normal_form:
     :return: Our own metric of edit distance
     """
+    # see these slides for "weighted min edit distance"
+    # https://web.stanford.edu/class/cs124/lec/med.pdf
     spelling = spelling.lower()
     normal_form = normal_form.lower()
+    n, m = len(spelling), len(normal_form)
+    d = [[0] * (m + 1) for _ in range(n + 1)]
+    for i in range(1, n + 1):
+        d[i][0] = d[i - 1][0] + del_dist(spelling, i - 1)
+    for j in range(1, m + 1):
+        d[0][j] = d[0][j - 1] + ins_dist(normal_form, normal_form[j - 1], j - 1)
 
-    ops: List[EditOp] = editops(spelling, normal_form)
-    dist = 0.0
+    for i in range(1, n + 1):
+        for j in range(1, m + 1):
+            _del_dist = d[i - 1][j] + del_dist(spelling, i - 1)
+            _ins_dist = d[i][j - 1] + ins_dist(normal_form, normal_form[j - 1], j - 1)
+            _sub_dist = d[i - 1][j - 1] + sub_dist(spelling, normal_form[j - 1], i - 1)
+            d[i][j] = min((_del_dist, _ins_dist, _sub_dist))
 
-    spelling_list = list(spelling)
-    insertion_buffers = ["" for _ in range(len(spelling) + 1)]
-
-    for op_name, s_i, t_i in ops:
-        if op_name == "insert":
-            insertion_buffers[s_i] += normal_form[t_i]
-        elif op_name == "replace":
-            spelling_list[s_i] = normal_form[t_i]
-        else:  # delete
-            spelling_list[s_i] = ""
-
-    ops_and_new_indexes: List[
-        Tuple[str, int]
-    ] = []  # new indexes and what happened to original characters
-
-    result = ""
-    new_index_counter = 0
-    for i, (mutated_char, insertions) in enumerate(
-        zip([""] + spelling_list, insertion_buffers)
-    ):
-        if i > 0:
-            original_char = spelling[i - 1]
-            if mutated_char != "":
-                if mutated_char == original_char:
-                    ops_and_new_indexes.append(("equal", new_index_counter))
-                else:
-                    ops_and_new_indexes.append(("replace", new_index_counter))
-            else:
-                # a deletion happened
-                ops_and_new_indexes.append(("delete", new_index_counter))
-
-        if result != "":
-            last_char = result[-1]
-        else:
-            last_char = ""
-
-        result += mutated_char + insertions
-
-        for x, new_char in enumerate(insertions):
-            if x == 0:
-                if mutated_char != "":
-                    last_char = mutated_char
-            else:
-                last_char = insertions[x - 1]
-
-            if last_char != "":
-                # h in a rime is inserted
-                if remove_cree_diacritics(last_char) in VOWELS and new_char == "h":
-                    dist += 0.5
-                else:
-                    dist += 1
-            else:
-                # insertion at the beginning
-                dist += 1
-
-        new_index_counter += len(mutated_char + insertions)
-
-    for o_index, (op_name, n_index) in enumerate(ops_and_new_indexes):
-        o_char = spelling[o_index]
-
-        if op_name == "replace":
-            n_char = normal_form[n_index]
-            if remove_cree_diacritics(n_char) == remove_cree_diacritics(o_char):
-                dist += 0.5
-            else:
-                dist += 1
-
-        elif op_name == "delete":
-            if n_index == 0:
-                # deleted from the start
-                dist += 1
-            else:
-                new_char_in_front = normal_form[n_index - 1]
-                if o_char == "h":
-                    if remove_cree_diacritics(new_char_in_front) in VOWELS:
-                        # the h is in a rime
-                        dist += 0.5
-                    else:
-                        dist += 1
-                else:
-                    dist += 1
-        else:  # equal
-            pass
-
-    return dist
+    return d[-1][-1]
