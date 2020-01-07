@@ -54,13 +54,12 @@ manage-db = "manage-db" # example usage: manage-db import /res/dictionaries/ --m
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
 # do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
-# you need to supply USE_TEST_DB=True. Supply `-m|--multi-processing N` to speed up
+# Supply `-m|--multi-processing N` to speed up
 # It takes about half a minute with -m 2
-# e.g.
-# USE_TEST_DB=True pipenv run build-test-db -m 2
+# example usage: pipenv run build-test-db -m 2
 build-test-db = "manage-db build-test-db"
 # reminders/alias. you can just use $ update-layouts after pipenv shell
-# 1. Pull layout AND paradigm files from itwewina and place them correctly
+# 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
 update-layouts = 'update-layouts'
 

@@ -23,7 +23,7 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
     :param q: a QuerySet of Wordforms
     """
     for wordform in q:
-        for definition in wordform.definition_set.all():
+        for definition in wordform.definitions.all():
             if "CW" in definition.source_ids:
                 yield wordform
                 break
@@ -106,7 +106,7 @@ class Wordform(models.Model):
         return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
-    # auto-increment is also implemented in the overridden save below
+    # auto-increment is also implemented in the overridden save() method below
     id = models.PositiveIntegerField(primary_key=True)
 
     text = models.CharField(max_length=40)
@@ -139,7 +139,7 @@ class Wordform(models.Model):
     # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
-        help_text="It can not be determined whether this wordform is lemma or not during the importing process. "
+        help_text="The lemma of this wordform is not determined during the importing process."
         "is_lemma defaults to true and lemma field defaults to self",
     )
 
@@ -374,7 +374,7 @@ class Wordform(models.Model):
                 )
                 continue
 
-            definitions = tuple(Definition.objects.filter(lemma=lemma))
+            definitions = tuple(Definition.objects.filter(wordform=lemma))
             if len(definitions) < 1:
                 logging.warning(
                     "Could not find definitions for %r (lemma: %r)",
@@ -475,8 +475,10 @@ class Definition(models.Model):
     # A definition **cites** one or more dictionary sources.
     citations = models.ManyToManyField(DictionarySource)
 
-    # A definition defines a particular word form (usually a lemma)
-    lemma = models.ForeignKey(Wordform, on_delete=models.CASCADE)
+    # A definition defines a particular wordform
+    wordform = models.ForeignKey(
+        Wordform, on_delete=models.CASCADE, related_name="definitions"
+    )
 
     # Why this property exists:
     # because DictionarySource should be its own model, but most code only

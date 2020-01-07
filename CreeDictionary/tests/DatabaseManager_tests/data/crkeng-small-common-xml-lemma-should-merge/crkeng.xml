@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    {#  xml entries with duplicate l but different pos and lc  #}
+    {#  in this case, the following two entries will be merged as they have the same fst lemma analysis  #}
+    <e>
+        <lg>
+            <l pos="N">pisiw</l>
+            <lc/>
+            <stem>md_stem[nr]</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="N" sources="MD">A lynx.</t>
+            </tg>
+        </mg>
+    </e>
+
+
+    <e>
+
+        <lg>
+            <l pos="N">pisiw</l>
+            <lc>NA-2</lc>
+            <stem>pisiw-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="N" sources="CW">lynx; bobcat</t>
+            </tg>
+        </mg>
+    </e>
+</r>

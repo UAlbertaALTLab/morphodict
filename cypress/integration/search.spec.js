@@ -106,7 +106,7 @@ context('Searching', () => {
     cy.visit('/search/nipa')
 
     cy.get('[data-cy=search-results]')
-      .should('contain', 'Sleep')
+      .should('contain', 'sleeps')
       .and('not.contain', 'Kill')
   })
 
