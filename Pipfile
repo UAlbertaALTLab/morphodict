@@ -59,13 +59,6 @@ import-xml = "manage-db import"
 # e.g.
 # USE_TEST_DB=True pipenv run build-test-db -m 2
 build-test-db = "manage-db build-test-db"
-# about permissions: db.sqlite3 file django generates has -rw-r--r--
-# As long as the user on Sapir belongs to www-data group. www-data will be able to read the database
-# Add SAPIR_USER to your .env file
-push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/new_db.sqlite3'
-# NOTE: Whenever you want to make changes to the database. Do `$ pull-db` first, otherwise admin data and modified data
-# on sapir may get lost
-pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # reminders/alias. you can just use $ update-layouts after pipenv shell
 # 1. Pull layout AND paradigm files from itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime

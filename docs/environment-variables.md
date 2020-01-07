@@ -1,7 +1,3 @@
-# SAPIR_USER
-This affects the username used in ssh commands in `pipenv run pull-db` and `pipenv run push-db`.
-You should add SAPIR_USER=your_user_name to .env file.
-
 # DEBUG
 Django magical variable. This is default to production setting `False`. You should add `DEBUG=False` to .env file
  in development.
