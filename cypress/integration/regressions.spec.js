@@ -147,4 +147,13 @@ context('Regressions', () => {
       .find('[data-cy=lemma-meaning]').should('have.length', 2)
   })
 
+
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
+  it('should show the NRC logo', () => {
+    cy.visit('/about')
+    cy.get('[href^="https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project"] > img')
+      .should('be.visible')
+      .invoke('attr', 'src')
+      .should('match', /[.]svg$/)
+  })
 })
