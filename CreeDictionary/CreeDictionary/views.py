@@ -19,7 +19,7 @@ def index(request, query_string=None, lemma_id=None):
     """
     context = {"word_search_form": WordSearchForm()}
     if query_string is not None:
-        context.update({"query_string": query_string})
+        context.update({"query_string": query_string, "lemma_id": ""})
     elif lemma_id is not None:
         context.update({"lemma_id": lemma_id})
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
