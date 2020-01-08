@@ -4,7 +4,7 @@
 
 {% block content %}
     {# tell javascript to display initial lemma #}
-    <data id="initial-lemma-id" value="{{ lemma_id }}"></data>
+    <data id="initial-lemma-id" value="{{ lemma_id|default:"" }}"></data>
     <main class="app__content app__pane">
 
         <article class="prose box" id="introduction-text"><h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
