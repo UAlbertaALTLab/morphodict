@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import posixpath
+from pathlib import Path
 from sys import stderr
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -142,6 +143,9 @@ else:
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
+log_dir = Path(BASE_DIR) / "django_logs"
+log_dir.mkdir(exist_ok=True)
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -150,15 +154,15 @@ LOGGING = {
         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
     },
     "handlers": {
-        "write_prod_debug_to_file": {
-            "level": "INFO",
+        "write_debug_to_file_prod": {
+            "level": "DEBUG",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "django_logs", "django.log"),
+            "filename": str(log_dir / "django.log"),
             "maxBytes": 1024 * 1024 * 15,  # 15MB
             "backupCount": 10,
             "filters": ["require_debug_false"],
         },
-        "write_dev_info_to_console": {
+        "write_info_to_console_dev": {
             "level": "INFO",
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
@@ -166,12 +170,12 @@ LOGGING = {
     },
     "loggers": {
         "production_debug_logger": {
-            "handlers": ["write_prod_debug_to_file"],
+            "handlers": ["write_debug_to_file_prod"],
             "level": "DEBUG",
         },
         "development_info_logger": {
             "level": "INFO",
-            "handlers": ["write_dev_info_to_console"],
+            "handlers": ["write_info_to_console_dev"],
         },
     },
 }
