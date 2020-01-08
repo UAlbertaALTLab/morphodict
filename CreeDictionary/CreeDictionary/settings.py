@@ -167,15 +167,11 @@ LOGGING = {
             "filters": ["require_debug_true"],
             "class": "logging.StreamHandler",
         },
-    },
+    },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
     "loggers": {
-        "production_debug_logger": {
-            "handlers": ["write_debug_to_file_prod"],
+        "django": {
+            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
             "level": "DEBUG",
-        },
-        "development_info_logger": {
-            "level": "INFO",
-            "handlers": ["write_info_to_console_dev"],
         },
     },
 }
