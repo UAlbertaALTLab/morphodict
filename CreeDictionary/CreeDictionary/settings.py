@@ -167,7 +167,7 @@ LOGGING = {
     "loggers": {
         "production_debug_logger": {
             "handlers": ["write_prod_debug_to_file"],
-            "level": "INFO",
+            "level": "DEBUG",
         },
         "development_info_logger": {
             "level": "INFO",
