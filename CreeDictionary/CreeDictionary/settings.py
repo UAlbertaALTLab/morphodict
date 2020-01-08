@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import posixpath
+from pathlib import Path
 from sys import stderr
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -142,6 +143,9 @@ else:
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
 
+log_dir = Path(BASE_DIR) / "django_logs"
+log_dir.mkdir(exist_ok=True)
+
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -153,7 +157,7 @@ LOGGING = {
         "write_debug_to_file_prod": {
             "level": "DEBUG",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": os.path.join(BASE_DIR, "django_logs", "django.log"),
+            "filename": str(log_dir / "django.log"),
             "maxBytes": 1024 * 1024 * 15,  # 15MB
             "backupCount": 10,
             "filters": ["require_debug_false"],
