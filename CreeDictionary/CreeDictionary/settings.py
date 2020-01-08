@@ -82,9 +82,7 @@ TEMPLATES = [
     }
 ]
 
-
 WSGI_APPLICATION = "CreeDictionary.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -119,7 +117,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -133,7 +130,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 ############################## staticfiles app ###############################
 
 if DEBUG:
@@ -145,3 +141,37 @@ else:
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
+    },
+    "handlers": {
+        "write_prod_debug_to_file": {
+            "level": "INFO",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": os.path.join(BASE_DIR, "django_logs", "django.log"),
+            "maxBytes": 1024 * 1024 * 15,  # 15MB
+            "backupCount": 10,
+            "filters": ["require_debug_false"],
+        },
+        "write_dev_info_to_console": {
+            "level": "INFO",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+        },
+    },
+    "loggers": {
+        "production_debug_logger": {
+            "handlers": ["write_prod_debug_to_file"],
+            "level": "INFO",
+        },
+        "development_info_logger": {
+            "level": "INFO",
+            "handlers": ["write_dev_info_to_console"],
+        },
+    },
+}
