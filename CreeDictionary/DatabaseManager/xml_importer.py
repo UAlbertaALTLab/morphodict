@@ -469,7 +469,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                 if is_lemma:
                     db_lemma = db_inflection
-
+                    # as inflections sometimes bear definition with them
                     for english_keywords in engcrk_cree_to_keywords[
                         EngcrkCree(generated_wordform, generated_pos)
                     ]:

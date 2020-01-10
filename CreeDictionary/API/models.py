@@ -1,19 +1,19 @@
 import logging
 import unicodedata
-from collections import defaultdict
-from typing import Dict, List, NamedTuple, Set, Tuple, Iterable
+from typing import List, NamedTuple, Set, Tuple, Iterable, NewType
 
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
+from sortedcontainers import SortedSet
 
-from constants import SimpleLC, SimpleLexicalCategory, POS
+from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator
-from utils import fst_analysis_parser
+from utils import fst_analysis_parser, get_modified_distance
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("django")
 
 
 def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
@@ -78,17 +78,8 @@ class EntryKey(NamedTuple):
     lc: SimpleLexicalCategory
 
 
-class CreeAndEnglish(NamedTuple):
-    """
-    Duct tapes together two kinds of search results:
-
-     - cree results -- a dict of analyses to the LEMMAS that match that analysis!
-                    -- duplicate spellings are removed
-     - english results -- a list of lemmas that match
-    """
-
-    cree_results: Dict[str, Set["Wordform"]]
-    english_results: Set["Wordform"]
+MatchedCree = NewType("MatchedForm", str)
+MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 class Wordform(models.Model):
@@ -125,7 +116,8 @@ class Wordform(models.Model):
     analysis = models.CharField(
         max_length=50,
         default="",
-        help_text="fst analysis or the best possible generated if the source is not analyzable",  # see xml_importer.py::generate_as_is_analysis
+        help_text="fst analysis or the best possible generated if the source is not analyzable",
+        # see xml_importer.py::generate_as_is_analysis
     )
     is_lemma = models.BooleanField(
         default=False,
@@ -186,7 +178,7 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(user_query: str) -> CreeAndEnglish:
+    def fetch_lemma_by_user_query(user_query: str) -> "CreeAndEnglish":
         """
         treat the user query as cree and:
 
@@ -219,7 +211,9 @@ class Wordform(models.Model):
         # build up result_lemmas in 2 ways
         # 1. spell relax in descriptive fst
         # 2. definition containment of the query word
-        lemmas_by_analysis: Dict[str, List["Wordform"]] = defaultdict(list)
+        cree_results: SortedSet[Tuple[Analysis, MatchedCree, Lemma]] = SortedSet(
+            key=lambda t: get_modified_distance(t[0], user_query)
+        )
 
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -239,7 +233,8 @@ class Wordform(models.Model):
             )
 
             if exact_matched_lemmas.exists():
-                lemmas_by_analysis[analysis].extend(list(exact_matched_lemmas))
+                for lemma in exact_matched_lemmas:
+                    cree_results.add((analysis, lemma.text, lemma))
             else:
                 # When the user query is outside of paradigm tables
                 # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
@@ -252,9 +247,29 @@ class Wordform(models.Model):
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
                     continue
-                lemma, lc = lemma_lc
-                matched_lemmas = Wordform.objects.filter(text=lemma, is_lemma=True)
 
+                # now we generate the standardized form of the user query for display purpose
+                # flatten tuple of tuple
+                all_standard_forms = [
+                    c
+                    for b in normative_generator.feed(analysis, concat=True)
+                    for c in b
+                ]
+                if len(all_standard_forms) == 0:
+                    logger.error(
+                        f"can not generate standardized form for analysis {analysis}"
+                    )
+                standardized_user_query = min(
+                    all_standard_forms,
+                    key=lambda f: get_modified_distance(f, user_query),
+                )
+
+                lemma, lc = lemma_lc
+                matched_lemma_wordforms = Wordform.objects.filter(
+                    text=lemma, is_lemma=True
+                )
+
+                # now we get wordform objects from database
                 # Note:
                 # non-analyzable matches should not be displayed (mostly from MD)
                 # like "nipa", which means kill him
@@ -271,20 +286,26 @@ class Wordform(models.Model):
                     # it's ambiguous which one is the lemma in the importing process thus it's labeled "as_is"
 
                     # a more permanent fix requires every pronouns lemma to be listed and specified
-                    lemmas_by_analysis[analysis].extend(
-                        list(matched_lemmas.filter(pos="PRON"))
-                    )
+                    for lemma_wordform in matched_lemma_wordforms:
+                        cree_results.add(
+                            (analysis, standardized_user_query, lemma_wordform)
+                        )
                 else:
-                    lemmas_by_analysis[analysis].extend(
-                        list(matched_lemmas.filter(as_is=False, pos=lc.pos.name))
-                    )
+                    for lemma_wordform in matched_lemma_wordforms.filter(
+                        as_is=False, pos=lc.pos.name
+                    ):
+                        cree_results.add(
+                            (analysis, standardized_user_query, lemma_wordform)
+                        )
 
         # we choose to trust CW and show those matches with definition from CW.
         # this majorly includes the entries with spaces in it, which fst can't analyze
-        for cw_as_is_word in filter_cw_wordforms(
+        for cw_as_is_wordform in filter_cw_wordforms(
             Wordform.objects.filter(text=user_query, as_is=True, is_lemma=True)
         ):
-            lemmas_by_analysis[cw_as_is_word.analysis].append(cw_as_is_word)
+            cree_results.add(
+                (cw_as_is_wordform.analysis, user_query, cw_as_is_wordform)
+            )
 
         # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
         # preverbs should be presented
@@ -299,44 +320,48 @@ class Wordform(models.Model):
         # A imperfection here is preverbs with diacritics won't be matched.
         # todo: consider exhaustively match preverbs with diacritics
 
-        for preverb in Wordform.objects.filter(
+        for preverb_wordform in Wordform.objects.filter(
             Q(full_lc="IPV") | Q(pos="IPV"),
             Q(text=user_query) | Q(text=user_query + "-"),
-        ):  # regarding the appending dash, see:
+        ):  # regarding the trailing dash, see:
             # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
-            # these are as_is analysis generated by xml_importer.py::generate_as_is_analysis
-            lemmas_by_analysis[preverb.analysis].append(preverb)
+            # preverb.analysis are as_is analysis generated by xml_importer.py::generate_as_is_analysis
+            cree_results.add((preverb_wordform.analysis, user_query, preverb_wordform))
 
         # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
         # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
         # that comes from CW
 
+        # now we get results searched by English
         # todo: remind user "are you searching in cree/english?"
-        lemmas_by_english: List["Wordform"] = []
+        # todo: implement sorting mechanism for English search
+        # todo: allow inflected forms to be searched through English.
+        # key=None will make key=identity
+        english_results: SortedSet[
+            Tuple[MatchedEnglish, MatchedCree, Lemma]
+        ] = SortedSet(key=None)
         if " " not in user_query:  # a whole word
+
+            # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
                 "lemma__id"
             )
-
-            lemmas_by_english.extend(
-                list(Wordform.objects.filter(id__in=lemma_ids, as_is=False))
-            )
+            for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
+                english_results.add(
+                    (user_query, wordform.text, wordform)
+                )  # will become  (user_query, inflection.text, inflection.lemma)
 
             # explain above, preverbs should be presented
-            lemmas_by_english.extend(
-                list(
-                    Wordform.objects.filter(
-                        Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
-                        id__in=lemma_ids,
-                        as_is=True,
-                    )
-                )
-            )
+            for wordform in Wordform.objects.filter(
+                Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
+                id__in=lemma_ids,
+                as_is=True,
+            ):
+                english_results.add(
+                    (user_query, wordform.text, wordform)
+                )  # will become  (user_query, inflection.text, wordform)
 
-        return CreeAndEnglish(
-            {analysis: set(lemmas) for analysis, lemmas in lemmas_by_analysis.items()},
-            set(lemmas_by_english),
-        )
+        return CreeAndEnglish(cree_results, english_results)
 
     @staticmethod
     def search(user_query: str) -> Tuple[str, List[SearchResult]]:
@@ -354,7 +379,7 @@ class Wordform(models.Model):
         matched_wordforms: Set[EntryKey] = set()
 
         # First, let's add all matched analyses:
-        for analysis in cree_results.keys():
+        for analysis in [result[0] for result in cree_results]:
             for entry in determine_entries_from_analysis(analysis):
                 matched_wordforms.add(entry)
 
@@ -399,6 +424,24 @@ class Wordform(models.Model):
         # TODO: sort them!
 
         return "crk", results
+
+
+Lemma = NewType("Lemma", Wordform)
+
+
+class CreeAndEnglish(NamedTuple):
+    """
+    Duct tapes together two kinds of search results:
+
+     - cree results -- an ordered set of matched form and lemma that matches the analysis of user query.
+        sorted by the modified levenshtein distance between the analysis and the matched form
+     - english results -- an ordered set of English keywords and corresponding wordforms
+        sorting mechanism is to be determined
+    """
+
+    # MatchedCree are inflections
+    cree_results: SortedSet[Tuple[Analysis, MatchedCree, Lemma]]
+    english_results: SortedSet[Tuple[MatchedEnglish, MatchedCree, Lemma]]
 
 
 class DictionarySource(models.Model):

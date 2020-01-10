@@ -32,6 +32,7 @@ typing-extensions = "~=3.7"
 attrs = "~=19.1"
 django-js-reverse = "~=0.9"
 fst-lookup = "*"
+sortedcontainers = {git = "https://github.com/Madoshakalaka/python-sortedcontainers.git"}
 
 [scripts]
 # look stuff up

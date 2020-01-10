@@ -32,18 +32,17 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     """
 
     query = lemma.text
-    analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(query)
+    cree_results, _ = Wordform.fetch_lemma_by_user_query(query)
 
     exact_match = False
     matched_lemma_count = 0
-    for analysis, lemmas in analysis_to_lemmas.items():
-        for matched_lemma in lemmas:
-            if matched_lemma.id == lemma.id:
-                exact_match = True
-            matched_lemma_count += 1
+    for analysis, matched_cree, lemma in cree_results.items():
+        if lemma.id == lemma.id:
+            exact_match = True
+        matched_lemma_count += 1
 
     assert matched_lemma_count >= 1, f"Could not find {query!r} in the database"
-    assert exact_match, f"No exact matches for {query!r} in {analysis_to_lemmas}"
+    assert exact_match, f"No exact matches for {query!r} in {cree_results}"
 
 
 # fixme: Eddie
@@ -141,8 +140,8 @@ def test_search_space_characters_in_matched_term(term):
     assert word is not None
 
     # Now try searching for it:
-    analysis_to_lemmas, _ = Wordform.fetch_lemma_by_user_query(term)
-    assert len(analysis_to_lemmas) > 0
+    cree_results, _ = Wordform.fetch_lemma_by_user_query(term)
+    assert len(cree_results) > 0
 
 
 @pytest.mark.django_db
