@@ -78,7 +78,7 @@ class EntryKey(NamedTuple):
     lc: SimpleLexicalCategory
 
 
-MatchedCree = NewType("MatchedForm", str)
+NormatizedCree = NewType("MatchedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
@@ -211,7 +211,7 @@ class Wordform(models.Model):
         # build up result_lemmas in 2 ways
         # 1. spell relax in descriptive fst
         # 2. definition containment of the query word
-        cree_results: SortedSet[Tuple[Analysis, MatchedCree, Lemma]] = SortedSet(
+        cree_results: SortedSet[Tuple[Analysis, NormatizedCree, Lemma]] = SortedSet(
             key=lambda t: get_modified_distance(t[0], user_query)
         )
 
@@ -338,7 +338,7 @@ class Wordform(models.Model):
         # todo: allow inflected forms to be searched through English.
         # key=None will make key=identity
         english_results: SortedSet[
-            Tuple[MatchedEnglish, MatchedCree, Lemma]
+            Tuple[MatchedEnglish, NormatizedCree, Lemma]
         ] = SortedSet(key=None)
         if " " not in user_query:  # a whole word
 
@@ -421,8 +421,6 @@ class Wordform(models.Model):
                 )
             )
 
-        # TODO: sort them!
-
         return "crk", results
 
 
@@ -440,8 +438,8 @@ class CreeAndEnglish(NamedTuple):
     """
 
     # MatchedCree are inflections
-    cree_results: SortedSet[Tuple[Analysis, MatchedCree, Lemma]]
-    english_results: SortedSet[Tuple[MatchedEnglish, MatchedCree, Lemma]]
+    cree_results: SortedSet[Tuple[Analysis, NormatizedCree, Lemma]]
+    english_results: SortedSet[Tuple[MatchedEnglish, NormatizedCree, Lemma]]
 
 
 class DictionarySource(models.Model):

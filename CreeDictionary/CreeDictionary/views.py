@@ -30,7 +30,6 @@ def search_results(request, query_string: str):
     returns rendered boxes of search results according to user query
     """
     # todo: use the analysis from cree_results to show user query analysis (Preverb, reduplication, IC ...)
-
     cree_results, english_results = Wordform.fetch_lemma_by_user_query(query_string)
     return render(
         request,

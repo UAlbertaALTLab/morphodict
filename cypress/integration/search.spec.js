@@ -82,14 +82,15 @@ context('Searching', () => {
     })
   })
 
-  // todo: this
   describe('I want to see the normatize form of my search', () => {
-    it.skip('should search the normatized form of the matched search string', () => {
+    it('should search the normatized form of the matched search string', () => {
       // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+Prs+1Sg
       const searchTerm = 'nipe-acimon'
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type(searchTerm)
+
+
 
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', /Form of/i)
@@ -98,6 +99,9 @@ context('Searching', () => {
       // normatized form:
       cy.get('@searchResult')
         .contains('[data-cy=definition-title]', 'nipê-âcimon')
+
+      cy.get('@searchResult').get('[data-cy=reference-to-lemma]')
+        .contains( 'âcimow')
     })
   })
 
