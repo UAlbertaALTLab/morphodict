@@ -11,8 +11,8 @@
     <option name="SDK_HOME" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="IS_MODULE_SDK" value="true" />
-    <option name="ADD_CONTENT_ROOTS" value="true" />
-    <option name="ADD_SOURCE_ROOTS" value="true" />
+    <option name="ADD_CONTENT_ROOTS" value="false" />
+    <option name="ADD_SOURCE_ROOTS" value="false" />
     <EXTENSION ID="net.ashald.envfile">
       <option name="IS_ENABLED" value="true" />
       <option name="IS_SUBST" value="false" />
@@ -33,16 +33,6 @@
     <option name="runNoReload" value="false" />
     <option name="useCustomRunCommand" value="false" />
     <option name="customRunCommand" value="" />
-    <method v="2">
-      <option name="NpmBeforeRunTask" enabled="true">
-        <package-json value="$PROJECT_DIR$/package.json" />
-        <command value="run" />
-        <scripts>
-          <script value="bg-watch" />
-        </scripts>
-        <node-interpreter value="project" />
-        <envs />
-      </option>
-    </method>
+    <method v="2" />
   </configuration>
 </component>
