@@ -10,7 +10,11 @@ from utils import shared_res_dir, paradigm_filler as pf
 paradigm_filler = pf.ParadigmFiller.default_filler()
 
 descriptive_analyzer_foma = FST.from_file(
-    shared_res_dir / "fst/crk-descriptive-analyzer.fomabin"
+    shared_res_dir / "fst" / "crk-descriptive-analyzer.fomabin"
+)
+
+normative_generator_foma = FST.from_file(
+    shared_res_dir / "fst" / "crk-normative-generator.fomabin", labels="invert"
 )
 
 descriptive_analyzer = HFSTOL.from_file(
