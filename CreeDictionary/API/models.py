@@ -10,7 +10,7 @@ from sortedcontainers import SortedSet
 
 from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis
 from fuzzy_search import CreeFuzzySearcher
-from shared import descriptive_analyzer_foma, normative_generator
+from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
 
 logger = logging.getLogger("django")
@@ -249,12 +249,7 @@ class Wordform(models.Model):
                     continue
 
                 # now we generate the standardized form of the user query for display purpose
-                # flatten tuple of tuple
-                all_standard_forms = [
-                    c
-                    for b in normative_generator.feed(analysis, concat=True)
-                    for c in b
-                ]
+                all_standard_forms = [*normative_generator_foma.generate(analysis)]
                 if len(all_standard_forms) == 0:
                     logger.error(
                         f"can not generate standardized form for analysis {analysis}"
@@ -560,6 +555,6 @@ def determine_entries_from_analysis(analysis: str):
     result = fst_analysis_parser.extract_lemma_and_category(analysis)
     assert result is not None, f"Could not parse lemma and category from {analysis}"
     lemma, pos = result
-    normatized_forms: List[Tuple[str]] = normative_generator.feed(analysis)
-    for (wordform,) in normatized_forms:
+    normatized_forms: Iterable[str] = normative_generator_foma.generate(analysis)
+    for wordform in normatized_forms:
         yield EntryKey(wordform, lemma, pos)
