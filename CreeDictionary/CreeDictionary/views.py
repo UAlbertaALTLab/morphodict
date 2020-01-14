@@ -13,15 +13,15 @@ def index(request, query_string=None, lemma_id=None):
     homepage with optional initial query or initial lemma. query_string and lemma_id can not both be given
 
     :param request:
-    :param query_string: initial search results to display
+    :param query_string: initial search results o display
     :param lemma_id: initial paradigm page to display
     :return:
     """
-    context = {"word_search_form": WordSearchForm()}
-    if query_string is not None:
-        context.update({"query_string": query_string})
-    elif lemma_id is not None:
-        context.update({"lemma_id": lemma_id})
+    context = {
+        "word_search_form": WordSearchForm(),
+        "query_string": query_string,
+        "lemma_id": lemma_id,
+    }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 

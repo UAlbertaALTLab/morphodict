@@ -7,8 +7,8 @@
         <title>Maskwacîs Cree Dictionary</title>
     </source>
 
-    {# these two entries have common analysis: pisin+V+AI+Imp+Imm+2Sg#}
-    {#  There definition should be merged. Two of the definitions are the same, which should be merged  #}
+    {# these two entries have common analysis: pisin+V+AI+Imp+Imm+2Sg #}
+    {#  Their definition should NOT be merged, as inflected forms may have different definitions  #}
     <e>
         <lg>
             <l pos="V">pisin</l>

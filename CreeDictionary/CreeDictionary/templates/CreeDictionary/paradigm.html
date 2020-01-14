@@ -13,7 +13,7 @@
 
     <section class="definition__meanings">
         <ol class="meanings">
-            {% for def in lemma.definition_set.all %}
+            {% for def in lemma.definitions.all %}
                 <li class="meanings__meaning">{{ def.text }}
                     {% for source in def.source_ids %}
                         <cite class="cite-dict">{{ source }}</cite>

@@ -63,7 +63,8 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
         multi_processing=1,
         verbose=False,
     )
-    assert len(Wordform.objects.get(text="pisin").definition_set.all()) == 2
+    assert Wordform.objects.get(text="pisin").definitions.count() == 1
+    assert Wordform.objects.get(text="pisiniw").definitions.count() == 2
 
 
 @pytest.mark.django_db
@@ -73,24 +74,20 @@ def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_data
         multi_processing=1,
         verbose=False,
     )
-    assert len(Wordform.objects.get(text="asawâpiwin").definition_set.all()) == 3
+    assert len(Wordform.objects.get(text="asawâpiwin").definitions.all()) == 3
 
 
 @pytest.mark.django_db
 def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
     import_xmls(
-        shared_datadir / "crkeng-small-common-xml-lemma-different-lc",
+        shared_datadir / "crkeng-small-common-xml-lemma-should-merge",
         multi_processing=1,
         verbose=False,
     )
 
     assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 1
     assert (
-        len(
-            Wordform.objects.filter(text="pisiw", is_lemma=True)
-            .get()
-            .definition_set.all()
-        )
+        Wordform.objects.filter(text="pisiw", is_lemma=True).get().definitions.count()
         == 2
     )
 

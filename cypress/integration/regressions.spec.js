@@ -102,18 +102,18 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'atâhk')
   })
-  
+
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
-  describe('should show idiomatic lemmas', ()=>{
+  describe('should show idiomatic lemmas', () => {
     it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
       cy.visit('/search/ayiwinis')
       cy.get('[data-cy=search-results]')
         .should('contain', 'ayiwinisa')
     })
   })
-  
+
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
-  describe('should show at least two lemmas for lexicalized diminutive forms', ()=>{
+  describe('should show at least two lemmas for lexicalized diminutive forms', () => {
     it('should show atâhk and acâhkos for acâhkos', () => {
       cy.visit('/search/acâhkos')
       cy.get('[data-cy=search-results]')
@@ -132,12 +132,28 @@ context('Regressions', () => {
     }
     )
   })
-    
+
   it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
     cy.visit('/search/ayiwinis')
     cy.get('[data-cy=search-results]')
       .should('contain', 'ayiwinisa')
   })
-  
 
+
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
+  it('should just show two meanings for the lemma nipâw', () => {
+    cy.visit('/search/nipâw')
+    cy.get('[data-cy=search-results]').first()
+      .find('[data-cy=lemma-meaning]').should('have.length', 2)
+  })
+
+
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
+  it('should show the NRC logo', () => {
+    cy.visit('/about')
+    cy.get('[href^="https://nrc.canada.ca/en/research-development/research-collaboration/programs/canadian-indigenous-languages-technology-project"] > img')
+      .should('be.visible')
+      .invoke('attr', 'src')
+      .should('match', /[.]svg$/)
+  })
 })

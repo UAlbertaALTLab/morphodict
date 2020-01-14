@@ -2,12 +2,10 @@ from typing import Set
 
 from cree_sro_syllabics import syllabics2sro
 from django.contrib import admin
-from django.db.models import F, Q
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 
 from shared import descriptive_analyzer
-
 from .models import Definition, DictionarySource, Wordform
 
 
@@ -50,6 +48,8 @@ class HasParadigmListFilter(admin.SimpleListFilter):
             return queryset.filter(as_is=True)
 
 
+# todo: make admin search "extended", searching for "nipa" should give result "nipâ"
+# todo: show inflection definition when possible instead of always showing lemma definition
 @admin.register(Wordform)
 class InflectionAdmin(admin.ModelAdmin):
     search_fields = ("text",)
@@ -123,7 +123,7 @@ class InflectionAdmin(admin.ModelAdmin):
         else:
             lemma = obj.lemma
 
-        definition_texts = [d.text for d in lemma.definition_set.all()]
+        definition_texts = [d.text for d in lemma.definitions.all()]
         return format_html(
             ("<br/><br/>".join(["<span>%s</span>"] * len(definition_texts)))
             % tuple(definition_texts)
@@ -140,7 +140,7 @@ class InflectionAdmin(admin.ModelAdmin):
     get_lemma_form.short_description = "Lemma form"  # type: ignore
 
     def get_lemma_definitions(self, obj: Wordform) -> str:
-        definition_texts = [d.text for d in obj.lemma.definition_set.all()]
+        definition_texts = [d.text for d in obj.lemma.definitions.all()]
         return format_html(
             ("<br/><br/>".join(["<span>%s</span>"] * len(definition_texts)))
             % tuple(definition_texts)

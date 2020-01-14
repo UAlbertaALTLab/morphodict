@@ -14,7 +14,7 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
 
     kill_him_inflections = []
     for inflection in query_set:
-        for definition in inflection.definition_set.all():
+        for definition in inflection.definitions.all():
             if "Kill" in definition.text:
                 kill_him_inflections.append(inflection)
 

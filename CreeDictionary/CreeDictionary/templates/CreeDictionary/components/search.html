@@ -7,8 +7,9 @@
              type="text" required name="q"
              placeholder="Search in Cree or English"
              autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"
-             value="{{ query_string }}">
+             value="{{ query_string|default:"" }}">
     </label>
+
     <button class="search-bar__button" type="submit">
       <img src="{% static 'CreeDictionary/images/fa/search.svg' %}" alt="Search">
     </button>

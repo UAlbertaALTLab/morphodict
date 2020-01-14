@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import posixpath
+from pathlib import Path
 from sys import stderr
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -82,9 +83,7 @@ TEMPLATES = [
     }
 ]
 
-
 WSGI_APPLICATION = "CreeDictionary.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -119,7 +118,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -133,7 +131,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 ############################## staticfiles app ###############################
 
 if DEBUG:
@@ -145,3 +142,36 @@ else:
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+log_dir = Path(BASE_DIR) / "django_logs"
+log_dir.mkdir(exist_ok=True)
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
+    },
+    "handlers": {
+        "write_debug_to_file_prod": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": str(log_dir / "django.log"),
+            "maxBytes": 1024 * 1024 * 15,  # 15MB
+            "backupCount": 10,
+            "filters": ["require_debug_false"],
+        },
+        "write_info_to_console_dev": {
+            "level": "INFO",
+            "filters": ["require_debug_true"],
+            "class": "logging.StreamHandler",
+        },
+    },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+    "loggers": {
+        "django": {
+            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+            "level": "DEBUG",
+        },
+    },
+}

@@ -153,13 +153,11 @@ def test_filter_cw_content():
     assert mowew_queryset.count() == 1
     assert {
         ("s/he eats s.o. (e.g. bread)", "CW"),
-        ("1. That's where he scolds from. (A location). 2. He scolds about it.", "MD"),
         ("s/he eats s.o. (e.g. bread)", "MD"),
-        ("All of you eat it. Animate. [Command]", "MD"),
     } == {
         tuple(definition_dict.values())
         for definition_dict in mowew_queryset.get()
-        .definition_set.all()
+        .definitions.all()
         .values("text", "citations")
     }
 
