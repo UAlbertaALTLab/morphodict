@@ -78,7 +78,7 @@ class EntryKey(NamedTuple):
     lc: SimpleLexicalCategory
 
 
-NormatizedCree = NewType("MatchedCree", str)
+NormatizedCree = NewType("NormatizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
