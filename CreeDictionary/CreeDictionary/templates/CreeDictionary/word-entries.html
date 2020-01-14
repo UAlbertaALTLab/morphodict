@@ -29,7 +29,7 @@
       <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
         Form of
         {# TODO: this link should go to the lemma search result, further down the page #}
-        <a href="#">{{ lemma_wordform.text }}</a>
+        <a class="definition-title__link" href="javascript:void(0)" data-lemma-id="{{ lemma_wordform.id }}">{{ lemma_wordform.text }}</a>
       </p>
       {% endif %}
 
@@ -74,7 +74,7 @@
       <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
         Form of
         {# TODO: this link should go to the lemma search result, further down the page #}
-        <a href="#">{{ lemma_wordform.lemma.text }}</a>
+        <a class="definition-title__link" href="javascript:void(0)" data-lemma-id="{{ lemma_wordform.id }}">{{ lemma_wordform.lemma.text }}</a>
       </p>
       {% endif %}
 
