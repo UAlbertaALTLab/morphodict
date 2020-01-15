@@ -25,7 +25,7 @@
     </header>
 
       {# Show the matched lemma (when this is NOT a lemma. #}
-      {% if analysis != lemma_wordform.analysis %}
+      {% if normatized_cree != lemma_wordform.text %}
       <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
         Form of
         {# TODO: this link should go to the lemma search result, further down the page #}
