@@ -313,23 +313,6 @@ html {
 }
 
 /**
- * ELEMENT search label
- *
- * The label that says "Search: "
- */
-@media screen, print {
-  /* Hide the label on the screen */
-  .search-bar__label {
-    /* I tried display: none and visibilty: hidden, but my accessiblily linter
-     * kept complaining, so let it have zero size and don't display content
-     * outside its zero-sized box: */
-    width: 0;
-
-    overflow: hidden;
-  }
-}
-
-/**
  * ELEMENT search__input
  *
  * The actual input element that the user types the query into.
@@ -987,4 +970,23 @@ a.menu-choice__label:active {
 /* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
 .feature-unavailable {
   display: none;
+}
+
+/**
+ * ELEMENT sr-only
+ *
+ * Let something be part of the accessiblity tree without showing it to
+ * screens and print.
+ */
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(1px 1px 1px 1px);
+  clip-path: inset(1px 1px 1px 1px);
+  pointer-events: none;
 }

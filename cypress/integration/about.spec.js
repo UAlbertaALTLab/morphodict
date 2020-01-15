@@ -22,6 +22,14 @@ context('The About page', function () {
       cy.get('main').contains('h2', /Contact Us/i)
     });
 
+    it('should have a mailto link', () => {
+      cy.contains('altlab@ualberta.ca')
+    });
+
+    it('should have an href in the mailto link', () => {
+      cy.contains('section#contact-us', 'altlab@ualberta.ca');
+      
+    });
     it('should have partner logos', () => {
       cy.get('main .partner-logos')
         .should('be.visible')
