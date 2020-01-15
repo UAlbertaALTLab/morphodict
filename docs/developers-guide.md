@@ -12,20 +12,27 @@ Clone the repo and `cd` into it, as usual.
     git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git
     cd cree-intelligent-dictionary
 
+### Install Python
+
 Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
 
 Within the directory, install all Python dependencies:
 
     pipenv install --dev
 
+### Install NodeJS
+
+Install [NodeJS][] version 10 or greater.
+
+[NodeJS]: https://nodejs.org/
+
+With Node installed, install all of the JavaScript dependencies using `npm`:
+
+    npm install
 
 ### Install HFST
 
-Make sure `hfst-optimized-lookup` is a recognizable command on the terminal
-
-On Linux:
-
->     sudo apt-get install -y hfst
+Make sure `hfst-optimized-lookup` is installed.
 
 On Mac:
 
@@ -34,6 +41,10 @@ On Mac:
 On Windows:
 
 > Download hfstol binary file. Add bin folder to system path.
+
+On Linux:
+
+>     sudo apt-get install -y hfst
 
 For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu).
 
@@ -46,8 +57,22 @@ These files are copyright protected and not allowed on GitHub. Ask coworkers or 
 
 ### Environment
 
-Create a file named `.env` under project root with `DEBUG=true` and `USE_TEST_DB=true`.
-(Required for both both by npm and pipenv).
+Create a file named `.env` in the project root using the following
+template:
+
+```sh
+# .env
+DEBUG=true
+USE_TEST_DB=true
+```
+
+These are environment variables that affect whether Django is in debug
+mode, whether Django should use `./CreeDictionary/test_db.sqlite3`
+instead of the production database, and whether the JavaScript should be
+minified.
+
+The enviroment variables go into effect when using `pipenv shell`, or by
+running a program with `pipenv run`.
 
 
 ### The development environment
@@ -63,6 +88,8 @@ As with any Django app, you must create and apply all migrations.
     pipenv run make-migrations && pipenv run migrate
 
 ### Build Database
+
+> Note: if you have `USE_TEST_DB=true`, you can skip this step
 
 Now import the dictionaries into the database:
 
