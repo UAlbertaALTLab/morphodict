@@ -4,7 +4,6 @@
   "description": "Cree Intelligent Dictionary",
   "scripts": {
     "start": "rollup --config --watch & pipenv run dev",
-    "bg-watch": "rollup -c && rollup --watch &",
     "build": "rollup -c",
     "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",

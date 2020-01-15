@@ -1,17 +1,24 @@
+from datetime import timedelta
 from os.path import dirname
 from pathlib import Path
 
 import pytest
 import xml_subsetter
-from django.db import transaction
-from django.db.models import F
 from hypothesis import assume
 from hypothesis.strategies import composite, integers, sampled_from
 
 from API.models import Wordform
-from constants import SimpleLexicalCategory
-from DatabaseManager.xml_importer import import_xmls
-from utils import fst_analysis_parser, shared_res_dir
+from utils import shared_res_dir
+
+
+from hypothesis import settings
+
+settings.register_profile("default", deadline=timedelta(milliseconds=500))
+# otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
+# see error report here
+# https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary/jobs/637122984?utm_medium=notification&utm_source=github_status
+
+settings.load_profile("default")
 
 
 @pytest.fixture(scope="session")

@@ -422,6 +422,10 @@ html {
   font-weight: var(--strong-font-weight);
 }
 
+.definition-title__reference-to-lemma{
+  font-size: var(--reference-to-lemma-size);
+}
+
 .definition-title__pos {
   /* Text */
   font-style: normal;

@@ -29,16 +29,13 @@ def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
     """
-    # todo: use the keys of analysis_to_lemmas to show user input analysis (Preverb, reduplication, IC ...)
-
-    analysis_to_lemmas, lemmas_by_english = Wordform.fetch_lemma_by_user_query(
-        query_string
+    # todo: use the analysis from cree_results to show user query analysis (Preverb, reduplication, IC ...)
+    cree_results, english_results = Wordform.fetch_lemma_by_user_query(query_string)
+    return render(
+        request,
+        "CreeDictionary/word-entries.html",
+        {"cree_results": cree_results, "english_results": english_results},
     )
-    # flatten list of list
-    lemmas_by_cree = [b for a in analysis_to_lemmas.values() for b in a]
-    lemmas_by_cree.sort(key=lambda w: get_modified_distance(query_string, w.text))
-    words = lemmas_by_cree + list(lemmas_by_english)
-    return render(request, "CreeDictionary/word-entries.html", {"words": words})
 
 
 # todo: allow different paradigm size

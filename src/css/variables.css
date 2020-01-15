@@ -47,6 +47,7 @@
   --branding-font-size:             1.50em; /* the title, e.g., "itwêwina" */
   --branding-subtitle-font-size:    0.75em; /* the subtitle, e.g., "Plains Cree Dictionary" */
   --definition-title-size:          2.00em;
+  --reference-to-lemma-size:        1.5em;
   --prominent-font-size:            1.50em; /* For text that should be prominent! */
   --prose-heading-font-size:        1.25em;
   --prose-section-title-font-size:  1.33em;
