@@ -13,7 +13,7 @@ from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
 
-logger = logging.getLogger("django")
+logger = logging.getLogger(__name__)
 
 
 def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
