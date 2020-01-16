@@ -3753,6 +3753,43 @@
 		<lg>
 			
       
+			<l pos="N">kihci-niska</l>
+			
+      
+			<lc>NA-4</lc>
+			
+      
+			<stem>kihci-nisk-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">Canada goose</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kikamow</l>
 			
       
@@ -4907,6 +4944,230 @@
 				
        
 				<t pos="V" sources="CW">s/he is careful how s/he speaks to s.o. out of respect; s/he avoids speaking to s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskosis</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>maskosis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A bear cub.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">little bear, bear cub</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskwa</l>
+			
+      
+			<lc>NA-4w</lc>
+			
+      
+			<stem>maskw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A bear.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">bear, black bear</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskwacîs</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>maskwacîs-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A small bear's hill located in Hobbema.</t>
+				
+   
+			</tg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Hobbema, AB; literally: &quot;Little Bear Hills&quot;</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskwacîsihk</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">Hobbema, AB; literally: &quot;Little Bear Hills&quot;</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskwayân</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>maskwayân-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">bear skin</t>
 				
    
 			</tg>
@@ -8931,6 +9192,80 @@
 		<lg>
 			
       
+			<l pos="N">niska</l>
+			
+      
+			<lc>NA-4</lc>
+			
+      
+			<stem>nisk-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">goose</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">niskisis</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>niskisis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">gosling</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">nisto</l>
 			
       
@@ -11467,6 +11802,58 @@
 				
        
 				<t pos="N" sources="MD CW">chef; cook</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">oskan</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>oskan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A bone.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">bone; his/her bone</t>
 				
    
 			</tg>
@@ -15252,6 +15639,95 @@
 		<lg>
 			
       
+			<l pos="V">waniskâhk</l>
+			
+      
+			<lc/>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">All of you wake up and rise. [Command]</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">waniskâw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>waniskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">He rises out of bed.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he gets up, s/he arises from lying, s/he gets out of bed; s/he goes in, s/he comes in</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">wâpahta</l>
 			
       
@@ -17394,6 +17870,80 @@
 		<lg>
 			
       
+			<l pos="N">asinîskâwi-sâkahikan</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>asinîskâwi-sâkahikan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Smoothstone Lake, SK; literally: &quot;many stones lake&quot;</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">asinîskâwiyiniw</l>
+			
+      
+			<lc>NA-2</lc>
+			
+      
+			<stem>asinîskâwiyiniw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Woods Cree, Woods Cree person; Rock Cree, Rock Cree person; [plural:] the Woods Cree people; the Rock Cree people</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">atamiskay</l>
 			
       
@@ -19173,6 +19723,43 @@
 		<lg>
 			
       
+			<l pos="N">âniskamân</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>âniskamân-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">hitch, clasp; button</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">âpakosîsi-mîciwin</l>
 			
       
@@ -19599,6 +20186,43 @@
 				
        
 				<t pos="Ipc" sources="CW">opposite of expected, reversal of the norm; instead</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">cîpêhtakwâpikwanîskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>cîpêhtakwâpikwanîskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">there are many blue or grey flowers</t>
 				
    
 			</tg>
@@ -23428,6 +24052,80 @@
 		<lg>
 			
       
+			<l pos="N">maskosîs</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>maskosîs-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">small amount of straw, short grass</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">maskwamiy</l>
+			
+      
+			<lc>NA-2</lc>
+			
+      
+			<stem>maskwamiy-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">ice</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">matwê-nipâw</l>
 			
       
@@ -24520,6 +25218,43 @@
 				
        
 				<t pos="N" sources="CW">coveralls, skidoo suit</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mistahi-maskwa</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>mistahi-maskw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Big Bear; prominent Cree chief, signatory to an adhesion to Treaty 6; wrongfully persecuted and imprisoned in the backlash to the Riel Resistance</t>
 				
    
 			</tg>
@@ -28460,6 +29195,43 @@
 		<lg>
 			
       
+			<l pos="N">niskan</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-skan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my bone</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">niskasiniya</l>
 			
       
@@ -28479,6 +29251,80 @@
 				
        
 				<t pos="N" sources="CW">birdshot, buckshot, shotgun shells</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">niskaskwa</l>
+			
+      
+			<lc>NI-3</lc>
+			
+      
+			<stem>niskaskw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">goose grass</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">niskîsik</l>
+			
+      
+			<lc>NDI-3</lc>
+			
+      
+			<stem>niskîsikw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my eye</t>
 				
    
 			</tg>
@@ -30218,6 +31064,43 @@
 				
        
 				<t pos="N" sources="CW">little leaf</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">nîskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nîskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is damp</t>
 				
    
 			</tg>
@@ -38934,6 +39817,43 @@
 		<lg>
 			
       
+			<l pos="N">wâpi-maskwa</l>
+			
+      
+			<lc>NA-4w</lc>
+			
+      
+			<stem>wâpi-maskw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">White Bear; personal name of Cree chief, signatory to Treaty 4</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">wâpikan</l>
 			
       
@@ -39400,6 +40320,43 @@
 				
        
 				<t pos="N" sources="CW">dirty ear</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">wîniskam</l>
+			
+      
+			<lc>VTI-1</lc>
+			
+      
+			<stem>wînisk-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he dirties s.t. by wearing, stepping; s/he soils s.t. by lying on it with soiled clothes</t>
 				
    
 			</tg>

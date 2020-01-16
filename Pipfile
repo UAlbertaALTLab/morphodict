@@ -54,6 +54,8 @@ profile = "python -m profiling"
 manage-db = "manage-db" # example usage: manage-db import /res/dictionaries/ --multi-process 2
 clear-db = "manage-db clear"
 import-xml = "manage-db import"
+# todo: migration command needs to be included in build-test-db, once we have further migrations
+# than API/0005_auto
 # do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
 # Supply `-m|--multi-processing N` to speed up
 # It takes about half a minute with -m 2
