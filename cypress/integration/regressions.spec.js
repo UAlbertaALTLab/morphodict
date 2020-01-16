@@ -159,6 +159,7 @@ context('Regressions', () => {
 
   it('should have the search bar appear wide on desktop', () => {
     let minimumWidth
+    const factor = 0.60  // it should be at least 60% the size of the viewport.
     cy.viewport('macbook-13')  // a small laptop size
     cy.visit('/')
 
@@ -166,7 +167,7 @@ context('Regressions', () => {
     cy.window()
       .then((win) => {
         let viewportWidth = Cypress.$(win).width()
-        minimumWidth = viewportWidth * 2 / 3
+        minimumWidth = viewportWidth * factor
       })
       .then(() => {
         cy.get('[data-cy=search]')

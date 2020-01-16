@@ -306,24 +306,33 @@ html {
   /* Positioning */
   position: relative;
   /* Display & Box Model */
-  display: flex;
   width: 100%;
   /* Text */
   font-size: var(--prominent-font-size);
 }
 
 /**
- * ELEMENT search__input
+ * ELEMENT search-bar__label
+ *
+ * The <label> that WRAPS the <input> and label text proper.
+ */
+.search-bar__label {
+  /* Display & Box Model */
+  display: inline-block;
+  width: 100%;
+}
+
+/**
+ * ELEMENT search-bar__input
  *
  * The actual input element that the user types the query into.
  */
 .search-bar__input {
   /* Display & Box Model */
-  flex: 1;
   padding: var(--small-pad) 1rem;
   padding-right: 1rem;
   border: solid 1px var(--search-border-color);
-  max-width: 100%;
+  width: 100%;
 
   /* Text */
   text-overflow: ellipsis;
