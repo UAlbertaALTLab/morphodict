@@ -8,12 +8,13 @@ env:
 globals:
   XRegExp: true
   # Cypress/chai/Mocha globals
-  describe: true
-  it: true
+  Cypress: true
   beforeEach: true
-  cy: true
   context: true
+  cy: true
+  describe: true
   expect: true
+  it: true
 extends: 'eslint:recommended'
 parserOptions:
   ecmaVersion: 2016

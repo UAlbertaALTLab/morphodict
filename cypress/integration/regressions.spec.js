@@ -156,4 +156,22 @@ context('Regressions', () => {
       .invoke('attr', 'src')
       .should('match', /[.]svg$/)
   })
+
+  it('should have the search bar appear wide on desktop', () => {
+    let minimumWidth
+    cy.viewport('macbook-13')  // a small laptop size
+    cy.visit('/')
+
+    // Get the viewport width first...
+    cy.window()
+      .then((win) => {
+        let viewportWidth = Cypress.$(win).width()
+        minimumWidth = viewportWidth * 2 / 3
+      })
+      .then(() => {
+        cy.get('[data-cy=search]')
+          .invoke('width')
+          .should('be.greaterThan', minimumWidth)
+      })
+  })
 })
