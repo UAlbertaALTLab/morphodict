@@ -78,7 +78,7 @@ class EntryKey(NamedTuple):
     lc: SimpleLexicalCategory
 
 
-NormatizedCree = NewType("NormatizedCree", str)
+StandardizedCree = NewType("StandardizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
@@ -236,7 +236,9 @@ class Wordform(models.Model):
                 for lemma in exact_matched_lemmas:
                     cree_results.add(
                         CreeResult(
-                            Analysis(analysis), NormatizedCree(lemma.text), Lemma(lemma)
+                            Analysis(analysis),
+                            StandardizedCree(lemma.text),
+                            Lemma(lemma),
                         )
                     )
             else:
@@ -253,7 +255,8 @@ class Wordform(models.Model):
                     continue
 
                 # now we generate the standardized form of the user query for display purpose
-                # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
+                # notice Err/Orth tags needs to be stripped because it makes our generator generate
+                # un-standardized forms
                 all_standard_forms = [
                     *normative_generator_foma.generate(
                         analysis.replace("+Err/Orth", "")
@@ -294,7 +297,7 @@ class Wordform(models.Model):
                         cree_results.add(
                             CreeResult(
                                 Analysis(analysis),
-                                NormatizedCree(standardized_user_query),
+                                StandardizedCree(standardized_user_query),
                                 Lemma(lemma_wordform),
                             )
                         )
@@ -305,7 +308,7 @@ class Wordform(models.Model):
                         cree_results.add(
                             CreeResult(
                                 Analysis(analysis),
-                                NormatizedCree(standardized_user_query),
+                                StandardizedCree(standardized_user_query),
                                 Lemma(lemma_wordform),
                             )
                         )
@@ -318,7 +321,7 @@ class Wordform(models.Model):
             cree_results.add(
                 CreeResult(
                     Analysis(cw_as_is_wordform.analysis),
-                    NormatizedCree(user_query),
+                    StandardizedCree(user_query),
                     Lemma(cw_as_is_wordform),
                 )
             )
@@ -345,7 +348,7 @@ class Wordform(models.Model):
             cree_results.add(
                 CreeResult(
                     Analysis(preverb_wordform.analysis),
-                    NormatizedCree(user_query),
+                    StandardizedCree(user_query),
                     Lemma(preverb_wordform),
                 )
             )
@@ -370,7 +373,7 @@ class Wordform(models.Model):
                 english_results.add(
                     EnglishResult(
                         MatchedEnglish(user_query),
-                        NormatizedCree(wordform.text),
+                        StandardizedCree(wordform.text),
                         Lemma(wordform),
                     )
                 )  # will become  (user_query, inflection.text, inflection.lemma)
@@ -384,7 +387,7 @@ class Wordform(models.Model):
                 english_results.add(
                     EnglishResult(
                         MatchedEnglish(user_query),
-                        NormatizedCree(wordform.text),
+                        StandardizedCree(wordform.text),
                         Lemma(wordform),
                     )
                 )  # will become  (user_query, inflection.text, wordform)
@@ -459,13 +462,13 @@ class CreeResult(NamedTuple):
     """
     - analysis: a string, one fst analysis of user query
 
-    - normatized_cree: a string, the Cree inflection that matches the analysis
+    - standardized_cree: a string, the Cree inflection that matches the analysis
 
     - lemma: a Wordform object, the lemma of the matched inflection
     """
 
     analysis: Analysis
-    normatized_cree: NormatizedCree
+    standardized_cree: StandardizedCree
     lemma: Lemma
 
 
@@ -474,13 +477,13 @@ class EnglishResult(NamedTuple):
     - matched_english: a string, the English that matches user query, currently it will just be the same as user query.
         (unicode normalized, lowercased)
 
-    - normatized_cree: a string, the Cree inflection that matches the English
+    - standardized_cree: a string, the Cree inflection that matches the English
 
     - lemma: a Wordform object, the lemma of the matched inflection
     """
 
     matched_english: MatchedEnglish
-    normatized_cree: NormatizedCree
+    standardized_cree: StandardizedCree
     lemma: Lemma
 
 
@@ -489,7 +492,7 @@ class CreeAndEnglish(NamedTuple):
     Duct tapes together two kinds of search results:
 
      - cree results -- an ordered set of CreeResults, should be sorted by the modified levenshtein distance between the
-        analysis and the matched normatized form
+        analysis and the matched standardized form
      - english results -- an ordered set of EnglishResults, sorting mechanism is to be determined
     """
 
@@ -616,6 +619,6 @@ def determine_entries_from_analysis(analysis: str):
     result = fst_analysis_parser.extract_lemma_and_category(analysis)
     assert result is not None, f"Could not parse lemma and category from {analysis}"
     lemma, pos = result
-    normatized_forms: Iterable[str] = normative_generator_foma.generate(analysis)
-    for wordform in normatized_forms:
+    standardized_forms: Iterable[str] = normative_generator_foma.generate(analysis)
+    for wordform in standardized_forms:
         yield EntryKey(wordform, lemma, pos)

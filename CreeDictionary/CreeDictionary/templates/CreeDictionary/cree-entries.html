@@ -2,7 +2,7 @@
 
 {% load inflection_extras %}
 
-{% for analysis, normatized_cree, lemma_wordform in cree_results %}
+{% for analysis, standardized_cree, lemma_wordform in cree_results %}
 <li class="search-results__result" data-cy="search-results">
   <article class="definition box box--rounded" data-cy="search-result">
     <header class="definition__header">
@@ -16,7 +16,7 @@
               {# data- attributes are supported in HTML5 not in XHTML #}
               <span lang="cr">{{ lemma_wordform.text }}</span></a>
           {% else %}
-            <span lang="cr">{{ normatized_cree }}</span>
+            <span lang="cr">{{ standardized_cree }}</span>
           {% endif %}
 
               <span class="definition-title__pos">({{ lemma_wordform|presentational_pos }})</span>
