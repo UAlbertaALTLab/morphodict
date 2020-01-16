@@ -253,7 +253,12 @@ class Wordform(models.Model):
                     continue
 
                 # now we generate the standardized form of the user query for display purpose
-                all_standard_forms = [*normative_generator_foma.generate(analysis)]
+                # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
+                all_standard_forms = [
+                    *normative_generator_foma.generate(
+                        analysis.replace("+Err/Orth", "")
+                    )
+                ]
                 if len(all_standard_forms) == 0:
                     logger.error(
                         f"can not generate standardized form for analysis {analysis}"
