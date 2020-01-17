@@ -49,6 +49,13 @@ awa
 awîna
 niyanân
 
+# particles
+ispîhk
+ohci
+anohc
+pêyak
+nisto
+
 # preverb examples
 nitawi-
 nitaw
@@ -78,9 +85,8 @@ amiskwaciy-wâskahikan
 acâhkos kâ-osôsit
 acâhkosa kâ-otakohpit
 
-# particles
-ispîhk
-ohci
-anohc
-pêyak
-nisto
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+# Cree word forms not getting some or all analyses
+maskos
+nimaskom
+niskak

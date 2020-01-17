@@ -36,6 +36,7 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
     [
         ("nôhkom+N+A+D+Px1Sg+Sg", SimpleLexicalCategory("NAD")),
         ("wâhkwa+N+A+Sg", SimpleLexicalCategory("NA")),
+        ("maskwa +N+A+Der/Dim+N+A+Sg", SimpleLexicalCategory("NA")),
         ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", SimpleLexicalCategory("VTA")),
         ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", SimpleLexicalCategory("VTI")),
         ("yîkatêpayin+V+II+Ind+Prs+3Sg", SimpleLexicalCategory("VII")),
