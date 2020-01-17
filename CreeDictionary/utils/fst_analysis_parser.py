@@ -8,7 +8,7 @@ from constants import SimpleLexicalCategory, FSTLemma
 
 
 analysis_pattern = re.compile(
-    r"(?P<category>\+N\+A(\+D)?|\+N\+I(\+D)?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"
+    r"(?P<category>\+N\+A(\+D(?=\+))?|\+N\+I(\+D(?=\+))?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"
 )
 
 
