@@ -90,3 +90,7 @@ acâhkosa kâ-otakohpit
 maskos
 nimaskom
 niskak
+
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/218
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/223
+âyiman
