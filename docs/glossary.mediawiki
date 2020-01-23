@@ -1,10 +1,11 @@
 = definition =
 
-One possible meaning of the [head] in English
+One of possibly several meanings of the [[head]].
+
 
 == Part of ==
 
-* ''1'' [[head]]
+* '''1''' [[dictionary entry]]
 
 
 = dictionary entry =
@@ -85,7 +86,7 @@ entry]] may use a phrase as a [[head]].
 
 == Can be a ==
 
-* ''1'' [[head]]
+* '''1''' [[head]]
 
 
 = word class =
