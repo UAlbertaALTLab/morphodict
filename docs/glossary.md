@@ -29,6 +29,31 @@ indeclinable particle
  * [word class]
 
 
+incomplete word class
+--------------------
+
+Superclass of [word class]. Does not contain [inflectional categories]. Similar to [part of speech].  
+
+### Consists of
+
+* **1 or more** [word classes]
+
+
+part of speech
+--------------
+
+The grammatical category to which a [term] belongs. Different parts of speech have different functions in a [clause].
+
+### Part of
+
+ * **1** or more [word class]
+ * **1** [term]
+
+### Notes
+
+ * **Deprecated** -- use [word class] instead.
+
+
 phrase
 ======
 
