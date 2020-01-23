@@ -41,9 +41,10 @@ Contains
 indeclinable particle
 =====================
 [indeclinable particle]: #indeclinable-particle
+[Ipc]: #indeclinable-particle
 
-(In Plains Cree linguistics) The word class that of things that does not
-[inflect][].
+(In Plains Cree linguistics) The word class of [terms][] that do not
+[inflect][]. Often abbreviated as [Ipc].
 
 Is a
 ----
@@ -160,4 +161,4 @@ These are the word classes in Plains Cree:
 -   [VAI][]
 -   [VTI][]
 -   [VTA][]
--   [Ipc][] --- [[indeclinable particle]]
+-   [Ipc][] --- [indeclinable particle][]
