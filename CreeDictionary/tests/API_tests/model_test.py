@@ -67,13 +67,13 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assert matched_language == "crk", "We should have gotten results for Cree"
 
     exact_matches = [
-        result for result in search_results if result.wordform == lemma.text
+        result for result in search_results if result.matched_cree == lemma.text
     ]
     assert len(exact_matches) >= 1
 
     # Let's look at that search result in more detail
     result = exact_matches[0]
-    assert result.wordform == lemma.text
+    assert result.matched_cree == lemma.text
     assert result.is_lemma
     assert result.lemma == lemma.text
     assert not result.preverbs
@@ -109,12 +109,12 @@ def test_search_for_stored_non_lemma():
     assert matched_language == "crk", "We should have gotten results for Cree"
     assert len(search_results) >= 1
 
-    exact_matches = [result for result in search_results if result.wordform == query]
+    exact_matches = [result for result in search_results if result.matched_cree == query]
     assert len(exact_matches) >= 1
 
     # Let's look at that search result in more detail
     result = exact_matches[0]
-    assert result.wordform == query
+    assert result.matched_cree == query
     assert not result.is_lemma
     assert result.lemma == lemma
     assert not result.preverbs

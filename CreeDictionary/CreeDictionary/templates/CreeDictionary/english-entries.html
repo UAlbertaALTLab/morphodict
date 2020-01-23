@@ -2,7 +2,7 @@
 
 {% load inflection_extras %}
 
-{% for matched_english, normatized_cree, lemma_wordform in english_results %}
+{% for matched_english, normative_cree, lemma_wordform in english_results %}
 <li class="search-results__result" data-cy="search-results">
   <article class="definition box box--rounded" data-cy="search-result">
     <header class="definition__header">
@@ -16,7 +16,7 @@
               {# data- attributes are supported in HTML5 not in XHTML #}
               <span lang="cr">{{ lemma_wordform.text }}</span></a>
           {% else %}
-              <span lang="cr">{{ normatized_cree }}</span>
+              <span lang="cr">{{ normative_cree.text }}</span>
           {% endif %}
         </dfn>
 
@@ -25,7 +25,7 @@
     </header>
 
       {# Show the matched lemma (when this is NOT a lemma. #}
-      {% if normatized_cree != lemma_wordform.text %}
+      {% if normative_cree != lemma_wordform.text %}
       <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
         Form of
         {# TODO: this link should go to the lemma search result, further down the page #}

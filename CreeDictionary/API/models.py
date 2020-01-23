@@ -1,6 +1,7 @@
 import logging
 import unicodedata
-from typing import List, NamedTuple, Set, Tuple, Iterable, NewType
+from functools import cmp_to_key, partial
+from typing import List, NamedTuple, Set, Tuple, Iterable, NewType, Union
 
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
@@ -8,7 +9,7 @@ from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from sortedcontainers import SortedSet
 
-from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis
+from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
@@ -33,17 +34,22 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
 class SearchResult:
     """
     Contains all of the information needed to display a search result.
+
+    Comment:
+    Each instance corresponds visually to one card or two cards shown on the interface
+    One Card: when the result matches a lemma
+    Two Card: when the result matched a non-lemma, where we show both the inflected wordform and the lemma
     """
 
     # the text of the match
-    wordform: str
+    matched_cree: str
 
-    part_of_speech: SimpleLC
-
-    # Is this the lemma?
     is_lemma: bool
 
-    # The text of the matched lemma
+    # English or Cree
+    matched_by: Language
+
+    # The matched lemma
     lemma: str
 
     # triple dots in type annotation means they can be empty
@@ -76,10 +82,6 @@ class EntryKey(NamedTuple):
     wordform: str
     lemma: str
     lc: SimpleLexicalCategory
-
-
-NormatizedCree = NewType("NormatizedCree", str)
-MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 class Wordform(models.Model):
@@ -210,9 +212,7 @@ class Wordform(models.Model):
         # build up result_lemmas in 2 ways
         # 1. spell relax in descriptive fst
         # 2. definition containment of the query word
-        cree_results: SortedSet[CreeResult] = SortedSet(
-            key=lambda t: get_modified_distance(t[0], user_query)
-        )
+        cree_results: Set[CreeResult] = set()
 
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -226,19 +226,14 @@ class Wordform(models.Model):
         for analysis in fst_analyses:
             # todo: test
 
-            exact_matched_wordform_ids = Wordform.objects.filter(
-                analysis=analysis, is_lemma=True, as_is=False
-            ).values("lemma__id")
-            exact_matched_lemmas = Wordform.objects.filter(
-                id__in=exact_matched_wordform_ids
+            exactly_matched_wordforms = Wordform.objects.filter(
+                analysis=analysis, as_is=False
             )
 
-            if exact_matched_lemmas.exists():
-                for lemma in exact_matched_lemmas:
+            if exactly_matched_wordforms.exists():
+                for wf in exactly_matched_wordforms:
                     cree_results.add(
-                        CreeResult(
-                            Analysis(analysis), NormatizedCree(lemma.text), Lemma(lemma)
-                        )
+                        CreeResult(Analysis(analysis), wf, Lemma(wf.lemma))
                     )
             else:
                 # When the user query is outside of paradigm tables
@@ -255,18 +250,18 @@ class Wordform(models.Model):
 
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
-                standard_forms_for_analysis = [
+                normatized_form_for_analysis = [
                     *normative_generator_foma.generate(
                         analysis.replace("+Err/Orth", "")
                     )
                 ]
-                all_standard_forms.extend(standard_forms_for_analysis)
+                all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:
                     logger.error(
                         f"can not generate standardized form for analysis {analysis}"
                     )
-                standardized_user_query = min(
-                    standard_forms_for_analysis,
+                normatized_user_query = min(
+                    normatized_form_for_analysis,
                     key=lambda f: get_modified_distance(f, user_query),
                 )
 
@@ -296,7 +291,7 @@ class Wordform(models.Model):
                         cree_results.add(
                             CreeResult(
                                 Analysis(analysis),
-                                NormatizedCree(standardized_user_query),
+                                normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
                         )
@@ -307,7 +302,7 @@ class Wordform(models.Model):
                         cree_results.add(
                             CreeResult(
                                 Analysis(analysis),
-                                NormatizedCree(standardized_user_query),
+                                normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
                         )
@@ -324,7 +319,7 @@ class Wordform(models.Model):
             cree_results.add(
                 CreeResult(
                     Analysis(cw_as_is_wordform.analysis),
-                    NormatizedCree(user_query),
+                    cw_as_is_wordform,
                     Lemma(cw_as_is_wordform),
                 )
             )
@@ -351,7 +346,7 @@ class Wordform(models.Model):
             cree_results.add(
                 CreeResult(
                     Analysis(preverb_wordform.analysis),
-                    NormatizedCree(user_query),
+                    preverb_wordform,
                     Lemma(preverb_wordform),
                 )
             )
@@ -362,10 +357,9 @@ class Wordform(models.Model):
 
         # now we get results searched by English
         # todo: remind user "are you searching in cree/english?"
-        # todo: implement sorting mechanism for English search
-        # todo: allow inflected forms to be searched through English.
-        # key=None will make key=identity
-        english_results: SortedSet[EnglishResult] = SortedSet(key=None)
+        # todo: allow inflected forms to be searched through English. (requires database migration
+        #  since now EnglishKeywords are bound to lemmas)
+        english_results: Set[EnglishResult] = set()
         if " " not in user_query:  # a whole word
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
@@ -375,9 +369,7 @@ class Wordform(models.Model):
             for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
                 english_results.add(
                     EnglishResult(
-                        MatchedEnglish(user_query),
-                        NormatizedCree(wordform.text),
-                        Lemma(wordform),
+                        MatchedEnglish(user_query), wordform, Lemma(wordform),
                     )
                 )  # will become  (user_query, inflection.text, inflection.lemma)
 
@@ -389,65 +381,44 @@ class Wordform(models.Model):
             ):
                 english_results.add(
                     EnglishResult(
-                        MatchedEnglish(user_query),
-                        NormatizedCree(wordform.text),
-                        Lemma(wordform),
+                        MatchedEnglish(user_query), wordform, Lemma(wordform),
                     )
                 )  # will become  (user_query, inflection.text, wordform)
 
         return CreeAndEnglish(cree_results, english_results)
 
+    def __lt__(self, other):
+        return self.text < other.text
+
     @staticmethod
-    def search(user_query: str) -> Tuple[str, List[SearchResult]]:
-        """
-        Returns the matched language (as an ISO 639 code), and list of search
-        results.
-        """
+    def search(user_query: str) -> SortedSet[SearchResult]:
+        cree_results: Set[CreeResult]
+        english_results: Set[EnglishResult]
+
         cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
 
-        if len(cree_results) < len(english_results):
-            raise NotImplementedError(
-                "I don't know how to deal with English search results"
-            )
-
-        matched_wordforms: Set[EntryKey] = set()
-
-        # First, let's add all matched analyses:
-        for result in cree_results:
-            for entry in determine_entries_from_analysis(result.analysis):
-                matched_wordforms.add(entry)
-
-        results: List[SearchResult] = []
+        results: SortedSet[SearchResult] = SortedSet(
+            key=cmp_to_key(partial(sort_search_result, user_query=user_query))
+        )
 
         # Create the search results
-        for entry in matched_wordforms:
-            try:
-                lemma = Wordform.objects.get(text=entry.lemma, is_lemma=True)
-            except Wordform.DoesNotExist:
-                logging.warning(
-                    "Could not find matching inflection for %r "
-                    "searched from %r (results: %r)",
-                    entry,
-                    user_query,
-                    cree_results,
-                )
-                continue
+        for cree_result in cree_results:
 
-            definitions = tuple(Definition.objects.filter(wordform=lemma))
-            if len(definitions) < 1:
-                logging.warning(
-                    "Could not find definitions for %r (lemma: %r)",
-                    entry.wordform,
-                    lemma,
-                )
-                continue
-
-            results.append(
+            if isinstance(cree_result.normatized_cree, Wordform):
+                matched_cree = cree_result.normatized_cree.text
+                is_lemma = cree_result.normatized_cree.is_lemma
+                definitions = tuple(cree_result.normatized_cree.definitions)
+            else:
+                matched_cree = cree_result.normatized_cree
+                is_lemma = False
+                definitions = ()
+            # todo: tags, preverbs
+            results.add(
                 SearchResult(
-                    wordform=entry.wordform,
-                    part_of_speech=lemma.full_lc,
-                    is_lemma=entry.wordform == lemma.text,
-                    lemma=lemma.text,
+                    matched_cree=matched_cree,
+                    is_lemma=is_lemma,
+                    matched_by=Language.CREE,
+                    lemma=cree_result.lemma.text,
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
@@ -455,8 +426,25 @@ class Wordform(models.Model):
                 )
             )
 
-        return "crk", results
+        for result in english_results:
+            # todo: tags, preverbs
+            results.add(
+                SearchResult(
+                    matched_cree=result.matched_cree.text,
+                    is_lemma=result.matched_cree.is_lemma,
+                    matched_by=Language.ENGLISH,
+                    lemma=result.matched_cree.lemma.text,
+                    preverbs=(),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                    definitions=tuple(result.matched_cree.definitions),
+                )
+            )
 
+        return results
+
+
+MatchedEnglish = NewType("MatchedEnglish", str)
 
 Lemma = NewType("Lemma", Wordform)
 
@@ -465,13 +453,15 @@ class CreeResult(NamedTuple):
     """
     - analysis: a string, one fst analysis of user query
 
-    - normatized_cree: a string, the Cree inflection that matches the analysis
+    - normatized_cree: a wordform, the Cree inflection that matches the analysis
+        Can be a string that's not saved in the database since our database do not store all the
+        weird inflections
 
     - lemma: a Wordform object, the lemma of the matched inflection
     """
 
     analysis: Analysis
-    normatized_cree: NormatizedCree
+    normatized_cree: Union[Wordform, str]
     lemma: Lemma
 
 
@@ -486,8 +476,36 @@ class EnglishResult(NamedTuple):
     """
 
     matched_english: MatchedEnglish
-    normatized_cree: NormatizedCree
+    matched_cree: Wordform
     lemma: Lemma
+
+
+def sort_search_result(
+    res_a: SearchResult, res_b: SearchResult, user_query: str
+) -> float:
+    """
+    determine how we sort search results.
+
+    :return:   0: does not matter;
+              >0: res_a should appear before res_b;
+              <0: res_a should appear after res_b.
+    """
+
+    if res_a.matched_by is Language.CREE and res_b.matched_by is Language.CREE:
+        # both from cree
+        a_dis = get_modified_distance(user_query, res_a.matched_cree)
+        b_dis = get_modified_distance(user_query, res_b.matched_cree)
+        return a_dis - b_dis
+    # todo: better English sort
+    elif res_a.matched_by is Language.CREE:
+        # a from cree, b from English
+        return 1
+    elif res_b.matched_by is Language.CREE:
+        # a from English, b from Cree
+        return -1
+    else:
+        # both from English
+        return 0
 
 
 class CreeAndEnglish(NamedTuple):
@@ -500,8 +518,8 @@ class CreeAndEnglish(NamedTuple):
     """
 
     # MatchedCree are inflections
-    cree_results: SortedSet[CreeResult]
-    english_results: SortedSet[EnglishResult]
+    cree_results: Set[CreeResult]
+    english_results: Set[EnglishResult]
 
 
 class DictionarySource(models.Model):
@@ -617,7 +635,7 @@ class EnglishKeyword(models.Model):
 
 def determine_entries_from_analysis(analysis: str):
     """
-    Given a analysis, returns an entry.
+    Given an analysis, returns an entry.
     """
     result = fst_analysis_parser.extract_lemma_and_category(analysis)
     assert result is not None, f"Could not parse lemma and category from {analysis}"
