@@ -1,49 +1,61 @@
 definition
 ==========
+[definition]: #definition
+[definitions]: #definition
 
-One of possibly several meanings of the [head](head "wikilink").
+One of possibly several meanings of the [head][].
 
-Part of {#part_of}
+Part of
 -------
 
--   **1** [dictionary entry](dictionary_entry "wikilink")
+-   **1** [dictionary entry][]
 
-dictionary entry {#dictionary_entry}
+Describes
+---------
+
+*  **1** [head][]
+
+
+dictionary entry
 ================
+[dictionary entry]: #dictionary-entry
 
-The main content of a [dictionary](dictionary "wikilink"). Consists of
-the [head](head "wikilink") (in one or more \[orthothographical\]
-representations), the [word class](word_class "wikilink"), and the
-[definitions](definitions "wikilink").
+The main content of a [dictionary][]. Consists of
+the [head][] (in one or more [orthothographical][]
+representations), the [word class][], and the
+[definitions][].
 
-Part of {#part_of_1}
+Part of
 -------
 
--   **1** [dictionary](dictionary "wikilink")
+-   **1** [dictionary][]
 
 Contains
 --------
 
--   **1** [head](head "wikilink")
--   **1** or more [definitions](definitions "wikilink")
--   **1** [word class](word_class "wikilink"), if the
-    [head](head "wikilink") is a [word form](word_form "wikilink")
+-   **1** [head][]
+-   **1** or more [definitions][]
+-   **1** [word class][], if the [head][] is a [word form][]
 
-indeclinable particle {#indeclinable_particle}
+
+indeclinable particle
 =====================
+[indeclinable particle]: #indeclinable-particle
 
 (In Plains Cree linguistics) The word class that of things that does not
-[inflect](inflect "wikilink").
+[inflect][].
 
-Is a {#is_a}
+Is a
 ----
 
--   [word class](word_class "wikilink")
+-   [word class][]
 
-inflectional category {#inflectional_category}
+
+inflectional category
 =====================
+[inflectional category]: #inflectional-category
 
-A more detailed categorization of a [word class](word_class "wikilink"),
+A more detailed categorization of a [word class][],
 things that belong to the same inflection category inflects similarly
 
 Examples
@@ -53,83 +65,92 @@ Examples
 -   VTA-n
 -   NDA-4w
 
-incomplete word class {#incomplete_word_class}
+
+incomplete word class
 =====================
+[incomplete word class]: #incomplete-word-class
 
-Superclass of [word class](word_class "wikilink"). Does not contain
-[inflectional categories](inflectional_categories "wikilink"). Similar
-to [part of speech](part_of_speech "wikilink").
+Superclass of [word class][]. Does not contain
+[inflectional categories][]. Similar
+to [part of speech][].
 
-Consists of {#consists_of}
+Consists of
 -----------
 
--   **1 or more** [word classes](word_classes "wikilink")
+-   **1 or more** [word classes][]
+
 
 head
 ====
+[head]: #head
 
-The highest level structure of a [dictionary](dictionary "wikilink").
+The highest level structure of a [dictionary][].
 Each head is listed alphabetically (with derivations (phrases on the
-[wordform](wordform "wikilink")) coming after the \'root\' listing).
+[wordform][]) coming after the \'root\' listing).
 
-part of speech {#part_of_speech}
+
+part of speech
 ==============
+[part of speech]: #part-of-speech
 
-The grammatical category to which a [term](term "wikilink") belongs.
+The grammatical category to which a [term][] belongs.
 Different parts of speech have different functions in a
-[clause](clause "wikilink").
+[clause][].
 
-Part of {#part_of_2}
+Part of
 -------
 
--   **1** or more [word class](word_class "wikilink")
--   **1** [term](term "wikilink")
+-   **1** or more [word class][]
+-   **1** [term][]
 
 Notes
 -----
 
--   **Deprecated** \-- use [word class](word_class "wikilink") instead.
+-   **Deprecated** --- use [word class][] instead.
+
 
 phrase
 ======
+[phrase]: #phrase
 
-Multiple \[word forms\] that, together, have one
-[meaning](meaning "wikilink"). A [dictionary
-entry](dictionary_entry "wikilink") may use a phrase as a
-[head](head "wikilink").
+Multiple [word forms][] that, together, have one [meaning][].
+A [dictionary entry][] may use a phrase as a [head][].
 
-Is composed of {#is_composed_of}
+Is composed of
 --------------
 
--   **2 or more** [word forms](word_forms "wikilink")
+-   **2 or more** [word forms][]
 
-Can be a {#can_be_a}
+Can be a
 --------
 
--   **1** [head](head "wikilink")
+-   **1** [head][]
 
-word class {#word_class}
+
+word class
 ==========
+[word class]: #word-class
+[word classes]: #word-class
 
-THING that [inflects](inflects "wikilink") in a similar way. Behave
+Category of \$THING that [inflects][] in a similar way. Behave
 morphologically in a similar way to each other.
 
-Contains {#contains_1}
+Contains
 --------
 
 -   **1 or more** inflectional categories.
 
-in Plains Cree {#in_plains_cree}
+in Plains Cree
 --------------
 
 These are the word classes in Plains Cree:
 
--   [NA](NA "wikilink")
--   [NI](NI "wikilink")
--   [NAD](NAD "wikilink")
--   [NID](NID "wikilink")
--   [VII](VII "wikilink")
--   [VAI](VAI "wikilink")
--   [VTI](VTI "wikilink")
--   [VTA](VTA "wikilink")
--   [Ipc](Ipc "wikilink") \-\-- \"\[indeclinable particle\]\"
+-   [NA][]
+-   [NI][]
+-   [NAD][]
+-   [NID][]
+-   [VII][]
+-   [VAI][]
+-   [VTI][]
+-   [VTA][]
+-   [Ipc][] --- [[indeclinable particle]]
