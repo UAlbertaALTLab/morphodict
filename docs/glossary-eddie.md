@@ -1,11 +1,11 @@
 Glossary
 ========
 
-Dictionary Entry
+dictionary entry
 ----------------
 
-The main content of a [dictionary]. Consists of the [head], the
-[orthothograpy] representation, the [part of speech], and the
+The main content of a [dictionary]. Consists of the [head] (in one or
+more [orthothographical] representations), the [word class], and the
 [definitions].
 
 ### Part of
@@ -16,10 +16,36 @@ The main content of a [dictionary]. Consists of the [head], the
 
  * **1** [head]
  * **1** or more [definitions]
- * **1** [part of speech]
+ * **1** [word class], if the [head] is a [word form]
 
 
-Word class
+indeclinable particle
+=====================
+
+(In Plains Cree linguistics) The word class that of things that does not [inflect].
+
+### Is a
+
+ * [word class]
+
+
+phrase
+======
+
+Multiple [word forms] that, together, have one [meaning]. A [dictionary
+entry] may use a phrase as a [head].
+
+### Is composed of
+
+ * **two or more** [word forms]
+
+
+### Can be a
+
+ * **1** [head]
+
+
+word class
 ==========
 
 THING that [inflects] in a similar way. Behave morphologically in
@@ -42,61 +68,3 @@ These are the word classes in Plains Cree:
  * [VTI]
  * [VTA]
  * [Ipc] --- "[indeclinable particle]"
-
-Indeclinable particle
-=====================
-
-(In Plains Cree linguistics) The word class that of things that does not [inflect].
-
-### Is a
-
- * [word class]
-
-
-Phrase
-======
-
-Multiple [word forms] that, together, have one [meaning]. A [dictionary
-entry] may use a phrase as a [head].
-
-### Is composed of
-
- * **two or more** [word forms]
-
-
-### Can be a
-
- * **1** [head]
-
-
-Lemma
-=====
-
-⚠️ TODO
-
-<!--
-
-Diacritic
-=========
-
-Noun
-====
-
-Inanimate
-=========
-
-Animate
-=======
-
-NI
-==
-
-A [part of speech].
-
-### Subcategories
-
- * NI-1
- * NI-2
- * NI-3
-
--->
