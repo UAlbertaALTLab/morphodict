@@ -27,33 +27,6 @@ XmlTuple = NewType("XmlTuple", Tuple[str, str, str])
 "Tuple of xml_lemma, xml_pos, xml_lc extracted from crkeng.xml"
 
 
-def clear_database(verbose=True):
-    """
-    Delete data from database but keep admin authentication data
-    """
-    logger.set_print_info_on_console(verbose)
-    logger.info("Deleting objects from the database")
-
-    cursor = connection.cursor()
-
-    # Raw SQL delete is a magnitude faster than Definition.objects.all.delete()
-    cursor.execute("PRAGMA foreign_keys = OFF")
-
-    # Delete Many-to-Many field first:
-    cursor.execute("DELETE FROM API_definition_citations")
-
-    # Then delete the rest:
-    cursor.execute("DELETE FROM API_definition")
-    cursor.execute("DELETE FROM API_definition_citations")
-    cursor.execute("DELETE FROM API_wordform")
-    cursor.execute("DELETE FROM API_englishkeyword")
-    # do not delete dictionarysource, since it's editted on admin console and should persist
-    # cursor.execute("DELETE FROM API_dictionarysource")
-    cursor.execute("PRAGMA foreign_keys = ON")
-
-    logger.info("All Objects deleted from Database")
-
-
 def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     """
     generate analysis for xml entries whose lemmas cannot be determined.
@@ -213,8 +186,7 @@ def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
 
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
-    CLEARS the database (except admin authentication data and dictionary source data) first
-    and import from an xml file
+    Import from crkeng.xml and engcrk.xml
 
     Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, lc) tuples
 
@@ -226,7 +198,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     assert crkeng_filename.exists() and engcrk_filename.exists()
     start_time = time.time()
     logger.set_print_info_on_console(verbose)
-    clear_database()
     logger.info("Database cleared")
 
     root = ET.parse(str(crkeng_filename)).getroot()

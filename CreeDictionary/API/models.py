@@ -193,7 +193,6 @@ class Wordform(models.Model):
 
         :param user_query: can be English or Cree (syllabics or not)
         """
-
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
         # Normalize to UTF8 NFC
@@ -221,6 +220,8 @@ class Wordform(models.Model):
         fst_analyses: Set[str] = set(
             "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
         )
+
+        all_standard_forms = []
 
         for analysis in fst_analyses:
             # todo: test
@@ -254,17 +255,18 @@ class Wordform(models.Model):
 
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
-                all_standard_forms = [
+                standard_forms_for_analysis = [
                     *normative_generator_foma.generate(
                         analysis.replace("+Err/Orth", "")
                     )
                 ]
+                all_standard_forms.extend(standard_forms_for_analysis)
                 if len(all_standard_forms) == 0:
                     logger.error(
                         f"can not generate standardized form for analysis {analysis}"
                     )
                 standardized_user_query = min(
-                    all_standard_forms,
+                    standard_forms_for_analysis,
                     key=lambda f: get_modified_distance(f, user_query),
                 )
 
@@ -311,9 +313,13 @@ class Wordform(models.Model):
                         )
 
         # we choose to trust CW and show those matches with definition from CW.
-        # this majorly includes the entries with spaces in it, which fst can't analyze
+        # text__in = all_standard_forms help match those lemmas that are labeled as_is but trust-worthy nonetheless
+        # because they come from CW
+        # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
         for cw_as_is_wordform in filter_cw_wordforms(
-            Wordform.objects.filter(text=user_query, as_is=True, is_lemma=True)
+            Wordform.objects.filter(
+                text__in=all_standard_forms + [user_query], as_is=True, is_lemma=True
+            )
         ):
             cree_results.add(
                 CreeResult(
