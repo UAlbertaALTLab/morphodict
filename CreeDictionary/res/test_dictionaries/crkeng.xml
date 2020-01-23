@@ -744,6 +744,43 @@
 		<lg>
 			
       
+			<l pos="N">âpihtâtipiskâw</l>
+			
+      
+			<lc/>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">it is night, it is night time; it is dark</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">asawâpahtam</l>
 			
       
@@ -3047,6 +3084,52 @@
 				
        
 				<t pos="V" sources="MD">He shaves it.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kaski-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">The night is pitch black.</t>
+				
+   
+			</tg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is night, it is night time; it is dark</t>
 				
    
 			</tg>
@@ -15216,6 +15299,52 @@
 		<lg>
 			
       
+			<l pos="Ipc">tahto-tipiskâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="MD">Every night; each night.</t>
+				
+   
+			</tg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">it is night, it is night time; it is dark</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">tânisi</l>
 			
       
@@ -15602,6 +15731,89 @@
 		<lg>
 			
       
+			<l pos="Ipc">tipiskâki</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem>-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="MD CW">at night, tonight, when it's night; when it gets dark</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">Night time. V - It is night.</t>
+				
+   
+			</tg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is night, it is night time; it is dark</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">wahkêmow</l>
 			
       
@@ -15747,6 +15959,58 @@
 				
        
 				<t pos="V" sources="CW">s/he gets up, s/he arises from lying, s/he gets out of bed; s/he goes in, s/he comes in</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">wanitipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>wanitipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">It is a very dark night.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a dark night, it is very dark</t>
 				
    
 			</tg>
@@ -20019,6 +20283,43 @@
 		<lg>
 			
       
+			<l pos="V">âpihtâ-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>âpihtâ-tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is midnight (12:00 a.m.)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">âstamispîhk</l>
 			
       
@@ -23386,6 +23687,43 @@
 		<lg>
 			
       
+			<l pos="V">kîsi-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>kîsi-tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is completely night</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">kîsipayiwin</l>
 			
       
@@ -25514,6 +25852,43 @@
 				
        
 				<t pos="V" sources="CW">s/he regards s.o. with favour</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">miyo-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>miyo-tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a fine night, it is a good night</t>
 				
    
 			</tg>
@@ -28899,6 +29274,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">nêwo-tipiskâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">four nights</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">nihcawakâs</l>
 			
       
@@ -31249,6 +31661,80 @@
 				
        
 				<t pos="Ipc" sources="CW">two quarters, fifty cents</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">nîso-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nîso-tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Tuesday night; literally: &quot;(it is) the second night&quot;</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">nîso-tipiskâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">two nights</t>
 				
    
 			</tg>
@@ -36968,6 +37454,43 @@
 		<lg>
 			
       
+			<l pos="V">pôn-âpihtâ-tipiskâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>pôn-âpihtâ-tipiskâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is after midnight, it is very early morning</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">pôni-mîcisow</l>
 			
       
@@ -39299,6 +39822,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">tânitahto tipiskâw</l>
+			
+      
+			<lc>IPH</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">how many nights</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">têpi-mîcisow</l>
 			
       
@@ -39355,6 +39915,43 @@
 				
        
 				<t pos="V" sources="CW">s/he has enough sleep</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">têpiskâk</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">last night</t>
 				
    
 			</tg>
@@ -39540,6 +40137,43 @@
 				
        
 				<t pos="V" sources="CW">s/he makes a shelter from the wind over (it/him) for s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">tipiskâwi-pîsim</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>tipiskâwi-pîsimw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">moon</t>
 				
    
 			</tg>
