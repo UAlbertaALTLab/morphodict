@@ -54,6 +54,7 @@ Is a
 inflectional category
 =====================
 [inflectional category]: #inflectional-category
+[inflectional categories]: #inflectional-category
 
 A more detailed categorization of a [word class][],
 things that belong to the same inflection category inflects similarly
@@ -74,10 +75,20 @@ Superclass of [word class][]. Does not contain
 [inflectional categories][]. Similar
 to [part of speech][].
 
+Incomplete word classes are "incomplete" because they are not detailed
+enough to tell you how its members [inflect]. A [word class][], on the
+other hand, tells you enough to be able to [inflect].
+
 Consists of
 -----------
 
 -   **1 or more** [word classes][]
+
+In Plains Cree
+--------------
+
+* [Noun][] — use the four word classes instead: [NI], [NA], [NID], [NAD]
+* [Verb][] — use the four word classes intstead: [VII], [VAI], [VTI], [VTA]
 
 
 head
@@ -106,7 +117,7 @@ Part of
 Notes
 -----
 
--   **Deprecated** --- use [word class][] instead.
+-   **Deprecated** — use [word class][] instead.
 
 
 phrase
@@ -132,13 +143,13 @@ word class
 [word class]: #word-class
 [word classes]: #word-class
 
-Category of \$THING that [inflects][] in a similar way. Behave
-morphologically in a similar way to each other.
+Category of \$THING that [inflects][] in a similar way. Members of the
+same word class behave morphologically in a similar way to each other.
 
 Contains
 --------
 
--   **1 or more** inflectional categories.
+-   **1 or more** [inflectional categories][].
 
 in Plains Cree
 --------------
