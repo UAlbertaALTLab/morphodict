@@ -1,6 +1,16 @@
 Glossary
 ========
 
+definition
+----------
+
+One possible meaning of the [head] in English
+
+### Part of
+
+ * **1** [head]
+
+
 dictionary entry
 ----------------
 
@@ -37,6 +47,19 @@ Superclass of [word class]. Does not contain [inflectional categories]. Similar 
 ### Consists of
 
 * **1 or more** [word classes]
+
+
+inflectional category
+---------------------
+
+A more detailed categorization of a [word class], things that belong to
+the same inflection category inflects similarly
+
+### Examples
+
+ * NI-1
+ * VTA-n
+ * NDA-4w
 
 
 head
