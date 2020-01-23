@@ -32,11 +32,17 @@ indeclinable particle
 incomplete word class
 --------------------
 
-Superclass of [word class]. Does not contain [inflectional categories]. Similar to [part of speech].  
+Superclass of [word class]. Does not contain [inflectional categories]. Similar to [part of speech].
 
 ### Consists of
 
 * **1 or more** [word classes]
+
+
+head
+----
+
+The highest level structure of a [dictionary]. Each head is listed alphabetically (with derivations (phrases on the [wordform]) coming after the 'root' listing).
 
 
 part of speech
