@@ -30,15 +30,13 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
                 break
 
 
-@attrs(auto_attribs=True)
+@attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
 class SearchResult:
     """
     Contains all of the information needed to display a search result.
 
     Comment:
-    Each instance corresponds visually to one card or two cards shown on the interface
-    One Card: when the result matches a lemma
-    Two Card: when the result matched a non-lemma, where we show both the inflected wordform and the lemma
+    Each instance corresponds visually to one card shown on the interface
     """
 
     # the text of the match
@@ -50,7 +48,7 @@ class SearchResult:
     matched_by: Language
 
     # The matched lemma
-    lemma: str
+    lemma_wordform: "Wordform"
 
     # triple dots in type annotation means they can be empty
 
@@ -72,16 +70,6 @@ class SearchResult:
         lemma?
         """
         return not self.is_lemma
-
-
-class EntryKey(NamedTuple):
-    """
-    A wordform, its matched lemma, and the lexical category.
-    """
-
-    wordform: str
-    lemma: str
-    lc: SimpleLexicalCategory
 
 
 class Wordform(models.Model):
@@ -398,7 +386,7 @@ class Wordform(models.Model):
         cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
 
         results: SortedSet[SearchResult] = SortedSet(
-            key=cmp_to_key(partial(sort_search_result, user_query=user_query))
+            key=cmp_to_key(partial(sort_search_result, user_query=user_query))  # type: ignore # mypy stupid
         )
 
         # Create the search results
@@ -407,7 +395,7 @@ class Wordform(models.Model):
             if isinstance(cree_result.normatized_cree, Wordform):
                 matched_cree = cree_result.normatized_cree.text
                 is_lemma = cree_result.normatized_cree.is_lemma
-                definitions = tuple(cree_result.normatized_cree.definitions)
+                definitions = tuple(cree_result.normatized_cree.definitions.all())
             else:
                 matched_cree = cree_result.normatized_cree
                 is_lemma = False
@@ -418,7 +406,7 @@ class Wordform(models.Model):
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
                     matched_by=Language.CREE,
-                    lemma=cree_result.lemma.text,
+                    lemma_wordform=cree_result.lemma,
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
@@ -433,11 +421,15 @@ class Wordform(models.Model):
                     matched_cree=result.matched_cree.text,
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
-                    lemma=result.matched_cree.lemma.text,
+                    lemma_wordform=result.matched_cree.lemma,
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
-                    definitions=tuple(result.matched_cree.definitions),
+                    definitions=tuple(result.matched_cree.definitions.all()),
+                    # todo: current EnglishKeyword is bound to
+                    #       lemmas, whose definitions are guaranteed in the database.
+                    #       This may be an empty tuple in the future
+                    #       when EnglishKeyword can be associated with non-lemmas
                 )
             )
 
@@ -628,18 +620,3 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
-
-
-################################## Helpers ##################################
-
-
-def determine_entries_from_analysis(analysis: str):
-    """
-    Given an analysis, returns an entry.
-    """
-    result = fst_analysis_parser.extract_lemma_and_category(analysis)
-    assert result is not None, f"Could not parse lemma and category from {analysis}"
-    lemma, pos = result
-    normatized_forms: Iterable[str] = normative_generator_foma.generate(analysis)
-    for wordform in normatized_forms:
-        yield EntryKey(wordform, lemma, pos)

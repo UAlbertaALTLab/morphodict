@@ -3,6 +3,7 @@ from hypothesis import assume, given
 
 from API.models import Wordform, filter_cw_wordforms
 from CreeDictionary import settings
+from constants import Language
 from tests.conftest import random_lemmas
 
 
@@ -45,8 +46,6 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     assert exact_match, f"No exact matches for {query!r} in {cree_results}"
 
 
-# fixme: Eddie
-@pytest.mark.skip(reason="Eddies unfinished search code")
 @pytest.mark.django_db
 @given(lemma=random_lemmas())
 def test_search_for_exact_lemma(lemma: Wordform):
@@ -55,35 +54,30 @@ def test_search_for_exact_lemma(lemma: Wordform):
     """
 
     assert lemma.is_lemma
-    # XXX: there is something weird where a lemma is not a lemma...
-    # bug in the FST? bug in the dictionary? Either way, it's inconvenient.
     lemma_from_analysis, _, _ = lemma.analysis.partition("+")
     assert all(c == c.lower() for c in lemma_from_analysis)
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    matched_language, search_results = Wordform.search(query)
+    search_results = Wordform.search(query)
 
-    assert matched_language == "crk", "We should have gotten results for Cree"
-
-    exact_matches = [
-        result for result in search_results if result.matched_cree == lemma.text
-    ]
-    assert len(exact_matches) >= 1
+    exact_matches = {
+        result
+        for result in search_results
+        if result.is_lemma and result.lemma_wordform == lemma
+    }
+    assert len(exact_matches) == 1
 
     # Let's look at that search result in more detail
-    result = exact_matches[0]
-    assert result.matched_cree == lemma.text
-    assert result.is_lemma
-    assert result.lemma == lemma.text
-    assert not result.preverbs
-    assert not result.reduplication_tags
-    assert not result.initial_change_tags
-    assert len(result.definitions) >= 1
-    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+    exact_match = exact_matches.pop()
+    assert exact_match.matched_cree == lemma.text
+    assert not exact_match.preverbs
+    assert not exact_match.reduplication_tags
+    assert not exact_match.initial_change_tags
+    assert len(exact_match.definitions) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.definitions)
 
 
-@pytest.mark.skip(reason="The test DB does not contain matching English content :/")
 @pytest.mark.django_db
 def test_search_for_english() -> None:
     """
@@ -91,9 +85,9 @@ def test_search_for_english() -> None:
     """
 
     # This should match "âcimowin" and related words:
-    matched_language, search_results = Wordform.search("story")
+    search_results = Wordform.search("story")
 
-    assert matched_language == "en"
+    assert search_results[0].matched_by == Language.ENGLISH
 
 
 @pytest.mark.django_db
@@ -102,26 +96,29 @@ def test_search_for_stored_non_lemma():
     A "stored non-lemma" is a wordform in the database that is NOT a lemma.
     """
     # "S/he would tell us stories."
-    lemma = "âcimêw"
+    lemma_str = "âcimêw"
     query = "ê-kî-âcimikoyâhk"
-    matched_language, search_results = Wordform.search(query)
+    search_results = Wordform.search(query)
 
-    assert matched_language == "crk", "We should have gotten results for Cree"
     assert len(search_results) >= 1
 
-    exact_matches = [result for result in search_results if result.matched_cree == query]
+    exact_matches = [
+        result for result in search_results if result.matched_cree == query
+    ]
     assert len(exact_matches) >= 1
 
     # Let's look at that search result in more detail
     result = exact_matches[0]
-    assert result.matched_cree == query
     assert not result.is_lemma
-    assert result.lemma == lemma
-    assert not result.preverbs
-    assert not result.reduplication_tags
-    assert not result.initial_change_tags
-    assert len(result.definitions) >= 1
-    assert all(len(dfn.source_ids) >= 1 for dfn in result.definitions)
+    assert result.lemma_wordform.text == lemma_str
+    # todo: tags are not implemented
+    # assert not result.preverbs
+    # assert not result.reduplication_tags
+    # assert not result.initial_change_tags
+    assert len(result.lemma_wordform.definitions.all()) >= 1
+    assert all(
+        len(dfn.source_ids) >= 1 for dfn in result.lemma_wordform.definitions.all()
+    )
 
 
 # TODO: some of these should really be in a dedicated "test_search" file.
