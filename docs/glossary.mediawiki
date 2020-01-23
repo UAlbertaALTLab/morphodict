@@ -91,8 +91,7 @@ entry]] may use a phrase as a [[head]].
 * ''1'' [[head]]
 
 
-word class
-==========
+== word class ==
 
 THING that [[inflects]] in a similar way. Behave morphologically in
 a similar way to each other.
