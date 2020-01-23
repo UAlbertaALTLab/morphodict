@@ -88,7 +88,7 @@ In Plains Cree
 --------------
 
 * [Noun][] — use the four word classes instead: [NI], [NA], [NID], [NAD]
-* [Verb][] — use the four word classes intstead: [VII], [VAI], [VTI], [VTA]
+* [Verb][] — use the four word classes instead: [VII], [VAI], [VTI], [VTA]
 
 
 head
@@ -104,6 +104,8 @@ part of speech
 ==============
 [part of speech]: #part-of-speech
 
+> ⚠️  **Deprecated** — use [word class][] instead.
+
 The grammatical category to which a [term][] belongs.
 Different parts of speech have different functions in a
 [clause][].
@@ -113,12 +115,6 @@ Part of
 
 -   **1** or more [word class][]
 -   **1** [term][]
-
-Notes
------
-
--   **Deprecated** — use [word class][] instead.
-
 
 phrase
 ======
