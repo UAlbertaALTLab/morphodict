@@ -375,9 +375,6 @@ class Wordform(models.Model):
 
         return CreeAndEnglish(cree_results, english_results)
 
-    def __lt__(self, other):
-        return self.text < other.text
-
     @staticmethod
     def search(user_query: str) -> SortedSet[SearchResult]:
         cree_results: Set[CreeResult]
