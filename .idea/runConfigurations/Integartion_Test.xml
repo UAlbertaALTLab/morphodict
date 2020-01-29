@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Integartion Test" type="CompoundRunConfigurationType">
-    <toRun name="test db" type="Python.DjangoServer" />
-    <toRun name="integration test | running server" type="js.build_tools.npm" />
-    <method v="2" />
-  </configuration>
-</component>
