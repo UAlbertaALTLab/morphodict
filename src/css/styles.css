@@ -431,6 +431,55 @@ html {
   font-weight: var(--strong-font-weight);
 }
 
+.definition-title__tooltip-text{
+  font-size:0.5em;
+  font-weight: normal;
+}
+
+.definition-title__question-mark{
+  width: calc(var(--definition-title-size) / 2);
+  /* vertically center the question mark*/
+  position: absolute;
+  top:0;
+  bottom: 0;
+  margin: auto;
+  /* end vertical centering */
+  left:0.2em;  /* space out the question mark */
+  /* to change the color. Generate a "filter" attribute with the desired color code*/
+  /* https://codepen.io/sosuke/pen/Pjoqqp */
+  filter: invert(20%) sepia(20%) saturate(7344%) hue-rotate(220deg) brightness(90%) contrast(93%);
+}
+
+.definition-title__tooltip{
+  display: inline;
+  position: relative;
+}
+
+.definition-title__tooltip-text{
+  /* bottom tooltip with fade-in animation */
+  /* https://www.w3schools.com/css/css_tooltip.asp */
+  visibility: hidden;
+  white-space: nowrap;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.definition-title__question-mark:hover + .definition-title__tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
 .definition-title__reference-to-lemma{
   font-size: var(--reference-to-lemma-size);
 }

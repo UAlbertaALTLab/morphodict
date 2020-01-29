@@ -29,7 +29,7 @@ def search_results(request, query_string: str):
     """
     returns rendered boxes of search results according to user query
     """
-    # todo: use the analysis from cree_results to show user query analysis (Preverb, reduplication, IC ...)
+    # todo: show user query analysis (Preverb, reduplication, IC ...)
     results = Wordform.search(query_string)
     return render(request, "CreeDictionary/word-entries.html", {"results": results},)
 

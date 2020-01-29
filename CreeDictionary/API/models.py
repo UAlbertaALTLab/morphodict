@@ -13,6 +13,7 @@ from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
+from utils.fst_analysis_parser import extract_lemma, split_analysis
 
 logger = logging.getLogger(__name__)
 
@@ -51,6 +52,10 @@ class SearchResult:
     lemma_wordform: "Wordform"
 
     # triple dots in type annotation means they can be empty
+
+    # user friendly linguistic breakdowns
+    linguistic_breakdown_head: Tuple[str, ...]
+    linguistic_breakdown_tail: Tuple[str, ...]
 
     # Sequence of all preverb tags, in order
     preverbs: Tuple[str, ...]
@@ -221,7 +226,7 @@ class Wordform(models.Model):
             if exactly_matched_wordforms.exists():
                 for wf in exactly_matched_wordforms:
                     cree_results.add(
-                        CreeResult(Analysis(analysis), wf, Lemma(wf.lemma))
+                        CreeResult(Analysis(wf.analysis), wf, Lemma(wf.lemma))
                     )
             else:
                 # When the user query is outside of paradigm tables
@@ -278,7 +283,7 @@ class Wordform(models.Model):
                     for lemma_wordform in matched_lemma_wordforms:
                         cree_results.add(
                             CreeResult(
-                                Analysis(analysis),
+                                Analysis(analysis.replace("+Err/Orth", "")),
                                 normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
@@ -289,7 +294,7 @@ class Wordform(models.Model):
                     ):
                         cree_results.add(
                             CreeResult(
-                                Analysis(analysis),
+                                Analysis(analysis.replace("+Err/Orth", "")),
                                 normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
@@ -397,12 +402,28 @@ class Wordform(models.Model):
                 matched_cree = cree_result.normatized_cree
                 is_lemma = False
                 definitions = ()
+
+            try:
+                (
+                    linguistic_breakdown_head,
+                    _,
+                    linguistic_breakdown_tail,
+                ) = split_analysis(cree_result.analysis)
+            except ValueError:
+                # when the lemma has as-is = True,
+                # analysis could be programmatically generated and not parsable
+                # see xml_importer.py::generate_as_is_analysis
+                linguistic_breakdown_head = []
+                linguistic_breakdown_tail = []
+
             # todo: tags, preverbs
             results.add(
                 SearchResult(
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
                     matched_by=Language.CREE,
+                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
+                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
                     lemma_wordform=cree_result.lemma,
                     preverbs=(),
                     reduplication_tags=(),
@@ -412,7 +433,17 @@ class Wordform(models.Model):
             )
 
         for result in english_results:
-            # todo: tags, preverbs
+
+            try:
+                (
+                    linguistic_breakdown_head,
+                    _,
+                    linguistic_breakdown_tail,
+                ) = split_analysis(result.lemma.analysis)
+            except ValueError:
+                linguistic_breakdown_head = []
+                linguistic_breakdown_tail = []
+
             results.add(
                 SearchResult(
                     matched_cree=result.matched_cree.text,
@@ -422,6 +453,8 @@ class Wordform(models.Model):
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
+                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
+                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
                     definitions=tuple(result.matched_cree.definitions.all()),
                     # todo: current EnglishKeyword is bound to
                     #       lemmas, whose definitions are guaranteed in the database.
@@ -440,7 +473,7 @@ Lemma = NewType("Lemma", Wordform)
 
 class CreeResult(NamedTuple):
     """
-    - analysis: a string, one fst analysis of user query
+    - analysis: a string, fst analysis of normatized cree
 
     - normatized_cree: a wordform, the Cree inflection that matches the analysis
         Can be a string that's not saved in the database since our database do not store all the
