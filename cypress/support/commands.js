@@ -27,7 +27,7 @@
 // TODO: fix bug in Cypress: always encodeURIComponent in call to visit:
 Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
   let newURL = url.split('/').map(encodeURIComponent).join('/')
-  if (newURL != url) {
+  if (newURL !== url) {
     Cypress.log({
       name: 'visit',
       message:`‼️  Rewriting ${url} -> ${newURL}`
@@ -36,5 +36,3 @@ Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
 
   return originalVisit(newURL, options)
 })
-
-/*global Cypress */

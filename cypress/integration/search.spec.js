@@ -1,4 +1,23 @@
 context('Searching', () => {
+
+  describe('A tooltip should show up when the user click/hover on the question mark beside the matched wordform', () => {
+    // fixme: somehow click does not work and cypress does not support hovering
+    //    also tried manually triggering "mouseon"/"mouseover" events but no luck
+    it.skip('should show tooltip when I click on the question mark beside ê-wâpamat', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('ewapamat')
+
+      cy.wait(500)
+
+      // not visible in the beginning
+      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
+
+    })}
+
+  )
+
+
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for an exact lemma', () => {
@@ -17,7 +36,7 @@ context('Searching', () => {
         .should('contain', 'cat')
     })
   })
-  
+
   describe('search results should be ranked by modified levenshtein distance', () => {
     it('should show nipa before nipaw if the search string is nipa', () => {
       // on the previous implementation nipaw is showed first

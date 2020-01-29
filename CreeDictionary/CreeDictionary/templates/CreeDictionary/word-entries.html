@@ -1,4 +1,5 @@
 {% load inflection_extras %}
+{% load static %}
 
 {% for result in results %}
     <li class="search-results__result" data-cy="search-results">
@@ -19,6 +20,14 @@
                             <span lang="cr">{{ result.matched_cree }}</span>
                         {% endif %}
                         <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
+                        {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
+                        <div class="definition-title__tooltip">
+                            <img class="definition-title__question-mark"
+                                 src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
+                                 alt="linguistic breakdown" data-cy="question-mark">
+                            <span class="definition-title__tooltip-text" data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}{{ result.linguistic_breakdown_head|join:" + " }} + {% endif %}<strong>{{ result.lemma_wordform.text }}-</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
+                        </div>
+                        {% endif %}
                     </dfn>
 
                 </h2>
