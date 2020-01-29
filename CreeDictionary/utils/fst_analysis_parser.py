@@ -12,14 +12,14 @@ analysis_pattern = re.compile(
 )
 
 
-def split_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
+def partition_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
     """
     :return: the tags before the lemma, the lemma itself, the tags after the lemma
     :raise ValueError: when the analysis is not parsable.
 
-    >>> split_analysis('PV/e+fakeword+N+I')
+    >>> partition_analysis('PV/e+fakeword+N+I')
     (['PV/e'], 'fakeword', ['N', 'I'])
-    >>> split_analysis('fakeword+N+I')
+    >>> partition_analysis('fakeword+N+I')
     ([], 'fakeword', ['N', 'I'])
     """
     res = re.search(analysis_pattern, analysis)
@@ -28,7 +28,6 @@ def split_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
         group = res.group("category")
         if group:
             end = res.span("category")[0]
-            # print(res.groups())
             cursor = end - 1
 
             while cursor > 0 and analysis[cursor] != "+":

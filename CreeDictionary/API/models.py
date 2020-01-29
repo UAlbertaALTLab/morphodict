@@ -13,7 +13,7 @@ from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
-from utils.fst_analysis_parser import extract_lemma, split_analysis
+from utils.fst_analysis_parser import extract_lemma, partition_analysis
 
 logger = logging.getLogger(__name__)
 
@@ -408,7 +408,7 @@ class Wordform(models.Model):
                     linguistic_breakdown_head,
                     _,
                     linguistic_breakdown_tail,
-                ) = split_analysis(cree_result.analysis)
+                ) = partition_analysis(cree_result.analysis)
             except ValueError:
                 # when the lemma has as-is = True,
                 # analysis could be programmatically generated and not parsable
@@ -439,7 +439,7 @@ class Wordform(models.Model):
                     linguistic_breakdown_head,
                     _,
                     linguistic_breakdown_tail,
-                ) = split_analysis(result.lemma.analysis)
+                ) = partition_analysis(result.lemma.analysis)
             except ValueError:
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []

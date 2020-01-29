@@ -26,6 +26,25 @@ def django_db_setup():
 
 
 @pytest.mark.django_db
+def test_when_linguistic_breakdown_absent():
+    # sa- is a thing used in reduplication
+    # "usually added to a verb to mean continuous action"
+
+    # it's not analyzable by the fst and should not have a linguistic breakdown
+
+    query = "sa"
+    search_results = Wordform.search(query)
+
+    assert len(search_results) == 1
+
+    result = search_results[0]
+    assert (
+        result.linguistic_breakdown_head == ()
+        and result.linguistic_breakdown_tail == ()
+    )
+
+
+@pytest.mark.django_db
 @given(lemma=random_lemmas())
 def test_query_exact_wordform_in_database(lemma: Wordform):
     """
