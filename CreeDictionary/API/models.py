@@ -13,7 +13,12 @@ from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
-from utils.fst_analysis_parser import extract_lemma, partition_analysis
+from utils.fst_analysis_parser import (
+    extract_lemma,
+    partition_analysis,
+    LabelFriendliness,
+    FST_TAG_LABELS,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +34,25 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
             if "CW" in definition.source_ids:
                 yield wordform
                 break
+
+
+uWu__cutie_sQuishies = NewType("uWu__cutie_sQuishies", str)
+
+
+def replace_user_friendly_tags(fst_tags: List[str]) -> List[uWu__cutie_sQuishies]:
+    """ replace fst-tags to cute ones"""
+    cutties = []
+
+    for fst_tag in fst_tags:
+        if (
+            fst_tag in FST_TAG_LABELS
+            and FST_TAG_LABELS[fst_tag][LabelFriendliness.ENGLISH] != None
+        ):
+            cutties.append(FST_TAG_LABELS[fst_tag][LabelFriendliness.ENGLISH])
+        else:
+            cutties.append(fst_tags)
+
+    return cutties
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -415,6 +439,16 @@ class Wordform(models.Model):
                 # see xml_importer.py::generate_as_is_analysis
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []
+            for i, fst_tag in enumerate(linguistic_breakdown_head):
+                if fst_tag in FST_TAG_LABELS:
+                    linguistic_breakdown_head[i] = FST_TAG_LABELS[fst_tag][
+                        LabelFriendliness.ENGLISH
+                    ]
+            for i, fst_tag in enumerate(linguistic_breakdown_head):
+                if fst_tag in FST_TAG_LABELS:
+                    linguistic_breakdown_tail[i] = FST_TAG_LABELS[fst_tag][
+                        LabelFriendliness.ENGLISH
+                    ]
 
             # todo: tags, preverbs
             results.add(
@@ -422,8 +456,12 @@ class Wordform(models.Model):
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
                     matched_by=Language.CREE,
-                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
-                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
                     lemma_wordform=cree_result.lemma,
                     preverbs=(),
                     reduplication_tags=(),
@@ -453,8 +491,12 @@ class Wordform(models.Model):
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
-                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
-                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
                     definitions=tuple(result.matched_cree.definitions.all()),
                     # todo: current EnglishKeyword is bound to
                     #       lemmas, whose definitions are guaranteed in the database.

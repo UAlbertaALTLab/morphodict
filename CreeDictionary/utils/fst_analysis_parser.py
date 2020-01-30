@@ -1,15 +1,71 @@
+import csv
 import re
+from enum import Enum
 from os.path import dirname
 from pathlib import Path
-from typing import Iterable, Dict, Optional, Set, Pattern, List
+from typing import Iterable, Dict, Optional, Set, Pattern, List, NewType
 from typing import Tuple
 
-from constants import SimpleLexicalCategory, FSTLemma
+from attr import attrs
 
+from constants import SimpleLexicalCategory, FSTLemma
+from .shared_res_dir import shared_res_dir
 
 analysis_pattern = re.compile(
     r"(?P<category>\+N\+A(\+D(?=\+))?|\+N\+I(\+D(?=\+))?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"
 )
+
+
+class LabelFriendliness(Enum):
+    LINGUISTIC_SHORT = 0
+    LINGUISTIC_LONG = 1
+    ENGLISH = 2
+    NEHIYAWEWIN = 3
+
+
+FSTTag = NewType("FSTTag", str)
+Label = NewType("Label", str)
+
+
+def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Label]]:
+    res: Dict[FSTTag, Dict[LabelFriendliness, Label]] = {}
+    with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
+        reader = csv.reader(csvfile, delimiter="\t")
+        for row in list(reader)[1:]:
+            if any(row):
+                # todo: emojis are not used for now. USE THEM
+                tag_dict = {
+                    LabelFriendliness.LINGUISTIC_SHORT: None,
+                    LabelFriendliness.LINGUISTIC_LONG: None,
+                    LabelFriendliness.ENGLISH: None,
+                    LabelFriendliness.NEHIYAWEWIN: None,
+                }
+                try:
+                    fst_tag = row[0]
+                    short = row[1]
+                    tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(short)
+                    long = row[2]
+                    tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(long)
+                    english = row[3]
+                    tag_dict[LabelFriendliness.ENGLISH] = Label(english)
+                    nihiyawewin = row[4]
+                    tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(nihiyawewin)
+                    emoji = row[5]
+                except IndexError:  # some of them do not have that many columns
+                    pass
+                res[FSTTag(fst_tag)] = tag_dict
+    return res
+
+
+FST_TAG_LABELS = read_labels()
+
+
+@attrs(auto_attribs=True, frozen=True)
+class FSTTag:
+    text: str
+
+    def get_label(self, friendliness: LabelFriendliness):
+        pass
 
 
 def partition_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
