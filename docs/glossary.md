@@ -68,16 +68,16 @@ Examples
 -   NDA-4w
 
 
-incomplete word class
+general word class
 =====================
-[incomplete word class]: #incomplete-word-class
+[general word class]: #general-word-class
 
 Superclass of [word class][]. Does not contain
 [inflectional categories][]. Similar
 to [part of speech][].
 
-Incomplete word classes are "incomplete" because they are not detailed
-enough to tell you how its members [inflect]. A [word class][], on the
+General word classes are are not detailed
+enough to tell you how its members [inflect]. A [specific word class][], on the
 other hand, tells you enough to be able to [inflect].
 
 Consists of
@@ -105,7 +105,7 @@ part of speech
 ==============
 [part of speech]: #part-of-speech
 
-> ⚠️  **Deprecated** — use [word class][] instead.
+> ⚠️  **Deprecated** — use [specific word class][] instead.
 
 The grammatical category to which a [term][] belongs.
 Different parts of speech have different functions in a
@@ -139,6 +139,9 @@ word class
 ==========
 [word class]: #word-class
 [word classes]: #word-class
+[specific word class]: #word-class
+
+> Also known as **specific word class**
 
 Category of \$THING that [inflects][] in a similar way. Members of the
 same word class behave morphologically in a similar way to each other.
