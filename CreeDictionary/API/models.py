@@ -9,7 +9,15 @@ from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from sortedcontainers import SortedSet
 
-from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
+from constants import (
+    SimpleLC,
+    SimpleLexicalCategory,
+    POS,
+    Analysis,
+    Language,
+    FSTTag,
+    Label,
+)
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
@@ -36,23 +44,20 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
                 break
 
 
-uWu__cutie_sQuishies = NewType("uWu__cutie_sQuishies", str)
-
-
-def replace_user_friendly_tags(fst_tags: List[str]) -> List[uWu__cutie_sQuishies]:
+def replace_user_friendly_tags(fst_tags: List[str]) -> List[Label]:
     """ replace fst-tags to cute ones"""
-    cutties = []
+    labels: List[Label] = []
 
     for fst_tag in fst_tags:
-        if (
-            fst_tag in FST_TAG_LABELS
-            and FST_TAG_LABELS[fst_tag][LabelFriendliness.ENGLISH] != None
-        ):
-            cutties.append(FST_TAG_LABELS[fst_tag][LabelFriendliness.ENGLISH])
+        label = FST_TAG_LABELS.get(FSTTag(fst_tag), {}).get(LabelFriendliness.ENGLISH)
+        if fst_tag in FST_TAG_LABELS and label is not None:
+            labels.append(label)
         else:
-            cutties.append(fst_tags)
+            labels.append(
+                Label(fst_tag)
+            )  # can not find user friendly label in crk.altlabel, do not change it.
 
-    return cutties
+    return labels
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -439,16 +444,6 @@ class Wordform(models.Model):
                 # see xml_importer.py::generate_as_is_analysis
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []
-            for i, fst_tag in enumerate(linguistic_breakdown_head):
-                if fst_tag in FST_TAG_LABELS:
-                    linguistic_breakdown_head[i] = FST_TAG_LABELS[fst_tag][
-                        LabelFriendliness.ENGLISH
-                    ]
-            for i, fst_tag in enumerate(linguistic_breakdown_head):
-                if fst_tag in FST_TAG_LABELS:
-                    linguistic_breakdown_tail[i] = FST_TAG_LABELS[fst_tag][
-                        LabelFriendliness.ENGLISH
-                    ]
 
             # todo: tags, preverbs
             results.add(

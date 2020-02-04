@@ -8,7 +8,7 @@ from typing import Tuple
 
 from attr import attrs
 
-from constants import SimpleLexicalCategory, FSTLemma
+from constants import SimpleLexicalCategory, FSTLemma, FSTTag, Label
 from .shared_res_dir import shared_res_dir
 
 analysis_pattern = re.compile(
@@ -23,18 +23,14 @@ class LabelFriendliness(Enum):
     NEHIYAWEWIN = 3
 
 
-FSTTag = NewType("FSTTag", str)
-Label = NewType("Label", str)
-
-
-def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Label]]:
-    res: Dict[FSTTag, Dict[LabelFriendliness, Label]] = {}
+def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
+    res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
     with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
         reader = csv.reader(csvfile, delimiter="\t")
         for row in list(reader)[1:]:
             if any(row):
                 # todo: emojis are not used for now. USE THEM
-                tag_dict = {
+                tag_dict: Dict[LabelFriendliness, Optional[Label]] = {
                     LabelFriendliness.LINGUISTIC_SHORT: None,
                     LabelFriendliness.LINGUISTIC_LONG: None,
                     LabelFriendliness.ENGLISH: None,
@@ -58,14 +54,6 @@ def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Label]]:
 
 
 FST_TAG_LABELS = read_labels()
-
-
-@attrs(auto_attribs=True, frozen=True)
-class FSTTag:
-    text: str
-
-    def get_label(self, friendliness: LabelFriendliness):
-        pass
 
 
 def partition_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
