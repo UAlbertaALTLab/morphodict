@@ -445,9 +445,7 @@ html {
   margin: auto;
   /* end vertical centering */
   left:0.2em;  /* space out the question mark */
-  /* to change the color. Generate a "filter" attribute with the desired color code*/
-  /* https://codepen.io/sosuke/pen/Pjoqqp */
-  filter: invert(20%) sepia(20%) saturate(7344%) hue-rotate(220deg) brightness(90%) contrast(93%);
+  filter: var(--blue-filter);
 }
 
 .definition-title__tooltip{
