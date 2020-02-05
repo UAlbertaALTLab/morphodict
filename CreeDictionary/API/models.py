@@ -1,7 +1,7 @@
 import logging
 import unicodedata
 from functools import cmp_to_key, partial
-from typing import List, NamedTuple, Set, Tuple, Iterable, NewType, Union
+from typing import List, NamedTuple, Set, Tuple, Iterable, NewType, Union, Optional
 
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
@@ -60,6 +60,9 @@ def replace_user_friendly_tags(fst_tags: List[str]) -> List[Label]:
     return labels
 
 
+WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
+
+
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
 class SearchResult:
     """
@@ -87,7 +90,8 @@ class SearchResult:
     linguistic_breakdown_tail: Tuple[str, ...]
 
     # Sequence of all preverb tags, in order
-    preverbs: Tuple[str, ...]
+    # Optional: we might not have some preverbs in our database
+    preverbs: Tuple[Tuple[str, Optional[WordformID]], ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
