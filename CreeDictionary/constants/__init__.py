@@ -10,6 +10,9 @@ from typing import NewType
 Analysis = NewType("Analysis", str)
 FSTLemma = NewType("FSTLemma", str)
 
+FSTTag = NewType("FSTTag", str)
+Label = NewType("Label", str)
+
 
 class Language(Enum):
     ENGLISH = "ENGLISH"

@@ -456,9 +456,7 @@ html {
 }
 
 .definition-title__tooltip-text{
-  /* bottom tooltip with fade-in animation */
-  /* https://www.w3schools.com/css/css_tooltip.asp */
-  visibility: hidden;
+  display: none;
   white-space: nowrap;
   background-color: black;
   color: #fff;
@@ -469,15 +467,10 @@ html {
   z-index: 1;
   top: 100%;
   left: 50%;
-
-  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
-  opacity: 0;
-  transition: opacity 1s;
 }
 
 .definition-title__question-mark:hover + .definition-title__tooltip-text {
-  visibility: visible;
-  opacity: 1;
+  display: block;
 }
 
 .definition-title__reference-to-lemma{

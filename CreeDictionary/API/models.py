@@ -9,11 +9,24 @@ from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from sortedcontainers import SortedSet
 
-from constants import SimpleLC, SimpleLexicalCategory, POS, Analysis, Language
+from constants import (
+    SimpleLC,
+    SimpleLexicalCategory,
+    POS,
+    Analysis,
+    Language,
+    FSTTag,
+    Label,
+)
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
-from utils.fst_analysis_parser import extract_lemma, partition_analysis
+from utils.fst_analysis_parser import (
+    extract_lemma,
+    partition_analysis,
+    LabelFriendliness,
+    FST_TAG_LABELS,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +42,22 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
             if "CW" in definition.source_ids:
                 yield wordform
                 break
+
+
+def replace_user_friendly_tags(fst_tags: List[str]) -> List[Label]:
+    """ replace fst-tags to cute ones"""
+    labels: List[Label] = []
+
+    for fst_tag in fst_tags:
+        label = FST_TAG_LABELS.get(FSTTag(fst_tag), {}).get(LabelFriendliness.ENGLISH)
+        if fst_tag in FST_TAG_LABELS and label is not None:
+            labels.append(label)
+        else:
+            labels.append(
+                Label(fst_tag)
+            )  # can not find user friendly label in crk.altlabel, do not change it.
+
+    return labels
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -422,8 +451,12 @@ class Wordform(models.Model):
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
                     matched_by=Language.CREE,
-                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
-                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
                     lemma_wordform=cree_result.lemma,
                     preverbs=(),
                     reduplication_tags=(),
@@ -453,8 +486,12 @@ class Wordform(models.Model):
                     preverbs=(),
                     reduplication_tags=(),
                     initial_change_tags=(),
-                    linguistic_breakdown_head=tuple(linguistic_breakdown_head),
-                    linguistic_breakdown_tail=tuple(linguistic_breakdown_tail),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
                     definitions=tuple(result.matched_cree.definitions.all()),
                     # todo: current EnglishKeyword is bound to
                     #       lemmas, whose definitions are guaranteed in the database.
