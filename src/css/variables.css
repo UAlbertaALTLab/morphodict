@@ -41,6 +41,10 @@
   --link-active-color:      #0E6790; /* Currently active link. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
+  /* special way of changing svg fill color when svg is embedded in <img> */
+  /* to change the color. Generate a "filter" attribute with the desired color code*/
+  /* https://codepen.io/sosuke/pen/Pjoqqp */
+  --blue-filter: invert(20%) sepia(20%) saturate(7344%) hue-rotate(220deg) brightness(90%) contrast(93%);
 
   /* Font sizes */
   --root-font-size:                 1.00em;
