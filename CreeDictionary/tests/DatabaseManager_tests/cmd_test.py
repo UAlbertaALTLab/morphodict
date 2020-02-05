@@ -19,7 +19,7 @@ def django_db_setup(django_db_blocker):
 
     This fixture overrides the default django_db_setup fixture in the scope of the file.
         it tells all functions marked with pytest.mark.django_db in this file
-        1. Do not automatically create database while setting up (so that we can test xml-importing related functions
+        1. Do not automatically migrate database while setting up (so that we can test xml-importing related functions
         which apply migration and create database manually)
         2. disable foreign_keys constraint for the database, see reason below
 
