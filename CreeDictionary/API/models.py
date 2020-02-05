@@ -91,7 +91,7 @@ def fetch_preverbs(user_query: str) -> Set["CreeResult"]:
             result.add(
                 CreeResult(
                     Analysis(preverb_wordform.analysis),
-                    NormatizedCree(preverb_wordform.text),
+                    preverb_wordform,
                     Lemma(preverb_wordform),
                 )
             )
