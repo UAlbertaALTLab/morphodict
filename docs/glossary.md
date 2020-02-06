@@ -101,6 +101,20 @@ Each head is listed alphabetically (with derivations (phrases on the
 [wordform][]) coming after the \'root\' listing).
 
 
+Lemma
+-----
+[lemma]: #lemma
+[lemmas]: #lemma
+[lemmata]: #lemma
+
+The base form of a [word form]; the form chosen to depict the basic representation of the paradigm. Often the least structurally and semantically marked form.  Unlike a [stem] or [root], a lemma is always a [word form].
+
+### Part of
+
+* **1** or more [word form]
+* **1** [head] 
+
+
 part of speech
 ==============
 [part of speech]: #part-of-speech
