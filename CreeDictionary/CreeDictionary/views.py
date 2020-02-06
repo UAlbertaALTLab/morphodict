@@ -31,7 +31,7 @@ def search_results(request, query_string: str):
     """
     # todo: show user query analysis (Preverb, reduplication, IC ...)
     results = Wordform.search(query_string)
-    return render(request, "CreeDictionary/word-entries.html", {"results": results},)
+    return render(request, "CreeDictionary/word-entries.html", {"results": results})
 
 
 # todo: allow different paradigm size

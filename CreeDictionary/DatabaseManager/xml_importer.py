@@ -460,7 +460,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 if d_s_dicts is not None:
                     for d_s_dict in d_s_dicts:
 
-                        for (str_definition, source_strings,) in d_s_dict.items():
+                        for (str_definition, source_strings) in d_s_dict.items():
                             db_definition = Definition(
                                 id=definition_counter,
                                 text=str_definition,
