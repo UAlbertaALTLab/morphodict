@@ -48,9 +48,7 @@ def replace_user_friendly_tags(fst_tags: List[str]) -> List[Label]:
     """ replace fst-tags to cute ones"""
     labels: List[Label] = []
     for fst_tag in fst_tags:
-        label = FST_TAG_LABELS.get(FSTTag(fst_tag), {}).get(
-            LabelFriendliness.LINGUISTIC_SHORT
-        )
+        label = FST_TAG_LABELS.get(FSTTag(fst_tag), {}).get(LabelFriendliness.ENGLISH)
         if fst_tag in FST_TAG_LABELS and label:  # label could be '' or None
             labels.append(label)
         else:
