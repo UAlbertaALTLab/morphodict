@@ -235,7 +235,7 @@ class Combiner:
     """
 
     def __init__(
-        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path,
+        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
     ):
         """
         Reads ALL of the .tsv layout files into memory and initializes the FST generator

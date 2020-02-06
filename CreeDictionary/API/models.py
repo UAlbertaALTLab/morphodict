@@ -1,31 +1,30 @@
 import logging
 import unicodedata
 from functools import cmp_to_key, partial
-from typing import List, NamedTuple, Set, Tuple, Iterable, NewType, Union
+from typing import Iterable, List, NamedTuple, NewType, Set, Tuple, Union
 
 from attr import attrs
+from constants import (
+    POS,
+    Analysis,
+    FSTTag,
+    Label,
+    Language,
+    SimpleLC,
+    SimpleLexicalCategory,
+)
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
-from sortedcontainers import SortedSet
-
-from constants import (
-    SimpleLC,
-    SimpleLexicalCategory,
-    POS,
-    Analysis,
-    Language,
-    FSTTag,
-    Label,
-)
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
+from sortedcontainers import SortedSet
 from utils import fst_analysis_parser, get_modified_distance
 from utils.fst_analysis_parser import (
+    FST_TAG_LABELS,
+    LabelFriendliness,
     extract_lemma,
     partition_analysis,
-    LabelFriendliness,
-    FST_TAG_LABELS,
 )
 
 logger = logging.getLogger(__name__)
@@ -390,9 +389,7 @@ class Wordform(models.Model):
             )
             for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
                 english_results.add(
-                    EnglishResult(
-                        MatchedEnglish(user_query), wordform, Lemma(wordform),
-                    )
+                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
                 )  # will become  (user_query, inflection.text, inflection.lemma)
 
             # explain above, preverbs should be presented
@@ -402,9 +399,7 @@ class Wordform(models.Model):
                 as_is=True,
             ):
                 english_results.add(
-                    EnglishResult(
-                        MatchedEnglish(user_query), wordform, Lemma(wordform),
-                    )
+                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
                 )  # will become  (user_query, inflection.text, wordform)
 
         return CreeAndEnglish(cree_results, english_results)
@@ -417,7 +412,9 @@ class Wordform(models.Model):
         cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
 
         results: SortedSet[SearchResult] = SortedSet(
-            key=cmp_to_key(partial(sort_search_result, user_query=user_query))  # type: ignore # mypy stupid
+            key=cmp_to_key(
+                partial(sort_search_result, user_query=user_query)
+            )  # type: ignore # mypy stupid
         )
 
         # Create the search results
