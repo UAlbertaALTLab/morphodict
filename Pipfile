@@ -18,6 +18,7 @@ paramiko = "~=2.6"
 pysnooper = "*"
 gitdir = "*"
 tqdm = "~=4.40"
+python-levenshtein = "*"
 
 [packages]
 colorama = "~=0.4"
@@ -32,7 +33,6 @@ attrs = "~=19.1"
 django-js-reverse = "~=0.9"
 fst-lookup = "*"
 sortedcontainers = {git = "https://github.com/Madoshakalaka/python-sortedcontainers.git"}
-python-levenshtein = "*"
 
 [scripts]
 # look stuff up
