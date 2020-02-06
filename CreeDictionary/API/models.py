@@ -1,7 +1,18 @@
 import logging
 import unicodedata
 from functools import cmp_to_key, partial
-from typing import Iterable, List, NamedTuple, NewType, Set, Tuple, Union
+from typing import (
+    Any,
+    Callable,
+    Iterable,
+    List,
+    NamedTuple,
+    NewType,
+    Set,
+    Tuple,
+    Union,
+    cast,
+)
 
 from attr import attrs
 from constants import (
@@ -413,7 +424,10 @@ class Wordform(models.Model):
 
         results: SortedSet[SearchResult] = SortedSet(
             key=cmp_to_key(
-                partial(sort_search_result, user_query=user_query)
+                cast(
+                    Callable[[Any, Any], Any],
+                    partial(sort_search_result, user_query=user_query),
+                )
             )  # type: ignore # mypy stupid
         )
 
@@ -498,6 +512,10 @@ class Wordform(models.Model):
             )
 
         return results
+
+
+def sort_by_user_query(user_query: str):
+    ...
 
 
 MatchedEnglish = NewType("MatchedEnglish", str)
