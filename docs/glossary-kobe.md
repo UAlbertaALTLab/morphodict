@@ -12,4 +12,4 @@ In linguistics, the different ways that a word can exist in a language. (Not to 
 Stem
 ----------------
 
-In linguistics, the root of a word (from which all inflected forms are based off of). As a rule of practice, we – as linguists – aim for the lemma to be a wordform in and of itself.
+In linguistics, the root of a word (from which all inflected forms are based off of).
