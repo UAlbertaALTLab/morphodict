@@ -512,6 +512,9 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
     Returns a key function that sorts search results ranked by their distance
     to the user query.
     """
+    # mypy doesn't really know how to handle partial(), so we tell it the
+    # correct type with cast()
+    # See: https://github.com/python/mypy/issues/1484
     return cmp_to_key(
         cast(
             Callable[[Any, Any], Any],
