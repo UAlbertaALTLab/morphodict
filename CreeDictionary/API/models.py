@@ -422,14 +422,7 @@ class Wordform(models.Model):
 
         cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
 
-        results: SortedSet[SearchResult] = SortedSet(
-            key=cmp_to_key(
-                cast(
-                    Callable[[Any, Any], Any],
-                    partial(sort_search_result, user_query=user_query),
-                )
-            )  # type: ignore # mypy stupid
-        )
+        results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
 
         # Create the search results
         for cree_result in cree_results:
@@ -514,8 +507,17 @@ class Wordform(models.Model):
         return results
 
 
-def sort_by_user_query(user_query: str):
-    ...
+def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
+    """
+    Returns a key function that sorts search results ranked by their distance
+    to the user query.
+    """
+    return cmp_to_key(
+        cast(
+            Callable[[Any, Any], Any],
+            partial(sort_search_result, user_query=user_query),
+        )
+    )
 
 
 MatchedEnglish = NewType("MatchedEnglish", str)
