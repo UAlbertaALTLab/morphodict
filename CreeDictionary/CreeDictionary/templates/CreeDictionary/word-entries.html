@@ -63,7 +63,7 @@
                 {% for preverb_text, optional_id in result.preverbs %}
                     <li class="">
                         <p>Preverb: {% if optional_id %}
-                            <a href="{% url 'cree-dictionary-lemma-detail' optional_id %}">{{ preverb_text }}</a>{% else %}
+                            <a href="{% url 'cree-dictionary-index-with-lemma' optional_id %}">{{ preverb_text }}</a>{% else %}
                             {{ preverb_text }}{% endif %}</p>
                     </li>
                 {% endfor %}
