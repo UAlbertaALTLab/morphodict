@@ -8,6 +8,7 @@ from typing import (
     List,
     NamedTuple,
     NewType,
+    Optional,
     Set,
     Tuple,
     Union,
@@ -15,29 +16,27 @@ from typing import (
 )
 
 from attr import attrs
+from cree_sro_syllabics import syllabics2sro
+from django.db import models, transaction
+from django.db.models import Max, Q, QuerySet
+from sortedcontainers import SortedSet
+
 from constants import (
     POS,
     Analysis,
     FSTTag,
     Label,
     Language,
-    SimpleLC,
-    SimpleLexicalCategory,
 )
-from cree_sro_syllabics import syllabics2sro
-from django.db import models, transaction
-from django.db.models import Max, Q, QuerySet
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
-from sortedcontainers import SortedSet
 from utils import fst_analysis_parser, get_modified_distance
+from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
     FST_TAG_LABELS,
     LabelFriendliness,
-    extract_lemma,
     partition_analysis,
 )
-from utils.cree_lev_dist import remove_cree_diacritics
 
 logger = logging.getLogger(__name__)
 
@@ -602,8 +601,6 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
         )
     )
 
-
-MatchedEnglish = NewType("MatchedEnglish", str)
 
 Lemma = NewType("Lemma", Wordform)
 
