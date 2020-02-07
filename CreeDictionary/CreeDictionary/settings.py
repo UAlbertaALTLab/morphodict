@@ -151,7 +151,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "filters": {
         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue",},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
     },
     "handlers": {
         "write_debug_to_file_prod": {
@@ -172,6 +172,6 @@ LOGGING = {
         "django": {
             "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
             "level": "DEBUG",
-        },
+        }
     },
 }
