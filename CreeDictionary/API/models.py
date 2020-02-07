@@ -45,7 +45,7 @@ def filter_cw_wordforms(q: QuerySet) -> Iterable["Wordform"]:
                 break
 
 
-def replace_user_friendly_tags(fst_tags: List[str]) -> List[Label]:
+def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """ replace fst-tags to cute ones"""
     labels: List[Label] = []
     for fst_tag in fst_tags:
@@ -449,15 +449,64 @@ class Wordform(models.Model):
             key=cmp_to_key(partial(sort_search_result, user_query=user_query))  # type: ignore # mypy stupid
         )
 
+        def get_preverbs_from_head_breakdown(
+            head_breakdown: List[FSTTag],
+        ) -> Tuple[
+            Tuple[str, Optional[WordformID]], ...
+        ]:  # consistent with SearchResult.preverb
+
+            results = []
+            for tag in head_breakdown:
+
+                result: Optional[Tuple[str, Optional[WordformID]]] = None
+                if tag.startswith("PV/"):
+                    # use altlabel.tsv to figure out the preverb
+
+                    # ling_short looks like: "Preverb: âpihci-"
+                    ling_short = FST_TAG_LABELS.get(tag, {}).get(
+                        LabelFriendliness.LINGUISTIC_SHORT
+                    )
+                    if ling_short is not None and ling_short != "":
+                        # looks like: "âpihci-"
+                        preverb_text_with_dash = ling_short[len("Preverb: ") :]
+                        preverb_results = fetch_preverbs(preverb_text_with_dash)
+
+                        # find the one that looks the most similar
+                        if preverb_results:
+                            preverb_cree_result = min(
+                                preverb_results,
+                                key=lambda pr: get_modified_distance(
+                                    preverb_text_with_dash.strip("-"),
+                                    pr.normatized_cree_text.strip("-"),
+                                ),
+                            )
+
+                            assert isinstance(
+                                preverb_cree_result.normatized_cree, Wordform
+                            )  # normatized_cree has to be a Wordform in the database. Because we match preverbs by
+                            #   exhaustive search in the database
+
+                            result_wf = preverb_cree_result.normatized_cree
+                            result = (
+                                preverb_cree_result.normatized_cree_text,
+                                result_wf.id,
+                            )
+
+                        else:  # can't find a match for the preverb in the database
+                            result = (preverb_text_with_dash, None)
+
+                if result is not None:
+                    results.append(result)
+            return tuple(results)
+
         # Create the search results
         for cree_result in cree_results:
 
+            matched_cree = cree_result.normatized_cree_text
             if isinstance(cree_result.normatized_cree, Wordform):
-                matched_cree = cree_result.normatized_cree.text
                 is_lemma = cree_result.normatized_cree.is_lemma
                 definitions = tuple(cree_result.normatized_cree.definitions.all())
             else:
-                matched_cree = cree_result.normatized_cree
                 is_lemma = False
                 definitions = ()
 
@@ -474,7 +523,7 @@ class Wordform(models.Model):
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []
 
-            # todo: tags, preverbs
+            # todo: tags
             results.add(
                 SearchResult(
                     matched_cree=matched_cree,
@@ -487,7 +536,9 @@ class Wordform(models.Model):
                         replace_user_friendly_tags(linguistic_breakdown_tail)
                     ),
                     lemma_wordform=cree_result.lemma,
-                    preverbs=(),
+                    preverbs=get_preverbs_from_head_breakdown(
+                        linguistic_breakdown_head
+                    ),
                     reduplication_tags=(),
                     initial_change_tags=(),
                     definitions=definitions,
@@ -512,7 +563,9 @@ class Wordform(models.Model):
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
                     lemma_wordform=result.matched_cree.lemma,
-                    preverbs=(),
+                    preverbs=get_preverbs_from_head_breakdown(
+                        linguistic_breakdown_head
+                    ),
                     reduplication_tags=(),
                     initial_change_tags=(),
                     linguistic_breakdown_head=tuple(
@@ -549,6 +602,13 @@ class CreeResult(NamedTuple):
     analysis: Analysis
     normatized_cree: Union[Wordform, str]
     lemma: Lemma
+
+    @property
+    def normatized_cree_text(self) -> str:
+        if isinstance(self.normatized_cree, Wordform):
+            return self.normatized_cree.text
+        else:  # is str
+            return self.normatized_cree
 
 
 class EnglishResult(NamedTuple):

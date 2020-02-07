@@ -21,12 +21,16 @@
                         {% endif %}
                         <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
                         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
-                        <div class="definition-title__tooltip">
-                            <img class="definition-title__question-mark"
-                                 src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
-                                 alt="linguistic breakdown" data-cy="question-mark">
-                            <span class="definition-title__tooltip-text" data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}{{ result.linguistic_breakdown_head|join:" + " }} + {% endif %}<strong>{{ result.lemma_wordform.text }}</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
-                        </div>
+                            <div class="definition-title__tooltip">
+                                <img class="definition-title__question-mark"
+                                     src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
+                                     alt="linguistic breakdown" data-cy="question-mark">
+                                <span class="definition-title__tooltip-text"
+                                      data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
+                                    {{ result.linguistic_breakdown_head|join:" + " }}
+                                    + {% endif %}
+                                    <strong>{{ result.lemma_wordform.text }}</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
+                            </div>
                         {% endif %}
                     </dfn>
 
@@ -53,6 +57,19 @@
                     </li>
                 {% endfor %}
             </ol>
+
+            {# show preverb breakdown #}
+            <ol class="">
+                {% for preverb_text, optional_id in result.preverbs %}
+                    <li class="">
+                        <p>Preverb: {% if optional_id %}
+                            <a href="{% url 'cree-dictionary-lemma-detail' optional_id %}">{{ preverb_text }}</a>{% else %}
+                            {{ preverb_text }}{% endif %}</p>
+                    </li>
+                {% endfor %}
+            </ol>
+            {# end preverb breakdown #}
+
             {% if result.is_inflection %}
                 {# show everything about the lemma #}
 
