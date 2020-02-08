@@ -105,6 +105,16 @@ def fetch_preverbs(user_query: str) -> Set["CreeResult"]:
     return result
 
 
+class Preverb(NamedTuple):
+    """
+    Contains information about a preverb, should be used inside templates
+    """
+
+    id: Optional[int]  # might be not in our database
+    text: str
+    definitions: Tuple[str, ...]  # might be not in our database, so might be empty
+
+
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
 class SearchResult:
     """
@@ -133,7 +143,7 @@ class SearchResult:
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
-    preverbs: Tuple[Tuple[str, Optional[WordformID]], ...]
+    preverbs: Tuple[Preverb, ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
@@ -429,7 +439,7 @@ class Wordform(models.Model):
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
                 )  # will become  (user_query, inflection.text, inflection.lemma)
 
-            # explain above, preverbs should be presented
+            # explained above, preverbs should be presented
             for wordform in Wordform.objects.filter(
                 Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
@@ -452,14 +462,12 @@ class Wordform(models.Model):
 
         def get_preverbs_from_head_breakdown(
             head_breakdown: List[FSTTag],
-        ) -> Tuple[
-            Tuple[str, Optional[WordformID]], ...
-        ]:  # consistent with SearchResult.preverb
+        ) -> Tuple[Preverb, ...]:  # consistent with SearchResult.preverb
 
             results = []
             for tag in head_breakdown:
 
-                result: Optional[Tuple[str, Optional[WordformID]]] = None
+                result: Optional[Preverb] = None
                 if tag.startswith("PV/"):
                     # use altlabel.tsv to figure out the preverb
 
@@ -488,13 +496,17 @@ class Wordform(models.Model):
                             #   exhaustive search in the database
 
                             result_wf = preverb_cree_result.normatized_cree
-                            result = (
-                                preverb_cree_result.normatized_cree_text,
+                            defintion_strings: Tuple[str, ...] = tuple(
+                                preverb_cree_result.normatized_cree.definitions.all()
+                            )
+                            result = Preverb(
                                 result_wf.id,
+                                preverb_cree_result.normatized_cree_text,
+                                defintion_strings,
                             )
 
                         else:  # can't find a match for the preverb in the database
-                            result = (preverb_text_with_dash, None)
+                            result = Preverb(None, preverb_text_with_dash, tuple())
 
                 if result is not None:
                     results.append(result)
