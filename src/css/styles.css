@@ -2,6 +2,7 @@
 
 @import "./vendor/normalize.css";
 @import "./variables.css";
+@import "./_tooltip.css";
 
 /**
  * Preliminary styles for the application.
@@ -436,39 +437,24 @@ html {
   font-weight: normal;
 }
 
-.definition-title__question-mark{
-  width: calc(var(--definition-title-size) / 2);
+.definition-title__tooltip-icon{
+  display: inline;
+  position: relative;
+}
+
+
+.definition-title__tooltip-icon > img {
+  width: var(--tooltip-icon-size);
+
   /* vertically center the question mark*/
   position: absolute;
   top:0;
   bottom: 0;
   margin: auto;
   /* end vertical centering */
+
   left:0.2em;  /* space out the question mark */
-  filter: var(--blue-filter);
-}
-
-.definition-title__tooltip{
-  display: inline;
-  position: relative;
-}
-
-.definition-title__tooltip-text{
-  display: none;
-  white-space: nowrap;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 10px;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
-  left: 50%;
-}
-
-.definition-title__question-mark:hover + .definition-title__tooltip-text {
-  display: block;
+  filter: var(--blue-filter); /* blue color */
 }
 
 .definition-title__reference-to-lemma{
@@ -499,6 +485,32 @@ html {
   /* Text */
   font-size: var(--search-result-font-size);
 }
+
+.preverb-breakdown {
+  padding: 0;
+  list-style: none;
+  font-size: var(--preverb-breakdown-size);
+}
+
+.preverb-breakdown__tooltip-icon {
+  display: inline;
+  position: relative;
+}
+.preverb-breakdown__tooltip-icon > img {
+  width: var(--tooltip-icon-size);
+
+  /* vertically center the question mark*/
+  position: absolute;
+  top:0;
+  bottom: 0;
+  margin: auto;
+  /* end vertical centering */
+
+  left:0.2em;  /* space out the question mark */
+  filter: var(--blue-filter); /* blue color */
+}
+
+
 
 /********************************* PARADIGM *********************************/
 

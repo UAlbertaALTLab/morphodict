@@ -7,6 +7,7 @@ import $ from 'jquery'
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css';
+import {createTooltip} from "./tooltip";
 
 /**
  * request server-end rendered paradigm and plunk it in place
@@ -139,6 +140,18 @@ function loadResults($input) {
           $searchResultList.find('.definition-title__link').on('click', function () {
             loadParadigm($(this).data('lemma-id'))
           })
+
+
+          // attach handlers for tooltip icon at preverb breakdown
+          $searchResultList.find('.definition-title__tooltip-icon').each(function (){
+            createTooltip($(this), $(this).next('.tooltip'))
+          })
+
+          // attach handlers for tooltip icon at preverb breakdown
+          $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
+            createTooltip($(this), $(this).next('.tooltip'))
+          })
+
 
         } else { // changed. Do nothing
         }

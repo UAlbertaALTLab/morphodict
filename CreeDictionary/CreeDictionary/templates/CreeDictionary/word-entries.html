@@ -21,15 +21,22 @@
                         {% endif %}
                         <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
                         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
-                            <div class="definition-title__tooltip">
-                                <img class="definition-title__question-mark"
-                                     src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
-                                     alt="linguistic breakdown" data-cy="question-mark">
-                                <span class="definition-title__tooltip-text"
-                                      data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
+
+
+                            <div tabindex="0" class="definition-title__tooltip-icon" aria-describedby="tooltip">
+                                <img
+                                        src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
+                                        alt="linguistic breakdown" data-cy="question-mark">
+                            </div>
+
+
+                            <div class="tooltip" role="tooltip">
+                                <span
+                                        data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
                                     {{ result.linguistic_breakdown_head|join:" + " }}
                                     + {% endif %}
                                     <strong>{{ result.lemma_wordform.text }}</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
+                                <div class="arrow" data-popper-arrow></div>
                             </div>
                         {% endif %}
                     </dfn>
@@ -59,12 +66,34 @@
             </ol>
 
             {# show preverb breakdown #}
-            <ol class="">
-                {% for preverb_text, optional_id in result.preverbs %}
-                    <li class="">
-                        <p>Preverb: {% if optional_id %}
-                            <a href="{% url 'cree-dictionary-index-with-lemma' optional_id %}">{{ preverb_text }}</a>{% else %}
-                            {{ preverb_text }}{% endif %}</p>
+            <ol class="preverb-breakdown">
+                {% for preverb in result.preverbs %}
+                    <li>
+                        <span>Preverb: {% if preverb.id %}
+                            <a href="{% url 'cree-dictionary-index-with-lemma' preverb.id %}">{{ preverb.text }}</a>{% else %}
+                            {{ preverb.text }}{% endif %}
+                        </span>
+
+                        {% if preverb.id %} {# we know the preverb in the database #}
+
+
+
+                            <div tabindex="0" class="preverb-breakdown__tooltip-icon" aria-describedby="tooltip">
+
+
+                                <img
+                                        src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
+                                        alt="preverb breakdown" data-cy="preverb-question-mark">
+                            </div>
+
+                            <div class="tooltip" role="tooltip">
+                                {% for definition in preverb.definitions %}
+                                    <p class="preverb-breakdown__preverb-definition">{{ definition }}</p>
+                                {% endfor %}
+                                <div class="arrow" data-popper-arrow></div>
+                            </div>
+
+                        {% endif %}
                     </li>
                 {% endfor %}
             </ol>
