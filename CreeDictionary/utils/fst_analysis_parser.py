@@ -56,7 +56,7 @@ def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
 FST_TAG_LABELS = read_labels()
 
 
-def partition_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
+def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:
     """
     :return: the tags before the lemma, the lemma itself, the tags after the lemma
     :raise ValueError: when the analysis is not parsable.
@@ -80,9 +80,11 @@ def partition_analysis(analysis: str) -> Tuple[List[str], FSTLemma, List[str]]:
                 cursor += 1
 
             return (
-                analysis[: cursor - 1].split("+") if cursor > 1 else [],
+                [FSTTag(t) for t in analysis[: cursor - 1].split("+")]
+                if cursor > 1
+                else [],
                 FSTLemma(analysis[cursor:end]),
-                analysis[end + 1 :].split("+"),
+                [FSTTag(t) for t in analysis[end + 1 :].split("+")],
             )
     raise ValueError(f"analysis not parsable: {analysis}")
 
