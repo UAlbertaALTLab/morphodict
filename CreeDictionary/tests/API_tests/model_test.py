@@ -113,6 +113,17 @@ def test_search_for_english() -> None:
 
 
 @pytest.mark.django_db
+def test_search_for_pronoun() -> None:
+    """
+    Search for a common pronoun "ôma". Make sure "oma" returns at least one
+    result that says "ôma"
+    """
+
+    search_results = Wordform.search("oma")
+    assert "ôma" in {res.matched_cree for res in search_results}
+
+
+@pytest.mark.django_db
 def test_search_for_stored_non_lemma():
     """
     A "stored non-lemma" is a wordform in the database that is NOT a lemma.

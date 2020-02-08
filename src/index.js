@@ -142,11 +142,12 @@ function loadResults($input) {
           })
 
 
-
+          // attach handlers for tooltip icon at preverb breakdown
           $searchResultList.find('.definition-title__tooltip-icon').each(function (){
             createTooltip($(this), $(this).next('.tooltip'))
           })
 
+          // attach handlers for tooltip icon at preverb breakdown
           $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
             createTooltip($(this), $(this).next('.tooltip'))
           })
