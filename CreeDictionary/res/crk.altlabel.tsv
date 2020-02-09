@@ -46,7 +46,7 @@ Err/Orth		(Sub-standard form)
 Foc		Focus
 Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk
 I		Inanimate	like: cîman, wâwi	tâpiskôc: cîman, wâwi	📦
-IC	Initial Change  Initial change  Initial change  
+IC		Initial change	Initial change
 II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	📦➡️
 INM	INM
 IPC	IPC
@@ -65,7 +65,7 @@ Interj		Interjection	Shouting word	têpwêwin-itwêwin
 Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin
 Loc		Locative	in/on/to	pîhci-, tahkoht, ohci
 Med		Medial	like: ana, anima	tâpiskôc: ana, anima
-N		Noun		Naming word	wîhyowin-itwêwin
+N		Noun	Naming word	wîhyowin-itwêwin
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy
 NA-3	NA-3	Consonant-/w/ animate noun stem	like: masinahikanāhtik(w), askihk(w)	tâpiskôc: masinahikanāhtik(w), askihk(w)
@@ -94,7 +94,7 @@ Neg		Negation	not	nâmoya
 Num		Numeral	Number	akihtâson
 Obv		Obviative	further	anima/anihi (awasimê)
 Possession		Ownership	whose / Whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)
-
+Pers		Person	Person	iyiniyw
 PV		Preverb
 PV/acici	Preverb: acici-		head down; upside down
 PV/ahcahkowi	Preverb: ahcahkowi-		spiritual
