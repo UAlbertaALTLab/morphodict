@@ -38,13 +38,13 @@ context('Searching', () => {
   })
 
   describe('search results should be ranked by modified levenshtein distance', () => {
-    it('should show nipa before nipaw if the search string is nipa', () => {
-      // on the previous implementation nipaw is showed first
-      cy.visit('/search/nipa')
+    it('should show nipîhk before nîpîhk if the search string is the former', () => {
+
+      cy.visit('/search/nipîhk')
 
       cy.get('[data-cy=search-results]').first()
-        .should('contain', 'nipa')
-        .and('contain', 'Means, during the night')
+        .should('contain', 'nipîhk')
+        .and('contain', 'water')
     })
   })
 

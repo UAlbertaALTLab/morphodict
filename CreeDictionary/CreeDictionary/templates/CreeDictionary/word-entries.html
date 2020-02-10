@@ -14,19 +14,21 @@
                             <a class="definition-title__link" href="javascript:void(0)"
                                data-lemma-id="{{ result.lemma_wordform.id }}">
                                 {# data- attributes are supported in HTML5 not in XHTML #}
-                                <span lang="cr">{{ result.lemma_wordform.text }}</span>
-                            </a>
+                                <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         {% else %}
                             <span lang="cr">{{ result.matched_cree }}</span>
                         {% endif %}
                         <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
                         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
-                        <div class="definition-title__tooltip">
-                            <img class="definition-title__question-mark"
-                                 src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
-                                 alt="linguistic breakdown" data-cy="question-mark">
-                            <span class="definition-title__tooltip-text" data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}{{ result.linguistic_breakdown_head|join:" + " }} + {% endif %}<strong>{{ result.lemma_wordform.text }}</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
-                        </div>
+                            <div class="definition-title__tooltip">
+                                <img class="definition-title__question-mark"
+                                     src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
+                                     alt="linguistic breakdown" data-cy="question-mark">
+                                <span class="definition-title__tooltip-text"
+                                      data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
+                                    {{ result.linguistic_breakdown_head|join:" + " }}
+                                    + {% endif %}<strong>{{ result.lemma_wordform.text }}</strong> + {{ result.linguistic_breakdown_tail|join:" + " }}</span>
+                            </div>
                         {% endif %}
                     </dfn>
 
@@ -67,8 +69,7 @@
                             <a class="definition-title__link" href="javascript:void(0)"
                                data-lemma-id="{{ result.lemma_wordform.id }}">
                                 {# data- attributes are supported in HTML5 not in XHTML #}
-                                <span lang="cr">{{ result.lemma_wordform.text }}</span>
-                            </a>
+                                <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         </dfn>
                     </h2>
                 </header>

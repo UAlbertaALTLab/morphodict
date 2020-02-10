@@ -6,7 +6,10 @@
       <script value="cypress" />
     </scripts>
     <node-interpreter value="project" />
-    <envs />
+    <envs>
+      <env name="DEBUG" value="True" />
+      <env name="USE_TEST_DB" value="True" />
+    </envs>
     <method v="2" />
   </configuration>
 </component>

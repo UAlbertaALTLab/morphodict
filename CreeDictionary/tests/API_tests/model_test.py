@@ -27,12 +27,10 @@ def django_db_setup():
 
 @pytest.mark.django_db
 def test_when_linguistic_breakdown_absent():
-    # sa- is a thing used in reduplication
-    # "usually added to a verb to mean continuous action"
-
+    # pê- is a preverb
     # it's not analyzable by the fst and should not have a linguistic breakdown
 
-    query = "sa"
+    query = "pe-"
     search_results = Wordform.search(query)
 
     assert len(search_results) == 1
@@ -181,7 +179,7 @@ def test_filter_cw_content():
 
     # test 2
     # assumption
-    nipa_queryset = Wordform.objects.filter(text="nipa", full_lc="IPV")
+    nipa_queryset = Wordform.objects.filter(text="nipa-", full_lc="IPV")
     assert (
         nipa_queryset.count() == 1
     )  # there should only be one preverb meaning "during the night", it's from MD
