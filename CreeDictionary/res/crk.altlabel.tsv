@@ -20,7 +20,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (ana/aniki)
 5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nâha/nêki)
 5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nâha/nêki)
-A	Animate	Animate			🧑🏽
+A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa	🧑🏽
 AI		Animate Intransitive	like: mîcisow	tâpiskôc: mîcisow	🧑🏽➡️
 
 
@@ -46,6 +46,7 @@ Err/Orth		(Sub-standard form)
 Foc		Focus
 Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk
 I		Inanimate	like: cîman, wâwi	tâpiskôc: cîman, wâwi	📦
+IC		Initial change	Initial change
 II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	📦➡️
 INM	INM
 IPC	IPC
@@ -60,11 +61,11 @@ Imp+Imm		Immediate imperative	command/request that something happens immediately
 Ind		Independent	ni-/ki- word	ni-/ki- itwêwin
 Int		Intentional	want	akâwâtamowin
 Fut+Int	Future Intentional	Future intentional tense	someone wants something to happen	awiyak pakosêyimow kâ-wî-ihkik nîkânihk
-Interj		Interjection	like: êha	tâpiskôc: êha
-Ipc		Independent Particle	like: êkwa, anohc, tânisi	tâpiskôc: êkwa, anohc, tânisi
+Interj		Interjection	Shouting word	têpwêwin-itwêwin
+Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin
 Loc		Locative	in/on/to	pîhci-, tahkoht, ohci
 Med		Medial	like: ana, anima	tâpiskôc: ana, anima
-N		Noun	like: asikan, maskwa	tâpiskôc: asikan, maskwa
+N		Noun	Naming word	wîhyowin-itwêwin
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy
 NA-3	NA-3	Consonant-/w/ animate noun stem	like: masinahikanāhtik(w), askihk(w)	tâpiskôc: masinahikanāhtik(w), askihk(w)
@@ -93,7 +94,7 @@ Neg		Negation	not	nâmoya
 Num		Numeral	Number	akihtâson
 Obv		Obviative	further	anima/anihi (awasimê)
 Possession		Ownership	whose / Whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)
-
+Pers		Person	Person	iyiniyw
 PV		Preverb
 PV/acici	Preverb: acici-		head down; upside down
 PV/ahcahkowi	Preverb: ahcahkowi-		spiritual
@@ -343,7 +344,7 @@ PlO	→ Pl	Goal: Plural	→ many	→ mihcêt
 PrA		Pronoun: Animate		tâpiskôc: awa
 PrI		Pronoun: Inanimate		tâpiskôc: ôma
 
-Pron		Pronoun	like: awa, ôma, niya	tâpiskôc: awa, ôma, niya
+Pron		Pronoun	Pointing word	itâskonamin-itwêwin
 Prop		Proper	how something/someone is called	isiyihkâsowin
 Prox		Proximate	like: awa, ôma	tâpiskôc: awa, ôma
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna
@@ -361,8 +362,8 @@ Px4Sg	Possessor: 4s	Possessor: 3rd Person Singular (Obviative)	their (further)	w
 Px4Sg/Pl	Possessor: 4	Possessor: 3rd Person Singular/Plural (Obviative)	his/her/their	wiya/wiyawâw (ana/aniki)
 PxX	Possessor: X	Possessor: Unspecified	someone's	awiya
 
-RdplS		Reduplication: Strong/Heavy	like: na-nipâw	tâpiskôc: na-nipâw
-RdplW		Reduplication: Weak/Light	like: nâh-nipâw	tâpiskôc: nâh-nipâw
+RdplS		Reduplication: Strong/Heavy	Intense	tâpiskôc: nâh-nipâw
+RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw
 Rel		Relative
 Rom		Roman	like: I, V, X	tâpiskôc: I, V, X
 
@@ -374,7 +375,7 @@ Sg		Singular	one	pêyak
 TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	🧑🏽➡️📦
 
-V	Verb		like: miywâsin, nipâw, mîciw, itêw	tâpiskôc: miywâsin, nipâw, mîciw, itêw
+V	Verb		Action word	ispayin-itwêwin
 VAI-n	VAI-n	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin
 VAI-v	VAI-v	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw
 VII-n	VII-n	n-final inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin
