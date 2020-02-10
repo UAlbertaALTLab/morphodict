@@ -60,7 +60,7 @@ def import_and_migrate(xml_dir_name: Union[Path, str], process_count: int):
         pass
     call_command("migrate", "API", "0005")
     import_xmls(Path(xml_dir_name), process_count)
-    call_command("migrate")
+    call_command("migrate", "API")
 
 
 def cmd_entry(argv=sys.argv):

@@ -67,17 +67,13 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'ati-')
 
-    cy.visit('/search/poni')
-    cy.get('[data-cy=search-results]')
-      .should('contain', 'poni')
-
     cy.visit('/search/nitawi')
     cy.get('[data-cy=search-results]')
       .should('contain', 'nitawi-')
 
     cy.visit('/search/pe')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'pe')
+      .should('contain', 'pê-')
 
   })
 
