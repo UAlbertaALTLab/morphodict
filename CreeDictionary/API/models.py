@@ -81,7 +81,7 @@ def fetch_preverbs(user_query: str) -> Set["CreeResult"]:
 
     if not user_query.endswith("-"):
         user_query += "-"
-
+    user_query = remove_cree_diacritics(user_query)
     # for preverbs
     # An all inclusive filtering mechanism is full_lc=IPV OR pos="IPV". Don't rely on a single one
     # due to the inconsistent labelling in the source crkeng.xml.
