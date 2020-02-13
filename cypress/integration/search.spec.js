@@ -1,20 +1,34 @@
 context('Searching', () => {
 
-  describe('A tooltip should show up when the user click/hover on the question mark beside the matched wordform', () => {
-    // fixme: somehow click does not work and cypress does not support hovering
-    //    also tried manually triggering "mouseon"/"mouseover" events but no luck
-    it.skip('should show tooltip when I click on the question mark beside ê-wâpamat', () => {
+  describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
+    it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type('ewapamat')
 
-      cy.wait(500)
-
-      // not visible in the beginning
+      // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
 
-    })}
+      cy.get('[data-cy=information-mark]').first().focus()
 
+      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+    })
+
+    it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('ewapamat')
+
+      // not visible at the start
+      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
+
+      // has to use force: true since div is not clickable
+      cy.get('[data-cy=information-mark]').first().click({force:true})
+
+      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+    })
+
+  }
   )
 
 
@@ -215,7 +229,8 @@ context('Searching', () => {
   describe('When I perform a search, I should see the \'info\' icon on corresponding entries', () => {
     // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/239).
     
-    // At present, I want to target the definition's title, then look at the children to see if the question mark (soon to be the 'i' icon) is there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
+    // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
+    // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
     it('should show the \'info\' icon to allow users to access additional information', () => {
       
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.

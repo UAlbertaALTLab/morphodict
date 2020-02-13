@@ -22,10 +22,10 @@
                         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
 
 
-                            <div tabindex="0" class="definition-title__tooltip-icon" aria-describedby="tooltip">
+                            <div tabindex="0" class="definition-title__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
                                 <img
                                         src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
-                                        alt="linguistic breakdown" data-cy="information-mark">
+                                        alt="linguistic breakdown">
                             </div>
 
 
@@ -77,12 +77,12 @@
 
 
 
-                            <div tabindex="0" class="preverb-breakdown__tooltip-icon" aria-describedby="tooltip">
+                            <div tabindex="0" class="preverb-breakdown__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
 
 
                                 <img
-                                        src="{% static 'CreeDictionary/images/fa/question-circle-solid.svg' %}"
-                                        alt="preverb breakdown" data-cy="preverb-question-mark">
+                                        src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
+                                        alt="preverb breakdown">
                             </div>
 
                             <div class="tooltip" role="tooltip">
