@@ -101,8 +101,9 @@ inflectional category
 [inflectional category]: #inflectional-category
 [inflectional categories]: #inflectional-category
 
-A more detailed categorization of a [word class][],
-things that belong to the same inflection category inflects similarly
+A more detailed categorization of a [word class][].
+Things that belong to the same inflection category have the same
+affix set.
 
 Examples
 --------
