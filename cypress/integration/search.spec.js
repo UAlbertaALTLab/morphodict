@@ -8,6 +8,8 @@ context('Searching', () => {
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
+        .and('contain', 'wâpamêw') // lemma
+        .and('contain', 'Action word') // verb
 
       cy.get('[data-cy=information-mark]').first().focus()
 
@@ -26,6 +28,8 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').first().click({force:true})
 
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+        .and('contain', 'wâpamêw') // lemma
+        .and('contain', 'Action word') // verb
     })
 
   }
