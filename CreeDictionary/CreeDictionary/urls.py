@@ -6,7 +6,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path
+from django.urls import path, include
 from django_js_reverse.views import urls_js
 
 import API.views as api_views
@@ -68,4 +68,7 @@ for route, view, name in _urlpatterns:
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
+    import debug_toolbar
+
     urlpatterns += staticfiles_urlpatterns()
+    urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

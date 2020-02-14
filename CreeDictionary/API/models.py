@@ -449,7 +449,7 @@ class Wordform(models.Model):
         if " " not in user_query:  # a whole word
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
-            lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
+            lemma_ids = EnglishKeyword.objects.filter(text__exact=user_query).values(
                 "lemma__id"
             )
             for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):

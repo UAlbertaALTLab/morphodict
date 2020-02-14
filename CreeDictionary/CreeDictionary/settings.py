@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "django_js_reverse",
+    "debug_toolbar",
 ]
 
 # sapir uses `wsgi_express` that requires mod_wsgi
@@ -63,6 +64,11 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+if DEBUG:
+    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+
+INTERNAL_IPS = ["127.0.0.1"]
 
 ROOT_URLCONF = "CreeDictionary.urls"
 
