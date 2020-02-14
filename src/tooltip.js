@@ -34,7 +34,6 @@ const hideEvents = ['mouseleave', 'blur']
  * @param popup {jQuery}: the popup that shows up
  */
 export function createTooltip(icon, popup) {
-  console.log(icon)
   showEvents.forEach(event => {
     icon.on(event, () => {
       popup.attr('data-show', '')
