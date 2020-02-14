@@ -9,38 +9,6 @@ import $ from 'jquery'
 import './css/styles.css'
 import {createTooltip} from './tooltip'
 
-/**
- * request server-end rendered paradigm and plunk it in place
- *
- * @param lemmaID {number} the id of the lemma in database
- */
-function loadParadigm(lemmaID) {
-  let xhttp = new XMLHttpRequest()
-
-  xhttp.onloadstart = function () {
-    // Show the loading indicator:
-    indicateLoading()
-  }
-
-  xhttp.onload = function () {
-    if (xhttp.status === 200) {
-      window.history.pushState('', document.title, Urls['cree-dictionary-index-with-lemma'](lemmaID))
-      hideInstruction()
-      emptySearchResultList()
-      $('main').append(xhttp.responseText)
-
-      indicateLoadedSuccessfully()
-    } else {
-      indicateLoadingFailure()
-    }
-  }
-
-  xhttp.onerror = function () {
-  }
-
-  xhttp.open('GET', Urls['cree-dictionary-lemma-detail'](lemmaID), true)
-  xhttp.send()
-}
 
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
@@ -76,12 +44,6 @@ function hideLoadingIndicator() {
   progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
 }
 
-/**
- * clean search results (boxed shaped entries)
- */
-function emptySearchResultList() {
-  $('#search-result-list').html('')
-}
 
 /**
  * clean paradigm details
@@ -154,7 +116,6 @@ function loadResults($input) {
           indicateLoadedSuccessfully()
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
-
           prepareTooltips()
 
 
@@ -212,12 +173,8 @@ $(() => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route.match(/^[/]lemma[/].+/)) {
-
   } else if (route.match(/^[/]search[/].+/)) {
     prepareTooltips()
-  } else {
-    console.assert('not sure what page this is: ' + route)
   }
 
   $input.on('input', () => {
