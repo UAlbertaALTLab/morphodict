@@ -8,12 +8,8 @@
                 <h2 class="definition-title definition-title--search-result">
 
                     <dfn class="definition-title__word" data-cy="definition-title">
-                        {# upon loaded, this <a> will be attached to onclick handler that loads #}
-                        {# detailed lemma page. <a> is used for accessible styling #}
                         {% if result.is_lemma %}
-                            <a class="definition-title__link" href="javascript:void(0)"
-                               data-lemma-id="{{ result.lemma_wordform.id }}">
-                                {# data- attributes are supported in HTML5 not in XHTML #}
+                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}">
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         {% else %}
                             <span lang="cr">{{ result.matched_cree }}</span>
@@ -47,8 +43,8 @@
             {% if result.is_inflection %}
                 <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
-                    <a class="definition-title__link" href="javascript:void(0)"
-                       data-lemma-id="{{ result.lemma_wordform.id }}">{{ result.lemma_wordform.text }}</a>
+                    <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                       >{{ result.lemma_wordform.text }}</a>
                 </p>
             {% endif %}
 
@@ -107,10 +103,8 @@
                     <h2 class="definition-title definition-title--search-result">
 
                         <dfn class="definition-title__word" data-cy="definition-title">
-                            {# upon loaded, this <a> will be attached to onclick handler that loads #}
-                            {# detailed lemma page. <a> is used for accessible styling #}
-                            <a class="definition-title__link" href="javascript:void(0)"
-                               data-lemma-id="{{ result.lemma_wordform.id }}">
+                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                               >
                                 {# data- attributes are supported in HTML5 not in XHTML #}
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         </dfn>

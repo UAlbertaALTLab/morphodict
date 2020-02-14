@@ -6,7 +6,7 @@
     {# tell javascript to display initial lemma #}
     <data id="initial-lemma-id" value="{{ lemma_id|default:"" }}"></data>
     <main class="app__content app__pane">
-        {% if not search_results %}
+        {% if not search_results and not lemma_id %}
             <article class="prose box" id="introduction-text"><h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
                 <p><span lang="cr">itwêwina</span> is a Plains Cree Dictionary.</p>
                 <p>Type any Cree word to find its English translation. You can search for
@@ -34,6 +34,11 @@
                 {% endif %}
             </ol>
         </section>
+
+
+        {% if lemma_id %}
+            {% include 'CreeDictionary/paradigm.html' %}
+        {% endif %}
     </main>
 {% endblock %}
 {# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}

@@ -68,6 +68,12 @@ MIDDLEWARE = [
 if DEBUG:
     MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
 
+# works with django-debug-toolbar app
+DEBUG_TOOLBAR_CONFIG = {
+    # Toolbar options
+    "SHOW_COLLAPSED": True,
+}
+
 INTERNAL_IPS = ["127.0.0.1"]
 
 ROOT_URLCONF = "CreeDictionary.urls"

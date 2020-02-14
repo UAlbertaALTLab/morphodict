@@ -4,7 +4,6 @@ from django.shortcuts import render
 from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
 from constants import SimpleLC, ParadigmSize
-from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 
 
@@ -17,11 +16,15 @@ def index(request, query_string=None, lemma_id=None):
     :param lemma_id: optional initial paradigm page to display
     :return:
     """
+    lemma = Wordform.objects.get(id=lemma_id) if lemma_id else None
     context = {
         "word_search_form": WordSearchForm(),
         "query_string": query_string,
         "search_results": Wordform.search(query_string) if query_string else set(),
         "lemma_id": lemma_id,
+        "lemma": lemma,
+        "paradigm_size": ParadigmSize.BASIC.display_form,
+        "paradigm_tables": lemma.paradigm if lemma else None,
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -36,25 +39,18 @@ def search_results(request, query_string: str):
     )
 
 
-# todo: allow different paradigm size
 def lemma_details(request, lemma_id: int):
     """
     render paradigm table for a lemma
     """
     lemma = Wordform.objects.get(id=lemma_id)
-    slc = fst_analysis_parser.extract_simple_lc(lemma.analysis)
-    if slc is not None:
-        tables = paradigm_filler.fill_paradigm(lemma.text, slc, ParadigmSize.BASIC)
-    else:
-        tables = []
-
     return render(
         request,
         "CreeDictionary/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": ParadigmSize.BASIC.display_form,
-            "tables": tables,
+            "paradigm_tables": lemma.paradigm,
         },
     )
 

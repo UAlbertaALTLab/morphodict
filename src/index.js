@@ -102,23 +102,18 @@ function hideInstruction() {
 }
 
 /**
- * find #search-result-list element on the page to add onclick handler to lemma links and attach relevant handlers to
- * the tooltip icons
+ * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
  */
-function prepareTooltipAndLemmaLink(){
+function prepareTooltips() {
   const $searchResultList = $('#search-result-list')
-  $searchResultList.find('.definition-title__link').on('click', function () {
-    loadParadigm($(this).data('lemma-id'))
-  })
-
 
   // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.definition-title__tooltip-icon').each(function (){
+  $searchResultList.find('.definition-title__tooltip-icon').each(function () {
     createTooltip($(this), $(this).next('.tooltip'))
   })
 
   // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
+  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function () {
     createTooltip($(this), $(this).next('.tooltip'))
   })
 }
@@ -159,7 +154,8 @@ function loadResults($input) {
           indicateLoadedSuccessfully()
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
-          prepareTooltipAndLemmaLink()
+
+          prepareTooltips()
 
 
         } else { // changed. Do nothing
@@ -217,10 +213,9 @@ $(() => {
     // About page
     setSubtitle('About')
   } else if (route.match(/^[/]lemma[/].+/)) {
-    let initialLemmaID = $('#initial-lemma-id').val()
-    loadParadigm(parseInt(initialLemmaID))
+
   } else if (route.match(/^[/]search[/].+/)) {
-    prepareTooltipAndLemmaLink()
+    prepareTooltips()
   } else {
     console.assert('not sure what page this is: ' + route)
   }
