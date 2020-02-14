@@ -19,8 +19,10 @@ def index(request, query_string=None, lemma_id=None):
     lemma = Wordform.objects.get(id=lemma_id) if lemma_id else None
     context = {
         "word_search_form": WordSearchForm(),
+        # when we have initial query word to search and display
         "query_string": query_string,
         "search_results": Wordform.search(query_string) if query_string else set(),
+        # when we have initial paradigm to show
         "lemma_id": lemma_id,
         "lemma": lemma,
         "paradigm_size": ParadigmSize.BASIC.display_form,
