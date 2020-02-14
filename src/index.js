@@ -102,6 +102,28 @@ function hideInstruction() {
 }
 
 /**
+ * find #search-result-list element on the page to add onclick handler to lemma links and attach relevant handlers to
+ * the tooltip icons
+ */
+function prepareTooltipAndLemmaLink(){
+  const $searchResultList = $('#search-result-list')
+  $searchResultList.find('.definition-title__link').on('click', function () {
+    loadParadigm($(this).data('lemma-id'))
+  })
+
+
+  // attach handlers for tooltip icon at preverb breakdown
+  $searchResultList.find('.definition-title__tooltip-icon').each(function (){
+    createTooltip($(this), $(this).next('.tooltip'))
+  })
+
+  // attach handlers for tooltip icon at preverb breakdown
+  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
+    createTooltip($(this), $(this).next('.tooltip'))
+  })
+}
+
+/**
  * use xhttp to load search results in place
  *
  * @param {jQuery} $input
@@ -137,20 +159,7 @@ function loadResults($input) {
           indicateLoadedSuccessfully()
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
-          $searchResultList.find('.definition-title__link').on('click', function () {
-            loadParadigm($(this).data('lemma-id'))
-          })
-
-
-          // attach handlers for tooltip icon at preverb breakdown
-          $searchResultList.find('.definition-title__tooltip-icon').each(function (){
-            createTooltip($(this), $(this).next('.tooltip'))
-          })
-
-          // attach handlers for tooltip icon at preverb breakdown
-          $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
-            createTooltip($(this), $(this).next('.tooltip'))
-          })
+          prepareTooltipAndLemmaLink()
 
 
         } else { // changed. Do nothing
@@ -211,7 +220,7 @@ $(() => {
     let initialLemmaID = $('#initial-lemma-id').val()
     loadParadigm(parseInt(initialLemmaID))
   } else if (route.match(/^[/]search[/].+/)) {
-    loadResults($input)
+    prepareTooltipAndLemmaLink()
   } else {
     console.assert('not sure what page this is: ' + route)
   }

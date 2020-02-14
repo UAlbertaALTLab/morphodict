@@ -6,28 +6,33 @@
     {# tell javascript to display initial lemma #}
     <data id="initial-lemma-id" value="{{ lemma_id|default:"" }}"></data>
     <main class="app__content app__pane">
-
-        <article class="prose box" id="introduction-text"><h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
-            <p><span lang="cr">itwêwina</span> is a Plains Cree Dictionary.</p>
-            <p>Type any Cree word to find its English translation. You can search for
-                short Cree words (e.g., <span lang="cr">atim</span>) or very long Cree words
-                (e.g., <span lang="cr">ê-mâh-misi-nâh-nôcihikocik</span>). Or you can type an
-                English word and find its possible Cree translations. You can write words
-                in Cree using standard Roman orthography (SRO) (like
-                <span lang="cr">acimosis</span>) or using syllabics (e.g.,
-                <span lang="cr">ᐊᒋᒧᓯᐢ</span>).</p>
-            <p><span lang="cr">itwêwina</span> was made by the University of Alberta ALTLab,
-                in collaboration with the First Nations University and Maskwacîs Education
-                Schools Commission (MESC). The dictionary entries are courtesy of Dr.
-                Arok Wolvengrey and MESC.</p></article>
+        {% if not search_results %}
+            <article class="prose box" id="introduction-text"><h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
+                <p><span lang="cr">itwêwina</span> is a Plains Cree Dictionary.</p>
+                <p>Type any Cree word to find its English translation. You can search for
+                    short Cree words (e.g., <span lang="cr">atim</span>) or very long Cree words
+                    (e.g., <span lang="cr">ê-mâh-misi-nâh-nôcihikocik</span>). Or you can type an
+                    English word and find its possible Cree translations. You can write words
+                    in Cree using standard Roman orthography (SRO) (like
+                    <span lang="cr">acimosis</span>) or using syllabics (e.g.,
+                    <span lang="cr">ᐊᒋᒧᓯᐢ</span>).</p>
+                <p><span lang="cr">itwêwina</span> was made by the University of Alberta ALTLab,
+                    in collaboration with the First Nations University and Maskwacîs Education
+                    Schools Commission (MESC). The dictionary entries are courtesy of Dr.
+                    Arok Wolvengrey and MESC.</p></article>
+        {% endif %}
 
         <section class="search-results">
             {% comment %}
-        JavaScript adds the class .search-progress--loading or
-        .search-progress-error, and changes the value:
-      {% endcomment %}
+                JavaScript adds the class .search-progress--loading or
+                .search-progress-error, and changes the value:
+            {% endcomment %}
             <progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
-            <ol class="search-results__results" id="search-result-list"></ol>
+            <ol class="search-results__results" id="search-result-list">
+                {% if search_results %}
+                    {% include "CreeDictionary/word-entries.html" %}
+                {% endif %}
+            </ol>
         </section>
     </main>
 {% endblock %}

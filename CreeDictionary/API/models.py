@@ -85,7 +85,7 @@ class Preverb(NamedTuple):
 
 def fetch_preverbs(
     user_query: str, serialize: bool = False
-) -> Set[Union[Preverb, "Wordform"]]:
+) -> Union[Set[Preverb], Set["Wordform"]]:
     """
     exhaustively search for preverbs (with index) in the database. MD only contents are filtered out.
     circumflex and dash character relaxation is used
@@ -431,6 +431,7 @@ class Wordform(models.Model):
         # exhaustively search preverbs here (since we can't use fst on preverbs.)
 
         for preverb_wf in fetch_preverbs(user_query, serialize=False):
+            assert isinstance(preverb_wf, Wordform)
             cree_results.add(
                 CreeResult(
                     Analysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
@@ -496,16 +497,19 @@ class Wordform(models.Model):
                     if ling_short is not None and ling_short != "":
                         # looks like: "âpihci"
                         normative_preverb_text = ling_short[len("Preverb: ") : -1]
-                        preverb_results: Set[Preverb] = fetch_preverbs(
+                        preverb_results = fetch_preverbs(
                             normative_preverb_text, serialize=True
                         )
 
                         # find the one that looks the most similar
                         if preverb_results:
-                            result = min(
-                                preverb_results,
-                                key=lambda pr: get_modified_distance(
-                                    normative_preverb_text, pr.text.strip("-"),
+                            result = cast(
+                                Preverb,
+                                min(
+                                    preverb_results,
+                                    key=lambda pr: get_modified_distance(
+                                        normative_preverb_text, pr.text.strip("-"),
+                                    ),
                                 ),
                             )
 
