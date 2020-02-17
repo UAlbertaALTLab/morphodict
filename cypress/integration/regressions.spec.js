@@ -171,4 +171,17 @@ context('Regressions', () => {
           .should('be.greaterThan', minimumWidth)
       })
   })
+
+  
+  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/274
+  describe('it should search for âyiman', function () {
+    it.skip('should forgive omitted long vowel marking', () => {
+      cy.get('[data-cy=search]')
+        .clear()
+        .type('ayiman')
+
+      cy.get('[data-cy=search-results]')
+        .contains('âyiman')
+    })
+  })
 })

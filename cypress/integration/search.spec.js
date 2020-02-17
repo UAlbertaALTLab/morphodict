@@ -107,15 +107,8 @@ context('Searching', () => {
 
       cy.get('[data-cy=search-results]')
         .contains('âcimêw')
-
-      cy.get('[data-cy=search]')
-        .clear()
-        .type('ayiman')
-
-      cy.get('[data-cy=search-results]')
-        .contains('âyiman')
-
     })
+
 
     it('should handle English-influenced spelling', () => {
       cy.visit('/')
