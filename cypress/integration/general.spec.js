@@ -52,4 +52,24 @@ context('General', function () {
         .contains('ᐃᑘᐏᓇ')
     })
   })
+
+  describe('I want to search for complex Cree words', function () {
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
+    it('should have a clickable example on the front page', function () {
+      const word = 'ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk'
+
+      cy.visit('/')
+
+      cy.get('[data-cy=long-word-example]')
+        .should('contain', word)
+        .click()
+
+      // we should be on a new page.
+      cy.url()
+        .should('contain', '/search')
+
+      cy.get('[data-cy=search-results]')
+        .should('contain', word)
+    })
+  })
 })
