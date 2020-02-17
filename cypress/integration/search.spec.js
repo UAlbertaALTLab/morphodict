@@ -100,7 +100,7 @@ context('Searching', () => {
         .contains('tânisi')
     })
 
-    it('should forgive omitted long vowel marking', () => {
+    it.skip('should forgive omitted long vowel marking', () => {
       cy.visit('/')
       cy.get('[data-cy=search]')
         .type('acimew')
