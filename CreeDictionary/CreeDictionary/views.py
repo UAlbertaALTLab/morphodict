@@ -3,11 +3,11 @@ from django.shortcuts import render
 
 from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
-from constants import SimpleLC, ParadigmSize
-from shared import paradigm_filler
-from utils import fst_analysis_parser, get_modified_distance
+from constants import ParadigmSize
 
-# "pragma: no cover" works with coverage. It excludes the function from coverage
+
+# "pragma: no cover" works with coverage.
+# It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on every view function
 # rationale: we don't unit test the views functions, rather, we test them in integration tests with cypress.
 
