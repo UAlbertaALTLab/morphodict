@@ -1,6 +1,9 @@
 import logging
 import unicodedata
 from functools import cmp_to_key, partial
+
+from paradigm import Layout
+from shared import paradigm_filler
 from typing import (
     Any,
     Callable,
@@ -22,13 +25,7 @@ from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from sortedcontainers import SortedSet
 
-from constants import (
-    POS,
-    Analysis,
-    FSTTag,
-    Label,
-    Language,
-)
+from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from utils import fst_analysis_parser, get_modified_distance
@@ -163,6 +160,16 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 
 class Wordform(models.Model):
     _cree_fuzzy_searcher = None
+
+    @property
+    def paradigm(self) -> List[Layout]:
+        # todo: allow paradigm size other then ParadigmSize.BASIC
+        slc = fst_analysis_parser.extract_simple_lc(self.analysis)
+        if slc is not None:
+            tables = paradigm_filler.fill_paradigm(self.text, slc, ParadigmSize.BASIC)
+        else:
+            tables = []
+        return tables
 
     @classmethod
     def init_fuzzy_searcher(cls):
