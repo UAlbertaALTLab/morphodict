@@ -7,8 +7,12 @@ from constants import SimpleLC, ParadigmSize
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 
+# "pragma: no cover" works with coverage. It excludes the function from coverage
+# it should be used on every view function
+# rationale: we don't unit test the views functions, rather, we test them in integration tests with cypress.
 
-def index(request, query_string=None, lemma_id=None):
+
+def index(request, query_string=None, lemma_id=None):  # pragma: no cover
     """
     homepage with optional initial query or initial lemma. query_string and lemma_id can not both be given
 
@@ -32,7 +36,7 @@ def index(request, query_string=None, lemma_id=None):
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
-def search_results(request, query_string: str):
+def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
@@ -42,7 +46,7 @@ def search_results(request, query_string: str):
     )
 
 
-def lemma_details(request, lemma_id: int):
+def lemma_details(request, lemma_id: int):  # pragma: no cover
     """
     render paradigm table for a lemma
     """
@@ -58,7 +62,7 @@ def lemma_details(request, lemma_id: int):
     )
 
 
-def about(request):
+def about(request):  # pragma: no cover
     """
     About page.
     """

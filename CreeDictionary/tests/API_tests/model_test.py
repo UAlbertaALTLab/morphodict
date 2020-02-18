@@ -1,3 +1,5 @@
+from collections import Iterable
+
 import pytest
 from hypothesis import assume, given
 
@@ -200,3 +202,25 @@ def test_filter_cw_content():
     assert (
         len(list(filtered)) == 0
     )  # nipa should no longer be there because the preverb nipa is a MD only word
+
+
+@pytest.mark.django_db
+def test_paradigm():
+    def deep_contain(container: Iterable, testee):
+        """check if `testee` is in any depth of `container`"""
+        for item in container:
+            if item == testee:
+                return True
+            elif (
+                item != container
+                and isinstance(item, Iterable)
+                and deep_contain(item, testee)
+            ):
+                return True
+        return False
+
+    nipaw_paradigm = Wordform.objects.get(text="nipâw", is_lemma=True).paradigm
+    assert deep_contain(nipaw_paradigm, "ninipân")
+    assert deep_contain(nipaw_paradigm, "kinipân")
+    assert deep_contain(nipaw_paradigm, "nipâw")
+    assert deep_contain(nipaw_paradigm, "ninipânân")
