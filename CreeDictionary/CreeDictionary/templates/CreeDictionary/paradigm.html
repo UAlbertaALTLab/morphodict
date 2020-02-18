@@ -23,9 +23,9 @@
         </ol>
     </section>
 
-    {% if tables %}{# TODO: split this up into its own file? #}
+    {% if paradigm_tables %}{# TODO: split this up into its own file? #}
         <section class="definition__paradigm paradigm" data-cy="paradigm">
-            {% for table in tables %}
+            {% for table in paradigm_tables %}
                 <table class="paradigm__table">
                     {% for row in table %}
                         {% if row.is_title %}
