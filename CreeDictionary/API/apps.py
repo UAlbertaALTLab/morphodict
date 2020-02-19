@@ -9,7 +9,9 @@ class APIConfig(AppConfig):
 
     def ready(self):
         """
-        initialize fuzzy search (build the data structure)
+        This function is called prior to app start.
+        It initializes fuzzy search (build the data structure).
+        It also hashes preverbs for faster preverb matching.
         """
         # todo: fuzzy search is for now not used. Use it in the future
         # # without the guard
