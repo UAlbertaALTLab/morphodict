@@ -68,9 +68,12 @@ for route, view, name in _urlpatterns:
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
-    import debug_toolbar
 
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
-    # necessary for debug_toolbar to work
-    urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))
+
+    if not settings.CI:
+        import debug_toolbar
+
+        # necessary for debug_toolbar to work
+        urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

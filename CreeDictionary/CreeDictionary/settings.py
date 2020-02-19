@@ -30,6 +30,9 @@ SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
+# travis has CI equals True
+CI = os.environ.get("CI", "False").lower() == "true"
+
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:
@@ -48,12 +51,8 @@ INSTALLED_APPS = [
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "django_js_reverse",
-    "debug_toolbar",
 ]
 
-# sapir uses `wsgi_express` that requires mod_wsgi
-if not DEBUG:
-    INSTALLED_APPS.append("mod_wsgi.server")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -65,16 +64,25 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+
+# configure tools for development, CI, and production
 if DEBUG:
-    MIDDLEWARE.insert(0, "debug_toolbar.middleware.DebugToolbarMiddleware")
+    if not CI:  # enable django-debug-toolbar for development
+        INSTALLED_APPS.append("debug_toolbar")
+        MIDDLEWARE.insert(
+            0, "debug_toolbar.middleware.DebugToolbarMiddleware"
+        )  # middleware order is important
 
-    # works with django-debug-toolbar app
-    DEBUG_TOOLBAR_CONFIG = {
-        # Toolbar options
-        "SHOW_COLLAPSED": True, # collapse the toolbar by default
-    }
+        # works with django-debug-toolbar app
+        DEBUG_TOOLBAR_CONFIG = {
+            # Toolbar options
+            "SHOW_COLLAPSED": True,  # collapse the toolbar by default
+        }
 
-INTERNAL_IPS = ["127.0.0.1"]
+        INTERNAL_IPS = ["127.0.0.1"]
+else:  # enable mod_wsgi for production
+    # Sapir uses `wsgi_express` that requires mod_wsgi
+    INSTALLED_APPS.append("mod_wsgi.server")
 
 ROOT_URLCONF = "CreeDictionary.urls"
 
