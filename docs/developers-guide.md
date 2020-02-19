@@ -167,7 +167,7 @@ Or, for interactive use:
 Profiling Code
 --------------
 
-We use PYPI utility [django-toolbar-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/). 
+We use [django-toolbar-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/). 
 It provides great UI for stack tracing and SQL query profiling.
 
 ![django debug toolbar](images/django-debug-toolbar.png)
