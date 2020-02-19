@@ -1,5 +1,6 @@
 import logging
 import unicodedata
+from collections import defaultdict
 from functools import cmp_to_key, partial
 
 from paradigm import Layout
@@ -69,34 +70,6 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
 
-def fetch_preverbs(user_query: str) -> Set["CreeResult"]:
-    """
-    exhaustively search for preverbs (with index)
-
-    :param user_query: unicode normalized, to_lower-ed
-    """
-
-    if not user_query.endswith("-"):
-        user_query += "-"
-    user_query = remove_cree_diacritics(user_query)
-    # for preverbs
-    # An all inclusive filtering mechanism is full_lc=IPV OR pos="IPV". Don't rely on a single one
-    # due to the inconsistent labelling in the source crkeng.xml.
-    # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    # For "sa", the source gives pos=IPV lc="" (unspecified)
-
-    wordform_to_cree_results: Dict[Wordform, CreeResult] = dict()
-    for preverb_wordform in Wordform.objects.filter(Q(full_lc="IPV") | Q(pos="IPV")):
-        if user_query == remove_cree_diacritics(preverb_wordform.text):
-            wordform_to_cree_results[preverb_wordform] = CreeResult(
-                Analysis(preverb_wordform.analysis),
-                preverb_wordform,
-                Lemma(preverb_wordform),
-            )
-    cw_preverbs = filter_cw_wordforms(wordform_to_cree_results)
-    return {wordform_to_cree_results[wf] for wf in cw_preverbs}
-
-
 class Preverb(NamedTuple):
     """
     Contains information about a preverb, should be used inside templates
@@ -105,6 +78,35 @@ class Preverb(NamedTuple):
     id: Optional[int]  # might be not in our database
     text: str
     definitions: Tuple[str, ...]  # might be not in our database, so might be empty
+
+
+def fetch_preverbs(
+    user_query: str, serialize: bool = False
+) -> Union[Set[Preverb], Set["Wordform"]]:
+    """
+    exhaustively search for preverbs (with index) in the database. MD only contents are filtered out.
+    circumflex and dash character relaxation is used
+
+    :param serialize: if set to True, will return a named tuple Preverb instead of Wordform instance
+    :param user_query: unicode normalized, to_lower-ed
+    """
+
+    if user_query.endswith("-"):
+        user_query = user_query[:-1]
+    user_query = remove_cree_diacritics(user_query)
+
+    if serialize:
+        return {
+            Preverb(
+                id=preverb_wordform.id,
+                text=preverb_wordform.text,
+                definitions=tuple(preverb_wordform.definitions.all()),
+            )
+            for preverb_wordform in Wordform.PREVERB_ASCII_LOOKUP[user_query]
+        }
+
+    else:
+        return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -161,6 +163,12 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 class Wordform(models.Model):
     _cree_fuzzy_searcher = None
 
+    # this is initialized upon app ready.
+    # this helps speed up preverb match
+    # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
+    # pure MD content won't be included
+    PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
     @property
     def paradigm(self) -> List[Layout]:
         # todo: allow paradigm size other then ParadigmSize.BASIC
@@ -170,6 +178,16 @@ class Wordform(models.Model):
         else:
             tables = []
         return tables
+
+    @property
+    def md_only(self) -> bool:
+        """
+        check if the wordform instance has only definition from the MD source
+        """
+        for definition in self.definitions.all():
+            if set(definition.source_ids) - {"MD"}:
+                return False
+        return True
 
     @classmethod
     def init_fuzzy_searcher(cls):
@@ -419,7 +437,13 @@ class Wordform(models.Model):
         # preverbs should be presented
         # exhaustively search preverbs here (since we can't use fst on preverbs.)
 
-        cree_results |= fetch_preverbs(user_query)
+        for preverb_wf in fetch_preverbs(user_query, serialize=False):
+            assert isinstance(preverb_wf, Wordform)
+            cree_results.add(
+                CreeResult(
+                    Analysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                )
+            )
 
         # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
         # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
@@ -433,7 +457,7 @@ class Wordform(models.Model):
         if " " not in user_query:  # a whole word
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
-            lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
+            lemma_ids = EnglishKeyword.objects.filter(text__exact=user_query).values(
                 "lemma__id"
             )
             for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
@@ -478,37 +502,26 @@ class Wordform(models.Model):
                         LabelFriendliness.LINGUISTIC_SHORT
                     )
                     if ling_short is not None and ling_short != "":
-                        # looks like: "âpihci-"
-                        preverb_text_with_dash = ling_short[len("Preverb: ") :]
-                        preverb_results = fetch_preverbs(preverb_text_with_dash)
+                        # looks like: "âpihci"
+                        normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                        preverb_results = fetch_preverbs(
+                            normative_preverb_text, serialize=True
+                        )
 
                         # find the one that looks the most similar
                         if preverb_results:
-                            preverb_cree_result = min(
-                                preverb_results,
-                                key=lambda pr: get_modified_distance(
-                                    preverb_text_with_dash.strip("-"),
-                                    pr.normatized_cree_text.strip("-"),
+                            result = cast(
+                                Preverb,
+                                min(
+                                    preverb_results,
+                                    key=lambda pr: get_modified_distance(
+                                        normative_preverb_text, pr.text.strip("-"),
+                                    ),
                                 ),
                             )
 
-                            assert isinstance(
-                                preverb_cree_result.normatized_cree, Wordform
-                            )  # normatized_cree has to be a Wordform in the database. Because we match preverbs by
-                            #   exhaustive search in the database
-
-                            result_wf = preverb_cree_result.normatized_cree
-                            defintion_strings: Tuple[str, ...] = tuple(
-                                preverb_cree_result.normatized_cree.definitions.all()
-                            )
-                            result = Preverb(
-                                result_wf.id,
-                                preverb_cree_result.normatized_cree_text,
-                                defintion_strings,
-                            )
-
                         else:  # can't find a match for the preverb in the database
-                            result = Preverb(None, preverb_text_with_dash, tuple())
+                            result = Preverb(None, normative_preverb_text, tuple())
 
                 if result is not None:
                     results.append(result)
