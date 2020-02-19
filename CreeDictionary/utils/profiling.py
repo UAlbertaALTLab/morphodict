@@ -12,8 +12,7 @@ def timed(
 
     usage example: @timed(msg="the function took {second} seconds")
 
-    :param msg: the message printed to stdout. "{func_name}", "{minute}" and "{second}"
-        will be replaced to real time consumption
+    :param msg: the message printed to stdout. "{func_name}", "{minute}" and "{second}" will be replaced
     """
 
     def decorator(function: Callable,):
