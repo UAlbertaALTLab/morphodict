@@ -174,40 +174,6 @@ def test_search_space_characters_in_matched_term(term):
     assert len(cree_results) > 0
 
 
-@pytest.mark.skip
-@pytest.mark.django_db
-def test_filter_cw_content():
-    # TODO: what is this actually testing??!??!?!?!
-
-    # test 1
-    # assumptions
-    mowew_queryset = Wordform.objects.filter(text="mowêw", is_lemma=True)
-    assert mowew_queryset.count() == 1
-    assert {
-        ("s/he eats s.o. (e.g. bread)", "CW"),
-        # XXX: this is not the definition in MD!!!!!!
-        ("s/he eats s.o. (e.g. bread)", "MD"),
-    } == {
-        tuple(definition_dict.values())
-        for definition_dict in mowew_queryset.get()
-        .definitions.all()
-        .values("text", "citations")
-    }
-
-    # test 2
-    # assumption
-    nipa_queryset = Wordform.objects.filter(text="nipa-", full_lc="IPV")
-    assert (
-        nipa_queryset.count() == 1
-    )  # there should only be one preverb meaning "during the night", it's from MD
-
-    # test
-    filtered = filter_cw_wordforms(nipa_queryset)
-    assert (
-        len(list(filtered)) == 0
-    )  # nipa should no longer be there because the preverb nipa is a MD only word
-
-
 @pytest.mark.django_db
 def test_paradigm():
     def deep_contain(container: Iterable, testee):
