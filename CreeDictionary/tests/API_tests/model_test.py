@@ -4,8 +4,8 @@ import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform, filter_cw_wordforms
-from CreeDictionary import settings
 from constants import Language
+from CreeDictionary import settings
 from tests.conftest import random_lemmas
 
 
@@ -172,36 +172,6 @@ def test_search_space_characters_in_matched_term(term):
     # Now try searching for it:
     cree_results, _ = Wordform.fetch_lemma_by_user_query(term)
     assert len(cree_results) > 0
-
-
-@pytest.mark.django_db
-def test_filter_cw_content():
-    # test 1
-    # assumptions
-    mowew_queryset = Wordform.objects.filter(text="mowêw", is_lemma=True)
-    assert mowew_queryset.count() == 1
-    assert {
-        ("s/he eats s.o. (e.g. bread)", "CW"),
-        ("s/he eats s.o. (e.g. bread)", "MD"),
-    } == {
-        tuple(definition_dict.values())
-        for definition_dict in mowew_queryset.get()
-        .definitions.all()
-        .values("text", "citations")
-    }
-
-    # test 2
-    # assumption
-    nipa_queryset = Wordform.objects.filter(text="nipa-", full_lc="IPV")
-    assert (
-        nipa_queryset.count() == 1
-    )  # there should only be one preverb meaning "during the night", it's from MD
-
-    # test
-    filtered = filter_cw_wordforms(nipa_queryset)
-    assert (
-        len(list(filtered)) == 0
-    )  # nipa should no longer be there because the preverb nipa is a MD only word
 
 
 @pytest.mark.django_db

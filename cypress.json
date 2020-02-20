@@ -2,5 +2,6 @@
   "baseUrl": "http://127.0.0.1:8000/",
   "viewportHeight": 568,
   "viewportWidth": 320,
-  "projectId": "8r2xra"
+  "projectId": "8r2xra",
+  "defaultCommandTimeout": 8000
 }
