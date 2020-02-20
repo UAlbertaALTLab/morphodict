@@ -8,7 +8,9 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
+import {fetchFirstRecordingURL} from './recordings.js'
 
+window.fetchRecordings = fetchFirstRecordingURL
 
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
@@ -157,11 +159,42 @@ function setSubtitle(subtitle) {
   document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle
 }
 
+/**
+ * Sets up the (rudimentary) audio link on page load.
+ */
+function setupAudioOnPageLoad() {
+  let title = document.getElementById('head')
+  if (!title) {
+    // Could not find a head on the page.
+    return
+  }
+
+  // TODO: setup URL from <link rel=""> or something.
+  let template = document.getElementById('template:play-button')
+  let dataElement = document.getElementById('data:head')
+  let wordform = dataElement.value
+
+  fetchFirstRecordingURL(wordform)
+    .then(function (recordingURL) {
+      let recording = new Audio(recordingURL)
+      recording.preload = 'none'
+
+      let fragment = template.content.cloneNode(true)
+      let button = fragment.childNodes[0]
+      title.appendChild(button)
+      button.addEventListener('click', function () {
+        recording.play()
+      })
+    })
+}
+
 $(() => {
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
+
+  setupAudioOnPageLoad()
 
   let route = window.location.pathname
   let $input = $('#search')
