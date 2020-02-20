@@ -1,24 +1,5 @@
 <?xml version="1.0" ?>
 <r>
-	<source id="CW">
-		
-      
-		<title>Cree : Words / nēhiyawēwin : itwēwina</title>
-		
-   
-	</source>
-	
-   
-	<source id="MD">
-		
-      
-		<title>Maskwacîs Cree Dictionary</title>
-		
-   
-	</source>
-	
-
-
 	<e>
 		
    
@@ -7897,6 +7878,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">kâh-</l>
+			
+      
+			<lc>IPV</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">would, ought to; likely to</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">kâh-kwêkwask</l>
 			
       
@@ -10008,6 +10026,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">kîmôci-</l>
+			
+      
+			<lc>IPV</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">secretly, by stealth</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kîsi-mîcisow</l>
 			
       
@@ -10538,6 +10593,80 @@
 				
        
 				<t pos="V" sources="CW">s/he swallows s.t.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kotiskawêw</l>
+			
+      
+			<lc>VTA-2</lc>
+			
+      
+			<stem>kotiskaw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he tries s.o. on (e.g. article of clothing); s/he tries going with s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">kotiskâwêwatim</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>kotiskâwêwatimw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">race-horse</t>
 				
    
 			</tg>
@@ -38143,6 +38272,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">kîmôci-</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">secret, in secret, stealthy, by stealth; private, in private</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kîsowatâmow</l>
 			
       
@@ -38310,6 +38476,43 @@
 				
       
 				<t pos="N" sources="CW">singing rehearsal, singing practice</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kotiskâwêw</l>
+			
+      
+			<lc>VAI-1</lc>
+			
+      
+			<stem>kotiskâwê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">s/he races, s/he is in a race; it gallops</t>
 				
    
 			</tg>
