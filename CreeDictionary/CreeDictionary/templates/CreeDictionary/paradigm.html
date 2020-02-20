@@ -4,8 +4,9 @@
 <article class="definition" id="paradigm">
     <header class="definition__header">
         <h1 class="definition-title">
-            <dfn class="definition-title__word"><span lang="cr">{{ lemma.text }}</span></dfn>
+            <dfn class="definition-title__word"><data id="dfn-head" value="{{ lemma.text }}"><span lang="cr">{{ lemma.text }}</span></data></dfn>
             <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
+            <button><svg aria-label="Play recording" class="definition-title__play-recording"><use xlink:href="#fa-volume-up-solid" /></svg></button>
         </h1>
     </header>
 
