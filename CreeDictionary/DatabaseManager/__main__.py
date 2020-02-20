@@ -1,7 +1,7 @@
 import argparse
 import sys
 from argparse import ArgumentParser
-from os import environ
+from os import environ, getcwd, chdir
 from pathlib import Path
 from typing import Union
 
@@ -52,7 +52,7 @@ add_multi_processing_argument(import_parser)
 def import_and_migrate(xml_dir_name: Union[Path, str], process_count: int):
     """
     Unlink existing .sqlite3 file, apply migrations from API/0001 to API/0005
-    Import from specified engcrk.xml and crkeng.xml. Migrate the rest from all apps
+    Import from specified engcrk.xml and crkeng.xml. Migrate the rest from API
     """
     try:
         Path(settings.DATABASES["default"]["NAME"]).unlink()
