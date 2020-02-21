@@ -10,8 +10,6 @@ import './css/styles.css'
 import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL} from './recordings.js'
 
-window.fetchRecordings = fetchFirstRecordingURL
-
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
 
