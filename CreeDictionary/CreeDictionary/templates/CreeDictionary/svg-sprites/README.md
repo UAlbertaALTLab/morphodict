@@ -2,7 +2,7 @@ For icons, we define all of the SVGs into one big file that's included
 into every page. This way, all the icons are loaded always, and they're
 easy to style using CSS.
 
-To convert a FontAwesome icon into an SVG sprint:
+To convert a FontAwesome icon into an SVG sprite:
 
  * create a `<symbol>` for it in ../svg-sprites.html
  * move its `viewport=` attribute to the newly created `<symbol>`
