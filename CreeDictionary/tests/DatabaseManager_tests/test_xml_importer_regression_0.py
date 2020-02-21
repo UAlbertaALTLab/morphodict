@@ -6,7 +6,9 @@ from DatabaseManager.__main__ import import_and_migrate
 
 @pytest.mark.django_db
 def test_import_xml_common_analysis_definition_merge(shared_datadir):
-    import_and_migrate(shared_datadir / "crkeng-regression-0", process_count=1)
+    import_and_migrate(
+        shared_datadir / "crkeng-regression-0", process_count=1, no_input=True
+    )
 
     query_set = Wordform.objects.filter(text="nipa")
 

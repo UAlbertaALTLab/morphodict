@@ -1,0 +1,42 @@
+[
+    {
+        "anonymous": false,
+        "gender": "F",
+        "recording_url": "http://sapir.artsrn.ualberta.ca/validation/recording/e44429dafbd1a5d1996f784a8d22ea05006c75ffeea469337109dc8a15904789.m4a",
+        "speaker": "MAR",
+        "speaker_name": "Mary Jean Littlechild",
+        "wordform": "wapamew"
+    },
+    {
+        "anonymous": false,
+        "gender": "M",
+        "recording_url": "http://sapir.artsrn.ualberta.ca/validation/recording/da213e0ac776a153030a87c1c47bc7e0d24a91233d9a1fa1e32d4b04cb383b65.m4a",
+        "speaker": "HAR",
+        "speaker_name": "Harley Simon",
+        "wordform": "wapamew"
+    },
+    {
+        "anonymous": false,
+        "gender": "M",
+        "recording_url": "http://sapir.artsrn.ualberta.ca/validation/recording/8efae63b40e1bc44c37515ec56121bc734e2cb11d90c59d71f6d847dc6f82ac3.m4a",
+        "speaker": "HAR",
+        "speaker_name": "Harley Simon",
+        "wordform": "wapamew"
+    },
+    {
+        "anonymous": false,
+        "gender": "M",
+        "recording_url": "http://sapir.artsrn.ualberta.ca/validation/recording/79d38cc7e67e73a50cb91f8d93fe96212c906d18b404f6d91412f6f7508c56c4.m4a",
+        "speaker": "HAR",
+        "speaker_name": "Harley Simon",
+        "wordform": "wapamew"
+    },
+    {
+        "anonymous": false,
+        "gender": "F",
+        "recording_url": "http://sapir.artsrn.ualberta.ca/validation/recording/c9ad558301db2ffd85553fe9a778a2f2e182c5dac3438f070a47a19ad3e51cfc.m4a",
+        "speaker": "ANN",
+        "speaker_name": "Annette Lee",
+        "wordform": "wapamew"
+    }
+]

@@ -1,10 +1,26 @@
 {% load static %}
 {% load inflection_extras %}
-{# should be placed inside <main> #}
+{% comment %}
+
+This should be placed inside <main>
+
+{% endcomment %}
+
+{% spaceless %}
+{# This is not in the DOM by default, but JS places in the <h1 id="head"> #}
+<template id="template:play-button">
+    <button class="definition-title__play-button" data-cy="play-recording">
+        <svg aria-label="Play recording" class="definition-title__play-icon">
+            <use xlink:href="#fa-volume-up-solid" />
+        </svg>
+    </button>
+</template>
+{% endspaceless %}
+
 <article class="definition" id="paradigm">
     <header class="definition__header">
-        <h1 class="definition-title">
-            <dfn class="definition-title__word"><span lang="cr">{{ lemma.text }}</span></dfn>
+        <h1 id="head" class="definition-title">
+            <dfn class="definition-title__word"><data id="data:head" value="{{ lemma.text }}"><span lang="cr">{{ lemma.text }}</span></data></dfn>
             <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
         </h1>
     </header>

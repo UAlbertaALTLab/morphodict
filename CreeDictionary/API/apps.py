@@ -1,5 +1,5 @@
 from django.apps import AppConfig
-from django.db import connection
+from django.db import connection, OperationalError
 
 from utils.cree_lev_dist import remove_cree_diacritics
 
@@ -36,11 +36,15 @@ class APIConfig(AppConfig):
 
         # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
         # many preverbs are normalized so that both full_lc and pos are set to IPV.
-
-        for preverb_wordform in Wordform.objects.filter(
-            Q(full_lc="IPV") | Q(pos="IPV")
-        ):
-            if not preverb_wordform.md_only:
-                Wordform.PREVERB_ASCII_LOOKUP[
-                    remove_cree_diacritics(preverb_wordform.text.strip("-"))
-                ].add(preverb_wordform)
+        try:
+            for preverb_wordform in Wordform.objects.filter(
+                Q(full_lc="IPV") | Q(pos="IPV")
+            ):
+                if not preverb_wordform.md_only:
+                    Wordform.PREVERB_ASCII_LOOKUP[
+                        remove_cree_diacritics(preverb_wordform.text.strip("-"))
+                    ].add(preverb_wordform)
+        except OperationalError:
+            # the ready function gets called during `$ manage-db import` when one builds the database from scratch
+            # At that time, while the migrations are not applied, Wordform tables does not exist.
+            pass

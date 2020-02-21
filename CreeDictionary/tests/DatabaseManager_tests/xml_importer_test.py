@@ -10,7 +10,9 @@ from utils import shared_res_dir
 
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
-    import_and_migrate(shared_datadir / "crkeng-small-nice-0", process_count=1)
+    import_and_migrate(
+        shared_datadir / "crkeng-small-nice-0", process_count=1, no_input=True
+    )
 
     expanded = expand_inflections(
         ["yôwamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO"], multi_processing=1, verbose=False
@@ -24,7 +26,9 @@ def test_import_nice_xml(shared_datadir):
 @pytest.mark.django_db
 def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
     import_and_migrate(
-        shared_datadir / "crkeng-small-lemma-w-multiple-spelling", process_count=1
+        shared_datadir / "crkeng-small-lemma-w-multiple-spelling",
+        process_count=1,
+        no_input=True,
     )
 
     pisin_lemma = Wordform.objects.filter(text="pisin", is_lemma=True).get()
@@ -37,7 +41,9 @@ def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
 @pytest.mark.django_db
 def test_import_xml_fst_no_analysis(shared_datadir):
     import_and_migrate(
-        shared_datadir / "crkeng-small-fst-can-not-analyze", process_count=1,
+        shared_datadir / "crkeng-small-fst-can-not-analyze",
+        process_count=1,
+        no_input=True,
     )
     assert len(Wordform.objects.all()) == 1
     assert Wordform.objects.get(text="miwapisin").as_is is True
@@ -47,7 +53,9 @@ def test_import_xml_fst_no_analysis(shared_datadir):
 @pytest.mark.django_db
 def test_import_xml_common_analysis_definition_merge(shared_datadir):
     import_and_migrate(
-        shared_datadir / "crkeng-small-common-analysis-different-lc", process_count=1
+        shared_datadir / "crkeng-small-common-analysis-different-lc",
+        process_count=1,
+        no_input=True,
     )
     assert Wordform.objects.get(text="pisin").definitions.count() == 1
     assert Wordform.objects.get(text="pisiniw").definitions.count() == 2
@@ -58,6 +66,7 @@ def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_data
     import_and_migrate(
         shared_datadir / "crkeng-small-duplicate-l-pos-lc-definition-merge",
         process_count=1,
+        no_input=True,
     )
     assert len(Wordform.objects.get(text="asawâpiwin").definitions.all()) == 3
 
@@ -65,7 +74,9 @@ def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_data
 @pytest.mark.django_db
 def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
     import_and_migrate(
-        shared_datadir / "crkeng-small-common-xml-lemma-should-merge", process_count=1,
+        shared_datadir / "crkeng-small-common-xml-lemma-should-merge",
+        process_count=1,
+        no_input=True,
     )
 
     assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 1

@@ -253,10 +253,6 @@ class Wordform(models.Model):
         indexes = [
             models.Index(fields=["analysis"]),
             models.Index(fields=["text"]),
-            models.Index(
-                fields=["full_lc"],
-            ),  # benefits exhaustive search for preverbs
-            models.Index(fields=["pos"]),  # benefits exhaustive search for preverbs
         ]
 
     def __str__(self):
