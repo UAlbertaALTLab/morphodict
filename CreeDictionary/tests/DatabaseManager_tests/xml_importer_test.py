@@ -3,8 +3,9 @@ import pytest
 from API.models import Wordform
 from DatabaseManager.__main__ import import_and_migrate
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import import_xmls, load_engcrk_xml
+from DatabaseManager.xml_importer import load_engcrk_xml
 from constants import POS
+from utils import shared_res_dir
 
 
 @pytest.mark.django_db
@@ -74,12 +75,10 @@ def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
     )
 
 
-def test_load_engcrk(one_hundredth_xml_dir):
-    res = load_engcrk_xml(one_hundredth_xml_dir / "engcrk.xml")
-    # todo: tests on selected words
-    #
-    # yayakasteyi means "arch your back"
-    assert res["yayakasteyi", POS.V] == ["Arch"]
+def test_load_engcrk():
+    res = load_engcrk_xml(shared_res_dir / "test_dictionaries" / "engcrk.xml")
+    # nipâw means "sleep"
+    assert "sleep" in res["nipâw", POS.V]
 
 
 # todo: tests for EnglishKeywords

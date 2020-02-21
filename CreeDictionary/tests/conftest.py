@@ -3,12 +3,10 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
-import xml_subsetter
 from hypothesis import assume
 from hypothesis.strategies import composite, integers, sampled_from
 
 from API.models import Wordform
-from utils import shared_res_dir
 
 
 from hypothesis import settings
@@ -56,33 +54,3 @@ def random_lemmas(draw) -> Wordform:
     """
     lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
     return draw(sampled_from(list(lemmas)))
-
-
-@pytest.fixture(scope="session")
-def one_hundredth_xml_dir(topmost_datadir) -> Path:
-    """
-    1/100 of the entries in the real crkeng.xml
-    """
-
-    hundredth_dir = Path(topmost_datadir) / "one_hundredth_xmls"
-    one_hundredth_crkeng = hundredth_dir / "crkeng.xml"
-    one_hundredth_engcrk = hundredth_dir / "engcrk.xml"
-
-    def create_hundredth_file(source: Path, target_file: Path):
-        """
-        create the file if it does not already exist
-        """
-        if not source.exists():
-            raise FileNotFoundError("%s not found" % source)
-        xml_subsetter.subset_head(source, target_file, "e", 0.01)
-
-    if not one_hundredth_crkeng.exists():
-        create_hundredth_file(
-            shared_res_dir / "dictionaries" / "crkeng.xml", one_hundredth_crkeng
-        )
-    if not one_hundredth_engcrk.exists():
-        create_hundredth_file(
-            shared_res_dir / "dictionaries" / "engcrk.xml", one_hundredth_engcrk
-        )
-
-    return hundredth_dir
