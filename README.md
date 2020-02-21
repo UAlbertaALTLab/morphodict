@@ -29,4 +29,4 @@ See [AUTHORS.md](./AUTHORS.md).
 License
 -------
 
-Copyright © 2019 University of Alberta. This project licensed under Apache License Version 2.0.
+Copyright © 2019–2020 University of Alberta. This project licensed under Apache License Version 2.0.
