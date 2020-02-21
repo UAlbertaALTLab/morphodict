@@ -649,15 +649,16 @@ html {
 }
 
 .prose__heading {
+  margin: .5rem 0 0;
+
   font-size: var(--prose-heading-font-size);
 
   color: var(--prose-heading-color);
 }
 
 .prose__section-title {
-  /* Let the padding take care of the spacing */
-  margin-top: 0;
-  margin-block-start: 0;
+  /* Reset margin. */
+  margin: 0;
 
   font-size: var(--prose-section-title-font-size);
 
@@ -667,7 +668,7 @@ html {
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
-  margin-top: 1rem;
+  margin-top: .25rem;
   margin-bottom: 0;
 }
 
