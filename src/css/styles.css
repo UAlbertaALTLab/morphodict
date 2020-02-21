@@ -72,6 +72,7 @@ html {
 /**
  * Link styles for the application.
  */
+.app a { font-weight: var(--link-font-weight) }
 .app a:link { color: var(--link-color) }
 .app a:visited { color: var(--link-visited-color) }
 .app a:hover { color: var(--link-hover-color) }

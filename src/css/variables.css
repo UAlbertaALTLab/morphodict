@@ -68,6 +68,7 @@
   --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
   /* Font weights */
   --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
+  --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */
   --strong-font-weight:         700;
 
   --search-input-border-radius: 15px;
