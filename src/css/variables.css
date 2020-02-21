@@ -54,7 +54,7 @@
   --branding-font-size:             1.50em; /* the title, e.g., "itwêwina" */
   --branding-subtitle-font-size:    0.75em; /* the subtitle, e.g., "Plains Cree Dictionary" */
   --definition-title-size:          2.00em;
-  --tooltip-icon-size:              2rem; /* size of the question mark or the exclamation mark. Kept the same across the app */
+  --tooltip-icon-size:              0.75em; /* size of the ℹ️  button or 🔊 button. Kept the same across the app */
   --reference-to-lemma-size:        1.50em;
   --preverb-breakdown-size:         1.50em;
   --prominent-font-size:            1.50em; /* For text that should be prominent! */
