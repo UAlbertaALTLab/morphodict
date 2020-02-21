@@ -8,9 +8,9 @@
   /* Positioning and sizes */
   --page-gutter:               1rem; /* Space on either side of the viewport. */
   --header-stripe-width:        8px; /* Width of the "stripe" to the left of the title. */
-  --small-pad:                  4px;
-  --medium-gap:                 6px;
-  --gap:                        8px;
+  --small-pad:               .25rem;
+  --medium-gap:             .375rem;
+  --gap:                      .5rem;
   --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
   --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
 
@@ -71,6 +71,7 @@
   --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */
   --strong-font-weight:         700;
 
+  /* Border radius */
   --search-input-border-radius: 15px;
   --border-radius:               4px;
 

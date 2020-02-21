@@ -653,7 +653,7 @@ html {
 }
 
 .prose__heading {
-  margin: .5rem 0 0;
+  margin: var(--gap) 0 0;
 
   font-size: var(--prose-heading-font-size);
 
@@ -672,7 +672,7 @@ html {
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
-  margin-top: .25rem;
+  margin-top: var(--small-pad);
   margin-bottom: 0;
 }
 
@@ -751,8 +751,8 @@ html {
  */
 .copyright__line {
   margin: 0;
-  margin-bottom: .5rem;
-  margin-block-end: .5rem;
+  margin-bottom: var(--gap);
+  margin-block-end: var(--gap);
 }
 
 
