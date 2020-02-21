@@ -41,9 +41,9 @@
 
             {# Show the matched lemma (when this is NOT a lemma. #}
             {% if result.is_inflection %}
-                <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
+                <p class="reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
-                    <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                    <a class="reference-to-lemma__lemma" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
                        >{{ result.lemma_wordform.text }}</a>
                 </p>
             {% endif %}

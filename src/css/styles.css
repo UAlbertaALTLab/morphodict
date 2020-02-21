@@ -458,7 +458,8 @@ html {
   filter: var(--blue-filter); /* blue color */
 }
 
-.definition-title__reference-to-lemma{
+.reference-to-lemma {
+  margin: var(--gap) 0 0;
   font-size: var(--reference-to-lemma-size);
 }
 
