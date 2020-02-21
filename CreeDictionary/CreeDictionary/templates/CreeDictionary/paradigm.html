@@ -2,13 +2,18 @@
 {% load inflection_extras %}
 {% comment %}
 
-should be placed inside <main>
+This should be placed inside <main>
 
 {% endcomment %}
 
 {% spaceless %}
+{# This is not in the DOM by default, but JS places in the <h1 id="head"> #}
 <template id="template:play-button">
-    <button data-cy="play-recording"><svg aria-label="Play recording" class="definition-title__play-recording"><use xlink:href="#fa-volume-up-solid" /></svg></button>
+    <button class="definition-title__play-button" data-cy="play-recording">
+        <svg aria-label="Play recording" class="definition-title__play-icon">
+            <use xlink:href="#fa-volume-up-solid" />
+        </svg>
+    </button>
 </template>
 {% endspaceless %}
 
