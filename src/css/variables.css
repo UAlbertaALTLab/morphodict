@@ -42,6 +42,7 @@
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
+  --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/

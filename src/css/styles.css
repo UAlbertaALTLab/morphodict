@@ -509,6 +509,19 @@ html {
   filter: brightness(150%);
 }
 
+/**
+ * BLOCK cleave-inflection-from-lemma
+ *
+ * Separates the info for the matched wordform/inflection
+ * from the defined lemma.
+ *
+ * It's an <hr>!
+ */
+.cleave-inflection-from-lemma {
+  margin-top: var(--gap);
+  color: var(--soft-hr-color);
+}
+
 .meanings {
   /* Display & Box model */
   padding: 0;
