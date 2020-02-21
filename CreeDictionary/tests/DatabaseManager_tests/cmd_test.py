@@ -14,7 +14,9 @@ from DatabaseManager.cree_inflection_generator import expand_inflections
 
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
-    cmd_entry([..., "import", str(shared_datadir / "crkeng-small-nice-0")])
+    cmd_entry(
+        [..., "import", str(shared_datadir / "crkeng-small-nice-0"), "--no-input"]
+    )
 
     expanded = expand_inflections(
         ["yôwamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO"], multi_processing=1, verbose=False
