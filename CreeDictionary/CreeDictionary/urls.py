@@ -32,7 +32,8 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
-    ("lemma/<int:lemma_id>/", views.index, "cree-dictionary-index-with-lemma"),
+    # word is a user-friendly alternative for the linguistic term "lemma"
+    ("word/<str:query_string>/", views.index, "cree-dictionary-index-with-lemma"),
     ("about", views.about, "cree-dictionary-about"),
     # internal use to render boxes of search results
     (

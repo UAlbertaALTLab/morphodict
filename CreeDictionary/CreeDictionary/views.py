@@ -12,13 +12,22 @@ from constants import ParadigmSize
 # rationale: we don't unit test the views functions, rather, we test them in integration tests with cypress.
 
 
-def index(request, query_string=None, lemma_id=None):  # pragma: no cover
+def lemma_details(request, query_string: str):  # pragma: no cover
     """
-    homepage with optional initial query or initial lemma. query_string and lemma_id can not both be given
+    home page with initial lemma detail page to display. Falls back to search page if query_string is ambiguous.
 
-    :param request:
+    :param request: accepts query params `pos` `lc` `analysis` `id` to disambiguate query_string
+    :param query_string:
+    """
+    pass
+
+
+def index(request, query_string=None):  # pragma: no cover
+    """
+    homepage with optional initial search results to display
+
+    :param request: accepts query params `pos` `lc` `analysis` `id` to further specify query_string
     :param query_string: optional initial search results to display
-    :param lemma_id: optional initial paradigm page to display
     :return:
     """
     lemma = Wordform.objects.get(id=lemma_id) if lemma_id else None
