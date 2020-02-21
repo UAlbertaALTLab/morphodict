@@ -23,7 +23,7 @@
   --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
   --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
   --app-body-color:         #000000; /* Color of body text. */
-  --cite-text-color:        #1A2635; /* Color of dictionary citation element. */
+  --cite-text-color:        #182457; /* Color of dictionary citation element. */
   --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
   --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
