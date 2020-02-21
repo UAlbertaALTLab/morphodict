@@ -460,7 +460,9 @@ html {
 
 .reference-to-lemma {
   margin: var(--gap) 0 0;
+
   font-size: var(--reference-to-lemma-size);
+  font-style: italic;
 }
 
 .definition-title__pos {
