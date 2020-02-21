@@ -394,7 +394,7 @@ html {
  * Make the search icon look unusable when the user has not typed any query.
  */
 .search-bar:invalid .search-bar__button {
-  opacity: 50%;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
