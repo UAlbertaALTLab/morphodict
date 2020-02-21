@@ -445,6 +445,8 @@ html {
 .definition-title__tooltip-icon > img {
   width: var(--tooltip-icon-size);
   filter: var(--blue-filter); /* blue color */
+
+  vertical-align: middle;
 }
 
 .reference-to-lemma {
