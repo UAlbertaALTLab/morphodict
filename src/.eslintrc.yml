@@ -6,7 +6,7 @@ env:
   node: false
 
 parserOptions:
-  ecmaVersion: 2016
+  ecmaVersion: 2017
   sourceType: module
 
 # These rules seem to generally follow the StandardJS style:
