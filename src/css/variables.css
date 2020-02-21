@@ -41,7 +41,7 @@
   --link-active-color:      #0E6790; /* Currently active link. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
-  --play-button-color:      #283c95; /* The play button in a head (definition-title). */
+  --play-button-color:      #286995; /* The play button in a head (definition-title). */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
