@@ -2,20 +2,10 @@
  * Tests about hearing recording snippets.
  */
 context('Recordings', function () {
-  const recordingSearchPattern =
-    /^https?:[/][/]localhost:8000[/]recording[/]_search[/][^/]+$/
-
-  beforeEach(function () {
-    cy.server()
-  })
-
   describe('On the definition page', () => {
     it('should play a recording via a 🔊 icon', function () {
-      // Setup the mock server
-      cy.fixture('recording/_search/wâpamêw')
+      cy.fixture('recording/_search/wâpamêw', 'utf-8')
         .as('recordingsResults')
-      cy.route(recordingSearchPattern, '@recordingsResults')
-        .as('searchRecordings')
 
       // Get to the definition/paradigm page for "wâpamêw"
       cy.visit('/search/wâpamêw')
@@ -24,9 +14,12 @@ context('Recordings', function () {
       cy.url()
         .should('contain', '/lemma/')
 
-      // TODO: figure out how to mock this correctly
-      // it SHOULD make a network request here:
-      //cy.wait('@searchRecordings')
+      // TODO: we should stub a network request,
+      // but Cypress can't deal with fetch() requests :/
+      // It has to use a polyfill, but for various reasons,
+      // that's annoying and brittle
+      //  (e.g., if the URL changes, the polyfill needs
+      //   to be re-enabled).
 
       // And we should be able to click it.
       cy.get('button[data-cy=play-recording]')
