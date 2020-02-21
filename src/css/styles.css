@@ -623,6 +623,8 @@ html {
 
 .paradigm-label--col {
   font-weight: var(--strong-font-weight);
+  /* Sometimes the label is too dang wide, so just hide it. */
+  overflow-x: ellipsis;
 }
 
 .paradigm-cell {
