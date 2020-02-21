@@ -508,6 +508,7 @@ html {
 .meanings {
   /* Display & Box model */
   padding: 0;
+  margin-top: .75rem; /* give it a little breathing room. */
 
   /* Text */
   font-size: var(--prominent-font-size);
