@@ -619,8 +619,6 @@ html {
 .paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
-
-  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 .paradigm-label--col {
@@ -629,6 +627,10 @@ html {
 
 .paradigm-cell {
   font-weight: var(--body-font-weight);
+}
+
+.paradigm-label--row, .paradigm-cell {
+  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 /********************************** PROSE **********************************/
