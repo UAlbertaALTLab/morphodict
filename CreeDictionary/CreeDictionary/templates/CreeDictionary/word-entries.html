@@ -41,9 +41,9 @@
 
             {# Show the matched lemma (when this is NOT a lemma. #}
             {% if result.is_inflection %}
-                <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
+                <p class="reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
-                    <a class="definition-title__link" href="{{ result.lemma_url }}"
+                    <a class="reference-to-lemma__lemma" href="{{ result.lemma_url }}"
                        >{{ result.lemma_wordform.text }}</a>
                 </p>
             {% endif %}
@@ -97,7 +97,7 @@
             {% if result.is_inflection %}
                 {# show everything about the lemma #}
 
-                <hr>
+                <hr class="cleave-inflection-from-lemma">
 
                 <header class="definition__header">
                     <h2 class="definition-title definition-title--search-result">
