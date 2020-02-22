@@ -60,14 +60,21 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // pipon is a verb as well as a noun
     cy.visit('/search/pipon/')
 
+    const lemmaUrls = new Set()
+
     // both results should be present
-    cy.get('[data-cy=definition-title] a').first()
+    const x = cy.get('[data-cy=definition-title] a').first()
       .should('have.attr', 'href')
-      .and('eq', '/word/pipon/?pos=N')
+      .then(lemmaUrl=>lemmaUrls.add(x))
+
 
     cy.get('[data-cy=definition-title] a').eq(1)
       .should('have.attr', 'href')
-      .and('eq', '/word/pipon/?pos=V')
+      .then(lemmaUrl=>lemmaUrls.add(lemmaUrl))
+
+
+    expect(lemmaUrls).to.deep.eq(new Set(['/word/pipon/?pos=N', '/word/pipon/?pos=V']))
+
 
   })
 
