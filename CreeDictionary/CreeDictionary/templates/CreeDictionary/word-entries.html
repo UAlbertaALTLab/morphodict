@@ -9,7 +9,7 @@
 
                     <dfn class="definition-title__word" data-cy="definition-title">
                         {% if result.is_lemma %}
-                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}">
+                            <a class="definition-title__link" href="{{ result.lemma_url }}">
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         {% else %}
                             <span lang="cr">{{ result.matched_cree }}</span>
@@ -43,7 +43,7 @@
             {% if result.is_inflection %}
                 <p class="definition-title__reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
-                    <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                    <a class="definition-title__link" href="{{ result.lemma_url }}"
                        >{{ result.lemma_wordform.text }}</a>
                 </p>
             {% endif %}
@@ -65,7 +65,7 @@
                 {% for preverb in result.preverbs %}
                     <li>
                         <span>Preverb: {% if preverb.id %}
-                            <a href="{% url 'cree-dictionary-index-with-word' preverb.text %}">{{ preverb.text }}</a>{% else %}
+                            <a href="{% url 'cree-dictionary-index-with-query' preverb.text %}">{{ preverb.text }}</a>{% else %}
                             {{ preverb.text }}{% endif %}
                         </span>
 
@@ -103,7 +103,7 @@
                     <h2 class="definition-title definition-title--search-result">
 
                         <dfn class="definition-title__word" data-cy="definition-title">
-                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                            <a class="definition-title__link" href="{{ result.lemma_url }}"
                                >
                                 {# data- attributes are supported in HTML5 not in XHTML #}
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>

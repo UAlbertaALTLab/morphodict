@@ -1,5 +1,24 @@
 <?xml version="1.0" ?>
 <r>
+	<source id="CW">
+		
+      
+		<title>Cree : Words / nēhiyawēwin : itwēwina</title>
+		
+   
+	</source>
+	
+   
+	<source id="MD">
+		
+      
+		<title>Maskwacîs Cree Dictionary</title>
+		
+   
+	</source>
+	
+
+
 	<e>
 		
    
@@ -4344,6 +4363,80 @@
 		<lg>
 			
       
+			<l pos="V">ayênânêwopiponêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>ayênânêwopiponê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is eight years old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">ayinânêwopiponêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>ayinânêwopiponê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is eight years old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">ayiwâk ôma</l>
 			
       
@@ -5015,6 +5108,80 @@
 				
        
 				<t pos="V" sources="CW">it is midsummer</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">âpihtâ-pipon</l>
+			
+      
+			<lc>VII-n</lc>
+			
+      
+			<stem>âpihtâ-pipon-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is midwinter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">âpihtâ-piponi-pîsim</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>âpihtâ-piponi-pîsimw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Mid-Winter Moon; January</t>
 				
    
 			</tg>
@@ -6173,6 +6340,117 @@
 		<lg>
 			
       
+			<l pos="V">itahtopiponêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>itahtopiponê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is so many years (winters) old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">itahtopiponwêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>itahtopiponwê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is so old, s/he is so many winters</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">itahtopiponwêwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>itahtopiponwêwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">having so many years, winters; the number of one's years, one's age</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">itâcimêw</l>
 			
       
@@ -6570,6 +6848,43 @@
 				
        
 				<t pos="Ipc" sources="CW">all summer, all summer long</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">kapê-pipon</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">all winter, all winter long</t>
 				
    
 			</tg>
@@ -10285,6 +10600,43 @@
 		<lg>
 			
       
+			<l pos="V">kîsopwêni-pipon</l>
+			
+      
+			<lc>VII-n</lc>
+			
+      
+			<stem>kîsopwêni-pipon-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a mild winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kîsôwiyawêw</l>
 			
       
@@ -12337,6 +12689,58 @@
 		<lg>
 			
       
+			<l pos="V">mâyi-pipon</l>
+			
+      
+			<lc>VII-n</lc>
+			
+      
+			<stem>mâyi-pipon-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">A bad winter.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a bad winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">mâyipayiwin</l>
 			
       
@@ -12630,6 +13034,43 @@
 				
        
 				<t pos="Ipc" sources="CW">in particular, above all</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">mêsakwanipipon</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">every winter, year</t>
 				
    
 			</tg>
@@ -21843,6 +22284,58 @@
 		<lg>
 			
       
+			<l pos="V">nîsopiponwêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>nîsopiponwê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">He is two years old.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is two years old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">nôhkom</l>
 			
       
@@ -30705,6 +31198,784 @@
 		<lg>
 			
       
+			<l pos="Ipc">pipohki</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">next winter; when it's winter, if it's winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">pipon</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>pipon-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">It is winter.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">year, winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">pipon</l>
+			
+      
+			<lc>VII-n</lc>
+			
+      
+			<stem>pipon-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">It is winter.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is winter; is one year</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">pipon-ayi</l>
+			
+      
+			<lc>NI-4</lc>
+			
+      
+			<stem>pipon-ay-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">article of winter clothing</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">pipon-ayis</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>pipon-ayis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter bird</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">pipon-âyis</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>pipon-âyis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">chicken hawk</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponasâkay</l>
+			
+      
+			<lc>NI-2</lc>
+			
+      
+			<stem>piponasâkay-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A coat for winter. Ski jacket. Etc.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter jacket, winter coat</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponasiw</l>
+			
+      
+			<lc>NA-2</lc>
+			
+      
+			<stem>piponasiw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter hawk</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponaskisin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>piponaskisin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter boot</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponastotin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>piponastotin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter hat</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponâsiw</l>
+			
+      
+			<lc>NA-2</lc>
+			
+      
+			<stem>piponâsiw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">chicken hawk</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponâskos</l>
+			
+      
+			<lc>NA-1</lc>
+			
+      
+			<stem>piponâskos-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">yearling horse, colt</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">piponâspinêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>piponâspinê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he has polio</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponâspinêwin</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>piponâspinêwin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">polio</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">piponi-mêskanaw</l>
+			
+      
+			<lc>NI-2</lc>
+			
+      
+			<stem>piponi-mêskanaw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">winter road</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">piponihêwiw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>piponihêwi-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he stays in winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">piponisiw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>piponisi-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">He winters at a certain place.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he camps for the winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">piponohk</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="MD">Last winter.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">last winter, in the winter</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">piponwêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>piponwê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is one winter old; s/he is one year old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">pisci-pakamiskawêw</l>
 			
       
@@ -33201,6 +34472,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">tahto-pipon</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">yearly, annually, every year</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">tahto-tipiskâw</l>
 			
       
@@ -33235,6 +34543,43 @@
 				
        
 				<t pos="Ipc" sources="CW">each night; every night</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">tahtopiponwêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>tahtopiponwê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is so many winters old</t>
 				
    
 			</tg>
@@ -34248,6 +35593,43 @@
 		<lg>
 			
       
+			<l pos="V">tânitahtopiponêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>tânitahtopiponê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is how many years old</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">tâwaham</l>
 			
       
@@ -34267,6 +35649,43 @@
 				
        
 				<t pos="V" sources="CW">s/he hits s.t. with a missile; s/he hits s.t. (as a target), s/he hits the mark; s/he bumps into s.t.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">têpakohpopiponêw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>têpakohpopiponê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he is seven years old</t>
 				
    
 			</tg>
@@ -36167,6 +37586,43 @@
 				
        
 				<t pos="V" sources="CW">s/he originates (temporally) together with s.o.; s/he is born together with s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">wîci-piponisîmêw</l>
+			
+      
+			<lc>VTA-1</lc>
+			
+      
+			<stem>wîci-piponisîm-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he winters with s.o.</t>
 				
    
 			</tg>

@@ -96,7 +96,7 @@ function loadResults($input) {
   }
 
   function issueSearch() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-word'](text))
+    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-query'](text))
 
     hideInstruction()
 
@@ -183,6 +183,10 @@ function setupAudioOnPageLoad() {
       button.addEventListener('click', function () {
         recording.play()
       })
+    })
+    .catch(e=>{
+      // fixme (eddie): now what?
+      console.log(e)
     })
 }
 

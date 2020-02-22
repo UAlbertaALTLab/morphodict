@@ -3,6 +3,11 @@ import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
 
+from django.urls import reverse
+from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
+from django.utils.http import urlencode
+
 from paradigm import Layout
 from shared import paradigm_filler
 from typing import (
@@ -127,9 +132,11 @@ class SearchResult:
     matched_by: Language
 
     # The matched lemma
+    # todo: pass in dumb object instead to help serialization and avoid unnecessary database access
+    #   spread the fields of lemma_wordform here, and refactor word-entries.html
     lemma_wordform: "Wordform"
 
-    # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+    # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
     # it's the least strict url that guarantees unique match in the database
     # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
     lemma_url: str
@@ -173,6 +180,30 @@ class Wordform(models.Model):
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    def get_absolute_url(self) -> str:
+        assert self.is_lemma, "There is no page for non-lemmas"
+        lemma_url = reverse(
+            "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
+        )
+        if self.homograph_disambiguator is not None:
+            lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
+
+        return iri_to_uri(lemma_url)
+
+    @cached_property
+    def homograph_disambiguator(self) -> Optional[str]:
+        """
+        :return: the least strict field name that guarantees unique match together with the text field.
+            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+        """
+        homographs = Wordform.objects.filter(text=self.text)
+        if homographs.count() == 1:
+            return None
+        for field in "pos", "full_lc", "analysis":
+            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
+                return field
+        return "id"  # id always guarantees unique match
 
     @property
     def paradigm(self) -> List[Layout]:
@@ -580,6 +611,7 @@ class Wordform(models.Model):
                         replace_user_friendly_tags(linguistic_breakdown_tail)
                     ),
                     lemma_wordform=cree_result.lemma,
+                    lemma_url=cree_result.lemma.get_absolute_url(),
                     preverbs=get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
@@ -607,6 +639,7 @@ class Wordform(models.Model):
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
                     lemma_wordform=result.matched_cree.lemma,
+                    lemma_url=result.matched_cree.lemma.get_absolute_url(),
                     preverbs=get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
@@ -662,7 +695,6 @@ class CreeResult(NamedTuple):
     analysis: Analysis
     normatized_cree: Union[Wordform, str]
     lemma: Lemma
-    constraints: List[Tuple[str, str]]
 
     @property
     def normatized_cree_text(self) -> str:
