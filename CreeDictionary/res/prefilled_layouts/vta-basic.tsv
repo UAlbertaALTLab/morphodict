@@ -4,9 +4,9 @@
 "I → him/her"	{{ lemma }}+V+TA+Ind+Prs+1Sg+3SgO
 "you (one) → me"	{{ lemma }}+V+TA+Ind+Prs+2Sg+1SgO
 "you (one) → him/her"	{{ lemma }}+V+TA+Ind+Prs+2Sg+3SgO
+"s/he → me"	{{ lemma }}+V+TA+Ind+Prs+3Sg+1SgO
+"s/he → you (one)"	{{ lemma }}+V+TA+Ind+Prs+3Sg+2SgO
 "s/he → him/her/them (further)"	{{ lemma }}+V+TA+Ind+Prs+3Sg+4Sg/PlO
-"s/he/they (further) → me"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+1SgO
-"s/he/they (further) → you (one)"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+2SgO
 "s/he/they (further) → him/her"	{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+3SgO
 	
 "Actor → Goal"	: "ê-/kâ- word"
@@ -14,9 +14,9 @@
 "I → him/her"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO
 "you (one) → me"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
 "you (one) → him/her"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO
+"s/he → me"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1SgO
+"s/he → you (one)"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2SgO
 "s/he → him/her/them (further)"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO
-"s/he/they (further) → me"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1SgO
-"s/he/they (further) → you (one)"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2SgO
 "s/he/they (further) → him/her"	PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO
 	
 	"Command/Request"

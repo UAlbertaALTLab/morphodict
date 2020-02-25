@@ -72,6 +72,7 @@ html {
 /**
  * Link styles for the application.
  */
+.app a { font-weight: var(--link-font-weight) }
 .app a:link { color: var(--link-color) }
 .app a:visited { color: var(--link-visited-color) }
 .app a:hover { color: var(--link-hover-color) }
@@ -394,7 +395,7 @@ html {
  * Make the search icon look unusable when the user has not typed any query.
  */
 .search-bar:invalid .search-bar__button {
-  opacity: 50%;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -433,32 +434,26 @@ html {
 }
 
 .definition-title__tooltip-text{
-  font-size:0.5em;
+  font-size: 0.5em;
   font-weight: normal;
 }
 
 .definition-title__tooltip-icon{
-  display: inline;
-  position: relative;
+  display: inline-block;
 }
-
 
 .definition-title__tooltip-icon > img {
   width: var(--tooltip-icon-size);
-
-  /* vertically center the question mark*/
-  position: absolute;
-  top:0;
-  bottom: 0;
-  margin: auto;
-  /* end vertical centering */
-
-  left:0.2em;  /* space out the question mark */
   filter: var(--blue-filter); /* blue color */
+
+  vertical-align: middle;
 }
 
-.definition-title__reference-to-lemma{
+.reference-to-lemma {
+  margin: var(--gap) 0 0;
+
   font-size: var(--reference-to-lemma-size);
+  font-style: italic;
 }
 
 .definition-title__pos {
@@ -472,7 +467,7 @@ html {
  */
 .definition-title__play-icon {
   width: 100%;
-  height: .7em; /* Make sure it stays small. */
+  height: var(--tooltip-icon-size);
 
   overflow: hidden;
 }
@@ -505,9 +500,23 @@ html {
   filter: brightness(150%);
 }
 
+/**
+ * BLOCK cleave-inflection-from-lemma
+ *
+ * Separates the info for the matched wordform/inflection
+ * from the defined lemma.
+ *
+ * It's an <hr>!
+ */
+.cleave-inflection-from-lemma {
+  margin-top: var(--gap);
+  color: var(--soft-hr-color);
+}
+
 .meanings {
   /* Display & Box model */
   padding: 0;
+  margin-top: 1rem; /* give it a little breathing room. */
 
   /* Text */
   font-size: var(--prominent-font-size);
@@ -619,16 +628,20 @@ html {
 .paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
-
-  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 .paradigm-label--col {
   font-weight: var(--strong-font-weight);
+  /* Sometimes the label is too dang wide, so just hide it. */
+  overflow-x: ellipsis;
 }
 
 .paradigm-cell {
   font-weight: var(--body-font-weight);
+}
+
+.paradigm-label--row, .paradigm-cell {
+  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 /********************************** PROSE **********************************/
@@ -644,15 +657,16 @@ html {
 }
 
 .prose__heading {
+  margin: var(--gap) 0 0;
+
   font-size: var(--prose-heading-font-size);
 
   color: var(--prose-heading-color);
 }
 
 .prose__section-title {
-  /* Let the padding take care of the spacing */
-  margin-top: 0;
-  margin-block-start: 0;
+  /* Reset margin. */
+  margin: 0;
 
   font-size: var(--prose-section-title-font-size);
 
@@ -662,7 +676,7 @@ html {
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
-  margin-top: 1rem;
+  margin-top: var(--small-pad);
   margin-bottom: 0;
 }
 
@@ -741,8 +755,8 @@ html {
  */
 .copyright__line {
   margin: 0;
-  margin-bottom: .5rem;
-  margin-block-end: .5rem;
+  margin-bottom: var(--gap);
+  margin-block-end: var(--gap);
 }
 
 
