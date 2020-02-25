@@ -20,6 +20,9 @@ class SerializedWordform(TypedDict):
     as_is: bool
     lemma: int  # the id of the lemma
 
+    # ---- calculated properties ---
+    lemma_url: str
+
     # ---- foreign keys ----
     definition: List[SerializedDefinition]
 

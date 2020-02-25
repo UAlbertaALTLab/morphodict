@@ -75,7 +75,6 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
 
-
 def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     """
     Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
@@ -146,10 +145,6 @@ class SearchResult:
             else:  # Wordform
                 result["preverbs"].append(pv.serialize())
 
-        # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
-        # it's the least strict url that guarantees unique match in the database
-        # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
-        result["lemma_url"] = self.lemma_wordform.get_absolute_url()
         result["matched_by"] = self.matched_by.name
         result["definitions"] = [
             definition.serialize() for definition in self.definitions
@@ -171,6 +166,11 @@ class Wordform(models.Model):
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
     def get_absolute_url(self) -> str:
+        """
+        :return: url that looks like
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         it's the least strict url that guarantees unique match in the database
+        """
         assert self.is_lemma, "There is no page for non-lemmas"
         lemma_url = reverse(
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
@@ -189,6 +189,7 @@ class Wordform(models.Model):
         result["definitions"] = [
             definition.serialize() for definition in self.definitions.all()
         ]
+        result["lemma_url"] = self.get_absolute_url()
         return result
 
     @cached_property

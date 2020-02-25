@@ -213,6 +213,7 @@ def test_search_serialization_json_parsable(query):
             print(e)
             pytest.fail("SearchResult.serialized method failed to be json compatible")
 
+
 @pytest.mark.django_db
 def test_search_words_with_preverbs():
     """
