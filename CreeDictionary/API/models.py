@@ -137,9 +137,12 @@ class SearchResult:
         # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
         result["lemma_wordform"] = self.lemma_wordform.serialize()
 
-        if len(self.preverbs) > 0:
-            # todo: finish this
-            pass
+        result["preverbs"] = []
+        for pv in self.preverbs:
+            if isinstance(pv, str):
+                result["preverbs"].append(pv)
+            else:  # Wordform
+                result["preverbs"].append(pv.serialize())
 
         # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
         # it's the least strict url that guarantees unique match in the database
@@ -534,7 +537,7 @@ class Wordform(models.Model):
             results = []
             for tag in head_breakdown:
 
-                result: Optional[Preverb] = None
+                preverb_result: Optional[Preverb] = None
                 if tag.startswith("PV/"):
                     # use altlabel.tsv to figure out the preverb
 
@@ -549,7 +552,7 @@ class Wordform(models.Model):
 
                         # find the one that looks the most similar
                         if preverb_results:
-                            result = min(
+                            preverb_result = min(
                                 preverb_results,
                                 key=lambda pr: get_modified_distance(
                                     normative_preverb_text, pr.text.strip("-"),
@@ -557,10 +560,10 @@ class Wordform(models.Model):
                             )
 
                         else:  # can't find a match for the preverb in the database
-                            result = normative_preverb_text
+                            preverb_result = normative_preverb_text
 
-                if result is not None:
-                    results.append(result)
+                if preverb_result is not None:
+                    results.append(preverb_result)
             return tuple(results)
 
         # Create the search results
