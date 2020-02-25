@@ -75,6 +75,7 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
 
+
 def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     """
     Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
