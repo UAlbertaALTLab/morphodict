@@ -31,7 +31,7 @@ from sortedcontainers import SortedSet
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
-from .schema import SerializedSearchResult
+from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
@@ -179,7 +179,7 @@ class Wordform(models.Model):
 
         return iri_to_uri(lemma_url)
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedWordform:
         """
 
         :return: json parsable result
@@ -846,7 +846,7 @@ class Definition(models.Model):
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedDefinition:
         """
         :return: json parsable format
         """
