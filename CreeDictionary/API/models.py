@@ -2,17 +2,6 @@ import logging
 import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
-
-import attr
-from django.core import serializers
-from django.forms import model_to_dict
-from django.urls import reverse
-from django.utils.encoding import iri_to_uri
-from django.utils.functional import cached_property
-from django.utils.http import urlencode
-
-from paradigm import Layout
-from shared import paradigm_filler
 from typing import (
     Any,
     Callable,
@@ -28,15 +17,22 @@ from typing import (
     cast,
 )
 
+import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
+from django.forms import model_to_dict
+from django.urls import reverse
+from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
+from paradigm import Layout
 from shared import descriptive_analyzer_foma, normative_generator_foma
+from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
