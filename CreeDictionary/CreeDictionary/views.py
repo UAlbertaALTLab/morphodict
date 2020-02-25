@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from API.models import Wordform
 from CreeDictionary.forms import WordSearchForm
@@ -12,35 +12,48 @@ from constants import ParadigmSize
 # rationale: we don't unit test the views functions, rather, we test them in integration tests with cypress.
 
 
-def lemma_details(request, query_string: str):  # pragma: no cover
+def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     """
-    home page with initial lemma detail page to display. Falls back to search page if query_string is ambiguous.
+    lemma detail page. Fall back to search page if no lemma is found or multiple lemmas are found
 
-    :param request: accepts query params `pos` `lc` `analysis` `id` to disambiguate query_string
-    :param query_string:
+    :param request: accepts query params `pos` `full_lc` `analysis` `id` to further specify query_string
+    :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
-    pass
+    extra_constraints = {
+        k: v for k, v in request.GET.items() if k in {"pos", "lc", "analysis", "id"}
+    }
+    lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True, **extra_constraints)
+    if lemma.count() == 1:
+        lemma = lemma.get()
+        context = {
+            "lemma_id": lemma.id,
+            "lemma": lemma,
+            "paradigm_size": ParadigmSize.BASIC.display_form,
+            "paradigm_tables": lemma.paradigm if lemma else None,
+        }
+        return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    else:
+        return redirect("cree-dictionary-index-with-query", query_string=lemma_text)
 
 
 def index(request, query_string=None):  # pragma: no cover
     """
     homepage with optional initial search results to display
 
-    :param request: accepts query params `pos` `lc` `analysis` `id` to further specify query_string
+    :param request:
     :param query_string: optional initial search results to display
     :return:
     """
-    lemma = Wordform.objects.get(id=lemma_id) if lemma_id else None
+
     context = {
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display
         "query_string": query_string,
-        "search_results": Wordform.search(query_string) if query_string else set(),
-        # when we have initial paradigm to show
-        "lemma_id": lemma_id,
-        "lemma": lemma,
-        "paradigm_size": ParadigmSize.BASIC.display_form,
-        "paradigm_tables": lemma.paradigm if lemma else None,
+        "search_results": [
+            search_result.serialize() for search_result in Wordform.search(query_string)
+        ]
+        if query_string
+        else [],
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -51,11 +64,13 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = Wordform.search(query_string)
     return render(
-        request, "CreeDictionary/word-entries.html", {"search_results": results}
+        request,
+        "CreeDictionary/word-entries.html",
+        {"search_results": [r.serialize() for r in results]},
     )
 
 
-def lemma_details(request, lemma_id: int):  # pragma: no cover
+def lemma_details_internal(request, lemma_id: int):  # pragma: no cover
     """
     render paradigm table for a lemma
     """

@@ -2,9 +2,6 @@ import logging
 import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
-
-from paradigm import Layout
-from shared import paradigm_filler
 from typing import (
     Any,
     Callable,
@@ -20,15 +17,22 @@ from typing import (
     cast,
 )
 
+import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
+from django.forms import model_to_dict
+from django.urls import reverse
+from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
+from paradigm import Layout
 from shared import descriptive_analyzer_foma, normative_generator_foma
+from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
@@ -129,11 +133,6 @@ class SearchResult:
     # The matched lemma
     lemma_wordform: "Wordform"
 
-    # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
-    # it's the least strict url that guarantees unique match in the database
-    # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
-    lemma_url: str
-
     # triple dots in type annotation means they can be empty
 
     # user friendly linguistic breakdowns
@@ -152,13 +151,29 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    @property
-    def is_inflection(self) -> bool:
+    def serialize(self) -> Dict[str, Any]:
         """
-        Is this an inflected form? That is, is this a wordform that is NOT the
-        lemma?
+        serialize the instance, can be used before passing into a template / in an API view, etc.
         """
-        return not self.is_lemma
+        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
+        # it avoids unnecessary database access and makes APIs easier to create
+        result = attr.asdict(self)
+        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
+        result["lemma_wordform"] = model_to_dict(self.lemma_wordform)
+        result["lemma_wordform"]["definitions"] = [
+            definition.serialize()
+            for definition in self.lemma_wordform.definitions.all()
+        ]
+
+        # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+        # it's the least strict url that guarantees unique match in the database
+        # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
+        result["lemma_url"] = self.lemma_wordform.get_absolute_url()
+        result["matched_by"] = self.matched_by.name
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions
+        ]
+        return result
 
 
 NormatizedCree = NewType("NormatizedCree", str)
@@ -173,6 +188,30 @@ class Wordform(models.Model):
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    def get_absolute_url(self) -> str:
+        assert self.is_lemma, "There is no page for non-lemmas"
+        lemma_url = reverse(
+            "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
+        )
+        if self.homograph_disambiguator is not None:
+            lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
+
+        return iri_to_uri(lemma_url)
+
+    @cached_property
+    def homograph_disambiguator(self) -> Optional[str]:
+        """
+        :return: the least strict field name that guarantees unique match together with the text field.
+            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+        """
+        homographs = Wordform.objects.filter(text=self.text)
+        if homographs.count() == 1:
+            return None
+        for field in "pos", "full_lc", "analysis":
+            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
+                return field
+        return "id"  # id always guarantees unique match
 
     @property
     def paradigm(self) -> List[Layout]:
@@ -662,7 +701,6 @@ class CreeResult(NamedTuple):
     analysis: Analysis
     normatized_cree: Union[Wordform, str]
     lemma: Lemma
-    constraints: List[Tuple[str, str]]
 
     @property
     def normatized_cree_text(self) -> str:
@@ -818,6 +856,12 @@ class Definition(models.Model):
         A tuple of the source IDs that this definition cites.
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+        :return: json parsable format
+        """
+        return {"text": self.text, "source_ids": self.source_ids}
 
     def __str__(self):
         return self.text

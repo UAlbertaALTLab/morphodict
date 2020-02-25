@@ -12,7 +12,7 @@ context('Recordings', function () {
       cy.contains('a', 'wâpamêw')
         .click()
       cy.url()
-        .should('contain', '/lemma/')
+        .should('contain', '/word/')
 
       // TODO: we should stub a network request,
       // but Cypress can't deal with fetch() requests :/
