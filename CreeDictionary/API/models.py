@@ -31,6 +31,7 @@ from sortedcontainers import SortedSet
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
+from .schema import SerializedSearchResult
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
@@ -127,7 +128,7 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedSearchResult:
         """
         serialize the instance, can be used before passing into a template / in an API view, etc.
         """
