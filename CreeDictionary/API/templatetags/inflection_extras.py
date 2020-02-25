@@ -13,10 +13,19 @@ register = template.Library()
 
 # custom filter one can use in template tags
 @register.filter
-def presentational_pos(wordform: Union[Wordform, dict]):
+def presentational_pos(wordform: Union[Wordform, dict]) -> str:
     """
     :param wordform_dict: a (maybe serialized) Wordform instance
     :return: a pos that is shown to users. like Noun, Verb, etc
+
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": "VAI-v"})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": ""})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": "VAI-v"})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": ""})
+    'Verb'
     """
     if isinstance(wordform, Wordform):
         wordform_dict = model_to_dict(wordform)
