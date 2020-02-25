@@ -768,12 +768,14 @@ html {
 .partner-logos {
   /* Display & Box Model */
   color: var(--prose-title-color);
-  display: flex;
+  display: grid;
   width: 100%;
   margin-top: var(--small-pad);
 
-  /* Other */
-  flex-wrap: wrap;
+  /* Grid */
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: stretch;
   align-items: center;
 }
 
@@ -783,22 +785,28 @@ html {
  * One particular logo.
  */
 .partner-logos__logo {
-  /* Positioning */
-  flex: 1;
   /* Display & Box Model */
   margin: var(--small-pad) .5rem;
   /* Text */
   text-align: center;
 }
 
+/**
+ * Modifier for wide logos (e.g., NRC/SSHRC)
+ */
+.partner-logos__logo--full-width {
+  grid-column: 1 / span 3;
+}
+
 .partner-logos__logo:hover {
   /* Make it have a hover effect like a link, to make it look clickable. */
-  backdrop-filter: brightness(95%);
+  background-color: var(--link-hover-color);
 }
 
 .partner-logos__logo > img {
-  max-width: 33vw;
-  max-height: 8em;
+  max-width: 100%;
+  max-height: 8rem;
+  vertical-align: middle;
 }
 
 
