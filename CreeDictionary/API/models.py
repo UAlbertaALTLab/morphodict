@@ -153,7 +153,7 @@ class SearchResult:
         result["definitions"] = [
             definition.serialize() for definition in self.definitions
         ]
-        return result
+        return cast(SerializedSearchResult, result)
 
 
 NormatizedCree = NewType("NormatizedCree", str)
