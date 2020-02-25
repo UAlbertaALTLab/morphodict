@@ -172,7 +172,7 @@ context('Regressions', () => {
       })
   })
 
-  it.only('should show 3>1,2 rather than 3\', 3 in the VTA layout', function () {
+  it('should show 3>1,2 rather than 3\', 3 in the VTA layout', function () {
     // Go to a VTA word:
     cy.visit('/search/wâpamêw')
     cy.contains('a', 'wâpamêw')
