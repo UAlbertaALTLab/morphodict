@@ -1,4 +1,4 @@
-// if I click this or visit that, xxx should happen
+// if I click this or visit that, xxx should show
 
 // corresponding requirements: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
 describe('urls for lemma detail page should be handled correctly', ()=>{
@@ -55,25 +55,17 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
 
   })
 
-  it('should add relevant constraints in query params for ambiguous lemmas', function () {
+  it('should add relevant constraints as query params in href for ambiguous lemmas on the search page', function () {
 
     // pipon is a verb as well as a noun
     cy.visit('/search/pipon/')
 
-    const lemmaUrls = new Set()
+    let lemmaUrls = []
 
     // both results should be present
-    const x = cy.get('[data-cy=definition-title] a').first()
-      .should('have.attr', 'href')
-      .then(lemmaUrl=>lemmaUrls.add(x))
-
-
-    cy.get('[data-cy=definition-title] a').eq(1)
-      .should('have.attr', 'href')
-      .then(lemmaUrl=>lemmaUrls.add(lemmaUrl))
-
-
-    expect(lemmaUrls).to.deep.eq(new Set(['/word/pipon/?pos=N', '/word/pipon/?pos=V']))
+    cy.get('[data-cy=definition-title] a').each(($e)=>{
+      lemmaUrls.push($e.attr('href'))
+    }).then(()=>expect(lemmaUrls).to.have.members(['/word/pipon/?pos=N', '/word/pipon/?pos=V']))
 
 
   })

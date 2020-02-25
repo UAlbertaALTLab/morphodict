@@ -1,3 +1,4 @@
+import json
 from collections import Iterable
 
 import pytest
@@ -194,3 +195,20 @@ def test_paradigm():
     assert deep_contain(nipaw_paradigm, "kinipân")
     assert deep_contain(nipaw_paradigm, "nipâw")
     assert deep_contain(nipaw_paradigm, "ninipânân")
+
+
+@pytest.mark.django_db
+def test_search_serialization():
+    """
+    Test SearchResult class serialized normally
+    """
+    nipaw_results = Wordform.search("nipâw")
+    assert len(nipaw_results) == 1
+    nipaw_search_result = nipaw_results.pop()
+
+    serialized = nipaw_search_result.serialize()
+    try:
+        json.dumps(serialized)
+    except Exception as e:
+        print(e)
+        pytest.fail("SearchResult.serialized method failed to be json compatible")

@@ -3,6 +3,9 @@ import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
 
+import attr
+from django.core import serializers
+from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
@@ -132,14 +135,7 @@ class SearchResult:
     matched_by: Language
 
     # The matched lemma
-    # todo: pass in dumb object instead to help serialization and avoid unnecessary database access
-    #   spread the fields of lemma_wordform here, and refactor word-entries.html
     lemma_wordform: "Wordform"
-
-    # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
-    # it's the least strict url that guarantees unique match in the database
-    # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
-    lemma_url: str
 
     # triple dots in type annotation means they can be empty
 
@@ -159,13 +155,29 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    @property
-    def is_inflection(self) -> bool:
+    def serialize(self) -> Dict[str, Any]:
         """
-        Is this an inflected form? That is, is this a wordform that is NOT the
-        lemma?
+        serialize the instance, can be used before passing into a template / in an API view, etc.
         """
-        return not self.is_lemma
+        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
+        # it avoids unnecessary database access and makes APIs easier to create
+        result = attr.asdict(self)
+        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
+        result["lemma_wordform"] = model_to_dict(self.lemma_wordform)
+        result["lemma_wordform"]["definitions"] = [
+            definition.serialize()
+            for definition in self.lemma_wordform.definitions.all()
+        ]
+
+        # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+        # it's the least strict url that guarantees unique match in the database
+        # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
+        result["lemma_url"] = self.lemma_wordform.get_absolute_url()
+        result["matched_by"] = self.matched_by.name
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions
+        ]
+        return result
 
 
 NormatizedCree = NewType("NormatizedCree", str)
@@ -611,7 +623,6 @@ class Wordform(models.Model):
                         replace_user_friendly_tags(linguistic_breakdown_tail)
                     ),
                     lemma_wordform=cree_result.lemma,
-                    lemma_url=cree_result.lemma.get_absolute_url(),
                     preverbs=get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
@@ -639,7 +650,6 @@ class Wordform(models.Model):
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
                     lemma_wordform=result.matched_cree.lemma,
-                    lemma_url=result.matched_cree.lemma.get_absolute_url(),
                     preverbs=get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
@@ -850,6 +860,12 @@ class Definition(models.Model):
         A tuple of the source IDs that this definition cites.
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+        :return: json parsable format
+        """
+        return {"text": self.text, "source_ids": self.source_ids}
 
     def __str__(self):
         return self.text

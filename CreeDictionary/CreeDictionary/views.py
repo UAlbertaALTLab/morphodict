@@ -49,7 +49,11 @@ def index(request, query_string=None):  # pragma: no cover
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display
         "query_string": query_string,
-        "search_results": Wordform.search(query_string) if query_string else set(),
+        "search_results": [
+            search_result.serialize() for search_result in Wordform.search(query_string)
+        ]
+        if query_string
+        else [],
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -60,11 +64,13 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = Wordform.search(query_string)
     return render(
-        request, "CreeDictionary/word-entries.html", {"search_results": results}
+        request,
+        "CreeDictionary/word-entries.html",
+        {"search_results": [r.serialize() for r in results]},
     )
 
 
-def _lemma_details(request, lemma_id: int):  # pragma: no cover
+def lemma_details_internal(request, lemma_id: int):  # pragma: no cover
     """
     render paradigm table for a lemma
     """

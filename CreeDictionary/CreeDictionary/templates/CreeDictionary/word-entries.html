@@ -40,7 +40,7 @@
             </header>
 
             {# Show the matched lemma (when this is NOT a lemma. #}
-            {% if result.is_inflection %}
+            {% if not result.is_lemma %}
                 <p class="reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
                     <a class="reference-to-lemma__lemma" href="{{ result.lemma_url }}"
@@ -94,7 +94,7 @@
             </ol>
             {# end preverb breakdown #}
 
-            {% if result.is_inflection %}
+            {% if not result.is_lemma %}
                 {# show everything about the lemma #}
 
                 <hr class="cleave-inflection-from-lemma">
@@ -113,7 +113,7 @@
 
                 {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
                 <ol class="meanings meanings--search-result">
-                    {% for def in result.lemma_wordform.definitions.all %}
+                    {% for def in result.lemma_wordform.definitions %}
                         <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
                             {% for source in def.source_ids %}
                                 <cite class="cite-dict">{{ source }}</cite>
