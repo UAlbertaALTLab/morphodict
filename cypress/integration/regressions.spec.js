@@ -171,4 +171,17 @@ context('Regressions', () => {
           .should('be.greaterThan', minimumWidth)
       })
   })
+
+  it.only('should show 3>1,2 rather than 3\', 3 in the VTA layout', function () {
+    // Go to a VTA word:
+    cy.visit('/search/wâpamêw')
+    cy.contains('a', 'wâpamêw')
+      .click()
+
+    // N.B.: This test will fail if the word changes. ¯\_(ツ)_/¯
+    cy.contains('th', 's/he → him/her/them (further)') // 3Sg -> 4 (lemma)
+    cy.contains('th', 's/he → me')                  // 3Sg -> 1Sg
+    cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
+    cy.contains('th', 's/he/they (further) → s/he') // 4 -> 3
+  })
 })
