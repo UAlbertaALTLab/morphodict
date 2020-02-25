@@ -182,6 +182,6 @@ context('Regressions', () => {
     cy.contains('th', 's/he → him/her/them (further)') // 3Sg -> 4 (lemma)
     cy.contains('th', 's/he → me')                  // 3Sg -> 1Sg
     cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
-    cy.contains('th', 's/he/they (further) → s/he') // 4 -> 3
+    cy.contains('th', 's/he/they (further) → him/her') // 4 -> 3
   })
 })
