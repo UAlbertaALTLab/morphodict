@@ -74,24 +74,11 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
 
-class Preverb(NamedTuple):
+def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     """
-    Contains information about a preverb, should be used inside templates
-    """
+    Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
+    trailing dash relaxation is used
 
-    id: Optional[int]  # might be not in our database
-    text: str
-    definitions: Tuple[str, ...]  # might be not in our database, so might be empty
-
-
-def fetch_preverbs(
-    user_query: str, serialize: bool = False
-) -> Union[Set[Preverb], Set["Wordform"]]:
-    """
-    exhaustively search for preverbs (with index) in the database. MD only contents are filtered out.
-    circumflex and dash character relaxation is used
-
-    :param serialize: if set to True, will return a named tuple Preverb instead of Wordform instance
     :param user_query: unicode normalized, to_lower-ed
     """
 
@@ -99,18 +86,7 @@ def fetch_preverbs(
         user_query = user_query[:-1]
     user_query = remove_cree_diacritics(user_query)
 
-    if serialize:
-        return {
-            Preverb(
-                id=preverb_wordform.id,
-                text=preverb_wordform.text,
-                definitions=tuple(preverb_wordform.definitions.all()),
-            )
-            for preverb_wordform in Wordform.PREVERB_ASCII_LOOKUP[user_query]
-        }
-
-    else:
-        return Wordform.PREVERB_ASCII_LOOKUP[user_query]
+    return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -141,7 +117,7 @@ class SearchResult:
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
-    preverbs: Tuple[Preverb, ...]
+    preverbs: Tuple["Preverb", ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
@@ -159,11 +135,14 @@ class SearchResult:
         # it avoids unnecessary database access and makes APIs easier to create
         result = attr.asdict(self)
         # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
-        result["lemma_wordform"] = model_to_dict(self.lemma_wordform)
-        result["lemma_wordform"]["definitions"] = [
-            definition.serialize()
-            for definition in self.lemma_wordform.definitions.all()
-        ]
+        result["lemma_wordform"] = self.lemma_wordform.serialize()
+
+        result["preverbs"] = []
+        for pv in self.preverbs:
+            if isinstance(pv, str):
+                result["preverbs"].append(pv)
+            else:  # Wordform
+                result["preverbs"].append(pv.serialize())
 
         # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
         # it's the least strict url that guarantees unique match in the database
@@ -198,6 +177,17 @@ class Wordform(models.Model):
             lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
 
         return iri_to_uri(lemma_url)
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+
+        :return: json parsable result
+        """
+        result = model_to_dict(self)
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions.all()
+        ]
+        return result
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -481,8 +471,7 @@ class Wordform(models.Model):
         # preverbs should be presented
         # exhaustively search preverbs here (since we can't use fst on preverbs.)
 
-        for preverb_wf in fetch_preverbs(user_query, serialize=False):
-            assert isinstance(preverb_wf, Wordform)
+        for preverb_wf in fetch_preverbs(user_query):
             cree_results.add(
                 CreeResult(
                     Analysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
@@ -548,7 +537,7 @@ class Wordform(models.Model):
             results = []
             for tag in head_breakdown:
 
-                result: Optional[Preverb] = None
+                preverb_result: Optional[Preverb] = None
                 if tag.startswith("PV/"):
                     # use altlabel.tsv to figure out the preverb
 
@@ -559,27 +548,22 @@ class Wordform(models.Model):
                     if ling_short is not None and ling_short != "":
                         # looks like: "âpihci"
                         normative_preverb_text = ling_short[len("Preverb: ") : -1]
-                        preverb_results = fetch_preverbs(
-                            normative_preverb_text, serialize=True
-                        )
+                        preverb_results = fetch_preverbs(normative_preverb_text)
 
                         # find the one that looks the most similar
                         if preverb_results:
-                            result = cast(
-                                Preverb,
-                                min(
-                                    preverb_results,
-                                    key=lambda pr: get_modified_distance(
-                                        normative_preverb_text, pr.text.strip("-"),
-                                    ),
+                            preverb_result = min(
+                                preverb_results,
+                                key=lambda pr: get_modified_distance(
+                                    normative_preverb_text, pr.text.strip("-"),
                                 ),
                             )
 
                         else:  # can't find a match for the preverb in the database
-                            result = Preverb(None, normative_preverb_text, tuple())
+                            preverb_result = normative_preverb_text
 
-                if result is not None:
-                    results.append(result)
+                if preverb_result is not None:
+                    results.append(preverb_result)
             return tuple(results)
 
         # Create the search results
@@ -666,6 +650,10 @@ class Wordform(models.Model):
             )
 
         return results
+
+
+# it's a str when the preverb does not exist in the database
+Preverb = Union[Wordform, str]
 
 
 def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
