@@ -39,6 +39,7 @@ context('The About page', function () {
       cy.get('@logos').get('img[alt="University of Alberta"]');
       cy.get('@logos').get('img[alt="National Research Council Canada"]');
       cy.get('@logos').get('img[alt="First Nations University"]')
+      cy.get('@logos').get('img[alt="Social Sciences and Humanities Research Council"]')
     });
   })
 });
