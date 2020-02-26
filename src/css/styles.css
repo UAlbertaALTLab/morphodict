@@ -484,6 +484,10 @@ html {
   border: 0;
   margin: 0;
 
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
   color: var(--play-button-color);
   background: transparent;
 
