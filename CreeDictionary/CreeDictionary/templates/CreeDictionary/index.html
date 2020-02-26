@@ -3,9 +3,7 @@
 {% load static %}
 
 {% block content %}
-
-    <main class="app__content app__pane">
-
+    <main id="start-of-content" class="app__content app__pane">
           <article class="prose box" id="introduction-text" {% if search_results or lemma_id %}style="display:none;"{% endif %}>
             <h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
             <p><span lang="cr">itwêwina</span> is a Plains Cree Dictionary.</p>
@@ -37,7 +35,6 @@
                 {% endif %}
             </ol>
         </section>
-
 
         {% if lemma_id %}
             {% include 'CreeDictionary/paradigm.html' %}
