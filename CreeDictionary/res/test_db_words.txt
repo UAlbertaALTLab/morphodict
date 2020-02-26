@@ -99,3 +99,7 @@ niskak
 
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
 kotiskâwêw
+
+# ambiguous examples (multiple pos)
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/185
+pipon

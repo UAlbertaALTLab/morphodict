@@ -9,7 +9,7 @@
 
                     <dfn class="definition-title__word" data-cy="definition-title">
                         {% if result.is_lemma %}
-                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}">
+                            <a class="definition-title__link" href="{{ result.lemma_url }}">
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
                         {% else %}
                             <span lang="cr">{{ result.matched_cree }}</span>
@@ -40,10 +40,10 @@
             </header>
 
             {# Show the matched lemma (when this is NOT a lemma. #}
-            {% if result.is_inflection %}
+            {% if not result.is_lemma %}
                 <p class="reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
-                    <a class="reference-to-lemma__lemma" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                    <a class="reference-to-lemma__lemma" href="{{ result.lemma_url }}"
                        >{{ result.lemma_wordform.text }}</a>
                 </p>
             {% endif %}
@@ -65,7 +65,7 @@
                 {% for preverb in result.preverbs %}
                     <li>
                         <span>Preverb: {% if preverb.id %}
-                            <a href="{% url 'cree-dictionary-index-with-word' preverb.text %}">{{ preverb.text }}</a>{% else %}
+                            <a href="{% url 'cree-dictionary-index-with-query' preverb.text %}">{{ preverb.text }}</a>{% else %}
                             {{ preverb.text }}{% endif %}
                         </span>
 
@@ -94,7 +94,7 @@
             </ol>
             {# end preverb breakdown #}
 
-            {% if result.is_inflection %}
+            {% if not result.is_lemma %}
                 {# show everything about the lemma #}
 
                 <hr class="cleave-inflection-from-lemma">
@@ -103,7 +103,7 @@
                     <h2 class="definition-title definition-title--search-result">
 
                         <dfn class="definition-title__word" data-cy="definition-title">
-                            <a class="definition-title__link" href="{% url 'cree-dictionary-index-with-lemma' result.lemma_wordform.id %}"
+                            <a class="definition-title__link" href="{{ result.lemma_url }}"
                                >
                                 {# data- attributes are supported in HTML5 not in XHTML #}
                                 <span lang="cr">{{ result.lemma_wordform.text }}</span></a>
@@ -113,7 +113,7 @@
 
                 {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
                 <ol class="meanings meanings--search-result">
-                    {% for def in result.lemma_wordform.definitions.all %}
+                    {% for def in result.lemma_wordform.definitions %}
                         <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
                             {% for source in def.source_ids %}
                                 <cite class="cite-dict">{{ source }}</cite>

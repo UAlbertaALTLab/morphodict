@@ -1,7 +1,8 @@
 import logging
-from typing import Optional
+from typing import Union
 
 from django import template
+from django.forms import model_to_dict
 
 from API.models import Wordform
 from constants import SimpleLC
@@ -12,32 +13,49 @@ register = template.Library()
 
 # custom filter one can use in template tags
 @register.filter
-def presentational_pos(wordform: Wordform):
+def presentational_pos(wordform: Union[Wordform, dict]) -> str:
     """
+    :param wordform_dict: a (maybe serialized) Wordform instance
     :return: a pos that is shown to users. like Noun, Verb, etc
+
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": "VAI-v"})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": ""})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": "VAI-v"})
+    'Verb'
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": ""})
+    'Verb'
     """
+    if isinstance(wordform, Wordform):
+        wordform_dict = model_to_dict(wordform)
+    elif isinstance(wordform, dict):
+        wordform_dict = wordform
+    else:
+        raise TypeError
 
     # special case. In the source, some preverbs have pos labelled as IPC
     # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    lc = crkeng_xml_utils.parse_xml_lc(wordform.full_lc)
+    lc = crkeng_xml_utils.parse_xml_lc(wordform_dict["full_lc"])
     if lc is not None:
         if lc is SimpleLC.IPV:
             return "Preverb"
 
-    if wordform.pos != "":
-        if wordform.pos == "N":
+    pos = wordform_dict["pos"]
+    if pos != "":
+        if pos == "N":
             return "Noun"
-        elif wordform.pos == "V":
+        elif pos == "V":
             return "Verb"
-        elif wordform.pos == "IPC":
+        elif pos == "IPC":
             return "Particle"
-        elif wordform.pos == "PRON":
+        elif pos == "PRON":
             return "Pronoun"
-        elif wordform.pos == "IPV":
+        elif pos == "IPV":
             return "Preverb"
 
     if lc is None:
-        lc = fst_analysis_parser.extract_simple_lc(wordform.analysis)
+        lc = fst_analysis_parser.extract_simple_lc(wordform_dict["analysis"])
 
     if lc is not None:
         if lc.is_noun():
@@ -52,6 +70,6 @@ def presentational_pos(wordform: Wordform):
             return "Preverb"
 
     logging.error(
-        f"can not determine presentational pos for {wordform}, id={wordform.id}"
+        f"can not determine presentational pos for {wordform_dict}, id={wordform_dict.id}"
     )
     return ""

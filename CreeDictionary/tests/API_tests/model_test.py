@@ -1,3 +1,4 @@
+import json
 from collections import Iterable
 
 import pytest
@@ -194,3 +195,44 @@ def test_paradigm():
     assert deep_contain(nipaw_paradigm, "kinipân")
     assert deep_contain(nipaw_paradigm, "nipâw")
     assert deep_contain(nipaw_paradigm, "ninipânân")
+
+
+@pytest.mark.django_db
+def test_search_serialization():
+    """
+    Test SearchResult class serialized normally
+    """
+    nipaw_results = Wordform.search("nipâw")
+    assert len(nipaw_results) == 1
+    nipaw_search_result = nipaw_results.pop()
+
+    serialized = nipaw_search_result.serialize()
+    try:
+        json.dumps(serialized)
+    except Exception as e:
+        print(e)
+        pytest.fail("SearchResult.serialized method failed to be json compatible")
+
+
+@pytest.mark.django_db
+def test_search_words_with_preverbs():
+    """
+    preverbs should be extracted and present in SearchResult instances
+    """
+    results = Wordform.search("nitawi-nipâw")
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.preverbs) == 1
+    assert search_result.preverbs[0].text == "nitawi-"
+
+
+@pytest.mark.django_db
+def test_search_text_with_ambiguous_word_classes():
+    """
+    Results of all word classes should be searched when the query is ambiguous
+    """
+    # pipon can be viewed as a Verb as well as a Noun
+    results = Wordform.search("pipon")
+    assert len(results) == 2
+    assert {r.lemma_wordform.pos for r in results} == {"N", "V"}

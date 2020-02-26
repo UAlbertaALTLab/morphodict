@@ -2,9 +2,6 @@ import logging
 import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
-
-from paradigm import Layout
-from shared import paradigm_filler
 from typing import (
     Any,
     Callable,
@@ -20,15 +17,22 @@ from typing import (
     cast,
 )
 
+import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
+from django.forms import model_to_dict
+from django.urls import reverse
+from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
+from paradigm import Layout
 from shared import descriptive_analyzer_foma, normative_generator_foma
+from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
@@ -147,13 +151,29 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    @property
-    def is_inflection(self) -> bool:
+    def serialize(self) -> Dict[str, Any]:
         """
-        Is this an inflected form? That is, is this a wordform that is NOT the
-        lemma?
+        serialize the instance, can be used before passing into a template / in an API view, etc.
         """
-        return not self.is_lemma
+        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
+        # it avoids unnecessary database access and makes APIs easier to create
+        result = attr.asdict(self)
+        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
+        result["lemma_wordform"] = model_to_dict(self.lemma_wordform)
+        result["lemma_wordform"]["definitions"] = [
+            definition.serialize()
+            for definition in self.lemma_wordform.definitions.all()
+        ]
+
+        # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+        # it's the least strict url that guarantees unique match in the database
+        # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
+        result["lemma_url"] = self.lemma_wordform.get_absolute_url()
+        result["matched_by"] = self.matched_by.name
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions
+        ]
+        return result
 
 
 NormatizedCree = NewType("NormatizedCree", str)
@@ -168,6 +188,30 @@ class Wordform(models.Model):
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    def get_absolute_url(self) -> str:
+        assert self.is_lemma, "There is no page for non-lemmas"
+        lemma_url = reverse(
+            "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
+        )
+        if self.homograph_disambiguator is not None:
+            lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
+
+        return iri_to_uri(lemma_url)
+
+    @cached_property
+    def homograph_disambiguator(self) -> Optional[str]:
+        """
+        :return: the least strict field name that guarantees unique match together with the text field.
+            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+        """
+        homographs = Wordform.objects.filter(text=self.text)
+        if homographs.count() == 1:
+            return None
+        for field in "pos", "full_lc", "analysis":
+            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
+                return field
+        return "id"  # id always guarantees unique match
 
     @property
     def paradigm(self) -> List[Layout]:
@@ -285,7 +329,7 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(user_query: str) -> "CreeAndEnglish":
+    def fetch_lemma_by_user_query(user_query: str, **kwargs) -> "CreeAndEnglish":
         """
         treat the user query as cree and:
 
@@ -299,6 +343,7 @@ class Wordform(models.Model):
         Give a list of matched lemmas
 
         :param user_query: can be English or Cree (syllabics or not)
+        :param kwargs: additional fields to disambiguate
         """
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
@@ -332,7 +377,7 @@ class Wordform(models.Model):
             # todo: test
 
             exactly_matched_wordforms = Wordform.objects.filter(
-                analysis=analysis, as_is=False
+                analysis=analysis, as_is=False, **kwargs
             )
 
             if exactly_matched_wordforms.exists():
@@ -372,7 +417,7 @@ class Wordform(models.Model):
 
                 lemma, lc = lemma_lc
                 matched_lemma_wordforms = Wordform.objects.filter(
-                    text=lemma, is_lemma=True
+                    text=lemma, is_lemma=True, **kwargs
                 )
 
                 # now we get wordform objects from database
@@ -402,7 +447,7 @@ class Wordform(models.Model):
                         )
                 else:
                     for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=lc.pos.name
+                        as_is=False, pos=lc.pos.name, **kwargs
                     ):
                         cree_results.add(
                             CreeResult(
@@ -418,7 +463,10 @@ class Wordform(models.Model):
         # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
         for cw_as_is_wordform in filter_cw_wordforms(
             Wordform.objects.filter(
-                text__in=all_standard_forms + [user_query], as_is=True, is_lemma=True
+                text__in=all_standard_forms + [user_query],
+                as_is=True,
+                is_lemma=True,
+                **kwargs,
             )
         ):
             cree_results.add(
@@ -453,10 +501,12 @@ class Wordform(models.Model):
         if " " not in user_query:  # a whole word
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
-            lemma_ids = EnglishKeyword.objects.filter(text__exact=user_query).values(
-                "lemma__id"
-            )
-            for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
+            lemma_ids = EnglishKeyword.objects.filter(
+                text__exact=user_query, **kwargs
+            ).values("lemma__id")
+            for wordform in Wordform.objects.filter(
+                id__in=lemma_ids, as_is=False, **kwargs
+            ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
                 )  # will become  (user_query, inflection.text, inflection.lemma)
@@ -466,6 +516,7 @@ class Wordform(models.Model):
                 Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
                 as_is=True,
+                **kwargs,
             ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -474,11 +525,19 @@ class Wordform(models.Model):
         return CreeAndEnglish(cree_results, english_results)
 
     @staticmethod
-    def search(user_query: str) -> SortedSet[SearchResult]:
+    def search(user_query: str, **kwargs) -> SortedSet[SearchResult]:
+        """
+
+        :param user_query:
+        :param kwargs: additional fields to disambiguate
+        :return:
+        """
         cree_results: Set[CreeResult]
         english_results: Set[EnglishResult]
 
-        cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
+        cree_results, english_results = Wordform.fetch_lemma_by_user_query(
+            user_query, **kwargs
+        )
 
         results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
 
@@ -797,6 +856,12 @@ class Definition(models.Model):
         A tuple of the source IDs that this definition cites.
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
+
+    def serialize(self) -> Dict[str, Any]:
+        """
+        :return: json parsable format
+        """
+        return {"text": self.text, "source_ids": self.source_ids}
 
     def __str__(self):
         return self.text
