@@ -42,6 +42,13 @@ Describes
    distinct analyses.
 
 
+conjugation
+===========
+[conjugation]: #conjugation
+
+A type of [inflectional category][] for the verb word class.
+
+
 conjugator
 ==========
 [conjugator]: #conjugator
@@ -50,6 +57,13 @@ conjugator
 
 N.B.: people ask for a conjugator, even when asking to generate noun
 wordform!
+
+
+declension
+==========
+[declension]: #declension
+
+A type of [inflectional category][] for the noun word class.
 
 
 definition
@@ -198,6 +212,13 @@ The base form of a [word form]; the form chosen to depict the basic representati
 
 * **1** or more [word form]
 * **1** [head]
+
+
+morpheme
+========
+[morpheme]: #morpheme
+
+The most atomic part of a wordform. A morpheme cannot be broken down into any subsequent parts.
 
 
 normatize
