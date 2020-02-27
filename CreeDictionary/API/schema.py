@@ -2,7 +2,7 @@
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
 from typing import List, Tuple, Union
-from typing_extensions import TypedDict
+from typing_extensions import TypedDict, Literal
 
 
 class SerializedDefinition(TypedDict):
@@ -33,8 +33,7 @@ class SerializedSearchResult(TypedDict):
 
     is_lemma: bool
 
-    # ENGLISH | CREE
-    matched_by: str
+    matched_by: Literal["ENGLISH", "CREE"]
 
     # The matched lemma
     lemma_wordform: SerializedWordform
