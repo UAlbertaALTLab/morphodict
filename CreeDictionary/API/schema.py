@@ -39,7 +39,7 @@ class SerializedSearchResult(TypedDict):
     # The matched lemma
     lemma_wordform: SerializedWordform
 
-    # triple dots in type annotation means they can be empty
+    # triple dots in type annotation means they can have zero or more elements
 
     # user friendly linguistic breakdowns
     linguistic_breakdown_head: Tuple[str, ...]
