@@ -31,6 +31,7 @@ from sortedcontainers import SortedSet
 from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
+from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 from shared import descriptive_analyzer_foma, normative_generator_foma
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
@@ -127,7 +128,7 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedSearchResult:
         """
         serialize the instance, can be used before passing into a template / in an API view, etc.
         """
@@ -144,15 +145,11 @@ class SearchResult:
             else:  # Wordform
                 result["preverbs"].append(pv.serialize())
 
-        # looks like "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
-        # it's the least strict url that guarantees unique match in the database
-        # see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
-        result["lemma_url"] = self.lemma_wordform.get_absolute_url()
         result["matched_by"] = self.matched_by.name
         result["definitions"] = [
             definition.serialize() for definition in self.definitions
         ]
-        return result
+        return cast(SerializedSearchResult, result)
 
 
 NormatizedCree = NewType("NormatizedCree", str)
@@ -169,6 +166,11 @@ class Wordform(models.Model):
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
     def get_absolute_url(self) -> str:
+        """
+        :return: url that looks like
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         it's the least strict url that guarantees unique match in the database
+        """
         assert self.is_lemma, "There is no page for non-lemmas"
         lemma_url = reverse(
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
@@ -178,7 +180,7 @@ class Wordform(models.Model):
 
         return iri_to_uri(lemma_url)
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedWordform:
         """
 
         :return: json parsable result
@@ -187,6 +189,7 @@ class Wordform(models.Model):
         result["definitions"] = [
             definition.serialize() for definition in self.definitions.all()
         ]
+        result["lemma_url"] = self.get_absolute_url()
         return result
 
     @cached_property
@@ -845,7 +848,7 @@ class Definition(models.Model):
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
 
-    def serialize(self) -> Dict[str, Any]:
+    def serialize(self) -> SerializedDefinition:
         """
         :return: json parsable format
         """
