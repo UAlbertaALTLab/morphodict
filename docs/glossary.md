@@ -97,6 +97,30 @@ Example
 -   _star_ + _let_ + _ify_ is the derivational breakdown for the coined English word _startletify_ (to make something a little star)
 
 
+derivational paradigm
+=====================
+
+The collection of all possible [derived forms] belonging to a lemma.  
+
+### Part of
+
+** **1** [lemma]
+
+### Contains
+
+** **1** or more [wordforms]
+
+
+derived form
+============
+
+A new [wordform] created from a [lemma]; this new wordform has a separate lemma with its own [inflectional paradigm]. A derived wordform can belong to a different [word class] than the original source stem.
+
+## Part of
+
+** **1** [derivational paradigm]
+
+
 dictionary entry
 ================
 [dictionary entry]: #dictionary-entry
@@ -165,6 +189,20 @@ Examples
 -   NI-1
 -   VTA-n
 -   NDA-4w
+
+
+inflectional paradigm
+======================
+
+The collection of inflected [wordforms] belonging to a lemma. Informally known as [conjugation paradigm]. 
+
+## Part of
+
+** **1** [lemma]
+
+## Contains
+
+** **1** or more [wordform]
 
 
 general word class
