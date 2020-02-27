@@ -25,3 +25,8 @@ Derivational Paradigm
 =====================
 [derivational paradigm]: #derivational-paradigm
 A collection of wordforms that share an ancestral lemma as their stem.
+
+Morpheme
+=====================
+[morpheme]: #morpheme
+The most atomic part of a wordform. A morpheme cannot be broken down into any subsequent parts.
