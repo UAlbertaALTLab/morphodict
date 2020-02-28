@@ -37,6 +37,10 @@ import_parser = subparsers.add_parser(
     "Import from specified engcrk.xml and crkeng.xml. Migrate the rest",
 )
 
+extend_parser = subparsers.add_parser(
+    "replace", help="Create a migration that builds the new database."
+)
+
 build_test_db_parser = subparsers.add_parser(
     "build-test-db", help="build test_db.sqlite3 from res/test_db_words.txt"
 )
