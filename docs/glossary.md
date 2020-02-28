@@ -45,6 +45,7 @@ Describes
 conjugation
 ===========
 [conjugation]: #conjugation
+[conjugations]: #conjugation
 
 A type of [inflectional category][] for the verb word class.
 
@@ -99,31 +100,35 @@ Example
 
 derivational paradigm
 =====================
+[derivational paradigm]: #derivational-paradigm
 
 The collection of all possible [derived forms] belonging to a lemma.  
 
 ### Part of
 
-** **1** [lemma]
+ - **1** [lemma]
 
 ### Contains
 
-** **1** or more [wordforms]
+ - **1** or more [wordforms]
 
 
 derived form
 ============
+[derived form]: #derived-form
+[derived forms]: #derived-form
 
 A new [wordform] created from a [lemma]; this new wordform has a separate lemma with its own [inflectional paradigm]. A derived wordform can belong to a different [word class] than the original source stem.
 
 ## Part of
 
-** **1** [derivational paradigm]
+ - **1** [derivational paradigm]
 
 
 dictionary entry
 ================
 [dictionary entry]: #dictionary-entry
+[dictionary entries]: #dictionary-entry
 
 The main content of a [dictionary][]. Consists of
 the [head][] (in one or more [orthothographical][]
@@ -133,7 +138,7 @@ representations), the [word class][], and the
 Part of
 -------
 
--   **1** [dictionary][]
+-  **1** [dictionary][]
 
 Contains
 --------
@@ -145,7 +150,7 @@ Contains
 
 dictionary source
 =================
-[source]: # source
+[source]: #source
 [dictionary source]: #dictionary-source
 
 An edited repository of [dictionary entries]. A dictionary source has at
@@ -194,15 +199,17 @@ Examples
 inflectional paradigm
 ======================
 
-The collection of inflected [wordforms] belonging to a lemma. Informally known as [conjugation paradigm]. 
+[paradigm]: #inflectional-paradigm
+
+The collection of inflected [wordforms] belonging to a lemma. Informally known as the [conjugations].
 
 ## Part of
 
-** **1** [lemma]
+- **1** [lemma]
 
 ## Contains
 
-** **1** or more [wordform]
+- **1** or more [wordform]
 
 
 general word class
@@ -389,13 +396,15 @@ These are the word classes in Plains Cree:
 -   [VAI][]
 -   [VTI][]
 -   [VTA][]
--   [Ipc][] --- [indeclinable particle][]
+-   [Ipc][] — [indeclinable particle][]
 
 
 wordform
 ========
 [wordform]: #wordform
+[wordforms]: #wordform
 [word form]: #wordform
+[word forms]: #wordform
 
 In linguistics, the different ways that a word can exist in a language.
 (Not to be confused with [lemma] – which is its own special type of
