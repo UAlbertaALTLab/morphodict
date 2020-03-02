@@ -685,7 +685,8 @@ html {
 }
 
 /* also anti-BEM ¯\_(ツ)_/¯ */
-.prose p [lang] {
+.prose p [lang],
+.prose__heading:not(.no-italics) [lang] {
   font-style: italic;
 }
 
