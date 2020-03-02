@@ -16,4 +16,9 @@ def test_produces_correct_markup():
     template = Template("{% load creedictionary_extras %}" "{{ wordform | orth }}")
 
     rendered = template.render(context)
-    assertInHTML('data-orth-Latn="wâpamêw"', rendered)
+    print(rendered)
+    assert 'lang="cr"' in rendered
+    assert 'data-orth-Latn="wâpamêw"' in rendered
+
+
+# TODO: test naughty things in html
