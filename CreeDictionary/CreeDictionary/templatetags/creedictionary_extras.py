@@ -23,7 +23,7 @@ def orth(sro_original: str):
 
     e.g.,
 
-        {{ 'wâpamêw'|multiorth }}
+        {{ 'wâpamêw'|orth }}
 
     Yields:
 
