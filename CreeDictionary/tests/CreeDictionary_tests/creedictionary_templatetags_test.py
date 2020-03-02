@@ -19,6 +19,14 @@ def test_produces_correct_markup():
     print(rendered)
     assert 'lang="cr"' in rendered
     assert 'data-orth-Latn="wâpamêw"' in rendered
+    assert 'data-orth-Latn-x-macron="wāpamēw"' in rendered
+    assert 'data-orth-Cans="ᐚᐸᒣᐤ"' in rendered
+    assertInHTML(
+        """
+        <span lang="cr" data-orth-Latn="wâpamêw" data-orth-latn-x-macron="wāpamēw" data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
+        """,
+        rendered,
+    )
 
 
 # TODO: test naughty things in html
