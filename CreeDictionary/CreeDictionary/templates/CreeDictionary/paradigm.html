@@ -19,8 +19,11 @@ This should be placed inside <main>
 <article class="definition" id="paradigm">
   <header class="definition__header">
     <h1 id="head" class="definition-title">
-      <dfn class="definition-title__word"><data id="data:head" value="{{ lemma.text }}"><span lang="cr">{{ lemma.text }}</span></data></dfn>
-      <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
+      <dfn class="definition-title__word">
+        <data id="data:head" value="{{ lemma.text }}">
+          <span lang="cr">{{ lemma.text }}</span>
+        </data>
+      </dfn>&nbsp;<span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
     </h1>
   </header>
 

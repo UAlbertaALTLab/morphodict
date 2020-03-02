@@ -13,6 +13,8 @@ import {fetchFirstRecordingURL} from './recordings.js'
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
 
+const NO_BREAK_SPACE = '\u00A0'
+
 /**
  * Make a 10% progress bar. We actually don't know how much there is left,
  * but make it seem like it's thinking about it!
@@ -178,7 +180,12 @@ function setupAudioOnPageLoad() {
       recording.preload = 'none'
 
       let fragment = template.content.cloneNode(true)
+      // Place "&nbsp;<button>...</button>"
+      // at the end of the <h1?
+      // TODO: it shouldn't really be **inside** the <h1>...
       let button = fragment.childNodes[0]
+      let nbsp = document.createTextNode(NO_BREAK_SPACE)
+      title.appendChild(nbsp)
       title.appendChild(button)
       button.addEventListener('click', function () {
         recording.play()
