@@ -1,8 +1,8 @@
+{% load creedictionary_extras %}
+
 <div class="top-bar app__header">
   <header class="branding top-bar__logo"><a href="{% url 'cree-dictionary-index' %}">
-      <h1 class="branding__heading branding__title">
-        <span lang="cr">itwêwina</span>
-      </h1>
+      <h1 class="branding__heading branding__title">{{ 'itwêwina'|orth }}</h1>
       <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p>
   </a></header>
   {# TODO: The language and orthography selectors are not ready yet, so hide them: #}

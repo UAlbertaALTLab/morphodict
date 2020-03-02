@@ -1,3 +1,4 @@
+{% load creedictionary_extras %}
 <section class="menu__category" aria-labelledby="language-selector__language">
   <h2 class="menu__caption" id="language-selector__language"> Language </h2>
   <ul class="menu__choices" data-cy="language-choices">
@@ -6,7 +7,7 @@
     </li>
     <li class="menu-choice">
       <a href="?hl=crk" class="menu-choice__label">
-        Cree/<span lang="cr">nêhiyawêwin</span>
+        Cree/{{ 'nêhiyawêwin'|orth }}
       </a>
     </li>
   </ul>

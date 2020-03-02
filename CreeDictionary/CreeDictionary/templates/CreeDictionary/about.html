@@ -1,13 +1,14 @@
 {% extends 'CreeDictionary/base.html' %}
 {% load static %}
+{% load creedictionary_extras %}
 
 {% block content %}
 <main id="start-of-content" class="app__content app__pane">
   <section id="source-materials" class="prose box box--spaced">
     <h2 class="prose__section-title">Source Materials</h2>
 
-    <h3 class="prose__heading"> Plains Cree / <em>nêhiyawêwin</em></h3>
-    <p>The computational model for analyzing Plains Cree / <em>nêhiyawêwin</em> words and generating
+    <h3 class="prose__heading"> Plains Cree / {{ 'nêhiyawêwin'|orth }}</h3>
+    <p>The computational model for analyzing Plains Cree / {{ 'nêhiyawêwin' | orth }} words and generating
     the various inflectional paradigms is based on the lexical materials and
     scientific research in <a href="https://uofrpress.ca/Books/C/Cree-Words" class="source-title">nêhiyawêwin :
     itwêwina / Cree: Words</a> (Compiled by Arok Wolvengrey. Regina:
@@ -20,19 +21,19 @@
     Arppe, Lene Antonsen, Trond Trosterud &amp; Arok Wolvengrey. Morphology,
     2018).</p>
 
-    <h3 class="prose__heading"> Plains Cree / <em>nêhiyawêwin</em> ↔ English / <em>âkayâsîmowin</em> </h3>
-    <p>The bilingual Dictionary for Plains Cree / <em>nêhiyawêwin</em> and English / <em>âkayâsîmowin</em> is based on the
+    <h3 class="prose__heading"> Plains Cree / {{ 'nêhiyawêwin'|orth }} ↔ English / {{ 'âkayâsîmowin'|orth }} </h3>
+    <p>The bilingual Dictionary for Plains Cree / {{ 'nêhiyawêwin'|orth }} and English / {{ 'âkayâsîmowin'|orth }} is based on the
     lexical materials in <a href="https://uofrpress.ca/Books/C/Cree-Words" class="source-title">nêhiyawêwin :
     itwêwina / Cree: Words</a>. (Compiled by Arok Wolvengrey. Regina: Canadian
     Plains Research Center, 2001), and in the
     <a href="http://altlab.ualberta.ca/maskwacis/dictionary.html" class="source-title">Maskwacîs Dictionary of Cree Words /
     Nêhiyaw Pîkiskwêwinisa</a> (Maskwachees Cultural College, Maskwacîs, 2009).</p>
 
-    <h3 class="prose__heading"> Spoken Cree — nêhiyaw-pîkiskwêwina </h3>
+    <h3 class="prose__heading"> Spoken Cree — {{ 'nêhiyaw-pîkiskwêwina'|orth }}</h3>
     <p>The careful pronunciations of the Cree words by first-language speakers
     in Maskwacîs, Alberta, have been recorded in the joint project
     <a href="http://altlab.ualberta.ca/maskwacis/" class="source-title">Spoken Dictionary of Maskwacîs Cree –
-    nêhiyaw-pîkiskwêwina maskwacîsihk</a> between
+    {{ 'nêhiyaw-pîkiskwêwina maskwacîsihk'|orth }}</a> between
     then Miyo Wahkohtowin Education, now
     <a href="https://www.maskwacised.ca/">Maskwacîs Education Schools
     Commission</a> and the <a href="http://altlab.artsrn.ualberta.ca/">Alberta Language Technology Lab</a>
@@ -42,7 +43,7 @@
   <section id="credits" class="prose box box--spaced">
     <h2 class="prose__section-title">Credits</h2>
 
-    <p>itwêwina is <a href="https://github.com/UAlbertaALTLab/cree-intelligent-dictionary">an
+    <p>{{ 'itwêwina'|orth }} is <a href="https://github.com/UAlbertaALTLab/cree-intelligent-dictionary">an
     open-source project</a>. You can view
     <a href="https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/master/AUTHORS.md">
       the list of the contributors here.</a></p>
