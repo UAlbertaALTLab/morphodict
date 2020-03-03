@@ -887,8 +887,6 @@ html {
   z-index: 100;
 }
 
-.top-bar > * { outline: solid 1px magenta } .top-bar > * > * { outline: solid 1px lime }
-
 /**
  * Creates an area behind the menu pop-up that, when clicked/touched, will
  * inadvertently toggle the menu away.
