@@ -23,7 +23,7 @@ def test_produces_correct_markup():
     assert 'data-orth-Cans="ᐚᐸᒣᐤ"' in rendered
     assertInHTML(
         """
-        <span lang="cr" data-orth-Latn="wâpamêw" data-orth-latn-x-macron="wāpamēw" data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
+        <span lang="cr" data-orth data-orth-Latn="wâpamêw" data-orth-latn-x-macron="wāpamēw" data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
         """,
         rendered,
     )

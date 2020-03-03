@@ -27,7 +27,10 @@ def orth(sro_original: str):
 
     Yields:
 
-        <span lang="cr" data-orth-latn="wâpamêw" data-orth-latn="wāpamēw" data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
+        <span lang="cr" data-orth
+              data-orth-latn="wâpamêw"
+              data-orth-latn="wāpamēw"
+              data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
     """
 
     sro_circumflex = conditional_escape(sro_original)
@@ -35,7 +38,7 @@ def orth(sro_original: str):
     syllabics = conditional_escape(sro2syllabics(sro_original))
 
     return mark_safe(
-        '<span lang="cr" '
+        '<span lang="cr" data-orth '
         f'data-orth-Latn="{sro_circumflex}" '
         f'data-orth-Latn-x-macron="{sro_macrons}"'
         f'data-orth-Cans="{syllabics}">{sro_circumflex}</span>'
