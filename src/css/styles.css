@@ -474,7 +474,7 @@ html {
 
 /**
  * ELEMENT play-button
- * 
+ *
  * Should be a button that looks like a link.
  */
 .definition-title__play-button {
@@ -953,8 +953,8 @@ html {
 }
 
 .menu-choice:hover {
-  color: #fff;
-  background-color: #0072C8;
+  color: var(--menu-hover-color);
+  background-color: var(--menu-hover-bg-color);
 }
 
 a.menu-choice__label:link,
