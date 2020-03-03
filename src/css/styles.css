@@ -473,8 +473,9 @@ html {
 }
 
 /**
- * The button to play a recording is intended to be a <button> element that
- * looks like a link.
+ * ELEMENT play-button
+ * 
+ * Should be a button that looks like a link.
  */
 .definition-title__play-button {
   /* Reset the button appearance: */
@@ -951,6 +952,11 @@ html {
   padding: 9px;
 }
 
+.menu-choice:hover {
+  color: #fff;
+  background-color: #0072C8;
+}
+
 a.menu-choice__label:link,
 a.menu-choice__label:visited,
 a.menu-choice__label:hover,
@@ -1119,4 +1125,18 @@ a.menu-choice__label:active {
   -webkit-clip-path: inset(1px 1px 1px 1px);
   clip-path: inset(1px 1px 1px 1px);
   pointer-events: none;
+}
+
+/**
+ * Makes a <button> look like a link.
+ */
+.unbutton {
+  border: 0;
+
+  text-align: inherit;
+
+  color: inherit;
+  background: transparent;
+
+  cursor: pointer;
 }
