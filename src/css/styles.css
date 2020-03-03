@@ -172,7 +172,7 @@ html {
 
   text-align: right; /* So that it's flush with the right side of the page. */
 
-  margin-right: var(--small-pad);
+  padding-right: var(--small-pad);
 }
 
 /**
@@ -831,6 +831,7 @@ html {
 
   /* Other */
   cursor: pointer;
+  overflow: hidden; /* Don't affect the layout if the toggle icon overflows its box. */
 }
 
 .toggle-box__toggle::-webkit-details-marker {
@@ -841,15 +842,17 @@ html {
   content: url("img/fa/chevron-circle-down.svg");
 
   display: inline-block;
-  width: 11px;
+  width: 0.75rem;
   margin-left: var(--small-pad);
+
+  vertical-align: middle;
 
   transition: transform .25s;
   transform: rotate(-90deg);
 }
 
 .toggle-box[open] > .toggle-box__toggle::after {
-  transform: rotate(0deg);
+  transform: rotate(0);
 }
 
 /**
@@ -883,6 +886,8 @@ html {
   right: 0;
   z-index: 100;
 }
+
+.top-bar > * { outline: solid 1px magenta } .top-bar > * > * { outline: solid 1px lime }
 
 /**
  * Creates an area behind the menu pop-up that, when clicked/touched, will
