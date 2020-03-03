@@ -40,7 +40,12 @@ export function registerEventListener() {
     summaryElement.innerText = target.innerText
     detailsElement.open = false
 
-    // TODO: set the active class on the button!
+    // Clear the selected class from all options
+    for (let el of detailsElement.querySelectorAll('[data-orth-switch]')) {
+      let li = el.closest('.menu-choice')
+      li.classList.remove('menu-choice--selected')
+    }
+    target.closest('.menu-choice').classList.add('menu-choice--selected')
   })
 }
 
