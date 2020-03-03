@@ -9,17 +9,27 @@ describe('Orthography selection', function () {
 
       // Switch to syllabics
       cy.get('[data-cy=language-selector]')
+        .contains('SRO (êîôâ)')
         .click()
         .parent('details')
         .as('menu')
       cy.get('@menu')
         .contains('Syllabics')
+        .as('option')
         .should('be.visible')
         .click()
 
       // Now it should be in syllabics!
       cy.get('@greeting')
         .contains('ᑖᓂᓯ!')
+
+      // It should say so on the button
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
+
+      // We should no longer be able to see options
+      cy.get('@option')
+        .should('not.be.visible')
     })
   })
 })
