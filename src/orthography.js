@@ -34,7 +34,25 @@ export function changeOrth (which) {
 }
 
 /**
- * Switches orthography. This assumes the following HTML:
+ * Switches orthography and updates the UI.
+ */
+function handleClickSwitchOrthography(evt) {
+  let target = evt.target
+  // Determine that this is a orthography changing button.
+  if (target.dataset.orthSwitch === undefined) {
+    return
+  }
+
+  // target is a <button data-orth-swith value="ORTHOGRAPHY">
+  let orth = target.value
+  changeOrth(orth)
+
+  updateUI(target)
+}
+
+/**
+ * Updates the UI following an orthography switch.
+ * Assumes the following HTML:
  *
  *  <details>
  *    <summary>CURRENT ORTHOGRAPHY</summary>
@@ -48,21 +66,9 @@ export function changeOrth (which) {
  *    </ul>
  *  </details>
  */
-function handleClickSwitchOrthography(evt) {
-  let target = evt.target
-  // Determine that this is a orthography changing button.
-  if (target.dataset.orthSwitch === undefined) {
-    return
-  }
-
-  // target is a <button data-orth-swith value="ORTHOGRAPHY">
-  let orth = target.value
-  changeOrth(orth)
-
-  ////////////////////// Update the UI appropriately /////////////////////////
-
+function updateUI(button) {
   // Climb up the DOM tree to find the <details> and its <summary> that contains the title.
-  let detailsElement = target.closest('details')
+  let detailsElement = button.closest('details')
   if (!detailsElement) {
     // there absolutely should be a <de
     throw new Error('Could not find relevant <details> element!')
@@ -73,7 +79,7 @@ function handleClickSwitchOrthography(evt) {
   }
 
   // Change the title appropriately and close the menu
-  summaryElement.innerText = target.innerText
+  summaryElement.innerText = button.innerText
   detailsElement.open = false
 
   // Clear the selected class from all options
@@ -81,5 +87,5 @@ function handleClickSwitchOrthography(evt) {
     let li = el.closest('.menu-choice')
     li.classList.remove('menu-choice--selected')
   }
-  target.closest('.menu-choice').classList.add('menu-choice--selected')
+  button.closest('.menu-choice').classList.add('menu-choice--selected')
 }
