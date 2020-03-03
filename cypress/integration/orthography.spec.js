@@ -8,9 +8,10 @@ describe('Orthography selection', function () {
         .as('greeting')
 
       // Switch to syllabics
-      cy.get('[data-orthography-selector]')
-        .as('menu')
+      cy.get('[data-cy=language-selector]')
         .click()
+        .parent('details')
+        .as('menu')
       cy.get('@menu')
         .contains('Syllabics')
         .should('be.visible')
