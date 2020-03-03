@@ -11,7 +11,7 @@ const AVAILABLE_ORTHOGRAPHIES = new Set(['Cans', 'Latn', 'LatnXMacron'])
 export function registerEventListener() {
   document.body.addEventListener('click', function (evt) {
     let target = evt.target
-    if (!target.dataset.orthSwitch) {
+    if (target.dataset.orthSwitch === undefined) {
       return
     }
 
