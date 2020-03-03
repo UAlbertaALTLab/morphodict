@@ -23,13 +23,23 @@ describe('Orthography selection', function () {
       cy.get('@greeting')
         .contains('ᑖᓂᓯ!')
 
+      // We should not see the menu
+      cy.get('@option')
+        .should('not.be.visible')
+
       // It should say so on the button
       cy.get('[data-cy=language-selector]')
         .contains('Syllabics')
+        .click()
 
-      // We should no longer be able to see options
-      cy.get('@option')
-        .should('not.be.visible')
+      // Opening the menu, we should find that syllabics is highligted, and
+      // SRO is not:
+      cy.get('@menu')
+        .contains('li', 'SRO (êîôâ)')
+        .should('not.have.class', 'menu-choice--selected')
+      cy.get('@menu')
+        .contains('li', 'Syllabics')
+        .should('have.class', 'menu-choice--selected')
     })
   })
 })
