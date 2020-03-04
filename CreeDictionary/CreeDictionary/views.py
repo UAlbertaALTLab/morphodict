@@ -1,7 +1,7 @@
 from http import HTTPStatus
 
 from API.models import Wordform
-from constants import ParadigmSize
+from constants import ORTHOGRAPHY_NAME, ParadigmSize
 from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -109,7 +109,7 @@ class ChangeOrthography(View):
     Supports only POST requests for now.
     """
 
-    AVAILABLE_ORTHOGRAPHIES = ("Latn", "Latn-x-macron", "Cans")
+    AVAILABLE_ORTHOGRAPHIES = tuple(ORTHOGRAPHY_NAME.keys())
 
     def post(self, request):
         orth = request.POST.get("orth")
