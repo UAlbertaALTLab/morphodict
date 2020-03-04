@@ -41,7 +41,7 @@ describe('Orthography selection', function () {
         .contains('li', 'Syllabics')
         .should('have.class', 'menu-choice--selected')
     })
-    
+
 
     it('should persist my preference after a page load', function () {
       cy.visit('/')
@@ -65,7 +65,8 @@ describe('Orthography selection', function () {
 
       // Now try a different page. It should be in syllabics.
       cy.visit('/about')
-      cy.contains('.prose_heading', 'ᓀᐦᔭᐍᐏᐣ')
+      cy.contains('h1', 'ᐃᑘᐏᓇ')
+      cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
     })
   })
 })
