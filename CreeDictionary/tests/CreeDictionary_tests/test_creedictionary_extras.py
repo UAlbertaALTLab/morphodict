@@ -77,14 +77,20 @@ def test_provide_orthograpy(orth, inner_text):
 
 @pytest.mark.parametrize(
     "orth,inner_text",
-    [("Latn", "wâpamêw"), ("Latn-x-macron", "wāpamēw"), ("Cans", "ᐚᐸᒣᐤ"),],
+    [
+        ("Latn", "wâpamêw"),
+        ("Latn-x-macron", "wāpamēw"),
+        ("Cans", "ᐚᐸᒣᐤ"),
+        (None, "wâpamêw"),  # if the cookie is not set in the request
+    ],
 )
 def test_orth_template_tag(orth, inner_text):
     """
     Test that the {% orth %} tag uses the orthography in the request's cookie.
     """
     request = HttpRequest()
-    request.COOKIES["orth"] = orth
+    if orth is not None:
+        request.COOKIES["orth"] = orth
 
     context = RequestContext(request, {"wordform": "wâpamêw"})
     template = Template("{% load creedictionary_extras %}" "{% orth wordform %}")
