@@ -1,3 +1,7 @@
+/* global Urls:readable */
+// "Urls" is a magic variable that allows use to reverse urls in javascript
+// See https://github.com/ierror/django-js-reverse
+
 /**
  * Orthography switching.
  */
@@ -46,8 +50,8 @@ function handleClickSwitchOrthography(evt) {
   // target is a <button data-orth-swith value="ORTHOGRAPHY">
   let orth = target.value
   changeOrth(orth)
-
   updateUI(target)
+  updateCookies(orth)
 }
 
 /**
@@ -88,4 +92,40 @@ function updateUI(button) {
     li.classList.remove('menu-choice--selected')
   }
   button.closest('.menu-choice').classList.add('menu-choice--selected')
+}
+
+/**
+ * Sends a request to the server to update the orthography cookie.
+ * This ensures future requests will be sent with the current orthography.
+ */
+function updateCookies(orth) {
+  let changeOrthURL = window.Urls['cree-dictionary-change-orthography']()
+  fetch(changeOrthURL, {
+    method: 'POST',
+    body: new URLSearchParams({
+      orth: orth
+    }),
+    headers: new Headers({
+      'X-CSRFToken': getCookie('csrftoken')
+    }),
+  })
+}
+
+/**
+ * Copy-pasted from: https://docs.djangoproject.com/en/2.2/ref/csrf/#ajax
+ */
+function getCookie(name) {
+  var cookieValue = null
+  if (document.cookie && document.cookie !== '') {
+    var cookies = document.cookie.split(';')
+    for (var i = 0; i < cookies.length; i++) {
+      var cookie = cookies[i].trim()
+      // Does this cookie string begin with the name we want?
+      if (cookie.substring(0, name.length + 1) === (name + '=')) {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+        break
+      }
+    }
+  }
+  return cookieValue
 }
