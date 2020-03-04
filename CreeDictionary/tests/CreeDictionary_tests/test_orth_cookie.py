@@ -17,14 +17,16 @@ def test_can_set_orth_cookie(client):
     assert response.status_code == 200
     assert "orth" not in response.cookies
 
+    # Change the orthography!
     change_orth_url = reverse("cree-dictionary-change-orthography")
-    response = client.get(index_url)
+    response = client.post(change_orth_url, {"orth": orth})
     assert response.status_code in (200, 204)
-    assert response.has_header("Set-Cookie")
     assert "orth" in response.cookies
-    assert response.cookies["orth"] == orth
+    assert response.cookies["orth"].value == orth
 
-    response = client.get(index_url)
-    assert response.status_code == 200
-    assert "orth" in response.cookies
-    assert response.cookies["orth"] == orth
+    # The client should now set the orthography in its cookies.
+    assert "orth" in client.cookies
+    assert client.cookies["orth"].value == orth
+
+
+# TODO: test invalid request
