@@ -16,17 +16,36 @@ def test_produces_correct_markup():
     template = Template("{% load creedictionary_extras %}" "{{ wordform | orth }}")
 
     rendered = template.render(context)
-    print(rendered)
     assert 'lang="cr"' in rendered
     assert 'data-orth-Latn="wâpamêw"' in rendered
     assert 'data-orth-Latn-x-macron="wāpamēw"' in rendered
     assert 'data-orth-Cans="ᐚᐸᒣᐤ"' in rendered
     assertInHTML(
         """
-        <span lang="cr" data-orth data-orth-Latn="wâpamêw" data-orth-latn-x-macron="wāpamēw" data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
+        <span lang="cr" data-orth
+              data-orth-Latn="wâpamêw"
+              data-orth-latn-x-macron="wāpamēw"
+              data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
         """,
         rendered,
     )
 
 
-# TODO: test naughty things in html
+def test_naughty_html():
+    """
+    Does it escape bad HTML?
+    """
+
+    context = Context({"wordform": '<img alt="tâpwêw">'})
+    template = Template("{% load creedictionary_extras %}" "{{ wordform | orth }}")
+
+    rendered = template.render(context)
+    assertInHTML(
+        """
+        <span lang="cr" data-orth
+              data-orth-Latn="&lt;img alt=&quot;tâpwêw&quot;&gt;"
+              data-orth-latn-x-macron="&lt;img alt=&quot;tāpwēw&quot;&gt;"
+              data-orth-Cans="&lt;img alt=&quot;ᑖᐻᐤ&quot;&gt;">&lt;img alt=&quot;tâpwêw&quot;&gt;</span>
+        """,
+        rendered,
+    )
