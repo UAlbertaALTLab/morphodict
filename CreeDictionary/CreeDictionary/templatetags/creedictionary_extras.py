@@ -39,7 +39,7 @@ def orth_tag(context, sro_original):
 
 
 @register.filter
-def orth(sro_original: str, orthography=None):
+def orth(sro_original: str, orthography):
     """
     Filter that generates a <span> with multiple orthographical representations
     of the given text.
@@ -60,7 +60,7 @@ def orth(sro_original: str, orthography=None):
     sro_macrons = to_macrons(sro_original)
     syllabics = sro2syllabics(sro_original)
 
-    if orthography is None or orthography == "Latn":
+    if orthography == "Latn":
         inner_text = sro_circumflex
     elif orthography == "Latn-x-macron":
         inner_text = sro_macrons
