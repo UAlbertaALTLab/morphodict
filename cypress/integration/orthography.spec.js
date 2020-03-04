@@ -65,12 +65,15 @@ describe('Orthography selection', function () {
 
       // Now try a different page. It should be in syllabics.
       cy.visit('/about')
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
       cy.contains('h1', 'ᐃᑘᐏᓇ')
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
+
     })
   })
 
-  // Reset the orthography to SRO...
+  // Reset the orthography to SRO after each test.
   afterEach(function () {
     cy.visit('/')
     cy.get('[data-cy=language-selector]')
