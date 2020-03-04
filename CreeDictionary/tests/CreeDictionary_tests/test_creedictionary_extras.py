@@ -108,3 +108,23 @@ def test_orth_template_tag(orth, inner_text):
         """,
         rendered,
     )
+
+
+@pytest.mark.parametrize(
+    "orth,name",
+    [("Latn", "SRO"), ("Latn-x-macron", "SRO"), ("Cans", "Syllabics"), (None, "SRO")],
+)
+def test_current_orthography_name_tag(orth, name):
+    """
+    Test that the {% current_orthography_name %} tag uses the orthography in the request's cookie.
+    """
+    request = HttpRequest()
+    if orth is not None:
+        request.COOKIES["orth"] = orth
+
+    context = RequestContext(request)
+    template = Template(
+        "{% load creedictionary_extras %}" "{% current_orthography_name %}"
+    )
+    rendered_html = template.render(context)
+    assert name in rendered_html
