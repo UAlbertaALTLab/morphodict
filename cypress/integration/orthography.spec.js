@@ -41,5 +41,31 @@ describe('Orthography selection', function () {
         .contains('li', 'Syllabics')
         .should('have.class', 'menu-choice--selected')
     })
+    
+
+    it('should persist my preference after a page load', function () {
+      cy.visit('/')
+
+      // Get the introduction: it should be in SRO
+      cy.contains('h1', 'tânisi!')
+        .as('greeting')
+
+      // Switch to syllabics
+      cy.get('[data-cy=language-selector]')
+        .click()
+        .parent('details')
+        .as('menu')
+      cy.get('@menu')
+        .contains('Syllabics')
+        .click()
+
+      // It changed on the current page:
+      cy.get('@greeting')
+        .contains('ᑖᓂᓯ!')
+
+      // Now try a different page. It should be in syllabics.
+      cy.visit('/about')
+      cy.contains('.prose_heading', 'ᓀᐦᔭᐍᐏᐣ')
+    })
   })
 })
