@@ -50,6 +50,8 @@ describe('Orthography selection', function () {
       cy.contains('h1', 'tânisi!')
         .as('greeting')
 
+      Cypress.Cookies.debug(true)
+
       // Switch to syllabics
       cy.get('[data-cy=language-selector]')
         .click()
@@ -63,6 +65,11 @@ describe('Orthography selection', function () {
       cy.get('@greeting')
         .contains('ᑖᓂᓯ!')
 
+      cy.getCookie('orth')
+        .should('exist')
+        .its('value')
+        .should('eq', 'Cans')
+
       // Now try a different page. It should be in syllabics.
       cy.visit('/about')
       cy.contains('h1', 'ᐃᑘᐏᓇ')
@@ -70,17 +77,5 @@ describe('Orthography selection', function () {
       cy.get('[data-cy=language-selector]')
         .contains('Syllabics')
     })
-  })
-
-  // Reset the orthography to SRO after each test.
-  afterEach(function () {
-    cy.visit('/')
-    cy.get('[data-cy=language-selector]')
-      .click()
-      .parent('details')
-      .as('menu')
-    cy.get('@menu')
-      .contains('SRO (êîôâ)')
-      .click()
   })
 })
