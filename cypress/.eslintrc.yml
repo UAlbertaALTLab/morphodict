@@ -9,6 +9,7 @@ globals:
   XRegExp: true
   # Cypress/chai/Mocha globals
   Cypress: true
+  afterEach: true
   beforeEach: true
   context: true
   cy: true

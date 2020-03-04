@@ -69,4 +69,16 @@ describe('Orthography selection', function () {
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
     })
   })
+
+  // Reset the orthography to SRO...
+  afterEach(function () {
+    cy.visit('/')
+    cy.get('[data-cy=language-selector]')
+      .click()
+      .parent('details')
+      .as('menu')
+    cy.get('@menu')
+      .contains('SRO (êîôâ)')
+      .click()
+  })
 })
