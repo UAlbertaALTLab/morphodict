@@ -10,9 +10,7 @@
     <details class="toggle-box toggle-box--with-menu">
       <summary id="language-selector__button" class="toggle-box__toggle" data-cy="language-selector"
                aria-haspopup="menu" role="button" tabindex="0"
-               aria-label="Select language and writing system">
-        SRO (êîôâ)
-      </summary>
+               aria-label="Select language and writing system">{% current_orthography_name %}</summary>
       <div class="menu toggle-box__menu" aria-labelledby="language-selector__button">
         {% include './language-selector__orthography.html' %}
       </div>
