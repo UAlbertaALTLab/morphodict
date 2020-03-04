@@ -38,6 +38,19 @@ def orth_tag(context, sro_original):
     return orth(sro_original, orthography=request_orth)
 
 
+@register.simple_tag(takes_context=True)
+def current_orthography_name(context):
+    """
+    Returns a pretty string of the currently active orthography.
+    The orthography is determined by the orth= cookie in the HTTP request.
+    """
+    # Determine the currently requested orthography:
+    request_orth = context.request.COOKIES.get("orth", DEFAULT_ORTHOGRAPHY)
+    return {"Latn": "SRO (êîôâ)", "Latn-x-macron": "SRO (ēīōā)", "Cans": "Syllabics",}[
+        request_orth
+    ]
+
+
 @register.filter
 def orth(sro_original: str, orthography):
     """
