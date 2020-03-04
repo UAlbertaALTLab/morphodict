@@ -7,8 +7,7 @@ Template tags related to the Cree Dictionary specifically.
 
 from cree_sro_syllabics import sro2syllabics
 from django import template
-from django.utils.html import conditional_escape
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 
@@ -33,15 +32,19 @@ def orth(sro_original: str):
               data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
     """
 
-    sro_circumflex = conditional_escape(sro_original)
-    sro_macrons = conditional_escape(to_macrons(sro_original))
-    syllabics = conditional_escape(sro2syllabics(sro_original))
+    sro_circumflex = sro_original
+    sro_macrons = to_macrons(sro_original)
+    syllabics = sro2syllabics(sro_original)
 
-    return mark_safe(
+    return format_html(
         '<span lang="cr" data-orth '
-        f'data-orth-Latn="{sro_circumflex}" '
-        f'data-orth-Latn-x-macron="{sro_macrons}"'
-        f'data-orth-Cans="{syllabics}">{sro_circumflex}</span>'
+        'data-orth-Latn="{}" '
+        'data-orth-Latn-x-macron="{}" '
+        'data-orth-Cans="{}">{}</span>',
+        sro_circumflex,
+        sro_macrons,
+        syllabics,
+        sro_circumflex,
     )
 
 
