@@ -43,6 +43,9 @@ describe('Orthography selection', function () {
     })
 
 
+    // XXX: This test works on my computer, but consistently fails CI.
+    // I'm assuming it has something to do with setting cookies with fetch() 
+    // and Electron not picking up on that, but ¯\_(ツ)_/¯
     it('should persist my preference after a page load', function () {
       cy.visit('/')
 
@@ -61,17 +64,20 @@ describe('Orthography selection', function () {
         .contains('Syllabics')
         .click()
 
-      // It changed on the current page:
-      cy.get('@greeting')
-        .contains('ᑖᓂᓯ!')
-
+      // The cookies should have changed.
       cy.getCookie('orth')
         .should('exist')
         .its('value')
         .should('eq', 'Cans')
 
-      // Now try a different page. It should be in syllabics.
+      // It changed on the current page:
+      cy.get('@greeting')
+        .contains('ᑖᓂᓯ!')
+
+      // Now try a different page.
       cy.visit('/about')
+
+      // It should be in syllabics.
       cy.contains('h1', 'ᐃᑘᐏᓇ')
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
       cy.get('[data-cy=language-selector]')
