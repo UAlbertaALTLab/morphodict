@@ -12,7 +12,7 @@ from django.urls import reverse
 
 
 @pytest.mark.parametrize("orth", ["Cans", "Latn", "Latn-x-macron"])
-def test_can_set_orth_cookie(orth, client):
+def test_can_set_orth_cookie(orth, client, change_orth_url):
     """
     Test that POSTing to the URL actually sets the orthography.
     """
@@ -23,7 +23,6 @@ def test_can_set_orth_cookie(orth, client):
     assert "orth" not in response.cookies
 
     # Change the orthography!
-    change_orth_url = reverse("cree-dictionary-change-orthography")
     response = client.post(change_orth_url, {"orth": orth})
     assert response.status_code in (200, 204)
     assert "orth" in response.cookies
@@ -35,15 +34,18 @@ def test_can_set_orth_cookie(orth, client):
 
 
 @pytest.mark.parametrize("method", ["get", "head"])
-def test_bad_methods(client, method):
+def test_bad_methods(client, method, change_orth_url):
     """
     We should not be able to GET or HEAD change-orthography URL.
     """
-
-    change_orth_url = reverse("cree-dictionary-change-orthography")
     make_request = getattr(client, method)
     response = make_request(change_orth_url, {"orth": "Cans"})
     assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED
 
 
 # TODO: test invalid request
+
+
+@pytest.fixture
+def change_orth_url():
+    return reverse("cree-dictionary-change-orthography")
