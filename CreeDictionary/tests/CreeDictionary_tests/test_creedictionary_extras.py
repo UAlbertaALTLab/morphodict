@@ -2,20 +2,23 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
+from CreeDictionary.templatetags.creedictionary_extras import orth
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 from pytest_django.asserts import assertInHTML
 
 
-def test_can_it_be_imported():
-    from CreeDictionary.templatetags.creedictionary_extras import orth
-
-    # that's it!
+def test_orth_requires_two_arguments():
+    """
+    orth() original only took one argument, but now it must take two.
+    """
+    with pytest.raises(TypeError):
+        orth("wâpamêw")
 
 
 def test_produces_correct_markup():
     context = Context({"wordform": "wâpamêw"})
-    template = Template("{% load creedictionary_extras %}" "{{ wordform | orth }}")
+    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Latn' }}")
 
     rendered = template.render(context)
     assert 'lang="cr"' in rendered
@@ -39,7 +42,7 @@ def test_naughty_html():
     """
 
     context = Context({"wordform": '<img alt="tâpwêw">'})
-    template = Template("{% load creedictionary_extras %}" "{{ wordform | orth }}")
+    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Latn' }}")
 
     rendered = template.render(context)
     assertInHTML(
@@ -60,7 +63,7 @@ def test_naughty_html():
 def test_provide_orthograpy(orth, inner_text):
     context = Context({"wordform": "wâpamêw"})
     template = Template(
-        "{% load creedictionary_extras %}" "{{ wordform | orth:" + repr(orth) + " }}"
+        "{% load creedictionary_extras %}" "{{ wordform|orth:" + repr(orth) + " }}"
     )
 
     rendered = template.render(context)
@@ -81,7 +84,7 @@ def test_provide_orthograpy(orth, inner_text):
         ("Latn", "wâpamêw"),
         ("Latn-x-macron", "wāpamēw"),
         ("Cans", "ᐚᐸᒣᐤ"),
-        (None, "wâpamêw"),  # if the cookie is not set in the request
+        (None, "wâpamêw"),  # use Latn if the cookie is not set in the request
     ],
 )
 def test_orth_template_tag(orth, inner_text):
