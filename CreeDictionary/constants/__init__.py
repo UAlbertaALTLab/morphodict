@@ -2,9 +2,15 @@
 constants
 """
 from enum import Enum
-
 # type alias
 from typing import NewType
+
+# Orthography
+ORTHOGRAPHY_NAME = {
+    "Latn": "SRO (êîôâ)",
+    "Latn-x-macron": "SRO (ēīōā)",
+    "Cans": "Syllabics",
+}
 
 # types
 Analysis = NewType("Analysis", str)

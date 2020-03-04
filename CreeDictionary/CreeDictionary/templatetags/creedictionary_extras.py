@@ -5,6 +5,7 @@
 Template tags related to the Cree Dictionary specifically.
 """
 
+from constants import ORTHOGRAPHY_NAME
 from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
@@ -46,9 +47,7 @@ def current_orthography_name(context):
     """
     # Determine the currently requested orthography:
     request_orth = context.request.COOKIES.get("orth", DEFAULT_ORTHOGRAPHY)
-    return {"Latn": "SRO (êîôâ)", "Latn-x-macron": "SRO (ēīōā)", "Cans": "Syllabics",}[
-        request_orth
-    ]
+    return ORTHOGRAPHY_NAME[request_orth]
 
 
 @register.filter
