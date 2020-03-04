@@ -5,6 +5,9 @@
 Test things involving the 'orth' cookie.
 """
 
+from http import HTTPStatus
+
+import pytest
 from django.urls import reverse
 
 
@@ -27,6 +30,14 @@ def test_can_set_orth_cookie(client):
     # The client should now set the orthography in its cookies.
     assert "orth" in client.cookies
     assert client.cookies["orth"].value == orth
+
+
+@pytest.mark.parametrize("method", ["get", "head"])
+def test_bad_methods(client, method):
+    change_orth_url = reverse("cree-dictionary-change-orthography")
+    make_request = getattr(client, method)
+    response = make_request(change_orth_url, {"orth": "Cans"})
+    assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED
 
 
 # TODO: test invalid request
