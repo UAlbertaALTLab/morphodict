@@ -34,7 +34,7 @@ def test_can_set_orth_cookie(orth, client, change_orth_url):
 
 
 @pytest.mark.parametrize("method", ["get", "head"])
-def test_bad_methods(client, method, change_orth_url):
+def test_bad_methods(method, client, change_orth_url):
     """
     We should not be able to GET or HEAD change-orthography URL.
     """
@@ -43,7 +43,20 @@ def test_bad_methods(client, method, change_orth_url):
     assert response.status_code == HTTPStatus.METHOD_NOT_ALLOWED
 
 
-# TODO: test invalid request
+def test_bad_orthography(client, change_orth_url):
+    """
+    Test changing the orthography to an invalid value.
+    """
+    response = client.post(change_orth_url, {"orth": "syllabics"})
+    assert response.status_code == HTTPStatus.BAD_REQUEST
+
+
+def test_no_orthography(client, change_orth_url):
+    """
+    Test POSTing with no query arguments.
+    """
+    response = client.post(change_orth_url, {})
+    assert response.status_code == HTTPStatus.BAD_REQUEST
 
 
 @pytest.fixture
