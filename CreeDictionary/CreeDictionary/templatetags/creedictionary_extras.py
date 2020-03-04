@@ -5,12 +5,11 @@
 Template tags related to the Cree Dictionary specifically.
 """
 
-from constants import ORTHOGRAPHY_NAME
+from constants import DEFAULT_ORTHOGRAPHY, ORTHOGRAPHY_NAME
 from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
 
-DEFAULT_ORTHOGRAPHY = "Latn"
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 
 register = template.Library()

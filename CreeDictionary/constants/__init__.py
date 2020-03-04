@@ -6,6 +6,7 @@ from enum import Enum
 from typing import NewType
 
 # Orthography
+DEFAULT_ORTHOGRAPHY = "Latn"
 ORTHOGRAPHY_NAME = {
     "Latn": "SRO (êîôâ)",
     "Latn-x-macron": "SRO (ēīōā)",
