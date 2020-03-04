@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from API.models import Wordform
 from constants import ParadigmSize
 from CreeDictionary.forms import WordSearchForm
@@ -114,8 +116,8 @@ class ChangeOrthography(View):
 
         # Tried to set to an unsupported orthography
         if orth not in self.AVAILABLE_ORTHOGRAPHIES:
-            return HttpResponse(status=400)
+            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
-        response = HttpResponse(status=204)
+        response = HttpResponse(status=HTTPStatus.NO_CONTENT)
         response.set_cookie("orth", orth)
         return response
