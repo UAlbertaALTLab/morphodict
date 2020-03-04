@@ -2,7 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-from django.template import Context, Template
+from django.http import HttpRequest
+from django.template import Context, RequestContext, Template
 from pytest_django.asserts import assertInHTML
 
 
@@ -63,6 +64,32 @@ def test_provide_orthograpy(orth, inner_text):
     )
 
     rendered = template.render(context)
+    assertInHTML(
+        f"""
+        <span lang="cr" data-orth
+              data-orth-Latn="wâpamêw"
+              data-orth-latn-x-macron="wāpamēw"
+              data-orth-Cans="ᐚᐸᒣᐤ">{inner_text}</span>
+        """,
+        rendered,
+    )
+
+
+@pytest.mark.parametrize(
+    "orth,inner_text",
+    [("Latn", "wâpamêw"), ("Latn-x-macron", "wāpamēw"), ("Cans", "ᐚᐸᒣᐤ"),],
+)
+def test_orth_template_tag(orth, inner_text):
+    """
+    Test that the {% orth %} tag uses the orthography in the request's cookie.
+    """
+    request = HttpRequest()
+    request.COOKIES["orth"] = orth
+
+    context = RequestContext(request, {"wordform": "wâpamêw"})
+    template = Template("{% load creedictionary_extras %}" "{% orth wordform %}")
+    rendered = template.render(context)
+
     assertInHTML(
         f"""
         <span lang="cr" data-orth
