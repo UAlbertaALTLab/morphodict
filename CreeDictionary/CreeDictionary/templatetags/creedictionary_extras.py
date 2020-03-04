@@ -9,9 +9,33 @@ from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
 
+DEFAULT_ORTHOGRAPHY = "Latn"
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 
 register = template.Library()
+
+
+@register.simple_tag(name="orth", takes_context=True)
+def orth_tag(context, sro_original):
+    """
+    Tag that generates a <span> with multiple orthographical representations
+    of the given text, in SRO. The inner text is determined by the
+    orth= cookie in the HTTP request.
+
+    e.g.,
+
+        {% orth 'wâpamew' %}
+
+    Yields:
+
+        <span lang="cr" data-orth
+              data-orth-latn="wâpamêw"
+              data-orth-latn-x-macron="wāpamēw"
+              data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
+    """
+    # Determine the currently requested orthography:
+    request_orth = context.request.COOKIES.get("orth", DEFAULT_ORTHOGRAPHY)
+    return orth(sro_original, orthography=request_orth)
 
 
 @register.filter
