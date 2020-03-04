@@ -42,6 +42,16 @@ describe('Orthography selection', function () {
         .should('have.class', 'menu-choice--selected')
     })
 
+    it('should display in syllabics given the correct cookies', function () {
+      cy.setCookie('orth', 'Cans')
+
+      // Visiting a page should be in syllabics
+      cy.visit('/about')
+      cy.contains('h1', 'ᐃᑘᐏᓇ')
+      cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
+    })
 
     // XXX: This test works on my computer, but consistently fails CI.
     // I'm assuming it has something to do with setting cookies with fetch() 
@@ -52,8 +62,6 @@ describe('Orthography selection', function () {
       // Get the introduction: it should be in SRO
       cy.contains('h1', 'tânisi!')
         .as('greeting')
-
-      Cypress.Cookies.debug(true)
 
       // Switch to syllabics
       cy.get('[data-cy=language-selector]')
