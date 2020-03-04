@@ -65,11 +65,10 @@ describe('Orthography selection', function () {
 
       // Now try a different page. It should be in syllabics.
       cy.visit('/about')
-      cy.get('[data-cy=language-selector]')
-        .contains('Syllabics')
       cy.contains('h1', 'ᐃᑘᐏᓇ')
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
-
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
     })
   })
 
