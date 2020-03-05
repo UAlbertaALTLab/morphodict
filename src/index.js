@@ -199,13 +199,15 @@ function setupAudioOnPageLoad() {
 }
 
 $(() => {
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
 
   setupAudioOnPageLoad()
-  orthography.registerEventListener()
+  orthography.registerEventListener(csrfToken)
 
   let route = window.location.pathname
   let $input = $('#search')
