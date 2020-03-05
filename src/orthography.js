@@ -6,7 +6,7 @@
  * Orthography switching.
  */
 
-const AVAILABLE_ORTHOGRAPHIES = new Set(['Cans', 'Latn', 'LatnXMacron'])
+const AVAILABLE_ORTHOGRAPHIES = new Set(['Cans', 'Latn', 'Latn-x-macron'])
 
 /**
  * Listen to ALL clicks on the page, and change orthography for elements that
@@ -22,15 +22,15 @@ export function registerEventListener() {
 /**
  * Changes the orthography of EVERYTHING on the page.
  */
-export function changeOrth (which) {
+export function changeOrth(which) {
   if (!AVAILABLE_ORTHOGRAPHIES.has(which)) {
     throw new Error(`tried to switch to unknown orthography: ${which}`)
   }
 
   let elements = document.querySelectorAll('[data-orth]')
-  let attr = `orth${which}`
+  let attr = `data-orth-${which}`
   for (let el of elements) {
-    let newText = el.dataset[attr]
+    let newText = el.getAttribute(attr)
     if (newText) {
       el.innerText = newText
     }
