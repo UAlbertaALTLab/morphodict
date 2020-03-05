@@ -58,7 +58,7 @@ describe('Orthography selection', function () {
     //    https://github.com/cypress-io/cypress/issues/4433
     // This should work in Cypress 3.5.0 and greater.
     it('should persist my preference after a page load', function () {
-      if (Cypress.env('CI') === 'true') {
+      if (Cypress.env('TRAVIS') === true) {
         // As of 2020-03-05 this STILL doesn't work on Travis-CI :((((
         this.skip()
       }
