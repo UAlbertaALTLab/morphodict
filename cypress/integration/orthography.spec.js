@@ -1,3 +1,5 @@
+import { skipOn } from '@cypress/skip-test'
+
 describe('Orthography selection', function () {
   describe('switching orthography', function () {
     it('should switch to syllabics when I click on the menu', function () {
@@ -53,12 +55,14 @@ describe('Orthography selection', function () {
         .contains('Syllabics')
     })
 
-    // XXX: This test fails in headless mode for Electron version < v6.0
-    // There was a bug with setting cookies via fetch():
-    //    https://github.com/cypress-io/cypress/issues/4433
-    // This should work in Cypress 3.5.0 and greater.
-    // As of 2020-03-05 this STILL doesn't work in CI :((((
-    it.skip('should persist my preference after a page load', function () {
+    it('should persist my preference after a page load', function () {
+      // XXX: This test fails in headless mode for Electron version < v6.0
+      // There was a bug with setting cookies via fetch():
+      //    https://github.com/cypress-io/cypress/issues/4433
+      // This should work in Cypress 3.5.0 using Chrome.
+      // As of 2020-03-05 this STILL doesn't work in Travis-CI :((((
+      skipOn('electron')
+
       cy.visit('/')
 
       // Get the introduction: it should be in SRO
