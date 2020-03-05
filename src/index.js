@@ -9,6 +9,7 @@ import $ from 'jquery'
 import './css/styles.css'
 import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL} from './recordings.js'
+import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
@@ -204,6 +205,7 @@ $(() => {
   })
 
   setupAudioOnPageLoad()
+  orthography.registerEventListener()
 
   let route = window.location.pathname
   let $input = $('#search')

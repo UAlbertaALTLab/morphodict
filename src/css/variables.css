@@ -43,6 +43,8 @@
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+  --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
+  --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
