@@ -7,7 +7,7 @@
     "build": "rollup -c",
     "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",
-    "test:ci": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run --headed $CYPRESS_OPTS"
+    "test:ci": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS"
   },
   "repository": {
     "type": "git",
