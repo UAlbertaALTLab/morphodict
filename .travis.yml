@@ -13,15 +13,13 @@ env:
 addons:
   apt:
     packages:
-      # Ubuntu 16+ does not install this dependency by default, so we need to install it ourselves
-      - libgconf-2-4
       - hfst
 
 cache:
   pip: true
   directories:
-    - $HOME/.cache
-    - node_modules # NPM packages
+    - ~/.cache
+    - ~/.npm
 
 stages:
   - test
@@ -36,6 +34,12 @@ jobs:
       after_success: codecov
 
     - name: "Integration Tests"
+      # Install required dependencies for Cypress:
+      addons:
+        apt:
+          packages:
+            - libgconf-2-4
+            - hfst
       # turns out it's harder to configure python with language: node_js
       # it's easier to configure node_js with language: python instead
       install:
