@@ -28,10 +28,6 @@ from django_js_reverse.views import urls_js
 # url reversion
 
 
-def _dummy(response):
-    pass
-
-
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
