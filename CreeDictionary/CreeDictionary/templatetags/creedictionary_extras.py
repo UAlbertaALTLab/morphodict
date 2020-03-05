@@ -71,14 +71,13 @@ def orth(sro_original: str, orthography):
     sro_macrons = to_macrons(sro_original)
     syllabics = sro2syllabics(sro_original)
 
+    assert orthography in ORTHOGRAPHY_NAME
     if orthography == "Latn":
         inner_text = sro_circumflex
     elif orthography == "Latn-x-macron":
         inner_text = sro_macrons
     elif orthography == "Cans":
         inner_text = syllabics
-    else:
-        raise ValueError(f"invalid orthography: {orthography}")
 
     return format_html(
         '<span lang="cr" data-orth '
