@@ -53,10 +53,13 @@ describe('Orthography selection', function () {
         .contains('Syllabics')
     })
 
-    // XXX: This test works on my computer, but consistently fails CI.
-    // I'm assuming it has something to do with setting cookies with fetch() 
-    // and Electron not picking up on that, but ¯\_(ツ)_/¯
-    it.skip('should persist my preference after a page load', function () {
+    // XXX: This test fails in headless mode for Electron version < v6.0
+    // There was a bug with setting cookies via fetch():
+    //    https://github.com/cypress-io/cypress/issues/4433
+    // This should work in Cypress 3.5.0 and greater.
+    // If this test does not run, please clear all cached copies of Cypress
+    // and reinstall it using `npm ci`.
+    it('should persist my preference after a page load', function () {
       cy.visit('/')
 
       // Get the introduction: it should be in SRO
