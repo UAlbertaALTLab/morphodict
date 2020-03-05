@@ -14,6 +14,7 @@
 </head>
 <body class="app">
   <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
+  {% csrf_token %}
   {% include './svg-sprites.html' %}
   {% include './components/header.html' %}
 
