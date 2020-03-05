@@ -1,16 +1,15 @@
 """
 Definition of urls for CreeDictionary.
 """
+import API.views as api_views
+from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path, include
+from django.urls import include, path
 from django_js_reverse.views import urls_js
-
-import API.views as api_views
-from CreeDictionary import views
 
 # 2019/May/21 Matt Yan:
 
@@ -27,6 +26,7 @@ from CreeDictionary import views
 # http://localhost:8000/search/hello
 # Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
 # url reversion
+
 
 _urlpatterns = [
     # user interface
@@ -58,6 +58,11 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
+    (
+        "change-orthography",
+        views.ChangeOrthography.as_view(),
+        "cree-dictionary-change-orthography",
+    ),
 ]
 
 # XXX: ugly hack to make this work on a local instance and on Sapir

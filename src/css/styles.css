@@ -172,7 +172,7 @@ html {
 
   text-align: right; /* So that it's flush with the right side of the page. */
 
-  margin-right: var(--small-pad);
+  padding-right: var(--small-pad);
 }
 
 /**
@@ -473,8 +473,9 @@ html {
 }
 
 /**
- * The button to play a recording is intended to be a <button> element that
- * looks like a link.
+ * ELEMENT play-button
+ *
+ * Should be a button that looks like a link.
  */
 .definition-title__play-button {
   /* Reset the button appearance: */
@@ -484,6 +485,10 @@ html {
   border: 0;
   margin: 0;
 
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
   color: var(--play-button-color);
   background: transparent;
 
@@ -681,7 +686,8 @@ html {
 }
 
 /* also anti-BEM ¯\_(ツ)_/¯ */
-.prose p [lang] {
+.prose p [lang],
+.prose__heading:not(.no-italics) [lang] {
   font-style: italic;
 }
 
@@ -825,6 +831,7 @@ html {
 
   /* Other */
   cursor: pointer;
+  overflow: hidden; /* Don't affect the layout if the toggle icon overflows its box. */
 }
 
 .toggle-box__toggle::-webkit-details-marker {
@@ -835,15 +842,17 @@ html {
   content: url("img/fa/chevron-circle-down.svg");
 
   display: inline-block;
-  width: 11px;
+  width: 0.75rem;
   margin-left: var(--small-pad);
+
+  vertical-align: middle;
 
   transition: transform .25s;
   transform: rotate(-90deg);
 }
 
 .toggle-box[open] > .toggle-box__toggle::after {
-  transform: rotate(0deg);
+  transform: rotate(0);
 }
 
 /**
@@ -944,6 +953,11 @@ html {
 .menu-choice__label {
   display: block;
   padding: 9px;
+}
+
+.menu-choice:hover {
+  color: var(--menu-hover-color);
+  background-color: var(--menu-hover-bg-color);
 }
 
 a.menu-choice__label:link,
@@ -1114,4 +1128,18 @@ a.menu-choice__label:active {
   -webkit-clip-path: inset(1px 1px 1px 1px);
   clip-path: inset(1px 1px 1px 1px);
   pointer-events: none;
+}
+
+/**
+ * Makes a <button> look like a link.
+ */
+.unbutton {
+  border: 0;
+
+  text-align: inherit;
+
+  color: inherit;
+  background: transparent;
+
+  cursor: pointer;
 }

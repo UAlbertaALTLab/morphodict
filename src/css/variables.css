@@ -35,7 +35,7 @@
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
   --prose-heading-color:    #283C95;
   --prose-title-color:      #1D2D72; /* For BIG section titles. */
-  --link-color:             #0095DC; /* Regular links */
+  --link-color:             #0F76B5; /* Regular links */
   --link-visited-color:     #A568DB; /* Visited link */
   --link-hover-color:       #5E8DC3; /* Hover over a link. */
   --link-active-color:      #0E6790; /* Currently active link. */
@@ -43,6 +43,8 @@
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+  --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
+  --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/

@@ -1,23 +1,24 @@
 {% extends 'CreeDictionary/base.html' %}
 
 {% load static %}
+{% load creedictionary_extras %}
 
 {% block content %}
     <main id="start-of-content" class="app__content app__pane">
           <article class="prose box" id="introduction-text" {% if search_results or lemma_id %}style="display:none;"{% endif %}>
-            <h1 class="prose__heading"><span lang="cr">tânisi!</span></h1>
-            <p><span lang="cr">itwêwina</span> is a Plains Cree Dictionary.</p>
+            <h1 class="prose__heading no-italics">{% orth 'tânisi!' %}</span></h1>
+            <p>{% orth 'itwêwina' %} is a Plains Cree Dictionary.</p>
             {% with long_word='ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk' %}
             {% url 'cree-dictionary-index-with-query' long_word as long_word_url %}
             <p>Type any Cree word to find its English translation. You can search for
-                short Cree words (e.g., <span lang="cr">atim</span>) or very long Cree words
-                (e.g., <span lang="cr"><a data-cy="long-word-example" href="{{ long_word_url }}">{{ long_word }}</a></span>). Or you can type an
+                short Cree words (e.g., {% orth 'atim' %}) or very long Cree words
+                (e.g., <a data-cy="long-word-example" href="{{ long_word_url }}">{% orth long_word %}</a>). Or you can type an
                 English word and find its possible Cree translations. You can write words
                 in Cree using standard Roman orthography (SRO) (like
                 <span lang="cr">acimosis</span>) or using syllabics (e.g.,
                 <span lang="cr">ᐊᒋᒧᓯᐢ</span>).</p>
             {% endwith %}
-            <p><span lang="cr">itwêwina</span> was made by the University of Alberta ALTLab,
+            <p>{% orth 'itwêwina' %} was made by the University of Alberta ALTLab,
                 in collaboration with the First Nations University and Maskwacîs Education
                 Schools Commission (MESC). The dictionary entries are courtesy of Dr.
                 Arok Wolvengrey and MESC.</p>

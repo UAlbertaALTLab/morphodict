@@ -168,7 +168,17 @@ else:
     STATIC_URL = "/cree-dictionary/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+
+
+if DEBUG:
+    # Use the default static storage backed for debug purposes.
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+else:
+    # In production, use a manifest to encourage aggressive caching
+    # Note requires `python manage.py collectstatic`!
+    STATICFILES_STORAGE = (
+        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+    )
 
 log_dir = Path(BASE_DIR) / "django_logs"
 log_dir.mkdir(exist_ok=True)

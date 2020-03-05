@@ -2,7 +2,7 @@
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
 from typing import List, Tuple, Union
-from typing_extensions import TypedDict
+from typing_extensions import TypedDict, Literal
 
 
 class SerializedDefinition(TypedDict):
@@ -33,13 +33,12 @@ class SerializedSearchResult(TypedDict):
 
     is_lemma: bool
 
-    # ENGLISH | CREE
-    matched_by: str
+    matched_by: Literal["ENGLISH", "CREE"]
 
     # The matched lemma
     lemma_wordform: SerializedWordform
 
-    # triple dots in type annotation means they can be empty
+    # triple dots in type annotation means they can have zero or more elements
 
     # user friendly linguistic breakdowns
     linguistic_breakdown_head: Tuple[str, ...]

@@ -38,14 +38,12 @@ context('General', function () {
 
   describe('I want see all written Cree in Western Cree Syllabics', function () {
     it('should be accessible from the language selector', function () {
-      this.skip('orthography selector is currently not enabled')
-
       cy.get('[data-cy=language-selector]')
         .type('{enter}')
 
       cy.get('[data-cy=orthography-choices]')
         .should('be.visible')
-        .contains('ᒐᐦᑭᐯᐦᐃᑲᓇ')
+        .contains('Syllabics')
         .click()
 
       cy.get('h1')
