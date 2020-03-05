@@ -41,5 +41,57 @@ describe('Orthography selection', function () {
         .contains('li', 'Syllabics')
         .should('have.class', 'menu-choice--selected')
     })
+
+    it('should display in syllabics given the correct cookies', function () {
+      cy.setCookie('orth', 'Cans')
+
+      // Visiting a page should be in syllabics
+      cy.visit('/about')
+      cy.contains('h1', 'ᐃᑘᐏᓇ')
+      cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
+    })
+
+    // XXX: This test fails in headless mode for Electron version < v6.0
+    // There was a bug with setting cookies via fetch():
+    //    https://github.com/cypress-io/cypress/issues/4433
+    // This should work in Cypress 3.5.0 and greater.
+    // As of 2020-03-05 this STILL doesn't work in CI :((((
+    it.skip('should persist my preference after a page load', function () {
+      cy.visit('/')
+
+      // Get the introduction: it should be in SRO
+      cy.contains('h1', 'tânisi!')
+        .as('greeting')
+
+      // Switch to syllabics
+      cy.get('[data-cy=language-selector]')
+        .click()
+        .parent('details')
+        .as('menu')
+      cy.get('@menu')
+        .contains('Syllabics')
+        .click()
+
+      // The cookies should have changed.
+      cy.getCookie('orth')
+        .should('exist')
+        .its('value')
+        .should('eq', 'Cans')
+
+      // It changed on the current page:
+      cy.get('@greeting')
+        .contains('ᑖᓂᓯ!')
+
+      // Now try a different page.
+      cy.visit('/about')
+
+      // It should be in syllabics.
+      cy.contains('h1', 'ᐃᑘᐏᓇ')
+      cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
+      cy.get('[data-cy=language-selector]')
+        .contains('Syllabics')
+    })
   })
 })

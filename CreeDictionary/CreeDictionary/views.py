@@ -1,10 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from http import HTTPStatus
 
 from API.models import Wordform
+from constants import ORTHOGRAPHY_NAME, ParadigmSize
 from CreeDictionary.forms import WordSearchForm
-from constants import ParadigmSize
-
+from django.http import HttpResponse
+from django.shortcuts import redirect, render
+from django.views import View
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -91,3 +92,32 @@ def about(request):  # pragma: no cover
     About page.
     """
     return render(request, "CreeDictionary/about.html")
+
+
+class ChangeOrthography(View):
+    """
+    Sets the orth= cookie, which affects the default rendered orthography.
+
+        > POST /change-orthography HTTP/1.1
+        > Cookie: orth=Latn
+        >
+        > orth=Cans
+
+        < HTTP/1.1 204 No Content
+        < Set-Cookie: orth=Cans
+
+    Supports only POST requests for now.
+    """
+
+    AVAILABLE_ORTHOGRAPHIES = tuple(ORTHOGRAPHY_NAME.keys())
+
+    def post(self, request):
+        orth = request.POST.get("orth")
+
+        # Tried to set to an unsupported orthography
+        if orth not in self.AVAILABLE_ORTHOGRAPHIES:
+            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
+
+        response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+        response.set_cookie("orth", orth)
+        return response

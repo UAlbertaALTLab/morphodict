@@ -11,9 +11,9 @@
                     <dfn class="definition-title__word" data-cy="definition-title">
                         {% if result.is_lemma %}
                             <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}">
-                                {{ result.lemma_wordform.text|orth }}</a>
+                                {% orth result.lemma_wordform.text %}</a>
                         {% else %}
-                            {{ result.matched_cree|orth }}
+                            {% orth result.matched_cree %}
                         {% endif %}
                         <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
                         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
@@ -45,7 +45,7 @@
                 <p class="reference-to-lemma" data-cy="reference-to-lemma">
                     Form of
                     <a class="reference-to-lemma__lemma" href="{{ result.lemma_wordform.lemma_url }}"
-                       >{{ result.lemma_wordform.text|orth }}</a>
+                       >{% orth result.lemma_wordform.text %}</a>
                 </p>
             {% endif %}
 
@@ -66,8 +66,8 @@
                 {% for preverb in result.preverbs %}
                     <li>
                         <span>Preverb: {% if preverb.id %}
-                            <a href="{% url 'cree-dictionary-index-with-query' preverb.text %}">{{ preverb.text|orth }}</a>{% else %}
-                            {{ preverb.text|orth }}{% endif %}
+                            <a href="{% url 'cree-dictionary-index-with-query' preverb.text %}">{% orth preverb.text %}</a>{% else %}
+                            {% orth preverb.text %}{% endif %}
                         </span>
 
                         {% if preverb.id %} {# we know the preverb in the database #}
@@ -107,7 +107,7 @@
                             <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}"
                                >
                                 {# data- attributes are supported in HTML5 not in XHTML #}
-                                {{ result.lemma_wordform.text|orth }}</a>
+                                {% orth result.lemma_wordform.text %}</a>
                         </dfn>
                     </h2>
                 </header>

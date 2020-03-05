@@ -25,7 +25,7 @@ This should be included or placed dynamical within <main>
     <h1 id="head" class="definition-title">
       <dfn class="definition-title__word">
         <data id="data:head" value="{{ lemma.text }}">
-          {{ lemma.text|orth }}
+          {% orth lemma.text %}
         </data>
       </dfn>&nbsp;<span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
     </h1>
@@ -66,7 +66,7 @@ This should be included or placed dynamical within <main>
         {% elif cell == "" %}
         <td class="paradigm-cell paradigm-cell--empty"></td>
         {% else %}
-        <td class="paradigm-cell"> {{ cell|orth }}
+        <td class="paradigm-cell"> {% orth cell %}
         </td>
         {% endif %}
         {% endfor %}
