@@ -57,12 +57,8 @@ describe('Orthography selection', function () {
     // There was a bug with setting cookies via fetch():
     //    https://github.com/cypress-io/cypress/issues/4433
     // This should work in Cypress 3.5.0 and greater.
-    it('should persist my preference after a page load', function () {
-      if (Cypress.env('CI') === 'true') {
-        // As of 2020-03-05 this STILL doesn't work on Travis-CI :((((
-        this.skip()
-      }
-
+    // As of 2020-03-05 this STILL doesn't work in CI :((((
+    it.skip('should persist my preference after a page load', function () {
       cy.visit('/')
 
       // Get the introduction: it should be in SRO
