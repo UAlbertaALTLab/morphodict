@@ -8,6 +8,7 @@ from typing import Union
 from django.conf import settings
 from django.core.management import call_command
 
+from DatabaseManager.replace_db import create_replacing_migration
 from DatabaseManager.test_db_builder import build_test_xml
 from DatabaseManager.xml_importer import import_xmls
 from utils import shared_res_dir
@@ -37,13 +38,16 @@ import_parser = subparsers.add_parser(
     "Import from specified engcrk.xml and crkeng.xml. Migrate the rest",
 )
 
-extend_parser = subparsers.add_parser(
-    "replace", help="Create a migration that builds the new database."
+replace_parser = subparsers.add_parser(
+    "replace",
+    help="Create a migration that builds a new database. The database is built as temporary_db.sqlite3 and "
+    "renamed to db.sqlite3 when it's finished building",
 )
 
 build_test_db_parser = subparsers.add_parser(
     "build-test-db", help="build test_db.sqlite3 from res/test_db_words.txt"
 )
+
 add_multi_processing_argument(build_test_db_parser)
 
 import_parser.add_argument(
@@ -86,7 +90,10 @@ def import_and_migrate(
     call_command("migrate")
 
 
-def cmd_entry(argv=sys.argv):
+def cmd_entry(argv=None):
+    if argv is None:
+        argv = sys.argv
+
     args = parser.parse_args(argv[1:])
     if args.command_name == "import":
         import_and_migrate(args.xml_directory_name, args.process_count, args.no_input)
@@ -100,6 +107,8 @@ def cmd_entry(argv=sys.argv):
             args.process_count,
             no_input=args.no_input,
         )
+    elif args.command_name == "replace":
+        create_replacing_migration()
     else:
         raise NotImplementedError
 

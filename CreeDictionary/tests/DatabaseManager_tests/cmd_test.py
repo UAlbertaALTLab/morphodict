@@ -1,4 +1,7 @@
 from contextlib import contextmanager
+from os.path import dirname
+from pathlib import Path
+from typing import Optional
 
 import pytest
 from django.conf import settings
@@ -25,3 +28,26 @@ def test_import_nice_xml(shared_datadir):
         for analysis, inflections in analysis_and_inflections:
             for inflection in inflections:
                 assert len(Wordform.objects.filter(text=inflection)) >= 1
+
+
+def test_replace_db():
+    def get_use_new_xml_migration_files():
+        return list(migration_dir.glob("*_use_new_xml_files.py"))
+
+    migration_dir = Path(dirname(__file__)) / ".." / ".." / "API" / "migrations"
+    original_count = len(get_use_new_xml_migration_files())
+    print(migration_dir.absolute())
+    cmd_entry([..., "replace"])
+    assert len(get_use_new_xml_migration_files()) == original_count + 1
+
+    # clean up
+    newest_file_number: Optional[int] = None
+    for file in get_use_new_xml_migration_files():
+        file_number = int(file.stem[:4])
+        if newest_file_number is None or file_number > newest_file_number:
+            newest_file_number = file_number
+    newest_file = Path(migration_dir / f"{newest_file_number:04d}_use_new_xml_files.py")
+    assert "def import_new_dictionaries" in newest_file.read_text()
+
+    # clean up
+    newest_file.unlink()
