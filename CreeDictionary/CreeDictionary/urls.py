@@ -1,6 +1,8 @@
 """
 Definition of urls for CreeDictionary.
 """
+import API.views as api_views
+from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -9,59 +11,79 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
-import API.views as api_views
-from CreeDictionary import views
+# 2019/May/21 Matt Yan:
 
-urlpatterns = [
+# The reason to have different rules in development/production:
+
+# static file urls / web-page urls / API urls in this project all begin with "cree-dictionary"
+# so that in production on server sapir, the cree-dictionary service can be proxy-ed by looking for
+# initial "cree-dictionary" in the url.
+
+# example url:
+# http://sapir.artsrn.ualberta.ca/cree-dictionary/search/hello
+
+# in development, though, the initial "cree-dictionary" is not needed, example:
+# http://localhost:8000/search/hello
+# Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
+# url reversion
+
+
+_urlpatterns = [
     # user interface
-    path("", views.index, name="cree-dictionary-index"),
-    path(
-        "search/<str:query_string>/",
-        views.index,
-        name="cree-dictionary-index-with-query",
-    ),
+    ("", views.index, "cree-dictionary-index"),
+    ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-query"),
     # word is a user-friendly alternative for the linguistic term "lemma"
-    path(
+    (
         "word/<str:lemma_text>/",
         views.lemma_details,
-        name="cree-dictionary-index-with-lemma",
+        "cree-dictionary-index-with-lemma",
     ),
-    path("about", views.about, name="cree-dictionary-about"),
+    ("about", views.about, "cree-dictionary-about"),
     # internal use to render boxes of search results
-    path(
+    (
         "_search_results/<str:query_string>/",
         views.search_results,
-        name="cree-dictionary-search-results",
+        "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    path(
+    (
         "_lemma_details/<int:lemma_id>/",
         views.lemma_details_internal,
-        name="cree-dictionary-lemma-detail",
+        "cree-dictionary-lemma-detail",
     ),
     # cree word translation for click-in-text #todo (for matt): this
-    path(
+    (
         "_translate-cree/<str:query_string>/",
         api_views.translate_cree,
-        name="cree-dictionary-word-translation-api",
+        "cree-dictionary-word-translation-api",
     ),
-    path("admin/", admin.site.urls, name="admin"),
-    path(
+    ("admin/", admin.site.urls, "admin"),
+    (
         "change-orthography",
         views.ChangeOrthography.as_view(),
-        name="cree-dictionary-change-orthography",
+        "cree-dictionary-change-orthography",
     ),
-    # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
-    path("jsreverse/", urls_js, name="js_reverse"),
 ]
 
+# XXX: ugly hack to make this work on a local instance and on Sapir
+# TODO: this should use the SCRIPT_NAME WSGI variable instead.
+urlpatterns = []
+prefix = "" if settings.DEBUG else "cree-dictionary/"
+
+for route, view, name in _urlpatterns:
+    # kwarg `name` for url reversion in html/py/js code
+    urlpatterns.append(path(prefix + route, view, name=name))
+
+# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
+urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
+
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
 
-if settings.DEBUG and not settings.CI:  # pragma: no cover
-    import debug_toolbar
+    if not settings.CI:
+        import debug_toolbar
 
-    # necessary for debug_toolbar to work
-    urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))
+        # necessary for debug_toolbar to work
+        urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))
