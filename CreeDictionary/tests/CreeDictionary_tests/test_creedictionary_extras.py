@@ -140,7 +140,6 @@ def test_no_hyphens_in_syllabics():
     template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Cans' }}")
 
     rendered = template.render(context)
-    print(rendered)
     assertInHTML(
         f"""
         <span lang="cr" data-orth
