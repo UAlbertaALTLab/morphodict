@@ -128,3 +128,25 @@ def test_current_orthography_name_tag(orth, name):
     )
     rendered_html = template.render(context)
     assert name in rendered_html
+
+
+def test_no_hyphens_in_syllabics():
+    """
+    Test that trailing hyphens disappear in syllabics.
+
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/314
+    """
+    context = Context({"wordform": "nôhtê-"})
+    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Cans' }}")
+
+    rendered = template.render(context)
+    print(rendered)
+    assertInHTML(
+        f"""
+        <span lang="cr" data-orth
+              data-orth-Latn="nôhtê-"
+              data-orth-latn-x-macron="nōhtē-"
+              data-orth-Cans="ᓅᐦᑌ">ᓅᐦᑌ</span>
+        """,
+        rendered,
+    )
