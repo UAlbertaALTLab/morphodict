@@ -69,7 +69,8 @@ def orth(sro_original: str, orthography):
 
     sro_circumflex = sro_original
     sro_macrons = to_macrons(sro_original)
-    syllabics = sro2syllabics(sro_original)
+    # Strip "-" from either end of the syllabics.
+    syllabics = sro2syllabics(sro_original).strip("-")
 
     assert orthography in ORTHOGRAPHY_NAME
     if orthography == "Latn":
