@@ -60,7 +60,7 @@ if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
 
-if settings.DEBUG and not settings.CI:
+if settings.DEBUG and not settings.CI:  # pragma: no cover
     import debug_toolbar
 
     # necessary for debug_toolbar to work
