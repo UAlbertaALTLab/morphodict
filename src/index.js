@@ -199,13 +199,13 @@ function setupAudioOnPageLoad() {
 }
 
 /**
- * Makes all URL paths relative to the index.
- * In development, the index is '/'.
- * On Sapir (as of 2020-03-09), the index is '/cree-dictionary/'.
+ * Makes all URL paths relative to '/'.
+ * In development, the root path is '/', so nothing changes.
+ * On Sapir (as of 2020-03-09), the root path is '/cree-dictionary/'.
  */
-function makeRouteRelativeToRoute(route) {
+function makeRouteRelativeToSlash(route) {
   let baseURL = Urls['cree-dictionary-index']()
-  return baseURL + route.replace(/^[/]/, '')
+  return route.replace(baseURL, '/')
 }
 
 $(() => {
@@ -216,10 +216,9 @@ $(() => {
     location.reload()
   })
 
-  setupAudioOnPageLoad()
   orthography.registerEventListener(csrfToken)
 
-  let route = makeRouteRelativeToRoute(window.location.pathname)
+  let route = makeRouteRelativeToSlash(window.location.pathname)
   let $input = $('#search')
 
   // Tiny router.
@@ -231,6 +230,8 @@ $(() => {
     setSubtitle('About')
   } else if (route.match(/^[/]search[/].+/)) {
     prepareTooltips()
+  } else if (route.match(/^[/]word[/].+/)) {
+    setupAudioOnPageLoad()
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
