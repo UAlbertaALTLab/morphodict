@@ -9,7 +9,7 @@ from typing import List, Set, Dict
 
 from tqdm import tqdm
 
-from profiling.timing import timed
+from utils.profiling import timed
 from shared import descriptive_analyzer
 from utils import shared_res_dir, fst_analysis_parser, crkeng_xml_utils
 from utils.crkeng_xml_utils import extract_l_str

@@ -1,9 +1,12 @@
+import json
+from collections import Iterable
+
 import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform, filter_cw_wordforms
-from CreeDictionary import settings
 from constants import Language
+from CreeDictionary import settings
 from tests.conftest import random_lemmas
 
 
@@ -173,30 +176,63 @@ def test_search_space_characters_in_matched_term(term):
 
 
 @pytest.mark.django_db
-def test_filter_cw_content():
-    # test 1
-    # assumptions
-    mowew_queryset = Wordform.objects.filter(text="mowêw", is_lemma=True)
-    assert mowew_queryset.count() == 1
-    assert {
-        ("s/he eats s.o. (e.g. bread)", "CW"),
-        ("s/he eats s.o. (e.g. bread)", "MD"),
-    } == {
-        tuple(definition_dict.values())
-        for definition_dict in mowew_queryset.get()
-        .definitions.all()
-        .values("text", "citations")
-    }
+def test_paradigm():
+    def deep_contain(container: Iterable, testee):
+        """check if `testee` is in any depth of `container`"""
+        for item in container:
+            if item == testee:
+                return True
+            elif (
+                item != container
+                and isinstance(item, Iterable)
+                and deep_contain(item, testee)
+            ):
+                return True
+        return False
 
-    # test 2
-    # assumption
-    nipa_queryset = Wordform.objects.filter(text="nipa-", full_lc="IPV")
-    assert (
-        nipa_queryset.count() == 1
-    )  # there should only be one preverb meaning "during the night", it's from MD
+    nipaw_paradigm = Wordform.objects.get(text="nipâw", is_lemma=True).paradigm
+    assert deep_contain(nipaw_paradigm, "ninipân")
+    assert deep_contain(nipaw_paradigm, "kinipân")
+    assert deep_contain(nipaw_paradigm, "nipâw")
+    assert deep_contain(nipaw_paradigm, "ninipânân")
 
-    # test
-    filtered = filter_cw_wordforms(nipa_queryset)
-    assert (
-        len(list(filtered)) == 0
-    )  # nipa should no longer be there because the preverb nipa is a MD only word
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("query", ["nipaw", "nitawi", "nitawi-nipaw", "e-nitawi-nipaw"])
+def test_search_serialization_json_parsable(query):
+    """
+    Test SearchResult.serialize produces json compatible results
+    """
+    results = Wordform.search(query)
+    for result in results:
+
+        serialized = result.serialize()
+        try:
+            json.dumps(serialized)
+        except Exception as e:
+            print(e)
+            pytest.fail("SearchResult.serialized method failed to be json compatible")
+
+
+@pytest.mark.django_db
+def test_search_words_with_preverbs():
+    """
+    preverbs should be extracted and present in SearchResult instances
+    """
+    results = Wordform.search("nitawi-nipâw")
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.preverbs) == 1
+    assert search_result.preverbs[0].text == "nitawi-"
+
+
+@pytest.mark.django_db
+def test_search_text_with_ambiguous_word_classes():
+    """
+    Results of all word classes should be searched when the query is ambiguous
+    """
+    # pipon can be viewed as a Verb as well as a Noun
+    results = Wordform.search("pipon")
+    assert len(results) == 2
+    assert {r.lemma_wordform.pos for r in results} == {"N", "V"}

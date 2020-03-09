@@ -14,9 +14,19 @@
 </head>
 <body class="app">
   <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
+  {% csrf_token %}
+  {% include './svg-sprites.html' %}
   {% include './components/header.html' %}
 
 {% block content %}
+{% comment %}
+N.B.: Make sure whatever is placed here has is a <main> or has role=main and
+has id="start-of-content"
+{% endcomment %}
+  <main id="start-of-content">
+    <strong> Placeholder content! </strong> If you're seeing this, something
+    went wrong.
+  </main>
 {% endblock %}
 
 <footer class="app-footer">
@@ -35,7 +45,7 @@
     </nav>
 
     <div class="app-footer__copyright copyright">
-        <p class="copyright__line">2019 © University of Alberta.</p>
+      <p class="copyright__line">2019–{% now "Y" %} © University of Alberta.</p>
         <p class="copyright__line"> Modified icons copyright © 2019
             <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">Font Awesome</a>,
             licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.

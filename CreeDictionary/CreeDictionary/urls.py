@@ -1,16 +1,15 @@
 """
 Definition of urls for CreeDictionary.
 """
+import API.views as api_views
+from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.urls import path
+from django.urls import include, path
 from django_js_reverse.views import urls_js
-
-import API.views as api_views
-from CreeDictionary import views
 
 # 2019/May/21 Matt Yan:
 
@@ -28,11 +27,17 @@ from CreeDictionary import views
 # Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
 # url reversion
 
+
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
-    ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-word"),
-    ("lemma/<int:lemma_id>/", views.index, "cree-dictionary-index-with-lemma"),
+    ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-query"),
+    # word is a user-friendly alternative for the linguistic term "lemma"
+    (
+        "word/<str:lemma_text>/",
+        views.lemma_details,
+        "cree-dictionary-index-with-lemma",
+    ),
     ("about", views.about, "cree-dictionary-about"),
     # internal use to render boxes of search results
     (
@@ -43,7 +48,7 @@ _urlpatterns = [
     # internal use to render paradigm and detailed info for a lemma
     (
         "_lemma_details/<int:lemma_id>/",
-        views.lemma_details,
+        views.lemma_details_internal,
         "cree-dictionary-lemma-detail",
     ),
     # cree word translation for click-in-text #todo (for matt): this
@@ -53,6 +58,11 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
+    (
+        "change-orthography",
+        views.ChangeOrthography.as_view(),
+        "cree-dictionary-change-orthography",
+    ),
 ]
 
 # XXX: ugly hack to make this work on a local instance and on Sapir
@@ -68,4 +78,12 @@ for route, view, name in _urlpatterns:
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
+
+    # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
+
+    if not settings.CI:
+        import debug_toolbar
+
+        # necessary for debug_toolbar to work
+        urlpatterns.append(path("__debug__/", include(debug_toolbar.urls)))

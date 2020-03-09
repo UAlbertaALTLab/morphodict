@@ -151,7 +151,7 @@ It recognizes the following:
 
  - The Django settings module in `setup.cfg` (for `pytest-django` to work)
  - `--doctest-modules` `--mypy` in `Pipfile [script]` (to enable doctest and Mypy tests)
- - `DEBUG=False` in `.env`
+ - `DEBUG=False` `USE_TEST_DB=True` in `.env`
 
 
 Cypress integration tests
@@ -167,17 +167,10 @@ Or, for interactive use:
 Profiling Code
 --------------
 
-    pipenv run profile <script_name>
+We use [django-toolbar-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/). 
+It provides great UI for stack tracing and SQL query profiling.
 
-...with `<script_name>` being one of the scripts from `profiling`
-folder.
-
-
-### Example
-
-    pipenv run profile word_search.py
-
-You can come up with profiling scripts yourself.
+![django debug toolbar](images/django-debug-toolbar.png)
 
 
 Format Python code

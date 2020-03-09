@@ -1,20 +1,17 @@
+{% load creedictionary_extras %}
+
 <div class="top-bar app__header">
   <header class="branding top-bar__logo"><a href="{% url 'cree-dictionary-index' %}">
-      <h1 class="branding__heading branding__title">
-        <span lang="cr">itwêwina</span>
-      </h1>
+      <h1 class="branding__heading branding__title">{% orth 'itwêwina' %}</h1>
       <p class="branding__heading branding__subtitle">Plains Cree Dictionary</p>
   </a></header>
   {# TODO: The language and orthography selectors are not ready yet, so hide them: #}
-  <nav class="top-bar__nav" style="visibility: hidden">
+  <nav class="top-bar__nav">
     <details class="toggle-box toggle-box--with-menu">
       <summary id="language-selector__button" class="toggle-box__toggle" data-cy="language-selector"
                aria-haspopup="menu" role="button" tabindex="0"
-               aria-label="Select language and writing system">
-        English (êîôâ)
-      </summary>
+               aria-label="Select language and writing system">{% current_orthography_name %}</summary>
       <div class="menu toggle-box__menu" aria-labelledby="language-selector__button">
-        {% include './language-selector__language.html' %}
         {% include './language-selector__orthography.html' %}
       </div>
     </details>

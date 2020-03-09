@@ -1,5 +1,6 @@
 import logging
 import unicodedata
+from collections import defaultdict
 from functools import cmp_to_key, partial
 from typing import (
     Any,
@@ -16,21 +17,23 @@ from typing import (
     cast,
 )
 
+import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
+from django.forms import model_to_dict
+from django.urls import reverse
+from django.utils.encoding import iri_to_uri
+from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
-from constants import (
-    POS,
-    Analysis,
-    FSTTag,
-    Label,
-    Language,
-)
+from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
+from paradigm import Layout
+from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 from shared import descriptive_analyzer_foma, normative_generator_foma
+from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
@@ -72,42 +75,19 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
 
-def fetch_preverbs(user_query: str) -> Set["CreeResult"]:
+def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     """
-    exhaustively search for preverbs (with index)
+    Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
+    trailing dash relaxation is used
 
     :param user_query: unicode normalized, to_lower-ed
     """
 
-    if not user_query.endswith("-"):
-        user_query += "-"
+    if user_query.endswith("-"):
+        user_query = user_query[:-1]
     user_query = remove_cree_diacritics(user_query)
-    # for preverbs
-    # An all inclusive filtering mechanism is full_lc=IPV OR pos="IPV". Don't rely on a single one
-    # due to the inconsistent labelling in the source crkeng.xml.
-    # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    # For "sa", the source gives pos=IPV lc="" (unspecified)
 
-    wordform_to_cree_results: Dict[Wordform, CreeResult] = dict()
-    for preverb_wordform in Wordform.objects.filter(Q(full_lc="IPV") | Q(pos="IPV")):
-        if user_query == remove_cree_diacritics(preverb_wordform.text):
-            wordform_to_cree_results[preverb_wordform] = CreeResult(
-                Analysis(preverb_wordform.analysis),
-                preverb_wordform,
-                Lemma(preverb_wordform),
-            )
-    cw_preverbs = filter_cw_wordforms(wordform_to_cree_results)
-    return {wordform_to_cree_results[wf] for wf in cw_preverbs}
-
-
-class Preverb(NamedTuple):
-    """
-    Contains information about a preverb, should be used inside templates
-    """
-
-    id: Optional[int]  # might be not in our database
-    text: str
-    definitions: Tuple[str, ...]  # might be not in our database, so might be empty
+    return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -138,7 +118,7 @@ class SearchResult:
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
-    preverbs: Tuple[Preverb, ...]
+    preverbs: Tuple["Preverb", ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
@@ -148,13 +128,28 @@ class SearchResult:
 
     definitions: Tuple["Definition", ...]
 
-    @property
-    def is_inflection(self) -> bool:
+    def serialize(self) -> SerializedSearchResult:
         """
-        Is this an inflected form? That is, is this a wordform that is NOT the
-        lemma?
+        serialize the instance, can be used before passing into a template / in an API view, etc.
         """
-        return not self.is_lemma
+        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
+        # it avoids unnecessary database access and makes APIs easier to create
+        result = attr.asdict(self)
+        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
+        result["lemma_wordform"] = self.lemma_wordform.serialize()
+
+        result["preverbs"] = []
+        for pv in self.preverbs:
+            if isinstance(pv, str):
+                result["preverbs"].append(pv)
+            else:  # Wordform
+                result["preverbs"].append(pv.serialize())
+
+        result["matched_by"] = self.matched_by.name
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions
+        ]
+        return cast(SerializedSearchResult, result)
 
 
 NormatizedCree = NewType("NormatizedCree", str)
@@ -163,6 +158,73 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 
 class Wordform(models.Model):
     _cree_fuzzy_searcher = None
+
+    # this is initialized upon app ready.
+    # this helps speed up preverb match
+    # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
+    # pure MD content won't be included
+    PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    def get_absolute_url(self) -> str:
+        """
+        :return: url that looks like
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         it's the least strict url that guarantees unique match in the database
+        """
+        assert self.is_lemma, "There is no page for non-lemmas"
+        lemma_url = reverse(
+            "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
+        )
+        if self.homograph_disambiguator is not None:
+            lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
+
+        return iri_to_uri(lemma_url)
+
+    def serialize(self) -> SerializedWordform:
+        """
+
+        :return: json parsable result
+        """
+        result = model_to_dict(self)
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions.all()
+        ]
+        result["lemma_url"] = self.get_absolute_url()
+        return result
+
+    @cached_property
+    def homograph_disambiguator(self) -> Optional[str]:
+        """
+        :return: the least strict field name that guarantees unique match together with the text field.
+            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+        """
+        homographs = Wordform.objects.filter(text=self.text)
+        if homographs.count() == 1:
+            return None
+        for field in "pos", "full_lc", "analysis":
+            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
+                return field
+        return "id"  # id always guarantees unique match
+
+    @property
+    def paradigm(self) -> List[Layout]:
+        # todo: allow paradigm size other then ParadigmSize.BASIC
+        slc = fst_analysis_parser.extract_simple_lc(self.analysis)
+        if slc is not None:
+            tables = paradigm_filler.fill_paradigm(self.text, slc, ParadigmSize.BASIC)
+        else:
+            tables = []
+        return tables
+
+    @property
+    def md_only(self) -> bool:
+        """
+        check if the wordform instance has only definition from the MD source
+        """
+        for definition in self.definitions.all():
+            if set(definition.source_ids) - {"MD"}:
+                return False
+        return True
 
     @classmethod
     def init_fuzzy_searcher(cls):
@@ -228,10 +290,6 @@ class Wordform(models.Model):
         indexes = [
             models.Index(fields=["analysis"]),
             models.Index(fields=["text"]),
-            models.Index(
-                fields=["full_lc"],
-            ),  # benefits exhaustive search for preverbs
-            models.Index(fields=["pos"]),  # benefits exhaustive search for preverbs
         ]
 
     def __str__(self):
@@ -264,7 +322,7 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(user_query: str) -> "CreeAndEnglish":
+    def fetch_lemma_by_user_query(user_query: str, **kwargs) -> "CreeAndEnglish":
         """
         treat the user query as cree and:
 
@@ -278,6 +336,7 @@ class Wordform(models.Model):
         Give a list of matched lemmas
 
         :param user_query: can be English or Cree (syllabics or not)
+        :param kwargs: additional fields to disambiguate
         """
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
@@ -311,7 +370,7 @@ class Wordform(models.Model):
             # todo: test
 
             exactly_matched_wordforms = Wordform.objects.filter(
-                analysis=analysis, as_is=False
+                analysis=analysis, as_is=False, **kwargs
             )
 
             if exactly_matched_wordforms.exists():
@@ -351,7 +410,7 @@ class Wordform(models.Model):
 
                 lemma, lc = lemma_lc
                 matched_lemma_wordforms = Wordform.objects.filter(
-                    text=lemma, is_lemma=True
+                    text=lemma, is_lemma=True, **kwargs
                 )
 
                 # now we get wordform objects from database
@@ -381,7 +440,7 @@ class Wordform(models.Model):
                         )
                 else:
                     for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=lc.pos.name
+                        as_is=False, pos=lc.pos.name, **kwargs
                     ):
                         cree_results.add(
                             CreeResult(
@@ -397,7 +456,10 @@ class Wordform(models.Model):
         # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
         for cw_as_is_wordform in filter_cw_wordforms(
             Wordform.objects.filter(
-                text__in=all_standard_forms + [user_query], as_is=True, is_lemma=True
+                text__in=all_standard_forms + [user_query],
+                as_is=True,
+                is_lemma=True,
+                **kwargs,
             )
         ):
             cree_results.add(
@@ -412,7 +474,12 @@ class Wordform(models.Model):
         # preverbs should be presented
         # exhaustively search preverbs here (since we can't use fst on preverbs.)
 
-        cree_results |= fetch_preverbs(user_query)
+        for preverb_wf in fetch_preverbs(user_query):
+            cree_results.add(
+                CreeResult(
+                    Analysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                )
+            )
 
         # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
         # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
@@ -426,10 +493,12 @@ class Wordform(models.Model):
         if " " not in user_query:  # a whole word
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
-            lemma_ids = EnglishKeyword.objects.filter(text__iexact=user_query).values(
-                "lemma__id"
-            )
-            for wordform in Wordform.objects.filter(id__in=lemma_ids, as_is=False):
+            lemma_ids = EnglishKeyword.objects.filter(
+                text__exact=user_query, **kwargs
+            ).values("lemma__id")
+            for wordform in Wordform.objects.filter(
+                id__in=lemma_ids, as_is=False, **kwargs
+            ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
                 )  # will become  (user_query, inflection.text, inflection.lemma)
@@ -439,6 +508,7 @@ class Wordform(models.Model):
                 Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
                 as_is=True,
+                **kwargs,
             ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -447,11 +517,19 @@ class Wordform(models.Model):
         return CreeAndEnglish(cree_results, english_results)
 
     @staticmethod
-    def search(user_query: str) -> SortedSet[SearchResult]:
+    def search(user_query: str, **kwargs) -> SortedSet[SearchResult]:
+        """
+
+        :param user_query:
+        :param kwargs: additional fields to disambiguate
+        :return:
+        """
         cree_results: Set[CreeResult]
         english_results: Set[EnglishResult]
 
-        cree_results, english_results = Wordform.fetch_lemma_by_user_query(user_query)
+        cree_results, english_results = Wordform.fetch_lemma_by_user_query(
+            user_query, **kwargs
+        )
 
         results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
 
@@ -462,7 +540,7 @@ class Wordform(models.Model):
             results = []
             for tag in head_breakdown:
 
-                result: Optional[Preverb] = None
+                preverb_result: Optional[Preverb] = None
                 if tag.startswith("PV/"):
                     # use altlabel.tsv to figure out the preverb
 
@@ -471,40 +549,24 @@ class Wordform(models.Model):
                         LabelFriendliness.LINGUISTIC_SHORT
                     )
                     if ling_short is not None and ling_short != "":
-                        # looks like: "âpihci-"
-                        preverb_text_with_dash = ling_short[len("Preverb: ") :]
-                        preverb_results = fetch_preverbs(preverb_text_with_dash)
+                        # looks like: "âpihci"
+                        normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                        preverb_results = fetch_preverbs(normative_preverb_text)
 
                         # find the one that looks the most similar
                         if preverb_results:
-                            preverb_cree_result = min(
+                            preverb_result = min(
                                 preverb_results,
                                 key=lambda pr: get_modified_distance(
-                                    preverb_text_with_dash.strip("-"),
-                                    pr.normatized_cree_text.strip("-"),
+                                    normative_preverb_text, pr.text.strip("-"),
                                 ),
                             )
 
-                            assert isinstance(
-                                preverb_cree_result.normatized_cree, Wordform
-                            )  # normatized_cree has to be a Wordform in the database. Because we match preverbs by
-                            #   exhaustive search in the database
-
-                            result_wf = preverb_cree_result.normatized_cree
-                            defintion_strings: Tuple[str, ...] = tuple(
-                                preverb_cree_result.normatized_cree.definitions.all()
-                            )
-                            result = Preverb(
-                                result_wf.id,
-                                preverb_cree_result.normatized_cree_text,
-                                defintion_strings,
-                            )
-
                         else:  # can't find a match for the preverb in the database
-                            result = Preverb(None, preverb_text_with_dash, tuple())
+                            preverb_result = normative_preverb_text
 
-                if result is not None:
-                    results.append(result)
+                if preverb_result is not None:
+                    results.append(preverb_result)
             return tuple(results)
 
         # Create the search results
@@ -591,6 +653,10 @@ class Wordform(models.Model):
             )
 
         return results
+
+
+# it's a str when the preverb does not exist in the database
+Preverb = Union[Wordform, str]
 
 
 def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
@@ -781,6 +847,12 @@ class Definition(models.Model):
         A tuple of the source IDs that this definition cites.
         """
         return tuple(sorted(source.abbrv for source in self.citations.all()))
+
+    def serialize(self) -> SerializedDefinition:
+        """
+        :return: json parsable format
+        """
+        return {"text": self.text, "source_ids": self.source_ids}
 
     def __str__(self):
         return self.text

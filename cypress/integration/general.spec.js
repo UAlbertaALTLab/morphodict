@@ -38,18 +38,36 @@ context('General', function () {
 
   describe('I want see all written Cree in Western Cree Syllabics', function () {
     it('should be accessible from the language selector', function () {
-      this.skip('orthography selector is currently not enabled')
-
       cy.get('[data-cy=language-selector]')
         .type('{enter}')
 
       cy.get('[data-cy=orthography-choices]')
         .should('be.visible')
-        .contains('ᒐᐦᑭᐯᐦᐃᑲᓇ')
+        .contains('Syllabics')
         .click()
 
       cy.get('h1')
         .contains('ᐃᑘᐏᓇ')
+    })
+  })
+
+  describe('I want to search for complex Cree words', function () {
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
+    it('should have a clickable example on the front page', function () {
+      const word = 'ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk'
+
+      cy.visit('/')
+
+      cy.get('[data-cy=long-word-example]')
+        .should('contain', word)
+        .click()
+
+      // we should be on a new page.
+      cy.url()
+        .should('contain', '/search')
+
+      cy.get('[data-cy=search-results]')
+        .should('contain', word)
     })
   })
 })

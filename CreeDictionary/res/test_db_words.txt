@@ -58,11 +58,12 @@ pêyak
 nisto
 
 # preverb examples
-nitawi-
-nitaw
 ati-
-poni-
+nitaw
+kâh-
+kîmôci-
 nitawi-
+poni-
 pê-
 
 # reduplication stem examples
@@ -95,3 +96,10 @@ niskak
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/218
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/223
 âyiman
+
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
+kotiskâwêw
+
+# ambiguous examples (multiple pos)
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/185
+pipon

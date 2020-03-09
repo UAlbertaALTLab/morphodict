@@ -8,42 +8,13 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
-
-/**
- * request server-end rendered paradigm and plunk it in place
- *
- * @param lemmaID {number} the id of the lemma in database
- */
-function loadParadigm(lemmaID) {
-  let xhttp = new XMLHttpRequest()
-
-  xhttp.onloadstart = function () {
-    // Show the loading indicator:
-    indicateLoading()
-  }
-
-  xhttp.onload = function () {
-    if (xhttp.status === 200) {
-      window.history.pushState('', document.title, Urls['cree-dictionary-index-with-lemma'](lemmaID))
-      hideInstruction()
-      emptySearchResultList()
-      $('main').append(xhttp.responseText)
-
-      indicateLoadedSuccessfully()
-    } else {
-      indicateLoadingFailure()
-    }
-  }
-
-  xhttp.onerror = function () {
-  }
-
-  xhttp.open('GET', Urls['cree-dictionary-lemma-detail'](lemmaID), true)
-  xhttp.send()
-}
+import {fetchFirstRecordingURL} from './recordings.js'
+import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
+
+const NO_BREAK_SPACE = '\u00A0'
 
 /**
  * Make a 10% progress bar. We actually don't know how much there is left,
@@ -76,12 +47,6 @@ function hideLoadingIndicator() {
   progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
 }
 
-/**
- * clean search results (boxed shaped entries)
- */
-function emptySearchResultList() {
-  $('#search-result-list').html('')
-}
 
 /**
  * clean paradigm details
@@ -102,6 +67,23 @@ function hideInstruction() {
 }
 
 /**
+ * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
+ */
+function prepareTooltips() {
+  const $searchResultList = $('#search-result-list')
+
+  // attach handlers for tooltip icon at preverb breakdown
+  $searchResultList.find('.definition-title__tooltip-icon').each(function () {
+    createTooltip($(this), $(this).next('.tooltip'))
+  })
+
+  // attach handlers for tooltip icon at preverb breakdown
+  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function () {
+    createTooltip($(this), $(this).next('.tooltip'))
+  })
+}
+
+/**
  * use xhttp to load search results in place
  *
  * @param {jQuery} $input
@@ -117,7 +99,7 @@ function loadResults($input) {
   }
 
   function issueSearch() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-word'](text))
+    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-query'](text))
 
     hideInstruction()
 
@@ -137,20 +119,7 @@ function loadResults($input) {
           indicateLoadedSuccessfully()
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
-          $searchResultList.find('.definition-title__link').on('click', function () {
-            loadParadigm($(this).data('lemma-id'))
-          })
-
-
-          // attach handlers for tooltip icon at preverb breakdown
-          $searchResultList.find('.definition-title__tooltip-icon').each(function (){
-            createTooltip($(this), $(this).next('.tooltip'))
-          })
-
-          // attach handlers for tooltip icon at preverb breakdown
-          $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function (){
-            createTooltip($(this), $(this).next('.tooltip'))
-          })
+          prepareTooltips()
 
 
         } else { // changed. Do nothing
@@ -191,11 +160,54 @@ function setSubtitle(subtitle) {
   document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle
 }
 
+/**
+ * Sets up the (rudimentary) audio link on page load.
+ */
+function setupAudioOnPageLoad() {
+  let title = document.getElementById('head')
+  if (!title) {
+    // Could not find a head on the page.
+    return
+  }
+
+  // TODO: setup URL from <link rel=""> or something.
+  let template = document.getElementById('template:play-button')
+  let dataElement = document.getElementById('data:head')
+  let wordform = dataElement.value
+
+  fetchFirstRecordingURL(wordform)
+    .then(function (recordingURL) {
+      let recording = new Audio(recordingURL)
+      recording.preload = 'none'
+
+      let fragment = template.content.cloneNode(true)
+      // Place "&nbsp;<button>...</button>"
+      // at the end of the <h1?
+      // TODO: it shouldn't really be **inside** the <h1>...
+      let button = fragment.childNodes[0]
+      let nbsp = document.createTextNode(NO_BREAK_SPACE)
+      title.appendChild(nbsp)
+      title.appendChild(button)
+      button.addEventListener('click', function () {
+        recording.play()
+      })
+    })
+    .catch(e=>{
+      // fixme (eddie): now what?
+      console.log(e)
+    })
+}
+
 $(() => {
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
+
+  setupAudioOnPageLoad()
+  orthography.registerEventListener(csrfToken)
 
   let route = window.location.pathname
   let $input = $('#search')
@@ -207,13 +219,8 @@ $(() => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route.match(/^[/]lemma[/].+/)) {
-    let initialLemmaID = $('#initial-lemma-id').val()
-    loadParadigm(parseInt(initialLemmaID))
   } else if (route.match(/^[/]search[/].+/)) {
-    loadResults($input)
-  } else {
-    console.assert('not sure what page this is: ' + route)
+    prepareTooltips()
   }
 
   $input.on('input', () => {

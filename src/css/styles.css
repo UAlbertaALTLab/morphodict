@@ -72,6 +72,7 @@ html {
 /**
  * Link styles for the application.
  */
+.app a { font-weight: var(--link-font-weight) }
 .app a:link { color: var(--link-color) }
 .app a:visited { color: var(--link-visited-color) }
 .app a:hover { color: var(--link-hover-color) }
@@ -171,7 +172,7 @@ html {
 
   text-align: right; /* So that it's flush with the right side of the page. */
 
-  margin-right: var(--small-pad);
+  padding-right: var(--small-pad);
 }
 
 /**
@@ -394,7 +395,7 @@ html {
  * Make the search icon look unusable when the user has not typed any query.
  */
 .search-bar:invalid .search-bar__button {
-  opacity: 50%;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
@@ -433,32 +434,26 @@ html {
 }
 
 .definition-title__tooltip-text{
-  font-size:0.5em;
+  font-size: 0.5em;
   font-weight: normal;
 }
 
 .definition-title__tooltip-icon{
-  display: inline;
-  position: relative;
+  display: inline-block;
 }
-
 
 .definition-title__tooltip-icon > img {
   width: var(--tooltip-icon-size);
-
-  /* vertically center the question mark*/
-  position: absolute;
-  top:0;
-  bottom: 0;
-  margin: auto;
-  /* end vertical centering */
-
-  left:0.2em;  /* space out the question mark */
   filter: var(--blue-filter); /* blue color */
+
+  vertical-align: middle;
 }
 
-.definition-title__reference-to-lemma{
+.reference-to-lemma {
+  margin: var(--gap) 0 0;
+
   font-size: var(--reference-to-lemma-size);
+  font-style: italic;
 }
 
 .definition-title__pos {
@@ -467,9 +462,66 @@ html {
   font-weight: var(--body-font-weight);
 }
 
+/**
+ * The actual SVG for the 🔊 icon
+ */
+.definition-title__play-icon {
+  width: 100%;
+  height: var(--tooltip-icon-size);
+
+  overflow: hidden;
+}
+
+/**
+ * ELEMENT play-button
+ *
+ * Should be a button that looks like a link.
+ */
+.definition-title__play-button {
+  /* Reset the button appearance: */
+  width: 1em;
+  height: 1em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
+  color: var(--play-button-color);
+  background: transparent;
+
+  /* Make it look like a link. */
+  cursor: pointer;
+
+  /* Subtle transition when hovering. */
+  transition: 0.1s filter;
+  filter: brightness(100%);
+}
+
+.definition-title__play-button:hover {
+  /* Make the button lighter when hovered. */
+  filter: brightness(150%);
+}
+
+/**
+ * BLOCK cleave-inflection-from-lemma
+ *
+ * Separates the info for the matched wordform/inflection
+ * from the defined lemma.
+ *
+ * It's an <hr>!
+ */
+.cleave-inflection-from-lemma {
+  margin-top: var(--gap);
+  color: var(--soft-hr-color);
+}
+
 .meanings {
   /* Display & Box model */
   padding: 0;
+  margin-top: 1rem; /* give it a little breathing room. */
 
   /* Text */
   font-size: var(--prominent-font-size);
@@ -581,16 +633,20 @@ html {
 .paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
-
-  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 .paradigm-label--col {
   font-weight: var(--strong-font-weight);
+  /* Sometimes the label is too dang wide, so just hide it. */
+  overflow-x: ellipsis;
 }
 
 .paradigm-cell {
   font-weight: var(--body-font-weight);
+}
+
+.paradigm-label--row, .paradigm-cell {
+  vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
 /********************************** PROSE **********************************/
@@ -606,15 +662,16 @@ html {
 }
 
 .prose__heading {
+  margin: var(--gap) 0 0;
+
   font-size: var(--prose-heading-font-size);
 
   color: var(--prose-heading-color);
 }
 
 .prose__section-title {
-  /* Let the padding take care of the spacing */
-  margin-top: 0;
-  margin-block-start: 0;
+  /* Reset margin. */
+  margin: 0;
 
   font-size: var(--prose-section-title-font-size);
 
@@ -624,12 +681,13 @@ html {
 
 /* this is anti-BEM, but like, it's body text ¯\_(ツ)_/¯ */
 .prose p {
-  margin-top: 1rem;
+  margin-top: var(--small-pad);
   margin-bottom: 0;
 }
 
 /* also anti-BEM ¯\_(ツ)_/¯ */
-.prose p [lang] {
+.prose p [lang],
+.prose__heading:not(.no-italics) [lang] {
   font-style: italic;
 }
 
@@ -703,8 +761,8 @@ html {
  */
 .copyright__line {
   margin: 0;
-  margin-bottom: .5rem;
-  margin-block-end: .5rem;
+  margin-bottom: var(--gap);
+  margin-block-end: var(--gap);
 }
 
 
@@ -716,12 +774,14 @@ html {
 .partner-logos {
   /* Display & Box Model */
   color: var(--prose-title-color);
-  display: flex;
+  display: grid;
   width: 100%;
   margin-top: var(--small-pad);
 
-  /* Other */
-  flex-wrap: wrap;
+  /* Grid */
+  grid-template-columns: 33% 33% 33%;
+  grid-template-rows: repeat(3, 1fr);
+  justify-items: stretch;
   align-items: center;
 }
 
@@ -731,22 +791,28 @@ html {
  * One particular logo.
  */
 .partner-logos__logo {
-  /* Positioning */
-  flex: 1;
   /* Display & Box Model */
   margin: var(--small-pad) .5rem;
   /* Text */
   text-align: center;
 }
 
+/**
+ * Modifier for wide logos (e.g., NRC/SSHRC)
+ */
+.partner-logos__logo--full-width {
+  grid-column: 1 / span 3;
+}
+
 .partner-logos__logo:hover {
   /* Make it have a hover effect like a link, to make it look clickable. */
-  backdrop-filter: brightness(95%);
+  background-color: var(--link-hover-color);
 }
 
 .partner-logos__logo > img {
-  max-width: 33vw;
-  max-height: 8em;
+  max-width: 100%;
+  max-height: 8rem;
+  vertical-align: middle;
 }
 
 
@@ -765,6 +831,7 @@ html {
 
   /* Other */
   cursor: pointer;
+  overflow: hidden; /* Don't affect the layout if the toggle icon overflows its box. */
 }
 
 .toggle-box__toggle::-webkit-details-marker {
@@ -775,15 +842,17 @@ html {
   content: url("img/fa/chevron-circle-down.svg");
 
   display: inline-block;
-  width: 11px;
+  width: 0.75rem;
   margin-left: var(--small-pad);
+
+  vertical-align: middle;
 
   transition: transform .25s;
   transform: rotate(-90deg);
 }
 
 .toggle-box[open] > .toggle-box__toggle::after {
-  transform: rotate(0deg);
+  transform: rotate(0);
 }
 
 /**
@@ -884,6 +953,11 @@ html {
 .menu-choice__label {
   display: block;
   padding: 9px;
+}
+
+.menu-choice:hover {
+  color: var(--menu-hover-color);
+  background-color: var(--menu-hover-bg-color);
 }
 
 a.menu-choice__label:link,
@@ -1054,4 +1128,18 @@ a.menu-choice__label:active {
   -webkit-clip-path: inset(1px 1px 1px 1px);
   clip-path: inset(1px 1px 1px 1px);
   pointer-events: none;
+}
+
+/**
+ * Makes a <button> look like a link.
+ */
+.unbutton {
+  border: 0;
+
+  text-align: inherit;
+
+  color: inherit;
+  background: transparent;
+
+  cursor: pointer;
 }

@@ -11,14 +11,12 @@ pytest-cov = "~=2.7"
 pytest-datadir = "~=1.3"
 pytest-mypy = "~=0.4"
 hypothesis = {extras = ["django"],version = "~=4.34"}
-xml-subsetter = "~=0.0"
 codecov = "*"
-snakeviz = "~=2.0"
-paramiko = "~=2.6"
 pysnooper = "*"
 gitdir = "*"
 tqdm = "~=4.40"
 python-levenshtein = "*"
+django-debug-toolbar = "~=2.2"
 
 [packages]
 colorama = "~=0.4"
@@ -38,7 +36,7 @@ sortedcontainers = {git = "https://github.com/Madoshakalaka/python-sortedcontain
 # look stuff up
 analyze = "hfst-optimized-lookup CreeDictionary/res/fst/crk-descriptive-analyzer.hfstol"
 generate = "hfst-optimized-lookup CreeDictionary/res/fst/crk-normative-generator.hfstol"
-# tests
+# unit tests
 test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
@@ -48,7 +46,6 @@ format = "black CreeDictionary"
 make-migrations = "python ./CreeDictionary/manage.py makemigrations"
 migrate = "python ./CreeDictionary/manage.py migrate"
 collect-static = "python ./CreeDictionary/manage.py collectstatic --clear --no-input"
-profile = "python -m profiling"
 # reminders/aliases. you can just use $ manage-db after pipenv shell
 # see DatabaseManager/readme.md or provide --help to see help
 # example usage: manage-db import /res/dictionaries/ --multi-process 2

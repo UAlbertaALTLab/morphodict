@@ -1,60 +1,82 @@
+{% comment %}
+
+This should be included or placed dynamical within <main>
+
+{% endcomment %}
+
+
 {% load static %}
 {% load inflection_extras %}
-{# should be placed inside <main> #}
+{% load creedictionary_extras %}
+
+
+{% spaceless %}
+{# This is not in the DOM by default, but JS places in the <h1 id="head"> #}
+<template id="template:play-button">
+  <button aria-label="Play recording" class="definition-title__play-button" data-cy="play-recording">
+    <svg class="definition-title__play-icon" focusable="false">
+      <use xlink:href="#fa-volume-up-solid" />
+    </svg>
+  </button>
+</template>
+
 <article class="definition" id="paradigm">
-    <header class="definition__header">
-        <h1 class="definition-title">
-            <dfn class="definition-title__word"><span lang="cr">{{ lemma.text }}</span></dfn>
-            <span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
-        </h1>
-    </header>
+  <header class="definition__header">
+    <h1 id="head" class="definition-title">
+      <dfn class="definition-title__word">
+        <data id="data:head" value="{{ lemma.text }}">
+          {% orth lemma.text %}
+        </data>
+      </dfn>&nbsp;<span class="definition-title__pos">({{ lemma|presentational_pos }})</span>
+    </h1>
+  </header>
 
-    {# TODO: .definition_recordings #}
+  {# TODO: .definition_recordings #}
 
-    <section class="definition__meanings">
-        <ol class="meanings">
-            {% for def in lemma.definitions.all %}
-                <li class="meanings__meaning">{{ def.text }}
-                    {% for source in def.source_ids %}
-                        <cite class="cite-dict">{{ source }}</cite>
-                    {% endfor %}
-                </li>
-            {% endfor %}
-        </ol>
-    </section>
+  <section class="definition__meanings">
+    <ol class="meanings">
+      {% for def in lemma.definitions.all %}
+      <li class="meanings__meaning">{{ def.text }}
+        {% for source in def.source_ids %}
+        <cite class="cite-dict">{{ source }}</cite>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ol>
+  </section>
 
-    {% if tables %}{# TODO: split this up into its own file? #}
-        <section class="definition__paradigm paradigm" data-cy="paradigm">
-            {% for table in tables %}
-                <table class="paradigm__table">
-                    {% for row in table %}
-                        {% if row.is_title %}
-                            <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
-                        {% else %}
-                            <tr class="paradigm-row">
-                                {% for cell in row %}
-                                    {% if cell.is_label %}
-                                        <th scope="row" class="paradigm-label paradigm-label--row">
-                                            {{ cell }}
-                                        </th>
-                                    {% elif cell.is_heading %}
-                                        <th scope="col" class="paradigm-label paradigm-label--col">
-                                            {{ cell }}
-                                        </th>
-                                    {% elif cell == "" %}
-                                        <td class="paradigm-cell paradigm-cell--empty"></td>
-                                    {% else %}
-                                        <td class="paradigm-cell">
-                                            <span lang="cr">{{ cell }}</span>
-                                        </td>
-                                    {% endif %}
-                                {% endfor %}
-                            </tr>
-                        {% endif %}
-                    {% endfor %}
-                </table>
-            {% endfor %}
-            <button class="paradigm__more-button">show more</button>
-        </section>
-    {% endif %}
+  {% if paradigm_tables %}{# TODO: split this up into its own file? #}
+  <section class="definition__paradigm paradigm" data-cy="paradigm">
+    {% for table in paradigm_tables %}
+    <table class="paradigm__table">
+      {% for row in table %}
+      {% if row.is_title %}
+      <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+      {% else %}
+      <tr class="paradigm-row">
+        {% for cell in row %}
+        {% if cell.is_label %}
+        <th scope="row" class="paradigm-label paradigm-label--row">
+          {{ cell }}
+        </th>
+        {% elif cell.is_heading %}
+        <th scope="col" class="paradigm-label paradigm-label--col">
+          {{ cell }}
+        </th>
+        {% elif cell == "" %}
+        <td class="paradigm-cell paradigm-cell--empty"></td>
+        {% else %}
+        <td class="paradigm-cell"> {% orth cell %}
+        </td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    {% endfor %}
+    <button class="paradigm__more-button">show more</button>
+  </section>
+  {% endif %}
 </article>
+{% endspaceless %}
