@@ -25,11 +25,6 @@
           </article>
 
         <section class="search-results">
-            {% comment %}
-                JavaScript adds the class .search-progress--loading or
-                .search-progress-error, and changes the value:
-            {% endcomment %}
-            <progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
             <ol class="search-results__results" id="search-result-list">
                 {% if search_results %}
                     {% include "CreeDictionary/word-entries.html" %}

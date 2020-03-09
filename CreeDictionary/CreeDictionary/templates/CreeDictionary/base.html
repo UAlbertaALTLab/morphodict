@@ -18,6 +18,12 @@
   {% include './svg-sprites.html' %}
   {% include './components/header.html' %}
 
+{% comment %}
+JavaScript adds the class .search-progress--loading or
+.search-progress-error, and changes the value:
+{% endcomment %}
+<progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
+
 {% block content %}
 {% comment %}
 N.B.: Make sure whatever is placed here has is a <main> or has role=main and
