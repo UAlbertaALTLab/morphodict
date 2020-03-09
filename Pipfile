@@ -52,7 +52,7 @@ import-xml = "manage-db import"
 # Supply `-m|--multi-processing N` to speed up
 # It takes about half a minute with -m 2
 # example usage: pipenv run build-test-db -m 2
-build-test-db = "manage-db build-test-db"
+build-test-db = "./libexec/build_test_db.sh"
 # reminders/alias. you can just use $ update-layouts after pipenv shell
 # 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
