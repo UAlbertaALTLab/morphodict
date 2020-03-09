@@ -61,7 +61,7 @@ update-layouts = 'update-layouts'
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.
-push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/new_db.sqlite3'
+push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 
 [requires]
