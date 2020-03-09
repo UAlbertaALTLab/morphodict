@@ -236,9 +236,31 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             assert (
                 sources is not None
             ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
-            assert (
-                t.text is not None
-            ), f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
+
+            if t.text is None:
+                print(
+                    f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
+                )
+                # this entry in the xml has an empty <t>
+                #  <e>
+                #    <lg>
+                #       <l pos="N">ohpinikêwin</l>
+                #       <lc>NI-1</lc>
+                #       <stem>ohpinikêwin-</stem>
+                #    </lg>
+                #    <mg>
+                #    <tg xml:lang="eng">
+                #        <t pos="N" sources="MD" />
+                #    </tg>
+                #    </mg>
+                #    <mg>
+                #    <tg xml:lang="eng">
+                #        <t pos="N" sources="CW">weightlifting; act of lifting things</t>
+                #    </tg>
+                #    </mg>
+                # </e>
+
+                continue
             if (
                 t.text in str_definitions_for_entry
             ):  # duplicate definition within one <e>, not likely to happen

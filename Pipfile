@@ -44,7 +44,7 @@ dev = "python CreeDictionary/manage.py runserver"
 format = "black CreeDictionary"
 # reminders/aliases. you can just use $ manage-db after pipenv shell
 # see DatabaseManager/readme.md or provide --help to see help
-# example usage: manage-db import /res/dictionaries/ --multi-process 2
+# example usage: manage-db import CreeDictionary/res/dictionaries/ --multi-process 2
 # This only needs to be done once on the remote server for initial database creation.
 manage-db = "manage-db"
 import-xml = "manage-db import"
