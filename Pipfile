@@ -42,10 +42,6 @@ test = "pytest --mypy CreeDictionary/"
 dev = "python CreeDictionary/manage.py runserver"
 # format
 format = "black CreeDictionary"
-# Django stuff
-make-migrations = "python ./CreeDictionary/manage.py makemigrations"
-migrate = "python ./CreeDictionary/manage.py migrate"
-collect-static = "python ./CreeDictionary/manage.py collectstatic --clear --no-input"
 # reminders/aliases. you can just use $ manage-db after pipenv shell
 # see DatabaseManager/readme.md or provide --help to see help
 # example usage: manage-db import /res/dictionaries/ --multi-process 2
@@ -61,6 +57,12 @@ build-test-db = "manage-db build-test-db"
 # 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
 update-layouts = 'update-layouts'
+
+# warning: do not use these.
+# eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
+# , well structured database is ready.
+push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/new_db.sqlite3'
+pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 
 [requires]
 python_version = "3.6" # sapir uses python 3.6.9
