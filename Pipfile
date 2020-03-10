@@ -48,8 +48,9 @@ format = "black CreeDictionary"
 # example usage: pipenv run import-xml CreeDictionary/res/dictionaries/ --multi-process 2
 import-xml = "sh ./libexec/import.sh"
 # do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
-# Extra arguments will be passed to subcommand `build-test-db` of `manage-db`
 # Supply `-m|--multi-processing N` to speed up
+# Extra arguments will be passed to subcommand `build-test-db` of `manage-db`, use `manage-db build-test-db -h` to see
+# detailed help
 # It takes about half a minute with -m 2
 # example usage: `pipenv run build-test-db -m 2`
 build-test-db = "sh ./libexec/build_test_db.sh"
