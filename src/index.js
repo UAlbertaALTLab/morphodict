@@ -242,7 +242,7 @@ $(() => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route.match(/^[/]search[/].+/)) {
+  } else if (route === '/search') {
     // Search page
     prepareTooltips()
   } else if (route.match(/^[/]word[/].+/)) {
