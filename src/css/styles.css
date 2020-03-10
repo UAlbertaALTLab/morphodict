@@ -1053,7 +1053,18 @@ a.menu-choice__label:active {
 /***************************** SEARCH PROGRESS *****************************/
 
 .search-progress {
-  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  display: block;
+  width: 100vw;
+  height: 1rem;
+  border: 0;
+
+  color: var(--app-title-color);
+  background-color: var(--footer-text-color);
 
   opacity: 0;
   visibility: hidden;
