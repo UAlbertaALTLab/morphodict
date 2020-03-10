@@ -5,8 +5,9 @@ from constants import ORTHOGRAPHY_NAME, ParadigmSize
 from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.urls import reverse
 from django.views import View
+
+from .utils import url_for_query
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -133,8 +134,3 @@ def redirect_search(request, query_string: str):
 
     """
     return redirect(url_for_query(query_string), permanent=True)
-
-
-def url_for_query(user_query: str) -> str:
-    path = reverse("cree-dictionary-search")
-    return f"{path}?q={user_query}"
