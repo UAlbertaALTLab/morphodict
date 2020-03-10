@@ -32,6 +32,7 @@ _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
     ("search", views.index, "cree-dictionary-search"),
+    # DEPRECATED: this route 👇 is a permanent redirect to the route above ☝️
     (
         "search/<str:query_string>/",
         views.redirect_search,
