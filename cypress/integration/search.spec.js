@@ -52,7 +52,7 @@ context('Searching', () => {
   })
 
   describe('search results should be ranked by modified levenshtein distance', () => {
-    it.only('should show nipîhk before nîpîhk if the search string is the former', () => {
+    it('should show nipîhk before nîpîhk if the search string is the former', () => {
       cy.visitSearch('nipîhk')
 
       cy.get('[data-cy=search-results]').first()
@@ -68,7 +68,7 @@ context('Searching', () => {
       let lemma = 'atâhk'
       let dicts = ['CW', 'MD']
 
-      cy.visit(`/search/${lemma}`)
+      cy.visitSearch(lemma)
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', lemma)
         .as('definition')
@@ -109,7 +109,6 @@ context('Searching', () => {
 
       cy.get('[data-cy=search-results]')
         .contains('âyiman')
-
     })
 
     it('should handle English-influenced spelling', () => {
@@ -147,7 +146,7 @@ context('Searching', () => {
 
   it('should leave out not normatized content', () => {
     // nipa means "Kill Him" in MD
-    cy.visit('/search/nipa')
+    cy.visitSearch('nipa')
 
     cy.get('[data-cy=search-results]')
       .should('contain', 'sleeps')
