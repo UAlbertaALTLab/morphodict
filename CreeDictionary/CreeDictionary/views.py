@@ -132,7 +132,9 @@ def redirect_search(request, query_string: str):
         /search/TERM -> /search?q=TERM
 
     """
+    return redirect(url_for_query(query_string), permanent=True)
 
+
+def url_for_query(user_query: str) -> str:
     path = reverse("cree-dictionary-search")
-    new_uri = f"{path}?q={query_string}"
-    return redirect(new_uri, permanent=True)
+    return f"{path}?q={user_query}"
