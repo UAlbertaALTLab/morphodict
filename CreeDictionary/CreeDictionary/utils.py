@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Utilities that depend for the CreeDictionary Django application.
+Utilities that depend on the CreeDictionary Django application.
 """
 
 from urllib.parse import ParseResult, urlencode, urlunparse

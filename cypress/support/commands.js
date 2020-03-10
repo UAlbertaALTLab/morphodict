@@ -25,10 +25,13 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
 /**
- * Fixes a bug (feature?) in Cypress: always encodeURIComponent in call to visit:
+ * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
+ * /path/components/ in visit(). This way paths with non-ASCII stuff is
+ * escaped automatically.
+ *
  * Additional options:
  *
- *  escapeComponents: Boolean [default: true]  -- whether to escape URL components
+ *  escapeComponents: Boolean [default: true]  -- whether to escape URL components at all.
  */
 Cypress.Commands.overwrite('visit', (originalVisit, url, options = {}) => {
   // Escape components by default:

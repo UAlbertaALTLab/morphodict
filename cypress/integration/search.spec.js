@@ -230,7 +230,6 @@ context('Searching', () => {
     // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
     it('should show the \'info\' icon to allow users to access additional information', () => {
-
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
       cy.visit('/')
@@ -267,6 +266,8 @@ context('Searching', () => {
         expect(loc.pathname).to.eq('/search')
         expect(loc.search).to.contain('q=niya')
       })
+
+      // Press ENTER!
       cy.get('[data-cy=search]')
         .type('{Enter}')
 

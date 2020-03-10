@@ -146,7 +146,9 @@ function loadResults($input) {
   }
 
   /**
-   * Returns the URL for a query.
+   * Returns a URL that search for the given query.
+   *
+   * The URL is constructed by using the <form>'s action="" attribute.
    */
   function urlForQuery(userQuery) {
     let form = $input.get(0).closest('form')
