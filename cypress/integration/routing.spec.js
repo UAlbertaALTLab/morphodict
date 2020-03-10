@@ -11,15 +11,17 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
   })
 
   it('should redirect to search page if no match is found', function () {
-    // poopoo is a fictional word
-    cy.visit('/word/poopoo/')
+    // pôpô is a fictional word
+    let fakeWord = 'pîpîpôpô'
+    cy.visit(`/word/${fakeWord}/`)
     cy.get('[data-cy=paradigm]')
       .should('not.exist')
 
     // test if the redirection happens
     cy.location().should(
       (loc)=>{
-        expect(loc.pathname).to.eq('/search/poopoo/')
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.eq(`?q=${encodeURIComponent(fakeWord)}`)
       }
     )
 
@@ -31,7 +33,8 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // test if the redirection happens
     cy.location().should(
       (loc)=>{
-        expect(loc.pathname).to.eq(`/search/${encodeURIComponent('nipâw')}/`)
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.eq(`?q=${encodeURIComponent('nipâw')}`)
       }
     )
   })
@@ -45,7 +48,8 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // test if the redirection happens
     cy.location().should(
       (loc)=>{
-        expect(loc.pathname).to.eq('/search/pipon/')
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.eq('?q=pipon')
       }
     )
   })
