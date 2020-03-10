@@ -7,6 +7,7 @@ Template tags related to the Cree Dictionary specifically.
 
 from constants import DEFAULT_ORTHOGRAPHY, ORTHOGRAPHY_NAME
 from cree_sro_syllabics import sro2syllabics
+from CreeDictionary.utils import url_for_query
 from django import template
 from django.utils.html import format_html
 
@@ -90,6 +91,22 @@ def orth(sro_original: str, orthography):
         syllabics,
         inner_text,
     )
+
+
+@register.simple_tag(name="url_for_query")
+def url_for_query_tag(user_query: str) -> str:
+    """
+    Same as url_for_query(query), but usable in a template:
+
+    e.g.,
+
+        {% url_for_query 'wâpamêw' %}
+
+    yields:
+
+        /search?q=w%C3%A2pam%C3%AAw
+    """
+    return url_for_query(user_query)
 
 
 def to_macrons(sro_circumflex: str) -> str:

@@ -149,3 +149,16 @@ def test_no_hyphens_in_syllabics():
         """,
         rendered,
     )
+
+
+def test_url_for_query_tag():
+    """
+    Test that it works at all.
+    """
+
+    context = Context({"query": "wapamew"})
+    template = Template("{% load creedictionary_extras %}" "{% url_for_query query %}")
+
+    rendered = template.render(context)
+    assert "search" in rendered
+    assert "wapamew" in rendered
