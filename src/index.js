@@ -208,20 +208,33 @@ function setupAudioOnPageLoad() {
     })
 }
 
-$(() => {
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+/**
+ * Makes all URL paths relative to '/'.
+ * In development, the root path is '/', so nothing changes.
+ * On Sapir (as of 2020-03-09), the root path is '/cree-dictionary/'.
+ */
+function makeRouteRelativeToSlash(route) {
+  let baseURL = Urls['cree-dictionary-index']()
+  return route.replace(baseURL, '/')
+}
 
+$(() => {
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
 
-  setupAudioOnPageLoad()
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
 
-  let route = window.location.pathname
+  // setup search bar
   let $input = $('#search')
+  $input.on('input', () => {
+    loadResults($input)
+    changeTitleByInput($input.val())
+  })
 
+  let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
   if (route === '/') {
     // Homepage
@@ -230,11 +243,12 @@ $(() => {
     // About page
     setSubtitle('About')
   } else if (route.match(/^[/]search[/].+/)) {
+    // Search page
     prepareTooltips()
+  } else if (route.match(/^[/]word[/].+/)) {
+    // Word detail/paradigm page. This one has the 🔊 button.
+    setupAudioOnPageLoad()
+  } else {
+    throw new Error(`Could not match route: ${route}`)
   }
-
-  $input.on('input', () => {
-    loadResults($input)
-    changeTitleByInput($input.val())
-  })
 })
