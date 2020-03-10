@@ -36,7 +36,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
         }
         return HttpResponse(render(request, "CreeDictionary/index.html", context))
     else:
-        return redirect("cree-dictionary-index-with-query", query_string=lemma_text)
+        return redirect(url_for_query(lemma_text or ""))
 
 
 def index(request):  # pragma: no cover
