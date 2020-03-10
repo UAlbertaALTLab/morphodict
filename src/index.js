@@ -149,7 +149,8 @@ function loadResults($input) {
    * Returns the URL for a query.
    */
   function urlForQuery(userQuery) {
-    return Urls['cree-dictionary-index-with-query'](userQuery)
+    let form = $input.get(0).closest('form')
+    return form.action + `?q=${encodeURIComponent(userQuery)}`
   }
 }
 
