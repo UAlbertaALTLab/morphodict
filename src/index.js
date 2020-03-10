@@ -56,14 +56,14 @@ function cleanParadigm() {
 }
 
 
-function showInstruction() {
-  let instruction = $('#introduction-text')
-  instruction.show()
+function showProse() {
+  let prose = $('#prose')
+  prose.show()
 }
 
-function hideInstruction() {
-  let instruction = $('#introduction-text')
-  instruction.hide()
+function hideProse() {
+  let prose = $('#prose')
+  prose.hide()
 }
 
 /**
@@ -101,7 +101,7 @@ function loadResults($input) {
   function issueSearch() {
     window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-query'](text))
 
-    hideInstruction()
+    hideProse()
 
     let xhttp = new XMLHttpRequest()
 
@@ -138,7 +138,7 @@ function loadResults($input) {
   function goToHomePage() {
     window.history.replaceState(text, document.title, Urls['cree-dictionary-index']())
 
-    showInstruction()
+    showProse()
 
     hideLoadingIndicator()
     $searchResultList.empty()
