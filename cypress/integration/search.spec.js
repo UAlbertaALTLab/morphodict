@@ -255,23 +255,24 @@ context('Searching', () => {
     })
 
     it('should not change location upon pressing enter', function () {
-      let originalLocation
+      let originalPathname, originalSearch
       cy.visit('/')
 
       cy.get('[data-cy=search]')
         .type('niya')
 
-      cy.location('pathname').should(loc => {
-        originalLocation = loc
+      cy.location().should((loc) => {
+        originalPathname = loc.pathname
+        originalSearch = loc.search
         expect(loc.pathname).to.eq('/search')
-        expect(loc.query).to.contain('q=niya')
+        expect(loc.search).to.contain('q=niya')
       })
-
       cy.get('[data-cy=search]')
         .type('{Enter}')
 
       cy.location().should(loc => {
-        expect(loc).to.eq(originalLocation)
+        expect(loc.pathname).to.eq(originalPathname)
+        expect(loc.search).to.eq(originalSearch)
       })
     })
   })
