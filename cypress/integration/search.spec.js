@@ -1,5 +1,4 @@
 context('Searching', () => {
-
   describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
     it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
@@ -31,10 +30,7 @@ context('Searching', () => {
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
     })
-
-  }
-  )
-
+  })
 
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
@@ -56,9 +52,8 @@ context('Searching', () => {
   })
 
   describe('search results should be ranked by modified levenshtein distance', () => {
-    it('should show nipîhk before nîpîhk if the search string is the former', () => {
-
-      cy.visit('/search/nipîhk')
+    it.only('should show nipîhk before nîpîhk if the search string is the former', () => {
+      cy.visitSearch('nipîhk')
 
       cy.get('[data-cy=search-results]').first()
         .should('contain', 'nipîhk')
