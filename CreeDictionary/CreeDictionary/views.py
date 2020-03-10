@@ -46,6 +46,7 @@ def index(request, query_string=None):  # pragma: no cover
     :return:
     """
 
+    query_string = request.GET.get("q", query_string)
     context = {
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display

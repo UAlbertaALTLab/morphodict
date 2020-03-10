@@ -31,6 +31,7 @@ from django_js_reverse.views import urls_js
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
+    ("search", views.index, "cree-dictionary-search"),
     ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-query"),
     # word is a user-friendly alternative for the linguistic term "lemma"
     (
