@@ -42,17 +42,17 @@ test = "pytest --mypy CreeDictionary/"
 dev = "python CreeDictionary/manage.py runserver"
 # format
 format = "black CreeDictionary"
-# reminders/aliases. you can just use $ manage-db after pipenv shell
-# see DatabaseManager/readme.md or provide --help to see help
-# example usage: manage-db import CreeDictionary/res/dictionaries/ --multi-process 2
-# This only needs to be done once on the remote server for initial database creation.
-manage-db = "manage-db"
-import-xml = "manage-db import"
+# `import-xml` removes the database and builds a new one from the start,
+# it shouldn't be used because we are waiting for a well structured new database
+# so that we can move to a more continuous workflow where manual database modification can be persisted
+# example usage: pipenv run import-xml CreeDictionary/res/dictionaries/ --multi-process 2
+import-xml = "sh ./libexec/import.sh"
 # do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
+# Extra arguments will be passed to subcommand `build-test-db` of `manage-db`
 # Supply `-m|--multi-processing N` to speed up
 # It takes about half a minute with -m 2
-# example usage: pipenv run build-test-db -m 2
-build-test-db = "./libexec/build_test_db.sh"
+# example usage: `pipenv run build-test-db -m 2`
+build-test-db = "sh ./libexec/build_test_db.sh"
 # reminders/alias. you can just use $ update-layouts after pipenv shell
 # 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
