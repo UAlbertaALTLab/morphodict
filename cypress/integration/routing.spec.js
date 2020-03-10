@@ -11,7 +11,7 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
   })
 
   it('should redirect to search page if no match is found', function () {
-    // pôpô is a fictional word
+    // pîpîpôpô is a fictional word
     let fakeWord = 'pîpîpôpô'
     cy.visit(`/word/${fakeWord}/`)
     cy.get('[data-cy=paradigm]')
