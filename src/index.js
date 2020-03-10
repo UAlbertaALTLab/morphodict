@@ -89,17 +89,17 @@ function prepareTooltips() {
  * @param {jQuery} $input
  */
 function loadResults($input) {
-  let text = $input.val()
+  let userQuery = $input.val()
   let $searchResultList = $('#search-result-list')
 
-  if (text !== '') {
+  if (userQuery !== '') {
     issueSearch()
   } else {
     goToHomePage()
   }
 
   function issueSearch() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-query'](text))
+    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
 
     hideInstruction()
 
@@ -114,7 +114,7 @@ function loadResults($input) {
       if (xhttp.status === 200) {
         // user input may have changed during the request
         const inputNow = $input.val()
-        if (inputNow === text) { // hasn't changed
+        if (inputNow === userQuery) { // hasn't changed
           // Remove loading cards
           indicateLoadedSuccessfully()
           cleanParadigm()
@@ -130,13 +130,14 @@ function loadResults($input) {
     }
 
     xhttp.onerror = function () {
+      // TODO: we should do something here!
     }
-    xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
+    xhttp.open('GET', Urls['cree-dictionary-search-results'](userQuery), true)
     xhttp.send()
   }
 
   function goToHomePage() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index']())
+    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
 
     showInstruction()
 
@@ -144,6 +145,15 @@ function loadResults($input) {
     $searchResultList.empty()
   }
 
+  /**
+   * Returns a URL that search for the given query.
+   *
+   * The URL is constructed by using the <form>'s action="" attribute.
+   */
+  function urlForQuery(userQuery) {
+    let form = $input.get(0).closest('form')
+    return form.action + `?q=${encodeURIComponent(userQuery)}`
+  }
 }
 
 /**

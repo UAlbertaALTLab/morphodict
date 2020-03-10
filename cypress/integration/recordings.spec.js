@@ -8,7 +8,7 @@ context('Recordings', function () {
         .as('recordingsResults')
 
       // Get to the definition/paradigm page for "wâpamêw"
-      cy.visit('/search/wâpamêw')
+      cy.visitSearch('wâpamêw')
       cy.contains('a', 'wâpamêw')
         .click()
       cy.url()

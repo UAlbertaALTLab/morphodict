@@ -7,6 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.views import View
 
+from .utils import url_for_query
+
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on every view function
@@ -34,10 +36,10 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
         }
         return HttpResponse(render(request, "CreeDictionary/index.html", context))
     else:
-        return redirect("cree-dictionary-index-with-query", query_string=lemma_text)
+        return redirect(url_for_query(lemma_text or ""))
 
 
-def index(request, query_string=None):  # pragma: no cover
+def index(request):  # pragma: no cover
     """
     homepage with optional initial search results to display
 
@@ -46,14 +48,15 @@ def index(request, query_string=None):  # pragma: no cover
     :return:
     """
 
+    user_query = request.GET.get("q", None)
     context = {
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display
-        "query_string": query_string,
+        "query_string": user_query,
         "search_results": [
-            search_result.serialize() for search_result in Wordform.search(query_string)
+            search_result.serialize() for search_result in Wordform.search(user_query)
         ]
-        if query_string
+        if user_query
         else [],
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
@@ -121,3 +124,13 @@ class ChangeOrthography(View):
         response = HttpResponse(status=HTTPStatus.NO_CONTENT)
         response.set_cookie("orth", orth)
         return response
+
+
+def redirect_search(request, query_string: str):
+    """
+    Permanently redirect from old search URL to new search URL.
+
+        /search/TERM -> /search?q=TERM
+
+    """
+    return redirect(url_for_query(query_string), permanent=True)

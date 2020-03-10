@@ -1,5 +1,4 @@
 context('Searching', () => {
-
   describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
     it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
@@ -31,10 +30,7 @@ context('Searching', () => {
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
     })
-
-  }
-  )
-
+  })
 
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
@@ -48,7 +44,7 @@ context('Searching', () => {
     })
 
     it('should perform the search by going directly to the URL', () => {
-      cy.visit('/search/minos')
+      cy.visit('/search?q=minos', { escapeComponents: false })
 
       cy.get('[data-cy=search-results]')
         .should('contain', 'cat')
@@ -57,8 +53,7 @@ context('Searching', () => {
 
   describe('search results should be ranked by modified levenshtein distance', () => {
     it('should show nipîhk before nîpîhk if the search string is the former', () => {
-
-      cy.visit('/search/nipîhk')
+      cy.visitSearch('nipîhk')
 
       cy.get('[data-cy=search-results]').first()
         .should('contain', 'nipîhk')
@@ -73,7 +68,7 @@ context('Searching', () => {
       let lemma = 'atâhk'
       let dicts = ['CW', 'MD']
 
-      cy.visit(`/search/${lemma}`)
+      cy.visitSearch(lemma)
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', lemma)
         .as('definition')
@@ -114,7 +109,6 @@ context('Searching', () => {
 
       cy.get('[data-cy=search-results]')
         .contains('âyiman')
-
     })
 
     it('should handle English-influenced spelling', () => {
@@ -152,7 +146,7 @@ context('Searching', () => {
 
   it('should leave out not normatized content', () => {
     // nipa means "Kill Him" in MD
-    cy.visit('/search/nipa')
+    cy.visitSearch('nipa')
 
     cy.get('[data-cy=search-results]')
       .should('contain', 'sleeps')
@@ -228,15 +222,14 @@ context('Searching', () => {
         .should('have.class', 'search-progress--error')
     })
   })
-  
-    
+
+
   describe('When I perform a search, I should see the \'info\' icon on corresponding entries', () => {
     // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/239).
-    
+
     // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
     it('should show the \'info\' icon to allow users to access additional information', () => {
-      
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
       cy.visit('/')
@@ -244,6 +237,44 @@ context('Searching', () => {
         .type(searchTerm)
 
       cy.get('[data-cy=search-result]').find('[data-cy=information-mark]')
+    })
+  })
+
+  describe('When I type at the search bar, I should see results instantly', function () {
+    it('should display results in the page', function () {
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location('pathname')
+        .should('contain', '/search')
+      cy.location('search')
+        .and('contain', 'q=niya')
+    })
+
+    it('should not change location upon pressing enter', function () {
+      let originalPathname, originalSearch
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location().should((loc) => {
+        originalPathname = loc.pathname
+        originalSearch = loc.search
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.contain('q=niya')
+      })
+
+      // Press ENTER!
+      cy.get('[data-cy=search]')
+        .type('{Enter}')
+
+      cy.location().should(loc => {
+        expect(loc.pathname).to.eq(originalPathname)
+        expect(loc.search).to.eq(originalSearch)
+      })
     })
   })
 })
