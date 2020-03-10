@@ -9,8 +9,8 @@ from django.urls import reverse
 
 @pytest.mark.django_db
 def test_redirect(client):
-    lemma = "wâpamêw"
-    response = client.get(reverse("cree-dictionary-index-with-query", args=[lemma]))
+    wordform = "wâpamêw"
+    response = client.get(reverse("cree-dictionary-index-with-query", args=[wordform]))
     assert (
         response.status_code == HTTPStatus.MOVED_PERMANENTLY
     ), "Did not get a redirect"
