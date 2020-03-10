@@ -44,7 +44,7 @@ context('Searching', () => {
     })
 
     it('should perform the search by going directly to the URL', () => {
-      cy.visit('/search/minos')
+      cy.visit('/search?q=minos', { escapeComponents: false })
 
       cy.get('[data-cy=search-results]')
         .should('contain', 'cat')
@@ -222,15 +222,15 @@ context('Searching', () => {
         .should('have.class', 'search-progress--error')
     })
   })
-  
-    
+
+
   describe('When I perform a search, I should see the \'info\' icon on corresponding entries', () => {
     // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/239).
-    
+
     // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
     it('should show the \'info\' icon to allow users to access additional information', () => {
-      
+
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
       cy.visit('/')
