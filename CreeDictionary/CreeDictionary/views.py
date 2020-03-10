@@ -38,7 +38,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
         return redirect("cree-dictionary-index-with-query", query_string=lemma_text)
 
 
-def index(request, query_string=None):  # pragma: no cover
+def index(request):  # pragma: no cover
     """
     homepage with optional initial search results to display
 
@@ -47,15 +47,15 @@ def index(request, query_string=None):  # pragma: no cover
     :return:
     """
 
-    query_string = request.GET.get("q", query_string)
+    user_query = request.GET.get("q", None)
     context = {
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display
-        "query_string": query_string,
+        "query_string": user_query,
         "search_results": [
-            search_result.serialize() for search_result in Wordform.search(query_string)
+            search_result.serialize() for search_result in Wordform.search(user_query)
         ]
-        if query_string
+        if user_query
         else [],
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))

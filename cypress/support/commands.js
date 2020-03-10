@@ -30,7 +30,7 @@
  *
  *  escapeComponents: Boolean [default: true]  -- whether to escape URL components
  */
-Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
+Cypress.Commands.overwrite('visit', (originalVisit, url, options = {}) => {
   // Escape components by default:
   if (options.escapeComponents === undefined) {
     options.escapeComponents = true
