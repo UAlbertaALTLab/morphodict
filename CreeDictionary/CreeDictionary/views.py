@@ -5,6 +5,7 @@ from constants import ORTHOGRAPHY_NAME, ParadigmSize
 from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
+from django.urls import reverse
 from django.views import View
 
 # "pragma: no cover" works with coverage.
@@ -122,3 +123,16 @@ class ChangeOrthography(View):
         response = HttpResponse(status=HTTPStatus.NO_CONTENT)
         response.set_cookie("orth", orth)
         return response
+
+
+def redirect_search(request, query_string: str):
+    """
+    Permanently redirect from old search URL to new search URL.
+
+        /search/TERM -> /search?q=TERM
+
+    """
+
+    path = reverse("cree-dictionary-search")
+    new_uri = f"{path}?q={query_string}"
+    return redirect(new_uri, permanent=True)
