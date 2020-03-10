@@ -15,7 +15,7 @@ context('Paradigms', () => {
     // Create test cases for each word above
     for (let {pos, lemma, inflections} of testCases) {
       it(`should display the paradigm for an ${pos} word`, () => {
-        cy.visit(`/search/${lemma}`)
+        cy.visitSearch(lemma)
         cy.get('[data-cy=search-results]')
           .contains('a', lemma)
           .click()
@@ -35,7 +35,7 @@ context('Paradigms', () => {
     // upstream layouts are broken :/
     it.skip('should display titles within the paradigm', () => {
       // TODO: move this test into the previous test when the layout is fixed.
-      cy.visit('/search/minôsis')
+      cy.visitSearch('minôsis')
       cy.get('[data-cy=search-results]')
         .contains('a', 'minôsis')
         .click()

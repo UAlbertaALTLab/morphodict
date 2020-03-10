@@ -89,17 +89,17 @@ function prepareTooltips() {
  * @param {jQuery} $input
  */
 function loadResults($input) {
-  let text = $input.val()
+  let userQuery = $input.val()
   let $searchResultList = $('#search-result-list')
 
-  if (text !== '') {
+  if (userQuery !== '') {
     issueSearch()
   } else {
     goToHomePage()
   }
 
   function issueSearch() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index-with-query'](text))
+    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
 
     hideProse()
 
@@ -114,7 +114,7 @@ function loadResults($input) {
       if (xhttp.status === 200) {
         // user input may have changed during the request
         const inputNow = $input.val()
-        if (inputNow === text) { // hasn't changed
+        if (inputNow === userQuery) { // hasn't changed
           // Remove loading cards
           indicateLoadedSuccessfully()
           cleanParadigm()
@@ -130,13 +130,14 @@ function loadResults($input) {
     }
 
     xhttp.onerror = function () {
+      // TODO: we should do something here!
     }
-    xhttp.open('GET', Urls['cree-dictionary-search-results'](text), true)
+    xhttp.open('GET', Urls['cree-dictionary-search-results'](userQuery), true)
     xhttp.send()
   }
 
   function goToHomePage() {
-    window.history.replaceState(text, document.title, Urls['cree-dictionary-index']())
+    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
 
     showProse()
 
@@ -144,6 +145,15 @@ function loadResults($input) {
     $searchResultList.empty()
   }
 
+  /**
+   * Returns a URL that search for the given query.
+   *
+   * The URL is constructed by using the <form>'s action="" attribute.
+   */
+  function urlForQuery(userQuery) {
+    let form = $input.get(0).closest('form')
+    return form.action + `?q=${encodeURIComponent(userQuery)}`
+  }
 }
 
 /**
@@ -198,20 +208,33 @@ function setupAudioOnPageLoad() {
     })
 }
 
-$(() => {
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+/**
+ * Makes all URL paths relative to '/'.
+ * In development, the root path is '/', so nothing changes.
+ * On Sapir (as of 2020-03-09), the root path is '/cree-dictionary/'.
+ */
+function makeRouteRelativeToSlash(route) {
+  let baseURL = Urls['cree-dictionary-index']()
+  return route.replace(baseURL, '/')
+}
 
+$(() => {
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
   })
 
-  setupAudioOnPageLoad()
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
 
-  let route = window.location.pathname
+  // setup search bar
   let $input = $('#search')
+  $input.on('input', () => {
+    loadResults($input)
+    changeTitleByInput($input.val())
+  })
 
+  let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
   if (route === '/') {
     // Homepage
@@ -220,11 +243,12 @@ $(() => {
     // About page
     setSubtitle('About')
   } else if (route.match(/^[/]search[/].+/)) {
+    // Search page
     prepareTooltips()
+  } else if (route.match(/^[/]word[/].+/)) {
+    // Word detail/paradigm page. This one has the 🔊 button.
+    setupAudioOnPageLoad()
+  } else {
+    throw new Error(`Could not match route: ${route}`)
   }
-
-  $input.on('input', () => {
-    loadResults($input)
-    changeTitleByInput($input.val())
-  })
 })

@@ -31,7 +31,13 @@ from django_js_reverse.views import urls_js
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
-    ("search/<str:query_string>/", views.index, "cree-dictionary-index-with-query"),
+    ("search", views.index, "cree-dictionary-search"),
+    # DEPRECATED: this route 👇 is a permanent redirect to the route above ☝️
+    (
+        "search/<str:query_string>/",
+        views.redirect_search,
+        "cree-dictionary-index-with-query",
+    ),
     # word is a user-friendly alternative for the linguistic term "lemma"
     (
         "word/<str:lemma_text>/",
