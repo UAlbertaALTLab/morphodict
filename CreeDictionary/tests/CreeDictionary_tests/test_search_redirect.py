@@ -4,6 +4,7 @@
 from http import HTTPStatus
 
 import pytest
+from CreeDictionary.utils import url_for_query
 from django.urls import reverse
 
 
@@ -14,3 +15,6 @@ def test_redirect(client):
     assert (
         response.status_code == HTTPStatus.MOVED_PERMANENTLY
     ), "Did not get a redirect"
+
+    # Ensure the redirect is for the correct query.
+    assert url_for_query(wordform) in response.url
