@@ -24,9 +24,26 @@
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-// fixes a bug (feature?) in Cypress: always encodeURIComponent in call to visit:
+/**
+ * Fixes a bug (feature?) in Cypress: always encodeURIComponent in call to visit:
+ * Additional options:
+ *
+ *  escapeComponents: Boolean [default: true]  -- whether to escape URL components
+ */
 Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
-  let newURL = url.split('/').map(encodeURIComponent).join('/')
+  // Escape components by default:
+  if (options.escapeComponents === undefined) {
+    options.escapeComponents = true
+  }
+
+  let newURL
+  if (options.escapeComponents) {
+    newURL = url.split('/').map(encodeURIComponent).join('/')
+  } else {
+    newURL = url
+  }
+  delete options.escapeComponents
+
   if (newURL !== url) {
     Cypress.log({
       name: 'visit',
@@ -37,11 +54,13 @@ Cypress.Commands.overwrite('visit', (originalVisit, url, options) => {
   return originalVisit(newURL, options)
 })
 
-
-Cypress.Commands.add('visitSearch', { prevSubject: false}, (searchTerm) => {
+/**
+ * Visit the search page for the given search query.
+ */
+Cypress.Commands.add('visitSearch', { prevSubject: false }, (searchQuery) => {
   Cypress.log({
     name: 'visitSearch',
-    message: `visiting search page for: ${searchTerm}`
+    message: `visiting search page for: ${searchQuery}`
   })
-  return cy.visit(`/search/${searchTerm}`)
+  return cy.visit(`/search?q=${encodeURIComponent(searchQuery)}`, { escapeComponents: false })
 })
