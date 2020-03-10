@@ -240,4 +240,39 @@ context('Searching', () => {
       cy.get('[data-cy=search-result]').find('[data-cy=information-mark]')
     })
   })
+
+  describe('When I type at the search bar, I should see results instantly', function () {
+    it('should display results in the page', function () {
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location('pathname')
+        .should('contain', '/search')
+      cy.location('search')
+        .and('contain', 'q=niya')
+    })
+
+    it('should not change location upon pressing enter', function () {
+      let originalLocation
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location('pathname').should(loc => {
+        originalLocation = loc
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.query).to.contain('q=niya')
+      })
+
+      cy.get('[data-cy=search]')
+        .type('{Enter}')
+
+      cy.location().should(loc => {
+        expect(loc).to.eq(originalLocation)
+      })
+    })
+  })
 })
