@@ -141,7 +141,6 @@ def feed_to_hfstol_process(proc: subprocess.Popen, surface_form) -> set:
         if new_char == "\n":
             consecutive_newline_count += 1
             if line_buffer.strip():
-                print("lol", line_buffer)
                 original_input, res, *rest = line_buffer.split("\t")
                 if "+?" not in rest and "+?" not in res:
                     results.add(res)
