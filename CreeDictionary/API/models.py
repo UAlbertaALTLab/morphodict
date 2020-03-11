@@ -33,8 +33,8 @@ from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 from shared import (
-    descriptive_analyzer,
-    normative_generator,
+    DescriptiveAnalyzer,
+    NormativeGenerator,
 )
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
@@ -46,6 +46,8 @@ from utils.fst_analysis_parser import (
 )
 
 logger = logging.getLogger(__name__)
+descriptive_analyzer = DescriptiveAnalyzer()
+normative_generator = NormativeGenerator()
 
 
 def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
@@ -360,10 +362,7 @@ class Wordform(models.Model):
         # 2. definition containment of the query word
         cree_results: Set[CreeResult] = set()
 
-        fst_analyses: Set[Analysis] = {
-            Analysis(a)
-            for a in descriptive_analyzer.feed_in_bulk_fast([user_query])[user_query]
-        }
+        fst_analyses: Set[Analysis] = descriptive_analyzer.analyze(user_query)
 
         all_standard_forms = []
 
@@ -397,9 +396,9 @@ class Wordform(models.Model):
                 normatized_analysis = analysis.replace("+Err/Orth", "")
                 normatized_form_for_analysis = [
                     form
-                    for form in normative_generator.feed_in_bulk_fast(
-                        [normatized_analysis]
-                    )[normatized_analysis]
+                    for form in normative_generator.generate(
+                        Analysis(normatized_analysis)
+                    )
                 ]
                 all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:
