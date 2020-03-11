@@ -29,7 +29,6 @@ creedictionary = {path = "./CreeDictionary",editable = true} # needed to install
 typing-extensions = "~=3.7"
 attrs = "~=19.1"
 django-js-reverse = "~=0.9"
-fst-lookup = "*"
 sortedcontainers = {git = "https://github.com/Madoshakalaka/python-sortedcontainers.git"}
 
 [scripts]
@@ -57,7 +56,6 @@ build-test-db = "manage-db build-test-db"
 # 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
 # 2. combine them to res/prefilled-layouts/, which is then used at runtime
 update-layouts = 'update-layouts'
-
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.

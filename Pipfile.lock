@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "0adb715c30939c4d09c9521432b969d44c8ad8d34aed0c9f1ebb32bfbda749ff"
+            "sha256": "6e3f9b459e6807c82bab852593ec1cfaac5f4bf9e78c51dd7593713c04eda5d3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -97,14 +97,6 @@
             ],
             "index": "pypi",
             "version": "==0.10.1a0"
-        },
-        "fst-lookup": {
-            "hashes": [
-                "sha256:16dd21e9f18c12f2305698da7f3278325871aeb703d61921a37c1e242fe22190",
-                "sha256:1781c826f1944e8c17d343af63b28a49d8ad86e9edd3cc13b559e56b1dda82d7"
-            ],
-            "index": "pypi",
-            "version": "==2020.2.17.post1"
         },
         "hfstol": {
             "hashes": [
