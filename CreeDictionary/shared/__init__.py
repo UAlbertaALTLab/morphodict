@@ -74,7 +74,7 @@ class NormativeGenerator:
             # do initialization here
             self.proc = subprocess.Popen(
                 args=[
-                    "hfst-optimized-lookup",
+                    str(shared_res_dir / "fst" / "hfst-optimized-lookup"),
                     "--quiet",
                     "--pipe-mode",
                     str(shared_res_dir / "fst" / "crk-normative-generator.hfstol"),
