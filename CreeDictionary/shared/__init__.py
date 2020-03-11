@@ -131,7 +131,7 @@ def feed_to_hfstol_process(proc: subprocess.Popen, surface_form) -> set:
     # ignore empty characters (consecutive white space characters from previous invocations)
     while 1:
         char = proc.stdout.read(1)
-        if char:
+        if char.strip():
             line_buffer = char
             break
 
