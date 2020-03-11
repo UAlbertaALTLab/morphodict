@@ -56,14 +56,14 @@ function cleanParadigm() {
 }
 
 
-function showInstruction() {
-  let instruction = $('#introduction-text')
-  instruction.show()
+function showProse() {
+  let prose = $('#prose')
+  prose.show()
 }
 
-function hideInstruction() {
-  let instruction = $('#introduction-text')
-  instruction.hide()
+function hideProse() {
+  let prose = $('#prose')
+  prose.hide()
 }
 
 /**
@@ -101,7 +101,7 @@ function loadResults($input) {
   function issueSearch() {
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
 
-    hideInstruction()
+    hideProse()
 
     let xhttp = new XMLHttpRequest()
 
@@ -139,7 +139,7 @@ function loadResults($input) {
   function goToHomePage() {
     window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
 
-    showInstruction()
+    showProse()
 
     hideLoadingIndicator()
     $searchResultList.empty()
@@ -242,7 +242,7 @@ $(() => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route.match(/^[/]search[/].+/)) {
+  } else if (route === '/search') {
     // Search page
     prepareTooltips()
   } else if (route.match(/^[/]word[/].+/)) {

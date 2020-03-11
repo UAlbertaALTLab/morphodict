@@ -18,16 +18,31 @@
   {% include './svg-sprites.html' %}
   {% include './components/header.html' %}
 
-{% block content %}
-{% comment %}
-N.B.: Make sure whatever is placed here has is a <main> or has role=main and
-has id="start-of-content"
-{% endcomment %}
-  <main id="start-of-content">
-    <strong> Placeholder content! </strong> If you're seeing this, something
-    went wrong.
+  {% comment %}
+  JavaScript adds the class .search-progress--loading or
+  .search-progress-error, and changes the value:
+  {% endcomment %}
+  <progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
+
+  <main id="start-of-content" class="app__content app__pane">
+    <div id="prose">
+    {% block prose %}
+    {% endblock %}
+    </div>
+
+    <section class="search-results">
+      <ol class="search-results__results" id="search-result-list">
+        {% if search_results %}
+        {% include "CreeDictionary/word-entries.html" %}
+        {% endif %}
+      </ol>
+    </section>
+
+    {% if lemma_id %}
+      {% include 'CreeDictionary/paradigm.html' %}
+    {% endif %}
+
   </main>
-{% endblock %}
 
 <footer class="app-footer">
     <div class="app-footer__links footer-links app-footer__site-links">

@@ -184,4 +184,20 @@ context('Regressions', () => {
     cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
     cy.contains('th', 's/he/they (further) → him/her') // 4 -> 3
   })
+
+  /**
+   * Ensure search can be initiated from about page.
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/280
+   */
+  it('should search from the about page', function () {
+    cy.visit('/about')
+    cy.get('[data-cy="search"]')
+      .type('acâhkos')
+
+    cy.url()
+      .should('contain', '/search')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'atâhk')
+  })
 })
