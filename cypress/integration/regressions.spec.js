@@ -100,15 +100,6 @@ context('Regressions', () => {
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
-  describe('should show idiomatic lemmas', () => {
-    it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
-      cy.visitSearch('ayiwinis')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'ayiwinisa')
-    })
-  })
-
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
   describe('should show at least two lemmas for lexicalized diminutive forms', () => {
     it('should show atâhk and acâhkos for acâhkos', () => {
       cy.visitSearch('acâhkos')
@@ -128,13 +119,6 @@ context('Regressions', () => {
     }
     )
   })
-
-  it('The Cree word ayiwinis should give you ayiwinisa as lemma', () => {
-    cy.visitSearch('ayiwinis')
-    cy.get('[data-cy=search-results]')
-      .should('contain', 'ayiwinisa')
-  })
-
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
   it('should just show two meanings for the lemma nipâw', () => {
