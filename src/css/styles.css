@@ -449,6 +449,14 @@ html {
   vertical-align: middle;
 }
 
+.definition-title__tooltip-icon > img:focus {
+  outline-color: var(--search-focus-color);
+}
+
+.definition-title__tooltip-icon:focus {
+  outline-color: var(--search-focus-color);
+}
+
 .reference-to-lemma {
   margin: var(--gap) 0 0;
 
