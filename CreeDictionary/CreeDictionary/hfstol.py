@@ -51,11 +51,16 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
             encoding="UTF-8",
         )
 
-    *raw_analyses, blank_line = output.split("\n")
-    assert blank_line.strip() == ""
+    raw_analyses = output.split("\n")
 
     for line in raw_analyses:
-        input_form, _tab, analysis = line.partition("\t")
+        # hfst likes to output a bunch of empty lines. Ignore them.
+        if line.strip() == "":
+            continue
+
+        input_form, _tab, analysis = line.rstrip().partition("\t")
+        print(repr(line))
+
         parts = analysis.split("+")
         prefixes = []
         for lemma_loc, prefix in enumerate(parts):
@@ -65,6 +70,10 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
                 break
         lemma = parts[lemma_loc]
         suffixes = parts[lemma_loc + 1 :]
+
+        # Faild to analyze term
+        if suffixes == ["?"]:
+            continue
 
         yield Analysis(
             raw_prefixes="+".join(prefixes),
