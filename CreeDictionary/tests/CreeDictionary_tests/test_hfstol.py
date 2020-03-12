@@ -37,3 +37,8 @@ def test_analyze_with_prefix(wordform, lemma, prefix):
     assert prefix in analysis.raw_prefixes
     assert "AI" in analysis.raw_suffixes
     assert "Prt" in analysis.raw_suffixes
+
+
+def test_analyze_nonword():
+    # "pîpîpôpô" is not a real word
+    assert list(analyze("pîpîpôpô")) == []
