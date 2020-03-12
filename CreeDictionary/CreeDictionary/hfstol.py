@@ -9,7 +9,7 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, Iterable, NamedTuple
+from typing import IO, Generator, Iterable, List, NamedTuple
 
 from utils.shared_res_dir import shared_res_dir as res
 
@@ -33,7 +33,7 @@ class Analysis(NamedTuple):
     raw_suffixes: str
 
 
-def analyze(wordform: str) -> Generator[Analysis, None, None]:
+def analyze(wordform: str) -> Iterable[Analysis]:
     with write_temporary_file(f"{wordform}\n") as input_file:
         output = check_output(
             [_hfstol, "-q", _analyzer_path],
@@ -43,7 +43,16 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
         )
 
     raw_analyses = output.split("\n")
+    return parse_analyses(raw_analyses)
 
+
+def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, None]:
+    """
+    Given a list of lines from xfst/hfst output from the Plains Cree FST,
+    yields analyses.
+
+    This will break if using a different FST!
+    """
     for line in raw_analyses:
         # hfst likes to output a bunch of empty lines. Ignore them.
         if line.strip() == "":
