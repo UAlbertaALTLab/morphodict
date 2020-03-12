@@ -1106,6 +1106,17 @@ a.menu-choice__label:active {
   vertical-align: middle;
 }
 
+
+.cite-dict--popup{
+    /* Color */
+  color: var(--cite-text-popup-color);
+  /* Text */
+  font-size: var(--cite-text-font-size);
+  font-style: normal;
+  font-weight: var(--strong-font-weight);
+  vertical-align: middle;
+}
+
 /**
  * BLOCK
  *
