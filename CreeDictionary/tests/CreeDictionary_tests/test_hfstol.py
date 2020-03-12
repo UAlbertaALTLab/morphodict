@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-
 from CreeDictionary.hfstol import analyze
 
 
@@ -29,6 +28,7 @@ def test_analyze_wordform(wordform, lemma, suffix):
         ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci"),
         ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kah"),
         ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi"),
+        ("nêpat", "nipâw", "IC"),
     ],
 )
 def test_analyze_with_prefix(wordform, lemma, prefix):
@@ -36,7 +36,7 @@ def test_analyze_with_prefix(wordform, lemma, prefix):
     assert analysis.lemma == lemma
     assert prefix in analysis.raw_prefixes
     assert "AI" in analysis.raw_suffixes
-    assert "Prt" in analysis.raw_suffixes
+    assert "Cnj" in analysis.raw_suffixes
 
 
 def test_analyze_nonword():
