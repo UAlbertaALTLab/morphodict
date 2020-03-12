@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
+
 from CreeDictionary.hfstol import analyze
 
 
@@ -42,3 +43,12 @@ def test_analyze_with_prefix(wordform, lemma, prefix):
 def test_analyze_nonword():
     # "pîpîpôpô" is not a real word
     assert list(analyze("pîpîpôpô")) == []
+
+
+def test_generate():
+    """
+    Simple test of generating wordforms.
+    """
+    wordform = "wâpamêw"
+    analysis = "wâpamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO"
+    assert wordform in list(generate(analysis))
