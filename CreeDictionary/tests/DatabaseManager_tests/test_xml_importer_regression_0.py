@@ -1,14 +1,12 @@
 import pytest
 
 from API.models import Wordform
-from DatabaseManager.__main__ import import_and_migrate
+from tests.conftest import migrate_and_import
 
 
 @pytest.mark.django_db
 def test_import_xml_common_analysis_definition_merge(shared_datadir):
-    import_and_migrate(
-        shared_datadir / "crkeng-regression-0", process_count=1, no_input=True
-    )
+    migrate_and_import(shared_datadir / "crkeng-regression-0")
 
     query_set = Wordform.objects.filter(text="nipa")
 

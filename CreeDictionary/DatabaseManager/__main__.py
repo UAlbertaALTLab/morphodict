@@ -3,9 +3,6 @@ import sys
 from argparse import ArgumentParser
 from os import environ
 from pathlib import Path
-from typing import Union
-
-from django.core.management import call_command
 
 from DatabaseManager.test_db_builder import build_test_xml
 from DatabaseManager.xml_importer import import_xmls
@@ -32,8 +29,7 @@ subparsers.required = True
 
 import_parser = subparsers.add_parser(
     "import",
-    help="unlink existing .sqlite3 file, apply migrations from 0001 to 0005. "
-    "Import from specified engcrk.xml and crkeng.xml. Migrate the rest",
+    help="Import from specified engcrk.xml and crkeng.xml. This assumes the database is at migration 0005",
 )
 
 build_test_db_parser = subparsers.add_parser(
@@ -48,26 +44,18 @@ import_parser.add_argument(
 add_multi_processing_argument(import_parser)
 
 
-def import_and_migrate(xml_dir_name: Union[Path, str], process_count: int):
-    """
-    Import from specified engcrk.xml and crkeng.xml. Then migrate all other migrations
-    """
-    import_xmls(Path(xml_dir_name), process_count)
-    call_command("migrate")
-
-
 def cmd_entry(argv=None):
     if argv is None:
         argv = sys.argv
     args = parser.parse_args(argv[1:])
     if args.command_name == "import":
-        import_and_migrate(args.xml_directory_name, args.process_count)
+        import_xmls(Path(args.xml_directory_name), args.process_count)
     elif args.command_name == "build-test-db":
         assert (
             environ.get("USE_TEST_DB", "false").lower() == "true"
         ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
         build_test_xml(args.process_count)
-        import_and_migrate(
+        import_xmls(
             shared_res_dir / "test_dictionaries", args.process_count,
         )
     else:

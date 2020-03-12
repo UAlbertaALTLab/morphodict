@@ -8,4 +8,8 @@ if [ -f "$DB_FILE" ]; then
   rm -i $DB_FILE
 fi
 
-pipenv migrate API 0005 && manage-db import "$@"
+pipenv run python CreeDictionary/manage.py migrate API 0005
+
+manage-db import "$@"
+
+pipenv run python CreeDictionary/manage.py migrate
