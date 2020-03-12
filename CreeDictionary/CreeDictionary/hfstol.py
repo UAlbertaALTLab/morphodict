@@ -9,8 +9,9 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, Iterable, NamedTuple
+from typing import IO, Generator
 
+from constants import Analysis
 from utils.shared_res_dir import shared_res_dir as res
 
 # Ensure we can load everything!
@@ -21,16 +22,6 @@ if _hfstol_bin is None:
     raise ImportError("Cannot find hfst-optimized-lookup! Is it installed?")
 else:
     _hfstol = _hfstol_bin
-
-
-class Analysis(NamedTuple):
-    """
-    Analysis of a wordform.
-    """
-
-    raw_prefixes: str
-    lemma: str
-    raw_suffixes: str
 
 
 @contextmanager

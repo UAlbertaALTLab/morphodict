@@ -2,8 +2,9 @@
 constants
 """
 from enum import Enum
+
 # type alias
-from typing import NewType
+from typing import NewType, NamedTuple
 
 # Orthography
 DEFAULT_ORTHOGRAPHY = "Latn"
@@ -14,7 +15,8 @@ ORTHOGRAPHY_NAME = {
 }
 
 # types
-Analysis = NewType("Analysis", str)
+# analysis but concatenated
+ConcatAnalysis = NewType("ConcatAnalysis", str)
 FSTLemma = NewType("FSTLemma", str)
 
 FSTTag = NewType("FSTTag", str)
@@ -125,3 +127,13 @@ class SimpleLexicalCategory(Enum):
 
 # alias
 SimpleLC = SimpleLexicalCategory
+
+
+class Analysis(NamedTuple):
+    """
+    Analysis of a wordform.
+    """
+
+    raw_prefixes: str
+    lemma: str
+    raw_suffixes: str
