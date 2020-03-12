@@ -28,7 +28,7 @@ from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
-from constants import POS, Analysis, FSTTag, Label, Language, ParadigmSize
+from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
@@ -376,7 +376,7 @@ class Wordform(models.Model):
             if exactly_matched_wordforms.exists():
                 for wf in exactly_matched_wordforms:
                     cree_results.add(
-                        CreeResult(Analysis(wf.analysis), wf, Lemma(wf.lemma))
+                        CreeResult(ConcatAnalysis(wf.analysis), wf, Lemma(wf.lemma))
                     )
             else:
                 # When the user query is outside of paradigm tables
@@ -433,7 +433,7 @@ class Wordform(models.Model):
                     for lemma_wordform in matched_lemma_wordforms:
                         cree_results.add(
                             CreeResult(
-                                Analysis(analysis.replace("+Err/Orth", "")),
+                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
                                 normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
@@ -444,7 +444,7 @@ class Wordform(models.Model):
                     ):
                         cree_results.add(
                             CreeResult(
-                                Analysis(analysis.replace("+Err/Orth", "")),
+                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
                                 normatized_user_query,
                                 Lemma(lemma_wordform),
                             )
@@ -464,7 +464,7 @@ class Wordform(models.Model):
         ):
             cree_results.add(
                 CreeResult(
-                    Analysis(cw_as_is_wordform.analysis),
+                    ConcatAnalysis(cw_as_is_wordform.analysis),
                     cw_as_is_wordform,
                     Lemma(cw_as_is_wordform),
                 )
@@ -477,7 +477,7 @@ class Wordform(models.Model):
         for preverb_wf in fetch_preverbs(user_query):
             cree_results.add(
                 CreeResult(
-                    Analysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                    ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
                 )
             )
 
@@ -689,7 +689,7 @@ class CreeResult(NamedTuple):
     - lemma: a Wordform object, the lemma of the matched inflection
     """
 
-    analysis: Analysis
+    analysis: ConcatAnalysis
     normatized_cree: Union[Wordform, str]
     lemma: Lemma
 

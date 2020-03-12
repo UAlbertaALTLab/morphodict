@@ -10,7 +10,7 @@ from colorama import Fore, init
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from constants import Analysis, FSTLemma, SimpleLC
+from constants import ConcatAnalysis, FSTLemma, SimpleLC
 from shared import strict_analyzer
 
 init()  # for windows compatibility
@@ -20,7 +20,7 @@ def extract_fst_lemmas(
     xml_lemma_to_pos_lc: Dict[str, List[Tuple[str, str]]],
     multi_processing: int = 1,
     verbose=True,
-) -> Dict[Tuple[str, str, str], Analysis]:
+) -> Dict[Tuple[str, str, str], ConcatAnalysis]:
     """
     For every (xml_lemma, xml_pos, xml_lc), try to find its lemma analysis and according to fst. Analysis may be empty
     string if the lemma analysis can't be decided
@@ -29,7 +29,7 @@ def extract_fst_lemmas(
     logger = DatabaseManagerLogger(__name__, verbose)
     logger.info("Determining lemma analysis for (xml_lemma, xml_pos, xml_lc) tuples...")
 
-    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], Analysis]
+    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], ConcatAnalysis]
 
     inflections = xml_lemma_to_pos_lc.keys()
 
@@ -39,7 +39,7 @@ def extract_fst_lemmas(
 
     produced_extra_lemmas: List[FSTLemma] = []
 
-    fst_analysis_to_fst_lemma_slc: Dict[Analysis, Tuple[FSTLemma, SimpleLC]] = dict()
+    fst_analysis_to_fst_lemma_slc: Dict[ConcatAnalysis, Tuple[FSTLemma, SimpleLC]] = dict()
     for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
         x = utils.extract_lemma_and_category(fst_analysis)
         assert x is not None
@@ -49,7 +49,7 @@ def extract_fst_lemmas(
             produced_extra_lemmas.append(produced_lemma)
 
     produced_extra_lemma_to_analysis: Dict[
-        FSTLemma, Set[Analysis]
+        FSTLemma, Set[ConcatAnalysis]
     ] = strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas)
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
@@ -74,7 +74,7 @@ def extract_fst_lemmas(
 
             if xml_lemma in xml_lemma_to_pos_lc:
                 for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
-                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = Analysis("")
+                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ConcatAnalysis("")
                     logger.debug(
                         "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
                         % (xml_lemma, pos, lc)
@@ -93,7 +93,7 @@ def extract_fst_lemmas(
             # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
             # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
 
-            possible_lemma_analyses: List[Analysis] = []
+            possible_lemma_analyses: List[ConcatAnalysis] = []
             for analysis in analyses:
                 fst_lemma, slc = fst_analysis_to_fst_lemma_slc[analysis]
                 fst_lemma_analyses = all_lemma_to_analysis[fst_lemma]
@@ -109,7 +109,7 @@ def extract_fst_lemmas(
                 xml_lemma
             ]:  # for each pos, lc determine which is the analysis
 
-                ambiguities: List[Analysis] = []
+                ambiguities: List[ConcatAnalysis] = []
 
                 # put priority in looking for a unique and identical wordform
                 # this principle is used in the hope that it will help with lemma resolution
@@ -117,7 +117,7 @@ def extract_fst_lemmas(
                 # see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
                 # Otherwise a lot of diminutive nouns will have no analysis
                 wordform_to_ambiguous_analyses: Dict[
-                    FSTLemma, List[Analysis]
+                    FSTLemma, List[ConcatAnalysis]
                 ] = defaultdict(list)
 
                 for (
@@ -147,12 +147,12 @@ def extract_fst_lemmas(
                         "Yet all analyses conflict with the pos/lc in xml file"
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis("")
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis("")
                     no_match_counter += 1
 
                 elif len(ambiguities) == 1:  # nice
                     fst_analysis = ambiguities.pop()
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis(
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis(
                         fst_analysis
                     )
                     success_counter += 1
@@ -161,7 +161,7 @@ def extract_fst_lemmas(
                         "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = Analysis("")
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis("")
                     dup_counter += 1
 
     logger.info(
