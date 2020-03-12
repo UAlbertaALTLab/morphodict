@@ -59,7 +59,6 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
             continue
 
         input_form, _tab, analysis = line.rstrip().partition("\t")
-        print(repr(line))
 
         parts = analysis.split("+")
         prefixes = []
