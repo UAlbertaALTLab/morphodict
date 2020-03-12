@@ -58,3 +58,7 @@ def test_generate(analysis, wordform):
     Simple test of generating wordforms.
     """
     assert wordform in list(generate(analysis))
+
+
+def test_generate_non_word():
+    assert [] == list(generate("pîpîpôpô+Ipc"))

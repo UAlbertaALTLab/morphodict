@@ -49,11 +49,13 @@ def generate(analysis: str) -> Iterable[str]:
             stderr=DEVNULL,
             encoding="UTF-8",
         )
-    raw_transductions = output.split("\n")
 
+    raw_transductions = output.split("\n")
     for line in raw_transductions:
-        if line.strip() == "":
+        # Skip empty lines and failures to transduce.
+        if line.strip() == "" or "+?" in line:
             continue
+
         _analysis, _tab, wordform = line.partition("\t")
         yield wordform
 
