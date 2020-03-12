@@ -25,11 +25,10 @@ def test_analyze_wordform(wordform, lemma, suffix):
 @pytest.mark.parametrize(
     "wordform,lemma,prefix",
     [
-        ("ê-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
-        ("ê-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
-        ("ê-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
-        ("ê-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
-        ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci"),
+        ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kah"),
+        ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi"),
     ],
 )
 def test_analyze_with_prefix(wordform, lemma, prefix):
@@ -37,3 +36,4 @@ def test_analyze_with_prefix(wordform, lemma, prefix):
     assert analysis.lemma == lemma
     assert prefix in analysis.raw_prefixes
     assert "AI" in analysis.raw_suffixes
+    assert "Prt" in analysis.raw_suffixes
