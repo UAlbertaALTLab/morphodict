@@ -9,7 +9,7 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, NamedTuple
+from typing import IO, Generator, Iterable, NamedTuple
 
 from utils.shared_res_dir import shared_res_dir as res
 
@@ -36,7 +36,7 @@ def write_file(text: str) -> Generator[IO[str], None, None]:
         yield tmp
 
 
-def analyze(wordform: str) -> Analysis:
+def analyze(wordform: str) -> Generator[Analysis, None, None]:
     with write_file(f"{wordform}\n") as input_file:
         output = check_output(
             [_hfstol, "-q", _analyzer_path],
@@ -51,5 +51,4 @@ def analyze(wordform: str) -> Analysis:
     for line in raw_analyses:
         input_form, _tab, analysis = line.partition("\t")
         lemma, _plus, _rest = analysis.partition("+")
-        return Analysis(lemma=lemma)
-    raise NotImplementedError
+        yield Analysis(lemma=lemma)

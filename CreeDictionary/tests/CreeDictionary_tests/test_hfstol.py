@@ -17,5 +17,5 @@ from CreeDictionary.hfstol import analyze
     ],
 )
 def test_analzye_wordform(wordform, lemma):
-    analysis = analyze(wordform)
+    analysis, *_more_analyses = analyze(wordform)
     assert analysis.lemma == lemma
