@@ -165,6 +165,9 @@ class Wordform(models.Model):
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
+    # this is initialized upon app ready.
+    MORPHEME_RANKINGS: Dict[str, float] = {}
+
     def get_absolute_url(self) -> str:
         """
         :return: url that looks like
@@ -741,7 +744,20 @@ def sort_search_result(
         return -1
     else:
         # both from English
-        return 0
+        a_in_rankings = res_a.matched_cree in Wordform.MORPHEME_RANKINGS
+        b_in_rankings = res_b.matched_cree in Wordform.MORPHEME_RANKINGS
+
+        if a_in_rankings and not b_in_rankings:
+            return 1
+        elif not a_in_rankings and b_in_rankings:
+            return -1
+        elif not a_in_rankings and not b_in_rankings:
+            return 0
+        else:  # both in rankings
+            return (
+                Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
+                - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
+            )
 
 
 class CreeAndEnglish(NamedTuple):
