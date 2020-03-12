@@ -16,7 +16,24 @@ from CreeDictionary.hfstol import analyze
         ("nimaskom", "maskwa", "Px1Sg"),
     ],
 )
-def test_analzye_wordform(wordform, lemma, suffix):
+def test_analyze_wordform(wordform, lemma, suffix):
     analysis, *_more_analyses = analyze(wordform)
     assert analysis.lemma == lemma
     assert suffix in analysis.raw_suffixes
+
+
+@pytest.mark.parametrize(
+    "wordform,lemma,prefix",
+    [
+        ("ê-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+        ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
+    ],
+)
+def test_analyze_with_prefix(wordform, lemma, prefix):
+    analysis, *_more_analyses = analyze(wordform)
+    assert analysis.lemma == lemma
+    assert prefix in analysis.raw_prefixes
+    assert "AI" in analysis.raw_suffixes
