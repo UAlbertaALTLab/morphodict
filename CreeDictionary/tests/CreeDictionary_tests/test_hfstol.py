@@ -3,7 +3,7 @@
 
 import pytest
 
-from CreeDictionary.hfstol import analyze
+from CreeDictionary.hfstol import analyze, generate
 
 
 @pytest.mark.parametrize(
