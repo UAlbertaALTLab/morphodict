@@ -7,15 +7,16 @@ from CreeDictionary.hfstol import analyze
 
 
 @pytest.mark.parametrize(
-    "wordform,lemma",
+    "wordform,lemma,suffix",
     [
-        ("wâpamêw", "wâpamêw"),
-        ("niskak", "niska"),
-        ("maskwak", "maskwa"),
-        ("maskos", "maskwa"),
-        ("nimaskom", "maskwa"),
+        ("wâpamêw", "wâpamêw", "TA"),
+        ("niskak", "niska", "A"),
+        ("maskwak", "maskwa", "Pl"),
+        ("maskos", "maskwa", "Der/Dim"),
+        ("nimaskom", "maskwa", "Px1Sg"),
     ],
 )
-def test_analzye_wordform(wordform, lemma):
+def test_analzye_wordform(wordform, lemma, suffix):
     analysis, *_more_analyses = analyze(wordform)
     assert analysis.lemma == lemma
+    assert suffix in analysis.raw_suffixes
