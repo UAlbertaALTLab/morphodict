@@ -24,16 +24,6 @@ else:
     _hfstol = _hfstol_bin
 
 
-class Analysis(NamedTuple):
-    """
-    Analysis of a wordform.
-    """
-
-    raw_prefixes: str
-    lemma: str
-    raw_suffixes: str
-
-
 def analyze(wordform: str) -> Iterable[Analysis]:
     with write_temporary_file(f"{wordform}\n") as input_file:
         output = check_output(
