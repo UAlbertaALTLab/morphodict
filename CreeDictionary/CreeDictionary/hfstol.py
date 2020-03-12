@@ -33,17 +33,8 @@ class Analysis(NamedTuple):
     raw_suffixes: str
 
 
-@contextmanager
-def write_file(text: str) -> Generator[IO[str], None, None]:
-    with TemporaryFile("w+", encoding="UTF-8") as tmp:
-        tmp.write(text)
-        tmp.flush()
-        tmp.seek(0)
-        yield tmp
-
-
 def analyze(wordform: str) -> Generator[Analysis, None, None]:
-    with write_file(f"{wordform}\n") as input_file:
+    with write_temporary_file(f"{wordform}\n") as input_file:
         output = check_output(
             [_hfstol, "-q", _analyzer_path],
             stdin=input_file,
@@ -79,3 +70,17 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
             lemma=lemma,
             raw_suffixes="+".join(suffixes),
         )
+
+
+@contextmanager
+def write_temporary_file(text: str) -> Generator[IO[str], None, None]:
+    """
+    Creates a temporary file and writes all of its text as UTF-8.
+
+    This is useful as the stdin to subprocess.check_output().
+    """
+    with TemporaryFile("w+", encoding="UTF-8") as tmp:
+        tmp.write(text)
+        tmp.flush()
+        tmp.seek(0)
+        yield tmp
