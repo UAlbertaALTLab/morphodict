@@ -24,7 +24,12 @@ else:
 
 
 class Analysis(NamedTuple):
+    """
+    Analysis of a wordform.
+    """
+
     lemma: str
+    raw_suffixes: str
 
 
 @contextmanager
@@ -50,5 +55,5 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
 
     for line in raw_analyses:
         input_form, _tab, analysis = line.partition("\t")
-        lemma, _plus, _rest = analysis.partition("+")
-        yield Analysis(lemma=lemma)
+        lemma, _plus, suffixes = analysis.partition("+")
+        yield Analysis(lemma=lemma, raw_suffixes=suffixes)
