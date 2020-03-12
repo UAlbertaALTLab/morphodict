@@ -45,10 +45,16 @@ def test_analyze_nonword():
     assert list(analyze("pîpîpôpô")) == []
 
 
-def test_generate():
+@pytest.mark.parametrize(
+    "analysis,wordform",
+    [
+        ("wâpamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", "wâpamêw"),
+        ("PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO", "ê-wâpamât"),
+        ("IC+nipâw+V+AI+Cnj+Prs+3Sg", "nêpât"),
+    ],
+)
+def test_generate(analysis, wordform):
     """
     Simple test of generating wordforms.
     """
-    wordform = "wâpamêw"
-    analysis = "wâpamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO"
     assert wordform in list(generate(analysis))
