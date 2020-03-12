@@ -3,6 +3,7 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
+from django.core.management import call_command
 from hypothesis import assume
 from hypothesis.strategies import composite, integers, sampled_from
 
@@ -10,6 +11,8 @@ from API.models import Wordform
 
 
 from hypothesis import settings
+
+from DatabaseManager.xml_importer import import_xmls
 
 settings.register_profile("default", deadline=timedelta(milliseconds=1000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
@@ -54,3 +57,12 @@ def random_lemmas(draw) -> Wordform:
     """
     lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
     return draw(sampled_from(list(lemmas)))
+
+
+def migrate_and_import(dictionary_dir):
+    """
+    assuming a fresh in memory database
+    migrate to 0005 and import the xml
+    """
+    call_command("migrate", "API", "0005")
+    import_xmls(dictionary_dir, multi_processing=1)
