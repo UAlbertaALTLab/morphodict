@@ -9,7 +9,7 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, Iterable, List, NamedTuple
+from typing import IO, Generator, Iterable, List, NamedTuple, Tuple
 
 from utils.shared_res_dir import shared_res_dir as res
 
@@ -61,12 +61,7 @@ def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, Non
         input_form, _tab, analysis = line.rstrip().partition("\t")
 
         parts = analysis.split("+")
-        prefixes = []
-        for lemma_loc, prefix in enumerate(parts):
-            if prefix.startswith("PV/") or prefix.startswith("Rd"):
-                prefixes.append(prefix)
-            else:
-                break
+        prefixes, lemma_loc = find_prefixes(parts)
         lemma = parts[lemma_loc]
         suffixes = parts[lemma_loc + 1 :]
 
@@ -79,6 +74,25 @@ def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, Non
             lemma=lemma,
             raw_suffixes="+".join(suffixes),
         )
+
+
+def find_prefixes(parts: List[str]) -> Tuple[List[str], int]:
+    """
+    Given a list of tags and stems from an analysis, returns the prefixes,
+    and the presumed index of the lemma.
+
+    >>> find_prefixes(["PV/e", "IC", "nipâw", "V", "AI", "Prs", "Cnj", "3Sg"])
+    (["PV/e", "IC"], 2)
+    """
+    prefixes = []
+    for pos, prefix in enumerate(parts):
+        # preverb or reduplication
+        if prefix.startswith(("PV/", "Rd", "IC")):
+            prefixes.append(prefix)
+        else:
+            # pos is now set to the position of the lemma.
+            break
+    return prefixes, pos
 
 
 @contextmanager
