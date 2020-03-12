@@ -1108,7 +1108,7 @@ a.menu-choice__label:active {
 
 
 .cite-dict--popup{
-    /* Color */
+  /* Color */
   color: var(--cite-text-popup-color);
 }
 
