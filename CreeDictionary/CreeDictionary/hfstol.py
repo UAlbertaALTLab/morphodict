@@ -82,7 +82,7 @@ def find_prefixes(parts: List[str]) -> Tuple[List[str], int]:
     and the presumed index of the lemma.
 
     >>> find_prefixes(["PV/e", "IC", "nipâw", "V", "AI", "Prs", "Cnj", "3Sg"])
-    (["PV/e", "IC"], 2)
+    (['PV/e', 'IC'], 2)
     """
     prefixes = []
     for pos, prefix in enumerate(parts):
