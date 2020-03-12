@@ -102,7 +102,7 @@ derivational paradigm
 =====================
 [derivational paradigm]: #derivational-paradigm
 
-The collection of all possible [derived forms] belonging to a lemma.  
+The collection of all possible [derived forms] belonging to a lemma.
 
 ### Part of
 
@@ -232,8 +232,8 @@ Consists of
 In Plains Cree
 --------------
 
-* [Noun][] — use the four word classes instead: [NI], [NA], [NID], [NAD]
-* [Verb][] — use the four word classes instead: [VII], [VAI], [VTI], [VTA]
+* Noun — use the four word classes instead: [NI], [NA], [NID], [NAD]
+* Verb — use the four word classes instead: [VII], [VAI], [VTI], [VTA]
 
 
 gloss
@@ -375,7 +375,7 @@ word class
 
 > Also known as **specific word class**
 
-Category of \$THING that [inflects][] in a similar way. Members of the
+Category of a set of terms that [inflect][] in a similar way. Members of the
 same word class behave morphologically in a similar way to each other.
 
 Contains
@@ -386,17 +386,28 @@ Contains
 in Plains Cree
 --------------
 
-These are the word classes in Plains Cree:
+[NAD]: #NAD
+[NA]: #NA
+[NA]: #NA
+[NID]: #NID
+[NI]: #NI
+[VAI]: #VAI
+[VII]: #VII
+[VTA]: #VTA
+[VTI]: #VTI
 
--   [NA][]
--   [NI][]
--   [NAD][]
--   [NID][]
--   [VII][]
--   [VAI][]
--   [VTI][]
--   [VTA][]
--   [Ipc][] — [indeclinable particle][]
+These are the word classes in Plains Cree:
+<a id="#NA"></a><a id="#NA"></a><a id="#NAD"></a><a id="#NI"></a><a id="#NID"></a><a id="#VAI"></a><a id="#VII"></a><a id="#VTA"></a><a id="#VTI"></a>
+
+-   NA: 🧑🏽 — **a**nimate **n**oun
+-   NI: 📘 — **i**nanimate **n**oun
+-   NAD: 👤🧑🏽 — **d**ependent **a**nimate **n**oun
+-   NID: 👤📘 — **d**ependent **i**nanimate **n**oun
+-   VII: 📘➡️ — **i**ntransitive **i**nanimate **v**erb
+-   VAI: 🧑🏽➡️ — **i**ntransitive **a**nimate **v**erb
+-   VTI: 🧑🏽➡️📘— **t**ransitive **i**nanimate **v**erb
+-   VTA: 🧑🏽➡️🧑🏽— **t**ransitive **i**nanimate **v**erb
+-   [Ipc]: [indeclinable particle][]
 
 
 wordform
