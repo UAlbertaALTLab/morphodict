@@ -28,6 +28,7 @@ class Analysis(NamedTuple):
     Analysis of a wordform.
     """
 
+    raw_prefixes: str
     lemma: str
     raw_suffixes: str
 
@@ -55,5 +56,18 @@ def analyze(wordform: str) -> Generator[Analysis, None, None]:
 
     for line in raw_analyses:
         input_form, _tab, analysis = line.partition("\t")
-        lemma, _plus, suffixes = analysis.partition("+")
-        yield Analysis(lemma=lemma, raw_suffixes=suffixes)
+        parts = analysis.split("+")
+        prefixes = []
+        for lemma_loc, prefix in enumerate(parts):
+            if prefix.startswith("PV/") or prefix.startswith("Rd"):
+                prefixes.append(prefix)
+            else:
+                break
+        lemma = parts[lemma_loc]
+        suffixes = parts[lemma_loc + 1 :]
+
+        yield Analysis(
+            raw_prefixes="+".join(prefixes),
+            lemma=lemma,
+            raw_suffixes="+".join(suffixes),
+        )
