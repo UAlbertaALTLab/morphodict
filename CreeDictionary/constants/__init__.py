@@ -2,6 +2,7 @@
 constants
 """
 from enum import Enum
+
 # type alias
 from typing import NewType
 
