@@ -726,8 +726,8 @@ def sort_search_result(
     determine how we sort search results.
 
     :return:   0: does not matter;
-              >0: res_a should appear before res_b;
-              <0: res_a should appear after res_b.
+              >0: res_a should appear after res_b;
+              <0: res_a should appear before res_b.
     """
 
     if res_a.matched_by is Language.CREE and res_b.matched_by is Language.CREE:
@@ -738,19 +738,19 @@ def sort_search_result(
     # todo: better English sort
     elif res_a.matched_by is Language.CREE:
         # a from cree, b from English
-        return 1
+        return -1
     elif res_b.matched_by is Language.CREE:
         # a from English, b from Cree
-        return -1
+        return 1
     else:
         # both from English
         a_in_rankings = res_a.matched_cree in Wordform.MORPHEME_RANKINGS
         b_in_rankings = res_b.matched_cree in Wordform.MORPHEME_RANKINGS
 
         if a_in_rankings and not b_in_rankings:
-            return 1
-        elif not a_in_rankings and b_in_rankings:
             return -1
+        elif not a_in_rankings and b_in_rankings:
+            return 1
         elif not a_in_rankings and not b_in_rankings:
             return 0
         else:  # both in rankings
