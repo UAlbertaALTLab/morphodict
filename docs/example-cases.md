@@ -1,8 +1,9 @@
-Example cases of searches, matches, and dictionary content
+# Example cases of searches, matches, and dictionary content
 
-1. Search: enipat
+## 1. Search: _enipat_
 
-Match:
+### Match:
+```
 ê-nipât (i)
 form of
 nipâw (Verb)
@@ -15,10 +16,12 @@ Preverb: ê- (i)
 (i) Preverb: ê-   [grammatical preverb: complementizer; defines a changed conjunct clause]
 
 N.B. Stem: nipâ-
+```
 
-2. Search: e-wapamat
+## 2. Search: _e-wapamat_
 
-Matches (1/2):
+### Matches (1/2):
+```
 ê-nitawi-wâpamat (i)  
 form of
 wâpamêw  (Verb)
@@ -30,8 +33,10 @@ a) (i) Preverb: ê- + wâpam- + Verb + Transitive + Conjunct + Present + Actor: 
 b) Preverb: ê-: (i) [grammatical preverb: complementizer; defines a changed conjunct clause]
 c) Preverb: nitawi-: (i) go and, go to; engaged in
 d) Stem: wâpam-
+```
 
-Matches (2/2):
+### Matches (2/2):
+```
 ê-nitawi-wâpamât (i)
 form of
 wâpamêw  (Verb)
@@ -43,10 +48,12 @@ a) (i) Preverb: ê- + wâpam- + Verb + Transitive + Conjunct + Present + Actor: 
 b) Preverb: ê- (i) [grammatical preverb: complementizer; defines a changed conjunct clause]
 c) Preverb: nitawi-(i) go and, go to; engaged in
 d) Stem: wâpam-
+```
 
-3. Search: nicihciy (with a definition for both the inflected form and lemma)
+## 3. Search: _nicihciy_ (with a definition for both the inflected form and lemma)
 
-Match:
+### Match:
+```
 nicihciy (Noun) (i) 
 1. my hand; my paw CW
 form of
@@ -54,10 +61,12 @@ micihciy (Noun)
 1. hand; paw (e.g. bear) CW
 
 (i) -cihciy- +  Noun +  Inanimate +  Dependent +  Possessor: 1st person singular +  Singular
+```
 
-4. Search: nicihciy (with a definition for both the inflected form and lemma)
+## 4. Search: _kohkom_ (with a definition for both the inflected form and lemma)
 
-Matches (1/2):
+### Matches (1/2):
+```
 kôhkom (Noun) (i)  
 1. Your grandmother CW MD
 form of
@@ -66,20 +75,25 @@ nôhkom (Noun)
 2. my grandmother; [reference extended to all related females of grandmother's generation]; my respected female elder CW
  
 (i) -ohkom- +  Noun +  Animate +  Dependent +  Possessor: 2nd person singular +  Singular
+```
 
-Matches (2/2):
+### Matches (2/2):
+```
 nôhkom (Noun) (i)  
 1. My grandmother. MD
 2. my grandmother; [reference extended to all related females of grandmother's generation]; my respected female elder CW
 
 (i)  -ohkom- +  Noun +  Animate +  Dependent +  Possessor: 1st person singular +  Singular
+```
 
-5. Search: niminaniwan (wordform with a definition for itself, plus lemma definition) 
+## 5. Search: _niminaniwan_ (wordform with a definition for itself, plus lemma definition) 
 
-Matches (2)
+### Matches (2)
+```
 nîminâniwan (i)
 1. there is a dance, it is a time of dancing CW
 form of nîmiw (Noun)
 1. s/he dances CW
 
 (i) nîmi- +  Verb +  Intransive Inanimate +  Independent +  Present + Actor: Unspecified
+```
