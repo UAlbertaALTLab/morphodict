@@ -2,7 +2,8 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-from CreeDictionary.hfstol import analyze
+
+from CreeDictionary.hfstol import analyze, generate
 
 
 @pytest.mark.parametrize(
@@ -42,3 +43,22 @@ def test_analyze_with_prefix(wordform, lemma, prefix):
 def test_analyze_nonword():
     # "pîpîpôpô" is not a real word
     assert list(analyze("pîpîpôpô")) == []
+
+
+@pytest.mark.parametrize(
+    "analysis,wordform",
+    [
+        ("wâpamêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", "wâpamêw"),
+        ("PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO", "ê-wâpamât"),
+        ("IC+nipâw+V+AI+Cnj+Prs+3Sg", "nêpât"),
+    ],
+)
+def test_generate(analysis, wordform):
+    """
+    Simple test of generating wordforms.
+    """
+    assert wordform in list(generate(analysis))
+
+
+def test_generate_non_word():
+    assert [] == list(generate("pîpîpôpô+Ipc"))
