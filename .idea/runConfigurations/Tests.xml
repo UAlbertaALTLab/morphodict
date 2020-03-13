@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Tests" type="CompoundRunConfigurationType">
-    <toRun name="unit test" type="tests" />
-    <toRun name="integration test | running server" type="js.build_tools.npm" />
-    <method v="2" />
-  </configuration>
-</component>
