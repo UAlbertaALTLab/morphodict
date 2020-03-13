@@ -41,8 +41,8 @@ venv/
 
 # JetBrains Rider
 *.sln.iml
-# Matt likes to persist his PyCharm settings ¯\_(ツ)_/¯ ¯\_(ツ)_/¯ ¯\_(ツ)_/¯
-#.idea/
+# JetBrains project files
+.idea/
 
 # MacOS Files
 .DS_Store
