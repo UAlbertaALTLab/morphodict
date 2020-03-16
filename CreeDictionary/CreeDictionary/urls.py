@@ -45,6 +45,7 @@ _urlpatterns = [
         "cree-dictionary-index-with-lemma",
     ),
     ("about", views.about, "cree-dictionary-about"),
+    ("contact-us", views.contact_us, "cree-dictionary-contact-us"),
     # internal use to render boxes of search results
     (
         "_search_results/<str:query_string>/",

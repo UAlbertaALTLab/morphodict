@@ -97,6 +97,13 @@ def about(request):  # pragma: no cover
     return render(request, "CreeDictionary/about.html")
 
 
+def contact_us(request):  # pragma: no cover
+    """
+    Contact us page.
+    """
+    return render(request, "CreeDictionary/contact-us.html")
+
+
 class ChangeOrthography(View):
     """
     Sets the orth= cookie, which affects the default rendered orthography.
