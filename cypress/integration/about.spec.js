@@ -49,5 +49,16 @@ context('The About page', function () {
       cy.contains('a', 'altlab@ualberta.ca')
         .should('have.attr', 'href', 'mailto:altlab@ualberta.ca')
     })
+
+    it('should be linked in the footer', function () {
+      cy.visit('/')
+
+      cy.get('footer')
+        .contains('a', 'Contact us')
+        .click()
+
+      cy.url()
+        .should('contain', '/contact-us')
+    })
   })
 });
