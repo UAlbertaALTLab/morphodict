@@ -47,7 +47,8 @@ context('The About page', function () {
     it('should have a mailto: link to the altlab email address', function () {
       cy.visit('/contact-us')
       cy.contains('a', 'altlab@ualberta.ca')
-        .should('have.attr', 'href', 'mailto:altlab@ualberta.ca')
+      // email address is an alias with '+', useful for email filtering.
+        .should('have.attr', 'href', 'mailto:altlab+itwewina@ualberta.ca')
     })
 
     it('should be linked in the footer', function () {
