@@ -570,6 +570,15 @@ html {
   filter: var(--blue-filter); /* blue color */
 }
 
+/**
+ * TOOLTIP specific styling
+ *
+ * Should remove the numbering from the lists that come with the linguistic breakdowns
+ */
+.tooltip > span > ol {
+  list-style: none;
+  padding-left: 20px;
+}
 
 
 /********************************* PARADIGM *********************************/

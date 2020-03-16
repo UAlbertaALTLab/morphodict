@@ -34,7 +34,7 @@
                                     <strong>{{ result.lemma_wordform.text|add:":" }}</strong>  <ol>                                    
                                     {% for result in result.linguistic_breakdown_tail %}
                                         <li>
-                                            {{ result }}
+                                            {{ result }} +
                                         </li>
                                     {% endfor %}
                                     </ol>
