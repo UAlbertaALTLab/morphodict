@@ -575,11 +575,9 @@ html {
  *
  * Should remove the numbering from the lists that come with the linguistic breakdowns
  */
-.tooltip > span > ol {
+.linguistic-breakdown__breakdown-tail {
   list-style: none;
-  padding-left: 20px;
 }
-
 
 /********************************* PARADIGM *********************************/
 
