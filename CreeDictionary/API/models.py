@@ -497,7 +497,7 @@ class Wordform(models.Model):
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(
-                text__exact=user_query, **kwargs
+                text__iexact=user_query, **kwargs
             ).values("lemma__id")
             for wordform in Wordform.objects.filter(
                 id__in=lemma_ids, as_is=False, **kwargs
