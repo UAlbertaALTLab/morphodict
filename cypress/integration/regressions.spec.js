@@ -200,4 +200,18 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'atâhk')
   })
+
+
+  /**
+   * Ensure English names with capitalization gets matches
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/343
+   */
+  it('should present results when one searches with capitalized English names', function () {
+    cy.visitSearch('Cree')
+    cy.get('[data-cy=search-results]').should('be.visible')
+
+    cy.visitSearch('Edmonton')
+    cy.get('[data-cy=search-results]').should('be.visible')
+  })
 })
