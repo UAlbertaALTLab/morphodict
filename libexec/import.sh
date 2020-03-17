@@ -4,9 +4,10 @@
 # "$@" passes additional arguments to the shell script
 DB_FILE=CreeDictionary/db.sqlite3
 if [ -f "$DB_FILE" ]; then
-  echo "shit"
   rm -i $DB_FILE
 fi
+
+echo "Creating db.sqlite3 from scratch..."
 
 pipenv run python CreeDictionary/manage.py migrate API 0005
 
