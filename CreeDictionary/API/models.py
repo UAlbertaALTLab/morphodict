@@ -32,7 +32,7 @@ from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
-from shared import descriptive_analyzer_foma, normative_generator_foma
+import CreeDictionary.hfstol as temp_hfstol
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -363,8 +363,8 @@ class Wordform(models.Model):
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
         # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
-        fst_analyses: Set[str] = set(
-            "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
+        fst_analyses: Set[ConcatAnalysis] = set(
+            a.concatenate() for a in temp_hfstol.analyze(user_query)
         )
 
         all_standard_forms = []
@@ -397,9 +397,7 @@ class Wordform(models.Model):
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
                 normatized_form_for_analysis = [
-                    *normative_generator_foma.generate(
-                        analysis.replace("+Err/Orth", "")
-                    )
+                    *temp_hfstol.generate(analysis.replace("+Err/Orth", ""))
                 ]
                 all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:

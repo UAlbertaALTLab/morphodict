@@ -14,7 +14,7 @@ from hypothesis import settings
 
 from DatabaseManager.xml_importer import import_xmls
 
-settings.register_profile("default", deadline=timedelta(milliseconds=1000))
+settings.register_profile("default", deadline=timedelta(milliseconds=2000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
 # see error report here
 # https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary/jobs/637122984?utm_medium=notification&utm_source=github_status

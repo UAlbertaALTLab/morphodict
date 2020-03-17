@@ -9,7 +9,7 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, Iterable, List, NamedTuple, Tuple
+from typing import IO, Generator, Iterable, List, Tuple
 
 from constants import Analysis
 from utils.shared_res_dir import shared_res_dir as res
