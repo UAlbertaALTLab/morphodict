@@ -31,14 +31,15 @@
                                         data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
                                     {{ result.linguistic_breakdown_head|join:" + " }}
                                     + {% endif %}
-                                    <strong>{{ result.lemma_wordform.text|add:":" }}</strong>  <ol>                                    
-                                    {% for result in result.linguistic_breakdown_tail %}
-                                        <li>
-                                            {{ result }}
-                                        </li>
-                                    {% endfor %}
+                                    <strong>{{ result.lemma_wordform.text|add:":" }}</strong>
+                                    <ol class="linguistic-breakdown">                                    
+                                        {% for result in result.linguistic_breakdown_tail %}
+                                            <li>
+                                                {{ result }}
+                                            </li>
+                                        {% endfor %}
                                     </ol>
-                                    </span>
+                                </span>
                                 <div class="arrow" data-popper-arrow></div>
                             </div>
                         {% endif %}
