@@ -69,3 +69,6 @@ CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
 CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map
+
+# documents which version of xml file the production database is built with
+prod_crkeng_version.txt
