@@ -53,3 +53,17 @@ tooltip.js attaches all the event handlers
 .tooltip[data-popper-placement^='right'] > .arrow {
     left: -4px;
 }
+
+/**
+ * TOOLTIP specific styling
+ *
+ * Should remove the numbering from the lists that come with the linguistic breakdowns
+ */
+ .linguistic-breakdown__breakdown-tail {
+    list-style: none;
+  }
+  
+  .linguistic-breakdown__breakdown-tail > li {
+    padding-left: var(--small-pad);
+  }
+  
