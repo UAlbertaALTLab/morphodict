@@ -31,12 +31,29 @@ context('Searching', () => {
         .and('contain', 'Action word') // verb
     })
 
+    it('should allow the tooltip to be focused on when the user tabs through it', () => {
+      // goodness, that's a mouthful and should _probably_ be worded better.
+      // begin from the homepage
+      cy.visit('/');
+      // lock onto the searchbar
+      // get a word (use achakos)
+
+      // tab through the page elements until arriving on the '?' icon
+      // it should display the focus icon.
+      
+
+    })
+
     it('should show the tooltip\'s linguistic breakdowns on separate lines as list items', () => {
       cy.visit('/');
       cy.get('[data-cy=search]').type('achakos');
 
       // I think I have to stub this test with part of the code from the test above 🤔
-      
+      // again, uses 'force:true' since initial div is not clickable
+      cy.get('[data-cy=information-mark').first().click({force:true});
+
+      // cy.get('[data-cy=linguistic-breakdown__breakdown-tail').should('be.visible')
+      //   .and('contain', '<li>') // list item
     })
   })
 
