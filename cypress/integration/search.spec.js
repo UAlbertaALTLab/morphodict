@@ -30,6 +30,14 @@ context('Searching', () => {
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
     })
+
+    it('should show the tooltip\'s linguistic breakdowns on separate lines as list items', () => {
+      cy.visit('/');
+      cy.get('[data-cy=search]').type('achakos');
+
+      // I think I have to stub this test with part of the code from the test above 🤔
+      
+    })
   })
 
   describe('I want to know what a Cree word means in English', () => {
