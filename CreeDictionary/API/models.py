@@ -32,7 +32,7 @@ from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
-from shared import descriptive_analyzer_foma, normative_generator_foma
+import CreeDictionary.hfstol as temp_hfstol
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -164,6 +164,9 @@ class Wordform(models.Model):
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    # this is initialized upon app ready.
+    MORPHEME_RANKINGS: Dict[str, float] = {}
 
     def get_absolute_url(self) -> str:
         """
@@ -360,8 +363,8 @@ class Wordform(models.Model):
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
         # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
-        fst_analyses: Set[str] = set(
-            "".join(a) for a in descriptive_analyzer_foma.analyze(user_query)
+        fst_analyses: Set[ConcatAnalysis] = set(
+            a.concatenate() for a in temp_hfstol.analyze(user_query)
         )
 
         all_standard_forms = []
@@ -394,9 +397,7 @@ class Wordform(models.Model):
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
                 normatized_form_for_analysis = [
-                    *normative_generator_foma.generate(
-                        analysis.replace("+Err/Orth", "")
-                    )
+                    *temp_hfstol.generate(analysis.replace("+Err/Orth", ""))
                 ]
                 all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:
@@ -494,7 +495,7 @@ class Wordform(models.Model):
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(
-                text__exact=user_query, **kwargs
+                text__iexact=user_query, **kwargs
             ).values("lemma__id")
             for wordform in Wordform.objects.filter(
                 id__in=lemma_ids, as_is=False, **kwargs
@@ -723,8 +724,8 @@ def sort_search_result(
     determine how we sort search results.
 
     :return:   0: does not matter;
-              >0: res_a should appear before res_b;
-              <0: res_a should appear after res_b.
+              >0: res_a should appear after res_b;
+              <0: res_a should appear before res_b.
     """
 
     if res_a.matched_by is Language.CREE and res_b.matched_by is Language.CREE:
@@ -735,13 +736,26 @@ def sort_search_result(
     # todo: better English sort
     elif res_a.matched_by is Language.CREE:
         # a from cree, b from English
-        return 1
+        return -1
     elif res_b.matched_by is Language.CREE:
         # a from English, b from Cree
-        return -1
+        return 1
     else:
         # both from English
-        return 0
+        a_in_rankings = res_a.matched_cree in Wordform.MORPHEME_RANKINGS
+        b_in_rankings = res_b.matched_cree in Wordform.MORPHEME_RANKINGS
+
+        if a_in_rankings and not b_in_rankings:
+            return -1
+        elif not a_in_rankings and b_in_rankings:
+            return 1
+        elif not a_in_rankings and not b_in_rankings:
+            return 0
+        else:  # both in rankings
+            return (
+                Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
+                - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
+            )
 
 
 class CreeAndEnglish(NamedTuple):

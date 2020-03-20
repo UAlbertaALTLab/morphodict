@@ -9,7 +9,7 @@ import shutil
 from contextlib import contextmanager
 from subprocess import DEVNULL, check_output
 from tempfile import TemporaryFile
-from typing import IO, Generator, Iterable, List, NamedTuple, Tuple
+from typing import IO, Generator, Iterable, List, Tuple
 
 from constants import Analysis
 from utils.shared_res_dir import shared_res_dir as res
@@ -17,6 +17,10 @@ from utils.shared_res_dir import shared_res_dir as res
 # Ensure we can load everything!
 _analyzer_path = res / "fst" / "crk-descriptive-analyzer.hfstol"
 assert _analyzer_path.exists()
+_generator_path = res / "fst" / "crk-normative-generator.hfstol"
+assert _generator_path.exists()
+
+# Ensure HFST is callable.
 _hfstol_bin = shutil.which("hfst-optimized-lookup")
 if _hfstol_bin is None:
     raise ImportError("Cannot find hfst-optimized-lookup! Is it installed?")
@@ -35,6 +39,25 @@ def analyze(wordform: str) -> Iterable[Analysis]:
 
     raw_analyses = output.split("\n")
     return parse_analyses(raw_analyses)
+
+
+def generate(analysis: str) -> Iterable[str]:
+    with write_temporary_file(f"{analysis}\n") as input_file:
+        output = check_output(
+            [_hfstol, "-q", _generator_path],
+            stdin=input_file,
+            stderr=DEVNULL,
+            encoding="UTF-8",
+        )
+
+    raw_transductions = output.split("\n")
+    for line in raw_transductions:
+        # Skip empty lines and failures to transduce.
+        if line.strip() == "" or "+?" in line:
+            continue
+
+        _analysis, _tab, wordform = line.partition("\t")
+        yield wordform
 
 
 def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, None]:

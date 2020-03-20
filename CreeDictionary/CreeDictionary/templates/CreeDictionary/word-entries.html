@@ -92,7 +92,11 @@
 
                             <div class="tooltip" role="tooltip">
                                 {% for definition in preverb.definitions %}
-                                    <p class="preverb-breakdown__preverb-definition">{{ definition }}</p>
+                                    <p class="preverb-breakdown__preverb-definition">{{ definition.text }}
+                                        {% for source in definition.source_ids %}
+                                            <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
+                                        {% endfor %}
+                                    </p>
                                 {% endfor %}
                                 <div class="arrow" data-popper-arrow></div>
                             </div>

@@ -236,3 +236,11 @@ def test_search_text_with_ambiguous_word_classes():
     results = Wordform.search("pipon")
     assert len(results) == 2
     assert {r.lemma_wordform.pos for r in results} == {"N", "V"}
+
+
+@pytest.mark.django_db
+def test_lemma_ranking_most_frequent_word():
+    # the English sleep should many cree words. But nipâw should show first because
+    # it undoubtedly has the highest frequency
+    results = Wordform.search("sleep")
+    assert results[0].matched_cree == "nipâw"
