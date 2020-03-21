@@ -36,25 +36,17 @@ context('Searching', () => {
       // begin from the homepage
       cy.visit('/');
       // lock onto the searchbar
-      // get a word (use achakos)
+      cy.get('[data-cy=search]')
+      // get a word (use nipaw)
+      .type('nipaw');
 
       // tab through the page elements until arriving on the '?' icon
-      // it should display the focus icon.
+      cy.get('[data-cy=information-mark]').first().click({force:true});
       
-
+      // it should trigger the focus icon's outline's focused state
+      cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline', 'rgb(28, 157, 254) solid 3px'); // apparently, Cypress likes for the colours to be in the style of rgb() so we can't default to the CSS variables we've been using. Oof.
     })
 
-    it('should show the tooltip\'s linguistic breakdowns on separate lines as list items', () => {
-      cy.visit('/');
-      cy.get('[data-cy=search]').type('achakos');
-
-      // I think I have to stub this test with part of the code from the test above 🤔
-      // again, uses 'force:true' since initial div is not clickable
-      cy.get('[data-cy=information-mark').first().click({force:true});
-
-      // cy.get('[data-cy=linguistic-breakdown__breakdown-tail').should('be.visible')
-      //   .and('contain', '<li>') // list item
-    })
   })
 
   describe('I want to know what a Cree word means in English', () => {
