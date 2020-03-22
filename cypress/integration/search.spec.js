@@ -31,6 +31,23 @@ context('Searching', () => {
         .and('contain', 'Action word') // verb
     })
 
+    it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
+      // begin from the homepage
+      cy.visit('/');
+
+      // lock onto the searchbar
+      cy.get('[data-cy=search]')
+      // get a word (nipaw)
+      .type('nipaw');
+      
+      // tab through the elements to force the tooltip to pop up
+      cy.get('[data-cy=information-mark]').first().click({force:true});
+
+      // see the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]').children().eq(1).should('have', 'li');
+      
+    })
+
     it('should allow the tooltip to be focused on when the user tabs through it', () => {
       // goodness, that's a mouthful and should _probably_ be worded better.
       // begin from the homepage
