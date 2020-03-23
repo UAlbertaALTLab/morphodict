@@ -2,7 +2,6 @@
 shared (expensive) instances
 """
 
-from fst_lookup import FST
 from hfstol import HFSTOL
 
 from utils import paradigm_filler as pf
