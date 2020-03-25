@@ -189,7 +189,7 @@ def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
     """
     Find the latest timestamped xml files, with un-timestamped files as a fallback if no timestamped file is found
 
-    :raise FileNotFoundError: if either file can be found
+    :raise FileNotFoundError: if either file can't be found
     """
     name_pattern = re.compile(
         r"^(?P<direction>(crkeng|engcrk)).*?(?P<timestamp>\d{6})?\.xml$"
