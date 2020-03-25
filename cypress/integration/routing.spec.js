@@ -63,6 +63,6 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // both results should be present
     cy.get('[data-cy=definition-title] a').each(($e)=>{
       lemmaUrls.push($e.attr('href'))
-    }).then(()=>expect(lemmaUrls).to.have.members(['/word/pipon/?pos=N', '/word/pipon/?pos=V']))
+    }).then(()=>expect(lemmaUrls).to.include('/word/pipon/?pos=N').and.to.include('/word/pipon/?pos=V'))
   })
 })
