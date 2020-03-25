@@ -2,7 +2,7 @@ import pytest
 
 from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import load_engcrk_xml
+from DatabaseManager.xml_importer import load_engcrk_xml, find_latest_xml_files
 from constants import POS
 from tests.conftest import migrate_and_import
 from utils import shared_res_dir
@@ -69,6 +69,54 @@ def test_load_engcrk():
     res = load_engcrk_xml(shared_res_dir / "test_dictionaries" / "engcrk.xml")
     # nipâw means "sleep"
     assert "sleep" in res["nipâw", POS.V]
+
+
+@pytest.mark.parametrize(
+    "file_names,expected_crkeng_index,expected_engcrk_index",
+    [
+        # should use un-timestamped files if necessary
+        (["crkeng.xml", "engcrk.xml"], 0, 1),
+        # should use un-timestamped files if necessary but timestamped files take higher precedence
+        (["crkeng.xml", "engcrk.xml", "engcrk_cw_md_200113.xml"], 0, 2),
+        # should compare timestamps
+        (
+            [
+                "crkeng_200314.xml",
+                "engcrk_200419.xml",
+                "crkeng_200112.xml",
+                "engcrk_200114.xml",
+            ],
+            0,
+            1,
+        ),
+        # irrelevant files should not matter
+        (
+            [
+                "crkeng_200314.xml",
+                "engcrk_200419.xml",
+                "crkeng_200112.xml",
+                "engcrk_200114.xml",
+                "README.md",
+            ],
+            0,
+            1,
+        ),
+    ],
+)
+def test_find_latest_xml_files(
+    tmp_path_factory, file_names, expected_crkeng_index, expected_engcrk_index
+):
+    temp_dir = tmp_path_factory.mktemp("foo")
+    for file_name in file_names:
+        (temp_dir / file_name).write_text("")
+    crkeng_file_path, eng_crk_file_path = find_latest_xml_files(temp_dir)
+    assert file_names.index(crkeng_file_path.name) == expected_crkeng_index
+    assert file_names.index(eng_crk_file_path.name) == expected_engcrk_index
+
+
+def test_find_latest_xml_files_no_file_found(tmp_path):
+    with pytest.raises(FileNotFoundError):
+        find_latest_xml_files(tmp_path)
 
 
 # todo: tests for EnglishKeywords
