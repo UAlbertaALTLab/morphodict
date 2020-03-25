@@ -246,6 +246,9 @@ class Wordform(models.Model):
 
     text = models.CharField(max_length=40)
 
+    # text field but with diacritics stripped
+    ascii_text = models.CharField(max_length=40)
+
     full_lc = models.CharField(
         max_length=10,
         help_text="Full lexical category directly from source",  # e.g. NI-3
@@ -290,9 +293,11 @@ class Wordform(models.Model):
         # analysis is for faster user query (in function fetch_lemma_by_user_query below)
         # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
         # text index also benefits fast lemma matching in function fetch_lemma_by_user_query
+        # ascii_text index helps with prefix-search and suffix search where startswith/endswith filters need to be used
         indexes = [
             models.Index(fields=["analysis"]),
             models.Index(fields=["text"]),
+            models.Index(fields=["ascii_text"]),
         ]
 
     def __str__(self):
@@ -355,10 +360,22 @@ class Wordform(models.Model):
 
         user_query = user_query.lower()
 
-        # build up result_lemmas in 2 ways
-        # 1. spell relax in descriptive fst
-        # 2. definition containment of the query word
+        # build up result_lemmas in 3 ways
+        # 1. diacritics relaxed prefix/affix search
+        # 2. spell relax in descriptive fst
+        # 3. definition containment of the query word
+
         cree_results: Set[CreeResult] = set()
+
+        # prefix/affix search
+        no_diacritics_user_query = remove_cree_diacritics(user_query)
+        if len(user_query) > 2:  # there will be too many matches for short user queries
+            wordforms_matched_by_affix = Wordform.objects.filter(
+                Q(ascii_text__startswith=no_diacritics_user_query)
+                | Q(ascii_text__endswith=no_diacritics_user_query)
+            )
+            for wf in wordforms_matched_by_affix:
+                cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
