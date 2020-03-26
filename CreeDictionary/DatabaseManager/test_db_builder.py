@@ -9,6 +9,7 @@ from typing import List, Set, Dict
 
 from tqdm import tqdm
 
+from DatabaseManager.xml_importer import find_latest_xml_files
 from utils.profiling import timed
 from shared import descriptive_analyzer
 from utils import shared_res_dir, fst_analysis_parser, crkeng_xml_utils
@@ -37,12 +38,16 @@ def build_test_xml(multi_processing: int = 2):
     Determine relevant entries in crkeng.xml and build a smaller xml file for testing.
     """
 
-    crkeng_root = ET.parse(
-        str(shared_res_dir / "dictionaries" / "crkeng.xml")
-    ).getroot()
-    engcrk_root = ET.parse(
-        str(shared_res_dir / "dictionaries" / "engcrk.xml")
-    ).getroot()
+    crkeng_file_path, engcrk_file_path = find_latest_xml_files(
+        shared_res_dir / "dictionaries"
+    )
+
+    print(
+        f"Building test dictionary files using {crkeng_file_path.name} and {crkeng_file_path.name}"
+    )
+
+    crkeng_root = ET.parse(str(crkeng_file_path)).getroot()
+    engcrk_root = ET.parse(str(engcrk_file_path)).getroot()
 
     # relevant entries in crkeng.xml file we want to determine
     relevant_xml_lemmas: Set[str] = set()
