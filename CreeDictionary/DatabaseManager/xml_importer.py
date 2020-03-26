@@ -1,4 +1,5 @@
 import datetime
+import re
 import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
@@ -184,23 +185,65 @@ def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
     return res
 
 
+def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
+    """
+    Find the latest timestamped xml files, with un-timestamped files as a fallback if no timestamped file is found
+
+    :raise FileNotFoundError: if either file can't be found
+    """
+    name_pattern = re.compile(
+        r"^(?P<direction>(crkeng|engcrk)).*?(?P<timestamp>\d{6})?\.xml$"
+    )
+
+    crkeng_file_path_to_timestamp: Dict[Path, str] = {}
+    engcrk_file_path_to_timestamp: Dict[Path, str] = {}
+
+    for file in dir_name.glob("*.xml"):
+        res = re.match(name_pattern, file.name)
+        if res is not None:
+            timestamp = "000000"
+            if res.group("timestamp") is not None:
+                timestamp = res.group("timestamp")
+            if res.group("direction") == "crkeng":
+                crkeng_file_path_to_timestamp[file] = timestamp
+            else:  # engcrk
+                engcrk_file_path_to_timestamp[file] = timestamp
+    if len(crkeng_file_path_to_timestamp) == 0:
+        raise FileNotFoundError(f"No legal xml files for crkeng found under {dir_name}")
+    if len(engcrk_file_path_to_timestamp) == 0:
+        raise FileNotFoundError(f"No legal xml files for engcrk found under {dir_name}")
+
+    return (
+        max(
+            crkeng_file_path_to_timestamp, key=crkeng_file_path_to_timestamp.__getitem__
+        ),
+        max(
+            engcrk_file_path_to_timestamp, key=engcrk_file_path_to_timestamp.__getitem__
+        ),
+    )
+
+
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
-    Import from crkeng.xml and engcrk.xml
+    Import from crkeng and engcrk files, `dir_name` can host a series of xml files. The latest timestamped files will be
+    used, with un-timestamped files as a fallback.
 
     Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, lc) tuples
 
+    :param dir_name: the directory that has pattern (crkeng|engcrk).*?(?P<timestamp>\d{6})?\.xml
+    (e.g. engcrk_cw_md_200319.xml or engcrk.xml) files, beware the timestamp has format yymmdd
     :keyword verbose: print to stdout or not
     """
-    crkeng_filename = dir_name / "crkeng.xml"
-    engcrk_filename = dir_name / "engcrk.xml"
-
-    assert crkeng_filename.exists() and engcrk_filename.exists()
-    start_time = time.time()
     logger.set_print_info_on_console(verbose)
-    logger.info("Database cleared")
 
-    root = ET.parse(str(crkeng_filename)).getroot()
+    crkeng_file_path, engcrk_file_path = find_latest_xml_files(dir_name)
+    logger.info(f"using crkeng file: {crkeng_file_path}")
+    logger.info(f"using engcrk file: {engcrk_file_path}")
+
+    assert crkeng_file_path.exists() and engcrk_file_path.exists()
+    start_time = time.time()
+
+    root = ET.parse(str(crkeng_file_path)).getroot()
 
     source_ids = [s.get("id") for s in root.findall(".//source")]
 
@@ -211,7 +254,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         logger.info("Created source: %s", source_id)
 
     logger.info("Loading English keywords...")
-    engcrk_cree_to_keywords = load_engcrk_xml(engcrk_filename)
+    engcrk_cree_to_keywords = load_engcrk_xml(engcrk_file_path)
     logger.info("English keywords loaded")
 
     # value is definition string as key and its source as value
