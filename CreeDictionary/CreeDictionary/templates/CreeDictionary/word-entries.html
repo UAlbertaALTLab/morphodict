@@ -33,9 +33,9 @@
                                     + {% endif %}
                                     <strong>{{ result.lemma_wordform.text }}:</strong>
                                     <ol class="linguistic-breakdown">                                    
-                                        {% for result in result.linguistic_breakdown_tail %}
+                                        {% for linguistic_tag in result.linguistic_breakdown_tail %}
                                             <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
-                                                {{ result }}
+                                                {{ linguistic_tag }}
                                             </li>
                                         {% endfor %}
                                     </ol>
