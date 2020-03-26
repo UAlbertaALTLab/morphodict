@@ -20,6 +20,7 @@ from typing import (
 import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
+from django.conf import settings
 from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
@@ -168,7 +169,6 @@ class Wordform(models.Model):
     # initialized in apps.py, facilitates affix search
     N_TH_LETTER_TO_LEMMA_IDS: List[Dict[str, Set[int]]] = []
     INVERSE_N_TH_LETTER_TO_LEMMA_IDS: List[Dict[str, Set[int]]] = []
-    WORDFORM_LEMMA_IDS: Set[int] = set()
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
@@ -367,15 +367,20 @@ class Wordform(models.Model):
 
         cree_results: Set[CreeResult] = set()
 
-        if (
-            len(user_query) > 4
-        ):  # there will be too many matches for some shorter queries
+        # there will be too many matches for some shorter queries
+        if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
             # prefix search
             no_diacritics_query_string = remove_cree_diacritics(user_query)
-            possible_wf_ids = Wordform.WORDFORM_LEMMA_IDS.copy()
+            possible_wf_ids = Wordform.N_TH_LETTER_TO_LEMMA_IDS[0][
+                no_diacritics_query_string[0]
+            ].copy()
             for letter_index, letter_to_ids in enumerate(
                 Wordform.N_TH_LETTER_TO_LEMMA_IDS
             ):
+                if letter_index == 0:
+                    # accounted for before the for loop
+                    continue
+
                 if letter_index >= len(user_query):
                     break
 
@@ -393,10 +398,16 @@ class Wordform(models.Model):
                         CreeResult(possible_wf.analysis, possible_wf, possible_wf.lemma)
                     )
             # suffix search
-            possible_wf_ids = Wordform.WORDFORM_LEMMA_IDS.copy()
+            possible_wf_ids = Wordform.INVERSE_N_TH_LETTER_TO_LEMMA_IDS[0][
+                no_diacritics_query_string[-1]
+            ].copy()
             for letter_index, letter_to_ids in enumerate(
                 Wordform.INVERSE_N_TH_LETTER_TO_LEMMA_IDS
             ):
+                if letter_index == 0:
+                    # accounted for before the for loop
+                    continue
+
                 if letter_index >= len(user_query):
                     break
                 possible_wf_ids &= letter_to_ids[

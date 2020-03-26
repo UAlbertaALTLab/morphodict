@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-
+import logging
 import os
 import posixpath
 from pathlib import Path
@@ -53,7 +53,6 @@ INSTALLED_APPS = [
     "django_js_reverse",
 ]
 
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -63,7 +62,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
 
 # configure tools for development, CI, and production
 if DEBUG:
@@ -151,6 +149,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+############################## API app settings ###############################
+
+# how many letters from the start/end do we check, larger length means more memory used, longer initialization time, but faster search
+AFFIX_SEARCH_LENGTH = 4
+# We only apply affix search for user queries longer than the threshold length
+AFFIX_SEARCH_THRESHOLD = 4
+
 ############################## staticfiles app ###############################
 
 if DEBUG:
@@ -161,7 +166,6 @@ else:
     STATIC_URL = "/cree-dictionary/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
 
 if DEBUG:
     # Use the default static storage backed for debug purposes.
@@ -182,6 +186,7 @@ LOGGING = {
     "filters": {
         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+        "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
     },
     "handlers": {
         "write_debug_to_file_prod": {
@@ -194,7 +199,8 @@ LOGGING = {
         },
         "write_info_to_console_dev": {
             "level": "INFO",
-            "filters": ["require_debug_true"],
+            # without require_run_main_true, loggers from API.apps will print twice
+            "filters": ["require_debug_true", "require_run_main_true"],
             "class": "logging.StreamHandler",
         },
     },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
@@ -202,6 +208,21 @@ LOGGING = {
         "django": {
             "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
             "level": "DEBUG",
-        }
+        },
+        # loggers created with logging.get_logger(__name__) under API app will use the configuration here
+        "API": {
+            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+            "level": "DEBUG",
+        },
     },
 }
+
+
+class RunMainFilter(logging.Filter):
+    """
+    When DEBUG is True, django clones two processes, one is the main processes, while the other is for hot swapping.
+    The main process sets RUN_MAIN to true
+    """
+
+    def filter(self, record):
+        return os.environ.get("RUN_MAIN") == "true"
