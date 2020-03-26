@@ -41,7 +41,7 @@ context('Searching', () => {
       .type('nipaw');
       
       // tab through the elements to force the tooltip to pop up
-      cy.get('[data-cy=information-mark]').first().click({force:true});
+      cy.get('[data-cy=information-mark]').first().click();
 
       // see the linguistic breakdown as an ordered list
       cy.get('[data-cy=linguistic-breakdown]').children().eq(1).should('have', 'li');
