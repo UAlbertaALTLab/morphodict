@@ -64,7 +64,7 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline', 'rgb(28, 157, 254) solid 3px'); // apparently, Cypress likes for the colours to be in the style of rgb() so we can't default to the CSS variables we've been using. Oof.
     })
 
-    it.only('should not overlap other page elements when being displayed in the page', () => {
+    it('should not overlap other page elements when being displayed in the page', () => {
       // begin from the homepage
       cy.visit('/');
 
