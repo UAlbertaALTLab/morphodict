@@ -212,7 +212,7 @@ context('Regressions', () => {
 
     // there should be only one result
     cy.get('[data-cy=search-results]').should('have.length', 1)
-
+      .and('should.contain', 'go and')
   })
 
 
