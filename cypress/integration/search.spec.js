@@ -44,7 +44,7 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').first().click();
 
       // see the linguistic breakdown as an ordered list
-      cy.get('[data-cy=linguistic-breakdown]').children().eq(1).should('have', 'li');
+      cy.get('[data-cy=linguistic-breakdown]').contains('li', 'Action word');
       
     })
 
