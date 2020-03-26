@@ -64,23 +64,6 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline', 'rgb(28, 157, 254) solid 3px'); // apparently, Cypress likes for the colours to be in the style of rgb() so we can't default to the CSS variables we've been using. Oof.
     })
 
-    it.only('should not overlap other page elements when being displayed in the page', () => {
-      // begin from the homepage
-      cy.visit('/');
-
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-      // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
-      .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk');
-
-      // force the tooltip to appear
-      cy.get('[data-cy=information-mark]').first().click({force:true});
-
-      // check that the z-index of the tooltip is greater than that of all other page elements
-      cy.get('[data-cy=information-mark]').first().focus().should('have.css', 'z-index', '1');
-
-    })
-
   })
 
   describe('I want to know what a Cree word means in English', () => {
