@@ -58,10 +58,10 @@ context('Searching', () => {
       .type('nipaw');
 
       // tab through the page elements until arriving on the '?' icon
-      cy.get('[data-cy=information-mark]').first().click({force:true});
+      cy.get('[data-cy=information-mark]').first().click();
       
       // it should trigger the focus icon's outline's focused state
-      cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline', 'rgb(28, 157, 254) solid 3px'); // apparently, Cypress likes for the colours to be in the style of rgb() so we can't default to the CSS variables we've been using. Oof.
+      cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline');
     })
 
     it('should not overlap other page elements when being displayed in the page', () => {
