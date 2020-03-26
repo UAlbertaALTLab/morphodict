@@ -18,7 +18,6 @@ tooltip.js attaches all the event handlers
     font-size: 13px;
     border-radius: 4px;
     display: none;
-    z-index: 1;
 }
 
 .tooltip[data-show] {
