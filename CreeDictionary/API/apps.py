@@ -1,10 +1,17 @@
+import logging
+from collections import defaultdict
 from pathlib import Path
 
 from django.apps import AppConfig
+from django.conf import settings
 from django.db import connection, OperationalError
+from typing import List, Dict, Set
+import string
 
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
+
+logger = logging.getLogger(__name__)
 
 
 def initialize_fuzzy_search():
@@ -62,6 +69,66 @@ def read_morpheme_rankings():
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
 
 
+def initialize_affix_search():
+    """
+    build dictionaries as Wordform class attributes to facilitate affix search
+    """
+    from .models import Wordform
+
+    try:
+        lemma_wordforms = Wordform.objects.filter(is_lemma=True)
+    except OperationalError:
+        # when past version of the database is yet to migrate all the changes,
+        # we might not have Wordform table, is_lemma field in the database
+        return
+
+    logger.info("Building affix search dictionaries")
+    # how many letters from the start/end do we check, larger length means more memory used, longer initialization time, but faster search
+    length = settings.AFFIX_SEARCH_LENGTH
+
+    n_th_letter_to_lemma_wordform_ids: List[Dict[str, Set[int]]] = [
+        defaultdict(set) for _ in range(length)
+    ]
+    inverse_n_th_letter_to_lemma_wordform_ids: List[Dict[str, Set[int]]] = [
+        defaultdict(set) for _ in range(length)
+    ]
+
+    cree_letter_to_ascii = {
+        ascii_letter: ascii_letter for ascii_letter in string.ascii_lowercase
+    }
+    cree_letter_to_ascii.update(
+        {"â": "a", "ā": "a", "ê": "e", "ē": "e", "ī": "i", "î": "i", "ô": "o", "ō": "o"}
+    )
+
+    for wf in lemma_wordforms:
+        lowered_wf_text = wf.text.lower()
+
+        for i in range(length):
+            try:
+                lowered_letter = lowered_wf_text[i]
+            except IndexError:
+                break
+            n_th_letter_to_lemma_wordform_ids[i][
+                cree_letter_to_ascii.get(lowered_letter, lowered_letter)
+            ].add(wf.id)
+
+        for i in range(length):
+            try:
+                lowered_letter = lowered_wf_text[-i - 1]
+            except IndexError:
+                break
+
+            inverse_n_th_letter_to_lemma_wordform_ids[i][
+                cree_letter_to_ascii.get(lowered_letter, lowered_letter)
+            ].add(wf.id)
+
+    Wordform.N_TH_LETTER_TO_LEMMA_IDS = n_th_letter_to_lemma_wordform_ids
+    Wordform.INVERSE_N_TH_LETTER_TO_LEMMA_IDS = (
+        inverse_n_th_letter_to_lemma_wordform_ids
+    )
+    logger.info("Finished building affix search dictionaries...")
+
+
 class APIConfig(AppConfig):
     name = "API"
 
@@ -73,4 +140,5 @@ class APIConfig(AppConfig):
         """
         initialize_fuzzy_search()
         initialize_preverb_search()
+        initialize_affix_search()
         read_morpheme_rankings()

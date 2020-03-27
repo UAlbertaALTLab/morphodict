@@ -204,6 +204,15 @@ context('Searching', () => {
       .and('not.contain', 'Kill')
   })
 
+  it('should do prefix search and suffix search', () => {
+
+    cy.visitSearch('nipaw')
+
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'nipawâkan')
+      .and('contain', 'mâci-nipâw')
+  })
+
   describe('Loading indicator', () => {
     beforeEach(() => {
       cy.server()

@@ -234,8 +234,10 @@ def test_search_text_with_ambiguous_word_classes():
     """
     # pipon can be viewed as a Verb as well as a Noun
     results = Wordform.search("pipon")
-    assert len(results) == 2
-    assert {r.lemma_wordform.pos for r in results} == {"N", "V"}
+    assert {r.lemma_wordform.pos for r in results if r.matched_cree == "pipon"} == {
+        "N",
+        "V",
+    }
 
 
 @pytest.mark.django_db
