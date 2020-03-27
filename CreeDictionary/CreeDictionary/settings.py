@@ -151,8 +151,6 @@ USE_TZ = True
 
 ############################## API app settings ###############################
 
-# how many letters from the start/end do we check, larger length means more memory used, longer initialization time, but faster search
-AFFIX_SEARCH_LENGTH = 4
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
 
