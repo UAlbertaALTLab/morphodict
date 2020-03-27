@@ -211,7 +211,7 @@ context('Regressions', () => {
     cy.visitSearch('nitawi-')
 
     // there should be only one result
-    cy.get('[data-cy=search-results]').should('have.length', 1)
-      .and('contain', 'go and')
+    cy.get('[data-cy=search-results]').first()
+      .should('contain', 'go and')
   })
 })
