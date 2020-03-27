@@ -30,6 +30,57 @@ context('Searching', () => {
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
     })
+
+    it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
+      // begin from the homepage
+      cy.visit('/');
+
+      // lock onto the searchbar
+      cy.get('[data-cy=search]')
+      // get a word (nipaw)
+      .type('nipaw');
+      
+      // tab through the elements to force the tooltip to pop up
+      cy.get('[data-cy=information-mark]').first().click();
+
+      // see the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]').contains('li', 'Action word');
+      
+    })
+
+    it('should allow the tooltip to be focused on when the user tabs through it', () => {
+      // goodness, that's a mouthful and should _probably_ be worded better.
+      // begin from the homepage
+      cy.visit('/');
+      // lock onto the searchbar
+      cy.get('[data-cy=search]')
+      // get a word (use nipaw)
+      .type('nipaw');
+
+      // tab through the page elements until arriving on the '?' icon
+      cy.get('[data-cy=information-mark]').first().click();
+      
+      // it should trigger the focus icon's outline's focused state
+      cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline');
+    })
+
+    it('should not overlap other page elements when being displayed in the page', () => {
+      // begin from the homepage
+      cy.visit('/');
+
+      // lock onto the searchbar
+      cy.get('[data-cy=search]')
+      // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
+      .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk');
+
+      // force the tooltip to appear
+      cy.get('[data-cy=information-mark]').first().click({force:true});
+
+      // check that the z-index of the tooltip is greater than that of all other page elements
+      cy.get('[data-cy=information-mark]').first().focus().next().should('have.css', 'z-index', '1'); // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
+
+    })
+
   })
 
   describe('I want to know what a Cree word means in English', () => {

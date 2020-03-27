@@ -38,6 +38,7 @@ venv/
 # Editors
 *~
 *.sw[po]
+.vscode/
 
 # JetBrains Rider
 *.sln.iml

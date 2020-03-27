@@ -449,6 +449,11 @@ html {
   vertical-align: middle;
 }
 
+.definition-title__tooltip-icon:focus,
+.definition-title__tooltip-icon:focus-within {
+  outline: 3px solid var(--search-focus-color);
+}
+
 .reference-to-lemma {
   margin: var(--gap) 0 0;
 
@@ -561,8 +566,6 @@ html {
   left:0.2em;  /* space out the question mark */
   filter: var(--blue-filter); /* blue color */
 }
-
-
 
 /********************************* PARADIGM *********************************/
 
