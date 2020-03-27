@@ -214,6 +214,4 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]').should('have.length', 1)
       .and('contain', 'go and')
   })
-
-
 })
