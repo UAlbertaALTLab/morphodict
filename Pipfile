@@ -30,6 +30,7 @@ typing-extensions = "~=3.7"
 attrs = "~=19.1"
 django-js-reverse = "~=0.9"
 sortedcontainers = {git = "https://github.com/Madoshakalaka/python-sortedcontainers.git"}
+marisa-trie = "~=0.7"
 
 [scripts]
 # look stuff up

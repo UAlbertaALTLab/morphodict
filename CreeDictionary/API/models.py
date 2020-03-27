@@ -1,7 +1,9 @@
 import logging
+import time
 import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
+from itertools import chain
 from typing import (
     Any,
     Callable,
@@ -29,11 +31,11 @@ from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
+import CreeDictionary.hfstol as temp_hfstol
+from .affix_search import AffixSearcher
 from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
-from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
-import CreeDictionary.hfstol as temp_hfstol
 from shared import paradigm_filler
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -42,6 +44,7 @@ from utils.fst_analysis_parser import (
     LabelFriendliness,
     partition_analysis,
 )
+from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 
 logger = logging.getLogger(__name__)
 
@@ -166,9 +169,8 @@ class Wordform(models.Model):
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
-    # initialized in apps.py, facilitates affix search
-    N_TH_LETTER_TO_LEMMA_IDS: List[Dict[str, Set[int]]] = []
-    INVERSE_N_TH_LETTER_TO_LEMMA_IDS: List[Dict[str, Set[int]]] = []
+    # initialized in apps.py
+    affix_searcher: AffixSearcher
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
@@ -369,59 +371,14 @@ class Wordform(models.Model):
 
         # there will be too many matches for some shorter queries
         if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
-            # prefix search
-            no_diacritics_query_string = remove_cree_diacritics(user_query)
-            possible_wf_ids = Wordform.N_TH_LETTER_TO_LEMMA_IDS[0][
-                no_diacritics_query_string[0]
-            ].copy()
-            for letter_index, letter_to_ids in enumerate(
-                Wordform.N_TH_LETTER_TO_LEMMA_IDS
-            ):
-                if letter_index == 0:
-                    # accounted for before the for loop
-                    continue
+            # prefix and suffix search
+            ids_by_prefix = Wordform.affix_searcher.search_by_prefix(user_query)
+            ids_by_suffix = Wordform.affix_searcher.search_by_suffix(user_query)
 
-                if letter_index >= len(user_query):
-                    break
-
-                possible_wf_ids &= letter_to_ids[
-                    no_diacritics_query_string[letter_index]
-                ]
-
-            for possible_wf in Wordform.objects.filter(
-                id__in=possible_wf_ids, is_lemma=True
+            for wf in Wordform.objects.filter(
+                id__in=set(chain(ids_by_prefix, ids_by_suffix))
             ):
-                if remove_cree_diacritics(possible_wf.text).startswith(
-                    no_diacritics_query_string
-                ):
-                    cree_results.add(
-                        CreeResult(possible_wf.analysis, possible_wf, possible_wf.lemma)
-                    )
-            # suffix search
-            possible_wf_ids = Wordform.INVERSE_N_TH_LETTER_TO_LEMMA_IDS[0][
-                no_diacritics_query_string[-1]
-            ].copy()
-            for letter_index, letter_to_ids in enumerate(
-                Wordform.INVERSE_N_TH_LETTER_TO_LEMMA_IDS
-            ):
-                if letter_index == 0:
-                    # accounted for before the for loop
-                    continue
-
-                if letter_index >= len(user_query):
-                    break
-                possible_wf_ids &= letter_to_ids[
-                    no_diacritics_query_string[-letter_index - 1]
-                ]
-            for possible_wf in Wordform.objects.filter(
-                id__in=possible_wf_ids, is_lemma=True
-            ):
-                if remove_cree_diacritics(possible_wf.text).endswith(
-                    no_diacritics_query_string
-                ):
-                    cree_results.add(
-                        CreeResult(possible_wf.analysis, possible_wf, possible_wf.lemma)
-                    )
+                cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
         # utilize the spell relax in descriptive_analyzer
         # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
