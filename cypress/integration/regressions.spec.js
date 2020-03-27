@@ -200,4 +200,18 @@ context('Regressions', () => {
     cy.visitSearch('Edmonton')
     cy.get('[data-cy=search-results]').should('be.visible')
   })
+
+
+  /**
+   * Ensure preverbs don't get weird search results
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/355
+   */
+  it('should not present un-related translation for preverbs', function () {
+    cy.visitSearch('nitawi-')
+
+    // there should be only one result
+    cy.get('[data-cy=search-results]').should('have.length', 1)
+      .and('contain', 'go and')
+  })
 })
