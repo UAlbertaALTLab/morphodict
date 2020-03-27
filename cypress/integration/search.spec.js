@@ -61,7 +61,7 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').first().click()
       
       // it should trigger the focus icon's outline's focused state
-      cy.get('[data-cy=information-mark]').focus().should('have.css', 'outline')
+      cy.get('[data-cy=information-mark]').first().focus().should('have.css', 'outline')
     })
 
     it('should not overlap other page elements when being displayed in the page', () => {
