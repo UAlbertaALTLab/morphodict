@@ -1,0 +1,12 @@
+-i https://pypi.org/simple
+attrs==19.3.0
+colorama==0.4.3
+coverage==4.5.4
+cree-sro-syllabics==2019.2.18
+django-js-reverse==0.10.1a0
+django==2.2.11
+git+https://github.com/Madoshakalaka/python-sortedcontainers.git@b3568358fd8b9491de4bb82ab49b9c94bfaf1499#egg=sortedcontainers
+hfstol==1.2.11
+marisa-trie==0.7.5
+pytz==2019.2
+sqlparse==0.3.1
