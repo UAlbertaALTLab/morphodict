@@ -7,5 +7,5 @@ RUN ./install-packages.sh
 # Install Python dependencies.
 # NB: Requires requirements.txt to be GENERATED beforehand.
 # (use `make` to generate everything properly).
-COPY requirements.txt .
-RUN python -m pip install -r requirements.txt
+COPY requirements.txt install-python-deps.sh ./
+RUN ./install-python-deps.sh
