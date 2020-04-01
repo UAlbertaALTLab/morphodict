@@ -48,13 +48,13 @@ Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîk
 I		Inanimate	like: cîman, wâwi	tâpiskôc: cîman, wâwi	📦
 IC		Initial change	Initial change
 II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	📦➡️
-INM	INM
-IPC	IPC
-IPH	IPH
-IPJ	IPJ
-IPN	IPN
-IPP	IPP
-IPV	IPV
+INM	Name		like: otôskwanihk	tâpiskôc: otôskwanihk
+IPC	Particle		like: anohc	tâpiskôc: anohc
+IPH	Phrase		like: êkosi pitamâ	tâpiskôc: êkosi pitamâ
+IPJ	Interjection		like: hay hay	tâpiskôc: hay hay
+IPN	Prenoun		like: amisko-	tâpiskôc: amisk-
+IPP	Particle		like: akâmi-	tâpiskîc: akâmi- 
+IPV	Preverb		like: pê-	tâpiskôc: pê-
 Imm		Immediate	now	mêkwâc/kîsac
 Imp		Imperative	command/request	nitotamâkêwin
 Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkêwin piko ka-ispayik
