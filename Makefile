@@ -1,4 +1,4 @@
-dockerimage: docker/requirements.txt
+dockerimage: docker/requirements.txt docker/CreeDictionary.tar.gz
 	cd docker/ && docker build -t creedictionary:latest .
 
 # Exclude the editable install of this package, because:
@@ -8,4 +8,13 @@ dockerimage: docker/requirements.txt
 docker/requirements.txt:
 	pipenv lock -r | grep -v -- '-e' > $@
 
-.PHONY: dockerimage
+docker/CreeDictionary.tar.gz: collectstatic bundle 
+	tar czvf $@ CreeDictionary
+
+bundle:
+	npm run build
+
+collectstatic: bundle
+	pipenv run python3 CreeDictionary/manage.py collectstatic --no-input
+
+.PHONY: dockerimage bundle collectstatic
