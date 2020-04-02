@@ -112,3 +112,13 @@ This only needs to be done once and is probably already done. This serves for do
     ```
 
 - `sudo a2ensite cree-dictionary`
+
+# `RUNNING_ON_SAPIR` setting and environment variable
+
+This setting is `True` when the app detects it's running on Sapir during
+startup. You can also force this setting by doing setting the
+environment variable to `True`.
+
+This settings enables certain "features" (read: hacks) required for
+running the application properly on Sapir. These features are not
+required in other production scenarios.
