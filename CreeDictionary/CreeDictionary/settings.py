@@ -37,7 +37,7 @@ RUNNING_ON_SAPIR = (
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if RUNNING_ON_SAPIR:
+if RUNNING_ON_SAPIR:  # pragma: no cover
     assert not DEBUG
 
 # travis has CI equals True
@@ -45,9 +45,9 @@ CI = os.environ.get("CI", "False").lower() == "true"
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
-elif RUNNING_ON_SAPIR:
+elif RUNNING_ON_SAPIR:  # pragma: no cover
     ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
-else:
+else:  # pragma: no cover
     ALLOWED_HOSTS = [HOSTNAME]
 
 # Application definition
@@ -91,7 +91,7 @@ if DEBUG:
 
         INTERNAL_IPS = ["127.0.0.1"]
 
-if RUNNING_ON_SAPIR:
+if RUNNING_ON_SAPIR:  # pragma: no cover
     # Sapir uses `wsgi_express` that requires mod_wsgi
     INSTALLED_APPS.append("mod_wsgi.server")
 
@@ -169,7 +169,7 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-if RUNNING_ON_SAPIR:
+if RUNNING_ON_SAPIR:  # pragma: no cover
     # on sapir /cree-dictionary/ is used to identify the service of the app
     # XXX: this is kind of a hack :/
     STATIC_URL = "/cree-dictionary/static/"
