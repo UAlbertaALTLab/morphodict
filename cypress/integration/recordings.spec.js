@@ -41,12 +41,17 @@ context('Recordings', function () {
       // look up a word (wapamew)
       .type('wapamew');
 
-      // select the word,
+      // select the word and move to it's paradigm,
       cy.get('[data-cy=definition-title').first().click();
 
       // then hover/focus on the speaker icon
+      cy.get('[data-cy=play-recording]').focus()
+
+      // click the icon
+      .click();
 
       // the tooltip of the lemma's speakers should pop up
+      cy.get('[data-cy=speaker-list').contains('li', 'wapamew');
     })
   })
 })
