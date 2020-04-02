@@ -3,7 +3,7 @@
 # Install packages in Debian Buster
 # Based on: https://pythonspeed.com/articles/system-packages-docker/
 
-# Exit at the slightly error:
+# Exit at the slightest error:
 set -eux
 
 export DEBIAN_FRONTEND=noninteractive

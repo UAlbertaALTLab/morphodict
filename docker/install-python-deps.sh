@@ -4,7 +4,7 @@
 # Install dependencies just for the Python application
 # Based on: https://pythonspeed.com/articles/system-packages-docker/
 
-# Exit at the slightly error:
+# Exit at the slightlest error:
 set -eux
 
 export DEBIAN_FRONTEND=noninteractive
