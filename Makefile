@@ -1,5 +1,5 @@
 dockerimage: docker/requirements.txt
-	cd docker/ && docker build .
+	cd docker/ && docker build -t creedictionary:latest .
 
 # Exclude the editable install of this package, because:
 #  - the editable install is only useful for running tests,

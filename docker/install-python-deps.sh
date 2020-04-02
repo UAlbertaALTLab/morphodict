@@ -20,5 +20,6 @@ python3 -m pip install -r requirements.txt
 
 # Clean caches and the mess we've made in this script.
 apt-get -y remove git gcc g++
+apt-get -y autoremove
 apt-get clean
 rm -rf /var/lib/apt/lists/*
