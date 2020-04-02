@@ -90,7 +90,8 @@ if DEBUG:
         }
 
         INTERNAL_IPS = ["127.0.0.1"]
-else:  # enable mod_wsgi for production
+
+if RUNNING_ON_SAPIR:
     # Sapir uses `wsgi_express` that requires mod_wsgi
     INSTALLED_APPS.append("mod_wsgi.server")
 
@@ -168,12 +169,12 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-if DEBUG:
-    STATIC_URL = "/static/"
-else:
+if RUNNING_ON_SAPIR:
     # on sapir /cree-dictionary/ is used to identify the service of the app
     # XXX: this is kind of a hack :/
     STATIC_URL = "/cree-dictionary/static/"
+else:
+    STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
