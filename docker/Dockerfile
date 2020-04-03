@@ -17,5 +17,8 @@ RUN cd /app/ && ./install-python-deps.sh
 # NB: since the build context (e.g., the docker/ folder) does not contain the
 # app source code, copy it over first.
 # Do NOT use the root directory as the build context. Builds get slooooooww.
-COPY CreeDictionary.tar.gz /app/
-RUN cd /app && tar xzf CreeDictionary.tar.gz && rm CreeDictionary.tar.gz
+ADD CreeDictionary.tar.gz /app/
+
+EXPOSE 8000
+WORKDIR /app/CreeDictionary
+CMD ["/usr/bin/env", "python", "manage.py", "runserver", "0.0.0.0:8000"]

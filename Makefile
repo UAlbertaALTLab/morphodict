@@ -5,8 +5,8 @@ dockerimage: docker/requirements.txt docker/CreeDictionary.tar.gz
 #  - the editable install is only useful for running tests,
 #  - we want to install Python dependencies BEFORE copying over the code
 #  (our code changes more often than dependencies)
-docker/requirements.txt:
-	pipenv lock -r | grep -v -- '-e' > $@
+docker/requirements.txt: Pipfile.lock
+	pipenv lock -r | grep -v -- '^-e' > $@
 
 docker/CreeDictionary.tar.gz: collectstatic bundle 
 	tar czvf $@ CreeDictionary
