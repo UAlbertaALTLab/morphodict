@@ -22,7 +22,6 @@ pip-delete-this-directory.txt
 # Django stuff
 DatabaseManager.log*
 *.log
-local_settings.py
 db.sqlite3
 *.sqlite3.bak
 *.sqlite3-journal

@@ -19,6 +19,9 @@ RUN cd /app/ && ./install-python-deps.sh
 # Do NOT use the root directory as the build context. Builds get slooooooww.
 ADD CreeDictionary.tar.gz /app/
 
+# Run the server!
+ENV DJANGO_SETTINGS_MODULE="local_settings"
 EXPOSE 8000
 WORKDIR /app/CreeDictionary
-CMD ["/usr/bin/env", "python", "manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["python", "manage.py"]
+CMD ["runserver", "0.0.0.0:8000"]
