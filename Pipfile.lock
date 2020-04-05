@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f984b2aa131b5712e97c39a0d4d59372f2f890618c1a3fe0b2f85866367e69d1"
+            "sha256": "a092b64e7c1be112da28e995bd26cee4fefeb73abdd2802e478dea663fecf311"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -84,11 +84,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:65e2387e6bde531d3bb803244a2b74e0253550a9612c64a60c8c5be267b30f50",
-                "sha256:b51c9c548d5c3b3ccbb133d0bebc992e8ec3f14899bce8936e6fdda6b23a1881"
+                "sha256:69897097095f336d5aeef45b4103dceae51c00afa6d3ae198a2a18e519791b7a",
+                "sha256:6ecd229e1815d4fc5240fc98f1cca78c41e7a8cd3e3f2eefadc4735031077916"
             ],
             "index": "pypi",
-            "version": "==2.2.11"
+            "version": "==2.2.12"
         },
         "django-js-reverse": {
             "hashes": [
@@ -123,8 +123,7 @@
             "version": "==2019.2"
         },
         "sortedcontainers": {
-            "git": "https://github.com/Madoshakalaka/python-sortedcontainers.git",
-            "ref": "b3568358fd8b9491de4bb82ab49b9c94bfaf1499"
+            "file": "https://eddieantonio.keybase.pub/sortedcontainers-2.1.0.tar.gz"
         },
         "sqlparse": {
             "hashes": [
@@ -135,12 +134,12 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:091ecc894d5e908ac75209f10d5b4f118fbdb2eb1ede6a63544054bb1edb41f2",
-                "sha256:910f4656f54de5993ad9304959ce9bb903f90aadc7c67a0bef07e678014e892d",
-                "sha256:cf8b63fedea4d89bab840ecbb93e75578af28f76f66c35889bd7065f5af88575"
+                "sha256:6e95524d8a547a91e08f404ae485bbb71962de46967e1b71a0cb89af24e761c5",
+                "sha256:79ee589a3caca649a9bfd2a8de4709837400dfa00b6cc81962a1e6a1815969ae",
+                "sha256:f8d2bd89d25bc39dabe7d23df520442fa1d8969b82544370e03d88b5a591c392"
             ],
             "index": "pypi",
-            "version": "==3.7.4.1"
+            "version": "==3.7.4.2"
         }
     },
     "develop": {
@@ -251,11 +250,11 @@
         },
         "django": {
             "hashes": [
-                "sha256:65e2387e6bde531d3bb803244a2b74e0253550a9612c64a60c8c5be267b30f50",
-                "sha256:b51c9c548d5c3b3ccbb133d0bebc992e8ec3f14899bce8936e6fdda6b23a1881"
+                "sha256:69897097095f336d5aeef45b4103dceae51c00afa6d3ae198a2a18e519791b7a",
+                "sha256:6ecd229e1815d4fc5240fc98f1cca78c41e7a8cd3e3f2eefadc4735031077916"
             ],
             "index": "pypi",
-            "version": "==2.2.11"
+            "version": "==2.2.12"
         },
         "django-debug-toolbar": {
             "hashes": [
@@ -408,11 +407,11 @@
         },
         "pytest-django": {
             "hashes": [
-                "sha256:456fa6854d04ee625d6bbb8b38ca2259e7040a6f93333bfe8bc8159b7e987203",
-                "sha256:489b904f695f9fb880ce591cf5a4979880afb467763b1f180c07574554bdfd26"
+                "sha256:64f99d565dd9497af412fcab2989fe40982c1282d4118ff422b407f3f7275ca5",
+                "sha256:664e5f42242e5e182519388f01b9f25d824a9feb7cd17d8f863c8d776f38baf9"
             ],
             "index": "pypi",
-            "version": "==3.8.0"
+            "version": "==3.9.0"
         },
         "pytest-mypy": {
             "hashes": [
@@ -478,8 +477,7 @@
             "version": "==1.14.0"
         },
         "sortedcontainers": {
-            "git": "https://github.com/Madoshakalaka/python-sortedcontainers.git",
-            "ref": "b3568358fd8b9491de4bb82ab49b9c94bfaf1499"
+            "file": "https://eddieantonio.keybase.pub/sortedcontainers-2.1.0.tar.gz"
         },
         "sqlparse": {
             "hashes": [
@@ -497,11 +495,11 @@
         },
         "tqdm": {
             "hashes": [
-                "sha256:0d8b5afb66e23d80433102e9bd8b5c8b65d34c2a2255b2de58d97bd2ea8170fd",
-                "sha256:f35fb121bafa030bd94e74fcfd44f3c2830039a2ddef7fc87ef1c2d205237b24"
+                "sha256:00339634a22c10a7a22476ee946bbde2dbe48d042ded784e4d88e0236eca5d81",
+                "sha256:ea9e3fd6bd9a37e8783d75bfc4c1faf3c6813da6bd1c3e776488b41ec683af94"
             ],
             "index": "pypi",
-            "version": "==4.43.0"
+            "version": "==4.45.0"
         },
         "typed-ast": {
             "hashes": [
@@ -531,12 +529,12 @@
         },
         "typing-extensions": {
             "hashes": [
-                "sha256:091ecc894d5e908ac75209f10d5b4f118fbdb2eb1ede6a63544054bb1edb41f2",
-                "sha256:910f4656f54de5993ad9304959ce9bb903f90aadc7c67a0bef07e678014e892d",
-                "sha256:cf8b63fedea4d89bab840ecbb93e75578af28f76f66c35889bd7065f5af88575"
+                "sha256:6e95524d8a547a91e08f404ae485bbb71962de46967e1b71a0cb89af24e761c5",
+                "sha256:79ee589a3caca649a9bfd2a8de4709837400dfa00b6cc81962a1e6a1815969ae",
+                "sha256:f8d2bd89d25bc39dabe7d23df520442fa1d8969b82544370e03d88b5a591c392"
             ],
             "index": "pypi",
-            "version": "==3.7.4.1"
+            "version": "==3.7.4.2"
         },
         "urllib3": {
             "hashes": [
