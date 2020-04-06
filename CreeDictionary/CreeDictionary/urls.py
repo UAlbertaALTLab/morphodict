@@ -1,8 +1,6 @@
 """
 Definition of urls for CreeDictionary.
 """
-import API.views as api_views
-from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -10,6 +8,9 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
+
+import API.views as api_views
+from CreeDictionary import views
 
 # 2019/May/21 Matt Yan:
 
@@ -28,6 +29,8 @@ from django_js_reverse.views import urls_js
 # url reversion
 
 
+# TODO: Convert this to an idiomatic Django style when we drop support for
+# Sapir and mod-wsgi.
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),
@@ -75,7 +78,7 @@ _urlpatterns = [
 # XXX: ugly hack to make this work on a local instance and on Sapir
 # TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
-prefix = "" if settings.DEBUG else "cree-dictionary/"
+prefix = "cree-dictionary/" if settings.RUNNING_ON_SAPIR else ""
 
 for route, view, name in _urlpatterns:
     # kwarg `name` for url reversion in html/py/js code
@@ -85,7 +88,6 @@ for route, view, name in _urlpatterns:
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
-
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
 

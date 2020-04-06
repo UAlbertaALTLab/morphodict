@@ -15,6 +15,8 @@ import posixpath
 from pathlib import Path
 from sys import stderr
 
+from .hostutils import HOST_IS_SAPIR, HOSTNAME
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -24,19 +26,29 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 
+# sapir.artsrn.ualberta.ca has some... special requirements,
+# so let's hear about it!
+RUNNING_ON_SAPIR = (
+    os.environ.get("RUNNING_ON_SAPIR", str(HOST_IS_SAPIR)).lower() == "true"
+)
+
 # Debug is default to False
 # Turn it to True in development
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+if RUNNING_ON_SAPIR:  # pragma: no cover
+    assert not DEBUG
 
 # travis has CI equals True
 CI = os.environ.get("CI", "False").lower() == "true"
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
-else:
+elif RUNNING_ON_SAPIR:  # pragma: no cover
     ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
+else:  # pragma: no cover
+    ALLOWED_HOSTS = [HOSTNAME]
 
 # Application definition
 
@@ -78,7 +90,8 @@ if DEBUG:
         }
 
         INTERNAL_IPS = ["127.0.0.1"]
-else:  # enable mod_wsgi for production
+
+if RUNNING_ON_SAPIR:  # pragma: no cover
     # Sapir uses `wsgi_express` that requires mod_wsgi
     INSTALLED_APPS.append("mod_wsgi.server")
 
@@ -156,12 +169,12 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-if DEBUG:
-    STATIC_URL = "/static/"
-else:
+if RUNNING_ON_SAPIR:  # pragma: no cover
     # on sapir /cree-dictionary/ is used to identify the service of the app
     # XXX: this is kind of a hack :/
     STATIC_URL = "/cree-dictionary/static/"
+else:
+    STATIC_URL = "/static/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 

@@ -155,7 +155,6 @@
 7.80051	hâ	hâ
 7.80051	hâ	hâ
 7.8257	nipâw	nipâ-
-7.83899	mahti	mahti
 7.83899	âsay	âsay
 7.88024	pîhtwâw	pîhtwâ-
 7.91737	kîkwây	kîkw-/-i/ay-
@@ -418,10 +417,11 @@
 9.39067	wayân	-wayân
 9.39414	kîsikâw	kîsik-/-â/-1
 9.39475	wâpiw	wâp-/-i
+9.5	mahti	mahti
 9.39985	asotam	asot-
 9.39985	wâspitêw	wâspiT-
 9.41164	nipahêw	nip-/-ah
-9.41393	êha'	êha
+9.41393	êha	êha
 9.41473	kitimâkisiw	kitimâk-/-isi
 9.42843	wayawî-	waýawî-
 9.42946	itôtam	iT-/-ôt
