@@ -1013,10 +1013,10 @@ a.menu-choice__label:active {
  * When displaying that something went wrong.
  */
 .box--bad-outcome {
-  color: rgb(26, 9, 13);
-  background-color: rgb(227, 167, 175);
-  text-shadow: 1px 1px 0 #e0e0e0,
-               2px 2px 2px rgba(206, 77, 77, 0.2);
+  color: var(--bad-outcome-color);
+  background-color: var(--bad-outcome-bg-color);
+  text-shadow: 1px 1px 0 var(--embossed-highlight),
+               2px 2px 2px var(--bad-outcome-shadow);
 }
 
 /******************************** ABOUT PAGE ********************************/

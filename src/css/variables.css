@@ -46,6 +46,10 @@
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
   --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
   --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
+  --bad-outcome-color:      #1A090D; /* A dark red text colour */
+  --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
+  --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
+  --embossed-highlight:     #e0e0e0;
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
