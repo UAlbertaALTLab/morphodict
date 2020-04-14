@@ -1007,6 +1007,17 @@ a.menu-choice__label:active {
   margin-block-end: 16px;
 }
 
+/**
+ * MODIFIER bad-outcome
+ *
+ * When displaying that something went wrong.
+ */
+.box--bad-outcome {
+  color: rgb(26, 9, 13);
+  background-color: rgb(227, 167, 175);
+  text-shadow: 1px 1px 0 #e0e0e0,
+               2px 2px 2px rgba(206, 77, 77, 0.2);
+}
 
 /******************************** ABOUT PAGE ********************************/
 
@@ -1163,3 +1174,19 @@ a.menu-choice__label:active {
 
   cursor: pointer;
 }
+
+/**
+ * BLOCK query
+ *
+ * For showing the user query on the page.
+ */
+.query {
+  font-style: italic;
+  quotes: "«" "»";
+}
+
+/**
+ * Show the quotes to indicate that this is verbatim.
+ */
+.query::before { content: open-quote; }
+.query::after { content: close-quote; }
