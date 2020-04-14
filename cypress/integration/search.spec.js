@@ -339,7 +339,7 @@ context('Searching', () => {
   })
 
   describe('When results are not found', function () {
-    // TODO: we should probably choose a more mature word ¯\_(ツ)_/¯
+    // TODO: we should probably choose a more mature example ¯\_(ツ)_/¯
     const NON_WORD = 'pîpîpôpô'
 
     it('should report no results found for ordinary search', function () {
@@ -354,9 +354,9 @@ context('Searching', () => {
       })
 
       // There should be something telling us that there are no results
-      cy.get('[data-cy=search-result]')
-        .contains(NON_WORD)
-        .contains(`No results found for ${NON_WORD}`)
+      cy.get('[data-cy=no-search-result]')
+        .and('contain', 'No results found')
+        .should('contain', NON_WORD)
     })
   })
 })

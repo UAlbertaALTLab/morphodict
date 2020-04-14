@@ -140,5 +140,9 @@
 
   </article>
 </li>
+{% empty %}
+  <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
+    No results found for <output class="query--bad">{{ query_string }}</output>
+  </li>
 {% endfor %}
 {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
