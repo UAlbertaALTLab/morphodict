@@ -358,5 +358,13 @@ context('Searching', () => {
         .and('contain', 'No results found')
         .should('contain', NON_WORD)
     })
+
+    it('should report no results found when visiting the page directly', function () {
+      cy.visitSearch(NON_WORD)
+
+      cy.get('[data-cy=no-search-result]')
+        .and('contain', 'No results found')
+        .should('contain', NON_WORD)
+    })
   })
 })
