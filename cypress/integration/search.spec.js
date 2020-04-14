@@ -39,13 +39,13 @@ context('Searching', () => {
       cy.get('[data-cy=search]')
       // get a word (nipaw)
         .type('nipaw')
-      
+
       // tab through the elements to force the tooltip to pop up
       cy.get('[data-cy=information-mark]').first().click()
 
       // see the linguistic breakdown as an ordered list
       cy.get('[data-cy=linguistic-breakdown]').contains('li', 'Action word')
-      
+
     })
 
     it('should allow the tooltip to be focused on when the user tabs through it', () => {
@@ -59,7 +59,7 @@ context('Searching', () => {
 
       // tab through the page elements until arriving on the '?' icon
       cy.get('[data-cy=information-mark]').first().click()
-      
+
       // it should trigger the focus icon's outline's focused state
       cy.get('[data-cy=information-mark]').first().focus().should('have.css', 'outline')
     })
@@ -335,6 +335,28 @@ context('Searching', () => {
         expect(loc.pathname).to.eq(originalPathname)
         expect(loc.search).to.eq(originalSearch)
       })
+    })
+  })
+
+  describe('When results are not found', function () {
+    // TODO: we should probably choose a more mature word ¯\_(ツ)_/¯
+    const NON_WORD = 'pîpîpôpô'
+
+    it('should report no results found for ordinary search', function () {
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type(NON_WORD)
+
+      cy.location().should((loc) => {
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.contain(`q=${encodeURIComponent(NON_WORD)}`)
+      })
+
+      // There should be something telling us that there are no results
+      cy.get('[data-cy=search-result]')
+        .contains(NON_WORD)
+        .contains(`No results found for ${NON_WORD}`)
     })
   })
 })
