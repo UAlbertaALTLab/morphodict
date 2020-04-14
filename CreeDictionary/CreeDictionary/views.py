@@ -77,7 +77,10 @@ def search_results(request, query_string: str):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/word-entries.html",
-        {"search_results": [r.serialize() for r in results]},
+        {
+            "query_string": query_string,
+            "search_results": [r.serialize() for r in results],
+        },
     )
 
 
