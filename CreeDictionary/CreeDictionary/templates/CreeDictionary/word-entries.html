@@ -3,141 +3,146 @@
 {% load static %}
 
 {% for result in search_results %}
-    <li class="search-results__result" data-cy="search-results">
-        <article class="definition box box--rounded" data-cy="search-result">
-            <header class="definition__header">
-                <h2 class="definition-title definition-title--search-result">
+<li class="search-results__result" data-cy="search-results">
+  <article class="definition box box--rounded" data-cy="search-result">
+    <header class="definition__header">
+      <h2 class="definition-title definition-title--search-result">
 
-                    <dfn class="definition-title__word" data-cy="definition-title">
-                        {% if result.is_lemma %}
-                            <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}">
-                                {% orth result.lemma_wordform.text %}</a>
-                        {% else %}
-                            {% orth result.matched_cree %}
-                        {% endif %}
-                        <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
-                        {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
-
-
-                            <div tabindex="0" class="definition-title__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
-                                <img
-                                        src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
-                                        alt="linguistic breakdown">
-                            </div>
+        <dfn class="definition-title__word" data-cy="definition-title">
+          {% if result.is_lemma %}
+          <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}">
+            {% orth result.lemma_wordform.text %}</a>
+          {% else %}
+          {% orth result.matched_cree %}
+          {% endif %}
+          <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
+          {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
 
 
-                            <div class="tooltip" role="tooltip">
-                                <span
-                                        data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
-                                    {{ result.linguistic_breakdown_head|join:" + " }}
-                                    + {% endif %}
-                                    <strong>{{ result.lemma_wordform.text }}:</strong>
-                                    <ol class="linguistic-breakdown">                                    
-                                        {% for linguistic_tag in result.linguistic_breakdown_tail %}
-                                            <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
-                                                {{ linguistic_tag }}
-                                            </li>
-                                        {% endfor %}
-                                    </ol>
-                                </span>
-                                <div class="arrow" data-popper-arrow></div>
-                            </div>
-                        {% endif %}
-                    </dfn>
-
-                </h2>
-            </header>
-
-            {# Show the matched lemma (when this is NOT a lemma. #}
-            {% if not result.is_lemma %}
-                <p class="reference-to-lemma" data-cy="reference-to-lemma">
-                    Form of
-                    <a class="reference-to-lemma__lemma" href="{{ result.lemma_wordform.lemma_url }}"
-                       >{% orth result.lemma_wordform.text %}</a>
-                </p>
-            {% endif %}
+          <div tabindex="0" class="definition-title__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
+            <img
+              src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
+              alt="linguistic breakdown">
+          </div>
 
 
-            {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
-            <ol class="meanings meanings--search-result">
-                {% for def in result.definitions %}
-                    <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
-                        {% for source in def.source_ids %}
-                            <cite class="cite-dict">{{ source }}</cite>
-                        {% endfor %}
-                    </li>
+          <div class="tooltip" role="tooltip">
+            <span
+              data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
+              {{ result.linguistic_breakdown_head|join:" + " }}
+              + {% endif %}
+              <strong>{{ result.lemma_wordform.text }}:</strong>
+              <ol class="linguistic-breakdown">
+                {% for linguistic_tag in result.linguistic_breakdown_tail %}
+                <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
+                  {{ linguistic_tag }}
+                </li>
                 {% endfor %}
-            </ol>
+              </ol>
+            </span>
+            <div class="arrow" data-popper-arrow></div>
+          </div>
+          {% endif %}
+        </dfn>
 
-            {# show preverb breakdown #}
-            <ol class="preverb-breakdown">
-                {% for preverb in result.preverbs %}
-                    <li>
-                        <span>Preverb: {% if preverb.id %}
-                            <a href="{% url_for_query preverb.text %}">{% orth preverb.text %}</a>{% else %}
-                            {% orth preverb.text %}{% endif %}
-                        </span>
+      </h2>
+    </header>
 
-                        {% if preverb.id %} {# we know the preverb in the database #}
-
-
-
-                            <div tabindex="0" class="preverb-breakdown__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
-
-
-                                <img
-                                        src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
-                                        alt="preverb breakdown">
-                            </div>
-
-                            <div class="tooltip" role="tooltip">
-                                {% for definition in preverb.definitions %}
-                                    <p class="preverb-breakdown__preverb-definition">{{ definition.text }}
-                                        {% for source in definition.source_ids %}
-                                            <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
-                                        {% endfor %}
-                                    </p>
-                                {% endfor %}
-                                <div class="arrow" data-popper-arrow></div>
-                            </div>
-
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ol>
-            {# end preverb breakdown #}
-
-            {% if not result.is_lemma %}
-                {# show everything about the lemma #}
-
-                <hr class="cleave-inflection-from-lemma">
-
-                <header class="definition__header">
-                    <h2 class="definition-title definition-title--search-result">
-
-                        <dfn class="definition-title__word" data-cy="definition-title">
-                            <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}"
-                               >
-                                {# data- attributes are supported in HTML5 not in XHTML #}
-                                {% orth result.lemma_wordform.text %}</a>
-                        </dfn>
-                    </h2>
-                </header>
-
-                {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
-                <ol class="meanings meanings--search-result">
-                    {% for def in result.lemma_wordform.definitions %}
-                        <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
-                            {% for source in def.source_ids %}
-                                <cite class="cite-dict">{{ source }}</cite>
-                            {% endfor %}
-                        </li>
-                    {% endfor %}
-                </ol>
+    {# Show the matched lemma (when this is NOT a lemma. #}
+    {% if not result.is_lemma %}
+    <p class="reference-to-lemma" data-cy="reference-to-lemma">
+    Form of
+    <a class="reference-to-lemma__lemma" href="{{ result.lemma_wordform.lemma_url }}"
+                                         >{% orth result.lemma_wordform.text %}</a>
+    </p>
+    {% endif %}
 
 
-            {% endif %}
+    {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
+    <ol class="meanings meanings--search-result">
+      {% for def in result.definitions %}
+      <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
+        {% for source in def.source_ids %}
+        <cite class="cite-dict">{{ source }}</cite>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ol>
 
-        </article>
-    </li>
+    {# show preverb breakdown #}
+    <ol class="preverb-breakdown">
+      {% for preverb in result.preverbs %}
+      <li>
+        <span>Preverb: {% if preverb.id %}
+          <a href="{% url_for_query preverb.text %}">{% orth preverb.text %}</a>{% else %}
+          {% orth preverb.text %}{% endif %}
+        </span>
+
+        {% if preverb.id %} {# we know the preverb in the database #}
+
+
+
+        <div tabindex="0" class="preverb-breakdown__tooltip-icon" aria-describedby="tooltip" data-cy="information-mark">
+
+
+          <img
+            src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
+            alt="preverb breakdown">
+        </div>
+
+        <div class="tooltip" role="tooltip">
+          {% for definition in preverb.definitions %}
+          <p class="preverb-breakdown__preverb-definition">{{ definition.text }}
+          {% for source in definition.source_ids %}
+          <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
+          {% endfor %}
+          </p>
+          {% endfor %}
+          <div class="arrow" data-popper-arrow></div>
+        </div>
+
+        {% endif %}
+      </li>
+      {% endfor %}
+    </ol>
+    {# end preverb breakdown #}
+
+    {% if not result.is_lemma %}
+    {# show everything about the lemma #}
+
+    <hr class="cleave-inflection-from-lemma">
+
+    <header class="definition__header">
+      <h2 class="definition-title definition-title--search-result">
+
+        <dfn class="definition-title__word" data-cy="definition-title">
+          <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}"
+                                            >
+                                            {# data- attributes are supported in HTML5 not in XHTML #}
+                                            {% orth result.lemma_wordform.text %}</a>
+        </dfn>
+      </h2>
+    </header>
+
+    {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
+    <ol class="meanings meanings--search-result">
+      {% for def in result.lemma_wordform.definitions %}
+      <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
+        {% for source in def.source_ids %}
+        <cite class="cite-dict">{{ source }}</cite>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ol>
+
+
+    {% endif %}
+
+  </article>
+</li>
+{% empty %}
+  <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
+    No results found for <output class="query">{{ query_string }}</output>
+  </li>
 {% endfor %}
+{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
