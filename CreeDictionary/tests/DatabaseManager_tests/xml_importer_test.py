@@ -22,6 +22,9 @@ def test_import_nice_xml(shared_datadir):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(
+    reason="fst is updated. Need a new example that generates multiple spellings"
+)
 def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
     migrate_and_import(shared_datadir / "crkeng-small-lemma-w-multiple-spelling")
 
@@ -41,9 +44,20 @@ def test_import_xml_fst_no_analysis(shared_datadir):
 
 
 @pytest.mark.django_db
+@pytest.mark.xfail(reason="fst changed, new examples needed")
 def test_import_xml_common_analysis_definition_merge(shared_datadir):
+    """
+    test purpose: sometimes two entries in the xml produce the same analysis. Their definition shouldn't be merged
+    """
+
     migrate_and_import(shared_datadir / "crkeng-small-common-analysis-different-lc")
     assert Wordform.objects.get(text="pisin").definitions.count() == 1
+
+    # Note: this test no longer works because pisin and pisiniw no longer produces the same analysis
+
+    # We need to find two entries in the xml that produces the same analysis. See
+    # DatabaseManager_tests/data/crkeng-small-common-analysis-different-lc/crkeng.xml
+
     assert Wordform.objects.get(text="pisiniw").definitions.count() == 2
 
 

@@ -49,15 +49,22 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+
+    if user_query:
+        search_results = [
+            search_result.serialize() for search_result in Wordform.search(user_query)
+        ]
+        did_search = True
+    else:
+        search_results = []
+        did_search = False
+
     context = {
         "word_search_form": WordSearchForm(),
         # when we have initial query word to search and display
         "query_string": user_query,
-        "search_results": [
-            search_result.serialize() for search_result in Wordform.search(user_query)
-        ]
-        if user_query
-        else [],
+        "search_results": search_results,
+        "did_search": did_search,
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -70,7 +77,10 @@ def search_results(request, query_string: str):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/word-entries.html",
-        {"search_results": [r.serialize() for r in results]},
+        {
+            "query_string": query_string,
+            "search_results": [r.serialize() for r in results],
+        },
     )
 
 

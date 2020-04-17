@@ -15,3 +15,7 @@ After editing the file `$ manage-db build-test-db [-m|--multi-processing N]` to 
 ## crk.altlabel.tsv
 
 labels for fst tags categorized by user-friendliness. The source [`crk.altlabel`](https://gtsvn.uit.no/langtech/trunk/langs/crk/inc/paradigms/crk.altlabel) file.
+
+## W_aggr_corp_morph_log_freq.txt
+
+Morpheme frequencies, used in result sorting. Sits at `/data/texts/crk/dicts/itwewina/` on Sapir and is subject to updates. 
