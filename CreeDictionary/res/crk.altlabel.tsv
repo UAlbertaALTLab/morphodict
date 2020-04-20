@@ -377,16 +377,20 @@ TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	🧑�
 
 V	Verb		Action word	ispayin-itwêwin
 Voc	Vocative		call/address	kitowin
-VAI-n	VAI-n	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin
-VAI-v	VAI-v	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw
-VII-n	VII-n	n-final inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin
-VII-v	VII-v	vowel-final Inanimate Intransive verb	like: mihkwâw	tâpiskôc: mihkwâw
-VTA-1	VTA-1	transitive animate verb – class 1	like: wîcihêw	tâpiskôc: wîcihêw
+
+VAI-1	VAI-1	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw
+VAI-2	VAI-2	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin
+VAI-3	VAI-3	VTI-like animate intransitive verb	like: yâhyânam	tâpiskôc: yâhyânam
+VII-n	VII-1n	n-final impersonal inanimate intransive verb	like: kikiwan	tâpiskôc: kimiwan
+VII-n	VII-2n	n-final pluralizable inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin
+VII-v	VII-1v	vowel-final impersonal inanimate intransive verb	like: kîsikâw	tâpiskôc: kîsikâw
+VII-v	VII-2v	vowel-final pluralizable  inanimate Intransive verb	like: mihkwâw	tâpiskôc: mihkwâw
+VTA-1	VTA-1	transitive animate verb – class 1: regular	like: wîcihêw	tâpiskôc: wîcihêw
 VTA-2	VTA-2	transitive animate verb – class 2	like: nitonawêw	tâpiskôc: nitonawêw
 VTA-3	VTA-3	transitive animate verb – class 3	like: kîskiswêw	tâpiskôc: kîskiswêw
 VTA-4	VTA-4	transitive animate verb – class 4	like: nakatêw	tâpiskôc: nakatêw
 VTA-5	VTA-5	transitive animate verb – class 5	like: itêw, mowêw?	tâpiskôc: itêw, mowêw?
-VTI-1	VTI-1	transitive inanimate verb – class 1	like: nâtam	tâpiskôc: nâtam
+VTI-1	VTI-1	transitive inanimate verb – class 1: regular	like: nâtam	tâpiskôc: nâtam
 VTI-2	VTI-2	transitive inanimate verb – class 2: stem-final -â	like: kisihtâw	tâpiskôc: kisihtâw
 VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîciw
 
