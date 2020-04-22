@@ -1,6 +1,7 @@
 @charset "UTF-8";
 
 @import "./vendor/normalize.css";
+@import "./vendor/notosanscanadianaboriginal.css";
 @import "./variables.css";
 @import "./_tooltip.css";
 
