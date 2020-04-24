@@ -72,8 +72,14 @@
   --toggle-box-large-font-size:     1.14em;
   --cite-text-font-size:            0.50em;
   /* Font families */
-  --heading-font-family: Raleway, Euphemia UCAS, sans-serif;
-  --body-font-family: Open Sans, Euphemia UCAS, sans-serif;
+  --syllabics-fonts:
+    Gadugi,                             /* Windows 10 */
+    'Euphemia UCAS',                    /* macOS/iOS */
+    Euphemia,                           /* Windows Vista/7/8 */
+    'Aboriginal Sans',                  /* From languagegeek.com */
+    'Noto Sans Canadian Aboriginal';    /* Fallback: ChromeOS/Chomebook and other platforms. */
+  --heading-font-family: Raleway, var(--syllabics-fonts), sans-serif;
+  --body-font-family: 'Open Sans', var(--syllabics-fonts), sans-serif;
   /* Font weights */
   --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
   --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */
