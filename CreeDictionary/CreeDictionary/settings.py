@@ -188,46 +188,6 @@ else:
         "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
     )
 
-log_dir = Path(BASE_DIR) / "django_logs"
-log_dir.mkdir(exist_ok=True)
-
-LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
-        "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
-    },
-    "handlers": {
-        "write_debug_to_file_prod": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": str(log_dir / "django.log"),
-            "maxBytes": 1024 * 1024 * 15,  # 15MB
-            "backupCount": 10,
-            "filters": ["require_debug_false"],
-        },
-        "write_info_to_console_dev": {
-            "level": "INFO",
-            # without require_run_main_true, loggers from API.apps will print twice
-            "filters": ["require_debug_true", "require_run_main_true"],
-            "class": "logging.StreamHandler",
-        },
-    },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
-    "loggers": {
-        "django": {
-            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
-            "level": "DEBUG",
-        },
-        # loggers created with logging.get_logger(__name__) under API app will use the configuration here
-        "API": {
-            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
-            "level": "DEBUG",
-        },
-    },
-}
-
 
 class RunMainFilter(logging.Filter):
     """
@@ -237,3 +197,51 @@ class RunMainFilter(logging.Filter):
 
     def filter(self, record):
         return os.environ.get("RUN_MAIN") == "true"
+
+
+# production, then it's inside docker container. Use docker settings.
+# On the difference of both settings, an important one is logging directory
+if not CI and not DEBUG:
+    pass
+    # print("gg")
+    # from .dim import *
+# local development or CI
+else:
+    log_dir = Path(BASE_DIR) / "django_logs"
+    log_dir.mkdir(exist_ok=True)
+    LOGGING = {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "filters": {
+            "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+            "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+            "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
+        },
+        "handlers": {
+            "write_debug_to_file_prod": {
+                "level": "DEBUG",
+                "class": "logging.handlers.RotatingFileHandler",
+                "filename": str(log_dir / "django.log"),
+                "maxBytes": 1024 * 1024 * 15,  # 15MB
+                "backupCount": 10,
+                "filters": ["require_debug_false"],
+            },
+            "write_info_to_console_dev": {
+                "level": "INFO",
+                # without require_run_main_true, loggers from API.apps will print twice
+                "filters": ["require_debug_true", "require_run_main_true"],
+                "class": "logging.StreamHandler",
+            },
+        },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+        "loggers": {
+            "django": {
+                "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+                "level": "DEBUG",
+            },
+            # loggers created with logging.get_logger(__name__) under API app will use the configuration here
+            "API": {
+                "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+                "level": "DEBUG",
+            },
+        },
+    }
