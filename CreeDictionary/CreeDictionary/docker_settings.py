@@ -7,14 +7,11 @@ Settings for running within a Docker container.
 
 from pathlib import Path
 
-from CreeDictionary.settings import *
-
 # Where is data stored?
 # This is a Docker volume:
 DATA_DIR = Path("/data")
 
-# Allow for easier local testing
-ALLOWED_HOSTS += ["localhost"]
+ALLOWED_HOSTS = ["localhost"]
 
 # Persist data to the mounted volume:
 DATABASES = {
@@ -25,7 +22,13 @@ DATABASES = {
 }
 
 log_dir = Path(DATA_DIR) / "log"
-log_dir.mkdir(exist_ok=True)
+try:
+    log_dir.mkdir(exist_ok=True)
+    # on CI or development environment, this file will also run while running unittests because of our pytest settings.
+    # potential cause: "pytest CreeDictionary/ runs every file?  doctest setting runs every file?"
+    # so Path("/data/log").mkdir() may fail because "/data" directory does not exist.
+except FileNotFoundError:
+    pass
 
 LOGGING = {
     "version": 1,
