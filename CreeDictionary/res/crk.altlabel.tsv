@@ -1,35 +1,35 @@
 FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
-12Pl	1p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiyânaw
-1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (not you)	niyanân
-1PlO	→ 1p (excl)	Goal: 1st Person Plural (Exclusive)	→ you and us	→ kiyânaw
-1Sg	1s	Actor: 1st Person Singular	I	niya
-1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ niya
-2Pl	2p	Actor: 2nd Person Plural	you (all)	kiyawâw
-2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kiyawâw
-2Sg	2s	Actor: 2nd Person Singular	you (one)	kiya
+12Pl	1p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiyânaw	-
+1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (not you)	niyanân	-
+1PlO	→ 1p (excl)	Goal: 1st Person Plural (Exclusive)	→ you and us	→ kiyânaw	-
+1Sg	1s	Actor: 1st Person Singular	I	niya -
+1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ niya -
+2Pl	2p	Actor: 2nd Person Plural	you (all)	kiyawâw -
+2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kiyawâw -
+2Sg	2s	Actor: 2nd Person Singular	you (one)	kiya -
 
 
-2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kiya
-3Pl	3p	Actor: 3rd Person Plural	they	wiyanaw (ôki)
-3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ wiyanaw (ôki)
-3Sg	3s	Actor: 3rd Person Singular	s/he	wiya (awa)
-3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wiya (awa)
-4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (aniki)
-4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (ana)
-4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (ana/aniki)
-4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (ana/aniki)
-5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nâha/nêki)
-5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nâha/nêki)
+2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kiya -
+3Pl	3p	Actor: 3rd Person Plural	they	wiyanaw (ôki) -
+3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ wiyanaw (ôki) -
+3Sg	3s	Actor: 3rd Person Singular	s/he	wiya (awa) -
+3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wiya (awa) -
+4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (aniki) -
+4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (ana) -
+4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (ana/aniki) -
+4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (ana/aniki) -
+5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nâha/nêki) -
+5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nâha/nêki) -
 A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa	🧑🏽
 AI		Animate Intransitive	like: mîcisow	tâpiskôc: mîcisow	🧑🏽➡️
 
 
-Arab		Arabic	like: 0, 1, 2, ...	tâpiskôc: 0, 1, 2, ...
-CC		Co-ordinating Conjunction	like: êkwa	tâpiskôc: êkwa
-CS		Subordinate Conjunction	like: mâka	tâpiskôc: mâka
-Cnj		Conjunct	ê-/kâ- word	ê-/kâ- itwêwin
-Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik
-Fut+Cond		Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik
+Arab		Arabic	like: 0, 1, 2, ...	tâpiskôc: 0, 1, 2, ... -
+CC		Co-ordinating Conjunction	like: êkwa	tâpiskôc: êkwa -
+CS		Subordinate Conjunction	like: mâka	tâpiskôc: mâka -
+Cnj		Conjunct	ê-/kâ- word	ê-/kâ- itwêwin -
+Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik -
+Fut+Cond		Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik -
 D		Dependent	like: nôhkom, nitâs	tâpiskôc: nôhkom, mîpit	👤
 Def		Definite
 Fut+Def	Future Definite	Future definite tense	something will certainly happen	ka-ispayik nîkânihk/cikêmâ
@@ -137,7 +137,6 @@ PV/itahto	Preverb: itahto-		in such number
 PV/ka	Preverb: ka-		grammatical preverb: future will, shall; infinitive; optative ought, should
 PV/ka_ki	Preverb: ka-kî-		can, be able to; may; should, ought to
 PV/kaa	Preverb: kâ-		grammatical preverb; defines a changed conjunct clause; often a relative clause, i.e. who, which
-
 PV/kah	Preverb: kâh-		would, ought to; likely to
 PV/kah_kape	Preverb: kâh-kapê-		all the time
 PV/kakepaci	Preverb: kakêpâci-		stupidly
@@ -327,6 +326,7 @@ PV/wawiye	Preverb: wâwiyê-		round, spherical
 PV/wayawi	Preverb: wayawî-		outside; out from inside, out from the tipi
 PV/wayesi	Preverb: wayêsi-		deceitfully
 PV/wehci	Preverb: wêhci-		easily
+PV/wi	Preverb: wî-		grammatical preverb: intend to, be about to
 PV/wihpi	Preverb: wîhpi-		hollowing out
 PV/wini	Preverb: wîni-		soil, dirty
 PV/wipi	Preverb: wîpi-		dirty, unclean
@@ -377,16 +377,20 @@ TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	🧑�
 
 V	Verb		Action word	ispayin-itwêwin
 Voc	Vocative		call/address	kitowin
-VAI-n	VAI-n	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin
-VAI-v	VAI-v	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw
-VII-n	VII-n	n-final inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin
-VII-v	VII-v	vowel-final Inanimate Intransive verb	like: mihkwâw	tâpiskôc: mihkwâw
-VTA-1	VTA-1	transitive animate verb – class 1	like: wîcihêw	tâpiskôc: wîcihêw
+
+VAI-1	VAI-1	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw
+VAI-2	VAI-2	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin
+VAI-3	VAI-3	VTI-like animate intransitive verb	like: yâhyânam	tâpiskôc: yâhyânam
+VII-n	VII-1n	n-final impersonal inanimate intransive verb	like: kikiwan	tâpiskôc: kimiwan
+VII-n	VII-2n	n-final pluralizable inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin
+VII-v	VII-1v	vowel-final impersonal inanimate intransive verb	like: kîsikâw	tâpiskôc: kîsikâw
+VII-v	VII-2v	vowel-final pluralizable  inanimate Intransive verb	like: mihkwâw	tâpiskôc: mihkwâw
+VTA-1	VTA-1	transitive animate verb – class 1: regular	like: wîcihêw	tâpiskôc: wîcihêw
 VTA-2	VTA-2	transitive animate verb – class 2	like: nitonawêw	tâpiskôc: nitonawêw
 VTA-3	VTA-3	transitive animate verb – class 3	like: kîskiswêw	tâpiskôc: kîskiswêw
 VTA-4	VTA-4	transitive animate verb – class 4	like: nakatêw	tâpiskôc: nakatêw
 VTA-5	VTA-5	transitive animate verb – class 5	like: itêw, mowêw?	tâpiskôc: itêw, mowêw?
-VTI-1	VTI-1	transitive inanimate verb – class 1	like: nâtam	tâpiskôc: nâtam
+VTI-1	VTI-1	transitive inanimate verb – class 1: regular	like: nâtam	tâpiskôc: nâtam
 VTI-2	VTI-2	transitive inanimate verb – class 2: stem-final -â	like: kisihtâw	tâpiskôc: kisihtâw
 VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîciw
 
