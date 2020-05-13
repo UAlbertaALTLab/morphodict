@@ -12,13 +12,37 @@ export async function fetchFirstRecordingURL(wordform) {
   return results[0]['recording_url']
 }
 
-export function displaySpeakerList() {
+
+/**
+ * Render multiple speakers for the user to click + hear
+ *
+ * @param wordform {string} – the term being defined
+ * 
+ */
+export function displaySpeakerList(wordform) {
   // purely for testing purposes
-  console.log('Hey, we\'re clicked and working!');
+  // console.log('Hey, we\'re clicked and working!');
+  
+  // get the value of the wordform from the page
+  wordform = document.getElementById('data:head').value;
+
+  const recordingsList = document.querySelector('.recordings');
+  const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
+
+  // setting up the JSON request
+  let xhttp = new XMLHttpRequest();
+  xhttp.open('GET', xhttp);
+  xhttp.responseType = 'json';
+  xhttp.send();
+
+  // receiving request information from SAPIR
+  xhttp.onload = function() {
+    const returnedData = xhttp.response;
+  }
     
   // build out JS for displaying speaker list
 
-  // tooltip pops up
+  // tooltip pops up (or div to start)
 
   // get the list of speaker URLs from JSON list
 
