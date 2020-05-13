@@ -8,7 +8,7 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL} from './recordings.js'
+import {fetchFirstRecordingURL, displaySpeakerList} from './recordings.js'
 import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
@@ -252,3 +252,30 @@ $(() => {
     throw new Error(`Could not match route: ${route}`)
   }
 })
+
+/**
+ * Attach event listener to speaker icon to display multiple speakers (as a tooltip)
+ *
+ * @param currentURL {string} – the current page one's on
+ * @param speakerButton {object} – the button that outputs the speakers
+ */
+let currentURL;
+let speakerButton;
+
+// first we only want to run ALL of this after the page has loaded fully.
+$(document).ready(function() {
+  currentURL = window.location.href;
+    
+  // if we're on the paradigm page, we good:
+  if (currentURL.includes('word')) {
+    // as the SVG loads AFTER everything else, we need to test for it in some way
+    $('body').on('click', 'button.definition-title__play-button', function() {
+      speakerButton = document.querySelector('button.definition-title__play-button');
+      console.log(speakerButton); // again, for testing: to make sure that the item can be selected
+      speakerButton.addEventListener('click', displaySpeakerList);
+    })
+  } else {
+    // purely for testing purposes: probably to be removed before merging into master
+    console.log('This is not the right page.');
+  }
+});
