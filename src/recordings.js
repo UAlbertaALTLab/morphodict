@@ -61,3 +61,7 @@ export function getSpeakerList(wordform) {
 
   xhttp.send();
 }
+
+export function playRecording() {
+  console.log('All is good for now.');
+}
