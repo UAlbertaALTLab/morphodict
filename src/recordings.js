@@ -19,32 +19,43 @@ export async function fetchFirstRecordingURL(wordform) {
  * @param wordform {string} – the term being defined
  * 
  */
-export function displaySpeakerList(wordform) {
+export function getSpeakerList(wordform) {
   // purely for testing purposes
   // console.log('Hey, we\'re clicked and working!');
   
   // get the value of the wordform from the page
   wordform = document.getElementById('data:head').value;
 
-  const recordingsList = document.querySelector('.recordings');
   const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
 
   // setting up the JSON request
   let xhttp = new XMLHttpRequest();
   xhttp.open('GET', BASE_URL, true);
-  xhttp.responseType = 'json';
-  xhttp.send();
 
-  // receiving request information from SAPIR
+  // sending + receiving request information from SAPIR
   xhttp.onload = function() {
-    let returnedData = xhttp.response;
-    // a test,,,as a treat:
-    console.log(returnedData);
-  }
+    let returnedData = JSON.parse(this.response);
     
-  // build out JS for displaying speaker list
+    // display individual speaker's name
+    function displaySpeakerList(jsonObj) {
+      const recordingsList = document.querySelector('.recordings');
+      let speakerListIndex = 0;
+    
+      while (speakerListIndex < returnedData.length) {
+        const individualSpeaker = document.createElement('li');
 
-  // tooltip pops up (or div to start)
+        // the value of the list item's text content is actually a loop through the names of the speakers for the particular wordform
+        individualSpeaker.textContent = jsonObj[speakerListIndex].speaker_name;
+        
+        // grab data and put it into the Paradigms' page
+        recordingsList.appendChild(individualSpeaker);
+        speakerListIndex++;
+      }
+    }
+    displaySpeakerList(returnedData);
+  }
+
+  xhttp.send();
 
   // get the list of speaker URLs from JSON list
 

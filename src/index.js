@@ -8,7 +8,7 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL, displaySpeakerList} from './recordings.js'
+import {fetchFirstRecordingURL, getSpeakerList} from './recordings.js'
 import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
@@ -271,8 +271,8 @@ $(document).ready(function() {
     // as the SVG loads AFTER everything else, we need to test for it in some way
     $('body').on('click', 'button.definition-title__play-button', function() {
       speakerButton = document.querySelector('button.definition-title__play-button');
-      console.log(speakerButton); // again, for testing: to make sure that the item can be selected
-      speakerButton.addEventListener('click', displaySpeakerList);
+      // console.log(speakerButton); // again, for testing: to make sure that the item can be selected
+      speakerButton.addEventListener('click', getSpeakerList);
     })
   } else {
     // purely for testing purposes: probably to be removed before merging into master
