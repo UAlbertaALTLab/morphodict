@@ -31,13 +31,15 @@ export function displaySpeakerList(wordform) {
 
   // setting up the JSON request
   let xhttp = new XMLHttpRequest();
-  xhttp.open('GET', xhttp);
+  xhttp.open('GET', BASE_URL, true);
   xhttp.responseType = 'json';
   xhttp.send();
 
   // receiving request information from SAPIR
   xhttp.onload = function() {
-    const returnedData = xhttp.response;
+    let returnedData = xhttp.response;
+    // a test,,,as a treat:
+    console.log(returnedData);
   }
     
   // build out JS for displaying speaker list
