@@ -45,19 +45,19 @@ export function getSpeakerList(wordform) {
         const individualSpeaker = document.createElement('li');
 
         // the value of the list item's text content is actually a loop through the names of the speakers for the particular wordform
-        individualSpeaker.textContent = jsonObj[speakerListIndex].speaker_name;
+        individualSpeaker.innerHTML = '<a class="audio-snippet">' + jsonObj[speakerListIndex].speaker_name + '</a>';
         
         // grab data and put it into the Paradigms' page
         recordingsList.appendChild(individualSpeaker);
         speakerListIndex++;
+
+        // now, for a single person:
+        // - get the URL of the JSON object
+        // - play its associated sound on click
       }
     }
     displaySpeakerList(returnedData);
   }
 
   xhttp.send();
-
-  // get the list of speaker URLs from JSON list
-
-  // click the list to be able to hear the different speakers
 }
