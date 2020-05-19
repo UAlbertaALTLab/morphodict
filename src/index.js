@@ -274,7 +274,7 @@ $(document).ready(function() {
       // console.log(speakerButton); // again, for testing: to make sure that the item can be selected
       speakerButton.addEventListener('click', () => {
         getSpeakerList();
-        playRecording();
+        // playRecording(); maybe let's not call this yet: we'll call it inside getSpeakerList();
       }); 
     })
   } else {
