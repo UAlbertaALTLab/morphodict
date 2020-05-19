@@ -271,14 +271,9 @@ $(document).ready(function() {
     // as the SVG loads AFTER everything else, we need to test for it in some way
     $('body').on('click', 'button.definition-title__play-button', function() {
       speakerButton = document.querySelector('button.definition-title__play-button');
-      // console.log(speakerButton); // again, for testing: to make sure that the item can be selected
       speakerButton.addEventListener('click', () => {
         getSpeakerList();
-        // playRecording(); maybe let's not call this yet: we'll call it inside getSpeakerList();
       }); 
     })
-  } else {
-    // purely for testing purposes: probably to be removed before merging into master
-    console.log('This is not the right page.');
   }
 });

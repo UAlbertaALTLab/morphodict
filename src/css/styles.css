@@ -511,6 +511,18 @@ html {
   filter: brightness(150%);
 }
 
+.definition__recordings {
+  font-style: italic;
+}
+
+.definition__recordings li {
+  list-style: upper-roman;
+}
+
+.definition__recordings li:hover {
+  cursor: pointer;
+}
+
 /**
  * BLOCK cleave-inflection-from-lemma
  *

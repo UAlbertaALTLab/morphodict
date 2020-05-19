@@ -14,7 +14,7 @@ export async function fetchFirstRecordingURL(wordform) {
 
 
 /**
- * Render multiple speakers for the user to click + hear
+ * Render a list of speakers for the user. The speakers' names can be clicked and the user can hear the word in a variety of dialects (if that's the proper word!).
  *
  * @param wordform {string} – the term being defined
  * 
@@ -31,26 +31,32 @@ export function getSpeakerList(wordform) {
   // receiving request information from SAPIR
   xhttp.onload = function() {
     let returnedData = JSON.parse(this.response);
+    let numberOfSpeakers = returnedData.length;
+    const recordingsList = document.querySelector('.recordings');
+    const recordingsHeading = document.querySelector('.definition__recordings');
     
-    // display individual speaker's name
+    // we only want to display our list of speakers once!
+    if (recordingsList.childElementCount < numberOfSpeakers) {
+      displaySpeakerList(returnedData);
+    }
+
+    // the function that displays an individual speaker's name
     function displaySpeakerList(firstJSONData) {
-      const recordingsHeading = document.querySelector('.definition__recordings');
       recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Tap the names below to hear the word said by various speakers.</h3>');
-      const recordingsList = document.querySelector('.recordings');
       let speakerListIndex = 0;
-
-      // TODO: the check for if the list items exist already should go here (and probably encapsulate the bulk of the while loop.
-    
-      while (speakerListIndex < returnedData.length) {
+      
+      
+      while (speakerListIndex < numberOfSpeakers) {
         const individualSpeaker = document.createElement('li');
-
+    
         // the value of each list item is actually a loop through the names of the speakers for the particular wordform
         individualSpeaker.innerHTML = '<a class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</a>';
-        
+            
         // grab data and 'load' it on the paradigm page
         recordingsList.appendChild(individualSpeaker);
         speakerListIndex++;
       }
+      
       // after creation of the speakers (as list items), we select for them...
       const speakerNodeList = document.querySelectorAll('.audio-snippet');
       
@@ -59,7 +65,6 @@ export function getSpeakerList(wordform) {
         speakerNodeList[index].addEventListener('click', playRecording);
       }
     }
-    displaySpeakerList(returnedData);
   }
 
   // send the request!
@@ -87,11 +92,8 @@ export function playRecording(speakerName, wordform) {
   // actually make the request
   secondRequest.onload = function() {
     let secondJSONData = JSON.parse(this.response);
-    // console.log(secondJSONData);
-    console.log('Just for clarification, the person who said this was ' + speakerName);
 
-    // We need to access the URL of the speaker (clicked) and get some audio output
-
+    // We need to access the URL of the speaker (clicked) and get some audio output:
     // this reaches into the JSON and grabs the JSON of the person clicked (assuming there are NOT repeats)
     let retrievedJSONData = secondJSONData.filter(function(testvar) {
       return testvar.speaker_name == speakerName;
@@ -109,10 +111,3 @@ export function playRecording(speakerName, wordform) {
   // send the request!!
   secondRequest.send();
 }
-
-// a loop for looping through the speaker items (nodelist) and adding something to their classlist
-// for (let i = 0; i < speakerNodeList.length; i++) {
-//   speakerNodeList[i].addEventListener('click', function() {
-//       speakerNodeList[i].classList.add('yerr');
-//   });
-// }
