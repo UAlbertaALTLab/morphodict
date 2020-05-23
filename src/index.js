@@ -251,19 +251,16 @@ $(() => {
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
-})
 
-/**
- * Attach event listener to speaker icon to display multiple speakers (as a tooltip)
- *
- * @param currentURL {string} – the current page one's on
- * @param speakerButton {object} – the button that outputs the speakers
- */
-let currentURL;
-let speakerButton;
+  /**
+  * Attach event listener to speaker icon to display multiple speakers in the page content
+  *
+  * @param currentURL {string} – the current page one's on
+  * @param speakerButton {object} – the button that outputs the speakers
+  */
+  let currentURL;
+  let speakerButton;
 
-// first we only want to run ALL of this after the page has loaded fully.
-$(document).ready(function() {
   currentURL = window.location.href;
     
   // if we're on the paradigm page, we good:
@@ -274,6 +271,6 @@ $(document).ready(function() {
       speakerButton.addEventListener('click', () => {
         getSpeakerList();
       }); 
-    })
-  }
-});
+    });
+  }  
+})
