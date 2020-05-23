@@ -32,7 +32,7 @@ export function getSpeakerList(wordform) {
   xhttp.onload = function() {
     let returnedData = JSON.parse(this.response);
     let numberOfSpeakers = returnedData.length;
-    const recordingsList = document.querySelector('.recordings');
+    const recordingsList = document.querySelector('.recordings-list');
     const recordingsHeading = document.querySelector('.definition__recordings');
     
     // we only want to display our list of speakers once!
@@ -48,6 +48,9 @@ export function getSpeakerList(wordform) {
       
       while (speakerListIndex < numberOfSpeakers) {
         const individualSpeaker = document.createElement('li');
+
+        // dynamically alter the classlist of the newly created element to fit BEM methodology
+        individualSpeaker.classList.add('recordings-list__item');
     
         // the value of each list item is actually a loop through the names of the speakers for the particular wordform
         individualSpeaker.innerHTML = '<a class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</a>';

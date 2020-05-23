@@ -515,11 +515,11 @@ html {
   font-style: italic;
 }
 
-.definition__recordings li {
+.recordings-list__item {
   list-style: upper-roman;
 }
 
-.definition__recordings li:hover {
+.recordings-list__item:hover {
   cursor: pointer;
 }
 
