@@ -42,7 +42,7 @@ export function getSpeakerList(wordform) {
 
     // the function that displays an individual speaker's name
     function displaySpeakerList(firstJSONData) {
-      recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Tap the names below to hear the word said by various speakers.</h3>');
+      recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Select a name below to hear the word above said by different speakers.</h3>');
       let speakerListIndex = 0;
       
       
@@ -53,7 +53,7 @@ export function getSpeakerList(wordform) {
         individualSpeaker.classList.add('recordings-list__item');
     
         // the value of each list item is actually a loop through the names of the speakers for the particular wordform
-        individualSpeaker.innerHTML = '<a class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</a>';
+        individualSpeaker.innerHTML = '<button class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</button>';
             
         // grab data and 'load' it on the paradigm page
         recordingsList.appendChild(individualSpeaker);
