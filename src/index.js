@@ -247,30 +247,20 @@ $(() => {
     prepareTooltips()
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
+    
+    /**
+    * Attach event listener to speaker icon to display multiple speakers in the page content
+    *
+    * @param speakerButton {object} – the button that outputs the speakers
+    */
+    $('body').on('click', 'button.definition-title__play-button', function() {
+      getSpeakerList();
+      let speakerButton;
+      speakerButton = document.querySelector('button.definition-title__play-button');
+    });
+    // TODO: (kobe:) - the route specific stuff can go in here! the initialization can go in the function 👇🏿
     setupAudioOnPageLoad()
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
-
-  /**
-  * Attach event listener to speaker icon to display multiple speakers in the page content
-  *
-  * @param currentURL {string} – the current page one's on
-  * @param speakerButton {object} – the button that outputs the speakers
-  */
-  let currentURL;
-  let speakerButton;
-
-  currentURL = window.location.href;
-    
-  // if we're on the paradigm page, we good:
-  if (currentURL.includes('word')) {
-    // as the SVG loads AFTER everything else, we need to test for it in some way
-    $('body').on('click', 'button.definition-title__play-button', function() {
-      speakerButton = document.querySelector('button.definition-title__play-button');
-      speakerButton.addEventListener('click', () => {
-        getSpeakerList();
-      }); 
-    });
-  }  
 })
