@@ -31,7 +31,7 @@ context('Recordings', function () {
       // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     })
 
-    it('should display the lemma\'s multiple speakers on hover/click', () => {
+    it.only('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
       // begin from the start page 
       cy.visit('/');
 
@@ -50,8 +50,32 @@ context('Recordings', function () {
       // click the icon
       .click();
 
-      // the tooltip of the lemma's speakers should pop up
-      cy.get('[data-cy=speaker-list').contains('li', 'wapamew');
+      // the names of the speakers should appear on the page as a list of buttons to be interacted with
+      cy.get('[data-cy=recordings-list').contains('.recordings-list__item');
     })
+
+    // it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
+    //   // begin from the start page 
+    //   cy.visit('/');
+
+    //   // select the searchbar
+    //   cy.get('[data-cy=search]')
+
+    //   // look up a word (wapamew)
+    //   .type('wapamew');
+
+    //   // select the word and move to it's paradigm,
+    //   cy.get('[data-cy=definition-title').first().click();
+
+    //   // then hover/focus on the speaker icon
+    //   cy.get('[data-cy=play-recording]').focus()
+
+    //   // click the icon
+    //   .click();
+
+    //   // the list of speakers should appear on the page as buttons
+
+    //   // clicking a button should output sound
+    // })
   })
 })
