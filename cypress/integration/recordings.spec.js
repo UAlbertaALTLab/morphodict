@@ -51,7 +51,7 @@ context('Recordings', function () {
       .click();
 
       // the names of the speakers should appear on the page as a list of buttons to be interacted with
-      cy.get('[data-cy=recordings-list').contains('.recordings-list__item');
+      cy.get('[data-cy=recordings-list').find('li');
     })
 
     // it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
