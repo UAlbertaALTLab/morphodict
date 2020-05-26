@@ -255,8 +255,6 @@ $(() => {
     */
     $('body').on('click', 'button.definition-title__play-button', function() {
       getSpeakerList();
-      let speakerButton;
-      speakerButton = document.querySelector('button.definition-title__play-button');
     });
     // TODO: (kobe:) - the route specific stuff can go in here! the initialization can go in the function 👇🏿
     setupAudioOnPageLoad()
