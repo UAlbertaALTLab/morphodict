@@ -1,3 +1,4 @@
+// TODO: pull out BASE_URL and declare it as a const to be used by fetchRecordings, getSpeakerList, etc...AFTER THE TEST PASSES!!!
 export function fetchRecordings(wordform) {
   // TODO: should come from config.
   const BASE_URL = '//sapir.artsrn.ualberta.ca/validation'
@@ -14,14 +15,11 @@ export async function fetchFirstRecordingURL(wordform) {
 
 
 /**
- * Render a list of speakers for the user. The speakers' names can be clicked and the user can hear the word in a variety of dialects (if that's the proper word!).
- *
- * @param wordform {string} – the term being defined
- * 
+ * Render a list of speakers (in button form) for the user to interact with.
  */
-export function getSpeakerList(wordform) {  
+export function getSpeakerList() {
   // get the value of the wordform from the page
-  wordform = document.getElementById('data:head').value;
+  let wordform = document.getElementById('data:head').value;
   const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
 
   // setting up the JSON request
@@ -30,13 +28,13 @@ export function getSpeakerList(wordform) {
 
   // receiving request information from SAPIR
   xhttp.onload = function() {
-    let returnedData = JSON.parse(this.response);
-    let numberOfSpeakers = returnedData.length;
-    const recordingsList = document.querySelector('.recordings-list');
-    const recordingsHeading = document.querySelector('.definition__recordings');
+    let returnedData = JSON.parse(this.response); // response from the server
+    let numberOfRecordings = returnedData.length; // number of records on the server
+    let recordingsList = document.querySelector('.recordings-list');
+    let recordingsHeading = document.querySelector('.definition__recordings');
     
     // we only want to display our list of speakers once!
-    if (recordingsList.childElementCount < numberOfSpeakers) {
+    if (recordingsList.childElementCount < numberOfRecordings) {
       displaySpeakerList(returnedData);
     }
 
@@ -46,27 +44,53 @@ export function getSpeakerList(wordform) {
       let speakerListIndex = 0;
       
       
-      while (speakerListIndex < numberOfSpeakers) {
-        const individualSpeaker = document.createElement('li');
-
+      while (speakerListIndex < numberOfRecordings) {
+        let individualSpeaker = document.createElement('li');
         // dynamically alter the classlist of the newly created element to fit BEM methodology
         individualSpeaker.classList.add('recordings-list__item');
-    
-        // the value of each list item is actually a loop through the names of the speakers for the particular wordform
-        individualSpeaker.innerHTML = '<button class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</button>';
-            
-        // grab data and 'load' it on the paradigm page
+        
+        
+        let speakerButton = document.createElement('button');
+        speakerButton.classList.add('audio-snippet');
+
+        speakerButton.innerText = 'Name associated with URL at index ' + speakerListIndex;
+
+        individualSpeaker.appendChild(speakerButton);
+
+        // individualSpeaker.innerText = speakerButton;
         recordingsList.appendChild(individualSpeaker);
         speakerListIndex++;
       }
+
+      // while (speakerListIndex < numberOfRecordings) {
+      //   const individualSpeaker = document.createElement('li');
+
+      //   // TODO: previously, the assumption was: one speaker has one URL associated with them and we'll use the speaker name to be our reference point for building our list. NOW, this assumption breaks when one speaker has multiple URLs associated with them. instead, we'll go with the URLs as the reference point: one URL has one speaker associated with it (so as a rough off the top example, "for every URL, give us the speaker name associated with it").
+    
+      //   // the value of each list item is actually a loop through the names of the speakers for the particular wordform
+      //   individualSpeaker.innerHTML = '<button class="audio-snippet">' + firstJSONData[speakerListIndex].speaker_name + '</button>';
+      //   // TODO: document.createElement('button')
+      //   // TODO: add class
+      //   // TODO: innerText
+      //   // TODO: registerEventListener('click', {
+      //   // TODO: use: firstJSONData[speakerListIndex].recording_url
+      //   // })
+      //   //var audio = new Audio(retrievedSpeakerURL);
+      //   //  audio.type = 'audio/m4a'; // not fully sure if this is absolutely needed: it works without it, but maybe some browsers will require it!
+      //   // audio.play();
+            
+      //   // grab data and 'load' it on the paradigm page
+      //   recordingsList.appendChild(individualSpeaker);
+      //   speakerListIndex++;
+      // }
       
       // after creation of the speakers (as list items), we select for them...
-      const speakerNodeList = document.querySelectorAll('.audio-snippet');
+      // const speakerNodeList = document.querySelectorAll('.audio-snippet');
       
       // ...and place an event listener on every item in the nodelist – the speaker names – so we can have the playback occur via the playRecording() function.
-      for (let index = 0; index < speakerNodeList.length; index++) {
-        speakerNodeList[index].addEventListener('click', playRecording);
-      }
+      // for (let index = 0; index < speakerNodeList.length; index++) {
+      //   speakerNodeList[index].addEventListener('click', playRecording);
+      // }
     }
   }
 
@@ -79,11 +103,13 @@ export function getSpeakerList(wordform) {
  * Allow the clicking of users to hear wordforms in different styles
  *
  * @param wordform {string} – the term being defined
- * @param speakerName {string} – the name of the speaker
+ * @param speakerName {MouseEvent} – the name of the speaker
  */
 export function playRecording(speakerName, wordform) {
   wordform = document.getElementById('data:head').value;
-  speakerName = speakerName.path[0].innerHTML; // there's probably a much more elegant way to get this but I'm blanking at present 🤔
+  speakerName = speakerName.target
+  
+  .path[0].innerHTML; // there's probably a much more elegant way to get this but I'm blanking at present 🤔
 
   // - the URL for the JSON data (will be used in a XMLHttpRequest)
   const NEW_BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
