@@ -15,8 +15,6 @@ import posixpath
 from pathlib import Path
 from sys import stderr
 
-from .hostutils import HOST_IS_SAPIR, HOSTNAME
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,29 +24,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 
-# sapir.artsrn.ualberta.ca has some... special requirements,
-# so let's hear about it!
-RUNNING_ON_SAPIR = (
-    os.environ.get("RUNNING_ON_SAPIR", str(HOST_IS_SAPIR)).lower() == "true"
-)
-
 # Debug is default to False
 # Turn it to True in development
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-# SECURITY WARNING: don't run with debug turned on in production!
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    assert not DEBUG
-
 # travis has CI equals True
 CI = os.environ.get("CI", "False").lower() == "true"
 
-if DEBUG:
-    ALLOWED_HOSTS = ["*"]
-elif RUNNING_ON_SAPIR:  # pragma: no cover
-    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
-else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME]
+
+ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+
+# DATA_DIR is only used inside docker containers
+# Where is data stored?
+# This is a Docker volume:
+DATA_DIR = Path("/data")
 
 # Application definition
 
@@ -91,10 +81,6 @@ if DEBUG:
 
         INTERNAL_IPS = ["127.0.0.1"]
 
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    # Sapir uses `wsgi_express` that requires mod_wsgi
-    INSTALLED_APPS.append("mod_wsgi.server")
-
 ROOT_URLCONF = "CreeDictionary.urls"
 
 TEMPLATES = [
@@ -127,7 +113,7 @@ if not USE_TEST_DB:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "NAME": os.path.join(DATA_DIR, "db.sqlite3"),
         }
     }
 else:
@@ -169,12 +155,10 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    # on sapir /cree-dictionary/ is used to identify the service of the app
-    # XXX: this is kind of a hack :/
-    STATIC_URL = "/cree-dictionary/static/"
-else:
+if DEBUG:
     STATIC_URL = "/static/"
+else:
+    STATIC_URL = "http://localhost:8001/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
@@ -199,49 +183,41 @@ class RunMainFilter(logging.Filter):
         return os.environ.get("RUN_MAIN") == "true"
 
 
-# production, then it's inside docker container. Use docker settings.
-# On the difference of both settings, an important one is logging directory
-if not CI and not DEBUG:
-    pass
-    # print("gg")
-    # from .dim import *
-# local development or CI
-else:
-    log_dir = Path(BASE_DIR) / "django_logs"
-    log_dir.mkdir(exist_ok=True)
-    LOGGING = {
-        "version": 1,
-        "disable_existing_loggers": False,
-        "filters": {
-            "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
-            "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
-            "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
+log_dir = Path(BASE_DIR) / "django_logs"
+log_dir.mkdir(exist_ok=True)
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "filters": {
+        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
+        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
+        "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
+    },
+    "handlers": {
+        "write_debug_to_file_prod": {
+            "level": "DEBUG",
+            "class": "logging.handlers.RotatingFileHandler",
+            "filename": str(log_dir / "django.log"),
+            "maxBytes": 1024 * 1024 * 15,  # 15MB
+            "backupCount": 10,
+            "filters": ["require_debug_false"],
         },
-        "handlers": {
-            "write_debug_to_file_prod": {
-                "level": "DEBUG",
-                "class": "logging.handlers.RotatingFileHandler",
-                "filename": str(log_dir / "django.log"),
-                "maxBytes": 1024 * 1024 * 15,  # 15MB
-                "backupCount": 10,
-                "filters": ["require_debug_false"],
-            },
-            "write_info_to_console_dev": {
-                "level": "INFO",
-                # without require_run_main_true, loggers from API.apps will print twice
-                "filters": ["require_debug_true", "require_run_main_true"],
-                "class": "logging.StreamHandler",
-            },
-        },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
-        "loggers": {
-            "django": {
-                "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
-                "level": "DEBUG",
-            },
-            # loggers created with logging.get_logger(__name__) under API app will use the configuration here
-            "API": {
-                "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
-                "level": "DEBUG",
-            },
+        "write_info_to_console_dev": {
+            "level": "INFO",
+            # without require_run_main_true, loggers from API.apps will print twice
+            "filters": ["require_debug_true", "require_run_main_true"],
+            "class": "logging.StreamHandler",
         },
-    }
+    },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+    "loggers": {
+        "django": {
+            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+            "level": "DEBUG",
+        },
+        # loggers created with logging.get_logger(__name__) under API app will use the configuration here
+        "API": {
+            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+            "level": "DEBUG",
+        },
+    },
+}

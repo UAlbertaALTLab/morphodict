@@ -1,0 +1,22 @@
+# .dockerignore affects COPY and ADD command in Dockerfile and ignores specified files while building the docker image
+
+# should you have private files in your local working tree (e.g. backup files, caches, logs),
+# it should be added to your .dockerignore when you build and publish image to avoid irrelavant files to be added
+# to the official image
+
+# This file is an example.
+# You should copy paste this file and rename it to .dockerignore when you want to publish an image
+
+# these are the files you always want to exclude
+__pycache__
+CreeDictionary/django_logs/django.log
+CreeDictionary/DatabaseManager/logs/
+CreeDictionary/test_db.sqlite3
+CreeDictionary/tests/
+
+# other local files in development (if you do have them, these 3 are for an example)
+CreeDictionary/db.sqlite3
+CreeDictionary/db.sqlite3.bak
+CreeDictionary/test_db.sqlite3.bak
+# PS. dot files and directories are automatically ignored, so files like .env is not neccesary
+

@@ -69,3 +69,7 @@ CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
 CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map
+
+# .dockerignore
+# see dockerignore-example.txt if you want to publish an image
+.dockerignore
