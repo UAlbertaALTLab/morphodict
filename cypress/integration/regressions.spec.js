@@ -214,4 +214,19 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]').first()
       .should('contain', 'go and')
   })
+
+  /**
+   * Ensure inflected form ê-kîsikâk get recognized
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+   */
+  it('should not present un-related translation for preverbs', function () {
+    cy.visitSearch('ê-kîsikâk')
+
+    // there should be only one result
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'kîsikâw')
+  })
+
+
 })
