@@ -103,3 +103,8 @@ kotiskâwêw
 # ambiguous examples (multiple pos)
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/185
 pipon
+
+# some inflected forms not showing up
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+kîsikâw
+ê-kîsikâk
