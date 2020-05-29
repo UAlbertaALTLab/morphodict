@@ -8,7 +8,7 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL, getSpeakerList, playRecording} from './recordings.js'
+import {fetchFirstRecordingURL, getSpeakerList} from './recordings.js'
 import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
