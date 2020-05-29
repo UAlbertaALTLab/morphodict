@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    <e>
+       <lg>
+          <l pos="N">pipon</l>
+          <lc>NI-1</lc>
+          <stem>pipon-</stem>
+       </lg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="N" sources="CW">year, winter</t>
+       </tg>
+       </mg>
+    </e>
+
+    <e>
+       <lg>
+          <l pos="V">pipon</l>
+          <lc>VII-n</lc>
+          <stem>pipon-</stem>
+       </lg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="V" sources="MD">It is winter.</t>
+       </tg>
+       </mg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="V" sources="CW">it is winter; is one year</t>
+       </tg>
+       </mg>
+    </e>
+
+
+</r>

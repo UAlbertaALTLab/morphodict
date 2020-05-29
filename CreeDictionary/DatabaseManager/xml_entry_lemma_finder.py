@@ -29,7 +29,9 @@ def extract_fst_lemmas(
     logger = DatabaseManagerLogger(__name__, verbose)
     logger.info("Determining lemma analysis for (xml_lemma, xml_pos, xml_lc) tuples...")
 
-    xml_lemma_pos_lc_to_analysis = dict()  # type: Dict[Tuple[str, str, str], ConcatAnalysis]
+    xml_lemma_pos_lc_to_analysis = (
+        dict()
+    )  # type: Dict[Tuple[str, str, str], ConcatAnalysis]
 
     inflections = xml_lemma_to_pos_lc.keys()
 
@@ -39,7 +41,9 @@ def extract_fst_lemmas(
 
     produced_extra_lemmas: List[FSTLemma] = []
 
-    fst_analysis_to_fst_lemma_slc: Dict[ConcatAnalysis, Tuple[FSTLemma, SimpleLC]] = dict()
+    fst_analysis_to_fst_lemma_slc: Dict[
+        ConcatAnalysis, Tuple[FSTLemma, SimpleLC]
+    ] = dict()
     for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
         x = utils.extract_lemma_and_category(fst_analysis)
         assert x is not None
@@ -74,7 +78,9 @@ def extract_fst_lemmas(
 
             if xml_lemma in xml_lemma_to_pos_lc:
                 for pos, lc in xml_lemma_to_pos_lc[xml_lemma]:
-                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ConcatAnalysis("")
+                    xml_lemma_pos_lc_to_analysis[(xml_lemma, pos, lc)] = ConcatAnalysis(
+                        ""
+                    )
                     logger.debug(
                         "xml entry %s with pos %s lc %s can not be analyzed by fst strict analyzer"
                         % (xml_lemma, pos, lc)
@@ -109,7 +115,7 @@ def extract_fst_lemmas(
                 xml_lemma
             ]:  # for each pos, lc determine which is the analysis
 
-                ambiguities: List[ConcatAnalysis] = []
+                ambiguities: Set[ConcatAnalysis] = set()
 
                 # put priority in looking for a unique and identical wordform
                 # this principle is used in the hope that it will help with lemma resolution
@@ -117,8 +123,8 @@ def extract_fst_lemmas(
                 # see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
                 # Otherwise a lot of diminutive nouns will have no analysis
                 wordform_to_ambiguous_analyses: Dict[
-                    FSTLemma, List[ConcatAnalysis]
-                ] = defaultdict(list)
+                    FSTLemma, Set[ConcatAnalysis]
+                ] = defaultdict(set)
 
                 for (
                     analysis
@@ -129,8 +135,8 @@ def extract_fst_lemmas(
 
                     is_match = does_lc_match_xml_entry(slc, pos, lc)
                     if is_match:
-                        ambiguities.append(analysis)
-                        wordform_to_ambiguous_analyses[fst_lemma].append(analysis)
+                        ambiguities.add(analysis)
+                        wordform_to_ambiguous_analyses[fst_lemma].add(analysis)
 
                 # there's only one identically matching wordform, just use that one
                 for (
@@ -147,7 +153,9 @@ def extract_fst_lemmas(
                         "Yet all analyses conflict with the pos/lc in xml file"
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis("")
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis(
+                        ""
+                    )
                     no_match_counter += 1
 
                 elif len(ambiguities) == 1:  # nice
@@ -161,7 +169,9 @@ def extract_fst_lemmas(
                         "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
                         % (xml_lemma, pos, lc)
                     )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis("")
+                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis(
+                        ""
+                    )
                     dup_counter += 1
 
     logger.info(

@@ -3401,6 +3401,43 @@
 		<lg>
 			
       
+			<l pos="V">astisihkawêw</l>
+			
+      
+			<lc>VTA-2</lc>
+			
+      
+			<stem>astisihkaw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he makes mitts for s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">atamimêw</l>
 			
       
@@ -4253,6 +4290,43 @@
 				
        
 				<t pos="V" sources="CW">s/he works at or on s.t.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">atoskêwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>atoskêwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Monday; literally: work-day</t>
 				
    
 			</tg>
@@ -5906,6 +5980,117 @@
 		<lg>
 			
       
+			<l pos="V">ayamihâwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>ayamihâwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Sunday</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">ayamihêwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>ayamihêwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Sunday; literally: prayer-day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">ayamihêwi-kîsikâw</l>
+			
+      
+			<lc>NI-2</lc>
+			
+      
+			<stem>ayamihêwi-kîsikâw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Sunday; literally: prayer-day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">ayênânêwopiponêw</l>
 			
       
@@ -6254,6 +6439,43 @@
 		<lg>
 			
       
+			<l pos="V">aywêpiwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>aywêpiwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a holiday</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">âcimêw</l>
 			
       
@@ -6558,6 +6780,43 @@
 		<lg>
 			
       
+			<l pos="V">âkwâ-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>âkwâ-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is high day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">âmôs</l>
 			
       
@@ -6762,6 +7021,80 @@
 				
        
 				<t pos="Ipc" sources="CW">halfway</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">âpihtâ-kîsikâki</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">at noon, when it's noon (12:00 p.m.)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">âpihtâ-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>âpihtâ-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is noon (12:00 p.m.)</t>
 				
    
 			</tg>
@@ -7002,6 +7335,43 @@
 		<lg>
 			
       
+			<l pos="V">âpihtâwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>âpihtâwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Wednesday; literally: (it is) middle day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">âstamispîhk</l>
 			
       
@@ -7021,6 +7391,43 @@
 				
        
 				<t pos="Ipc" sources="CW">at a time closer to the present; more recently</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">âstê-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>âstê-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a bright day, it is good weather</t>
 				
    
 			</tg>
@@ -8401,6 +8808,80 @@
 				
        
 				<t pos="V" sources="CW">s/he crawls thither</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">isîhkam</l>
+			
+      
+			<lc>VTI-1</lc>
+			
+      
+			<stem>isîhk-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he bothers with s.t. thus</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">isîhkawêw</l>
+			
+      
+			<lc>VTA-2</lc>
+			
+      
+			<stem>isîhkaw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he bothers s.o. thus</t>
 				
    
 			</tg>
@@ -11984,6 +12465,95 @@
 		<lg>
 			
       
+			<l pos="V">kihci-âpihtâwâni-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>kihci-âpihtâwâni-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Thursday, it is mid-week; it is high noon</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kihci-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>kihci-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">An important day (as Christmas or Easter).</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is an important day (e.g. Christmas, New Year)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">kihci-mâmawapiwin</l>
 			
       
@@ -14399,6 +14969,209 @@
 		<lg>
 			
       
+			<l pos="V">kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">It is day.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is day, it is daylight</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">kîsikâw</l>
+			
+      
+			<lc>NI-2</lc>
+			
+      
+			<stem>kîsikâw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">kîsikâwacâhk</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>kîsikâwacâhkw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Day Star; Cree chief</t>
+				
+       
+				<t pos="N" sources="CW">Day Star First Nation, SK</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">kîsikâwi-pîsim</l>
+			
+      
+			<lc>NA-3</lc>
+			
+      
+			<stem>kîsikâwi-pîsimw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">sun</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kîsikâwihkwâmiw</l>
+			
+      
+			<lc>VAI-v</lc>
+			
+      
+			<stem>kîsikâwihkwâmi-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he takes a nap during the day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kîsinâtakocin</l>
 			
       
@@ -16236,6 +17009,43 @@
 		<lg>
 			
       
+			<l pos="V">maci-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>maci-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is bad weather, it is a bad day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">macipayiwin</l>
 			
       
@@ -16500,6 +17310,43 @@
 				
        
 				<t pos="V" sources="CW">s/he is careful how s/he speaks to s.o. out of respect; s/he avoids speaking to s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">manitowi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>manitowi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Christmas Day</t>
 				
    
 			</tg>
@@ -17836,6 +18683,80 @@
 		<lg>
 			
       
+			<l pos="V">mâtinawê-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>mâtinawê-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Saturday; literally: (it is) ration-day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">mâtinawi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>mâtinawi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Saturday; literally: (it is) ration-day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">mâyâcimêw</l>
 			
       
@@ -17959,6 +18880,58 @@
 				
        
 				<t pos="N" sources="MD CW">bad news</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">mâyi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>mâyi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">It is a bad day. There is a bad weather. There is a storm.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a bad day; it is nasty, it is bad weather; it is a storm, it is storming</t>
 				
    
 			</tg>
@@ -19396,6 +20369,58 @@
 				
        
 				<t pos="V" sources="CW">s/he regards s.o. with favour</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">miyo-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>miyo-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">It is a fine day.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a nice day, it is a fine day; it is good weather</t>
 				
    
 			</tg>
@@ -25215,6 +26240,43 @@
 		<lg>
 			
       
+			<l pos="V">nêwo-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nêwo-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Thursday; literally: (it is) the fourth day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">nêwo-sôniyâs</l>
 			
       
@@ -25560,6 +26622,80 @@
 				
        
 				<t pos="V" sources="CW">it sings</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">nikotwâsiko-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nikotwâsiko-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Saturday; literally (it is) the sixth day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">nikotwâso-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nikotwâso-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Saturday; literally: (it is) the sixth day</t>
 				
    
 			</tg>
@@ -28935,6 +30071,80 @@
 		<lg>
 			
       
+			<l pos="V">nîso-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>nîso-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Tuesday; literally: (it is) the second day</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">nîso-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">two days</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">nîso-sôniyâs</l>
 			
       
@@ -29673,6 +30883,43 @@
 				
        
 				<t pos="V" sources="CW">s/he has (s.o. as) a sister-in-law</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">ocêhtowi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>ocêhtowi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is New Year's Day; literally: it is kissing-day</t>
 				
    
 			</tg>
@@ -34578,6 +35825,43 @@
 				
        
 				<t pos="N" sources="CW">sunset</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">pahkwêsikani-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>pahkwêsikani-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Friday; literally: (it is) flour-day</t>
 				
    
 			</tg>
@@ -43071,6 +44355,80 @@
 		<lg>
 			
       
+			<l pos="Ipc">pôn-âpihtâ-kîsikâki</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">in the afternoon, when it's afternoon</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">pôn-âpihtâ-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>pôn-âpihtâ-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is afternoon</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">pôn-âpihtâ-tipiskâw</l>
 			
       
@@ -43090,6 +44448,43 @@
 				
        
 				<t pos="V" sources="CW">it is after midnight, it is very early morning</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">pôn-âyamihêwi-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>pôn-âyamihêwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is Monday; literally: (it is) the day after prayer day</t>
 				
    
 			</tg>
@@ -45493,6 +46888,58 @@
 		<lg>
 			
       
+			<l pos="Ipc">tahto-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="MD">Every day; each day.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">each day, every day, daily</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">tahto-pipon</l>
 			
       
@@ -47115,6 +48562,43 @@
 				
        
 				<t pos="Ipc" sources="CW">from where</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">tânitahto kîsikâw</l>
+			
+      
+			<lc>IPH</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="Ipc" sources="CW">what day (is it)</t>
 				
    
 			</tg>
@@ -50892,6 +52376,43 @@
 		<lg>
 			
       
+			<l pos="V">wîpâci-kîsikâw</l>
+			
+      
+			<lc>VII-v</lc>
+			
+      
+			<stem>wîpâci-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">it is a nasty day, it is bad weather, it is wet weather</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">wîpâtayiwinis</l>
 			
       
@@ -53246,6 +54767,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">ayinânêw-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">eight days, for eight days</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">ayiwâk ohci</l>
 			
       
@@ -53949,6 +55507,80 @@
 		<lg>
 			
       
+			<l pos="Ipc">âpihtâ-kîsikâhk</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">in the south, to the south [literally: at the mid-day, at the noontime]</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">âpisisiniwi-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>âpisisiniwi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is Easter Sunday</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">âsowâhocikan</l>
 			
       
@@ -54615,6 +56247,43 @@
 		<lg>
 			
       
+			<l pos="V">cîpayi-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>cîpayi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is Halloween</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">cîpayi-tipiskâw</l>
 			
       
@@ -54930,6 +56599,43 @@
 				
       
 				<t pos="V" sources="CW">s/he is so many years old (as an infant, child)</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">isi-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>isi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is such weather, the weather is thus</t>
 				
    
 			</tg>
@@ -56465,6 +58171,43 @@
 		<lg>
 			
       
+			<l pos="V">kihci-âpihtâwani-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>kihci-âpihtâwani-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is Thursday, it is mid-week; it is high noon</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">kikakotêw</l>
 			
       
@@ -57002,6 +58745,43 @@
 				
       
 				<t pos="V" sources="CW">s/he thinks of people in a kindly way</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">kisipi-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>kisipi-kîsikâ</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is the end of the day</t>
 				
    
 			</tg>
@@ -60239,6 +62019,43 @@
 		<lg>
 			
       
+			<l pos="N">manitowi-kîsikâw</l>
+			
+      
+			<lc>NI-2</lc>
+			
+      
+			<stem>manitowi-kîsikâw-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="N" sources="CW">Christmas Day</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">manitôhkâtam</l>
 			
       
@@ -63199,6 +65016,43 @@
 		<lg>
 			
       
+			<l pos="V">nanâskomowi-kîsikâw</l>
+			
+      
+			<lc>VII-1v</lc>
+			
+      
+			<stem>nanâskomowi-kîsikâ-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="V" sources="CW">it is Thanksgiving Day</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">nanâtohkomiwêw</l>
 			
       
@@ -65234,6 +67088,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">nêwo-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">four days, for four days</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">nêwo-tipiskâw</l>
 			
       
@@ -65253,6 +67144,43 @@
 				
       
 				<t pos="V" sources="CW">it is the fourth night, it is four nights</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">nêwosâp-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">fourteen days, for fourteen days; a fortnight, for a fortnight</t>
 				
    
 			</tg>
@@ -66104,6 +68032,43 @@
 				
       
 				<t pos="V" sources="CW">s/he has his/her summer pelage; it has changed to its summer colouring</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">nîso-ayamihêwi-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">two weeks, for two weeks</t>
 				
    
 			</tg>
@@ -69082,6 +71047,43 @@
 		<lg>
 			
       
+			<l pos="Ipc">tahto-ayamihêwi-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">every Sunday</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="Ipc">tahto-nîpin</l>
 			
       
@@ -69101,6 +71103,80 @@
 				
       
 				<t pos="Ipc" sources="CW">every summer, each summer</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">tahto-nîso-ayamihêwi-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">every second week, every fortnight, fortnightly</t>
+				
+   
+			</tg>
+			
+ 
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="Ipc">tahto-nîso-kîsikâw</l>
+			
+      
+			<lc>IPC</lc>
+			
+      
+			<stem/>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+      
+				<t pos="Ipc" sources="CW">every second day, every other day</t>
 				
    
 			</tg>
