@@ -1,8 +1,8 @@
-// TODO: pull out BASE_URL and declare it as a const to be used by fetchRecordings, getSpeakerList, etc...AFTER THE TEST PASSES!!!
+// TODOkobe: pull out BASE_URL and declare it as a const to be used by fetchRecordings, retrieveListOfSpeakers, etc...AFTER THE TEST PASSES!!!
 
 // TODO: previously, the assumption was: one speaker has one URL associated with them and we'll use the speaker name to be our reference point for building our list. NOW, this assumption breaks when one speaker has multiple URLs associated with them. instead, we'll go with the URLs as the reference point: one URL has one speaker associated with it (so as a rough off the top example, "for every URL, give us the speaker name associated with it"). this is important because if the base URL changes, this breaks things. the way it is presently _may_ circumvent that, but not by much...
 
-// TODO: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
+// TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
 
 export function fetchRecordings(wordform) {
   // TODO: should come from config.
@@ -20,9 +20,9 @@ export async function fetchFirstRecordingURL(wordform) {
 
 
 /**
- * Render a list of speakers (in button form) for the user to interact with.
+ * Render a list of speakers (in button form) for the user to interact with and hear the wordform pronounced in different ways.
  */
-export function getSpeakerList() {
+export function retrieveListOfSpeakers() {
   // get the value of the wordform from the page
   let wordform = document.getElementById('data:head').value;
   const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
@@ -49,22 +49,15 @@ export function getSpeakerList() {
       
       let speakerURLIndexCount = 0;
 
-      // so to access the JSON data's URL property, I need to use firstJSONData[x].recording_url
-
       while (speakerURLIndexCount < numberOfRecordings) {
-        // create a list element and a button; set an attribute on the former for testing
+        // create a list element and set an attribute on it for testing
         let individualSpeaker = document.createElement('li');
         individualSpeaker.classList.add('recordings-list__item');
         individualSpeaker.setAttribute('data-cy', 'recordings-list__item');
 
+        // create a button element: add a class to it for future styling needs
         let speakerButton = document.createElement('button');
         speakerButton.classList.add('audio-snippet');
-        
-        // // put an event listener on the button (but maybe this happens after the loop)
-
-        //    - the event is the URL playback
-
-        // the text on the button should be the name property of the object associated with the recording_url
 
         // put the button into the list
         individualSpeaker.appendChild(speakerButton);
@@ -75,19 +68,21 @@ export function getSpeakerList() {
         speakerURLIndexCount++;
       }
 
-      // at present, this happens after the button is created: is there value in moving it into the while loop above? maybe after the demo this can be refactored/cleaned up a bit
-      for (let speakerURLIndexCount = 0; speakerURLIndexCount < firstJSONData.length; speakerURLIndexCount++) {
-        // for testing purposes
-        // console.log(firstJSONData[speakerURLIndexCount].recording_url);
-        let createdSpeakerButton = document.querySelectorAll('button.audio-snippet');
-        createdSpeakerButton[speakerURLIndexCount].innerText = firstJSONData[speakerURLIndexCount].speaker_name;
-        // for testing purposes
-        // console.log(createdSpeakerButton[speakerURLIndexCount]);
-        createdSpeakerButton[speakerURLIndexCount].addEventListener('click', function() {
-          // for testing purposes
-          // console.log('A button at index ' + speakerURLIndexCount + ' was clicked.');
+      // TODOkobe: hey future Eddie (+ Kobe), should the for-loop be within the while loop above?
 
-          // wait. if it's working here, I might be able to get the audio in here in time for the demo and refactor later?
+      /**
+      * Add text to the newly created buttons with a for-loop and get audio playback for each button
+      */
+      for (let speakerURLIndexCount = 0; speakerURLIndexCount < firstJSONData.length; speakerURLIndexCount++) {
+
+        // select for the buttons...
+        let createdSpeakerButton = document.querySelectorAll('button.audio-snippet');
+
+        // ...and then iterate through them to add text
+        createdSpeakerButton[speakerURLIndexCount].innerText = firstJSONData[speakerURLIndexCount].speaker_name + ', Maskwacîs';
+
+        // put an event listener on the button: the event is the URL playback
+        createdSpeakerButton[speakerURLIndexCount].addEventListener('click', function() {
           var audio = new Audio(firstJSONData[speakerURLIndexCount].recording_url);
           audio.type = 'audio/m4a';
           audio.play();

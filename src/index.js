@@ -8,7 +8,7 @@ import $ from 'jquery'
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL, getSpeakerList} from './recordings.js'
+import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
 import * as orthography from './orthography.js'
 
 const ERROR_CLASS = 'search-progress--error'
@@ -254,9 +254,9 @@ $(() => {
     * @param speakerButton {object} – the button that outputs the speakers
     */
     $('body').on('click', 'button.definition-title__play-button', function() {
-      getSpeakerList();
+      retrieveListOfSpeakers();
     });
-    // TODO: (kobe:) - the route specific stuff can go in here! the initialization can go in the function 👇🏿
+    // TODOkobe: - the route specific stuff can go in here! the initialization can go in the function 👇🏿
     setupAudioOnPageLoad()
   } else {
     throw new Error(`Could not match route: ${route}`)
