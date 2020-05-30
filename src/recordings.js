@@ -93,6 +93,4 @@ export function retrieveListOfSpeakers() {
   xhttp.send();
 }
 
-// TODO: previously, the assumption was: one speaker has one URL associated with them and we'll use the speaker name to be our reference point for building our list. NOW, this assumption breaks when one speaker has multiple URLs associated with them. instead, we'll go with the URLs as the reference point: one URL has one speaker associated with it (so as a rough off the top example, "for every URL, give us the speaker name associated with it"). this is important because if the base URL changes, this breaks things. the way it is presently _may_ circumvent that, but not by much...
-
 // TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
