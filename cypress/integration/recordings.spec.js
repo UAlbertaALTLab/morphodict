@@ -41,7 +41,7 @@ context('Recordings', function () {
       // look up a word (wapamew)
       .type('wapamew');
 
-      // select the word and move to it's paradigm,
+      // select the word and move to its paradigm,
       cy.get('[data-cy=definition-title').first().click();
 
       // then hover/focus on the speaker icon
@@ -64,7 +64,7 @@ context('Recordings', function () {
       // look up a word (wapamew)
       .type('wapamew');
 
-      // select the word and move to it's paradigm,
+      // select the word and move to its paradigm,
       cy.get('[data-cy=definition-title').first().click();
 
       // then hover/focus on the speaker icon
@@ -76,7 +76,7 @@ context('Recordings', function () {
       // the names of the speakers should appear on the page as a list of buttons to be interacted with
       cy.get('[data-cy=recordings-list').find('li');
 
-      // clicking the buttons should output sound
+      // clicking the buttons should output sound (can't figure out how to play them serially + not at once...but that may be okay?)
       cy.get('[data-cy=recordings-list__item').click({ multiple: true });
     })
   })

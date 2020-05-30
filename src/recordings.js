@@ -1,12 +1,8 @@
-// TODOkobe: pull out BASE_URL and declare it as a const to be used by fetchRecordings, retrieveListOfSpeakers, etc...AFTER THE TEST PASSES!!!
-
-// TODO: previously, the assumption was: one speaker has one URL associated with them and we'll use the speaker name to be our reference point for building our list. NOW, this assumption breaks when one speaker has multiple URLs associated with them. instead, we'll go with the URLs as the reference point: one URL has one speaker associated with it (so as a rough off the top example, "for every URL, give us the speaker name associated with it"). this is important because if the base URL changes, this breaks things. the way it is presently _may_ circumvent that, but not by much...
-
-// TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
+// the specific URL for a given wordform (refactored from previous commits).
+const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation';
 
 export function fetchRecordings(wordform) {
   // TODO: should come from config.
-  const BASE_URL = '//sapir.artsrn.ualberta.ca/validation'
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
     .then(function (response) {
       return response.json()
@@ -25,11 +21,11 @@ export async function fetchFirstRecordingURL(wordform) {
 export function retrieveListOfSpeakers() {
   // get the value of the wordform from the page
   let wordform = document.getElementById('data:head').value;
-  const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation/recording/_search/' + `${wordform}`;
+  let derivedURL = `${BASE_URL}/recording/_search/${wordform}`;
 
   // setting up the JSON request
   let xhttp = new XMLHttpRequest();
-  xhttp.open('GET', BASE_URL, true);
+  xhttp.open('GET', derivedURL, true);
 
   // receiving request information from SAPIR
   xhttp.onload = function() {
@@ -96,3 +92,7 @@ export function retrieveListOfSpeakers() {
   // send the request!
   xhttp.send();
 }
+
+// TODO: previously, the assumption was: one speaker has one URL associated with them and we'll use the speaker name to be our reference point for building our list. NOW, this assumption breaks when one speaker has multiple URLs associated with them. instead, we'll go with the URLs as the reference point: one URL has one speaker associated with it (so as a rough off the top example, "for every URL, give us the speaker name associated with it"). this is important because if the base URL changes, this breaks things. the way it is presently _may_ circumvent that, but not by much...
+
+// TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
