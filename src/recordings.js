@@ -52,9 +52,10 @@ export function getSpeakerList() {
       // so to access the JSON data's URL property, I need to use firstJSONData[x].recording_url
 
       while (speakerURLIndexCount < numberOfRecordings) {
-        // create a list element and a button
+        // create a list element and a button; set an attribute on the former for testing
         let individualSpeaker = document.createElement('li');
         individualSpeaker.classList.add('recordings-list__item');
+        individualSpeaker.setAttribute('data-cy', 'recordings-list__item');
 
         let speakerButton = document.createElement('button');
         speakerButton.classList.add('audio-snippet');
