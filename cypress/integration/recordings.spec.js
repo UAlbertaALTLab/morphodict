@@ -31,7 +31,7 @@ context('Recordings', function () {
       // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     })
 
-    it.only('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
+    it('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
       // begin from the start page 
       cy.visit('/');
 
@@ -54,28 +54,30 @@ context('Recordings', function () {
       cy.get('[data-cy=recordings-list').find('li');
     })
 
-    // it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
-    //   // begin from the start page 
-    //   cy.visit('/');
+    it.only('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
+      // begin from the start page 
+      cy.visit('/');
 
-    //   // select the searchbar
-    //   cy.get('[data-cy=search]')
+      // select the searchbar
+      cy.get('[data-cy=search]')
 
-    //   // look up a word (wapamew)
-    //   .type('wapamew');
+      // look up a word (wapamew)
+      .type('wapamew');
 
-    //   // select the word and move to it's paradigm,
-    //   cy.get('[data-cy=definition-title').first().click();
+      // select the word and move to it's paradigm,
+      cy.get('[data-cy=definition-title').first().click();
 
-    //   // then hover/focus on the speaker icon
-    //   cy.get('[data-cy=play-recording]').focus()
+      // then hover/focus on the speaker icon
+      cy.get('[data-cy=play-recording]').focus()
 
-    //   // click the icon
-    //   .click();
+      // click the icon
+      .click();
 
-    //   // the list of speakers should appear on the page as buttons
+      // the names of the speakers should appear on the page as a list of buttons to be interacted with
+      cy.get('[data-cy=recordings-list').find('li');
 
-    //   // clicking a button should output sound
-    // })
+      // clicking the buttons should output sound
+      cy.get('[data-cy=recordings-list__item').click({ multiple: true });
+    })
   })
 })
