@@ -23,17 +23,40 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
 
 @pytest.mark.django_db
 def test_import_pipon_of_different_word_classes(shared_datadir):
+
+    # The Cree word pipon has two entries in the test xml, one's word class is VII and the other's is NI
+    migrate_and_import(shared_datadir / "crkeng-pipon-of-different-word-classes")
+
     # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
     # Issue description: search results for some inflected form of word pipon is not showing up
     # Cause: pipon lemmas wrongly marked as "as-is" in the database when the xml actually provided enough resolution
     # on the word classes (VII and NI)
-
-    # The Cree word pipon has two entries in the test xml, one's word class is VII and the other's is NI
-    migrate_and_import(shared_datadir / "crkeng-pipon-of-different-word-classes")
 
     # todo: let `migrate_and_import` report success/ambiguity/no-analysis count so that further tests to the importer
     #   can be easier constructed. e.g. in this case we'll only need to assert `success == 2`
 
     assert (
         Wordform.objects.filter(text="pipon", is_lemma=True, as_is=False).count() == 2
+    )
+
+    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/412
+    # Issue description: The verb entry and the noun entry have the same 3 definitions.
+    #   while in the source, the noun has 2 definitions:
+    #       It is winter.
+    #       it is winter; is one year
+    #   The verb has 1 definition:
+    #       year, winter
+    # They are wrongly merged.
+
+    assert (
+        Wordform.objects.filter(text="pipon", is_lemma=True, pos="N")
+        .definitions.all()
+        .count()
+        == 2
+    )
+    assert (
+        Wordform.objects.filter(text="pipon", is_lemma=True, pos="V")
+        .definitions.all()
+        .count()
+        == 1
     )
