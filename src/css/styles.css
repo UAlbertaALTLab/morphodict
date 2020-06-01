@@ -843,7 +843,7 @@ html {
 }
 
 .toggle-box__toggle::after {
-  content: url("images/fa/chevron-circle-down.svg");
+  content: url("img/fa/chevron-circle-down.svg");
 
   display: inline-block;
   width: 0.75rem;
