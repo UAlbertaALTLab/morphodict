@@ -843,7 +843,7 @@ html {
 }
 
 .toggle-box__toggle::after {
-  content: url("img/fa/chevron-circle-down.svg");
+  content: url("images/fa/chevron-circle-down.svg");
 
   display: inline-block;
   width: 0.75rem;
@@ -1191,3 +1191,36 @@ a.menu-choice__label:active {
  */
 .query::before { content: open-quote; }
 .query::after { content: close-quote; }
+
+/**
+ * .external-link
+ *
+ * Links that go to an outside website, or open in a new tab.
+ */
+.external-link, a[target=_blank][rel=noopener]::after {
+  content: url("img/fa/external-link-alt-solid.svg");
+
+  display: inline-block;
+  width: .75em;
+  margin-left: .25em;
+}
+
+/**
+ * Intentionally non-BEM styles to help us remove use of target=_blank without
+ * [rel=noopner].
+ *
+ * See: https://web.dev/external-anchors-use-rel-noopener/
+ */
+a[target=_blank]:not([rel~=noopener]) {
+  color: magenta;
+  background: black;
+  outline: magenta;
+
+  font-family: Comic Sans MS;
+  text-decoration: line-through;
+  text-transform: uppercase;
+  font-size: 2em;
+
+  cursor: not-allowed;
+  pointer-events: none;
+}
