@@ -513,7 +513,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         keyword_counter += 1
 
                 # now we create definition for all (possibly inflected) entries in xml that are forms of this lemma.
-                # d_s_dicts = xml_lemma_to_definition_src_dicts.get(generated_wordform)
 
                 # try to match our generated wordform to entries in the xml file,
                 # in order to get its definition from the entries
@@ -522,7 +521,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 # first get homographic entries from the xml file
                 pos_lc_tuples_in_xml = xml_lemma_to_pos_lc.get(generated_wordform)
 
-                # The case when we do have holographic entries in xml,
+                # The case when we do have homographic entries in xml,
                 # Then we check whether these entries' pos and lc agrees with our generated wordform
                 if pos_lc_tuples_in_xml is not None:
                     for xml_pos, xml_lc in pos_lc_tuples_in_xml:
@@ -534,8 +533,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                             )
                 # The case when we don't have holographic entries in xml,
                 # The generated inflection doesn't have a definition
-                else:
-                    pass
 
                 for d_s_dict in d_s_dicts:
 
