@@ -50,13 +50,15 @@ def test_import_pipon_of_different_word_classes(shared_datadir):
 
     assert (
         Wordform.objects.filter(text="pipon", is_lemma=True, pos="N")
-        .definitions.all()
-        .count()
-        == 2
-    )
-    assert (
-        Wordform.objects.filter(text="pipon", is_lemma=True, pos="V")
+        .get()
         .definitions.all()
         .count()
         == 1
+    )
+    assert (
+        Wordform.objects.filter(text="pipon", is_lemma=True, pos="V")
+        .get()
+        .definitions.all()
+        .count()
+        == 2
     )
