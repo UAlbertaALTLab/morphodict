@@ -108,3 +108,7 @@ pipon
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
 kîsikâw
 ê-kîsikâk
+
+# Some paradigms of homographic entries do not show up
+nôhtêpayiw
+ayâw

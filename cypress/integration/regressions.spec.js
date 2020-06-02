@@ -229,4 +229,64 @@ context('Regressions', () => {
   })
 
 
+  /**
+   * Ensure homographic entries can have paradigms shown
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   */
+  it('should let the user see the paradigm for different entries of ayâw and nôhtêpayiw', function () {
+
+    // ayâw has three entries of different inflectional categories and nôhtêpayiw has two
+    // With the bug,
+    // when the user clicks on the lemmas some of them redirects the user to the same page, which appears like
+    // the website didn't do anything
+
+
+
+
+    cy.visitSearch('ayâw')
+    cy.get('[data-cy=lemma-link]').its('length').then(
+      length =>{
+        // each clickable link should show paradigm
+        for (let i = 0; i< length; i++){
+          cy.visitSearch('ayâw')
+          // .eq(n) selects the nth matched element
+          cy.get('[data-cy=lemma-link]').eq(i).click()
+          cy.get('[data-cy=paradigm]').should('be.visible')
+        }
+      }
+    ).then(
+      ()=>{
+
+        // repeat the same test with nôhtêpayiw
+        cy.visitSearch('nôhtêpayiw')
+        cy.get('[data-cy=lemma-link]').its('length').then(length=>{
+
+          for (let i = 0; i< length; i++){
+            cy.visitSearch('nôhtêpayiw')
+            cy.get('[data-cy=lemma-link]').eq(i).click()
+            cy.get('[data-cy=paradigm]').should('be.visible')
+          }
+
+
+        })
+
+
+
+
+
+      }
+
+
+    )
+
+
+
+
+
+
+
+  })
+
+
 })
