@@ -54,7 +54,7 @@ context('Recordings', function () {
       cy.get('[data-cy=recordings-list').find('li');
     })
 
-    it.only('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
+    it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
       // begin from the start page 
       cy.visit('/');
 
