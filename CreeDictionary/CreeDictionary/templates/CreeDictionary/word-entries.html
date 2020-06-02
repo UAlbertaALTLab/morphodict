@@ -10,7 +10,7 @@
 
         <dfn class="definition-title__word" data-cy="definition-title">
           {% if result.is_lemma %}
-          <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}">
+          <a class="definition-title__link" data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">
             {% orth result.lemma_wordform.text %}</a>
           {% else %}
           {% orth result.matched_cree %}
