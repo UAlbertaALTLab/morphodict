@@ -232,10 +232,10 @@ document.addEventListener('DOMContentLoaded', () => {
   orthography.registerEventListener(csrfToken)
 
   // setup search bar
-  let $input = $('#search')
-  $input.on('input', () => {
-    loadResults($input)
-    changeTitleByInput($input.val())
+  let searchBar = document.getElementById('search')
+  searchBar.addEventListener('input', () => {
+    loadResults($(searchBar))
+    changeTitleByInput(searchBar)
   })
 
   let route = makeRouteRelativeToSlash(window.location.pathname)
