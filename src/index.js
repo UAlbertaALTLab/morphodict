@@ -61,8 +61,7 @@ function showProse() {
 }
 
 function hideProse() {
-  let prose = $('#prose')
-  prose.hide()
+  hideElement(document.getElementById('prose'))
 }
 
 /**
@@ -300,4 +299,14 @@ function showElement(element) {
     return
 
   element.style.display = ''
+}
+
+/**
+ * @param {(Element|null)} element
+ */
+function hideElement(element) {
+  if (!element)
+    return
+
+  element.style.display = 'none'
 }
