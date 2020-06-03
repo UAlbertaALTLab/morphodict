@@ -224,7 +224,7 @@ function getEntryHead() {
   return dataElement.value
 }
 
-$(() => {
+document.addEventListener('DOMContentLoaded', () => {
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
     location.reload()
@@ -248,6 +248,9 @@ $(() => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
+  } else if (route == '/contact-us') {
+    // Contact page
+    setSubtitle('Contact us')
   } else if (route === '/search') {
     // Search page
     prepareTooltips()
