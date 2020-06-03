@@ -52,7 +52,7 @@ function hideLoadingIndicator() {
  * clean paradigm details
  */
 function cleanParadigm() {
-  $('#paradigm').remove()
+  removeElement(document.getElementById('paradigm'))
 }
 
 
@@ -274,4 +274,16 @@ function emptyElement(element) {
   while (element.lastChild) {
     element.removeChild(element.lastChild)
   }
+}
+
+/**
+ * Removes this element from the DOM
+ */
+function removeElement(element) {
+  if (!element) {
+    return
+  }
+
+  let parent = element.parentNode
+  parent.removeChild(element)
 }
