@@ -1,7 +1,3 @@
-/* global Urls:readable */
-// "Urls" is a magic variable that allows use to reverse urls in javascript
-// See https://github.com/ierror/django-js-reverse
-
 /**
  * @file
  * Orthography switching.
