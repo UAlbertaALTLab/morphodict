@@ -16,7 +16,7 @@ import {
   indicateLoadedSuccessfully,
   indicateLoadingFailure,
   hideLoadingIndicator
-} from './progress-bar.js'
+} from './loading-bar.js'
 
 
 const NO_BREAK_SPACE = '\u00A0'
