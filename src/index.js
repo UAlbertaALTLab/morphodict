@@ -57,8 +57,7 @@ function cleanParadigm() {
 
 
 function showProse() {
-  let prose = $('#prose')
-  prose.show()
+  showElement(document.getElementById('prose'))
 }
 
 function hideProse() {
@@ -291,4 +290,14 @@ function removeElement(element) {
 
   let parent = element.parentNode
   parent.removeChild(element)
+}
+
+/**
+ * @param {(Element|null)} element
+ */
+function showElement(element) {
+  if (!element)
+    return
+
+  element.style.display = ''
 }
