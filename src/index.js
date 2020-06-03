@@ -70,17 +70,13 @@ function hideProse() {
  * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
  */
 function prepareTooltips() {
-  const $searchResultList = $('#search-result-list')
+  const searchResultList = getSearchResultList()
 
   // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.definition-title__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
-
-  // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
+  let tooltips = searchResultList.querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+  for (let icon of tooltips) {
+    createTooltip($(icon), $(icon).next('.tooltip'))
+  }
 }
 
 /**
