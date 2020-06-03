@@ -90,10 +90,19 @@ function hideProse() {
  */
 function prepareSearchResults(searchResultsList) {
   prepareTooltips()
+  loadRecordingsForAllSearchResults(searchResultsList)
+}
 
+/**
+ * Given a list of search results, this will attempt to match a recording to
+ * its match wordform.
+ *
+ * @param {Element} searchResultsList
+ */
+function loadRecordingsForAllSearchResults(searchResultsList) {
   for (let result of searchResultsList.querySelectorAll('[data-wordform]')) {
     let wordform = result.dataset.wordform
-    let container = result // do this reassignment because of the lexical scoping :/
+    let container = result // do this reassignment because of the lexical scoping :(
     fetchFirstRecordingURL(wordform)
       .then((recordingURL) => createAudioButton(recordingURL, container))
       .catch(() => {/* ignore :/ */})
