@@ -19,8 +19,56 @@ import {
 } from './loading-bar.js'
 
 
+///////////////////////////////// Constants //////////////////////////////////
+
 const NO_BREAK_SPACE = '\u00A0'
 
+
+//////////////////////////////// On page load ////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+  // XXX: HACK! reloads the site when the back button is pressed.
+  window.onpopsate = () => location.reload()
+
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  orthography.registerEventListener(csrfToken)
+
+  setupSearchBar()
+
+  let route = makeRouteRelativeToSlash(window.location.pathname)
+  // Tiny router.
+  if (route === '/') {
+    // Homepage
+    setSubtitle(null)
+  } else if (route === '/about') {
+    // About page
+    setSubtitle('About')
+  } else if (route == '/contact-us') {
+    // Contact page
+    setSubtitle('Contact us')
+  } else if (route === '/search') {
+    // Search page
+    prepareTooltips()
+  } else if (route.match(/^[/]word[/].+/)) {
+    // Word detail/paradigm page. This one has the 🔊 button.
+    setSubtitle(getEntryHead())
+    setupAudioOnPageLoad()
+  } else {
+    throw new Error(`Could not match route: ${route}`)
+  }
+})
+
+
+///////////////////////////// Internal functions /////////////////////////////
+
+function setupSearchBar() {
+  let searchBar = document.getElementById('search')
+  searchBar.addEventListener('input', () => {
+    let query = searchBar.value
+    loadSearchResults(searchBar)
+    changeTitleBySearchQuery(query)
+  })
+}
 
 /**
  * clean paradigm details
@@ -28,7 +76,6 @@ const NO_BREAK_SPACE = '\u00A0'
 function cleanParadigm() {
   removeElement(document.getElementById('paradigm'))
 }
-
 
 function showProse() {
   showElement(document.getElementById('prose'))
@@ -181,47 +228,6 @@ function makeRouteRelativeToSlash(route) {
 function getEntryHead() {
   let dataElement = document.getElementById('data:head')
   return dataElement.value
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // XXX: HACK! reloads the site when the back button is pressed.
-  window.onpopsate = () => location.reload()
-
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
-  orthography.registerEventListener(csrfToken)
-
-  setupSearchBar()
-
-  let route = makeRouteRelativeToSlash(window.location.pathname)
-  // Tiny router.
-  if (route === '/') {
-    // Homepage
-    setSubtitle(null)
-  } else if (route === '/about') {
-    // About page
-    setSubtitle('About')
-  } else if (route == '/contact-us') {
-    // Contact page
-    setSubtitle('Contact us')
-  } else if (route === '/search') {
-    // Search page
-    prepareTooltips()
-  } else if (route.match(/^[/]word[/].+/)) {
-    // Word detail/paradigm page. This one has the 🔊 button.
-    setSubtitle(getEntryHead())
-    setupAudioOnPageLoad()
-  } else {
-    throw new Error(`Could not match route: ${route}`)
-  }
-})
-
-function setupSearchBar() {
-  let searchBar = document.getElementById('search')
-  searchBar.addEventListener('input', () => {
-    let query = searchBar.value
-    loadSearchResults(searchBar)
-    changeTitleBySearchQuery(query)
-  })
 }
 
 ////////////////////// Fetch information from the page ///////////////////////
