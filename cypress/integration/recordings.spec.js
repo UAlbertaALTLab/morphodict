@@ -45,9 +45,8 @@ context('Recordings', function () {
 
       // then hover/focus on the speaker icon
       cy.get('[data-cy=play-recording]').focus()
-
-      // click the icon
-      .click();
+        // click the icon
+        .click();
 
       // the names of the speakers should appear on the page as a list of buttons to be interacted with
       cy.get('[data-cy=recordings-list').find('li');
