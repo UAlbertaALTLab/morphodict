@@ -83,7 +83,6 @@ export function retrieveListOfSpeakers() {
           audio.type = 'audio/m4a';
           audio.play();
 
-          // what i want to do is grab the JSON and make an array based on the speaker_url property. with that, I want to grab the things associated with it – the speaker name, namely. i also want to keep the position of the speaker_urls as they are.
         });
       }
     }
