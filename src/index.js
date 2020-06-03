@@ -67,8 +67,9 @@ function loadSearchResults(searchInput) {
   }
 
   function issueSearch() {
-    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
+    let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
+    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
     hideProse()
 
     let xhttp = new XMLHttpRequest()
@@ -99,7 +100,7 @@ function loadSearchResults(searchInput) {
     xhttp.onerror = function () {
       // TODO: we should do something here!
     }
-    xhttp.open('GET', Urls['cree-dictionary-search-results'](userQuery), true)
+    xhttp.open('GET', searchURL, true)
     xhttp.send()
   }
 
