@@ -226,9 +226,7 @@ function getEntryHead() {
 
 document.addEventListener('DOMContentLoaded', () => {
   // XXX: HACK! reloads the site when the back button is pressed.
-  $(window).on('popstate', function () {
-    location.reload()
-  })
+  window.onpopsate = () => location.reload()
 
   let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
