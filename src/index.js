@@ -10,6 +10,7 @@ import './css/styles.css'
 import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
 import * as orthography from './orthography.js'
+import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
 
 const ERROR_CLASS = 'search-progress--error'
 const LOADING_CLASS = 'search-progress--loading'
@@ -264,49 +265,4 @@ function setupSearchBar() {
  */
 function getSearchResultList() {
   return document.getElementById('search-result-list')
-}
-
-///////////////////////////////// Utilities //////////////////////////////////
-
-/**
- * Removes all children of an element.
- */
-function emptyElement(element) {
-  // Uses the fastest method tested here:
-  // https://jsperf.com/innerhtml-vs-removechild/15
-  while (element.lastChild) {
-    element.removeChild(element.lastChild)
-  }
-}
-
-/**
- * Removes this element from the DOM
- */
-function removeElement(element) {
-  if (!element) {
-    return
-  }
-
-  let parent = element.parentNode
-  parent.removeChild(element)
-}
-
-/**
- * @param {(Element|null)} element
- */
-function showElement(element) {
-  if (!element)
-    return
-
-  element.style.display = ''
-}
-
-/**
- * @param {(Element|null)} element
- */
-function hideElement(element) {
-  if (!element)
-    return
-
-  element.style.display = 'none'
 }
