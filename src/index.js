@@ -10,87 +10,102 @@ import './css/styles.css'
 import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
 import * as orthography from './orthography.js'
+import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
+import {
+  indicateLoading,
+  indicateLoadedSuccessfully,
+  indicateLoadingFailure,
+  hideLoadingIndicator
+} from './loading-bar.js'
 
-const ERROR_CLASS = 'search-progress--error'
-const LOADING_CLASS = 'search-progress--loading'
+
+///////////////////////////////// Constants //////////////////////////////////
 
 const NO_BREAK_SPACE = '\u00A0'
 
-/**
- * Make a 10% progress bar. We actually don't know how much there is left,
- * but make it seem like it's thinking about it!
- */
-function indicateLoading() {
-  let progress = document.getElementById('loading-indicator')
-  progress.max = 100
-  progress.value = 10
-  progress.classList.remove(ERROR_CLASS)
-  progress.classList.add(LOADING_CLASS)
+
+//////////////////////////////// On page load ////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+  // XXX: HACK! reloads the site when the back button is pressed.
+  window.onpopsate = () => location.reload()
+
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  orthography.registerEventListener(csrfToken)
+
+  setupSearchBar()
+
+  let route = makeRouteRelativeToSlash(window.location.pathname)
+  // Tiny router.
+  if (route === '/') {
+    // Homepage
+    setSubtitle(null)
+  } else if (route === '/about') {
+    // About page
+    setSubtitle('About')
+  } else if (route == '/contact-us') {
+    // Contact page
+    setSubtitle('Contact us')
+  } else if (route === '/search') {
+    // Search page
+    prepareTooltips()
+  } else if (route.match(/^[/]word[/].+/)) {
+    // Word detail/paradigm page. This one has the 🔊 button.
+    setSubtitle(getEntryHead())
+    setupAudioOnPageLoad()
+  } else {
+    throw new Error(`Could not match route: ${route}`)
+  }
+})
+
+
+///////////////////////////// Internal functions /////////////////////////////
+
+function setupSearchBar() {
+  let searchBar = document.getElementById('search')
+  searchBar.addEventListener('input', () => {
+    let query = searchBar.value
+    loadSearchResults(searchBar)
+    changeTitleBySearchQuery(query)
+  })
 }
-
-
-function indicateLoadedSuccessfully() {
-  let progress = document.getElementById('loading-indicator')
-  progress.value = 100
-  hideLoadingIndicator()
-}
-
-function indicateLoadingFailure() {
-  // makes the loading state "indeterminate", like it's loading forever.
-  let progress = document.getElementById('loading-indicator')
-  progress.removeAttribute('value')
-  progress.classList.add(ERROR_CLASS)
-}
-
-function hideLoadingIndicator() {
-  let progress = document.getElementById('loading-indicator')
-  progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
-}
-
 
 /**
  * clean paradigm details
  */
 function cleanParadigm() {
-  $('#paradigm').remove()
+  removeElement(document.getElementById('paradigm'))
 }
 
-
 function showProse() {
-  let prose = $('#prose')
-  prose.show()
+  showElement(document.getElementById('prose'))
 }
 
 function hideProse() {
-  let prose = $('#prose')
-  prose.hide()
+  hideElement(document.getElementById('prose'))
 }
 
 /**
  * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
  */
 function prepareTooltips() {
-  const $searchResultList = $('#search-result-list')
+  const searchResultList = getSearchResultList()
 
   // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.definition-title__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
-
-  // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
+  let tooltips = searchResultList.querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+  for (let icon of tooltips) {
+    createTooltip($(icon), $(icon).next('.tooltip'))
+  }
 }
 
 /**
- * use xhttp to load search results in place
+ * use AJAX to load search results in place
  *
- * @param {jQuery} $input
+ * @param {HTMLInputElement} searchInput
  */
-function loadResults($input) {
-  let userQuery = $input.val()
-  let $searchResultList = $('#search-result-list')
+function loadSearchResults(searchInput) {
+  let userQuery = searchInput.value
+  let searchResultList = getSearchResultList()
 
   if (userQuery !== '') {
     issueSearch()
@@ -99,41 +114,33 @@ function loadResults($input) {
   }
 
   function issueSearch() {
+    let searchURL = Urls['cree-dictionary-search-results'](userQuery)
+
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
-
     hideProse()
+    indicateLoading()
 
-    let xhttp = new XMLHttpRequest()
-
-    xhttp.onloadstart = function () {
-      // Show the loading indicator:
-      indicateLoading()
-    }
-
-    xhttp.onload = function () {
-      if (xhttp.status === 200) {
+    fetch(searchURL)
+      .then(response => response.text())
+      .then((html) => {
         // user input may have changed during the request
-        const inputNow = $input.val()
-        if (inputNow === userQuery) { // hasn't changed
-          // Remove loading cards
-          indicateLoadedSuccessfully()
-          cleanParadigm()
-          $searchResultList.html(xhttp.responseText)
-          prepareTooltips()
+        const inputNow = searchInput.value
 
-
-        } else { // changed. Do nothing
+        if (inputNow !== userQuery) {
+          // input has changed, so ignore this request to prevent flashing
+          // out-of-date search results
+          return
         }
-      } else {
-        indicateLoadingFailure()
-      }
-    }
 
-    xhttp.onerror = function () {
-      // TODO: we should do something here!
-    }
-    xhttp.open('GET', Urls['cree-dictionary-search-results'](userQuery), true)
-    xhttp.send()
+        // Remove loading cards
+        indicateLoadedSuccessfully()
+        cleanParadigm()
+        searchResultList.innerHTML = html
+        prepareTooltips()
+      })
+      .catch(() => {
+        indicateLoadingFailure()
+      })
   }
 
   function goToHomePage() {
@@ -142,7 +149,7 @@ function loadResults($input) {
     showProse()
 
     hideLoadingIndicator()
-    $searchResultList.empty()
+    emptyElement(searchResultList)
   }
 
   /**
@@ -151,7 +158,7 @@ function loadResults($input) {
    * The URL is constructed by using the <form>'s action="" attribute.
    */
   function urlForQuery(userQuery) {
-    let form = $input.get(0).closest('form')
+    let form = searchInput.closest('form')
     return form.action + `?q=${encodeURIComponent(userQuery)}`
   }
 }
@@ -161,7 +168,7 @@ function loadResults($input) {
  *
  * @param inputVal {string}
  */
-function changeTitleByInput(inputVal) {
+function changeTitleBySearchQuery(inputVal) {
   setSubtitle(inputVal ? '🔎 ' + inputVal : null)
 }
 
@@ -180,13 +187,12 @@ function setupAudioOnPageLoad() {
     return
   }
 
-  // TODO: setup URL from <link rel=""> or something.
+  // TODO: setup baseURL from <link rel=""> or something.
   let template = document.getElementById('template:play-button')
-  let dataElement = document.getElementById('data:head')
-  let wordform = dataElement.value
+  let wordform = getEntryHead()
 
   fetchFirstRecordingURL(wordform)
-    .then(function (recordingURL) {
+    .then((recordingURL) => {
       let recording = new Audio(recordingURL)
       recording.preload = 'none'
 
@@ -198,13 +204,11 @@ function setupAudioOnPageLoad() {
       let nbsp = document.createTextNode(NO_BREAK_SPACE)
       title.appendChild(nbsp)
       title.appendChild(button)
-      button.addEventListener('click', function () {
-        recording.play()
-      })
+      button.addEventListener('click', () => recording.play())
+      button.addEventListener('click', retrieveListOfSpeakers)
     })
-    .catch(e=>{
-      // fixme (eddie): now what?
-      console.log(e)
+    .catch(() => {
+      // TODO: display an error message?
     })
 }
 
@@ -218,47 +222,19 @@ function makeRouteRelativeToSlash(route) {
   return route.replace(baseURL, '/')
 }
 
-$(() => {
-  // XXX: HACK! reloads the site when the back button is pressed.
-  $(window).on('popstate', function () {
-    location.reload()
-  })
+/**
+ * Returns the head of the current dictionary entry on a /word/* page.
+ */
+function getEntryHead() {
+  let dataElement = document.getElementById('data:head')
+  return dataElement.value
+}
 
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
-  orthography.registerEventListener(csrfToken)
+////////////////////// Fetch information from the page ///////////////////////
 
-  // setup search bar
-  let $input = $('#search')
-  $input.on('input', () => {
-    loadResults($input)
-    changeTitleByInput($input.val())
-  })
-
-  let route = makeRouteRelativeToSlash(window.location.pathname)
-  // Tiny router.
-  if (route === '/') {
-    // Homepage
-    setSubtitle(null)
-  } else if (route === '/about') {
-    // About page
-    setSubtitle('About')
-  } else if (route === '/search') {
-    // Search page
-    prepareTooltips()
-  } else if (route.match(/^[/]word[/].+/)) {
-    // Word detail/paradigm page. This one has the 🔊 button.
-    
-    /**
-    * Attach event listener to speaker icon to display multiple speakers in the page content
-    *
-    * @param speakerButton {object} – the button that outputs the speakers
-    */
-    $('body').on('click', 'button.definition-title__play-button', function() {
-      retrieveListOfSpeakers();
-    });
-    // TODOkobe: - the route specific stuff can go in here! the initialization can go in the function 👇🏿
-    setupAudioOnPageLoad()
-  } else {
-    throw new Error(`Could not match route: ${route}`)
-  }
-})
+/**
+ * @returns {(Element|null)}
+ */
+function getSearchResultList() {
+  return document.getElementById('search-result-list')
+}

@@ -1,5 +1,5 @@
 // adapted from poppers.js tutorial https://popper.js.org/docs/v2/tutorial/
-import {createPopper} from '@popperjs/core/dist/esm/popper';
+import {createPopper} from '@popperjs/core/dist/esm/popper'
 
 
 let popperInstance = null
@@ -48,4 +48,3 @@ export function createTooltip(icon, popup) {
     })
   })
 }
-
