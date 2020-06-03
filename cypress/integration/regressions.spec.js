@@ -214,4 +214,79 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]').first()
       .should('contain', 'go and')
   })
+
+  /**
+   * Ensure inflected form ê-kîsikâk get recognized
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+   */
+  it('should not present un-related translation for preverbs', function () {
+    cy.visitSearch('ê-kîsikâk')
+
+    // there should be only one result
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'kîsikâw')
+  })
+
+
+  /**
+   * Ensure homographic entries can have paradigms shown
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   */
+  it('should let the user see the paradigm for different entries of ayâw and nôhtêpayiw', function () {
+
+    // ayâw has three entries of different inflectional categories and nôhtêpayiw has two
+    // With the bug,
+    // when the user clicks on the lemmas some of them redirects the user to the same page, which appears like
+    // the website didn't do anything
+
+
+
+
+    cy.visitSearch('ayâw')
+    cy.get('[data-cy=lemma-link]').its('length').then(
+      length =>{
+        // each clickable link should show paradigm
+        for (let i = 0; i< length; i++){
+          cy.visitSearch('ayâw')
+          // .eq(n) selects the nth matched element
+          cy.get('[data-cy=lemma-link]').eq(i).click()
+          cy.get('[data-cy=paradigm]').should('be.visible')
+        }
+      }
+    ).then(
+      ()=>{
+
+        // repeat the same test with nôhtêpayiw
+        cy.visitSearch('nôhtêpayiw')
+        cy.get('[data-cy=lemma-link]').its('length').then(length=>{
+
+          for (let i = 0; i< length; i++){
+            cy.visitSearch('nôhtêpayiw')
+            cy.get('[data-cy=lemma-link]').eq(i).click()
+            cy.get('[data-cy=paradigm]').should('be.visible')
+          }
+
+
+        })
+
+
+
+
+
+      }
+
+
+    )
+
+
+
+
+
+
+
+  })
+
+
 })

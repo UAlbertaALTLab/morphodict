@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+
+    {#  fst analysis for nipa: nipâw+V+AI+Imp+Imm+2Sg  #}
+    <e>
+        {#  there should be an entry with a single definition "Kill him" whose pos filed is "V"  #}
+        <lg>
+            <l pos="V">nipa</l>
+            <lc/>
+            <stem>md_stem[nr]</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="MD">Kill him. [Command]</t>
+            </tg>
+        </mg>
+    </e>
+
+    <e>
+        <lg>
+            <l pos="V">nipâw</l>
+            <lc>VAI-v</lc>
+            <stem>nipâ-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="MD">He sleeps.</t>
+            </tg>
+        </mg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="CW">s/he sleeps, s/he is asleep</t>
+            </tg>
+        </mg>
+    </e>
+
+
+    <e>
+        <lg>
+            <l pos="V">nipâ</l>
+            <lc/>
+            <stem>-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="MD">Sleep. [Command]</t>
+            </tg>
+        </mg>
+    </e>
+
+
+    <e>
+        <lg>
+            <l pos="Ipc">nipa</l>
+            <lc>IPV</lc>
+            <stem>md_stem[nr]</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="Ipc" sources="MD">Means, during the night.</t>
+            </tg>
+        </mg>
+    </e>
+
+
+</r>

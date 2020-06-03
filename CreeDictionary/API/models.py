@@ -37,6 +37,7 @@ from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
+from urllib.parse import quote
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
@@ -186,9 +187,9 @@ class Wordform(models.Model):
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
         )
         if self.homograph_disambiguator is not None:
-            lemma_url += f"?{self.homograph_disambiguator}={getattr(self, self.homograph_disambiguator)}"
+            lemma_url += f"?{self.homograph_disambiguator}={quote(getattr(self, self.homograph_disambiguator))}"
 
-        return iri_to_uri(lemma_url)
+        return lemma_url
 
     def serialize(self) -> SerializedWordform:
         """
@@ -332,7 +333,9 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(user_query: str, **kwargs) -> "CreeAndEnglish":
+    def fetch_lemma_by_user_query(
+        user_query: str, **extra_constraints
+    ) -> "CreeAndEnglish":
         """
         treat the user query as cree and:
 
@@ -346,7 +349,7 @@ class Wordform(models.Model):
         Give a list of matched lemmas
 
         :param user_query: can be English or Cree (syllabics or not)
-        :param kwargs: additional fields to disambiguate
+        :param extra_constraints: additional fields to disambiguate
         """
         # Whitespace won't affect results, but the FST can't deal with it:
         user_query = user_query.strip()
@@ -376,7 +379,7 @@ class Wordform(models.Model):
             ids_by_suffix = Wordform.affix_searcher.search_by_suffix(user_query)
 
             for wf in Wordform.objects.filter(
-                id__in=set(chain(ids_by_prefix, ids_by_suffix))
+                id__in=set(chain(ids_by_prefix, ids_by_suffix)), **extra_constraints
             ):
                 cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
@@ -393,7 +396,7 @@ class Wordform(models.Model):
             # todo: test
 
             exactly_matched_wordforms = Wordform.objects.filter(
-                analysis=analysis, as_is=False, **kwargs
+                analysis=analysis, as_is=False, **extra_constraints
             )
 
             if exactly_matched_wordforms.exists():
@@ -431,7 +434,7 @@ class Wordform(models.Model):
 
                 lemma, lc = lemma_lc
                 matched_lemma_wordforms = Wordform.objects.filter(
-                    text=lemma, is_lemma=True, **kwargs
+                    text=lemma, is_lemma=True, **extra_constraints
                 )
 
                 # now we get wordform objects from database
@@ -461,7 +464,7 @@ class Wordform(models.Model):
                         )
                 else:
                     for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=lc.pos.name, **kwargs
+                        as_is=False, pos=lc.pos.name, **extra_constraints
                     ):
                         cree_results.add(
                             CreeResult(
@@ -480,7 +483,7 @@ class Wordform(models.Model):
                 text__in=all_standard_forms + [user_query],
                 as_is=True,
                 is_lemma=True,
-                **kwargs,
+                **extra_constraints,
             )
         ):
             cree_results.add(
@@ -515,10 +518,10 @@ class Wordform(models.Model):
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(
-                text__iexact=user_query, **kwargs
+                text__iexact=user_query, **extra_constraints
             ).values("lemma__id")
             for wordform in Wordform.objects.filter(
-                id__in=lemma_ids, as_is=False, **kwargs
+                id__in=lemma_ids, as_is=False, **extra_constraints
             ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -529,7 +532,7 @@ class Wordform(models.Model):
                 Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
                 as_is=True,
-                **kwargs,
+                **extra_constraints,
             ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -538,18 +541,18 @@ class Wordform(models.Model):
         return CreeAndEnglish(cree_results, english_results)
 
     @staticmethod
-    def search(user_query: str, **kwargs) -> SortedSet[SearchResult]:
+    def search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
 
         :param user_query:
-        :param kwargs: additional fields to disambiguate
+        :param extra_constraints: additional fields to disambiguate
         :return:
         """
         cree_results: Set[CreeResult]
         english_results: Set[EnglishResult]
 
         cree_results, english_results = Wordform.fetch_lemma_by_user_query(
-            user_query, **kwargs
+            user_query, **extra_constraints
         )
 
         results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))

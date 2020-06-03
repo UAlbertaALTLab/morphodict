@@ -13,6 +13,7 @@ from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
+from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
 from constants import POS
 from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str, parse_xml_lc
@@ -462,22 +463,14 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         db_lemma = None
         _, _, xml_lc = xml_lemma_pos_lcs[0]
 
-        # for use in building/merging definition
-        xml_lemmas = {t[0] for t in xml_lemma_pos_lcs}
-
-        xml_lemma_to_definition_src_dicts: Dict[str, List[Dict[str, Set[str]]]] = {
-            xml_lemma: [
-                xml_lemma_pos_lc_to_str_definitions[(xml_lemma,) + pos_lc_tuple]
-                for pos_lc_tuple in xml_lemma_to_pos_lc[xml_lemma]
-            ]
-            for xml_lemma in xml_lemmas
-        }
-
         # build wordforms and definition in db
         for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
 
-            generated_lemma = fst_analysis_parser.extract_lemma(generated_analysis)
-            assert generated_lemma is not None
+            generated_lemma_lc = fst_analysis_parser.extract_lemma_and_category(
+                generated_analysis
+            )
+            assert generated_lemma_lc is not None
+            generated_lemma, generated_lc = generated_lemma_lc
 
             for generated_wordform in generated_wordforms:
                 # generated_inflections contain different spellings of one fst analysis
@@ -520,22 +513,40 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         keyword_counter += 1
 
                 # now we create definition for all (possibly inflected) entries in xml that are forms of this lemma.
-                d_s_dicts = xml_lemma_to_definition_src_dicts.get(generated_wordform)
 
-                if d_s_dicts is not None:
-                    for d_s_dict in d_s_dicts:
+                # try to match our generated wordform to entries in the xml file,
+                # in order to get its definition from the entries
+                d_s_dicts: List[dict] = []
 
-                        for (str_definition, source_strings) in d_s_dict.items():
-                            db_definition = Definition(
-                                id=definition_counter,
-                                text=str_definition,
-                                wordform=db_inflection,
+                # first get homographic entries from the xml file
+                pos_lc_tuples_in_xml = xml_lemma_to_pos_lc.get(generated_wordform)
+
+                # The case when we do have homographic entries in xml,
+                # Then we check whether these entries' pos and lc agrees with our generated wordform
+                if pos_lc_tuples_in_xml is not None:
+                    for xml_pos, xml_lc in pos_lc_tuples_in_xml:
+                        if does_lc_match_xml_entry(generated_lc, xml_pos, xml_lc):
+                            d_s_dicts.append(
+                                xml_lemma_pos_lc_to_str_definitions[
+                                    (generated_wordform, xml_pos, xml_lc)
+                                ]
                             )
-                            assert definition_counter not in citations
-                            citations[definition_counter] = set(source_strings)
+                # The case when we don't have holographic entries in xml,
+                # The generated inflection doesn't have a definition
 
-                            definition_counter += 1
-                            db_definitions.append(db_definition)
+                for d_s_dict in d_s_dicts:
+
+                    for (str_definition, source_strings) in d_s_dict.items():
+                        db_definition = Definition(
+                            id=definition_counter,
+                            text=str_definition,
+                            wordform=db_inflection,
+                        )
+                        assert definition_counter not in citations
+                        citations[definition_counter] = set(source_strings)
+
+                        definition_counter += 1
+                        db_definitions.append(db_definition)
 
         assert db_lemma is not None
         for wordform in db_wordforms_for_analysis:

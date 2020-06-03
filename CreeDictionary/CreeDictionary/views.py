@@ -23,7 +23,9 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
     extra_constraints = {
-        k: v for k, v in request.GET.items() if k in {"pos", "lc", "analysis", "id"}
+        k: v
+        for k, v in request.GET.items()
+        if k in {"pos", "full_lc", "analysis", "id"}
     }
     lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True, **extra_constraints)
     if lemma.count() == 1:

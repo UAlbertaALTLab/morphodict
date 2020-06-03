@@ -69,7 +69,8 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
         elif lc is SimpleLC.IPV:
             return "Preverb"
 
+    # fixme: where is this logged to in local development??? Does not show up in stdout/stderr for me.
     logging.error(
-        f"can not determine presentational pos for {wordform_dict}, id={wordform_dict.id}"
+        f"can not determine presentational pos for {wordform_dict}, id={wordform_dict['id']}"
     )
     return ""
