@@ -252,6 +252,8 @@ $(() => {
     prepareTooltips()
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
+    setSubtitle(getEntryHead())
+
     /**
     * Attach event listener to speaker icon to display multiple speakers in the page content
     *
