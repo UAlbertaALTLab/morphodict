@@ -11,42 +11,15 @@ import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
 import * as orthography from './orthography.js'
 import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
+import {
+  indicateLoading,
+  indicateLoadedSuccessfully,
+  indicateLoadingFailure,
+  hideLoadingIndicator
+} from './progress-bar.js'
 
-const ERROR_CLASS = 'search-progress--error'
-const LOADING_CLASS = 'search-progress--loading'
 
 const NO_BREAK_SPACE = '\u00A0'
-
-/**
- * Make a 10% progress bar. We actually don't know how much there is left,
- * but make it seem like it's thinking about it!
- */
-function indicateLoading() {
-  let progress = document.getElementById('loading-indicator')
-  progress.max = 100
-  progress.value = 10
-  progress.classList.remove(ERROR_CLASS)
-  progress.classList.add(LOADING_CLASS)
-}
-
-
-function indicateLoadedSuccessfully() {
-  let progress = document.getElementById('loading-indicator')
-  progress.value = 100
-  hideLoadingIndicator()
-}
-
-function indicateLoadingFailure() {
-  // makes the loading state "indeterminate", like it's loading forever.
-  let progress = document.getElementById('loading-indicator')
-  progress.removeAttribute('value')
-  progress.classList.add(ERROR_CLASS)
-}
-
-function hideLoadingIndicator() {
-  let progress = document.getElementById('loading-indicator')
-  progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
-}
 
 
 /**
