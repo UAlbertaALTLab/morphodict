@@ -88,7 +88,7 @@ function prepareTooltips() {
  *
  * @param {jQuery} $input
  */
-function loadResults($input) {
+function loadSearchResults($input) {
   let userQuery = $input.val()
   let $searchResultList = $('#search-result-list')
 
@@ -259,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-    loadResults($(searchBar))
+    loadSearchResults($(searchBar))
     changeTitleByInput(searchBar)
   })
 }
