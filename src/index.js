@@ -184,15 +184,6 @@ function setupAudioOnPageLoad() {
   let template = document.getElementById('template:play-button')
   let wordform = getEntryHead()
 
-  /**
-   * Attach event listener to speaker icon to display multiple speakers in the page content
-   *
-   * @param speakerButton {object} – the button that outputs the speakers
-   */
-  $('body').on('click', 'button.definition-title__play-button', function() {
-    retrieveListOfSpeakers()
-  })
-
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
       let recording = new Audio(recordingURL)
@@ -207,6 +198,7 @@ function setupAudioOnPageLoad() {
       title.appendChild(nbsp)
       title.appendChild(button)
       button.addEventListener('click', () => recording.play())
+      button.addEventListener('click', retrieveListOfSpeakers)
     })
     .catch((err) => {
       // fixme (Eddie): I'm really not sure what to do here...
