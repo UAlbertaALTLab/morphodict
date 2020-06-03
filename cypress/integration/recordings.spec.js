@@ -37,9 +37,8 @@ context('Recordings', function () {
 
       // select the searchbar
       cy.get('[data-cy=search]')
-
-      // look up a word (wapamew)
-      .type('wapamew');
+        // look up a word (wapamew)
+        .type('wapamew');
 
       // select the word and move to its paradigm,
       cy.get('[data-cy=definition-title').first().click();
