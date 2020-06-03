@@ -187,23 +187,11 @@ function setupAudioOnPageLoad() {
   }
 
   // TODO: setup baseURL from <link rel=""> or something.
-  let template = document.getElementById('template:play-button')
   let wordform = getEntryHead()
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
-      let recording = new Audio(recordingURL)
-      recording.preload = 'none'
-
-      let fragment = template.content.cloneNode(true)
-      // Place "&nbsp;<button>...</button>"
-      // at the end of the <h1?
-      // TODO: it shouldn't really be **inside** the <h1>...
-      let button = fragment.childNodes[0]
-      let nbsp = document.createTextNode(NO_BREAK_SPACE)
-      title.appendChild(nbsp)
-      title.appendChild(button)
-      button.addEventListener('click', () => recording.play())
+      let button = createAudioButton(recordingURL, title)
       button.addEventListener('click', retrieveListOfSpeakers)
     })
     .catch(() => {
@@ -227,6 +215,28 @@ function makeRouteRelativeToSlash(route) {
 function getEntryHead() {
   let dataElement = document.getElementById('data:head')
   return dataElement.value
+}
+
+/**
+ * Creates the 🔊 button and places it beside the desired element.
+ */
+function createAudioButton(recordingURL, element) {
+  let recording = new Audio(recordingURL)
+  recording.preload = 'none'
+
+  let template = document.getElementById('template:play-button')
+  let fragment = template.content.cloneNode(true)
+
+  // Place "&nbsp;<button>...</button>"
+  // at the end of the <h1?
+  // TODO: it shouldn't really be **inside** the <h1>...
+  let button = fragment.childNodes[0]
+  let nbsp = document.createTextNode(NO_BREAK_SPACE)
+  element.appendChild(nbsp)
+  element.appendChild(button)
+  button.addEventListener('click', () => recording.play())
+
+  return button
 }
 
 ////////////////////// Fetch information from the page ///////////////////////
