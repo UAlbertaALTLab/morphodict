@@ -231,12 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
 
-  // setup search bar
-  let searchBar = document.getElementById('search')
-  searchBar.addEventListener('input', () => {
-    loadResults($(searchBar))
-    changeTitleByInput(searchBar)
-  })
+  setupSearchBar()
 
   let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
@@ -260,3 +255,11 @@ document.addEventListener('DOMContentLoaded', () => {
     throw new Error(`Could not match route: ${route}`)
   }
 })
+
+function setupSearchBar() {
+  let searchBar = document.getElementById('search')
+  searchBar.addEventListener('input', () => {
+    loadResults($(searchBar))
+    changeTitleByInput(searchBar)
+  })
+}
