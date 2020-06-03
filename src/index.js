@@ -90,7 +90,7 @@ function prepareTooltips() {
  */
 function loadSearchResults(searchInput) {
   let userQuery = searchInput.value
-  let searchResultList = document.getElementById('search-result-list')
+  let searchResultList = getSearchResultList()
 
   if (userQuery !== '') {
     issueSearch()
@@ -261,6 +261,15 @@ function setupSearchBar() {
     loadSearchResults(searchBar)
     changeTitleBySearchQuery(query)
   })
+}
+
+////////////////////// Fetch information from the page ///////////////////////
+
+/**
+ * @returns {(Element|null)}
+ */
+function getSearchResultList() {
+  return document.getElementById('search-result-list')
 }
 
 ///////////////////////////////// Utilities //////////////////////////////////
