@@ -182,8 +182,7 @@ function setupAudioOnPageLoad() {
 
   // TODO: setup baseURL from <link rel=""> or something.
   let template = document.getElementById('template:play-button')
-  let dataElement = document.getElementById('data:head')
-  let wordform = dataElement.value
+  let wordform = getEntryHead()
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
@@ -216,6 +215,14 @@ function makeRouteRelativeToSlash(route) {
   return route.replace(baseURL, '/')
 }
 
+/**
+ * Returns the head of the current dictionary entry on a /word/* page.
+ */
+function getEntryHead() {
+  let dataElement = document.getElementById('data:head')
+  return dataElement.value
+}
+
 $(() => {
   // XXX: HACK! reloads the site when the back button is pressed.
   $(window).on('popstate', function () {
@@ -245,7 +252,6 @@ $(() => {
     prepareTooltips()
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
-    
     /**
     * Attach event listener to speaker icon to display multiple speakers in the page content
     *
