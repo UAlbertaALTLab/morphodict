@@ -84,12 +84,12 @@ function prepareTooltips() {
 }
 
 /**
- * use xhttp to load search results in place
+ * use AJAX to load search results in place
  *
- * @param {jQuery} $input
+ * @param {HTMLInputElement} searchInput
  */
-function loadSearchResults($input) {
-  let userQuery = $input.val()
+function loadSearchResults(searchInput) {
+  let userQuery = searchInput.value
   let $searchResultList = $('#search-result-list')
 
   if (userQuery !== '') {
@@ -113,17 +113,16 @@ function loadSearchResults($input) {
     xhttp.onload = function () {
       if (xhttp.status === 200) {
         // user input may have changed during the request
-        const inputNow = $input.val()
-        if (inputNow === userQuery) { // hasn't changed
+        const inputNow = searchInput.value
+        if (inputNow === userQuery) {
+          // input hasn't changed
           // Remove loading cards
           indicateLoadedSuccessfully()
           cleanParadigm()
           $searchResultList.html(xhttp.responseText)
           prepareTooltips()
-
-
-        } else { // changed. Do nothing
         }
+        // changed. Do nothing
       } else {
         indicateLoadingFailure()
       }
@@ -151,7 +150,7 @@ function loadSearchResults($input) {
    * The URL is constructed by using the <form>'s action="" attribute.
    */
   function urlForQuery(userQuery) {
-    let form = $input.get(0).closest('form')
+    let form = searchInput.closest('form')
     return form.action + `?q=${encodeURIComponent(userQuery)}`
   }
 }
@@ -260,7 +259,7 @@ function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
     let query = searchBar.value
-    loadSearchResults($(searchBar))
+    loadSearchResults(searchBar)
     changeTitleBySearchQuery(query)
   })
 }
