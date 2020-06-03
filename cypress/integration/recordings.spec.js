@@ -2,6 +2,18 @@
  * Tests about hearing recording snippets.
  */
 context('Recordings', function () {
+  describe('On the search page', () => {
+    it('should display for words  on the search page', () => {
+      // 'wâpamêw' is the word that we have a bunch of recordings for
+      cy.visitSearch('wâpamêw')
+
+      // Play the recording:
+      cy.contains('.definition-title', 'wâpamêw')
+        .find('button[data-cy=play-recording]')
+        .click()
+    })
+  })
+
   describe('On the definition page', () => {
     it('should play a recording via a 🔊 icon', function () {
       cy.fixture('recording/_search/wâpamêw', 'utf-8')
