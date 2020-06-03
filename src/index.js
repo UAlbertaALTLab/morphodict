@@ -161,7 +161,7 @@ function loadSearchResults($input) {
  *
  * @param inputVal {string}
  */
-function changeTitleByInput(inputVal) {
+function changeTitleBySearchQuery(inputVal) {
   setSubtitle(inputVal ? '🔎 ' + inputVal : null)
 }
 
@@ -259,7 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
+    let query = searchBar.value
     loadSearchResults($(searchBar))
-    changeTitleByInput(searchBar)
+    changeTitleBySearchQuery(query)
   })
 }
