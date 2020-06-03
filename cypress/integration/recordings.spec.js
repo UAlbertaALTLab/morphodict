@@ -30,5 +30,50 @@ context('Recordings', function () {
       // If you *want* to mock the Audio constructor... I mean, you can...
       // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     })
+
+    it('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
+      // begin from the start page 
+      cy.visit('/');
+
+      // select the searchbar
+      cy.get('[data-cy=search]')
+        // look up a word (wapamew)
+        .type('wapamew');
+
+      // select the word and move to its paradigm,
+      cy.get('[data-cy=definition-title').first().click();
+
+      // then hover/focus on the speaker icon
+      cy.get('[data-cy=play-recording]').focus()
+        // click the icon
+        .click();
+
+      // the names of the speakers should appear on the page as a list of buttons to be interacted with
+      cy.get('[data-cy=recordings-list').find('li');
+    })
+
+    it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
+      // begin from the start page 
+      cy.visit('/');
+
+      // select the searchbar
+      cy.get('[data-cy=search]')
+        // look up a word (wapamew)
+        .type('wapamew');
+
+      // select the word and move to its paradigm,
+      cy.get('[data-cy=definition-title').first().click();
+
+      // then hover/focus on the speaker icon
+      cy.get('[data-cy=play-recording]').focus()
+        // click the icon
+        .click();
+
+      // the names of the speakers should appear on the page as a list of buttons to be interacted with
+      cy.get('[data-cy=recordings-list').find('li');
+
+      // clicking the buttons should output sound (can't figure out how to play them serially + not at once...but that may be okay?)
+      cy.get('[data-cy=recordings-list__item').click({ multiple: true });
+    })
   })
 })
