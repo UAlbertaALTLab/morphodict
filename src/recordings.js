@@ -1,5 +1,5 @@
 // the specific URL for a given wordform (refactored from previous commits).
-const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation';
+const BASE_URL = 'https://sapir.artsrn.ualberta.ca/validation';
 
 export function fetchRecordings(wordform) {
   // TODO: should come from config.
