@@ -71,37 +71,29 @@ function loadSearchResults(searchInput) {
 
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
     hideProse()
+    indicateLoading()
 
-    let xhttp = new XMLHttpRequest()
-
-    xhttp.onloadstart = function () {
-      // Show the loading indicator:
-      indicateLoading()
-    }
-
-    xhttp.onload = function () {
-      if (xhttp.status === 200) {
+    fetch(searchURL)
+      .then(response => response.text())
+      .then((html) => {
         // user input may have changed during the request
         const inputNow = searchInput.value
-        if (inputNow === userQuery) {
-          // input hasn't changed
-          // Remove loading cards
-          indicateLoadedSuccessfully()
-          cleanParadigm()
-          searchResultList.innerHTML = xhttp.responseText
-          prepareTooltips()
-        }
-        // changed. Do nothing
-      } else {
-        indicateLoadingFailure()
-      }
-    }
 
-    xhttp.onerror = function () {
-      // TODO: we should do something here!
-    }
-    xhttp.open('GET', searchURL, true)
-    xhttp.send()
+        if (inputNow !== userQuery) {
+          // input has changed, so ignore this request to prevent flashing
+          // out-of-date search results
+          return
+        }
+
+        // Remove loading cards
+        indicateLoadedSuccessfully()
+        cleanParadigm()
+        searchResultList.innerHTML = html
+        prepareTooltips()
+      })
+      .catch(() => {
+        indicateLoadingFailure()
+      })
   }
 
   function goToHomePage() {
