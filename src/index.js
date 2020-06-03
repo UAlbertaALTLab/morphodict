@@ -90,7 +90,7 @@ function prepareTooltips() {
  */
 function loadSearchResults(searchInput) {
   let userQuery = searchInput.value
-  let $searchResultList = $('#search-result-list')
+  let searchResultList = document.getElementById('search-result-list')
 
   if (userQuery !== '') {
     issueSearch()
@@ -119,7 +119,7 @@ function loadSearchResults(searchInput) {
           // Remove loading cards
           indicateLoadedSuccessfully()
           cleanParadigm()
-          $searchResultList.html(xhttp.responseText)
+          searchResultList.innerHTML = xhttp.responseText
           prepareTooltips()
         }
         // changed. Do nothing
@@ -141,7 +141,7 @@ function loadSearchResults(searchInput) {
     showProse()
 
     hideLoadingIndicator()
-    $searchResultList.empty()
+    emptyElement(searchResultList)
   }
 
   /**
@@ -262,4 +262,17 @@ function setupSearchBar() {
     loadSearchResults(searchBar)
     changeTitleBySearchQuery(query)
   })
+}
+
+///////////////////////////////// Utilities //////////////////////////////////
+
+/**
+ * Removes all children of an element.
+ */
+function emptyElement(element) {
+  // Uses the fastest method tested here:
+  // https://jsperf.com/innerhtml-vs-removechild/15
+  while (element.lastChild) {
+    element.removeChild(element.lastChild)
+  }
 }
