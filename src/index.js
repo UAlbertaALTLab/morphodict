@@ -64,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-    let query = searchBar.value
     loadSearchResults(searchBar)
-    changeTitleBySearchQuery(query)
   })
 }
 
@@ -108,6 +106,7 @@ function loadSearchResults(searchInput) {
   let searchResultList = getSearchResultList()
 
   if (userQuery !== '') {
+    changeTitleBySearchQuery(userQuery)
     issueSearch()
   } else {
     goToHomePage()
