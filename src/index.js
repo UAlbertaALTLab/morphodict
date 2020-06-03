@@ -91,7 +91,7 @@ function hideProse() {
  * @param {Element} searchResultsList
  */
 function prepareSearchResults(searchResultsList) {
-  prepareTooltips()
+  prepareTooltips(searchResultsList)
   loadRecordingsForAllSearchResults(searchResultsList)
 }
 
@@ -112,13 +112,14 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
 }
 
 /**
- * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
+ * Attach relevant handlers to the tooltip icons of search results.
+ *
+ * @param {Element} searchResultsList
  */
-function prepareTooltips() {
-  const searchResultList = getSearchResultList()
-
+function prepareTooltips(searchResultsList) {
   // attach handlers for tooltip icon at preverb breakdown
-  let tooltips = searchResultList.querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+  let tooltips = searchResultsList
+    .querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
   for (let icon of tooltips) {
     createTooltip($(icon), $(icon).next('.tooltip'))
   }
