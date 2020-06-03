@@ -199,9 +199,8 @@ function setupAudioOnPageLoad() {
       button.addEventListener('click', () => recording.play())
       button.addEventListener('click', retrieveListOfSpeakers)
     })
-    .catch((err) => {
-      // fixme (Eddie): I'm really not sure what to do here...
-      console.log(err)
+    .catch(() => {
+      // TODO: display an error message?
     })
 }
 
