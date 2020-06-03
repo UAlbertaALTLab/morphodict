@@ -48,15 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle('Contact us')
   } else if (route === '/search') {
     // Search page
-    prepareTooltips()
 
-    for (let result of getSearchResultList().querySelectorAll('[data-wordform]')) {
-      let wordform = result.dataset.wordform
-      let container = result // do this reassignment because of the lexical scoping :/
-      fetchFirstRecordingURL(wordform)
-        .then((recordingURL) => createAudioButton(recordingURL, container))
-        .catch(() => {/* ignore :/ */})
-    }
+    prepareSearchResults(getSearchResultList())
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
@@ -89,6 +82,23 @@ function showProse() {
 
 function hideProse() {
   hideElement(document.getElementById('prose'))
+}
+
+/**
+ * Prepares interactive elements of each search result, including:
+ *  - tooltips
+ *  - recordings
+ */
+function prepareSearchResults(searchResultsList) {
+  prepareTooltips()
+
+  for (let result of searchResultsList.querySelectorAll('[data-wordform]')) {
+    let wordform = result.dataset.wordform
+    let container = result // do this reassignment because of the lexical scoping :/
+    fetchFirstRecordingURL(wordform)
+      .then((recordingURL) => createAudioButton(recordingURL, container))
+      .catch(() => {/* ignore :/ */})
+  }
 }
 
 /**
