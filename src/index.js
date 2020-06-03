@@ -87,6 +87,8 @@ function hideProse() {
  * Prepares interactive elements of each search result, including:
  *  - tooltips
  *  - recordings
+ *
+ * @param {Element} searchResultsList
  */
 function prepareSearchResults(searchResultsList) {
   prepareTooltips()
