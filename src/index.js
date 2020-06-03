@@ -180,13 +180,13 @@ function setupAudioOnPageLoad() {
     return
   }
 
-  // TODO: setup URL from <link rel=""> or something.
+  // TODO: setup baseURL from <link rel=""> or something.
   let template = document.getElementById('template:play-button')
   let dataElement = document.getElementById('data:head')
   let wordform = dataElement.value
 
   fetchFirstRecordingURL(wordform)
-    .then(function (recordingURL) {
+    .then((recordingURL) => {
       let recording = new Audio(recordingURL)
       recording.preload = 'none'
 
@@ -198,13 +198,11 @@ function setupAudioOnPageLoad() {
       let nbsp = document.createTextNode(NO_BREAK_SPACE)
       title.appendChild(nbsp)
       title.appendChild(button)
-      button.addEventListener('click', function () {
-        recording.play()
-      })
+      button.addEventListener('click', () => recording.play())
     })
-    .catch(e=>{
-      // fixme (eddie): now what?
-      console.log(e)
+    .catch((err) => {
+      // fixme (Eddie): I'm really not sure what to do here...
+      console.log(err)
     })
 }
 
@@ -254,8 +252,8 @@ $(() => {
     * @param speakerButton {object} – the button that outputs the speakers
     */
     $('body').on('click', 'button.definition-title__play-button', function() {
-      retrieveListOfSpeakers();
-    });
+      retrieveListOfSpeakers()
+    })
     // TODOkobe: - the route specific stuff can go in here! the initialization can go in the function 👇🏿
     setupAudioOnPageLoad()
   } else {
