@@ -3,7 +3,7 @@
  */
 context('Recordings', function () {
   describe('On the search page', () => {
-    it.skip('should display for words  on the search page', () => {
+    it('should display for words  on the search page', () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch('wâpamêw')
 

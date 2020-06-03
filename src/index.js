@@ -49,6 +49,14 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (route === '/search') {
     // Search page
     prepareTooltips()
+
+    for (let result of getSearchResultList().querySelectorAll('[data-wordform]')) {
+      let wordform = result.dataset.wordform
+      let container = result // do this reassignment because of the lexical scoping :/
+      fetchFirstRecordingURL(wordform)
+        .then((recordingURL) => createAudioButton(recordingURL, container))
+        .catch(() => {/* ignore :/ */})
+    }
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
@@ -136,6 +144,7 @@ function loadSearchResults(searchInput) {
         cleanParadigm()
         searchResultList.innerHTML = html
         prepareTooltips()
+
       })
       .catch(() => {
         indicateLoadingFailure()
@@ -191,6 +200,7 @@ function setupAudioOnPageLoad() {
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
+      // TODO: it shouldn't be placed be **inside** the title <h1>...
       let button = createAudioButton(recordingURL, title)
       button.addEventListener('click', retrieveListOfSpeakers)
     })
@@ -225,16 +235,16 @@ function createAudioButton(recordingURL, element) {
   recording.preload = 'none'
 
   let template = document.getElementById('template:play-button')
+
   let fragment = template.content.cloneNode(true)
+  let button = fragment.querySelector('button')
+  button.addEventListener('click', () => recording.play())
 
   // Place "&nbsp;<button>...</button>"
-  // at the end of the <h1?
-  // TODO: it shouldn't really be **inside** the <h1>...
-  let button = fragment.childNodes[0]
+  // at the end of the element
   let nbsp = document.createTextNode(NO_BREAK_SPACE)
   element.appendChild(nbsp)
   element.appendChild(button)
-  button.addEventListener('click', () => recording.play())
 
   return button
 }
