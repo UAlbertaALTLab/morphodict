@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle('Contact us')
   } else if (route === '/search') {
     // Search page
-
     prepareSearchResults(getSearchResultList())
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
@@ -153,8 +152,7 @@ function loadSearchResults(searchInput) {
         indicateLoadedSuccessfully()
         cleanParadigm()
         searchResultList.innerHTML = html
-        prepareTooltips()
-
+        prepareSearchResults(searchResultList)
       })
       .catch(() => {
         indicateLoadingFailure()
