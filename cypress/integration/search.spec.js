@@ -369,4 +369,32 @@ context('Searching', () => {
         .should('contain', NON_WORD)
     })
   })
+
+  describe('display of inflected forms', function () {
+    it('should display the matched wordform', function () {
+      cy.visitSearch('nikinitawiwapamaw')
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // now let's make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', 'nikî-nitawi-wâpamâw')
+
+      // now make sure the 'form of' text is below that
+      cy.get('@search-result')
+        .get('header [data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="reference-to-lemma"]')
+        .should('contain', 'Form of')
+        .and('contain', 'wâpamêw')
+      cy.get('@elaboration')
+        .contains('[data-cy="word-class"]', 'Verb')
+    })
+  })
 })
+
+
