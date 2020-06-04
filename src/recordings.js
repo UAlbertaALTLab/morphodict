@@ -114,27 +114,37 @@ function loadSpeakerLink(passedInName, speakerCodeArray) {
     }
   }
 
+
   // now, put the speaker link into the page!
   var speakerLinkHolder = document.querySelector('.speaker-links');
 
-  // create the link
-  var createdLink = document.createElement('a');
+  if (speakerLinkHolder.childElementCount < 1) {
+    // generate a new link and append it to the page
+    
+    // create the link
+    var createdLink = document.createElement('a');
 
-  // create a node for the link
-  var linkText = document.createTextNode(`Learn more about ${passedInName}`);
+    // create a node for the link
+    var linkText = document.createTextNode(`Learn more about ${passedInName}`);
 
-  // set the link's URL
-  createdLink.href = `${SPEAKER_URL}${speakerCode}.html`;
+    // set the link's URL
+    createdLink.href = `${SPEAKER_URL}${speakerCode}.html`;
 
-  // set the link's target attribute
-  createdLink.setAttribute('target', '_blank');
-  createdLink.setAttribute('rel', 'noopener');
+    // set the link's target attribute
+    createdLink.setAttribute('target', '_blank');
+    createdLink.setAttribute('rel', 'noopener');
 
-  // put the newly created node into the link
-  createdLink.appendChild(linkText);
-  console.log(createdLink);
+    // put the newly created node into the link
+    createdLink.appendChild(linkText);
+    console.log(createdLink);
 
-  // put the link into the page
-  speakerLinkHolder.append(createdLink);
+    // put the link into the page
+    speakerLinkHolder.append(createdLink);
+  } else {
+    // don't generate a new link: rather, modify the existing link's URL and the name that is clicked as a prompt
+    console.log('Enough links made - don\'t make more!');
+  }
+
+
 }
 // TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
