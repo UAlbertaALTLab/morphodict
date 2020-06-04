@@ -23,6 +23,8 @@ export function retrieveListOfSpeakers() {
   let wordform = document.getElementById('data:head').value
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`
 
+  let template = document.getElementById('template:recording-item')
+
   // setting up the JSON request
   let xhttp = new XMLHttpRequest()
   xhttp.open('GET', derivedURL, true)
@@ -37,27 +39,28 @@ export function retrieveListOfSpeakers() {
     let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
     recordingsHeading.classList.remove('definition__recordings--not-loaded')
 
-    let template = document.getElementById('template:recording-item')
 
     // we only want to display our list of speakers once!
     if (recordingsList.childElementCount < numberOfRecordings) {
       displaySpeakerList(returnedData)
     }
-
-    // the function that displays an individual speaker's name
-    function displaySpeakerList(recordingsList) {
-      for (let recordingData of recordingsList) {
-        // Create the list element
-        let individualSpeaker = template.content.firstChild.cloneNode(true)
-        // put the list item into the DOM
-        recordingsList.appendChild(individualSpeaker)
-        setupButton(individualSpeaker, recordingData)
-      }
-    }
   }
 
   // send the request!
   xhttp.send()
+
+  ////////////////////////////////// helpers /////////////////////////////////
+
+  // the function that displays an individual speaker's name
+  function displaySpeakerList(recordingsList) {
+    for (let recordingData of recordingsList) {
+      // Create the list element
+      let individualSpeaker = template.content.firstChild.cloneNode(true)
+      // put the list item into the DOM
+      recordingsList.appendChild(individualSpeaker)
+      setupButton(individualSpeaker, recordingData)
+    }
+  }
 
   function setupButton(createdSpeakerButton, recordingData) {
     // Add appropriate text
