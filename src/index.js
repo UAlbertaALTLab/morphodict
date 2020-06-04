@@ -2,8 +2,6 @@
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
 
-import $ from 'jquery'
-
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css'
@@ -125,7 +123,11 @@ function prepareTooltips(searchResultsList) {
   let tooltips = searchResultsList
     .querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
   for (let icon of tooltips) {
-    createTooltip($(icon), $(icon).next('.tooltip'))
+    let tooltip = icon.nextElementSibling
+    if (!tooltip.classList.contains('tooltip')) {
+      throw new Error('Expected tooltip to be direct sibling of icon')
+    }
+    createTooltip(icon, tooltip)
   }
 }
 

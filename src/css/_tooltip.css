@@ -1,58 +1,88 @@
 /* adapted from https://popper.js.org/docs/v2/tutorial/ */
 
-/* how to use: Create `icon` element and `popup` element in html
-
-`popup` needs to be the direct next sibling of `icon` and has class tooltip
-
-.tooltip class in this file decides how the popup looks like
-
-tooltip.js attaches all the event handlers
-
-*/
+/*
+ * How to use: Create `icon` element and `popup` element in html
+ * `popup` needs to be the direct next sibling of `icon` and has class tooltip
+ *
+ * .tooltip class in this file decides how the popup looks like
+ *
+ * tooltip.js attaches all the event handlers
+ */
 
 .tooltip {
-    background: #333;
-    color: white;
-    font-weight: bold;
-    padding: 4px 8px;
-    font-size: 13px;
-    border-radius: 4px;
-    display: none;
-    z-index: 1;
+  display: none;
+
+  padding: 13px;
+  border-radius: 4px;
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  background: var(--popup-bg-color);
+  color: var(--popup-color);
+
+  font-size: 1rem;
+  font-weight: var(--body-font-weight);
+
+  box-shadow: 4px 4px 8px 2px rgba(145, 145, 145, 0.23);
+  z-index: 1;
 }
 
 .tooltip[data-show] {
-    display: block;
+  display: block;
 }
 
-.arrow,
-.arrow::before {
-    position: absolute;
-    width: 8px;
-    height: 8px;
-    z-index: -1;
+.tooltip__arrow,
+.tooltip__arrow::before {
+  position: absolute;
+
+  width: 8px;
+  height: 8px;
+
+  z-index: -1;
 }
 
-.arrow::before {
-    content: '';
-    transform: rotate(45deg);
-    background: #333;
+.tooltip__arrow::before {
+  content: '';
+
+  border: solid 1px rgba(209, 209, 209, 0.33);
+
+  transform: rotate(45deg);
+  background: var(--popup-bg-color);
 }
 
-.tooltip[data-popper-placement^='top'] > .arrow {
-    bottom: -4px;
+.tooltip[data-popper-placement^='top'] > .tooltip__arrow {
+  bottom: -4px;
 }
 
-.tooltip[data-popper-placement^='bottom'] > .arrow {
-    top: -4px;
+.tooltip[data-popper-placement^='top'] > .tooltip__arrow::before {
+  border-top: 0;
+  border-left: 0;
 }
 
-.tooltip[data-popper-placement^='left'] > .arrow {
-    right: -4px;
+.tooltip[data-popper-placement^='bottom'] > .tooltip__arrow {
+  top: -4px;
 }
 
-.tooltip[data-popper-placement^='right'] > .arrow {
-    left: -4px;
+.tooltip[data-popper-placement^='bottom'] > .tooltip__arrow::before {
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.tooltip[data-popper-placement^='left'] > .tooltip__arrow {
+  right: -4px;
+}
+
+.tooltip[data-popper-placement^='left'] > .tooltip__arrow::before {
+  border-top: 0;
+  border-right: 0;
+}
+
+.tooltip[data-popper-placement^='right'] > .tooltip__arrow {
+  left: -4px;
+}
+
+.tooltip[data-popper-placement^='right'] > .tooltip__arrow::before {
+  border-bottom: 0;
+  border-left: 0;
 }
 
 /**
@@ -60,10 +90,10 @@ tooltip.js attaches all the event handlers
  *
  * Should remove the numbering from the lists that come with the linguistic breakdowns
  */
- .linguistic-breakdown__breakdown-tail {
-    list-style: none;
-  }
-  
-  .linguistic-breakdown__breakdown-tail > li {
-    padding-left: var(--small-pad);
-  }
+.linguistic-breakdown__breakdown-tail {
+  list-style: none;
+}
+
+.linguistic-breakdown__breakdown-tail > li {
+  padding-left: var(--small-pad);
+}
