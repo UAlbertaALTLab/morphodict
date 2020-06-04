@@ -1,6 +1,9 @@
 // adapted from poppers.js tutorial https://popper.js.org/docs/v2/tutorial/
 import {createPopper} from '@popperjs/core/dist/esm/popper'
 
+const showEvents = ['mouseenter', 'focus']
+const hideEvents = ['mouseleave', 'blur']
+
 let popperInstance = null
 
 /**
@@ -26,9 +29,6 @@ function destroy() {
     popperInstance = null
   }
 }
-
-const showEvents = ['mouseenter', 'focus']
-const hideEvents = ['mouseleave', 'blur']
 
 /**
  * prepare the popup and the icon. Attach relevant handlers
