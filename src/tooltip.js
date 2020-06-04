@@ -1,8 +1,6 @@
 // adapted from poppers.js tutorial https://popper.js.org/docs/v2/tutorial/
 import {createPopper} from '@popperjs/core/dist/esm/popper'
 
-import $ from 'jquery'
-
 let popperInstance = null
 
 /**
@@ -39,17 +37,17 @@ const hideEvents = ['mouseleave', 'blur']
  * @param popup {Element}: the popup that shows up
  */
 export function createTooltip(icon, popup) {
-  showEvents.forEach(event => {
-    $(icon).on(event, () => {
+  for (let event of showEvents) {
+    icon.addEventListener(event, () => {
       popup.setAttribute('data-show', '')
       create(icon, popup)
     })
-  })
+  }
 
-  hideEvents.forEach(event => {
-    $(icon).on(event, () => {
+  for (let event of hideEvents) {
+    icon.addEventListener(event, () => {
       popup.removeAttribute('data-show')
       destroy()
     })
-  })
+  }
 }
