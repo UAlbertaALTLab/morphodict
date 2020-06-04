@@ -45,8 +45,8 @@ export function retrieveListOfSpeakers() {
     }
 
     // the function that displays an individual speaker's name
-    function displaySpeakerList(firstJSONData) {
-      for (let recordingData of firstJSONData) {
+    function displaySpeakerList(recordingsList) {
+      for (let recordingData of recordingsList) {
         // Create the list element
         let individualSpeaker = template.content.firstChild.cloneNode(true)
         // put the list item into the DOM
