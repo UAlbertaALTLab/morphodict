@@ -24,6 +24,7 @@ export function retrieveListOfSpeakers() {
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`
 
   let template = document.getElementById('template:recording-item')
+  let recordingsList = document.querySelector('.recordings-list')
 
   // setting up the JSON request
   let xhttp = new XMLHttpRequest()
@@ -33,7 +34,6 @@ export function retrieveListOfSpeakers() {
   xhttp.onload = function() {
     let returnedData = JSON.parse(this.response) // response from the server
     let numberOfRecordings = returnedData.length // number of records on the server
-    let recordingsList = document.querySelector('.recordings-list')
 
     // Unhide the explainer text
     let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
@@ -52,8 +52,8 @@ export function retrieveListOfSpeakers() {
   ////////////////////////////////// helpers /////////////////////////////////
 
   // the function that displays an individual speaker's name
-  function displaySpeakerList(recordingsList) {
-    for (let recordingData of recordingsList) {
+  function displaySpeakerList(recordings) {
+    for (let recordingData of recordings) {
       // Create the list element
       let individualSpeaker = template.content.firstChild.cloneNode(true)
       // put the list item into the DOM
