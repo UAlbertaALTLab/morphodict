@@ -566,18 +566,26 @@ html {
   display: inline;
   position: relative;
 }
+
 .preverb-breakdown__tooltip-icon > img {
   width: var(--tooltip-icon-size);
 
   /* vertically center the question mark*/
   position: absolute;
-  top:0;
+  top: 0;
   bottom: 0;
   margin: auto;
   /* end vertical centering */
 
-  left:0.2em;  /* space out the question mark */
+  left: 0.2em;  /* space out the question mark */
   filter: var(--blue-filter); /* blue color */
+}
+
+/**
+ * Occurs inside a tooltip. Get rid of its extra margin!
+ */
+.preverb-breakdown__preverb-definition {
+  margin: 0;
 }
 
 /********************************* PARADIGM *********************************/
