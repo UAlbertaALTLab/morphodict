@@ -1152,6 +1152,13 @@ a.menu-choice__label:active {
   font-style: italic;
 }
 
+/**
+ * BLOCK explainer
+ */
+.explainer {
+  font-weight: var(--strong-font-weight);
+}
+
 /******************************** UTILITIES *********************************/
 
 /* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
