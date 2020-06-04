@@ -9,17 +9,7 @@ This should be included or placed dynamical within <main>
 {% load inflection_extras %}
 {% load creedictionary_extras %}
 
-
 {% spaceless %}
-{# This is not in the DOM by default, but JS places in the <h1 id="head"> #}
-<template id="template:play-button">
-  <button aria-label="Play recording" class="definition-title__play-button" data-cy="play-recording">
-    <svg class="definition-title__play-icon" focusable="false">
-      <use xlink:href="#fa-volume-up-solid" />
-    </svg>
-  </button>
-</template>
-
 <article class="definition" id="paradigm">
   <header class="definition__header">
     <h1 id="head" class="definition-title">

@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle('Contact us')
   } else if (route === '/search') {
     // Search page
-    prepareTooltips()
+    prepareSearchResults(getSearchResultList())
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
@@ -64,9 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-    let query = searchBar.value
     loadSearchResults(searchBar)
-    changeTitleBySearchQuery(query)
   })
 }
 
@@ -86,13 +84,46 @@ function hideProse() {
 }
 
 /**
- * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
+ * Prepares interactive elements of each search result, including:
+ *  - tooltips
+ *  - recordings
+ *
+ * @param {Element} searchResultsList
  */
-function prepareTooltips() {
-  const searchResultList = getSearchResultList()
+function prepareSearchResults(searchResultsList) {
+  prepareTooltips(searchResultsList)
+  loadRecordingsForAllSearchResults(searchResultsList)
+}
 
+/**
+ * Given a list of search results, this will attempt to match a recording to
+ * its match wordform.
+ *
+ * @param {Element} searchResultsList
+ */
+function loadRecordingsForAllSearchResults(searchResultsList) {
+  for (let result of searchResultsList.querySelectorAll('[data-wordform]')) {
+    let wordform = result.dataset.wordform
+    let container = result // do this reassignment because of the lexical scoping :(
+
+    // TODO: instead of making a request for each search result,
+    // TODO: use a "bulk query" option that uses one request to load all
+    // TODO: this requires code in the recording-validation-interface
+    fetchFirstRecordingURL(wordform)
+      .then((recordingURL) => createAudioButton(recordingURL, container))
+      .catch(() => {/* ignore :/ */})
+  }
+}
+
+/**
+ * Attach relevant handlers to the tooltip icons of search results.
+ *
+ * @param {Element} searchResultsList
+ */
+function prepareTooltips(searchResultsList) {
   // attach handlers for tooltip icon at preverb breakdown
-  let tooltips = searchResultList.querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+  let tooltips = searchResultsList
+    .querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
   for (let icon of tooltips) {
     createTooltip($(icon), $(icon).next('.tooltip'))
   }
@@ -108,6 +139,7 @@ function loadSearchResults(searchInput) {
   let searchResultList = getSearchResultList()
 
   if (userQuery !== '') {
+    changeTitleBySearchQuery(userQuery)
     issueSearch()
   } else {
     goToHomePage()
@@ -136,7 +168,7 @@ function loadSearchResults(searchInput) {
         indicateLoadedSuccessfully()
         cleanParadigm()
         searchResultList.innerHTML = html
-        prepareTooltips()
+        prepareSearchResults(searchResultList)
       })
       .catch(() => {
         indicateLoadingFailure()
@@ -188,23 +220,12 @@ function setupAudioOnPageLoad() {
   }
 
   // TODO: setup baseURL from <link rel=""> or something.
-  let template = document.getElementById('template:play-button')
   let wordform = getEntryHead()
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
-      let recording = new Audio(recordingURL)
-      recording.preload = 'none'
-
-      let fragment = template.content.cloneNode(true)
-      // Place "&nbsp;<button>...</button>"
-      // at the end of the <h1?
-      // TODO: it shouldn't really be **inside** the <h1>...
-      let button = fragment.childNodes[0]
-      let nbsp = document.createTextNode(NO_BREAK_SPACE)
-      title.appendChild(nbsp)
-      title.appendChild(button)
-      button.addEventListener('click', () => recording.play())
+      // TODO: it shouldn't be placed be **inside** the title <h1>...
+      let button = createAudioButton(recordingURL, title)
       button.addEventListener('click', retrieveListOfSpeakers)
     })
     .catch(() => {
@@ -228,6 +249,28 @@ function makeRouteRelativeToSlash(route) {
 function getEntryHead() {
   let dataElement = document.getElementById('data:head')
   return dataElement.value
+}
+
+/**
+ * Creates the 🔊 button and places it beside the desired element.
+ */
+function createAudioButton(recordingURL, element) {
+  let recording = new Audio(recordingURL)
+  recording.preload = 'none'
+
+  let template = document.getElementById('template:play-button')
+
+  let fragment = template.content.cloneNode(true)
+  let button = fragment.querySelector('button')
+  button.addEventListener('click', () => recording.play())
+
+  // Place "&nbsp;<button>...</button>"
+  // at the end of the element
+  let nbsp = document.createTextNode(NO_BREAK_SPACE)
+  element.appendChild(nbsp)
+  element.appendChild(button)
+
+  return button
 }
 
 ////////////////////// Fetch information from the page ///////////////////////
