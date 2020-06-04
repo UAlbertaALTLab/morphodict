@@ -1,8 +1,8 @@
 // the specific URL for a given wordform (refactored from previous commits).
+// TODO: should come from config.
 const BASE_URL = 'https://sapir.artsrn.ualberta.ca/validation'
 
 export function fetchRecordings(wordform) {
-  // TODO: should come from config.
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
     .then(function (response) {
       return response.json()
@@ -32,17 +32,18 @@ export function retrieveListOfSpeakers() {
     let returnedData = JSON.parse(this.response) // response from the server
     let numberOfRecordings = returnedData.length // number of records on the server
     let recordingsList = document.querySelector('.recordings-list')
-    let recordingsHeading = document.querySelector('.definition__recordings')
 
     // we only want to display our list of speakers once!
     if (recordingsList.childElementCount < numberOfRecordings) {
       displaySpeakerList(returnedData)
     }
 
+    // Unhide the explainer text
+    let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
+    recordingsHeading.classList.remove('definition__recordings--not-loaded')
+
     // the function that displays an individual speaker's name
     function displaySpeakerList(firstJSONData) {
-      recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Select a name below to hear the word above said by different speakers.</h3>')
-
       let speakerURLIndexCount = 0
 
       while (speakerURLIndexCount < numberOfRecordings) {
