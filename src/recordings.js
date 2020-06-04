@@ -65,13 +65,19 @@ export function retrieveListOfSpeakers() {
       for (let speakerURLIndexCount = 0; speakerURLIndexCount < firstJSONData.length; speakerURLIndexCount++) {
 
         // select for the buttons...
-        let createdSpeakerButton = document.querySelectorAll('button.audio-snippet')
+        let createdSpeakerButtons = document.querySelectorAll('button.audio-snippet')
+        let createdSpeakerButton = createdSpeakerButtons[speakerURLIndexCount]
 
         // ...and then iterate through them to add text
-        createdSpeakerButton[speakerURLIndexCount].innerText = firstJSONData[speakerURLIndexCount].speaker_name + ', Maskwacîs'
+        createdSpeakerButton.querySelector('slot[name="speaker-name"]')
+          .innerText = firstJSONData[speakerURLIndexCount]['speaker_name']
+        // TODO: this should be derived from the recording JSON
+        // TODO: as of 2020-06-04, it does not include this data :(
+        createdSpeakerButton.querySelector('slot[name="speaker-dialect"]')
+          .innerText = 'Maskwacîs'
 
         // put an event listener on the button: the event is the URL playback
-        createdSpeakerButton[speakerURLIndexCount].addEventListener('click', function() {
+        createdSpeakerButton.addEventListener('click', function() {
           var audio = new Audio(firstJSONData[speakerURLIndexCount].recording_url)
           audio.type = 'audio/m4a'
           audio.play()

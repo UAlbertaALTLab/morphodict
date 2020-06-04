@@ -31,7 +31,7 @@
     {# The speaker button template (multiple recordings) #}
     <template id="template:recording-item">
       <li class="recordings-list__item" data-cy="recordings-list__item">
-        <button class="audio-snippet"></button>
+        <button class="audio-snippet"><slot name="speaker-name"></slot>, <slot name="speaker-dialect"</slot></button>
     </template>
   {% endspaceless %}
 
