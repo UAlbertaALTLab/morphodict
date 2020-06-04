@@ -107,7 +107,7 @@ export function retrieveListOfSpeakers() {
 function loadSpeakerLink(passedInName, speakerCodeArray) {
   let speakerCode;
 
-  // now, give me the speaker code for the name passed in.
+  // now, give us the corresponding speaker code for the name passed in.
   for(let key in speakerCodeArray){
     if(speakerCodeArray[key].speaker_name == passedInName) {
       speakerCode = speakerCodeArray[key].speaker;
@@ -125,7 +125,7 @@ function loadSpeakerLink(passedInName, speakerCodeArray) {
     var createdLink = document.createElement('a');
 
     // create a node for the link
-    var linkText = document.createTextNode(`Learn more about ${passedInName}`);
+    let linkText = document.createTextNode(`Learn more about ${passedInName}`);
 
     // set the link's URL
     createdLink.href = `${SPEAKER_URL}${speakerCode}.html`;
@@ -136,13 +136,13 @@ function loadSpeakerLink(passedInName, speakerCodeArray) {
 
     // put the newly created node into the link
     createdLink.appendChild(linkText);
-    console.log(createdLink);
 
     // put the link into the page
     speakerLinkHolder.append(createdLink);
   } else {
     // don't generate a new link: rather, modify the existing link's URL and the name that is clicked as a prompt
-    console.log('Enough links made - don\'t make more!');
+    speakerLinkHolder.children[0].innerText = `Learn more about ${passedInName}`;
+    speakerLinkHolder.children[0].href = `${SPEAKER_URL}${speakerCode}.html`;
   }
 
 
