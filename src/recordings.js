@@ -54,25 +54,25 @@ export function retrieveListOfSpeakers() {
         setupButton(individualSpeaker, recordingData)
       }
     }
-
-    function setupButton(createdSpeakerButton, recordingData) {
-      // Add appropriate text
-      createdSpeakerButton.querySelector('slot[name="speaker-name"]')
-        .innerText = recordingData['speaker_name']
-      // TODO: this should be derived from the recording JSON
-      // TODO: as of 2020-06-04, it does not include this data :(
-      createdSpeakerButton.querySelector('slot[name="speaker-dialect"]')
-        .innerText = 'Maskwacîs'
-
-      // Setup audio
-      let audio = new Audio(recordingData.recording_url)
-      audio.preload = 'none'
-      createdSpeakerButton.addEventListener('click', () => audio.play())
-    }
   }
 
   // send the request!
   xhttp.send()
+
+  function setupButton(createdSpeakerButton, recordingData) {
+    // Add appropriate text
+    createdSpeakerButton.querySelector('slot[name="speaker-name"]')
+      .innerText = recordingData['speaker_name']
+    // TODO: this should be derived from the recording JSON
+    // TODO: as of 2020-06-04, it does not include this data :(
+    createdSpeakerButton.querySelector('slot[name="speaker-dialect"]')
+      .innerText = 'Maskwacîs'
+
+    // Setup audio
+    let audio = new Audio(recordingData.recording_url)
+    audio.preload = 'none'
+    createdSpeakerButton.addEventListener('click', () => audio.play())
+  }
 }
 
 // TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
