@@ -33,33 +33,25 @@ export function retrieveListOfSpeakers() {
     let numberOfRecordings = returnedData.length // number of records on the server
     let recordingsList = document.querySelector('.recordings-list')
 
+    // Unhide the explainer text
+    let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
+    recordingsHeading.classList.remove('definition__recordings--not-loaded')
+
+    let template = document.getElementById('template:recording-item')
+
     // we only want to display our list of speakers once!
     if (recordingsList.childElementCount < numberOfRecordings) {
       displaySpeakerList(returnedData)
     }
-
-    // Unhide the explainer text
-    let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
-    recordingsHeading.classList.remove('definition__recordings--not-loaded')
 
     // the function that displays an individual speaker's name
     function displaySpeakerList(firstJSONData) {
       let speakerURLIndexCount = 0
 
       while (speakerURLIndexCount < numberOfRecordings) {
-        // create a list element and set an attribute on it for testing
-        let individualSpeaker = document.createElement('li')
-        individualSpeaker.classList.add('recordings-list__item')
-        individualSpeaker.setAttribute('data-cy', 'recordings-list__item')
-
-        // create a button element: add a class to it for future styling needs
-        let speakerButton = document.createElement('button')
-        speakerButton.classList.add('audio-snippet')
-
-        // put the button into the list
-        individualSpeaker.appendChild(speakerButton)
-
-        // put the list into the DOM
+        // Create the list element
+        let individualSpeaker = template.content.firstChild.cloneNode(true)
+        // put the list item into the DOM
         recordingsList.appendChild(individualSpeaker)
 
         speakerURLIndexCount++
