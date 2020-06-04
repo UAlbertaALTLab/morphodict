@@ -53,19 +53,9 @@ export function retrieveListOfSpeakers() {
         let individualSpeaker = template.content.firstChild.cloneNode(true)
         // put the list item into the DOM
         recordingsList.appendChild(individualSpeaker)
+        setupButton(individualSpeaker, firstJSONData[speakerURLIndexCount])
 
         speakerURLIndexCount++
-      }
-
-      // TODOkobe: hey future Eddie (+ Kobe), should the for-loop be within the while loop above?
-
-      /**
-      * Add text to the newly created buttons with a for-loop and get audio playback for each button
-      */
-      for (let speakerURLIndexCount = 0; speakerURLIndexCount < firstJSONData.length; speakerURLIndexCount++) {
-        // select for the buttons...
-        let createdSpeakerButtons = document.querySelectorAll('button.audio-snippet')
-        setupButton(createdSpeakerButtons[speakerURLIndexCount], firstJSONData[speakerURLIndexCount])
       }
     }
 
