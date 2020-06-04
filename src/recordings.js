@@ -63,11 +63,12 @@ export function retrieveListOfSpeakers() {
       * Add text to the newly created buttons with a for-loop and get audio playback for each button
       */
       for (let speakerURLIndexCount = 0; speakerURLIndexCount < firstJSONData.length; speakerURLIndexCount++) {
-
         // select for the buttons...
         let createdSpeakerButtons = document.querySelectorAll('button.audio-snippet')
-        let createdSpeakerButton = createdSpeakerButtons[speakerURLIndexCount]
+        setupButton(createdSpeakerButtons[speakerURLIndexCount])
+      }
 
+      function setupButton(createdSpeakerButton) {
         // ...and then iterate through them to add text
         createdSpeakerButton.querySelector('slot[name="speaker-name"]')
           .innerText = firstJSONData[speakerURLIndexCount]['speaker_name']
@@ -81,7 +82,6 @@ export function retrieveListOfSpeakers() {
           var audio = new Audio(firstJSONData[speakerURLIndexCount].recording_url)
           audio.type = 'audio/m4a'
           audio.play()
-
         })
       }
     }
