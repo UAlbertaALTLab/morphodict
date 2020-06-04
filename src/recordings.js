@@ -1,6 +1,9 @@
 // the specific URL for a given wordform (refactored from previous commits).
 const BASE_URL = 'http://sapir.artsrn.ualberta.ca/validation';
 
+// the specific URL for a given speaker
+const SPEAKER_URL = 'http://altlab.ualberta.ca/maskwacis/Speakers/';
+
 export function fetchRecordings(wordform) {
   // TODO: should come from config.
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
