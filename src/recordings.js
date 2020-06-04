@@ -26,28 +26,21 @@ export function retrieveListOfSpeakers() {
   let template = document.getElementById('template:recording-item')
   let recordingsList = document.querySelector('.recordings-list')
 
-  // setting up the JSON request
-  let xhttp = new XMLHttpRequest()
-  xhttp.open('GET', derivedURL, true)
+  // Request the JSON for all recordings of this wordform
+  fetch(derivedURL)
+    .then(request => request.json())
+    .then(returnedData => {
+      let numberOfRecordings = returnedData.length // number of records on the server
 
-  // receiving request information from SAPIR
-  xhttp.onload = function() {
-    let returnedData = JSON.parse(this.response) // response from the server
-    let numberOfRecordings = returnedData.length // number of records on the server
+      // Unhide the explainer text
+      let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
+      recordingsHeading.classList.remove('definition__recordings--not-loaded')
 
-    // Unhide the explainer text
-    let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
-    recordingsHeading.classList.remove('definition__recordings--not-loaded')
-
-
-    // we only want to display our list of speakers once!
-    if (recordingsList.childElementCount < numberOfRecordings) {
-      displaySpeakerList(returnedData)
-    }
-  }
-
-  // send the request!
-  xhttp.send()
+      // we only want to display our list of speakers once!
+      if (recordingsList.childElementCount < numberOfRecordings) {
+        displaySpeakerList(returnedData)
+      }
+    })
 
   ////////////////////////////////// helpers /////////////////////////////////
 
