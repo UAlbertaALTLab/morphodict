@@ -76,7 +76,7 @@ context('Recordings', function () {
       cy.get('[data-cy=recordings-list__item').click({ multiple: true });
     })
 
-    it('should open a link to the speaker\'s webpage in a new tab', () => {
+    it.only('should open a link to the speaker\'s webpage in a new tab', () => {
       // begin from the start page 
       cy.visit('/');
 
