@@ -47,6 +47,7 @@ export function retrieveListOfSpeakers() {
       recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Select a name below to hear the word above said by different speakers. <br> (See a speaker\'s name more than once? The same speaker pronounces the word in different ways!)</h3>');
       
       let speakerURLIndexCount = 0;
+      let speakerCodeArray = new Array(firstJSONData.length);
 
       while (speakerURLIndexCount < numberOfRecordings) {
         // create a list element and set an attribute on it for testing
@@ -80,12 +81,20 @@ export function retrieveListOfSpeakers() {
         // ...and then iterate through them to add text
         createdSpeakerButton[speakerURLIndexCount].innerText = firstJSONData[speakerURLIndexCount].speaker_name + ', Maskwacîs';
 
+        // put the speaker name and speaker code into the array as an object to be worked with
+        speakerCodeArray.push( {
+         speaker: firstJSONData[speakerURLIndexCount].speaker,
+         speaker_name: firstJSONData[speakerURLIndexCount].speaker_name
+        });
         // put an event listener on the button: the event is the URL playback
         createdSpeakerButton[speakerURLIndexCount].addEventListener('click', function() {
           var audio = new Audio(firstJSONData[speakerURLIndexCount].recording_url);
           audio.type = 'audio/m4a';
           audio.play();
 
+          // call a function to...load the speaker link in the page view: said function takes the name of the speaker that was clicked
+          let passedInName = event.target.innerText.replace(', Maskwacîs', ''); // TODOkobe: give this a better variable name 🥴
+          loadSpeakerLink(passedInName, speakerCodeArray);
         });
       }
     }
@@ -95,4 +104,15 @@ export function retrieveListOfSpeakers() {
   xhttp.send();
 }
 
+function loadSpeakerLink(passedInName, speakerCodeArray) {
+  let speakerCode;
+
+  // now, give me the speaker code for the name passed in.
+  for(let key in speakerCodeArray){
+    if(speakerCodeArray[key].speaker_name == passedInName) {
+      speakerCode = speakerCodeArray[key].speaker;
+    }
+  }
+  console.log(`${SPEAKER_URL}${speakerCode}.html`);
+}
 // TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
