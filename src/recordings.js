@@ -44,7 +44,7 @@ export function retrieveListOfSpeakers() {
 
     // the function that displays an individual speaker's name
     function displaySpeakerList(firstJSONData) {
-      recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Select a name below to hear the word above said by different speakers.</h3>');
+      recordingsHeading.insertAdjacentHTML('afterbegin', '<h3 class="explainer">Select a name below to hear the word above said by different speakers. <br> (See a speaker\'s name more than once? The same speaker pronounces the word in different ways!)</h3>');
       
       let speakerURLIndexCount = 0;
 
