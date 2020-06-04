@@ -70,7 +70,7 @@ export function retrieveListOfSpeakers() {
     }
 
     function setupButton(createdSpeakerButton, recordingData) {
-      // ...and then iterate through them to add text
+      // Add appropriate text
       createdSpeakerButton.querySelector('slot[name="speaker-name"]')
         .innerText = recordingData['speaker_name']
       // TODO: this should be derived from the recording JSON
@@ -78,12 +78,10 @@ export function retrieveListOfSpeakers() {
       createdSpeakerButton.querySelector('slot[name="speaker-dialect"]')
         .innerText = 'Maskwacîs'
 
-      // put an event listener on the button: the event is the URL playback
-      createdSpeakerButton.addEventListener('click', function() {
-        var audio = new Audio(recordingData.recording_url)
-        audio.type = 'audio/m4a'
-        audio.play()
-      })
+      // Setup audio
+      let audio = new Audio(recordingData.recording_url)
+      audio.preload = 'none'
+      createdSpeakerButton.addEventListener('click', () => audio.play())
     }
   }
 
