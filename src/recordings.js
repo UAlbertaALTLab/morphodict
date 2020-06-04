@@ -113,6 +113,28 @@ function loadSpeakerLink(passedInName, speakerCodeArray) {
       speakerCode = speakerCodeArray[key].speaker;
     }
   }
-  console.log(`${SPEAKER_URL}${speakerCode}.html`);
+
+  // now, put the speaker link into the page!
+  var speakerLinkHolder = document.querySelector('.speaker-links');
+
+  // create the link
+  var createdLink = document.createElement('a');
+
+  // create a node for the link
+  var linkText = document.createTextNode(`Learn more about ${passedInName}`);
+
+  // set the link's URL
+  createdLink.href = `${SPEAKER_URL}${speakerCode}.html`;
+
+  // set the link's target attribute
+  createdLink.setAttribute('target', '_blank');
+  createdLink.setAttribute('rel', 'noopener');
+
+  // put the newly created node into the link
+  createdLink.appendChild(linkText);
+  console.log(createdLink);
+
+  // put the link into the page
+  speakerLinkHolder.append(createdLink);
 }
 // TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
