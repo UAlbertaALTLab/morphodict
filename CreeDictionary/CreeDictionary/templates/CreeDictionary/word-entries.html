@@ -17,7 +17,9 @@
         </dfn>
 
         {% if result.is_lemma %}
-          <span class="definition-title__pos" data-cy="word-class">({{ result.lemma_wordform|presentational_pos }})</span>
+          <span class="definition-title__pos" data-cy="word-class">
+            ({{ result.lemma_wordform|presentational_pos }} — {{ result.lemma_wordform.wordclass_help }})
+          </span>
         {% endif %}
 
         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
@@ -54,7 +56,9 @@
             <a class="reference-to-lemma__lemma"
                href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
           </span>
-          <span class="definition-title__pos" data-cy="word-class">({{ result.lemma_wordform|presentational_pos }})</span>
+          <span class="definition-title__pos" data-cy="word-class">
+            ({{ result.lemma_wordform|presentational_pos }} — {{ result.lemma_wordform.wordclass_help }})
+          </span>
         </p>
       {% endif %}
     </header>
