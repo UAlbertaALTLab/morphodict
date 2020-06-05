@@ -428,7 +428,7 @@ html {
   margin: 0;
 }
 
-.definition-title__word {
+.definition__matched-head {
   /* Text */
   font-style: normal;
   font-weight: var(--strong-font-weight);

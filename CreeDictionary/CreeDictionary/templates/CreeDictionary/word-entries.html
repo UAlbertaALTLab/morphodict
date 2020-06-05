@@ -5,10 +5,12 @@
 {% for result in search_results %}
 <li class="search-results__result" data-cy="search-results">
   <article class="definition box box--rounded" data-cy="search-result">
+
     <header class="definition__header">
+
       <h2 class="definition-title definition-title--search-result" data-cy="matched-wordform" data-wordform="{{ result.matched_cree }}">
         {# the matched wordform itself: #}
-        <dfn class="definition-title__word" data-cy="definition-title">
+        <dfn class="definition__matched-head" data-cy="definition-title">
           {% if result.is_lemma %}
             <a class="definition-title__link" data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
           {% else %}
@@ -58,7 +60,9 @@
           </span>
         {% endwith %}
       </p>
+
     </header>
+
 
     {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
     <ol class="meanings meanings--search-result">
@@ -115,7 +119,8 @@
     <header class="definition__header">
       <h2 class="definition-title definition-title--search-result">
 
-        <dfn class="definition-title__word" data-cy="definition-title">
+        {# TODO: change data-cy=definition-title #}
+        <dfn class="definition__matched-head" data-cy="definition-title">
           <a class="definition-title__link" href="{{ result.lemma_wordform.lemma_url }}"
                                             >
                                             {# data- attributes are supported in HTML5 not in XHTML #}
