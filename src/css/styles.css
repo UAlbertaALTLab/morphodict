@@ -465,12 +465,6 @@ html {
   font-style: italic;
 }
 
-.definition-title__pos {
-  /* Text */
-  font-style: normal;
-  font-weight: var(--body-font-weight);
-}
-
 /**
  * The actual SVG for the 🔊 icon
  */
@@ -524,6 +518,15 @@ html {
 
 .recordings-list__item:hover {
   cursor: pointer;
+}
+
+/**
+ * BLOCK wordclass
+ */
+.wordclass {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--body-font-weight);
 }
 
 /**

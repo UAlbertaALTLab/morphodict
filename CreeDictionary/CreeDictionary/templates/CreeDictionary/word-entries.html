@@ -61,14 +61,13 @@
         {% endif %}
 
         {% with help=result.lemma_wordform.wordclass_help %}
-          <span class="definition-title__pos" data-cy="word-class">
-            ({{ result.lemma_wordform|presentational_pos }}{% if help %} — {{ help }}{% endif %})
+          <span class="wordclass" data-cy="word-class">
+            (<span class="wordclass__general">{{ result.lemma_wordform|presentational_pos }}</span>
+            {% if help %}<span class="wordclass__help"> — {{ help }}</span>{% endif %})
           </span>
         {% endwith %}
       </p>
-
     </header>
-
 
     {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
     <ol class="meanings meanings--search-result">
