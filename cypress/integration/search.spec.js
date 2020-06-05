@@ -376,7 +376,7 @@ context('Searching', () => {
     const nonLemmaForm = 'nikî-nitawi-wâpamâw'
 
     it('should display the match wordform and word class on the same line for lemmas', function () {
-      cy.visitSearch('wapamew')
+      cy.visitSearch(fudgeUpOrthography(lemma))
 
       // make sure we get at least one search result...
       cy.get('[data-cy=search-result]')
@@ -389,7 +389,7 @@ context('Searching', () => {
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
-      cy.visitSearch(nonLemmaForm)
+      cy.visitSearch(fudgeUpOrthography(nonLemmaForm))
 
       // make sure we get at least one search result...
       cy.get('[data-cy=search-result]')
@@ -411,6 +411,13 @@ context('Searching', () => {
       cy.get('@elaboration')
         .contains('[data-cy="word-class"]', wordclass)
     })
+
+    /**
+     * @returns {string} the wordform, as if you typed very quickly on your niece's peanut butter-smeared iPad
+     */
+    function fudgeUpOrthography(normatizedWordform) {
+      return normatizedWordform.normalize('NFKD').replace(/[\u0300-\u035f-]/g, '').toLowerCase()
+    }
   })
 })
 
