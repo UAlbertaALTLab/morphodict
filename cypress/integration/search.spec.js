@@ -370,7 +370,22 @@ context('Searching', () => {
     })
   })
 
-  describe('display of inflected forms', function () {
+  describe('display of lemma wordforms', function () {
+    it('should display the matched wordform', function () {
+      cy.visitSearch('wapamew')
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // now let's make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', 'wâpamêw')
+        .contains('header [data-cy="matched-wordform"]', 'Verb')
+    })
+  })
+
+  describe('display of inflected forms (non-lemmas)', function () {
     it('should display the matched wordform', function () {
       cy.visitSearch('nikinitawiwapamaw')
 
