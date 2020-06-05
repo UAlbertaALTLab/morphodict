@@ -8,6 +8,7 @@
 
     <header class="definition__header">
 
+      {# First line of the header #}
       {# TODO: change data-cy=definition-title #}
       <h2 class="definition-title definition-title--search-result" data-cy="matched-wordform">
         {# the matched head itself: #}
@@ -48,7 +49,8 @@
         </span>
       </h2>
 
-      <p class="definition-title__form-of" data-cy="elaboration">
+      {# Second line of the header: the elaboration #}
+      <p class="definition__elaboration" data-cy="elaboration">
         {# Show the matched lemma (when this is NOT a lemma. #}
         {% if not result.is_lemma %}
           <span class="reference-to-lemma" data-cy="reference-to-lemma">
