@@ -371,6 +371,10 @@ context('Searching', () => {
   })
 
   describe('display of the header', function () {
+    const lemma = 'wâpamêw'
+    const wordclass = 'Verb'
+    const nonLemmaForm = 'nikî-nitawi-wâpamâw'
+
     it('should display the match wordform and word class on the same line for lemmas', function () {
       cy.visitSearch('wapamew')
 
@@ -380,12 +384,12 @@ context('Searching', () => {
 
       // now let's make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
-        .contains('header [data-cy="matched-wordform"]', 'wâpamêw')
-        .contains('header [data-cy="matched-wordform"]', 'Verb')
+        .contains('header [data-cy="matched-wordform"]', lemma)
+        .contains('header [data-cy="matched-wordform"]', wordclass)
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
-      cy.visitSearch('nikinitawiwapamaw')
+      cy.visitSearch(nonLemmaForm)
 
       // make sure we get at least one search result...
       cy.get('[data-cy=search-result]')
@@ -393,7 +397,7 @@ context('Searching', () => {
 
       // now let's make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
-        .contains('header [data-cy="matched-wordform"]', 'nikî-nitawi-wâpamâw')
+        .contains('header [data-cy="matched-wordform"]', nonLemmaForm)
 
       // now make sure the 'form of' text is below that
       cy.get('@search-result')
@@ -403,9 +407,9 @@ context('Searching', () => {
       cy.get('@elaboration')
         .get('[data-cy="reference-to-lemma"]')
         .should('contain', 'Form of')
-        .and('contain', 'wâpamêw')
+        .and('contain', lemma)
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', 'Verb')
+        .contains('[data-cy="word-class"]', wordclass)
     })
   })
 })
