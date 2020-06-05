@@ -5,9 +5,7 @@
 {% for result in search_results %}
 <li class="search-results__result" data-cy="search-results">
   <article class="definition box box--rounded" data-cy="search-result">
-
     <header class="definition__header">
-
       {# First line of the header #}
       {# TODO: change data-cy=definition-title #}
       <h2 class="definition-title definition-title--search-result" data-cy="matched-wordform">
@@ -42,6 +40,7 @@
                   {% endfor %}
                 </ol>
               </span>
+
               <div class="tooltip__arrow" data-popper-arrow></div>
             </div>
             {# NB: the "Play recording" icon will be appened here #}
@@ -83,73 +82,64 @@
     {# show preverb breakdown #}
     <ol class="preverb-breakdown">
       {% for preverb in result.preverbs %}
-      <li>
-        <span>Preverb: {% if preverb.id %}
-          <a href="{% url_for_query preverb.text %}">{% orth preverb.text %}</a>{% else %}
-          {% orth preverb.text %}{% endif %}
-        </span>
+        <li>
+          <span>Preverb: {% if preverb.id %}
+            <a href="{% url_for_query preverb.text %}">{% orth preverb.text %}</a>{% else %}
+            {% orth preverb.text %}{% endif %}
+          </span>
 
-        {% if preverb.id %} {# we know the preverb in the database #}
+          {% if preverb.id %} {# we know the preverb in the database #}
+            <div tabindex="0" class="preverb-breakdown__tooltip-icon" data-cy="information-mark">
+              <img
+                src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
+                alt="preverb breakdown">
+            </div>
 
-
-
-        <div tabindex="0" class="preverb-breakdown__tooltip-icon" data-cy="information-mark">
-          <img
-            src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
-            alt="preverb breakdown">
-        </div>
-
-        <div class="tooltip" role="tooltip">
-          {% for definition in preverb.definitions %}
-          <p class="preverb-breakdown__preverb-definition">{{ definition.text }}
-          {% for source in definition.source_ids %}
-          <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
-          {% endfor %}
-          </p>
-          {% endfor %}
-          <div class="tooltip__arrow" data-popper-arrow></div>
-        </div>
-
-        {% endif %}
-      </li>
+            <div class="tooltip" role="tooltip">
+              {% for definition in preverb.definitions %}
+              <p class="preverb-breakdown__preverb-definition">{{ definition.text }}
+              {% for source in definition.source_ids %}
+              <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
+              {% endfor %}
+              </p>
+              {% endfor %}
+              <div class="tooltip__arrow" data-popper-arrow></div>
+            </div>
+          {% endif %}
+        </li>
       {% endfor %}
     </ol>
     {# end preverb breakdown #}
 
     {% if not result.is_lemma %}
-    {# show everything about the lemma #}
+      {# show everything about the lemma #}
+      <hr class="cleave-inflection-from-lemma">
 
-    <hr class="cleave-inflection-from-lemma">
+      <header class="definition__header">
+        <h2 class="definition-title definition-title--search-result">
+          {# TODO: change data-cy=definition-title #}
+          <dfn class="definition__matched-head" data-cy="definition-title">
+            <a href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+          </dfn>
+        </h2>
+      </header>
 
-    <header class="definition__header">
-      <h2 class="definition-title definition-title--search-result">
-
-        {# TODO: change data-cy=definition-title #}
-        <dfn class="definition__matched-head" data-cy="definition-title">
-          <a href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
-        </dfn>
-      </h2>
-    </header>
-
-    {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
-    <ol class="meanings meanings--search-result">
-      {% for def in result.lemma_wordform.definitions %}
-      <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
-        {% for source in def.source_ids %}
-        <cite class="cite-dict">{{ source }}</cite>
+      {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
+      <ol class="meanings meanings--search-result">
+        {% for def in result.lemma_wordform.definitions %}
+        <li class="meanings__meaning" data-cy="lemma-meaning" data-cy="link-to-lemma">{{ def.text }}
+          {% for source in def.source_ids %}
+          <cite class="cite-dict">{{ source }}</cite>
+          {% endfor %}
+        </li>
         {% endfor %}
-      </li>
-      {% endfor %}
-    </ol>
-
-
+      </ol>
     {% endif %}
-
   </article>
 </li>
 {% empty %}
-  <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
-    No results found for <output class="query">{{ query_string }}</output>
-  </li>
+<li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
+  No results found for <output class="query">{{ query_string }}</output>
+</li>
 {% endfor %}
 {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
