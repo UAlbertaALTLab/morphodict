@@ -461,8 +461,7 @@ html {
   font-size: var(--form-of-size);
 }
 
-/* TODO: rename to definition__reference-to-lemma */
-.reference-to-lemma {
+.definition__reference-to-lemma {
   font-style: italic;
 }
 
