@@ -417,6 +417,17 @@ context('Searching', () => {
         .contains('[data-cy="word-class"]', wordclassHelp)
     })
 
+    // Regression: it used to display 'Preverb — None' :/
+    it('should not display wordclass help if it does not exist', function () {
+      // Preverbs do not have an elaboration (right now)
+      const preverb = 'nitawi-'
+      cy.visitSearch(preverb)
+
+      cy.get('[data-cy=search-result]')
+        .contains('[data-cy=word-class]', 'Preverb')
+        .should('not.contain', 'None')
+    })
+
     /**
      * @returns {string} the wordform, as if you typed very quickly on your niece's peanut butter-smeared iPad
      */
