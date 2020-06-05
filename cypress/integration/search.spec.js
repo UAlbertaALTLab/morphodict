@@ -370,8 +370,8 @@ context('Searching', () => {
     })
   })
 
-  describe('display of lemma wordforms', function () {
-    it('should display the matched wordform', function () {
+  describe('display of the header', function () {
+    it('should display the match wordform and word class on the same line for lemmas', function () {
       cy.visitSearch('wapamew')
 
       // make sure we get at least one search result...
@@ -383,10 +383,8 @@ context('Searching', () => {
         .contains('header [data-cy="matched-wordform"]', 'wâpamêw')
         .contains('header [data-cy="matched-wordform"]', 'Verb')
     })
-  })
 
-  describe('display of inflected forms (non-lemmas)', function () {
-    it('should display the matched wordform', function () {
+    it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
       cy.visitSearch('nikinitawiwapamaw')
 
       // make sure we get at least one search result...
