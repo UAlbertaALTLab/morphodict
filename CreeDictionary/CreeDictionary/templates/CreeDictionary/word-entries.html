@@ -16,6 +16,10 @@
           {% endif %}
         </dfn>
 
+        {% if result.is_lemma %}
+          <span class="definition-title__pos" data-cy="word-class">({{ result.lemma_wordform|presentational_pos }})</span>
+        {% endif %}
+
         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
           <div tabindex="0" class="definition-title__tooltip-icon" data-cy="information-mark">
             <img
