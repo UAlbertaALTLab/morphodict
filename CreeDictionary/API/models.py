@@ -189,16 +189,20 @@ class Wordform(models.Model):
             definition.serialize() for definition in self.definitions.all()
         ]
         result["lemma_url"] = self.get_absolute_url()
-
-        result["wordclass_help"] = None
-        maybe_full_word_class = self.full_word_class
-        if maybe_full_word_class is not None:
-            word_class = FSTTag(maybe_full_word_class.without_pos())
-            result["wordclass_help"] = FST_TAG_LABELS.get(word_class, {}).get(
-                LabelFriendliness.ENGLISH, None
-            )
+        result["wordclass_help"] = self.get_user_friendly_wordclass_help_for_cree()
 
         return result
+
+    def get_user_friendly_wordclass_help_for_cree(self) -> Optional[str]:
+        """
+        Attempts to get a description, e.g., "like: wîcihêw" or "like:
+        micisow" for this wordform.
+        """
+        maybe_full_word_class = self.full_word_class
+        if maybe_full_word_class is None:
+            return None
+        word_class = FSTTag(maybe_full_word_class.without_pos())
+        return FST_TAG_LABELS.get(word_class, {}).get(LabelFriendliness.ENGLISH, None)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
