@@ -373,6 +373,7 @@ context('Searching', () => {
   describe('display of the header', function () {
     const lemma = 'wâpamêw'
     const wordclass = 'Verb'
+    const wordclassHelp = 'like: wîcihêw'
     const nonLemmaForm = 'nikî-nitawi-wâpamâw'
 
     it('should display the match wordform and word class on the same line for lemmas', function () {
@@ -386,6 +387,8 @@ context('Searching', () => {
       cy.get('@search-result')
         .contains('header [data-cy="matched-wordform"]', lemma)
         .contains('header [data-cy="matched-wordform"]', wordclass)
+      cy.get('@search-result')
+        .contains('header [data-cy="word-class"]', wordclassHelp)
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
@@ -410,6 +413,8 @@ context('Searching', () => {
         .and('contain', lemma)
       cy.get('@elaboration')
         .contains('[data-cy="word-class"]', wordclass)
+      cy.get('@elaboration')
+        .contains('[data-cy="word-class"]', wordclassHelp)
     })
 
     /**
