@@ -386,7 +386,8 @@ context('Searching', () => {
       // now let's make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
         .contains('header [data-cy="matched-wordform"]', lemma)
-        .contains('header [data-cy="matched-wordform"]', wordclass)
+      cy.get('@search-result')
+        .contains('header [data-cy="word-class"]', wordclass)
       cy.get('@search-result')
         .contains('header [data-cy="word-class"]', wordclassHelp)
     })

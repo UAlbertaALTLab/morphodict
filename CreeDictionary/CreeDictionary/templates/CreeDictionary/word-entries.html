@@ -16,14 +16,6 @@
           {% endif %}
         </dfn>
 
-        {% if result.is_lemma %}
-          {% with help=result.lemma_wordform.wordclass_help %}
-            <span class="definition-title__pos" data-cy="word-class">
-              ({{ result.lemma_wordform|presentational_pos }}{% if help %} — {{ help }}{% endif %})
-            </span>
-          {% endwith %}
-        {% endif %}
-
         {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
           <div tabindex="0" class="definition-title__tooltip-icon" data-cy="information-mark">
             <img
@@ -50,22 +42,22 @@
         {% endif %}
       </h2>
 
-      {# Show the matched lemma (when this is NOT a lemma. #}
-      {% if not result.is_lemma %}
-        <p class="definition-title__form-of" data-cy="elaboration">
+      <p class="definition-title__form-of" data-cy="elaboration">
+        {# Show the matched lemma (when this is NOT a lemma. #}
+        {% if not result.is_lemma %}
           <span class="reference-to-lemma" data-cy="reference-to-lemma">
             Form of
             <a class="reference-to-lemma__lemma"
                href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
           </span>
+        {% endif %}
 
-          {% with help=result.lemma_wordform.wordclass_help %}
-            <span class="definition-title__pos" data-cy="word-class">
-              ({{ result.lemma_wordform|presentational_pos }}{% if help %} — {{ help }}{% endif %})
-            </span>
-          {% endwith %}
-        </p>
-      {% endif %}
+        {% with help=result.lemma_wordform.wordclass_help %}
+          <span class="definition-title__pos" data-cy="word-class">
+            ({{ result.lemma_wordform|presentational_pos }}{% if help %} — {{ help }}{% endif %})
+          </span>
+        {% endwith %}
+      </p>
     </header>
 
     {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
