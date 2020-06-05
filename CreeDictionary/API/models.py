@@ -12,7 +12,7 @@ import attr
 import CreeDictionary.hfstol as temp_hfstol
 from attr import attrs
 from constants import (POS, ConcatAnalysis, FSTTag, Label, Language,
-                       ParadigmSize)
+                       ParadigmSize, SimpleLexicalCategory)
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -191,7 +191,7 @@ class Wordform(models.Model):
         result["lemma_url"] = self.get_absolute_url()
 
         result["wordclass_help"] = None
-        maybe_full_word_class = fst_analysis_parser.extract_simple_lc(self.analysis)
+        maybe_full_word_class = self.full_word_class
         if maybe_full_word_class is not None:
             word_class = FSTTag(maybe_full_word_class.without_pos())
             result["wordclass_help"] = FST_TAG_LABELS.get(word_class, {}).get(
@@ -213,6 +213,10 @@ class Wordform(models.Model):
             if homographs.filter(**{field: getattr(self, field)}).count() == 1:
                 return field
         return "id"  # id always guarantees unique match
+
+    @property
+    def full_word_class(self) -> Optional[SimpleLexicalCategory]:
+        return fst_analysis_parser.extract_simple_lc(self.analysis)
 
     @property
     def paradigm(self) -> List[Layout]:
