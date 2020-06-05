@@ -99,12 +99,11 @@ class SimpleLexicalCategory(Enum):
     def without_pos(self) -> str:
         """
         >>> SimpleLexicalCategory.VAI.without_pos()
-        "AI"
+        'AI'
         >>> SimpleLexicalCategory.NID.without_pos()
-        "ID"
+        'ID'
         >>> SimpleLexicalCategory.IPC.without_pos()
-        "IPC"
-
+        'IPC'
         """
         if self.is_verb():
             assert self.value.startswith("V")
