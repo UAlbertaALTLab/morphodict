@@ -458,7 +458,7 @@ html {
 .definition__elaboration {
   margin: var(--small-gap) 0 0;
 
-  font-size: var(--form-of-size);
+  font-size: var(--elaboration-size);
 }
 
 .definition__reference-to-lemma {
