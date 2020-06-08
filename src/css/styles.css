@@ -512,6 +512,10 @@ html {
   font-style: italic;
 }
 
+.definition__recordings--not-loaded {
+  display: none;
+}
+
 .recordings-list__item {
   list-style: upper-roman;
 }
@@ -1160,6 +1164,13 @@ a.menu-choice__label:active {
  */
 .source-title {
   font-style: italic;
+}
+
+/**
+ * BLOCK explainer
+ */
+.explainer {
+  font-weight: var(--strong-font-weight);
 }
 
 /******************************** UTILITIES *********************************/
