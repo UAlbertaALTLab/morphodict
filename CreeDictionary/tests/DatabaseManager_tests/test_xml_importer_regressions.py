@@ -81,4 +81,4 @@ def test_import_maskwa(shared_datadir):
     # searching with maskwak didn't yield an inflection of "maskwa" as "maskwa" wasn't disambiguated and was marked as_is
     migrate_and_import(shared_datadir / "crkeng-maskwa")
 
-    assert not Wordform.objects.filter(text="maskwa").get().as_is
+    assert not Wordform.objects.filter(text="maskwa", is_lemma=True).get().as_is
