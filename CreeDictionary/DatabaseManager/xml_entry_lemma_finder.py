@@ -4,7 +4,7 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 import csv
 from collections import defaultdict
 from itertools import chain
-from typing import List, Dict, Tuple, Set
+from typing import List, Dict, Tuple, Set, Optional
 from typing_extensions import Literal
 
 from colorama import Fore, init
@@ -19,29 +19,42 @@ from utils import shared_res_dir
 init()  # for windows compatibility
 
 
-def read_lemma_disambiguation(
-    language: Literal["crk", "gunaha"]
-) -> Set[ConcatAnalysis]:
-    """
-    Load extra knowledge about lemma preference for specific cases
-    It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
+class SpecialLemmaDisambiguator:
+    def __init__(self, language: Literal["crk", "gunaha"]):
+        """
+        Load extra knowledge about lemma preference for specific cases
+        It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
 
-    :return: lemma analyses
-    """
-    lemma_analyses = set()
+        :return: lemma analyses
+        """
+        self._lemma_analyses = set()
+        self._non_lemma_analyses = set()
 
-    disambiguation_file_path = (
-        shared_res_dir / "linguistic_knowledge" / language / "lemma-disambiguation.txt"
-    )
+        disambiguation_file_path = (
+            shared_res_dir
+            / "linguistic_knowledge"
+            / language
+            / "lemma-disambiguation.txt"
+        )
 
-    for line in disambiguation_file_path.read_text().splitlines():
-        if line and not line.startswith("#"):
-            lemma_analyses.add(ConcatAnalysis(line.strip()))
+        for line in disambiguation_file_path.read_text().splitlines():
+            if line and not line.startswith("#"):
+                if line.startswith("+"):
+                    self._lemma_analyses.add(ConcatAnalysis(line[1:].strip()))
+                else:
+                    self._non_lemma_analyses.add(ConcatAnalysis(line[1:].strip()))
 
-    return lemma_analyses
+        self._known_analyses = self._lemma_analyses | self._non_lemma_analyses
+
+    def get_lemma(self, ambiguities: Set[ConcatAnalysis]) -> Optional[ConcatAnalysis]:
+        if ambiguities < self._known_analyses:
+            lemma_analysis = self._lemma_analyses & ambiguities
+            if len(lemma_analysis) == 1:
+                return lemma_analysis.pop()
+        return None
 
 
-SPECIAL_LEMMA_ANALYSES = read_lemma_disambiguation("crk")
+crk_special_disambiguator = SpecialLemmaDisambiguator(language="crk")
 
 
 def extract_fst_lemmas(
@@ -194,20 +207,19 @@ def extract_fst_lemmas(
                     success_counter += 1
                 else:
                     # check if it's specially disambiguated
-                    intersection = ambiguities & SPECIAL_LEMMA_ANALYSES
-                    if len(intersection) == 1:
+                    res = crk_special_disambiguator.get_lemma(ambiguities)
+                    if res is not None:
                         logger.debug(
                             "xml entry %s with pos %s lc %s is specially disambiguated."
                             % (xml_lemma, pos, lc)
                         )
 
-                        xml_lemma_pos_lc_to_analysis[
-                            xml_lemma, pos, lc
-                        ] = intersection.pop()
+                        xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = res
                         success_counter += 1
                     else:
                         logger.debug(
-                            "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
+                            "xml entry %s with pos %s lc %s have more "
+                            "than one potential analyses by fst strict analyzer."
                             % (xml_lemma, pos, lc)
                         )
                         xml_lemma_pos_lc_to_analysis[

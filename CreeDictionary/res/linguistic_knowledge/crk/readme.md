@@ -2,8 +2,11 @@
 
 ### lemmas.txt
 
-Each row should be the analysis of a lemma
+Extra information to identify lemmas
 
-Comments must be added with a hash sign at the start of a row.
+Each row should be an fst analysis, with a preceding +/- to 
+show whether it's lemma or not
+
+Comments can be added with a hash sign at the start of a row.
 
 Empty rows are allowed for formatting

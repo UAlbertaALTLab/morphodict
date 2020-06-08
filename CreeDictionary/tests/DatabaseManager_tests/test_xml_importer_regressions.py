@@ -65,6 +65,20 @@ def test_import_pipon_of_different_word_classes(shared_datadir):
 
 
 @pytest.mark.django_db
-def test_import_mitas(shared_datadir):
-    # The Cree word mitâs has two entries in the test xml, one's word class is NID and the other's is NAD
-    migrate_and_import(shared_datadir / "crkeng-mitas-disambiguation")
+def test_import_niska(shared_datadir):
+
+    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+    # searching with niskak didn't yield an inflection of "niska" as niska wasn't disambiguated and was marked as_is
+    migrate_and_import(shared_datadir / "crkeng-niska")
+
+    assert not Wordform.objects.filter(text="niska", is_lemma=True).get().as_is
+
+
+@pytest.mark.django_db
+def test_import_maskwa(shared_datadir):
+
+    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+    # searching with maskwak didn't yield an inflection of "maskwa" as "maskwa" wasn't disambiguated and was marked as_is
+    migrate_and_import(shared_datadir / "crkeng-maskwa")
+
+    assert not Wordform.objects.filter(text="maskwa").get().as_is
