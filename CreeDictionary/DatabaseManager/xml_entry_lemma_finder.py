@@ -24,8 +24,6 @@ class SpecialLemmaDisambiguator:
         """
         Load extra knowledge about lemma preference for specific cases
         It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
-
-        :return: lemma analyses
         """
         self._lemma_analyses = set()
         self._non_lemma_analyses = set()
