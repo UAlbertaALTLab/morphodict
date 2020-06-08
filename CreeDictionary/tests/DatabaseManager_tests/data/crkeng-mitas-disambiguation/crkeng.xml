@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+
+<e>
+   <lg>
+      <l pos="N">mitâs</l>
+      <lc>NDA-1</lc>
+      <stem>-tâs-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="N" sources="MD">Pants, jeans or trousers.</t>
+   </tg>
+   </mg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="N" sources="CW">pair of pants</t>
+   </tg>
+   </mg>
+</e>
+
+<e>
+   <lg>
+      <l pos="N">mitâs</l>
+      <lc>NDA-1</lc>
+      <stem>-tâs-</stem>
+   </lg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="N" sources="MD">Pants, jeans or trousers.</t>
+   </tg>
+   </mg>
+   <mg>
+   <tg xml:lang="eng">
+       <t pos="N" sources="CW">pair of pants</t>
+   </tg>
+   </mg>
+</e>
+
+</r>

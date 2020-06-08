@@ -1,9 +1,11 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
+import csv
 from collections import defaultdict
 from itertools import chain
 from typing import List, Dict, Tuple, Set
+from typing_extensions import Literal
 
 from colorama import Fore, init
 
@@ -12,8 +14,34 @@ from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
 from constants import ConcatAnalysis, FSTLemma, SimpleLC
 from shared import strict_analyzer
+from utils import shared_res_dir
 
 init()  # for windows compatibility
+
+
+def read_lemma_disambiguation(
+    language: Literal["crk", "gunaha"]
+) -> Set[ConcatAnalysis]:
+    """
+    Load extra knowledge about lemma preference for specific cases
+    It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
+
+    :return: lemma analyses
+    """
+    lemma_analyses = set()
+
+    disambiguation_file_path = (
+        shared_res_dir / "linguistic_knowledge" / language / "lemma-disambiguation.txt"
+    )
+
+    for line in disambiguation_file_path.read_text().splitlines():
+        if line and not line.startswith("#"):
+            lemma_analyses.add(ConcatAnalysis(line.strip()))
+
+    return lemma_analyses
+
+
+SPECIAL_LEMMA_ANALYSES = read_lemma_disambiguation("crk")
 
 
 def extract_fst_lemmas(
@@ -165,14 +193,27 @@ def extract_fst_lemmas(
                     )
                     success_counter += 1
                 else:
-                    logger.debug(
-                        "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
-                        % (xml_lemma, pos, lc)
-                    )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis(
-                        ""
-                    )
-                    dup_counter += 1
+                    # check if it's specially disambiguated
+                    intersection = ambiguities & SPECIAL_LEMMA_ANALYSES
+                    if len(intersection) == 1:
+                        logger.debug(
+                            "xml entry %s with pos %s lc %s is specially disambiguated."
+                            % (xml_lemma, pos, lc)
+                        )
+
+                        xml_lemma_pos_lc_to_analysis[
+                            xml_lemma, pos, lc
+                        ] = intersection.pop()
+                        success_counter += 1
+                    else:
+                        logger.debug(
+                            "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
+                            % (xml_lemma, pos, lc)
+                        )
+                        xml_lemma_pos_lc_to_analysis[
+                            xml_lemma, pos, lc
+                        ] = ConcatAnalysis("")
+                        dup_counter += 1
 
     logger.info(
         f"{Fore.GREEN}%d (lemma, pos, lc) found proper lemma analysis{Fore.RESET}"

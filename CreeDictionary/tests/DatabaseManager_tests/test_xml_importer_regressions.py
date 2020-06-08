@@ -62,3 +62,9 @@ def test_import_pipon_of_different_word_classes(shared_datadir):
         .count()
         == 2
     )
+
+
+@pytest.mark.django_db
+def test_import_mitas(shared_datadir):
+    # The Cree word mitâs has two entries in the test xml, one's word class is NID and the other's is NAD
+    migrate_and_import(shared_datadir / "crkeng-mitas-disambiguation")
