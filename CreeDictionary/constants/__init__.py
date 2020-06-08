@@ -2,9 +2,8 @@
 constants
 """
 from enum import Enum
-
 # type alias
-from typing import NewType, NamedTuple
+from typing import NamedTuple, NewType
 
 # Orthography
 DEFAULT_ORTHOGRAPHY = "Latn"
@@ -96,6 +95,23 @@ class SimpleLexicalCategory(Enum):
 
     def is_noun(self):
         return self.value[0] == "N"
+
+    def without_pos(self) -> str:
+        """
+        >>> SimpleLexicalCategory.VAI.without_pos()
+        'AI'
+        >>> SimpleLexicalCategory.NID.without_pos()
+        'ID'
+        >>> SimpleLexicalCategory.IPC.without_pos()
+        'IPC'
+        """
+        if self.is_verb():
+            assert self.value.startswith("V")
+            return self.value[1:]
+        if self.is_noun():
+            assert self.value.startswith("N")
+            return self.value[1:]
+        return self.value
 
     def to_fst_output_style(self):
         """

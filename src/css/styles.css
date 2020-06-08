@@ -455,10 +455,13 @@ html {
   outline: 3px solid var(--search-focus-color);
 }
 
-.reference-to-lemma {
-  margin: var(--gap) 0 0;
+.definition-title__form-of {
+  margin: var(--small-gap) 0 0;
 
-  font-size: var(--reference-to-lemma-size);
+  font-size: var(--form-of-size);
+}
+
+.reference-to-lemma {
   font-style: italic;
 }
 

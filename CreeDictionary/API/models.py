@@ -4,23 +4,15 @@ import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
 from itertools import chain
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    NamedTuple,
-    NewType,
-    Optional,
-    Set,
-    Tuple,
-    Union,
-    cast,
-)
+from typing import (Any, Callable, Dict, Iterable, List, NamedTuple, NewType,
+                    Optional, Set, Tuple, Union, cast)
+from urllib.parse import quote
 
 import attr
+import CreeDictionary.hfstol as temp_hfstol
 from attr import attrs
+from constants import (POS, ConcatAnalysis, FSTTag, Label, Language,
+                       ParadigmSize, SimpleLexicalCategory)
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -29,23 +21,18 @@ from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
-from sortedcontainers import SortedSet
-
-import CreeDictionary.hfstol as temp_hfstol
-from .affix_search import AffixSearcher
-from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from urllib.parse import quote
+from sortedcontainers import SortedSet
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
-from utils.fst_analysis_parser import (
-    FST_TAG_LABELS,
-    LabelFriendliness,
-    partition_analysis,
-)
-from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
+from utils.fst_analysis_parser import (FST_TAG_LABELS, LabelFriendliness,
+                                       partition_analysis)
+
+from .affix_search import AffixSearcher
+from .schema import (SerializedDefinition, SerializedSearchResult,
+                     SerializedWordform)
 
 logger = logging.getLogger(__name__)
 
@@ -193,6 +180,7 @@ class Wordform(models.Model):
 
     def serialize(self) -> SerializedWordform:
         """
+        Intended to be passed in a JSON API or into templates.
 
         :return: json parsable result
         """
@@ -201,7 +189,20 @@ class Wordform(models.Model):
             definition.serialize() for definition in self.definitions.all()
         ]
         result["lemma_url"] = self.get_absolute_url()
+        result["wordclass_help"] = self.get_user_friendly_wordclass_help_for_cree()
+
         return result
+
+    def get_user_friendly_wordclass_help_for_cree(self) -> Optional[str]:
+        """
+        Attempts to get a description, e.g., "like: wîcihêw" or "like:
+        micisow" for this wordform.
+        """
+        maybe_full_word_class = self.full_word_class
+        if maybe_full_word_class is None:
+            return None
+        word_class = FSTTag(maybe_full_word_class.without_pos())
+        return FST_TAG_LABELS.get(word_class, {}).get(LabelFriendliness.ENGLISH, None)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -216,6 +217,10 @@ class Wordform(models.Model):
             if homographs.filter(**{field: getattr(self, field)}).count() == 1:
                 return field
         return "id"  # id always guarantees unique match
+
+    @property
+    def full_word_class(self) -> Optional[SimpleLexicalCategory]:
+        return fst_analysis_parser.extract_simple_lc(self.analysis)
 
     @property
     def paradigm(self) -> List[Layout]:
