@@ -6,19 +6,17 @@
 <li class="search-results__result" data-cy="search-results">
   <article class="definition box box--rounded" data-cy="search-result">
     <header class="definition__header">
-      <h2 class="definition-title definition-title--search-result" data-wordform="{{ result.matched_cree }}">
-
+      <h2 class="definition-title definition-title--search-result" data-cy="matched-wordform" data-wordform="{{ result.matched_cree }}">
+        {# the matched wordform itself: #}
         <dfn class="definition-title__word" data-cy="definition-title">
           {% if result.is_lemma %}
-          <a class="definition-title__link" data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">
-            {% orth result.lemma_wordform.text %}</a>
+            <a class="definition-title__link" data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
           {% else %}
-          {% orth result.matched_cree %}
+            {% orth result.matched_cree %}
           {% endif %}
-          <span class="definition-title__pos">({{ result.lemma_wordform|presentational_pos }})</span>
-          {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
+        </dfn>
 
-
+        {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
           <div tabindex="0" class="definition-title__tooltip-icon" data-cy="information-mark">
             <img
               src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
@@ -41,21 +39,26 @@
             </span>
             <div class="tooltip__arrow" data-popper-arrow></div>
           </div>
-          {% endif %}
-        </dfn>
-
+        {% endif %}
       </h2>
+
+      <p class="definition-title__form-of" data-cy="elaboration">
+        {# Show the matched lemma (when this is NOT a lemma. #}
+        {% if not result.is_lemma %}
+          <span class="reference-to-lemma" data-cy="reference-to-lemma">
+            Form of
+            <a class="reference-to-lemma__lemma"
+               href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+          </span>
+        {% endif %}
+
+        {% with help=result.lemma_wordform.wordclass_help %}
+          <span class="definition-title__pos" data-cy="word-class">
+            ({{ result.lemma_wordform|presentational_pos }}{% if help %} — {{ help }}{% endif %})
+          </span>
+        {% endwith %}
+      </p>
     </header>
-
-    {# Show the matched lemma (when this is NOT a lemma. #}
-    {% if not result.is_lemma %}
-    <p class="reference-to-lemma" data-cy="reference-to-lemma">
-    Form of
-    <a class="reference-to-lemma__lemma" href="{{ result.lemma_wordform.lemma_url }}"
-                                         >{% orth result.lemma_wordform.text %}</a>
-    </p>
-    {% endif %}
-
 
     {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
     <ol class="meanings meanings--search-result">
