@@ -1,13 +1,12 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
-import csv
 from collections import defaultdict
 from itertools import chain
 from typing import List, Dict, Tuple, Set, Optional
-from typing_extensions import Literal
 
 from colorama import Fore, init
+from typing_extensions import Literal
 
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
