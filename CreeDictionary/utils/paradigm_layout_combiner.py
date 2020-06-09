@@ -21,7 +21,7 @@ from typing import Dict, FrozenSet, List, Tuple
 import hfstol
 
 from utils import ParadigmSize
-from utils.enums import SimpleLC
+from utils.enums import WC
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
@@ -30,18 +30,18 @@ logger = logging.getLogger(__name__)
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_SLC = {
-    "noun-na": SimpleLC.NA,
-    "noun-nad": SimpleLC.NAD,
-    "noun-ni": SimpleLC.NI,
-    "noun-nid": SimpleLC.NID,
-    "verb-ai": SimpleLC.VAI,
-    "verb-ii": SimpleLC.VII,
-    "verb-ta": SimpleLC.VTA,
-    "verb-ti": SimpleLC.VTI,
+    "noun-na": WC.NA,
+    "noun-nad": WC.NAD,
+    "noun-ni": WC.NI,
+    "noun-nid": WC.NID,
+    "verb-ai": WC.VAI,
+    "verb-ii": WC.VII,
+    "verb-ta": WC.VTA,
+    "verb-ti": WC.VTI,
 }
 
 
-LayoutTable = Dict[Tuple[SimpleLC, ParadigmSize], Table]
+LayoutTable = Dict[Tuple[WC, ParadigmSize], Table]
 
 
 def import_layouts(layout_file_dir: Path) -> LayoutTable:
@@ -148,7 +148,7 @@ def parse_legacy_layout(layout_file: Path) -> Table:
 
 def import_paradigms(
     paradigm_files_dir: Path,
-) -> Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]:
+) -> Dict[WC, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
 
@@ -193,13 +193,13 @@ class Combiner:
     That is, the combiner should NOT be used in the Django server.
     """
 
-    _paradigm_tables: Dict[SimpleLC, Dict[FrozenSet[str], List[str]]]
+    _paradigm_tables: Dict[WC, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[SimpleLC, ParadigmSize], Table]
+    _layout_tables: Dict[Tuple[WC, ParadigmSize], Table]
     # todo: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
@@ -260,13 +260,13 @@ class Combiner:
         )
 
     def get_combined_table(
-        self, category: SimpleLC, paradigm_size: ParadigmSize
+        self, category: WC, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         Return the appropriate layout.
         """
 
-        if category is SimpleLC.IPC or category is SimpleLC.Pron:
+        if category is WC.IPC or category is WC.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]
@@ -310,8 +310,8 @@ class Combiner:
 def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
-    for ic in SimpleLC:
-        if ic in (SimpleLC.Pron, SimpleLC.IPC, SimpleLC.IPV):
+    for ic in WC:
+        if ic in (WC.Pron, WC.IPC, WC.IPV):
             continue
         for size in ParadigmSize:
             with open(

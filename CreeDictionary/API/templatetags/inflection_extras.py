@@ -5,7 +5,7 @@ from django import template
 from django.forms import model_to_dict
 
 from API.models import Wordform
-from utils.enums import SimpleLC
+from utils.enums import WC
 from utils import fst_analysis_parser, crkeng_xml_utils
 
 register = template.Library()
@@ -38,7 +38,7 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
     # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
     lc = crkeng_xml_utils.parse_xml_lc(wordform_dict["full_lc"])
     if lc is not None:
-        if lc is SimpleLC.IPV:
+        if lc is WC.IPV:
             return "Preverb"
 
     pos = wordform_dict["pos"]
@@ -62,11 +62,11 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
             return "Noun"
         elif lc.is_verb():
             return "Verb"
-        elif lc is SimpleLC.IPC:
+        elif lc is WC.IPC:
             return "Ipc"
-        elif lc is SimpleLC.Pron:
+        elif lc is WC.Pron:
             return "Pronoun"
-        elif lc is SimpleLC.IPV:
+        elif lc is WC.IPV:
             return "Preverb"
 
     # fixme: where is this logged to in local development??? Does not show up in stdout/stderr for me.

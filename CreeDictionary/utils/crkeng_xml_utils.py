@@ -4,7 +4,7 @@ from typing import Optional
 from typing import Iterable
 from xml.dom import minidom
 
-from utils import SimpleLexicalCategory
+from utils import WordClass
 
 
 def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
@@ -41,7 +41,7 @@ def extract_l_str(element: ET.Element) -> str:
     return text
 
 
-def parse_xml_lc(lc_text: str) -> Optional[SimpleLexicalCategory]:
+def parse_xml_lc(lc_text: str) -> Optional[WordClass]:
     """
     return recognized lc, None if not recognized
 
@@ -56,25 +56,25 @@ def parse_xml_lc(lc_text: str) -> Optional[SimpleLexicalCategory]:
     if lc_text is None:
         return None
     if lc_text.startswith("VTA"):
-        return SimpleLexicalCategory.VTA
+        return WordClass.VTA
     if lc_text.startswith("VTI"):
-        return SimpleLexicalCategory.VTI
+        return WordClass.VTI
     if lc_text.startswith("VAI"):
-        return SimpleLexicalCategory.VAI
+        return WordClass.VAI
     if lc_text.startswith("VII"):
-        return SimpleLexicalCategory.VII
+        return WordClass.VII
     if lc_text.startswith("NDA"):
-        return SimpleLexicalCategory.NAD
+        return WordClass.NAD
     if lc_text.startswith("NI"):
-        return SimpleLexicalCategory.NI
+        return WordClass.NI
     if lc_text.startswith("NDI"):
-        return SimpleLexicalCategory.NID
+        return WordClass.NID
     if lc_text.startswith("NA"):
-        return SimpleLexicalCategory.NA
+        return WordClass.NA
 
     if lc_text.startswith("IPC"):
-        return SimpleLexicalCategory.IPC
+        return WordClass.IPC
     if lc_text.startswith("IPV"):
-        return SimpleLexicalCategory.IPV
+        return WordClass.IPV
 
     return None

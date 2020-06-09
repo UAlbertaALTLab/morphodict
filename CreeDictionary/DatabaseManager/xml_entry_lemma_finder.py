@@ -11,7 +11,7 @@ import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
 from utils.types import FSTLemma, ConcatAnalysis
-from utils.enums import SimpleLC
+from utils.enums import WC
 from shared import strict_analyzer
 
 init()  # for windows compatibility
@@ -43,7 +43,7 @@ def extract_fst_lemmas(
     produced_extra_lemmas: List[FSTLemma] = []
 
     fst_analysis_to_fst_lemma_slc: Dict[
-        ConcatAnalysis, Tuple[FSTLemma, SimpleLC]
+        ConcatAnalysis, Tuple[FSTLemma, WC]
     ] = dict()
     for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
         x = utils.extract_lemma_and_category(fst_analysis)

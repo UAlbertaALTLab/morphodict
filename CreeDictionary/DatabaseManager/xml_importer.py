@@ -41,13 +41,13 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     'wayawîwin+N+I'
     >>> generate_as_is_analysis('wayawîwin', '', 'NI') # adopt more detailed lc if possible, strip dash-x to simulate fst analysis
     'wayawîwin+N+I'
-    >>> generate_as_is_analysis('wayawîwin', 'N', 'IPP') # ignore lc outside constants.LexicalCategory Enum
+    >>> generate_as_is_analysis('wayawîwin', 'N', 'IPP') # ignore inflectional category/word class outside utils.WordClass Enum
     'wayawîwin+N'
     >>> generate_as_is_analysis('wayawîwin', 'N', '') # use pos only as a fallback
     'wayawîwin+N'
     >>> generate_as_is_analysis('wayawîwin', '', '') # no analysis when there's no pos nor lc
     ''
-    >>> generate_as_is_analysis('wayawîwin', '', 'IPP') # ignore lc outside constants.LexicalCategory Enum
+    >>> generate_as_is_analysis('wayawîwin', '', 'IPP') # ignore inflectional category/word class outside utils.WordClass Enum
     ''
     """
 

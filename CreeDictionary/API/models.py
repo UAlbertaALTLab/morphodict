@@ -31,7 +31,7 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from utils import Language, POS, SimpleLexicalCategory, ParadigmSize
+from utils import Language, POS, WordClass, ParadigmSize
 from utils import Label, FSTTag, ConcatAnalysis
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
@@ -231,7 +231,7 @@ class Wordform(models.Model):
         return "id"  # id always guarantees unique match
 
     @property
-    def full_word_class(self) -> Optional[SimpleLexicalCategory]:
+    def full_word_class(self) -> Optional[WordClass]:
         return fst_analysis_parser.extract_simple_lc(self.analysis)
 
     @property
@@ -271,9 +271,9 @@ class Wordform(models.Model):
 
     text = models.CharField(max_length=40)
 
-    full_lc = models.CharField(
+    inflectional_category = models.CharField(
         max_length=10,
-        help_text="Full lexical category directly from source",  # e.g. NI-3
+        help_text="Inflectional category directly from source",  # e.g. NI-3
     )
     RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
     pos = models.CharField(
