@@ -70,7 +70,13 @@ export function retrieveListOfSpeakers() {
     // Setup audio
     let audio = new Audio(recordingData.recording_url)
     audio.preload = 'none'
-    createdSpeakerButton.addEventListener('click', () => audio.play())
+    createdSpeakerButton.addEventListener('click', () => {
+      audio.play()
+
+      // load the link of the speaker for clicking
+      let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
+      console.log('The URL to be built into the page is ' + insertedURL);
+    })
   }
 }
 
