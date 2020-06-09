@@ -1,7 +1,7 @@
 import pytest
 
 from utils.crkeng_xml_utils import parse_xml_lc
-from constants import SimpleLexicalCategory
+from utils import SimpleLexicalCategory
 
 
 @pytest.mark.parametrize(

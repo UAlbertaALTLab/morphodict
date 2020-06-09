@@ -2,16 +2,14 @@
 fill a paradigm table according to a lemma
 """
 import csv
-import glob
 from copy import deepcopy
-from os import path
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple, cast
+from typing import Dict, List, Tuple
 
 import hfstol
 
-from constants import SimpleLC, ParadigmSize
+from utils import ParadigmSize, SimpleLC
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 
 LayoutID = Tuple[SimpleLC, ParadigmSize]

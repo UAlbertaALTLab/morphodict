@@ -8,7 +8,7 @@ from os.path import dirname
 from pathlib import Path
 from typing import Dict, Iterable, List, Set, Tuple
 
-from constants import SimpleLexicalCategory
+from utils import SimpleLexicalCategory
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import normative_generator
 from utils import fst_analysis_parser
