@@ -74,15 +74,9 @@ def initialize_affix_search():
     logger.info("Building tries for affix search...")
     from .models import Wordform
 
-    cree_letter_to_ascii = {
-        ascii_letter: ascii_letter for ascii_letter in string.ascii_lowercase
-    }
-    cree_letter_to_ascii.update(
-        {"â": "a", "ā": "a", "ê": "e", "ē": "e", "ī": "i", "î": "i", "ô": "o", "ō": "o"}
-    )
     try:
         lowered_no_diacritics_text_with_id = [
-            ("".join([cree_letter_to_ascii.get(c, c) for c in text.lower()]), wf_id)
+            (remove_cree_diacritics(text.lower()), wf_id)
             for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
                 "text", "id"
             )

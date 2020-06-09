@@ -116,3 +116,8 @@ ayâw
 # some entries do not show up
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
 maskwak
+
+# prefix search fails with added vowel length
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/429
+# note: kîsikâw exists above, no harm to add it again here
+kîsikâw

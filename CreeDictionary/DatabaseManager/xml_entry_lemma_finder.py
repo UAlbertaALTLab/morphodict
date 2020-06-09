@@ -26,7 +26,7 @@ class DefaultLemmaPicker:
     i.e. It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
     """
 
-    def __init__(self, language: Literal["crk", "gunaha"]):
+    def __init__(self, language: Literal["crk", "srs"]):
 
         self._word_class_to_lemma_analysis_templates: Dict[
             SimpleLC, List[Template]
