@@ -1,5 +1,4 @@
 import logging
-import time
 import unicodedata
 from collections import defaultdict
 from functools import cmp_to_key, partial
@@ -18,6 +17,7 @@ from typing import (
     Union,
     cast,
 )
+from urllib.parse import quote
 
 import attr
 from attr import attrs
@@ -27,18 +27,15 @@ from django.db import models, transaction
 from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
-from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from .affix_search import AffixSearcher
+from constants.enums import Language, POS, SimpleLexicalCategory, ParadigmSize
 from constants.types import Label, FSTTag, ConcatAnalysis
-from constants.enums import Language, POS, SimpleLexicalCategory
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from urllib.parse import quote
 from utils import fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
@@ -46,6 +43,7 @@ from utils.fst_analysis_parser import (
     LabelFriendliness,
     partition_analysis,
 )
+from .affix_search import AffixSearcher
 from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
 
 logger = logging.getLogger(__name__)
