@@ -29,7 +29,7 @@ def remove_cree_diacritics(input_str) -> str:
     >>> remove_cree_diacritics('âāêē âāêē')
     'aaee aaee'
     """
-    return "".join([_diacritic_letter_to_ascii.get(c, c) for c in input_str])
+    return input_str.translate(_diacritic_letter_to_ascii)
 
 
 def del_dist(string, i):
