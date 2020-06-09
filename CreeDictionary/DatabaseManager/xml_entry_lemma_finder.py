@@ -12,7 +12,8 @@ from colorama import Fore, init
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from constants import ConcatAnalysis, FSTLemma, SimpleLC
+from constants.types import FSTLemma, ConcatAnalysis
+from constants.enums import SimpleLC
 from shared import strict_analyzer
 from utils import shared_res_dir
 

@@ -8,7 +8,8 @@ from typing import Tuple
 
 from attr import attrs
 
-from constants import SimpleLexicalCategory, FSTLemma, FSTTag, Label
+from constants import SimpleLexicalCategory
+from constants.types import Label, FSTTag, FSTLemma
 from .shared_res_dir import shared_res_dir
 
 analysis_pattern = re.compile(

@@ -33,7 +33,9 @@ from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from .affix_search import AffixSearcher
-from constants import POS, ConcatAnalysis, FSTTag, Label, Language, ParadigmSize
+from constants import ParadigmSize
+from constants.types import Label, FSTTag, ConcatAnalysis
+from constants.enums import Language, POS
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler

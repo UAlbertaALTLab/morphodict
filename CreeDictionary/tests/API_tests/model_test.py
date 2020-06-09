@@ -5,7 +5,7 @@ import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform, filter_cw_wordforms
-from constants import Language
+from constants.enums import Language
 from CreeDictionary import settings
 from tests.conftest import random_lemmas
 

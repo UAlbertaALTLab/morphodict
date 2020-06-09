@@ -11,7 +11,8 @@ from typing import Dict, List, Tuple, cast
 
 import hfstol
 
-from constants import SimpleLC, ParadigmSize
+from constants import ParadigmSize
+from constants.enums import SimpleLC
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 
 LayoutID = Tuple[SimpleLC, ParadigmSize]

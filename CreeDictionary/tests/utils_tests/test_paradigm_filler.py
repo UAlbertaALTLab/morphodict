@@ -1,5 +1,6 @@
 import pytest
-from constants import ParadigmSize, SimpleLC
+from constants import ParadigmSize
+from constants.enums import SimpleLC
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import shared_res_dir

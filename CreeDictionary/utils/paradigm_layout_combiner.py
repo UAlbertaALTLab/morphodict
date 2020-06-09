@@ -20,7 +20,8 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from constants import ParadigmSize, SimpleLC
+from constants import ParadigmSize
+from constants.enums import SimpleLC
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
