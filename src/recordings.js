@@ -75,7 +75,6 @@ export function retrieveListOfSpeakers() {
 
       // load the link of the speaker for clicking
       let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
-      console.log('The URL to be built into the page is ' + insertedURL);
 
       // select for the area to place the speaker link
       let container = document.querySelector('.speaker-links');
@@ -102,7 +101,6 @@ export function retrieveListOfSpeakers() {
         container.appendChild(speakerLink);
       } else {
         // if a link exists, change the existing link's text and URL to match what was clicked
-        console.log('Enough links made – don\'t make more!');
         container.children[0].innerText = 'Learn more about ' + recordingData['speaker_name'];
         container.children[0].href = insertedURL;
       }
