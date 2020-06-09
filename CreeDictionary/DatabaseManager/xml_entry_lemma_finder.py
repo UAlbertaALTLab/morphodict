@@ -3,7 +3,8 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 """
 from collections import defaultdict
 from itertools import chain
-from typing import List, Dict, Tuple, Set, Optional
+from string import Template
+from typing import List, Dict, Tuple, Set, Optional, Any
 
 from colorama import Fore, init
 from typing_extensions import Literal
@@ -11,9 +12,9 @@ from typing_extensions import Literal
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from utils import ConcatAnalysis, FSTLemma, SimpleLC
 from shared import strict_analyzer
-from utils import shared_res_dir
+from utils import shared_res_dir, SimpleLC, ConcatAnalysis, FSTLemma
+import csv
 
 init()  # for windows compatibility
 
@@ -27,26 +28,33 @@ class DefaultLemmaPicker:
 
     def __init__(self, language: Literal["crk", "gunaha"]):
 
+        self._word_class_to_lemma_analysis_templates: Dict[
+            SimpleLC, List[Template]
+        ] = {}
+
         lemma_tags_path = shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
 
-        for line in lemma_tags_path.read_text().splitlines():
-            if line and not line.startswith("#"):
-                if line.startswith("+"):
-                    self._lemma_analyses.add(ConcatAnalysis(line[1:].strip()))
-                else:
-                    self._non_lemma_analyses.add(ConcatAnalysis(line[1:].strip()))
-
-        self._known_analyses = self._lemma_analyses | self._non_lemma_analyses
+        with open(lemma_tags_path) as lemma_tags_file:
+            for row in csv.reader(lemma_tags_file, delimiter="\t"):
+                str_word_class, templates = row
+                self._word_class_to_lemma_analysis_templates[
+                    SimpleLC(str_word_class.strip().upper())
+                ] = [Template(t) for t in templates.strip().split(" ")]
 
     def get_lemma(self, ambiguities: Set[ConcatAnalysis]) -> Optional[ConcatAnalysis]:
-        if ambiguities < self._known_analyses:
-            lemma_analysis = self._lemma_analyses & ambiguities
-            if len(lemma_analysis) == 1:
-                return lemma_analysis.pop()
+        for ambiguity in ambiguities:
+            lemma_wc = utils.fst_analysis_parser.extract_lemma_and_category(ambiguity)
+            assert lemma_wc is not None
+            lemma, word_class = lemma_wc
+            if ambiguity in {
+                t.substitute(lemma=lemma)
+                for t in self._word_class_to_lemma_analysis_templates[word_class]
+            }:
+                return ambiguity
         return None
 
 
-crk_special_disambiguator = SpecialLemmaDisambiguator(language="crk")
+crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
 def extract_fst_lemmas(
@@ -199,7 +207,7 @@ def extract_fst_lemmas(
                     success_counter += 1
                 else:
                     # check if it's specially disambiguated
-                    res = crk_special_disambiguator.get_lemma(ambiguities)
+                    res = crk_default_lemma_picker.get_lemma(ambiguities)
                     if res is not None:
                         logger.debug(
                             "xml entry %s with pos %s lc %s is specially disambiguated."
