@@ -33,6 +33,13 @@
       <li class="recordings-list__item" data-cy="recordings-list__item">
         <button class="audio-snippet"><slot name="speaker-name"></slot>, <slot name="speaker-dialect"</slot></button>
     </template>
+
+    {# The speaker-bio links template #}
+    <template id="template:speaker-bio-link">
+      <div class="speaker-links" data-cy="recordings-list__item-speaker">
+        <a href="" target="_blank" rel="noopener"></a>
+      </div>
+    </template>
   {% endspaceless %}
 
   {% comment %}
