@@ -80,24 +80,34 @@ export function retrieveListOfSpeakers() {
       // select for the area to place the speaker link
       let container = document.querySelector('.speaker-links');
 
-      // create the speaker link
-      let speakerLink = document.createElement('a');
+      // generate a new link and append it to the page
+      if (container.childElementCount < 1 ) {
+        // create the speaker link
+        let speakerLink = document.createElement('a');
+        
+        // create the text prompt for the link
+        let linkText = document.createTextNode('Learn more about ' + recordingData  ['speaker_name']);
+        
+        // set the link's URL...
+        speakerLink.href = insertedURL;
+        
+        // ...and add attributes to the link
+        speakerLink.setAttribute('target', '_blank');
+        speakerLink.setAttribute('rel', 'noopener');
+        
+        // put the text prompt into the link
+        speakerLink.appendChild(linkText);
+        
+        // put the link into the DOM
+        container.appendChild(speakerLink);
+      } else {
+        // if a link exists, change the existing link's text and URL to match what was clicked
+        console.log('Enough links made – don\'t make more!');
+        container.children[0].innerText = 'Learn more about ' + recordingData['speaker_name'];
+        container.children[0].href = insertedURL;
+      }
 
-      // create the text prompt for the link
-      let linkText = document.createTextNode('Learn more about ' + recordingData['speaker_name']);
-
-      // set the link's URL...
-      speakerLink.href = insertedURL;
       
-      // ...and add attributes to the link
-      speakerLink.setAttribute('target', '_blank');
-      speakerLink.setAttribute('rel', 'noopener');
-
-      // put the text prompt into the link
-      speakerLink.appendChild(linkText);
-
-      // put the link into the DOM
-      container.appendChild(speakerLink);
     })
   }
 }
