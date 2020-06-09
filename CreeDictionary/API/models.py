@@ -33,9 +33,8 @@ from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from .affix_search import AffixSearcher
-from constants import ParadigmSize
 from constants.types import Label, FSTTag, ConcatAnalysis
-from constants.enums import Language, POS
+from constants.enums import Language, POS, SimpleLexicalCategory
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
@@ -195,6 +194,7 @@ class Wordform(models.Model):
 
     def serialize(self) -> SerializedWordform:
         """
+        Intended to be passed in a JSON API or into templates.
 
         :return: json parsable result
         """
@@ -203,7 +203,20 @@ class Wordform(models.Model):
             definition.serialize() for definition in self.definitions.all()
         ]
         result["lemma_url"] = self.get_absolute_url()
+        result["wordclass_help"] = self.get_user_friendly_wordclass_help_for_cree()
+
         return result
+
+    def get_user_friendly_wordclass_help_for_cree(self) -> Optional[str]:
+        """
+        Attempts to get a description, e.g., "like: wîcihêw" or "like:
+        micisow" for this wordform.
+        """
+        maybe_full_word_class = self.full_word_class
+        if maybe_full_word_class is None:
+            return None
+        word_class = FSTTag(maybe_full_word_class.without_pos())
+        return FST_TAG_LABELS.get(word_class, {}).get(LabelFriendliness.ENGLISH, None)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -218,6 +231,10 @@ class Wordform(models.Model):
             if homographs.filter(**{field: getattr(self, field)}).count() == 1:
                 return field
         return "id"  # id always guarantees unique match
+
+    @property
+    def full_word_class(self) -> Optional[SimpleLexicalCategory]:
+        return fst_analysis_parser.extract_simple_lc(self.analysis)
 
     @property
     def paradigm(self) -> List[Layout]:

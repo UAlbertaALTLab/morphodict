@@ -428,7 +428,7 @@ html {
   margin: 0;
 }
 
-.definition-title__word {
+.definition__matched-head {
   /* Text */
   font-style: normal;
   font-weight: var(--strong-font-weight);
@@ -455,17 +455,14 @@ html {
   outline: 3px solid var(--search-focus-color);
 }
 
-.reference-to-lemma {
-  margin: var(--gap) 0 0;
+.definition__elaboration {
+  margin: var(--small-gap) 0 0;
 
-  font-size: var(--reference-to-lemma-size);
-  font-style: italic;
+  font-size: var(--elaboration-size);
 }
 
-.definition-title__pos {
-  /* Text */
-  font-style: normal;
-  font-weight: var(--body-font-weight);
+.definition__reference-to-lemma {
+  font-style: italic;
 }
 
 /**
@@ -525,6 +522,15 @@ html {
 
 .recordings-list__item:hover {
   cursor: pointer;
+}
+
+/**
+ * BLOCK wordclass
+ */
+.wordclass {
+  /* Text */
+  font-style: normal;
+  font-weight: var(--body-font-weight);
 }
 
 /**
