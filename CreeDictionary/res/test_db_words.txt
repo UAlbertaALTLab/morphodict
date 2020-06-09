@@ -112,3 +112,7 @@ kîsikâw
 # Some paradigms of homographic entries do not show up
 nôhtêpayiw
 ayâw
+
+# some entries do not show up
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+maskwak
