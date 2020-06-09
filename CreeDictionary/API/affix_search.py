@@ -4,6 +4,8 @@ from itertools import chain
 import marisa_trie
 from typing import List, Iterable, Tuple, Dict
 
+from utils.cree_lev_dist import remove_cree_diacritics
+
 
 class AffixSearcher:
     def __init__(self, words: Iterable[Tuple[str, int]]):
@@ -19,16 +21,19 @@ class AffixSearcher:
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
-        :param prefix: expects lowered, no diacritics words
         :return: an iterable of ids
         """
+        # lower & remove diacritics
+        prefix = remove_cree_diacritics(prefix.lower())
         return chain(*[self.text_to_ids[t] for t in self.trie.keys(prefix)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
         """
-        :param suffix: expects lowered, no diacritics words
         :return: an iterable of ids
         """
+        # lower & remove diacritics
+        suffix = remove_cree_diacritics(suffix.lower())
+
         return chain(
             *[self.text_to_ids[x[::-1]] for x in self.inverse_trie.keys(suffix[::-1])]
         )
