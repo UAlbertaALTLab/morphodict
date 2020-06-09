@@ -80,7 +80,11 @@ export function retrieveListOfSpeakers() {
       // select for the area to place the speaker link
       let container = document.querySelector('.speaker-links');
 
+      // create the speaker link
       let speakerLink = document.createElement('a');
+
+      // create the text prompt for the link
+      let linkText = document.createTextNode('Learn more about ' + recordingData['speaker_name']);
 
       // set the link's URL...
       speakerLink.href = insertedURL;
@@ -88,6 +92,9 @@ export function retrieveListOfSpeakers() {
       // ...and add attributes to the link
       speakerLink.setAttribute('target', '_blank');
       speakerLink.setAttribute('rel', 'noopener');
+
+      // put the text prompt into the link
+      speakerLink.appendChild(linkText);
 
       // put the link into the DOM
       container.appendChild(speakerLink);
