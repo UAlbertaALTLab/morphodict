@@ -1,7 +1,0 @@
-# disambiguation for maskwa
-+ maskwa+N+A+Sg
-- maskwa+N+A+Obv
-
-# disambiguation for niska
-+ niska+N+A+Sg
-- niska+N+A+Obv

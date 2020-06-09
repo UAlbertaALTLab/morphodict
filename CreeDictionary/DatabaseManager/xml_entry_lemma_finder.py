@@ -18,20 +18,17 @@ from utils import shared_res_dir
 init()  # for windows compatibility
 
 
-class SpecialLemmaDisambiguator:
+class DefaultLemmaPicker:
+    """
+    When two analyses have the same looking lemma and general word class, this helps choose the preferred lemma
+
+    i.e. It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
+    """
+
     def __init__(self, language: Literal["crk", "gunaha"]):
-        """
-        Load extra knowledge about lemma preference for specific cases
-        It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
-        """
-        self._lemma_analyses = set()
-        self._non_lemma_analyses = set()
 
         disambiguation_file_path = (
-            shared_res_dir
-            / "linguistic_knowledge"
-            / language
-            / "lemma-disambiguation.txt"
+            shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
         )
 
         for line in disambiguation_file_path.read_text().splitlines():
