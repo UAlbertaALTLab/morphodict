@@ -211,14 +211,9 @@ def extract_fst_lemmas(
                     )
                     success_counter += 1
                 else:
-                    # check if it's specially disambiguated
+                    # check if it contains default forms of lemma analyses
                     res = crk_default_lemma_picker.get_lemma(ambiguities)
                     if res is not None:
-                        logger.debug(
-                            "xml entry %s with pos %s lc %s is specially disambiguated."
-                            % (xml_lemma, pos, lc)
-                        )
-
                         xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = res
                         success_counter += 1
                     else:
