@@ -76,6 +76,21 @@ export function retrieveListOfSpeakers() {
       // load the link of the speaker for clicking
       let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
       console.log('The URL to be built into the page is ' + insertedURL);
+
+      // select for the area to place the speaker link
+      let container = document.querySelector('.speaker-links');
+
+      let speakerLink = document.createElement('a');
+
+      // set the link's URL...
+      speakerLink.href = insertedURL;
+      
+      // ...and add attributes to the link
+      speakerLink.setAttribute('target', '_blank');
+      speakerLink.setAttribute('rel', 'noopener');
+
+      // put the link into the DOM
+      container.appendChild(speakerLink);
     })
   }
 }
