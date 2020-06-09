@@ -1,25 +1,4 @@
-"""
-constants
-"""
 from enum import Enum
-# type alias
-from typing import NamedTuple, NewType
-
-# Orthography
-DEFAULT_ORTHOGRAPHY = "Latn"
-ORTHOGRAPHY_NAME = {
-    "Latn": "SRO (êîôâ)",
-    "Latn-x-macron": "SRO (ēīōā)",
-    "Cans": "Syllabics",
-}
-
-# types
-# analysis but concatenated
-ConcatAnalysis = NewType("ConcatAnalysis", str)
-FSTLemma = NewType("FSTLemma", str)
-
-FSTTag = NewType("FSTTag", str)
-Label = NewType("Label", str)
 
 
 class Language(Enum):
@@ -50,10 +29,6 @@ class PartOfSpeech(Enum):
     V = "V"
 
 
-# alias
-POS = PartOfSpeech
-
-
 class SimpleLexicalCategory(Enum):
     """
     a simplified list of lexical categories.
@@ -76,7 +51,7 @@ class SimpleLexicalCategory(Enum):
     Pron = "PRON"  # Pronoun
 
     @property
-    def pos(self) -> POS:
+    def pos(self) -> PartOfSpeech:
         if self.is_verb():
             return POS.V
         elif self.is_noun():
@@ -96,23 +71,6 @@ class SimpleLexicalCategory(Enum):
     def is_noun(self):
         return self.value[0] == "N"
 
-    def without_pos(self) -> str:
-        """
-        >>> SimpleLexicalCategory.VAI.without_pos()
-        'AI'
-        >>> SimpleLexicalCategory.NID.without_pos()
-        'ID'
-        >>> SimpleLexicalCategory.IPC.without_pos()
-        'IPC'
-        """
-        if self.is_verb():
-            assert self.value.startswith("V")
-            return self.value[1:]
-        if self.is_noun():
-            assert self.value.startswith("N")
-            return self.value[1:]
-        return self.value
-
     def to_fst_output_style(self):
         """
         >>> SimpleLexicalCategory.VAI.to_fst_output_style()
@@ -130,6 +88,23 @@ class SimpleLexicalCategory(Enum):
         else:
             return "+" + self.value
 
+    def without_pos(self) -> str:
+        """
+        >>> SimpleLexicalCategory.VAI.without_pos()
+        'AI'
+        >>> SimpleLexicalCategory.NID.without_pos()
+        'ID'
+        >>> SimpleLexicalCategory.IPC.without_pos()
+        'IPC'
+        """
+        if self.is_verb():
+            assert self.value.startswith("V")
+            return self.value[1:]
+        if self.is_noun():
+            assert self.value.startswith("N")
+            return self.value[1:]
+        return self.value
+
     def to_layout_table_name(self, paradigm_size: ParadigmSize):
         """
         >>> SimpleLexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
@@ -141,22 +116,5 @@ class SimpleLexicalCategory(Enum):
         return self.value.lower() + "-" + paradigm_size.value.lower()
 
 
-# alias
 SimpleLC = SimpleLexicalCategory
-
-
-class Analysis(NamedTuple):
-    """
-    Analysis of a wordform.
-    """
-
-    raw_prefixes: str
-    lemma: str
-    raw_suffixes: str
-
-    def concatenate(self) -> ConcatAnalysis:
-        result = ""
-        if self.raw_prefixes != "":
-            result += self.raw_prefixes + "+"
-        result += f"{self.lemma}+{self.raw_suffixes}"
-        return ConcatAnalysis(result)
+POS = PartOfSpeech

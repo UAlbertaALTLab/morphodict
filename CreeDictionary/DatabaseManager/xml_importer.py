@@ -7,14 +7,13 @@ from pathlib import Path
 from typing import DefaultDict, Dict, List, Set, Tuple, NamedTuple, NewType
 
 from colorama import Fore, init
-from django.db import connection
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from constants import POS
+from utils.enums import POS
 from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str, parse_xml_lc
 

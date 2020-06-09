@@ -3,7 +3,7 @@ import pytest
 from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import load_engcrk_xml, find_latest_xml_files
-from constants import POS
+from utils.enums import POS
 from tests.conftest import migrate_and_import
 from utils import shared_res_dir
 

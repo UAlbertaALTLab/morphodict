@@ -1,6 +1,6 @@
 """check the consistency of a xml source with a fst"""
 
-from constants import SimpleLexicalCategory
+from utils import SimpleLexicalCategory
 from utils.crkeng_xml_utils import parse_xml_lc
 
 

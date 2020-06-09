@@ -4,7 +4,7 @@ from typing import Optional
 from typing import Iterable
 from xml.dom import minidom
 
-from constants import SimpleLexicalCategory
+from utils import SimpleLexicalCategory
 
 
 def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
