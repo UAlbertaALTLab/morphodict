@@ -20,7 +20,7 @@ init()  # for windows compatibility
 
 class DefaultLemmaPicker:
     """
-    When two analyses have the same looking lemma and general word class, this helps choose the preferred lemma
+    When two analyses have the same looking lemma and word class, this helps choose the preferred lemma
 
     i.e. It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
     """

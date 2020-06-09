@@ -1,4 +1,4 @@
-Files here store templates of common lemma analyses for each [general word class](../../../docs/glossary.md#general-word-class)
+Files here store templates of common lemma analyses for each [word class](../../../docs/glossary.md#word-class)
 
 i.e. 
 - NA lemmas usually have tags +N+A+Sg
@@ -15,7 +15,7 @@ Folders here are languages this app supports.
 
 There should be a `lemma-tags.tsv` Under each folder with two columns.
 
-The first column is the [general word class](../../../docs/glossary.md#general-word-class)
+The first column is the [word class](../../../docs/glossary.md#word-class)
 
 The second column is analysis of common lemmas for the said word class. If there are multiple possibilities, 
 use space to separate multiple analyses, and they should be ordered in terms of frequency.
