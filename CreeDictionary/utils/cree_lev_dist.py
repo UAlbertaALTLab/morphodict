@@ -3,17 +3,26 @@ import unicodedata
 
 VOWELS = {"a", "e", "i", "o"}
 
+
 _diacritic_letter_to_ascii = {
-    ascii_letter: ascii_letter for ascii_letter in string.ascii_lowercase
+    "â": "a",
+    "ā": "a",
+    "ê": "e",
+    "ē": "e",
+    "ī": "i",
+    "î": "i",
+    "ô": "o",
+    "ō": "o",
 }
 
-_diacritic_letter_to_ascii.update(
-    {"â": "a", "ā": "a", "ê": "e", "ē": "e", "ī": "i", "î": "i", "ô": "o", "ō": "o"}
-)
 
 _diacritic_letter_to_ascii.update(
     {d.upper(): a.upper() for d, a in _diacritic_letter_to_ascii.items()}
 )
+
+_diacritic_letter_ord_to_ascii = {
+    ord(k): v for k, v in _diacritic_letter_to_ascii.items()
+}
 
 
 def remove_cree_diacritics(input_str) -> str:
@@ -29,7 +38,7 @@ def remove_cree_diacritics(input_str) -> str:
     >>> remove_cree_diacritics('âāêē âāêē')
     'aaee aaee'
     """
-    return input_str.translate(_diacritic_letter_to_ascii)
+    return input_str.translate(_diacritic_letter_ord_to_ascii)
 
 
 def del_dist(string, i):

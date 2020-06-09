@@ -11,7 +11,9 @@ Files here are only used as a fallback when ambiguity exists, which happens not 
 
 ---
 
-Folders here are languages this app supports.
+Folders here are named by the ISO code of the languages this app supports.
+
+e.g. crk = Plains Cree; srs = Tsuut'ina
 
 There should be a `lemma-tags.tsv` Under each folder with two columns.
 
