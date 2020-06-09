@@ -73,40 +73,44 @@ export function retrieveListOfSpeakers() {
     createdSpeakerButton.addEventListener('click', () => {
       audio.play()
 
-      // load the link of the speaker for clicking
-      let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
-
-      // select for the area to place the speaker link
-      let container = document.querySelector('.speaker-links');
-
-      // generate a new link and append it to the page
-      if (container.childElementCount < 1 ) {
-        // create the speaker link
-        let speakerLink = document.createElement('a');
-        
-        // create the text prompt for the link
-        let linkText = document.createTextNode('Learn more about ' + recordingData  ['speaker_name']);
-        
-        // set the link's URL...
-        speakerLink.href = insertedURL;
-        
-        // ...and add attributes to the link
-        speakerLink.setAttribute('target', '_blank');
-        speakerLink.setAttribute('rel', 'noopener');
-        
-        // put the text prompt into the link
-        speakerLink.appendChild(linkText);
-        
-        // put the link into the DOM
-        container.appendChild(speakerLink);
-      } else {
-        // if a link exists, change the existing link's text and URL to match what was clicked
-        container.children[0].innerText = 'Learn more about ' + recordingData['speaker_name'];
-        container.children[0].href = insertedURL;
-      }
+      displaySpeakerBioLink(recordingData);
 
       
     })
+  }
+
+  // the function that creates a link for an individual speaker's bio to be clicked
+  function displaySpeakerBioLink(recordingData) {
+    let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
+
+    // select for the area to place the speaker link
+    let container = document.querySelector('.speaker-links');
+
+    // generate a new link and append it to the page if there isn't already one
+    if (container.childElementCount < 1 ) {
+      // create the speaker link
+      let speakerLink = document.createElement('a');
+      
+      // create the text prompt for the link
+      let linkText = document.createTextNode('Learn more about ' + recordingData  ['speaker_name']);
+      
+      // set the link's URL...
+      speakerLink.href = insertedURL;
+      
+      // ...and add attributes to the link
+      speakerLink.setAttribute('target', '_blank');
+      speakerLink.setAttribute('rel', 'noopener');
+      
+      // put the text prompt into the link
+      speakerLink.appendChild(linkText);
+      
+      // put the link into the DOM
+      container.appendChild(speakerLink);
+    } else {
+      // if a link exists, change the existing link's text and URL to match what was clicked
+      container.children[0].innerText = 'Learn more about ' + recordingData['speaker_name'];
+      container.children[0].href = insertedURL;
+    }
   }
 }
 
