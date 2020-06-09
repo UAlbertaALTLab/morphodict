@@ -42,14 +42,19 @@ class DefaultLemmaPicker:
                 ] = [Template(t) for t in templates.strip().split(" ")]
 
     def get_lemma(self, ambiguities: Set[ConcatAnalysis]) -> Optional[ConcatAnalysis]:
+        """
+        Pick the lemma analysis according to the looks of the usual lemma analyses for each word class.
+        """
         for ambiguity in ambiguities:
             lemma_wc = utils.fst_analysis_parser.extract_lemma_and_category(ambiguity)
             assert lemma_wc is not None
             lemma, word_class = lemma_wc
-            if ambiguity in {
-                t.substitute(lemma=lemma)
-                for t in self._word_class_to_lemma_analysis_templates[word_class]
-            }:
+
+            templates = self._word_class_to_lemma_analysis_templates.get(word_class)
+            if templates is None:
+                return None
+
+            if ambiguity in {t.substitute(lemma=lemma) for t in templates}:
                 return ambiguity
         return None
 
