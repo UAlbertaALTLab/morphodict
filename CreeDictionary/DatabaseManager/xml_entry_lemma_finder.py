@@ -11,7 +11,7 @@ from typing_extensions import Literal
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from constants import ConcatAnalysis, FSTLemma, SimpleLC
+from utils import ConcatAnalysis, FSTLemma, SimpleLC
 from shared import strict_analyzer
 from utils import shared_res_dir
 
@@ -27,11 +27,9 @@ class DefaultLemmaPicker:
 
     def __init__(self, language: Literal["crk", "gunaha"]):
 
-        disambiguation_file_path = (
-            shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
-        )
+        lemma_tags_path = shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
 
-        for line in disambiguation_file_path.read_text().splitlines():
+        for line in lemma_tags_path.read_text().splitlines():
             if line and not line.startswith("#"):
                 if line.startswith("+"):
                     self._lemma_analyses.add(ConcatAnalysis(line[1:].strip()))
