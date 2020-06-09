@@ -2,138 +2,179 @@
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
 
-import $ from 'jquery'
-
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css'
 import {createTooltip} from './tooltip'
 import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
 import * as orthography from './orthography.js'
+import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
+import {
+  indicateLoading,
+  indicateLoadedSuccessfully,
+  indicateLoadingFailure,
+  hideLoadingIndicator
+} from './loading-bar.js'
 
-const ERROR_CLASS = 'search-progress--error'
-const LOADING_CLASS = 'search-progress--loading'
+
+///////////////////////////////// Constants //////////////////////////////////
 
 const NO_BREAK_SPACE = '\u00A0'
 
-/**
- * Make a 10% progress bar. We actually don't know how much there is left,
- * but make it seem like it's thinking about it!
- */
-function indicateLoading() {
-  let progress = document.getElementById('loading-indicator')
-  progress.max = 100
-  progress.value = 10
-  progress.classList.remove(ERROR_CLASS)
-  progress.classList.add(LOADING_CLASS)
+
+//////////////////////////////// On page load ////////////////////////////////
+
+document.addEventListener('DOMContentLoaded', () => {
+  // XXX: HACK! reloads the site when the back button is pressed.
+  window.onpopsate = () => location.reload()
+
+  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
+  orthography.registerEventListener(csrfToken)
+
+  setupSearchBar()
+
+  let route = makeRouteRelativeToSlash(window.location.pathname)
+  // Tiny router.
+  if (route === '/') {
+    // Homepage
+    setSubtitle(null)
+  } else if (route === '/about') {
+    // About page
+    setSubtitle('About')
+  } else if (route == '/contact-us') {
+    // Contact page
+    setSubtitle('Contact us')
+  } else if (route === '/search') {
+    // Search page
+    prepareSearchResults(getSearchResultList())
+  } else if (route.match(/^[/]word[/].+/)) {
+    // Word detail/paradigm page. This one has the 🔊 button.
+    setSubtitle(getEntryHead())
+    setupAudioOnPageLoad()
+  } else {
+    throw new Error(`Could not match route: ${route}`)
+  }
+})
+
+
+///////////////////////////// Internal functions /////////////////////////////
+
+function setupSearchBar() {
+  let searchBar = document.getElementById('search')
+  searchBar.addEventListener('input', () => {
+    loadSearchResults(searchBar)
+  })
 }
-
-
-function indicateLoadedSuccessfully() {
-  let progress = document.getElementById('loading-indicator')
-  progress.value = 100
-  hideLoadingIndicator()
-}
-
-function indicateLoadingFailure() {
-  // makes the loading state "indeterminate", like it's loading forever.
-  let progress = document.getElementById('loading-indicator')
-  progress.removeAttribute('value')
-  progress.classList.add(ERROR_CLASS)
-}
-
-function hideLoadingIndicator() {
-  let progress = document.getElementById('loading-indicator')
-  progress.classList.remove(LOADING_CLASS, ERROR_CLASS)
-}
-
 
 /**
  * clean paradigm details
  */
 function cleanParadigm() {
-  $('#paradigm').remove()
+  removeElement(document.getElementById('paradigm'))
 }
 
-
 function showProse() {
-  let prose = $('#prose')
-  prose.show()
+  showElement(document.getElementById('prose'))
 }
 
 function hideProse() {
-  let prose = $('#prose')
-  prose.hide()
+  hideElement(document.getElementById('prose'))
 }
 
 /**
- * find #search-result-list element on the page to attach relevant handlers to the tooltip icons
- */
-function prepareTooltips() {
-  const $searchResultList = $('#search-result-list')
-
-  // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.definition-title__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
-
-  // attach handlers for tooltip icon at preverb breakdown
-  $searchResultList.find('.preverb-breakdown__tooltip-icon').each(function () {
-    createTooltip($(this), $(this).next('.tooltip'))
-  })
-}
-
-/**
- * use xhttp to load search results in place
+ * Prepares interactive elements of each search result, including:
+ *  - tooltips
+ *  - recordings
  *
- * @param {jQuery} $input
+ * @param {Element} searchResultsList
  */
-function loadResults($input) {
-  let userQuery = $input.val()
-  let $searchResultList = $('#search-result-list')
+function prepareSearchResults(searchResultsList) {
+  prepareTooltips(searchResultsList)
+  loadRecordingsForAllSearchResults(searchResultsList)
+}
+
+/**
+ * Given a list of search results, this will attempt to match a recording to
+ * its match wordform.
+ *
+ * @param {Element} searchResultsList
+ */
+function loadRecordingsForAllSearchResults(searchResultsList) {
+  for (let result of searchResultsList.querySelectorAll('[data-wordform]')) {
+    let wordform = result.dataset.wordform
+    let container = result // do this reassignment because of the lexical scoping :(
+
+    // TODO: instead of making a request for each search result,
+    // TODO: use a "bulk query" option that uses one request to load all
+    // TODO: this requires code in the recording-validation-interface
+    fetchFirstRecordingURL(wordform)
+      .then((recordingURL) => createAudioButton(recordingURL, container))
+      .catch(() => {/* ignore :/ */})
+  }
+}
+
+/**
+ * Attach relevant handlers to the tooltip icons of search results.
+ *
+ * @param {Element} searchResultsList
+ */
+function prepareTooltips(searchResultsList) {
+  // attach handlers for tooltip icon at preverb breakdown
+  let tooltips = searchResultsList
+    .querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+  for (let icon of tooltips) {
+    let tooltip = icon.nextElementSibling
+    if (!tooltip.classList.contains('tooltip')) {
+      throw new Error('Expected tooltip to be direct sibling of icon')
+    }
+    createTooltip(icon, tooltip)
+  }
+}
+
+/**
+ * use AJAX to load search results in place
+ *
+ * @param {HTMLInputElement} searchInput
+ */
+function loadSearchResults(searchInput) {
+  let userQuery = searchInput.value
+  let searchResultList = getSearchResultList()
 
   if (userQuery !== '') {
+    changeTitleBySearchQuery(userQuery)
     issueSearch()
   } else {
     goToHomePage()
   }
 
   function issueSearch() {
+    let searchURL = Urls['cree-dictionary-search-results'](userQuery)
+
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
-
     hideProse()
+    indicateLoading()
 
-    let xhttp = new XMLHttpRequest()
-
-    xhttp.onloadstart = function () {
-      // Show the loading indicator:
-      indicateLoading()
-    }
-
-    xhttp.onload = function () {
-      if (xhttp.status === 200) {
+    fetch(searchURL)
+      .then(response => response.text())
+      .then((html) => {
         // user input may have changed during the request
-        const inputNow = $input.val()
-        if (inputNow === userQuery) { // hasn't changed
-          // Remove loading cards
-          indicateLoadedSuccessfully()
-          cleanParadigm()
-          $searchResultList.html(xhttp.responseText)
-          prepareTooltips()
+        const inputNow = searchInput.value
 
-
-        } else { // changed. Do nothing
+        if (inputNow !== userQuery) {
+          // input has changed, so ignore this request to prevent flashing
+          // out-of-date search results
+          return
         }
-      } else {
-        indicateLoadingFailure()
-      }
-    }
 
-    xhttp.onerror = function () {
-      // TODO: we should do something here!
-    }
-    xhttp.open('GET', Urls['cree-dictionary-search-results'](userQuery), true)
-    xhttp.send()
+        // Remove loading cards
+        indicateLoadedSuccessfully()
+        cleanParadigm()
+        searchResultList.innerHTML = html
+        prepareSearchResults(searchResultList)
+      })
+      .catch(() => {
+        indicateLoadingFailure()
+      })
   }
 
   function goToHomePage() {
@@ -142,7 +183,7 @@ function loadResults($input) {
     showProse()
 
     hideLoadingIndicator()
-    $searchResultList.empty()
+    emptyElement(searchResultList)
   }
 
   /**
@@ -151,7 +192,7 @@ function loadResults($input) {
    * The URL is constructed by using the <form>'s action="" attribute.
    */
   function urlForQuery(userQuery) {
-    let form = $input.get(0).closest('form')
+    let form = searchInput.closest('form')
     return form.action + `?q=${encodeURIComponent(userQuery)}`
   }
 }
@@ -161,7 +202,7 @@ function loadResults($input) {
  *
  * @param inputVal {string}
  */
-function changeTitleByInput(inputVal) {
+function changeTitleBySearchQuery(inputVal) {
   setSubtitle(inputVal ? '🔎 ' + inputVal : null)
 }
 
@@ -180,31 +221,17 @@ function setupAudioOnPageLoad() {
     return
   }
 
-  // TODO: setup URL from <link rel=""> or something.
-  let template = document.getElementById('template:play-button')
-  let dataElement = document.getElementById('data:head')
-  let wordform = dataElement.value
+  // TODO: setup baseURL from <link rel=""> or something.
+  let wordform = getEntryHead()
 
   fetchFirstRecordingURL(wordform)
-    .then(function (recordingURL) {
-      let recording = new Audio(recordingURL)
-      recording.preload = 'none'
-
-      let fragment = template.content.cloneNode(true)
-      // Place "&nbsp;<button>...</button>"
-      // at the end of the <h1?
-      // TODO: it shouldn't really be **inside** the <h1>...
-      let button = fragment.childNodes[0]
-      let nbsp = document.createTextNode(NO_BREAK_SPACE)
-      title.appendChild(nbsp)
-      title.appendChild(button)
-      button.addEventListener('click', function () {
-        recording.play()
-      })
+    .then((recordingURL) => {
+      // TODO: it shouldn't be placed be **inside** the title <h1>...
+      let button = createAudioButton(recordingURL, title)
+      button.addEventListener('click', retrieveListOfSpeakers)
     })
-    .catch(e=>{
-      // fixme (eddie): now what?
-      console.log(e)
+    .catch(() => {
+      // TODO: display an error message?
     })
 }
 
@@ -218,47 +245,41 @@ function makeRouteRelativeToSlash(route) {
   return route.replace(baseURL, '/')
 }
 
-$(() => {
-  // XXX: HACK! reloads the site when the back button is pressed.
-  $(window).on('popstate', function () {
-    location.reload()
-  })
+/**
+ * Returns the head of the current dictionary entry on a /word/* page.
+ */
+function getEntryHead() {
+  let dataElement = document.getElementById('data:head')
+  return dataElement.value
+}
 
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
-  orthography.registerEventListener(csrfToken)
+/**
+ * Creates the 🔊 button and places it beside the desired element.
+ */
+function createAudioButton(recordingURL, element) {
+  let recording = new Audio(recordingURL)
+  recording.preload = 'none'
 
-  // setup search bar
-  let $input = $('#search')
-  $input.on('input', () => {
-    loadResults($input)
-    changeTitleByInput($input.val())
-  })
+  let template = document.getElementById('template:play-button')
 
-  let route = makeRouteRelativeToSlash(window.location.pathname)
-  // Tiny router.
-  if (route === '/') {
-    // Homepage
-    setSubtitle(null)
-  } else if (route === '/about') {
-    // About page
-    setSubtitle('About')
-  } else if (route === '/search') {
-    // Search page
-    prepareTooltips()
-  } else if (route.match(/^[/]word[/].+/)) {
-    // Word detail/paradigm page. This one has the 🔊 button.
-    
-    /**
-    * Attach event listener to speaker icon to display multiple speakers in the page content
-    *
-    * @param speakerButton {object} – the button that outputs the speakers
-    */
-    $('body').on('click', 'button.definition-title__play-button', function() {
-      retrieveListOfSpeakers();
-    });
-    // TODOkobe: - the route specific stuff can go in here! the initialization can go in the function 👇🏿
-    setupAudioOnPageLoad()
-  } else {
-    throw new Error(`Could not match route: ${route}`)
-  }
-})
+  let fragment = template.content.cloneNode(true)
+  let button = fragment.querySelector('button')
+  button.addEventListener('click', () => recording.play())
+
+  // Place "&nbsp;<button>...</button>"
+  // at the end of the element
+  let nbsp = document.createTextNode(NO_BREAK_SPACE)
+  element.appendChild(nbsp)
+  element.appendChild(button)
+
+  return button
+}
+
+////////////////////// Fetch information from the page ///////////////////////
+
+/**
+ * @returns {(Element|null)}
+ */
+function getSearchResultList() {
+  return document.getElementById('search-result-list')
+}

@@ -18,6 +18,23 @@
   {% include './svg-sprites.html' %}
   {% include './components/header.html' %}
 
+  {% spaceless %}
+    {# The 🔊 button template. Gets inflated by JavaScript. #}
+    <template id="template:play-button">
+      <button aria-label="Play recording" class="definition-title__play-button" data-cy="play-recording">
+        <svg class="definition-title__play-icon" focusable="false">
+          <use xlink:href="#fa-volume-up-solid" />
+        </svg>
+      </button>
+    </template>
+
+    {# The speaker button template (multiple recordings) #}
+    <template id="template:recording-item">
+      <li class="recordings-list__item" data-cy="recordings-list__item">
+        <button class="audio-snippet"><slot name="speaker-name"></slot>, <slot name="speaker-dialect"</slot></button>
+    </template>
+  {% endspaceless %}
+
   {% comment %}
   JavaScript adds the class .search-progress--loading or
   .search-progress-error, and changes the value:

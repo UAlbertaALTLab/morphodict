@@ -455,10 +455,13 @@ html {
   outline: 3px solid var(--search-focus-color);
 }
 
-.reference-to-lemma {
-  margin: var(--gap) 0 0;
+.definition-title__form-of {
+  margin: var(--small-gap) 0 0;
 
-  font-size: var(--reference-to-lemma-size);
+  font-size: var(--form-of-size);
+}
+
+.reference-to-lemma {
   font-style: italic;
 }
 
@@ -515,10 +518,8 @@ html {
   font-style: italic;
 }
 
-.recordings-list,
-.speaker-links {
-  /* take up half the width of the screen to make space for the speaker link  */
-  max-width: 50%;
+.definition__recordings--not-loaded {
+  display: none;
 }
 
 .recordings-list__item {
@@ -572,18 +573,26 @@ html {
   display: inline;
   position: relative;
 }
+
 .preverb-breakdown__tooltip-icon > img {
   width: var(--tooltip-icon-size);
 
   /* vertically center the question mark*/
   position: absolute;
-  top:0;
+  top: 0;
   bottom: 0;
   margin: auto;
   /* end vertical centering */
 
-  left:0.2em;  /* space out the question mark */
+  left: 0.2em;  /* space out the question mark */
   filter: var(--blue-filter); /* blue color */
+}
+
+/**
+ * Occurs inside a tooltip. Get rid of its extra margin!
+ */
+.preverb-breakdown__preverb-definition {
+  margin: 0;
 }
 
 /********************************* PARADIGM *********************************/
@@ -1152,6 +1161,13 @@ a.menu-choice__label:active {
  */
 .source-title {
   font-style: italic;
+}
+
+/**
+ * BLOCK explainer
+ */
+.explainer {
+  font-weight: var(--strong-font-weight);
 }
 
 /******************************** UTILITIES *********************************/

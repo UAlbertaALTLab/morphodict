@@ -24,7 +24,9 @@
   --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
   --app-body-color:         #000000; /* Color of body text. */
   --cite-text-color:        #182457; /* Color of dictionary citation element. */
-  --cite-text-popup-color:  #ffffff; /* Color of dictionary citation element. */
+  --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
+  --popup-color:            #000000; /* Color of popup/tooltip text. */
+  --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
   --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
   --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
@@ -61,8 +63,8 @@
   --branding-font-size:             1.50em; /* the title, e.g., "itwêwina" */
   --branding-subtitle-font-size:    0.75em; /* the subtitle, e.g., "Plains Cree Dictionary" */
   --definition-title-size:          2.00em;
+  --form-of-size:                   1.25em;
   --tooltip-icon-size:              1.75rem; /* size of the ℹ️  button or 🔊 button */
-  --reference-to-lemma-size:        1.50em;
   --preverb-breakdown-size:         1.50em;
   --prominent-font-size:            1.50em; /* For text that should be prominent! */
   --prose-heading-font-size:        1.25em;
