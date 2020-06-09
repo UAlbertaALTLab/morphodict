@@ -1,6 +1,6 @@
 from typing import NamedTuple
 
-from constants.types import ConcatAnalysis
+from utils.types import ConcatAnalysis
 
 
 class Analysis(NamedTuple):

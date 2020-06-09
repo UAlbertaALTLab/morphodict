@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from constants import SimpleLexicalCategory
+from utils import SimpleLexicalCategory
 from utils import extract_simple_lc
 from utils import fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str

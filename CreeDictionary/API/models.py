@@ -31,8 +31,8 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from constants.enums import Language, POS, SimpleLexicalCategory, ParadigmSize
-from constants.types import Label, FSTTag, ConcatAnalysis
+from utils import Language, POS, SimpleLexicalCategory, ParadigmSize
+from utils import Label, FSTTag, ConcatAnalysis
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler

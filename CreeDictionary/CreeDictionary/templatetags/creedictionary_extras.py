@@ -5,8 +5,8 @@
 Template tags related to the Cree Dictionary specifically.
 """
 
-from constants.vars import DEFAULT_ORTHOGRAPHY
-from constants.data_classes import ORTHOGRAPHY_NAME
+from utils.vars import DEFAULT_ORTHOGRAPHY
+from utils.data_classes import ORTHOGRAPHY_NAME
 from cree_sro_syllabics import sro2syllabics
 from CreeDictionary.utils import url_for_query
 from django import template

@@ -5,7 +5,7 @@ from django import template
 from django.forms import model_to_dict
 
 from API.models import Wordform
-from constants.enums import SimpleLC
+from utils.enums import SimpleLC
 from utils import fst_analysis_parser, crkeng_xml_utils
 
 register = template.Library()

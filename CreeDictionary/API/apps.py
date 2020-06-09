@@ -1,16 +1,13 @@
 import logging
-from collections import defaultdict
+import string
 from pathlib import Path
 
 from django.apps import AppConfig
-from django.conf import settings
-from django.db import connection, OperationalError
-from typing import List, Dict, Set
-import string
+from django.db import OperationalError
 
-from .affix_search import AffixSearcher
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
+from .affix_search import AffixSearcher
 
 logger = logging.getLogger(__name__)
 

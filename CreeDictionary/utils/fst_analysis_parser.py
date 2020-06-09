@@ -1,15 +1,12 @@
 import csv
 import re
 from enum import Enum
-from os.path import dirname
 from pathlib import Path
-from typing import Iterable, Dict, Optional, Set, Pattern, List, NewType
+from typing import Dict, Optional, List
 from typing import Tuple
 
-from attr import attrs
-
-from constants import SimpleLexicalCategory
-from constants.types import Label, FSTTag, FSTLemma
+from utils.enums import SimpleLexicalCategory
+from utils.types import Label, FSTTag, FSTLemma
 from .shared_res_dir import shared_res_dir
 
 analysis_pattern = re.compile(
