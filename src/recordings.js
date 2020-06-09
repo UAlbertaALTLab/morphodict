@@ -2,6 +2,9 @@
 // TODO: should come from config.
 const BASE_URL = 'https://sapir.artsrn.ualberta.ca/validation'
 
+// the specific URL for a given speaker (appended with the speaker code)
+const BASE_SPEAKER_URL = 'http://altlab.ualberta.ca/maskwacis/Speakers/';
+
 export function fetchRecordings(wordform) {
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
     .then(function (response) {
