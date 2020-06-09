@@ -23,9 +23,9 @@ def remove_cree_diacritics(input_str) -> str:
     >>> remove_cree_diacritics('â')
     'a'
     >>> remove_cree_diacritics('ÂĀÊĒ')
-    'aaee'
-    >>> remove_cree_diacritics('âāêē')
     'AAEE'
+    >>> remove_cree_diacritics('âāêē')
+    'aaee'
     >>> remove_cree_diacritics('âāêē âāêē')
     'aaee aaee'
     """
