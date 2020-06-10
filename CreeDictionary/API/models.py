@@ -20,6 +20,7 @@ from typing import (
 from urllib.parse import quote
 
 import attr
+import CreeDictionary.hfstol as temp_hfstol
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -28,23 +29,30 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from sortedcontainers import SortedSet
-
-import CreeDictionary.hfstol as temp_hfstol
-from utils import Language, POS, SimpleLexicalCategory, ParadigmSize
-from utils import Label, FSTTag, ConcatAnalysis
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from utils import fst_analysis_parser, get_modified_distance
+from sortedcontainers import SortedSet
+from utils import (
+    POS,
+    ConcatAnalysis,
+    FSTTag,
+    Label,
+    Language,
+    ParadigmSize,
+    SimpleLexicalCategory,
+    fst_analysis_parser,
+    get_modified_distance,
+)
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
     FST_TAG_LABELS,
     LabelFriendliness,
     partition_analysis,
 )
+
 from .affix_search import AffixSearcher
-from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
+from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
 
 logger = logging.getLogger(__name__)
 
@@ -772,7 +780,23 @@ def sort_search_result(
         # both from cree
         a_dis = get_modified_distance(user_query, res_a.matched_cree)
         b_dis = get_modified_distance(user_query, res_b.matched_cree)
-        return a_dis - b_dis
+        difference = a_dis - b_dis
+        if difference:
+            return difference
+
+        # Both results are EXACTLY the same form!
+        # Further disambiguate by checking if one is the lemma.
+        if res_a.is_lemma and res_b.is_lemma:
+            return 0
+        elif res_a.is_lemma:
+            return -1
+        elif res_b.is_lemma:
+            return 1
+        else:
+            # Somehow, both forms exactly match the user query and neither
+            # is a lemma?
+            return 0
+
     # todo: better English sort
     elif res_a.matched_by is Language.CREE:
         # a from cree, b from English
