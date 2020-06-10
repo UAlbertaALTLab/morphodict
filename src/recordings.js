@@ -72,10 +72,7 @@ export function retrieveListOfSpeakers() {
     audio.preload = 'none'
     createdSpeakerButton.addEventListener('click', () => {
       audio.play()
-
-      displaySpeakerBioLink(recordingData);
-
-      
+      displaySpeakerBioLink(recordingData);     
     })
   }
 
