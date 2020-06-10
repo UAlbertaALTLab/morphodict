@@ -78,7 +78,7 @@ context('Recordings', function () {
       cy.get('[data-cy=recordings-list__item]').click({ multiple: true })
     })
 
-    it.only('should open a link to the speaker\'s webpage in a new tab', () => {
+    it('should open a link to the speaker\'s webpage in a new tab', () => {
       // begin from the paradigm page (technically cheating here 😅)
       cy.visit('/word/wâpamêw/');
 
@@ -88,10 +88,10 @@ context('Recordings', function () {
         .click();
 
       // the names of the speakers should appear on the page as a list of buttons to be interacted with
-      cy.get('[data-cy=recordings-list').find('li');
+      cy.get('[data-cy=recordings-list]').find('li');
 
       // clicking the buttons should output sound
-      cy.get('[data-cy=recordings-list__item').click({ multiple: true });
+      cy.get('[data-cy=recordings-list__item]').click({ multiple: true });
 
       // the name of the speaker should appear as a link: said link should contain the base speaker link URL (http://altlab.ualberta.ca/maskwacis/Speakers/)
       cy.get('[data-cy=recordings-list__item-speaker]').should('have.attr', 'href').should('contain', 'http://altlab.ualberta.ca/maskwacis/Speakers/');
