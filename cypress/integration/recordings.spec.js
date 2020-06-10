@@ -75,20 +75,12 @@ context('Recordings', function () {
       cy.get('[data-cy=recordings-list]').find('button')
 
       // clicking the buttons should output sound (can't figure out how to play them serially + not at once...but that may be okay?)
-      cy.get('[data-cy=recordings-list__item').click({ multiple: true })
+      cy.get('[data-cy=recordings-list__item]').click({ multiple: true })
     })
 
     it.only('should open a link to the speaker\'s webpage in a new tab', () => {
       // begin from the paradigm page (technically cheating here 😅)
       cy.visit('/word/wâpamêw/');
-
-      // // select the searchbar
-      // cy.get('[data-cy=search]')
-      //   // look up a word (wapamew)
-      //   .type('wapamew');
-
-      // // select the word and move to its paradigm,
-      // cy.get('[data-cy=definition-title').first().click();
 
       // then hover/focus on the speaker icon
       cy.get('[data-cy=play-recording]').focus()
@@ -101,14 +93,8 @@ context('Recordings', function () {
       // clicking the buttons should output sound
       cy.get('[data-cy=recordings-list__item').click({ multiple: true });
 
-      // the name of the speaker should appear as a link
-      cy.get('[data-cy=recordings-list__item-speaker')
-
-      // clicking a link should create a new link on the page: said link should contain the base speaker link URL (http://altlab.ualberta.ca/maskwacis/Speakers/)
-      .should('contain', 'http://altlab.ualberta.ca/maskwacis/Speakers/');
-
-      // // said link should open in a new tab
-      // .should('have.attr', 'target', '_blank');
+      // the name of the speaker should appear as a link: said link should contain the base speaker link URL (http://altlab.ualberta.ca/maskwacis/Speakers/)
+      cy.get('[data-cy=recordings-list__item-speaker]').should('have.attr', 'href').should('contain', 'http://altlab.ualberta.ca/maskwacis/Speakers/');
     });
   })
 })
