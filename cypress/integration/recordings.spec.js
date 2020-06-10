@@ -79,7 +79,7 @@ context('Recordings', function () {
     })
 
     it('should open a link to the speaker\'s webpage in a new tab', () => {
-      // begin from the paradigm page (technically cheating here 😅)
+      // begin from the paradigm page
       cy.visit('/word/wâpamêw/');
 
       // then hover/focus on the speaker icon
