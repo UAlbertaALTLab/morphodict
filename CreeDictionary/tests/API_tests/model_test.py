@@ -2,12 +2,11 @@ import json
 from collections import Iterable
 
 import pytest
-from hypothesis import assume, given
-
 from API.models import Wordform
-from utils.enums import Language
 from CreeDictionary import settings
+from hypothesis import assume, given
 from tests.conftest import random_lemmas
+from utils.enums import Language
 
 
 @pytest.fixture(scope="module")
@@ -246,3 +245,32 @@ def test_lemma_ranking_most_frequent_word():
     # it undoubtedly has the highest frequency
     results = Wordform.search("sleep")
     assert results[0].matched_cree == "nipâw"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize("lemma", ["maskwa", "niska"])
+def test_lemma_and_syncretic_form_ranking(lemma):
+    """
+    Tests that the lemma is always shown first, even when a search yields
+    one or more forms that are syncretic with the lemma; That is, ensure THIS
+    doesn't happen:
+
+        sheep [Plural]
+        form of sheep [Singular]
+
+        (no definition found for sheep [Plural])
+
+        sheep [Singular]
+        1. a fluffy mammal that appears in dreams
+
+    Note: this test is likely to be **FLAKY** if the implementation is buggy
+    and uses a **non-stable** sort or comparison.
+    """
+
+    results = Wordform.search(lemma)
+    assert len(results) >= 2
+    maskwa_results = [res for res in results if res.lemma_wordform.text == lemma]
+    assert len(maskwa_results) >= 2
+    assert any(res.is_lemma for res in maskwa_results)
+    first_result = maskwa_results[0]
+    assert first_result.is_lemma, f"unexpected first result: {first_result}"
