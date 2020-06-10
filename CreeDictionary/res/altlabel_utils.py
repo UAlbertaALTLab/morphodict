@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+"""
+Pragmatical utilities thar parses and edits crk.altlabel.tsv
+"""
+
 import csv
 from argparse import ArgumentParser
 
