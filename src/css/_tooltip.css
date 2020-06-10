@@ -11,6 +11,7 @@
 
 .tooltip {
   display: none;
+  position: absolute;
 
   padding: 13px;
   border-radius: 4px;
@@ -27,7 +28,7 @@
 }
 
 .tooltip[data-show] {
-  display: block;
+  display: inline-block;
 }
 
 .tooltip__arrow,
