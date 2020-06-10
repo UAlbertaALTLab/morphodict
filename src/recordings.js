@@ -81,7 +81,7 @@ export function retrieveListOfSpeakers() {
     let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html';
 
     // select for the area to place the speaker link
-    let container = document.querySelector('.speaker-links');
+    let container = document.querySelector('.speaker-link');
 
     // generate a new link and append it to the page if there isn't already one
     if (container.childElementCount < 1 ) {
