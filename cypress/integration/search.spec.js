@@ -163,9 +163,7 @@ context('Searching', () => {
     })
 
     it('should handle English-influenced spelling', () => {
-      cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('atchakosuk')
+      cy.visitSearch('atchakosuk')
 
       cy.get('[data-cy=search-results]')
         .contains('atâhk')
