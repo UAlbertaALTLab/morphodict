@@ -97,6 +97,7 @@ export function retrieveListOfSpeakers() {
       // ...and add attributes to the link
       speakerLink.setAttribute('target', '_blank');
       speakerLink.setAttribute('rel', 'noopener');
+      speakerLink.setAttribute('data-cy', 'recordings-list__item-speaker');
       
       // put the text prompt into the link
       speakerLink.appendChild(linkText);
