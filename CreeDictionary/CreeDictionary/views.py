@@ -20,13 +20,13 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     """
     lemma detail page. Fall back to search page if no lemma is found or multiple lemmas are found
 
-    :param request: accepts query params `pos` `full_lc` `analysis` `id` to further specify query_string
+    :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
     extra_constraints = {
         k: v
         for k, v in request.GET.items()
-        if k in {"pos", "full_lc", "analysis", "id"}
+        if k in {"pos", "inflectional_category", "analysis", "id"}
     }
     lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True, **extra_constraints)
     if lemma.count() == 1:

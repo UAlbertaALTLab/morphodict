@@ -8,7 +8,7 @@ from DatabaseManager.cree_inflection_generator import expand_inflections
 
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
-    call_command("migrate", "API", "0005")
+    call_command("migrate", "API", "0001")
     cmd_entry([..., "import", str(shared_datadir / "crkeng-small-nice-0")])
 
     expanded = expand_inflections(

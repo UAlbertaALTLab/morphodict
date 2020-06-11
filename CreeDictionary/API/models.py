@@ -220,12 +220,12 @@ class Wordform(models.Model):
     def homograph_disambiguator(self) -> Optional[str]:
         """
         :return: the least strict field name that guarantees unique match together with the text field.
-            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+            could be pos, inflectional_category, analysis, id or None when the text is enough to disambiguate
         """
         homographs = Wordform.objects.filter(text=self.text)
         if homographs.count() == 1:
             return None
-        for field in "pos", "full_lc", "analysis":
+        for field in "pos", "inflectional_category", "analysis":
             if homographs.filter(**{field: getattr(self, field)}).count() == 1:
                 return field
         return "id"  # id always guarantees unique match
@@ -273,7 +273,7 @@ class Wordform(models.Model):
 
     inflectional_category = models.CharField(
         max_length=10,
-        help_text="Inflectional category directly from source",  # e.g. NI-3
+        help_text="Inflectional category directly from source xml file",  # e.g. NI-3
     )
     RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
     pos = models.CharField(
@@ -297,7 +297,7 @@ class Wordform(models.Model):
     # if as_is is False. pos field is guaranteed to be not empty
     # and will be values from `constants.POS` enum class
 
-    # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
+    # if as_is is True, inflectional_category and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
         help_text="The lemma of this wordform is not determined during the importing process."
@@ -546,7 +546,7 @@ class Wordform(models.Model):
 
             # explained above, preverbs should be presented
             for wordform in Wordform.objects.filter(
-                Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
+                Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
                 as_is=True,
                 **extra_constraints,

@@ -29,7 +29,9 @@ def merge_preverbs(apps, schema_editor):
 
     # group preverbs
     no_dash_asciis_to_wordforms: Dict[str, Set[Wordform]] = defaultdict(set)
-    for preverb_wordform in Wordform.objects.filter(Q(full_lc="IPV") | Q(pos="IPV")):
+    for preverb_wordform in Wordform.objects.filter(
+        Q(inflectional_category="IPV") | Q(pos="IPV")
+    ):
         no_dash_ascii = remove_cree_diacritics(preverb_wordform.text.strip("-"))
         no_dash_asciis_to_wordforms[no_dash_ascii].add(preverb_wordform)
 
@@ -62,7 +64,7 @@ def merge_preverbs(apps, schema_editor):
         wordforms.remove(dashed_wordform)
 
         # normalized full_lc and pos
-        dashed_wordform.full_lc = "IPV"
+        dashed_wordform.inflectional_category = "IPV"
         dashed_wordform.pos = "IPV"
         dashed_wordform.save()
 
@@ -83,6 +85,6 @@ def merge_preverbs(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("API", "0006_auto_20200205_0256"),
+        ("API", "0002_insert_sources"),
     ]
     operations = [migrations.RunPython(merge_preverbs)]

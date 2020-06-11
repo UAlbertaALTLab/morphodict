@@ -404,7 +404,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             text=xml_lemma,
             analysis=generate_as_is_analysis(xml_lemma, pos, lc),
             pos=upper_pos if upper_pos in RECOGNIZABLE_POS else "",
-            full_lc=lc,
+            inflectional_category=lc,
             is_lemma=True,
             as_is=True,
         )
@@ -487,7 +487,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
                     pos=generated_pos.name,
-                    full_lc=xml_lc,
+                    inflectional_category=xml_lc,
                     as_is=False,
                 )
 

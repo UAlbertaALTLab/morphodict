@@ -37,7 +37,7 @@ class PartOfSpeech(Enum):
 
 class WordClass(Enum):
     """
-    a simplified version of lexical categories.
+    a simplified version of inflectional categories.
 
     i.e. without the nuances of dash number like NA-1 VTA-3
     """

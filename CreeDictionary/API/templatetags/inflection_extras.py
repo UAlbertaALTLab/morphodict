@@ -18,13 +18,13 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
     :param wordform_dict: a (maybe serialized) Wordform instance
     :return: a pos that is shown to users. like Noun, Verb, etc
 
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": "VAI-v"})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "inflectional_category": "VAI-v"})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": ""})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "inflectional_category": ""})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": "VAI-v"})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "inflectional_category": "VAI-v"})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": ""})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "inflectional_category": ""})
     'Verb'
     """
     if isinstance(wordform, Wordform):
@@ -36,7 +36,7 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
 
     # special case. In the source, some preverbs have pos labelled as IPC
     # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    lc = crkeng_xml_utils.parse_xml_lc(wordform_dict["full_lc"])
+    lc = crkeng_xml_utils.parse_xml_lc(wordform_dict["inflectional_category"])
     if lc is not None:
         if lc is WC.IPV:
             return "Preverb"
