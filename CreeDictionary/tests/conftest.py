@@ -22,29 +22,6 @@ def topmost_datadir():
     return Path(dirname(__file__)) / "data"
 
 
-@composite
-def analyzable_inflections(draw) -> Wordform:
-    """
-    inflections with as_is field being False, meaning they have an analysis field from fst analyzer
-    """
-    inflection_objects = Wordform.objects.all()
-
-    pk_id = draw(integers(min_value=1, max_value=inflection_objects.count()))
-    the_inflection = inflection_objects.get(id=pk_id)
-    assume(not the_inflection.as_is)
-    return the_inflection
-
-
-@composite
-def random_inflections(draw) -> Wordform:
-    """
-    hypothesis strategy to supply random inflections
-    """
-    inflection_objects = Wordform.objects.all()
-    id = draw(integers(min_value=1, max_value=inflection_objects.count()))
-    return inflection_objects.get(id=id)
-
-
 class WordformStrategy(SearchStrategy[Wordform]):
     """
     Strategy that fetches Wordform objects from the database LAZILY.
@@ -73,7 +50,7 @@ class WordformStrategy(SearchStrategy[Wordform]):
 
 def lemmas():
     """
-    Strategy to return lemmas from the database
+    Strategy to return lemmas from the database.
     """
     return WordformStrategy(is_lemma=True, as_is=False)
 
