@@ -3,7 +3,6 @@ shared (expensive) instances
 """
 
 from hfstol import HFSTOL
-
 from utils import paradigm_filler as pf
 from utils import shared_res_dir
 

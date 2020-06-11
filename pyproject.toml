@@ -1,0 +1,20 @@
+[tool.black]
+exclude = "migrations/"
+
+[tool.isort]
+# Match what Black will do:
+multi_line_output = 3
+line_length = 88
+
+skip = [
+    "migrations",
+    "node_modules",
+]
+# TODO: fix import paths so this key is no longer necessary:
+known_first_party = [
+    "utils",
+    "CreeDictionary",
+    "API",
+    "fuzzy_search",
+    "shared",
+]

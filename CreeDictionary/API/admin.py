@@ -4,8 +4,8 @@ from cree_sro_syllabics import syllabics2sro
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-
 from shared import descriptive_analyzer
+
 from .models import Definition, DictionarySource, Wordform
 
 
