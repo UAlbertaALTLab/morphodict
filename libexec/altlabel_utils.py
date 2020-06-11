@@ -5,9 +5,16 @@ Pragmatical utilities thar parses and edits crk.altlabel.tsv
 """
 
 import csv
+import sys
 from argparse import ArgumentParser
+from pathlib import Path
 
-from utils import shared_res_dir
+# Figure out shared_res_dir
+add_to_path = Path(__file__).parent.parent / "CreeDictionary"
+assert add_to_path.is_dir()
+sys.path.insert(0, str(add_to_path))
+shared_res_dir = __import__("utils").shared_res_dir
+
 
 if __name__ == "__main__":
     parser = ArgumentParser()
