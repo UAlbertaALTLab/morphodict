@@ -31,20 +31,29 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from utils import Language, POS, WordClass, ParadigmSize
-from utils import Label, FSTTag, ConcatAnalysis
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from utils import fst_analysis_parser, get_modified_distance
+from utils import (
+    POS,
+    ConcatAnalysis,
+    FSTTag,
+    Label,
+    Language,
+    ParadigmSize,
+    WordClass,
+    fst_analysis_parser,
+    get_modified_distance,
+)
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
     FST_TAG_LABELS,
     LabelFriendliness,
     partition_analysis,
 )
+
 from .affix_search import AffixSearcher
-from .schema import SerializedSearchResult, SerializedWordform, SerializedDefinition
+from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
 
 logger = logging.getLogger(__name__)
 

@@ -4,6 +4,7 @@
 from string import printable as ascii_printable
 
 import pytest
+
 from CreeDictionary.utils import url_for_query
 
 

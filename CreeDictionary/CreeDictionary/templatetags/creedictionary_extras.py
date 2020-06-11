@@ -5,12 +5,13 @@
 Template tags related to the Cree Dictionary specifically.
 """
 
-from utils.vars import DEFAULT_ORTHOGRAPHY
-from utils import ORTHOGRAPHY_NAME
 from cree_sro_syllabics import sro2syllabics
-from CreeDictionary.utils import url_for_query
 from django import template
 from django.utils.html import format_html
+
+from CreeDictionary.utils import url_for_query
+from utils import ORTHOGRAPHY_NAME
+from utils.vars import DEFAULT_ORTHOGRAPHY
 
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 

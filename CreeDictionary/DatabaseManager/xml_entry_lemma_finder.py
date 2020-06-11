@@ -1,10 +1,11 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
+import csv
 from collections import defaultdict
 from itertools import chain
 from string import Template
-from typing import List, Dict, Tuple, Set, Optional, Any
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 from colorama import Fore, init
 from typing_extensions import Literal
@@ -12,11 +13,9 @@ from typing_extensions import Literal
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
-from utils.types import FSTLemma, ConcatAnalysis
-from utils import WC
 from shared import strict_analyzer
-from utils import shared_res_dir, ConcatAnalysis, FSTLemma
-import csv
+from utils import WC, ConcatAnalysis, FSTLemma, shared_res_dir
+from utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
 

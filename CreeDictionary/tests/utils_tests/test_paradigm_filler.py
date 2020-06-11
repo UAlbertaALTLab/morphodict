@@ -1,8 +1,8 @@
 import pytest
-from utils import ParadigmSize, WC
+
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
-from utils import shared_res_dir
+from utils import WC, ParadigmSize, shared_res_dir
 from utils.paradigm_filler import import_prefilled_layouts
 
 

@@ -1,0 +1,48 @@
+name: Reformats various files
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  # NOTE: Do all jobs SEQUENTIALLY to avoid merges
+
+  reformat-altlabel:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Reformat
+      run: ./libexec/altlabel_utils.py format
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      with:
+        commit_message: "🤖🧹 reformat crk.altlabel [skip travis]"
+
+  reformat-python:
+    runs-on: ubuntu-latest
+    # Ensure this is run **sequentially**
+    needs: reformat-altlabel
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: Install dependencies
+      run: "pip install 'isort[pyproject]' black"
+    - name: Reformat
+      run: |
+        isort -y
+        black .
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      with:
+        commit_message: "🤖🧹 reformat Python files [skip travis]"

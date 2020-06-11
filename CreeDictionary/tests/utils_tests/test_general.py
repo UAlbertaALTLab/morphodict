@@ -6,9 +6,7 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from utils import WordClass
-from utils import extract_simple_lc
-from utils import fst_analysis_parser
+from utils import WordClass, extract_simple_lc, fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str
 
 

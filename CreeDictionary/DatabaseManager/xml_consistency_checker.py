@@ -4,9 +4,7 @@ from utils import WordClass
 from utils.crkeng_xml_utils import parse_xml_lc
 
 
-def does_lc_match_xml_entry(
-    lc: WordClass, xml_pos: str, xml_lc: str
-) -> bool:
+def does_lc_match_xml_entry(lc: WordClass, xml_pos: str, xml_lc: str) -> bool:
     """
     check whether an xml entry matches with an `InflectionCategory`
         if neither xml_pos and xml_lc are understood: False

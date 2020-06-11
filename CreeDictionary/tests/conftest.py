@@ -4,14 +4,10 @@ from pathlib import Path
 
 import pytest
 from django.core.management import call_command
-from hypothesis import assume
+from hypothesis import assume, settings
 from hypothesis.strategies import composite, integers, sampled_from
 
 from API.models import Wordform
-
-
-from hypothesis import settings
-
 from DatabaseManager.xml_importer import import_xmls
 
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))

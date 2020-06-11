@@ -2,9 +2,10 @@ import json
 from collections import Iterable
 
 import pytest
+from hypothesis import assume, given
+
 from API.models import Wordform
 from CreeDictionary import settings
-from hypothesis import assume, given
 from tests.conftest import random_lemmas
 from utils.enums import Language
 

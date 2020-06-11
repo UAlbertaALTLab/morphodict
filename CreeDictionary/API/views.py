@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 
-
 # todo: update api documentation
 
 

@@ -9,8 +9,8 @@ from typing import Dict, List, Tuple
 
 import hfstol
 
-from utils import ParadigmSize, WC
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
+from utils import WC, ParadigmSize
 
 LayoutID = Tuple[WC, ParadigmSize]
 

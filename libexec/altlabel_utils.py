@@ -26,22 +26,18 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.command_name == "format":
-
-        rows = []
+        rows = []  # type: ignore
         altblabel_tsv_path = shared_res_dir / "crk.altlabel.tsv"
 
-        with open(altblabel_tsv_path) as file:
-            for row in csv.reader(file, delimiter="\t"):
-                rows.append(row)
+        with open(altblabel_tsv_path, newline="", encoding="UTF-8") as file:
+            rows.extend(csv.reader(file, delimiter="\t"))
         max_length = len(max(rows, key=len))
 
         new_rows = [r + ["" for _ in range(max_length - len(r))] for r in rows]
+        assert all(len(row) == max_length for row in new_rows)
 
-        print(
-            "New crk.altlabel.tsv written with %s columns on each row"
-            % len(new_rows[0])
-        )
+        print(f"New crk.altlabel.tsv written with {max_length} columns on each row")
 
-        with open(altblabel_tsv_path, "w") as file:
-            writer = csv.writer(file, delimiter="\t")
+        with open(altblabel_tsv_path, "w", newline="", encoding="UTF-8") as file:
+            writer = csv.writer(file, delimiter="\t", lineterminator="\n")
             writer.writerows(new_rows)
