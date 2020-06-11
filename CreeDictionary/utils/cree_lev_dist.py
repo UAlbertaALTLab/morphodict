@@ -1,6 +1,28 @@
+import string
 import unicodedata
 
 VOWELS = {"a", "e", "i", "o"}
+
+
+_diacritic_letter_to_ascii = {
+    "â": "a",
+    "ā": "a",
+    "ê": "e",
+    "ē": "e",
+    "ī": "i",
+    "î": "i",
+    "ô": "o",
+    "ō": "o",
+}
+
+
+_diacritic_letter_to_ascii.update(
+    {d.upper(): a.upper() for d, a in _diacritic_letter_to_ascii.items()}
+)
+
+_diacritic_letter_ord_to_ascii = {
+    ord(k): v for k, v in _diacritic_letter_to_ascii.items()
+}
 
 
 def remove_cree_diacritics(input_str) -> str:
@@ -9,10 +31,14 @@ def remove_cree_diacritics(input_str) -> str:
     'a'
     >>> remove_cree_diacritics('â')
     'a'
+    >>> remove_cree_diacritics('ÂĀÊĒ')
+    'AAEE'
+    >>> remove_cree_diacritics('âāêē')
+    'aaee'
+    >>> remove_cree_diacritics('âāêē âāêē')
+    'aaee aaee'
     """
-    nfkd_form = unicodedata.normalize("NFKD", input_str)
-    only_ascii = nfkd_form.encode("ASCII", "ignore").decode("utf-8")
-    return only_ascii
+    return input_str.translate(_diacritic_letter_ord_to_ascii)
 
 
 def del_dist(string, i):

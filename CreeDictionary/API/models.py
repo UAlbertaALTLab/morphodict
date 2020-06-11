@@ -772,7 +772,23 @@ def sort_search_result(
         # both from cree
         a_dis = get_modified_distance(user_query, res_a.matched_cree)
         b_dis = get_modified_distance(user_query, res_b.matched_cree)
-        return a_dis - b_dis
+        difference = a_dis - b_dis
+        if difference:
+            return difference
+
+        # Both results are EXACTLY the same form!
+        # Further disambiguate by checking if one is the lemma.
+        if res_a.is_lemma and res_b.is_lemma:
+            return 0
+        elif res_a.is_lemma:
+            return -1
+        elif res_b.is_lemma:
+            return 1
+        else:
+            # Somehow, both forms exactly match the user query and neither
+            # is a lemma?
+            return 0
+
     # todo: better English sort
     elif res_a.matched_by is Language.CREE:
         # a from cree, b from English

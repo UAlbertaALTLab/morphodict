@@ -18,10 +18,3 @@ class Analysis(NamedTuple):
             result += self.raw_prefixes + "+"
         result += f"{self.lemma}+{self.raw_suffixes}"
         return ConcatAnalysis(result)
-
-
-ORTHOGRAPHY_NAME = {
-    "Latn": "SRO (êîôâ)",
-    "Latn-x-macron": "SRO (ēīōā)",
-    "Cans": "Syllabics",
-}

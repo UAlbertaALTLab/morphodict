@@ -3,18 +3,65 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 """
 from collections import defaultdict
 from itertools import chain
-from typing import List, Dict, Tuple, Set
+from string import Template
+from typing import List, Dict, Tuple, Set, Optional, Any
 
 from colorama import Fore, init
+from typing_extensions import Literal
 
 import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
 from utils.types import FSTLemma, ConcatAnalysis
-from utils.enums import WC
+from utils import WC
 from shared import strict_analyzer
+from utils import shared_res_dir, ConcatAnalysis, FSTLemma
+import csv
 
 init()  # for windows compatibility
+
+
+class DefaultLemmaPicker:
+    """
+    When two analyses have the same looking lemma and word class, this helps choose the preferred lemma
+
+    i.e. It helps solve this question: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma?"
+    """
+
+    def __init__(self, language: Literal["crk", "srs"]):
+
+        self._word_class_to_lemma_analysis_templates: Dict[
+            SimpleLC, List[Template]
+        ] = {}
+
+        lemma_tags_path = shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
+
+        with open(lemma_tags_path) as lemma_tags_file:
+            for row in csv.reader(lemma_tags_file, delimiter="\t"):
+                str_word_class, templates = row
+                self._word_class_to_lemma_analysis_templates[
+                    SimpleLC(str_word_class.strip().upper())
+                ] = [Template(t) for t in templates.strip().split(" ")]
+
+    def get_lemma(self, ambiguities: Set[ConcatAnalysis]) -> Optional[ConcatAnalysis]:
+        """
+        Pick the lemma analysis according to the looks of the usual lemma analyses for each word class.
+        """
+        for ambiguity in ambiguities:
+            lemma_wc = utils.fst_analysis_parser.extract_lemma_and_category(ambiguity)
+            assert lemma_wc is not None
+            lemma, word_class = lemma_wc
+
+            templates = self._word_class_to_lemma_analysis_templates.get(word_class)
+            if templates is None:
+                return None
+
+            if ambiguity in {t.substitute(lemma=lemma) for t in templates}:
+                return ambiguity
+        return None
+
+
+crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
 def extract_fst_lemmas(
@@ -166,14 +213,21 @@ def extract_fst_lemmas(
                     )
                     success_counter += 1
                 else:
-                    logger.debug(
-                        "xml entry %s with pos %s lc %s have more than one potential analyses by fst strict analyzer."
-                        % (xml_lemma, pos, lc)
-                    )
-                    xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = ConcatAnalysis(
-                        ""
-                    )
-                    dup_counter += 1
+                    # check if it contains default forms of lemma analyses
+                    res = crk_default_lemma_picker.get_lemma(ambiguities)
+                    if res is not None:
+                        xml_lemma_pos_lc_to_analysis[xml_lemma, pos, lc] = res
+                        success_counter += 1
+                    else:
+                        logger.debug(
+                            "xml entry %s with pos %s lc %s have more "
+                            "than one potential analyses by fst strict analyzer."
+                            % (xml_lemma, pos, lc)
+                        )
+                        xml_lemma_pos_lc_to_analysis[
+                            xml_lemma, pos, lc
+                        ] = ConcatAnalysis("")
+                        dup_counter += 1
 
     logger.info(
         f"{Fore.GREEN}%d (lemma, pos, lc) found proper lemma analysis{Fore.RESET}"

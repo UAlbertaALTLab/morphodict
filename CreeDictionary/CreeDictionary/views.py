@@ -1,8 +1,7 @@
 from http import HTTPStatus
 
 from API.models import Wordform
-from utils import ParadigmSize
-from utils.data_classes import ORTHOGRAPHY_NAME
+from utils import ParadigmSize, ORTHOGRAPHY_NAME
 from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse
 from django.shortcuts import redirect, render

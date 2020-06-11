@@ -242,13 +242,11 @@ context('Regressions', () => {
     // the website didn't do anything
 
 
-
-
     cy.visitSearch('ayâw')
     cy.get('[data-cy=lemma-link]').its('length').then(
-      length =>{
+      length => {
         // each clickable link should show paradigm
-        for (let i = 0; i< length; i++){
+        for (let i = 0; i < length; i++) {
           cy.visitSearch('ayâw')
           // .eq(n) selects the nth matched element
           cy.get('[data-cy=lemma-link]').eq(i).click()
@@ -256,13 +254,13 @@ context('Regressions', () => {
         }
       }
     ).then(
-      ()=>{
+      () => {
 
         // repeat the same test with nôhtêpayiw
         cy.visitSearch('nôhtêpayiw')
-        cy.get('[data-cy=lemma-link]').its('length').then(length=>{
+        cy.get('[data-cy=lemma-link]').its('length').then(length => {
 
-          for (let i = 0; i< length; i++){
+          for (let i = 0; i < length; i++) {
             cy.visitSearch('nôhtêpayiw')
             cy.get('[data-cy=lemma-link]').eq(i).click()
             cy.get('[data-cy=paradigm]').should('be.visible')
@@ -272,21 +270,28 @@ context('Regressions', () => {
         })
 
 
-
-
-
       }
-
-
     )
-
-
-
-
-
 
 
   })
 
+
+  /**
+   * Ensure vowel length does not destroy affix search
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/420
+   */
+  it('should show affix search results when the query has diacritics on it', function () {
+
+    // test assumption: without vowel length, affix search works
+    cy.visitSearch('niso-')
+    cy.get('[data-cy=search-results]').should('contain', 'nîso-kîsikâw')
+
+    // Now if we add the vowel length, we should still get the result
+    cy.visitSearch('nîso-')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'nîso-kîsikâw')
+  })
 
 })
