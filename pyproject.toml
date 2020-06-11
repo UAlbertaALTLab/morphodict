@@ -2,6 +2,10 @@
 exclude = "migrations/"
 
 [tool.isort]
+# Match what Black will do:
+multi_line_output = 3
+line_length = 88
+
 skip = [
     "migrations",
     "node_modules",
