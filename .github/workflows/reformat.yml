@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  # Do all jobs SEQUENTIALLY to avoid merges
+  # NOTE: Do all jobs SEQUENTIALLY to avoid merges
 
   reformat-altlabel:
     runs-on: ubuntu-latest
@@ -28,6 +28,8 @@ jobs:
 
   reformat-python:
     runs-on: ubuntu-latest
+    # Ensure this is run **sequentially**
+    needs: reformat-altlabel
     steps:
     - uses: actions/checkout@v2
       with:
