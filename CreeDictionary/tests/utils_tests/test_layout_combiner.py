@@ -1,6 +1,6 @@
+from shared import shared_res_dir
 from utils import ParadigmSize
 from utils.enums import SimpleLC
-from shared import shared_res_dir
 from utils.paradigm_layout_combiner import import_layouts
 
 

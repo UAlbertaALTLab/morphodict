@@ -19,7 +19,6 @@ from pathlib import Path
 from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
-
 from utils import ParadigmSize
 from utils.enums import SimpleLC
 
