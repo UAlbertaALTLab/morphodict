@@ -1,12 +1,12 @@
 import csv
 import re
-from enum import Enum
+from enum import IntEnum, auto
 from pathlib import Path
-from typing import Dict, Optional, List
-from typing import Tuple
+from typing import Dict, List, Optional, Tuple
 
 from utils.enums import SimpleLexicalCategory
-from utils.types import Label, FSTTag, FSTLemma
+from utils.types import FSTLemma, FSTTag, Label
+
 from .shared_res_dir import shared_res_dir
 
 analysis_pattern = re.compile(
@@ -14,11 +14,11 @@ analysis_pattern = re.compile(
 )
 
 
-class LabelFriendliness(Enum):
-    LINGUISTIC_SHORT = 0
-    LINGUISTIC_LONG = 1
-    ENGLISH = 2
-    NEHIYAWEWIN = 3
+class LabelFriendliness(IntEnum):
+    LINGUISTIC_SHORT = auto()
+    LINGUISTIC_LONG = auto()
+    ENGLISH = auto()
+    NEHIYAWEWIN = auto()
 
 
 def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
