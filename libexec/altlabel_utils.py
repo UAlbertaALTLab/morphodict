@@ -30,7 +30,7 @@ if __name__ == "__main__":
         rows = []
         altblabel_tsv_path = shared_res_dir / "crk.altlabel.tsv"
 
-        with open(altblabel_tsv_path) as file:
+        with open(altblabel_tsv_path, newline="", encoding="UTF-8") as file:
             for row in csv.reader(file, delimiter="\t"):
                 rows.append(row)
         max_length = len(max(rows, key=len))
@@ -42,6 +42,6 @@ if __name__ == "__main__":
             % len(new_rows[0])
         )
 
-        with open(altblabel_tsv_path, "w") as file:
-            writer = csv.writer(file, delimiter="\t")
+        with open(altblabel_tsv_path, "w", newline="", encoding="UTF-8") as file:
+            writer = csv.writer(file, delimiter="\t", lineterminator="\n")
             writer.writerows(new_rows)
