@@ -3,16 +3,11 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
-from django.core.management import call_command
-from hypothesis import assume
-from hypothesis.strategies import composite, integers, sampled_from
-
 from API.models import Wordform
-
-
-from hypothesis import settings
-
 from DatabaseManager.xml_importer import import_xmls
+from django.core.management import call_command
+from hypothesis import assume, settings
+from hypothesis.strategies import SearchStrategy, composite, integers, sampled_from
 
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
@@ -50,13 +45,37 @@ def random_inflections(draw) -> Wordform:
     return inflection_objects.get(id=id)
 
 
-@composite
-def random_lemmas(draw) -> Wordform:
+class WordformStrategy(SearchStrategy[Wordform]):
     """
-    Strategy that supplies wordforms that are also lemmas!
+    Strategy that fetches Wordform objects from the database LAZILY.
+
+    The query isn't executed until the first example requested.
+
+    NOTE: This is NOT reproducible given a random seed,
+    because of its reliance on the database engine's random sort.
     """
-    lemmas = Wordform.objects.filter(is_lemma=True, as_is=False)
-    return draw(sampled_from(list(lemmas)))
+
+    def __init__(self, **filter_args):
+        # random elements:
+        self._query_set = Wordform.objects.filter(**filter_args).order_by("?")
+
+    def _next(self):
+        if not hasattr(self, "_iterator"):
+            self._iterator = iter(self._query_set)
+        return next(self._iterator)
+
+    def do_draw(self, data) -> Wordform:
+        return self._next()
+
+    def calc_is_cacheable(self, recur):
+        return False
+
+
+def lemmas():
+    """
+    Strategy to return lemmas from the database
+    """
+    return WordformStrategy(is_lemma=True, as_is=False)
 
 
 def migrate_and_import(dictionary_dir):
