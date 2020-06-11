@@ -21,6 +21,25 @@ class LabelFriendliness(IntEnum):
     NEHIYAWEWIN = auto()
 
 
+class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
+    def __init__(
+        self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
+    ) -> None:
+        self._data = data
+
+    def get(self, key, optional=None):
+        return self._data.get(key, optional)
+
+    def __getitem__(self, key: FSTTag) -> Dict[LabelFriendliness, Optional[Label]]:
+        return self._data[key]
+
+    def __contains__(self, key: object) -> bool:
+        return key in self._data
+
+    def __len__(self) -> int:
+        return len(self._data)
+
+
 def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
     res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
     with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
@@ -51,7 +70,7 @@ def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
     return res
 
 
-FST_TAG_LABELS = read_labels()
+FST_TAG_LABELS = Relabelling(read_labels())
 
 
 def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:
