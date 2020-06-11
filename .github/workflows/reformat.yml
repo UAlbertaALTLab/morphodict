@@ -3,8 +3,6 @@ name: Reformats various files
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   # NOTE: Do all jobs SEQUENTIALLY to avoid merges
