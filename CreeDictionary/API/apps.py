@@ -4,6 +4,7 @@ from pathlib import Path
 
 from django.apps import AppConfig
 from django.db import OperationalError
+
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
 

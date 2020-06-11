@@ -1,4 +1,5 @@
 import pytest
+
 from DatabaseManager.xml_entry_lemma_finder import extract_fst_lemmas
 
 

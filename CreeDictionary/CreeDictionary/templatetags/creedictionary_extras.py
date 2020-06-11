@@ -8,8 +8,6 @@ Template tags related to the Cree Dictionary specifically.
 from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
-from utils import ORTHOGRAPHY_NAME
-from utils.vars import DEFAULT_ORTHOGRAPHY
 
 from CreeDictionary.utils import url_for_query
 from utils import ORTHOGRAPHY_NAME
