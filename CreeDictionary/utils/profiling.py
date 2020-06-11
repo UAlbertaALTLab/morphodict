@@ -1,7 +1,7 @@
 """measure and report function execution time"""
 import time
 from functools import wraps
-from typing import Callable, Any
+from typing import Any, Callable
 
 
 def timed(

@@ -5,15 +5,14 @@ build test_db.sqlite3 from res/test_db_words.txt
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from itertools import chain
-from typing import List, Set, Dict
-
-from tqdm import tqdm
+from typing import Dict, List, Set
 
 from DatabaseManager.xml_importer import find_latest_xml_files
-from utils.profiling import timed
 from shared import descriptive_analyzer
-from utils import shared_res_dir, fst_analysis_parser, crkeng_xml_utils
+from tqdm import tqdm
+from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
+from utils.profiling import timed
 
 
 def get_test_words() -> Set[str]:

@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Optional
-from typing import Iterable
+from typing import Iterable, Optional
 from xml.dom import minidom
 
 from utils import SimpleLexicalCategory

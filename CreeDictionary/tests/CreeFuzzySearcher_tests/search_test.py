@@ -1,7 +1,6 @@
 from typing import Iterable
 
 import pytest
-
 from API.models import Wordform
 from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
 

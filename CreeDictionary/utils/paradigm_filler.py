@@ -8,9 +8,8 @@ from pathlib import Path
 from typing import Dict, List, Tuple
 
 import hfstol
-
-from utils import ParadigmSize, SimpleLC
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
+from utils import ParadigmSize, SimpleLC
 
 LayoutID = Tuple[SimpleLC, ParadigmSize]
 

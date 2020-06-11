@@ -8,10 +8,9 @@ from os.path import dirname
 from pathlib import Path
 from typing import Dict, Iterable, List, Set, Tuple
 
-from utils import SimpleLexicalCategory
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import normative_generator
-from utils import fst_analysis_parser
+from utils import SimpleLexicalCategory, fst_analysis_parser
 
 
 def import_flattened_prefilled_layouts(
