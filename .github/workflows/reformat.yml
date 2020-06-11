@@ -1,4 +1,4 @@
-name: Reformat crk.altlabel
+name: Reformats various files
 
 on:
   push:
@@ -7,10 +7,9 @@ on:
     branches: [ master ]
 
 jobs:
-  reformat:
-
+  # Do these things linearly, to avoid merge conflicts
+  reformat-altlabel:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
       with:
