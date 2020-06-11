@@ -119,12 +119,12 @@ class _RelabelFetcher:
         return self._data.get(key, {}).get(self._label, default)
 
 
-def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
+def read_labels() -> Relabelling:
     with (shared_res_dir / "crk.altlabel.tsv").open(encoding="UTF-8") as csvfile:
         return Relabelling.from_tsv(csvfile)
 
 
-FST_TAG_LABELS = Relabelling(read_labels())
+FST_TAG_LABELS: Relabelling = read_labels()
 
 
 def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:
