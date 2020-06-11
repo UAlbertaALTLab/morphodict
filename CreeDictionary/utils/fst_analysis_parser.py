@@ -21,37 +21,18 @@ class LabelFriendliness(IntEnum):
     NEHIYAWEWIN = auto()
 
 
-class RelabellingFetcher:
-    def __init__(
-        self,
-        data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
-        label: LabelFriendliness,
-    ):
-        self._data = data
-        self._label = label
-
-    def __getitem__(self, key: FSTTag) -> Optional[Label]:
-        return self._data[key][self._label]
-
-    # TODO: correct type signature
-    def get(self, key: FSTTag, default: Any = None) -> Any:
-        return self._data.get(key, {}).get(self._label, default)
-
-
 class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
     def __init__(
         self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
     ) -> None:
         self._data = data
 
-        self.linguistic_short = RelabellingFetcher(
+        self.linguistic_short = _RelabelFetcher(
             data, LabelFriendliness.LINGUISTIC_SHORT
         )
-        self.linguistic_long = RelabellingFetcher(
-            data, LabelFriendliness.LINGUISTIC_LONG
-        )
-        self.english = RelabellingFetcher(data, LabelFriendliness.ENGLISH)
-        self.cree = RelabellingFetcher(data, LabelFriendliness.NEHIYAWEWIN)
+        self.linguistic_long = _RelabelFetcher(data, LabelFriendliness.LINGUISTIC_LONG)
+        self.english = _RelabelFetcher(data, LabelFriendliness.ENGLISH)
+        self.cree = _RelabelFetcher(data, LabelFriendliness.NEHIYAWEWIN)
 
     def get(self, key, optional=None):
         return self._data.get(key, optional)
@@ -94,6 +75,23 @@ class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
                 res[FSTTag(fst_tag)] = tag_dict
 
         return cls(res)
+
+
+class _RelabelFetcher:
+    def __init__(
+        self,
+        data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
+        label: LabelFriendliness,
+    ):
+        self._data = data
+        self._label = label
+
+    def __getitem__(self, key: FSTTag) -> Optional[Label]:
+        return self._data[key][self._label]
+
+    # TODO: correct type signature
+    def get(self, key: FSTTag, default: Any = None) -> Any:
+        return self._data.get(key, {}).get(self._label, default)
 
 
 def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
