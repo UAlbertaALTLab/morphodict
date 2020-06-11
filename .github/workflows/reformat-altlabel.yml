@@ -7,20 +7,21 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  reformat:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
     - name: Reformat
       run: ./libexec/altlabel_utils.py format
-    - name: Push changes back to master.
-      uses: github-actions-x/commit@v2.6
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
-        commit-message: "🤖🧹 reformat crk.altlabel [skip travis]"
+        commit_message: "🤖🧹 reformat crk.altlabel [skip travis]"
