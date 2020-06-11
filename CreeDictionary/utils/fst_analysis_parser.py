@@ -71,7 +71,7 @@ class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
 
 
 def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
-    with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
+    with (shared_res_dir / "crk.altlabel.tsv").open(encoding="UTF-8") as csvfile:
         return Relabelling.from_tsv(csvfile)
 
 
