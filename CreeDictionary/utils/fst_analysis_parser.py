@@ -2,7 +2,7 @@ import csv
 import re
 from enum import IntEnum, auto
 from pathlib import Path
-from typing import Dict, List, Optional, TextIO, Tuple
+from typing import Any, Dict, List, Optional, TextIO, Tuple
 
 from utils.enums import SimpleLexicalCategory
 from utils.types import FSTLemma, FSTTag, Label
@@ -21,11 +21,37 @@ class LabelFriendliness(IntEnum):
     NEHIYAWEWIN = auto()
 
 
+class RelabellingFetcher:
+    def __init__(
+        self,
+        data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
+        label: LabelFriendliness,
+    ):
+        self._data = data
+        self._label = label
+
+    def __getitem__(self, key: FSTTag) -> Optional[Label]:
+        return self._data[key][self._label]
+
+    # TODO: correct type signature
+    def get(self, key: FSTTag, default: Any = None) -> Any:
+        return self._data.get(key, {}).get(self._label, default)
+
+
 class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
     def __init__(
         self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
     ) -> None:
         self._data = data
+
+        self.linguistic_short = RelabellingFetcher(
+            data, LabelFriendliness.LINGUISTIC_SHORT
+        )
+        self.linguistic_long = RelabellingFetcher(
+            data, LabelFriendliness.LINGUISTIC_LONG
+        )
+        self.english = RelabellingFetcher(data, LabelFriendliness.ENGLISH)
+        self.cree = RelabellingFetcher(data, LabelFriendliness.NEHIYAWEWIN)
 
     def get(self, key, optional=None):
         return self._data.get(key, optional)

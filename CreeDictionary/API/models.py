@@ -586,9 +586,7 @@ class Wordform(models.Model):
                     # use altlabel.tsv to figure out the preverb
 
                     # ling_short looks like: "Preverb: âpihci-"
-                    ling_short = FST_TAG_LABELS.get(tag, {}).get(
-                        LabelFriendliness.LINGUISTIC_SHORT
-                    )
+                    ling_short = FST_TAG_LABELS.linguistic_short.get(tag)
                     if ling_short is not None and ling_short != "":
                         # looks like: "âpihci"
                         normative_preverb_text = ling_short[len("Preverb: ") : -1]
