@@ -1,5 +1,4 @@
 import pytest
-
 from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import find_latest_xml_files, load_engcrk_xml
