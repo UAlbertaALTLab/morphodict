@@ -22,6 +22,24 @@ class LabelFriendliness(IntEnum):
 
 
 class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
+    """
+    Given an FST tag, and a "label friendliness", provides access to the
+    relabellings, as written by the linguists (mostly Antti).
+
+    Supports the dict API, for legacy reasons ¯\_(ツ)_/¯
+
+    Preferred usage:
+
+    Use the shortcuts:
+
+        .linguistic_short[tag]  or .linguistic_short.get(tag, default)
+        .linguistic_long[tag]   or .linguistic_long.get(tag, default)
+        .english[tag]           or .english.get(tag, default)
+        .cree[tag]              or .cree.get(tag, default)
+
+    Try not to use this as a dictionary.
+    """
+
     def __init__(
         self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
     ) -> None:
@@ -78,6 +96,10 @@ class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
 
 
 class _RelabelFetcher:
+    """
+    Makes accessing relabellings for a particular label friendliness easier.
+    """
+
     def __init__(
         self,
         data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
@@ -91,6 +113,9 @@ class _RelabelFetcher:
 
     # TODO: correct type signature
     def get(self, key: FSTTag, default: Any = None) -> Any:
+        """
+        Get a relabelling for the given FST tag.
+        """
         return self._data.get(key, {}).get(self._label, default)
 
 
