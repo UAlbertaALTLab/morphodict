@@ -2,7 +2,7 @@ import csv
 import re
 from enum import IntEnum, auto
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, TextIO, Tuple
 
 from utils.enums import SimpleLexicalCategory
 from utils.types import FSTLemma, FSTTag, Label
@@ -39,10 +39,9 @@ class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
     def __len__(self) -> int:
         return len(self._data)
 
-
-def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
-    res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
-    with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
+    @classmethod
+    def from_tsv(cls, csvfile: TextIO) -> "Relabelling":
+        res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
         reader = csv.reader(csvfile, delimiter="\t")
         for row in list(reader)[1:]:
             if any(row):
@@ -67,7 +66,13 @@ def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
                 except IndexError:  # some of them do not have that many columns
                     pass
                 res[FSTTag(fst_tag)] = tag_dict
-    return res
+
+        return cls(res)
+
+
+def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
+    with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
+        return Relabelling.from_tsv(csvfile)
 
 
 FST_TAG_LABELS = Relabelling(read_labels())
