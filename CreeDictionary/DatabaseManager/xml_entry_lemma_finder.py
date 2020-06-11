@@ -30,9 +30,7 @@ class DefaultLemmaPicker:
 
     def __init__(self, language: Literal["crk", "srs"]):
 
-        self._word_class_to_lemma_analysis_templates: Dict[
-            SimpleLC, List[Template]
-        ] = {}
+        self._word_class_to_lemma_analysis_templates: Dict[WC, List[Template]] = {}
 
         lemma_tags_path = shared_res_dir / "lemma_tags" / language / "lemma-tags.tsv"
 
@@ -40,7 +38,7 @@ class DefaultLemmaPicker:
             for row in csv.reader(lemma_tags_file, delimiter="\t"):
                 str_word_class, templates = row
                 self._word_class_to_lemma_analysis_templates[
-                    SimpleLC(str_word_class.strip().upper())
+                    WC(str_word_class.strip().upper())
                 ] = [Template(t) for t in templates.strip().split(" ")]
 
     def get_lemma(self, ambiguities: Set[ConcatAnalysis]) -> Optional[ConcatAnalysis]:
@@ -89,9 +87,7 @@ def extract_fst_lemmas(
 
     produced_extra_lemmas: List[FSTLemma] = []
 
-    fst_analysis_to_fst_lemma_slc: Dict[
-        ConcatAnalysis, Tuple[FSTLemma, WC]
-    ] = dict()
+    fst_analysis_to_fst_lemma_slc: Dict[ConcatAnalysis, Tuple[FSTLemma, WC]] = dict()
     for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
         x = utils.extract_lemma_and_category(fst_analysis)
         assert x is not None
