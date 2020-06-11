@@ -1,11 +1,10 @@
 import pytest
-
 from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import load_engcrk_xml, find_latest_xml_files
-from utils.enums import POS
+from DatabaseManager.xml_importer import find_latest_xml_files, load_engcrk_xml
 from tests.conftest import migrate_and_import
 from utils import shared_res_dir
+from utils.enums import POS
 
 
 @pytest.mark.django_db

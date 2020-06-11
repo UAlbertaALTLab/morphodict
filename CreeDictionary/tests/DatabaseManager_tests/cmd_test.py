@@ -1,9 +1,8 @@
 import pytest
-from django.core.management import call_command
-
 from API.models import Wordform
 from DatabaseManager.__main__ import cmd_entry
 from DatabaseManager.cree_inflection_generator import expand_inflections
+from django.core.management import call_command
 
 
 @pytest.mark.django_db

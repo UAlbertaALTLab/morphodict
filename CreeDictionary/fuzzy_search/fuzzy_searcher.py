@@ -1,6 +1,6 @@
 # https://gist.github.com/Arachnid/491973
 import bisect
-from typing import List, TypeVar, Optional, Iterable, Generic
+from typing import Generic, Iterable, List, Optional, TypeVar
 
 from typing_extensions import Protocol
 
