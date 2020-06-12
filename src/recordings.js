@@ -106,7 +106,7 @@ export function retrieveListOfSpeakers() {
       container.appendChild(speakerLink);
     } else {
       // if a link exists, change the existing link's text and URL to match what was clicked
-      container.children[0].innerText = 'Learn more about ' + recordingData['speaker_name'];
+      container.children[0].innerText = `Learn more about ${recordingData['speaker_name']}`;
       container.children[0].href = insertedURL;
     }
   }
