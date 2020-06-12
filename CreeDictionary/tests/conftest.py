@@ -9,7 +9,6 @@ from django.core.management import call_command
 from hypothesis import assume, settings
 from hypothesis.strategies import SearchStrategy
 
-
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
 # see error report here
