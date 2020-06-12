@@ -124,39 +124,8 @@ class _RelabelFetcher:
     def get_longest(self, tags: Iterable[FSTTag]) -> Optional[Label]:
         """
         Get a relabelling for the longest prefix of the given tags.
-
-
-        Getting a POS + word class label:
-
-        >>> label = LABELS.linguistic_long.get_longest(('V', 'TA'))
-        >>> label is not None
-        True
-        >>> "transitive" in label.lower()
-        True
-        >>> "animate" in label.lower()
-        True
-        >>> "verb" in label.lower()
-        True
-
-
-        Providing an entire analysis will match the longest prefix:
-
-        >>> new_label = LABELS.linguistic_long.get_longest(('V', 'TA', 'Prs', 'Ind', '3Sg', '4Sg/PlO'))
-        >>> new_label == label
-        True
-
-        Getting a label that doesn't exist returns None:
-
-        >>> label = LABELS.linguistic_short.get_longest(('Not', 'Real', 'Labels'))
-        >>> label is None
-        True
-
-        It still works like .get() if given just one tag:
-
-        >>> label = LABELS.linguistic_short.get_longest(('V',))
-        >>> label.lower()
-        'verb'
         """
+
         # TODO: better algorithm than this. Probably a trie
         try_tags = tuple(tags)
         while try_tags:
