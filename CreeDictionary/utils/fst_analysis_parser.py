@@ -21,7 +21,7 @@ class LabelFriendliness(IntEnum):
     NEHIYAWEWIN = auto()
 
 
-class Relabelling(Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]):
+class Relabelling:
     """
     Given an FST tag, and a "label friendliness", provides access to the
     relabellings, as written by the linguists (mostly Antti).
