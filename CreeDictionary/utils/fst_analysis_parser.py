@@ -44,9 +44,9 @@ class Relabelling:
     Try not to use this as a dictionary.
     """
 
-    def __init__(
-        self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
-    ) -> None:
+    _DataStructure = Dict[Tuple[FSTTag, ...], Dict[LabelFriendliness, Optional[Label]]]
+
+    def __init__(self, data: _DataStructure) -> None:
         self._data = data
 
         self.linguistic_short = _RelabelFetcher(
@@ -71,10 +71,9 @@ class Relabelling:
             if not any(row):
                 continue
 
-            fst_tag = row[0]
-            assert fst_tag, f"Found a line with content, but no tag: {row!r}"
+            tag_set = tuple(FSTTag(tag) for tag in row[0].split("+"))
+            assert tag_set, f"Found a line with content, but no tag: {row!r}"
 
-            # todo: emojis are not used for now. USE THEM
             tag_dict: Dict[LabelFriendliness, Optional[Label]] = {
                 LabelFriendliness.LINGUISTIC_SHORT: None,
                 LabelFriendliness.LINGUISTIC_LONG: None,
@@ -96,7 +95,7 @@ class Relabelling:
             except IndexError:  # some of them do not have that many columns
                 pass
 
-            res[FSTTag(fst_tag)] = tag_dict
+            res[tag_set] = tag_dict
 
         return cls(res)
 
@@ -107,21 +106,19 @@ class _RelabelFetcher:
     """
 
     def __init__(
-        self,
-        data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
-        label: LabelFriendliness,
+        self, data: Relabelling._DataStructure, label: LabelFriendliness,
     ):
         self._data = data
         self._label = label
 
     def __getitem__(self, key: FSTTag) -> Optional[Label]:
-        return self._data[key][self._label]
+        return self._data[(key,)][self._label]
 
     def get(self, key: FSTTag, default: Default = None) -> Union[Label, Default, None]:
         """
         Get a relabelling for the given FST tag.
         """
-        return self._data.get(key, {}).get(self._label, default)
+        return self._data.get((key,), {}).get(self._label, default)
 
 
 def read_labels() -> Relabelling:
