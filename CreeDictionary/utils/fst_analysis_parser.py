@@ -1,8 +1,8 @@
 import csv
 import re
-from enum import Enum
+from enum import IntEnum, auto
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, TextIO, Tuple
 
 from utils.enums import SimpleLexicalCategory
 from utils.types import FSTLemma, FSTTag, Label
@@ -14,16 +14,53 @@ analysis_pattern = re.compile(
 )
 
 
-class LabelFriendliness(Enum):
-    LINGUISTIC_SHORT = 0
-    LINGUISTIC_LONG = 1
-    ENGLISH = 2
-    NEHIYAWEWIN = 3
+class LabelFriendliness(IntEnum):
+    LINGUISTIC_SHORT = auto()
+    LINGUISTIC_LONG = auto()
+    ENGLISH = auto()
+    NEHIYAWEWIN = auto()
 
 
-def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
-    res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
-    with open(str(Path(shared_res_dir) / "crk.altlabel.tsv")) as csvfile:
+class Relabelling:
+    """
+    Given an FST tag, and a "label friendliness", provides access to the
+    relabellings, as written by the linguists (mostly Antti).
+
+    Supports the dict API, for legacy reasons ¯\_(ツ)_/¯
+
+    Preferred usage:
+
+    Use the shortcuts:
+
+        .linguistic_short[tag]  or .linguistic_short.get(tag, default)
+        .linguistic_long[tag]   or .linguistic_long.get(tag, default)
+        .english[tag]           or .english.get(tag, default)
+        .cree[tag]              or .cree.get(tag, default)
+
+    Try not to use this as a dictionary.
+    """
+
+    def __init__(
+        self, data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]
+    ) -> None:
+        self._data = data
+
+        self.linguistic_short = _RelabelFetcher(
+            data, LabelFriendliness.LINGUISTIC_SHORT
+        )
+        self.linguistic_long = _RelabelFetcher(data, LabelFriendliness.LINGUISTIC_LONG)
+        self.english = _RelabelFetcher(data, LabelFriendliness.ENGLISH)
+        self.cree = _RelabelFetcher(data, LabelFriendliness.NEHIYAWEWIN)
+
+    def get(self, key, optional=None):
+        return self._data.get(key, optional)
+
+    def __contains__(self, key: object) -> bool:
+        return key in self._data
+
+    @classmethod
+    def from_tsv(cls, csvfile: TextIO) -> "Relabelling":
+        res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
         reader = csv.reader(csvfile, delimiter="\t")
         for row in list(reader)[1:]:
             if any(row):
@@ -48,10 +85,40 @@ def read_labels() -> Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]]:
                 except IndexError:  # some of them do not have that many columns
                     pass
                 res[FSTTag(fst_tag)] = tag_dict
-    return res
+
+        return cls(res)
 
 
-FST_TAG_LABELS = read_labels()
+class _RelabelFetcher:
+    """
+    Makes accessing relabellings for a particular label friendliness easier.
+    """
+
+    def __init__(
+        self,
+        data: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]],
+        label: LabelFriendliness,
+    ):
+        self._data = data
+        self._label = label
+
+    def __getitem__(self, key: FSTTag) -> Optional[Label]:
+        return self._data[key][self._label]
+
+    # TODO: correct type signature
+    def get(self, key: FSTTag, default: Any = None) -> Any:
+        """
+        Get a relabelling for the given FST tag.
+        """
+        return self._data.get(key, {}).get(self._label, default)
+
+
+def read_labels() -> Relabelling:
+    with (shared_res_dir / "crk.altlabel.tsv").open(encoding="UTF-8") as csvfile:
+        return Relabelling.from_tsv(csvfile)
+
+
+FST_TAG_LABELS: Relabelling = read_labels()
 
 
 def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:
