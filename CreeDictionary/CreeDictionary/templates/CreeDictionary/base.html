@@ -35,13 +35,6 @@
     </template>
 
     {# The speaker-bio links template #}
-    <template id="template:speaker-bio-link">
-      <div class="speaker-links">
-        <slot name="speaker-link"></slot>
-        <a href="" target="_blank" rel="noopener"></a>
-      </div>
-    </template>
-
     <!-- comment for posterity: on click, a class is added to this and makes it visible! -->
     <template id="template:speaker-bio-link">
       <a href="" target="_blank" rel="noopener">Learn more about <slot name="speaker-name">this speaker</slot>.</a>
