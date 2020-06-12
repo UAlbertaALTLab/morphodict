@@ -12,13 +12,13 @@ labels = Relabelling.from_tsv(
         """
 FST TAG\tLINGUISTIC (SHORT)\tLINGUISTIC (LONG)\tENGLISH\tNÊHIYAWÊWIN\tEMOJI
 3Sg+4Sg/PlO\t\t\ts/he → him/her/them\twiya → wiya/wiyawâw (ana/aniki)\t-
-TA\tTransitive Animate\t\tlike: wîcihêw, itêw\ttâpiskôc: wîcihêw, itêw\t🧑🏽➡️🧑🏽
-TI\tTransitive Inaminate\t\tlike: nâtam, mîciw\ttâpiskôc: nâtam, mîciw\t🧑🏽➡️📦
-V\tVerb\t\tAction word\tispayin-itwêwin
-V+AI\tAnimate intransitive verb\tVerb - animate intransitive\tAction word - like: mîcisow, nipâw\tispayin-itwêwin - tâpiskôc: mîcisow, nipâw
-V+II\tInanimate intransitive verb\tVerb - inanimate intransitive\tAction word - like: miywâsin, mihkwâw\tispayin-itwêwin - tâpiskôc: miywâsin, mihkwâw
-V+TA\tTransitive animate verb\tVerb - transitive animate\tAction word - like: wîcihêw, itêw\tispayin-itwêwin - tâpiskôc: wîcihêw, itêw
-V+TI\tTransitive inanimate verb\tVerb - transitive inanimate\tAction word - like: nâtam, mîciw\tispayin-itwêwin - tâpiskôc: nâtam, mîciw
+TA\tTransitive Animate\t\tlike: wîcihêw, itêw\ttâpiskôc: wîcihêw, itêw\t
+TI\tTransitive Inaminate\t\tlike: nâtam, mîciw\ttâpiskôc: nâtam, mîciw\t
+V\tVerb\tVerb\tAction word\tispayin-itwêwin
+V+AI\tAnimate intransitive verb\tVerb - animate intransitive\tAction word - like: mîcisow, nipâw\tispayin-itwêwin - tâpiskôc: mîcisow, nipâw\t🧑🏽➡️💧
+V+II\tInanimate intransitive verb\tVerb - inanimate intransitive\tAction word - like: miywâsin, mihkwâw\tispayin-itwêwin - tâpiskôc: miywâsin, mihkwâw\t💧➡️
+V+TA\tTransitive animate verb\tVerb - transitive animate\tAction word - like: wîcihêw, itêw\tispayin-itwêwin - tâpiskôc: wîcihêw, itêw\t🧑🏽➡️🧑🏽
+V+TI\tTransitive inanimate verb\tVerb - transitive inanimate\tAction word - like: nâtam, mîciw\tispayin-itwêwin - tâpiskôc: nâtam, mîciw\t🧑🏽➡️
 """.lstrip()
     )
 )
