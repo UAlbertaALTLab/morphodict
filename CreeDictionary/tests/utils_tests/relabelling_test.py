@@ -3,6 +3,8 @@
 
 from io import StringIO
 
+import pytest
+
 from utils.fst_analysis_parser import Relabelling
 
 labels = Relabelling.from_tsv(
@@ -46,3 +48,8 @@ def test_getting_a_label_that_does_not_exist_returns_none():
 def test_it_still_works_like_get_if_given_just_one_tag():
     label = labels.linguistic_short.get_longest(("V",))
     assert "verb" == label.lower()
+
+
+@pytest.mark.parametrize("key", [("V",), (("V",),), (("V", "TA"),)])
+def test_contains_tag_sets(key):
+    assert key in labels
