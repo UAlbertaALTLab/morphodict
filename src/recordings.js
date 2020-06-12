@@ -82,30 +82,39 @@ export function retrieveListOfSpeakers() {
 
     // select for the area to place the speaker link
     let container = document.querySelector('.speaker-link');
+    let displaySpeakerTemplate = document.getElementById('template:speaker-bio-link').content.cloneNode(true);
+    
+    // variable to be inserted into the DOM
+    let speakerName = recordingData['speaker_name'];
 
     // generate a new link and append it to the page if there isn't already one
     if (container.childElementCount < 1 ) {
       // create the speaker link
-      let speakerLink = document.createElement('a');
+      // let speakerLink = document.createElement('a');
+      displaySpeakerTemplate.querySelector('slot[name="speaker-name"]').innerText = speakerName;
+      displaySpeakerTemplate.href = insertedURL;
+      container.appendChild(displaySpeakerTemplate);
+      // console.log(displaySpeakerTemplate);
       
       // create the text prompt for the link
-      let linkText = document.createTextNode(`Learn more about ${recordingData['speaker_name']}`);
+      // let linkText = document.createTextNode(`Learn more about ${recordingData['speaker_name']}`);
       
       // set the link's URL...
-      speakerLink.href = insertedURL;
+      // speakerLink.href = insertedURL;
       
       // ...and add attributes to the link
-      speakerLink.setAttribute('target', '_blank');
-      speakerLink.setAttribute('rel', 'noopener');
-      speakerLink.setAttribute('data-cy', 'recordings-list__item-speaker');
+      // speakerLink.setAttribute('target', '_blank');
+      // speakerLink.setAttribute('rel', 'noopener');
+      // speakerLink.setAttribute('data-cy', 'recordings-list__item-speaker');
       
       // put the text prompt into the link
-      speakerLink.appendChild(linkText);
+      // speakerLink.appendChild(linkText);
       
       // put the link into the DOM
-      container.appendChild(speakerLink);
+      // container.appendChild(speakerLink);
     } else {
       // if a link exists, change the existing link's text and URL to match what was clicked
+      // TODOkobe: change two lines below to use string literals AND displaySpeakerTemplate
       container.children[0].innerText = `Learn more about ${recordingData['speaker_name']}`;
       container.children[0].href = insertedURL;
     }
