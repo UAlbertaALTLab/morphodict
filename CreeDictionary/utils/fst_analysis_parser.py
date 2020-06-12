@@ -119,7 +119,7 @@ def read_labels() -> Relabelling:
         return Relabelling.from_tsv(csvfile)
 
 
-FST_TAG_LABELS: Relabelling = read_labels()
+LABELS: Relabelling = read_labels()
 
 
 def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:

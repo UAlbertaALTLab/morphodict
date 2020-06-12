@@ -47,7 +47,7 @@ from utils import (
 )
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import (
-    FST_TAG_LABELS,
+    LABELS,
     LabelFriendliness,
     partition_analysis,
 )
@@ -75,8 +75,8 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """ replace fst-tags to cute ones"""
     labels: List[Label] = []
     for fst_tag in fst_tags:
-        label = FST_TAG_LABELS.english.get(fst_tag)
-        if fst_tag in FST_TAG_LABELS and label:  # label could be '' or None
+        label = LABELS.english.get(fst_tag)
+        if fst_tag in LABELS and label:  # label could be '' or None
             labels.append(label)
         else:
             # can not find user friendly label in crk.altlabel, do not change it.
@@ -222,7 +222,7 @@ class Wordform(models.Model):
         if maybe_full_word_class is None:
             return None
         word_class = FSTTag(maybe_full_word_class.without_pos())
-        return FST_TAG_LABELS.english.get(word_class)
+        return LABELS.english.get(word_class)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -594,7 +594,7 @@ class Wordform(models.Model):
                     # use altlabel.tsv to figure out the preverb
 
                     # ling_short looks like: "Preverb: âpihci-"
-                    ling_short = FST_TAG_LABELS.linguistic_short.get(tag)
+                    ling_short = LABELS.linguistic_short.get(tag)
                     if ling_short is not None and ling_short != "":
                         # looks like: "âpihci"
                         normative_preverb_text = ling_short[len("Preverb: ") : -1]
