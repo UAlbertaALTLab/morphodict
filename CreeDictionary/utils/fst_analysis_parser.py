@@ -55,14 +55,8 @@ class Relabelling:
     def get(self, key, optional=None):
         return self._data.get(key, optional)
 
-    def __getitem__(self, key: FSTTag) -> Dict[LabelFriendliness, Optional[Label]]:
-        return self._data[key]
-
     def __contains__(self, key: object) -> bool:
         return key in self._data
-
-    def __len__(self) -> int:
-        return len(self._data)
 
     @classmethod
     def from_tsv(cls, csvfile: TextIO) -> "Relabelling":
