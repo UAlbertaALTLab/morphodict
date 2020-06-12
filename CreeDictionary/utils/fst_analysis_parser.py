@@ -62,31 +62,36 @@ class Relabelling:
 
     @classmethod
     def from_tsv(cls, csvfile: TextIO) -> "Relabelling":
-        res: Dict[FSTTag, Dict[LabelFriendliness, Optional[Label]]] = {}
+        res = {}
         reader = csv.reader(csvfile, delimiter="\t")
         for row in list(reader)[1:]:
-            if any(row):
-                # todo: emojis are not used for now. USE THEM
-                tag_dict: Dict[LabelFriendliness, Optional[Label]] = {
-                    LabelFriendliness.LINGUISTIC_SHORT: None,
-                    LabelFriendliness.LINGUISTIC_LONG: None,
-                    LabelFriendliness.ENGLISH: None,
-                    LabelFriendliness.NEHIYAWEWIN: None,
-                }
-                try:
-                    fst_tag = row[0]
-                    short = row[1]
-                    tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(short)
-                    long = row[2]
-                    tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(long)
-                    english = row[3]
-                    tag_dict[LabelFriendliness.ENGLISH] = Label(english)
-                    nihiyawewin = row[4]
-                    tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(nihiyawewin)
-                    emoji = row[5]
-                except IndexError:  # some of them do not have that many columns
-                    pass
-                res[FSTTag(fst_tag)] = tag_dict
+            if not any(row):
+                continue
+
+            fst_tag = row[0]
+            assert fst_tag, f"Found a line with content, but no tag: {row!r}"
+
+            # todo: emojis are not used for now. USE THEM
+            tag_dict: Dict[LabelFriendliness, Optional[Label]] = {
+                LabelFriendliness.LINGUISTIC_SHORT: None,
+                LabelFriendliness.LINGUISTIC_LONG: None,
+                LabelFriendliness.ENGLISH: None,
+                LabelFriendliness.NEHIYAWEWIN: None,
+            }
+
+            try:
+                short = row[1]
+                tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(short)
+                long = row[2]
+                tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(long)
+                english = row[3]
+                tag_dict[LabelFriendliness.ENGLISH] = Label(english)
+                nihiyawewin = row[4]
+                tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(nihiyawewin)
+            except IndexError:  # some of them do not have that many columns
+                pass
+
+            res[FSTTag(fst_tag)] = tag_dict
 
         return cls(res)
 
