@@ -50,6 +50,6 @@ def test_it_still_works_like_get_if_given_just_one_tag():
     assert "verb" == label.lower()
 
 
-@pytest.mark.parametrize("key", [("V",), (("V",),), (("V", "TA"),)])
+@pytest.mark.parametrize("key", ["V", ("V",), ("V", "TA")])
 def test_contains_tag_sets(key):
     assert key in labels

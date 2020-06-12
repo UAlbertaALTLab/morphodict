@@ -61,8 +61,9 @@ class Relabelling:
         return self._data.get(key, optional)
 
     def __contains__(self, key: object) -> bool:
-        # TODO: something with tuples?
-        return (key,) in self._data
+        if isinstance(key, str):
+            key = (key,)
+        return key in self._data
 
     @classmethod
     def from_tsv(cls, csvfile: TextIO) -> "Relabelling":
