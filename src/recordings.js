@@ -89,7 +89,7 @@ export function retrieveListOfSpeakers() {
       let speakerLink = document.createElement('a');
       
       // create the text prompt for the link
-      let linkText = document.createTextNode('Learn more about ' + recordingData  ['speaker_name']);
+      let linkText = document.createTextNode(`Learn more about ${recordingData['speaker_name']}`);
       
       // set the link's URL...
       speakerLink.href = insertedURL;
