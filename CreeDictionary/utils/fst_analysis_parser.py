@@ -2,7 +2,7 @@ import csv
 import re
 from enum import IntEnum, auto
 from pathlib import Path
-from typing import Dict, List, Optional, TextIO, Tuple, TypeVar, Union
+from typing import Dict, Iterable, List, Optional, TextIO, Tuple, TypeVar, Union
 
 from utils.enums import SimpleLexicalCategory
 from utils.types import FSTLemma, FSTTag, Label
@@ -119,6 +119,32 @@ class _RelabelFetcher:
         Get a relabelling for the given FST tag.
         """
         return self._data.get((key,), {}).get(self._label, default)
+
+    def get_longest(self, tags: Iterable[FSTTag]) -> Optional[Label]:
+        """
+        Get a relabelling for the longest prefix of the given tags.
+
+        >>> label = LABELS.linguistic_long.get_longest(('V', 'TA'))
+        >>> label is not None
+        True
+        >>> "transitive" in label.lower()
+        True
+        >>> "animate" in label.lower()
+        True
+        >>> "verb" in label.lower()
+        True
+        """
+        # TODO: better algorithm than this. Probably a trie
+        try_tags = tuple(tags)
+        while try_tags:
+            try:
+                entry = self._data[try_tags]
+            except KeyError:
+                try_tags = try_tags[:-2]
+            else:
+                return entry[self._label]
+
+        return None
 
 
 def read_labels() -> Relabelling:
