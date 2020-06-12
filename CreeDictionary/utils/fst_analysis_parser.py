@@ -21,6 +21,7 @@ class LabelFriendliness(IntEnum):
     LINGUISTIC_LONG = auto()
     ENGLISH = auto()
     NEHIYAWEWIN = auto()
+    EMOJI = auto()
 
 
 class Relabelling:
@@ -38,6 +39,7 @@ class Relabelling:
         .linguistic_long[tag]   or .linguistic_long.get(tag, default)
         .english[tag]           or .english.get(tag, default)
         .cree[tag]              or .cree.get(tag, default)
+        .emoji[tag]             or .emoji.get(tag, default)
 
     Try not to use this as a dictionary.
     """
@@ -53,6 +55,7 @@ class Relabelling:
         self.linguistic_long = _RelabelFetcher(data, LabelFriendliness.LINGUISTIC_LONG)
         self.english = _RelabelFetcher(data, LabelFriendliness.ENGLISH)
         self.cree = _RelabelFetcher(data, LabelFriendliness.NEHIYAWEWIN)
+        self.emoji = _RelabelFetcher(data, LabelFriendliness.EMOJI)
 
     def get(self, key, optional=None):
         return self._data.get(key, optional)
@@ -77,6 +80,7 @@ class Relabelling:
                 LabelFriendliness.LINGUISTIC_LONG: None,
                 LabelFriendliness.ENGLISH: None,
                 LabelFriendliness.NEHIYAWEWIN: None,
+                LabelFriendliness.EMOJI: None,
             }
 
             try:
@@ -88,6 +92,7 @@ class Relabelling:
                 tag_dict[LabelFriendliness.ENGLISH] = Label(english)
                 nihiyawewin = row[4]
                 tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(nihiyawewin)
+                tag_dict[LabelFriendliness.EMOJI] = Label(row[5])
             except IndexError:  # some of them do not have that many columns
                 pass
 
