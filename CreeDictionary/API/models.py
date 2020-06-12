@@ -20,9 +20,8 @@ from typing import (
 from urllib.parse import quote
 
 import attr
-from attr import attrs
-
 import CreeDictionary.hfstol as temp_hfstol
+from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -46,11 +45,7 @@ from utils import (
     get_modified_distance,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
-from utils.fst_analysis_parser import (
-    LABELS,
-    LabelFriendliness,
-    partition_analysis,
-)
+from utils.fst_analysis_parser import LABELS, partition_analysis
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
