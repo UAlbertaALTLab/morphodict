@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 import pytest
 
-from utils import WordClass, extract_simple_lc, fst_analysis_parser
+from utils import WordClass, extract_word_class, fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str
 
 
@@ -44,7 +44,7 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
     ],
 )
 def test_hfstol_analysis_category_extraction(analysis, category):
-    actual = extract_simple_lc(analysis)
+    actual = extract_word_class(analysis)
     assert actual == category
 
 

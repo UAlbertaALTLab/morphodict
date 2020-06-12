@@ -45,7 +45,7 @@ class DefaultLemmaPicker:
         Pick the lemma analysis according to the looks of the usual lemma analyses for each word class.
         """
         for ambiguity in ambiguities:
-            lemma_wc = utils.fst_analysis_parser.extract_lemma_and_category(ambiguity)
+            lemma_wc = utils.fst_analysis_parser.extract_lemma_and_word_class(ambiguity)
             assert lemma_wc is not None
             lemma, word_class = lemma_wc
 
@@ -88,7 +88,7 @@ def extract_fst_lemmas(
 
     fst_analysis_to_fst_lemma_slc: Dict[ConcatAnalysis, Tuple[FSTLemma, WC]] = dict()
     for fst_analysis in chain.from_iterable(xml_lemma_to_analyses.values()):
-        x = utils.extract_lemma_and_category(fst_analysis)
+        x = utils.extract_lemma_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, slc = x
         fst_analysis_to_fst_lemma_slc[fst_analysis] = produced_lemma, slc
@@ -100,7 +100,7 @@ def extract_fst_lemmas(
     ] = strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas)
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
-        x = utils.extract_lemma_and_category(fst_analysis)
+        x = utils.extract_lemma_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, slc = x
         fst_analysis_to_fst_lemma_slc[fst_analysis] = produced_lemma, slc
@@ -148,7 +148,7 @@ def extract_fst_lemmas(
                 fst_lemma_analyses = all_lemma_to_analysis[fst_lemma]
 
                 for fst_lemma_analysis in fst_lemma_analyses:
-                    x = utils.extract_lemma_and_category(fst_lemma_analysis)
+                    x = utils.extract_lemma_and_word_class(fst_lemma_analysis)
                     assert x is not None
                     wordform, slc = x
                     if slc is slc and wordform == fst_lemma:

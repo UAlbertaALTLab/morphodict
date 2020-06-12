@@ -450,7 +450,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         true_lemma_analysis,
         xml_lemma_pos_lcs,
     ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
-        lemma_wordform_simple_lc = fst_analysis_parser.extract_lemma_and_category(
+        lemma_wordform_simple_lc = fst_analysis_parser.extract_lemma_and_word_class(
             true_lemma_analysis
         )
         assert lemma_wordform_simple_lc is not None
@@ -465,7 +465,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         # build wordforms and definition in db
         for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
 
-            generated_lemma_lc = fst_analysis_parser.extract_lemma_and_category(
+            generated_lemma_lc = fst_analysis_parser.extract_lemma_and_word_class(
                 generated_analysis
             )
             assert generated_lemma_lc is not None

@@ -187,7 +187,7 @@ class Wordform(models.Model):
     def get_absolute_url(self) -> str:
         """
         :return: url that looks like
-         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?inflectional_category=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
          it's the least strict url that guarantees unique match in the database
         """
         assert self.is_lemma, "There is no page for non-lemmas"
@@ -241,14 +241,14 @@ class Wordform(models.Model):
 
     @property
     def full_word_class(self) -> Optional[WordClass]:
-        return fst_analysis_parser.extract_simple_lc(self.analysis)
+        return fst_analysis_parser.extract_word_class(self.analysis)
 
     @property
     def paradigm(self) -> List[Layout]:
         # todo: allow paradigm size other then ParadigmSize.BASIC
-        slc = fst_analysis_parser.extract_simple_lc(self.analysis)
-        if slc is not None:
-            tables = paradigm_filler.fill_paradigm(self.text, slc, ParadigmSize.BASIC)
+        wc = fst_analysis_parser.extract_word_class(self.analysis)
+        if wc is not None:
+            tables = paradigm_filler.fill_paradigm(self.text, wc, ParadigmSize.BASIC)
         else:
             tables = []
         return tables
@@ -368,7 +368,7 @@ class Wordform(models.Model):
         Give the analysis of user query and matched lemmas.
         There can be multiple analysis for user queries
         One analysis could match multiple lemmas as well due to underspecified database fields.
-        (lc and pos can be empty)
+        (inflectional_category and pos can be empty)
 
         treat the user query as English keyword and:
 
@@ -436,8 +436,8 @@ class Wordform(models.Model):
                 # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
                 # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
 
-                lemma_lc = fst_analysis_parser.extract_lemma_and_category(analysis)
-                if lemma_lc is None:
+                lemma_wc = fst_analysis_parser.extract_lemma_and_word_class(analysis)
+                if lemma_wc is None:
                     logger.error(
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
@@ -458,7 +458,7 @@ class Wordform(models.Model):
                     key=lambda f: get_modified_distance(f, user_query),
                 )
 
-                lemma, lc = lemma_lc
+                lemma, word_class = lemma_wc
                 matched_lemma_wordforms = Wordform.objects.filter(
                     text=lemma, is_lemma=True, **extra_constraints
                 )
@@ -470,7 +470,7 @@ class Wordform(models.Model):
                 # those results are filtered out by `as_is=False` below
                 # suggested by Arok Wolvengrey
 
-                if lc.pos is POS.PRON:
+                if word_class.pos is POS.PRON:
                     # specially handle pronouns.
                     # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
                     # "ôma" has multiple analysis
@@ -490,7 +490,7 @@ class Wordform(models.Model):
                         )
                 else:
                     for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=lc.pos.name, **extra_constraints
+                        as_is=False, pos=word_class.pos.name, **extra_constraints
                     ):
                         cree_results.add(
                             CreeResult(

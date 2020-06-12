@@ -109,7 +109,7 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
         return None
 
 
-def extract_lemma_and_category(analysis: str,) -> Optional[Tuple[FSTLemma, WordClass]]:
+def extract_lemma_and_word_class(analysis: str, ) -> Optional[Tuple[FSTLemma, WordClass]]:
     """
     less overhead than calling `extract_lemma` and `extract_simple_lc` separately
     """
@@ -141,7 +141,7 @@ def extract_lemma_and_category(analysis: str,) -> Optional[Tuple[FSTLemma, WordC
         return None
 
 
-def extract_simple_lc(analysis: str) -> Optional[WordClass]:
+def extract_word_class(analysis: str) -> Optional[WordClass]:
     """
     :param analysis: in the form of 'a+VAI+b+c'
     :return: None if extraction fails
