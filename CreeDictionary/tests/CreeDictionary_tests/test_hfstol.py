@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-
 from CreeDictionary.hfstol import analyze, generate
 
 

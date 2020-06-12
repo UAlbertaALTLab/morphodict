@@ -2,7 +2,7 @@ import logging
 import sys
 from logging.handlers import TimedRotatingFileHandler
 from os import mkdir
-from os.path import isdir, dirname
+from os.path import dirname, isdir
 from pathlib import Path
 
 LOGGING_DIR = Path(dirname(__file__)) / "logs"
