@@ -82,19 +82,31 @@ export function retrieveListOfSpeakers() {
 
     // select for the area to place the speaker link
     let container = document.querySelector('.speaker-link');
+
+    // select for the template
     let displaySpeakerTemplate = document.getElementById('template:speaker-bio-link').content.cloneNode(true);
+
+    // create the speaker link URL
+    let createdLink = displaySpeakerTemplate.firstChild;
     
     // variable to be inserted into the DOM
     let speakerName = recordingData['speaker_name'];
 
     // generate a new link and append it to the page if there isn't already one
-    
-      // create the speaker link
+    if (container.childElementCount < 1) {
+      // set the speaker-link text with the name of the speaker
       displaySpeakerTemplate.querySelector('slot[name="speaker-name"]').innerText = speakerName;
-      displaySpeakerTemplate.href = insertedURL;
-      container.appendChild(displaySpeakerTemplate);
-      console.log(displaySpeakerTemplate);
-    
+
+      // set the link URL
+      createdLink.href = insertedURL;
+
+      // place the link into the template
+      displaySpeakerTemplate.appendChild(createdLink);
+
+      // place the template into the DOM
+      container.appendChild(displaySpeakerTemplate);   
+    } 
+       
   }
 }
 
