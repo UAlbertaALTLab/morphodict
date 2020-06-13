@@ -62,6 +62,7 @@ class Relabelling:
         reader = csv.reader(csvfile, delimiter="\t")
         for row in list(reader)[1:]:
             if not any(row):
+                # Skip empty row
                 continue
 
             tag_set = tuple(FSTTag(tag) for tag in row[0].split("+"))
@@ -76,14 +77,10 @@ class Relabelling:
             }
 
             try:
-                short = row[1]
-                tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(short)
-                long = row[2]
-                tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(long)
-                english = row[3]
-                tag_dict[LabelFriendliness.ENGLISH] = Label(english)
-                nihiyawewin = row[4]
-                tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(nihiyawewin)
+                tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(row[1])
+                tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(row[2])
+                tag_dict[LabelFriendliness.ENGLISH] = Label(row[3])
+                tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(row[4])
                 tag_dict[LabelFriendliness.EMOJI] = Label(row[5])
             except IndexError:  # some of them do not have that many columns
                 pass
@@ -135,6 +132,7 @@ class _RelabelFetcher:
                 label = Label(tag_set[0])
                 tag_set = tag_set[1:]
             else:
+                assert len(unmatched) < len(tag_set)
                 label = maybe_label
                 tag_set = unmatched
             labels.append(label)
