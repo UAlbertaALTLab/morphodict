@@ -102,16 +102,16 @@ class _RelabelFetcher:
         self, data: Relabelling._DataStructure, label: LabelFriendliness,
     ):
         self._data = data
-        self._label = label
+        self._friendliness = label
 
     def __getitem__(self, key: FSTTag) -> Optional[Label]:
-        return self._data[(key,)][self._label]
+        return self._data[(key,)][self._friendliness]
 
     def get(self, key: FSTTag, default: Default = None) -> Union[Label, Default, None]:
         """
         Get a relabelling for the given FST tag.
         """
-        return self._data.get((key,), {}).get(self._label, default)
+        return self._data.get((key,), {}).get(self._friendliness, default)
 
     def get_longest(self, tags: Iterable[FSTTag]) -> Optional[Label]:
         """
@@ -160,7 +160,7 @@ class _RelabelFetcher:
             except KeyError:
                 end -= 1
             else:
-                return try_tags[end:], entry[self._label]
+                return try_tags[end:], entry[self._friendliness]
 
         return try_tags, None
 
