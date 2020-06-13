@@ -59,3 +59,14 @@ def test_contains_tag_sets(key):
     Test that we can use either a tag or a tuple of tags.
     """
     assert key in labels
+
+
+def test_get_full_relabelling():
+    tag_set = ("V", "TA", "Prs", "Ind", "3Sg", "4Sg/PlO")
+    relabelling = labels.english.get_full_relabelling(tag_set)
+    assert relabelling == [
+        "Action word - like: wîcihêw, itêw",
+        "something is happening now",
+        "ni-/ki- word",
+        "s/he → him/her/them",
+    ]
