@@ -26,12 +26,8 @@ class LabelFriendliness(IntEnum):
 
 class Relabelling:
     """
-    Given an FST tag, and a "label friendliness", provides access to the
+    Given an FST tag a desired "LabelFriendliness", provides access to the
     relabellings, as written by the linguists (mostly Antti).
-
-    Supports the dict API, for legacy reasons ¯\_(ツ)_/¯
-
-    Preferred usage:
 
     Use the shortcuts:
 
@@ -40,8 +36,6 @@ class Relabelling:
         .english[tag]           or .english.get(tag, default)
         .cree[tag]              or .cree.get(tag, default)
         .emoji[tag]             or .emoji.get(tag, default)
-
-    Try not to use this as a dictionary.
     """
 
     _DataStructure = Dict[Tuple[FSTTag, ...], Dict[LabelFriendliness, Optional[Label]]]
@@ -56,9 +50,6 @@ class Relabelling:
         self.english = _RelabelFetcher(data, LabelFriendliness.ENGLISH)
         self.cree = _RelabelFetcher(data, LabelFriendliness.NEHIYAWEWIN)
         self.emoji = _RelabelFetcher(data, LabelFriendliness.EMOJI)
-
-    def get(self, key, optional=None):
-        return self._data.get(key, optional)
 
     def __contains__(self, key: object) -> bool:
         if isinstance(key, str):
