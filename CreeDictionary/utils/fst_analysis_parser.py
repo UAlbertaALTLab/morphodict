@@ -126,27 +126,31 @@ class _RelabelFetcher:
         """
         Get a relabelling for the longest prefix of the given tags.
         """
-        _matched, label = self._get_longest(tags)
+        _unmatched, label = self._get_longest(tags)
         return label
 
-    def _get_longest(self, tags: Iterable[FSTTag]) -> Tuple[Tuple[FSTTag, ...], Optional[Label]]:
+    def _get_longest(
+        self, tags: Iterable[FSTTag]
+    ) -> Tuple[Tuple[FSTTag, ...], Optional[Label]]:
         """
-        Return the matched tags, and the relabelling (if any).
+        Returns the unmatched tags, and the relabelling of the matched tags from the
+        prefix.
 
-        Returns the empty tuple if nothing matched.
+        Returns a tuple of all tags if no prefix matched.
         """
 
         # TODO: better algorithm than this. Probably a trie
         try_tags = tuple(tags)
-        while try_tags:
+        end = len(try_tags)
+        while end > 0:
             try:
-                entry = self._data[try_tags]
+                entry = self._data[try_tags[:end]]
             except KeyError:
-                try_tags = try_tags[:-2]
+                end -= 1
             else:
-                return try_tags, entry[self._label]
+                return try_tags[end:], entry[self._label]
 
-        return (), None
+        return try_tags, None
 
 
 def read_labels() -> Relabelling:
