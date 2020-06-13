@@ -94,24 +94,7 @@ export function retrieveListOfSpeakers() {
       displaySpeakerTemplate.querySelector('slot[name="speaker-name"]').innerText = speakerName;
       displaySpeakerTemplate.href = insertedURL;
       container.appendChild(displaySpeakerTemplate);
-      // console.log(displaySpeakerTemplate);
       
-      // create the text prompt for the link
-      // let linkText = document.createTextNode(`Learn more about ${recordingData['speaker_name']}`);
-      
-      // set the link's URL...
-      // speakerLink.href = insertedURL;
-      
-      // ...and add attributes to the link
-      // speakerLink.setAttribute('target', '_blank');
-      // speakerLink.setAttribute('rel', 'noopener');
-      // speakerLink.setAttribute('data-cy', 'recordings-list__item-speaker');
-      
-      // put the text prompt into the link
-      // speakerLink.appendChild(linkText);
-      
-      // put the link into the DOM
-      // container.appendChild(speakerLink);
     } else {
       // if a link exists, change the existing link's text and URL to match what was clicked
       // TODOkobe: change two lines below to use string literals AND displaySpeakerTemplate
