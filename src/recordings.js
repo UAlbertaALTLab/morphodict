@@ -88,19 +88,13 @@ export function retrieveListOfSpeakers() {
     let speakerName = recordingData['speaker_name'];
 
     // generate a new link and append it to the page if there isn't already one
-    if (container.childElementCount < 1 ) {
+    
       // create the speaker link
-      // let speakerLink = document.createElement('a');
       displaySpeakerTemplate.querySelector('slot[name="speaker-name"]').innerText = speakerName;
       displaySpeakerTemplate.href = insertedURL;
       container.appendChild(displaySpeakerTemplate);
-      
-    } else {
-      // if a link exists, change the existing link's text and URL to match what was clicked
-      // TODOkobe: change two lines below to use string literals AND displaySpeakerTemplate
-      container.children[0].innerText = `Learn more about ${recordingData['speaker_name']}`;
-      container.children[0].href = insertedURL;
-    }
+      console.log(displaySpeakerTemplate);
+    
   }
 }
 
