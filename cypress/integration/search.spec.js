@@ -27,8 +27,11 @@ context('Searching', () => {
       cy.get('[data-cy=information-mark]').first().click({force:true})
 
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+        // NOTE: this depends on Antti's relabellings; if they change,
+        // this assertion has to change :/
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
+        .and('contain', 'you (one) → him/her/it') // 3Sg -> 4Sg/PlO
     })
 
     it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
