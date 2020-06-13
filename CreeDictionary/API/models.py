@@ -68,15 +68,7 @@ def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """ replace fst-tags to cute ones"""
-    labels: List[Label] = []
-    for fst_tag in fst_tags:
-        label = LABELS.english.get(fst_tag)
-        if fst_tag in LABELS and label:  # label could be '' or None
-            labels.append(label)
-        else:
-            # can not find user friendly label in crk.altlabel, do not change it.
-            labels.append(Label(fst_tag))
-    return labels
+    return LABELS.english.get_full_relabelling(fst_tags)
 
 
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database

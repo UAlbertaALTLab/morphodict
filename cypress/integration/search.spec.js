@@ -31,7 +31,7 @@ context('Searching', () => {
         // this assertion has to change :/
         .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
-        .and('contain', 'you (one) → him/her/it') // 3Sg -> 4Sg/PlO
+        .and('contain', 'you (one) → him/her') // 3Sg -> 4Sg/PlO
     })
 
     it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
