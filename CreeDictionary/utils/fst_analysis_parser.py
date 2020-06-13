@@ -129,6 +129,27 @@ class _RelabelFetcher:
         _unmatched, label = self._get_longest(tags)
         return label
 
+    def get_full_relabelling(self, tags: Iterable[FSTTag]) -> List[Label]:
+        """
+        Relabels all tags, trying to match prefixes
+        """
+
+        labels = []
+        tag_set = tuple(tags)
+        while tag_set:
+            unmatched, maybe_label = self._get_longest(tag_set)
+            if maybe_label is None:
+                # No relabelling available! Just return the tag itself
+                # TODO: raise a warning?
+                label = Label(tag_set[0])
+                tag_set = tag_set[1:]
+            else:
+                label = maybe_label
+                tag_set = unmatched
+            labels.append(label)
+
+        return labels
+
     def _get_longest(
         self, tags: Iterable[FSTTag]
     ) -> Tuple[Tuple[FSTTag, ...], Optional[Label]]:
