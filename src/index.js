@@ -228,7 +228,16 @@ function setupAudioOnPageLoad() {
     .then((recordingURL) => {
       // TODO: it shouldn't be placed be **inside** the title <h1>...
       let button = createAudioButton(recordingURL, title)
-      button.addEventListener('click', retrieveListOfSpeakers)
+      // button.addEventListener('click', retrieveListOfSpeakers)
+      button.addEventListener('click', () => {
+        // prepare tooltips
+
+        // create tooltips
+
+        // ????
+
+        // profit
+      });
     })
     .catch(() => {
       // TODO: display an error message?
