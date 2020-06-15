@@ -3,7 +3,7 @@
 const BASE_URL = 'https://sapir.artsrn.ualberta.ca/validation'
 
 // the specific URL for a given speaker (appended with the speaker code)
-const BASE_SPEAKER_URL = 'http://altlab.ualberta.ca/maskwacis/Speakers/'
+const BASE_SPEAKER_URL = 'https://www.altlab.dev/maskwacis/Speakers/'
 
 export function fetchRecordings(wordform) {
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
@@ -72,7 +72,7 @@ export function retrieveListOfSpeakers() {
     audio.preload = 'none'
     createdSpeakerButton.addEventListener('click', () => {
       audio.play()
-      displaySpeakerBioLink(recordingData)     
+      displaySpeakerBioLink(recordingData)
     })
   }
 
@@ -89,7 +89,7 @@ export function retrieveListOfSpeakers() {
 
     // link inside the template
     let createdLink = createdTemplateNode.firstChild
-    
+
     // variable (speaker's name) to be inserted into the DOM
     let speakerName = recordingData['speaker_name']
 
@@ -103,11 +103,11 @@ export function retrieveListOfSpeakers() {
       createdLink.href = insertedURL
 
       // and place the node into the DOM
-      container.appendChild(createdTemplateNode)   
+      container.appendChild(createdTemplateNode)
     } else {
       // remove the node that was created:
       container.removeChild(container.childNodes[1]) // may need to extract the inner parameter based on Eddie's feedback...
-        
+
       // create a new node for the new speaker name
       let newSpeakerNode = document.getElementById('template:speaker-bio-link').content.cloneNode(true)
       // ...and place the newly clicked speaker's name into it
@@ -116,7 +116,7 @@ export function retrieveListOfSpeakers() {
       // get the URL again and reinsert into the newly created node
       createdLink = newSpeakerNode.firstChild
       createdLink.href = insertedURL
-      
+
       // place said node into the DOM
       container.appendChild(newSpeakerNode)
     }
