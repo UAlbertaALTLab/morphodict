@@ -20,8 +20,9 @@ from typing import (
 from urllib.parse import quote
 
 import attr
-import CreeDictionary.hfstol as temp_hfstol
 from attr import attrs
+
+import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction

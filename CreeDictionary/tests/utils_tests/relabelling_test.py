@@ -4,7 +4,6 @@
 from io import StringIO
 
 import pytest
-
 from utils.fst_analysis_parser import Relabelling
 
 labels = Relabelling.from_tsv(
