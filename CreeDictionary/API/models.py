@@ -20,9 +20,8 @@ from typing import (
 from urllib.parse import quote
 
 import attr
-from attr import attrs
-
 import CreeDictionary.hfstol as temp_hfstol
+from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -46,11 +45,7 @@ from utils import (
     get_modified_distance,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
-from utils.fst_analysis_parser import (
-    FST_TAG_LABELS,
-    LabelFriendliness,
-    partition_analysis,
-)
+from utils.fst_analysis_parser import LABELS, partition_analysis
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
@@ -73,15 +68,7 @@ def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """ replace fst-tags to cute ones"""
-    labels: List[Label] = []
-    for fst_tag in fst_tags:
-        label = FST_TAG_LABELS.english.get(fst_tag)
-        if fst_tag in FST_TAG_LABELS and label:  # label could be '' or None
-            labels.append(label)
-        else:
-            # can not find user friendly label in crk.altlabel, do not change it.
-            labels.append(Label(fst_tag))
-    return labels
+    return LABELS.english.get_full_relabelling(fst_tags)
 
 
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
@@ -222,7 +209,7 @@ class Wordform(models.Model):
         if maybe_full_word_class is None:
             return None
         word_class = FSTTag(maybe_full_word_class.without_pos())
-        return FST_TAG_LABELS.english.get(word_class)
+        return LABELS.english.get(word_class)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -594,7 +581,7 @@ class Wordform(models.Model):
                     # use altlabel.tsv to figure out the preverb
 
                     # ling_short looks like: "Preverb: âpihci-"
-                    ling_short = FST_TAG_LABELS.linguistic_short.get(tag)
+                    ling_short = LABELS.linguistic_short.get(tag)
                     if ling_short is not None and ling_short != "":
                         # looks like: "âpihci"
                         normative_preverb_text = ling_short[len("Preverb: ") : -1]
