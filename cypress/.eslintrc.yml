@@ -5,20 +5,17 @@ env:
   node: true
   webextensions: true
   jquery: true
+  mocha: true
 globals:
   XRegExp: true
-  # Cypress/chai/Mocha globals
+  # Cypress/Chai globals
   Cypress: true
-  afterEach: true
-  beforeEach: true
-  context: true
   cy: true
-  describe: true
   expect: true
-  it: true
 extends: 'eslint:recommended'
 parserOptions:
   ecmaVersion: 2016
+  sourceType: module
 rules:
   indent:
     - error
@@ -29,7 +26,11 @@ rules:
   quotes:
     - error
     - single
+    - avoidEscape: true
   semi:
     - error
     - never
+  no-unused-vars:
+    - error
+    - argsIgnorePattern: "^_"
   no-console: "warn"
