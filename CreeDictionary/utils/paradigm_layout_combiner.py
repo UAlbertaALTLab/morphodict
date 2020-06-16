@@ -20,8 +20,7 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 
-from utils import ParadigmSize
-from utils.enums import WC
+from utils import WordClass, ParadigmSize
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
@@ -29,19 +28,19 @@ Table = List[List[str]]
 logger = logging.getLogger(__name__)
 
 # paradigm files names are inconsistent
-PARADIGM_NAME_TO_SLC = {
-    "noun-na": WC.NA,
-    "noun-nad": WC.NAD,
-    "noun-ni": WC.NI,
-    "noun-nid": WC.NID,
-    "verb-ai": WC.VAI,
-    "verb-ii": WC.VII,
-    "verb-ta": WC.VTA,
-    "verb-ti": WC.VTI,
+PARADIGM_NAME_TO_WC = {
+    "noun-na": WordClass.NA,
+    "noun-nad": WordClass.NAD,
+    "noun-ni": WordClass.NI,
+    "noun-nid": WordClass.NID,
+    "verb-ai": WordClass.VAI,
+    "verb-ii": WordClass.VII,
+    "verb-ta": WordClass.VTA,
+    "verb-ti": WordClass.VTI,
 }
 
 
-LayoutTable = Dict[Tuple[WC, ParadigmSize], Table]
+LayoutTable = Dict[Tuple[WordClass, ParadigmSize], Table]
 
 
 def import_layouts(layout_file_dir: Path) -> LayoutTable:
@@ -55,7 +54,7 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     for layout_file in files:
         # Get rid of .layout or .csv
         stem, _dot, _extensions = layout_file.name.partition(".")
-        *lc_str, size_str = stem.split("-")
+        *wc_str, size_str = stem.split("-")
 
         # Figure out if it's worth converting layout this layout.
         try:
@@ -65,14 +64,14 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
             logger.info("unsupported paradigm size for %s", layout_file)
             continue
 
-        lc = PARADIGM_NAME_TO_SLC["-".join(lc_str)]
+        wc = PARADIGM_NAME_TO_WC["-".join(wc_str)]
         table = parse_layout(layout_file)
 
-        if (lc, size) in layout_tables:
+        if (wc, size) in layout_tables:
             logger.warning(
-                "%s-%s already in table; replacing with %s", lc, size, layout_file
+                "%s-%s already in table; replacing with %s", wc, size, layout_file
             )
-        layout_tables[(lc, size)] = table
+        layout_tables[(wc, size)] = table
 
     return layout_tables
 
@@ -148,7 +147,7 @@ def parse_legacy_layout(layout_file: Path) -> Table:
 
 def import_paradigms(
     paradigm_files_dir: Path,
-) -> Dict[WC, Dict[FrozenSet[str], List[str]]]:
+) -> Dict[WordClass, Dict[FrozenSet[str], List[str]]]:
     paradigm_table = dict()
     files = glob.glob(str(paradigm_files_dir / "*.paradigm"))
 
@@ -177,7 +176,7 @@ def import_paradigms(
                     else:
                         class_paradigm[frozenset(component_tuple)] = [line]
 
-        paradigm_table[PARADIGM_NAME_TO_SLC[name_wo_extension]] = class_paradigm
+        paradigm_table[PARADIGM_NAME_TO_WC[name_wo_extension]] = class_paradigm
 
     return paradigm_table
 
@@ -193,13 +192,13 @@ class Combiner:
     That is, the combiner should NOT be used in the Django server.
     """
 
-    _paradigm_tables: Dict[WC, Dict[FrozenSet[str], List[str]]]
+    _paradigm_tables: Dict[WordClass, Dict[FrozenSet[str], List[str]]]
     """
     {InflectionCategory.NA:
         {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
     }
     """
-    _layout_tables: Dict[Tuple[WC, ParadigmSize], Table]
+    _layout_tables: Dict[Tuple[WordClass, ParadigmSize], Table]
     # todo: update how it looks like
     """ how it looks like
     {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
@@ -260,13 +259,13 @@ class Combiner:
         )
 
     def get_combined_table(
-        self, category: WC, paradigm_size: ParadigmSize
+        self, category: WordClass, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         Return the appropriate layout.
         """
 
-        if category is WC.IPC or category is WC.Pron:
+        if category is WordClass.IPC or category is WordClass.Pron:
             return []
 
         layout_table = self._layout_tables[(category, paradigm_size)]
@@ -310,8 +309,8 @@ class Combiner:
 def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
-    for ic in WC:
-        if ic in (WC.Pron, WC.IPC, WC.IPV):
+    for ic in WordClass:
+        if ic in (WordClass.Pron, WordClass.IPC, WordClass.IPV):
             continue
         for size in ParadigmSize:
             with open(

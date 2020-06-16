@@ -59,15 +59,15 @@ class WordClass(Enum):
     @property
     def pos(self) -> PartOfSpeech:
         if self.is_verb():
-            return POS.V
+            return PartOfSpeech.V
         elif self.is_noun():
-            return POS.N
+            return PartOfSpeech.N
         elif self is WordClass.IPC:
-            return POS.IPC
+            return PartOfSpeech.IPC
         elif self is WordClass.Pron:
-            return POS.PRON
+            return PartOfSpeech.PRON
         elif self is WordClass.IPV:
-            return POS.IPV
+            return PartOfSpeech.IPV
         else:
             raise ValueError
 
@@ -120,7 +120,3 @@ class WordClass(Enum):
         """
 
         return self.value.lower() + "-" + paradigm_size.value.lower()
-
-
-WC = WordClass
-POS = PartOfSpeech

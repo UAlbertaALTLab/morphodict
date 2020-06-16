@@ -35,7 +35,7 @@ from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
-    POS,
+    PartOfSpeech,
     ConcatAnalysis,
     FSTTag,
     Label,
@@ -284,7 +284,7 @@ class Wordform(models.Model):
         max_length=10,
         help_text="Inflectional category directly from source xml file",  # e.g. NI-3
     )
-    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
+    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in PartOfSpeech] + [("", "")]
     pos = models.CharField(
         max_length=4,
         choices=RECOGNIZABLE_POS,
@@ -470,7 +470,7 @@ class Wordform(models.Model):
                 # those results are filtered out by `as_is=False` below
                 # suggested by Arok Wolvengrey
 
-                if word_class.pos is POS.PRON:
+                if word_class.pos is PartOfSpeech.PRON:
                     # specially handle pronouns.
                     # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
                     # "ôma" has multiple analysis

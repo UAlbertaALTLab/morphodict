@@ -35,8 +35,8 @@ def initialize_preverb_search():
 
     # An all inclusive filtering mechanism is inflectional_category=IPV OR pos="IPV". Don't rely on a single one
     # due to the inconsistent labelling in the source crkeng.xml.
-    # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    # For "sa", the source gives pos=IPV lc="" (unspecified)
+    # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
+    # For "sa", the source gives pos=IPV ic="" (unspecified)
 
     # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
     # many preverbs are normalized so that both inflectional_category and pos are set to IPV.

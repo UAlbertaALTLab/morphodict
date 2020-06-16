@@ -12,40 +12,45 @@ from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
-from DatabaseManager.xml_consistency_checker import does_lc_match_xml_entry
+from DatabaseManager.xml_consistency_checker import (
+    does_inflectional_category_match_xml_entry,
+)
 from utils import fst_analysis_parser
-from utils.crkeng_xml_utils import extract_l_str, parse_xml_lc
-from utils.enums import POS
+from utils.crkeng_xml_utils import (
+    extract_l_str,
+    convert_xml_inflectional_category_to_word_class,
+)
+from utils import PartOfSpeech
 
 init()  # for windows compatibility
 
 logger = DatabaseManagerLogger(__name__)
 
-RECOGNIZABLE_POS: Set[str] = {p.value for p in POS}
+RECOGNIZABLE_POS: Set[str] = {p.value for p in PartOfSpeech}
 
 # todo: refactor and use this
 XmlTuple = NewType("XmlTuple", Tuple[str, str, str])
-"Tuple of xml_lemma, xml_pos, xml_lc extracted from crkeng.xml"
+"Tuple of xml_lemma, xml_pos, xml_ic extracted from crkeng.xml"
 
 
-def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
+def generate_as_is_analysis(xml_lemma: str, pos: str, ic: str) -> str:
     """
     generate analysis for xml entries whose lemmas cannot be determined.
     The philosophy is to match the appearance an fst analysis
     in the following examples, the xml_lemmas are not necessarily un-analyzable. They are just examples to show the
     behaviour of this function.
 
-    >>> generate_as_is_analysis('ihtatwêwitam', 'V', 'VTI') # adopt more detailed lc if possible
+    >>> generate_as_is_analysis('ihtatwêwitam', 'V', 'VTI') # adopt more detailed ic if possible
     'ihtatwêwitam+V+TI'
-    >>> generate_as_is_analysis('wayawîwin', 'N', 'NI-2') # adopt more detailed lc if possible, strip dash-x to simulate fst analysis
+    >>> generate_as_is_analysis('wayawîwin', 'N', 'NI-2') # adopt more detailed ic if possible, strip dash-x to simulate fst analysis
     'wayawîwin+N+I'
-    >>> generate_as_is_analysis('wayawîwin', '', 'NI') # adopt more detailed lc if possible, strip dash-x to simulate fst analysis
+    >>> generate_as_is_analysis('wayawîwin', '', 'NI') # adopt more detailed ic if possible, strip dash-x to simulate fst analysis
     'wayawîwin+N+I'
     >>> generate_as_is_analysis('wayawîwin', 'N', 'IPP') # ignore inflectional category/word class outside utils.WordClass Enum
     'wayawîwin+N'
     >>> generate_as_is_analysis('wayawîwin', 'N', '') # use pos only as a fallback
     'wayawîwin+N'
-    >>> generate_as_is_analysis('wayawîwin', '', '') # no analysis when there's no pos nor lc
+    >>> generate_as_is_analysis('wayawîwin', '', '') # no analysis when there's no pos nor ic
     ''
     >>> generate_as_is_analysis('wayawîwin', '', 'IPP') # ignore inflectional category/word class outside utils.WordClass Enum
     ''
@@ -54,24 +59,24 @@ def generate_as_is_analysis(xml_lemma: str, pos: str, lc: str) -> str:
     # possible parsed pos str
     # {'', 'IPV', 'Pron', 'N', 'Ipc', 'V', '-'}
 
-    # possible parsed lc str
+    # possible parsed ic str
     # {'', 'NDA-1', 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
     # 'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
     # 'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
     # 'NA-?', 'NI-1', 'VTA-3', 'NI-?', 'VTA-4', 'VTI-3', 'NI-2', 'NA-4', 'NDI-1', 'NA-1', 'IPP',
     # 'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
 
-    lc = lc.split("-")[0]
+    ic = ic.split("-")[0]
 
-    recognized_lc = parse_xml_lc(lc)
+    recognized_wc = convert_xml_inflectional_category_to_word_class(ic)
 
-    if recognized_lc is None:
+    if recognized_wc is None:
         if pos not in ("", "-"):
             return xml_lemma + "+" + pos
         else:
             return ""
     else:
-        return xml_lemma + recognized_lc.to_fst_output_style()
+        return xml_lemma + recognized_wc.to_fst_output_style()
 
 
 def format_element_error(msg: str, element: ET.Element) -> str:
@@ -96,7 +101,7 @@ class EngcrkCree(NamedTuple):
     """
 
     wordform: str
-    pos: POS
+    pos: PartOfSpeech
 
 
 def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
@@ -170,7 +175,7 @@ def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
             pos_str = t_element.get("pos")
             assert pos_str is not None
             try:
-                pos = POS(pos_str.upper())
+                pos = PartOfSpeech(pos_str.upper())
             except ValueError:
                 logger.debug(
                     format_element_error(
@@ -228,7 +233,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     Import from crkeng and engcrk files, `dir_name` can host a series of xml files. The latest timestamped files will be
     used, with un-timestamped files as a fallback.
 
-    Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, lc) tuples
+    Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, ic) tuples
 
     :param dir_name: the directory that has pattern (crkeng|engcrk).*?(?P<timestamp>\d{6})?\.xml
     (e.g. engcrk_cw_md_200319.xml or engcrk.xml) files, beware the timestamp has format yymmdd
@@ -258,18 +263,18 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     logger.info("English keywords loaded")
 
     # value is definition string as key and its source as value
-    xml_lemma_pos_lc_to_str_definitions = (
+    xml_lemma_pos_ic_to_str_definitions = (
         {}
     )  # type: Dict[Tuple[str,str,str], Dict[str, Set[str]]]
 
-    # One lemma could have multiple entries with different pos and lc
-    xml_lemma_to_pos_lc = {}  # type: Dict[str, List[Tuple[str,str]]]
+    # One lemma could have multiple entries with different pos and ic
+    xml_lemma_to_pos_ic = {}  # type: Dict[str, List[Tuple[str,str]]]
 
     elements = root.findall(".//e")
     logger.info("%d dictionary entries found" % len(elements))
 
-    duplicate_xml_lemma_pos_lc_count = 0
-    logger.info("extracting (xml_lemma, pos, lc) tuples")
+    duplicate_xml_lemma_pos_ic_count = 0
+    logger.info("extracting (xml_lemma, pos, ic) tuples")
     tuple_count = 0
     for element in elements:
 
@@ -314,14 +319,14 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         assert (
             l_element is not None
         ), f"Missing <l> element in entry \n {ET.tostring(element, encoding='unicode')}"
-        lc_element = element.find("lg/lc")
+        ic_element = element.find("lg/lc")
         assert (
-            lc_element is not None
+            ic_element is not None
         ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
-        lc_str = lc_element.text
+        ic_str = ic_element.text
 
-        if lc_str is None:
-            lc_str = ""
+        if ic_str is None:
+            ic_str = ""
         xml_lemma = extract_l_str(element)
         pos_attr = l_element.get("pos")
         assert (
@@ -329,27 +334,27 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
         pos_str = pos_attr
 
-        duplicate_lemma_pos_lc = False
+        duplicate_lemma_pos_ic = False
 
-        if xml_lemma in xml_lemma_to_pos_lc:
+        if xml_lemma in xml_lemma_to_pos_ic:
 
-            if (pos_str, lc_str) in xml_lemma_to_pos_lc[xml_lemma]:
-                duplicate_xml_lemma_pos_lc_count += 1
-                duplicate_lemma_pos_lc = True
+            if (pos_str, ic_str) in xml_lemma_to_pos_ic[xml_lemma]:
+                duplicate_xml_lemma_pos_ic_count += 1
+                duplicate_lemma_pos_ic = True
             else:
                 tuple_count += 1
-                xml_lemma_to_pos_lc[xml_lemma].append((pos_str, lc_str))
+                xml_lemma_to_pos_ic[xml_lemma].append((pos_str, ic_str))
         else:
             tuple_count += 1
-            xml_lemma_to_pos_lc[xml_lemma] = [(pos_str, lc_str)]
+            xml_lemma_to_pos_ic[xml_lemma] = [(pos_str, ic_str)]
 
-        if duplicate_lemma_pos_lc:
+        if duplicate_lemma_pos_ic:
             logger.debug(
-                f"xml_lemma: {xml_lemma} pos: {pos_str} lc: {lc_str} is a duplicate tuple"
+                f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} is a duplicate tuple"
             )
 
-            tuple_definitions = xml_lemma_pos_lc_to_str_definitions[
-                (xml_lemma, pos_str, lc_str)
+            tuple_definitions = xml_lemma_pos_ic_to_str_definitions[
+                (xml_lemma, pos_str, ic_str)
             ]
             for str_definition, source_set in str_definitions_for_entry.items():
                 if str_definition in tuple_definitions:
@@ -357,34 +362,34 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 else:
                     tuple_definitions[str_definition] = source_set
         else:
-            xml_lemma_pos_lc_to_str_definitions[
-                (xml_lemma, pos_str, lc_str)
+            xml_lemma_pos_ic_to_str_definitions[
+                (xml_lemma, pos_str, ic_str)
             ] = str_definitions_for_entry
 
     logger.info(
-        f"{Fore.BLUE}%d entries have (lemma, pos, lc) duplicate to others. Their definition will be merged{Fore.RESET}"
-        % duplicate_xml_lemma_pos_lc_count
+        f"{Fore.BLUE}%d entries have (lemma, pos, ic) duplicate to others. Their definition will be merged{Fore.RESET}"
+        % duplicate_xml_lemma_pos_ic_count
     )
-    logger.info("%d (xml_lemma, pos, lc) tuples extracted" % tuple_count)
+    logger.info("%d (xml_lemma, pos, ic) tuples extracted" % tuple_count)
 
-    xml_lemma_pos_lc_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
-        xml_lemma_to_pos_lc, multi_processing
+    xml_lemma_pos_ic_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
+        xml_lemma_to_pos_ic, multi_processing
     )
 
     # these two will be imported to the database
-    as_is_xml_lemma_pos_lc = []  # type: List[Tuple[str, str, str]]
-    true_lemma_analyses_to_xml_lemma_pos_lc = defaultdict(
+    as_is_xml_lemma_pos_ic = []  # type: List[Tuple[str, str, str]]
+    true_lemma_analyses_to_xml_lemma_pos_ic = defaultdict(
         list
     )  # type: Dict[str, List[Tuple[str, str, str]]]
 
-    for (xml_lemma, pos, lc), analysis in xml_lemma_pos_lc_to_analysis.items():
+    for (xml_lemma, pos, ic), analysis in xml_lemma_pos_ic_to_analysis.items():
         if analysis != "":
-            true_lemma_analyses_to_xml_lemma_pos_lc[analysis].append(
-                (xml_lemma, pos, lc)
+            true_lemma_analyses_to_xml_lemma_pos_ic[analysis].append(
+                (xml_lemma, pos, ic)
             )
 
         else:
-            as_is_xml_lemma_pos_lc.append((xml_lemma, pos, lc))
+            as_is_xml_lemma_pos_ic.append((xml_lemma, pos, ic))
 
     wordform_counter = 1
     definition_counter = 1
@@ -395,22 +400,22 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     db_keywords: List[EnglishKeyword] = []
     citations: Dict[int, Set[str]] = {}
 
-    for xml_lemma, pos, lc in as_is_xml_lemma_pos_lc:
+    for xml_lemma, pos, ic in as_is_xml_lemma_pos_ic:
         upper_pos = pos.upper()
 
         # is_lemma field should default to true
         db_inflection = Wordform(
             id=wordform_counter,
             text=xml_lemma,
-            analysis=generate_as_is_analysis(xml_lemma, pos, lc),
+            analysis=generate_as_is_analysis(xml_lemma, pos, ic),
             pos=upper_pos if upper_pos in RECOGNIZABLE_POS else "",
-            inflectional_category=lc,
+            inflectional_category=ic,
             is_lemma=True,
             as_is=True,
         )
         if upper_pos in RECOGNIZABLE_POS:
             for english_keywords in engcrk_cree_to_keywords[
-                EngcrkCree(xml_lemma, POS(upper_pos))
+                EngcrkCree(xml_lemma, PartOfSpeech(upper_pos))
             ]:
                 db_keywords.append(
                     EnglishKeyword(
@@ -425,8 +430,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         wordform_counter += 1
         db_inflections.append(db_inflection)
 
-        str_definitions_source_strings = xml_lemma_pos_lc_to_str_definitions[
-            (xml_lemma, pos, lc)
+        str_definitions_source_strings = xml_lemma_pos_ic_to_str_definitions[
+            (xml_lemma, pos, ic)
         ]
 
         for str_definition, source_strings in str_definitions_source_strings.items():
@@ -442,34 +447,34 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             db_definitions.append(db_definition)
 
     expanded = expand_inflections(
-        true_lemma_analyses_to_xml_lemma_pos_lc.keys(), multi_processing
+        true_lemma_analyses_to_xml_lemma_pos_ic.keys(), multi_processing
     )
 
     logger.info("Structuring wordforms, english keywords, and definition objects...")
     for (
         true_lemma_analysis,
-        xml_lemma_pos_lcs,
-    ) in true_lemma_analyses_to_xml_lemma_pos_lc.items():
-        lemma_wordform_simple_lc = fst_analysis_parser.extract_lemma_and_word_class(
+        xml_lemma_pos_ic_tuples,
+    ) in true_lemma_analyses_to_xml_lemma_pos_ic.items():
+        lemma_wordform_word_class = fst_analysis_parser.extract_lemma_and_word_class(
             true_lemma_analysis
         )
-        assert lemma_wordform_simple_lc is not None
+        assert lemma_wordform_word_class is not None
 
-        lemma_wordform, simple_lc = lemma_wordform_simple_lc
-        generated_pos = simple_lc.pos
+        lemma_wordform, word_class = lemma_wordform_word_class
+        generated_pos = word_class.pos
 
         db_wordforms_for_analysis = []
         db_lemma = None
-        _, _, xml_lc = xml_lemma_pos_lcs[0]
+        _, _, xml_ic = xml_lemma_pos_ic_tuples[0]
 
         # build wordforms and definition in db
         for generated_analysis, generated_wordforms in expanded[true_lemma_analysis]:
 
-            generated_lemma_lc = fst_analysis_parser.extract_lemma_and_word_class(
+            generated_lemma_ic = fst_analysis_parser.extract_lemma_and_word_class(
                 generated_analysis
             )
-            assert generated_lemma_lc is not None
-            generated_lemma, generated_lc = generated_lemma_lc
+            assert generated_lemma_ic is not None
+            generated_lemma, generated_ic = generated_lemma_ic
 
             for generated_wordform in generated_wordforms:
                 # generated_inflections contain different spellings of one fst analysis
@@ -487,7 +492,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     analysis=generated_analysis,
                     is_lemma=is_lemma,
                     pos=generated_pos.name,
-                    inflectional_category=xml_lc,
+                    inflectional_category=xml_ic,
                     as_is=False,
                 )
 
@@ -518,16 +523,18 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                 d_s_dicts: List[dict] = []
 
                 # first get homographic entries from the xml file
-                pos_lc_tuples_in_xml = xml_lemma_to_pos_lc.get(generated_wordform)
+                pos_ic_tuples_in_xml = xml_lemma_to_pos_ic.get(generated_wordform)
 
                 # The case when we do have homographic entries in xml,
-                # Then we check whether these entries' pos and lc agrees with our generated wordform
-                if pos_lc_tuples_in_xml is not None:
-                    for xml_pos, xml_lc in pos_lc_tuples_in_xml:
-                        if does_lc_match_xml_entry(generated_lc, xml_pos, xml_lc):
+                # Then we check whether these entries' pos and ic agrees with our generated wordform
+                if pos_ic_tuples_in_xml is not None:
+                    for xml_pos, xml_ic in pos_ic_tuples_in_xml:
+                        if does_inflectional_category_match_xml_entry(
+                            generated_ic, xml_pos, xml_ic
+                        ):
                             d_s_dicts.append(
-                                xml_lemma_pos_lc_to_str_definitions[
-                                    (generated_wordform, xml_pos, xml_lc)
+                                xml_lemma_pos_ic_to_str_definitions[
+                                    (generated_wordform, xml_pos, xml_ic)
                                 ]
                             )
                 # The case when we don't have holographic entries in xml,

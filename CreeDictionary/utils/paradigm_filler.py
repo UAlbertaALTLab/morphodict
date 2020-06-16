@@ -10,9 +10,9 @@ from typing import Dict, List, Tuple
 import hfstol
 
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
-from utils import WC, ParadigmSize
+from utils import WordClass, ParadigmSize
 
-LayoutID = Tuple[WC, ParadigmSize]
+LayoutID = Tuple[WordClass, ParadigmSize]
 
 
 def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Layout]:
@@ -23,15 +23,15 @@ def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Layout]:
 
     for layout_file in layout_file_dir.glob("*.tsv"):
         name_wo_extension = layout_file.stem
-        ic_str, size_str = name_wo_extension.split("-")
-        lc = WC(ic_str.upper())
+        wc_str, size_str = name_wo_extension.split("-")
+        wc = WordClass(wc_str.upper())
         size = ParadigmSize(size_str.upper())
 
         with open(str(layout_file), "r") as f:
             reader = csv.reader(f, delimiter="\t", quotechar="'")
             # TODO: convert the raw layout into a normal layout
             layout = rows_to_layout(reader)
-        layout_tables[(lc, size)] = layout
+        layout_tables[(wc, size)] = layout
 
     return layout_tables
 
@@ -60,7 +60,7 @@ class ParadigmFiller:
         )
 
     def fill_paradigm(
-        self, lemma: str, category: WC, paradigm_size: ParadigmSize
+        self, lemma: str, category: WordClass, paradigm_size: ParadigmSize
     ) -> List[Layout]:
         """
         returns a paradigm table filled with words
@@ -74,7 +74,7 @@ class ParadigmFiller:
         lookup_strings: List[str] = []
         string_locations: List[Tuple[List[Cell], int]] = []
 
-        if category is WC.IPC or category is WC.Pron:
+        if category is WordClass.IPC or category is WordClass.Pron:
             return []
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])

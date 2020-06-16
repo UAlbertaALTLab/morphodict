@@ -109,9 +109,11 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
         return None
 
 
-def extract_lemma_and_word_class(analysis: str, ) -> Optional[Tuple[FSTLemma, WordClass]]:
+def extract_lemma_and_word_class(
+    analysis: str,
+) -> Optional[Tuple[FSTLemma, WordClass]]:
     """
-    less overhead than calling `extract_lemma` and `extract_simple_lc` separately
+    less overhead than calling `extract_lemma` and `extract_wc` separately
     """
     res = re.search(analysis_pattern, analysis)
     if res is not None:

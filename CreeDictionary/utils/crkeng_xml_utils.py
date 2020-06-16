@@ -40,11 +40,13 @@ def extract_l_str(element: ET.Element) -> str:
     return text
 
 
-def parse_xml_lc(lc_text: str) -> Optional[WordClass]:
+def convert_xml_inflectional_category_to_word_class(
+    ic_text: str,
+) -> Optional[WordClass]:
     """
-    return recognized lc, None if not recognized
+    return recognized ic, None if not recognized
 
-    :param lc_text: 2019 July, all lc from crkeng.xml are
+    :param ic_text: 2019 July, all `lc` from crkeng.xml are
         {'NDA-1', None, 'NDI-?', 'NA-3', 'NA-4w', 'NDA-2', 'VTI-2', 'NDI-3', 'NDI-x', 'NDA-x',
         'IPJ  Exclamation', 'NI-5', 'NDA-4', 'VII-n', 'NDI-4', 'VTA-2', 'IPH', 'IPC ;; IPJ',
         'VAI-v', 'VTA-1', 'NI-3', 'VAI-n', 'NDA-4w', 'IPJ', 'PrI', 'NA-2', 'IPN', 'PR', 'IPV',
@@ -52,28 +54,28 @@ def parse_xml_lc(lc_text: str) -> Optional[WordClass]:
         'NI-4w', 'INM', 'VTA-5', 'PrA', 'NDI-2', 'IPC', 'VTI-1', 'NI-4', 'NDA-3', 'VII-v', 'Interr'}
     :return:
     """
-    if lc_text is None:
+    if ic_text is None:
         return None
-    if lc_text.startswith("VTA"):
+    if ic_text.startswith("VTA"):
         return WordClass.VTA
-    if lc_text.startswith("VTI"):
+    if ic_text.startswith("VTI"):
         return WordClass.VTI
-    if lc_text.startswith("VAI"):
+    if ic_text.startswith("VAI"):
         return WordClass.VAI
-    if lc_text.startswith("VII"):
+    if ic_text.startswith("VII"):
         return WordClass.VII
-    if lc_text.startswith("NDA"):
+    if ic_text.startswith("NDA"):
         return WordClass.NAD
-    if lc_text.startswith("NI"):
+    if ic_text.startswith("NI"):
         return WordClass.NI
-    if lc_text.startswith("NDI"):
+    if ic_text.startswith("NDI"):
         return WordClass.NID
-    if lc_text.startswith("NA"):
+    if ic_text.startswith("NA"):
         return WordClass.NA
 
-    if lc_text.startswith("IPC"):
+    if ic_text.startswith("IPC"):
         return WordClass.IPC
-    if lc_text.startswith("IPV"):
+    if ic_text.startswith("IPV"):
         return WordClass.IPV
 
     return None

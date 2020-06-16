@@ -6,7 +6,7 @@
 # e.g. "mayi" from MD and "mâyi-" from CW coexist in the database
 # preverbs in MD typically does not have circumflexes and do not have dashes
 
-# this migration merges these preverbs and standardize both "full-lc" and "pos" to IPV
+# this migration merges these preverbs and standardize both "full_inflectional_category" and "pos" to IPV
 # this migration is conservative and tries to not err by merging when very sure.
 
 # this migration also appends dashes to all preverbs when absent
@@ -63,7 +63,7 @@ def merge_preverbs(apps, schema_editor):
         dashed_wordform = dashed_wordforms.pop()  # dashed_wordforms has length 1
         wordforms.remove(dashed_wordform)
 
-        # normalized full_lc and pos
+        # normalized full_inflectional_category and pos
         dashed_wordform.inflectional_category = "IPV"
         dashed_wordform.pos = "IPV"
         dashed_wordform.save()

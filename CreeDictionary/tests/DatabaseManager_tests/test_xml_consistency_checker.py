@@ -1,11 +1,11 @@
 import pytest
 
 from utils import WordClass
-from utils.crkeng_xml_utils import parse_xml_lc
+from utils.crkeng_xml_utils import convert_xml_inflectional_category_to_word_class
 
 
 @pytest.mark.parametrize(
-    ("lc_string", "expected_ic_obj"),
+    ("ic_string", "expected_ic_obj"),
     [
         ("NDA-1", WordClass.NAD),
         ("NDI-?", WordClass.NID),
@@ -59,5 +59,5 @@ from utils.crkeng_xml_utils import parse_xml_lc
         ("Interr", None),
     ],
 )
-def test_parse_xml_lc(lc_string, expected_ic_obj):
-    assert parse_xml_lc(lc_string) == expected_ic_obj
+def test_parse_xml_ic(ic_string, expected_ic_obj):
+    assert convert_xml_inflectional_category_to_word_class(ic_string) == expected_ic_obj
