@@ -19,8 +19,7 @@ from pathlib import Path
 from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
-
-from utils import WordClass, ParadigmSize
+from utils import ParadigmSize, WordClass
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]

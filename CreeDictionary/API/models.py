@@ -21,6 +21,8 @@ from urllib.parse import quote
 
 import attr
 from attr import attrs
+
+import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -28,19 +30,17 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from sortedcontainers import SortedSet
-
-import CreeDictionary.hfstol as temp_hfstol
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
+from sortedcontainers import SortedSet
 from utils import (
-    PartOfSpeech,
     ConcatAnalysis,
     FSTTag,
     Label,
     Language,
     ParadigmSize,
+    PartOfSpeech,
     WordClass,
     fst_analysis_parser,
     get_modified_distance,

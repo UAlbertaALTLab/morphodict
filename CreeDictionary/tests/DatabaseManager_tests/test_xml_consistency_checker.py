@@ -1,5 +1,4 @@
 import pytest
-
 from utils import WordClass
 from utils.crkeng_xml_utils import convert_xml_inflectional_category_to_word_class
 

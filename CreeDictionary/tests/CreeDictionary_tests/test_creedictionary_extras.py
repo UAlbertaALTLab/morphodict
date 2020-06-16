@@ -2,11 +2,10 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
+from CreeDictionary.templatetags.creedictionary_extras import orth
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 from pytest_django.asserts import assertInHTML
-
-from CreeDictionary.templatetags.creedictionary_extras import orth
 
 
 def test_orth_requires_two_arguments():

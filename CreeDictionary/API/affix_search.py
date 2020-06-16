@@ -3,7 +3,6 @@ from itertools import chain
 from typing import Dict, Iterable, List, Tuple
 
 import marisa_trie
-
 from utils.cree_lev_dist import remove_cree_diacritics
 
 
