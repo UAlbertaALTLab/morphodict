@@ -1,6 +1,7 @@
 /* global Urls:readable */
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
+/* global lemmaId:readable */
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
@@ -51,6 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
+    if (document.getElementById('paradigm')){ // if the lemma has a paradigm thus having a "show more" button
+      setupParadigmSizeToggleButton()
+    }
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
@@ -58,6 +62,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 ///////////////////////////// Internal functions /////////////////////////////
+
+/**
+ * attach handlers to the "show more" button. So that it:
+ *
+ *  - loads a more detailed paradigm when clicked
+ *  - changes its text to "show less" when the paradigm has the largest size
+ *    and shows the smallest paradigm when clicked
+ */
+function setupParadigmSizeToggleButton(){
+  const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
+
+  toggleButton.addEventListener('click', ()=>{
+    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}`).then(r=>r.text()).then(
+      text=>{
+        const frag = document.createRange().createContextualFragment(text)
+        const oldParadigmNode = document.getElementById('paradigm')
+        oldParadigmNode.parentElement.replaceChild(frag, oldParadigmNode)
+      }
+    )
+  })
+}
+
+
 
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
