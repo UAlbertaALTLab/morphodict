@@ -518,6 +518,7 @@ html {
 
 .recordings-list__item {
   list-style: upper-roman;
+  margin-bottom: var(--small-pad);
 }
 
 .recordings-list__item:hover {

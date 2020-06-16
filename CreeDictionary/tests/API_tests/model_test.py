@@ -2,11 +2,10 @@ import json
 from collections import Iterable
 
 import pytest
-from hypothesis import assume, given
-
 from API.models import Wordform
 from CreeDictionary import settings
-from tests.conftest import random_lemmas
+from hypothesis import assume, given
+from tests.conftest import lemmas
 from utils.enums import Language
 
 
@@ -46,7 +45,7 @@ def test_when_linguistic_breakdown_absent():
 
 
 @pytest.mark.django_db
-@given(lemma=random_lemmas())
+@given(lemma=lemmas())
 def test_query_exact_wordform_in_database(lemma: Wordform):
     """
     Sanity check: querying a lemma by its EXACT text returns that lemma.
@@ -67,7 +66,7 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
 
 
 @pytest.mark.django_db
-@given(lemma=random_lemmas())
+@given(lemma=lemmas())
 def test_search_for_exact_lemma(lemma: Wordform):
     """
     Check that we get a search result that matches the exact query.

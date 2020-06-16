@@ -2,8 +2,8 @@
  * PostCSS config.
  */
 
-const postcssCustomProperties = require('postcss-custom-properties');
-const postcssImport = require('postcss-import');
+const postcssCustomProperties = require('postcss-custom-properties')
+const postcssImport = require('postcss-import')
 
 module.exports = {
   map: {inline: true},
@@ -34,4 +34,5 @@ module.exports = {
 
     // NOTE: minification is handled by Rollup!
   ]
-};
+}
+/* eslint-env node */
