@@ -7,9 +7,10 @@ from collections import defaultdict
 from itertools import chain
 from typing import Dict, List, Set
 
+from tqdm import tqdm
+
 from DatabaseManager.xml_importer import find_latest_xml_files
 from shared import descriptive_analyzer
-from tqdm import tqdm
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
 from utils.profiling import timed

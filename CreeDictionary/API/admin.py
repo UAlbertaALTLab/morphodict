@@ -4,6 +4,7 @@ from cree_sro_syllabics import syllabics2sro
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
+
 from shared import descriptive_analyzer
 
 from .models import Definition, DictionarySource, Wordform
@@ -150,7 +151,15 @@ class InflectionAdmin(admin.ModelAdmin):
     get_lemma_definitions.short_description = "Lemma definition"  # type: ignore
 
     def change_view(self, request, object_id, form_url="", extra_context=None):
-        self.fields = ["text", "analysis", "is_lemma", "as_is", "pos", "full_lc", "id"]
+        self.fields = [
+            "text",
+            "analysis",
+            "is_lemma",
+            "as_is",
+            "pos",
+            "inflectional_category",
+            "id",
+        ]
         self.readonly_fields = ["id"]
 
         inflection = Wordform.objects.get(pk=object_id)

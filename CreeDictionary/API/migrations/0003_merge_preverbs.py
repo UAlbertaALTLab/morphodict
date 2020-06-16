@@ -6,7 +6,7 @@
 # e.g. "mayi" from MD and "mâyi-" from CW coexist in the database
 # preverbs in MD typically does not have circumflexes and do not have dashes
 
-# this migration merges these preverbs and standardize both "full-lc" and "pos" to IPV
+# this migration merges these preverbs and standardize both "full_inflectional_category" and "pos" to IPV
 # this migration is conservative and tries to not err by merging when very sure.
 
 # this migration also appends dashes to all preverbs when absent
@@ -29,7 +29,9 @@ def merge_preverbs(apps, schema_editor):
 
     # group preverbs
     no_dash_asciis_to_wordforms: Dict[str, Set[Wordform]] = defaultdict(set)
-    for preverb_wordform in Wordform.objects.filter(Q(full_lc="IPV") | Q(pos="IPV")):
+    for preverb_wordform in Wordform.objects.filter(
+        Q(inflectional_category="IPV") | Q(pos="IPV")
+    ):
         no_dash_ascii = remove_cree_diacritics(preverb_wordform.text.strip("-"))
         no_dash_asciis_to_wordforms[no_dash_ascii].add(preverb_wordform)
 
@@ -61,8 +63,8 @@ def merge_preverbs(apps, schema_editor):
         dashed_wordform = dashed_wordforms.pop()  # dashed_wordforms has length 1
         wordforms.remove(dashed_wordform)
 
-        # normalized full_lc and pos
-        dashed_wordform.full_lc = "IPV"
+        # normalized full_inflectional_category and pos
+        dashed_wordform.inflectional_category = "IPV"
         dashed_wordform.pos = "IPV"
         dashed_wordform.save()
 
@@ -83,6 +85,6 @@ def merge_preverbs(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("API", "0006_auto_20200205_0256"),
+        ("API", "0002_insert_sources"),
     ]
     operations = [migrations.RunPython(merge_preverbs)]

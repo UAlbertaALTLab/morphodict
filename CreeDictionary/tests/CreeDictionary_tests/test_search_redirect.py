@@ -4,8 +4,9 @@
 from http import HTTPStatus
 
 import pytest
-from CreeDictionary.utils import url_for_query
 from django.urls import reverse
+
+from CreeDictionary.utils import url_for_query
 
 
 @pytest.mark.django_db

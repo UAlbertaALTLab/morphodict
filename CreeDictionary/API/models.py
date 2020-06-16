@@ -21,8 +21,6 @@ from urllib.parse import quote
 
 import attr
 from attr import attrs
-
-import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -30,18 +28,20 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+from sortedcontainers import SortedSet
+
+import CreeDictionary.hfstol as temp_hfstol
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from sortedcontainers import SortedSet
 from utils import (
-    POS,
+    PartOfSpeech,
     ConcatAnalysis,
     FSTTag,
     Label,
     Language,
     ParadigmSize,
-    SimpleLexicalCategory,
+    WordClass,
     fst_analysis_parser,
     get_modified_distance,
 )
@@ -174,7 +174,7 @@ class Wordform(models.Model):
     def get_absolute_url(self) -> str:
         """
         :return: url that looks like
-         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?full_lc=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?inflectional_category=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
          it's the least strict url that guarantees unique match in the database
         """
         assert self.is_lemma, "There is no page for non-lemmas"
@@ -216,26 +216,26 @@ class Wordform(models.Model):
     def homograph_disambiguator(self) -> Optional[str]:
         """
         :return: the least strict field name that guarantees unique match together with the text field.
-            could be pos, full_lc, analysis, id or None when the text is enough to disambiguate
+            could be pos, inflectional_category, analysis, id or None when the text is enough to disambiguate
         """
         homographs = Wordform.objects.filter(text=self.text)
         if homographs.count() == 1:
             return None
-        for field in "pos", "full_lc", "analysis":
+        for field in "pos", "inflectional_category", "analysis":
             if homographs.filter(**{field: getattr(self, field)}).count() == 1:
                 return field
         return "id"  # id always guarantees unique match
 
     @property
-    def full_word_class(self) -> Optional[SimpleLexicalCategory]:
-        return fst_analysis_parser.extract_simple_lc(self.analysis)
+    def full_word_class(self) -> Optional[WordClass]:
+        return fst_analysis_parser.extract_word_class(self.analysis)
 
     @property
     def paradigm(self) -> List[Layout]:
         # todo: allow paradigm size other then ParadigmSize.BASIC
-        slc = fst_analysis_parser.extract_simple_lc(self.analysis)
-        if slc is not None:
-            tables = paradigm_filler.fill_paradigm(self.text, slc, ParadigmSize.BASIC)
+        wc = fst_analysis_parser.extract_word_class(self.analysis)
+        if wc is not None:
+            tables = paradigm_filler.fill_paradigm(self.text, wc, ParadigmSize.BASIC)
         else:
             tables = []
         return tables
@@ -267,11 +267,11 @@ class Wordform(models.Model):
 
     text = models.CharField(max_length=40)
 
-    full_lc = models.CharField(
+    inflectional_category = models.CharField(
         max_length=10,
-        help_text="Full lexical category directly from source",  # e.g. NI-3
+        help_text="Inflectional category directly from source xml file",  # e.g. NI-3
     )
-    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in POS] + [("", "")]
+    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in PartOfSpeech] + [("", "")]
     pos = models.CharField(
         max_length=4,
         choices=RECOGNIZABLE_POS,
@@ -293,7 +293,7 @@ class Wordform(models.Model):
     # if as_is is False. pos field is guaranteed to be not empty
     # and will be values from `constants.POS` enum class
 
-    # if as_is is True, full_lc and pos fields can be under-specified, i.e. they can be empty strings
+    # if as_is is True, inflectional_category and pos fields can be under-specified, i.e. they can be empty strings
     as_is = models.BooleanField(
         default=False,
         help_text="The lemma of this wordform is not determined during the importing process."
@@ -355,7 +355,7 @@ class Wordform(models.Model):
         Give the analysis of user query and matched lemmas.
         There can be multiple analysis for user queries
         One analysis could match multiple lemmas as well due to underspecified database fields.
-        (lc and pos can be empty)
+        (inflectional_category and pos can be empty)
 
         treat the user query as English keyword and:
 
@@ -423,8 +423,8 @@ class Wordform(models.Model):
                 # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
                 # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
 
-                lemma_lc = fst_analysis_parser.extract_lemma_and_category(analysis)
-                if lemma_lc is None:
+                lemma_wc = fst_analysis_parser.extract_lemma_and_word_class(analysis)
+                if lemma_wc is None:
                     logger.error(
                         f"fst_analysis_parser cannot understand analysis {analysis}"
                     )
@@ -445,7 +445,7 @@ class Wordform(models.Model):
                     key=lambda f: get_modified_distance(f, user_query),
                 )
 
-                lemma, lc = lemma_lc
+                lemma, word_class = lemma_wc
                 matched_lemma_wordforms = Wordform.objects.filter(
                     text=lemma, is_lemma=True, **extra_constraints
                 )
@@ -457,7 +457,7 @@ class Wordform(models.Model):
                 # those results are filtered out by `as_is=False` below
                 # suggested by Arok Wolvengrey
 
-                if lc.pos is POS.PRON:
+                if word_class.pos is PartOfSpeech.PRON:
                     # specially handle pronouns.
                     # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
                     # "ôma" has multiple analysis
@@ -477,7 +477,7 @@ class Wordform(models.Model):
                         )
                 else:
                     for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=lc.pos.name, **extra_constraints
+                        as_is=False, pos=word_class.pos.name, **extra_constraints
                     ):
                         cree_results.add(
                             CreeResult(
@@ -542,7 +542,7 @@ class Wordform(models.Model):
 
             # explained above, preverbs should be presented
             for wordform in Wordform.objects.filter(
-                Q(pos="IPV") | Q(full_lc="IPV") | Q(pos="PRON"),
+                Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
                 id__in=lemma_ids,
                 as_is=True,
                 **extra_constraints,

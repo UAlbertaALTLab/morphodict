@@ -4,7 +4,7 @@ from enum import IntEnum, auto
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, TextIO, Tuple, TypeVar, Union
 
-from utils.enums import SimpleLexicalCategory
+from utils.enums import WordClass
 from utils.types import FSTLemma, FSTTag, Label
 
 from .shared_res_dir import shared_res_dir
@@ -226,11 +226,11 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
         return None
 
 
-def extract_lemma_and_category(
+def extract_lemma_and_word_class(
     analysis: str,
-) -> Optional[Tuple[FSTLemma, SimpleLexicalCategory]]:
+) -> Optional[Tuple[FSTLemma, WordClass]]:
     """
-    less overhead than calling `extract_lemma` and `extract_simple_lc` separately
+    less overhead than calling `extract_lemma` and `extract_wc` separately
     """
     res = re.search(analysis_pattern, analysis)
     if res is not None:
@@ -250,7 +250,7 @@ def extract_lemma_and_category(
 
             if group.startswith("+Num"):  # special case
                 group = group[4:]
-            inflection_category = SimpleLexicalCategory(group.replace("+", "").upper())
+            inflection_category = WordClass(group.replace("+", "").upper())
 
             return FSTLemma(lemma), inflection_category
 
@@ -260,7 +260,7 @@ def extract_lemma_and_category(
         return None
 
 
-def extract_simple_lc(analysis: str) -> Optional[SimpleLexicalCategory]:
+def extract_word_class(analysis: str) -> Optional[WordClass]:
     """
     :param analysis: in the form of 'a+VAI+b+c'
     :return: None if extraction fails
@@ -272,7 +272,7 @@ def extract_simple_lc(analysis: str) -> Optional[SimpleLexicalCategory]:
         if group:
             if group.startswith("+Num"):  # special case
                 group = group[4:]
-            return SimpleLexicalCategory(group.replace("+", "").upper())
+            return WordClass(group.replace("+", "").upper())
         else:
             return None
     else:

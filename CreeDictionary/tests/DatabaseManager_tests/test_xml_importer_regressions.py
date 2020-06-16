@@ -1,4 +1,5 @@
 import pytest
+
 from API.models import Wordform
 from tests.conftest import migrate_and_import
 

@@ -3,11 +3,12 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
-from API.models import Wordform
-from DatabaseManager.xml_importer import import_xmls
 from django.core.management import call_command
 from hypothesis import assume, settings
 from hypothesis.strategies import SearchStrategy
+
+from API.models import Wordform
+from DatabaseManager.xml_importer import import_xmls
 
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
@@ -58,7 +59,7 @@ def lemmas():
 def migrate_and_import(dictionary_dir):
     """
     assuming a fresh in memory database
-    migrate to 0005 and import the xml
+    Do the initial migration and import the xml
     """
-    call_command("migrate", "API", "0005")
+    call_command("migrate", "API", "0001")
     import_xmls(dictionary_dir, multi_processing=1)

@@ -14,7 +14,7 @@ class SerializedDefinition(TypedDict):
 class SerializedWordform(TypedDict):
     id: int
     text: str
-    full_lc: str
+    inflectional_category: str
     pos: str
     analysis: str
     is_lemma: bool

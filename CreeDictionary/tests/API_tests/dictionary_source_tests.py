@@ -6,6 +6,7 @@ Tests things related to the dictionary sources.
 """
 
 import pytest
+
 from API.models import Definition, DictionarySource, Wordform
 
 

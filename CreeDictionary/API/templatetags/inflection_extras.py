@@ -1,11 +1,12 @@
 import logging
 from typing import Union
 
-from API.models import Wordform
 from django import template
 from django.forms import model_to_dict
+
+from API.models import Wordform
 from utils import crkeng_xml_utils, fst_analysis_parser
-from utils.enums import SimpleLC
+from utils.enums import WordClass
 
 register = template.Library()
 
@@ -17,13 +18,13 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
     :param wordform_dict: a (maybe serialized) Wordform instance
     :return: a pos that is shown to users. like Noun, Verb, etc
 
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": "VAI-v"})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "inflectional_category": "VAI-v"})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "full_lc": ""})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "V", "inflectional_category": ""})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": "VAI-v"})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "inflectional_category": "VAI-v"})
     'Verb'
-    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "full_lc": ""})
+    >>> presentational_pos({"analysis": "nipâw+V+AI+Ind+Prs+3Sg", "pos": "", "inflectional_category": ""})
     'Verb'
     """
     if isinstance(wordform, Wordform):
@@ -34,10 +35,12 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
         raise TypeError
 
     # special case. In the source, some preverbs have pos labelled as IPC
-    # e.g. for preverb "pe", the source gives pos=Ipc lc=IPV.
-    lc = crkeng_xml_utils.parse_xml_lc(wordform_dict["full_lc"])
-    if lc is not None:
-        if lc is SimpleLC.IPV:
+    # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
+    inflectional_category = crkeng_xml_utils.convert_xml_inflectional_category_to_word_class(
+        wordform_dict["inflectional_category"]
+    )
+    if inflectional_category is not None:
+        if inflectional_category is WordClass.IPV:
             return "Preverb"
 
     pos = wordform_dict["pos"]
@@ -53,19 +56,21 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
         elif pos == "IPV":
             return "Preverb"
 
-    if lc is None:
-        lc = fst_analysis_parser.extract_simple_lc(wordform_dict["analysis"])
+    if inflectional_category is None:
+        inflectional_category = fst_analysis_parser.extract_word_class(
+            wordform_dict["analysis"]
+        )
 
-    if lc is not None:
-        if lc.is_noun():
+    if inflectional_category is not None:
+        if inflectional_category.is_noun():
             return "Noun"
-        elif lc.is_verb():
+        elif inflectional_category.is_verb():
             return "Verb"
-        elif lc is SimpleLC.IPC:
+        elif inflectional_category is WordClass.IPC:
             return "Ipc"
-        elif lc is SimpleLC.Pron:
+        elif inflectional_category is WordClass.Pron:
             return "Pronoun"
-        elif lc is SimpleLC.IPV:
+        elif inflectional_category is WordClass.IPV:
             return "Preverb"
 
     # fixme: where is this logged to in local development??? Does not show up in stdout/stderr for me.

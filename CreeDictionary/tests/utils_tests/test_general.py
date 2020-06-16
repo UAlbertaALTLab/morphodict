@@ -5,7 +5,8 @@ todo: delete this file
 import xml.etree.ElementTree as ET
 
 import pytest
-from utils import SimpleLexicalCategory, extract_simple_lc, fst_analysis_parser
+
+from utils import WordClass, extract_word_class, fst_analysis_parser
 from utils.crkeng_xml_utils import extract_l_str
 
 
@@ -31,19 +32,19 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
 @pytest.mark.parametrize(
     "analysis, category",
     [
-        ("nôhkom+N+A+D+Px1Sg+Sg", SimpleLexicalCategory("NAD")),
-        ("wâhkwa+N+A+Sg", SimpleLexicalCategory("NA")),
-        ("maskwa +N+A+Der/Dim+N+A+Sg", SimpleLexicalCategory("NA")),
-        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", SimpleLexicalCategory("VTA")),
-        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", SimpleLexicalCategory("VTI")),
-        ("yîkatêpayin+V+II+Ind+Prs+3Sg", SimpleLexicalCategory("VII")),
-        ("tânisi+Ipc", SimpleLexicalCategory("IPC")),
-        ("mitêh+N+I+D+PxX+Sg", SimpleLexicalCategory("NID")),
-        ("ôma+Pron+Def+Med+IN+Pl", SimpleLexicalCategory("PRON")),
+        ("nôhkom+N+A+D+Px1Sg+Sg", WordClass("NAD")),
+        ("wâhkwa+N+A+Sg", WordClass("NA")),
+        ("maskwa +N+A+Der/Dim+N+A+Sg", WordClass("NA")),
+        ("PV/yikate+tihtipinêw+V+TA+Ind+Prs+3Sg+4Sg/PlO", WordClass("VTA")),
+        ("yîkatê-tihtipinam+V+TI+Ind+Prs+3Sg", WordClass("VTI")),
+        ("yîkatêpayin+V+II+Ind+Prs+3Sg", WordClass("VII")),
+        ("tânisi+Ipc", WordClass("IPC")),
+        ("mitêh+N+I+D+PxX+Sg", WordClass("NID")),
+        ("ôma+Pron+Def+Med+IN+Pl", WordClass("PRON")),
     ],
 )
 def test_hfstol_analysis_category_extraction(analysis, category):
-    actual = extract_simple_lc(analysis)
+    actual = extract_word_class(analysis)
     assert actual == category
 
 

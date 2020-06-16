@@ -1,9 +1,10 @@
 import pytest
+
 from DatabaseManager.xml_entry_lemma_finder import extract_fst_lemmas
 
 
 @pytest.mark.parametrize(
-    ("xml_lemma_to_pos_lc", "expected_xml_lemma_pos_lc_to_fst_lemma"),
+    ("xml_lemma_to_pos_ic", "expected_xml_lemma_pos_ic_to_fst_lemma"),
     [
         (
             {"yôwamêw": [("V", "VTA-1")]},
@@ -13,37 +14,37 @@ from DatabaseManager.xml_entry_lemma_finder import extract_fst_lemmas
     ],
 )
 def test_lemma_extraction_behaving_entry(
-    xml_lemma_to_pos_lc, expected_xml_lemma_pos_lc_to_fst_lemma
+    xml_lemma_to_pos_ic, expected_xml_lemma_pos_ic_to_fst_lemma
 ):
     assert (
-        extract_fst_lemmas(xml_lemma_to_pos_lc, verbose=False)
-        == expected_xml_lemma_pos_lc_to_fst_lemma
+        extract_fst_lemmas(xml_lemma_to_pos_ic, verbose=False)
+        == expected_xml_lemma_pos_ic_to_fst_lemma
     )
 
 
 @pytest.mark.parametrize(
-    ("xml_lemma_to_pos_lc", "expected_xml_lemma_pos_lc_to_fst_lemma"),
+    ("xml_lemma_to_pos_ic", "expected_xml_lemma_pos_ic_to_fst_lemma"),
     [({"yêkawiskâwikamâhk": [("N", "INM")]}, {("yêkawiskâwikamâhk", "N", "INM"): ""})],
 )
 def test_lemma_extraction_no_analysis_entry(
-    xml_lemma_to_pos_lc, expected_xml_lemma_pos_lc_to_fst_lemma
+    xml_lemma_to_pos_ic, expected_xml_lemma_pos_ic_to_fst_lemma
 ):
     assert (
-        extract_fst_lemmas(xml_lemma_to_pos_lc, verbose=False)
-        == expected_xml_lemma_pos_lc_to_fst_lemma
+        extract_fst_lemmas(xml_lemma_to_pos_ic, verbose=False)
+        == expected_xml_lemma_pos_ic_to_fst_lemma
     )
 
 
 # @pytest.mark.parametrize(
-#     ("xml_lemma_to_pos_lc", "expected_xml_lemma_pos_lc_to_fst_lemma"), [()],
+#     ("xml_lemma_to_pos_ic", "expected_xml_lemma_pos_ic_to_fst_lemma"), [()],
 # )
 # def test_lemma_extraction_no_lemma_analysis_entry(
-#     xml_lemma_to_pos_lc, expected_xml_lemma_pos_lc_to_fst_lemma
+#     xml_lemma_to_pos_ic, expected_xml_lemma_pos_ic_to_fst_lemma
 # ):
 #     # todo: have an example of some word that only exists in MD and  can not even by analysed by strict analyzer
 #     assert (
-#         extract_fst_lemmas(xml_lemma_to_pos_lc, verbose=False)
-#         == expected_xml_lemma_pos_lc_to_fst_lemma
+#         extract_fst_lemmas(xml_lemma_to_pos_ic, verbose=False)
+#         == expected_xml_lemma_pos_ic_to_fst_lemma
 #     )
 
 
@@ -66,7 +67,7 @@ def test_lemma_extraction_no_analysis_entry(
 
 
 @pytest.mark.parametrize(
-    ("xml_lemma_to_pos_lc", "expected_xml_lemma_pos_lc_to_fst_lemma"),
+    ("xml_lemma_to_pos_ic", "expected_xml_lemma_pos_ic_to_fst_lemma"),
     [
         (
             {"askiy": [("N", "NI-2")], "ayiwinis": [("", "NI-1")]},
@@ -75,9 +76,9 @@ def test_lemma_extraction_no_analysis_entry(
     ],
 )
 def test_lemma_extraction_ambiguous_lemma_analysis_entry(
-    xml_lemma_to_pos_lc, expected_xml_lemma_pos_lc_to_fst_lemma
+    xml_lemma_to_pos_ic, expected_xml_lemma_pos_ic_to_fst_lemma
 ):
     assert (
-        extract_fst_lemmas(xml_lemma_to_pos_lc, verbose=False)
-        == expected_xml_lemma_pos_lc_to_fst_lemma
+        extract_fst_lemmas(xml_lemma_to_pos_ic, verbose=False)
+        == expected_xml_lemma_pos_ic_to_fst_lemma
     )
