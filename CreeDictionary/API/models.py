@@ -230,12 +230,15 @@ class Wordform(models.Model):
     def full_word_class(self) -> Optional[WordClass]:
         return fst_analysis_parser.extract_word_class(self.analysis)
 
-    @property
-    def paradigm(self) -> List[Layout]:
-        # todo: allow paradigm size other then ParadigmSize.BASIC
+    def get_paradigm_layouts(
+        self, size: ParadigmSize = ParadigmSize.BASIC
+    ) -> List[Layout]:
+        """
+        :param size: How detail the paradigm table is
+        """
         wc = fst_analysis_parser.extract_word_class(self.analysis)
         if wc is not None:
-            tables = paradigm_filler.fill_paradigm(self.text, wc, ParadigmSize.BASIC)
+            tables = paradigm_filler.fill_paradigm(self.text, wc, size)
         else:
             tables = []
         return tables

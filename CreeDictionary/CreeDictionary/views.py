@@ -35,7 +35,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
             "lemma_id": lemma.id,
             "lemma": lemma,
             "paradigm_size": ParadigmSize.BASIC.display_form,
-            "paradigm_tables": lemma.paradigm if lemma else None,
+            "paradigm_tables": lemma.get_paradigm_layouts if lemma else None,
         }
         return HttpResponse(render(request, "CreeDictionary/index.html", context))
     else:
@@ -98,7 +98,7 @@ def lemma_details_internal(request, lemma_id: int):  # pragma: no cover
         {
             "lemma": lemma,
             "paradigm_size": ParadigmSize.BASIC.display_form,
-            "paradigm_tables": lemma.paradigm,
+            "paradigm_tables": lemma.get_paradigm_layouts,
         },
     )
 
