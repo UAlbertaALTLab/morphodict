@@ -4,7 +4,6 @@ import pytest
 from hypothesis import assume, example, given
 from hypothesis.strategies import text
 from Levenshtein import distance
-
 from utils import get_modified_distance
 
 

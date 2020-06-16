@@ -1,10 +1,9 @@
 import pytest
-
 from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import find_latest_xml_files, load_engcrk_xml
 from tests.conftest import migrate_and_import
-from utils import shared_res_dir, PartOfSpeech
+from utils import PartOfSpeech, shared_res_dir
 
 
 @pytest.mark.django_db

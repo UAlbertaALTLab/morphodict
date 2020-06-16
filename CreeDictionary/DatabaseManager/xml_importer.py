@@ -6,21 +6,19 @@ from collections import defaultdict
 from pathlib import Path
 from typing import DefaultDict, Dict, List, NamedTuple, NewType, Set, Tuple
 
-from colorama import Fore, init
-
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
+from colorama import Fore, init
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from utils import fst_analysis_parser
+from utils import PartOfSpeech, fst_analysis_parser
 from utils.crkeng_xml_utils import (
-    extract_l_str,
     convert_xml_inflectional_category_to_word_class,
+    extract_l_str,
 )
-from utils import PartOfSpeech
 
 init()  # for windows compatibility
 
