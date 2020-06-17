@@ -12,6 +12,9 @@
     Example:
 
       🧑🏽➡️🧑🏽— /like nipâw/
+            ,-------^--------.
+            | verb (VAI)     |
+            `-------^--------'
 
   {% endcomment %}
 
@@ -19,12 +22,23 @@
   {% load inflection_extras %}
 
   {# Second line of the header: the elaboration #}
-  <p class="definition__elaboration" data-cy="elaboration">
-    {% with help=lemma.inflectional_category_plain_english %}
-      <span class="wordclass" data-cy="word-class">
-        <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>{% if help %}
-          <span class="wordclass__help"> — {{ help }}</span>{% endif %}
-      </span>
+  <div class="definition__elaboration" data-cy="elaboration">
+    {% with ic=lemma.inflectional_category_plain_english %}
+      {% if ic %}
+        <button class="wordclass wordclass--described unbutton" data-cy="word-class" data-has-tooltip {# todo: aria-describedby="tooltip:N" #}>
+          <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
+          <span class="wordclass__help"> — {{ ic }}</span>
+        </button>
+
+        <div class="tooltip" role="tooltip">
+          {{ lemma.inflectional_category_linguistic }} ({{lemma.inflectional_category}})
+          <div class="tooltip__arrow" data-popper-arrow></div>
+        </div>
+      {% else %}
+        <span class="wordclass" data-cy="word-class">
+          <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
+        </span>
+      {% endif %}
     {% endwith %}
-  </p>
+  </div>
 {% endspaceless %}

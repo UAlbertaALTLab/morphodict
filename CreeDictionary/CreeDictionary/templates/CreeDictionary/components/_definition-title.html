@@ -35,7 +35,7 @@
 
     <span class="definition__icons" data-wordform="{{ result.matched_cree }}">
       {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
-        <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-cy="information-mark">
+        <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip data-cy="information-mark">
           <img
             src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
             alt="linguistic breakdown">
