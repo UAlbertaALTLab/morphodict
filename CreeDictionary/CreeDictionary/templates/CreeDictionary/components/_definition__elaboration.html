@@ -17,15 +17,6 @@
 
   {# Second line of the header: the elaboration #}
   <p class="definition__elaboration" data-cy="elaboration">
-    {# Show the matched lemma (when this is NOT a lemma. #}
-    {% if not result.is_lemma %}
-      <span class="definition__reference-to-lemma" data-cy="reference-to-lemma">
-        Form of <a
-          class="definition__matched-lemma"
-          href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
-      </span>
-    {% endif %}
-
     {% with help=result.lemma_wordform.wordclass_help %}
       <span class="wordclass" data-cy="word-class">
         (<span class="wordclass__general">{{ result.lemma_wordform|presentational_pos }}</span>{% if help %}

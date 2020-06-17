@@ -7,7 +7,9 @@
   <article class="definition box box--rounded" data-cy="search-result">
     <header class="definition__header">
       {% include './components/_definition-title.html' %}
-      {% include './components/_definition__elaboration.html' %}
+      {% if result.is_lemma %}
+        {% include './components/_definition__elaboration.html' %}
+      {% endif %}
     </header>
 
     {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
@@ -53,8 +55,14 @@
     </ol>
     {# end preverb breakdown #}
 
+    {# Show the matched lemma (when this is NOT a lemma). #}
     {% if not result.is_lemma %}
-      {# show everything about the lemma #}
+      <p class="definition__reference-to-lemma" data-cy="reference-to-lemma">
+        form of <a
+          class="definition__matched-lemma"
+          href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+      </p>
+
       <hr class="cleave-inflection-from-lemma">
 
       <header class="definition__header">
