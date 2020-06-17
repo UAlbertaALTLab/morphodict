@@ -3,6 +3,7 @@ import {createPopper} from '@popperjs/core/dist/esm/popper'
 
 const showEvents = ['mouseenter', 'focus']
 const hideEvents = ['mouseleave', 'blur']
+const toggleEvents = ['touchstart']
 
 let popperInstance = null
 
@@ -48,6 +49,18 @@ export function createTooltip(icon, popup) {
     icon.addEventListener(event, () => {
       popup.removeAttribute('data-show')
       destroy()
+    })
+  }
+
+  for (let event of toggleEvents) {
+    icon.addEventListener(event, () => {
+      if (popup.hasAttribute('data-show')) {
+        popup.removeAttribute('data-show')
+        destroy()
+      } else {
+        popup.setAttribute('data-show', '')
+        create(icon, popup)
+      }
     })
   }
 }
