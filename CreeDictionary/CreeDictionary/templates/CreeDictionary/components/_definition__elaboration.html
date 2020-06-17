@@ -17,9 +17,9 @@
 
   {# Second line of the header: the elaboration #}
   <p class="definition__elaboration" data-cy="elaboration">
-    {% with help=result.lemma_wordform.wordclass_help %}
+    {% with help=lemma.wordclass_help %}
       <span class="wordclass" data-cy="word-class">
-        (<span class="wordclass__general">{{ result.lemma_wordform|presentational_pos }}</span>{% if help %}
+        (<span class="wordclass__general">{{ lemma|presentational_pos }}</span>{% if help %}
           <span class="wordclass__help"> — {{ help }}</span>{% endif %})
       </span>
     {% endwith %}
