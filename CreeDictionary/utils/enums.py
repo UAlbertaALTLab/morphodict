@@ -20,6 +20,12 @@ class ParadigmSize(Enum):
 
 
 class PartOfSpeech(Enum):
+    """
+    This is a deprecated terminology, it exists for the source xml file uses the abbreviation "pos"
+
+    It shouldn't be used anywhere else than the code that deals with the source files and its derived data.
+    """
+
     # TODO: tell me if the preverb is declinable or not.
     # i.e., whether it can have a paradigm.
     IPV = "IPV"  # preverbs
@@ -29,9 +35,9 @@ class PartOfSpeech(Enum):
     V = "V"
 
 
-class SimpleLexicalCategory(Enum):
+class WordClass(Enum):
     """
-    a simplified list of lexical categories.
+    a simplified version of inflectional categories.
 
     i.e. without the nuances of dash number like NA-1 VTA-3
     """
@@ -53,15 +59,15 @@ class SimpleLexicalCategory(Enum):
     @property
     def pos(self) -> PartOfSpeech:
         if self.is_verb():
-            return POS.V
+            return PartOfSpeech.V
         elif self.is_noun():
-            return POS.N
-        elif self is SimpleLexicalCategory.IPC:
-            return POS.IPC
-        elif self is SimpleLexicalCategory.Pron:
-            return POS.PRON
-        elif self is SimpleLexicalCategory.IPV:
-            return POS.IPV
+            return PartOfSpeech.N
+        elif self is WordClass.IPC:
+            return PartOfSpeech.IPC
+        elif self is WordClass.Pron:
+            return PartOfSpeech.PRON
+        elif self is WordClass.IPV:
+            return PartOfSpeech.IPV
         else:
             raise ValueError
 
@@ -73,11 +79,11 @@ class SimpleLexicalCategory(Enum):
 
     def to_fst_output_style(self):
         """
-        >>> SimpleLexicalCategory.VAI.to_fst_output_style()
+        >>> WordClass.VAI.to_fst_output_style()
         '+V+AI'
-        >>> SimpleLexicalCategory.NID.to_fst_output_style()
+        >>> WordClass.NID.to_fst_output_style()
         '+N+I+D'
-        >>> SimpleLexicalCategory.IPC.to_fst_output_style()
+        >>> WordClass.IPC.to_fst_output_style()
         '+IPC'
         """
 
@@ -90,11 +96,11 @@ class SimpleLexicalCategory(Enum):
 
     def without_pos(self) -> str:
         """
-        >>> SimpleLexicalCategory.VAI.without_pos()
+        >>> WordClass.VAI.without_pos()
         'AI'
-        >>> SimpleLexicalCategory.NID.without_pos()
+        >>> WordClass.NID.without_pos()
         'ID'
-        >>> SimpleLexicalCategory.IPC.without_pos()
+        >>> WordClass.IPC.without_pos()
         'IPC'
         """
         if self.is_verb():
@@ -107,14 +113,10 @@ class SimpleLexicalCategory(Enum):
 
     def to_layout_table_name(self, paradigm_size: ParadigmSize):
         """
-        >>> SimpleLexicalCategory.VAI.to_layout_table_name(ParadigmSize.BASIC)
+        >>> WordClass.VAI.to_layout_table_name(ParadigmSize.BASIC)
         'vai-basic'
-        >>> SimpleLexicalCategory.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
+        >>> WordClass.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
         'nid-linguistic'
         """
 
         return self.value.lower() + "-" + paradigm_size.value.lower()
-
-
-SimpleLC = SimpleLexicalCategory
-POS = PartOfSpeech
