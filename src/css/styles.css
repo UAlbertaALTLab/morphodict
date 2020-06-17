@@ -537,6 +537,17 @@ html {
 }
 
 /**
+ * MODIFIER described
+ *
+ * This wordclass is described by a tooltip
+ */
+.wordclass--described {
+  text-decoration: underline dotted;
+
+  cursor: help;
+}
+
+/**
  * BLOCK cleave-inflection-from-lemma
  *
  * Separates the info for the matched wordform/inflection
