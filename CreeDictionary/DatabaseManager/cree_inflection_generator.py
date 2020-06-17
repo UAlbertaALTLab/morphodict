@@ -10,14 +10,14 @@ from typing import Dict, Iterable, List, Set, Tuple
 
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import normative_generator
-from utils import SimpleLexicalCategory, fst_analysis_parser
+from utils import WordClass, fst_analysis_parser
 
 
 def import_flattened_prefilled_layouts(
     layout_file_dir: Path,
-) -> Dict[SimpleLexicalCategory, List[str]]:
+) -> Dict[WordClass, List[str]]:
     """
-    >>> import_flattened_prefilled_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')[SimpleLexicalCategory.NID]
+    >>> import_flattened_prefilled_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')[WordClass.NID]
     ['{{ lemma }}+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Px4Sg/Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Loc']
     """
     flattened_layouts = dict()
@@ -33,7 +33,7 @@ def import_flattened_prefilled_layouts(
                 cell for row in reader for cell in row if '"' not in cell and cell != ""
             ]
             ic_str, size_str = name_wo_extension.split("-")
-            flattened_layouts[SimpleLexicalCategory(ic_str.upper())] = flattened_layout
+            flattened_layouts[WordClass(ic_str.upper())] = flattened_layout
     return flattened_layouts
 
 
@@ -57,7 +57,7 @@ def expand_inflections(
     to_generated = dict()  # type: Dict[str, List[str]]
 
     for analysis in analyses:
-        lemma_category = fst_analysis_parser.extract_lemma_and_category(analysis)
+        lemma_category = fst_analysis_parser.extract_lemma_and_word_class(analysis)
         assert lemma_category is not None
         lemma, category = lemma_category
         if category.is_verb() or category.is_noun():

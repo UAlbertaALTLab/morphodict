@@ -16,7 +16,7 @@ fi
 
 echo "Creating db.sqlite3 from scratch..."
 
-pipenv run python CreeDictionary/manage.py migrate API 0005
+pipenv run python CreeDictionary/manage.py migrate API 0001
 
 manage-db import "$@"
 

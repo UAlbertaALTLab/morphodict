@@ -3,8 +3,7 @@ from API.models import Wordform
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.xml_importer import find_latest_xml_files, load_engcrk_xml
 from tests.conftest import migrate_and_import
-from utils import shared_res_dir
-from utils.enums import POS
+from utils import PartOfSpeech, shared_res_dir
 
 
 @pytest.mark.django_db
@@ -49,27 +48,27 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
     test purpose: sometimes two entries in the xml produce the same analysis. Their definition shouldn't be merged
     """
 
-    migrate_and_import(shared_datadir / "crkeng-small-common-analysis-different-lc")
+    migrate_and_import(shared_datadir / "crkeng-small-common-analysis-different-ic")
     assert Wordform.objects.get(text="pisin").definitions.count() == 1
 
     # Note: this test no longer works because pisin and pisiniw no longer produces the same analysis
 
     # We need to find two entries in the xml that produces the same analysis. See
-    # DatabaseManager_tests/data/crkeng-small-common-analysis-different-lc/crkeng.xml
+    # DatabaseManager_tests/data/crkeng-small-common-analysis-different-ic/crkeng.xml
 
     assert Wordform.objects.get(text="pisiniw").definitions.count() == 2
 
 
 @pytest.mark.django_db
-def test_import_xml_crkeng_small_duplicate_l_pos_lc_definition_merge(shared_datadir):
+def test_import_xml_crkeng_small_duplicate_l_pos_ic_definition_merge(shared_datadir):
     migrate_and_import(
-        shared_datadir / "crkeng-small-duplicate-l-pos-lc-definition-merge"
+        shared_datadir / "crkeng-small-duplicate-l-pos-ic-definition-merge"
     )
     assert len(Wordform.objects.get(text="asawâpiwin").definitions.all()) == 3
 
 
 @pytest.mark.django_db
-def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
+def test_import_xml_crkeng_small_common_xml_lemma_different_ic(shared_datadir):
     migrate_and_import(shared_datadir / "crkeng-small-common-xml-lemma-should-merge")
     assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 1
     assert (
@@ -81,7 +80,7 @@ def test_import_xml_crkeng_small_common_xml_lemma_different_lc(shared_datadir):
 def test_load_engcrk():
     res = load_engcrk_xml(shared_res_dir / "test_dictionaries" / "engcrk.xml")
     # nipâw means "sleep"
-    assert "sleep" in res["nipâw", POS.V]
+    assert "sleep" in res["nipâw", PartOfSpeech.V]
 
 
 @pytest.mark.parametrize(

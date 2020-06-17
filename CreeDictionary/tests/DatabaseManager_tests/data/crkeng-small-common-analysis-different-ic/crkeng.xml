@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    {# todo: need an example of two entries that has the same analysis #}
+    {# these two entries used to produce the same analysis in the fst, but no more #}
+    <e>
+        <lg>
+            <l pos="V">pisin</l>
+            <lc>VAI-n</lc>
+            <stem>pisin-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="CW">s/he gets something in his/her eye</t>
+            </tg>
+        </mg>
+    </e>
+
+
+    <e>
+        <lg>
+            <l pos="V">pisiniw</l>
+            <lc/>
+            <stem>-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="MD">He gets something stuck in his eye.</t>
+            </tg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="CW">s/he gets something in his/her eye</t>
+            </tg>
+        </mg>
+    </e>
+
+</r>

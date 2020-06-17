@@ -58,7 +58,7 @@ def lemmas():
 def migrate_and_import(dictionary_dir):
     """
     assuming a fresh in memory database
-    migrate to 0005 and import the xml
+    Do the initial migration and import the xml
     """
-    call_command("migrate", "API", "0005")
+    call_command("migrate", "API", "0001")
     import_xmls(dictionary_dir, multi_processing=1)

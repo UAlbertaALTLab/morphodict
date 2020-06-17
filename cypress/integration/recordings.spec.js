@@ -93,8 +93,8 @@ context('Recordings', function () {
       // clicking the buttons should output sound
       cy.get('[data-cy=recordings-list__item]').click({ multiple: true })
 
-      // the name of the speaker should appear as a link: said link should contain the base speaker link URL (http://altlab.ualberta.ca/maskwacis/Speakers/)
-      cy.get('[data-cy=recordings-list__item-speaker]').should('have.attr', 'href').should('contain', 'http://altlab.ualberta.ca/maskwacis/Speakers/')
+      // the name of the speaker should appear as a link: said link should contain the base speaker link URL
+      cy.get('[data-cy=recordings-list__item-speaker]').should('have.attr', 'href').should('contain', 'https://www.altlab.dev/maskwacis/Speakers/')
     })
   })
 })

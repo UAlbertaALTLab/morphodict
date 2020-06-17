@@ -4,9 +4,6 @@ import SimpleTemplate from './simple-template.js'
 // TODO: should come from config.
 const BASE_URL = 'https://sapir.artsrn.ualberta.ca/validation'
 
-// the specific URL for a given speaker (appended with the speaker code)
-const BASE_SPEAKER_URL = 'http://altlab.ualberta.ca/maskwacis/Speakers/'
-
 export function fetchRecordings(wordform) {
   return fetch(`${BASE_URL}/recording/_search/${wordform}`)
     .then(function (response) {
@@ -64,7 +61,7 @@ export function retrieveListOfSpeakers() {
     createdSpeakerButton.slot['speaker-name'] = recordingData['speaker_name']
     // TODO: this should be derived from the recording JSON
     // TODO: as of 2020-06-04, it does not include this data :(
-    createdSpeakerButton.slot['speaker-dialect'] = 'Maskwacîs'
+    createdSpeakerButton.slot['speaker-dialect'] = recordingData['dialect']
 
     // Setup audio
     let audio = new Audio(recordingData.recording_url)
@@ -78,7 +75,7 @@ export function retrieveListOfSpeakers() {
   // the function that creates a link for an individual speaker's bio to be clicked
   function displaySpeakerBioLink(recordingData) {
     // the URL to be placed into the DOM
-    let insertedURL = BASE_SPEAKER_URL + recordingData['speaker'] + '.html'
+    let insertedURL = recordingData['speaker_bio_url']
 
     // select for the area to place the speaker link
     let container = document.querySelector('.speaker-link')

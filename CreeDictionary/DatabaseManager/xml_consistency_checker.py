@@ -1,50 +1,50 @@
 """check the consistency of a xml source with a fst"""
 
-from utils import SimpleLexicalCategory
-from utils.crkeng_xml_utils import parse_xml_lc
+from utils import WordClass
+from utils.crkeng_xml_utils import convert_xml_inflectional_category_to_word_class
 
 
-def does_lc_match_xml_entry(
-    lc: SimpleLexicalCategory, xml_pos: str, xml_lc: str
+def does_inflectional_category_match_xml_entry(
+    inflectional_category: WordClass, xml_pos: str, xml_ic: str
 ) -> bool:
     """
     check whether an xml entry matches with an `InflectionCategory`
-        if neither xml_pos and xml_lc are understood: False
+        if neither xml_pos and xml_ic are understood: False
         
-        if only xml_pos is understood: check if xml_pos matches lc
+        if only xml_pos is understood: check if xml_pos matches ic
 
-        if both xml_pos and xml_lc are understood: check both
+        if both xml_pos and xml_ic are understood: check both
 
-    xml entries are underspecified: both xml_pos xml_lc can be empty string
+    xml entries are underspecified: both xml_pos xml_ic can be empty string
 
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', '')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, 'V', '')
     True
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'VTI-?')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, 'V', 'VTI-?')
     True
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, '', '')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, '', '')
     False
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'VAI-2')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, 'V', 'VAI-2')
     False
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'N', '')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, 'N', '')
     False
-    >>> does_lc_match_xml_entry(SimpleLexicalCategory.VTI, 'V', 'IJFIJFIJSAJDIAIDJRN')
+    >>> does_inflectional_category_match_xml_entry(WordClass.VTI, 'V', 'IJFIJFIJSAJDIAIDJRN')
     True
     """
 
     if (
-        (xml_pos == "V" and lc.is_verb())
-        or (xml_pos == "N" and lc.is_noun())
-        or (xml_pos == "Ipc" and lc is SimpleLexicalCategory.IPC)
-        or (xml_pos == "Pron" and lc is SimpleLexicalCategory.Pron)
+        (xml_pos == "V" and inflectional_category.is_verb())
+        or (xml_pos == "N" and inflectional_category.is_noun())
+        or (xml_pos == "Ipc" and inflectional_category is WordClass.IPC)
+        or (xml_pos == "Pron" and inflectional_category is WordClass.Pron)
     ):
-        simple_lc = parse_xml_lc(xml_lc)
+        wc = convert_xml_inflectional_category_to_word_class(xml_ic)
 
         if (
-            simple_lc is None or xml_lc == ""
-        ):  # e.g. niya has xml_pos Pron, xml_lc PrA, PrA will gives None
+            wc is None or xml_ic == ""
+        ):  # e.g. niya has xml_pos Pron, xml_ic PrA, PrA will gives None
             return True
 
-        if lc is simple_lc:
+        if inflectional_category is wc:
             return True
         else:
             return False
