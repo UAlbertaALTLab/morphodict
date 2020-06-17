@@ -3,6 +3,9 @@
   {% comment %}
     ## .definition__elaboration ##
 
+    Paramters
+      - lemma: SerializedWordform
+
     The line below the lemma that describes the wordclass and the inflectional
     category.
 
@@ -17,10 +20,10 @@
 
   {# Second line of the header: the elaboration #}
   <p class="definition__elaboration" data-cy="elaboration">
-    {% with help=lemma.wordclass_help %}
+    {% with help=lemma.inflectional_category_plain_english %}
       <span class="wordclass" data-cy="word-class">
-        (<span class="wordclass__general">{{ lemma|presentational_pos }}</span>{% if help %}
-          <span class="wordclass__help"> — {{ help }}</span>{% endif %})
+        <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>{% if help %}
+          <span class="wordclass__help"> — {{ help }}</span>{% endif %}
       </span>
     {% endwith %}
   </p>
