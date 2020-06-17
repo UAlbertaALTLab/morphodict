@@ -36,7 +36,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     if paradigm_size is None:
         paradigm_size = ParadigmSize.BASIC
     else:
-        paradigm_size = ParadigmSize(paradigm_size)
+        paradigm_size = ParadigmSize(paradigm_size.upper())
 
     filter_args = dict(is_lemma=True, **extra_constraints)
     if lemma_text is not None:
@@ -48,7 +48,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
         context = {
             "lemma_id": lemma.id,
             "lemma": lemma,
-            "paradigm_size": paradigm_size.display_form,
+            "paradigm_size": paradigm_size,
             "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size)
             if lemma
             else None,
@@ -151,7 +151,7 @@ def lemma_details_internal(request):
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.display_form,
-            "paradigm_tables": lemma.get_paradigm_layouts(paradigm_size=paradigm_size),
+            "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size),
         },
     )
 

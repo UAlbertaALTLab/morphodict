@@ -648,7 +648,7 @@ html {
 }
 
 .paradigm__size-toggle-button::before {
-  content: "+ ";
+  content: var(--paradigm-toggle-button-symbol);
   font-weight: var(--strong-font-weight);
 }
 

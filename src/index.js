@@ -1,7 +1,18 @@
-/* global Urls:readable */
+// the /* global blah blah */ line below works with eslint so that eslint knows these variables are from the html
+
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
-/* global lemmaId:readable */
+
+// `lemmaId` is a variable from django's template generation.
+// It's present when the current page is lemma detail / paradigm page
+
+// paradigmSize is also set initially with django's template generation
+// It's present when the current page is lemma detail / paradigm page.
+// And it can changed dynamically by javascript when the script loads different sized paradigms
+
+/* global Urls:readable, lemmaId:readable, paradigmSize: writable */
+
+
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
@@ -42,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route == '/contact-us') {
+  } else if (route === '/contact-us') {
     // Contact page
     setSubtitle('Contact us')
   } else if (route === '/search') {
@@ -52,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    if (document.getElementById('paradigm')){ // if the lemma has a paradigm thus having a "show more" button
+    if (document.getElementById('paradigm')){ // if the lemma has a paradigm thus having a "show more/less" button
       setupParadigmSizeToggleButton()
     }
   } else {
@@ -63,22 +74,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ///////////////////////////// Internal functions /////////////////////////////
 
+const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
+
 /**
- * attach handlers to the "show more" button. So that it:
+ * cycles between BASIC, FULL, LINGUISTIC
+ *
+ * @param {String} size
+ * @return {String}
+ */
+function getNextParadigmSize(size){
+  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1)  % allParadigmSizes.length]
+}
+
+/**
+ * attach handlers to the "show more/less" button. So that it:
  *
  *  - loads a more detailed paradigm when clicked
  *  - changes its text to "show less" when the paradigm has the largest size
  *    and shows the smallest paradigm when clicked
+ *  - prepare the new "show more/less" button to do these 3
  */
 function setupParadigmSizeToggleButton(){
   const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
 
+  const nextParadigmSize = getNextParadigmSize(paradigmSize)
   toggleButton.addEventListener('click', ()=>{
-    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}`).then(r=>r.text()).then(
+    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r=>r.text()).then(
       text=>{
-        const frag = document.createRange().createContextualFragment(text)
+        const paradigmFrag = document.createRange().createContextualFragment(text)
+        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1){
+          paradigmFrag.querySelector('.paradigm__size-toggle-button').textContent = 'show less'
+          document.documentElement.style.setProperty('--paradigm-toggle-button-symbol', '"- "')
+        }else{
+          document.documentElement.style.setProperty('--paradigm-toggle-button-symbol', '"+ "')
+        }
         const oldParadigmNode = document.getElementById('paradigm')
-        oldParadigmNode.parentElement.replaceChild(frag, oldParadigmNode)
+        oldParadigmNode.parentElement.replaceChild(paradigmFrag, oldParadigmNode)
+        paradigmSize = nextParadigmSize
+        setupParadigmSizeToggleButton() // prepare the new button
       }
     )
   })

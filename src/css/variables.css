@@ -95,4 +95,8 @@
   --min-phone-width:    320px;  /* e.g., iPhone SE */
   --min-tablet-width:   768px;  /* e.g., iPad Mini */
   --min-desktop-width: 1366px;  /* e.g., 13" laptop */
+
+  /* Strings */
+  --paradigm-toggle-button-symbol:  "+ ";
+
 }
