@@ -339,6 +339,7 @@ html {
 
   /* Text */
   text-overflow: ellipsis;
+  line-height: 1.25; /* anything smaller clips descenders (e.g. 'gjp') in Chrome :/ */
 
   /* Other */
   border-radius: var(--search-input-border-radius);
