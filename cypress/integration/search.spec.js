@@ -369,6 +369,7 @@ context('Searching', () => {
   describe('display of the header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
+    const inflectionalCategory = 'VAI-v'
     const plainEnglishInflectionalCategory = 'like: nipâw'
     const nonLemmaFormWithDefinition = 'nîminâniwan'
     const nonLemmaFormWithoutDefinition = 'ninîmin'
@@ -418,7 +419,7 @@ context('Searching', () => {
     })
 
     // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
-    it('should display an inflected form with a definition AND its lemma', function () {
+    it.only('should display an inflected form with a definition AND its lemma', function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition))
 
       // make sure we get at least one search result...
@@ -441,15 +442,24 @@ context('Searching', () => {
         .and('contain', lemma)
 
       cy.get('@search-result')
-        .get('header [data-cy="elaboration"]')
+        .get('[data-cy="elaboration"]')
         .as('elaboration')
 
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', wordclassEmoji)
-      cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', plainEnglishInflectionalCategory)
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
 
-      // TODO: test inflectional class tooltip
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
+
       // TODO: test linguistic breakdown tooltip
     })
 
