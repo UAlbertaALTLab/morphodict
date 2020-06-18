@@ -21,8 +21,6 @@ from urllib.parse import quote
 
 import attr
 from attr import attrs
-
-import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -30,10 +28,12 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+from sortedcontainers import SortedSet
+
+import CreeDictionary.hfstol as temp_hfstol
 from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
-from sortedcontainers import SortedSet
 from utils import (
     ConcatAnalysis,
     FSTTag,
@@ -197,20 +197,29 @@ class Wordform(models.Model):
             definition.serialize() for definition in self.definitions.all()
         ]
         result["lemma_url"] = self.get_absolute_url()
-        result["wordclass_help"] = self.get_user_friendly_wordclass_help_for_cree()
+
+        # Displayed in the word class/inflection help:
+        result["inflectional_category_plain_english"] = LABELS.english.get(
+            self.inflectional_category
+        )
+        result["inflectional_category_linguistic"] = LABELS.linguistic_long.get(
+            self.inflectional_category
+        )
+        result["wordclass_emoji"] = self.get_emoji_for_cree_wordclass()
 
         return result
 
-    def get_user_friendly_wordclass_help_for_cree(self) -> Optional[str]:
+    def get_emoji_for_cree_wordclass(self) -> Optional[str]:
         """
-        Attempts to get a description, e.g., "like: wîcihêw" or "like:
-        micisow" for this wordform.
+        Attempts to get an emoji description of the full wordclass.
+        e.g., "👤👵🏽" for "nôhkom"
         """
-        maybe_full_word_class = self.full_word_class
-        if maybe_full_word_class is None:
+        maybe_word_class = self.word_class
+        if maybe_word_class is None:
             return None
-        word_class = FSTTag(maybe_full_word_class.without_pos())
-        return LABELS.english.get(word_class)
+        fst_tag_str = maybe_word_class.to_fst_output_style().strip("+")
+        tags = [FSTTag(t) for t in fst_tag_str.split("+")]
+        return LABELS.emoji.get_longest(tags)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
@@ -227,7 +236,7 @@ class Wordform(models.Model):
         return "id"  # id always guarantees unique match
 
     @property
-    def full_word_class(self) -> Optional[WordClass]:
+    def word_class(self) -> Optional[WordClass]:
         return fst_analysis_parser.extract_word_class(self.analysis)
 
     @property
