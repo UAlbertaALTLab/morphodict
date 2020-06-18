@@ -260,6 +260,7 @@ context('Searching', () => {
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
         .and('contain', 'wâpamêw') // lemma
+        .and('contain', 'complementizer') // preververb
         .and('contain', 'Action word') // verb
 
       cy.get('[data-cy=information-mark]').first().focus()

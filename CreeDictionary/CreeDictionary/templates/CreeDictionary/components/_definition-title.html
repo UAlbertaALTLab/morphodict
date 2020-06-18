@@ -43,16 +43,17 @@
 
         <div class="tooltip" role="tooltip">
           <span
-            data-cy="linguistic-breakdown">{% if result.linguistic_breakdown_head %}
-            {{ result.linguistic_breakdown_head|join:" + " }}
-            + {% endif %}
+            data-cy="linguistic-breakdown">
+            {# TODO: this should be the STEM: #}
             <strong>{{ result.lemma_wordform.text }}:</strong>
             <ol class="linguistic-breakdown">
-              {% for linguistic_tag in result.linguistic_breakdown_tail %}
-              <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
-                {{ linguistic_tag }}
-              </li>
-              {% endfor %}
+              {% with tags=result.linguistic_breakdown_head|add:result.linguistic_breakdown_tail %}
+                {% for linguistic_tag in tags %}
+                  <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
+                    {{ linguistic_tag }}
+                  </li>
+                {% endfor %}
+              {% endwith %}
             </ol>
           </span>
 
