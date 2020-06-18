@@ -100,8 +100,8 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 5Sg/Pl+3PlO			s/he/they (further) → him/her/them	wiya/wiyawâw (ana/aniki) → wiyawâw	-
 5Sg/Pl+4Sg/PlO			s/he/they (further) → him/her/them	wiya/wiyawâw (nâha/nêki) → wiya/wiyawâw (ana/aniki)	-
 					
-A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa	🧑🏽
-AI		Animate Intransitive	like: mîcisow, nipâw	tâpiskôc: mîcisow, nipâw	🧑🏽➡️
+A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa	
+AI		Animate Intransitive	like: mîcisow, nipâw	tâpiskôc: mîcisow, nipâw	
 					
 Arab		Arabic	like: 0, 1, 2, ...	tâpiskôc: 0, 1, 2, ... -	
 CC		Co-ordinating Conjunction	like: êkwa	tâpiskôc: êkwa -	
@@ -109,7 +109,7 @@ CS		Subordinate Conjunction	like: mâka	tâpiskôc: mâka -
 Cnj		Conjunct	ê-/kâ- word	ê-/kâ- itwêwin -	
 Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik -	
 Fut+Cond		Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik -	
-D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit	👤
+D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit	
 Def		Definite			
 Fut+Def	Future Definite	Future definite tense	something will certainly happen	ka-ispayik nîkânihk/cikêmâ	
 Del		Delayed	later	mwêstas	
@@ -124,16 +124,16 @@ Distr		Distributive	among	âkine
 Err/Orth		(Sub-standard form)			
 Foc		Focus			
 Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk	
-I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi	📦
+I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi	
 IC		Initial change	Initial change		
-II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	📦➡️
+II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	
 INM	Name		like: otôskwanihk	tâpiskôc: otôskwanihk	
-IPC	Particle		like: anohc	tâpiskôc: anohc	
+IPC	Particle		like: anohc	tâpiskôc: anohc	⚡
 IPH	Phrase		like: êkosi pitamâ	tâpiskôc: êkosi pitamâ	
-IPJ	Interjection		like: hay hay	tâpiskôc: hay hay	
-IPN	Prenoun		like: amisko-	tâpiskôc: amisko-	
-IPP	Particle		like: akâmi-	tâpiskîc: akâmi- 	
-IPV	Preverb		like: pê-	tâpiskôc: pê-	
+IPJ	Interjection		like: hay hay	tâpiskôc: hay hay	⚡
+IPN	Prenoun		like: amisko-	tâpiskôc: amisko-	⚡
+IPP	Particle		like: akâmi-	tâpiskîc: akâmi- 	⚡️
+IPV	Preverb		like: pê-	tâpiskôc: pê-	⚡️
 Imm		Immediate	now	mêkwâc/kîsac	
 Imp		Imperative	command/request	nitotamâkêwin	
 Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkêwin piko ka-ispayik	
@@ -144,11 +144,13 @@ Interj		Interjection	Shouting word	têpwêwin-itwêwin
 Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	
 Loc		Locative	in/on/to	pîhci-, tahkoht, ohci	
 Med		Medial	like: ana, anima	tâpiskôc: ana, anima	
+
 N		Noun	Naming word	wîhyowin-itwêwin	
-N+A	Animate noun	Noun - animate	Naming word - like: asikan, iyiniw, maskwa	wîhyowin-itwêwin - tâpiskôc: asikan, iyiniw, maskwa 	
-N+I	Inanimate noun	Noun - inanimate	Naming word - like: cîmân, wâwi	wîhyowin-itwêwin - tâpiskôc: cîmân, wâwi	
-N+A+D	Dependent animate noun	Noun - dependent animate	Naming word - like: nôhkom	wîhyowin-itwêwin - tâpiskôc: nôhkom	
-N+I+D	Dependent inanimate noun	Noun - dependent animate	Naming word - like: mîpit	wîhyowin-itwêwin - tâpiskôc: mîpit	
+N+A	Animate noun	Noun - animate	Naming word - like: asikan, iyiniw, maskwa	wîhyowin-itwêwin - tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽
+N+I	Inanimate noun	Noun - inanimate	Naming word - like: cîmân, wâwi	wîhyowin-itwêwin - tâpiskôc: cîmân, wâwi	💧
+N+A+D	Dependent animate noun	Noun - dependent animate	Naming word - like: nôhkom	wîhyowin-itwêwin - tâpiskôc: nôhkom	👤🧑🏽
+N+I+D	Dependent inanimate noun	Noun - dependent animate	Naming word - like: mîpit	wîhyowin-itwêwin - tâpiskôc: mîpit	👤💧
+
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan	
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy	
 NA-3	NA-3	Consonant-/w/ animate noun stem	like: masinahikanāhtik(w), askihk(w)	tâpiskôc: masinahikanāhtik(w), askihk(w)	
@@ -455,14 +457,14 @@ Sg		Singular	one	pêyak
 					
 					
 					
-TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽
-TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	🧑🏽➡️📦
+TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw	
+TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	
 					
 V	Verb		Action word	ispayin-itwêwin	
-V+II	Inanimate intransitive verb	Verb - inanimate intransitive	Action word - like: miywâsin, mihkwâw	ispayin-itwêwin - tâpiskôc: miywâsin, mihkwâw	
-V+AI	Animate intransitive verb	Verb - animate intransitive	Action word - like: mîcisow, nipâw	ispayin-itwêwin - tâpiskôc: mîcisow, nipâw	
-V+TI	Transitive inanimate verb	Verb - transitive inanimate	Action word - like: nâtam, mîciw	ispayin-itwêwin - tâpiskôc: nâtam, mîciw	
-V+TA	Transitive animate verb	Verb - transitive animate	Action word - like: wîcihêw, itêw	ispayin-itwêwin - tâpiskôc: wîcihêw, itêw	
+V+II	Inanimate intransitive verb	Verb - inanimate intransitive	Action word - like: miywâsin, mihkwâw	ispayin-itwêwin - tâpiskôc: miywâsin, mihkwâw	💧➡️
+V+AI	Animate intransitive verb	Verb - animate intransitive	Action word - like: mîcisow, nipâw	ispayin-itwêwin - tâpiskôc: mîcisow, nipâw	🧑🏽➡️
+V+TI	Transitive inanimate verb	Verb - transitive inanimate	Action word - like: nâtam, mîciw	ispayin-itwêwin - tâpiskôc: nâtam, mîciw	🧑🏽➡️💧
+V+TA	Transitive animate verb	Verb - transitive animate	Action word - like: wîcihêw, itêw	ispayin-itwêwin - tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽
 					
 Voc	Vocative		call/address	kitowin	
 					
