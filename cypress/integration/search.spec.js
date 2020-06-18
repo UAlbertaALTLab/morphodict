@@ -532,6 +532,55 @@ context('Searching', () => {
         .and('contain', inflectionalCategory)
     })
 
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=6.%20Lemma%20definition
+    it('should display an inflected form and its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(lemma))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', lemma)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .get('[data-cy=information-mark]')
+        .first()
+        .as('information-mark')
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
+
+      // Close the tooltip
+      cy.get('@information-mark')
+        .blur()
+
+      cy.get('@search-result')
+        .get('[data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
+
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
+    })
+
     // Regression: it used to display 'Preverb — None' :/
     it('should not display wordclass help if it does not exist', function () {
       // Preverbs do not have an elaboration (right now)
