@@ -13,7 +13,6 @@
 /* global Urls:readable, lemmaId:readable, paradigmSize: writable */
 
 
-
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css'
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    if (document.getElementById('paradigm')){ // if the lemma has a paradigm thus having a "show more/less" button
+    if (document.getElementById('paradigm')) { // if the lemma has a paradigm thus having a "show more/less" button
       setupParadigmSizeToggleButton()
     }
   } else {
@@ -82,41 +81,94 @@ const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
  * @param {String} size
  * @return {String}
  */
-function getNextParadigmSize(size){
-  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1)  % allParadigmSizes.length]
+function getNextParadigmSize(size) {
+  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1) % allParadigmSizes.length]
 }
+
+/**
+ * https://stackoverflow.com/a/11654596
+ * get the current url and update a query param
+ *
+ * @param {String} key
+ * @param {String} value
+ * @returns {String}
+ */
+function updateQueryParam(key, value) {
+  let url = window.location.href
+  let re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi'),
+    hash
+
+  if (re.test(url)) {
+    if (typeof value !== 'undefined' && value !== null) {
+      return url.replace(re, '$1' + key + '=' + value + '$2$3')
+    }
+    else {
+      hash = url.split('#')
+      url = hash[0].replace(re, '$1$3').replace(/([&?])$/, '')
+      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+        url += '#' + hash[1]
+      }
+      return url
+    }
+  }
+  else {
+    if (typeof value !== 'undefined' && value !== null) {
+      const separator = url.indexOf('?') !== -1 ? '&' : '?'
+      hash = url.split('#')
+      url = hash[0] + separator + key + '=' + value
+      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+        url += '#' + hash[1]
+      }
+      return url
+    }
+    else {
+      return url
+    }
+  }
+}
+
 
 /**
  * attach handlers to the "show more/less" button. So that it:
  *
- *  - loads a more detailed paradigm when clicked
+ *  - loads a more detailed paradigm when clicked or do nothing and report to console if the request for the paradigm errors
  *  - changes its text to "show less" when the paradigm has the largest size
  *    and shows the smallest paradigm when clicked
  *  - prepare the new "show more/less" button to do these 3
  */
-function setupParadigmSizeToggleButton(){
+function setupParadigmSizeToggleButton() {
   const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
 
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
-  toggleButton.addEventListener('click', ()=>{
-    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r=>r.text()).then(
-      text=>{
+  toggleButton.addEventListener('click', () => {
+    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
+      if (r.ok){
+        return r.text()
+      }else{
+        throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
+      }
+    }).then(
+      text => {
         const paradigmFrag = document.createRange().createContextualFragment(text)
-        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1){
-          paradigmFrag.querySelector('.paradigm__size-toggle-button').textContent = 'show less'
-          document.documentElement.style.setProperty('--paradigm-toggle-button-symbol', '"- "')
-        }else{
-          document.documentElement.style.setProperty('--paradigm-toggle-button-symbol', '"+ "')
+        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1) {
+          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show less'
+          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '- '
+
+        } else {
+          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show more'
+          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '+ '
         }
+        window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
         const oldParadigmNode = document.getElementById('paradigm')
         oldParadigmNode.parentElement.replaceChild(paradigmFrag, oldParadigmNode)
         paradigmSize = nextParadigmSize
         setupParadigmSizeToggleButton() // prepare the new button
       }
+    ).catch(
+      r => console.error(r)
     )
   })
 }
-
 
 
 function setupSearchBar() {
@@ -169,7 +221,8 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
     // TODO: this requires code in the recording-validation-interface
     fetchFirstRecordingURL(wordform)
       .then((recordingURL) => createAudioButton(recordingURL, container))
-      .catch(() => {/* ignore :/ */})
+      .catch(() => {/* ignore :/ */
+      })
   }
 }
 

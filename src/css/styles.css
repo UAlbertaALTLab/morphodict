@@ -647,8 +647,7 @@ html {
   border-radius: 0 0 var(--tighter-br) var(--tighter-br);
 }
 
-.paradigm__size-toggle-button::before {
-  content: var(--paradigm-toggle-button-symbol);
+.paradigm__size-toggle-plus-minus {
   font-weight: var(--strong-font-weight);
 }
 

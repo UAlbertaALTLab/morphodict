@@ -73,7 +73,15 @@ This should be included or placed dynamical within <main>
             {% endfor %}
           </table>
         {% endfor %}
-        <button class="paradigm__size-toggle-button">show more</button>
+
+        <button class="paradigm__size-toggle-button">
+          <span class="paradigm__size-toggle-plus-minus">
+            {% if paradigm_size.value == 'LINGUISTIC' %}- {% else %}+ {% endif %}
+          </span>
+          <span class="paradigm__size-toggle-button-text">
+            show {% if paradigm_size.value == 'LINGUISTIC' %}less{% else %}more{% endif %}
+          </span>
+        </button>
       </section>
     {% endif %}
   </article>

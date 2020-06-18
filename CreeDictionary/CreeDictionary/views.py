@@ -150,7 +150,7 @@ def lemma_details_internal(request):
         "CreeDictionary/paradigm.html",
         {
             "lemma": lemma,
-            "paradigm_size": paradigm_size.display_form,
+            "paradigm_size": paradigm_size.value,
             "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size),
         },
     )
