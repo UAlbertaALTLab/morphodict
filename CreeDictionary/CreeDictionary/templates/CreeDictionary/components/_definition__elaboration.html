@@ -23,18 +23,21 @@
 
   {# Second line of the header: the elaboration #}
   <div class="definition__elaboration" data-cy="elaboration">
-    {% with ic=lemma.inflectional_category_plain_english id=request|unique_id %}
+    {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
       {% if ic %}
         <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="tooltip:{{ id }}">
-          <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
-          <span class="wordclass__help"> — {{ ic }}</span>
+          {% if emoji %}
+            <span class="wordclass__emoji">{{ emoji }}</span>
+          {% endif %}
+          {% if emoji and ic %} — {% endif %}
+          <span class="wordclass__help"> {{ ic }}</span>
         </span>
 
         <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
           {{ lemma.inflectional_category_linguistic }} ({{lemma.inflectional_category}})
           <div class="tooltip__arrow" data-popper-arrow></div>
         </div>
-      {% else %}
+      {% elif emoji %}
         <span class="wordclass" data-cy="word-class">
           <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
         </span>
