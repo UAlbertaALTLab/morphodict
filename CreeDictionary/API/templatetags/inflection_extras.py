@@ -1,9 +1,11 @@
 import logging
 from typing import Union
 
-from API.models import Wordform
 from django import template
 from django.forms import model_to_dict
+from django.template.defaultfilters import stringfilter
+
+from API.models import Wordform
 from utils import crkeng_xml_utils, fst_analysis_parser
 from utils.enums import WordClass
 
@@ -77,3 +79,27 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
         f"can not determine presentational pos for {wordform_dict}, id={wordform_dict['id']}"
     )
     return ""
+
+
+CURRENT_ID = 0
+MAX_ID = 2 ** 32
+
+
+@register.filter
+@stringfilter
+def unique_id(prefix: str) -> str:
+    """
+    Returns a new unique string that can be used as an id="" attribute in HTML.
+
+    >>> tooltip1 = unique_id("tooltip")
+    >>> tooltip2 = unique_id("tooltip")
+    >>> tooltip1 == tooltip2
+    False
+    """
+    # I don't remember the last time I used this keyword... 😖
+    global CURRENT_ID
+
+    generated_id = prefix + str(CURRENT_ID)
+    CURRENT_ID = (CURRENT_ID + 1) % MAX_ID
+
+    return generated_id

@@ -23,14 +23,14 @@
 
   {# Second line of the header: the elaboration #}
   <div class="definition__elaboration" data-cy="elaboration">
-    {% with ic=lemma.inflectional_category_plain_english %}
+    {% with ic=lemma.inflectional_category_plain_english id="tooltip"|unique_id %}
       {% if ic %}
-        <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" {# todo: aria-describedby="tooltip:N" #}>
+        <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="{{ id }}">
           <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
           <span class="wordclass__help"> — {{ ic }}</span>
         </span>
 
-        <div class="tooltip" role="tooltip">
+        <div id="{{ id }}" class="tooltip" role="tooltip">
           {{ lemma.inflectional_category_linguistic }} ({{lemma.inflectional_category}})
           <div class="tooltip__arrow" data-popper-arrow></div>
         </div>
