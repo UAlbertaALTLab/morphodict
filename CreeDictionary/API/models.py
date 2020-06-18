@@ -223,14 +223,15 @@ class Wordform(models.Model):
 
     def get_emoji_for_cree_wordclass(self) -> Optional[str]:
         """
-        Attempts to get a description, e.g., "like: wîcihêw" or "like:
-        micisow" for this wordform.
+        Attempts to get an emoji description of the full wordclass.
+        e.g., "👤👵🏽" for "nôhkom"
         """
         maybe_full_word_class = self.full_word_class
         if maybe_full_word_class is None:
             return None
-        word_class = FSTTag(maybe_full_word_class.without_pos())
-        return LABELS.emoji.get(word_class)
+        fst_tag_str = maybe_full_word_class.to_fst_output_style().strip("+")
+        tags = [FSTTag(t) for t in fst_tag_str.split("+")]
+        return LABELS.emoji.get_longest(tags)
 
     @cached_property
     def homograph_disambiguator(self) -> Optional[str]:
