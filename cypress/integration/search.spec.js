@@ -419,7 +419,7 @@ context('Searching', () => {
     })
 
     // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
-    it.only('should display an inflected form with a definition AND its lemma', function () {
+    it('should display an inflected form with a definition AND its lemma', function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition))
 
       // make sure we get at least one search result...
@@ -429,6 +429,18 @@ context('Searching', () => {
       // make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
         .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithDefinition)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .get('[data-cy=information-mark]')
+        .first()
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
 
       // make sure it has a definition
       cy.get('@search-result')
@@ -459,8 +471,6 @@ context('Searching', () => {
         .get('[role="tooltip"]')
         .should('be.visible')
         .and('contain', inflectionalCategory)
-
-      // TODO: test linguistic breakdown tooltip
     })
 
     // Regression: it used to display 'Preverb — None' :/
