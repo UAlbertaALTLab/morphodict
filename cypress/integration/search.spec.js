@@ -594,6 +594,18 @@ context('Searching', () => {
         .should('not.contain', 'None')
     })
 
+    // Regression: it used to display 'like — pê-' :/
+    it('should not display wordclass emoji if it does not exist', function () {
+      // Preverbs do not have an elaboration (right now)
+      const preverb = 'nitawi-'
+      cy.visitSearch(preverb)
+
+      cy.get('[data-cy=search-result]')
+        .first()
+        .find('[data-cy=word-class]')
+        .should('contain', 'like: pê-')
+        .and('not.contain', 'None')
+    })
     /**
      * @returns {string} the wordform, as if you typed very quickly on your niece's peanut butter-smeared iPad
      */
