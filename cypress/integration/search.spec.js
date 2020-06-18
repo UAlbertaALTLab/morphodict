@@ -432,7 +432,8 @@ context('Searching', () => {
 
       // Open the linguistic breakdown popup
       cy.get('@search-result')
-        .get('[data-cy=information-mark]')
+        .find('[data-cy=information-mark]')
+        .as('information-mark')
         .first()
         .click()
 
@@ -444,6 +445,7 @@ context('Searching', () => {
 
       // Close the tooltip
       cy.get('@information-mark')
+        .first()
         .blur()
 
       // make sure it has a definition
