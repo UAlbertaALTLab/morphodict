@@ -214,10 +214,10 @@ class Wordform(models.Model):
         Attempts to get an emoji description of the full wordclass.
         e.g., "👤👵🏽" for "nôhkom"
         """
-        maybe_full_word_class = self.full_word_class
-        if maybe_full_word_class is None:
+        maybe_word_class = self.word_class
+        if maybe_word_class is None:
             return None
-        fst_tag_str = maybe_full_word_class.to_fst_output_style().strip("+")
+        fst_tag_str = maybe_word_class.to_fst_output_style().strip("+")
         tags = [FSTTag(t) for t in fst_tag_str.split("+")]
         return LABELS.emoji.get_longest(tags)
 
@@ -236,7 +236,7 @@ class Wordform(models.Model):
         return "id"  # id always guarantees unique match
 
     @property
-    def full_word_class(self) -> Optional[WordClass]:
+    def word_class(self) -> Optional[WordClass]:
         return fst_analysis_parser.extract_word_class(self.analysis)
 
     @property
