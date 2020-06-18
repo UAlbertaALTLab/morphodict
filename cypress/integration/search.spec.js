@@ -365,11 +365,14 @@ context('Searching', () => {
     })
   })
 
+  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
   describe('display of the header', function () {
-    const lemma = 'wâpamêw'
+    const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
-    const plainEnglishInflectionalCategory = 'like: wîcihêw'
-    const nonLemmaForm = 'nikî-nitawi-wâpamâw'
+    const plainEnglishInflectionalCategory = 'like: nipâw'
+    const nonLemmaFormWithDefinition = 'nîminâniwan'
+    const nonLemmaFormWithoutDefinition = 'ninîmin'
+    const nonLemmaDefinition = 'it is a dance'
 
     it('should display the match wordform and word class on the same line for lemmas', function () {
       cy.visitSearch(fudgeUpOrthography(lemma))
@@ -388,7 +391,7 @@ context('Searching', () => {
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
-      cy.visitSearch(fudgeUpOrthography(nonLemmaForm))
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition))
 
       // make sure we get at least one search result...
       cy.get('[data-cy=search-result]')
@@ -396,7 +399,7 @@ context('Searching', () => {
 
       // now let's make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
-        .contains('header [data-cy="matched-wordform"]', nonLemmaForm)
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithoutDefinition)
 
       // now make sure the 'form of' text is below that
       cy.get('@search-result')
@@ -412,6 +415,42 @@ context('Searching', () => {
         .contains('[data-cy="word-class"]', wordclassEmoji)
       cy.get('@elaboration')
         .contains('[data-cy="word-class"]', plainEnglishInflectionalCategory)
+    })
+
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
+    it('should display an inflected form with a definition AND its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithDefinition)
+
+      // make sure it has a definition
+      cy.get('@search-result')
+        // TODO: change name of [data-cy="lemma-meaning"] as it's misleading :/
+        .contains('[data-cy="lemma-meaning"]', nonLemmaDefinition)
+
+      // "form of nîmiw"
+      cy.get('@search-result')
+        .get('[data-cy="reference-to-lemma"]')
+        .should('contain', 'form of')
+        .and('contain', lemma)
+
+      cy.get('@search-result')
+        .get('header [data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .contains('[data-cy="word-class"]', wordclassEmoji)
+      cy.get('@elaboration')
+        .contains('[data-cy="word-class"]', plainEnglishInflectionalCategory)
+
+      // TODO: test inflectional class tooltip
+      // TODO: test linguistic breakdown tooltip
     })
 
     // Regression: it used to display 'Preverb — None' :/
