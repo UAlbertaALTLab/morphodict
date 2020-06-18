@@ -197,7 +197,6 @@ class Wordform(models.Model):
             definition.serialize() for definition in self.definitions.all()
         ]
         result["lemma_url"] = self.get_absolute_url()
-        result["wordclass_help"] = self.get_user_friendly_wordclass_help_for_cree()
 
         # Displayed in the word class/inflection help:
         result["inflectional_category_plain_english"] = LABELS.english.get(
@@ -209,17 +208,6 @@ class Wordform(models.Model):
         result["wordclass_emoji"] = self.get_emoji_for_cree_wordclass()
 
         return result
-
-    def get_user_friendly_wordclass_help_for_cree(self) -> Optional[str]:
-        """
-        Attempts to get a description, e.g., "like: wîcihêw" or "like:
-        micisow" for this wordform.
-        """
-        maybe_full_word_class = self.full_word_class
-        if maybe_full_word_class is None:
-            return None
-        word_class = FSTTag(maybe_full_word_class.without_pos())
-        return LABELS.english.get(word_class)
 
     def get_emoji_for_cree_wordclass(self) -> Optional[str]:
         """
