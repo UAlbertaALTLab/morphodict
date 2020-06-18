@@ -367,8 +367,8 @@ context('Searching', () => {
 
   describe('display of the header', function () {
     const lemma = 'wâpamêw'
-    const wordclass = 'Verb'
-    const wordclassHelp = 'like: wîcihêw'
+    const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
+    const plainEnglishInflectionalCategory = 'like: wîcihêw'
     const nonLemmaForm = 'nikî-nitawi-wâpamâw'
 
     it('should display the match wordform and word class on the same line for lemmas', function () {
@@ -382,9 +382,9 @@ context('Searching', () => {
       cy.get('@search-result')
         .contains('header [data-cy="matched-wordform"]', lemma)
       cy.get('@search-result')
-        .contains('header [data-cy="word-class"]', wordclass)
+        .contains('header [data-cy="word-class"]', wordclassEmoji)
       cy.get('@search-result')
-        .contains('header [data-cy="word-class"]', wordclassHelp)
+        .contains('header [data-cy="word-class"]', plainEnglishInflectionalCategory)
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
@@ -405,12 +405,13 @@ context('Searching', () => {
 
       cy.get('@elaboration')
         .get('[data-cy="reference-to-lemma"]')
-        .should('contain', 'Form of')
+        // TODO: should we be testing for this exact text?
+        .should('contain', 'form of')
         .and('contain', lemma)
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', wordclass)
+        .contains('[data-cy="word-class"]', wordclassEmoji)
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', wordclassHelp)
+        .contains('[data-cy="word-class"]', plainEnglishInflectionalCategory)
     })
 
     // Regression: it used to display 'Preverb — None' :/
