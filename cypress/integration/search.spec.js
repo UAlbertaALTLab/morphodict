@@ -442,10 +442,69 @@ context('Searching', () => {
         .should('be.visible')
         .contains('li', 'ni-/ki- word')
 
+      // Close the tooltip
+      cy.get('@information-mark')
+        .blur()
+
       // make sure it has a definition
       cy.get('@search-result')
         // TODO: change name of [data-cy="lemma-meaning"] as it's misleading :/
         .contains('[data-cy="lemma-meaning"]', nonLemmaDefinition)
+
+      // "form of nîmiw"
+      cy.get('@search-result')
+        .get('[data-cy="reference-to-lemma"]')
+        .should('contain', 'form of')
+        .and('contain', lemma)
+
+      cy.get('@search-result')
+        .get('[data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
+
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
+    })
+
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
+    it('should display an inflected form and its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithoutDefinition)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .get('[data-cy=information-mark]')
+        .first()
+        .as('information-mark')
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
+
+      // Close the tooltip
+      cy.get('@information-mark')
+        .blur()
 
       // "form of nîmiw"
       cy.get('@search-result')
