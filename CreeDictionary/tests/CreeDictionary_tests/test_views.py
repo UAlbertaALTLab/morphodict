@@ -1,10 +1,10 @@
-from typing import Optional, Dict
+from typing import Dict, Optional
 
 import pytest
 from django.http import (
     HttpResponseBadRequest,
-    HttpResponseNotFound,
     HttpResponseNotAllowed,
+    HttpResponseNotFound,
 )
 from django.test import Client
 
