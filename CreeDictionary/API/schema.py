@@ -21,8 +21,13 @@ class SerializedWordform(TypedDict):
     as_is: bool
     lemma: int  # the id of the lemma
 
-    # ---- calculated properties ---
+    # ---- calculated properties ----
     lemma_url: str
+
+    # ---- informational properties ----
+    inflectional_category_plain_english: str
+    inflectional_category_linguistic: str
+    wordclass_emoji: str
 
     # ---- foreign keys ----
     definition: List[SerializedDefinition]

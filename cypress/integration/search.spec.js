@@ -1,91 +1,4 @@
 context('Searching', () => {
-  describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
-    it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
-      cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('ewapamat')
-
-      // not visible at the start
-      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
-        .and('contain', 'wâpamêw') // lemma
-        .and('contain', 'Action word') // verb
-
-      cy.get('[data-cy=information-mark]').first().focus()
-
-      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
-    })
-
-    it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
-      cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('ewapamat')
-
-      // not visible at the start
-      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
-
-      // has to use force: true since div is not clickable
-      cy.get('[data-cy=information-mark]').first().click({force:true})
-
-      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
-        // NOTE: this depends on Antti's relabellings; if they change,
-        // this assertion has to change :/
-        .and('contain', 'wâpamêw') // lemma
-        .and('contain', 'Action word') // verb
-        .and('contain', 'you (one) → him/her') // 3Sg -> 4Sg/PlO
-    })
-
-    it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
-      // begin from the homepage
-      cy.visit('/')
-
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-      // get a word (nipaw)
-        .type('nipaw')
-
-      // tab through the elements to force the tooltip to pop up
-      cy.get('[data-cy=information-mark]').first().click()
-
-      // see the linguistic breakdown as an ordered list
-      cy.get('[data-cy=linguistic-breakdown]').contains('li', 'Action word')
-
-    })
-
-    it('should allow the tooltip to be focused on when the user tabs through it', () => {
-      // goodness, that's a mouthful and should _probably_ be worded better.
-      // begin from the homepage
-      cy.visit('/')
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-      // get a word (use nipaw)
-        .type('nipaw')
-
-      // tab through the page elements until arriving on the '?' icon
-      cy.get('[data-cy=information-mark]').first().click()
-
-      // it should trigger the focus icon's outline's focused state
-      cy.get('[data-cy=information-mark]').first().focus().should('have.css', 'outline')
-    })
-
-    it('should not overlap other page elements when being displayed in the page', () => {
-      // begin from the homepage
-      cy.visit('/')
-
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-      // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
-        .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
-
-      // force the tooltip to appear
-      cy.get('[data-cy=information-mark]').first().click({force:true})
-
-      // check that the z-index of the tooltip is greater than that of all other page elements
-      cy.get('[data-cy=information-mark]').first().focus().next().should('have.css', 'z-index', '1') // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
-
-    })
-
-  })
-
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for an exact lemma', () => {
@@ -102,6 +15,44 @@ context('Searching', () => {
 
       cy.get('[data-cy=search-results]')
         .should('contain', 'cat')
+    })
+  })
+
+  describe('When I type at the search bar, I should see results instantly', function () {
+    it('should display results in the page', function () {
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location('pathname')
+        .should('contain', '/search')
+      cy.location('search')
+        .and('contain', 'q=niya')
+    })
+
+    it('should not change location upon pressing enter', function () {
+      let originalPathname, originalSearch
+      cy.visit('/')
+
+      cy.get('[data-cy=search]')
+        .type('niya')
+
+      cy.location().should((loc) => {
+        originalPathname = loc.pathname
+        originalSearch = loc.search
+        expect(loc.pathname).to.eq('/search')
+        expect(loc.search).to.contain('q=niya')
+      })
+
+      // Press ENTER!
+      cy.get('[data-cy=search]')
+        .type('{Enter}')
+
+      cy.location().should(loc => {
+        expect(loc.pathname).to.eq(originalPathname)
+        expect(loc.search).to.eq(originalSearch)
+      })
     })
   })
 
@@ -181,8 +132,6 @@ context('Searching', () => {
       cy.get('[data-cy=search]')
         .type(searchTerm)
 
-
-
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', /Form of/i)
         .as('searchResult')
@@ -206,7 +155,6 @@ context('Searching', () => {
   })
 
   it('should do prefix search and suffix search', () => {
-
     cy.visitSearch('nipaw')
 
     cy.get('[data-cy=search-results]')
@@ -287,12 +235,12 @@ context('Searching', () => {
   })
 
 
-  describe('When I perform a search, I should see the \'info\' icon on corresponding entries', () => {
+  describe("When I perform a search, I should see the 'info' icon on corresponding entries", () => {
     // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/239).
 
     // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
-    it('should show the \'info\' icon to allow users to access additional information', () => {
+    it("should show the 'info' icon to allow users to access additional information", () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
       cy.visit('/')
@@ -303,41 +251,88 @@ context('Searching', () => {
     })
   })
 
-  describe('When I type at the search bar, I should see results instantly', function () {
-    it('should display results in the page', function () {
+  describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
+    it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
-
       cy.get('[data-cy=search]')
-        .type('niya')
+        .type('ewapamat')
 
-      cy.location('pathname')
-        .should('contain', '/search')
-      cy.location('search')
-        .and('contain', 'q=niya')
+      // not visible at the start
+      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
+        .and('contain', 'wâpamêw') // lemma
+        .and('contain', 'complementizer') // preververb
+        .and('contain', 'Action word') // verb
+
+      cy.get('[data-cy=information-mark]').first().focus()
+
+      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
     })
 
-    it('should not change location upon pressing enter', function () {
-      let originalPathname, originalSearch
+    it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
+      cy.visit('/')
+      cy.get('[data-cy=search]')
+        .type('ewapamat')
+
+      // not visible at the start
+      cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
+
+      // has to use force: true since div is not clickable
+      cy.get('[data-cy=information-mark]').first().click({force:true})
+
+      cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+        // NOTE: this depends on Antti's relabellings; if they change,
+        // this assertion has to change :/
+        .and('contain', 'wâpamêw') // lemma
+        .and('contain', 'Action word') // verb
+        .and('contain', 'you (one) → him/her') // 3Sg -> 4Sg/PlO
+    })
+
+    it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
+      // begin from the homepage
       cy.visit('/')
 
+      // lock onto the searchbar
       cy.get('[data-cy=search]')
-        .type('niya')
+      // get a word (nipaw)
+        .type('nipaw')
 
-      cy.location().should((loc) => {
-        originalPathname = loc.pathname
-        originalSearch = loc.search
-        expect(loc.pathname).to.eq('/search')
-        expect(loc.search).to.contain('q=niya')
-      })
+      // tab through the elements to force the tooltip to pop up
+      cy.get('[data-cy=information-mark]').first().click()
 
-      // Press ENTER!
+      // see the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]').contains('li', 'Action word')
+    })
+
+    it('should allow the tooltip to be focused on when the user tabs through it', () => {
+      // goodness, that's a mouthful and should _probably_ be worded better.
+      // begin from the homepage
+      cy.visit('/')
+      // lock onto the searchbar
       cy.get('[data-cy=search]')
-        .type('{Enter}')
+      // get a word (use nipaw)
+        .type('nipaw')
 
-      cy.location().should(loc => {
-        expect(loc.pathname).to.eq(originalPathname)
-        expect(loc.search).to.eq(originalSearch)
-      })
+      // tab through the page elements until arriving on the '?' icon
+      cy.get('[data-cy=information-mark]').first().click()
+
+      // it should trigger the focus icon's outline's focused state
+      cy.get('[data-cy=information-mark]').first().focus().should('have.css', 'outline')
+    })
+
+    it('should not overlap other page elements when being displayed in the page', () => {
+      // begin from the homepage
+      cy.visit('/')
+
+      // lock onto the searchbar
+      cy.get('[data-cy=search]')
+      // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
+        .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
+
+      // force the tooltip to appear
+      cy.get('[data-cy=information-mark]').first().click({force:true})
+
+      // check that the z-index of the tooltip is greater than that of all other page elements
+      cy.get('[data-cy=information-mark]').first().focus().next().should('have.css', 'z-index', '1') // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
     })
   })
 
@@ -371,11 +366,15 @@ context('Searching', () => {
     })
   })
 
+  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
   describe('display of the header', function () {
-    const lemma = 'wâpamêw'
-    const wordclass = 'Verb'
-    const wordclassHelp = 'like: wîcihêw'
-    const nonLemmaForm = 'nikî-nitawi-wâpamâw'
+    const lemma = 'nîmiw'
+    const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
+    const inflectionalCategory = 'VAI-v'
+    const plainEnglishInflectionalCategory = 'like: nipâw'
+    const nonLemmaFormWithDefinition = 'nîminâniwan'
+    const nonLemmaFormWithoutDefinition = 'ninîmin'
+    const nonLemmaDefinition = 'it is a dance'
 
     it('should display the match wordform and word class on the same line for lemmas', function () {
       cy.visitSearch(fudgeUpOrthography(lemma))
@@ -388,13 +387,13 @@ context('Searching', () => {
       cy.get('@search-result')
         .contains('header [data-cy="matched-wordform"]', lemma)
       cy.get('@search-result')
-        .contains('header [data-cy="word-class"]', wordclass)
+        .contains('header [data-cy="word-class"]', wordclassEmoji)
       cy.get('@search-result')
-        .contains('header [data-cy="word-class"]', wordclassHelp)
+        .contains('header [data-cy="word-class"]', plainEnglishInflectionalCategory)
     })
 
     it('should display the matched word form and its lemma/word class on separate lines for non-lemmas', function () {
-      cy.visitSearch(fudgeUpOrthography(nonLemmaForm))
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition))
 
       // make sure we get at least one search result...
       cy.get('[data-cy=search-result]')
@@ -402,7 +401,7 @@ context('Searching', () => {
 
       // now let's make sure the NORMATIZED form is in the search result
       cy.get('@search-result')
-        .contains('header [data-cy="matched-wordform"]', nonLemmaForm)
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithoutDefinition)
 
       // now make sure the 'form of' text is below that
       cy.get('@search-result')
@@ -411,12 +410,178 @@ context('Searching', () => {
 
       cy.get('@elaboration')
         .get('[data-cy="reference-to-lemma"]')
-        .should('contain', 'Form of')
+        // TODO: should we be testing for this exact text?
+        .should('contain', 'form of')
         .and('contain', lemma)
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', wordclass)
+        .contains('[data-cy="word-class"]', wordclassEmoji)
       cy.get('@elaboration')
-        .contains('[data-cy="word-class"]', wordclassHelp)
+        .contains('[data-cy="word-class"]', plainEnglishInflectionalCategory)
+    })
+
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
+    it('should display an inflected form with a definition AND its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithDefinition)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .find('[data-cy=information-mark]')
+        .as('information-mark')
+        .first()
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
+
+      // Close the tooltip
+      cy.get('@information-mark')
+        .first()
+        .blur()
+
+      // make sure it has a definition
+      cy.get('@search-result')
+        // TODO: change name of [data-cy="lemma-meaning"] as it's misleading :/
+        .contains('[data-cy="lemma-meaning"]', nonLemmaDefinition)
+
+      // "form of nîmiw"
+      cy.get('@search-result')
+        .get('[data-cy="reference-to-lemma"]')
+        .should('contain', 'form of')
+        .and('contain', lemma)
+
+      cy.get('@search-result')
+        .get('[data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
+
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
+    })
+
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
+    it('should display an inflected form and its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', nonLemmaFormWithoutDefinition)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .get('[data-cy=information-mark]')
+        .first()
+        .as('information-mark')
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
+
+      // Close the tooltip
+      cy.get('@information-mark')
+        .blur()
+
+      // "form of nîmiw"
+      cy.get('@search-result')
+        .get('[data-cy="reference-to-lemma"]')
+        .should('contain', 'form of')
+        .and('contain', lemma)
+
+      cy.get('@search-result')
+        .get('[data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
+
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
+    })
+
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=6.%20Lemma%20definition
+    it('should display an inflected form and its lemma', function () {
+      cy.visitSearch(fudgeUpOrthography(lemma))
+
+      // make sure we get at least one search result...
+      cy.get('[data-cy=search-result]')
+        .as('search-result')
+
+      // make sure the NORMATIZED form is in the search result
+      cy.get('@search-result')
+        .contains('header [data-cy="matched-wordform"]', lemma)
+
+      // Open the linguistic breakdown popup
+      cy.get('@search-result')
+        .get('[data-cy=information-mark]')
+        .first()
+        .as('information-mark')
+        .click()
+
+      // See the linguistic breakdown as an ordered list
+      cy.get('[data-cy=linguistic-breakdown]')
+        .first()
+        .should('be.visible')
+        .contains('li', 'ni-/ki- word')
+
+      // Close the tooltip
+      cy.get('@information-mark')
+        .blur()
+
+      cy.get('@search-result')
+        .get('[data-cy="elaboration"]')
+        .as('elaboration')
+
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .should('contain', wordclassEmoji)
+        .and('contain', plainEnglishInflectionalCategory)
+
+      // Inflectional category tool tip
+      cy.get('@elaboration')
+        .get('[data-cy="word-class"]')
+        .first()
+        .click()
+      cy.get('@elaboration')
+        .get('[role="tooltip"]')
+        .should('be.visible')
+        .and('contain', inflectionalCategory)
     })
 
     // Regression: it used to display 'Preverb — None' :/
@@ -430,6 +595,18 @@ context('Searching', () => {
         .should('not.contain', 'None')
     })
 
+    // Regression: it used to display 'like — pê-' :/
+    it('should not display wordclass emoji if it does not exist', function () {
+      // Preverbs do not have an elaboration (right now)
+      const preverb = 'nitawi-'
+      cy.visitSearch(preverb)
+
+      cy.get('[data-cy=search-result]')
+        .first()
+        .find('[data-cy=word-class]')
+        .should('contain', 'like: pê-')
+        .and('not.contain', 'None')
+    })
     /**
      * @returns {string} the wordform, as if you typed very quickly on your niece's peanut butter-smeared iPad
      */
@@ -438,5 +615,3 @@ context('Searching', () => {
     }
   })
 })
-
-

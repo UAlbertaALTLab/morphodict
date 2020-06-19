@@ -4,6 +4,7 @@
 @import "./vendor/notosanscanadianaboriginal.css";
 @import "./variables.css";
 @import "./_tooltip.css";
+@import "./utilities.css";
 
 /**
  * Preliminary styles for the application.
@@ -339,6 +340,7 @@ html {
 
   /* Text */
   text-overflow: ellipsis;
+  line-height: 1.25; /* anything smaller clips descenders (e.g. 'gjp') in Chrome :/ */
 
   /* Other */
   border-radius: var(--search-input-border-radius);
@@ -532,6 +534,17 @@ html {
   /* Text */
   font-style: normal;
   font-weight: var(--body-font-weight);
+}
+
+/**
+ * MODIFIER described
+ *
+ * This wordclass is described by a tooltip
+ */
+.wordclass--described {
+  text-decoration: underline dotted;
+
+  cursor: help;
 }
 
 /**
@@ -1172,46 +1185,6 @@ a.menu-choice__label:active {
  */
 .explainer {
   font-weight: var(--strong-font-weight);
-}
-
-/******************************** UTILITIES *********************************/
-
-/* Links to features we have not implemented yet ¯\_(ツ)_/¯ */
-.feature-unavailable {
-  display: none;
-}
-
-/**
- * ELEMENT sr-only
- *
- * Let something be part of the accessiblity tree without showing it to
- * screens and print.
- */
-.sr-only {
-  position: absolute;
-
-  width: 1px;
-  height: 1px;
-
-  overflow: hidden;
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(1px 1px 1px 1px);
-  clip-path: inset(1px 1px 1px 1px);
-  pointer-events: none;
-}
-
-/**
- * Makes a <button> look like a link.
- */
-.unbutton {
-  border: 0;
-
-  text-align: inherit;
-
-  color: inherit;
-  background: transparent;
-
-  cursor: pointer;
 }
 
 /**

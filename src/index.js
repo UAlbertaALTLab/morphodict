@@ -121,7 +121,7 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
 function prepareTooltips(searchResultsList) {
   // attach handlers for tooltip icon at preverb breakdown
   let tooltips = searchResultsList
-    .querySelectorAll('.definition-title__tooltip-icon, .preverb-breakdown__tooltip-icon')
+    .querySelectorAll('[data-has-tooltip]')
   for (let icon of tooltips) {
     let tooltip = icon.nextElementSibling
     if (!tooltip.classList.contains('tooltip')) {
