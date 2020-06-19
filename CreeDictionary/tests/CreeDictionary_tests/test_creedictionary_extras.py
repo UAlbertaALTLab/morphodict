@@ -2,10 +2,11 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-from CreeDictionary.templatetags.creedictionary_extras import orth
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 from pytest_django.asserts import assertInHTML
+
+from CreeDictionary.templatetags.creedictionary_extras import orth
 
 
 def test_orth_requires_two_arguments():
@@ -105,6 +106,28 @@ def test_orth_template_tag(orth, inner_text):
               data-orth-Latn="wâpamêw"
               data-orth-latn-x-macron="wāpamēw"
               data-orth-Cans="ᐚᐸᒣᐤ">{inner_text}</span>
+        """,
+        rendered,
+    )
+
+
+def test_cree_example():
+    context = Context({"example": "like: wâpamêw"})
+    template = Template("{% load creedictionary_extras %}" "{% cree_example example %}")
+
+    request = HttpRequest()
+    request.COOKIES["orth"] = "Cans"
+
+    context = RequestContext(request, {"example": "like: wâpamêw"})
+
+    rendered = template.render(context)
+    print(rendered)
+    assertInHTML(
+        f"""
+        like: <span lang="cr" data-orth
+              data-orth-Latn="wâpamêw"
+              data-orth-latn-x-macron="wāpamēw"
+              data-orth-Cans="ᐚᐸᒣᐤ">ᐚᐸᒣᐤ</span>
         """,
         rendered,
     )
