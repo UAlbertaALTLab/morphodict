@@ -97,5 +97,14 @@ describe('Orthography selection', function () {
       cy.get('[data-cy=language-selector]')
         .contains('Syllabics')
     })
+
+    it('should display Cree examples in syllabics', function () {
+      cy.setCookie('orth', 'Cans')
+
+      // Visiting a page should be in syllabics
+      cy.visitSearch('ᓃᒥᓈᓂᐘᐣ')
+      cy.contains('[data-cy=word-class]', 'like: ᓂᐹᐤ')
+    })
+
   })
 })
