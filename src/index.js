@@ -3,6 +3,9 @@
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
 
+
+/* global Urls:readable */
+
 // `lemmaId` is a variable from django's template generation.
 // It's present when the current page is lemma detail / paradigm page
 
@@ -10,7 +13,8 @@
 // It's present when the current page is lemma detail / paradigm page.
 // And it can changed dynamically by javascript when the script loads different sized paradigms
 
-/* global Urls:readable, lemmaId:readable, paradigmSize: writable */
+
+let lemmaId, paradigmSize
 
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
@@ -36,6 +40,12 @@ const NO_BREAK_SPACE = '\u00A0'
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // read Django's json_script data inside HTML when DOM is ready
+  // this is a way of passing Django's context variables during template generation to Javascript
+  lemmaId = readDjangoJsonScript('lemma-id')
+  paradigmSize = readDjangoJsonScript('paradigm-size')
+
   // XXX: HACK! reloads the site when the back button is pressed.
   window.onpopsate = () => location.reload()
 
@@ -73,7 +83,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 ///////////////////////////// Internal functions /////////////////////////////
 
+/**
+ * read json data produced by django's `json_script` filter during HTML template generation
+ */
+function readDjangoJsonScript(id) {
+  const jsonScriptElement = document.getElementById(id)
+  if (jsonScriptElement){
+    return JSON.parse(jsonScriptElement.textContent)
+  }else{
+    return undefined
+  }
+}
+
 const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
+
 
 /**
  * cycles between BASIC, FULL, LINGUISTIC
@@ -101,8 +124,7 @@ function updateQueryParam(key, value) {
   if (re.test(url)) {
     if (typeof value !== 'undefined' && value !== null) {
       return url.replace(re, '$1' + key + '=' + value + '$2$3')
-    }
-    else {
+    } else {
       hash = url.split('#')
       url = hash[0].replace(re, '$1$3').replace(/([&?])$/, '')
       if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
@@ -110,8 +132,7 @@ function updateQueryParam(key, value) {
       }
       return url
     }
-  }
-  else {
+  } else {
     if (typeof value !== 'undefined' && value !== null) {
       const separator = url.indexOf('?') !== -1 ? '&' : '?'
       hash = url.split('#')
@@ -120,8 +141,7 @@ function updateQueryParam(key, value) {
         url += '#' + hash[1]
       }
       return url
-    }
-    else {
+    } else {
       return url
     }
   }
@@ -142,9 +162,9 @@ function setupParadigmSizeToggleButton() {
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
   toggleButton.addEventListener('click', () => {
     fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
-      if (r.ok){
+      if (r.ok) {
         return r.text()
-      }else{
+      } else {
         throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
       }
     }).then(

@@ -123,9 +123,8 @@ def lemma_details_internal(request):
     if lemma_id is None or paradigm_size is None:
         return HttpResponseBadRequest("query params missing")
     try:
-        assert float(lemma_id) == int(lemma_id)
         lemma_id = int(lemma_id)
-    except (ValueError, AssertionError):
+    except ValueError:
         return HttpResponseBadRequest("lemma-id should be a non-negative integer")
     else:
         if lemma_id < 0:

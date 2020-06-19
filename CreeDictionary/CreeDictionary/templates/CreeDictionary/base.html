@@ -13,15 +13,13 @@
   <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
   <script src={% static 'CreeDictionary/js/index.js' %}></script>
 
-  {% if lemma_id and paradigm_size%}
+  {% if lemma_id and paradigm_size %}
     {% comment %}
     meaning we are on lemma details/paradigm page. This variable can be utilized by javascript to dynamically request
     other things (e.g. different sized paradigms) about the lemma
     {% endcomment %}
-    <script>
-      var lemmaId = {{ lemma_id }}
-      var paradigmSize = '{{ paradigm_size.value }}'
-    </script>
+    {{ lemma_id|json_script:"lemma-id" }}
+    {{ paradigm_size.value|json_script:"paradigm-size" }}
   {% endif %}
 
 </head>
@@ -45,8 +43,7 @@
   <template id="template:recording-item">
     <li class="recordings-list__item" data-cy="recordings-list__item">
       <button class="audio-snippet">
-        <slot name="speaker-name"></slot>
-        ,
+        <slot name="speaker-name"></slot>,
         <slot name="speaker-dialect"></slot>
       </button>
   </template>
