@@ -83,15 +83,16 @@ describe.only('paradigms can e toggled by the show more/less button', () => {
     cy.get('[data-cy=paradigm-toggle-button]').click()
     // s/he/they is an exclusive user friendly tag for FULL paradigms
     cy.get('[data-cy=paradigm]').contains('s/he/they')
-    // somehow I have to add these cy.wait for the test to pass, fetch request a bit slow?
-    cy.wait(100)
+    // somehow I have to add these cy.wait for the test to pass, javascript a bit slow?
+    // If there is not enough wait, you'll get error "cy.click() failed because this element is detached from the DOM"
+    cy.wait(500)
     cy.get('[data-cy=paradigm-toggle-button]').click()
     // 2p is an exclusive linguistic term for LINGUISTIC paradigms
-    cy.wait(100)
+    cy.wait(500)
     cy.get('[data-cy=paradigm]').contains('2p')
 
     cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.wait(100)
+    cy.wait(500)
     // now are we back to basic?
     cy.get('[data-cy=paradigm]').contains('Something is happening now')
 
