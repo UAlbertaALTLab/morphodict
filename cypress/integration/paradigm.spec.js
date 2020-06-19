@@ -74,7 +74,7 @@ describe('paradigms are visitable from link', () => {
 )
 
 
-describe.only('paradigms can e toggled by the show more/less button', () => {
+describe('paradigms can e toggled by the show more/less button', () => {
   it('shows basic, full, linguistic, and basic paradigm in sequence', () => {
     cy.visitLemma('nipâw')
     // "Something is happening now" is an exclusive user friendly tag for BASIC paradigms
