@@ -55,11 +55,7 @@ _urlpatterns = [
         "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    (
-        "_lemma_details/<int:lemma_id>/",
-        views.lemma_details_internal,
-        "cree-dictionary-lemma-detail",
-    ),
+    ("_lemma_details/", views.lemma_details_internal, "cree-dictionary-lemma-detail",),
     # cree word translation for click-in-text #todo (for matt): this
     (
         "_translate-cree/<str:query_string>/",

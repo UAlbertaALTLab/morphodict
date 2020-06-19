@@ -1,6 +1,21 @@
-/* global Urls:readable */
+// the /* global blah blah */ line below works with eslint so that eslint knows these variables are from the html
+
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
+
+
+/* global Urls:readable */
+
+// `lemmaId` is a variable from django's template generation.
+// It's present when the current page is lemma detail / paradigm page
+
+// paradigmSize is also set initially with django's template generation
+// It's present when the current page is lemma detail / paradigm page.
+// And it can changed dynamically by javascript when the script loads different sized paradigms
+
+
+let lemmaId, paradigmSize
+
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
@@ -25,6 +40,12 @@ const NO_BREAK_SPACE = '\u00A0'
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // read Django's json_script data inside HTML when DOM is ready
+  // this is a way of passing Django's context variables during template generation to Javascript
+  lemmaId = readDjangoJsonScript('lemma-id')
+  paradigmSize = readDjangoJsonScript('paradigm-size')
+
   // XXX: HACK! reloads the site when the back button is pressed.
   window.onpopsate = () => location.reload()
 
@@ -41,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   } else if (route === '/about') {
     // About page
     setSubtitle('About')
-  } else if (route == '/contact-us') {
+  } else if (route === '/contact-us') {
     // Contact page
     setSubtitle('Contact us')
   } else if (route === '/search') {
@@ -51,6 +72,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
+    if (document.getElementById('paradigm')) { // if the lemma has a paradigm thus having a "show more/less" button
+      setupParadigmSizeToggleButton()
+    }
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
@@ -58,6 +82,114 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 ///////////////////////////// Internal functions /////////////////////////////
+
+/**
+ * read json data produced by django's `json_script` filter during HTML template generation
+ */
+function readDjangoJsonScript(id) {
+  const jsonScriptElement = document.getElementById(id)
+  if (jsonScriptElement){
+    return JSON.parse(jsonScriptElement.textContent)
+  }else{
+    return undefined
+  }
+}
+
+const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
+
+
+/**
+ * cycles between BASIC, FULL, LINGUISTIC
+ *
+ * @param {String} size
+ * @return {String}
+ */
+function getNextParadigmSize(size) {
+  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1) % allParadigmSizes.length]
+}
+
+/**
+ * https://stackoverflow.com/a/11654596
+ * get the current url and update a query param
+ *
+ * @param {String} key
+ * @param {String} value
+ * @returns {String}
+ */
+function updateQueryParam(key, value) {
+  let url = window.location.href
+  let re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi'),
+    hash
+
+  if (re.test(url)) {
+    if (typeof value !== 'undefined' && value !== null) {
+      return url.replace(re, '$1' + key + '=' + value + '$2$3')
+    } else {
+      hash = url.split('#')
+      url = hash[0].replace(re, '$1$3').replace(/([&?])$/, '')
+      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+        url += '#' + hash[1]
+      }
+      return url
+    }
+  } else {
+    if (typeof value !== 'undefined' && value !== null) {
+      const separator = url.indexOf('?') !== -1 ? '&' : '?'
+      hash = url.split('#')
+      url = hash[0] + separator + key + '=' + value
+      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
+        url += '#' + hash[1]
+      }
+      return url
+    } else {
+      return url
+    }
+  }
+}
+
+
+/**
+ * attach handlers to the "show more/less" button. So that it:
+ *
+ *  - loads a more detailed paradigm when clicked or do nothing and report to console if the request for the paradigm errors
+ *  - changes its text to "show less" when the paradigm has the largest size
+ *    and shows the smallest paradigm when clicked
+ *  - prepare the new "show more/less" button to do these 3
+ */
+function setupParadigmSizeToggleButton() {
+  const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
+
+  const nextParadigmSize = getNextParadigmSize(paradigmSize)
+  toggleButton.addEventListener('click', () => {
+    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
+      if (r.ok) {
+        return r.text()
+      } else {
+        throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
+      }
+    }).then(
+      text => {
+        const paradigmFrag = document.createRange().createContextualFragment(text)
+        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1) {
+          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show less'
+          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '- '
+
+        } else {
+          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show more'
+          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '+ '
+        }
+        window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
+        const oldParadigmNode = document.getElementById('paradigm')
+        oldParadigmNode.parentElement.replaceChild(paradigmFrag, oldParadigmNode)
+        paradigmSize = nextParadigmSize
+        setupParadigmSizeToggleButton() // prepare the new button
+      }
+    ).catch(
+      r => console.error(r)
+    )
+  })
+}
+
 
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
@@ -109,7 +241,8 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
     // TODO: this requires code in the recording-validation-interface
     fetchFirstRecordingURL(wordform)
       .then((recordingURL) => createAudioButton(recordingURL, container))
-      .catch(() => {/* ignore :/ */})
+      .catch(() => {/* ignore :/ */
+      })
   }
 }
 

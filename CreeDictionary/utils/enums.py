@@ -11,13 +11,6 @@ class ParadigmSize(Enum):
     FULL = "FULL"
     LINGUISTIC = "LINGUISTIC"
 
-    @property
-    def display_form(self):
-        """
-        the form that we show to users on paradigm table
-        """
-        return self.value.capitalize()
-
 
 class PartOfSpeech(Enum):
     """

@@ -637,7 +637,7 @@ html {
   border-spacing: 2em 0.5rem;
 }
 
-.paradigm__more-button {
+.paradigm__size-toggle-button {
   /* Display & Box model */
   display: block;
   width: 100%;
@@ -660,8 +660,7 @@ html {
   border-radius: 0 0 var(--tighter-br) var(--tighter-br);
 }
 
-.paradigm__more-button::before {
-  content: "+ ";
+.paradigm__size-toggle-plus-minus {
   font-weight: var(--strong-font-weight);
 }
 
