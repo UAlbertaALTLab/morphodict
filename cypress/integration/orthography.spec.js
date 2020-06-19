@@ -105,6 +105,5 @@ describe('Orthography selection', function () {
       cy.visitSearch('ᓃᒥᓈᓂᐘᐣ')
       cy.contains('[data-cy=word-class]', 'like: ᓂᐹᐤ')
     })
-
   })
 })

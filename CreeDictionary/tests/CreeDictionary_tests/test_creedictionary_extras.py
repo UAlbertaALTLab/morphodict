@@ -115,7 +115,6 @@ def test_cree_example():
     """
     Test the {% cree_example 'like: itwêwin' %} tag.
     """
-
     request = HttpRequest()
     request.COOKIES["orth"] = "Cans"
 
