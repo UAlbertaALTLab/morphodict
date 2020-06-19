@@ -112,16 +112,17 @@ def test_orth_template_tag(orth, inner_text):
 
 
 def test_cree_example():
-    context = Context({"example": "like: wâpamêw"})
-    template = Template("{% load creedictionary_extras %}" "{% cree_example example %}")
+    """
+    Test the {% cree_example 'like: itwêwin' %} tag.
+    """
 
     request = HttpRequest()
     request.COOKIES["orth"] = "Cans"
 
     context = RequestContext(request, {"example": "like: wâpamêw"})
-
+    template = Template("{% load creedictionary_extras %}" "{% cree_example example %}")
     rendered = template.render(context)
-    print(rendered)
+
     assertInHTML(
         f"""
         like: <span lang="cr" data-orth

@@ -49,7 +49,7 @@ def cree_example(context, example):
 
     e.g.,
 
-        {% cree_example 'like: wâpamew' %}
+        {% cree_example 'like: wâpamêw' %}
 
     Yields:
 
@@ -63,7 +63,7 @@ def cree_example(context, example):
         return example
 
     _like, _sp, cree = example.partition(" ")
-    return format_html("{}{}", "like: ", orth_tag(context, cree))
+    return format_html("like: {}", orth_tag(context, cree))
 
 
 @register.simple_tag(takes_context=True)
