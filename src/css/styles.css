@@ -642,6 +642,7 @@ html {
   display: block;
   width: 100%;
   border: 0;
+  padding-top: var(--small-pad);
   padding-bottom: var(--border-radius);
 
   /* Color */
@@ -658,6 +659,30 @@ html {
    * way. */
   --tighter-br: calc(var(--border-radius) - 2px);
   border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+
+  cursor: pointer;
+}
+
+.paradigm__size-toggle-button:hover,
+.paradigm__size-toggle-button:focus {
+  background-color: var(--paradigm-button-color-alt);
+}
+
+.paradigm__size-toggle-button--loading {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--paradigm-button-color),
+    var(--paradigm-button-color) 10px,
+    var(--paradigm-button-color-alt) 10px,
+    var(--paradigm-button-color-alt) 20px
+  );
+
+  animation: paradigm-button-slider 1s linear infinite;
+}
+
+@keyframes paradigm-button-slider {
+    0% { background-position-x: 0px }
+    100% { background-position-x: 30px }
 }
 
 .paradigm__size-toggle-plus-minus {
