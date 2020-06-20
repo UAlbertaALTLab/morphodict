@@ -642,6 +642,7 @@ html {
   display: block;
   width: 100%;
   border: 0;
+  padding-top: var(--small-pad);
   padding-bottom: var(--border-radius);
 
   /* Color */
@@ -658,6 +659,12 @@ html {
    * way. */
   --tighter-br: calc(var(--border-radius) - 2px);
   border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+
+  cursor: pointer;
+}
+
+.paradigm__size-toggle-button:hover {
+  background-color: var(--paradigm-button-color-hover);
 }
 
 .paradigm__size-toggle-plus-minus {
