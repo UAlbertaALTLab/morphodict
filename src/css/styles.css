@@ -663,7 +663,8 @@ html {
   cursor: pointer;
 }
 
-.paradigm__size-toggle-button:hover {
+.paradigm__size-toggle-button:hover,
+.paradigm__size-toggle-button:focus {
   background-color: var(--paradigm-button-color-alt);
 }
 
