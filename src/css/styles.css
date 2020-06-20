@@ -672,17 +672,18 @@ html {
   background-image: repeating-linear-gradient(
     -45deg,
     var(--paradigm-button-color),
-    var(--paradigm-button-color) 10px,
-    var(--paradigm-button-color-alt) 10px,
-    var(--paradigm-button-color-alt) 20px
+    var(--paradigm-button-color) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) calc(2 * var(--stripe-effect-quarter-sqrt))
   );
+  background-size: var(--stripe-effect-width) var(--stripe-effect-width);;
 
-  animation: paradigm-button-slider 1s linear infinite;
+  animation: paradigm-button-slider 0.5s linear infinite;
 }
 
 @keyframes paradigm-button-slider {
-    0% { background-position-x: 0px }
-    100% { background-position-x: 30px }
+    0% { background-position-x: 0 }
+    100% { background-position-x: var(--stripe-effect-width); }
 }
 
 .paradigm__size-toggle-plus-minus {

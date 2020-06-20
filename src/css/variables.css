@@ -97,4 +97,7 @@
   --min-tablet-width:   768px;  /* e.g., iPad Mini */
   --min-desktop-width: 1366px;  /* e.g., 13" laptop */
 
+  /* Other constants */
+  --stripe-effect-width: 20px;
+  --stripe-effect-quarter-sqrt: 7.0710678119px; /* width of a single stripe in the gradient is ¼√(width) */
 }
