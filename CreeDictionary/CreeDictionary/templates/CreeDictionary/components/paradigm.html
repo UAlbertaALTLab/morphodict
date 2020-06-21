@@ -1,0 +1,57 @@
+{% spaceless %}
+
+  {% comment %}
+
+    The paradigm table, including the button at the bottom.
+
+    e.g.,
+
+        | something is happening now |
+        | I      | ninipân | ê-niyân |
+        | You    | kinipân | ê-niyan |
+        | [       + show more      ] |
+
+  {% endcomment %}
+
+  {% load creedictionary_extras %}
+
+  <section class="definition__paradigm paradigm" data-cy="paradigm">
+    {% for table in paradigm_tables %}
+    <table class="paradigm__table">
+      {% for row in table %}
+      {% if row.is_title %}
+      <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+      {% else %}
+      <tr class="paradigm-row">
+        {% for cell in row %}
+        {% if cell.is_label %}
+        <th scope="row" class="paradigm-label paradigm-label--row">
+          {{ cell }}
+        </th>
+        {% elif cell.is_heading %}
+        <th scope="col" class="paradigm-label paradigm-label--col">
+          {{ cell }}
+        </th>
+        {% elif cell == "" %}
+        <td class="paradigm-cell paradigm-cell--empty"></td>
+        {% else %}
+        <td class="paradigm-cell"> {% orth cell %}
+        </td>
+        {% endif %}
+        {% endfor %}
+      </tr>
+      {% endif %}
+      {% endfor %}
+    </table>
+    {% endfor %}
+
+    <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
+      <span class="paradigm__size-toggle-plus-minus">
+        {% if paradigm_size.value == 'LINGUISTIC' %}- {% else %}+ {% endif %}
+      </span>
+      <span class="paradigm__size-toggle-button-text">
+        show {% if paradigm_size.value == 'LINGUISTIC' %}less{% else %}more{% endif %}
+      </span>
+    </button>
+  </section>
+{% endspaceless %}
