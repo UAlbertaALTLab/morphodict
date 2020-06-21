@@ -1,0 +1,50 @@
+{% comment %}
+
+This should be included or placed dynamical within <main>
+
+{% endcomment %}
+
+
+{% load static %}
+{% load inflection_extras %}
+{% load creedictionary_extras %}
+
+{% spaceless %}
+  <article class="definition" id="paradigm">
+    <header class="definition__header">
+      <h1 id="head" class="definition-title">
+        <dfn class="definition__matched-head">
+          <data id="data:head" value="{{ lemma.text }}">
+            {% orth lemma.text %}
+          </data>
+        </dfn>&nbsp;<span class="wordclass">({{ lemma|presentational_pos }})</span>
+      </h1>
+    </header>
+
+    <section class="definition__recordings definition__recordings--not-loaded">
+      <p class="explainer">Select a name below to hear the word above said by different speakers.</p>
+      <ul class="recordings-list" data-cy="recordings-list">
+        <!-- dynamically inserted speaker lists go here -->
+      </ul>
+      <div class="speaker-link">
+        <!-- dynamically generated speaker's bio link goes here -->
+      </div>
+    </section>
+
+    <section class="definition__meanings">
+      <ol class="meanings">
+        {% for def in lemma.definitions.all %}
+          <li class="meanings__meaning">{{ def.text }}
+            {% for source in def.source_ids %}
+              <cite class="cite-dict">{{ source }}</cite>
+            {% endfor %}
+          </li>
+        {% endfor %}
+      </ol>
+    </section>
+
+    {% if paradigm_tables %}
+      {% include './components/paradigm.html' %}
+    {% endif %}
+  </article>
+{% endspaceless %}
