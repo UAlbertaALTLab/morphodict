@@ -1,11 +1,12 @@
 from http import HTTPStatus
 
-from API.models import Wordform
-from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET
+
+from API.models import Wordform
+from CreeDictionary.forms import WordSearchForm
 from utils import ORTHOGRAPHY_NAME, ParadigmSize
 
 from .utils import url_for_query
@@ -105,7 +106,7 @@ def search_results(request, query_string: str):  # pragma: no cover
 @require_GET
 def lemma_details_internal(request):
     """
-    Render paradigm.html for a lemma. `index` view function renders a whole page that contains paradigm.html too.
+    Render word-detail.html for a lemma. `index` view function renders a whole page that contains word-detail.html too.
     This function, however, is used by javascript to dynamically replace the paradigm with the ones of different sizes.
 
     `lemma-id` and `paradigm-size` are the expected query params in the request
@@ -145,7 +146,7 @@ def lemma_details_internal(request):
 
     return render(
         request,
-        "CreeDictionary/paradigm.html",
+        "CreeDictionary/word-detail.html",
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
