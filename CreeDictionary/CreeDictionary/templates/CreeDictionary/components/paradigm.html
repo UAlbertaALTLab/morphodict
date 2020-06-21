@@ -16,34 +16,35 @@
   {% load creedictionary_extras %}
 
   <section class="definition__paradigm paradigm" data-cy="paradigm">
-    {% for table in paradigm_tables %}
     <table class="paradigm__table">
-      {% for row in table %}
-      {% if row.is_title %}
-      <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
-      {% else %}
-      <tr class="paradigm-row">
-        {% for cell in row %}
-        {% if cell.is_label %}
-        <th scope="row" class="paradigm-label paradigm-label--row">
-          {{ cell }}
-        </th>
-        {% elif cell.is_heading %}
-        <th scope="col" class="paradigm-label paradigm-label--col">
-          {{ cell }}
-        </th>
-        {% elif cell == "" %}
-        <td class="paradigm-cell paradigm-cell--empty"></td>
-        {% else %}
-        <td class="paradigm-cell"> {% orth cell %}
-        </td>
-        {% endif %}
-        {% endfor %}
-      </tr>
-      {% endif %}
-      {% endfor %}
+      {% for subtable in paradigm_tables %}
+        <tbody>
+          {% for row in subtable %}
+            {% if row.is_title %}
+              <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+            {% else %}
+              <tr class="paradigm-row">
+                {% for cell in row %}
+                  {% if cell.is_label %}
+                    <th scope="row" class="paradigm-label paradigm-label--row">
+                      {{ cell }}
+                    </th>
+                  {% elif cell.is_heading %}
+                    <th scope="col" class="paradigm-label paradigm-label--col">
+                      {{ cell }}
+                    </th>
+                  {% elif cell == "" %}
+                    <td class="paradigm-cell paradigm-cell--empty"></td>
+                  {% else %}
+                    <td class="paradigm-cell">{% orth cell %}</td>
+                  {% endif %}
+                {% endfor %}
+              </tr>
+            {% endif %}
+          {% endfor %} {# /rows #}
+        </tbody>
+      {% endfor %} {# /subtables #}
     </table>
-    {% endfor %}
 
     <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
       <span class="paradigm__size-toggle-plus-minus">
