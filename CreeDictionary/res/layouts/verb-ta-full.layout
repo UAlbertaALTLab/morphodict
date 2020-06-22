@@ -73,74 +73,75 @@ tooltips:
     "ta- word": "ta-conjunct"
 --
 |                                                 | "Something is happening now"        |                                |
-| "Speech act participants"                       | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
-| "you (one) → me"                                | Ind+Prs+2Sg+1SgO                    | PV/e+*+Cnj+Prs+2Sg+1SgO        |
-| "you (one) → us"                                | Ind+Prs+2Sg+1PlO                    | PV/e+*+Cnj+Prs+2Sg+1PlO        |
-| "you (all) → me"                                | Ind+Prs+2Pl+1SgO                    | PV/e+*+Cnj+Prs+2Pl+1SgO        |
-| "you (all) → us"                                | Ind+Prs+2Pl+1PlO                    | PV/e+*+Cnj+Prs+2Pl+1PlO        |
-|                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "I → you (one)"                                 | Ind+Prs+1Sg+2SgO                    | PV/e+*+Cnj+Prs+1Sg+2SgO        |
-| "I → you (all)"                                 | Ind+Prs+1Sg+2PlO                    | PV/e+*+Cnj+Prs+1Sg+2PlO        |
-| "we → you (one)"                                | Ind+Prs+1Pl+2SgO                    | PV/e+*+Cnj+Prs+1Pl+2SgO        |
-| "we → you (all)"                                | Ind+Prs+1Pl+2PlO                    | PV/e+*+Cnj+Prs+1Pl+2PlO        |
-|                                                 |                                     |                                |
-| "Mixed participants"                            | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "I → him/her"                                   | Ind+Prs+1Sg+3SgO                    | PV/e+*+Cnj+Prs+1Sg+3SgO        |
-| "you (one) → him/her"                           | Ind+Prs+2Sg+3SgO                    | PV/e+*+Cnj+Prs+2Sg+3SgO        |
-| "we → him/her"                                  | Ind+Prs+1Pl+3SgO                    | PV/e+*+Cnj+Prs+1Pl+3SgO        |
-| "you and we → him/her"                          | Ind+Prs+12Pl+3SgO                   | PV/e+*+Cnj+Prs+12Pl+3SgO       |
-| "you (all) → him/her"                           | Ind+Prs+2Pl+3SgO                    | PV/e+*+Cnj+Prs+2Pl+3SgO        |
-|                                                 |                                     |                                |
+| "I → you (all)"                                 | Ind+Prs+1Sg+2PlO                    | PV/e+*+Cnj+Prs+1Sg+2PlO        |
 | "I → them"                                      | Ind+Prs+1Sg+3PlO                    | PV/e+*+Cnj+Prs+1Sg+3PlO        |
-| "you (one) → them"                              | Ind+Prs+2Sg+3PlO                    | PV/e+*+Cnj+Prs+2Sg+3PlO        |
-| "we → them"                                     | Ind+Prs+1Pl+3PlO                    | PV/e+*+Cnj+Prs+1Pl+3PlO        |
-| "you and we → them"                             | Ind+Prs+12Pl+3PlO                   | PV/e+*+Cnj+Prs+12Pl+3PlO       |
-| "you (all) → them"                              | Ind+Prs+2Pl+3PlO                    | PV/e+*+Cnj+Prs+2Pl+3PlO        |
-|                                                 |                                     |                                |
 | "I → him/her/them (further)"                    | Ind+Prs+1Sg+4Sg/PlO                 | PV/e+*+Cnj+Prs+1Sg+4Sg/PlO     |
-| "you (one) → him/her/them (further)"            | Ind+Prs+2Sg+4Sg/PlO                 | PV/e+*+Cnj+Prs+2Sg+4Sg/PlO     |
-| "we → him/her/them (further)"                   | Ind+Prs+1Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+1Pl+4Sg/PlO     |
-| "you and we → him/her/them (further)"           | Ind+Prs+12Pl+4Sg/PlO                | PV/e+*+Cnj+Prs+12Pl+4Sg/PlO    |
-| "you (all) → him/her/them (further)"            | Ind+Prs+2Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+2Pl+4Sg/PlO     |
 |                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
+| "you (one) → me"                                | Ind+Prs+2Sg+1SgO                    | PV/e+*+Cnj+Prs+2Sg+1SgO        |
+| "you (one) → him/her"                           | Ind+Prs+2Sg+3SgO                    | PV/e+*+Cnj+Prs+2Sg+3SgO        |
+| "you (one) → us"                                | Ind+Prs+2Sg+1PlO                    | PV/e+*+Cnj+Prs+2Sg+1PlO        |
+| "you (one) → them"                              | Ind+Prs+2Sg+3PlO                    | PV/e+*+Cnj+Prs+2Sg+3PlO        |
+| "you (one) → him/her/them (further)"            | Ind+Prs+2Sg+4Sg/PlO                 | PV/e+*+Cnj+Prs+2Sg+4Sg/PlO     |
+|                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "s/he → me"                                     | Ind+Prs+3Sg+1SgO                    | PV/e+*+Cnj+Prs+3Sg+1SgO        |
 | "s/he → you (one)"                              | Ind+Prs+3Sg+2SgO                    | PV/e+*+Cnj+Prs+3Sg+2SgO        |
 | "s/he → us"                                     | Ind+Prs+3Sg+1PlO                    | PV/e+*+Cnj+Prs+3Sg+1PlO        |
 | "s/he → you and us"                             | Ind+Prs+3Sg+12PlO                   | PV/e+*+Cnj+Prs+3Sg+12PlO       |
 | "s/he → you (all)"                              | Ind+Prs+3Sg+2PlO                    | PV/e+*+Cnj+Prs+3Sg+2PlO        |
+| "s/he → him/her/them (further)"                 | Ind+Prs+3Sg+4Sg/PlO                 | PV/e+*+Cnj+Prs+3Sg+4Sg/PlO     |
+| "they → him/her/them (further)"                 | Ind+Prs+3Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+3Pl+4Sg/PlO     |
 |                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
+| "we → you (one)"                                | Ind+Prs+1Pl+2SgO                    | PV/e+*+Cnj+Prs+1Pl+2SgO        |
+| "we → him/her"                                  | Ind+Prs+1Pl+3SgO                    | PV/e+*+Cnj+Prs+1Pl+3SgO        |
+| "we → you (all)"                                | Ind+Prs+1Pl+2PlO                    | PV/e+*+Cnj+Prs+1Pl+2PlO        |
+| "we → them"                                     | Ind+Prs+1Pl+3PlO                    | PV/e+*+Cnj+Prs+1Pl+3PlO        |
+| "we → him/her/them (further)"                   | Ind+Prs+1Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+1Pl+4Sg/PlO     |
+|                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
+| "you and we → him/her"                          | Ind+Prs+12Pl+3SgO                   | PV/e+*+Cnj+Prs+12Pl+3SgO       |
+| "you and we → them"                             | Ind+Prs+12Pl+3PlO                   | PV/e+*+Cnj+Prs+12Pl+3PlO       |
+| "you and we → him/her/them (further)"           | Ind+Prs+12Pl+4Sg/PlO                | PV/e+*+Cnj+Prs+12Pl+4Sg/PlO    |
+|                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
+| "you (all) → me"                                | Ind+Prs+2Pl+1SgO                    | PV/e+*+Cnj+Prs+2Pl+1SgO        |
+| "you (all) → him/her"                           | Ind+Prs+2Pl+3SgO                    | PV/e+*+Cnj+Prs+2Pl+3SgO        |
+| "you (all) → us"                                | Ind+Prs+2Pl+1PlO                    | PV/e+*+Cnj+Prs+2Pl+1PlO        |
+| "you (all) → them"                              | Ind+Prs+2Pl+3PlO                    | PV/e+*+Cnj+Prs+2Pl+3PlO        |
+| "you (all) → him/her/them (further)"            | Ind+Prs+2Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+2Pl+4Sg/PlO     |
+|                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "they → me"                                     | Ind+Prs+3Pl+1SgO                    | PV/e+*+Cnj+Prs+3Pl+1SgO        |
 | "they → you (one)"                              | Ind+Prs+3Pl+2SgO                    | PV/e+*+Cnj+Prs+3Pl+2SgO        |
 | "they → us"                                     | Ind+Prs+3Pl+1PlO                    | PV/e+*+Cnj+Prs+3Pl+1PlO        |
 | "they → you and us"                             | Ind+Prs+3Pl+12PlO                   | PV/e+*+Cnj+Prs+3Pl+12PlO       |
-| "s/he → you (all)"                              | Ind+Prs+3Pl+2PlO                    | PV/e+*+Cnj+Prs+3Pl+2PlO        |
 |                                                 |                                     |                                |
+|                                                 | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "s/he/they (further) → me"                      | Ind+Prs+4Sg/Pl+1SgO                 | PV/e+*+Cnj+Prs+4Sg/Pl+1SgO     |
 | "s/he/they (further) → you (one)"               | Ind+Prs+4Sg/Pl+2SgO                 | PV/e+*+Cnj+Prs+4Sg/Pl+2SgO     |
+| "s/he/they (further) → him/her"                 | Ind+Prs+4Sg/Pl+3SgO                 | PV/e+*+Cnj+Prs+4Sg/Pl+3SgO     |
 | "s/he/they (further) → us"                      | Ind+Prs+4Sg/Pl+1PlO                 | PV/e+*+Cnj+Prs+4Sg/Pl+1PlO     |
 | "s/he/they (further) → you and us"              | Ind+Prs+4Sg/Pl+12PlO                | PV/e+*+Cnj+Prs+4Sg/Pl+12PlO    |
 | "s/he/they (further) → you (all)"               | Ind+Prs+4Sg/Pl+2PlO                 | PV/e+*+Cnj+Prs+4Sg/Pl+2PlO     |
-|                                                 |                                     |                                |
-| "Third person participants"                     | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
-| "s/he → him/her/them (further)"                 | Ind+Prs+3Sg+4Sg/PlO                 | PV/e+*+Cnj+Prs+3Sg+4Sg/PlO     |
-| "they → him/her/them (further)"                 | Ind+Prs+3Pl+4Sg/PlO                 | PV/e+*+Cnj+Prs+3Pl+4Sg/PlO     |
-| "s/he/they (further) → him/her/them (furthest)" | Ind+Prs+4Sg/Pl+5Sg/PlO              | PV/e+*+Cnj+Prs+4Sg/Pl+5Sg/PlO  |
-|                                                 |                                     |                                |
-| "s/he/they (further) → him/her"                 | Ind+Prs+4Sg/Pl+3SgO                 | PV/e+*+Cnj+Prs+4Sg/Pl+3SgO     |
 | "s/he/they (further) → them"                    | Ind+Prs+4Sg/Pl+3PlO                 | PV/e+*+Cnj+Prs+4Sg/Pl+3PlO     |
+| "s/he/they (further) → him/her/them (furthest)" | Ind+Prs+4Sg/Pl+5Sg/PlO              | PV/e+*+Cnj+Prs+4Sg/Pl+5Sg/PlO  |
 | "s/he/they (furthest) → him/her/them (further)" | Ind+Prs+5Sg/Pl+4Sg/PlO              | PV/e+*+Cnj+Prs+5Sg/Pl+4Sg/PlO  |
 |                                                 |                                     |                                |
 | "Unspecified actor"                             | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
 | "someone → me"                                  | Ind+Prs+X+1SgO                      | PV/e+*+Cnj+Prs+X+1SgO          |
 | "someone → you (one)"                           | Ind+Prs+X+2SgO                      | PV/e+*+Cnj+Prs+X+2SgO          |
 | "someone → him/her"                             | Ind+Prs+X+3SgO                      | PV/e+*+Cnj+Prs+X+3SgO          |
-| "someone → him/her/them (further)"              | Ind+Prs+X+4Sg/PlO                   | PV/e+*+Cnj+Prs+X+4Sg/PlO       |
 | "someone → us"                                  | Ind+Prs+X+1PlO                      | PV/e+*+Cnj+Prs+X+1PlO          |
 | "someone → you and us"                          | Ind+Prs+X+12PlO                     | PV/e+*+Cnj+Prs+X+12PlO         |
 | "someone → you (all)"                           | Ind+Prs+X+2PlO                      | PV/e+*+Cnj+Prs+X+2PlO          |
 | "someone → them"                                | Ind+Prs+X+3PlO                      | PV/e+*+Cnj+Prs+X+3PlO          |
+| "someone → him/her/them (further)"              | Ind+Prs+X+4Sg/PlO                   | PV/e+*+Cnj+Prs+X+4Sg/PlO       |
 |                                                 |                                     |                                |
-| "Inanimate actor"                               |                                     |                                |
 |                                                 |                                     |                                |
 |                                                 | "Something happened earlier"        |                                |
 | "Speech act participants"                       | : "ni-/ki- word"                    | : "ê-/kâ- word"                |
