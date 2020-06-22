@@ -1,4 +1,11 @@
+"""
+Tests importing the NA layouts.
+
+Note: if the upstream layouts change, so will these tests!
+"""
+
 import pytest
+
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import ParadigmSize, WordClass, shared_res_dir
@@ -8,8 +15,6 @@ from utils.paradigm_filler import import_prefilled_layouts
 def test_import_prefilled_layouts() -> None:
     """
     Imports ALL of the layouts, and makes sure a NA gets filled out.
-
-    Note: if the upstream layouts change, so will this test!
     """
     prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
     assert prefilled_layouts[WordClass.NA, ParadigmSize.BASIC] == [
@@ -50,10 +55,6 @@ def test_import_prefilled_layouts() -> None:
                 [
                     TitleRow(title="Smaller/Lesser/Younger", span=5),
                     [Label(text="One"), "niskis", "", "", ""],
-                    [Label(text="Many"), "niskisak", "", "", ""],
-                    [Label(text="Further"), "niskisa", "", "", ""],
-                    [Label(text="In/On"), "niskisihk", "", "", ""],
-                    [Label(text="Among"), "niskisinâhk", "", "", ""],
                 ],
                 [
                     TitleRow(title="Ownership", span=5),
@@ -107,61 +108,6 @@ def test_import_prefilled_layouts() -> None:
                         "",
                         "oniskimiyiwa",
                         "oniskimiyihk",
-                    ],
-                ],
-                [
-                    TitleRow(title="Smaller/Lesser/Younger", span=5),
-                    TitleRow(title="Ownership", span=5),
-                    [
-                        "",
-                        Heading(text="One"),
-                        Heading(text="Many"),
-                        Heading(text="Further"),
-                        Heading(text="In/On"),
-                    ],
-                    [
-                        Label(text="my"),
-                        "niniskimis",
-                        "niniskimisak",
-                        "niniskimisa",
-                        "niniskimisihk",
-                    ],
-                    [
-                        Label(text="your (one)"),
-                        "kiniskimis",
-                        "kiniskimisak",
-                        "kiniskimisa",
-                        "kiniskimisihk",
-                    ],
-                    [Label(text="his/her"), "", "", "oniskimisa", "oniskimisihk"],
-                    [
-                        Label(text="our"),
-                        "niniskimisinân",
-                        "niniskimisinânak",
-                        "niniskimisinâna",
-                        "niniskimisinâhk",
-                    ],
-                    [
-                        Label(text="your and our"),
-                        "kiniskimisinaw",
-                        "kiniskimisinawak",
-                        "kiniskimisinawa",
-                        "kiniskimisinâhk",
-                    ],
-                    [
-                        Label(text="your (all)"),
-                        "kiniskimisiwâw",
-                        "kiniskimisiwâwak",
-                        "kiniskimisiwâwa",
-                        "kiniskimisiwâhk",
-                    ],
-                    [Label(text="their"), "", "", "oniskimisiwâwa", "oniskimisiwâhk"],
-                    [
-                        Label(text="his/her/their (further)"),
-                        "",
-                        "",
-                        "oniskimisiyiwa",
-                        "oniskimisiyihk",
                     ],
                 ],
             ],
