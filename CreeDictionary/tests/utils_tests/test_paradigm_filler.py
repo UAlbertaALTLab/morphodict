@@ -5,7 +5,6 @@ Note: if the upstream layouts change, so will these tests!
 """
 
 import pytest
-
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import ParadigmSize, WordClass, shared_res_dir
