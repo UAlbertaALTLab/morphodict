@@ -4,7 +4,19 @@ import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
-from typing import DefaultDict, Dict, List, NamedTuple, NewType, Set, Tuple
+from typing import (
+    DefaultDict,
+    Dict,
+    List,
+    NamedTuple,
+    NewType,
+    Set,
+    Tuple,
+    Container,
+    Iterable,
+    Any,
+    Hashable,
+)
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import Fore, init
@@ -14,7 +26,7 @@ from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from utils import PartOfSpeech, fst_analysis_parser
+from utils import PartOfSpeech, fst_analysis_parser, EntryTuple, XMLEntry
 from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
     extract_l_str,
@@ -25,10 +37,6 @@ init()  # for windows compatibility
 logger = DatabaseManagerLogger(__name__)
 
 RECOGNIZABLE_POS: Set[str] = {p.value for p in PartOfSpeech}
-
-# todo: refactor and use this
-XmlTuple = NewType("XmlTuple", Tuple[str, str, str])
-"Tuple of xml_lemma, xml_pos, xml_ic extracted from crkeng.xml"
 
 
 def generate_as_is_analysis(xml_lemma: str, pos: str, ic: str) -> str:
@@ -226,6 +234,29 @@ def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
     )
 
 
+class IndexedXML(List[XMLEntry]):
+    """
+    The collection of all entries
+    """
+
+    def __init__(self):
+        super().__init__()
+        self._cached_results: Dict[
+            Tuple[str], Dict[Tuple[Hashable], Set[XMLEntry]]
+        ] = {}
+
+    def filter(self, **constraints: Hashable) -> List[XMLEntry]:
+        """
+        a lookup method that imitates django's queryset API
+        Cached by key combinations
+        """
+        input_field_names = set(constraints)
+        # try to find it in cache
+        for field_names, cached_dict in self._cached_results.values():
+            if input_field_names == set(field_names):
+                pass
+
+
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
     Import from crkeng and engcrk files, `dir_name` can host a series of xml files. The latest timestamped files will be
@@ -260,10 +291,14 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     engcrk_cree_to_keywords = load_engcrk_xml(engcrk_file_path)
     logger.info("English keywords loaded")
 
+    xml_entries: List[XMLEntry] = []
+
+    # todo: delet
     # value is definition string as key and its source as value
     xml_lemma_pos_ic_to_str_definitions = (
         {}
     )  # type: Dict[Tuple[str,str,str], Dict[str, Set[str]]]
+    # delet;
 
     # One lemma could have multiple entries with different pos and ic
     xml_lemma_to_pos_ic = {}  # type: Dict[str, List[Tuple[str,str]]]
@@ -284,7 +319,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
 
             if t.text is None:
-                print(
+                logger.warn(
                     f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
                 )
                 # this entry in the xml has an empty <t>
@@ -348,7 +383,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
         if duplicate_lemma_pos_ic:
             logger.debug(
-                f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} is a duplicate tuple"
+                f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} appears more than once"
             )
 
             tuple_definitions = xml_lemma_pos_ic_to_str_definitions[
