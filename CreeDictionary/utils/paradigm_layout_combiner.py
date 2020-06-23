@@ -309,7 +309,7 @@ def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
     for ic in WordClass:
-        if ic in (WordClass.Pron, WordClass.IPC, WordClass.IPV):
+        if not ic.has_inflections():
             continue
         for size in ParadigmSize:
             with open(
