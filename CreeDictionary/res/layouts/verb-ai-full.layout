@@ -52,7 +52,7 @@ tooltips:
 |                       |                                     |                           |
 |                       | "Someone wants something to happen" |                           |
 |                       | : "ni-/ki- word"                    | : "ê-/kâ- word"           |
-| "I"                   | Ind+Fut+Int+1Sg                     | PV/e+*+Cnj+Fut+Int+1Sg    |
+| "I"                   | PV/wi+*+Ind+1Sg                     | PV/e+PV/ki+*+Cnj+1Sg    |
 | "you (one)"           | Ind+Fut+Int+2Sg                     | PV/e+*+Cnj+Fut+Int+2Sg    |
 | "s/he"                | Ind+Fut+Int+3Sg                     | PV/e+*+Cnj+Fut+Int+3Sg    |
 | "we (but not you)     | Ind+Fut+Int+1Pl                     | PV/e+*+Cnj+Fut+Int+1Pl    |
