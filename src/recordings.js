@@ -1,11 +1,7 @@
 import SimpleTemplate from './simple-template.js'
 
 // popup for the speaker popup
-import {createPopper, popperGenerator} from '@popperjs/core/dist/esm/popper';
-const button = document.querySelector('.definition__icon definition-title__play-button'); // triggers the popup
-const tooltip = document.querySelector('#tooltip');
 
-Popper.createPopper(button, tooltip);
 
 
 // the specific URL for a given wordform (refactored from previous commits).
