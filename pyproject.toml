@@ -15,6 +15,5 @@ known_first_party = [
     "utils",
     "CreeDictionary",
     "API",
-    "fuzzy_search",
     "shared",
 ]

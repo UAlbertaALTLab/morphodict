@@ -1,1 +1,0 @@
-from fuzzy_search.cree_fuzzy_search import CreeFuzzySearcher
