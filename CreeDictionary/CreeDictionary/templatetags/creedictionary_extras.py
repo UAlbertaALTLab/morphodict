@@ -10,8 +10,6 @@ from django.utils.html import format_html
 
 from CreeDictionary.utils import url_for_query
 from morphodict.templatetags.morphodict_orth import orth_tag
-from utils import ORTHOGRAPHY_NAME
-from utils.vars import DEFAULT_ORTHOGRAPHY
 
 register = template.Library()
 
@@ -39,17 +37,6 @@ def cree_example(context, example):
 
     _like, _sp, cree = example.partition(" ")
     return format_html("like: {}", orth_tag(context, cree))
-
-
-@register.simple_tag(takes_context=True)
-def current_orthography_name(context):
-    """
-    Returns a pretty string of the currently active orthography.
-    The orthography is determined by the orth= cookie in the HTTP request.
-    """
-    # Determine the currently requested orthography:
-    request_orth = context.request.COOKIES.get("orth", DEFAULT_ORTHOGRAPHY)
-    return ORTHOGRAPHY_NAME[request_orth]
 
 
 @register.simple_tag(name="url_for_query")

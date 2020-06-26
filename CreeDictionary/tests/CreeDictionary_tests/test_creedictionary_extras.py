@@ -136,9 +136,7 @@ def test_current_orthography_name_tag(orth, name):
         request.COOKIES["orth"] = orth
 
     context = RequestContext(request)
-    template = Template(
-        "{% load creedictionary_extras %}" "{% current_orthography_name %}"
-    )
+    template = Template("{% load morphodict_orth %}" "{% current_orthography_name %}")
     rendered_html = template.render(context)
     assert name in rendered_html
 
