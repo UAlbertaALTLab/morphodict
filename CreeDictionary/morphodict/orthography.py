@@ -7,24 +7,23 @@ Handling of the writing system of the language.
 
 from typing import Set
 
-from utils import ORTHOGRAPHY_NAME as _ORTHOGRAPHY_NAME
-from utils.vars import DEFAULT_ORTHOGRAPHY as _DEFAULT_ORTHOGRAPHY
+from django.conf import settings
 
 
 class Orthography:
-    # TODO: get from settings
-    default = _DEFAULT_ORTHOGRAPHY
+    @property
+    def default(self) -> str:
+        return settings.MORPHODICT_ORTHOGRAPHY["default"]
 
     @property
     def available(self) -> Set[str]:
-        # TODO: get from settings
-        return set(_ORTHOGRAPHY_NAME.keys())
+        return set(settings.MORPHODICT_ORTHOGRAPHY["available"].keys())
 
     def name_of(self, code: str) -> str:
         """
         Get the plain English name of the given orthography code.
         """
-        return _ORTHOGRAPHY_NAME[code]
+        return settings.MORPHODICT_ORTHOGRAPHY["available"][code]["name"]
 
 
 ORTHOGRAPHY = Orthography()

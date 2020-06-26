@@ -150,6 +150,19 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
+############################### Morphodict configuration ###############################
+
+# Configure the orthographies
+MORPHODICT_ORTHOGRAPHY = {
+    # 'Latn' is Okimāsis/Wolvegrey's SRO
+    "default": "Latn",
+    "available": {
+        "Latn": {"name": "SRO (êîôâ)"},
+        "Latn-x-macron": {"name": "SRO (ēīōā)"},
+        "Cans": {"name": "Syllabics"},
+    },
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
