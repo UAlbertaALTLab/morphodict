@@ -20,3 +20,4 @@ def test_morphodict_orthography():
 )
 def test_each_orthography(code, name):
     assert name in ORTHOGRAPHY.name_of(code)
+    assert callable(ORTHOGRAPHY.converter[code])
