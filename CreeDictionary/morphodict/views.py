@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
+from http import HTTPStatus
+
+from django.http import HttpResponse
 from django.views import View
 
 from .orthography import ORTHOGRAPHY
@@ -20,8 +23,6 @@ class ChangeOrthography(View):
 
     Supports only POST requests for now.
     """
-
-    # TODO: move to morphodict
 
     def post(self, request):
         orth = request.POST.get("orth")
