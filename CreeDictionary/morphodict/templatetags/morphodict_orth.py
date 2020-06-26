@@ -1,12 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-# TODO: remove this import:
-from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
-
-from CreeDictionary.orthography import to_macrons
 
 from ..orthography import ORTHOGRAPHY
 
@@ -37,7 +33,7 @@ def orth_tag(context, sro_original: str) -> str:
 
 
 @register.filter
-def orth(sro_original: str, orthography):
+def orth(sro_original: str, orthography: str):
     """
     Filter that generates a <span> with multiple orthographical representations
     of the given text.
@@ -54,28 +50,18 @@ def orth(sro_original: str, orthography):
               data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
     """
 
-    sro_circumflex = sro_original
-    sro_macrons = to_macrons(sro_original)
-    # Strip "-" from either end of the syllabics.
-    syllabics = sro2syllabics(sro_original).strip("-")
-
-    assert orthography in ORTHOGRAPHY.available
-    if orthography == "Latn":
-        inner_text = sro_circumflex
-    elif orthography == "Latn-x-macron":
-        inner_text = sro_macrons
-    elif orthography == "Cans":
-        inner_text = syllabics
+    conversions = {
+        code: ORTHOGRAPHY.converter[code](sro_original)
+        for code in ORTHOGRAPHY.available
+    }
+    inner_text = conversions[orthography]
+    data_attributes = " ".join(f'data-orth-{code}="{{}}"' for code in conversions)
+    values = tuple(conversions.values()) + (inner_text,)
 
     return format_html(
-        '<span lang="cr" data-orth '
-        'data-orth-Latn="{}" '
-        'data-orth-Latn-x-macron="{}" '
-        'data-orth-Cans="{}">{}</span>',
-        sro_circumflex,
-        sro_macrons,
-        syllabics,
-        inner_text,
+        # TODO: do not hardcode lang="cr" here
+        '<span lang="cr" data-orth ' + data_attributes + ">{}</span>",
+        *values,
     )
 
 
