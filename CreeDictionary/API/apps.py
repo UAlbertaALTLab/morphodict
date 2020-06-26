@@ -12,18 +12,6 @@ from .affix_search import AffixSearcher
 logger = logging.getLogger(__name__)
 
 
-def initialize_fuzzy_search():
-    # todo: fuzzy search is for now not used. Use it in the future
-    # # without the guard
-    # # on travis this line of code will be run before a database exist and will error
-    # if "API_inflection" in connection.introspection.table_names():
-    #     # Have to do it locally, or will get error (apps aren't loaded yet)
-    #     from API.models import Inflection
-    #
-    #     Inflection.init_fuzzy_searcher()
-    pass
-
-
 def initialize_preverb_search():
     from .models import Wordform
     from django.db.models import Q
@@ -96,10 +84,8 @@ class APIConfig(AppConfig):
     def ready(self):
         """
         This function is called prior to app start.
-        It initializes fuzzy search (build the data structure).
         It also hashes preverbs for faster preverb matching.
         """
-        initialize_fuzzy_search()
         initialize_preverb_search()
         initialize_affix_search()
         read_morpheme_rankings()
