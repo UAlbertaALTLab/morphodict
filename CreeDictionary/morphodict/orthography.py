@@ -12,11 +12,12 @@ from utils.vars import DEFAULT_ORTHOGRAPHY as _DEFAULT_ORTHOGRAPHY
 
 
 class Orthography:
-    # TODO:
+    # TODO: get from settings
     default = _DEFAULT_ORTHOGRAPHY
 
     @property
     def available(self) -> Set[str]:
+        # TODO: get from settings
         return set(_ORTHOGRAPHY_NAME.keys())
 
 

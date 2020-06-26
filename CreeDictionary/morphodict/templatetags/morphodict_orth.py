@@ -6,9 +6,7 @@ from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
 
-# TODO: remove this import:
-from utils import ORTHOGRAPHY_NAME
-from utils.vars import DEFAULT_ORTHOGRAPHY
+from ..orthography import ORTHOGRAPHY
 
 register = template.Library()
 
@@ -34,7 +32,7 @@ def orth_tag(context, sro_original: str) -> str:
               data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
     """
     # Determine the currently requested orthography:
-    request_orth = context.request.COOKIES.get("orth", DEFAULT_ORTHOGRAPHY)
+    request_orth = context.request.COOKIES.get("orth", ORTHOGRAPHY.default)
     return orth(sro_original, orthography=request_orth)
 
 
@@ -61,7 +59,7 @@ def orth(sro_original: str, orthography):
     # Strip "-" from either end of the syllabics.
     syllabics = sro2syllabics(sro_original).strip("-")
 
-    assert orthography in ORTHOGRAPHY_NAME
+    assert orthography in ORTHOGRAPHY.available
     if orthography == "Latn":
         inner_text = sro_circumflex
     elif orthography == "Latn-x-macron":
