@@ -162,7 +162,10 @@ MORPHODICT_ORTHOGRAPHY = {
             "name": "SRO (ēīōā)",
             "converter": "CreeDictionary.orthography.to_macrons",
         },
-        "Cans": {"name": "Syllabics", "converter": "cree_sro_syllabics.sro2syllabics",},
+        "Cans": {
+            "name": "Syllabics",
+            "converter": "CreeDictionary.orthography.to_syllabics",
+        },
     },
 }
 
