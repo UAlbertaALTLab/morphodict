@@ -6,11 +6,11 @@ from cree_sro_syllabics import sro2syllabics
 from django import template
 from django.utils.html import format_html
 
+from CreeDictionary.orthography import to_macrons
+
 from ..orthography import ORTHOGRAPHY
 
 register = template.Library()
-
-CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
 
 
 @register.simple_tag(name="orth", takes_context=True)
@@ -77,13 +77,6 @@ def orth(sro_original: str, orthography):
         syllabics,
         inner_text,
     )
-
-
-def to_macrons(sro_circumflex: str) -> str:
-    """
-    Transliterate SRO to macrons.
-    """
-    return sro_circumflex.translate(CIRCUMFLEX_TO_MACRON)
 
 
 @register.simple_tag(takes_context=True)
