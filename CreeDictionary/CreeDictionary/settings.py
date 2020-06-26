@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
+    "morphodict.apps.MorphodictConfig",
     "django_js_reverse",
 ]
 
