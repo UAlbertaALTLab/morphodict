@@ -10,7 +10,7 @@ register = template.Library()
 
 
 @register.simple_tag(name="orth", takes_context=True)
-def orth_tag(context, sro_original: str) -> str:
+def orth_tag(context, original_text: str) -> str:
     """
     Tag that generates a <span> with multiple orthographical representations
     of the given text, in SRO. The inner text is determined by the
@@ -29,11 +29,11 @@ def orth_tag(context, sro_original: str) -> str:
     """
     # Determine the currently requested orthography:
     request_orth = context.request.COOKIES.get("orth", ORTHOGRAPHY.default)
-    return orth(sro_original, orthography=request_orth)
+    return orth(original_text, orthography=request_orth)
 
 
 @register.filter
-def orth(sro_original: str, orthography: str):
+def orth(original_text: str, orthography: str):
     """
     Filter that generates a <span> with multiple orthographical representations
     of the given text.
@@ -51,7 +51,7 @@ def orth(sro_original: str, orthography: str):
     """
 
     conversions = {
-        code: ORTHOGRAPHY.converter[code](sro_original)
+        code: ORTHOGRAPHY.converter[code](original_text)
         for code in ORTHOGRAPHY.available
     }
     inner_text = conversions[orthography]
