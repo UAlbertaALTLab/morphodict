@@ -306,12 +306,10 @@ class Wordform(models.Model):
     )
 
     class Meta:
-        # analysis is for faster user query (in function fetch_lemma_by_user_query below)
-        # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
-        # text index also benefits fast lemma matching in function fetch_lemma_by_user_query
         indexes = [
+            # analysis is for faster user query (in function fetch_lemma_by_user_query below)
             models.Index(fields=["analysis"]),
-            # TODO: Is this required?
+            # text index benefits fast lemma matching in function fetch_lemma_by_user_query
             models.Index(fields=["text"]),
         ]
 
