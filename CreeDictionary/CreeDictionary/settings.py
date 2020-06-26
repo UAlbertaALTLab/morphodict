@@ -158,8 +158,11 @@ MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
     "available": {
         "Latn": {"name": "SRO (êîôâ)"},
-        "Latn-x-macron": {"name": "SRO (ēīōā)"},
-        "Cans": {"name": "Syllabics"},
+        "Latn-x-macron": {
+            "name": "SRO (ēīōā)",
+            "converter": "CreeDictionary.orthography.to_macrons",
+        },
+        "Cans": {"name": "Syllabics", "converter": "cree_sro_syllabics.sro2syllabics",},
     },
 }
 

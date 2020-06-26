@@ -16,8 +16,15 @@ def test_morphodict_orthography():
 
 
 @pytest.mark.parametrize(
-    "code,name", [("Latn", "SRO"), ("Latn-x-macron", "SRO"), ("Cans", "Syllabics"),]
+    "code,name,example",
+    [
+        ("Latn", "SRO", "amiskwaciy-wâskahikanihk"),
+        ("Latn-x-macron", "SRO", "amiskwaciy-wāskahikanihk"),
+        ("Cans", "Syllabics", "ᐊᒥᐢᑿᒋᐩ ᐚᐢᑲᐦᐃᑲᓂᕽ"),
+    ],
 )
-def test_each_orthography(code, name):
+def test_each_orthography(code, name, example):
+    internal_text = "amiskwaciy-wâskahikanihk"
     assert name in ORTHOGRAPHY.name_of(code)
     assert callable(ORTHOGRAPHY.converter[code])
+    assert ORTHOGRAPHY.converter[code](internal_text) == example

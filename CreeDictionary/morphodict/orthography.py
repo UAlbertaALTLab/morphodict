@@ -14,7 +14,9 @@ from django.conf import settings
 class Orthography:
     class _Converter:
         def __getitem__(self, code: str) -> Callable[[str], str]:
-            path = settings.MORPHODICT_ORTHOGRAPHY["available"].get("converter", None)
+            path = settings.MORPHODICT_ORTHOGRAPHY["available"][code].get(
+                "converter", None
+            )
             if path is None:
                 return lambda text: text
 
