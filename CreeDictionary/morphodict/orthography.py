@@ -20,5 +20,11 @@ class Orthography:
         # TODO: get from settings
         return set(_ORTHOGRAPHY_NAME.keys())
 
+    def name_of(self, code: str) -> str:
+        """
+        Get the plain English name of the given orthography code.
+        """
+        return _ORTHOGRAPHY_NAME[code]
+
 
 ORTHOGRAPHY = Orthography()
