@@ -1,12 +1,14 @@
 from http import HTTPStatus
 
-from API.models import Wordform
-from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET
-from utils import ORTHOGRAPHY_NAME, ParadigmSize
+
+from API.models import Wordform
+from CreeDictionary.forms import WordSearchForm
+from morphodict.orthography import ORTHOGRAPHY
+from utils import ParadigmSize
 
 from .utils import url_for_query
 
@@ -183,13 +185,13 @@ class ChangeOrthography(View):
     Supports only POST requests for now.
     """
 
-    AVAILABLE_ORTHOGRAPHIES = tuple(ORTHOGRAPHY_NAME.keys())
+    # TODO: move to morphodict
 
     def post(self, request):
         orth = request.POST.get("orth")
 
         # Tried to set to an unsupported orthography
-        if orth not in self.AVAILABLE_ORTHOGRAPHIES:
+        if orth not in ORTHOGRAPHY.available:
             return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
         response = HttpResponse(status=HTTPStatus.NO_CONTENT)
