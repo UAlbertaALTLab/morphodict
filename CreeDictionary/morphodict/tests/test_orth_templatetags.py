@@ -2,7 +2,6 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-
 from morphodict.templatetags.morphodict_orth import orth
 
 

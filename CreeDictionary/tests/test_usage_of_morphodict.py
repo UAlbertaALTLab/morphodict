@@ -6,7 +6,6 @@ Test the integration of itwêwina's settings.py against the morphodict applicati
 """
 
 import pytest
-
 from morphodict.orthography import ORTHOGRAPHY
 
 
