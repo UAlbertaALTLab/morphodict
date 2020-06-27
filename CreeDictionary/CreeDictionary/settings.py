@@ -152,11 +152,23 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ############################### Morphodict configuration ###############################
 
-# Configure the orthographies
+# The ISO 639-1 code is used in the lang="" attributes in HTML.
+MORPHODICT_ISO_639_1_CODE = "cr"
+
+# What orthographies -- writing systems -- are available
+# Plains Cree has two primary orthographies:
+#  - standard Roman orthography (e.g., nêhiyawêwin)
+#  - syllabics (e.g., ᓀᐦᐃᔭᐍᐏᐣ)
+#
+# There may be further sub-variants of each orthography.
+#
+# Morphodict assumes that the `text` of all Wordform are written in the default
+# orthography.
 MORPHODICT_ORTHOGRAPHY = {
-    # 'Latn' is Okimāsis/Wolvegrey's SRO
+    # All entries in Wordform should be written in SRO (êîôâ)
     "default": "Latn",
     "available": {
+        # 'Latn' is Okimāsis/Wolvegrey's SRO
         "Latn": {"name": "SRO (êîôâ)"},
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
