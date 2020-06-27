@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from django import template
+from django.conf import settings
 from django.utils.html import format_html
 
 from ..orthography import ORTHOGRAPHY
@@ -58,9 +59,11 @@ def orth(original_text: str, orthography: str):
     data_attributes = " ".join(f'data-orth-{code}="{{}}"' for code in conversions)
     values = tuple(conversions.values()) + (inner_text,)
 
+    language_tag = settings.MORPHODICT_ISO_639_1_CODE
+
     return format_html(
-        # TODO: do not hardcode lang="cr" here
-        '<span lang="cr" data-orth ' + data_attributes + ">{}</span>",
+        '<span lang="{}" data-orth ' + data_attributes + ">{}</span>",
+        language_tag,
         *values,
     )
 
