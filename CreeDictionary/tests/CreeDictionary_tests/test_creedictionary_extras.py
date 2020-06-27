@@ -2,23 +2,14 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-from CreeDictionary.templatetags.creedictionary_extras import orth
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 from pytest_django.asserts import assertInHTML
 
 
-def test_orth_requires_two_arguments():
-    """
-    orth() original only took one argument, but now it must take two.
-    """
-    with pytest.raises(TypeError):
-        orth("wâpamêw")
-
-
 def test_produces_correct_markup():
     context = Context({"wordform": "wâpamêw"})
-    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Latn' }}")
+    template = Template("{% load morphodict_orth %}" "{{ wordform|orth:'Latn' }}")
 
     rendered = template.render(context)
     assert 'lang="cr"' in rendered
@@ -42,7 +33,7 @@ def test_naughty_html():
     """
 
     context = Context({"wordform": '<img alt="tâpwêw">'})
-    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Latn' }}")
+    template = Template("{% load morphodict_orth %}" "{{ wordform|orth:'Latn' }}")
 
     rendered = template.render(context)
     assertInHTML(
@@ -63,7 +54,7 @@ def test_naughty_html():
 def test_provide_orthograpy(orth, inner_text):
     context = Context({"wordform": "wâpamêw"})
     template = Template(
-        "{% load creedictionary_extras %}" "{{ wordform|orth:" + repr(orth) + " }}"
+        "{% load morphodict_orth %}" "{{ wordform|orth:" + repr(orth) + " }}"
     )
 
     rendered = template.render(context)
@@ -96,7 +87,7 @@ def test_orth_template_tag(orth, inner_text):
         request.COOKIES["orth"] = orth
 
     context = RequestContext(request, {"wordform": "wâpamêw"})
-    template = Template("{% load creedictionary_extras %}" "{% orth wordform %}")
+    template = Template("{% load morphodict_orth %}" "{% orth wordform %}")
     rendered = template.render(context)
 
     assertInHTML(
@@ -145,9 +136,7 @@ def test_current_orthography_name_tag(orth, name):
         request.COOKIES["orth"] = orth
 
     context = RequestContext(request)
-    template = Template(
-        "{% load creedictionary_extras %}" "{% current_orthography_name %}"
-    )
+    template = Template("{% load morphodict_orth %}" "{% current_orthography_name %}")
     rendered_html = template.render(context)
     assert name in rendered_html
 
@@ -159,7 +148,7 @@ def test_no_hyphens_in_syllabics():
     See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/314
     """
     context = Context({"wordform": "nôhtê-"})
-    template = Template("{% load creedictionary_extras %}" "{{ wordform|orth:'Cans' }}")
+    template = Template("{% load morphodict_orth %}" "{{ wordform|orth:'Cans' }}")
 
     rendered = template.render(context)
     assertInHTML(

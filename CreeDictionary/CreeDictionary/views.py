@@ -1,12 +1,12 @@
 from http import HTTPStatus
 
-from API.models import Wordform
-from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
-from django.views import View
 from django.views.decorators.http import require_GET
-from utils import ORTHOGRAPHY_NAME, ParadigmSize
+
+from API.models import Wordform
+from CreeDictionary.forms import WordSearchForm
+from utils import ParadigmSize
 
 from .utils import url_for_query
 
@@ -166,35 +166,6 @@ def contact_us(request):  # pragma: no cover
     Contact us page.
     """
     return render(request, "CreeDictionary/contact-us.html")
-
-
-class ChangeOrthography(View):
-    """
-    Sets the orth= cookie, which affects the default rendered orthography.
-
-        > POST /change-orthography HTTP/1.1
-        > Cookie: orth=Latn
-        >
-        > orth=Cans
-
-        < HTTP/1.1 204 No Content
-        < Set-Cookie: orth=Cans
-
-    Supports only POST requests for now.
-    """
-
-    AVAILABLE_ORTHOGRAPHIES = tuple(ORTHOGRAPHY_NAME.keys())
-
-    def post(self, request):
-        orth = request.POST.get("orth")
-
-        # Tried to set to an unsupported orthography
-        if orth not in self.AVAILABLE_ORTHOGRAPHIES:
-            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
-
-        response = HttpResponse(status=HTTPStatus.NO_CONTENT)
-        response.set_cookie("orth", orth)
-        return response
 
 
 def redirect_search(request, query_string: str):
