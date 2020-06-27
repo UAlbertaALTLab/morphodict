@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 """
-Integration test of settings.py and morphodict application.
+Test the integration of itwêwina's settings.py against the morphodict application.
 """
 
 import pytest
