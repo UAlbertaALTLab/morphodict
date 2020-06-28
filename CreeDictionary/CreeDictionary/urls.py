@@ -63,11 +63,7 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
-    (
-        "change-orthography",
-        views.ChangeOrthography.as_view(),
-        "cree-dictionary-change-orthography",
-    ),
+    ("", include("morphodict.urls"), "cree-dictionary-change-orthography",),
 ]
 
 # XXX: ugly hack to make this work on a local instance and on Sapir

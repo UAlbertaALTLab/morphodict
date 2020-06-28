@@ -54,7 +54,7 @@ tooltips:
 | "2s" | Ind+Fut+Def+2Sg            |                           |
 | "3s" | Ind+Fut+Def+3Sg            |                           |
 | "1p" | Ind+Fut+Def+1Pl            |                           |
-| "21" | Ind+Fut+Def+12P            |                           |
+| "21" | Ind+Fut+Def+12Pl           |                           |
 | "2p" | Ind+Fut+Def+2Pl            |                           |
 | "3p" | Ind+Fut+Def+3Pl            |                           |
 | "4"  | Ind+Fut+Def+4Sg/Pl         |                           |

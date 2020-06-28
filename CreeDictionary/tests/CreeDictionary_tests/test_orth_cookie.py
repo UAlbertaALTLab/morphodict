@@ -61,4 +61,4 @@ def test_no_orthography(client, change_orth_url):
 
 @pytest.fixture
 def change_orth_url():
-    return reverse("cree-dictionary-change-orthography")
+    return reverse("morphodict:change-orthography")
