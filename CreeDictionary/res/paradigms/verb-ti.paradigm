@@ -13,51 +13,51 @@ lexicon:
     - "VTI-4"
     - "VTI-5"
 --
-{{ lemma }}+V+TI+Ind+Prs+1Sg
-{{ lemma }}+V+TI+Ind+Prs+2Sg
-{{ lemma }}+V+TI+Ind+Prs+3Sg
-{{ lemma }}+V+TI+Ind+Prs+1Pl
-{{ lemma }}+V+TI+Ind+Prs+12Pl
-{{ lemma }}+V+TI+Ind+Prs+2Pl
-{{ lemma }}+V+TI+Ind+Prs+3Pl
-{{ lemma }}+V+TI+Ind+Prs+4Sg/Pl
-{{ lemma }}+V+TI+Ind+Prs+X
+{{ lemma }}+V+TI+Ind+1Sg
+{{ lemma }}+V+TI+Ind+2Sg
+{{ lemma }}+V+TI+Ind+3Sg
+{{ lemma }}+V+TI+Ind+1Pl
+{{ lemma }}+V+TI+Ind+12Pl
+{{ lemma }}+V+TI+Ind+2Pl
+{{ lemma }}+V+TI+Ind+3Pl
+{{ lemma }}+V+TI+Ind+4Sg/Pl
+{{ lemma }}+V+TI+Ind+X
 
-{{ lemma }}+V+TI+Ind+Prt+1Sg
-{{ lemma }}+V+TI+Ind+Prt+2Sg
-{{ lemma }}+V+TI+Ind+Prt+3Sg
-{{ lemma }}+V+TI+Ind+Prt+1Pl
-{{ lemma }}+V+TI+Ind+Prt+12Pl
-{{ lemma }}+V+TI+Ind+Prt+2Pl
-{{ lemma }}+V+TI+Ind+Prt+3Pl
-{{ lemma }}+V+TI+Ind+Prt+4Sg/Pl
+PV/ki+{{ lemma }}+V+TI+Ind+1Sg
+PV/ki+{{ lemma }}+V+TI+Ind+2Sg
+PV/ki+{{ lemma }}+V+TI+Ind+3Sg
+PV/ki+{{ lemma }}+V+TI+Ind+1Pl
+PV/ki+{{ lemma }}+V+TI+Ind+12Pl
+PV/ki+{{ lemma }}+V+TI+Ind+2Pl
+PV/ki+{{ lemma }}+V+TI+Ind+3Pl
+PV/ki+{{ lemma }}+V+TI+Ind+4Sg/Pl
 
-{{ lemma }}+V+TI+Ind+Fut+Int+1Sg
-{{ lemma }}+V+TI+Ind+Fut+Int+2Sg
-{{ lemma }}+V+TI+Ind+Fut+Int+3Sg
-{{ lemma }}+V+TI+Ind+Fut+Int+1Pl
-{{ lemma }}+V+TI+Ind+Fut+Int+12Pl
-{{ lemma }}+V+TI+Ind+Fut+Int+2Pl
-{{ lemma }}+V+TI+Ind+Fut+Int+3Pl
-{{ lemma }}+V+TI+Ind+Fut+Int+4Sg/Pl
+PV/wi+{{ lemma }}+V+TI+Ind+1Sg
+PV/wi+{{ lemma }}+V+TI+Ind+2Sg
+PV/wi+{{ lemma }}+V+TI+Ind+3Sg
+PV/wi+{{ lemma }}+V+TI+Ind+1Pl
+PV/wi+{{ lemma }}+V+TI+Ind+12Pl
+PV/wi+{{ lemma }}+V+TI+Ind+2Pl
+PV/wi+{{ lemma }}+V+TI+Ind+3Pl
+PV/wi+{{ lemma }}+V+TI+Ind+4Sg/Pl
 
-{{ lemma }}+V+TI+Ind+Fut+Def+1Sg
-{{ lemma }}+V+TI+Ind+Fut+Def+2Sg
-{{ lemma }}+V+TI+Ind+Fut+Def+3Sg
-{{ lemma }}+V+TI+Ind+Fut+Def+1Pl
-{{ lemma }}+V+TI+Ind+Fut+Def+12Pl
-{{ lemma }}+V+TI+Ind+Fut+Def+2Pl
-{{ lemma }}+V+TI+Ind+Fut+Def+3Pl
-{{ lemma }}+V+TI+Ind+Fut+Def+4Sg/Pl
+PV/ka+{{ lemma }}+V+TI+Ind+1Sg
+PV/ka+{{ lemma }}+V+TI+Ind+2Sg
+PV/ka+{{ lemma }}+V+TI+Ind+3Sg
+PV/ka+{{ lemma }}+V+TI+Ind+1Pl
+PV/ka+{{ lemma }}+V+TI+Ind+12Pl
+PV/ka+{{ lemma }}+V+TI+Ind+2Pl
+PV/ka+{{ lemma }}+V+TI+Ind+3Pl
+PV/ka+{{ lemma }}+V+TI+Ind+4Sg/Pl
 
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+1Sg
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+2Sg
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+3Sg
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+1Pl
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+12Pl
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+2Pl
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+3Pl
-PV/ka+{{ lemma }}+V+TI+Cnj+Prs+4Sg/Pl
+PV/ka+{{ lemma }}+V+TI+Cnj+1Sg
+PV/ka+{{ lemma }}+V+TI+Cnj+2Sg
+PV/ka+{{ lemma }}+V+TI+Cnj+3Sg
+PV/ka+{{ lemma }}+V+TI+Cnj+1Pl
+PV/ka+{{ lemma }}+V+TI+Cnj+12Pl
+PV/ka+{{ lemma }}+V+TI+Cnj+2Pl
+PV/ka+{{ lemma }}+V+TI+Cnj+3Pl
+PV/ka+{{ lemma }}+V+TI+Cnj+4Sg/Pl
 
 {{ lemma }}+V+TI+Fut+Cond+1Sg
 {{ lemma }}+V+TI+Fut+Cond+2Sg
@@ -67,46 +67,47 @@ PV/ka+{{ lemma }}+V+TI+Cnj+Prs+4Sg/Pl
 {{ lemma }}+V+TI+Fut+Cond+2Pl
 {{ lemma }}+V+TI+Fut+Cond+3Pl
 {{ lemma }}+V+TI+Fut+Cond+4Sg/Pl
+
+PV/e+{{ lemma }}+V+TI+Cnj+1Sg
+PV/e+{{ lemma }}+V+TI+Cnj+2Sg
+PV/e+{{ lemma }}+V+TI+Cnj+3Sg
+PV/e+{{ lemma }}+V+TI+Cnj+1Pl
+PV/e+{{ lemma }}+V+TI+Cnj+12Pl
+PV/e+{{ lemma }}+V+TI+Cnj+2Pl
+PV/e+{{ lemma }}+V+TI+Cnj+3Pl
+PV/e+{{ lemma }}+V+TI+Cnj+4Sg/Pl
+PV/e+{{ lemma }}+V+TI+Cnj+X
+
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+1Sg
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+2Sg
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+3Sg
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+1Pl
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+12Pl
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+2Pl
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+3Pl
+PV/e+PV/ki+{{ lemma }}+V+TI+Cnj+4Sg/Pl
+
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+1Sg
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+2Sg
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+3Sg
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+1Pl
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+12Pl
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+2Pl
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+3Pl
+PV/e+PV/wi+{{ lemma }}+V+TI+Cnj+4Sg/Pl
+
+PV/ta+{{ lemma }}+V+TI+Cnj+1Sg
+PV/ta+{{ lemma }}+V+TI+Cnj+2Sg
+PV/ta+{{ lemma }}+V+TI+Cnj+3Sg
+PV/ta+{{ lemma }}+V+TI+Cnj+1Pl
+PV/ta+{{ lemma }}+V+TI+Cnj+12Pl
+PV/ta+{{ lemma }}+V+TI+Cnj+2Pl
+PV/ta+{{ lemma }}+V+TI+Cnj+3Pl
+PV/ta+{{ lemma }}+V+TI+Cnj+4Sg/Pl
+
 {{ lemma }}+V+TI+Imp+Imm+2Sg
 {{ lemma }}+V+TI+Imp+Imm+12Pl
 {{ lemma }}+V+TI+Imp+Imm+2Pl
-
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+1Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+2Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+3Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+1Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+12Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+2Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+3Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+4Sg/Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prs+X
-
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+1Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+2Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+3Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+1Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+12Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+2Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+3Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Prt+4Sg/Pl
-
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+1Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+2Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+3Sg
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+1Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+12Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+2Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+3Pl
-PV/e+{{ lemma }}+V+TI+Cnj+Fut+Int+4Sg/Pl
-
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+1Sg
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+2Sg
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+3Sg
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+1Pl
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+12Pl
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+2Pl
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+3Pl
-PV/ta+{{ lemma }}+V+TI+Cnj+Prs+4Sg/Pl
 
 {{ lemma }}+V+TI+Imp+Del+2Sg
 {{ lemma }}+V+TI+Imp+Del+12Pl
