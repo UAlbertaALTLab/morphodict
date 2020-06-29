@@ -34,12 +34,15 @@ class XMLEntry(NamedTuple):
     each instance represents an <e></e> element in the xml
     """
 
-    # this is not necessarily a lemma, which is why it's called a xml_lemma
-    # to be distinguished from true_lemma/fst_lemma in DatabaseManager scripts
-    xml_lemma: str
+    # this is not necessarily a lemma in our FST's lexicon
+    # to be distinguished from the variable name true_lemma/fst_lemma in DatabaseManager scripts,
+    # which refers to a lemma form the FST recognizes
+    lemma: str
+
     # part of speech, a deprecated terminology. Roughly equivalent to "general word class"
     # all pos in crkeng.xml are (subject to change): {'', 'IPV', 'Pron', 'N', 'Ipc', 'V', '-'}
     pos: str
+
     # inflectional category, actually the <lc></lc> element (which means lexical category, a deprecated term)
     # Roughly equivalent to enums.InflectionalCategory
     # to be distinguished with "generated_ic" in DatabaseManager scripts
@@ -60,4 +63,5 @@ class XMLEntry(NamedTuple):
     # so "my grannies" nôhkomisak = my + -ohkom- + Noun + Animate + Dependent + Plural
     stem: Optional[str]
 
+    # The translation of the entry in English
     translation: Tuple[XMLTranslation]

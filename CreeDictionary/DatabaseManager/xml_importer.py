@@ -9,24 +9,29 @@ from typing import (
     Dict,
     List,
     NamedTuple,
-    NewType,
     Set,
     Tuple,
-    Container,
     Iterable,
-    Any,
     Hashable,
+    Iterator,
 )
 
-from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import Fore, init
+
+from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from utils import PartOfSpeech, fst_analysis_parser, EntryTuple, XMLEntry
+from utils import (
+    PartOfSpeech,
+    fst_analysis_parser,
+    XMLEntry,
+    NamedTupleFieldName,
+    NamedTupleFieldValue,
+)
 from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
     extract_l_str,
@@ -234,21 +239,124 @@ def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
     )
 
 
-class IndexedXML(List[XMLEntry]):
+class IndexedXML(Iterable[XMLEntry]):
     """
-    The collection of all entries
+    The collection of all entries parsed from the XML source file.
+    It supports fast querying with field/field combinations by hashing the entries in advance.
     """
 
-    def __init__(self):
-        super().__init__()
-        self._cached_results: Dict[
-            Tuple[str], Dict[Tuple[Hashable], Set[XMLEntry]]
+    # Add key or key combinations here when it's needed to lookup with certain keys
+    INDEX_KEYS = [("lemma", "pos", "ic")]
+
+    def __iter__(self) -> Iterator[XMLEntry]:
+        yield from self._entries
+
+    def __init__(self, crkeng_xml: Path):
+        """
+        import from the given `crkeng_xml` Path and build in-memory indexes for querying later
+        """
+
+        self._entries: Set[XMLEntry] = set()
+
+        self._indexes: Dict[
+            Tuple[NamedTupleFieldName], Dict[Tuple[NamedTupleFieldValue], Set[XMLEntry]]
         ] = {}
 
-    def filter(self, **constraints: Hashable) -> List[XMLEntry]:
+        for element in elements:
+
+            str_definitions_for_entry = {}  # type: Dict[str, Set[str]]
+            for t in element.findall(".//mg//tg//t"):
+                sources = t.get("sources")
+                assert (
+                    sources is not None
+                ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
+
+                if t.text is None:
+                    logger.warn(
+                        f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
+                    )
+                    # this entry in the xml has an empty <t>
+                    #  <e>
+                    #    <lg>
+                    #       <l pos="N">ohpinikêwin</l>
+                    #       <lc>NI-1</lc>
+                    #       <stem>ohpinikêwin-</stem>
+                    #    </lg>
+                    #    <mg>
+                    #    <tg xml:lang="eng">
+                    #        <t pos="N" sources="MD" />
+                    #    </tg>
+                    #    </mg>
+                    #    <mg>
+                    #    <tg xml:lang="eng">
+                    #        <t pos="N" sources="CW">weightlifting; act of lifting things</t>
+                    #    </tg>
+                    #    </mg>
+                    # </e>
+
+                    continue
+                if (
+                    t.text in str_definitions_for_entry
+                ):  # duplicate definition within one <e>, not likely to happen
+                    str_definitions_for_entry[t.text] |= set(sources.split(" "))
+                else:
+                    str_definitions_for_entry[t.text] = set(sources.split(" "))
+            l_element = element.find("lg/l")
+            assert (
+                l_element is not None
+            ), f"Missing <l> element in entry \n {ET.tostring(element, encoding='unicode')}"
+            ic_element = element.find("lg/lc")
+            assert (
+                ic_element is not None
+            ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
+            ic_str = ic_element.text
+
+            if ic_str is None:
+                ic_str = ""
+            xml_lemma = extract_l_str(element)
+            pos_attr = l_element.get("pos")
+            assert (
+                pos_attr is not None
+            ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
+            pos_str = pos_attr
+
+            duplicate_lemma_pos_ic = False
+
+            if xml_lemma in xml_lemma_to_pos_ic:
+
+                if (pos_str, ic_str) in xml_lemma_to_pos_ic[xml_lemma]:
+                    duplicate_xml_lemma_pos_ic_count += 1
+                    duplicate_lemma_pos_ic = True
+                else:
+                    tuple_count += 1
+                    xml_lemma_to_pos_ic[xml_lemma].append((pos_str, ic_str))
+            else:
+                tuple_count += 1
+                xml_lemma_to_pos_ic[xml_lemma] = [(pos_str, ic_str)]
+
+            if duplicate_lemma_pos_ic:
+                logger.debug(
+                    f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} appears more than once"
+                )
+
+                tuple_definitions = xml_lemma_pos_ic_to_str_definitions[
+                    (xml_lemma, pos_str, ic_str)
+                ]
+                for str_definition, source_set in str_definitions_for_entry.items():
+                    if str_definition in tuple_definitions:
+                        tuple_definitions[str_definition] |= source_set
+                    else:
+                        tuple_definitions[str_definition] = source_set
+            else:
+                xml_lemma_pos_ic_to_str_definitions[
+                    (xml_lemma, pos_str, ic_str)
+                ] = str_definitions_for_entry
+
+    def filter(self, **constraints: Hashable) -> Set[XMLEntry]:
         """
-        a lookup method that imitates django's queryset API
-        Cached by key combinations
+        A lookup method that mimics django's queryset API. Except the relevant indexes must be built in advance.
+
+        :raise ValueError: when the relevant index does not exist for the query
         """
         input_field_names = set(constraints)
         # try to find it in cache
