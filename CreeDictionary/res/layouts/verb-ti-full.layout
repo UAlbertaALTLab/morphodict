@@ -27,74 +27,74 @@ tooltips:
     "ka- word": "ka-conjunct"
     "ta- word": "ta-conjunct"
 --
-|                       | "Something is happening now"        |                           |
-|                       | : "ni-/ki- word"                    | : "ê-/kâ- word"           |
-| "I"                   | Ind+Prs+1Sg                         | PV/e+*+Cnj+Prs+1Sg        |
-| "you (one)"           | Ind+Prs+2Sg                         | PV/e+*+Cnj+Prs+2Sg        |
-| "s/he"                | Ind+Prs+3Sg                         | PV/e+*+Cnj+Prs+3Sg        |
-| "we (but not you)"    | Ind+Prs+1Pl                         | PV/e+*+Cnj+Prs+1Pl        |
-| "you and we"          | Ind+Prs+12Pl                        | PV/e+*+Cnj+Prs+12Pl       |
-| "you (all)"           | Ind+Prs+2Pl                         | PV/e+*+Cnj+Prs+2Pl        |
-| "they"                | Ind+Prs+3Pl                         | PV/e+*+Cnj+Prs+3Pl        |
-| "s/he/they (further)" | Ind+Prs+4Sg/Pl                      | PV/e+*+Cnj+Prs+4Sg/Pl     |
-| "someone"             | Ind+Prs+X                           | PV/e+*+Cnj+Prs+X          |
-|                       |                                     |                           |
-|                       | "Something happened earlier"        |                           |
-|                       | : "ni-/ki- word"                    | : "ê-/kâ- word"           |
-| "I"                   | Ind+Prt+1Sg                         | PV/e+*+Cnj+Prt+1Sg        |
-| "you (one)"           | Ind+Prt+2Sg                         | PV/e+*+Cnj+Prt+2Sg        |
-| "s/he"                | Ind+Prt+3Sg                         | PV/e+*+Cnj+Prt+3Sg        |
-| "we (but not you)"    | Ind+Prt+1Pl                         | PV/e+*+Cnj+Prt+1Pl        |
-| "you and we"          | Ind+Prt+12Pl                        | PV/e+*+Cnj+Prt+12Pl       |
-| "you (all)"           | Ind+Prt+2Pl                         | PV/e+*+Cnj+Prt+2Pl        |
-| "they"                | Ind+Prt+3Pl                         | PV/e+*+Cnj+Prt+3Pl        |
-| "s/he/they (further)" | Ind+Prt+4Sg/Pl                      | PV/e+*+Cnj+Prt+4Sg/Pl     |
-|                       |                                     |                           |
-|                       | "Someone wants something to happen" |                           |
-|                       | : "ni-/ki- word"                    | : "ê-/kâ- word"           |
-| "I"                   | Ind+Fut+Int+1Sg                     | PV/e+*+Cnj+Fut+Int+1Sg    |
-| "you (one)"           | Ind+Fut+Int+2Sg                     | PV/e+*+Cnj+Fut+Int+2Sg    |
-| "s/he"                | Ind+Fut+Int+3Sg                     | PV/e+*+Cnj+Fut+Int+3Sg    |
-| "we (but not you)"    | Ind+Fut+Int+1Pl                     | PV/e+*+Cnj+Fut+Int+1Pl    |
-| "you and we"          | Ind+Fut+Int+12Pl                    | PV/e+*+Cnj+Fut+Int+12Pl   |
-| "you (all)"           | Ind+Fut+Int+2Pl                     | PV/e+*+Cnj+Fut+Int+2Pl    |
-| "they"                | Ind+Fut+Int+3Pl                     | PV/e+*+Cnj+Fut+Int+3Pl    |
-| "s/he/they (further)" | Ind+Fut+Int+4Sg/Pl                  | PV/e+*+Cnj+Fut+Int+4Sg/Pl |
-|                       |                                     |                           |
-|                       | "Something will certainly happen"   |                           |
-|                       | : "ni-/ki- word"                    |                           |
-| "I"                   | Ind+Fut+Def+1Sg                     |                           |
-| "you (one)"           | Ind+Fut+Def+2Sg                     |                           |
-| "s/he"                | Ind+Fut+Def+3Sg                     |                           |
-| "we (but not you)"    | Ind+Fut+Def+1Pl                     |                           |
-| "you and we"          | Ind+Fut+Def+12Pl                    |                           |
-| "you (all)"           | Ind+Fut+Def+2Pl                     |                           |
-| "they"                | Ind+Fut+Def+3Pl                     |                           |
-| "s/he/they (further)" | Ind+Fut+Def+4Sg/Pl                  |                           |
-|                       |                                     |                           |
-|                       | "For something to happen"           |                           |
-|                       | : "ka- word"                        | : "ta- word"              |
-| "I"                   | PV/ka+*+Cnj+Prs+1Sg                 | PV/ta+*+Cnj+Prs+1Sg       |
-| "you (one)"           | PV/ka+*+Cnj+Prs+2Sg                 | PV/ta+*+Cnj+Prs+2Sg       |
-| "s/he"                | PV/ka+*+Cnj+Prs+3Sg                 | PV/ta+*+Cnj+Prs+3Sg       |
-| "we (but not you)"    | PV/ka+*+Cnj+Prs+1Pl                 | PV/ta+*+Cnj+Prs+1Pl       |
-| "you and we"          | PV/ka+*+Cnj+Prs+12Pl                | PV/ta+*+Cnj+Prs+12Pl      |
-| "you (all)"           | PV/ka+*+Cnj+Prs+2Pl                 | PV/ta+*+Cnj+Prs+2Pl       |
-| "they"                | PV/ka+*+Cnj+Prs+3Pl                 | PV/ta+*+Cnj+Prs+3Pl       |
-| "s/he/they (further)" | PV/ka+*+Cnj+Prs+4Sg/Pl              | PV/ta+*+Cnj+Prs+4Sg/Pl    |
-|                       |                                     |                           |
-|                       | "When something happens"            |                           |
-| "I"                   | Fut+Cond+1Sg                        |                           |
-| "you (one)"           | Fut+Cond+2Sg                        |                           |
-| "s/he"                | Fut+Cond+3Sg                        |                           |
-| "we (but not you)"    | Fut+Cond+1Pl                        |                           |
-| "you and we"          | Fut+Cond+12Pl                       |                           |
-| "you (all)"           | Fut+Cond+2Pl                        |                           |
-| "they"                | Fut+Cond+3Pl                        |                           |
-| "s/he/they (further)" | Fut+Cond+4Sg/Pl                     |                           |
-|                       |                                     |                           |
-|                       | "Command/Request"                   |                           |
-|                       | : "Right now"                       | : "Later on"              |
-| "you (one)"           | Imp+Imm+2Sg                         | Imp+Del+2Sg               |
-| "you and we"          | Imp+Imm+12Pl                        | Imp+Del+12Pl              |
-| "you (all)"           | Imp+Imm+2Pl                         | Imp+Del+2Pl               |
+|                       | "Something is happening now"             |                                |
+|                       | : "ni-/ki- word"                         | : "ê-/kâ- word"                |
+| "I"                   | =V+TI+Ind+1Sg                            | =PV/e+*+V+TI+Cnj+1Sg           |
+| "you (one)"           | =V+TI+Ind+2Sg                            | =PV/e+*+V+TI+Cnj+2Sg           |
+| "s/he"                | =V+TI+Ind+3Sg                            | =PV/e+*+V+TI+Cnj+3Sg           |
+| "we (but not you)"    | =V+TI+Ind+1Pl                            | =PV/e+*+V+TI+Cnj+1Pl           |
+| "you and we"          | =V+TI+Ind+12Pl                           | =PV/e+*+V+TI+Cnj+12Pl          |
+| "you (all)"           | =V+TI+Ind+2Pl                            | =PV/e+*+V+TI+Cnj+2Pl           |
+| "they"                | =V+TI+Ind+3Pl                            | =PV/e+*+V+TI+Cnj+3Pl           |
+| "s/he/they (further)" | =V+TI+Ind+4Sg/Pl                         | =PV/e+*+V+TI+Cnj+4Sg/Pl        |
+| "someone"             | =V+TI+Ind+X                              | =PV/e+*+V+TI+Cnj+X             |
+|                       |                                          |                                |
+|                       | "Something happened earlier"             |                                |
+|                       | : "ni-/ki- word"                         | : "ê-/kâ- word"                |
+| "I"                   | PV/ki+*+V+TI+Ind+1Sg                     | PV/e+PV/ki+*+V+TI+Cnj+1Sg      |
+| "you (one)"           | PV/ki+*+V+TI+Ind+2Sg                     | PV/e+PV/ki+*+V+TI+Cnj+2Sg      |
+| "s/he"                | PV/ki+*+V+TI+Ind+3Sg                     | PV/e+PV/ki+*+V+TI+Cnj+3Sg      |
+| "we (but not you)"    | PV/ki+*+V+TI+Ind+1Pl                     | PV/e+PV/ki+*+V+TI+Cnj+1Pl      |
+| "you and we"          | PV/ki+*+V+TI+Ind+12Pl                    | PV/e+PV/ki+*+V+TI+Cnj+12Pl     |
+| "you (all)"           | PV/ki+*+V+TI+Ind+2Pl                     | PV/e+PV/ki+*+V+TI+Cnj+2Pl      |
+| "they"                | PV/ki+*+V+TI+Ind+3Pl                     | PV/e+PV/ki+*+V+TI+Cnj+3Pl      |
+| "s/he/they (further)" | PV/ki+*+V+TI+Ind+4Sg/Pl                  | PV/e+PV/ki+*+V+TI+Cnj+4Sg/Pl   |
+|                       |                                          |                                |
+|                       | "Someone wants something to happen"      |                                |
+|                       | : "ni-/ki- word"                         | : "ê-/kâ- word"                |
+| "I"                   | PV/wi+*+V+TI+Ind+1Sg                     | PV/e+PV/wi+*+V+TI+Cnj+1Sg      |
+| "you (one)"           | PV/wi+*+V+TI+Ind+2Sg                     | PV/e+PV/wi+*+V+TI+Cnj+2Sg      |
+| "s/he"                | PV/wi+*+V+TI+Ind+3Sg                     | PV/e+PV/wi+*+V+TI+Cnj+3Sg      |
+| "we (but not you)"    | PV/wi+*+V+TI+Ind+1Pl                     | PV/e+PV/wi+*+V+TI+Cnj+1Pl      |
+| "you and we"          | PV/wi+*+V+TI+Ind+12Pl                    | PV/e+PV/wi+*+V+TI+Cnj+12Pl     |
+| "you (all)"           | PV/wi+*+V+TI+Ind+2Pl                     | PV/e+PV/wi+*+V+TI+Cnj+2Pl      |
+| "they"                | PV/wi+*+V+TI+Ind+3Pl                     | PV/e+PV/wi+*+V+TI+Cnj+3Pl      |
+| "s/he/they (further)" | PV/wi+*+V+TI+Ind+4Sg/Pl                  | PV/e+PV/wi+*+V+TI+Cnj+4Sg/Pl   |
+|                       |                                          |                                |
+|                       | "Something will certainly happen"        |                                |
+|                       | : "ni-/ki- word"                         |                                |
+| "I"                   | PV/ka+*+V+TI+Ind+1Sg                     |                                |
+| "you (one)"           | PV/ka+*+V+TI+Ind+2Sg                     |                                |
+| "s/he"                | PV/ka+*+V+TI+Ind+3Sg                     |                                |
+| "we (but not you)"    | PV/ka+*+V+TI+Ind+1Pl                     |                                |
+| "you and we"          | PV/ka+*+V+TI+Ind+12Pl                    |                                |
+| "you (all)"           | PV/ka+*+V+TI+Ind+2Pl                     |                                |
+| "they"                | PV/ka+*+V+TI+Ind+3Pl                     |                                |
+| "s/he/they (further)" | PV/ka+*+V+TI+Ind+4Sg/Pl                  |                                |
+|                       |                                          |                                |
+|                       | "For something to happen"                |                                |
+|                       | : "ka- word"                             | : "ta- word"                   |
+| "I"                   | PV/ka+*+V+TI+Cnj+1Sg                     | PV/ta+*+V+TI+Cnj+1Sg           |
+| "you (one)"           | PV/ka+*+V+TI+Cnj+2Sg                     | PV/ta+*+V+TI+Cnj+2Sg           |
+| "s/he"                | PV/ka+*+V+TI+Cnj+3Sg                     | PV/ta+*+V+TI+Cnj+3Sg           |
+| "we (but not you)"    | PV/ka+*+V+TI+Cnj+1Pl                     | PV/ta+*+V+TI+Cnj+1Pl           |
+| "you and we"          | PV/ka+*+V+TI+Cnj+12Pl                    | PV/ta+*+V+TI+Cnj+12Pl          |
+| "you (all)"           | PV/ka+*+V+TI+Cnj+2Pl                     | PV/ta+*+V+TI+Cnj+2Pl           |
+| "they"                | PV/ka+*+V+TI+Cnj+3Pl                     | PV/ta+*+V+TI+Cnj+3Pl           |
+| "s/he/they (further)" | PV/ka+*+V+TI+Cnj+4Sg/Pl                  | PV/ta+*+V+TI+Cnj+4Sg/Pl        |
+|                       |                                          |                                |
+|                       | "When something happens"                 |                                |
+| "I"                   | V+TI+Fut+Cond+1Sg                        |                                |
+| "you (one)"           | V+TI+Fut+Cond+2Sg                        |                                |
+| "s/he"                | V+TI+Fut+Cond+3Sg                        |                                |
+| "we (but not you)"    | V+TI+Fut+Cond+1Pl                        |                                |
+| "you and we"          | V+TI+Fut+Cond+12Pl                       |                                |
+| "you (all)"           | V+TI+Fut+Cond+2Pl                        |                                |
+| "they"                | V+TI+Fut+Cond+3Pl                        |                                |
+| "s/he/they (further)" | V+TI+Fut+Cond+4Sg/Pl                     |                                |
+|                       |                                          |                                |
+|                       | "Command/Request"                        |                                |
+|                       | : "Right now"                            | : "Later on"                   |
+| "you (one)"           | V+TI+Imp+Imm+2Sg                         | V+TI+Imp+Del+2Sg               |
+| "you and we"          | V+TI+Imp+Imm+12Pl                        | V+TI+Imp+Del+12Pl              |
+| "you (all)"           | V+TI+Imp+Imm+2Pl                         | V+TI+Imp+Del+2Pl               |

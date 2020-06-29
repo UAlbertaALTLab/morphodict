@@ -1,4 +1,4 @@
-name: "Transitive animate verb full (plain) paradigm"
+name: "Transitive animate verb full (nêhiyawêwin) paradigm"
 paradigm: verb-ta.paradigm
 layout:
   type: "nêhiyawêwin"
@@ -72,384 +72,400 @@ tooltips:
          "ka- itwêwin": "ka- word [ka-conjunct]"
          "ta- itwêwin": "ta- word [ta-conjunct]"
 --
-|                                                         | "ê-ispayik anohc/mêkwâc/mâna"             |                                |
-| "Speech act participants"                               | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "kiya → niya"                                           | Ind+Prs+2Sg+1SgO                          | PV/e+*+Cnj+Prs+2Sg+1SgO        |
-| "kiya → niyanân"                                        | Ind+Prs+2Sg+1PlO                          | PV/e+*+Cnj+Prs+2Sg+1PlO        |
-| "kiyawâw → niya"                                        | Ind+Prs+2Pl+1SgO                          | PV/e+*+Cnj+Prs+2Pl+1SgO        |
-| "kiyawâw → niyanân"                                     | Ind+Prs+2Pl+1PlO                          | PV/e+*+Cnj+Prs+2Pl+1PlO        |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | Ind+Prs+1Sg+2SgO                          | PV/e+*+Cnj+Prs+1Sg+2SgO        |
-| "niya → kiyawâw"                                        | Ind+Prs+1Sg+2PlO                          | PV/e+*+Cnj+Prs+1Sg+2PlO        |
-| "niyanân → kiya"                                        | Ind+Prs+1Pl+2SgO                          | PV/e+*+Cnj+Prs+1Pl+2SgO        |
-| "niyanân → kiyawâw"                                     | Ind+Prs+1Pl+2PlO                          | PV/e+*+Cnj+Prs+1Pl+2PlO        |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "niya → wiya"                                           | Ind+Prs+1Sg+3SgO                          | PV/e+*+Cnj+Prs+1Sg+3SgO        |
-| "kiya → wiya"                                           | Ind+Prs+2Sg+3SgO                          | PV/e+*+Cnj+Prs+2Sg+3SgO        |
-| "niyanân → wiya"                                        | Ind+Prs+1Pl+3SgO                          | PV/e+*+Cnj+Prs+1Pl+3SgO        |
-| "kiyânaw → wiya"                                        | Ind+Prs+12Pl+3SgO                         | PV/e+*+Cnj+Prs+12Pl+3SgO       |
-| "kiyawâw → wiya"                                        | Ind+Prs+2Pl+3SgO                          | PV/e+*+Cnj+Prs+2Pl+3SgO        |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | Ind+Prs+1Sg+3PlO                          | PV/e+*+Cnj+Prs+1Sg+3PlO        |
-| "kiya → wiyawâw"                                        | Ind+Prs+2Sg+3PlO                          | PV/e+*+Cnj+Prs+2Sg+3PlO        |
-| "niyanân → wiyawâw"                                     | Ind+Prs+1Pl+3PlO                          | PV/e+*+Cnj+Prs+1Pl+3PlO        |
-| "kiyânaw → wiyawâw"                                     | Ind+Prs+12Pl+3PlO                         | PV/e+*+Cnj+Prs+12Pl+3PlO       |
-| "kiyawâw → wiyawâw"                                     | Ind+Prs+2Pl+3PlO                          | PV/e+*+Cnj+Prs+2Pl+3PlO        |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prs+1Sg+4Sg/PlO                       | PV/e+*+Cnj+Prs+1Sg+4Sg/PlO     |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prs+2Sg+4Sg/PlO                       | PV/e+*+Cnj+Prs+2Sg+4Sg/PlO     |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | Ind+Prs+1Pl+4Sg/PlO                       | PV/e+*+Cnj+Prs+1Pl+4Sg/PlO     |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | Ind+Prs+12Pl+4Sg/PlO                      | PV/e+*+Cnj+Prs+12Pl+4Sg/PlO    |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | Ind+Prs+2Pl+4Sg/PlO                       | PV/e+*+Cnj+Prs+2Pl+4Sg/PlO     |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | Ind+Prs+3Sg+1SgO                          | PV/e+*+Cnj+Prs+3Sg+1SgO        |
-| "wiya → kiya"                                           | Ind+Prs+3Sg+2SgO                          | PV/e+*+Cnj+Prs+3Sg+2SgO        |
-| "wiya → niyanân"                                        | Ind+Prs+3Sg+1PlO                          | PV/e+*+Cnj+Prs+3Sg+1PlO        |
-| "wiya → kiyânaw"                                        | Ind+Prs+3Sg+12PlO                         | PV/e+*+Cnj+Prs+3Sg+12PlO       |
-| "wiya → kiyawâw"                                        | Ind+Prs+3Sg+2PlO                          | PV/e+*+Cnj+Prs+3Sg+2PlO        |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | Ind+Prs+3Pl+1SgO                          | PV/e+*+Cnj+Prs+3Pl+1SgO        |
-| "wiyawâw → kiya"                                        | Ind+Prs+3Pl+2SgO                          | PV/e+*+Cnj+Prs+3Pl+2SgO        |
-| "wiyawâw → niyanân"                                     | Ind+Prs+3Pl+1PlO                          | PV/e+*+Cnj+Prs+3Pl+1PlO        |
-| "wiyawâw → kiyânaw"                                     | Ind+Prs+3Pl+12PlO                         | PV/e+*+Cnj+Prs+3Pl+12PlO       |
-| "wiya → kiyawâw"                                        | Ind+Prs+3Pl+2PlO                          | PV/e+*+Cnj+Prs+3Pl+2PlO        |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | Ind+Prs+4Sg/Pl+1SgO                       | PV/e+*+Cnj+Prs+4Sg/Pl+1SgO     |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | Ind+Prs+4Sg/Pl+2SgO                       | PV/e+*+Cnj+Prs+4Sg/Pl+2SgO     |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | Ind+Prs+4Sg/Pl+1PlO                       | PV/e+*+Cnj+Prs+4Sg/Pl+1PlO     |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | Ind+Prs+4Sg/Pl+12PlO                      | PV/e+*+Cnj+Prs+4Sg/Pl+12PlO    |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | Ind+Prs+4Sg/Pl+2PlO                       | PV/e+*+Cnj+Prs+4Sg/Pl+2PlO     |
-|                                                         |                                           |                                |
-| "Third person participants"                             | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prs+3Sg+4Sg/PlO                       | PV/e+*+Cnj+Prs+3Sg+4Sg/PlO     |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | Ind+Prs+3Pl+4Sg/PlO                       | PV/e+*+Cnj+Prs+3Pl+4Sg/PlO     |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | Ind+Prs+4Sg/Pl+5Sg/PlO                    | PV/e+*+Cnj+Prs+4Sg/Pl+5Sg/PlO  |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | Ind+Prs+4Sg/Pl+3SgO                       | PV/e+*+Cnj+Prs+4Sg/Pl+3SgO     |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | Ind+Prs+4Sg/Pl+3PlO                       | PV/e+*+Cnj+Prs+4Sg/Pl+3PlO     |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | Ind+Prs+5Sg/Pl+4Sg/PlO                    | PV/e+*+Cnj+Prs+5Sg/Pl+4Sg/PlO  |
-|                                                         |                                           |                                |
-| "Unspecified actor"                                     | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "awiyak → niya"                                         | Ind+Prs+X+1SgO                            | PV/e+*+Cnj+Prs+X+1SgO          |
-| "awiyak → kiya"                                         | Ind+Prs+X+2SgO                            | PV/e+*+Cnj+Prs+X+2SgO          |
-| "awiyak → wiya"                                         | Ind+Prs+X+3SgO                            | PV/e+*+Cnj+Prs+X+3SgO          |
-| "awiyak → wiya/wiyawâw (anima/anihi)"                   | Ind+Prs+X+4Sg/PlO                         | PV/e+*+Cnj+Prs+X+4Sg/PlO       |
-| "awiyak → niyanân"                                      | Ind+Prs+X+1PlO                            | PV/e+*+Cnj+Prs+X+1PlO          |
-| "awiyak → kiyanâw"                                      | Ind+Prs+X+12PlO                           | PV/e+*+Cnj+Prs+X+12PlO         |
-| "awiyak → kiyawâw"                                      | Ind+Prs+X+2PlO                            | PV/e+*+Cnj+Prs+X+2PlO          |
-| "awiyak → wiyawâw"                                      | Ind+Prs+X+3PlO                            | PV/e+*+Cnj+Prs+X+3PlO          |
-|                                                         |                                           |                                |
-| "Inanimate actor"                                       |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "ê-kî-ispayik kwayâc"                     |                                |
-| "Speech act participants"                               | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "kiya → niya"                                           | Ind+Prt+2Sg+1SgO                          | Cnj+Prt+2Sg+1SgO               |
-| "kiya → niyanân"                                        | Ind+Prt+2Sg+1PlO                          | Cnj+Prt+2Sg+1PlO               |
-| "kiyawâw → niya"                                        | Ind+Prt+2Pl+1SgO                          | Cnj+Prt+2Pl+1SgO               |
-| "kiyawâw → niyanân"                                     | Ind+Prt+2Pl+1PlO                          | Cnj+Prt+2Pl+1PlO               |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | Ind+Prt+1Sg+2SgO                          | Cnj+Prt+1Sg+2SgO               |
-| "niya → kiyawâw"                                        | Ind+Prt+1Sg+2PlO                          | Cnj+Prt+1Sg+2PlO               |
-| "niyanân → kiya"                                        | Ind+Prt+1Pl+2SgO                          | Cnj+Prt+1Pl+2SgO               |
-| "niyanân → kiyawâw"                                     | Ind+Prt+1Pl+2PlO                          | Cnj+Prt+1Pl+2PlO               |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "niya → wiya"                                           | Ind+Prt+1Sg+3SgO                          | Cnj+Prt+1Sg+3SgO               |
-| "kiya → wiya"                                           | Ind+Prt+2Sg+3SgO                          | Cnj+Prt+2Sg+3SgO               |
-| "niyanân → wiya"                                        | Ind+Prt+1Pl+3SgO                          | Cnj+Prt+1Pl+3SgO               |
-| "kiyânaw → wiya"                                        | Ind+Prt+12Pl+3SgO                         | Cnj+Prt+12Pl+3SgO              |
-| "kiyawâw → wiya"                                        | Ind+Prt+2Pl+3SgO                          | Cnj+Prt+2Pl+3SgO               |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | Ind+Prt+1Sg+3PlO                          | Cnj+Prt+1Sg+3PlO               |
-| "kiya → wiyawâw"                                        | Ind+Prt+2Sg+3PlO                          | Cnj+Prt+2Sg+3PlO               |
-| "niyanân → wiyawâw"                                     | Ind+Prt+1Pl+3PlO                          | Cnj+Prt+1Pl+3PlO               |
-| "kiyânaw → wiyawâw"                                     | Ind+Prt+12Pl+3PlO                         | Cnj+Prt+12Pl+3PlO              |
-| "kiyawâw → wiyawâw"                                     | Ind+Prt+2Pl+3PlO                          | Cnj+Prt+2Pl+3PlO               |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prt+1Sg+4Sg/PlO                       | Cnj+Prt+1Sg+4Sg/PlO            |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prt+2Sg+4Sg/PlO                       | Cnj+Prt+2Sg+4Sg/PlO            |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | Ind+Prt+1Pl+4Sg/PlO                       | Cnj+Prt+1Pl+4Sg/PlO            |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | Ind+Prt+12Pl+4Sg/PlO                      | Cnj+Prt+12Pl+4Sg/PlO           |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | Ind+Prt+2Pl+4Sg/PlO                       | Cnj+Prt+2Pl+4Sg/PlO            |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | Ind+Prt+3Sg+1SgO                          | Cnj+Prt+3Sg+1SgO               |
-| "wiya → kiya"                                           | Ind+Prt+3Sg+2SgO                          | Cnj+Prt+3Sg+2SgO               |
-| "wiya → niyanân"                                        | Ind+Prt+3Sg+1PlO                          | Cnj+Prt+3Sg+1PlO               |
-| "wiya → kiyânaw"                                        | Ind+Prt+3Sg+12PlO                         | Cnj+Prt+3Sg+12PlO              |
-| "wiya → kiyawâw"                                        | Ind+Prt+3Sg+2PlO                          | Cnj+Prt+3Sg+2PlO               |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | Ind+Prt+3Pl+1SgO                          | Cnj+Prt+3Pl+1SgO               |
-| "wiyawâw → kiya"                                        | Ind+Prt+3Pl+2SgO                          | Cnj+Prt+3Pl+2SgO               |
-| "wiyawâw → niyanân"                                     | Ind+Prt+3Pl+1PlO                          | Cnj+Prt+3Pl+1PlO               |
-| "wiyawâw → kiyânaw"                                     | Ind+Prt+3Pl+12PlO                         | Cnj+Prt+3Pl+12PlO              |
-| "wiya → kiyawâw"                                        | Ind+Prt+3Pl+2PlO                          | Cnj+Prt+3Pl+2PlO               |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | Ind+Prt+4Sg/Pl+1SgO                       | Cnj+Prt+4Sg/Pl+1SgO            |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | Ind+Prt+4Sg/Pl+2SgO                       | Cnj+Prt+4Sg/Pl+2SgO            |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | Ind+Prt+4Sg/Pl+1PlO                       | Cnj+Prt+4Sg/Pl+1PlO            |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | Ind+Prt+4Sg/Pl+12PlO                      | Cnj+Prt+4Sg/Pl+12PlO           |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | Ind+Prt+4Sg/Pl+2PlO                       | Cnj+Prt+4Sg/Pl+2PlO            |
-|                                                         |                                           |                                |
-| "Third person participants"                             | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Prt+3Sg+4Sg/PlO                       | Cnj+Prt+3Sg+4Sg/PlO            |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | Ind+Prt+3Pl+4Sg/PlO                       | Cnj+Prt+3Pl+4Sg/PlO            |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | Ind+Prt+4Sg/Pl+5Sg/PlO                    | Cnj+Prt+4Sg/Pl+5Sg/PlO         |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | Ind+Prt+4Sg/Pl+3SgO                       | Cnj+Prt+4Sg/Pl+3SgO            |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | Ind+Prt+4Sg/Pl+3PlO                       | Cnj+Prt+4Sg/Pl+3PlO            |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | Ind+Prt+5Sg/Pl+4Sg/PlO                    | Cnj+Prt+5Sg/Pl+4Sg/PlO         |
-|                                                         |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "awiyak pakosêyimow kâ-wî-ihkik nîkânihk" |                                |
-| "Speech act participants"                               | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "kiya → niya"                                           | Ind+Fut+Int+2Sg+1SgO                      | Cnj+Fut+Int+2Sg+1SgO           |
-| "kiya → niyanân"                                        | Ind+Fut+Int+2Sg+1PlO                      | Cnj+Fut+Int+2Sg+1PlO           |
-| "kiyawâw → niya"                                        | Ind+Fut+Int+2Pl+1SgO                      | Cnj+Fut+Int+2Pl+1SgO           |
-| "kiyawâw → niyanân"                                     | Ind+Fut+Int+2Pl+1PlO                      | Cnj+Fut+Int+2Pl+1PlO           |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | Ind+Fut+Int+1Sg+2SgO                      | Cnj+Fut+Int+1Sg+2SgO           |
-| "niya → kiyawâw"                                        | Ind+Fut+Int+1Sg+2PlO                      | Cnj+Fut+Int+1Sg+2PlO           |
-| "niyanân → kiya"                                        | Ind+Fut+Int+1Pl+2SgO                      | Cnj+Fut+Int+1Pl+2SgO           |
-| "niyanân → kiyawâw"                                     | Ind+Fut+Int+1Pl+2PlO                      | Cnj+Fut+Int+1Pl+2PlO           |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "niya → wiya"                                           | Ind+Fut+Int+1Sg+3SgO                      | Cnj+Fut+Int+1Sg+3SgO           |
-| "kiya → wiya"                                           | Ind+Fut+Int+2Sg+3SgO                      | Cnj+Fut+Int+2Sg+3SgO           |
-| "niyanân → wiya"                                        | Ind+Fut+Int+1Pl+3SgO                      | Cnj+Fut+Int+1Pl+3SgO           |
-| "kiyânaw → wiya"                                        | Ind+Fut+Int+12Pl+3SgO                     | Cnj+Fut+Int+12Pl+3SgO          |
-| "kiyawâw → wiya"                                        | Ind+Fut+Int+2Pl+3SgO                      | Cnj+Fut+Int+2Pl+3SgO           |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | Ind+Fut+Int+1Sg+3PlO                      | Cnj+Fut+Int+1Sg+3PlO           |
-| "kiya → wiyawâw"                                        | Ind+Fut+Int+2Sg+3PlO                      | Cnj+Fut+Int+2Sg+3PlO           |
-| "niyanân → wiyawâw"                                     | Ind+Fut+Int+1Pl+3PlO                      | Cnj+Fut+Int+1Pl+3PlO           |
-| "kiyânaw → wiyawâw"                                     | Ind+Fut+Int+12Pl+3PlO                     | Cnj+Fut+Int+12Pl+3PlO          |
-| "kiyawâw → wiyawâw"                                     | Ind+Fut+Int+2Pl+3PlO                      | Cnj+Fut+Int+2Pl+3PlO           |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Int+1Sg+4Sg/PlO                   | Cnj+Fut+Int+1Sg+4Sg/PlO        |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Int+2Sg+4Sg/PlO                   | Cnj+Fut+Int+2Sg+4Sg/PlO        |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Int+1Pl+4Sg/PlO                   | Cnj+Fut+Int+1Pl+4Sg/PlO        |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Int+12Pl+4Sg/PlO                  | Cnj+Fut+Int+12Pl+4Sg/PlO       |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | Ind+Fut+Int+2Pl+4Sg/PlO                   | Cnj+Fut+Int+2Pl+4Sg/PlO        |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | Ind+Fut+Int+3Sg+1SgO                      | Cnj+Fut+Int+3Sg+1SgO           |
-| "wiya → kiya"                                           | Ind+Fut+Int+3Sg+2SgO                      | Cnj+Fut+Int+3Sg+2SgO           |
-| "wiya → niyanân"                                        | Ind+Fut+Int+3Sg+1PlO                      | Cnj+Fut+Int+3Sg+1PlO           |
-| "wiya → kiyânaw"                                        | Ind+Fut+Int+3Sg+12PlO                     | Cnj+Fut+Int+3Sg+12PlO          |
-| "wiya → kiyawâw"                                        | Ind+Fut+Int+3Sg+2PlO                      | Cnj+Fut+Int+3Sg+2PlO           |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | Ind+Fut+Int+3Pl+1SgO                      | Cnj+Fut+Int+3Pl+1SgO           |
-| "wiyawâw → kiya"                                        | Ind+Fut+Int+3Pl+2SgO                      | Cnj+Fut+Int+3Pl+2SgO           |
-| "wiyawâw → niyanân"                                     | Ind+Fut+Int+3Pl+1PlO                      | Cnj+Fut+Int+3Pl+1PlO           |
-| "wiyawâw → kiyânaw"                                     | Ind+Fut+Int+3Pl+12PlO                     | Cnj+Fut+Int+3Pl+12PlO          |
-| "wiya → kiyawâw"                                        | Ind+Fut+Int+3Pl+2PlO                      | Cnj+Fut+Int+3Pl+2PlO           |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | Ind+Fut+Int+4Sg/Pl+1SgO                   | Cnj+Fut+Int+4Sg/Pl+1SgO        |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | Ind+Fut+Int+4Sg/Pl+2SgO                   | Cnj+Fut+Int+4Sg/Pl+2SgO        |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | Ind+Fut+Int+4Sg/Pl+1PlO                   | Cnj+Fut+Int+4Sg/Pl+1PlO        |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | Ind+Fut+Int+4Sg/Pl+12PlO                  | Cnj+Fut+Int+4Sg/Pl+12PlO       |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | Ind+Fut+Int+4Sg/Pl+2PlO                   | Cnj+Fut+Int+4Sg/Pl+2PlO        |
-|                                                         |                                           |                                |
-| "Third person participants"                             | : "ni-/ki- itwêwin"                       | : "ê-/kâ- itwêwin"             |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Int+3Sg+4Sg/PlO                   | Cnj+Fut+Int+3Sg+4Sg/PlO        |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Int+3Pl+4Sg/PlO                   | Cnj+Fut+Int+3Pl+4Sg/PlO        |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | Ind+Fut+Int+4Sg/Pl+5Sg/PlO                | Cnj+Fut+Int+4Sg/Pl+5Sg/PlO     |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | Ind+Fut+Int+4Sg/Pl+3SgO                   | Cnj+Fut+Int+4Sg/Pl+3SgO        |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | Ind+Fut+Int+4Sg/Pl+3PlO                   | Cnj+Fut+Int+4Sg/Pl+3PlO        |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | Ind+Fut+Int+5Sg/Pl+4Sg/PlO                | Cnj+Fut+Int+5Sg/Pl+4Sg/PlO     |
-|                                                         |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "ka-ispayik nîkânihk"                     |                                |
-| "Speech act participants"                               | : "ni-/ki- itwêwin"                       |                                |
-| "kiya → niya"                                           | Ind+Fut+Def+2Sg+1SgO                      |                                |
-| "kiya → niyanân"                                        | Ind+Fut+Def+2Sg+1PlO                      |                                |
-| "kiyawâw → niya"                                        | Ind+Fut+Def+2Pl+1SgO                      |                                |
-| "kiyawâw → niyanân"                                     | Ind+Fut+Def+2Pl+1PlO                      |                                |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | Ind+Fut+Def+1Sg+2SgO                      |                                |
-| "niya → kiyawâw"                                        | Ind+Fut+Def+1Sg+2PlO                      |                                |
-| "niyanân → kiya"                                        | Ind+Fut+Def+1Pl+2SgO                      |                                |
-| "niyanân → kiyawâw"                                     | Ind+Fut+Def+1Pl+2PlO                      |                                |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "ni-/ki- itwêwin"                       |                                |
-| "niya → wiya"                                           | Ind+Fut+Def+1Sg+3SgO                      |                                |
-| "kiya → wiya"                                           | Ind+Fut+Def+2Sg+3SgO                      |                                |
-| "niyanân → wiya"                                        | Ind+Fut+Def+1Pl+3SgO                      |                                |
-| "kiyânaw → wiya"                                        | Ind+Fut+Def+12Pl+3SgO                     |                                |
-| "kiyawâw → wiya"                                        | Ind+Fut+Def+2Pl+3SgO                      |                                |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | Ind+Fut+Def+1Sg+3PlO                      |                                |
-| "kiya → wiyawâw"                                        | Ind+Fut+Def+2Sg+3PlO                      |                                |
-| "niyanân → wiyawâw"                                     | Ind+Fut+Def+1Pl+3PlO                      |                                |
-| "kiyânaw → wiyawâw"                                     | Ind+Fut+Def+12Pl+3PlO                     |                                |
-| "kiyawâw → wiyawâw"                                     | Ind+Fut+Def+2Pl+3PlO                      |                                |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Def+1Sg+4Sg/PlO                   |                                |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Def+2Sg+4Sg/PlO                   |                                |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Def+1Pl+4Sg/PlO                   |                                |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Def+12Pl+4Sg/PlO                  |                                |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | Ind+Fut+Def+2Pl+4Sg/PlO                   |                                |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | Ind+Fut+Def+3Sg+1SgO                      |                                |
-| "wiya → kiya"                                           | Ind+Fut+Def+3Sg+2SgO                      |                                |
-| "wiya → niyanân"                                        | Ind+Fut+Def+3Sg+1PlO                      |                                |
-| "wiya → kiyânaw"                                        | Ind+Fut+Def+3Sg+12PlO                     |                                |
-| "wiya → kiyawâw"                                        | Ind+Fut+Def+3Sg+2PlO                      |                                |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | Ind+Fut+Def+3Pl+1SgO                      |                                |
-| "wiyawâw → kiya"                                        | Ind+Fut+Def+3Pl+2SgO                      |                                |
-| "wiyawâw → niyanân"                                     | Ind+Fut+Def+3Pl+1PlO                      |                                |
-| "wiyawâw → kiyânaw"                                     | Ind+Fut+Def+3Pl+12PlO                     |                                |
-| "wiya → kiyawâw"                                        | Ind+Fut+Def+3Pl+2PlO                      |                                |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | Ind+Fut+Def+4Sg/Pl+1SgO                   |                                |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | Ind+Fut+Def+4Sg/Pl+2SgO                   |                                |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | Ind+Fut+Def+4Sg/Pl+1PlO                   |                                |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | Ind+Fut+Def+4Sg/Pl+12PlO                  |                                |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | Ind+Fut+Def+4Sg/Pl+2PlO                   |                                |
-|                                                         |                                           |                                |
-| "Third person participants"                             | : "ni-/ki- itwêwin"                       |                                |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | Ind+Fut+Def+3Sg+4Sg/PlO                   |                                |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | Ind+Fut+Def+3Pl+4Sg/PlO                   |                                |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | Ind+Fut+Def+4Sg/Pl+5Sg/PlO                |                                |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | Ind+Fut+Def+4Sg/Pl+3SgO                   |                                |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | Ind+Fut+Def+4Sg/Pl+3PlO                   |                                |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | Ind+Fut+Def+5Sg/Pl+4Sg/PlO                |                                |
-|                                                         |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "ka-ispayik / ta-ispayik"                 |                                |
-| "Speech act participants"                               | : "ka- itwêwin"                           | : "ta- itwêwin"                |
-| "kiya → niya"                                           | PV/ka+*+Cnj+Prs+2Sg+1SgO                  | PV/ta+*+Cnj+Prs+2Sg+1SgO       |
-| "kiya → niyanân"                                        | PV/ka+*+Cnj+Prs+2Sg+1PlO                  | PV/ta+*+Cnj+Prs+2Sg+1PlO       |
-| "kiyawâw → niya"                                        | PV/ka+*+Cnj+Prs+2Pl+1SgO                  | PV/ta+*+Cnj+Prs+2Pl+1SgO       |
-| "kiyawâw → niyanân"                                     | PV/ka+*+Cnj+Prs+2Pl+1PlO                  | PV/ta+*+Cnj+Prs+2Pl+1PlO       |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | PV/ka+*+Cnj+Prs+1Sg+2SgO                  | PV/ta+*+Cnj+Prs+1Sg+2SgO       |
-| "niya → kiyawâw"                                        | PV/ka+*+Cnj+Prs+1Sg+2PlO                  | PV/ta+*+Cnj+Prs+1Sg+2PlO       |
-| "niyanân → kiya"                                        | PV/ka+*+Cnj+Prs+1Pl+2SgO                  | PV/ta+*+Cnj+Prs+1Pl+2SgO       |
-| "niyanân → kiyawâw"                                     | PV/ka+*+Cnj+Prs+1Pl+2PlO                  | PV/ta+*+Cnj+Prs+1Pl+2PlO       |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "ka- itwêwin"                           | : "ta- itwêwin"                |
-| "niya → wiya"                                           | PV/ka+*+Cnj+Prs+1Sg+3SgO                  | PV/ta+*+Cnj+Prs+1Sg+3SgO       |
-| "kiya → wiya"                                           | PV/ka+*+Cnj+Prs+2Sg+3SgO                  | PV/ta+*+Cnj+Prs+2Sg+3SgO       |
-| "niyanân → wiya"                                        | PV/ka+*+Cnj+Prs+1Pl+3SgO                  | PV/ta+*+Cnj+Prs+1Pl+3SgO       |
-| "kiyânaw → wiya"                                        | PV/ka+*+Cnj+Prs+12Pl+3SgO                 | PV/ta+*+Cnj+Prs+12Pl+3SgO      |
-| "kiyawâw → wiya"                                        | PV/ka+*+Cnj+Prs+2Pl+3SgO                  | PV/ta+*+Cnj+Prs+2Pl+3SgO       |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | PV/ka+*+Cnj+Prs+1Sg+3PlO                  | PV/ta+*+Cnj+Prs+1Sg+3PlO       |
-| "kiya → wiyawâw"                                        | PV/ka+*+Cnj+Prs+2Sg+3PlO                  | PV/ta+*+Cnj+Prs+2Sg+3PlO       |
-| "niyanân → wiyawâw"                                     | PV/ka+*+Cnj+Prs+1Pl+3PlO                  | PV/ta+*+Cnj+Prs+1Pl+3PlO       |
-| "kiyânaw → wiyawâw"                                     | PV/ka+*+Cnj+Prs+12Pl+3PlO                 | PV/ta+*+Cnj+Prs+12Pl+3PlO      |
-| "kiyawâw → wiyawâw"                                     | PV/ka+*+Cnj+Prs+2Pl+3PlO                  | PV/ta+*+Cnj+Prs+2Pl+3PlO       |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | PV/ka+*+Cnj+Prs+1Sg+4Sg/PlO               | PV/ta+*+Cnj+Prs+1Sg+4Sg/PlO    |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | PV/ka+*+Cnj+Prs+2Sg+4Sg/PlO               | PV/ta+*+Cnj+Prs+2Sg+4Sg/PlO    |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | PV/ka+*+Cnj+Prs+1Pl+4Sg/PlO               | PV/ta+*+Cnj+Prs+1Pl+4Sg/PlO    |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | PV/ka+*+Cnj+Prs+12Pl+4Sg/PlO              | PV/ta+*+Cnj+Prs+12Pl+4Sg/PlO   |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | PV/ka+*+Cnj+Prs+2Pl+4Sg/PlO               | PV/ta+*+Cnj+Prs+2Pl+4Sg/PlO    |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | PV/ka+*+Cnj+Prs+3Sg+1SgO                  | PV/ta+*+Cnj+Prs+3Sg+1SgO       |
-| "wiya → kiya"                                           | PV/ka+*+Cnj+Prs+3Sg+2SgO                  | PV/ta+*+Cnj+Prs+3Sg+2SgO       |
-| "wiya → niyanân"                                        | PV/ka+*+Cnj+Prs+3Sg+1PlO                  | PV/ta+*+Cnj+Prs+3Sg+1PlO       |
-| "wiya → kiyânaw"                                        | PV/ka+*+Cnj+Prs+3Sg+12PlO                 | PV/ta+*+Cnj+Prs+3Sg+12PlO      |
-| "wiya → kiyawâw"                                        | PV/ka+*+Cnj+Prs+3Sg+2PlO                  | PV/ta+*+Cnj+Prs+3Sg+2PlO       |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | PV/ka+*+Cnj+Prs+3Pl+1SgO                  | PV/ta+*+Cnj+Prs+3Pl+1SgO       |
-| "wiyawâw → kiya"                                        | PV/ka+*+Cnj+Prs+3Pl+2SgO                  | PV/ta+*+Cnj+Prs+3Pl+2SgO       |
-| "wiyawâw → niyanân"                                     | PV/ka+*+Cnj+Prs+3Pl+1PlO                  | PV/ta+*+Cnj+Prs+3Pl+1PlO       |
-| "wiyawâw → kiyânaw"                                     | PV/ka+*+Cnj+Prs+3Pl+12PlO                 | PV/ta+*+Cnj+Prs+3Pl+12PlO      |
-| "wiya → kiyawâw"                                        | PV/ka+*+Cnj+Prs+3Pl+2PlO                  | PV/ta+*+Cnj+Prs+3Pl+2PlO       |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | PV/ka+*+Cnj+Prs+4Sg/Pl+1SgO               | PV/ta+*+Cnj+Prs+4Sg/Pl+1SgO    |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | PV/ka+*+Cnj+Prs+4Sg/Pl+2SgO               | PV/ta+*+Cnj+Prs+4Sg/Pl+2SgO    |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | PV/ka+*+Cnj+Prs+4Sg/Pl+1PlO               | PV/ta+*+Cnj+Prs+4Sg/Pl+1PlO    |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | PV/ka+*+Cnj+Prs+4Sg/Pl+12PlO              | PV/ta+*+Cnj+Prs+4Sg/Pl+12PlO   |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | PV/ka+*+Cnj+Prs+4Sg/Pl+2PlO               | PV/ta+*+Cnj+Prs+4Sg/Pl+2PlO    |
-|                                                         |                                           |                                |
-| "Third person participants"                             | : "ka- itwêwin"                           | : "ta- itwêwin"                |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | PV/ka+*+Cnj+Prs+3Sg+4Sg/PlO               | PV/ta+*+Cnj+Prs+3Sg+4Sg/PlO    |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | PV/ka+*+Cnj+Prs+3Pl+4Sg/PlO               | PV/ta+*+Cnj+Prs+3Pl+4Sg/PlO    |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | PV/ka+*+Cnj+Prs+4Sg/Pl+5Sg/PlO            | PV/ta+*+Cnj+Prs+4Sg/Pl+5Sg/PlO |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | PV/ka+*+Cnj+Prs+4Sg/Pl+3SgO               | PV/ta+*+Cnj+Prs+4Sg/Pl+3SgO    |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | PV/ka+*+Cnj+Prs+4Sg/Pl+3PlO               | PV/ta+*+Cnj+Prs+4Sg/Pl+3PlO    |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | PV/ka+*+Cnj+Prs+5Sg/Pl+4Sg/PlO            | PV/ta+*+Cnj+Prs+5Sg/Pl+4Sg/PlO |
-|                                                         |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "kisik ê-ispayik"                         |                                |
-| "Speech act participants"                               |                                           |                                |
-| "kiya → niya"                                           | Fut+Cond+2Sg+1SgO                         |                                |
-| "kiya → niyanân"                                        | Fut+Cond+2Sg+1PlO                         |                                |
-| "kiyawâw → niya"                                        | Fut+Cond+2Pl+1SgO                         |                                |
-| "kiyawâw → niyanân"                                     | Fut+Cond+2Pl+1PlO                         |                                |
-|                                                         |                                           |                                |
-| "niya → kiya"                                           | Fut+Cond+1Sg+2SgO                         |                                |
-| "niya → kiyawâw"                                        | Fut+Cond+1Sg+2PlO                         |                                |
-| "niyanân → kiya"                                        | Fut+Cond+1Pl+2SgO                         |                                |
-| "niyanân → kiyawâw"                                     | Fut+Cond+1Pl+2PlO                         |                                |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    |                                           |                                |
-| "niya → wiya"                                           | Fut+Cond+1Sg+3SgO                         |                                |
-| "kiya → wiya"                                           | Fut+Cond+2Sg+3SgO                         |                                |
-| "niyanân → wiya"                                        | Fut+Cond+1Pl+3SgO                         |                                |
-| "kiyânaw → wiya"                                        | Fut+Cond+12Pl+3SgO                        |                                |
-| "kiyawâw → wiya"                                        | Fut+Cond+2Pl+3SgO                         |                                |
-|                                                         |                                           |                                |
-| "niya → wiyawâw"                                        | Fut+Cond+1Sg+3PlO                         |                                |
-| "kiya → wiyawâw"                                        | Fut+Cond+2Sg+3PlO                         |                                |
-| "niyanân → wiyawâw"                                     | Fut+Cond+1Pl+3PlO                         |                                |
-| "kiyânaw → wiyawâw"                                     | Fut+Cond+12Pl+3PlO                        |                                |
-| "kiyawâw → wiyawâw"                                     | Fut+Cond+2Pl+3PlO                         |                                |
-|                                                         |                                           |                                |
-| "niya → wiya/wiyawâw (anima/anihi)"                     | Fut+Cond+1Sg+4Sg/PlO                      |                                |
-| "kiya → wiya/wiyawâw (anima/anihi)"                     | Fut+Cond+2Sg+4Sg/PlO                      |                                |
-| "niyanân → wiya/wiyawâw (anima/anihi)"                  | Fut+Cond+1Pl+4Sg/PlO                      |                                |
-| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | Fut+Cond+12Pl+4Sg/PlO                     |                                |
-| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | Fut+Cond+2Pl+4Sg/PlO                      |                                |
-|                                                         |                                           |                                |
-| "wiya → niya"                                           | Fut+Cond+3Sg+1SgO                         |                                |
-| "wiya → kiya"                                           | Fut+Cond+3Sg+2SgO                         |                                |
-| "wiya → niyanân"                                        | Fut+Cond+3Sg+1PlO                         |                                |
-| "wiya → kiyânaw"                                        | Fut+Cond+3Sg+12PlO                        |                                |
-| "wiya → kiyawâw"                                        | Fut+Cond+3Sg+2PlO                         |                                |
-|                                                         |                                           |                                |
-| "wiyawâw → niya"                                        | Fut+Cond+3Pl+1SgO                         |                                |
-| "wiyawâw → kiya"                                        | Fut+Cond+3Pl+2SgO                         |                                |
-| "wiyawâw → niyanân"                                     | Fut+Cond+3Pl+1PlO                         |                                |
-| "wiyawâw → kiyânaw"                                     | Fut+Cond+3Pl+12PlO                        |                                |
-| "wiyawâw → kiyawâw"                                     | Fut+Cond+3Pl+2PlO                         |                                |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → niya"                     | Fut+Cond+4Sg/Pl+1SgO                      |                                |
-| "wiya/wiyawâw (anima/anihi) → kiya"                     | Fut+Cond+4Sg/Pl+2SgO                      |                                |
-| "wiya/wiyawâw (anima/anihi) → niyanân"                  | Fut+Cond+4Sg/Pl+1PlO                      |                                |
-| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | Fut+Cond+4Sg/Pl+12PlO                     |                                |
-| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | Fut+Cond+4Sg/Pl+2PlO                      |                                |
-|                                                         |                                           |                                |
-| "Third person participants"                             |                                           |                                |
-| "wiya → wiya/wiyawâw (anima/anihi)"                     | Fut+Cond+3Sg+4Sg/PlO                      |                                |
-| "wiya → wiya/wiyawâw (nêma/nêhi)"                       | Fut+Cond+3Sg+5Sg/PlO                      |                                |
-| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | Fut+Cond+3Pl+4Sg/PlO                      |                                |
-| "wiyawâw → wiya/wiyawâw (nêma/nêhi)"                    | Fut+Cond+3Pl+5Sg/PlO                      |                                |
-|                                                         |                                           |                                |
-| "wiya/wiyawâw (anima/anihi) → wiya"                     | Fut+Cond+4Sg/Pl+3SgO                      |                                |
-| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | Fut+Cond+4Sg/Pl+3PlO                      |                                |
-| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | Fut+Cond+4Sg/Pl+5Sg/PlO                   |                                |
-| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | Fut+Cond+5Sg/Pl+4Sg/PlO                   |                                |
-|                                                         |                                           |                                |
-|                                                         |                                           |                                |
-|                                                         | "nitotamâkêwin"                           |                                |
-| "Speech act participants"                               | : "mêkwâc/kîsâc"                          | : "mwêstas"                    |
-| "kiya → niya"                                           | Imp+Imm+2Sg+1SgO                          | Imp+Del+2Sg+1SgO               |
-| "kiya → niyanân"                                        | Imp+Imm+2Sg+1PlO                          | Imp+Del+2Sg+1PlO               |
-| "kiyawâw → niya"                                        | Imp+Imm+2Pl+1SgO                          | Imp+Del+2Pl+1SgO               |
-| "kiyawâw → niyanân"                                     | Imp+Imm+2Pl+1PlO                          | Imp+Del+2Pl+1PlO               |
-|                                                         |                                           |                                |
-| "Mixed participants"                                    | : "mêkwâc/kîsâc"                          | : "mwêstas"                    |
-| "kiya → wiya"                                           | Imp+Imm+2Sg+3SgO                          | Imp+Del+2Sg+3SgO               |
-| "kiya → wiyawâw"                                        | Imp+Imm+2Sg+3PlO                          | Imp+Del+2Sg+3PlO               |
-| "kiyânaw → wiya"                                        | Imp+Imm+12Pl+3SgO                         | Imp+Del+12Pl+3SgO              |
-| "kiyânaw → wiyawâw"                                     | Imp+Imm+12Pl+3PlO                         | Imp+Del+12Pl+3PlO              |
-| "kiyawâw → wiya"                                        | Imp+Imm+2Pl+3SgO                          | Imp+Del+2Pl+3SgO               |
-| "kiyawâw → wiyawâw"                                     | Imp+Imm+2Pl+3PlO                          | Imp+Del+2Pl+3PlO               |
+|                                                         | "ê-ispayik anohc/mêkwâc/mâna"                  |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niya → kiya"                                           | =V+TA+Ind+1Sg+2SgO                             | =PV/e+*+V+TA+Cnj+1Sg+2SgO            |
+| "niya → wiya"                                           | =V+TA+Ind+1Sg+3SgO                             | =PV/e+*+V+TA+Cnj+1Sg+3SgO            |
+| "niya → kiyawâw"                                        | =V+TA+Ind+1Sg+2PlO                             | =PV/e+*+V+TA+Cnj+1Sg+2PlO            |
+| "niya → wiyawâw"                                        | =V+TA+Ind+1Sg+3PlO                             | =PV/e+*+V+TA+Cnj+1Sg+3PlO            |
+| "niya → wiya/wiyawâw (anima/anihi)"                     | =V+TA+Ind+1Sg+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+1Sg+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiya → niya"                                           | =V+TA+Ind+2Sg+1SgO                             | =PV/e+*+V+TA+Cnj+2Sg+1SgO            |
+| "kiya → wiya"                                           | =V+TA+Ind+2Sg+3SgO                             | =PV/e+*+V+TA+Cnj+2Sg+3SgO            |
+| "kiya → niyanân"                                        | =V+TA+Ind+2Sg+1PlO                             | =PV/e+*+V+TA+Cnj+2Sg+1PlO            |
+| "kiya → wiyawâw"                                        | =V+TA+Ind+2Sg+3PlO                             | =PV/e+*+V+TA+Cnj+2Sg+3PlO            |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | =V+TA+Ind+2Sg+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+2Sg+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya → niya"                                           | =V+TA+Ind+3Sg+1SgO                             | =PV/e+*+V+TA+Cnj+3Sg+1SgO            |
+| "wiya → kiya"                                           | =V+TA+Ind+3Sg+2SgO                             | =PV/e+*+V+TA+Cnj+3Sg+2SgO            |
+| "wiya → niyanân"                                        | =V+TA+Ind+3Sg+1PlO                             | =PV/e+*+V+TA+Cnj+3Sg+1PlO            |
+| "wiya → kiyânaw"                                        | =V+TA+Ind+3Sg+12PlO                            | =PV/e+*+V+TA+Cnj+3Sg+12PlO           |
+| "wiya → kiyawâw"                                        | =V+TA+Ind+3Sg+2PlO                             | =PV/e+*+V+TA+Cnj+3Sg+2PlO            |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | =V+TA+Ind+3Sg+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+3Sg+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niyanân → kiya"                                        | =V+TA+Ind+1Pl+2SgO                             | =PV/e+*+V+TA+Cnj+1Pl+2SgO            |
+| "niyanân → wiya"                                        | =V+TA+Ind+1Pl+3SgO                             | =PV/e+*+V+TA+Cnj+1Pl+3SgO            |
+| "niyanân → kiyawâw"                                     | =V+TA+Ind+1Pl+2PlO                             | =PV/e+*+V+TA+Cnj+1Pl+2PlO            |
+| "niyanân → wiyawâw"                                     | =V+TA+Ind+1Pl+3PlO                             | =PV/e+*+V+TA+Cnj+1Pl+3PlO            |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | =V+TA+Ind+1Pl+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+1Pl+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyânaw → wiya"                                        | =V+TA+Ind+12Pl+3SgO                            | =PV/e+*+V+TA+Cnj+12Pl+3SgO           |
+| "kiyânaw → wiyawâw"                                     | =V+TA+Ind+12Pl+3PlO                            | =PV/e+*+V+TA+Cnj+12Pl+3PlO           |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | =V+TA+Ind+12Pl+4Sg/PlO                         | =PV/e+*+V+TA+Cnj+12Pl+4Sg/PlO        |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyawâw → niya"                                        | =V+TA+Ind+2Pl+1SgO                             | =PV/e+*+V+TA+Cnj+2Pl+1SgO            |
+| "kiyawâw → wiya"                                        | =V+TA+Ind+2Pl+3SgO                             | =PV/e+*+V+TA+Cnj+2Pl+3SgO            |
+| "kiyawâw → niyanân"                                     | =V+TA+Ind+2Pl+1PlO                             | =PV/e+*+V+TA+Cnj+2Pl+1PlO            |
+| "kiyawâw → wiyawâw"                                     | =V+TA+Ind+2Pl+3PlO                             | =PV/e+*+V+TA+Cnj+2Pl+3PlO            |
+| "kiyawâw → wiya/wiyawâw (anima/anihi)"                  | =V+TA+Ind+2Pl+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+2Pl+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiyawâw → niya"                                        | =V+TA+Ind+3Pl+1SgO                             | =PV/e+*+V+TA+Cnj+3Pl+1SgO            |
+| "wiyawâw → kiya"                                        | =V+TA+Ind+3Pl+2SgO                             | =PV/e+*+V+TA+Cnj+3Pl+2SgO            |
+| "wiyawâw → niyanân"                                     | =V+TA+Ind+3Pl+1PlO                             | =PV/e+*+V+TA+Cnj+3Pl+1PlO            |
+| "wiyawâw → kiyânaw"                                     | =V+TA+Ind+3Pl+12PlO                            | =PV/e+*+V+TA+Cnj+3Pl+12PlO           |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | =V+TA+Ind+3Pl+4Sg/PlO                          | =PV/e+*+V+TA+Cnj+3Pl+4Sg/PlO         |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | =V+TA+Ind+4Sg/Pl+1SgO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+1SgO         |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | =V+TA+Ind+4Sg/Pl+2SgO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+2SgO         |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | =V+TA+Ind+4Sg/Pl+1PlO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+1PlO         |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | =V+TA+Ind+4Sg/Pl+12PlO                         | =PV/e+*+V+TA+Cnj+4Sg/Pl+12PlO        |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | =V+TA+Ind+4Sg/Pl+2PlO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+2PlO         |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | =V+TA+Ind+4Sg/Pl+3SgO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+3SgO         |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | =V+TA+Ind+4Sg/Pl+3PlO                          | =PV/e+*+V+TA+Cnj+4Sg/Pl+3PlO         |
+| "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/ahihi) | =V+TA+Ind+4Sg/Pl+5Sg/PlO                       | =PV/e+*+V+TA+Cnj+4Sg/Pl+5Sg/PlO      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | =V+TA+Ind+5Sg/Pl+4Sg/PlO                       | =PV/e+*+V+TA+Cnj+5Sg/Pl+4Sg/PlO      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "awiyak → niya"                                         | =V+TA+Ind+X+1SgO                               | =PV/e+*+V+TA+Cnj+X+1SgO              |
+| "awiyak → kiya"                                         | =V+TA+Ind+X+2SgO                               | =PV/e+*+V+TA+Cnj+X+2SgO              |
+| "awiyak → wiya"                                         | =V+TA+Ind+X+3SgO                               | =PV/e+*+V+TA+Cnj+X+3SgO              |
+| "awiyak → wiya/wiyawâw (anima/anihi)"                   | =V+TA+Ind+X+4Sg/PlO                            | =PV/e+*+V+TA+Cnj+X+4Sg/PlO           |
+| "awiyak → niyanân"                                      | =V+TA+Ind+X+1PlO                               | =PV/e+*+V+TA+Cnj+X+1PlO              |
+| "awiyak → kiyanâw"                                      | =V+TA+Ind+X+12PlO                              | =PV/e+*+V+TA+Cnj+X+12PlO             |
+| "awiyak → kiyawâw"                                      | =V+TA+Ind+X+2PlO                               | =PV/e+*+V+TA+Cnj+X+2PlO              |
+| "awiyak → wiyawâw"                                      | =V+TA+Ind+X+3PlO                               | =PV/e+*+V+TA+Cnj+X+3PlO              |
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "ê-kî-ispayik kwayâc"                          |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niya → kiya"                                           | =PV/ki+*+V+TA+Ind+1Sg+2SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Sg+2SgO      |
+| "niya → wiya"                                           | =PV/ki+*+V+TA+Ind+1Sg+3SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Sg+3SgO      |
+| "niya → kiyawâw"                                        | =PV/ki+*+V+TA+Ind+1Sg+2PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Sg+2PlO      |
+| "niya → wiyawâw"                                        | =PV/ki+*+V+TA+Ind+1Sg+3PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Sg+3PlO      |
+| "niya → wiya/wiyawâw (anima/anihi)"                     | =PV/ki+*+V+TA+Ind+1Sg+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+1Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiya → niya"                                           | =PV/ki+*+V+TA+Ind+2Sg+1SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Sg+1SgO      |
+| "kiya → wiya"                                           | =PV/ki+*+V+TA+Ind+2Sg+3SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Sg+3SgO      |
+| "kiya → niyanân"                                        | =PV/ki+*+V+TA+Ind+2Sg+1PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Sg+1PlO      |
+| "kiya → wiyawâw"                                        | =PV/ki+*+V+TA+Ind+2Sg+3PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Sg+3PlO      |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ki+*+V+TA+Ind+2Sg+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+2Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya → niya"                                           | =PV/ki+*+V+TA+Ind+3Sg+1SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Sg+1SgO      |
+| "wiya → kiya"                                           | =PV/ki+*+V+TA+Ind+3Sg+2SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Sg+2SgO      |
+| "wiya → niyanân"                                        | =PV/ki+*+V+TA+Ind+3Sg+1PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Sg+1PlO      |
+| "wiya → kiyânaw"                                        | =PV/ki+*+V+TA+Ind+3Sg+12PlO                    | =PV/e+PV/ki+*+V+TA+Cnj+3Sg+12PlO     |
+| "wiya → kiyawâw"                                        | =PV/ki+*+V+TA+Ind+3Pl+2PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+2PlO      |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ki+*+V+TA+Ind+3Sg+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+3Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niyanân → kiya"                                        | =PV/ki+*+V+TA+Ind+1Pl+2SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Pl+2SgO      |
+| "niyanân → wiya"                                        | =PV/ki+*+V+TA+Ind+1Pl+3SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Pl+3SgO      |
+| "niyanân → kiyawâw"                                     | =PV/ki+*+V+TA+Ind+1Pl+2PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Pl+2PlO      |
+| "niyanân → wiyawâw"                                     | =PV/ki+*+V+TA+Ind+1Pl+3PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+1Pl+3PlO      |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | =PV/ki+*+V+TA+Ind+1Pl+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+1Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyânaw → wiya"                                        | =PV/ki+*+V+TA+Ind+12Pl+3SgO                    | =PV/e+PV/ki+*+V+TA+Cnj+12Pl+3SgO     |
+| "kiyânaw → wiyawâw"                                     | =PV/ki+*+V+TA+Ind+12Pl+3PlO                    | =PV/e+PV/ki+*+V+TA+Cnj+12Pl+3PlO     |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | =PV/ki+*+V+TA+Ind+12Pl+4Sg/PlO                 | =PV/e+PV/ki+*+V+TA+Cnj+12Pl+4Sg/PlO  |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyawâw → niya"                                        | =PV/ki+*+V+TA+Ind+2Pl+1SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Pl+1SgO      |
+| "kiyawâw → wiya"                                        | =PV/ki+*+V+TA+Ind+2Pl+3SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Pl+3SgO      |
+| "kiyawâw → niyanân"                                     | =PV/ki+*+V+TA+Ind+2Pl+1PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Pl+1PlO      |
+| "kiyawâw → wiyawâw"                                     | =PV/ki+*+V+TA+Ind+2Pl+3PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+2Pl+3PlO      |
+| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | =PV/ki+*+V+TA+Ind+2Pl+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+2Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiyawâw → niya"                                        | =PV/ki+*+V+TA+Ind+3Pl+1SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+1SgO      |
+| "wiyawâw → kiya"                                        | =PV/ki+*+V+TA+Ind+3Pl+2SgO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+2SgO      |
+| "wiyawâw → niyanân"                                     | =PV/ki+*+V+TA+Ind+3Pl+1PlO                     | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+1PlO      |
+| "wiyawâw → kiyânaw"                                     | =PV/ki+*+V+TA+Ind+3Pl+12PlO                    | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+12PlO     |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | =PV/ki+*+V+TA+Ind+3Pl+4Sg/PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+3Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | =PV/ki+*+V+TA+Ind+4Sg/Pl+1SgO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+1SgO   |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | =PV/ki+*+V+TA+Ind+4Sg/Pl+2SgO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+2SgO   |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | =PV/ki+*+V+TA+Ind+4Sg/Pl+3SgO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+3SgO   |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | =PV/ki+*+V+TA+Ind+4Sg/Pl+1PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+1PlO   |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | =PV/ki+*+V+TA+Ind+4Sg/Pl+12PlO                 | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+12PlO  |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | =PV/ki+*+V+TA+Ind+4Sg/Pl+2PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+2PlO   |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | =PV/ki+*+V+TA+Ind+4Sg/Pl+3PlO                  | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+3PlO   |
+| "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)" | =PV/ki+*+V+TA+Ind+4Sg/Pl+5Sg/PlO               | =PV/e+PV/ki+*+V+TA+Cnj+4Sg/Pl+5Sg/PlO|
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | =PV/ki+*+V+TA+Ind+5Sg/Pl+4Sg/PlO               | =PV/e+PV/ki+*+V+TA+Cnj+5Sg/Pl+4Sg/PlO|
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "awiyak pakosêyimow kâ-wî-ihkik nîkânihk"      |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niya → kiya"                                           | =PV/wi+*+V+TA+Ind+1Sg+2SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Sg+2SgO      |
+| "niya → wiya"                                           | =PV/wi+*+V+TA+Ind+1Sg+3SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Sg+3SgO      |
+| "niya → kiyawâw"                                        | =PV/wi+*+V+TA+Ind+1Sg+2PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Sg+2PlO      |
+| "niya → wiyawâw"                                        | =PV/wi+*+V+TA+Ind+1Sg+3PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Sg+3PlO      |
+| "niya → wiya/wiyawâw (anima/anihi)"                     | =PV/wi+*+V+TA+Ind+1Sg+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+1Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiya → niya"                                           | =PV/wi+*+V+TA+Ind+2Sg+1SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Sg+1SgO      |
+| "kiya → wiya"                                           | =PV/wi+*+V+TA+Ind+2Sg+3SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Sg+3SgO      |
+| "kiya → niyanân"                                        | =PV/wi+*+V+TA+Ind+2Sg+1PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Sg+1PlO      |
+| "kiya → wiyawâw"                                        | =PV/wi+*+V+TA+Ind+2Sg+3PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Sg+3PlO      |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | =PV/wi+*+V+TA+Ind+2Sg+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+2Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya → niya"                                           | =PV/wi+*+V+TA+Ind+3Sg+1SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+1SgO      |
+| "wiya → kiya"                                           | =PV/wi+*+V+TA+Ind+3Sg+2SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+2SgO      |
+| "wiya → niyanân"                                        | =PV/wi+*+V+TA+Ind+3Sg+1PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+1PlO      |
+| "wiya → kiyânaw"                                        | =PV/wi+*+V+TA+Ind+3Sg+12PlO                    | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+12PlO     |
+| "wiya → kiyawâw"                                        | =PV/wi+*+V+TA+Ind+3Sg+2PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+2PlO      |
+| "wiya → kiyawâw"                                        | =PV/wi+*+V+TA+Ind+3Pl+2PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+2PlO      |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | =PV/wi+*+V+TA+Ind+3Sg+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+3Sg+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "niyanân → kiya"                                        | =PV/wi+*+V+TA+Ind+1Pl+2SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Pl+2SgO      |
+| "niyanân → wiya"                                        | =PV/wi+*+V+TA+Ind+1Pl+3SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Pl+3SgO      |
+| "niyanân → kiyawâw"                                     | =PV/wi+*+V+TA+Ind+1Pl+2PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Pl+2PlO      |
+| "niyanân → wiyawâw"                                     | =PV/wi+*+V+TA+Ind+1Pl+3PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+1Pl+3PlO      |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | =PV/wi+*+V+TA+Ind+1Pl+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+1Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyânaw → wiya"                                        | =PV/wi+*+V+TA+Ind+12Pl+3SgO                    | =PV/e+PV/wi+*+V+TA+Cnj+12Pl+3SgO     |
+| "kiyânaw → wiyawâw"                                     | =PV/wi+*+V+TA+Ind+12Pl+3PlO                    | =PV/e+PV/wi+*+V+TA+Cnj+12Pl+3PlO     |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | =PV/wi+*+V+TA+Ind+12Pl+4Sg/PlO                 | =PV/e+PV/wi+*+V+TA+Cnj+12Pl+4Sg/PlO  |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "kiyawâw → niya"                                        | =PV/wi+*+V+TA+Ind+2Pl+1SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Pl+1SgO      |
+| "kiyawâw → niyanân"                                     | =PV/wi+*+V+TA+Ind+2Pl+1PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Pl+1PlO      |
+| "kiyawâw → wiya"                                        | =PV/wi+*+V+TA+Ind+2Pl+3SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Pl+3SgO      |
+| "kiyawâw → wiyawâw"                                     | =PV/wi+*+V+TA+Ind+2Pl+3PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+2Pl+3PlO      |
+| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | =PV/wi+*+V+TA+Ind+2Pl+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+2Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiyawâw → niya"                                        | =PV/wi+*+V+TA+Ind+3Pl+1SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+1SgO      |
+| "wiyawâw → kiya"                                        | =PV/wi+*+V+TA+Ind+3Pl+2SgO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+2SgO      |
+| "wiyawâw → niyanân"                                     | =PV/wi+*+V+TA+Ind+3Pl+1PlO                     | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+1PlO      |
+| "wiyawâw → kiyânaw"                                     | =PV/wi+*+V+TA+Ind+3Pl+12PlO                    | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+12PlO     |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | =PV/wi+*+V+TA+Ind+3Pl+4Sg/PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+3Pl+4Sg/PlO   |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | =PV/wi+*+V+TA+Ind+4Sg/Pl+1SgO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+1SgO   |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | =PV/wi+*+V+TA+Ind+4Sg/Pl+2SgO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+2SgO   |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | =PV/wi+*+V+TA+Ind+4Sg/Pl+1PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+1PlO   |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | =PV/wi+*+V+TA+Ind+4Sg/Pl+12PlO                 | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+12PlO  |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | =PV/wi+*+V+TA+Ind+4Sg/Pl+2PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+2PlO   |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | =PV/wi+*+V+TA+Ind+4Sg/Pl+3SgO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+3SgO   |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | =PV/wi+*+V+TA+Ind+4Sg/Pl+3PlO                  | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+3PlO   |
+| "wiya/wiyawâw (anima/anihi) → him/her/them (furthest)"  | =PV/wi+*+V+TA+Ind+4Sg/Pl+5Sg/PlO               | =PV/e+PV/wi+*+V+TA+Cnj+4Sg/Pl+5Sg/PlO|
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            | : "ê-/kâ- itwêwin"                   |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | =PV/wi+*+V+TA+Ind+5Sg/Pl+4Sg/PlO               | =PV/e+PV/wi+*+V+TA+Cnj+5Sg/Pl+4Sg/PlO|
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "ka-ispayik nîkânihk"                          |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "niya → kiya"                                           | =PV/ka+*+V+TA+Ind+1Sg+2SgO                     |                                      |
+| "niya → wiya"                                           | =PV/ka+*+V+TA+Ind+1Sg+3SgO                     |                                      |
+| "niya → kiyawâw"                                        | =PV/ka+*+V+TA+Ind+1Sg+2PlO                     |                                      |
+| "niya → wiyawâw"                                        | =PV/ka+*+V+TA+Ind+1Sg+3PlO                     |                                      |
+| "niya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Ind+1Sg+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "kiya → niya"                                           | =PV/ka+*+V+TA+Ind+2Sg+1SgO                     |                                      |
+| "kiya → wiya"                                           | =PV/ka+*+V+TA+Ind+2Sg+3SgO                     |                                      |
+| "kiya → niyanân"                                        | =PV/ka+*+V+TA+Ind+2Sg+1PlO                     |                                      |
+| "kiya → wiyawâw"                                        | =PV/ka+*+V+TA+Ind+2Sg+3PlO                     |                                      |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Ind+2Sg+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "wiya → niya"                                           | =PV/ka+*+V+TA+Ind+3Sg+1SgO                     |                                      |
+| "wiya → kiya"                                           | =PV/ka+*+V+TA+Ind+3Sg+2SgO                     |                                      |
+| "wiya → niyanân"                                        | =PV/ka+*+V+TA+Ind+3Sg+1PlO                     |                                      |
+| "wiya → kiyânaw"                                        | =PV/ka+*+V+TA+Ind+3Sg+12PlO                    |                                      |
+| "wiya → kiyawâw"                                        | =PV/ka+*+V+TA+Ind+3Sg+2PlO                     |                                      |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Ind+3Sg+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "niyanân → kiya"                                        | =PV/ka+*+V+TA+Ind+1Pl+2SgO                     |                                      |
+| "niyanân → wiya"                                        | =PV/ka+*+V+TA+Ind+1Pl+3SgO                     |                                      |
+| "niyanân → kiyawâw"                                     | =PV/ka+*+V+TA+Ind+1Pl+2PlO                     |                                      |
+| "niyanân → wiyawâw"                                     | =PV/ka+*+V+TA+Ind+1Pl+3PlO                     |                                      |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Ind+1Pl+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "kiyânaw → wiya"                                        | =PV/ka+*+V+TA+Ind+12Pl+3SgO                    |                                      |
+| "kiyânaw → wiyawâw"                                     | =PV/ka+*+V+TA+Ind+12Pl+3PlO                    |                                      |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Ind+12Pl+4Sg/PlO                 |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "kiyawâw → niya"                                        | =PV/ka+*+V+TA+Ind+2Pl+1SgO                     |                                      |
+| "kiyawâw → wiya"                                        | =PV/ka+*+V+TA+Ind+2Pl+3SgO                     |                                      |
+| "kiyawâw → niyanân"                                     | =PV/ka+*+V+TA+Ind+2Pl+1PlO                     |                                      |
+| "kiyawâw → wiyawâw"                                     | =PV/ka+*+V+TA+Ind+2Pl+3PlO                     |                                      |
+| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | =PV/ka+*+V+TA+Ind+2Pl+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "wiyawâw → niya"                                        | =PV/ka+*+V+TA+Ind+3Pl+1SgO                     |                                      |
+| "wiyawâw → kiya"                                        | =PV/ka+*+V+TA+Ind+3Pl+2SgO                     |                                      |
+| "wiyawâw → niyanân"                                     | =PV/ka+*+V+TA+Ind+3Pl+1PlO                     |                                      |
+| "wiyawâw → kiyânaw"                                     | =PV/ka+*+V+TA+Ind+3Pl+12PlO                    |                                      |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Ind+3Pl+4Sg/PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | =PV/ka+*+V+TA+Ind+4Sg/Pl+1SgO                  |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | =PV/ka+*+V+TA+Ind+4Sg/Pl+2SgO                  |                                      |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | =PV/ka+*+V+TA+Ind+4Sg/Pl+1PlO                  |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | =PV/ka+*+V+TA+Ind+4Sg/Pl+12PlO                 |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | =PV/ka+*+V+TA+Ind+4Sg/Pl+2PlO                  |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)" | =PV/ka+*+V+TA+Ind+4Sg/Pl+5Sg/PlO               |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | =PV/ka+*+V+TA+Ind+4Sg/Pl+3SgO                  |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | =PV/ka+*+V+TA+Ind+4Sg/Pl+3PlO                  |                                      |
+|                                                         |                                                |                                      |
+|                                                         | : "ni-/ki- itwêwin"                            |                                      |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | =PV/ka+*+V+TA+Ind+5Sg/Pl+4Sg/PlO               |                                      |
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "ka-ispayik / ta-ispayik"                      |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "niya → kiya"                                           | =PV/ka+*+V+TA+Cnj+1Sg+2SgO                     | =PV/ta+*+V+TA+Cnj+1Sg+2SgO           |
+| "niya → wiya"                                           | =PV/ka+*+V+TA+Cnj+1Sg+3SgO                     | =PV/ta+*+V+TA+Cnj+1Sg+3SgO           |
+| "niya → kiyawâw"                                        | =PV/ka+*+V+TA+Cnj+1Sg+2PlO                     | =PV/ta+*+V+TA+Cnj+1Sg+2PlO           |
+| "niya → wiyawâw"                                        | =PV/ka+*+V+TA+Cnj+1Sg+3PlO                     | =PV/ta+*+V+TA+Cnj+1Sg+3PlO           ||
+| "niya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Cnj+1Sg+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+1Sg+4Sg/PlO        |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "kiya → niya"                                           | =PV/ka+*+V+TA+Cnj+2Sg+1SgO                     | =PV/ta+*+V+TA+Cnj+2Sg+1SgO           |
+| "kiya → wiya"                                           | =PV/ka+*+V+TA+Cnj+2Sg+3SgO                     | =PV/ta+*+V+TA+Cnj+2Sg+3SgO           |
+| "kiya → niyanân"                                        | =PV/ka+*+V+TA+Cnj+2Sg+1PlO                     | =PV/ta+*+V+TA+Cnj+2Sg+1PlO           |
+| "kiya → wiyawâw"                                        | =PV/ka+*+V+TA+Cnj+2Sg+3PlO                     | =PV/ta+*+V+TA+Cnj+2Sg+3PlO           |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Cnj+2Sg+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+2Sg+4Sg/PlO        |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "wiya → niya"                                           | =PV/ka+*+V+TA+Cnj+3Sg+1SgO                     | =PV/ta+*+V+TA+Cnj+3Sg+1SgO           |
+| "wiya → kiya"                                           | =PV/ka+*+V+TA+Cnj+3Sg+2SgO                     | =PV/ta+*+V+TA+Cnj+3Sg+2SgO           |
+| "wiya → niyanân"                                        | =PV/ka+*+V+TA+Cnj+3Sg+1PlO                     | =PV/ta+*+V+TA+Cnj+3Sg+1PlO           |
+| "wiya → kiyânaw"                                        | =PV/ka+*+V+TA+Cnj+3Sg+12PlO                    | =PV/ta+*+V+TA+Cnj+3Sg+12PlO          |
+| "wiya → kiyawâw"                                        | =PV/ka+*+V+TA+Cnj+3Sg+2PlO                     | =PV/ta+*+V+TA+Cnj+3Sg+2PlO           |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | =PV/ka+*+V+TA+Cnj+3Sg+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+3Sg+4Sg/PlO        |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "niyanân → kiya"                                        | =PV/ka+*+V+TA+Cnj+1Pl+2SgO                     | =PV/ta+*+V+TA+Cnj+1Pl+2SgO           |
+| "niyanân → wiya"                                        | =PV/ka+*+V+TA+Cnj+1Pl+3SgO                     | =PV/ta+*+V+TA+Cnj+1Pl+3SgO           |
+| "niyanân → kiyawâw"                                     | =PV/ka+*+V+TA+Cnj+1Pl+2PlO                     | =PV/ta+*+V+TA+Cnj+1Pl+2PlO           |
+| "niyanân → wiyawâw"                                     | =PV/ka+*+V+TA+Cnj+1Pl+3PlO                     | =PV/ta+*+V+TA+Cnj+1Pl+3PlO           |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Cnj+1Pl+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+1Pl+4Sg/PlO        |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "kiyânaw → wiya"                                        | =PV/ka+*+V+TA+Cnj+12Pl+3SgO                    | =PV/ta+*+V+TA+Cnj+12Pl+3SgO          |
+| "kiyânaw → wiyawâw"                                     | =PV/ka+*+V+TA+Cnj+12Pl+3PlO                    | =PV/ta+*+V+TA+Cnj+12Pl+3PlO          |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Cnj+12Pl+4Sg/PlO                 | =PV/ta+*+V+TA+Cnj+12Pl+4Sg/Pl        |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "kiyawâw → niya"                                        | =PV/ka+*+V+TA+Cnj+2Pl+1SgO                     | =PV/ta+*+V+TA+Cnj+2Pl+1SgO           |
+| "kiyawâw → wiya"                                        | =PV/ka+*+V+TA+Cnj+2Pl+3SgO                     | =PV/ta+*+V+TA+Cnj+2Pl+3SgO           |
+| "kiyawâw → niyanân"                                     | =PV/ka+*+V+TA+Cnj+2Pl+1PlO                     | =PV/ta+*+V+TA+Cnj+2Pl+1PlO           |
+| "kiyawâw → wiyawâw"                                     | =PV/ka+*+V+TA+Cnj+2Pl+3PlO                     | =PV/ta+*+V+TA+Cnj+2Pl+3PlO           |
+| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | =PV/ka+*+V+TA+Cnj+2Pl+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+2Pl+4Sg/PlO        |
+|                                                         |                                                |                                      |
+| "wiyawâw → niya"                                        | =PV/ka+*+V+TA+Cnj+3Pl+1SgO                     | =PV/ta+*+V+TA+Cnj+3Pl+1SgO           |
+| "wiyawâw → kiya"                                        | =PV/ka+*+V+TA+Cnj+3Pl+2SgO                     | =PV/ta+*+V+TA+Cnj+3Pl+2SgO           |
+| "wiyawâw → niyanân"                                     | =PV/ka+*+V+TA+Cnj+3Pl+1PlO                     | =PV/ta+*+V+TA+Cnj+3Pl+1PlO           |
+| "wiyawâw → kiyânaw"                                     | =PV/ka+*+V+TA+Cnj+3Pl+12PlO                    | =PV/ta+*+V+TA+Cnj+3Pl+12PlO          |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | =PV/ka+*+V+TA+Cnj+3Pl+4Sg/PlO                  | =PV/ta+*+V+TA+Cnj+3Pl+4Sg/PlO        |
+|                                                         |                                                |                                      |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | =PV/ka+*+V+TA+Cnj+4Sg/Pl+1SgO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+1SgO        |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | =PV/ka+*+V+TA+Cnj+4Sg/Pl+2SgO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+2SgO        |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | =PV/ka+*+V+TA+Cnj+4Sg/Pl+3SgO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+3SgO        |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | =PV/ka+*+V+TA+Cnj+4Sg/Pl+1PlO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+1PlO        |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | =PV/ka+*+V+TA+Cnj+4Sg/Pl+12PlO                 | =PV/ta+*+V+TA+Cnj+4Sg/Pl+12Pl        |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | =PV/ka+*+V+TA+Cnj+4Sg/Pl+2PlO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+2PlO        |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | =PV/ka+*+V+TA+Cnj+4Sg/Pl+3PlO                  | =PV/ta+*+V+TA+Cnj+4Sg/Pl+3PlO        |
+| "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)" | =PV/ka+*+V+TA+Cnj+4Sg/Pl+5Sg/PlO               | =PV/ta+*+V+TA+Cnj+4Sg/Pl+5Sg/lO      |
+|                                                         |                                                |                                      |
+|                                                         | : "ka- itwêwin"                                | : "ta- itwêwin"                      |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | =PV/ka+*+V+TA+Cnj+5Sg/Pl+4Sg/PlO               | =PV/ta+*+V+TA+Cnj+5Sg/Pl+4Sg/lO      |
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "kisik ê-ispayik"                              |                                      |
+| "niya → kiya"                                           | V+TA+Fut+Cond+1Sg+2SgO                         |                                      |
+| "niya → wiya"                                           | V+TA+Fut+Cond+1Sg+3SgO                         |                                      |
+| "niya → kiyawâw"                                        | V+TA+Fut+Cond+1Sg+2PlO                         |                                      |
+| "niya → wiyawâw"                                        | V+TA+Fut+Cond+1Sg+3PlO                         |                                      |
+| "niya → wiya/wiyawâw (anima/anihi)"                     | V+TA+Fut+Cond+1Sg+4Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "kiya → niya"                                           | V+TA+Fut+Cond+2Sg+1SgO                         |                                      |
+| "kiya → wiya"                                           | V+TA+Fut+Cond+2Sg+3SgO                         |                                      |
+| "kiya → niyanân"                                        | V+TA+Fut+Cond+2Sg+1PlO                         |                                      |
+| "kiya → wiyawâw"                                        | V+TA+Fut+Cond+2Sg+3PlO                         |                                      |
+| "kiya → wiya/wiyawâw (anima/anihi)"                     | V+TA+Fut+Cond+2Sg+4Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "niyanân → kiya"                                        | V+TA+Fut+Cond+1Pl+2SgO                         |                                      |
+| "niyanân → wiya"                                        | V+TA+Fut+Cond+1Pl+3SgO                         |                                      |
+| "niyanân → kiyawâw"                                     | V+TA+Fut+Cond+1Pl+2PlO                         |                                      |
+| "niyanân → wiyawâw"                                     | V+TA+Fut+Cond+1Pl+3PlO                         |                                      |
+| "niyanân → wiya/wiyawâw (anima/anihi)"                  | V+TA+Fut+Cond+1Pl+4Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "kiyânaw → wiya"                                        | V+TA+Fut+Cond+12Pl+3SgO                        |                                      |
+| "kiyânaw → wiyawâw"                                     | V+TA+Fut+Cond+12Pl+3PlO                        |                                      |
+| "kiyânaw → wiya/wiyawâw (anima/anihi)"                  | V+TA+Fut+Cond+12Pl+4Sg/PlO                     |                                      |
+|                                                         |                                                |                                      |
+| "kiyawâw → niya"                                        | V+TA+Fut+Cond+2Pl+1SgO                         |                                      |
+| "kiyawâw → wiya"                                        | V+TA+Fut+Cond+2Pl+3SgO                         |                                      |
+| "kiyawâw → niyanân"                                     | V+TA+Fut+Cond+2Pl+1PlO                         |                                      |
+| "kiyawâw → wiyawâw"                                     | V+TA+Fut+Cond+2Pl+3PlO                         |                                      |
+| "kiyawâw →  wiya/wiyawâw (anima/anihi)"                 | V+TA+Fut+Cond+2Pl+4Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "wiya → niya"                                           | V+TA+Fut+Cond+3Sg+1SgO                         |                                      |
+| "wiya → kiya"                                           | V+TA+Fut+Cond+3Sg+2SgO                         |                                      |
+| "wiya → niyanân"                                        | V+TA+Fut+Cond+3Sg+1PlO                         |                                      |
+| "wiya → kiyânaw"                                        | V+TA+Fut+Cond+3Sg+12PlO                        |                                      |
+| "wiya → kiyawâw"                                        | V+TA+Fut+Cond+3Sg+2PlO                         |                                      |
+| "wiya → wiya/wiyawâw (anima/anihi)"                     | V+TA+Fut+Cond+3Sg+4Sg/PlO                      |                                      |
+| "wiya → wiya/wiyawâw (nêma/nêhi)"                       | V+TA+Fut+Cond+3Sg+5Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "wiyawâw → niya"                                        | V+TA+Fut+Cond+3Pl+1SgO                         |                                      |
+| "wiyawâw → kiya"                                        | V+TA+Fut+Cond+3Pl+2SgO                         |                                      |
+| "wiyawâw → niyanân"                                     | V+TA+Fut+Cond+3Pl+1PlO                         |                                      |
+| "wiyawâw → kiyânaw"                                     | V+TA+Fut+Cond+3Pl+12PlO                        |                                      |
+| "wiyawâw → kiyawâw"                                     | V+TA+Fut+Cond+3Pl+2PlO                         |                                      |
+| "wiyawâw → wiya/wiyawâw (anima/anihi)"                  | V+TA+Fut+Cond+3Pl+4Sg/PlO                      |                                      |
+| "wiyawâw → wiya/wiyawâw (nêma/nêhi)"                    | V+TA+Fut+Cond+3Pl+5Sg/PlO                      |                                      |
+|                                                         |                                                |                                      |
+| "wiya/wiyawâw (anima/anihi) → niya"                     | V+TA+Fut+Cond+4Sg/Pl+1SgO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiya"                     | V+TA+Fut+Cond+4Sg/Pl+2SgO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → niyanân"                  | V+TA+Fut+Cond+4Sg/Pl+1PlO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiyânaw"                  | V+TA+Fut+Cond+4Sg/Pl+12PlO                     |                                      |
+| "wiya/wiyawâw (anima/anihi) → kiyawâw"                  | V+TA+Fut+Cond+4Sg/Pl+2PlO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiya"                     | V+TA+Fut+Cond+4Sg/Pl+3SgO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiyawâw"                  | V+TA+Fut+Cond+4Sg/Pl+3PlO                      |                                      |
+| "wiya/wiyawâw (anima/anihi) → wiya/wiyawâw (nêma/nêhi)" | V+TA+Fut+Cond+4Sg/Pl+5Sg/PlO                   |                                      |
+|                                                         |                                                |                                      |
+| "wiya/wiyawâw (nêma/nêhi) → wiya/wiyawâw (anima/anihi)" | V+TA+Fut+Cond+5Sg/Pl+4Sg/PlO                   |                                      |
+|                                                         |                                                |                                      |
+|                                                         |                                                |                                      |
+|                                                         | "nitotamâkêwin"                                |                                      |
+|                                                         | : "mêkwâc/kîsâc"                               | : "mwêstas"                          |
+| "kiya → niya"                                           | V+TA+Imp+Imm+2Sg+1SgO                          | V+TA+Imp+Del+2Sg+1SgO                |
+| "kiya → wiya"                                           | V+TA+Imp+Imm+2Sg+3SgO                          | V+TA+Imp+Del+2Sg+3SgO                |
+| "kiya → niyanân"                                        | V+TA+Imp+Imm+2Sg+1PlO                          | V+TA+Imp+Del+2Sg+1PlO                |
+| "kiya → wiyawâw"                                        | V+TA+Imp+Imm+2Sg+3PlO                          | V+TA+Imp+Del+2Sg+3PlO                |
+|                                                         |                                                |                                      |
+|                                                         | : "mêkwâc/kîsâc"                               | : "mwêstas"                          |
+| "kiyânaw → wiya"                                        | V+TA+Imp+Imm+12Pl+3SgO                         | V+TA+Imp+Del+12Pl+3SgO               |
+| "kiyânaw → wiyawâw"                                     | V+TA+Imp+Imm+12Pl+3PlO                         | V+TA+Imp+Del+12Pl+3PlO               |
+|                                                         |                                                |                                      |
+|                                                         | : "mêkwâc/kîsâc"                               | : "mwêstas"                          |
+| "kiyawâw → niya"                                        | V+TA+Imp+Imm+2Pl+1SgO                          | V+TA+Imp+Del+2Pl+1SgO                |
+| "kiyawâw → niyanân"                                     | V+TA+Imp+Imm+2Pl+1PlO                          | V+TA+Imp+Del+2Pl+1PlO                |
+| "kiyawâw → wiya"                                        | V+TA+Imp+Imm+2Pl+3SgO                          | V+TA+Imp+Del+2Pl+3SgO                |
+| "kiyawâw → wiyawâw"                                     | V+TA+Imp+Imm+2Pl+3PlO                          | V+TA+Imp+Del+2Pl+3PlO                |
