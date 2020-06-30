@@ -36,6 +36,7 @@ from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
     extract_l_str,
 )
+from utils.profiling import timed
 
 init()  # for windows compatibility
 
@@ -245,24 +246,40 @@ class IndexedXML(Iterable[XMLEntry]):
     It supports fast querying with field/field combinations by hashing the entries in advance.
     """
 
+    # --- alias for type hints---
+    Index = Dict[
+        Tuple[NamedTupleFieldName], Dict[Tuple[NamedTupleFieldValue], Set[XMLEntry]]
+    ]
+
+    # --- Instance attribute type hints ---
+    _entries: Set[XMLEntry]
+    _indexes: Index
+    # acronyms of the sources, like "CW" for Cree Words
+    _source_abbreviations: Iterable[str]
+
+    # --- Class attributes ---
     # Add key or key combinations here when it's needed to lookup with certain keys
-    INDEX_KEYS = [("lemma", "pos", "ic")]
+    INDEX_KEYS = [("lemma", "pos", "ic"), ("lemma",)]
 
     def __iter__(self) -> Iterator[XMLEntry]:
         yield from self._entries
 
-    def __init__(self, crkeng_xml: Path):
+    @property
+    def source_abbreviations(self) -> Iterable[str]:
+        return self._source_abbreviations
+
+    @classmethod
+    def from_xml_file(cls, crkeng_xml: Path) -> "IndexedXML":
         """
-        import from the given `crkeng_xml` Path and build in-memory indexes for querying later
+        import entries from the given `crkeng_xml` Path
         """
 
-        self._entries: Set[XMLEntry] = set()
+        root = ET.parse(str(crkeng_xml)).getroot()
 
-        self._indexes: Dict[
-            Tuple[NamedTupleFieldName], Dict[Tuple[NamedTupleFieldValue], Set[XMLEntry]]
-        ] = {}
+        # we build entries by iterating over <e></e> in the xml file
+        entries: Set[XMLEntry] = set()
 
-        for element in elements:
+        for element in root.findall(".//e"):
 
             str_definitions_for_entry = {}  # type: Dict[str, Set[str]]
             for t in element.findall(".//mg//tg//t"):
@@ -352,6 +369,26 @@ class IndexedXML(Iterable[XMLEntry]):
                     (xml_lemma, pos_str, ic_str)
                 ] = str_definitions_for_entry
 
+        source_abbreviations = []
+        for s in root.findall(".//source"):
+            assert s is not None
+            source_abbreviations.append(s.get("id"))
+
+        return cls(entries=entries, source_abbreviations=source_abbreviations)
+
+    @staticmethod
+    def _build_indexes(entries: Set[XMLEntry]) -> Index:
+        """
+        build in-memory indexes for fast querying later
+        """
+        pass
+
+    def __init__(self, entries: Set[XMLEntry], source_abbreviations: Iterable[str]):
+        self._entries = entries
+        self._source_abbreviations = source_abbreviations
+
+        self._indexes = self._build_indexes(entries)
+
     def filter(self, **constraints: Hashable) -> Set[XMLEntry]:
         """
         A lookup method that mimics django's queryset API. Except the relevant indexes must be built in advance.
@@ -365,6 +402,7 @@ class IndexedXML(Iterable[XMLEntry]):
                 pass
 
 
+@timed()
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
     Import from crkeng and engcrk files, `dir_name` can host a series of xml files. The latest timestamped files will be
@@ -383,11 +421,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     logger.info(f"using engcrk file: {engcrk_file_path}")
 
     assert crkeng_file_path.exists() and engcrk_file_path.exists()
-    start_time = time.time()
 
-    root = ET.parse(str(crkeng_file_path)).getroot()
+    crkeng_xml = IndexedXML.from_xml_file(crkeng_file_path)
 
-    source_ids = [s.get("id") for s in root.findall(".//source")]
+    source_ids = crkeng_xml.source_ids
 
     logger.info("Sources parsed: %r", source_ids)
     for source_id in source_ids:
@@ -398,8 +435,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     logger.info("Loading English keywords...")
     engcrk_cree_to_keywords = load_engcrk_xml(engcrk_file_path)
     logger.info("English keywords loaded")
-
-    xml_entries: List[XMLEntry] = []
 
     # todo: delet
     # value is definition string as key and its source as value
