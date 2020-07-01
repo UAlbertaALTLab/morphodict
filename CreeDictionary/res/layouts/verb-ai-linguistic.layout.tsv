@@ -1,0 +1,87 @@
+name: "Animate intransitive verb full (linguistic) paradigm"
+paradigm: "verb-ai.paradigm"
+layout:
+  type: "linguistic"
+tooltips:
+  eng:
+    "1s": "1st person singular actor"
+    "2s": "2nd person singular actor"
+    "3s": "3rd person singular actor"
+    "1p": "1st person plural exclusive actor"
+    "21": "1st person plural inclusive actor"
+    "2p": "2nd person plural actor"
+    "3p": "3rd person plural actor"
+    "4": "3rd person obviative actor"
+    "X": "Unspecified actor"
+--
+	"PRESENT TENSE"	
+	: "V+AI+Independent"	: "Conjunct"
+"1s"	=V+AI+Ind+1Sg	PV/e+*+V+AI+Cnj+1Sg
+"2s"	=V+AI+Ind+2Sg	PV/e+*+V+AI+Cnj+2Sg
+"3s"	=V+AI+Ind+3Sg	PV/e+*+V+AI+Cnj+3Sg
+"1p"	=V+AI+Ind+1Pl	PV/e+*+V+AI+Cnj+1Pl
+"21"	=V+AI+Ind+12Pl	PV/e+*+V+AI+Cnj+12Pl
+"2p"	=V+AI+Ind+2Pl	PV/e+*+V+AI+Cnj+2Pl
+"3p"	=V+AI+Ind+3Pl	PV/e+*+V+AI+Cnj+3Pl
+"4"	=V+AI+Ind+4Sg/Pl	PV/e+*+V+AI+Cnj+4Sg/Pl
+"X"	=V+AI+Ind+X	PV/e+*+V+AI+Cnj+X
+		
+	"PAST TENSE"	
+	: "V+AI+Independent"	: "Conjunct"
+"1s"	PV/ki+*+V+AI+Ind+1Sg	PV/e+PV/ki+*+V+AI+Cnj+1Sg
+"2s"	PV/ki+*+V+AI+Ind+2Sg	PV/e+PV/ki+*+V+AI+Cnj+2Sg
+"3s"	PV/ki+*+V+AI+Ind+3Sg	PV/e+PV/ki+*+V+AI+Cnj+3Sg
+"1p"	PV/ki+*+V+AI+Ind+1Pl	PV/e+PV/ki+*+V+AI+Cnj+1Pl
+"21"	PV/ki+*+V+AI+Ind+12Pl	PV/e+PV/ki+*+V+AI+Cnj+12Pl
+"2p"	PV/ki+*+V+AI+Ind+2Pl	PV/e+PV/ki+*+V+AI+Cnj+2Pl
+"3p"	PV/ki+*+V+AI+Ind+3Pl	PV/e+PV/ki+*+V+AI+Cnj+3Pl
+"4"	PV/ki+*+V+AI+Ind+4Sg/Pl	PV/e+PV/ki+*+V+AI+Cnj+4Sg/Pl
+		
+	"FUTURE INTENTIONAL TENSE"	
+	: "V+AI+Independent"	: "Conjunct"
+"1s"	PV/wi+*+V+AI+Ind+1Sg	PV/e+PV/wi+*+V+AI+Cnj+1Sg
+"2s"	PV/wi+*+V+AI+Ind+2Sg	PV/e+PV/wi+*+V+AI+Cnj+2Sg
+"3s"	PV/wi+*+V+AI+Ind+3Sg	PV/e+PV/wi+*+V+AI+Cnj+3Sg
+"1p"	PV/wi+*+V+AI+Ind+1Pl	PV/e+PV/wi+*+V+AI+Cnj+1Pl
+"21"	PV/wi+*+V+AI+Ind+12Pl	PV/e+PV/wi+*+V+AI+Cnj+12Pl
+"2p"	PV/wi+*+V+AI+Ind+2Pl	PV/e+PV/wi+*+V+AI+Cnj+2Pl
+"3p"	PV/wi+*+V+AI+Ind+3Pl	PV/e+PV/wi+*+V+AI+Cnj+3Pl
+"4"	PV/wi+*+V+AI+Ind+4Sg/Pl	PV/e+PV/wi+*+V+AI+Cnj+4Sg/Pl
+		
+	"FUTURE DEFINITE TENSE"	
+	: "V+AI+Independent"	
+"1s"	PV/ka+*+V+AI+Ind+1Sg	
+"2s"	PV/ka+*+V+AI+Ind+2Sg	
+"3s"	PV/ka+*+V+AI+Ind+3Sg	
+"1p"	PV/ka+*+V+AI+Ind+1Pl	
+"21"	PV/ka+*+V+AI+Ind+12P	
+"2p"	PV/ka+*+V+AI+Ind+2Pl	
+"3p"	PV/ka+*+V+AI+Ind+3Pl	
+"4"	PV/ka+*+V+AI+Ind+4Sg/Pl	
+		
+	"FUTURE/INFINITIVE"	
+	: "Conjunct: ka-"	: "Conjunct: ta-"
+"1s"	PV/ka+*+V+AI+Cnj+1Sg	PV/ta+*+V+AI+Cnj+1Sg
+"2s"	PV/ka+*+V+AI+Cnj+2Sg	PV/ta+*+V+AI+Cnj+2Sg
+"3s"	PV/ka+*+V+AI+Cnj+3Sg	PV/ta+*+V+AI+Cnj+3Sg
+"1p"	PV/ka+*+V+AI+Cnj+1Pl	PV/ta+*+V+AI+Cnj+1Pl
+"21"	PV/ka+*+V+AI+Cnj+12Pl	PV/ta+*+V+AI+Cnj+12Pl
+"2p"	PV/ka+*+V+AI+Cnj+2Pl	PV/ta+*+V+AI+Cnj+2Pl
+"3p"	PV/ka+*+V+AI+Cnj+3Pl	PV/ta+*+V+AI+Cnj+3Pl
+"4"	PV/ka+*+V+AI+Cnj+4Sg/Pl	PV/ta+*+V+AI+Cnj+4Sg/Pl
+		
+	"FUTURE CONDITIONAL"	
+"1s"	V+AI+Fut+Cond+1Sg	
+"2s"	V+AI+Fut+Cond+2Sg	
+"3s"	V+AI+Fut+Cond+3Sg	
+"1p"	V+AI+Fut+Cond+1Pl	
+"21"	V+AI+Fut+Cond+12Pl	
+"2p"	V+AI+Fut+Cond+2Pl	
+"3p"	V+AI+Fut+Cond+3Pl	
+"4"	V+AI+Fut+Cond+4Sg/Pl	
+		
+	"IMPERATIVE"	
+	: "Immediate"	: "Delayed"
+"2s"	V+AI+Imp+Imm+2Sg	V+AI+Imp+Del+2Sg
+"21"	V+AI+Imp+Imm+12Pl	V+AI+Imp+Del+12Pl
+"2p"	V+AI+Imp+Imm+2Pl	V+AI+Imp+Del+2Pl
