@@ -24,10 +24,10 @@ tooltips:
 --
 |                  | "Something is happening now"             |                             |
 |                  | : "ni-/ki- word"                         | : "ê-/kâ- word"             |
-| "it"             | =V+II+Ind+3Sg                            | =PV/e+*+V+II+Cnj+3Sg         |
-| "they"           | =V+II+Ind+3Pl                            | =PV/e+*+V+II+Cnj+3Pl         |
-| "it (further)"   | =V+II+Ind+4Sg                            | =PV/e+*+V+II+Cnj+4Sg         |
-| "they (further)" | =V+II+Ind+4Pl                            | =PV/e+*+V+II+Cnj+4Pl         |
+| "it"             | =V+II+Ind+3Sg                            | =PV/e+*+V+II+Cnj+3Sg        |
+| "they"           | =V+II+Ind+3Pl                            | =PV/e+*+V+II+Cnj+3Pl        |
+| "it (further)"   | =V+II+Ind+4Sg                            | =PV/e+*+V+II+Cnj+4Sg        |
+| "they (further)" | =V+II+Ind+4Pl                            | =PV/e+*+V+II+Cnj+4Pl        |
 |                  |                                          |                             |
 |                  | "Something happened earlier"             |                             |
 |                  | : "ni-/ki- word"                         | : "ê-/kâ- word"             |

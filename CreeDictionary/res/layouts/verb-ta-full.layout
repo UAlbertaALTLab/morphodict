@@ -455,7 +455,7 @@ tooltips:
 |                                                 |                                          |                                       |
 |                                                 |                                          |                                       |
 |                                                 | "Command/Request"                        |                                       |
-|                                                 | : "Right now"                            | : "Later on"                            |
+|                                                 | : "Right now"                            | : "Later on"                          |
 | "you (one) → me"                                | V+TA+Imp+Imm+2Sg+1SgO                    | V+TA+Imp+Del+2Sg+1SgO                 |
 | "you (one) → us"                                | V+TA+Imp+Imm+2Sg+1PlO                    | V+TA+Imp+Del+2Sg+1PlO                 |
 | "you (one) → him/her"                           | V+TA+Imp+Imm+2Sg+3SgO                    | V+TA+Imp+Del+2Sg+3SgO                 |
