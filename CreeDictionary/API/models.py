@@ -30,7 +30,6 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
 from sortedcontainers import SortedSet
@@ -157,8 +156,6 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 class Wordform(models.Model):
-    _cree_fuzzy_searcher = None
-
     # this is initialized upon app ready.
     # this helps speed up preverb match
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
@@ -262,17 +259,6 @@ class Wordform(models.Model):
                 return False
         return True
 
-    @classmethod
-    def init_fuzzy_searcher(cls):
-        if cls._cree_fuzzy_searcher is None:
-            cls._cree_fuzzy_searcher = CreeFuzzySearcher(cls.objects.all())
-
-    @classmethod
-    def fuzzy_search(cls, query: str, distance: int) -> QuerySet:
-        if cls._cree_fuzzy_searcher is None:
-            return Wordform.objects.none()
-        return cls._cree_fuzzy_searcher.search(query, distance)
-
     # override pk to allow use of bulk_create
     # auto-increment is also implemented in the overridden save() method below
     id = models.PositiveIntegerField(primary_key=True)
@@ -320,11 +306,10 @@ class Wordform(models.Model):
     )
 
     class Meta:
-        # analysis is for faster user query (in function fetch_lemma_by_user_query below)
-        # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
-        # text index also benefits fast lemma matching in function fetch_lemma_by_user_query
         indexes = [
+            # analysis is for faster user query (in function fetch_lemma_by_user_query below)
             models.Index(fields=["analysis"]),
+            # text index benefits fast lemma matching in function fetch_lemma_by_user_query
             models.Index(fields=["text"]),
         ]
 

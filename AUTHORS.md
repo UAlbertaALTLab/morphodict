@@ -1,6 +1,11 @@
 Authors
 =======
 
+#### [Kobe Amoh](https://kobexamoh.co/)
+
+Front-end UX developer. 2020 software development intern.
+
+
 #### [Dr. Antti Arppe](https://sites.ualberta.ca/~arppe/)
 
 Director of the [University of Alberta ALTLab][ALTLab]. Hands-on, quantitative linguist.
@@ -18,6 +23,11 @@ User experience and interface design (UX/UI).
 Quantitative linguist and doggo enthusiast.
 
 
+#### [Aida Radu](https://github.com/aradu12)
+
+Linguist. 2020 software development intern.
+
+
 #### [Eddie Antonio Santos](https://eddieantonio.ca/)
 
 Lead of software development. Part of the National Research Council Canada's [Canadian Indigenous languages technology project][ILT].
@@ -32,7 +42,7 @@ Algonquian language linguist.
 
 #### [Matt Yan](https://github.com/Madoshakalaka)
 
-Software developer. 2019 software development intern.
+Software developer. 2019–2020 software development intern.
 
 
 Computational Modeling

@@ -20,6 +20,7 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 from utils import ParadigmSize, WordClass
+from utils.shared_res_dir import shared_res_dir
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
@@ -309,17 +310,14 @@ def combine_layout_paradigm():
     combiner = Combiner.default_combiner()
 
     for ic in WordClass:
-        if ic in (WordClass.Pron, WordClass.IPC, WordClass.IPV):
+        if not ic.has_inflections():
             continue
         for size in ParadigmSize:
-            with open(
-                path.join(
-                    dirname(__file__), "..", "res", "prefilled_layouts", "%s-%s.tsv"
-                )
-                % (ic.value.lower(), size.value.lower()),
-                "w",
-                newline="",
-            ) as file:
+            filename = f"{ic.value.lower()}-{size.value.lower()}.tsv"
+            layout_path = shared_res_dir / "prefilled_layouts" / filename
+            with layout_path.open("w", encoding="UTF-8", newline="") as file:
                 a = combiner.get_combined_table(ic, size)
-                writer = csv.writer(file, delimiter="\t", quotechar="'")
+                writer = csv.writer(
+                    file, delimiter="\t", quotechar="'", lineterminator="\n"
+                )
                 writer.writerows(a)
