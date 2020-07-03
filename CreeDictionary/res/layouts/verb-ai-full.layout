@@ -29,15 +29,15 @@ tooltips:
 --
 |                       | "Something is happening now"             |                                |
 |                       | : "ni-/ki- word"                         | : "ê-/kâ- word"                |
-| "I"                   | =V+AI+Ind+1Sg                            | =PV/e+*+V+AI+Cnj+1Sg           |
-| "you (one)"           | =V+AI+Ind+2Sg                            | =PV/e+*+V+AI+Cnj+2Sg           |
-| "s/he"                | =V+AI+Ind+3Sg                            | =PV/e+*+V+AI+Cnj+3Sg           |
-| "we (but not you)"    | =V+AI+Ind+1Pl                            | =PV/e+*+V+AI+Cnj+1Pl           |
-| "you and we"          | =V+AI+Ind+12Pl                           | =PV/e+*+V+AI+Cnj+12Pl          |
-| "you (all)"           | =V+AI+Ind+2Pl                            | =PV/e+*+V+AI+Cnj+2Pl           |
-| "they"                | =V+AI+Ind+3Pl                            | =PV/e+*+V+AI+Cnj+3Pl           |
-| "s/he/they (further)" | =V+AI+Ind+4Sg/Pl                         | =PV/e+*+V+AI+Cnj+4Sg/Pl        |
-| "someone"             | =V+AI+Ind+X                              | =PV/e+*+V+AI+Cnj+X             |
+| "I"                   | =V+AI+Ind+1Sg                            | PV/e+*+V+AI+Cnj+1Sg            |
+| "you (one)"           | =V+AI+Ind+2Sg                            | PV/e+*+V+AI+Cnj+2Sg            |
+| "s/he"                | =V+AI+Ind+3Sg                            | PV/e+*+V+AI+Cnj+3Sg            |
+| "we (but not you)"    | =V+AI+Ind+1Pl                            | PV/e+*+V+AI+Cnj+1Pl            |
+| "you and we"          | =V+AI+Ind+12Pl                           | PV/e+*+V+AI+Cnj+12Pl           |
+| "you (all)"           | =V+AI+Ind+2Pl                            | PV/e+*+V+AI+Cnj+2Pl            |
+| "they"                | =V+AI+Ind+3Pl                            | PV/e+*+V+AI+Cnj+3Pl            |
+| "s/he/they (further)" | =V+AI+Ind+4Sg/Pl                         | PV/e+*+V+AI+Cnj+4Sg/Pl         |
+| "someone"             | =V+AI+Ind+X                              | PV/e+*+V+AI+Cnj+X              |
 |                       |                                          |                                |
 |                       | "Something happened earlier"             |                                |
 |                       | : "ni-/ki- word"                         | : "ê-/kâ- word"                |

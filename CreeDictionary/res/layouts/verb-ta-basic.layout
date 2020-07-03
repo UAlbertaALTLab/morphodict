@@ -73,16 +73,16 @@ tooltips:
     "ta- word": "ta-conjunct"
 --
 |                                   | "Something is happening now"      |                                 |
-| "I → you (one)"                   | =V+TA+Ind+1Sg+2SgO                | =PV/e+*+V+TA+Cnj+1Sg+2SgO       |
-| "I → him/her"                     | =V+TA+Ind+1Sg+3SgO                | =PV/e+*+V+TA+Cnj+1Sg+3SgO       |
+| "I → you (one)"                   | =V+TA+Ind+1Sg+2SgO                | PV/e+*+V+TA+Cnj+1Sg+2SgO        |
+| "I → him/her"                     | =V+TA+Ind+1Sg+3SgO                | PV/e+*+V+TA+Cnj+1Sg+3SgO        |
 |                                   |                                   |                                 |
-| "you (one) → me"                  | =V+TA+Ind+2Sg+1SgO                | =PV/e+*+V+TA+Cnj+2Sg+1SgO       |
-| "you (one) → him/her"             | =V+TA+Ind+2Sg+3SgO                | =PV/e+*+V+TA+Cnj+2Sg+3SgO       |
+| "you (one) → me"                  | =V+TA+Ind+2Sg+1SgO                | PV/e+*+V+TA+Cnj+2Sg+1SgO        |
+| "you (one) → him/her"             | =V+TA+Ind+2Sg+3SgO                | PV/e+*+V+TA+Cnj+2Sg+3SgO        |
 |                                   |                                   |                                 |
-| "s/he → me"                       | =V+TA+Ind+3Sg+1SgO                | =PV/e+*+V+TA+Cnj+3Sg+1SgO       |
-| "s/he  → you (one)"               | =V+TA+Ind+3Sg+2SgO                | =PV/e+*+V+TA+Cnj+3Sg+2SgO       |
+| "s/he → me"                       | =V+TA+Ind+3Sg+1SgO                | PV/e+*+V+TA+Cnj+3Sg+1SgO        |
+| "s/he  → you (one)"               | =V+TA+Ind+3Sg+2SgO                | PV/e+*+V+TA+Cnj+3Sg+2SgO        |
 |                                   |                                   |                                 |
-| "s/he → him/her/them (further)"   | =V+TA+Ind+3Sg+4Sg/PlO             | =PV/e+*+V+TA+Cnj+3Sg+4Sg/PlO    |
+| "s/he → him/her/them (further)"   | =V+TA+Ind+3Sg+4Sg/PlO             | PV/e+*+V+TA+Cnj+3Sg+4Sg/PlO     |
 | "s/he/they (further) → him/her"   | =V+TA+Ind+4Sg/Pl+3SgO             | PV/e+*+V+TA+Cnj+4Sg/Pl+3SgO     |
 |                                   |                                   |                                 |
 |                                   | "Command/Request"                 |                                 |
