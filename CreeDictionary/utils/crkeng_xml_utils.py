@@ -1,9 +1,33 @@
 import xml.etree.ElementTree as ET
+from collections import defaultdict
+from itertools import chain
 from pathlib import Path
-from typing import Iterable, Optional
+from typing import (
+    Iterable,
+    Optional,
+    Dict,
+    Tuple,
+    Set,
+    Iterator,
+    List,
+    Hashable,
+    cast,
+    DefaultDict,
+    Union,
+    NamedTuple,
+)
+from xml.etree import ElementTree as ET
+
 from xml.dom import minidom
 
-from utils import WordClass
+from DatabaseManager.xml_importer import logger
+from utils import (
+    WordClass,
+    XMLEntry,
+    NamedTupleFieldName,
+    NamedTupleFieldValue,
+    XMLTranslation,
+)
 
 
 def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
@@ -79,3 +103,241 @@ def convert_xml_inflectional_category_to_word_class(
         return WordClass.IPV
 
     return None
+
+
+class IndexedXML(Iterable[XMLEntry]):
+    """
+    The collection of all entries parsed from the XML source file.
+    It supports fast querying with field/field combinations by hashing the entries in advance.
+    """
+
+    # --- alias for type hints---
+    Indexes = Dict[
+        Tuple[NamedTupleFieldName, ...],
+        Dict[Tuple[NamedTupleFieldValue, ...], Set[XMLEntry]],
+    ]
+
+    # --- Instance attribute type hints ---
+    _entries: Set[XMLEntry]
+    _indexes: Indexes
+    _source_abbreviations: Iterable[str]
+
+    # --- Class attributes ---
+    # Add key or key combinations here when it's needed to lookup with certain keys
+    # order does not matter here, they will be sorted in the built index
+    INDEX_KEYS: List[Tuple[NamedTupleFieldName, ...]] = [
+        (
+            NamedTupleFieldName("lemma"),
+            NamedTupleFieldName("pos"),
+            NamedTupleFieldName("ic"),
+        ),
+        (NamedTupleFieldName("lemma"),),
+    ]
+
+    def __iter__(self) -> Iterator[XMLEntry]:
+        yield from self._entries
+
+    @property
+    def source_abbreviations(self) -> Iterable[str]:
+        """
+        acronyms of the sources, like "CW" for Cree Words
+        """
+        return self._source_abbreviations
+
+    @staticmethod
+    def _parse_translation_element(t_element: ET.Element) -> XMLTranslation:
+        """
+        Turn <t></t> inside <e></e> into a NamedTuple, which hosts a single translation of the entry
+
+        :raises ValueError: with error message, when the <t> element has no text or when it
+            doesn't have source="" attribute
+        """
+
+        raw_sources = t_element.get("sources")
+        t_element_text = t_element.text
+        if raw_sources is None:
+            raise ValueError(
+                f"<t> does not have a source attribute in the following entry \n {ET.tostring(t_element, encoding='unicode')}"
+            )
+        if t_element_text is None:
+            raise ValueError(
+                f"<t> has empty text in the following entry \n {ET.tostring(t_element, encoding='unicode')}"
+            )
+
+        sources = tuple(raw_sources.split(" "))
+        text = t_element_text
+
+        return XMLTranslation(text=text, sources=sources)
+
+    @staticmethod
+    def _parse_entry_element(element: ET.Element) -> XMLEntry:
+        """
+        Turn <e></e> inside crkeng.xml into NamedTuples
+        """
+
+        # reminder/type hints: values we are extracting to compose XMLEntry
+        lemma: str
+        pos: str
+        ic: str
+        stem: Optional[str]
+        translations: Tuple[XMLTranslation, ...]
+
+        # extract lemma
+        l_element = element.find("lg/l")
+        assert (
+            l_element is not None
+        ), f"Missing <l> element in the following entry: \n {ET.tostring(element, encoding='unicode')}"
+
+        l_element_text = l_element.text
+        if l_element_text == "" or l_element_text is None:
+            raise ValueError(
+                f"<l> has empty text in entry \n {ET.tostring(element, encoding='unicode')}"
+            )
+        lemma = l_element_text
+
+        # extract pos
+        maybe_pos = l_element.get("pos")
+        assert (
+            maybe_pos is not None
+        ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
+        pos = maybe_pos
+
+        # extract ic
+        ic_element = element.find("lg/lc")
+        assert (
+            ic_element is not None
+        ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
+
+        ic_element_text = ic_element.text
+
+        if ic_element_text is None:
+            ic = ""
+        else:
+            ic = ic_element_text
+
+        # extract stem
+        stem_element = element.find("lg/stem")
+        if stem_element is None:
+            stem = None
+        else:
+            stem_element_text = stem_element.text
+            assert stem_element_text is not None
+            stem = stem_element_text
+
+        # will cast to tuple later
+        _translations: List[XMLTranslation] = []
+        for t_element in element.findall(".//mg//tg//t"):
+            try:
+                _translations.append(IndexedXML._parse_translation_element(t_element))
+            except ValueError as e:
+                logger.error("Malformed <t></t> element")
+                logger.error(e)
+                continue
+
+        translations = tuple(_translations)
+
+        return XMLEntry(
+            lemma=lemma, pos=pos, ic=ic, stem=stem, translations=translations
+        )
+
+    @classmethod
+    def from_xml_file(cls, crkeng_xml: Path) -> "IndexedXML":
+        """
+        import entries from the given `crkeng_xml` Path
+        """
+
+        root = ET.parse(str(crkeng_xml)).getroot()
+
+        # we build entries by iterating over <e></e> in the xml file
+        entries: Set[XMLEntry] = {
+            cls._parse_entry_element(element) for element in root.findall(".//e")
+        }
+
+        source_abbreviations = []
+
+        for s in root.findall(".//source"):
+            abbreviation = s.get("id")
+            assert abbreviation is not None
+            source_abbreviations.append(abbreviation)
+
+        return cls(entries=entries, source_abbreviations=source_abbreviations)
+
+    @classmethod
+    def _build_indexes(cls, entries: Set[XMLEntry]) -> Indexes:
+        """
+        build in-memory indexes for fast querying later
+        """
+        # first classify the entries by each field names
+        # then we merge them by the key combinations needed
+
+        # helper type hint
+        _SingleKeyIndexes = Dict[
+            NamedTupleFieldName, Dict[NamedTupleFieldValue, Set[XMLEntry]]
+        ]
+
+        single_key_indexes: _SingleKeyIndexes = {}
+        for field_name in set(chain(*cls.INDEX_KEYS)):
+            field_value_to_entry = defaultdict(set)
+            for entry in entries:
+                field_value_to_entry[getattr(entry, field_name)].add(entry)
+            single_key_indexes[field_name] = field_value_to_entry
+
+        indexes: Dict[
+            Tuple[NamedTupleFieldName, ...],
+            Dict[Tuple[NamedTupleFieldValue, ...], Set[XMLEntry]],
+        ] = {tuple(sorted(field_names)): {} for field_names in cls.INDEX_KEYS}
+
+        for sorted_field_names, values_to_entries in indexes.items():
+
+            for entry in entries:
+                values_to_entries[
+                    tuple(
+                        getattr(entry, field_name) for field_name in sorted_field_names
+                    )
+                ] = set.union(
+                    *(
+                        single_key_indexes[field_name][getattr(entry, field_name)]
+                        for field_name in sorted_field_names
+                    )
+                )
+
+        return indexes
+
+    def __init__(self, entries: Set[XMLEntry], source_abbreviations: Iterable[str]):
+        self._entries = entries
+        self._source_abbreviations = source_abbreviations
+
+        self._indexes = self._build_indexes(entries)
+
+    def filter(self, **constraints: NamedTupleFieldValue) -> Set[XMLEntry]:
+        """
+        A lookup method that mimics django's queryset API. Except the relevant indexes must be built in advance.
+        The returned set is empty when no matching entries are found
+
+        :raise ValueError: when the relevant index does not exist for the query
+        """
+        # sort by field names
+        sorted_constraints = sorted(constraints.items(), key=lambda x: x[0])
+        field_names, field_values = zip(*sorted_constraints)
+
+        try:
+            values_to_entries = self._indexes[
+                cast(Tuple[NamedTupleFieldName], field_names,)
+            ]
+        except ValueError:
+            raise ValueError(f"index with field names {list(constraints)} is not built")
+
+        return values_to_entries.get(field_values, set())
+
+    def values_list(
+        self, *field_names, flat=False, named=False
+    ) -> List[Union[tuple, NamedTuple, NamedTupleFieldValue]]:
+        """
+        mimics django's QuerySet.values_list method
+
+        :return:
+        """
+        if len(field_names) != 1 or not flat or named:
+            raise NotImplementedError("Matt's been lazy <3")
+
+        return [getattr(e, field_names[0]) for e in self._entries]

@@ -26,7 +26,7 @@ class XMLTranslation(NamedTuple):
     """
 
     text: str
-    sources: Tuple[str]
+    sources: Tuple[str, ...]
 
 
 class XMLEntry(NamedTuple):
@@ -63,5 +63,5 @@ class XMLEntry(NamedTuple):
     # so "my grannies" nôhkomisak = my + -ohkom- + Noun + Animate + Dependent + Plural
     stem: Optional[str]
 
-    # The translation of the entry in English
-    translation: Tuple[XMLTranslation]
+    # The translations of the entry in English
+    translations: Tuple[XMLTranslation, ...]

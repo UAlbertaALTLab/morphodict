@@ -15,7 +15,8 @@ from DatabaseManager.xml_consistency_checker import (
 )
 from shared import strict_analyzer
 from typing_extensions import Literal
-from utils import ConcatAnalysis, FSTLemma, WordClass, shared_res_dir
+from utils import ConcatAnalysis, FSTLemma, WordClass, shared_res_dir, XMLEntry
+from utils.crkeng_xml_utils import IndexedXML
 from utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
@@ -65,26 +66,22 @@ crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
 def extract_fst_lemmas(
-    xml_lemma_to_pos_ic: Dict[str, List[Tuple[str, str]]],
-    multi_processing: int = 1,
-    verbose=True,
-) -> Dict[Tuple[str, str, str], ConcatAnalysis]:
+    crkeng_xml: IndexedXML, multi_processing: int = 1, verbose=True,
+) -> Dict[XMLEntry, ConcatAnalysis]:
     """
-    For every (xml_lemma, xml_pos, xml_ic), try to find its lemma analysis and according to fst. Analysis may be empty
+    For every entry in the XML file, try to find its lemma analysis and according to fst. Analysis may be empty
     string if the lemma analysis can't be decided
     """
 
     logger = DatabaseManagerLogger(__name__, verbose)
-    logger.info("Determining lemma analysis for (xml_lemma, xml_pos, xml_ic) tuples...")
+    logger.info("Determining lemma analysis for entries...")
 
-    xml_lemma_pos_ic_to_analysis = (
-        dict()
-    )  # type: Dict[Tuple[str, str, str], ConcatAnalysis]
+    entry_to_analysis = dict()  # type: Dict[XMLEntry, ConcatAnalysis]
 
-    inflections = xml_lemma_to_pos_ic.keys()
+    xml_lemmas = crkeng_xml.values_list("lemma", flat=True)
 
     xml_lemma_to_analyses = strict_analyzer.feed_in_bulk_fast(
-        inflections, multi_processing
+        xml_lemmas, multi_processing
     )
 
     produced_extra_lemmas: List[FSTLemma] = []
@@ -124,16 +121,14 @@ def extract_fst_lemmas(
 
         if len(analyses) == 0:
 
-            if xml_lemma in xml_lemma_to_pos_ic:
-                for pos, ic in xml_lemma_to_pos_ic[xml_lemma]:
-                    xml_lemma_pos_ic_to_analysis[(xml_lemma, pos, ic)] = ConcatAnalysis(
-                        ""
-                    )
-                    logger.debug(
-                        "xml entry %s with pos %s ic %s can not be analyzed by fst strict analyzer"
-                        % (xml_lemma, pos, ic)
-                    )
-                    no_analysis_counter += 1
+            for entry in crkeng_xml.filter(lemma=xml_lemma):
+
+                entry_to_analysis[entry] = ConcatAnalysis("")
+                logger.debug(
+                    "xml entry %s with pos %s ic %s can not be analyzed by fst strict analyzer"
+                    % (xml_lemma, pos, ic)
+                )
+                no_analysis_counter += 1
 
         else:
 
@@ -159,7 +154,7 @@ def extract_fst_lemmas(
                     if wc is wc and wordform == fst_lemma:
                         possible_lemma_analyses.append(fst_lemma_analysis)
 
-            for pos, ic in xml_lemma_to_pos_ic[
+            for pos, ic in entry[
                 xml_lemma
             ]:  # for each pos, ic determine which one the analysis is
 

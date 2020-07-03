@@ -11,9 +11,6 @@ from typing import (
     NamedTuple,
     Set,
     Tuple,
-    Iterable,
-    Hashable,
-    Iterator,
 )
 
 from colorama import Fore, init
@@ -28,13 +25,11 @@ from DatabaseManager.xml_consistency_checker import (
 from utils import (
     PartOfSpeech,
     fst_analysis_parser,
-    XMLEntry,
-    NamedTupleFieldName,
-    NamedTupleFieldValue,
 )
 from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
     extract_l_str,
+    IndexedXML,
 )
 from utils.profiling import timed
 
@@ -240,168 +235,6 @@ def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
     )
 
 
-class IndexedXML(Iterable[XMLEntry]):
-    """
-    The collection of all entries parsed from the XML source file.
-    It supports fast querying with field/field combinations by hashing the entries in advance.
-    """
-
-    # --- alias for type hints---
-    Index = Dict[
-        Tuple[NamedTupleFieldName], Dict[Tuple[NamedTupleFieldValue], Set[XMLEntry]]
-    ]
-
-    # --- Instance attribute type hints ---
-    _entries: Set[XMLEntry]
-    _indexes: Index
-    # acronyms of the sources, like "CW" for Cree Words
-    _source_abbreviations: Iterable[str]
-
-    # --- Class attributes ---
-    # Add key or key combinations here when it's needed to lookup with certain keys
-    INDEX_KEYS = [("lemma", "pos", "ic"), ("lemma",)]
-
-    def __iter__(self) -> Iterator[XMLEntry]:
-        yield from self._entries
-
-    @property
-    def source_abbreviations(self) -> Iterable[str]:
-        return self._source_abbreviations
-
-    @classmethod
-    def from_xml_file(cls, crkeng_xml: Path) -> "IndexedXML":
-        """
-        import entries from the given `crkeng_xml` Path
-        """
-
-        root = ET.parse(str(crkeng_xml)).getroot()
-
-        # we build entries by iterating over <e></e> in the xml file
-        entries: Set[XMLEntry] = set()
-
-        for element in root.findall(".//e"):
-
-            str_definitions_for_entry = {}  # type: Dict[str, Set[str]]
-            for t in element.findall(".//mg//tg//t"):
-                sources = t.get("sources")
-                assert (
-                    sources is not None
-                ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
-
-                if t.text is None:
-                    logger.warn(
-                        f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
-                    )
-                    # this entry in the xml has an empty <t>
-                    #  <e>
-                    #    <lg>
-                    #       <l pos="N">ohpinikêwin</l>
-                    #       <lc>NI-1</lc>
-                    #       <stem>ohpinikêwin-</stem>
-                    #    </lg>
-                    #    <mg>
-                    #    <tg xml:lang="eng">
-                    #        <t pos="N" sources="MD" />
-                    #    </tg>
-                    #    </mg>
-                    #    <mg>
-                    #    <tg xml:lang="eng">
-                    #        <t pos="N" sources="CW">weightlifting; act of lifting things</t>
-                    #    </tg>
-                    #    </mg>
-                    # </e>
-
-                    continue
-                if (
-                    t.text in str_definitions_for_entry
-                ):  # duplicate definition within one <e>, not likely to happen
-                    str_definitions_for_entry[t.text] |= set(sources.split(" "))
-                else:
-                    str_definitions_for_entry[t.text] = set(sources.split(" "))
-            l_element = element.find("lg/l")
-            assert (
-                l_element is not None
-            ), f"Missing <l> element in entry \n {ET.tostring(element, encoding='unicode')}"
-            ic_element = element.find("lg/lc")
-            assert (
-                ic_element is not None
-            ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
-            ic_str = ic_element.text
-
-            if ic_str is None:
-                ic_str = ""
-            xml_lemma = extract_l_str(element)
-            pos_attr = l_element.get("pos")
-            assert (
-                pos_attr is not None
-            ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
-            pos_str = pos_attr
-
-            duplicate_lemma_pos_ic = False
-
-            if xml_lemma in xml_lemma_to_pos_ic:
-
-                if (pos_str, ic_str) in xml_lemma_to_pos_ic[xml_lemma]:
-                    duplicate_xml_lemma_pos_ic_count += 1
-                    duplicate_lemma_pos_ic = True
-                else:
-                    tuple_count += 1
-                    xml_lemma_to_pos_ic[xml_lemma].append((pos_str, ic_str))
-            else:
-                tuple_count += 1
-                xml_lemma_to_pos_ic[xml_lemma] = [(pos_str, ic_str)]
-
-            if duplicate_lemma_pos_ic:
-                logger.debug(
-                    f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} appears more than once"
-                )
-
-                tuple_definitions = xml_lemma_pos_ic_to_str_definitions[
-                    (xml_lemma, pos_str, ic_str)
-                ]
-                for str_definition, source_set in str_definitions_for_entry.items():
-                    if str_definition in tuple_definitions:
-                        tuple_definitions[str_definition] |= source_set
-                    else:
-                        tuple_definitions[str_definition] = source_set
-            else:
-                xml_lemma_pos_ic_to_str_definitions[
-                    (xml_lemma, pos_str, ic_str)
-                ] = str_definitions_for_entry
-
-        source_abbreviations = []
-        for s in root.findall(".//source"):
-            assert s is not None
-            source_abbreviations.append(s.get("id"))
-
-        return cls(entries=entries, source_abbreviations=source_abbreviations)
-
-    @staticmethod
-    def _build_indexes(entries: Set[XMLEntry]) -> Index:
-        """
-        build in-memory indexes for fast querying later
-        """
-        pass
-
-    def __init__(self, entries: Set[XMLEntry], source_abbreviations: Iterable[str]):
-        self._entries = entries
-        self._source_abbreviations = source_abbreviations
-
-        self._indexes = self._build_indexes(entries)
-
-    def filter(self, **constraints: Hashable) -> Set[XMLEntry]:
-        """
-        A lookup method that mimics django's queryset API. Except the relevant indexes must be built in advance.
-
-        :raise ValueError: when the relevant index does not exist for the query
-        """
-        input_field_names = set(constraints)
-        # try to find it in cache
-        for field_names, cached_dict in self._cached_results.values():
-            if input_field_names == set(field_names):
-                pass
-
-
 @timed()
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
@@ -410,9 +243,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     Rough idea: the invariant and unique thing we extract from crkeng.xml is (lemma, pos, ic) tuples
 
+    :param multi_processing: Use multiple hfstol processes to speed up importing
     :param dir_name: the directory that has pattern (crkeng|engcrk).*?(?P<timestamp>\d{6})?\.xml
     (e.g. engcrk_cw_md_200319.xml or engcrk.xml) files, beware the timestamp has format yymmdd
-    :keyword verbose: print to stdout or not
+    :param verbose: print to stdout or not
     """
     logger.set_print_info_on_console(verbose)
 
@@ -424,132 +258,20 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     crkeng_xml = IndexedXML.from_xml_file(crkeng_file_path)
 
-    source_ids = crkeng_xml.source_ids
+    source_abbreviations = crkeng_xml.source_abbreviations
 
-    logger.info("Sources parsed: %r", source_ids)
-    for source_id in source_ids:
-        src = DictionarySource(abbrv=source_id)
+    logger.info("Sources parsed: %r", source_abbreviations)
+    for source_abbreviation in source_abbreviations:
+        src = DictionarySource(abbrv=source_abbreviation)
         src.save()
-        logger.info("Created source: %s", source_id)
+        logger.info("Created source: %s", source_abbreviation)
 
     logger.info("Loading English keywords...")
     engcrk_cree_to_keywords = load_engcrk_xml(engcrk_file_path)
     logger.info("English keywords loaded")
 
-    # todo: delet
-    # value is definition string as key and its source as value
-    xml_lemma_pos_ic_to_str_definitions = (
-        {}
-    )  # type: Dict[Tuple[str,str,str], Dict[str, Set[str]]]
-    # delet;
-
-    # One lemma could have multiple entries with different pos and ic
-    xml_lemma_to_pos_ic = {}  # type: Dict[str, List[Tuple[str,str]]]
-
-    elements = root.findall(".//e")
-    logger.info("%d dictionary entries found" % len(elements))
-
-    duplicate_xml_lemma_pos_ic_count = 0
-    logger.info("extracting (xml_lemma, pos, ic) tuples")
-    tuple_count = 0
-    for element in elements:
-
-        str_definitions_for_entry = {}  # type: Dict[str, Set[str]]
-        for t in element.findall(".//mg//tg//t"):
-            sources = t.get("sources")
-            assert (
-                sources is not None
-            ), f"<t> does not have a source attribute in entry \n {ET.tostring(element, encoding='unicode')}"
-
-            if t.text is None:
-                logger.warn(
-                    f"<t> has empty content in entry \n {ET.tostring(element, encoding='unicode')}"
-                )
-                # this entry in the xml has an empty <t>
-                #  <e>
-                #    <lg>
-                #       <l pos="N">ohpinikêwin</l>
-                #       <lc>NI-1</lc>
-                #       <stem>ohpinikêwin-</stem>
-                #    </lg>
-                #    <mg>
-                #    <tg xml:lang="eng">
-                #        <t pos="N" sources="MD" />
-                #    </tg>
-                #    </mg>
-                #    <mg>
-                #    <tg xml:lang="eng">
-                #        <t pos="N" sources="CW">weightlifting; act of lifting things</t>
-                #    </tg>
-                #    </mg>
-                # </e>
-
-                continue
-            if (
-                t.text in str_definitions_for_entry
-            ):  # duplicate definition within one <e>, not likely to happen
-                str_definitions_for_entry[t.text] |= set(sources.split(" "))
-            else:
-                str_definitions_for_entry[t.text] = set(sources.split(" "))
-        l_element = element.find("lg/l")
-        assert (
-            l_element is not None
-        ), f"Missing <l> element in entry \n {ET.tostring(element, encoding='unicode')}"
-        ic_element = element.find("lg/lc")
-        assert (
-            ic_element is not None
-        ), f"Missing <lc> element in entry \n {ET.tostring(element, encoding='unicode')}"
-        ic_str = ic_element.text
-
-        if ic_str is None:
-            ic_str = ""
-        xml_lemma = extract_l_str(element)
-        pos_attr = l_element.get("pos")
-        assert (
-            pos_attr is not None
-        ), f"<l> lacks pos attribute in entry \n {ET.tostring(element, encoding='unicode')}"
-        pos_str = pos_attr
-
-        duplicate_lemma_pos_ic = False
-
-        if xml_lemma in xml_lemma_to_pos_ic:
-
-            if (pos_str, ic_str) in xml_lemma_to_pos_ic[xml_lemma]:
-                duplicate_xml_lemma_pos_ic_count += 1
-                duplicate_lemma_pos_ic = True
-            else:
-                tuple_count += 1
-                xml_lemma_to_pos_ic[xml_lemma].append((pos_str, ic_str))
-        else:
-            tuple_count += 1
-            xml_lemma_to_pos_ic[xml_lemma] = [(pos_str, ic_str)]
-
-        if duplicate_lemma_pos_ic:
-            logger.debug(
-                f"xml_lemma: {xml_lemma} pos: {pos_str} ic: {ic_str} appears more than once"
-            )
-
-            tuple_definitions = xml_lemma_pos_ic_to_str_definitions[
-                (xml_lemma, pos_str, ic_str)
-            ]
-            for str_definition, source_set in str_definitions_for_entry.items():
-                if str_definition in tuple_definitions:
-                    tuple_definitions[str_definition] |= source_set
-                else:
-                    tuple_definitions[str_definition] = source_set
-        else:
-            xml_lemma_pos_ic_to_str_definitions[
-                (xml_lemma, pos_str, ic_str)
-            ] = str_definitions_for_entry
-
-    logger.info(
-        f"{Fore.BLUE}%d entries have (lemma, pos, ic) duplicate to others. Their definition will be merged{Fore.RESET}"
-        % duplicate_xml_lemma_pos_ic_count
-    )
-    logger.info("%d (xml_lemma, pos, ic) tuples extracted" % tuple_count)
-
-    xml_lemma_pos_ic_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
-        xml_lemma_to_pos_ic, multi_processing
+    entry_to_analysis = xml_entry_lemma_finder.extract_fst_lemmas(
+        crkeng_xml, multi_processing
     )
 
     # these two will be imported to the database
@@ -558,7 +280,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         list
     )  # type: Dict[str, List[Tuple[str, str, str]]]
 
-    for (xml_lemma, pos, ic), analysis in xml_lemma_pos_ic_to_analysis.items():
+    for (xml_lemma, pos, ic), analysis in entry_to_analysis.items():
         if analysis != "":
             true_lemma_analyses_to_xml_lemma_pos_ic[analysis].append(
                 (xml_lemma, pos, ic)
