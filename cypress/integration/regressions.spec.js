@@ -299,15 +299,21 @@ context('Regressions', () => {
    *
    * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/489
    */
-  it('should have symbols also for pronouns and preverbs', function () {
-    const wordform = 'niya'
-    const inflectsLike = 'like: awa'
-    const emoji = '→🧑'
+  context('symbols also for pronouns and preverbs', function () {
+    const testCases = [
+      ['niya', '→🧑', 'like: awa'],
+      ['ôma', '→💧', 'like: ôma'],
+      ['nitawi-', '⚡️', 'like: pê-'],
+    ]
 
-    cy.visitSearch(wordform)
+    for (const [wordform, emoji, inflectsLike] of testCases) {
+      it(`should have a symbol for ${wordform}`, function () {
+        cy.visitSearch(wordform)
 
-    cy.get('[data-cy=search-results]')
-      .should('contain', inflectsLike)
-      .should('contain', emoji)
+        cy.contains('[data-cy=search-results]', wordform)
+          .contains('[data-cy=elaboration]', inflectsLike)
+          .should('contain', emoji)
+      })
+    }
   })
 })
