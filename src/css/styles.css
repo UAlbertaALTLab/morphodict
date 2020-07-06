@@ -104,7 +104,7 @@ html {
 }
 
 /**
- * ELEMENT pp__pane
+ * ELEMENT app__pane
  *
  * Any division of the application that creates a "pane".
  *
@@ -774,6 +774,7 @@ html {
  */
 .app-footer {
   /* Display & Box Model */
+  display: flex;
   width: 100vw;
   margin-top: 1rem;
   margin-block-start: 1rem;
@@ -800,30 +801,19 @@ html {
   margin-block-start: 1rem;
 }
 
-/**
- * BLOCK footer-links
- */
-.footer-links {
-  display: flex;
-  flex-direction: row;
-}
-
-.footer-links__list {
+.app-footer__links {
   margin: 0;
-  margin-left: var(--footer-link-gap);
-  margin-inline-start: var(--footer-link-gap);
   padding: 0;
 
   list-style: none;
 }
 
-.footer-links__list:first-of-type {
+.app-footer__link:first-of-type {
   margin-left: 0;
   margin-block-start: 0;
 }
 
-
-.footer-links__link {
+.app-footer__link {
   font-weight: var(--strong-font-weight);
 }
 
