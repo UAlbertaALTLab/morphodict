@@ -91,6 +91,7 @@ html {
   margin: 0 0 .75rem;
 }
 
+
 /**
  * ELEMENT app__content
  *
@@ -101,6 +102,16 @@ html {
 .app__content {
   flex: 1;
   margin-top: var(--medium-gap);
+}
+
+/**
+ * ELEMENT app__footer
+ *
+ * The footer for the entire application.
+ */
+.app__footer {
+  width: 100vw;
+  margin: 0 0 1rem;
 }
 
 /**
@@ -774,10 +785,7 @@ html {
  */
 .app-footer {
   /* Display & Box Model */
-  display: flex;
-  width: 100vw;
-  margin-top: 1rem;
-  margin-block-start: 1rem;
+  display: grid;
   padding: 1rem var(--page-gutter) var(--small-pad);
   padding-block-start: 1rem;
   padding-inline: var(--page-gutter);
