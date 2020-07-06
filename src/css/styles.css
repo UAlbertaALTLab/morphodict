@@ -111,7 +111,7 @@ html {
  */
 .app__footer {
   width: 100vw;
-  margin: 0 0 1rem;
+  margin: 1rem 0 0;
 }
 
 /**
@@ -786,10 +786,10 @@ html {
 .app-footer {
   /* Display & Box Model */
   display: grid;
-  padding: 1rem var(--page-gutter) var(--small-pad);
+  padding: 1rem var(--page-gutter) var(--page-gutter);
   padding-block-start: 1rem;
   padding-inline: var(--page-gutter);
-  padding-block-end: var(--small-pad);
+  padding-block-end: var(--page-gutter);
 
   /* Font */
   font-size: var(--footer-font-size);
@@ -798,6 +798,14 @@ html {
   color: var(--footer-text-color);
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
+
+  /* Grid */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "basic"
+   "advanced"
+   "copyright";
 }
 
 .app-footer a:link {
@@ -807,6 +815,16 @@ html {
 .app-footer__copyright {
   margin-top: 1rem;
   margin-block-start: 1rem;
+
+  grid-area: copyright;
+}
+
+.app-footer__site-links {
+  grid-area: basic;
+}
+
+.app-footer__advanced-links {
+  grid-area: advanced;
 }
 
 .app-footer__links {
@@ -823,6 +841,24 @@ html {
 
 .app-footer__link {
   font-weight: var(--strong-font-weight);
+}
+
+/**
+ * When the screen gets wide enough, we can display the three footer sections
+ * horizontally.
+ */
+@media (min-width: 768px) {
+  .app-footer {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "basic copyright advanced";
+  }
+
+  .app-footer__copyright {
+    margin-top: 0;
+    margin-block-start: 0;
+
+    text-align: center;
+  }
 }
 
 /**
