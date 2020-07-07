@@ -4,31 +4,25 @@ from collections import defaultdict
 from itertools import chain
 from pathlib import Path
 from typing import (
-    Iterable,
-    Optional,
+    DefaultDict,
     Dict,
-    Tuple,
-    Set,
+    Hashable,
+    Iterable,
     Iterator,
     List,
-    Hashable,
-    cast,
-    DefaultDict,
-    Union,
     NamedTuple,
+    Optional,
+    Set,
     TextIO,
+    Tuple,
+    Union,
+    cast,
 )
+from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from xml.dom import minidom
-
-from utils import (
-    WordClass,
-    XMLEntry,
-    NamedTupleFieldName,
-    HashableNamedTupleFieldValue,
-    XMLTranslation,
-)
+from utils import WordClass, XMLEntry, XMLTranslation
+from utils.types import HashableNamedTupleFieldValue, NamedTupleFieldName
 
 logger = logging.getLogger(__name__)
 

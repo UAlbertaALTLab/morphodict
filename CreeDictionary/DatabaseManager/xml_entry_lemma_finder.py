@@ -16,8 +16,9 @@ from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
-from utils import ConcatAnalysis, FSTLemma, WordClass, shared_res_dir, XMLEntry
+from utils import WordClass, XMLEntry, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
+from utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
 
