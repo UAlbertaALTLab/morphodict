@@ -226,7 +226,7 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
         return None
 
 
-def extract_lemma_and_word_class(
+def extract_lemma_text_and_word_class(
     analysis: str,
 ) -> Optional[Tuple[FSTLemma, WordClass]]:
     """

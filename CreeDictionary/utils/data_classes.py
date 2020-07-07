@@ -1,3 +1,4 @@
+from textwrap import dedent
 from typing import NamedTuple, Optional, Tuple
 
 from utils.types import ConcatAnalysis
@@ -34,10 +35,10 @@ class XMLEntry(NamedTuple):
     each instance represents an <e></e> element in the xml
     """
 
+    # this element refers to a lexicon/lexical/dictionary entry
     # this is not necessarily a lemma in our FST's lexicon
-    # to be distinguished from the variable name true_lemma/fst_lemma in DatabaseManager scripts,
-    # which refers to a lemma form the FST recognizes
-    lemma: str
+    # which may be a lemma, or an non-lemma inflected form, or a normally non-inflecting phrase (with spaces).
+    l: str
 
     # part of speech, a deprecated terminology. Roughly equivalent to "general word class"
     # all pos in crkeng.xml are (subject to change): {'', 'IPV', 'Pron', 'N', 'Ipc', 'V', '-'}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    {# todo: this example is outdated. find new example that generates two spellings #}
+    {# pisin+V+AI+Imp+Imm+2Sg used generates two spellings 'pisin'/ 'pisiniw' #} {# but now it generates only 'pisini'?? wtf linguists? #}
+    {#  both spelling should be imported as lemma  #}
+    <e>
+        <lg>
+            <l pos="V">pisin</l>
+            <lc>VAI-n</lc>
+            <stem>pisin-</stem>
+        </lg>
+        <mg>
+            <tg xml:lang="eng">
+                <t pos="V" sources="CW">s/he gets something in his/her eye</t>
+            </tg>
+        </mg>
+    </e>
+
+</r>

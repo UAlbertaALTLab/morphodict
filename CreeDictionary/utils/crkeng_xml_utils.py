@@ -1,3 +1,4 @@
+import logging
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from itertools import chain
@@ -15,12 +16,12 @@ from typing import (
     DefaultDict,
     Union,
     NamedTuple,
+    TextIO,
 )
 from xml.etree import ElementTree as ET
 
 from xml.dom import minidom
 
-from DatabaseManager.xml_importer import logger
 from utils import (
     WordClass,
     XMLEntry,
@@ -28,6 +29,8 @@ from utils import (
     NamedTupleFieldValue,
     XMLTranslation,
 )
+
+logger = logging.getLogger(__name__)
 
 
 def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
@@ -126,12 +129,12 @@ class IndexedXML(Iterable[XMLEntry]):
     # Add key or key combinations here when it's needed to lookup with certain keys
     # order does not matter here, they will be sorted in the built index
     INDEX_KEYS: List[Tuple[NamedTupleFieldName, ...]] = [
-        (
-            NamedTupleFieldName("lemma"),
-            NamedTupleFieldName("pos"),
-            NamedTupleFieldName("ic"),
-        ),
-        (NamedTupleFieldName("lemma"),),
+        # (
+        #     NamedTupleFieldName("l"),
+        #     NamedTupleFieldName("pos"),
+        #     NamedTupleFieldName("ic"),
+        # ),
+        (NamedTupleFieldName("l"),),
     ]
 
     def __iter__(self) -> Iterator[XMLEntry]:
@@ -176,13 +179,13 @@ class IndexedXML(Iterable[XMLEntry]):
         """
 
         # reminder/type hints: values we are extracting to compose XMLEntry
-        lemma: str
+        l: str
         pos: str
         ic: str
         stem: Optional[str]
         translations: Tuple[XMLTranslation, ...]
 
-        # extract lemma
+        # extract l
         l_element = element.find("lg/l")
         assert (
             l_element is not None
@@ -193,7 +196,7 @@ class IndexedXML(Iterable[XMLEntry]):
             raise ValueError(
                 f"<l> has empty text in entry \n {ET.tostring(element, encoding='unicode')}"
             )
-        lemma = l_element_text
+        l = l_element_text
 
         # extract pos
         maybe_pos = l_element.get("pos")
@@ -220,9 +223,7 @@ class IndexedXML(Iterable[XMLEntry]):
         if stem_element is None:
             stem = None
         else:
-            stem_element_text = stem_element.text
-            assert stem_element_text is not None
-            stem = stem_element_text
+            stem = stem_element.text
 
         # will cast to tuple later
         _translations: List[XMLTranslation] = []
@@ -236,17 +237,15 @@ class IndexedXML(Iterable[XMLEntry]):
 
         translations = tuple(_translations)
 
-        return XMLEntry(
-            lemma=lemma, pos=pos, ic=ic, stem=stem, translations=translations
-        )
+        return XMLEntry(l=l, pos=pos, ic=ic, stem=stem, translations=translations)
 
     @classmethod
-    def from_xml_file(cls, crkeng_xml: Path) -> "IndexedXML":
+    def from_xml_file(cls, crkeng_xml: TextIO) -> "IndexedXML":
         """
-        import entries from the given `crkeng_xml` Path
+        import entries from a given crkeng_xml
         """
 
-        root = ET.parse(str(crkeng_xml)).getroot()
+        root = ET.parse(crkeng_xml).getroot()
 
         # we build entries by iterating over <e></e> in the xml file
         entries: Set[XMLEntry] = {
