@@ -1,0 +1,49 @@
+name: "Animate noun full (linguistic) paradigm"
+paradigm: "noun-na.paradigm"
+layout:
+  type: "linguistic"
+tooltips:
+  eng:
+    "1s": "1st person singular possessor"
+    "2s": "2nd person singular possessor"
+    "3s": "3rd person singular possessor"
+    "1p": "1st person plural exclusive possessor"
+    "21": "1st person plural inclusive possessor"
+    "2p": "2nd person plural possessor"
+    "3p": "3rd person plural possessor"
+    "4": "Obviative possessor"
+--
+| "Singular"     | =N+A+Sg                 |                       |                          |                          |
+| "Plural"       | =N+A+Pl                 |                       |                          |                          |
+| "Obviative"    | =N+A+Obv                |                       |                          |                          |
+| "Locative"     | =N+A+Loc                |                       |                          |                          |
+| "Distributive" | =N+A+Distr              |                       |                          |                          |
+|                |                         |                       |                          |                          |
+|                | "DIMINUTIVE"            |                       |                          |                          |
+| "Singular"     | Der/Dim+N+A+Sg          |                       |                          |                          |
+| "Plural"       | Der/Dim+N+A+Pl          |                       |                          |                          |
+| "Obviative"    | Der/Dim+N+A+Obv         |                       |                          |                          |
+| "Locative"     | Der/Dim+N+A+Loc         |                       |                          |                          |
+| "Distributive" | Der/Dim+N+A+Distr       |                       |                          |                          |
+|                |                         |                       |                          |                          |
+|                | "POSSESSION"            |                       |                          |                          |
+|                | : "Singular"            | : "Plural"            | : "Obviative"            | : "Locative"             |
+| "1s"           | =N+A+Px1Sg+Sg           | =N+A+Px1Sg+Pl         | =N+A+Px1Sg+Obv           | =N+A+Px1Sg+Loc           |
+| "2s"           | =N+A+Px2Sg+Sg           | =N+A+Px2Sg+Pl         | =N+A+Px2Sg+Obv           | =N+A+Px2Sg+Loc           |
+| "3s"           |                         |                       | =N+A+Px3Sg+Obv           | =N+A+Px3Sg+Loc           |
+| "1p"           | =N+A+Px1Pl+Sg           | =N+A+Px1Pl+Pl         | =N+A+Px1Pl+Obv           | =N+A+Px1Pl+Loc           |
+| "21"           | =N+A+Px12Pl+Sg          | =N+A+Px12Pl+Pl        | =N+A+Px12Pl+Obv          | =N+A+Px12Pl+Loc          |
+| "2p"           | =N+A+Px2Pl+Sg           | =N+A+Px2Pl+Pl         | =N+A+Px2Pl+Obv           | =N+A+Px2Pl+Loc           |
+| "3p"           |                         |                       | =N+A+Px3Pl+Obv           | =N+A+Px3Pl+Loc           |
+| "4"            |                         |                       | =N+A+Px4Sg/Pl+Obv        | =N+A+Px4Sg/Pl+Loc        |
+|                |                         |                       |                          |                          |
+|                | "DIMINUTIVE POSSESSION" |                       |                          |                          |
+|                | : "Singular"            | : "Plural"            | : "Obviative"            | : "Locative"             |
+| "1s"           | Der/Dim+N+A+Px1Sg+Sg    | Der/Dim+N+A+Px1Sg+Pl  | Der/Dim+N+A+Px1Sg+Obv    | Der/Dim+N+A+Px1Sg+Loc    |
+| "2s"           | Der/Dim+N+A+Px2Sg+Sg    | Der/Dim+N+A+Px2Sg+Pl  | Der/Dim+N+A+Px2Sg+Obv    | Der/Dim+N+A+Px2Sg+Loc    |
+| "3s"           |                         |                       | Der/Dim+N+A+Px3Sg+Obv    | Der/Dim+N+A+Px3Sg+Loc    |
+| "1p"           | Der/Dim+N+A+Px1Pl+Sg    | Der/Dim+N+A+Px1Pl+Pl  | Der/Dim+N+A+Px1Pl+Obv    | Der/Dim+N+A+Px1Pl+Loc    |
+| "21"           | Der/Dim+N+A+Px12Pl+Sg   | Der/Dim+N+A+Px12Pl+Pl | Der/Dim+N+A+Px12Pl+Obv   | Der/Dim+N+A+Px12Pl+Loc   |
+| "2p"           | Der/Dim+N+A+Px2Pl+Sg    | Der/Dim+N+A+Px2Pl+Pl  | Der/Dim+N+A+Px2Pl+Obv    | Der/Dim+N+A+Px2Pl+Loc    |
+| "3p"           |                         |                       | Der/Dim+N+A+Px3Pl+Obv    | Der/Dim+N+A+Px3Pl+Loc    |
+| "4"            |                         |                       | Der/Dim+N+A+Px4Sg/Pl+Obv | Der/Dim+N+A+Px4Sg/Pl+Loc |

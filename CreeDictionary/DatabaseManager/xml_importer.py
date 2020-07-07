@@ -1,6 +1,4 @@
-import datetime
 import re
-import time
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from pathlib import Path
@@ -13,7 +11,7 @@ from typing import (
     Tuple,
 )
 
-from colorama import Fore, init
+from colorama import init
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
@@ -29,7 +27,6 @@ from utils import (
 )
 from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
-    extract_l_str,
     IndexedXML,
 )
 from utils.profiling import timed
