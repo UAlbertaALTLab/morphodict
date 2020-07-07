@@ -1,5 +1,5 @@
-name: "Animate intransitive verb full (plain) paradigm"
-paradigm: "verb-ai.paradigm"
+name: "Transitive inanimate verb full (plain) paradigm"
+paradigm: "verb-ti.paradigm"
 layout:
   type: "full"
 tooltips:

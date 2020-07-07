@@ -1,0 +1,33 @@
+name: "Inanimate noun full (plain) paradigm"
+paradigm: "noun-nid.paradigm"
+layout:
+  type: "basic"
+tooltips:
+  eng:
+    "my": "1st person singular possessor"
+    "your (one)": "2nd person singular possessor"
+    "his/her": "3rd person singular possessor"
+    "our": "1st person plural exclusive possessor"
+    "your and our": "1st person plural inclusive possessor"
+    "your (all)": "2nd person plural possessor"
+    "their": "3rd person plural possessor"
+    "his/her/their (further)": "obviative possessor"
+    "someone's": "unspecified possessor"
+    "One": "Singular"
+    "Many": "Plural"
+    "Further": "Obviative"
+    "In/On": "Locative"
+    "Among": "Distributive"
+    "Smaller/Lesser/Younger": "Diminutive"
+    "Ownership": "Possession"
+--
+|              |                 |
+|              | : "One"         |
+| "my"         | =N+I+D+Px1Sg+Sg |
+| "your (one)" | =N+I+D+Px2Sg+Sg |
+| "his/her"    | =N+I+D+Px3Sg+Sg |
+|              |                 |
+|              | : "someone's"   |
+| "One"        | =N+I+D+PxX+Sg   |
+| "Many"       | =N+I+D+PxX+Pl   |
+| "In/On"      | =N+I+D+PxX+Loc  |
