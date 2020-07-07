@@ -15,40 +15,41 @@ from utils.paradigm_layout_combiner import Combiner
 LayoutID = Tuple[WordClass, ParadigmSize]
 
 
-def import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
-    """
-    Combine .layout files and .paradigm files and import into memory
-
-    :param paradigm_dir: the directory that has .paradigms files
-    :param layout_dir: the directory that has .layout files and .layout.csv files
-    """
-    combiner = Combiner(layout_dir, paradigm_dir, generator_hfstol_path)
-
-    layout_tables = {}
-
-    for wc in WordClass:
-        if not wc.has_inflections():
-            continue
-        for size in ParadigmSize:
-
-            layout_tables[(wc, size)] = rows_to_layout(
-                combiner.get_combined_table(wc, size)
-            )
-
-    return layout_tables
-
-
 class ParadigmFiller:
     _layout_tables: Dict[LayoutID, Layout]
 
-    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
+    @staticmethod
+    def _import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
         """
-        reads all of .tsv layout files into memory.
+        Combine .layout files and .paradigm files and import into memory
+
+        :param paradigm_dir: the directory that has .paradigms files
+        :param layout_dir: the directory that has .layout files and .layout.csv files
+        """
+        combiner = Combiner(layout_dir, paradigm_dir)
+
+        layout_tables = {}
+
+        for wc in WordClass:
+            if not wc.has_inflections():
+                continue
+            for size in ParadigmSize:
+                layout_tables[(wc, size)] = rows_to_layout(
+                    combiner.get_combined_table(wc, size)
+                )
+
+        return layout_tables
+
+    def __init__(
+        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
+    ):
+        """
+        Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
 
-        :param layout_dir: the directory for useful.layout.tsv files
+        :param layout_dir: the directory for .layout and .layout.cvs files
         """
-        self._layout_tables = import_layouts(layout_dir)
+        self._layout_tables = self._import_layouts(layout_dir, paradigm_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
@@ -57,7 +58,8 @@ class ParadigmFiller:
         Return a filler that uses .layout files, .paradigm files and the fst from the res folder
         """
         return ParadigmFiller(
-            shared_res_dir / "prefilled_layouts",
+            shared_res_dir / "layouts",
+            shared_res_dir / "paradigms",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
 

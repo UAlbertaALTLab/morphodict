@@ -6,16 +6,19 @@ Note: if the upstream layouts change, so will these tests!
 
 import pytest
 from paradigm import EmptyRow, Heading, Label, TitleRow
-from shared import paradigm_filler
-from utils import ParadigmSize, WordClass, shared_res_dir
-from utils.paradigm_filler import import_layouts
+from utils import ParadigmSize, WordClass
+from utils.paradigm_filler import ParadigmFiller
 
 
-def test_import_prefilled_layouts() -> None:
+def test_import_prefilled_layouts(shared_datadir) -> None:
     """
     Imports ALL of the layouts, and makes sure a NA gets filled out.
     """
-    prefilled_layouts = import_layouts()
+    # these layout and paradigm files are pinned test data
+    # the real files in use are hosted under res/ folder
+    prefilled_layouts = ParadigmFiller._import_layouts(
+        shared_datadir / "layouts", shared_datadir / "paradigms"
+    )
     assert prefilled_layouts[WordClass.NA, ParadigmSize.BASIC] == [
         [Label("One"), "{{ lemma }}+N+A+Sg"],
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
@@ -113,7 +116,16 @@ def test_import_prefilled_layouts() -> None:
         )
     ],
 )
-def test_fill_NA_Full(lemma, inflection_category, paradigm_size, expected_table):
+def test_fill_NA_Full(
+    shared_datadir, lemma, inflection_category, paradigm_size, expected_table
+):
+    # these layout, paradigm, and hfstol files are pinned test data
+    # the real files in use are hosted under res/ folder
+    paradigm_filler = ParadigmFiller(
+        shared_datadir / "layouts",
+        shared_datadir / "paradigms",
+        shared_datadir / "crk-normative-generator.hfstol",
+    )
     assert (
         paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
         == expected_table
