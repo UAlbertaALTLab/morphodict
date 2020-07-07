@@ -9,9 +9,9 @@ ConcatAnalysis = NewType("ConcatAnalysis", str)
 
 NamedTupleFieldName = NewType("NamedTupleFieldName", str)
 
-# NamedTupleFieldValue = NewType("NamedTupleFieldName", Hashable) doesn't really work
+# HashableNamedTupleFieldValue = NewType("HashableNamedTupleFieldValue", Hashable) doesn't really work
 
 
-class NamedTupleFieldValue(Protocol):
+class HashableNamedTupleFieldValue(Protocol):
     def __hash__(self):
         ...

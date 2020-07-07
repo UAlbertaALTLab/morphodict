@@ -5,19 +5,19 @@ import csv
 from collections import defaultdict
 from itertools import chain
 from string import Template
-from typing import Any, Dict, List, Optional, Set, Tuple
+from typing import Dict, List, Optional, Set, Tuple
+
+from colorama import Fore, init
+from typing_extensions import Literal
 
 import utils
-from colorama import Fore, init
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
-from typing_extensions import Literal
 from utils import ConcatAnalysis, FSTLemma, WordClass, shared_res_dir, XMLEntry
 from utils.crkeng_xml_utils import IndexedXML
-from utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
 

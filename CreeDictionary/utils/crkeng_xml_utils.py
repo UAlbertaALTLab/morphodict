@@ -26,7 +26,7 @@ from utils import (
     WordClass,
     XMLEntry,
     NamedTupleFieldName,
-    NamedTupleFieldValue,
+    HashableNamedTupleFieldValue,
     XMLTranslation,
 )
 
@@ -117,7 +117,7 @@ class IndexedXML(Iterable[XMLEntry]):
     # --- alias for type hints---
     Indexes = Dict[
         Tuple[NamedTupleFieldName, ...],
-        Dict[Tuple[NamedTupleFieldValue, ...], Set[XMLEntry]],
+        Dict[Tuple[HashableNamedTupleFieldValue, ...], Set[XMLEntry]],
     ]
 
     # --- Instance attribute type hints ---
@@ -271,7 +271,7 @@ class IndexedXML(Iterable[XMLEntry]):
 
         # helper type hint
         _SingleKeyIndexes = Dict[
-            NamedTupleFieldName, Dict[NamedTupleFieldValue, Set[XMLEntry]]
+            NamedTupleFieldName, Dict[HashableNamedTupleFieldValue, Set[XMLEntry]]
         ]
 
         single_key_indexes: _SingleKeyIndexes = {}
@@ -283,7 +283,7 @@ class IndexedXML(Iterable[XMLEntry]):
 
         indexes: Dict[
             Tuple[NamedTupleFieldName, ...],
-            Dict[Tuple[NamedTupleFieldValue, ...], Set[XMLEntry]],
+            Dict[Tuple[HashableNamedTupleFieldValue, ...], Set[XMLEntry]],
         ] = {tuple(sorted(field_names)): {} for field_names in cls.INDEX_KEYS}
 
         for sorted_field_names, values_to_entries in indexes.items():
@@ -308,7 +308,7 @@ class IndexedXML(Iterable[XMLEntry]):
 
         self._indexes = self._build_indexes(entries)
 
-    def filter(self, **constraints: NamedTupleFieldValue) -> Set[XMLEntry]:
+    def filter(self, **constraints: HashableNamedTupleFieldValue) -> Set[XMLEntry]:
         """
         A lookup method that mimics django's queryset API. Except the relevant indexes must be built in advance.
         The returned set is empty when no matching entries are found
@@ -330,7 +330,7 @@ class IndexedXML(Iterable[XMLEntry]):
 
     def values_list(
         self, *field_names, flat=False, named=False
-    ) -> List[Union[tuple, NamedTuple, NamedTupleFieldValue]]:
+    ) -> List[Union[tuple, NamedTuple, HashableNamedTupleFieldValue]]:
         """
         mimics django's QuerySet.values_list method
 
