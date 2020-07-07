@@ -3,7 +3,7 @@
 	<source id="CW">
 		
       
-		<title>Cree : Words / nēhiyawēwin : itwēwina</title>
+		<title>Cree : Words / nehiyawewin : itwēwina</title>
 		
    
 	</source>
@@ -17,6 +17,7 @@
    
 	</source>
 	
+
 
 
 	<e>
@@ -6256,21 +6257,6 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He is here/there. (Animate) E.g. Ekota ki ayaw. He was there.</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
 				<t pos="V" sources="CW">it is, it is there</t>
 				
    
@@ -6308,7 +6294,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He is here/there. (Animate) E.g. Ekota ki ayaw. He was there.</t>
+				<t pos="V" sources="MD">He owns: he has.</t>
 				
    
 			</tg>
@@ -6360,7 +6346,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He is here/there. (Animate) E.g. Ekota ki ayaw. He was there.</t>
+				<t pos="V" sources="MD">He is here/there. (Animate) E.g. 'êkota kî-ayâw.' He was there.</t>
 				
    
 			</tg>
@@ -15453,7 +15439,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="N" sources="CW">breakfast</t>
+				<t pos="N" sources="MD CW">breakfast</t>
 				
    
 			</tg>
@@ -15860,7 +15846,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">Day; v - It is day.</t>
+				<t pos="V" sources="MD">It is day.</t>
 				
    
 			</tg>
@@ -15912,22 +15898,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="N" sources="MD">Day; v - It is day.</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="N" sources="CW">day</t>
+				<t pos="N" sources="MD CW">day</t>
 				
    
 			</tg>
@@ -21819,6 +21790,21 @@
 			<tg xml:lang="eng">
 				
        
+				<t pos="V" sources="MD">He eats.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
 				<t pos="V" sources="CW">s/he eats, s/he has a meal</t>
 				
    
@@ -21967,6 +21953,21 @@
 			<tg xml:lang="eng">
 				
        
+				<t pos="N" sources="MD">Eating. A meal.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
 				<t pos="N" sources="CW">meal; eating, eating habits, food</t>
 				
    
@@ -22033,6 +22034,21 @@
 			
    
 		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A table.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
 		
    
 		<mg>
@@ -22181,6 +22197,21 @@
 			
    
 		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD">A lunch. Not a full meal.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
 		
    
 		<mg>
@@ -31791,6 +31822,21 @@
 			<tg xml:lang="eng">
 				
        
+				<t pos="V" sources="MD">He wants to eat.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
 				<t pos="V" sources="CW">s/he is hungry; s/he wants to eat, s/he would like to eat</t>
 				
    
@@ -36407,7 +36453,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="N" sources="CW">supper, evening meal</t>
+				<t pos="N" sources="MD CW">supper, evening meal</t>
 				
    
 			</tg>
@@ -44156,21 +44202,6 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="N" sources="MD">It is winter.</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
 				<t pos="N" sources="CW">year, winter</t>
 				
    
@@ -46571,7 +46602,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="CW">s/he sees through s.o.; s/he takes s.o.'s x-ray</t>
+				<t pos="V" sources="MD CW">s/he sees through s.o.; s/he takes s.o.'s x-ray</t>
 				
    
 			</tg>
@@ -52774,6 +52805,21 @@
 			
    
 		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="MD">He sees him.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
 		
    
 		<mg>

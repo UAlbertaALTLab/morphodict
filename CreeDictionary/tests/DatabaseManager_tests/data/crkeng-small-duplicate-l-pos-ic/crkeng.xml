@@ -9,8 +9,6 @@
     </source>
 
     {# these two entrieshave common analysis: pisin+V+AI+Imp+Imm+2Sg#}
-    {#  There definition should be merged  #}
-    {#  There are 2 duplicate definitions. They should be merged  #}
     <e>
         <lg>
             <l pos="N">asawâpiwin</l>

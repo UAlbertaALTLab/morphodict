@@ -23,8 +23,8 @@ def test_import_nice_xml(shared_datadir):
 @pytest.mark.xfail(
     reason="fst is updated. Need a new example that generates multiple spellings"
 )
-def test_import_xml_lemma_w_multiple_spellings(shared_datadir):
-    migrate_and_import(shared_datadir / "crkeng-small-lemma-w-multiple-spelling")
+def test_import_lemma_with_multiple_spellings(shared_datadir):
+    migrate_and_import(shared_datadir / "crkeng-small-lemma-with-multiple-spelling")
 
     pisin_lemma = Wordform.objects.filter(text="pisin", is_lemma=True).get()
 
@@ -60,21 +60,25 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
 
 
 @pytest.mark.django_db
-def test_import_xml_crkeng_small_duplicate_l_pos_ic_definition_merge(shared_datadir):
-    migrate_and_import(
-        shared_datadir / "crkeng-small-duplicate-l-pos-ic-definition-merge"
-    )
-    assert len(Wordform.objects.get(text="asawâpiwin").definitions.all()) == 3
+def test_import_xml_crkeng_small_duplicate_l_pos_ic(shared_datadir):
+    # This test shows the behavior of the importer when entries with duplicate (l, pos, ic) in the xml file exists
+    # It's a rare case
+
+    # two Wordform objects will be created, each with the pooled translations from the two entries
+    migrate_and_import(shared_datadir / "crkeng-small-duplicate-l-pos-ic")
+
+    lemmas = Wordform.objects.filter(text="asawâpiwin", is_lemma=True)
+    assert lemmas.count() == 2
+    assert {len(o.definitions.all()) for o in lemmas} == {4}
 
 
 @pytest.mark.django_db
-def test_import_xml_crkeng_small_common_xml_lemma_different_ic(shared_datadir):
-    migrate_and_import(shared_datadir / "crkeng-small-common-xml-lemma-should-merge")
-    assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 1
-    assert (
-        Wordform.objects.filter(text="pisiw", is_lemma=True).get().definitions.count()
-        == 2
-    )
+def test_import_xml_crkeng_small_common_xml_l_different_ic(shared_datadir):
+    # This test shows the behavior of the importer when entries with the same l but different ic in the xml file exists
+    # These entries will be identified as belonging to different lemmas
+
+    migrate_and_import(shared_datadir / "crkeng-small-common-xml-l-different-ic")
+    assert len(Wordform.objects.filter(text="pisiw", is_lemma=True)) == 2
 
 
 def test_load_engcrk():
