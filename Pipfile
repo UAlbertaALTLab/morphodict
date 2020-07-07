@@ -55,10 +55,6 @@ import-xml = "sh ./libexec/import.sh"
 # It takes about half a minute with -m 2
 # example usage: `pipenv run build-test-db -m 2`
 build-test-db = "sh ./libexec/build_test_db.sh"
-# reminders/alias. you can just use $ update-layouts after pipenv shell
-# 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
-# 2. combine them to res/prefilled-layouts/, which is then used at runtime
-update-layouts = 'update-layouts'
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.

@@ -8,14 +8,14 @@ import pytest
 from paradigm import EmptyRow, Heading, Label, TitleRow
 from shared import paradigm_filler
 from utils import ParadigmSize, WordClass, shared_res_dir
-from utils.paradigm_filler import import_prefilled_layouts
+from utils.paradigm_filler import import_layouts
 
 
 def test_import_prefilled_layouts() -> None:
     """
     Imports ALL of the layouts, and makes sure a NA gets filled out.
     """
-    prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
+    prefilled_layouts = import_layouts()
     assert prefilled_layouts[WordClass.NA, ParadigmSize.BASIC] == [
         [Label("One"), "{{ lemma }}+N+A+Sg"],
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
@@ -80,7 +80,7 @@ def test_import_prefilled_layouts() -> None:
                     ],
                     [Label(text="his/her"), "", "", "oniskima", "oniskimihk"],
                     [
-                        Label(text="our"),
+                        Label(text="our (but not your)"),
                         "niniskiminân",
                         "niniskiminânak",
                         "niniskiminâna",

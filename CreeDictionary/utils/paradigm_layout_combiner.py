@@ -304,20 +304,3 @@ class Combiner:
                     layout_table[rowInd][colInd] = replaced
 
         return layout_table
-
-
-def combine_layout_paradigm():
-    combiner = Combiner.default_combiner()
-
-    for ic in WordClass:
-        if not ic.has_inflections():
-            continue
-        for size in ParadigmSize:
-            filename = f"{ic.value.lower()}-{size.value.lower()}.tsv"
-            layout_path = shared_res_dir / "prefilled_layouts" / filename
-            with layout_path.open("w", encoding="UTF-8", newline="") as file:
-                a = combiner.get_combined_table(ic, size)
-                writer = csv.writer(
-                    file, delimiter="\t", quotechar="'", lineterminator="\n"
-                )
-                writer.writerows(a)

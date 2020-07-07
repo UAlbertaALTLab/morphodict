@@ -9,28 +9,31 @@ from typing import Dict, List, Tuple
 
 import hfstol
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
-from utils import ParadigmSize, WordClass
+from utils import ParadigmSize, WordClass, shared_res_dir
+from utils.paradigm_layout_combiner import Combiner
 
 LayoutID = Tuple[WordClass, ParadigmSize]
 
 
-def import_prefilled_layouts(layout_file_dir: Path) -> Dict[LayoutID, Layout]:
+def import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
     """
+    Combine .layout files and .paradigm files and import into memory
 
+    :param paradigm_dir: the directory that has .paradigms files
+    :param layout_dir: the directory that has .layout files and .layout.csv files
     """
+    combiner = Combiner(layout_dir, paradigm_dir, generator_hfstol_path)
+
     layout_tables = {}
 
-    for layout_file in layout_file_dir.glob("*.tsv"):
-        name_wo_extension = layout_file.stem
-        wc_str, size_str = name_wo_extension.split("-")
-        wc = WordClass(wc_str.upper())
-        size = ParadigmSize(size_str.upper())
+    for wc in WordClass:
+        if not wc.has_inflections():
+            continue
+        for size in ParadigmSize:
 
-        with open(str(layout_file), "r") as f:
-            reader = csv.reader(f, delimiter="\t", quotechar="'")
-            # TODO: convert the raw layout into a normal layout
-            layout = rows_to_layout(reader)
-        layout_tables[(wc, size)] = layout
+            layout_tables[(wc, size)] = rows_to_layout(
+                combiner.get_combined_table(wc, size)
+            )
 
     return layout_tables
 
@@ -45,17 +48,17 @@ class ParadigmFiller:
 
         :param layout_dir: the directory for useful.layout.tsv files
         """
-        self._layout_tables = import_prefilled_layouts(layout_dir)
+        self._layout_tables = import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
     def default_filler(cls):
         """
-        Return a filler that uses prefilled layout files and fst from the res folder
+        Return a filler that uses .layout files, .paradigm files and the fst from the res folder
         """
-        res = Path(dirname(__file__)) / ".." / "res"
         return ParadigmFiller(
-            res / "prefilled_layouts", res / "fst" / "crk-normative-generator.hfstol"
+            shared_res_dir / "prefilled_layouts",
+            shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
 
     def fill_paradigm(

@@ -44,7 +44,7 @@ tooltips:
 | "I"                   | Ind+Prt+1Sg                         | PV/e+*+Cnj+Prt+1Sg        |
 | "you (one)"           | Ind+Prt+2Sg                         | PV/e+*+Cnj+Prt+2Sg        |
 | "s/he"                | Ind+Prt+3Sg                         | PV/e+*+Cnj+Prt+3Sg        |
-| "we (but not you)     | Ind+Prt+1Pl                         | PV/e+*+Cnj+Prt+1Pl        |
+| "we (but not you)"    | Ind+Prt+1Pl                         | PV/e+*+Cnj+Prt+1Pl        |
 | "you and we"          | Ind+Prt+12Pl                        | PV/e+*+Cnj+Prt+12Pl       |
 | "you (all)"           | Ind+Prt+2Pl                         | PV/e+*+Cnj+Prt+2Pl        |
 | "they"                | Ind+Prt+3Pl                         | PV/e+*+Cnj+Prt+3Pl        |
@@ -55,7 +55,7 @@ tooltips:
 | "I"                   | Ind+Fut+Int+1Sg                     | PV/e+*+Cnj+Fut+Int+1Sg    |
 | "you (one)"           | Ind+Fut+Int+2Sg                     | PV/e+*+Cnj+Fut+Int+2Sg    |
 | "s/he"                | Ind+Fut+Int+3Sg                     | PV/e+*+Cnj+Fut+Int+3Sg    |
-| "we (but not you)     | Ind+Fut+Int+1Pl                     | PV/e+*+Cnj+Fut+Int+1Pl    |
+| "we (but not you)"    | Ind+Fut+Int+1Pl                     | PV/e+*+Cnj+Fut+Int+1Pl    |
 | "you and we"          | Ind+Fut+Int+12Pl                    | PV/e+*+Cnj+Fut+Int+12Pl   |
 | "you (all)"           | Ind+Fut+Int+2Pl                     | PV/e+*+Cnj+Fut+Int+2Pl    |
 | "they"                | Ind+Fut+Int+3Pl                     | PV/e+*+Cnj+Fut+Int+3Pl    |
@@ -66,7 +66,7 @@ tooltips:
 | "I"                   | Ind+Fut+Def+1Sg                     |                           |
 | "you (one)"           | Ind+Fut+Def+2Sg                     |                           |
 | "s/he"                | Ind+Fut+Def+3Sg                     |                           |
-| "we (but not you)     | Ind+Fut+Def+1Pl                     |                           |
+| "we (but not you)"    | Ind+Fut+Def+1Pl                     |                           |
 | "you and we"          | Ind+Fut+Def+12Pl                    |                           |
 | "you (all)"           | Ind+Fut+Def+2Pl                     |                           |
 | "they"                | Ind+Fut+Def+3Pl                     |                           |
@@ -77,7 +77,7 @@ tooltips:
 | "I"                   | PV/ka+*+Cnj+Prs+1Sg                 | PV/ta+*+Cnj+Prs+1Sg       |
 | "you (one)"           | PV/ka+*+Cnj+Prs+2Sg                 | PV/ta+*+Cnj+Prs+2Sg       |
 | "s/he"                | PV/ka+*+Cnj+Prs+3Sg                 | PV/ta+*+Cnj+Prs+3Sg       |
-| "we (but not you)     | PV/ka+*+Cnj+Prs+1Pl                 | PV/ta+*+Cnj+Prs+1Pl       |
+| "we (but not you)"    | PV/ka+*+Cnj+Prs+1Pl                 | PV/ta+*+Cnj+Prs+1Pl       |
 | "you and we"          | PV/ka+*+Cnj+Prs+12Pl                | PV/ta+*+Cnj+Prs+12Pl      |
 | "you (all)"           | PV/ka+*+Cnj+Prs+2Pl                 | PV/ta+*+Cnj+Prs+2Pl       |
 | "they"                | PV/ka+*+Cnj+Prs+3Pl                 | PV/ta+*+Cnj+Prs+3Pl       |
@@ -87,7 +87,7 @@ tooltips:
 | "I"                   | Fut+Cond+1Sg                        |                           |
 | "you (one)"           | Fut+Cond+2Sg                        |                           |
 | "s/he"                | Fut+Cond+3Sg                        |                           |
-| "we (but not you)     | Fut+Cond+1Pl                        |                           |
+| "we (but not you)"    | Fut+Cond+1Pl                        |                           |
 | "you and we"          | Fut+Cond+12Pl                       |                           |
 | "you (all)"           | Fut+Cond+2Pl                        |                           |
 | "they"                | Fut+Cond+3Pl                        |                           |
