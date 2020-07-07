@@ -21,7 +21,8 @@ from typing import (
 from xml.dom import minidom
 from xml.etree import ElementTree as ET
 
-from utils import WordClass, XMLEntry, XMLTranslation
+from utils import WordClass
+from utils.data_classes import XMLEntry, XMLTranslation
 from utils.types import HashableNamedTupleFieldValue, NamedTupleFieldName
 
 logger = logging.getLogger(__name__)
