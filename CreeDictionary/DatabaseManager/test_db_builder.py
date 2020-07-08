@@ -49,15 +49,15 @@ def build_test_xml(multi_processing: int = 2):
     engcrk_root = ET.parse(str(engcrk_file_path)).getroot()
 
     # relevant entries in crkeng.xml file we want to determine
-    relevant_xml_lemmas: Set[str] = set()
+    relevant_xml_ls: Set[str] = set()
     # relevant entries in engcrk.xml file we want to determine
     relevant_eng_words: Set[str] = set()
 
-    xml_lemmas: Set[str] = set()
+    xml_ls: Set[str] = set()
     crkeng_entries = crkeng_root.findall(".//e")
     for element in crkeng_entries:
-        xml_lemma = extract_l_str(element)
-        xml_lemmas.add(xml_lemma)
+        xml_l = extract_l_str(element)
+        xml_ls.add(xml_l)
 
     engcrk_elements = engcrk_root.findall(".//e")
     eng_word_to_cree_words: Dict[str, List[str]] = defaultdict(list)
@@ -92,9 +92,9 @@ def build_test_xml(multi_processing: int = 2):
 
     test_words = get_test_words()
 
-    print(f"Analyzing xml lemmas and test words with {multi_processing} processes")
+    print(f"Analyzing xml l elements and test words with {multi_processing} processes")
     word_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
-        xml_lemmas | test_words | set(chain(*eng_word_to_cree_words.values())),
+        xml_ls | test_words | set(chain(*eng_word_to_cree_words.values())),
         multi_process=multi_processing,
     )
     print("Analysis done")
@@ -107,14 +107,14 @@ def build_test_xml(multi_processing: int = 2):
             assert lemma is not None
             test_word_lemmas.add(lemma)
 
-    for xml_lemma in tqdm(xml_lemmas, desc="screening relevant entries in crkeng.xml"):
-        if xml_lemma in test_words:
-            relevant_xml_lemmas.add(xml_lemma)
+    for xml_l in tqdm(xml_ls, desc="screening relevant entries in crkeng.xml"):
+        if xml_l in test_words:
+            relevant_xml_ls.add(xml_l)
             continue
-        for xml_lemma_analysis in word_to_analyses[xml_lemma]:
+        for xml_l_analysis in word_to_analyses[xml_l]:
             for test_word_lemma in test_word_lemmas:
-                if test_word_lemma in xml_lemma_analysis:
-                    relevant_xml_lemmas.add(xml_lemma)
+                if test_word_lemma in xml_l_analysis:
+                    relevant_xml_ls.add(xml_l)
                     break
 
     for eng_word in tqdm(
@@ -131,8 +131,8 @@ def build_test_xml(multi_processing: int = 2):
     relevant_crkeng_entries = []
 
     for element in crkeng_entries:
-        xml_lemma = extract_l_str(element)
-        if xml_lemma in relevant_xml_lemmas:
+        xml_l = extract_l_str(element)
+        if xml_l in relevant_xml_ls:
             relevant_crkeng_entries.append(element)
 
     relevant_engcrk_entries = []

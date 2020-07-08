@@ -1,0 +1,111 @@
+name: "verbs - intransitive animate (VAI)"
+morphology:
+  pos: V
+  animacy:
+    - AI
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VAI-n"
+    - "VAI-v"
+--
+{{ lemma }}+V+AI+Ind+Prs+1Sg
+{{ lemma }}+V+AI+Ind+Prs+2Sg
+{{ lemma }}+V+AI+Ind+Prs+3Sg
+{{ lemma }}+V+AI+Ind+Prs+1Pl
+{{ lemma }}+V+AI+Ind+Prs+12Pl
+{{ lemma }}+V+AI+Ind+Prs+2Pl
+{{ lemma }}+V+AI+Ind+Prs+3Pl
+{{ lemma }}+V+AI+Ind+Prs+4Sg/Pl
+{{ lemma }}+V+AI+Ind+Prs+X
+
+{{ lemma }}+V+AI+Ind+Prt+1Sg
+{{ lemma }}+V+AI+Ind+Prt+2Sg
+{{ lemma }}+V+AI+Ind+Prt+3Sg
+{{ lemma }}+V+AI+Ind+Prt+1Pl
+{{ lemma }}+V+AI+Ind+Prt+12Pl
+{{ lemma }}+V+AI+Ind+Prt+2Pl
+{{ lemma }}+V+AI+Ind+Prt+3Pl
+{{ lemma }}+V+AI+Ind+Prt+4Sg/Pl
+
+{{ lemma }}+V+AI+Ind+Fut+Int+1Sg
+{{ lemma }}+V+AI+Ind+Fut+Int+2Sg
+{{ lemma }}+V+AI+Ind+Fut+Int+3Sg
+{{ lemma }}+V+AI+Ind+Fut+Int+1Pl
+{{ lemma }}+V+AI+Ind+Fut+Int+12Pl
+{{ lemma }}+V+AI+Ind+Fut+Int+2Pl
+{{ lemma }}+V+AI+Ind+Fut+Int+3Pl
+{{ lemma }}+V+AI+Ind+Fut+Int+4Sg/Pl
+
+{{ lemma }}+V+AI+Ind+Fut+Def+1Sg
+{{ lemma }}+V+AI+Ind+Fut+Def+2Sg
+{{ lemma }}+V+AI+Ind+Fut+Def+3Sg
+{{ lemma }}+V+AI+Ind+Fut+Def+1Pl
+{{ lemma }}+V+AI+Ind+Fut+Def+12Pl
+{{ lemma }}+V+AI+Ind+Fut+Def+2Pl
+{{ lemma }}+V+AI+Ind+Fut+Def+3Pl
+{{ lemma }}+V+AI+Ind+Fut+Def+4Sg/Pl
+
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+1Sg
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+2Sg
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+3Sg
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+1Pl
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+12Pl
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+2Pl
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+3Pl
+PV/ka+{{ lemma }}+V+AI+Cnj+Prs+4Sg/Pl
+
+{{ lemma }}+V+AI+Fut+Cond+1Sg
+{{ lemma }}+V+AI+Fut+Cond+2Sg
+{{ lemma }}+V+AI+Fut+Cond+3Sg
+{{ lemma }}+V+AI+Fut+Cond+1Pl
+{{ lemma }}+V+AI+Fut+Cond+12Pl
+{{ lemma }}+V+AI+Fut+Cond+2Pl
+{{ lemma }}+V+AI+Fut+Cond+3Pl
+{{ lemma }}+V+AI+Fut+Cond+4Sg/Pl
+
+{{ lemma }}+V+AI+Imp+Imm+2Sg
+{{ lemma }}+V+AI+Imp+Imm+12Pl
+{{ lemma }}+V+AI+Imp+Imm+2Pl
+
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+1Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+2Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+3Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+1Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+12Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+2Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+3Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+4Sg/Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prs+X
+
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+1Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+2Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+3Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+1Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+12Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+2Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+3Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Prt+4Sg/Pl
+
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+1Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+2Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+3Sg
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+1Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+12Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+2Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+3Pl
+PV/e+{{ lemma }}+V+AI+Cnj+Fut+Int+4Sg/Pl
+
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+1Sg
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+2Sg
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+3Sg
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+1Pl
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+12Pl
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+2Pl
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+3Pl
+PV/ta+{{ lemma }}+V+AI+Cnj+Prs+4Sg/Pl
+
+{{ lemma }}+V+AI+Imp+Del+2Sg
+{{ lemma }}+V+AI+Imp+Del+12Pl
+{{ lemma }}+V+AI+Imp+Del+2Pl
