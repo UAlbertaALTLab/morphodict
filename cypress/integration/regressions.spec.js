@@ -300,9 +300,10 @@ context('Regressions', () => {
    * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/489
    */
   context('symbols also for pronouns and preverbs', function () {
+    // TODO: add emoji to represent ôma/awa words
     const testCases = [
-      ['niya', '→🧑', 'like: awa'],
-      ['ôma', '→💧', 'like: ôma'],
+      ['niya', '→', 'like: awa'],
+      ['ôma', '→', 'like: ôma'],
       ['nitawi-', '⚡️', 'like: pê-'],
     ]
 
