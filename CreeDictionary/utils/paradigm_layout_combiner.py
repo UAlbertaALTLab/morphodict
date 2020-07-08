@@ -19,6 +19,7 @@ from pathlib import Path
 from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
+
 from utils import ParadigmSize, WordClass
 from utils.shared_res_dir import shared_res_dir
 
@@ -47,9 +48,11 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     layout_tables: LayoutTable = {}
 
     legacy_neahtta_layout_files = list(layout_file_dir.glob("*.layout"))
-    simple_tsv_files = list(layout_file_dir.glob("*.layout.csv"))
-    assert len(simple_tsv_files) > 0
-    files = legacy_neahtta_layout_files + simple_tsv_files
+    simple_csv_files = list(layout_file_dir.glob("*.layout.csv"))
+    simple_tsv_files = list(layout_file_dir.glob("*.layout.tsv"))
+
+    assert len(simple_csv_files) > 0
+    files = legacy_neahtta_layout_files + simple_csv_files + simple_tsv_files
 
     for layout_file in files:
         # Get rid of .layout or .csv
@@ -80,7 +83,7 @@ def parse_layout(layout_file: Path) -> Table:
     """
     Parses a layout and returns a "layout".
     """
-    if layout_file.match("*.csv"):
+    if layout_file.match("*.csv") or layout_file.match("*.tsv"):
         return parse_csv_layout(layout_file)
     else:
         assert layout_file.match("*.layout")
