@@ -1,12 +1,12 @@
+from io import StringIO
 from textwrap import dedent
 from typing import List, Tuple
 
 import pytest
-from DatabaseManager.xml_entry_lemma_finder import identify_entries
-from utils import XMLEntry, XMLTranslation
-from io import StringIO
 
+from DatabaseManager.xml_entry_lemma_finder import identify_entries
 from utils.crkeng_xml_utils import IndexedXML
+from utils.data_classes import XMLEntry, XMLTranslation
 
 
 def _xml_translation_to_str(xml_translation: XMLTranslation) -> str:
