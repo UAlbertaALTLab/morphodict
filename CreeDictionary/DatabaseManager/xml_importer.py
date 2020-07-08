@@ -4,9 +4,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
 
-from colorama import init
-
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
+from colorama import init
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger

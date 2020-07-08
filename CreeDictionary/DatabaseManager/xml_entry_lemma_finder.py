@@ -7,15 +7,14 @@ from itertools import chain
 from string import Template
 from typing import Dict, List, Optional, Set, Tuple
 
-from colorama import Fore, init
-from typing_extensions import Literal
-
 import utils.fst_analysis_parser
+from colorama import Fore, init
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
+from typing_extensions import Literal
 from utils import WordClass, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
 from utils.data_classes import XMLEntry

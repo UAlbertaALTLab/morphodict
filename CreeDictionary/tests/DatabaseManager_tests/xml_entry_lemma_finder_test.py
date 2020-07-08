@@ -3,7 +3,6 @@ from textwrap import dedent
 from typing import List, Tuple
 
 import pytest
-
 from DatabaseManager.xml_entry_lemma_finder import identify_entries
 from utils.crkeng_xml_utils import IndexedXML
 from utils.data_classes import XMLEntry, XMLTranslation

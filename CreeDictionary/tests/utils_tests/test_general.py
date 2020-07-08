@@ -5,7 +5,6 @@ todo: delete this file
 import xml.etree.ElementTree as ET
 
 import pytest
-
 from utils import WordClass
 from utils.crkeng_xml_utils import extract_l_str
 from utils.fst_analysis_parser import extract_lemma, extract_word_class
