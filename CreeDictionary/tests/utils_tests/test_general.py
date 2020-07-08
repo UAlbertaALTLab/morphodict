@@ -5,8 +5,9 @@ todo: delete this file
 import xml.etree.ElementTree as ET
 
 import pytest
-from utils import WordClass, extract_word_class, fst_analysis_parser
+from utils import WordClass
 from utils.crkeng_xml_utils import extract_l_str
+from utils.fst_analysis_parser import extract_lemma, extract_word_class
 
 
 @pytest.mark.parametrize(
@@ -24,7 +25,7 @@ from utils.crkeng_xml_utils import extract_l_str
     ],
 )
 def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
-    claimed = fst_analysis_parser.extract_lemma(analysis)
+    claimed = extract_lemma(analysis)
     assert claimed == real_lemma
 
 

@@ -7,17 +7,18 @@ from itertools import chain
 from string import Template
 from typing import Dict, List, Optional, Set, Tuple
 
+import utils.fst_analysis_parser
 from colorama import Fore, init
-from typing_extensions import Literal
-
-import utils
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
-from utils import ConcatAnalysis, FSTLemma, WordClass, shared_res_dir, XMLEntry
+from typing_extensions import Literal
+from utils import WordClass, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
+from utils.data_classes import XMLEntry
+from utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
 
@@ -95,7 +96,7 @@ def identify_entries(
         ConcatAnalysis, Tuple[FSTLemma, WordClass]
     ] = dict()
     for fst_analysis in chain.from_iterable(l_to_analyses.values()):
-        x = utils.extract_lemma_text_and_word_class(fst_analysis)
+        x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, wc = x
         fst_analysis_to_fst_lemma_wc[fst_analysis] = produced_lemma, wc
@@ -107,7 +108,7 @@ def identify_entries(
     ] = strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas)
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
-        x = utils.extract_lemma_text_and_word_class(fst_analysis)
+        x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, wc = x
         fst_analysis_to_fst_lemma_wc[fst_analysis] = produced_lemma, wc
@@ -142,7 +143,9 @@ def identify_entries(
                 fst_lemma_analyses = all_lemma_to_analysis[fst_lemma]
 
                 for fst_lemma_analysis in fst_lemma_analyses:
-                    x = utils.extract_lemma_text_and_word_class(fst_lemma_analysis)
+                    x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(
+                        fst_lemma_analysis
+                    )
                     assert x is not None
                     wordform, wc = x
                     if wc is wc and wordform == fst_lemma:

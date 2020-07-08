@@ -34,9 +34,6 @@ from paradigm import Layout
 from shared import paradigm_filler
 from sortedcontainers import SortedSet
 from utils import (
-    ConcatAnalysis,
-    FSTTag,
-    Label,
     Language,
     ParadigmSize,
     PartOfSpeech,
@@ -46,6 +43,7 @@ from utils import (
 )
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS, partition_analysis
+from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
