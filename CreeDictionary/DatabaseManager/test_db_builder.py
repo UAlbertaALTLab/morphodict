@@ -2,17 +2,21 @@
 build test_db.sqlite3 from res/test_db_words.txt
 """
 
+import logging
 import xml.etree.ElementTree as ET
 from collections import defaultdict
 from itertools import chain
 from typing import Dict, List, Set
 
+from tqdm import tqdm
+
 from DatabaseManager.xml_importer import find_latest_xml_files
 from shared import descriptive_analyzer
-from tqdm import tqdm
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
 from utils.profiling import timed
+
+logger = logging.getLogger(__name__)
 
 
 def get_test_words() -> Set[str]:
@@ -104,7 +108,14 @@ def build_test_xml(multi_processing: int = 2):
     for test_word in test_words:
         for analysis in word_to_analyses[test_word]:
             lemma = fst_analysis_parser.extract_lemma(analysis)
-            assert lemma is not None, f"could not extract lemma from {analysis}"
+            if lemma is None:
+                logger.warn(
+                    "Skipping test word: %s. "
+                    "Could not extract lemma from its analysis: %s",
+                    test_word,
+                    analysis,
+                )
+                continue
             test_word_lemmas.add(lemma)
 
     for xml_l in tqdm(xml_ls, desc="screening relevant entries in crkeng.xml"):
