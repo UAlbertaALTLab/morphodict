@@ -47,6 +47,7 @@ class WordClass(Enum):
     IPC = "IPC"  # particles like "tanisi (hello)"
     IPV = "IPV"  # preverbs
 
+    # TODO: should these both be "Pron"? That *is* what the FST generates!
     Pron = "PRON"  # Pronoun
 
     @property
@@ -84,7 +85,9 @@ class WordClass(Enum):
         >>> WordClass.NID.to_fst_output_style()
         '+N+I+D'
         >>> WordClass.IPC.to_fst_output_style()
-        '+IPC'
+        '+Ipc'
+        >>> WordClass.Pron.to_fst_output_style()
+        '+Pron'
         """
 
         if self.value[0] == "N":
@@ -92,7 +95,7 @@ class WordClass(Enum):
         elif self.value[0] == "V":
             return "+" + "+".join(["V", self.value[1:].upper()])
         else:
-            return "+" + self.value
+            return "+" + self.value.title()
 
     def without_pos(self) -> str:
         """
