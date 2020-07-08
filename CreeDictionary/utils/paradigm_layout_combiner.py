@@ -51,8 +51,11 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     simple_csv_files = list(layout_file_dir.glob("*.layout.csv"))
     simple_tsv_files = list(layout_file_dir.glob("*.layout.tsv"))
 
-    assert len(simple_csv_files) > 0
     files = legacy_neahtta_layout_files + simple_csv_files + simple_tsv_files
+    if len(files) == 0:
+        raise ValueError(
+            f"Could not find any applicable layout files in {layout_file_dir}"
+        )
 
     for layout_file in files:
         # Get rid of .layout or .csv
