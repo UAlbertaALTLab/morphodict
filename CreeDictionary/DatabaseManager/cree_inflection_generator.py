@@ -57,7 +57,7 @@ def expand_inflections(
     to_generated = dict()  # type: Dict[str, List[str]]
 
     for analysis in analyses:
-        lemma_category = fst_analysis_parser.extract_lemma_and_word_class(analysis)
+        lemma_category = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
         assert lemma_category is not None
         lemma, category = lemma_category
         if category.is_verb() or category.is_noun():

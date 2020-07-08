@@ -1,0 +1,680 @@
+name: "verbs - transitive animate (VTA)"
+morphology:
+  pos: V
+  animacy:
+    - TA
+lexicon:
+  XPATH:
+    lc: ".//lg/lc/text()"
+  lc:
+    - "VTA-1"
+    - "VTA-2"
+    - "VTA-3"
+    - "VTA-4"
+    - "VTA-5"
+--
+{# IND-PRESENT-TENSE-SAP #}
+   
+{{ lemma }}+V+TA+Ind+Prs+2Sg+1SgO
+{{ lemma }}+V+TA+Ind+Prs+2Sg+1PlO
+{{ lemma }}+V+TA+Ind+Prs+2Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prs+2Pl+1SgO
+
+{{ lemma }}+V+TA+Ind+Prs+1Sg+2SgO
+{{ lemma }}+V+TA+Ind+Prs+1Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prs+1Pl+2PlO
+{{ lemma }}+V+TA+Ind+Prs+1Sg+2PlO
+
+{# IND-PRESENT-TENSE-MIXED #}
+
+{{ lemma }}+V+TA+Ind+Prs+1Sg+3SgO
+{{ lemma }}+V+TA+Ind+Prs+1Sg+3PlO
+{{ lemma }}+V+TA+Ind+Prs+2Sg+3SgO
+{{ lemma }}+V+TA+Ind+Prs+2Sg+3PlO
+{{ lemma }}+V+TA+Ind+Prs+1Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prs+1Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prs+12Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prs+12Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prs+2Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prs+2Pl+3PlO
+
+{{ lemma }}+V+TA+Ind+Prs+1Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+2Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+1Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+12Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+2Pl+4Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Prs+3Sg+1SgO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+1SgO
+{{ lemma }}+V+TA+Ind+Prs+3Sg+2SgO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prs+3Sg+1PlO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prs+3Sg+12PlO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+12PlO
+{{ lemma }}+V+TA+Ind+Prs+3Sg+2PlO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+2PlO
+
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+1SgO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+12PlO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+2PlO
+
+{# IND-PRESENT-TENSE-THIRD #}
+
+{{ lemma }}+V+TA+Ind+Prs+3Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+3Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+5Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prs+4Sg/Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prs+5Sg/Pl+4Sg/PlO
+
+{# IND-PRESENT-TENSE-UNSPECIFIED-ACTOR #}
+
+{{ lemma }}+V+TA+Ind+Prs+X+1SgO
+{{ lemma }}+V+TA+Ind+Prs+X+2SgO
+{{ lemma }}+V+TA+Ind+Prs+X+3SgO
+{{ lemma }}+V+TA+Ind+Prs+X+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prs+X+1PlO
+{{ lemma }}+V+TA+Ind+Prs+X+12PlO
+{{ lemma }}+V+TA+Ind+Prs+X+2PlO
+{{ lemma }}+V+TA+Ind+Prs+X+3PlO
+
+{# CNJ-PRESENT-TENSE-SAP #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2PlO
+
+{# CNJ-PRESENT-TENSE-MIXED #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+1Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+12Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+2Pl+4Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2PlO
+
+{# CNJ-PRESENT-TENSE-THIRD #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+5Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Sg+5Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+3Pl+5Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+5Sg/Pl+4Sg/PlO
+
+{# CNJ-PRESENT-TENSE-UNSPECIFIED-ACTOR #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prs+X+3PlO
+
+{# IND-PAST-TENSE-SAP #}
+
+{{ lemma }}+V+TA+Ind+Prt+2Sg+1SgO
+{{ lemma }}+V+TA+Ind+Prt+2Sg+1PlO
+{{ lemma }}+V+TA+Ind+Prt+2Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prt+2Pl+1SgO
+
+{{ lemma }}+V+TA+Ind+Prt+1Sg+2SgO
+{{ lemma }}+V+TA+Ind+Prt+1Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prt+1Pl+2PlO
+{{ lemma }}+V+TA+Ind+Prt+1Sg+2PlO
+
+{# IND-PAST-TENSE-MIXED #}
+
+{{ lemma }}+V+TA+Ind+Prt+1Sg+3SgO
+{{ lemma }}+V+TA+Ind+Prt+1Sg+3PlO
+{{ lemma }}+V+TA+Ind+Prt+2Sg+3SgO
+{{ lemma }}+V+TA+Ind+Prt+2Sg+3PlO
+{{ lemma }}+V+TA+Ind+Prt+1Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prt+1Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prt+12Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prt+12Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prt+2Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prt+2Pl+3PlO
+
+{{ lemma }}+V+TA+Ind+Prt+1Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+2Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+1Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+12Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+2Pl+4Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Prt+3Sg+1SgO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+1SgO
+{{ lemma }}+V+TA+Ind+Prt+3Sg+2SgO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prt+3Sg+1PlO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prt+3Sg+12PlO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+12PlO
+{{ lemma }}+V+TA+Ind+Prt+3Sg+2PlO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+2PlO
+
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+1SgO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+2SgO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+1PlO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+12PlO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+2PlO
+
+{# IND-PAST-TENSE-THIRD #}
+
+{{ lemma }}+V+TA+Ind+Prt+3Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+3Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+5Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+3SgO
+{{ lemma }}+V+TA+Ind+Prt+4Sg/Pl+3PlO
+{{ lemma }}+V+TA+Ind+Prt+5Sg/Pl+4Sg/PlO
+
+{# CNJ-PAST-TENSE-SAP #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Pl+1SgO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Pl+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Sg+2PlO
+
+{# CNJ-PAST-TENSE-MIXED #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+12Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+12Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Pl+3PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+1Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+12Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+2Pl+4Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+2PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+2PlO
+
+{# CNJ-PAST-TENSE-THIRD #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+3Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+5Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+4Sg/Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Prt+5Sg/Pl+4Sg/PlO
+
+{# IND-FUTURE-INTENTIONAL-TENSE-SAP #}
+
+{{ lemma }}+V+TA+Ind+Fut+Int+2Sg+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Sg+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Pl+1SgO
+
+{{ lemma }}+V+TA+Ind+Fut+Int+1Sg+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Pl+2PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Sg+2PlO
+
+{# IND-FUTURE-INTENTIONAL-TENSE-MIXED #}
+
+{{ lemma }}+V+TA+Ind+Fut+Int+1Sg+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Sg+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Sg+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Sg+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+12Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+12Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Pl+3PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Int+1Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+1Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+12Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+2Pl+4Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+2PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+2PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+2PlO
+
+{# IND-FUTURE-INTENTIONAL-TENSE-THIRD #}
+
+{{ lemma }}+V+TA+Ind+Fut+Int+3Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+3Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+5Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Int+4Sg/Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Int+5Sg/Pl+4Sg/PlO
+
+{# CNJ-FUTURE-INTENTIONAL-TENSE-SAP #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Pl+1SgO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+2PlO
+
+{# CNJ-FUTURE-INTENTIONAL-TENSE-MIXED #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Sg+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Sg+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+12Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+12Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Pl+3PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+1Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+12Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+2Pl+4Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+2PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+2PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+1SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+2SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+1PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+12PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+2PlO
+
+{# CNJ-FUTURE-INTENTIONAL-TENSE-THIRD #}
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Sg+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+3Pl+4Sg/PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+5Sg/PlO
+
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+3SgO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+4Sg/Pl+3PlO
+PV/e+{{ lemma }}+V+TA+Cnj+Fut+Int+5Sg/Pl+4Sg/PlO
+
+{# IND-FUTURE-DEFINITE-TENSE-SAP #}
+
+{{ lemma }}+V+TA+Ind+Fut+Def+2Sg+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Sg+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Pl+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Sg+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Pl+2PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Sg+2PlO
+
+{# IND-FUTURE-DEFINITE-TENSE-MIXED #}
+
+{{ lemma }}+V+TA+Ind+Fut+Def+1Sg+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Sg+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Sg+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Sg+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+12Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+12Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Pl+3PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Def+1Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+1Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+12Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+2Pl+4Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+2PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+2PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+1SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+2SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+1PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+12PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+2PlO
+
+{# IND-FUTURE-DEFINITE-TENSE-THIRD #}
+
+{{ lemma }}+V+TA+Ind+Fut+Def+3Sg+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+3Pl+4Sg/PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+5Sg/PlO
+
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+3SgO
+{{ lemma }}+V+TA+Ind+Fut+Def+4Sg/Pl+3PlO
+{{ lemma }}+V+TA+Ind+Fut+Def+5Sg/Pl+4Sg/PlO
+
+{# CNJ-ta-FUTURE/INFINITIVE-SAP #}
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2PlO
+
+{# CNJ-ta-FUTURE/INFINITIVE-MIXED #}
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3PlO
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Sg+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Sg+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+1Pl+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+12Pl+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+2Pl+4Sg/PlO
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+12PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+12PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2PlO
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+12PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2PlO
+
+{# CNJ-ta-INFINITIVE-THIRD #}
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+5Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Sg+5Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+3Pl+5Sg/PlO
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+5Sg/Pl+4Sg/PlO
+
+{# CNJ-ta-FUTURE/INFINITIVE-UNSPECIFIED-ACTOR #}
+
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+1SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+2SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+3SgO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+4Sg/PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+1PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+12PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+2PlO
+PV/ta+{{ lemma }}+V+TA+Cnj+Prs+X+3PlO
+
+{# CNJ-ka-FUTURE/INFINITIVE-SAP #}
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Sg+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Pl+1SgO
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Pl+2PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Sg+2PlO
+
+{# CNJ-ka-FUTURE/INFINITIVE-MIXED #}
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Sg+3PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Sg+3PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Pl+3PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+12Pl+3PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Pl+3PlO
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Sg+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Sg+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+1Pl+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+12Pl+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+2Pl+4Sg/PlO
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+12PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+12PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+2PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+2PlO
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+12PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+2PlO
+
+{# CNJ-ka-FUTURE/INFINITIVE-THIRD #}
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+5Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Sg+5Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+3Pl+5Sg/PlO
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+4Sg/Pl+3PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+5Sg/Pl+4Sg/PlO
+
+{# CNJ-ka-FUTURE/INFINITIVE-UNSPECIFIED-ACTOR #}
+
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+1SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+2SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+3SgO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+4Sg/PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+1PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+12PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+2PlO
+PV/ka+{{ lemma }}+V+TA+Cnj+Prs+X+3PlO
+
+{# CNJ-FUTURE-CONDITIONAL-TENSE-SAP #}
+
+{{ lemma }}+V+TA+Fut+Cond+2Sg+1SgO
+{{ lemma }}+V+TA+Fut+Cond+2Sg+1PlO
+{{ lemma }}+V+TA+Fut+Cond+2Pl+1PlO
+{{ lemma }}+V+TA+Fut+Cond+2Pl+1SgO
+
+{{ lemma }}+V+TA+Fut+Cond+1Sg+2SgO
+{{ lemma }}+V+TA+Fut+Cond+1Pl+2SgO
+{{ lemma }}+V+TA+Fut+Cond+1Pl+2PlO
+{{ lemma }}+V+TA+Fut+Cond+1Sg+2PlO
+
+{# CNJ-FUTURE-CONDITIONAL-TENSE-MIXED #}
+
+{{ lemma }}+V+TA+Fut+Cond+1Sg+3SgO
+{{ lemma }}+V+TA+Fut+Cond+1Sg+3PlO
+{{ lemma }}+V+TA+Fut+Cond+2Sg+3SgO
+{{ lemma }}+V+TA+Fut+Cond+2Sg+3PlO
+{{ lemma }}+V+TA+Fut+Cond+1Pl+3SgO
+{{ lemma }}+V+TA+Fut+Cond+1Pl+3PlO
+{{ lemma }}+V+TA+Fut+Cond+12Pl+3SgO
+{{ lemma }}+V+TA+Fut+Cond+12Pl+3PlO
+{{ lemma }}+V+TA+Fut+Cond+2Pl+3SgO
+{{ lemma }}+V+TA+Fut+Cond+2Pl+3PlO
+
+{{ lemma }}+V+TA+Fut+Cond+1Sg+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+2Sg+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+1Pl+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+12Pl+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+2Pl+4Sg/PlO
+
+{{ lemma }}+V+TA+Fut+Cond+3Sg+1SgO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+1SgO
+{{ lemma }}+V+TA+Fut+Cond+3Sg+2SgO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+2SgO
+{{ lemma }}+V+TA+Fut+Cond+3Sg+1PlO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+1PlO
+{{ lemma }}+V+TA+Fut+Cond+3Sg+12PlO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+12PlO
+{{ lemma }}+V+TA+Fut+Cond+3Sg+2PlO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+2PlO
+
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+1SgO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+2SgO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+1PlO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+12PlO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+2PlO
+
+{# CNJ-FUTURE-CONDITIONAL-TENSE-THIRD #}
+
+{{ lemma }}+V+TA+Fut+Cond+3Sg+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+3Sg+5Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+4Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+3Pl+5Sg/PlO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+5Sg/PlO
+
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+3SgO
+{{ lemma }}+V+TA+Fut+Cond+4Sg/Pl+3PlO
+{{ lemma }}+V+TA+Fut+Cond+5Sg/Pl+4Sg/PlO
+
+
+{# IMPERATIVE-LOCAL #}
+
+{{ lemma }}+V+TA+Imp+Imm+2Sg+1SgO
+{{ lemma }}+V+TA+Imp+Imm+2Sg+1PlO
+{{ lemma }}+V+TA+Imp+Imm+2Pl+1PlO
+{{ lemma }}+V+TA+Imp+Imm+2Pl+1SgO
+{{ lemma }}+V+TA+Imp+Del+2Sg+1SgO
+{{ lemma }}+V+TA+Imp+Del+2Sg+1PlO
+{{ lemma }}+V+TA+Imp+Del+2Pl+1PlO
+{{ lemma }}+V+TA+Imp+Del+2Pl+1SgO
+
+{# IMPERATIVE-MIXED #}
+
+{{ lemma }}+V+TA+Imp+Imm+2Sg+3SgO
+{{ lemma }}+V+TA+Imp+Imm+2Sg+3PlO
+{{ lemma }}+V+TA+Imp+Imm+2Pl+3SgO
+{{ lemma }}+V+TA+Imp+Imm+2Pl+3PlO
+{{ lemma }}+V+TA+Imp+Imm+12Pl+3SgO
+{{ lemma }}+V+TA+Imp+Imm+12Pl+3PlO
+
+{{ lemma }}+V+TA+Imp+Del+2Sg+3SgO
+{{ lemma }}+V+TA+Imp+Del+2Sg+3PlO
+{{ lemma }}+V+TA+Imp+Del+2Pl+3SgO
+{{ lemma }}+V+TA+Imp+Del+2Pl+3PlO
+{{ lemma }}+V+TA+Imp+Del+12Pl+3SgO
+{{ lemma }}+V+TA+Imp+Del+12Pl+3PlO
+
+{# POTENTIALLY MISSING FORMS #}
+{# V+TA+Imp+Imm+2Sg+4Sg/PlO #}
+{# V+TA+Imp+Del+2Sg+4Sg/PlO #}
+{# V+TA+Imp+Imm+2Pl+4Sg/PlO #}
+{# V+TA+Imp+Del+2Pl+4Sg/PlO #}
+

@@ -83,26 +83,21 @@
 </main>
 
 {% spaceless %}
-  <footer class="app-footer">
-    <div class="app-footer__links footer-links app-footer__site-links">
-    </div>
+  <footer class="app-footer app__footer">
+    <ul class="app-footer__links app-footer__site-links ">
+      <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
+             rel="noopener">Help</a></li>
+      <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
+      <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
+    </ul>
 
-    <nav class="footer-links app-footer__links">
-      <ul class="footer-links__list footer-links--site-links ">
-        <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
-               rel="noopener">Help</a></li>
-        <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
-        <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
-      </ul>
-
-      <ul class="footer-links__list footer-links--advanced-links">
-        <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist
-          Mode</a></li>
-      </ul>
-    </nav>
+    <ul class="app-footer__links app-footer__advanced-links">
+      <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist
+        Mode</a></li>
+    </ul>
 
     <div class="app-footer__copyright copyright">
-      <p class="copyright__line">2019–{% now "Y" %} © University of Alberta.</p>
+      <p class="copyright__line">2019–{% now "Y" %} © Alberta Language Technology Lab.</p>
       <p class="copyright__line"> Modified icons copyright © 2019
         <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">Font Awesome</a>,
         licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
