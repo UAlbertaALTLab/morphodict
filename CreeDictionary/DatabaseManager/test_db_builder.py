@@ -104,7 +104,7 @@ def build_test_xml(multi_processing: int = 2):
     for test_word in test_words:
         for analysis in word_to_analyses[test_word]:
             lemma = fst_analysis_parser.extract_lemma(analysis)
-            assert lemma is not None
+            assert lemma is not None, f"could not extract lemma from {analysis}"
             test_word_lemmas.add(lemma)
 
     for xml_l in tqdm(xml_ls, desc="screening relevant entries in crkeng.xml"):
