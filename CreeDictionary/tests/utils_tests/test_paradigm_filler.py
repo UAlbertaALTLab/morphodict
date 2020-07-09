@@ -146,6 +146,29 @@ def test_inflect_all(
     assert examples <= forms
 
 
+def test_inflect_all_with_analyses(paradigm_filler) -> None:
+    """
+    Smoke test for inflect_all_with_analyses()
+    """
+
+    lemma = "wâpamêw"
+    stem = "wâpam"
+    inflections = paradigm_filler.inflect_all_with_analyses(lemma, WordClass.VTA)
+
+    assert len(inflections.keys()) >= 1
+
+    analysis = next(iter(inflections.keys()))
+    assert lemma in analysis
+    assert "+" in analysis, "expected to find the tag separator in the analysis"
+
+    all_forms = [form for inflection in inflections.values() for form in inflection]
+    assert len(all_forms) >= len(inflections)
+    random_form = all_forms[0]
+    assert (
+        stem in random_form
+    ), f"could not find stem {stem} in regular inflection {random_form}"
+
+
 @pytest.fixture
 def paradigm_filler(shared_datadir) -> ParadigmFiller:
     """
