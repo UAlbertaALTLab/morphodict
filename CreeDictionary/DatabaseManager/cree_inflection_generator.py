@@ -27,7 +27,8 @@ def expand_inflections(
 
     analyses = list(analyses)
     to_generated: Dict[str, List[str]] = {}
-    fat_generated_analyses = []
+    # We'll generate all of the forms for analyses enqueued here in one fell swoop.
+    analysis_queue = []
 
     for analysis in analyses:
         lemma_category = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
@@ -40,13 +41,13 @@ def expand_inflections(
             generated_analyses = [analysis]
 
         to_generated[analysis] = generated_analyses
-        fat_generated_analyses.extend(generated_analyses)
+        analysis_queue.extend(generated_analyses)
 
     logger.info("Generating inflections using %d processes..." % multi_processing)
 
     # optimized for efficiency by calling hfstol once and for all
     generated_analyses_to_inflections = normative_generator.feed_in_bulk_fast(
-        fat_generated_analyses, multi_processing
+        analysis_queue, multi_processing
     )
 
     logger.info("Done generating inflections")
