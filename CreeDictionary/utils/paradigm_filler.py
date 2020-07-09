@@ -5,12 +5,13 @@ import csv
 from copy import deepcopy
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import Combiner
+from utils.types import ConcatAnalysis
 
 LayoutID = Tuple[WordClass, ParadigmSize]
 
@@ -119,24 +120,38 @@ class ParadigmFiller:
 
         return tables
 
+    def inflect_all_with_analyses(
+        self, lemma: str, wordclass: WordClass
+    ) -> Dict[ConcatAnalysis, Sequence[str]]:
+        # I just copy-pasted the code from fill_paradigm() and edited it.
+        # I'm sure we could refactor using the Template Method pattern or even Visitor
+        # pattern to reduce code duplication, but I honestly think it's not worth it in
+        # this situation.
+        layout_table = deepcopy(
+            self._layout_tables[(wordclass, ParadigmSize.LINGUISTIC)]
+        )
+
+        analyses = set()
+
+        # Find all of the analyses strings in the table:
+        for row in layout_table:
+            if row is EmptyRow or isinstance(row, TitleRow):
+                continue
+
+            assert isinstance(row, list)
+            for cell in row:
+                if isinstance(cell, StaticCell) or cell == "":
+                    continue
+
+                # It's a inflection form pattern
+                assert '"' not in cell
+                analyses.add(cell.replace("{{ lemma }}", lemma))
+
+        return self._generator.feed_in_bulk_fast(analyses)
+
     def inflect_all(self, lemma: str, wordclass: WordClass) -> Set[str]:
         """
         Return a set of all inflections for a particular lemma.
         """
-
-        paradigm = self.fill_paradigm(lemma, wordclass, ParadigmSize.LINGUISTIC)
-
-        def find_all_inflections():
-            for table in paradigm:
-                for row in table:
-                    if not isinstance(row, list):
-                        continue
-                    for cell in row:
-                        if not isinstance(cell, str):
-                            continue
-                        if cell == "":
-                            continue
-                        # Assume this is an inflection
-                        yield cell
-
-        return set(find_all_inflections())
+        all_inflections = self.inflect_all_with_analyses(lemma, wordclass).values()
+        return set(form for word in all_inflections for form in word)
