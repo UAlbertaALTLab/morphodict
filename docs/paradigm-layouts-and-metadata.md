@@ -1,6 +1,8 @@
 Paradigm layouts and metadata
 =============================
 
+> Eddie's note: this documents our files as they were in late 2018.
+
 Along with this README, you will find many TSV (tab-separated values)
 files, and associated metadata files, stored in YAML format.
 
