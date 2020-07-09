@@ -83,8 +83,7 @@ class APIConfig(AppConfig):
 
     def ready(self):
         """
-        This function is called prior to app start.
-        It also hashes preverbs for faster preverb matching.
+        This function is called when you restart dev server or touch wsgi.py
         """
         initialize_preverb_search()
         initialize_affix_search()
