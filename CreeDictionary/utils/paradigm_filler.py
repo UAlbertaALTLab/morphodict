@@ -124,7 +124,7 @@ class ParadigmFiller:
         Return a set of all inflections for a particular lemma.
         """
 
-        paradigm = self.fill_paradigm(lemma, wordclass, ParadigmSize.FULL)
+        paradigm = self.fill_paradigm(lemma, wordclass, ParadigmSize.LINGUISTIC)
 
         def find_all_inflections():
             for table in paradigm:
