@@ -827,6 +827,10 @@ html {
   margin: 0;
   padding: 0;
 
+  /* Put a lot of spacing in between links on mobile, to make them easier to
+   * press. */
+  line-height: 2;
+
   list-style: none;
 }
 
@@ -846,6 +850,12 @@ html {
   .footer {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "basic copyright advanced";
+  }
+
+  .footer__links {
+    /* Assume that on wider displays, users do not have to touch the button
+     * (can use a mouse or keyboard). */
+    line-height: normal;
   }
 
   .footer__copyright {
