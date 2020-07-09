@@ -83,20 +83,20 @@
 </main>
 
 {% spaceless %}
-  <footer class="app-footer app__footer">
-    <ul class="app-footer__links app-footer__site-links ">
+  <footer class="footer app__footer">
+    <ul class="footer__links footer__site-links ">
       <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
              rel="noopener">Help</a></li>
       <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
       <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
     </ul>
 
-    <ul class="app-footer__links app-footer__advanced-links">
+    <ul class="footer__links footer__advanced-links">
       <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist
         Mode</a></li>
     </ul>
 
-    <div class="app-footer__copyright copyright">
+    <div class="footer__copyright copyright">
       <p class="copyright__line">2019–{% now "Y" %} © Alberta Language Technology Lab.</p>
       <p class="copyright__line"> Modified icons copyright © 2019
         <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">Font Awesome</a>,

@@ -779,11 +779,11 @@ html {
 /**************************** APP FOOTER ****************************/
 
 /**
- * BLOCK app-footer
+ * BLOCK footer
  *
  * The footer at the bottom of the app.
  */
-.app-footer {
+.footer {
   /* Display & Box Model */
   display: grid;
   padding: 1rem var(--page-gutter) var(--page-gutter);
@@ -808,38 +808,38 @@ html {
    "copyright";
 }
 
-.app-footer a:link {
+.footer a:link {
   color: var(--footer-text-color);
 }
 
-.app-footer__copyright {
+.footer__copyright {
   margin-top: 1rem;
   margin-block-start: 1rem;
 
   grid-area: copyright;
 }
 
-.app-footer__site-links {
+.footer__site-links {
   grid-area: basic;
 }
 
-.app-footer__advanced-links {
+.footer__advanced-links {
   grid-area: advanced;
 }
 
-.app-footer__links {
+.footer__links {
   margin: 0;
   padding: 0;
 
   list-style: none;
 }
 
-.app-footer__link:first-of-type {
+.footer__link:first-of-type {
   margin-left: 0;
   margin-block-start: 0;
 }
 
-.app-footer__link {
+.footer__link {
   font-weight: var(--strong-font-weight);
 }
 
@@ -848,12 +848,12 @@ html {
  * horizontally.
  */
 @media (min-width: 768px) {
-  .app-footer {
+  .footer {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "basic copyright advanced";
   }
 
-  .app-footer__copyright {
+  .footer__copyright {
     margin: 0;
 
     text-align: center;
