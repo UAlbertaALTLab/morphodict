@@ -5,7 +5,7 @@ import csv
 from copy import deepcopy
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Set, Tuple
 
 import hfstol
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
@@ -118,3 +118,25 @@ class ParadigmFiller:
             row[col_ind] = " / ".join(results_for_cell)
 
         return tables
+
+    def inflect_all(self, lemma: str, wordclass: WordClass) -> Set[str]:
+        """
+        Return a set of all inflections for a particular lemma.
+        """
+
+        paradigm = self.fill_paradigm(lemma, wordclass, ParadigmSize.FULL)
+
+        def find_all_inflections():
+            for table in paradigm:
+                for row in table:
+                    if not isinstance(row, list):
+                        continue
+                    for cell in row:
+                        if not isinstance(cell, str):
+                            continue
+                        if cell == "":
+                            continue
+                        # Assume this is an inflection
+                        yield cell
+
+        return set(find_all_inflections())
