@@ -133,8 +133,7 @@ def test_fill_NA_Full(
         ("wâpahtam", WordClass.VTI, {"niwâpahtên", "kiwâpahtên", "ê-wâpahtahk"}),
         ("nîpin", WordClass.VII, {"ê-nîpihk"}),
         ("nôhkom", WordClass.NAD, {"kôhkom", "ohkoma", "nôhkomak"}),
-        # TODO: wîpit should be in this set, but it's not?
-        ("mîpit", WordClass.NID, {"nîpit", "kîpit"}),
+        ("mîpit", WordClass.NID, {"nîpit", "kîpit", "wîpit"}),
         ("maskwa", WordClass.NA, {"maskwak", "maskos"}),
         ("nipiy", WordClass.NI, {"nipiya", "nipîhk"}),
     ],
@@ -145,14 +144,6 @@ def test_inflect_all(
     forms = paradigm_filler.inflect_all(lemma, wordclass)
     assert lemma in forms
     assert examples <= forms
-
-
-@pytest.mark.xfail
-def test_wîpit_regression(paradigm_filler):
-    """
-    For whatever reason, the +Px3Sg inflections are missing from this paradigm.
-    """
-    assert "wîpit" in paradigm_filler.inflect_all("mîpit", WordClass.NID)
 
 
 @pytest.fixture
