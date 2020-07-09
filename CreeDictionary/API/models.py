@@ -232,7 +232,15 @@ class Wordform(models.Model):
 
     @property
     def word_class(self) -> Optional[WordClass]:
-        return fst_analysis_parser.extract_word_class(self.analysis)
+        from_analysis = fst_analysis_parser.extract_word_class(self.analysis)
+        if from_analysis:
+            return from_analysis
+
+        # Can't get it from the analysis? Maybe its the (deprecated) part-of-speech?
+        try:
+            return WordClass(self.pos)
+        except ValueError:
+            return None
 
     def get_paradigm_layouts(
         self, size: ParadigmSize = ParadigmSize.BASIC

@@ -852,6 +852,11 @@ html {
     grid-template-areas: "basic copyright advanced";
   }
 
+  .footer__site-links {
+    /* align against the viewport border */
+    text-align: start;
+  }
+
   .footer__links {
     /* Assume that on wider displays, users do not have to touch the button
      * (can use a mouse or keyboard). */
@@ -865,6 +870,11 @@ html {
 
     /* Place at BOTTOM of the bar */
     align-self: flex-end;
+  }
+
+  .footer__advanced-links {
+    /* align against the viewport border */
+    text-align: end;
   }
 }
 
