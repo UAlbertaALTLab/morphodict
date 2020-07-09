@@ -125,12 +125,20 @@ def test_fill_NA_Full(
     )
 
 
-def test_fill_VTA_full(paradigm_filler) -> None:
-    lemma = "wâpamêw"
-    wordclass = WordClass.VTA
-    lower_bound = 2  # TODO: not really sure what to set this as
+@pytest.mark.parametrize(
+    "lemma,wordclass,examples",
+    [
+        ("wâpamêw", WordClass.VTA, {"kiwâpamitin", "kiwâpamin", "ê-wâpamit", "wâpam"}),
+        ("mîcisow", WordClass.VAI, {"nimîcison", "kimîcison", "ê-mîcisot"}),
+    ],
+)
+def test_inflect_all(
+    paradigm_filler, lemma: str, wordclass: WordClass, examples: set
+) -> None:
     forms = paradigm_filler.inflect_all(lemma, wordclass)
-    assert len(forms) > 2
+    # The lemma should ALWAYS be a part of the inflections!
+    examples = {lemma} | examples
+    assert examples <= forms
 
 
 @pytest.fixture
