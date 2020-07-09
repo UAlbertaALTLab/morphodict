@@ -5,12 +5,13 @@ import csv
 from copy import deepcopy
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
 from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import Combiner
+from utils.types import ConcatAnalysis
 
 LayoutID = Tuple[WordClass, ParadigmSize]
 
@@ -118,3 +119,50 @@ class ParadigmFiller:
             row[col_ind] = " / ".join(results_for_cell)
 
         return tables
+
+    def inflect_all_with_analyses(
+        self, lemma: str, wordclass: WordClass
+    ) -> Dict[ConcatAnalysis, Sequence[str]]:
+        """
+        Produces all known forms of a given word. Returns a mapping of analyses to their
+        forms. Some analyses may have multiple forms. Some analyses may not generate a
+        form.
+        """
+        analyses = self.expand_analyses(lemma, wordclass)
+        return self._generator.feed_in_bulk_fast(analyses)
+
+    def inflect_all(self, lemma: str, wordclass: WordClass) -> Set[str]:
+        """
+        Return a set of all inflections for a particular lemma.
+        """
+        all_inflections = self.inflect_all_with_analyses(lemma, wordclass).values()
+        return set(form for word in all_inflections for form in word)
+
+    def expand_analyses(self, lemma: str, wordclass: WordClass) -> Set[ConcatAnalysis]:
+        """
+        Given a lemma and its word class, return a set of all analyses that we could
+        generate, but do not actually generate anything!
+        """
+        # I just copy-pasted the code from fill_paradigm() and edited it.
+        # I'm sure we could refactor using the Template Method pattern or even Visitor
+        # pattern to reduce code duplication, but I honestly think it's not worth it in
+        # this situation.
+        layout_table = self._layout_tables[(wordclass, ParadigmSize.LINGUISTIC)]
+
+        # Find all of the analyses strings in the table:
+        analyses: Set[ConcatAnalysis] = set()
+        for row in layout_table:
+            if row is EmptyRow or isinstance(row, TitleRow):
+                continue
+
+            assert isinstance(row, list)
+            for cell in row:
+                if isinstance(cell, StaticCell) or cell == "":
+                    continue
+
+                # It's a inflection form pattern
+                assert '"' not in cell
+                analysis = ConcatAnalysis(cell.replace("{{ lemma }}", lemma))
+                analyses.add(analysis)
+
+        return analyses
