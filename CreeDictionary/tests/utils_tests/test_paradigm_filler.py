@@ -117,16 +117,23 @@ def test_import_prefilled_layouts(shared_datadir) -> None:
     ],
 )
 def test_fill_NA_Full(
-    shared_datadir, lemma, inflection_category, paradigm_size, expected_table
+    paradigm_filler, lemma, inflection_category, paradigm_size, expected_table
 ):
-    # these layout, paradigm, and hfstol files are pinned test data
-    # the real files in use are hosted under res/ folder
-    paradigm_filler = ParadigmFiller(
-        shared_datadir / "layouts",
-        shared_datadir / "paradigms",
-        shared_datadir / "crk-normative-generator.hfstol",
-    )
     assert (
         paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
         == expected_table
+    )
+
+
+@pytest.fixture
+def paradigm_filler(shared_datadir) -> ParadigmFiller:
+    """
+    hese layout, paradigm, and hfstol files are **pinned** test data;
+    the real files in use are hosted under res/ folder, and should not
+    be used in tests!
+    """
+    return ParadigmFiller(
+        shared_datadir / "layouts",
+        shared_datadir / "paradigms",
+        shared_datadir / "crk-normative-generator.hfstol",
     )
