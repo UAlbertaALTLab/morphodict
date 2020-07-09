@@ -815,7 +815,7 @@ html {
   grid-area: copyright;
 }
 
-.footer__site-links {
+.footer__basic-links {
   grid-area: basic;
 }
 
@@ -852,7 +852,7 @@ html {
     grid-template-areas: "basic copyright advanced";
   }
 
-  .footer__site-links {
+  .footer__basic-links {
     /* align against the viewport border */
     text-align: start;
   }
