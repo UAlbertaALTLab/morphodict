@@ -853,6 +853,11 @@ html {
     grid-template-areas: "basic copyright advanced";
   }
 
+  .app-footer__site-links {
+    /* align against the viewport border */
+    text-align: start;
+  }
+
   .app-footer__copyright {
     margin: 0;
 
@@ -860,6 +865,11 @@ html {
 
     /* Place at BOTTOM of the bar */
     align-self: flex-end;
+  }
+
+  .app-footer__advanced-links {
+    /* align against the viewport border */
+    text-align: end;
   }
 }
 
