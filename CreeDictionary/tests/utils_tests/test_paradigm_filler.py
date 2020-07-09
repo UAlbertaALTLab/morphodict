@@ -125,6 +125,14 @@ def test_fill_NA_Full(
     )
 
 
+def test_fill_VTA_full(paradigm_filler) -> None:
+    lemma = "wâpamêw"
+    wordclass = WordClass.VTA
+    lower_bound = 2  # TODO: not really sure what to set this as
+    forms = paradigm_filler.inflect_all(lemma, wordclass)
+    assert len(forms) > 2
+
+
 @pytest.fixture
 def paradigm_filler(shared_datadir) -> ParadigmFiller:
     """
