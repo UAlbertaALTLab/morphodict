@@ -854,22 +854,30 @@ html {
   }
 
   .app-footer__copyright {
-    margin-top: 0;
-    margin-block-start: 0;
+    margin: 0;
 
     text-align: center;
+
+    /* Place at BOTTOM of the bar */
+    align-self: flex-end;
   }
 }
 
 /**
  * BLOCK copyright
  *
- * Write copyright copy.
+ * One line of copyright text.
  */
 .copyright__line {
   margin: 0;
   margin-bottom: var(--gap);
   margin-block-end: var(--gap);
+}
+
+.copyright__line:last-of-type {
+  /* Remove superfluous margin for the last line of copyright. */
+  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 
