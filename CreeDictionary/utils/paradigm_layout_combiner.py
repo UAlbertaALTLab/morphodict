@@ -47,9 +47,14 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     layout_tables: LayoutTable = {}
 
     legacy_neahtta_layout_files = list(layout_file_dir.glob("*.layout"))
-    simple_tsv_files = list(layout_file_dir.glob("*.layout.csv"))
-    assert len(simple_tsv_files) > 0
-    files = legacy_neahtta_layout_files + simple_tsv_files
+    simple_csv_files = list(layout_file_dir.glob("*.layout.csv"))
+    simple_tsv_files = list(layout_file_dir.glob("*.layout.tsv"))
+
+    files = legacy_neahtta_layout_files + simple_csv_files + simple_tsv_files
+    if len(files) == 0:
+        raise ValueError(
+            f"Could not find any applicable layout files in {layout_file_dir}"
+        )
 
     for layout_file in files:
         # Get rid of .layout or .csv
@@ -80,7 +85,7 @@ def parse_layout(layout_file: Path) -> Table:
     """
     Parses a layout and returns a "layout".
     """
-    if layout_file.match("*.csv"):
+    if layout_file.match("*.csv") or layout_file.match("*.tsv"):
         return parse_csv_layout(layout_file)
     else:
         assert layout_file.match("*.layout")
