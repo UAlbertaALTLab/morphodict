@@ -15,3 +15,5 @@ INSTALLED_APPS = [
     "morphodict.apps.MorphodictConfig",
 ]
 ```
+
+Add URLs
