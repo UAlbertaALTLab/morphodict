@@ -2,7 +2,7 @@ Files here store templates of common lemma analyses for each [word class](../../
 
 i.e. 
 - NA lemmas usually have tags +N+A+Sg
-- VAI lemmas usually have tags +V+AI+Ind+Prs+3Sg
+- VAI lemmas usually have tags +V+AI+Ind+3Sg
 - ...
 
 i.e. It helps solve this question in the Database importer: "Which one of maskwa+N+A+Sg and maskwa+N+A+Obv is the lemma analysis?"

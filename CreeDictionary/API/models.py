@@ -423,8 +423,8 @@ class Wordform(models.Model):
             else:
                 # When the user query is outside of paradigm tables
                 # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
-                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
-                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
+                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+3Sg'}
+                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO+Err/Orth'
 
                 lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(
                     analysis
