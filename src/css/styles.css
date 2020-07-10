@@ -779,17 +779,14 @@ html {
 /**************************** APP FOOTER ****************************/
 
 /**
- * BLOCK app-footer
+ * BLOCK footer
  *
  * The footer at the bottom of the app.
  */
-.app-footer {
+.footer {
   /* Display & Box Model */
   display: grid;
   padding: 1rem var(--page-gutter) var(--page-gutter);
-  padding-block-start: 1rem;
-  padding-inline: var(--page-gutter);
-  padding-block-end: var(--page-gutter);
 
   /* Font */
   font-size: var(--footer-font-size);
@@ -808,38 +805,40 @@ html {
    "copyright";
 }
 
-.app-footer a:link {
+.footer a:link {
   color: var(--footer-text-color);
 }
 
-.app-footer__copyright {
+.footer__copyright {
   margin-top: 1rem;
-  margin-block-start: 1rem;
 
   grid-area: copyright;
 }
 
-.app-footer__site-links {
+.footer__basic-links {
   grid-area: basic;
 }
 
-.app-footer__advanced-links {
+.footer__advanced-links {
   grid-area: advanced;
 }
 
-.app-footer__links {
+.footer__links {
   margin: 0;
   padding: 0;
+
+  /* Put a lot of spacing in between links on mobile, to make them easier to
+   * press. */
+  line-height: 2;
 
   list-style: none;
 }
 
-.app-footer__link:first-of-type {
+.footer__link:first-of-type {
   margin-left: 0;
-  margin-block-start: 0;
 }
 
-.app-footer__link {
+.footer__link {
   font-weight: var(--strong-font-weight);
 }
 
@@ -848,18 +847,34 @@ html {
  * horizontally.
  */
 @media (min-width: 768px) {
-  .app-footer {
+  .footer {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas: "basic copyright advanced";
   }
 
-  .app-footer__copyright {
+  .footer__basic-links {
+    /* align against the viewport border */
+    text-align: start;
+  }
+
+  .footer__links {
+    /* Assume that on wider displays, users do not have to touch the button
+     * (can use a mouse or keyboard). */
+    line-height: normal;
+  }
+
+  .footer__copyright {
     margin: 0;
 
     text-align: center;
 
     /* Place at BOTTOM of the bar */
     align-self: flex-end;
+  }
+
+  .footer__advanced-links {
+    /* align against the viewport border */
+    text-align: end;
   }
 }
 
@@ -871,13 +886,11 @@ html {
 .copyright__line {
   margin: 0;
   margin-bottom: var(--gap);
-  margin-block-end: var(--gap);
 }
 
 .copyright__line:last-of-type {
   /* Remove superfluous margin for the last line of copyright. */
   margin-bottom: 0;
-  margin-block-end: 0;
 }
 
 
@@ -908,6 +921,7 @@ html {
 .partner-logos__logo {
   /* Display & Box Model */
   margin: var(--small-pad) .5rem;
+
   /* Text */
   text-align: center;
 }
@@ -1116,7 +1130,6 @@ a.menu-choice__label:active {
  */
 .box--spaced {
   margin-bottom: 16px;
-  margin-block-end: 16px;
 }
 
 /**
