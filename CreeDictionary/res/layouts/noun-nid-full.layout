@@ -32,7 +32,7 @@ tooltips:
 | "his/her/their (further)" | =N+I+D+Px3Pl+Sg          | =N+I+D+Px3Pl+Pl         | =N+I+D+Px4Sg/Pl+Loc        |
 |                           |                          |                         |                            |
 |                           | "Smaller/Lesser/Younger" |                         |                            |
-|                           | "Ownership"              |                         |                            |
+|                           | : "Ownership"            |                         |                            |
 | "someone's"               | Der/Dim+N+I+D+PxX+Sg     |                         |                            |
 | "my"                      | Der/Dim+N+I+D+Px1Sg+Sg   |                         |                            |
 | "his/her"                 | Der/Dim+N+I+D+Px3Sg+Sg   |                         |                            |
