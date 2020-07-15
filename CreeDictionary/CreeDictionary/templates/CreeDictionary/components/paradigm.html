@@ -42,12 +42,12 @@
 
                       {% if cell.frequency > 0 %}
                         {# observed form #}
-                        <td class="paradigm-cell">
+                        <td class="paradigm-cell paradigm-cell--observed">
                           {% orth cell.inflection %}
                         </td>
                       {% else %}
                         {# unobserved form #}
-                        <td class="paradigm-cell unobserved-inflection-cell">
+                        <td class="paradigm-cell paradigm-cell--unobserved">
                           {% orth cell.inflection %}
                         </td>
                       {% endif %}
