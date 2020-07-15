@@ -2,6 +2,7 @@
 fill a paradigm table according to a lemma
 """
 import csv
+import logging
 from copy import deepcopy
 from os.path import dirname
 from pathlib import Path
@@ -11,16 +12,15 @@ import hfstol
 from paradigm import (
     Cell,
     EmptyRow,
+    InflectionCell,
     Layout,
     StaticCell,
     TitleRow,
     rows_to_layout,
-    InflectionCell,
 )
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import Combiner
 from utils.types import ConcatAnalysis
-import logging
 
 LayoutID = Tuple[WordClass, ParadigmSize]
 

@@ -6,8 +6,7 @@ import pytest
 from API.models import Wordform
 from CreeDictionary import settings
 from hypothesis import assume, given
-
-from paradigm import Layout, InflectionCell, EmptyRowType, TitleRow
+from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language
 

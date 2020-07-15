@@ -6,7 +6,7 @@ Note: if the upstream layouts change, so will these tests!
 from string import Template
 
 import pytest
-from paradigm import EmptyRow, Heading, Label, TitleRow, InflectionCell
+from paradigm import EmptyRow, Heading, InflectionCell, Label, TitleRow
 from utils import ParadigmSize, WordClass
 from utils.paradigm_filler import ParadigmFiller, import_frequency
 

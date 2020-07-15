@@ -6,9 +6,10 @@ Classes related to paradigms: both layouts and the filled paradigms.
 """
 
 from string import Template
-from typing import Iterable, List, Union, Optional
+from typing import Iterable, List, Optional, Union
 
 from attr import attrib, attrs
+
 from typing_extensions import Literal
 
 
