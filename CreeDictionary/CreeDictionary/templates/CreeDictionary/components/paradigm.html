@@ -39,7 +39,19 @@
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
                       {# TODO: split this over multiple rows #}
-                      <td class="paradigm-cell">{% orth cell %}</td>
+
+                      {# observed form #}
+                      {% if cell.frequency != 0 %}
+                      <td class="paradigm-cell">
+                        {% orth cell.inflection %}
+                        <sup class="inflection-observed-frequency">({{ cell.frequency }})</sup>
+                      </td>
+                        {# unobserved form #}
+                      {% else %}
+                        <td class="paradigm-cell unobserved-inflection-cell">
+                          {% orth cell.inflection %}
+                        </td>
+                      {% endif %}
                     {% endif %}
                   {% endfor %}
                 </tr>

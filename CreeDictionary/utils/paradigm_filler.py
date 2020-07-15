@@ -8,16 +8,52 @@ from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
-from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
+from paradigm import (
+    Cell,
+    EmptyRow,
+    Layout,
+    StaticCell,
+    TitleRow,
+    rows_to_layout,
+    InflectionCell,
+)
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import Combiner
 from utils.types import ConcatAnalysis
+import logging
 
 LayoutID = Tuple[WordClass, ParadigmSize]
+
+logger = logging.getLogger()
+
+
+def import_frequency() -> Dict[ConcatAnalysis, int]:
+
+    res: Dict[ConcatAnalysis, int] = {}
+    for line in (
+        (shared_res_dir / "ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt")
+        .read_text()
+        .splitlines()
+    ):
+        line = line.strip()
+        if line:
+            try:
+                freq, _, *analyses = line.split()
+            except ValueError:  # not enough value to unpack, wich means the line has less than 3 values
+                logger.warn(
+                    f'line "{line}" is broken in ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt'
+                )
+            else:
+                for analysis in analyses:
+                    res[ConcatAnalysis(analysis)] = int(freq)
+
+    return res
 
 
 class ParadigmFiller:
     _layout_tables: Dict[LayoutID, Layout]
+
+    _frequency = import_frequency()
 
     @staticmethod
     def _import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
@@ -76,7 +112,7 @@ class ParadigmFiller:
         # so set up some data structures that will allow us to:
         #  - store all unique things to lookup
         #  - remember which strings need to be replaced after lookups
-        lookup_strings: List[str] = []
+        lookup_strings: List[ConcatAnalysis] = []
         string_locations: List[Tuple[List[Cell], int]] = []
 
         if category is WordClass.IPC or category is WordClass.Pron:
@@ -100,11 +136,13 @@ class ParadigmFiller:
                     if isinstance(cell, StaticCell) or cell == "":
                         # We do nothing to static and empty cells.
                         continue
-
-                    # It's a inflection form pattern
-                    assert '"' not in cell
-                    lookup_strings.append(cell.replace("{{ lemma }}", lemma))
-                    string_locations.append((row_with_replacements, col_ind))
+                    elif isinstance(cell, InflectionCell):
+                        lookup_strings.append(
+                            ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
+                        )
+                        string_locations.append((row_with_replacements, col_ind))
+                    else:
+                        raise ValueError("Unexpected Cell Type")
 
         # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
@@ -116,7 +154,10 @@ class ParadigmFiller:
             analysis = lookup_strings[i]
             results_for_cell = sorted(results[analysis])
             # TODO: this should actually produce TWO rows!
-            row[col_ind] = " / ".join(results_for_cell)
+            inflection_cell = row[col_ind]
+            assert isinstance(inflection_cell, InflectionCell)
+            inflection_cell.inflection = " / ".join(results_for_cell)
+            inflection_cell.frequency = self._frequency.get(analysis, 0)
 
         return tables
 
@@ -159,10 +200,10 @@ class ParadigmFiller:
             for cell in row:
                 if isinstance(cell, StaticCell) or cell == "":
                     continue
-
-                # It's a inflection form pattern
-                assert '"' not in cell
-                analysis = ConcatAnalysis(cell.replace("{{ lemma }}", lemma))
-                analyses.add(analysis)
+                elif isinstance(cell, InflectionCell):
+                    analysis = ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
+                    analyses.add(analysis)
+                else:
+                    raise ValueError("Unexpected cell type")
 
         return analyses
