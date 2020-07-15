@@ -109,6 +109,7 @@ class InflectionCell:
             isinstance(other, InflectionCell)
             and self.analysis.pattern == other.analysis.pattern
             and self.inflection == other.inflection
+            and self.frequency == other.frequency
         )
 
 
