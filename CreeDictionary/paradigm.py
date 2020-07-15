@@ -9,8 +9,9 @@ from string import Template
 from typing import Iterable, List, Optional, Union
 
 from attr import attrib, attrs
-
 from typing_extensions import Literal
+
+from utils.types import ConcatAnalysis
 
 
 class EmptyRowType:
@@ -112,6 +113,12 @@ class InflectionCell:
             and self.inflection == other.inflection
             and self.frequency == other.frequency
         )
+
+    def create_concat_analysis(self, lemma: str) -> ConcatAnalysis:
+        """
+        Fills in the analysis. Useful if you want to inflect this cell.
+        """
+        return ConcatAnalysis(self.analysis.substitute(lemma=lemma))
 
 
 Cell = Union[InflectionCell, StaticCell, Literal[""]]
