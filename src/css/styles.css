@@ -625,6 +625,15 @@ html {
 
 /********************************* PARADIGM *********************************/
 
+
+.inflection-observed-frequency{
+  /* todo: stub */
+}
+
+.unobserved-inflection-cell{
+  color: gray;
+}
+
 .paradigm {
   /* Display & Box model */
   border: solid 1px var(--paradigm-border-color);

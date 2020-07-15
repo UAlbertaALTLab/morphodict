@@ -1,10 +1,13 @@
 import json
 from collections import Iterable
+from typing import List
 
 import pytest
 from API.models import Wordform
 from CreeDictionary import settings
 from hypothesis import assume, given
+
+from paradigm import Layout, InflectionCell, EmptyRowType, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language
 
@@ -174,28 +177,27 @@ def test_search_space_characters_in_matched_term(term):
     assert len(cree_results) > 0
 
 
+def _paradigms_contain_inflection(paradigms: List[Layout], inflection: str) -> bool:
+    for paradigm in paradigms:
+        for row in paradigm:
+            if isinstance(row, (EmptyRowType, TitleRow)):
+                continue
+            for cell in row:
+                if isinstance(cell, InflectionCell) and cell.inflection == inflection:
+                    return True
+    return False
+
+
 @pytest.mark.django_db
 def test_paradigm():
-    def deep_contain(container: Iterable, testee):
-        """check if `testee` is in any depth of `container`"""
-        for item in container:
-            if item == testee:
-                return True
-            elif (
-                item != container
-                and isinstance(item, Iterable)
-                and deep_contain(item, testee)
-            ):
-                return True
-        return False
 
     nipaw_paradigm = Wordform.objects.get(
         text="nipâw", is_lemma=True
     ).get_paradigm_layouts()
-    assert deep_contain(nipaw_paradigm, "ninipân")
-    assert deep_contain(nipaw_paradigm, "kinipân")
-    assert deep_contain(nipaw_paradigm, "nipâw")
-    assert deep_contain(nipaw_paradigm, "ninipânân")
+    assert _paradigms_contain_inflection(nipaw_paradigm, "ninipân")
+    assert _paradigms_contain_inflection(nipaw_paradigm, "kinipân")
+    assert _paradigms_contain_inflection(nipaw_paradigm, "nipâw")
+    assert _paradigms_contain_inflection(nipaw_paradigm, "ninipânân")
 
 
 @pytest.mark.django_db
