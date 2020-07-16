@@ -9,8 +9,8 @@ from string import Template
 from typing import Iterable, List, Optional, Union
 
 from attr import attrib, attrs
-from typing_extensions import Literal
 
+from typing_extensions import Literal
 from utils.types import ConcatAnalysis
 
 
