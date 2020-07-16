@@ -1,72 +1,44 @@
-Paradigm layouts and metadata
-=============================
+Paradigm layouts
+================
 
-> Eddie's note: this documents our files as they were in late 2018.
-
-Along with this README, you will find many TSV (tab-separated values)
-files, and associated metadata files, stored in YAML format.
+In `CreeDictionary/res/layouts` you will find files like these:
 
     .
     ├── na-basic.layout.tsv
-    ├── na-basic.layout.yml
-    ├── na-extended.layout.tsv
-    ├── na-extended.layout.yml
+    ├── na-linguistic.layout.tsv
     ├── na-full.layout.tsv
-    ├── na-full.layout.yml
     ├── nad-basic.layout.tsv
-    ├── nad-basic.layout.yml
-    ├── nad-extended.layout.tsv
-    ├── nad-extended.layout.yml
+    ├── nad-linguistic.layout.tsv
     ├── nad-full.layout.tsv
-    ├── nad-full.layout.yml
     ├── ni-basic.layout.tsv
-    ├── ni-basic.layout.yml
-    ├── ni-extended.layout.tsv
-    ├── ni-extended.layout.yml
+    ├── ni-linguistic.layout.tsv
     ├── ni-full.layout.tsv
-    ├── ni-full.layout.yml
     ├── nid-basic.layout.tsv
-    ├── nid-basic.layout.yml
-    ├── nid-extended.layout.tsv
-    ├── nid-extended.layout.yml
+    ├── nid-linguistic.layout.tsv
     ├── nid-full.layout.tsv
-    ├── nid-full.layout.yml
     ├── vai-basic.layout.tsv
-    ├── vai-basic.layout.yml
-    ├── vai-extended.layout.tsv
-    ├── vai-extended.layout.yml
+    ├── vai-linguistic.layout.tsv
     ├── vai-full.layout.tsv
-    ├── vai-full.layout.yml
     ├── vii-basic.layout.tsv
-    ├── vii-basic.layout.yml
-    ├── vii-extended.layout.tsv
-    ├── vii-extended.layout.yml
+    ├── vii-linguistic.layout.tsv
     ├── vii-full.layout.tsv
-    ├── vii-full.layout.yml
     ├── vta-basic.layout.tsv
-    ├── vta-basic.layout.yml
-    ├── vta-extended.layout.tsv
-    ├── vta-extended.layout.yml
+    ├── vta-linguistic.layout.tsv
     ├── vta-full.layout.tsv
-    ├── vta-full.layout.yml
     ├── vti-basic.layout.tsv
-    ├── vti-basic.layout.yml
-    ├── vti-extended.layout.tsv
-    ├── vti-extended.layout.yml
-    ├── vti-full.layout.tsv
-    └── vti-full.layout.yml
+    ├── vti-linguistic.layout.tsv
+    └── vti-full.layout.tsv
 
 The file names are in this format:
 
-    {lexeme class}-{name}.layout.{file type}
+    {word class}-{name}.layout.{file type}
 
-### Lexeme class
+### Word class
 
-The part of speech this layout applies to. Note that you may assume that
-only nouns and verbs inflect in Plains Cree; other words **do not
-inflect**. The lemma class starts with either `n` or `v` for "noun" or
-"verb", respectively. Then a subtype is provided (e.g., "nad" is noun,
-animate, dependent; "vta" is **verb**, **transitive**, **animate**).
+The set of words this layout applies to. The lemma class starts with
+either `n` or `v` for "noun" or "verb", respectively. Then a subtype is
+provided (e.g., "nad" is noun, animate, dependent; "vta" is **verb**,
+**transitive**, **animate**).
 
 When a word form is analyzed, use its tags (e.g., `+V`, `+N`, `+TA`,
 `+A`, `+D`, etc.) to match it to a layout.
@@ -74,16 +46,12 @@ When a word form is analyzed, use its tags (e.g., `+V`, `+N`, `+TA`,
 ### Name
 
 This is a label for the layout. The current layouts are named in order
-of detail, in ascending order of detail from "basic" to "extended" to
+of detail, in ascending order of detail from "basic" to "linguistic" to
 "full".
 
 ### File type
 
 `.tsv` file is the layout as a tab-separated values file.
-
-`.yml` is a YAML file containing metadata. For the moment, this metadata
-can be ignored.
-
 
 Layouts
 -------
