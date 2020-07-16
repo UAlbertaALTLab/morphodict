@@ -23,11 +23,11 @@ tooltips:
 --
 	
 	: "One"
-"my"	=N+I+D+Px1Sg+Sg
-"your (one)"	=N+I+D+Px2Sg+Sg
-"his/her"	=N+I+D+Px3Sg+Sg
+"my"	${lemma}+N+I+D+Px1Sg+Sg
+"your (one)"	${lemma}+N+I+D+Px2Sg+Sg
+"his/her"	${lemma}+N+I+D+Px3Sg+Sg
 	
 	: "someone's"
-"One"	=N+I+D+PxX+Sg
-"Many"	=N+I+D+PxX+Pl
-"In/On"	=N+I+D+PxX+Loc
+"One"	${lemma}+N+I+D+PxX+Sg
+"Many"	${lemma}+N+I+D+PxX+Pl
+"In/On"	${lemma}+N+I+D+PxX+Loc

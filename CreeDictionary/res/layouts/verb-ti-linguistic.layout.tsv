@@ -15,73 +15,73 @@ tooltips:
     "X": "Unspecified actor"
 --
 	"PRESENT TENSE"	
-	: "V+TI+Independent"	: "Conjunct"
-"1s"	=V+TI+Ind+1Sg	PV/e+*+V+TI+Cnj+1Sg
-"2s"	=V+TI+Ind+2Sg	PV/e+*+V+TI+Cnj+2Sg
-"3s"	=V+TI+Ind+3Sg	PV/e+*+V+TI+Cnj+3Sg
-"1p"	=V+TI+Ind+1Pl	PV/e+*+V+TI+Cnj+1Pl
-"21"	=V+TI+Ind+12Pl	PV/e+*+V+TI+Cnj+12Pl
-"2p"	=V+TI+Ind+2Pl	PV/e+*+V+TI+Cnj+2Pl
-"3p"	=V+TI+Ind+3Pl	PV/e+*+V+TI+Cnj+3Pl
-"4"	=V+TI+Ind+4Sg/Pl	PV/e+*+V+TI+Cnj+4Sg/Pl
-"X"	=V+TI+Ind+X	PV/e+*+V+TI+Cnj+X
+	: "Independent"	: "Conjunct"
+"1s"	${lemma}+V+TI+Ind+1Sg	PV/e+${lemma}+V+TI+Cnj+1Sg
+"2s"	${lemma}+V+TI+Ind+2Sg	PV/e+${lemma}+V+TI+Cnj+2Sg
+"3s"	${lemma}+V+TI+Ind+3Sg	PV/e+${lemma}+V+TI+Cnj+3Sg
+"1p"	${lemma}+V+TI+Ind+1Pl	PV/e+${lemma}+V+TI+Cnj+1Pl
+"21"	${lemma}+V+TI+Ind+12Pl	PV/e+${lemma}+V+TI+Cnj+12Pl
+"2p"	${lemma}+V+TI+Ind+2Pl	PV/e+${lemma}+V+TI+Cnj+2Pl
+"3p"	${lemma}+V+TI+Ind+3Pl	PV/e+${lemma}+V+TI+Cnj+3Pl
+"4"	${lemma}+V+TI+Ind+4Sg/Pl	PV/e+${lemma}+V+TI+Cnj+4Sg/Pl
+"X"	${lemma}+V+TI+Ind+X	PV/e+${lemma}+V+TI+Cnj+X
 		
 	"PAST TENSE"	
-	: "V+TI+Independent"	: "Conjunct"
-"1s"	PV/ki+*+V+TI+Ind+1Sg	PV/e+PV/ki+*+V+TI+Cnj+1Sg
-"2s"	PV/ki+*+V+TI+Ind+2Sg	PV/e+PV/ki+*+V+TI+Cnj+2Sg
-"3s"	PV/ki+*+V+TI+Ind+3Sg	PV/e+PV/ki+*+V+TI+Cnj+3Sg
-"1p"	PV/ki+*+V+TI+Ind+1Pl	PV/e+PV/ki+*+V+TI+Cnj+1Pl
-"21"	PV/ki+*+V+TI+Ind+12Pl	PV/e+PV/ki+*+V+TI+Cnj+12Pl
-"2p"	PV/ki+*+V+TI+Ind+2Pl	PV/e+PV/ki+*+V+TI+Cnj+2Pl
-"3p"	PV/ki+*+V+TI+Ind+3Pl	PV/e+PV/ki+*+V+TI+Cnj+3Pl
-"4"	PV/ki+*+V+TI+Ind+4Sg/Pl	PV/e+PV/ki+*+V+TI+Cnj+4Sg/Pl
+	: "Independent"	: "Conjunct"
+"1s"	PV/ki+${lemma}+V+TI+Ind+1Sg	PV/e+PV/ki+${lemma}+V+TI+Cnj+1Sg
+"2s"	PV/ki+${lemma}+V+TI+Ind+2Sg	PV/e+PV/ki+${lemma}+V+TI+Cnj+2Sg
+"3s"	PV/ki+${lemma}+V+TI+Ind+3Sg	PV/e+PV/ki+${lemma}+V+TI+Cnj+3Sg
+"1p"	PV/ki+${lemma}+V+TI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+TI+Cnj+1Pl
+"21"	PV/ki+${lemma}+V+TI+Ind+12Pl	PV/e+PV/ki+${lemma}+V+TI+Cnj+12Pl
+"2p"	PV/ki+${lemma}+V+TI+Ind+2Pl	PV/e+PV/ki+${lemma}+V+TI+Cnj+2Pl
+"3p"	PV/ki+${lemma}+V+TI+Ind+3Pl	PV/e+PV/ki+${lemma}+V+TI+Cnj+3Pl
+"4"	PV/ki+${lemma}+V+TI+Ind+4Sg/Pl	PV/e+PV/ki+${lemma}+V+TI+Cnj+4Sg/Pl
 		
 	"FUTURE INTENTIONAL TENSE"	
-	: "V+TI+Independent"	: "Conjunct"
-"1s"	PV/wi+*+V+TI+Ind+1Sg	PV/e+PV/wi+*+V+TI+Cnj+1Sg
-"2s"	PV/wi+*+V+TI+Ind+2Sg	PV/e+PV/wi+*+V+TI+Cnj+2Sg
-"3s"	PV/wi+*+V+TI+Ind+3Sg	PV/e+PV/wi+*+V+TI+Cnj+3Sg
-"1p"	PV/wi+*+V+TI+Ind+1Pl	PV/e+PV/wi+*+V+TI+Cnj+1Pl
-"21"	PV/wi+*+V+TI+Ind+12Pl	PV/e+PV/wi+*+V+TI+Cnj+12Pl
-"2p"	PV/wi+*+V+TI+Ind+2Pl	PV/e+PV/wi+*+V+TI+Cnj+2Pl
-"3p"	PV/wi+*+V+TI+Ind+3Pl	PV/e+PV/wi+*+V+TI+Cnj+3Pl
-"4"	PV/wi+*+V+TI+Ind+4Sg/Pl	PV/e+PV/wi+*+V+TI+Cnj+4Sg/Pl
+	: "Independent"	: "Conjunct"
+"1s"	PV/wi+${lemma}+V+TI+Ind+1Sg	PV/e+PV/wi+${lemma}+V+TI+Cnj+1Sg
+"2s"	PV/wi+${lemma}+V+TI+Ind+2Sg	PV/e+PV/wi+${lemma}+V+TI+Cnj+2Sg
+"3s"	PV/wi+${lemma}+V+TI+Ind+3Sg	PV/e+PV/wi+${lemma}+V+TI+Cnj+3Sg
+"1p"	PV/wi+${lemma}+V+TI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+TI+Cnj+1Pl
+"21"	PV/wi+${lemma}+V+TI+Ind+12Pl	PV/e+PV/wi+${lemma}+V+TI+Cnj+12Pl
+"2p"	PV/wi+${lemma}+V+TI+Ind+2Pl	PV/e+PV/wi+${lemma}+V+TI+Cnj+2Pl
+"3p"	PV/wi+${lemma}+V+TI+Ind+3Pl	PV/e+PV/wi+${lemma}+V+TI+Cnj+3Pl
+"4"	PV/wi+${lemma}+V+TI+Ind+4Sg/Pl	PV/e+PV/wi+${lemma}+V+TI+Cnj+4Sg/Pl
 		
 	"FUTURE DEFINITE TENSE"	
-	: "V+TI+Independent"	
-"1s"	PV/ka+*+V+TI+Ind+1Sg	
-"2s"	PV/ka+*+V+TI+Ind+2Sg	
-"3s"	PV/ka+*+V+TI+Ind+3Sg	
-"1p"	PV/ka+*+V+TI+Ind+1Pl	
-"21"	PV/ka+*+V+TI+Ind+12Pl	
-"2p"	PV/ka+*+V+TI+Ind+2Pl	
-"3p"	PV/ka+*+V+TI+Ind+3Pl	
-"4"	PV/ka+*+V+TI+Ind+4Sg/Pl	
+	: "Independent"	
+"1s"	PV/ka+${lemma}+V+TI+Ind+1Sg	
+"2s"	PV/ka+${lemma}+V+TI+Ind+2Sg	
+"3s"	PV/ka+${lemma}+V+TI+Ind+3Sg	
+"1p"	PV/ka+${lemma}+V+TI+Ind+1Pl	
+"21"	PV/ka+${lemma}+V+TI+Ind+12Pl	
+"2p"	PV/ka+${lemma}+V+TI+Ind+2Pl	
+"3p"	PV/ka+${lemma}+V+TI+Ind+3Pl	
+"4"	PV/ka+${lemma}+V+TI+Ind+4Sg/Pl	
 		
 	"FUTURE/INFINITIVE"	
 	: "Conjunct: ka-"	: "Conjunct: ta-"
-"1s"	PV/ka+*+V+TI+Cnj+1Sg	PV/ta+*+V+TI+Cnj+1Sg
-"2s"	PV/ka+*+V+TI+Cnj+2Sg	PV/ta+*+V+TI+Cnj+2Sg
-"3s"	PV/ka+*+V+TI+Cnj+3Sg	PV/ta+*+V+TI+Cnj+3Sg
-"1p"	PV/ka+*+V+TI+Cnj+1Pl	PV/ta+*+V+TI+Cnj+1Pl
-"21"	PV/ka+*+V+TI+Cnj+12Pl	PV/ta+*+V+TI+Cnj+12Pl
-"2p"	PV/ka+*+V+TI+Cnj+2Pl	PV/ta+*+V+TI+Cnj+2Pl
-"3p"	PV/ka+*+V+TI+Cnj+3Pl	PV/ta+*+V+TI+Cnj+3Pl
-"4"	PV/ka+*+V+TI+Cnj+4Sg/Pl	PV/ta+*+V+TI+Cnj+4Sg/Pl
+"1s"	PV/ka+${lemma}+V+TI+Cnj+1Sg	PV/ta+${lemma}+V+TI+Cnj+1Sg
+"2s"	PV/ka+${lemma}+V+TI+Cnj+2Sg	PV/ta+${lemma}+V+TI+Cnj+2Sg
+"3s"	PV/ka+${lemma}+V+TI+Cnj+3Sg	PV/ta+${lemma}+V+TI+Cnj+3Sg
+"1p"	PV/ka+${lemma}+V+TI+Cnj+1Pl	PV/ta+${lemma}+V+TI+Cnj+1Pl
+"21"	PV/ka+${lemma}+V+TI+Cnj+12Pl	PV/ta+${lemma}+V+TI+Cnj+12Pl
+"2p"	PV/ka+${lemma}+V+TI+Cnj+2Pl	PV/ta+${lemma}+V+TI+Cnj+2Pl
+"3p"	PV/ka+${lemma}+V+TI+Cnj+3Pl	PV/ta+${lemma}+V+TI+Cnj+3Pl
+"4"	PV/ka+${lemma}+V+TI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+TI+Cnj+4Sg/Pl
 		
 	"FUTURE CONDITIONAL"	
-"1s"	V+TI+Fut+Cond+1Sg	
-"2s"	V+TI+Fut+Cond+2Sg	
-"3s"	V+TI+Fut+Cond+3Sg	
-"1p"	V+TI+Fut+Cond+1Pl	
-"21"	V+TI+Fut+Cond+12Pl	
-"2p"	V+TI+Fut+Cond+2Pl	
-"3p"	V+TI+Fut+Cond+3Pl	
-"4"	V+TI+Fut+Cond+4Sg/Pl	
+"1s"	${lemma}+V+TI+Fut+Cond+1Sg	
+"2s"	${lemma}+V+TI+Fut+Cond+2Sg	
+"3s"	${lemma}+V+TI+Fut+Cond+3Sg	
+"1p"	${lemma}+V+TI+Fut+Cond+1Pl	
+"21"	${lemma}+V+TI+Fut+Cond+12Pl	
+"2p"	${lemma}+V+TI+Fut+Cond+2Pl	
+"3p"	${lemma}+V+TI+Fut+Cond+3Pl	
+"4"	${lemma}+V+TI+Fut+Cond+4Sg/Pl	
 		
 	"IMPERATIVE"	
 	: "Immediate"	: "Delayed"
-"2s"	V+TI+Imp+Imm+2Sg	V+TI+Imp+Del+2Sg
-"21"	V+TI+Imp+Imm+12Pl	V+TI+Imp+Del+12Pl
-"2p"	V+TI+Imp+Imm+2Pl	V+TI+Imp+Del+2Pl
+"2s"	${lemma}+V+TI+Imp+Imm+2Sg	${lemma}+V+TI+Imp+Del+2Sg
+"21"	${lemma}+V+TI+Imp+Imm+12Pl	${lemma}+V+TI+Imp+Del+12Pl
+"2p"	${lemma}+V+TI+Imp+Imm+2Pl	${lemma}+V+TI+Imp+Del+2Pl

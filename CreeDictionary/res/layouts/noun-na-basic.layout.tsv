@@ -20,16 +20,16 @@ tooltips:
     "Smaller/Lesser/Younger": "Diminutive"
     "Ownership": "Possession"
 --
-"One"	=N+A+Sg
-"Many"	=N+A+Pl
-"Further"	=N+A+Obv
+"One"	${lemma}+N+A+Sg
+"Many"	${lemma}+N+A+Pl
+"Further"	${lemma}+N+A+Obv
 	
 	: "Smaller/Lesser/Younger"
-"One"	Der/Dim+N+A+Sg
+"One"	${lemma}+N+A+Der/Dim+N+A+Sg
 	
 	: "Ownership"
 	: "One"
-"my"	=N+A+Px1Sg+Sg
-"your (one)"	=N+A+Px2Sg+Sg
+"my"	${lemma}+N+A+Px1Sg+Sg
+"your (one)"	${lemma}+N+A+Px2Sg+Sg
 	: "Further"
-"his/her"	=N+A+Px3Sg+Obv
+"his/her"	${lemma}+N+A+Px3Sg+Obv
