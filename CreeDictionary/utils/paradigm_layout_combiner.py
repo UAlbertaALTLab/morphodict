@@ -98,14 +98,21 @@ def parse_csv_layout(layout_file: Path) -> Table:
     Parses a layout in the CSV/TSV format.
     """
     # Throw out the YAML header; we don't need it.
-    _yaml_header, _divider, table_csv = layout_file.read_text(
-        encoding="UTF-8"
-    ).partition("\n--")
+    file_text = layout_file.read_text(encoding="UTF-8")
+    _yaml_header, _divider, table_csv = file_text.partition("\n--")
 
+    if "\n--\n" not in file_text:
+        return _parse_csv_layout(file_text.splitlines())
+
+    logger.warning(f"unused YAML header in {layout_file}")
     lines = table_csv.splitlines()
     # the first line is part of the divider; get rid of it!
     del lines[0]
 
+    return _parse_csv_layout(lines)
+
+
+def _parse_csv_layout(lines: List[str]) -> Table:
     # Not much parsing to do here: mostly
     table: Table = []
     last_row_len = None
