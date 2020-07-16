@@ -32,7 +32,7 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'awâsisîwiw')
 
-    cy.visitSearch('na nipat')
+    cy.visitSearch('e nipat')
     cy.get('[data-cy=search-results]')
       .should('contain', 'nipâw')
   })
