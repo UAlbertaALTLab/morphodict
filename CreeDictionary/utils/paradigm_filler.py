@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
+
 from paradigm import (
     Cell,
     EmptyRow,
@@ -137,9 +138,7 @@ class ParadigmFiller:
                         # We do nothing to static and empty cells.
                         continue
                     elif isinstance(cell, InflectionCell):
-                        lookup_strings.append(
-                            ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
-                        )
+                        lookup_strings.append(cell.create_concat_analysis(lemma))
                         string_locations.append((row_with_replacements, col_ind))
                     else:
                         raise ValueError("Unexpected Cell Type")
@@ -201,7 +200,7 @@ class ParadigmFiller:
                 if isinstance(cell, StaticCell) or cell == "":
                     continue
                 elif isinstance(cell, InflectionCell):
-                    analysis = ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
+                    analysis = cell.create_concat_analysis(lemma)
                     analyses.add(analysis)
                 else:
                     raise ValueError("Unexpected cell type")

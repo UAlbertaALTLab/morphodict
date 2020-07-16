@@ -9,8 +9,9 @@ from string import Template
 from typing import Iterable, List, Optional, Union
 
 from attr import attrib, attrs
-
 from typing_extensions import Literal
+
+from utils.types import ConcatAnalysis
 
 
 class EmptyRowType:
@@ -113,6 +114,23 @@ class InflectionCell:
             and self.frequency == other.frequency
         )
 
+    def create_concat_analysis(self, lemma: str) -> ConcatAnalysis:
+        """
+        Fills in the analysis. Useful if you want to inflect this cell.
+
+        >>> cell = InflectionCell.from_raw_nds_cell("{{ lemma }}+V+II+Ind+3Sg")
+        >>> cell.create_concat_analysis("mispon")
+        'mispon+V+II+Ind+3Sg'
+        """
+        return ConcatAnalysis(self.analysis.substitute(lemma=lemma))
+
+    @classmethod
+    def from_raw_nds_cell(cls, raw_cell: str) -> "InflectionCell":
+        """
+        Generates an InflectionCell from a NDS-style (legacy) template format.
+        """
+        return cls(Template(raw_cell.replace("{{ lemma }}", "${lemma}")))
+
 
 Cell = Union[InflectionCell, StaticCell, Literal[""]]
 
@@ -177,4 +195,4 @@ def determine_cell(raw_cell: str) -> Cell:
             return ""
         else:
             # "{{ lemma }}" is a proprietary format
-            return InflectionCell(Template(raw_cell.replace("{{ lemma }}", "${lemma}")))
+            return InflectionCell.from_raw_nds_cell(raw_cell)
