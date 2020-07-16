@@ -6,6 +6,7 @@ Note: if the upstream layouts change, so will these tests!
 from string import Template
 
 import pytest
+
 from paradigm import EmptyRow, Heading, InflectionCell, Label, TitleRow
 from utils import ParadigmSize, WordClass
 from utils.paradigm_filler import ParadigmFiller, import_frequency
@@ -25,18 +26,17 @@ def test_import_prefilled_layouts(shared_datadir) -> None:
         [Label("Many"), InflectionCell(Template("${lemma}+N+A+Pl"))],
         [Label("Further"), InflectionCell(Template("${lemma}+N+A+Obv"))],
         EmptyRow,
-        # TODO: I think there's a mistake with the source material here:
-        # This should be a title row, not a label ¯\_(ツ)_/¯
+        # TODO: This should be a title, not a heading
+        ["", Heading("Smaller/Lesser/Younger")],
+        [Label("One"), InflectionCell(Template("${lemma}+N+A+Der/Dim+N+A+Sg"))],
+        EmptyRow,
+        # TODO: This should be a title row, not a label ¯\_(ツ)_/¯
         ["", Heading("Ownership")],
         ["", Heading("One")],
         [Label("my"), InflectionCell(Template("${lemma}+N+A+Px1Sg+Sg"))],
         [Label("your (one)"), InflectionCell(Template("${lemma}+N+A+Px2Sg+Sg")),],
         ["", Heading("Further")],
         [Label("his/her"), InflectionCell(Template("${lemma}+N+A+Px3Sg+Obv"))],
-        EmptyRow,
-        # TODO: This should be a title, not a heading
-        ["", Heading("Smaller/Lesser/Younger")],
-        [Label("One"), InflectionCell(Template("${lemma}+N+A+Der/Dim+N+A+Sg"))],
     ]
 
 
@@ -93,6 +93,7 @@ def paradigm_filler(shared_datadir) -> ParadigmFiller:
     """
     return ParadigmFiller(
         shared_datadir / "layouts",
+        # TODO: remove this:
         shared_datadir / "paradigms",
         shared_datadir / "crk-normative-generator.hfstol",
     )
