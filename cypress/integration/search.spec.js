@@ -370,7 +370,7 @@ context('Searching', () => {
   describe('display of the header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
-    const inflectionalCategory = 'VAI-v'
+    const inflectionalCategory = 'VAI-1'
     const plainEnglishInflectionalCategory = 'like: nipâw'
     const nonLemmaFormWithDefinition = 'nîminâniwan'
     const nonLemmaFormWithoutDefinition = 'ninîmin'
