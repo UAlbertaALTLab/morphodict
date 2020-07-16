@@ -28,12 +28,10 @@ logger = logging.getLogger()
 
 
 def import_frequency() -> Dict[ConcatAnalysis, int]:
+    FILENAME = "attested-wordforms.txt"
+
     res: Dict[ConcatAnalysis, int] = {}
-    lines = (
-        (shared_res_dir / "ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt")
-        .read_text(encoding="UTF-8")
-        .splitlines()
-    )
+    lines = (shared_res_dir / FILENAME).read_text(encoding="UTF-8").splitlines()
     for line in lines:
         line = line.strip()
         if not line:
@@ -43,9 +41,7 @@ def import_frequency() -> Dict[ConcatAnalysis, int]:
         try:
             freq, _, *analyses = line.split()
         except ValueError:  # not enough value to unpack, which means the line has less than 3 values
-            logger.warn(
-                f'line "{line}" is broken in ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt'
-            )
+            logger.warn(f'line "{line}" is broken in {FILENAME}')
         else:
             for analysis in analyses:
                 res[ConcatAnalysis(analysis)] = int(freq)
