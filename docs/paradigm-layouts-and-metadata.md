@@ -130,35 +130,19 @@ left-aligned or right-aligned, depending on where the colon is.
 
 Word form templates are requests to generate a word form from the FST.
 
-| Pattern           | Special character   | Example                        | Example lookup string              |
-|-------------------|---------------------|--------------------------------|------------------------------------|
-| Exact match       | `=`                 | `=N+I+D+PxX+Sg`                | mitêh+N+I+D+PxX+Sg                 |
-| Match anywhere    | (none)              | `Der/Dim+N+A+D+Px1Sg+Sg`       | nôhkomis+N+A+D+Px1Sg+Sg            |
-| Star substitute   | `*`                 | `PV/e+*+V+TA+Cnj+Prs+1Sg+2SgO` | PV/e+wâpamêw+V+TA+Cnj+Prs+1Sg+2SgO |
+| Example                           | Example lookup string              |
+|-----------------------------------|------------------------------------|
+| `${lemma}+N+I+D+PxX+Sg`           | mitêh+N+I+D+PxX+Sg                 |
+| `PV/e+${lemma}+V+TA+Cnj+1Sg+2SgO` | PV/e+wâpamêw+V+TA+Cnj+1Sg+2SgO     |
+
+Word form templates **MUST** contain `${lemma}`, which will be replaced
+with the appropriate lemma to form the lookup string.
 
 The general steps are the same:
 
  1. Apply the lemma to the pattern to create the **lookup string**.
  2. Call `FST.generate()` on the lookup string.
  3. Generate one or more `<td>` cell containing a generated word form.
-
-#### Match anywhere patterns
-
-Concatenate the lemma to the tags with a `+` to create the lookup used
-in `FST.generate()`. In concept, the match anywhere cells are supposed
-to match that set of tags _anywhere_ in the analysis; in practice,
-however, the match anywhere cells usually provide all of the tags to the
-right of the lemma.
-
-#### Exact match pattern
-
-Remove the leading `=` from the tag, then concatenate the lemma to the
-tags with a `+` to create the lookup used in `FST.generate()`.
-
-#### Star substitute patterns
-
-Substitute the star with the lemma to create the lookup used in
-`FST.generate()`.
 
 ### Empty cells
 
