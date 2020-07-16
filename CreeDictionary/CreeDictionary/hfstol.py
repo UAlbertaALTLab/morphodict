@@ -79,8 +79,13 @@ def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, Non
         lemma = parts[lemma_loc]
         suffixes = parts[lemma_loc + 1 :]
 
-        # Faild to analyze term
+        # Failed to analyze term
         if suffixes == ["?"]:
+            continue
+
+        # The descriptive analyzer REALLY likes finding fragments (for spell-checking
+        # purposes), but they're not useful in this dictionary, so just skip 'em
+        if "Err/Frag" in suffixes:
             continue
 
         yield Analysis(
