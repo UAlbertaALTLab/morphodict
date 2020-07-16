@@ -267,39 +267,5 @@ class Combiner:
         if category is WordClass.IPC or category is WordClass.Pron:
             return []
 
-        layout_table = self._layout_tables[(category, paradigm_size)]
-
-        for rowInd, row in enumerate(layout_table):
-            for colInd, cell in enumerate(row):
-
-                if '"' not in cell and cell != "":  # it's a inflection form pattern
-
-                    # see patterns in res/layouts/readme.md
-                    replaced = ""
-                    if "=" in cell:
-                        replaced = "{{ lemma }}" + "+" + cell[1:]
-
-                    elif "*" in cell:
-
-                        replaced = cell.replace(
-                            "*",
-                            "%s%s" % ("{{ lemma }}", category.to_fst_output_style()),
-                        )
-
-                    else:
-                        lookup_combination = set(cell.split("+"))
-                        for combination, patterns in self._paradigm_tables[
-                            category
-                        ].items():
-                            if lookup_combination < combination:
-                                found = False
-                                for pattern in patterns:
-                                    if cell in pattern:
-                                        replaced = pattern
-                                        found = True
-                                        break
-                                if found:
-                                    break
-                    layout_table[rowInd][colInd] = replaced
-
-        return layout_table
+        # Can be returned unchanged!
+        return self._layout_tables[(category, paradigm_size)]

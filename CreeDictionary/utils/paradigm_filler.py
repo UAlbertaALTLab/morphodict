@@ -96,6 +96,7 @@ class ParadigmFiller:
         """
         return ParadigmFiller(
             shared_res_dir / "layouts",
+            # TODO: DELETE:
             shared_res_dir / "paradigms",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
