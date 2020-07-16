@@ -1,25 +1,3 @@
-name: "Animate noun full (plain) paradigm"
-paradigm: "noun-na.paradigm"
-layout:
-  type: "full"
-tooltips:
-  eng:
-    "my": "1st person singular possessor"
-    "your (one)": "2nd person singular possessor"
-    "his/her": "3rd person singular possessor"
-    "our (but not your)": "1st person plural exclusive possessor"
-    "your and our": "1st person plural inclusive possessor"
-    "your (all)": "2nd person plural possessor"
-    "their": "3rd person plural possessor"
-    "his/her/their (further)": "Obviative possessor"
-    "One": "Singular"
-    "Many": "Plural"
-    "Further": "Obviative"
-    "In/On": "Locative"
-    "Among": "Distributive"
-    "Smaller/Lesser/Younger": "Diminutive"
-    "Ownership": "Possession"
---
 "One"	${lemma}+N+A+Sg			
 "Many"	${lemma}+N+A+Pl			
 "Further"	${lemma}+N+A+Obv			

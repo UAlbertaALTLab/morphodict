@@ -1,32 +1,3 @@
-name: "Transitive inanimate verb full (plain) paradigm"
-paradigm: "verb-ti.paradigm"
-layout:
-  type: "full"
-tooltips:
-  eng:
-    "I": "1st person singular actor"
-    "you (one)": "2nd person singular actor"
-    "s/he": "3rd person singular actor"
-    "we (but not you)": "It person plural exclusive actor"
-    "you and we": "It person plural inclusive actor"
-    "you (all)": "2nd person plural actor"
-    "they": "3rd person plural actor"
-    "s/he/they (further)": "3rd person obviative actor"
-    "someone": "Unspecified actor"
-    "Something is happening now": "Present Tense"
-    "Something happened earlier": "Past Tense"
-    "Someone wants something to happen": "Future Intentional Tense"
-    "Something will certainly happen": "Future Definite Tense" 
-    "For something to happen": "Future/Infinitive"
-    "When something happens": "Future Conditional"
-    "Command/Request": "Imperative"
-    "Right now": "Immediate"
-    "Later on": "Delayed"
-    "ni-/ki- word": "Independent"
-    "ê-/kâ- word": "Conjunct"
-    "ka- word": "ka-conjunct"
-    "ta- word": "ta-conjunct"
---
 	"Something is happening now"	
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "I"	${lemma}+V+TI+Ind+1Sg	PV/e+${lemma}+V+TI+Cnj+1Sg

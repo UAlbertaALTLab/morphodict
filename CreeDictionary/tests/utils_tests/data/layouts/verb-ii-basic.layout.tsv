@@ -1,27 +1,3 @@
-name: "Inanimate intransitive verb basic (plain) paradigm"
-paradigm: "verb-ii.paradigm"
-layout:
-  type: "basic"
-tooltips:
-  eng:
-    "it": "inanimate singular actor"
-    "they": "inanimate plural actor"
-    "it (further)": "inanimate singular obviative actor"
-    "they (further)": "inanimate plural obviative actor"
-    "Something is happening now": "Present Tense"
-    "Something happened earlier": "Past Tense"
-    "Someone wants something to happen": "Future Intentional Tense"
-    "Something will certainly happen": "Future Definite Tense" 
-    "For something to happen": "Future/Infinitive"
-    "When something happens": "Future Conditional"
-    "Command/Request": "Imperative"
-    "Right now": "Immediate"
-    "Later on": "Delayed"
-    "ni-/ki- word": "Independent"
-    "ê-/kâ- word": "ê-/kâ- word"
-    "ka- word": "ka-conjunct"
-    "ta- word": "ta-conjunct"
---
 	"Something is happening now"	
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "it"	${lemma}+V+II+Ind+3Sg	PV/e+${lemma}+V+II+Cnj+3Sg
