@@ -18,9 +18,7 @@ def test_import_prefilled_layouts(shared_datadir) -> None:
     """
     # these layout and paradigm files are pinned test data
     # the real files in use are hosted under res/ folder
-    prefilled_layouts = ParadigmFiller._import_layouts(
-        shared_datadir / "layouts", shared_datadir / "paradigms"
-    )
+    prefilled_layouts = ParadigmFiller._import_layouts(shared_datadir / "layouts")
     assert prefilled_layouts[WordClass.NA, ParadigmSize.BASIC] == [
         [Label("One"), InflectionCell(Template("${lemma}+N+A+Sg"))],
         [Label("Many"), InflectionCell(Template("${lemma}+N+A+Pl"))],
@@ -92,8 +90,5 @@ def paradigm_filler(shared_datadir) -> ParadigmFiller:
     be used in tests!
     """
     return ParadigmFiller(
-        shared_datadir / "layouts",
-        # TODO: remove this:
-        shared_datadir / "paradigms",
-        shared_datadir / "crk-normative-generator.hfstol",
+        shared_datadir / "layouts", shared_datadir / "crk-normative-generator.hfstol",
     )
