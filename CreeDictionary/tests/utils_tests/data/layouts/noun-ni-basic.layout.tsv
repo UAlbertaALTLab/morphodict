@@ -18,15 +18,15 @@ tooltips:
     "Smaller/younger/lesser": "Diminutive"
     "Ownership": "Possession"
 --
-| "One"        | =N+I+Sg                    |
-| "Many"       | =N+I+Pl                    |
-| "In/On"      | =N+I+Loc                   |
-|              |                            |
-|              | : "Smaller/younger/lesser" |
-| "One"        | Der/Dim+N+I+Sg             |
-|              |                            |
-|              | : "Ownership"              |
-|              | : "One"                    |
-| "my"         | =N+I+Px1Sg+Sg              |
-| "your (one)" | =N+I+Px2Sg+Sg              |
-| "his/her"    | =N+I+Px3Sg+Sg              |
+"One"	${lemma}+N+I+Sg
+"Many"	${lemma}+N+I+Pl
+"In/On"	${lemma}+N+I+Loc
+	
+	: "Smaller/younger/lesser"
+"One"	${lemma}+N+I+Der/Dim+N+I+Sg
+	
+	: "Ownership"
+	: "One"
+"my"	${lemma}+N+I+Px1Sg+Sg
+"your (one)"	${lemma}+N+I+Px2Sg+Sg
+"his/her"	${lemma}+N+I+Px3Sg+Sg

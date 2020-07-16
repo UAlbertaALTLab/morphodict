@@ -1,0 +1,38 @@
+name: "Inanimate noun full (plain) paradigm"
+paradigm: "noun-nid.paradigm"
+layout:
+  type: "full"
+tooltips:
+  eng:
+    "my": "1st person singular possessor"
+    "your (one)": "2nd person singular possessor"
+    "his/her": "3rd person singular possessor"
+    "our (but not your)": "1st person plural exclusive possessor"
+    "your and our": "1st person plural inclusive possessor"
+    "your (all)": "2nd person plural possessor"
+    "their": "3rd person plural possessor"
+    "his/her/their (further)": "obviative possessor"
+    "someone's": "unspecified possessor"
+    "One": "Singular"
+    "Many": "Plural"
+    "In/On": "Locative"
+    "Smaller/Lesser/Younger": "Diminutive"
+    "Ownership": "Possession"
+--
+	"Ownership"		
+	: "One"	: "Many"	: "In/On"
+"someone's"	${lemma}+N+I+D+PxX+Sg	${lemma}+N+I+D+PxX+Pl	${lemma}+N+I+D+PxX+Loc
+"my"	${lemma}+N+I+D+Px1Sg+Sg	${lemma}+N+I+D+Px1Sg+Pl	${lemma}+N+I+D+Px1Sg+Loc
+"your (one)"	${lemma}+N+I+D+Px2Sg+Sg	${lemma}+N+I+D+Px2Sg+Pl	${lemma}+N+I+D+Px2Sg+Loc
+"his/her"	${lemma}+N+I+D+Px3Sg+Sg	${lemma}+N+I+D+Px3Sg+Pl	${lemma}+N+I+D+Px3Sg+Loc
+"our (but not your)"	${lemma}+N+I+D+Px1Pl+Sg	${lemma}+N+I+D+Px1Pl+Pl	${lemma}+N+I+D+Px1Pl+Loc
+"your and our"	${lemma}+N+I+D+Px12Pl+Sg	${lemma}+N+I+D+Px12Pl+Pl	${lemma}+N+I+D+Px12Pl+Loc
+"your (all)"	${lemma}+N+I+D+Px2Pl+Sg	${lemma}+N+I+D+Px2Pl+Pl	${lemma}+N+I+D+Px2Pl+Loc
+"their"	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px3Pl+Loc
+"his/her/their (further)"	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
+			
+	"Smaller/Lesser/Younger"		
+	"Ownership"		
+"someone's"	${lemma}+N+I+D+Der/Dim+N+I+D+PxX+Sg		
+"my"	${lemma}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg		
+"his/her"	${lemma}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg		

@@ -1,4 +1,4 @@
-name: "Inanimate intransitive verb full (plain) paradigm"
+name: "Inanimate intransitive verb basic (plain) paradigm"
 paradigm: "verb-ii.paradigm"
 layout:
   type: "basic"
@@ -22,7 +22,7 @@ tooltips:
     "ka- word": "ka-conjunct"
     "ta- word": "ta-conjunct"
 --
-|        | "Something is happening now" |                    |
-|        | : "ni-/ki- word"             | : "ê-/kâ- word"    |
-| "it"   | Ind+Prs+3Sg                  | PV/e+*+Cnj+Prs+3Sg |
-| "they" | Ind+Prs+3Pl                  | PV/e+*+Cnj+Prs+3Pl |
+	"Something is happening now"	
+	: "ni-/ki- word"	: "ê-/kâ- word"
+"it"	${lemma}+V+II+Ind+3Sg	PV/e+${lemma}+V+II+Cnj+3Sg
+"they"	${lemma}+V+II+Ind+3Pl	PV/e+${lemma}+V+II+Cnj+3Pl
