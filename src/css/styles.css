@@ -707,7 +707,8 @@ html {
 
 .paradigm-title {
   text-align: center;
-  font-family: var(--strong-font-weight);
+  font-style: italic;
+  font-weight: var(--body-font-weight);
 }
 
 .paradigm-label {
