@@ -27,6 +27,7 @@ tipiskâw
 
 # NAD examples
 nôhkom
+nipawâkan
 
 # NID examples
 mîpit
