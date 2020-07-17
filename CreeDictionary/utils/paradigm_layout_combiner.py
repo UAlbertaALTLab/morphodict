@@ -1,15 +1,11 @@
-"""
+f"""
 Compiles the .layout files into a "pre-filled" form.  The pre-filled paradigm layouts
 are subsequently used in the web application.
 
 See also: paradigm_filler.
 """
 
-import csv
-import glob
 import logging
-from os import path
-from os.path import dirname
 from pathlib import Path
 from typing import Dict, FrozenSet, List, Tuple
 
@@ -18,7 +14,7 @@ import hfstol
 from utils import ParadigmSize, WordClass
 from utils.shared_res_dir import shared_res_dir
 
-# A raw paradigm layout from Neahttadigisánit.
+# A raw paradigm layout:
 Table = List[List[str]]
 
 logger = logging.getLogger(__name__)
@@ -81,20 +77,23 @@ def parse_layout(layout_file: Path) -> Table:
     assert layout_file.match("*.tsv")
 
     file_text = layout_file.read_text(encoding="UTF-8")
+
     if "\n--\n" in file_text:
         raise NotImplementedError("NDS YAML header not supported")
 
-    lines = file_text.splitlines()
-
     table: Table = []
     last_row_len = None
-    for line in lines:
+
+    lines = file_text.splitlines()
+    for row_no, line in enumerate(lines, start=1):
         row = [cell.strip() for cell in line.split("\t")]
         table.append(row)
         row_len = len(row)
-        assert (
-            last_row_len is None or row_len == last_row_len
-        ), f"expected length {last_row_len}; got: {row_len}"
+        if last_row_len is not None:
+            assert row_len == last_row_len, (
+                f"expected row {row_no} to have {last_row_len} column(s); "
+                f"actually has: {row_len} column(s)"
+            )
         last_row_len = row_len
 
     return table
@@ -121,8 +120,7 @@ class Combiner:
         """
         Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
         """
-        res = Path(dirname(__file__)) / ".." / "res"
-        return Combiner(res / "layouts")
+        return Combiner(shared_res_dir / "layouts")
 
     def get_combined_table(
         self, category: WordClass, paradigm_size: ParadigmSize
