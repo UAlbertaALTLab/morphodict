@@ -20,7 +20,7 @@ It _minimally_ consists of:
 One possible linguistic analysis of the [wordform][] "sabía" in
 Spanish is:
 
-    saber+V+Pst+Past+1Sg
+    saber+V+Past+1Sg
 
 In other words, the breakdown is:
 

@@ -423,8 +423,8 @@ class Wordform(models.Model):
             else:
                 # When the user query is outside of paradigm tables
                 # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
-                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
-                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
+                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+3Sg'}
+                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO+Err/Orth'
 
                 lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(
                     analysis
@@ -438,7 +438,7 @@ class Wordform(models.Model):
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
                 normatized_form_for_analysis = [
-                    *temp_hfstol.generate(analysis.replace("+Err/Orth", ""))
+                    *temp_hfstol.generate(analysis.replace("+Err/Orth", "").replace("+Err/Frag", ""))
                 ]
                 all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:

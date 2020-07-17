@@ -8,6 +8,8 @@ if [ -f "$DB_FILE" ]; then
   rm -i $DB_FILE
 fi
 
+set -e
+
 echo "Creating test_db.sqlite3 from scratch..."
 
 pipenv run python CreeDictionary/manage.py migrate API 0001

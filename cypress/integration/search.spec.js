@@ -126,7 +126,7 @@ context('Searching', () => {
 
   describe('I want to see the normatize form of my search', () => {
     it('should search the normatized form of the matched search string', () => {
-      // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+Prs+1Sg
+      // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+1Sg
       const searchTerm = 'nipe-acimon'
       cy.visit('/')
       cy.get('[data-cy=search]')
@@ -370,7 +370,7 @@ context('Searching', () => {
   describe('display of the header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
-    const inflectionalCategory = 'VAI-v'
+    const inflectionalCategory = 'VAI-1'
     const plainEnglishInflectionalCategory = 'like: nipâw'
     const nonLemmaFormWithDefinition = 'nîminâniwan'
     const nonLemmaFormWithoutDefinition = 'ninîmin'

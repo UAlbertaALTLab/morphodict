@@ -1,0 +1,17 @@
+	"Something is happening now"	
+"I → you (one)"	${lemma}+V+TA+Ind+1Sg+2SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+2SgO
+"I → him/her"	${lemma}+V+TA+Ind+1Sg+3SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+3SgO
+		
+"you (one) → me"	${lemma}+V+TA+Ind+2Sg+1SgO	PV/e+${lemma}+V+TA+Cnj+2Sg+1SgO
+"you (one) → him/her"	${lemma}+V+TA+Ind+2Sg+3SgO	PV/e+${lemma}+V+TA+Cnj+2Sg+3SgO
+		
+"s/he → me"	${lemma}+V+TA+Ind+3Sg+1SgO	PV/e+${lemma}+V+TA+Cnj+3Sg+1SgO
+"s/he  → you (one)"	${lemma}+V+TA+Ind+3Sg+2SgO	PV/e+${lemma}+V+TA+Cnj+3Sg+2SgO
+		
+"s/he → him/her/them (further)"	${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
+"s/he/they (further) → him/her"	${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
+		
+	"Command/Request"	
+"Speech act participants"	: "Right now"	
+"you (one) → me"	${lemma}+V+TA+Imp+Imm+2Sg+1SgO	
+"you (one) → him/her"	${lemma}+V+TA+Imp+Imm+2Sg+3SgO	
