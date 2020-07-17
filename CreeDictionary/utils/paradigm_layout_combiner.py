@@ -1,13 +1,8 @@
 """
-Compiles the source Neahttadigisánit .layout files and .paradigm files to a
-"pre-filled" form.
+Compiles the .layout files into a "pre-filled" form.  The pre-filled paradigm layouts
+are subsequently used in the web application.
 
-This generate pre-filled paradigm layouts, which are subsequently used in the
-web application.
-
-DO NOT import this file in the Django web application.
-
-See: paradigm_filler instead.
+See also: paradigm_filler.
 """
 
 import csv
@@ -81,7 +76,7 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
 
 def parse_layout(layout_file: Path) -> Table:
     """
-    Parses a raw layout file and returns a "layout".
+    Parses a raw layout file.
     """
     assert layout_file.match("*.tsv")
     return parse_csv_layout(layout_file)
@@ -89,7 +84,7 @@ def parse_layout(layout_file: Path) -> Table:
 
 def parse_csv_layout(layout_file: Path) -> Table:
     """
-    Parses a layout in the CSV/TSV format.
+    Parses a layout in the TSV format.
     """
     # Throw out the YAML header; we don't need it.
     file_text = layout_file.read_text(encoding="UTF-8")
@@ -117,15 +112,10 @@ def _parse_csv_layout(lines: List[str]) -> Table:
     return table
 
 
+# TODO: is this class even needed anymore?
 class Combiner:
     """
-    Ties together the paradigm layouts, the expected forms from the .paradigm
-    file, and a generator to create "pre-filled" layout files.
-
-    This is a "compilation" step and happens before the server is started.
-    Generally, this is when importing the raw files from Neahttadigisánit.
-
-    That is, the combiner should NOT be used in the Django server.
+    Ties together the paradigm layouts and a generator to create "pre-filled" layouts.
     """
 
     _layout_tables: Dict[Tuple[WordClass, ParadigmSize], Table]
