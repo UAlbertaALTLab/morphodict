@@ -7,17 +7,15 @@ See also: paradigm_filler.
 
 import logging
 from pathlib import Path
-from typing import Dict, FrozenSet, List, Tuple
-
-import hfstol
+from typing import Dict, List, Tuple
 
 from utils import ParadigmSize, WordClass
-from utils.shared_res_dir import shared_res_dir
 
 # A raw paradigm layout:
 Table = List[List[str]]
 
-logger = logging.getLogger(__name__)
+# Maps wordclass + size to a table
+LayoutTable = Dict[Tuple[WordClass, ParadigmSize], Table]
 
 # paradigm files names are inconsistent
 PARADIGM_NAME_TO_WC = {
@@ -32,7 +30,7 @@ PARADIGM_NAME_TO_WC = {
 }
 
 
-LayoutTable = Dict[Tuple[WordClass, ParadigmSize], Table]
+logger = logging.getLogger(__name__)
 
 
 def import_layouts(layout_file_dir: Path) -> LayoutTable:
