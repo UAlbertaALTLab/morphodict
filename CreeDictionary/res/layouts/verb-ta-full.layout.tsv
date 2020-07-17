@@ -9,24 +9,24 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (one) → me"	${lemma}+V+TA+Ind+2Sg+1SgO	PV/e+${lemma}+V+TA+Cnj+2Sg+1SgO
 "you (one) → him/her"	${lemma}+V+TA+Ind+2Sg+3SgO	PV/e+${lemma}+V+TA+Cnj+2Sg+3SgO
-"you (one) → us"	${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+${lemma}+V+TA+Cnj+2Sg+1PlO
+"you (one) → us (but not you)"	${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+${lemma}+V+TA+Cnj+2Sg+1PlO
 "you (one) → them"	${lemma}+V+TA+Ind+2Sg+3PlO	PV/e+${lemma}+V+TA+Cnj+2Sg+3PlO
 "you (one) → him/her/them (further)"	${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "s/he → me"	${lemma}+V+TA+Ind+3Sg+1SgO	PV/e+${lemma}+V+TA+Cnj+3Sg+1SgO
 "s/he → you (one)"	${lemma}+V+TA+Ind+3Sg+2SgO	PV/e+${lemma}+V+TA+Cnj+3Sg+2SgO
-"s/he → us"	${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+1PlO
+"s/he → us (but not you)"	${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+1PlO
 "s/he → you and us"	${lemma}+V+TA+Ind+3Sg+12PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+12PlO
 "s/he → you (all)"	${lemma}+V+TA+Ind+3Sg+2PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+2PlO
 "s/he → him/her/them (further)"	${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"we → you (one)"	${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+${lemma}+V+TA+Cnj+1Pl+2SgO
-"we → him/her"	${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+1Pl+3SgO
-"we → you (all)"	${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+2PlO
-"we → them"	${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+3PlO
-"we → him/her/them (further)"	${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
+"we (but not you) → you (one)"	${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+${lemma}+V+TA+Cnj+1Pl+2SgO
+"we (but not you) → him/her"	${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+1Pl+3SgO
+"we (but not you) → you (all)"	${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+2PlO
+"we (but not you) → them"	${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+3PlO
+"we (but not you) → him/her/them (further)"	${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you and we → him/her"	${lemma}+V+TA+Ind+12Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+12Pl+3SgO
@@ -36,14 +36,14 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (all) → me"	${lemma}+V+TA+Ind+2Pl+1SgO	PV/e+${lemma}+V+TA+Cnj+2Pl+1SgO
 "you (all) → him/her"	${lemma}+V+TA+Ind+2Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+2Pl+3SgO
-"you (all) → us"	${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+2Pl+1PlO
+"you (all) → us (but not you)"	${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+2Pl+1PlO
 "you (all) → them"	${lemma}+V+TA+Ind+2Pl+3PlO	PV/e+${lemma}+V+TA+Cnj+2Pl+3PlO
 "you (all) → him/her/them (further)"	${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "they → me"	${lemma}+V+TA+Ind+3Pl+1SgO	PV/e+${lemma}+V+TA+Cnj+3Pl+1SgO
 "they → you (one)"	${lemma}+V+TA+Ind+3Pl+2SgO	PV/e+${lemma}+V+TA+Cnj+3Pl+2SgO
-"they → us"	${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+3Pl+1PlO
+"they → us (but not you)"	${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+3Pl+1PlO
 "they → you and us"	${lemma}+V+TA+Ind+3Pl+12PlO	PV/e+${lemma}+V+TA+Cnj+3Pl+12PlO
 "they → him/her/them (further)"	${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
@@ -51,7 +51,7 @@
 "s/he/they (further) → me"	${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "s/he/they (further) → you (one)"	${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
 "s/he/they (further) → him/her"	${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
-"s/he/they (further) → us"	${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
+"s/he/they (further) → us (but not you)"	${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
 "s/he/they (further) → you and us"	${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
 "s/he/they (further) → you (all)"	${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "s/he/they (further) → them"	${lemma}+V+TA+Ind+4Sg/Pl+3PlO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3PlO
@@ -64,7 +64,7 @@
 "someone → me"	${lemma}+V+TA+Ind+X+1SgO	PV/e+${lemma}+V+TA+Cnj+X+1SgO
 "someone → you (one)"	${lemma}+V+TA+Ind+X+2SgO	PV/e+${lemma}+V+TA+Cnj+X+2SgO
 "someone → him/her"	${lemma}+V+TA+Ind+X+3SgO	PV/e+${lemma}+V+TA+Cnj+X+3SgO
-"someone → us"	${lemma}+V+TA+Ind+X+1PlO	PV/e+${lemma}+V+TA+Cnj+X+1PlO
+"someone → us (but not you)"	${lemma}+V+TA+Ind+X+1PlO	PV/e+${lemma}+V+TA+Cnj+X+1PlO
 "someone → you and us"	${lemma}+V+TA+Ind+X+12PlO	PV/e+${lemma}+V+TA+Cnj+X+12PlO
 "someone → you (all)"	${lemma}+V+TA+Ind+X+2PlO	PV/e+${lemma}+V+TA+Cnj+X+2PlO
 "someone → them"	${lemma}+V+TA+Ind+X+3PlO	PV/e+${lemma}+V+TA+Cnj+X+3PlO
@@ -82,16 +82,16 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (one) → me"	PV/ki+${lemma}+V+TA+Ind+2Sg+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+1SgO
 "you (one) → him/her"	PV/ki+${lemma}+V+TA+Ind+2Sg+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+3SgO
-"you (one) → us"	PV/ki+${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+1PlO
+"you (one) → us (but not you)"	PV/ki+${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+1PlO
 "you (one) → them"	PV/ki+${lemma}+V+TA+Ind+2Sg+3PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+3PlO
 "you (one) → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"we → you (one)"	PV/ki+${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+2SgO
-"we → you (all)"	PV/ki+${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+2PlO
-"we → him/her"	PV/ki+${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+3SgO
-"we → them"	PV/ki+${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+3PlO
-"we → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
+"we (but not you) → you (one)"	PV/ki+${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+2SgO
+"we (but not you) → you (all)"	PV/ki+${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+2PlO
+"we (but not you) → him/her"	PV/ki+${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+3SgO
+"we (but not you) → them"	PV/ki+${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+3PlO
+"we (but not you) → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you and we → him/her"	PV/ki+${lemma}+V+TA+Ind+12Pl+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+12Pl+3SgO
@@ -101,14 +101,14 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (all) → me"	PV/ki+${lemma}+V+TA+Ind+2Pl+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+1SgO
 "you (all) → him/her"	PV/ki+${lemma}+V+TA+Ind+2Pl+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+3SgO
-"you (all) → us"	PV/ki+${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+1PlO
+"you (all) → us (but not you)"	PV/ki+${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+1PlO
 "you (all) → them"	PV/ki+${lemma}+V+TA+Ind+2Pl+3PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+3PlO
 "you (all) → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "s/he → me"	PV/ki+${lemma}+V+TA+Ind+3Sg+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+1SgO
 "s/he → you (one)"	PV/ki+${lemma}+V+TA+Ind+3Sg+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+2SgO
-"s/he → us"	PV/ki+${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+1PlO
+"s/he → us (but not you)"	PV/ki+${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+1PlO
 "s/he → you and us"	PV/ki+${lemma}+V+TA+Ind+3Sg+12PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+12PlO
 "s/he → you (all)"	PV/ki+${lemma}+V+TA+Ind+3Pl+2PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+2PlO
 "s/he → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
@@ -116,14 +116,14 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "they → me"	PV/ki+${lemma}+V+TA+Ind+3Pl+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+1SgO
 "they → you (one)"	PV/ki+${lemma}+V+TA+Ind+3Pl+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+2SgO
-"they → us"	PV/ki+${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+1PlO
+"they → us (but not you)"	PV/ki+${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+1PlO
 "they → you and us"	PV/ki+${lemma}+V+TA+Ind+3Pl+12PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+12PlO
 "they → him/her/them (further)"	PV/ki+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "s/he/they (further) → me"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "s/he/they (further) → you (one)"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
-"s/he/they (further) → us"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
+"s/he/they (further) → us (but not you)"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
 "s/he/they (further) → you and us"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
 "s/he/they (further) → you (all)"	PV/ki+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
@@ -147,21 +147,21 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (one) → me"	PV/wi+${lemma}+V+TA+Ind+2Sg+1SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+1SgO
 "you (one) → him/her"	PV/wi+${lemma}+V+TA+Ind+2Sg+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+3SgO
-"you (one) → us"	PV/wi+${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+1PlO
+"you (one) → us (but not you)"	PV/wi+${lemma}+V+TA+Ind+2Sg+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+1PlO
 "you (one) → them"	PV/wi+${lemma}+V+TA+Ind+2Sg+3PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+3PlO
 "you (one) → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"we → you (one)"	PV/wi+${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+2SgO
-"we → him/her"	PV/wi+${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+3SgO
-"we → you (all)"	PV/wi+${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+2PlO
-"we → them"	PV/wi+${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+3PlO
-"we → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
+"we (but not you) → you (one)"	PV/wi+${lemma}+V+TA+Ind+1Pl+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+2SgO
+"we (but not you) → him/her"	PV/wi+${lemma}+V+TA+Ind+1Pl+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+3SgO
+"we (but not you) → you (all)"	PV/wi+${lemma}+V+TA+Ind+1Pl+2PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+2PlO
+"we (but not you) → them"	PV/wi+${lemma}+V+TA+Ind+1Pl+3PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+3PlO
+"we (but not you) → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "you (all) → me"	PV/wi+${lemma}+V+TA+Ind+2Pl+1SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+1SgO
 "you (all) → him/her"	PV/wi+${lemma}+V+TA+Ind+2Pl+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+3SgO
-"you (all) → us"	PV/wi+${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+1PlO
+"you (all) → us (but not you)"	PV/wi+${lemma}+V+TA+Ind+2Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+1PlO
 "you (all) → them"	PV/wi+${lemma}+V+TA+Ind+2Pl+3PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+3PlO
 "you (all) → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
@@ -173,7 +173,7 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "s/he → me"	PV/wi+${lemma}+V+TA+Ind+3Sg+1SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+1SgO
 "s/he → you (one)"	PV/wi+${lemma}+V+TA+Ind+3Sg+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+2SgO
-"s/he → us"	PV/wi+${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+1PlO
+"s/he → us (but not you)"	PV/wi+${lemma}+V+TA+Ind+3Sg+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+1PlO
 "s/he → you and us"	PV/wi+${lemma}+V+TA+Ind+3Sg+12PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+12PlO
 "s/he → you (all)"	PV/wi+${lemma}+V+TA+Ind+3Sg+2PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+2PlO
 "s/he → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
@@ -181,14 +181,14 @@
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "they → me"	PV/wi+${lemma}+V+TA+Ind+3Pl+1SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+1SgO
 "they → you (one)"	PV/wi+${lemma}+V+TA+Ind+3Pl+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+2SgO
-"they → us"	PV/wi+${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+1PlO
+"they → us (but not you)"	PV/wi+${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+1PlO
 "they → you and us"	PV/wi+${lemma}+V+TA+Ind+3Pl+12PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+12PlO
 "they → him/her/them (further)"	PV/wi+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ni-/ki- word"	: "ê-/kâ- word"
 "s/he/they (further) → me"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "s/he/they (further) → you (one)"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
-"s/he/they (further) → us"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
+"s/he/they (further) → us (but not you)"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
 "s/he/they (further) → you and us"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
 "s/he/they (further) → you (all)"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 "s/he/they (further) → him/her"	PV/wi+${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
@@ -209,44 +209,43 @@
 		
 "you (one) → me"	PV/ka+${lemma}+V+TA+Ind+2Sg+1SgO	
 "you (one) → him/her"	PV/ka+${lemma}+V+TA+Ind+2Sg+3SgO	
-"you (one) → us"	PV/ka+${lemma}+V+TA+Ind+2Sg+1PlO	
+"you (one) → us (but not you)"	PV/ka+${lemma}+V+TA+Ind+2Sg+1PlO	
 "you (one) → them"	PV/ka+${lemma}+V+TA+Ind+2Sg+3PlO	
 "you (one) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+2Sg+4Sg/PlO	
 		
-"we → you (one)"	PV/ka+${lemma}+V+TA+Ind+1Pl+2SgO	
-"we → him/her"	PV/ka+${lemma}+V+TA+Ind+1Pl+3SgO	
-"we → you (all)"	PV/ka+${lemma}+V+TA+Ind+1Pl+2PlO	
-"we → them"	PV/ka+${lemma}+V+TA+Ind+1Pl+3PlO	
-"we → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	
+"we (but not you) → you (one)"	PV/ka+${lemma}+V+TA+Ind+1Pl+2SgO	
+"we (but not you) → him/her"	PV/ka+${lemma}+V+TA+Ind+1Pl+3SgO	
+"we (but not you) → you (all)"	PV/ka+${lemma}+V+TA+Ind+1Pl+2PlO	
+"we (but not you) → them"	PV/ka+${lemma}+V+TA+Ind+1Pl+3PlO	
+"we (but not you) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+1Pl+4Sg/PlO	
 		
 "you (all) → me"	PV/ka+${lemma}+V+TA+Ind+2Pl+1SgO	
 "you (all) → him/her"	PV/ka+${lemma}+V+TA+Ind+2Pl+3SgO	
-"you (all) → us"	PV/ka+${lemma}+V+TA+Ind+2Pl+1PlO	
+"you (all) → us (but not you)"	PV/ka+${lemma}+V+TA+Ind+2Pl+1PlO	
 "you (all) → them"	PV/ka+${lemma}+V+TA+Ind+2Pl+3PlO	
-		
+"you (all) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	
 		
 "you and we → him/her"	PV/ka+${lemma}+V+TA+Ind+12Pl+3SgO	
 "you and we → them"	PV/ka+${lemma}+V+TA+Ind+12Pl+3PlO	
 "you and we → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+12Pl+4Sg/PlO	
-"you (all) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+2Pl+4Sg/PlO	
 		
 "s/he → me"	PV/ka+${lemma}+V+TA+Ind+3Sg+1SgO	
 "s/he → you (one)"	PV/ka+${lemma}+V+TA+Ind+3Sg+2SgO	
-"s/he → us"	PV/ka+${lemma}+V+TA+Ind+3Sg+1PlO	
+"s/he → us (but not you)"	PV/ka+${lemma}+V+TA+Ind+3Sg+1PlO	
 "s/he → you and us"	PV/ka+${lemma}+V+TA+Ind+3Sg+12PlO	
 "s/he → you (all)"	PV/ka+${lemma}+V+TA+Ind+3Sg+2PlO	
 "s/he → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+3Sg+4Sg/PlO	
 		
 "they → me"	PV/ka+${lemma}+V+TA+Ind+3Pl+1SgO	
 "they → you (one)"	PV/ka+${lemma}+V+TA+Ind+3Pl+2SgO	
-"they → us"	PV/ka+${lemma}+V+TA+Ind+3Pl+1PlO	
+"they → us (but not you)"	PV/ka+${lemma}+V+TA+Ind+3Pl+1PlO	
 "they → you and us"	PV/ka+${lemma}+V+TA+Ind+3Pl+12PlO	
 "s/he → you (all)"	PV/ka+${lemma}+V+TA+Ind+3Pl+2PlO	
 "they → him/her/them (further)"	PV/ka+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	
 		
 "s/he/they (further) → me"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1SgO	
 "s/he/they (further) → you (one)"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2SgO	
-"s/he/they (further) → us"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	
+"s/he/they (further) → us (but not you)"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+1PlO	
 "s/he/they (further) → you and us"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+12PlO	
 "s/he/they (further) → you (all)"	PV/ka+${lemma}+V+TA+Ind+4Sg/Pl+2PlO	
 		
@@ -268,16 +267,16 @@
 	: "ka- word"	: "ta- word"
 "you (one) → me"	PV/ka+${lemma}+V+TA+Cnj+2Sg+1SgO	PV/ta+${lemma}+V+TA+Cnj+2Sg+1SgO
 "you (one) → him/her"	PV/ka+${lemma}+V+TA+Cnj+2Sg+3SgO	PV/ta+${lemma}+V+TA+Cnj+2Sg+3SgO
-"you (one) → us"	PV/ka+${lemma}+V+TA+Cnj+2Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+1PlO
+"you (one) → us (but not you)"	PV/ka+${lemma}+V+TA+Cnj+2Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+1PlO
 "you (one) → them"	PV/ka+${lemma}+V+TA+Cnj+2Sg+3PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+3PlO
 "you (one) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+2Sg+4Sg/PlO
 		
 	: "ka- word"	: "ta- word"
-"we → you (one)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+1Pl+2SgO
-"we → him/her"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3SgO
-"we → you (all)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+2PlO
-"we → them"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3PlO
-"we → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
+"we (but not you) → you (one)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+1Pl+2SgO
+"we (but not you) → him/her"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3SgO
+"we (but not you) → you (all)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+2PlO
+"we (but not you) → them"	PV/ka+${lemma}+V+TA+Cnj+1Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+3PlO
+"we (but not you) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+1Pl+4Sg/PlO
 		
 	: "ka- word"	: "ta- word"
 "you and we → him/her"	PV/ka+${lemma}+V+TA+Cnj+12Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+12Pl+3SgO
@@ -287,14 +286,14 @@
 	: "ka- word"	: "ta- word"
 "you (all) → me"	PV/ka+${lemma}+V+TA+Cnj+2Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+2Pl+1SgO
 "you (all) → him/her"	PV/ka+${lemma}+V+TA+Cnj+2Pl+3SgO	PV/ta+${lemma}+V+TA+Cnj+2Pl+3SgO
-"you (all) → us"	PV/ka+${lemma}+V+TA+Cnj+2Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+1PlO
+"you (all) → us (but not you)"	PV/ka+${lemma}+V+TA+Cnj+2Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+1PlO
 "you (all) → them"	PV/ka+${lemma}+V+TA+Cnj+2Pl+3PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+3PlO
 "you (all) → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+2Pl+4Sg/PlO
 		
 	: "ka- word"	: "ta- word"
 "s/he → me"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1SgO
 "s/he → you (one)"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2SgO
-"s/he → us"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1PlO
+"s/he → us (but not you)"	PV/ka+${lemma}+V+TA+Cnj+3Sg+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+1PlO
 "s/he → you and us"	PV/ka+${lemma}+V+TA+Cnj+3Sg+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+12PlO
 "s/he → you (all)"	PV/ka+${lemma}+V+TA+Cnj+3Sg+2PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+2PlO
 "s/he → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO
@@ -302,14 +301,14 @@
 	: "ka- word"	: "ta- word"
 "they → me"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1SgO
 "they → you (one)"	PV/ka+${lemma}+V+TA+Cnj+3Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+3Pl+2SgO
-"they → us"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1PlO
+"they → us (but not you)"	PV/ka+${lemma}+V+TA+Cnj+3Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+1PlO
 "they → you and us"	PV/ka+${lemma}+V+TA+Cnj+3Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+12PlO
 "they → him/her/them (further)"	PV/ka+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	: "ka- word"	: "ta- word"
 "s/he/they (further) → me"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1SgO
 "s/he/they (further) → you (one)"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2SgO
-"s/he/they (further) → us"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
+"s/he/they (further) → us (but not you)"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+1PlO
 "s/he/they (further) → you and us"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+12PlO
 "s/he/they (further) → you (all)"	PV/ka+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO	PV/ta+${lemma}+V+TA+Cnj+4Sg/Pl+2PlO
 		
@@ -331,15 +330,15 @@
 		
 "you (one) → me"	${lemma}+V+TA+Fut+Cond+2Sg+1SgO	
 "you (one) → him/her"	${lemma}+V+TA+Fut+Cond+2Sg+3SgO	
-"you (one) → us"	${lemma}+V+TA+Fut+Cond+2Sg+1PlO	
+"you (one) → us (but not you)"	${lemma}+V+TA+Fut+Cond+2Sg+1PlO	
 "you (one) → them"	${lemma}+V+TA+Fut+Cond+2Sg+3PlO	
 "you (one) → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+2Sg+4Sg/PlO	
 		
-"we → you (one)"	${lemma}+V+TA+Fut+Cond+1Pl+2SgO	
-"we → him/her"	${lemma}+V+TA+Fut+Cond+1Pl+3SgO	
-"we → you (all)"	${lemma}+V+TA+Fut+Cond+1Pl+2PlO	
-"we → them"	${lemma}+V+TA+Fut+Cond+1Pl+3PlO	
-"we → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+1Pl+4Sg/PlO	
+"we (but not you) → you (one)"	${lemma}+V+TA+Fut+Cond+1Pl+2SgO	
+"we (but not you) → him/her"	${lemma}+V+TA+Fut+Cond+1Pl+3SgO	
+"we (but not you) → you (all)"	${lemma}+V+TA+Fut+Cond+1Pl+2PlO	
+"we (but not you) → them"	${lemma}+V+TA+Fut+Cond+1Pl+3PlO	
+"we (but not you) → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+1Pl+4Sg/PlO	
 		
 "you and we → him/her"	${lemma}+V+TA+Fut+Cond+12Pl+3SgO	
 "you and we → them"	${lemma}+V+TA+Fut+Cond+12Pl+3PlO	
@@ -347,13 +346,13 @@
 		
 "you (all) → me"	${lemma}+V+TA+Fut+Cond+2Pl+1SgO	
 "you (all) → him/her"	${lemma}+V+TA+Fut+Cond+2Pl+3SgO	
-"you (all) → us"	${lemma}+V+TA+Fut+Cond+2Pl+1PlO	
+"you (all) → us (but not you)"	${lemma}+V+TA+Fut+Cond+2Pl+1PlO	
 "you (all) → them"	${lemma}+V+TA+Fut+Cond+2Pl+3PlO	
 "you (all) → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+2Pl+4Sg/PlO	
 		
 "s/he → me"	${lemma}+V+TA+Fut+Cond+3Sg+1SgO	
 "s/he → you (one)"	${lemma}+V+TA+Fut+Cond+3Sg+2SgO	
-"s/he → us"	${lemma}+V+TA+Fut+Cond+3Sg+1PlO	
+"s/he → us (but not you)"	${lemma}+V+TA+Fut+Cond+3Sg+1PlO	
 "s/he → you and us"	${lemma}+V+TA+Fut+Cond+3Sg+12PlO	
 "s/he → you (all)"	${lemma}+V+TA+Fut+Cond+3Sg+2PlO	
 "s/he → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+3Sg+4Sg/PlO	
@@ -361,7 +360,7 @@
 		
 "they → me"	${lemma}+V+TA+Fut+Cond+3Pl+1SgO	
 "they → you (one)"	${lemma}+V+TA+Fut+Cond+3Pl+2SgO	
-"they → us"	${lemma}+V+TA+Fut+Cond+3Pl+1PlO	
+"they → us (but not you)"	${lemma}+V+TA+Fut+Cond+3Pl+1PlO	
 "they → you and us"	${lemma}+V+TA+Fut+Cond+3Pl+12PlO	
 "they → you (all)"	${lemma}+V+TA+Fut+Cond+3Pl+2PlO	
 "they → him/her/them (further)"	${lemma}+V+TA+Fut+Cond+3Pl+4Sg/PlO	
@@ -369,7 +368,7 @@
 		
 "s/he/they (further) → me"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1SgO	
 "s/he/they (further) → you (one)"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2SgO	
-"s/he/they (further) → us"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1PlO	
+"s/he/they (further) → us (but not you)"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+1PlO	
 "s/he/they (further) → you and us"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+12PlO	
 "s/he/they (further) → you (all)"	${lemma}+V+TA+Fut+Cond+4Sg/Pl+2PlO	
 		
@@ -383,7 +382,7 @@
 	"Command/Request"	
 	: "Right now"	: "Later on"
 "you (one) → me"	${lemma}+V+TA+Imp+Imm+2Sg+1SgO	${lemma}+V+TA+Imp+Del+2Sg+1SgO
-"you (one) → us"	${lemma}+V+TA+Imp+Imm+2Sg+1PlO	${lemma}+V+TA+Imp+Del+2Sg+1PlO
+"you (one) → us (but not you)"	${lemma}+V+TA+Imp+Imm+2Sg+1PlO	${lemma}+V+TA+Imp+Del+2Sg+1PlO
 "you (one) → him/her"	${lemma}+V+TA+Imp+Imm+2Sg+3SgO	${lemma}+V+TA+Imp+Del+2Sg+3SgO
 "you (one) → them"	${lemma}+V+TA+Imp+Imm+2Sg+3PlO	${lemma}+V+TA+Imp+Del+2Sg+3PlO
 		
@@ -391,6 +390,6 @@
 "you and we → them"	${lemma}+V+TA+Imp+Imm+12Pl+3PlO	${lemma}+V+TA+Imp+Del+12Pl+3PlO
 		
 "you (all) → me"	${lemma}+V+TA+Imp+Imm+2Pl+1SgO	${lemma}+V+TA+Imp+Del+2Pl+1SgO
-"you (all) → us"	${lemma}+V+TA+Imp+Imm+2Pl+1PlO	${lemma}+V+TA+Imp+Del+2Pl+1PlO
+"you (all) → us (but not you)"	${lemma}+V+TA+Imp+Imm+2Pl+1PlO	${lemma}+V+TA+Imp+Del+2Pl+1PlO
 "you (all) → him/her"	${lemma}+V+TA+Imp+Imm+2Pl+3SgO	${lemma}+V+TA+Imp+Del+2Pl+3SgO
 "you (all) → them"	${lemma}+V+TA+Imp+Imm+2Pl+3PlO	${lemma}+V+TA+Imp+Del+2Pl+3PlO
