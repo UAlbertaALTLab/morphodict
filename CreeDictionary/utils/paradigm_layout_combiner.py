@@ -115,13 +115,6 @@ class Combiner:
         """
         self._layout_tables = import_layouts(layout_dir)
 
-    @classmethod
-    def default_combiner(cls):
-        """
-        Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
-        """
-        return Combiner(shared_res_dir / "layouts")
-
     def get_combined_table(
         self, category: WordClass, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
