@@ -13,6 +13,6 @@
 "s/he/they (further) → him/her"	${lemma}+V+TA+Ind+4Sg/Pl+3SgO	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 		
 	"Command/Request"	
-"Speech act participants"	: "Right now"	
+	: "Right now"	
 "you (one) → me"	${lemma}+V+TA+Imp+Imm+2Sg+1SgO	
 "you (one) → him/her"	${lemma}+V+TA+Imp+Imm+2Sg+3SgO	
