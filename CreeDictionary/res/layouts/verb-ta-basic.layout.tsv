@@ -1,5 +1,5 @@
-	"Something is happening now"
-	: "ni-/ki- word"		: "ê-/kâ- word"
+	"Something is happening now"	
+	: "ni-/ki- word"	: "ê-/kâ- word"
 "I → you (one)"	${lemma}+V+TA+Ind+1Sg+2SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+2SgO
 "I → him/her"	${lemma}+V+TA+Ind+1Sg+3SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+3SgO
 		
