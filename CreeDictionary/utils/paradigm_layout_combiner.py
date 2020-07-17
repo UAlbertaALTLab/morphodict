@@ -84,11 +84,8 @@ def parse_layout(layout_file: Path) -> Table:
     if "\n--\n" in file_text:
         raise NotImplementedError("NDS YAML header not supported")
 
-    return _parse_csv_layout(file_text.splitlines())
+    lines = file_text.splitlines()
 
-
-def _parse_csv_layout(lines: List[str]) -> Table:
-    # Not much parsing to do here: mostly
     table: Table = []
     last_row_len = None
     for line in lines:
