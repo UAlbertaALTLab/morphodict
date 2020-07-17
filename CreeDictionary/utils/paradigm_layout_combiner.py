@@ -80,14 +80,11 @@ def parse_layout(layout_file: Path) -> Table:
     """
     assert layout_file.match("*.tsv")
 
-    # Throw out the YAML header; we don't need it.
     file_text = layout_file.read_text(encoding="UTF-8")
-    _yaml_header, _divider, table_csv = file_text.partition("\n--")
+    if "\n--\n" in file_text:
+        raise NotImplementedError("NDS YAML header not supported")
 
-    if "\n--\n" not in file_text:
-        return _parse_csv_layout(file_text.splitlines())
-
-    raise NotImplementedError("NDS file format not supportted")
+    return _parse_csv_layout(file_text.splitlines())
 
 
 def _parse_csv_layout(lines: List[str]) -> Table:
