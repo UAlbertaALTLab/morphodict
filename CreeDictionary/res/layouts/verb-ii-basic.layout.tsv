@@ -1,7 +1,7 @@
 	"Something is happening now"
-	": ni-/ki- word"
+	: "ni-/ki- word"
 "it"	${lemma}+V+II+Ind+3Sg
 "they"	${lemma}+V+II+Ind+3Pl
-	": ê-/kâ- word"
+	: "ê-/kâ- word"
 "it"	PV/e+${lemma}+V+II+Cnj+3Sg
 "they"	PV/e+${lemma}+V+II+Cnj+3Pl
