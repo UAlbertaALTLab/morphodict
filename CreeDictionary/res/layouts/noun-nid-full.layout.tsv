@@ -11,7 +11,7 @@
 "his/her/their (further)"	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
 			
 	"Smaller/Lesser/Younger"		
-	"Ownership"		
+	: "Ownership"		
 "someone's"	${lemma}+N+I+D+Der/Dim+N+I+D+PxX+Sg		
 "my"	${lemma}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg		
 "his/her"	${lemma}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg		
