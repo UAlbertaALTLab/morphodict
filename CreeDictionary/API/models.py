@@ -438,7 +438,9 @@ class Wordform(models.Model):
                 # now we generate the standardized form of the user query for display purpose
                 # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
                 normatized_form_for_analysis = [
-                    *temp_hfstol.generate(analysis.replace("+Err/Orth", "").replace("+Err/Frag", ""))
+                    *temp_hfstol.generate(
+                        analysis.replace("+Err/Orth", "").replace("+Err/Frag", "")
+                    )
                 ]
                 all_standard_forms.extend(normatized_form_for_analysis)
                 if len(all_standard_forms) == 0:
