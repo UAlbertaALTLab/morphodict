@@ -9,8 +9,8 @@ from string import Template
 from typing import Iterable, List, Optional, Union
 
 from attr import attrib, attrs
-
 from typing_extensions import Literal
+
 from utils.types import ConcatAnalysis
 
 
@@ -94,7 +94,7 @@ class Heading(StaticCell):
 
 # frozen=False is a reminder that the inflection is default as None and generated later
 # also inflection related info like inflection frequency in corpus
-@attrs(frozen=False, auto_attribs=True, eq=False)
+@attrs(frozen=False, auto_attribs=True, eq=False, repr=False)
 class InflectionCell:
     # the analysis of the inflection (with the lemma to be filled out)
     # It looks like for example "${lemma}+TAG+TAG+TAG", "TAG+${lemma}+TAG+TAG"
@@ -106,13 +106,19 @@ class InflectionCell:
     # the frequency of the inflection in the corpus
     frequency: Optional[int] = None
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return (
             isinstance(other, InflectionCell)
-            and self.analysis.pattern == other.analysis.pattern
+            # N.B., string.Template needs to be checked directly :/
+            and self.analysis.template == other.analysis.template
             and self.inflection == other.inflection
             and self.frequency == other.frequency
         )
+
+    def __repr__(self) -> str:
+        if self.inflection or self.frequency:
+            return super().__repr__()
+        return f"{type(self).__name__}(analysis=Template({self.analysis.template!r})"
 
     def create_concat_analysis(self, lemma: str) -> ConcatAnalysis:
         """

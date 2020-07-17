@@ -1,72 +1,44 @@
-Paradigm layouts and metadata
-=============================
+Paradigm layouts
+================
 
-> Eddie's note: this documents our files as they were in late 2018.
-
-Along with this README, you will find many TSV (tab-separated values)
-files, and associated metadata files, stored in YAML format.
+In `CreeDictionary/res/layouts` you will find files like these:
 
     .
     ├── na-basic.layout.tsv
-    ├── na-basic.layout.yml
-    ├── na-extended.layout.tsv
-    ├── na-extended.layout.yml
+    ├── na-linguistic.layout.tsv
     ├── na-full.layout.tsv
-    ├── na-full.layout.yml
     ├── nad-basic.layout.tsv
-    ├── nad-basic.layout.yml
-    ├── nad-extended.layout.tsv
-    ├── nad-extended.layout.yml
+    ├── nad-linguistic.layout.tsv
     ├── nad-full.layout.tsv
-    ├── nad-full.layout.yml
     ├── ni-basic.layout.tsv
-    ├── ni-basic.layout.yml
-    ├── ni-extended.layout.tsv
-    ├── ni-extended.layout.yml
+    ├── ni-linguistic.layout.tsv
     ├── ni-full.layout.tsv
-    ├── ni-full.layout.yml
     ├── nid-basic.layout.tsv
-    ├── nid-basic.layout.yml
-    ├── nid-extended.layout.tsv
-    ├── nid-extended.layout.yml
+    ├── nid-linguistic.layout.tsv
     ├── nid-full.layout.tsv
-    ├── nid-full.layout.yml
     ├── vai-basic.layout.tsv
-    ├── vai-basic.layout.yml
-    ├── vai-extended.layout.tsv
-    ├── vai-extended.layout.yml
+    ├── vai-linguistic.layout.tsv
     ├── vai-full.layout.tsv
-    ├── vai-full.layout.yml
     ├── vii-basic.layout.tsv
-    ├── vii-basic.layout.yml
-    ├── vii-extended.layout.tsv
-    ├── vii-extended.layout.yml
+    ├── vii-linguistic.layout.tsv
     ├── vii-full.layout.tsv
-    ├── vii-full.layout.yml
     ├── vta-basic.layout.tsv
-    ├── vta-basic.layout.yml
-    ├── vta-extended.layout.tsv
-    ├── vta-extended.layout.yml
+    ├── vta-linguistic.layout.tsv
     ├── vta-full.layout.tsv
-    ├── vta-full.layout.yml
     ├── vti-basic.layout.tsv
-    ├── vti-basic.layout.yml
-    ├── vti-extended.layout.tsv
-    ├── vti-extended.layout.yml
-    ├── vti-full.layout.tsv
-    └── vti-full.layout.yml
+    ├── vti-linguistic.layout.tsv
+    └── vti-full.layout.tsv
 
 The file names are in this format:
 
-    {lexeme class}-{name}.layout.{file type}
+    {word class}-{name}.layout.{file type}
 
-### Lexeme class
+### Word class
 
-The part of speech this layout applies to. Note that you may assume that
-only nouns and verbs inflect in Plains Cree; other words **do not
-inflect**. The lemma class starts with either `n` or `v` for "noun" or
-"verb", respectively. Then a subtype is provided (e.g., "nad" is noun,
-animate, dependent; "vta" is **verb**, **transitive**, **animate**).
+The set of words this layout applies to. The lemma class starts with
+either `n` or `v` for "noun" or "verb", respectively. Then a subtype is
+provided (e.g., "nad" is noun, animate, dependent; "vta" is **verb**,
+**transitive**, **animate**).
 
 When a word form is analyzed, use its tags (e.g., `+V`, `+N`, `+TA`,
 `+A`, `+D`, etc.) to match it to a layout.
@@ -74,16 +46,12 @@ When a word form is analyzed, use its tags (e.g., `+V`, `+N`, `+TA`,
 ### Name
 
 This is a label for the layout. The current layouts are named in order
-of detail, in ascending order of detail from "basic" to "extended" to
+of detail, in ascending order of detail from "basic" to "linguistic" to
 "full".
 
 ### File type
 
 `.tsv` file is the layout as a tab-separated values file.
-
-`.yml` is a YAML file containing metadata. For the moment, this metadata
-can be ignored.
-
 
 Layouts
 -------
@@ -130,35 +98,19 @@ left-aligned or right-aligned, depending on where the colon is.
 
 Word form templates are requests to generate a word form from the FST.
 
-| Pattern           | Special character   | Example                        | Example lookup string              |
-|-------------------|---------------------|--------------------------------|------------------------------------|
-| Exact match       | `=`                 | `=N+I+D+PxX+Sg`                | mitêh+N+I+D+PxX+Sg                 |
-| Match anywhere    | (none)              | `Der/Dim+N+A+D+Px1Sg+Sg`       | nôhkomis+N+A+D+Px1Sg+Sg            |
-| Star substitute   | `*`                 | `PV/e+*+V+TA+Cnj+Prs+1Sg+2SgO` | PV/e+wâpamêw+V+TA+Cnj+Prs+1Sg+2SgO |
+| Example                           | Example lookup string              |
+|-----------------------------------|------------------------------------|
+| `${lemma}+N+I+D+PxX+Sg`           | mitêh+N+I+D+PxX+Sg                 |
+| `PV/e+${lemma}+V+TA+Cnj+1Sg+2SgO` | PV/e+wâpamêw+V+TA+Cnj+1Sg+2SgO     |
+
+Word form templates **MUST** contain `${lemma}`, which will be replaced
+with the appropriate lemma to form the lookup string.
 
 The general steps are the same:
 
  1. Apply the lemma to the pattern to create the **lookup string**.
  2. Call `FST.generate()` on the lookup string.
  3. Generate one or more `<td>` cell containing a generated word form.
-
-#### Match anywhere patterns
-
-Concatenate the lemma to the tags with a `+` to create the lookup used
-in `FST.generate()`. In concept, the match anywhere cells are supposed
-to match that set of tags _anywhere_ in the analysis; in practice,
-however, the match anywhere cells usually provide all of the tags to the
-right of the lemma.
-
-#### Exact match pattern
-
-Remove the leading `=` from the tag, then concatenate the lemma to the
-tags with a `+` to create the lookup used in `FST.generate()`.
-
-#### Star substitute patterns
-
-Substitute the star with the lemma to create the lookup used in
-`FST.generate()`.
 
 ### Empty cells
 

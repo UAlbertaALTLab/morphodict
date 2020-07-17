@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
+
 from paradigm import (
     Cell,
     EmptyRow,
@@ -56,14 +57,14 @@ class ParadigmFiller:
     _frequency = import_frequency()
 
     @staticmethod
-    def _import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
+    def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
         """
         Combine .layout files and .paradigm files and import into memory
 
         :param paradigm_dir: the directory that has .paradigms files
         :param layout_dir: the directory that has .layout files and .layout.csv files
         """
-        combiner = Combiner(layout_dir, paradigm_dir)
+        combiner = Combiner(layout_dir)
 
         layout_tables = {}
 
@@ -77,16 +78,14 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(
-        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
-    ):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
 
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
-        self._layout_tables = self._import_layouts(layout_dir, paradigm_dir)
+        self._layout_tables = self._import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
@@ -96,7 +95,6 @@ class ParadigmFiller:
         """
         return ParadigmFiller(
             shared_res_dir / "layouts",
-            shared_res_dir / "paradigms",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
 
