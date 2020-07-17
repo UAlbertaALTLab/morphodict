@@ -76,16 +76,10 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
 
 def parse_layout(layout_file: Path) -> Table:
     """
-    Parses a raw layout file.
-    """
-    assert layout_file.match("*.tsv")
-    return parse_csv_layout(layout_file)
-
-
-def parse_csv_layout(layout_file: Path) -> Table:
-    """
     Parses a layout in the TSV format.
     """
+    assert layout_file.match("*.tsv")
+
     # Throw out the YAML header; we don't need it.
     file_text = layout_file.read_text(encoding="UTF-8")
     _yaml_header, _divider, table_csv = file_text.partition("\n--")
