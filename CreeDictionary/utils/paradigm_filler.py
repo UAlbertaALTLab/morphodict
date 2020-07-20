@@ -133,21 +133,22 @@ class ParadigmFiller:
                 row_with_replacements = row.copy()
                 tables[-1].append(row_with_replacements)
                 for col_ind, cell in enumerate(row):
-                    if isinstance(cell, StaticCell) or cell == "":
+                    if isinstance(cell, StaticCell):
                         # We do nothing to static and empty cells.
                         continue
                     elif isinstance(cell, InflectionCell):
-                        lookup_strings.append(
-                            ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
-                        )
-                        string_locations.append((row_with_replacements, col_ind))
+                        if not cell.is_empty():
+                            analysis = cell.generate_concat_analysis(lemma=lemma)
+                            assert analysis is not None
+                            lookup_strings.append(analysis)
+                            string_locations.append((row_with_replacements, col_ind))
                     else:
                         raise ValueError("Unexpected Cell Type")
 
         # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
-        # string locations and lookup_strings have parallel indices.
+        # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
         for i, location in enumerate(string_locations):
             row, col_ind = location
@@ -198,11 +199,13 @@ class ParadigmFiller:
 
             assert isinstance(row, list)
             for cell in row:
-                if isinstance(cell, StaticCell) or cell == "":
+                if isinstance(cell, StaticCell):
                     continue
                 elif isinstance(cell, InflectionCell):
-                    analysis = ConcatAnalysis(cell.analysis.substitute(lemma=lemma))
-                    analyses.add(analysis)
+                    if not cell.is_empty():
+                        analysis = cell.generate_concat_analysis(lemma=lemma)
+                        assert analysis is not None
+                        analyses.add(analysis)
                 else:
                     raise ValueError("Unexpected cell type")
 

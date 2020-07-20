@@ -12,6 +12,8 @@ from attr import attrib, attrs
 
 from typing_extensions import Literal
 
+from utils.types import ConcatAnalysis
+
 
 class EmptyRowType:
     """
@@ -97,13 +99,22 @@ class Heading(StaticCell):
 class InflectionCell:
     # the analysis of the inflection (with the lemma to be filled out)
     # It looks like for example "${lemma}+TAG+TAG+TAG", "TAG+${lemma}+TAG+TAG"
-    analysis: Template
+    # or it could be None in the case of an empty inflection cell
+    analysis: Optional[Template]
 
     # the inflection to be generated
     inflection: Optional[str] = None
 
     # the frequency of the inflection in the corpus
     frequency: Optional[int] = None
+
+    def is_empty(self):
+        return self.analysis is None
+
+    def generate_concat_analysis(self, lemma: str) -> Optional[ConcatAnalysis]:
+        if self.analysis is not None:
+            return ConcatAnalysis(self.analysis.substitute(lemma=lemma))
+        return None
 
     def __eq__(self, other):
         return (
@@ -129,7 +140,7 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     """
     layout: Layout = []
     for raw_row in rows:
-        row = [determine_cell(cell) for cell in raw_row]
+        row = determine_cells(raw_row)
 
         has_content = False
         n_labels = 0
@@ -152,29 +163,55 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     return layout
 
 
-def determine_cell(raw_cell: str) -> Cell:
+def is_raw_row_heading(raw_row: List[str]) -> bool:
     """
-    Parses the cell format and returns either:
-        - a StaticCel
-        - an empty string (empty cell)
-        - or an InflectionCell (with analysis to fill out)
+    is the row a heading row that does not contain any inflection
     """
-    if raw_cell.startswith('"') and raw_cell.endswith('"'):
-        # This will be something like:
-        #   "Something is happening now"
-        #   "Speech act participants"
-        assert len(raw_cell) > 2
-        return Label(raw_cell[1:-1])
-    elif raw_cell.startswith(":"):
-        # This will be something like:
-        #   : "ê-/kâ- word"
-        #   : "ni-/ki- word"
-        _colon, content, _empty = raw_cell.split('"')
-        return Heading(content)
-    else:
+    for raw_cell in raw_row:
+        if ":" in raw_cell:
+            return True
+    return False
+
+
+def determine_cells(raw_row: List[str]) -> List[Cell]:
+    """
+    Parses the cell format and returns a list of cells, each of the cell is either:
+        - a StaticCell (Heading/Label), which may have empty text
+        - or an InflectionCell, either with analysis to fill out, or empty
+    """
+    cells: List[Cell] = []
+
+    raw_row = [raw_cell.strip() for raw_cell in raw_row]
+
+    is_heading_row = is_raw_row_heading(raw_row)
+
+    for raw_cell in raw_row:
         raw_cell = raw_cell.strip()
-        if raw_cell == "":
-            return ""
+
+        if raw_cell.startswith('"') and raw_cell.endswith('"'):
+            # This will be something like:
+            #   "Something is happening now"
+            #   "Speech act participants"
+            assert len(raw_cell) > 2
+            cells.append(Label(raw_cell[1:-1]))
+        elif raw_cell.startswith(":"):
+            # This will be something like:
+            #   : "ê-/kâ- word"
+            #   : "ni-/ki- word"
+            _colon, content, _empty = raw_cell.split('"')
+            cells.append(Heading(content))
+        elif raw_cell == "":
+            # there are two kinds of empty cells
+            # It could be in a "Heading row" which makes it a `Heading` type cell
+            # or it could be in where an inflection should be, which makes it a InflectionCell
+            if is_heading_row:
+                cells.append(Heading(text=""))
+            else:
+                cells.append(InflectionCell(None))
+        # it's an inflection cell
         else:
             # "{{ lemma }}" is a proprietary format
-            return InflectionCell(Template(raw_cell.replace("{{ lemma }}", "${lemma}")))
+            cells.append(
+                InflectionCell(Template(raw_cell.replace("{{ lemma }}", "${lemma}")))
+            )
+    return cells
