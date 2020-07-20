@@ -35,20 +35,19 @@
                       <th scope="col" class="paradigm-label paradigm-label--col">
                         {{ cell }}
                       </th>
-                      {# it's an InflectionCell #}
+                    {% elif cell == "" %}
+                      <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
+                      {# it's an InflectionCell #}
                       {# TODO: split this over multiple rows #}
-                      {% if cell.is_empty == True %}
-                        <td class="paradigm-cell">—</td>
-                      {# observed form #}
-                      {% elif cell.frequency > 0 %}
-                      <td class="paradigm-cell">
+                      {% if cell.frequency > 0 %}
+                        {# observed form #}
+                      <td class="paradigm-cell paradigm-cell--observed">
                         {% orth cell.inflection %}
-                        <sup class="inflection-observed-frequency">({{ cell.frequency }})</sup>
                       </td>
-                        {# unobserved form #}
                       {% else %}
-                        <td class="paradigm-cell unobserved-inflection-cell">
+                        {# unobserved form #}
+                        <td class="paradigm-cell paradigm-cell--unobserved">
                           {% orth cell.inflection %}
                         </td>
                       {% endif %}

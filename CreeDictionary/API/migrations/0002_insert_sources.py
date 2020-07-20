@@ -25,6 +25,16 @@ def sources_to_citations(apps, schema_editor):
             publisher="Canadian Plains Research Center",
             city="Regina, Saskatchewan",
         ),
+        "AE": DictionarySource(
+            abbrv="AE",
+            title="Alberta Elders' Cree Dictionary/"
+            "alperta ohci kehtehayak nehiyaw otwestamâkewasinahikan",
+            author="Nancy LeClaire, George Cardinal",
+            editor="Earle H. Waugh",
+            year=2002,
+            publisher="The University of Alberta Press",
+            city="Edmonton, Alberta",
+        ),
     }
     for src in sources.values():
         src.save()

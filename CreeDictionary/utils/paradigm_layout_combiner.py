@@ -97,14 +97,21 @@ def parse_csv_layout(layout_file: Path) -> Table:
     Parses a layout in the CSV/TSV format.
     """
     # Throw out the YAML header; we don't need it.
-    _yaml_header, _divider, table_csv = layout_file.read_text(
-        encoding="UTF-8"
-    ).partition("\n--")
+    file_text = layout_file.read_text(encoding="UTF-8")
+    _yaml_header, _divider, table_csv = file_text.partition("\n--")
 
+    if "\n--\n" not in file_text:
+        return _parse_csv_layout(file_text.splitlines())
+
+    logger.warning(f"unused YAML header in {layout_file}")
     lines = table_csv.splitlines()
     # the first line is part of the divider; get rid of it!
     del lines[0]
 
+    return _parse_csv_layout(lines)
+
+
+def _parse_csv_layout(lines: List[str]) -> Table:
     # Not much parsing to do here: mostly
     table: Table = []
     last_row_len = None
@@ -197,55 +204,14 @@ class Combiner:
     That is, the combiner should NOT be used in the Django server.
     """
 
-    _paradigm_tables: Dict[WordClass, Dict[FrozenSet[str], List[str]]]
-    """
-    {InflectionCategory.NA:
-        {{'N', 'I', 'Px1Sg', 'Pl'}: ['N+I+Px1Sg+Pl', 'I+N+Px1Sg+Pl']}
-    }
-    """
     _layout_tables: Dict[Tuple[WordClass, ParadigmSize], Table]
-    # todo: update how it looks like
-    """ how it looks like
-    {(InflectionCategory.VAI, ParadigmSize.FULL): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
-                      ['"1s"', 'Ind+Prs+1Sg', 'PV/e+*+Cnj+Prs+1Sg'], ['"2s"', 'Ind+Prs+2Sg', 'PV/e+*+Cnj+Prs+2Sg'],
-                      ['"3s"', 'Ind+Prs+3Sg', 'PV/e+*+Cnj+Prs+3Sg'], ['"1p"', 'Ind+Prs+1Pl ', 'PV/e+*+Cnj+Prs+1Pl'],
-                      ['"21"', 'Ind+Prs+12Pl', 'PV/e+*+Cnj+Prs+12Pl'], ['"2p"', 'Ind+Prs+2Pl', 'PV/e+*+Cnj+Prs+2Pl'],
-                      ['"3p"', 'Ind+Prs+3Pl', 'PV/e+*+Cnj+Prs+3Pl'], ['"4"', 'Ind+Prs+4Sg/Pl', 'PV/e+*+Cnj+Prs+4Sg/Pl'],
-                      ['"X"', 'Ind+Prs+X', 'PV/e+*+Cnj+Prs+X'], ['', '', ''], ['', '"PAST TENSE"', ''],
-                      ['', ': "Independent"', ': "Conjunct"'], ['"1s"', 'Ind+Prt+1Sg', 'PV/e+*+Cnj+Prt+1Sg'],
-                      ['"2s"', 'Ind+Prt+2Sg', 'PV/e+*+Cnj+Prt+2Sg'], ['"3s"', 'Ind+Prt+3Sg', 'PV/e+*+Cnj+Prt+3Sg'],
-                      ['', '', ''], ['', '"FUTURE INTENTIONAL TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
-                      ['"1s"', 'Ind+Fut+Int+1Sg', 'PV/e+*+Cnj+Fut+Int+1Sg'],
-                      ['"2s"', 'Ind+Fut+Int+2Sg', 'PV/e+*+Cnj+Fut+Int+2Sg'],
-                      ['"3s"', 'Ind+Fut+Int+3Sg', 'PV/e+*+Cnj+Fut+Int+3Sg'], ['', '', ''],
-                      ['', '"FUTURE DEFINITE TENSE"', ''], ['', ': "Independent"', ''], ['"1s"', 'Ind+Fut+Def+1Sg', ''],
-                      ['"2s"', 'Ind+Fut+Def+2Sg', ''], ['"3s"', 'Ind+Fut+Def+3Sg', ''], ['', '', ''],
-                      ['', '"FUTURE CONDITIONAL"', ''], ['"1s"', 'Fut+Cond+1Sg', ''], ['"2s"', 'Fut+Cond+2Sg', ''],
-                      ['"3s"', 'Fut+Cond+3Sg', ''], ['', '', ''], ['', '"IMPERATIVE"', ''],
-                      ['', ': "Immediate"', ': "Delayed"'], ['"2s"', 'Imp+Imm+2Sg', 'Imp+Del+2Sg'],
-                      ['"21"', 'Imp+Imm+12Pl', 'Imp+Del+12Pl'], ['"2p"', 'Imp+Imm+2Pl', 'Imp+Del+2Pl']],
-     (InflectionCategory.VAI, ParadigmSize.BASIC): [['', '"PRESENT TENSE"', ''], ['', ': "Independent"', ': "Conjunct"'],
-                   ['"1s"', 'Ind+Prs+1Sg', 'PV/e+*+Cnj+Prs+1Sg'], ['"2s"', 'Ind+Prs+2Sg', 'PV/e+*+Cnj+Prs+2Sg'],
-                   ['"3s"', 'Ind+Prs+3Sg', 'PV/e+*+Cnj+Prs+3Sg'], ['"1p"', 'Ind+Prs+1Pl ', 'PV/e+*+Cnj+Prs+1Pl'],
-                   ['"21"', 'Ind+Prs+12Pl', 'PV/e+*+Cnj+Prs+12Pl'], ['"2p"', 'Ind+Prs+2Pl', 'PV/e+*+Cnj+Prs+2Pl'],
-                   ['"3p"', 'Ind+Prs+3Pl', 'PV/e+*+Cnj+Prs+3Pl'], ['"4"', 'Ind+Prs+4Sg/Pl', 'PV/e+*+Cnj+Prs+4Sg/Pl'],
-                   ['"X"', 'Ind+Prs+X', 'PV/e+*+Cnj+Prs+X'], ['', '', ''], ['', '"IMPERATIVE"', ''],
-                   ['"Local"', ': "Immediate"', ': "Delayed"'], ['"2s"', 'Imp+Imm+2Sg', 'Imp+Del+2Sg'],
-                   ['"21"', 'Imp+Imm+12Pl', 'Imp+Del+12Pl'], ['"2p"', 'Imp+Imm+2Pl', 'Imp+Del+2Pl']],
 
-     ...
-
-     }
-
-    """
-
-    def __init__(self, layout_dir: Path, paradigm_dir: Path):
+    def __init__(self, layout_dir: Path):
         """
         Reads ALL of the .tsv layout files into memory and initializes the FST generator
 
         :param layout_dir: the absolute directory of your .tsv layout files
         """
-        self._paradigm_tables = import_paradigms(paradigm_dir)
         self._layout_tables = import_layouts(layout_dir)
 
     @classmethod
@@ -254,7 +220,7 @@ class Combiner:
         Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
         """
         res = Path(dirname(__file__)) / ".." / "res"
-        return Combiner(res / "layouts", res / "paradigms")
+        return Combiner(res / "layouts")
 
     def get_combined_table(
         self, category: WordClass, paradigm_size: ParadigmSize
@@ -266,39 +232,5 @@ class Combiner:
         if category is WordClass.IPC or category is WordClass.Pron:
             return []
 
-        layout_table = self._layout_tables[(category, paradigm_size)]
-
-        for rowInd, row in enumerate(layout_table):
-            for colInd, cell in enumerate(row):
-
-                if '"' not in cell and cell != "":  # it's a inflection form pattern
-
-                    # see patterns in res/layouts/readme.md
-                    replaced = ""
-                    if "=" in cell:
-                        replaced = "{{ lemma }}" + "+" + cell[1:]
-
-                    elif "*" in cell:
-
-                        replaced = cell.replace(
-                            "*",
-                            "%s%s" % ("{{ lemma }}", category.to_fst_output_style()),
-                        )
-
-                    else:
-                        lookup_combination = set(cell.split("+"))
-                        for combination, patterns in self._paradigm_tables[
-                            category
-                        ].items():
-                            if lookup_combination < combination:
-                                found = False
-                                for pattern in patterns:
-                                    if cell in pattern:
-                                        replaced = pattern
-                                        found = True
-                                        break
-                                if found:
-                                    break
-                    layout_table[rowInd][colInd] = replaced
-
-        return layout_table
+        # Can be returned unchanged!
+        return self._layout_tables[(category, paradigm_size)]

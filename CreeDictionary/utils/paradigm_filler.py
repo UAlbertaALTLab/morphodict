@@ -28,24 +28,23 @@ logger = logging.getLogger()
 
 
 def import_frequency() -> Dict[ConcatAnalysis, int]:
+    FILENAME = "attested-wordforms.txt"
 
     res: Dict[ConcatAnalysis, int] = {}
-    for line in (
-        (shared_res_dir / "ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt")
-        .read_text()
-        .splitlines()
-    ):
+    lines = (shared_res_dir / FILENAME).read_text(encoding="UTF-8").splitlines()
+    for line in lines:
         line = line.strip()
-        if line:
-            try:
-                freq, _, *analyses = line.split()
-            except ValueError:  # not enough value to unpack, wich means the line has less than 3 values
-                logger.warn(
-                    f'line "{line}" is broken in ahenakew_wolfart_MGS_tab-sep-anls_freq-sorted.txt'
-                )
-            else:
-                for analysis in analyses:
-                    res[ConcatAnalysis(analysis)] = int(freq)
+        if not line:
+            # Skip empty lines
+            continue
+
+        try:
+            freq, _, *analyses = line.split()
+        except ValueError:  # not enough value to unpack, which means the line has less than 3 values
+            logger.warn(f'line "{line}" is broken in {FILENAME}')
+        else:
+            for analysis in analyses:
+                res[ConcatAnalysis(analysis)] = int(freq)
 
     return res
 
@@ -56,14 +55,14 @@ class ParadigmFiller:
     _frequency = import_frequency()
 
     @staticmethod
-    def _import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
+    def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
         """
         Combine .layout files and .paradigm files and import into memory
 
         :param paradigm_dir: the directory that has .paradigms files
         :param layout_dir: the directory that has .layout files and .layout.csv files
         """
-        combiner = Combiner(layout_dir, paradigm_dir)
+        combiner = Combiner(layout_dir)
 
         layout_tables = {}
 
@@ -77,16 +76,14 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(
-        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
-    ):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
 
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
-        self._layout_tables = self._import_layouts(layout_dir, paradigm_dir)
+        self._layout_tables = self._import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
@@ -96,7 +93,6 @@ class ParadigmFiller:
         """
         return ParadigmFiller(
             shared_res_dir / "layouts",
-            shared_res_dir / "paradigms",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
 
@@ -133,15 +129,12 @@ class ParadigmFiller:
                 row_with_replacements = row.copy()
                 tables[-1].append(row_with_replacements)
                 for col_ind, cell in enumerate(row):
-                    if isinstance(cell, StaticCell):
+                    if isinstance(cell, StaticCell) or cell == "":
                         # We do nothing to static and empty cells.
                         continue
                     elif isinstance(cell, InflectionCell):
-                        if not cell.is_empty():
-                            analysis = cell.generate_concat_analysis(lemma=lemma)
-                            assert analysis is not None
-                            lookup_strings.append(analysis)
-                            string_locations.append((row_with_replacements, col_ind))
+                        lookup_strings.append(cell.create_concat_analysis(lemma))
+                        string_locations.append((row_with_replacements, col_ind))
                     else:
                         raise ValueError("Unexpected Cell Type")
 
@@ -199,13 +192,11 @@ class ParadigmFiller:
 
             assert isinstance(row, list)
             for cell in row:
-                if isinstance(cell, StaticCell):
+                if isinstance(cell, StaticCell) or cell == "":
                     continue
                 elif isinstance(cell, InflectionCell):
-                    if not cell.is_empty():
-                        analysis = cell.generate_concat_analysis(lemma=lemma)
-                        assert analysis is not None
-                        analyses.add(analysis)
+                    analysis = cell.create_concat_analysis(lemma)
+                    analyses.add(analysis)
                 else:
                     raise ValueError("Unexpected cell type")
 

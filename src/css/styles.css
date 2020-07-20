@@ -625,15 +625,6 @@ html {
 
 /********************************* PARADIGM *********************************/
 
-
-.inflection-observed-frequency{
-  /* todo: stub */
-}
-
-.unobserved-inflection-cell{
-  color: gray;
-}
-
 .paradigm {
   /* Display & Box model */
   border: solid 1px var(--paradigm-border-color);
@@ -716,26 +707,27 @@ html {
 
 .paradigm-title {
   text-align: center;
-  font-family: var(--strong-font-weight);
+  font-style: italic;
+  font-weight: var(--body-font-weight);
 }
 
 .paradigm-label {
   text-align: left;
-}
-
-.paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
 }
 
 .paradigm-label--col {
-  font-weight: var(--strong-font-weight);
   /* Sometimes the label is too dang wide, so just hide it. */
   overflow-x: ellipsis;
 }
 
 .paradigm-cell {
   font-weight: var(--body-font-weight);
+}
+
+.paradigm-cell--observed{
+  font-weight: var(--strong-font-weight);
 }
 
 .paradigm-label--row, .paradigm-cell {
