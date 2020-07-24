@@ -1,0 +1,64 @@
+name: "Inanimate intransitive verb full (plain) paradigm"
+paradigm: "verb-ii.paradigm"
+layout:
+  type: "full"
+tooltips:
+  eng:
+    "it": "inanimate singular actor"
+    "they": "inanimate plural actor"
+    "it (further)": "inanimate singular obviative actor"
+    "they (further)": "inanimate plural obviative actor"
+    "Something is happening now": "Present Tense"
+    "Something happened earlier": "Past Tense"
+    "Someone wants something to happen": "Future Intentional Tense"
+    "Something will certainly happen": "Future Definite Tense" 
+    "For something to happen": "Future/Infinitive"
+    "When something happens": "Future Conditional"
+    "Command/Request": "Imperative"
+    "Right now": "Immediate"
+    "Later on": "Delayed"
+    "ni-/ki- word": "Independent"
+    "ê-/kâ- word": "ê-/kâ- word"
+    "ka- word": "ka-conjunct"
+    "ta- word": "ta-conjunct"
+--
+|                  | "Something is happening now"        |                        |
+|                  | : "ni-/ki- word"                    | : "ê-/kâ- word"        |
+| "it"             | Ind+Prs+3Sg                         | PV/e+*+Cnj+Prs+3Sg     |
+| "they"           | Ind+Prs+3Pl                         | PV/e+*+Cnj+Prs+3Pl     |
+| "it (further)"   | Ind+Prs+4Sg                         | PV/e+*+Cnj+Prs+4Sg     |
+| "they (further)" | Ind+Prs+4Pl                         | PV/e+*+Cnj+Prs+4Pl     |
+|                  |                                     |                        |
+|                  | "Something happened earlier"        |                        |
+|                  | : "ni-/ki- word"                    | : "ê-/kâ- word"        |
+| "it"             | Ind+Prt+3Sg                         | PV/e+*+Cnj+Prt+3Sg     |
+| "they"           | Ind+Prt+3Pl                         | PV/e+*+Cnj+Prt+3Pl     |
+| "it (further)"   | Ind+Prt+4Sg                         | PV/e+*+Cnj+Prt+4Sg     |
+| "they (further)" | Ind+Prt+4Pl                         | PV/e+*+Cnj+Prt+4Pl     |
+|                  |                                     |                        |
+|                  | "Someone wants something to happen" |                        |
+|                  | : "ni-/ki- word"                    | : "ê-/kâ- word"        |
+| "it"             | Ind+Fut+Int+3Sg                     | PV/e+*+Cnj+Fut+Int+3Sg |
+| "they"           | Ind+Fut+Int+3Pl                     | PV/e+*+Cnj+Fut+Int+3Pl |
+| "it (further)"   | Ind+Fut+Int+4Sg                     | PV/e+*+Cnj+Fut+Int+4Sg |
+| "they (further)" | Ind+Fut+Int+4Pl                     | PV/e+*+Cnj+Fut+Int+4Pl |
+|                  |                                     |                        |
+|                  | "Something will certainly happen"   |                        |
+|                  | : "ni-/ki- word"                    |                        |
+| "it"             | Ind+Fut+Def+3Sg                     |                        |
+| "they"           | Ind+Fut+Def+3Pl                     |                        |
+| "it (further)"   | Ind+Fut+Def+4Sg                     |                        |
+| "they (further)" | Ind+Fut+Def+4Pl                     |                        |
+|                  |                                     |                        |
+|                  | "For something to happen"           |                        |
+|                  | : "ka- word"                        | : "ta- word"           |
+| "it"             | PV/ka+*+Cnj+Prs+3Sg                 | PV/ta+*+Cnj+Prs+3Sg    |
+| "they"           | PV/ka+*+Cnj+Prs+3Pl                 | PV/ta+*+Cnj+Prs+3Pl    |
+| "it (further)"   | PV/ka+*+Cnj+Prs+4Sg                 | PV/ta+*+Cnj+Prs+4Sg    |
+| "they (further)" | PV/ka+*+Cnj+Prs+4Pl                 | PV/ta+*+Cnj+Prs+4Pl    |
+|                  |                                     |                        |
+|                  | "When something happens"            |                        |
+| "it"             | Fut+Cond+3Sg                        |                        |
+| "they"           | Fut+Cond+3Pl                        |                        |
+| "it (further)"   | Fut+Cond+4Sg                        |                        |
+| "they (further)" | Fut+Cond+4Pl                        |                        |

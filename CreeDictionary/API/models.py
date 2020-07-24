@@ -30,14 +30,10 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from fuzzy_search import CreeFuzzySearcher
 from paradigm import Layout
 from shared import paradigm_filler
 from sortedcontainers import SortedSet
 from utils import (
-    ConcatAnalysis,
-    FSTTag,
-    Label,
     Language,
     ParadigmSize,
     PartOfSpeech,
@@ -47,6 +43,7 @@ from utils import (
 )
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS, partition_analysis
+from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
@@ -157,8 +154,6 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 class Wordform(models.Model):
-    _cree_fuzzy_searcher = None
-
     # this is initialized upon app ready.
     # this helps speed up preverb match
     # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
@@ -182,7 +177,7 @@ class Wordform(models.Model):
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
         )
         if self.homograph_disambiguator is not None:
-            lemma_url += f"?{self.homograph_disambiguator}={quote(getattr(self, self.homograph_disambiguator))}"
+            lemma_url += f"?{self.homograph_disambiguator}={quote(str(getattr(self, self.homograph_disambiguator)))}"
 
         return lemma_url
 
@@ -239,12 +234,15 @@ class Wordform(models.Model):
     def word_class(self) -> Optional[WordClass]:
         return fst_analysis_parser.extract_word_class(self.analysis)
 
-    @property
-    def paradigm(self) -> List[Layout]:
-        # todo: allow paradigm size other then ParadigmSize.BASIC
+    def get_paradigm_layouts(
+        self, size: ParadigmSize = ParadigmSize.BASIC
+    ) -> List[Layout]:
+        """
+        :param size: How detail the paradigm table is
+        """
         wc = fst_analysis_parser.extract_word_class(self.analysis)
         if wc is not None:
-            tables = paradigm_filler.fill_paradigm(self.text, wc, ParadigmSize.BASIC)
+            tables = paradigm_filler.fill_paradigm(self.text, wc, size)
         else:
             tables = []
         return tables
@@ -258,17 +256,6 @@ class Wordform(models.Model):
             if set(definition.source_ids) - {"MD"}:
                 return False
         return True
-
-    @classmethod
-    def init_fuzzy_searcher(cls):
-        if cls._cree_fuzzy_searcher is None:
-            cls._cree_fuzzy_searcher = CreeFuzzySearcher(cls.objects.all())
-
-    @classmethod
-    def fuzzy_search(cls, query: str, distance: int) -> QuerySet:
-        if cls._cree_fuzzy_searcher is None:
-            return Wordform.objects.none()
-        return cls._cree_fuzzy_searcher.search(query, distance)
 
     # override pk to allow use of bulk_create
     # auto-increment is also implemented in the overridden save() method below
@@ -317,11 +304,10 @@ class Wordform(models.Model):
     )
 
     class Meta:
-        # analysis is for faster user query (in function fetch_lemma_by_user_query below)
-        # text is for faster fuzzy search initialization when the app restarts on the server side (order_by text)
-        # text index also benefits fast lemma matching in function fetch_lemma_by_user_query
         indexes = [
+            # analysis is for faster user query (in function fetch_lemma_by_user_query below)
             models.Index(fields=["analysis"]),
+            # text index benefits fast lemma matching in function fetch_lemma_by_user_query
             models.Index(fields=["text"]),
         ]
 
@@ -432,7 +418,9 @@ class Wordform(models.Model):
                 # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
                 # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
 
-                lemma_wc = fst_analysis_parser.extract_lemma_and_word_class(analysis)
+                lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(
+                    analysis
+                )
                 if lemma_wc is None:
                     logger.error(
                         f"fst_analysis_parser cannot understand analysis {analysis}"

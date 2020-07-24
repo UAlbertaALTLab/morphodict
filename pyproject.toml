@@ -10,11 +10,3 @@ skip = [
     "migrations",
     "node_modules",
 ]
-# TODO: fix import paths so this key is no longer necessary:
-known_first_party = [
-    "utils",
-    "CreeDictionary",
-    "API",
-    "fuzzy_search",
-    "shared",
-]

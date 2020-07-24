@@ -13,15 +13,15 @@ pytest-mypy = "~=0.4"
 hypothesis = {extras = ["django"],version = "~=4.34"}
 codecov = "*"
 pysnooper = "*"
-gitdir = "*"
 tqdm = "~=4.40"
 python-levenshtein = "*"
 django-debug-toolbar = "~=2.2"
+isort = {extras = ["pyproject"],version = "*"}
 
 [packages]
 colorama = "~=0.4"
 coverage = "~=4.5"
-cree-sro-syllabics = "==2019.2.18"
+cree-sro-syllabics = ">=2020.6.23"
 hfstol = "~=1.2.2"
 pytz = "==2019.2"
 Django = "~=2.2"
@@ -54,10 +54,6 @@ import-xml = "sh ./libexec/import.sh"
 # It takes about half a minute with -m 2
 # example usage: `pipenv run build-test-db -m 2`
 build-test-db = "sh ./libexec/build_test_db.sh"
-# reminders/alias. you can just use $ update-layouts after pipenv shell
-# 1. (optional with supplied flag) Pull layout AND paradigm files from old itwewina and place them correctly
-# 2. combine them to res/prefilled-layouts/, which is then used at runtime
-update-layouts = 'update-layouts'
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.

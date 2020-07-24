@@ -35,6 +35,7 @@
   --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
   --menu-caption-color:     #626262; /* Color of text for menu captions. */
   --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
+  --paradigm-button-color-alt:  #5A6FCC; /* ... when hovered or active */
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
   --prose-heading-color:    #283C95;
   --prose-title-color:      #1D2D72; /* For BIG section titles. */
@@ -95,4 +96,8 @@
   --min-phone-width:    320px;  /* e.g., iPhone SE */
   --min-tablet-width:   768px;  /* e.g., iPad Mini */
   --min-desktop-width: 1366px;  /* e.g., 13" laptop */
+
+  /* Other constants */
+  --stripe-effect-width: 20px;
+  --stripe-effect-quarter-sqrt: 7.0710678119px; /* width of a single stripe in the gradient is ¼√(width) */
 }

@@ -91,6 +91,7 @@ html {
   margin: 0 0 .75rem;
 }
 
+
 /**
  * ELEMENT app__content
  *
@@ -104,7 +105,17 @@ html {
 }
 
 /**
- * ELEMENT pp__pane
+ * ELEMENT app__footer
+ *
+ * The footer for the entire application.
+ */
+.app__footer {
+  width: 100vw;
+  margin: 1rem 0 0;
+}
+
+/**
+ * ELEMENT app__pane
  *
  * Any division of the application that creates a "pane".
  *
@@ -637,11 +648,12 @@ html {
   border-spacing: 2em 0.5rem;
 }
 
-.paradigm__more-button {
+.paradigm__size-toggle-button {
   /* Display & Box model */
   display: block;
   width: 100%;
   border: 0;
+  padding-top: var(--small-pad);
   padding-bottom: var(--border-radius);
 
   /* Color */
@@ -658,10 +670,34 @@ html {
    * way. */
   --tighter-br: calc(var(--border-radius) - 2px);
   border-radius: 0 0 var(--tighter-br) var(--tighter-br);
+
+  cursor: pointer;
 }
 
-.paradigm__more-button::before {
-  content: "+ ";
+.paradigm__size-toggle-button:hover,
+.paradigm__size-toggle-button:focus {
+  background-color: var(--paradigm-button-color-alt);
+}
+
+.paradigm__size-toggle-button--loading {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--paradigm-button-color),
+    var(--paradigm-button-color) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) var(--stripe-effect-quarter-sqrt),
+    var(--paradigm-button-color-alt) calc(2 * var(--stripe-effect-quarter-sqrt))
+  );
+  background-size: var(--stripe-effect-width) var(--stripe-effect-width);;
+
+  animation: paradigm-button-slider 0.5s linear infinite;
+}
+
+@keyframes paradigm-button-slider {
+    0% { background-position-x: 0 }
+    100% { background-position-x: var(--stripe-effect-width); }
+}
+
+.paradigm__size-toggle-plus-minus {
   font-weight: var(--strong-font-weight);
 }
 
@@ -749,13 +785,11 @@ html {
  */
 .app-footer {
   /* Display & Box Model */
-  width: 100vw;
-  margin-top: 1rem;
-  margin-block-start: 1rem;
-  padding: 1rem var(--page-gutter) var(--small-pad);
+  display: grid;
+  padding: 1rem var(--page-gutter) var(--page-gutter);
   padding-block-start: 1rem;
   padding-inline: var(--page-gutter);
-  padding-block-end: var(--small-pad);
+  padding-block-end: var(--page-gutter);
 
   /* Font */
   font-size: var(--footer-font-size);
@@ -764,6 +798,14 @@ html {
   color: var(--footer-text-color);
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
+
+  /* Grid */
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-template-areas:
+   "basic"
+   "advanced"
+   "copyright";
 }
 
 .app-footer a:link {
@@ -773,44 +815,69 @@ html {
 .app-footer__copyright {
   margin-top: 1rem;
   margin-block-start: 1rem;
+
+  grid-area: copyright;
 }
 
-/**
- * BLOCK footer-links
- */
-.footer-links {
-  display: flex;
-  flex-direction: row;
+.app-footer__site-links {
+  grid-area: basic;
 }
 
-.footer-links__list {
+.app-footer__advanced-links {
+  grid-area: advanced;
+}
+
+.app-footer__links {
   margin: 0;
-  margin-left: var(--footer-link-gap);
-  margin-inline-start: var(--footer-link-gap);
   padding: 0;
 
   list-style: none;
 }
 
-.footer-links__list:first-of-type {
+.app-footer__link:first-of-type {
   margin-left: 0;
   margin-block-start: 0;
 }
 
-
-.footer-links__link {
+.app-footer__link {
   font-weight: var(--strong-font-weight);
+}
+
+/**
+ * When the screen gets wide enough, we can display the three footer sections
+ * horizontally.
+ */
+@media (min-width: 768px) {
+  .app-footer {
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas: "basic copyright advanced";
+  }
+
+  .app-footer__copyright {
+    margin: 0;
+
+    text-align: center;
+
+    /* Place at BOTTOM of the bar */
+    align-self: flex-end;
+  }
 }
 
 /**
  * BLOCK copyright
  *
- * Write copyright copy.
+ * One line of copyright text.
  */
 .copyright__line {
   margin: 0;
   margin-bottom: var(--gap);
   margin-block-end: var(--gap);
+}
+
+.copyright__line:last-of-type {
+  /* Remove superfluous margin for the last line of copyright. */
+  margin-bottom: 0;
+  margin-block-end: 0;
 }
 
 

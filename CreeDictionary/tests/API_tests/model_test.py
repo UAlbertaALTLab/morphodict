@@ -189,7 +189,9 @@ def test_paradigm():
                 return True
         return False
 
-    nipaw_paradigm = Wordform.objects.get(text="nipâw", is_lemma=True).paradigm
+    nipaw_paradigm = Wordform.objects.get(
+        text="nipâw", is_lemma=True
+    ).get_paradigm_layouts()
     assert deep_contain(nipaw_paradigm, "ninipân")
     assert deep_contain(nipaw_paradigm, "kinipân")
     assert deep_contain(nipaw_paradigm, "nipâw")

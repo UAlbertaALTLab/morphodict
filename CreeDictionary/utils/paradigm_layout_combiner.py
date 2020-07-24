@@ -20,6 +20,7 @@ from typing import Dict, FrozenSet, List, Tuple
 
 import hfstol
 from utils import ParadigmSize, WordClass
+from utils.shared_res_dir import shared_res_dir
 
 # A raw paradigm layout from Neahttadigisánit.
 Table = List[List[str]]
@@ -233,9 +234,7 @@ class Combiner:
 
     """
 
-    def __init__(
-        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
-    ):
+    def __init__(self, layout_dir: Path, paradigm_dir: Path):
         """
         Reads ALL of the .tsv layout files into memory and initializes the FST generator
 
@@ -243,7 +242,6 @@ class Combiner:
         """
         self._paradigm_tables = import_paradigms(paradigm_dir)
         self._layout_tables = import_layouts(layout_dir)
-        self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
     def default_combiner(cls):
@@ -251,11 +249,7 @@ class Combiner:
         Returns a Combiner instance that uses the paradigm files, layout files, and hfstol files from `res` folder.
         """
         res = Path(dirname(__file__)) / ".." / "res"
-        return Combiner(
-            res / "layouts",
-            res / "paradigms",
-            res / "fst" / "crk-normative-generator.hfstol",
-        )
+        return Combiner(res / "layouts", res / "paradigms")
 
     def get_combined_table(
         self, category: WordClass, paradigm_size: ParadigmSize
@@ -303,23 +297,3 @@ class Combiner:
                     layout_table[rowInd][colInd] = replaced
 
         return layout_table
-
-
-def combine_layout_paradigm():
-    combiner = Combiner.default_combiner()
-
-    for ic in WordClass:
-        if ic in (WordClass.Pron, WordClass.IPC, WordClass.IPV):
-            continue
-        for size in ParadigmSize:
-            with open(
-                path.join(
-                    dirname(__file__), "..", "res", "prefilled_layouts", "%s-%s.tsv"
-                )
-                % (ic.value.lower(), size.value.lower()),
-                "w",
-                newline="",
-            ) as file:
-                a = combiner.get_combined_table(ic, size)
-                writer = csv.writer(file, delimiter="\t", quotechar="'")
-                writer.writerows(a)

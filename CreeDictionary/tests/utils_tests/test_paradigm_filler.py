@@ -1,17 +1,24 @@
+"""
+Tests importing the NA layouts.
+
+Note: if the upstream layouts change, so will these tests!
+"""
+
 import pytest
 from paradigm import EmptyRow, Heading, Label, TitleRow
-from shared import paradigm_filler
-from utils import ParadigmSize, WordClass, shared_res_dir
-from utils.paradigm_filler import import_prefilled_layouts
+from utils import ParadigmSize, WordClass
+from utils.paradigm_filler import ParadigmFiller
 
 
-def test_import_prefilled_layouts() -> None:
+def test_import_prefilled_layouts(shared_datadir) -> None:
     """
     Imports ALL of the layouts, and makes sure a NA gets filled out.
-
-    Note: if the upstream layouts change, so will this test!
     """
-    prefilled_layouts = import_prefilled_layouts(shared_res_dir / "prefilled_layouts")
+    # these layout and paradigm files are pinned test data
+    # the real files in use are hosted under res/ folder
+    prefilled_layouts = ParadigmFiller._import_layouts(
+        shared_datadir / "layouts", shared_datadir / "paradigms"
+    )
     assert prefilled_layouts[WordClass.NA, ParadigmSize.BASIC] == [
         [Label("One"), "{{ lemma }}+N+A+Sg"],
         [Label("Many"), "{{ lemma }}+N+A+Pl"],
@@ -50,10 +57,6 @@ def test_import_prefilled_layouts() -> None:
                 [
                     TitleRow(title="Smaller/Lesser/Younger", span=5),
                     [Label(text="One"), "niskis", "", "", ""],
-                    [Label(text="Many"), "niskisak", "", "", ""],
-                    [Label(text="Further"), "niskisa", "", "", ""],
-                    [Label(text="In/On"), "niskisihk", "", "", ""],
-                    [Label(text="Among"), "niskisinâhk", "", "", ""],
                 ],
                 [
                     TitleRow(title="Ownership", span=5),
@@ -80,7 +83,7 @@ def test_import_prefilled_layouts() -> None:
                     ],
                     [Label(text="his/her"), "", "", "oniskima", "oniskimihk"],
                     [
-                        Label(text="our"),
+                        Label(text="our (but not your)"),
                         "niniskiminân",
                         "niniskiminânak",
                         "niniskiminâna",
@@ -109,66 +112,20 @@ def test_import_prefilled_layouts() -> None:
                         "oniskimiyihk",
                     ],
                 ],
-                [
-                    TitleRow(title="Smaller/Lesser/Younger", span=5),
-                    TitleRow(title="Ownership", span=5),
-                    [
-                        "",
-                        Heading(text="One"),
-                        Heading(text="Many"),
-                        Heading(text="Further"),
-                        Heading(text="In/On"),
-                    ],
-                    [
-                        Label(text="my"),
-                        "niniskimis",
-                        "niniskimisak",
-                        "niniskimisa",
-                        "niniskimisihk",
-                    ],
-                    [
-                        Label(text="your (one)"),
-                        "kiniskimis",
-                        "kiniskimisak",
-                        "kiniskimisa",
-                        "kiniskimisihk",
-                    ],
-                    [Label(text="his/her"), "", "", "oniskimisa", "oniskimisihk"],
-                    [
-                        Label(text="our"),
-                        "niniskimisinân",
-                        "niniskimisinânak",
-                        "niniskimisinâna",
-                        "niniskimisinâhk",
-                    ],
-                    [
-                        Label(text="your and our"),
-                        "kiniskimisinaw",
-                        "kiniskimisinawak",
-                        "kiniskimisinawa",
-                        "kiniskimisinâhk",
-                    ],
-                    [
-                        Label(text="your (all)"),
-                        "kiniskimisiwâw",
-                        "kiniskimisiwâwak",
-                        "kiniskimisiwâwa",
-                        "kiniskimisiwâhk",
-                    ],
-                    [Label(text="their"), "", "", "oniskimisiwâwa", "oniskimisiwâhk"],
-                    [
-                        Label(text="his/her/their (further)"),
-                        "",
-                        "",
-                        "oniskimisiyiwa",
-                        "oniskimisiyihk",
-                    ],
-                ],
             ],
         )
     ],
 )
-def test_fill_NA_Full(lemma, inflection_category, paradigm_size, expected_table):
+def test_fill_NA_Full(
+    shared_datadir, lemma, inflection_category, paradigm_size, expected_table
+):
+    # these layout, paradigm, and hfstol files are pinned test data
+    # the real files in use are hosted under res/ folder
+    paradigm_filler = ParadigmFiller(
+        shared_datadir / "layouts",
+        shared_datadir / "paradigms",
+        shared_datadir / "crk-normative-generator.hfstol",
+    )
     assert (
         paradigm_filler.fill_paradigm(lemma, inflection_category, paradigm_size)
         == expected_table
