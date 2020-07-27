@@ -195,7 +195,6 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
   // https://jsfiddle.net/rh5aoxsL/
 
 
-
   // do not do cy.get('th[scope="row"]').contains(rowLabel).then(
   // because contains only yield the first element matched, but we want to to match multiples
 
@@ -231,7 +230,6 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
             }
           }
 
-          // console.log(sibling)
           if ((typeof colLabel === 'undefined' || colLabelMatched) && (typeof titleLabel === 'undefined' || titleLabelMatched)){
             return Cypress.dom.wrap(tdElement)
           }
@@ -245,38 +243,5 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
 
     }
   )
-
-  //   .each(
-  //   $th => {
-  //
-  //
-  //     return new Cypress.Promise(
-  //       resolve => {
-  //
-  //         const startTH = Cypress.dom.unwrap($th)[0]
-  //
-  //         // iterate over all tds in the row
-  //         let sibling = startTH.nextElementSibling
-  //
-  //         while (sibling != null) {
-  //
-  //           /* traverse upwards to find column header */
-  //           if (colLabel) {
-  //
-  //           }
-  //           console.log(sibling)
-  //           $res = Cypress.dom.wrap(sibling)
-  //           sibling = sibling.nextElementSibling
-  //         }
-  //         resolve()
-  //       }
-  //     )
-  //
-  //
-  //   }
-  // )
-
-  // cy.get('th').contains(colText).eq(0)
-
 
 })
