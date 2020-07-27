@@ -38,13 +38,18 @@
                     {% elif cell == "" %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
+                      {# it's an InflectionCell #}
                       {# TODO: split this over multiple rows #}
-
-                      {% if cell.frequency > 0 %}
-                        {# observed form #}
+                      {% if cell.inflection == "" %}
+                        {# use em dash to denote that the form doesn't exist #}
                         <td class="paradigm-cell paradigm-cell--observed">
-                          {% orth cell.inflection %}
+                          —
                         </td>
+                      {% elif cell.frequency > 0 %}
+                        {# observed form #}
+                      <td class="paradigm-cell paradigm-cell--observed">
+                        {% orth cell.inflection %}
+                      </td>
                       {% else %}
                         {# unobserved form #}
                         <td class="paradigm-cell paradigm-cell--unobserved">

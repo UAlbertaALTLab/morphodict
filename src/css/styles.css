@@ -730,6 +730,10 @@ html {
   font-weight: var(--strong-font-weight);
 }
 
+.paradigm-cell--lacuna{
+  /* stub, fill if needed */
+}
+
 .paradigm-label--row, .paradigm-cell {
   vertical-align: top; /* When a label applies to multiple wordforms */
 }

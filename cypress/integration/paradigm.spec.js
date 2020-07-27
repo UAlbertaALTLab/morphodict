@@ -59,6 +59,14 @@ describe(' I want to know if a form is observed inside a paradigm table', () => 
   })
 })
 
+describe(' I want to see a clear indicator that a form does not exist', () => {
+
+  it('shows cells that does not exist as a em dash', ()=>{
+    cy.visitLemma('minôs')
+    cy.getParadigmCell('One', {colLabel: 'Smaller/Lesser/Younger'}).contains('—')
+  })
+})
+
 
 describe('paradigms are visitable from link', () => {
   const lemmaText = 'niska'

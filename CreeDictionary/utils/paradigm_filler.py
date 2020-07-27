@@ -140,7 +140,7 @@ class ParadigmFiller:
         # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
-        # string locations and lookup_strings have parallel indices.
+        # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
         for i, location in enumerate(string_locations):
             row, col_ind = location
