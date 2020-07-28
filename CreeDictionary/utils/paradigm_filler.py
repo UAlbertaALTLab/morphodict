@@ -2,31 +2,66 @@
 fill a paradigm table according to a lemma
 """
 import csv
+import logging
 from copy import deepcopy
 from os.path import dirname
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
-from paradigm import Cell, EmptyRow, Layout, StaticCell, TitleRow, rows_to_layout
+from paradigm import (
+    Cell,
+    EmptyRow,
+    InflectionCell,
+    Layout,
+    StaticCell,
+    TitleRow,
+    rows_to_layout,
+)
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import Combiner
+from utils.types import ConcatAnalysis
 
 LayoutID = Tuple[WordClass, ParadigmSize]
+
+logger = logging.getLogger()
+
+
+def import_frequency() -> Dict[ConcatAnalysis, int]:
+    FILENAME = "attested-wordforms.txt"
+
+    res: Dict[ConcatAnalysis, int] = {}
+    lines = (shared_res_dir / FILENAME).read_text(encoding="UTF-8").splitlines()
+    for line in lines:
+        line = line.strip()
+        if not line:
+            # Skip empty lines
+            continue
+
+        try:
+            freq, _, *analyses = line.split()
+        except ValueError:  # not enough value to unpack, which means the line has less than 3 values
+            logger.warn(f'line "{line}" is broken in {FILENAME}')
+        else:
+            for analysis in analyses:
+                res[ConcatAnalysis(analysis)] = int(freq)
+
+    return res
 
 
 class ParadigmFiller:
     _layout_tables: Dict[LayoutID, Layout]
 
-    @staticmethod
-    def _import_layouts(layout_dir, paradigm_dir) -> Dict[LayoutID, Layout]:
-        """
-        Combine .layout files and .paradigm files and import into memory
+    _frequency = import_frequency()
 
-        :param paradigm_dir: the directory that has .paradigms files
+    @staticmethod
+    def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
+        """
+        Imports .layout files into memory.
+
         :param layout_dir: the directory that has .layout files and .layout.csv files
         """
-        combiner = Combiner(layout_dir, paradigm_dir)
+        combiner = Combiner(layout_dir)
 
         layout_tables = {}
 
@@ -40,16 +75,14 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(
-        self, layout_dir: Path, paradigm_dir: Path, generator_hfstol_path: Path
-    ):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
 
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
-        self._layout_tables = self._import_layouts(layout_dir, paradigm_dir)
+        self._layout_tables = self._import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
@@ -59,7 +92,6 @@ class ParadigmFiller:
         """
         return ParadigmFiller(
             shared_res_dir / "layouts",
-            shared_res_dir / "paradigms",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
         )
 
@@ -75,7 +107,7 @@ class ParadigmFiller:
         # so set up some data structures that will allow us to:
         #  - store all unique things to lookup
         #  - remember which strings need to be replaced after lookups
-        lookup_strings: List[str] = []
+        lookup_strings: List[ConcatAnalysis] = []
         string_locations: List[Tuple[List[Cell], int]] = []
 
         if category is WordClass.IPC or category is WordClass.Pron:
@@ -99,22 +131,72 @@ class ParadigmFiller:
                     if isinstance(cell, StaticCell) or cell == "":
                         # We do nothing to static and empty cells.
                         continue
-
-                    # It's a inflection form pattern
-                    assert '"' not in cell
-                    lookup_strings.append(cell.replace("{{ lemma }}", lemma))
-                    string_locations.append((row_with_replacements, col_ind))
+                    elif isinstance(cell, InflectionCell):
+                        lookup_strings.append(cell.create_concat_analysis(lemma))
+                        string_locations.append((row_with_replacements, col_ind))
+                    else:
+                        raise ValueError("Unexpected Cell Type")
 
         # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
 
-        # string locations and lookup_strings have parallel indices.
+        # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
         for i, location in enumerate(string_locations):
             row, col_ind = location
             analysis = lookup_strings[i]
             results_for_cell = sorted(results[analysis])
             # TODO: this should actually produce TWO rows!
-            row[col_ind] = " / ".join(results_for_cell)
+            inflection_cell = row[col_ind]
+            assert isinstance(inflection_cell, InflectionCell)
+            inflection_cell.inflection = " / ".join(results_for_cell)
+            inflection_cell.frequency = self._frequency.get(analysis, 0)
 
         return tables
+
+    def inflect_all_with_analyses(
+        self, lemma: str, wordclass: WordClass
+    ) -> Dict[ConcatAnalysis, Sequence[str]]:
+        """
+        Produces all known forms of a given word. Returns a mapping of analyses to their
+        forms. Some analyses may have multiple forms. Some analyses may not generate a
+        form.
+        """
+        analyses = self.expand_analyses(lemma, wordclass)
+        return self._generator.feed_in_bulk_fast(analyses)
+
+    def inflect_all(self, lemma: str, wordclass: WordClass) -> Set[str]:
+        """
+        Return a set of all inflections for a particular lemma.
+        """
+        all_inflections = self.inflect_all_with_analyses(lemma, wordclass).values()
+        return set(form for word in all_inflections for form in word)
+
+    def expand_analyses(self, lemma: str, wordclass: WordClass) -> Set[ConcatAnalysis]:
+        """
+        Given a lemma and its word class, return a set of all analyses that we could
+        generate, but do not actually generate anything!
+        """
+        # I just copy-pasted the code from fill_paradigm() and edited it.
+        # I'm sure we could refactor using the Template Method pattern or even Visitor
+        # pattern to reduce code duplication, but I honestly think it's not worth it in
+        # this situation.
+        layout_table = self._layout_tables[(wordclass, ParadigmSize.LINGUISTIC)]
+
+        # Find all of the analyses strings in the table:
+        analyses: Set[ConcatAnalysis] = set()
+        for row in layout_table:
+            if row is EmptyRow or isinstance(row, TitleRow):
+                continue
+
+            assert isinstance(row, list)
+            for cell in row:
+                if isinstance(cell, StaticCell) or cell == "":
+                    continue
+                elif isinstance(cell, InflectionCell):
+                    analysis = cell.create_concat_analysis(lemma)
+                    analyses.add(analysis)
+                else:
+                    raise ValueError("Unexpected cell type")
+
+        return analyses

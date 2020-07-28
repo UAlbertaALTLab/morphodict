@@ -9,18 +9,16 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - name: remove old fomabins and hfstols
+      - name: Remove old FSTs
         run: |
           find CreeDictionary/res/fst -name '*.fomabin' -delete
           find CreeDictionary/res/fst -name '*.hfstol' -delete
-      - name: Update fsts
+      - name: Update FSTs
         run: |
           cd CreeDictionary/res/fst
-          curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.fomabin" | cut -d: -f 2,3 | tr -d \" | tail -1 |wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-descriptive-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | tail -1 |wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-normative-generator.hfstol" | cut -d: -f 2,3 | tr -d \" | tail -1 |wget -qi -
           curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-strict-analyzer.hfstol" | cut -d: -f 2,3 | tr -d \" | tail -1 | wget -qi -
-          curl -s https://api.github.com/repos/UAlbertaALTLab/plains-cree-fsts/releases/latest | grep "crk-normative-generator.fomabin" | cut -d: -f 2,3 | tr -d \" | tail -1 | wget -qi -
       - name: Authenticate github
         run: git remote set-url origin https://Madoshakalaka:${{ secrets.FST_UPDATE_TOKEN }}@github.com/UAlbertaALTLab/cree-intelligent-dictionary
       - name: Create and push a new branch. Create pull request.

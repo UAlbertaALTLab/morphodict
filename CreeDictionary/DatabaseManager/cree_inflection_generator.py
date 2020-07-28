@@ -11,30 +11,7 @@ from typing import Dict, Iterable, List, Set, Tuple
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import normative_generator
 from utils import WordClass, fst_analysis_parser
-
-
-def import_flattened_prefilled_layouts(
-    layout_file_dir: Path,
-) -> Dict[WordClass, List[str]]:
-    """
-    >>> import_flattened_prefilled_layouts(Path(dirname(__file__)) / '..' / 'res' / 'prefilled_layouts')[WordClass.NID]
-    ['{{ lemma }}+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+PxX+Loc', '{{ lemma }}+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Px4Sg/Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Sg+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px1Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px12Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px2Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px3Pl+Loc', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Sg', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Pl', '{{ lemma }}+N+I+D+Der/Dim+N+I+D+Px4Sg/Pl+Loc']
-    """
-    flattened_layouts = dict()
-    files = glob.glob(str(layout_file_dir / "*-linguistic*.tsv"))
-    for file in files:
-
-        name_wo_extension = str(path.split(file)[1]).split(".")[0]
-
-        with open(file, "r") as f:
-
-            reader = csv.reader(f, delimiter="\t", quotechar="'")
-            flattened_layout = [
-                cell for row in reader for cell in row if '"' not in cell and cell != ""
-            ]
-            ic_str, size_str = name_wo_extension.split("-")
-            flattened_layouts[WordClass(ic_str.upper())] = flattened_layout
-    return flattened_layouts
+from utils.paradigm_filler import ParadigmFiller
 
 
 def expand_inflections(
@@ -46,41 +23,39 @@ def expand_inflections(
     """
     logger = DatabaseManagerLogger(__name__, verbose)
 
-    # optimized for efficiency by calling hfstol once and for all
-    flattened_layouts = import_flattened_prefilled_layouts(
-        Path(dirname(__file__)) / ".." / "res" / "prefilled_layouts"
-    )
-    fat_generated_analyses = []
+    paradigm_filler = ParadigmFiller.default_filler()
 
     analyses = list(analyses)
-
-    to_generated = dict()  # type: Dict[str, List[str]]
+    to_generated: Dict[str, List[str]] = {}
+    # We'll generate all of the forms for analyses enqueued here in one fell swoop.
+    analysis_queue = []
 
     for analysis in analyses:
         lemma_category = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
         assert lemma_category is not None
         lemma, category = lemma_category
-        if category.is_verb() or category.is_noun():
-            generated_analyses = [
-                generated_analysis.replace("{{ lemma }}", lemma)
-                for generated_analysis in flattened_layouts[category]
-            ]
+
+        if category.has_inflections():
+            generated_analyses = list(paradigm_filler.expand_analyses(lemma, category))
         else:
             generated_analyses = [analysis]
+
         to_generated[analysis] = generated_analyses
-        fat_generated_analyses.extend(generated_analyses)
+        analysis_queue.extend(generated_analyses)
 
     logger.info("Generating inflections using %d processes..." % multi_processing)
+
+    # optimized for efficiency by calling hfstol once and for all
     generated_analyses_to_inflections = normative_generator.feed_in_bulk_fast(
-        fat_generated_analyses, multi_processing
+        analysis_queue, multi_processing
     )
 
     logger.info("Done generating inflections")
 
-    expanded = dict()
+    expanded = {}
 
     for analysis in analyses:
-        pooled_generated_words = list()
+        pooled_generated_words = []
         for generated_analysis in to_generated[analysis]:
             pooled_generated_words.append(
                 (

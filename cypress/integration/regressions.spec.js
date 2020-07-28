@@ -32,7 +32,7 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'awâsisîwiw')
 
-    cy.visitSearch('na nipat')
+    cy.visitSearch('e nipat')
     cy.get('[data-cy=search-results]')
       .should('contain', 'nipâw')
   })
@@ -294,4 +294,26 @@ context('Regressions', () => {
       .should('contain', 'nîso-kîsikâw')
   })
 
+  /**
+   * There should be symbols for pronouns and preverbs.
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/489
+   */
+  context('symbols also for pronouns and preverbs', function () {
+    // TODO: add emoji to represent ôma/awa words
+    const testCases = [
+      ['niya', '➡️', 'like: awa'],
+      ['ôma', '➡️', 'like: ôma'],
+      ['nitawi-', '⚡️', 'like: pê-'],
+    ]
+
+    for (const [wordform, emoji, inflectsLike] of testCases) {
+      it(`should have a symbol for ${wordform}`, function () {
+        cy.visitSearch(wordform)
+
+        cy.contains('[data-cy=elaboration]', inflectsLike)
+          .should('contain', emoji)
+      })
+    }
+  })
 })

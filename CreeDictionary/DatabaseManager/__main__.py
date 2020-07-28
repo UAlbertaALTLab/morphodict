@@ -29,7 +29,7 @@ subparsers.required = True
 
 import_parser = subparsers.add_parser(
     "import",
-    help="Import from specified engcrk.xml and crkeng.xml. This assumes the database is at migration 0005",
+    help="Import from specified engcrk.xml and crkeng.xml. This assumes the database is at migration 0001",
 )
 
 build_test_db_parser = subparsers.add_parser(

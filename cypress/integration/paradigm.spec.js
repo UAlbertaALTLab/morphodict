@@ -51,6 +51,23 @@ describe(' I want to search for a Cree word and see its inflectional paradigm', 
 })
 
 
+describe(' I want to know if a form is observed inside a paradigm table', () => {
+  // TODO: this test should be re-enabled in linguist mode!
+  it.skip('shows inflection frequency as digits in brackets', ()=>{
+    cy.visitLemma('nipâw')
+    cy.get('[data-cy=paradigm]').contains(/\(\d\)/)
+  })
+})
+
+describe(' I want to see a clear indicator that a form does not exist', () => {
+
+  it('shows cells that does not exist as a em dash', ()=>{
+    cy.visitLemma('minôs')
+    cy.getParadigmCell('One', {colLabel: 'Smaller/Lesser/Younger'}).contains('—')
+  })
+})
+
+
 describe('paradigms are visitable from link', () => {
   const lemmaText = 'niska'
   it('shows basic paradigm', () => {
@@ -74,7 +91,7 @@ describe('paradigms are visitable from link', () => {
 )
 
 
-describe('paradigms can e toggled by the show more/less button', () => {
+describe('paradigms can be toggled by the show more/less button', () => {
   it('shows basic, full, linguistic, and basic paradigm in sequence', () => {
     cy.visitLemma('nipâw')
     // "Something is happening now" is an exclusive user friendly tag for BASIC paradigms
