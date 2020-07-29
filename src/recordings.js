@@ -27,7 +27,8 @@ export function retrieveListOfSpeakers() {
   let wordform = document.getElementById('data:head').value
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`
 
-  let recordingsList = document.querySelector('.recordings-list')
+  let recordingsList = document.querySelector('.recordings-list') // to be deleted, but not yet because it'll break the refactoring 💀
+  let recordingsDropdown = document.getElementById('recordings-dropdown')
 
   // Request the JSON for all recordings of this wordform
   fetch(derivedURL)
