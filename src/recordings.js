@@ -1,7 +1,5 @@
 import SimpleTemplate from './simple-template.js'
 
-// popup for the speaker popup
-
 
 
 // the specific URL for a given wordform (refactored from previous commits).
@@ -22,7 +20,7 @@ export async function fetchFirstRecordingURL(wordform) {
 
 
 /**
- * Render a list of speakers (in button form) for the user to interact with and hear the wordform pronounced in different ways.
+ * Render a list of speakers (in the form of a select) for the user to interact with and hear the wordform pronounced in different ways.
  */
 export function retrieveListOfSpeakers() {
   // get the value of the wordform from the page
@@ -117,5 +115,3 @@ export function retrieveListOfSpeakers() {
     }
   }
 }
-
-// TODOkobe: Once everything is working, play with a way to dynamically indicate (on the button) that a repeat 'speaker' is a v1, v2, v3, etc
