@@ -54,6 +54,16 @@
       <slot name="speaker-name"></slot>.
    </a>
   </template>
+
+  {# The play-button template #}
+  <template id="template:selected-speaker-play-button">
+    <button aria-label="Play speaker" data-cy="play-selected-speaker">
+      <!-- TODOkobe: think of a better class name for the way this is set up -->
+      <svg class="" focusable="false">
+        <use xlink:href="#play-solid"/>
+      </svg>
+    </button>
+  </template>
 {% endspaceless %}
 
 {% comment %}
