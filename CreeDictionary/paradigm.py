@@ -162,8 +162,12 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     file.
     """
     layout: Layout = []
+
+    max_row_length = len(max(rows, key=len))
+
     for raw_row in rows:
         row = determine_cells(raw_row)
+        row.extend([""] * (max_row_length - len(row)))
 
         has_content = False
         n_labels = 0

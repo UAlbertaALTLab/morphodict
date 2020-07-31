@@ -70,7 +70,7 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
             continue
 
         wc = PARADIGM_NAME_TO_WC["-".join(wc_str)]
-        table = parse_layout(layout_file)
+        table = parse_csv_layout(layout_file)
 
         if (wc, size) in layout_tables:
             logger.warning(
@@ -81,48 +81,22 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     return layout_tables
 
 
-def parse_layout(layout_file: Path) -> Table:
-    """
-    Parses a layout and returns a "layout".
-    """
-    if layout_file.match("*.csv") or layout_file.match("*.tsv"):
-        return parse_csv_layout(layout_file)
-    else:
-        assert layout_file.match("*.layout")
-        return parse_legacy_layout(layout_file)
-
-
 def parse_csv_layout(layout_file: Path) -> Table:
     """
     Parses a layout in the CSV/TSV format.
     """
-    # Throw out the YAML header; we don't need it.
     file_text = layout_file.read_text(encoding="UTF-8")
-    _yaml_header, _divider, table_csv = file_text.partition("\n--")
 
-    if "\n--\n" not in file_text:
-        return _parse_csv_layout(file_text.splitlines())
-
-    logger.warning(f"unused YAML header in {layout_file}")
-    lines = table_csv.splitlines()
-    # the first line is part of the divider; get rid of it!
-    del lines[0]
-
-    return _parse_csv_layout(lines)
+    return _parse_csv_layout(file_text.splitlines())
 
 
 def _parse_csv_layout(lines: List[str]) -> Table:
-    # Not much parsing to do here: mostly
+    # Not much parsing to do here: mostly trimming trailing empty cells
     table: Table = []
-    last_row_len = None
     for line in lines:
+        line = line.rstrip()
         row = [cell.strip() for cell in line.split("\t")]
         table.append(row)
-        row_len = len(row)
-        assert (
-            last_row_len is None or row_len == last_row_len
-        ), f"expected length {last_row_len}; got: {row_len}"
-        last_row_len = row_len
 
     return table
 
