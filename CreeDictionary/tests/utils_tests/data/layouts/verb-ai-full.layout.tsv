@@ -15,7 +15,7 @@
 "I"	PV/ki+${lemma}+V+AI+Ind+1Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Sg
 "you (one)"	PV/ki+${lemma}+V+AI+Ind+2Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Sg
 "s/he"	PV/ki+${lemma}+V+AI+Ind+3Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Sg
-"we (but not you)	PV/ki+${lemma}+V+AI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl
+"we (but not you)"	PV/ki+${lemma}+V+AI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl
 "you and we"	PV/ki+${lemma}+V+AI+Ind+12Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+12Pl
 "you (all)"	PV/ki+${lemma}+V+AI+Ind+2Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Pl
 "they"	PV/ki+${lemma}+V+AI+Ind+3Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Pl
@@ -26,7 +26,7 @@
 "I"	PV/wi+${lemma}+V+AI+Ind+1Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Sg
 "you (one)"	PV/wi+${lemma}+V+AI+Ind+2Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Sg
 "s/he"	PV/wi+${lemma}+V+AI+Ind+3Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Sg
-"we (but not you)	PV/wi+${lemma}+V+AI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl
+"we (but not you)"	PV/wi+${lemma}+V+AI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl
 "you and we"	PV/wi+${lemma}+V+AI+Ind+12Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+12Pl
 "you (all)"	PV/wi+${lemma}+V+AI+Ind+2Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Pl
 "they"	PV/wi+${lemma}+V+AI+Ind+3Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Pl
@@ -37,7 +37,7 @@
 "I"	PV/ka+${lemma}+V+AI+Ind+1Sg	
 "you (one)"	PV/ka+${lemma}+V+AI+Ind+2Sg	
 "s/he"	PV/ka+${lemma}+V+AI+Ind+3Sg	
-"we (but not you)	PV/ka+${lemma}+V+AI+Ind+1Pl	
+"we (but not you)"	PV/ka+${lemma}+V+AI+Ind+1Pl
 "you and we"	PV/ka+${lemma}+V+AI+Ind+12Pl	
 "you (all)"	PV/ka+${lemma}+V+AI+Ind+2Pl	
 "they"	PV/ka+${lemma}+V+AI+Ind+3Pl	
@@ -48,7 +48,7 @@
 "I"	PV/ka+${lemma}+V+AI+Cnj+1Sg	PV/ta+${lemma}+V+AI+Cnj+1Sg
 "you (one)"	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg
 "s/he"	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg
-"we (but not you)	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl
+"we (but not you)"	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl
 "you and we"	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl
 "you (all)"	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl
 "they"	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl
@@ -58,7 +58,7 @@
 "I"	${lemma}+V+AI+Fut+Cond+1Sg	
 "you (one)"	${lemma}+V+AI+Fut+Cond+2Sg	
 "s/he"	${lemma}+V+AI+Fut+Cond+3Sg	
-"we (but not you)	${lemma}+V+AI+Fut+Cond+1Pl	
+"we (but not you)"	${lemma}+V+AI+Fut+Cond+1Pl
 "you and we"	${lemma}+V+AI+Fut+Cond+12Pl	
 "you (all)"	${lemma}+V+AI+Fut+Cond+2Pl	
 "they"	${lemma}+V+AI+Fut+Cond+3Pl	
