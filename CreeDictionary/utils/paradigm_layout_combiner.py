@@ -1,6 +1,8 @@
 f"""
 Compiles the .layout files into a "pre-filled" form.  The pre-filled paradigm layouts
 are subsequently used in the web application.
+Compiles the .layout files into a "pre-filled" form.  The pre-filled paradigm layouts
+are subsequently used in the web application.
 
 See also: paradigm_filler.
 """
@@ -28,7 +30,6 @@ PARADIGM_NAME_TO_WC = {
     "verb-ta": WordClass.VTA,
     "verb-ti": WordClass.VTI,
 }
-
 
 logger = logging.getLogger(__name__)
 
@@ -80,19 +81,12 @@ def parse_layout(layout_file: Path) -> Table:
         raise NotImplementedError("NDS YAML header not supported")
 
     table: Table = []
-    last_row_len = None
 
     lines = file_text.splitlines()
     for row_no, line in enumerate(lines, start=1):
+        line = line.rstrip()
         row = [cell.strip() for cell in line.split("\t")]
         table.append(row)
-        row_len = len(row)
-        if last_row_len is not None:
-            assert row_len == last_row_len, (
-                f"expected row {row_no} to have {last_row_len} column(s); "
-                f"actually has: {row_len} column(s)"
-            )
-        last_row_len = row_len
 
     return table
 
