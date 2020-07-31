@@ -196,6 +196,8 @@ class ParadigmFiller:
                 if isinstance(cell, StaticCell) or cell == "":
                     continue
                 elif isinstance(cell, InflectionCell):
+                    if not cell.has_analysis:
+                        continue
                     analysis = cell.create_concat_analysis(lemma)
                     analyses.add(analysis)
                 else:

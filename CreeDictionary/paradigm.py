@@ -126,6 +126,8 @@ class InflectionCell:
     def __repr__(self) -> str:
         if self.inflection or self.frequency and self.analysis is None:
             return super().__repr__()
+
+        assert self.analysis is not None  # mypy is dumb...
         return f"{type(self).__name__}(analysis=Template({self.analysis.template!r})"
 
     def create_concat_analysis(self, lemma: str) -> ConcatAnalysis:
