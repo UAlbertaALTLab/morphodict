@@ -1,14 +1,13 @@
 """
 fill a paradigm table according to a lemma
 """
-import csv
 import logging
 from copy import deepcopy
-from os.path import dirname
 from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
+
 from paradigm import (
     Cell,
     EmptyRow,
