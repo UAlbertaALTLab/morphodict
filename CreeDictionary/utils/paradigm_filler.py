@@ -57,9 +57,8 @@ class ParadigmFiller:
     @staticmethod
     def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
         """
-        Combine .layout files and .paradigm files and import into memory
+        Imports .layout files into memory.
 
-        :param paradigm_dir: the directory that has .paradigms files
         :param layout_dir: the directory that has .layout files and .layout.csv files
         """
         combiner = Combiner(layout_dir)
