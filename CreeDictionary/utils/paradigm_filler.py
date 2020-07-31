@@ -133,8 +133,10 @@ class ParadigmFiller:
                         # We do nothing to static and empty cells.
                         continue
                     elif isinstance(cell, InflectionCell):
-                        lookup_strings.append(cell.create_concat_analysis(lemma))
-                        string_locations.append((row_with_replacements, col_ind))
+                        if cell.has_analysis:
+
+                            lookup_strings.append(cell.create_concat_analysis(lemma))
+                            string_locations.append((row_with_replacements, col_ind))
                     else:
                         raise ValueError("Unexpected Cell Type")
 

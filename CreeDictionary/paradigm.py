@@ -93,12 +93,12 @@ class Heading(StaticCell):
 
 
 # frozen=False is a reminder that the inflection is default as None and generated later
-# also inflection related info like inflection frequency in corpus
+# inflection related info like inflection frequency is also generated later
 @attrs(frozen=False, auto_attribs=True, eq=False, repr=False)
 class InflectionCell:
     # the analysis of the inflection (with the lemma to be filled out)
     # It looks like for example "${lemma}+TAG+TAG+TAG", "TAG+${lemma}+TAG+TAG"
-    analysis: Template
+    analysis: Optional[Template] = None
 
     # the inflection to be generated
     inflection: Optional[str] = None
@@ -106,17 +106,25 @@ class InflectionCell:
     # the frequency of the inflection in the corpus
     frequency: Optional[int] = None
 
+    @property
+    def has_analysis(self):
+        return self.analysis is not None
+
     def __eq__(self, other) -> bool:
-        return (
-            isinstance(other, InflectionCell)
-            # N.B., string.Template needs to be checked directly :/
-            and self.analysis.template == other.analysis.template
-            and self.inflection == other.inflection
-            and self.frequency == other.frequency
+        # N.B., string.Template needs to be checked directly :/
+        return isinstance(other, InflectionCell) and (
+            (
+                self.analysis is not None
+                and other.analysis is not None
+                and self.analysis.template == other.analysis.template
+                and self.inflection == other.inflection
+                and self.frequency == other.frequency
+            )
+            or (self.analysis is None and other.analysis is None)
         )
 
     def __repr__(self) -> str:
-        if self.inflection or self.frequency:
+        if self.inflection or self.frequency and self.analysis is None:
             return super().__repr__()
         return f"{type(self).__name__}(analysis=Template({self.analysis.template!r})"
 
@@ -128,6 +136,8 @@ class InflectionCell:
         >>> cell.create_concat_analysis("mispon")
         'mispon+V+II+Ind+3Sg'
         """
+        assert self.analysis is not None
+
         return ConcatAnalysis(self.analysis.substitute(lemma=lemma))
 
     @classmethod
@@ -153,7 +163,7 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     """
     layout: Layout = []
     for raw_row in rows:
-        row = [determine_cell(cell) for cell in raw_row]
+        row = determine_cells(raw_row)
 
         has_content = False
         n_labels = 0
@@ -176,29 +186,54 @@ def rows_to_layout(rows: Iterable[List[str]]) -> Layout:
     return layout
 
 
-def determine_cell(raw_cell: str) -> Cell:
+def does_raw_row_has_row_header(raw_row: List[str]) -> bool:
     """
-    Parses the cell format and returns either:
-        - a StaticCel
-        - an empty string (empty cell)
-        - or an InflectionCell (with analysis to fill out)
+    does the row host inflection or not?
     """
-    if raw_cell.startswith('"') and raw_cell.endswith('"'):
-        # This will be something like:
-        #   "Something is happening now"
-        #   "Speech act participants"
-        assert len(raw_cell) > 2
-        return Label(raw_cell[1:-1])
-    elif raw_cell.startswith(":"):
-        # This will be something like:
-        #   : "ê-/kâ- word"
-        #   : "ni-/ki- word"
-        _colon, content, _empty = raw_cell.split('"')
-        return Heading(content)
-    else:
-        raw_cell = raw_cell.strip()
-        if raw_cell == "":
-            return ""
+
+    # we check if the row has a "left aligned heading"
+
+    for i, raw_cell in enumerate(raw_row):
+
+        if (
+            raw_cell.startswith('"')
+            and raw_cell.endswith('"')
+            or raw_cell.startswith(":")
+        ):
+            return i == 0
+
+    return False
+
+
+def determine_cells(raw_row: List[str]) -> List[Cell]:
+    has_row_header = does_raw_row_has_row_header(raw_row=raw_row)
+    cells: List[Cell] = []
+
+    for raw_cell in raw_row:
+        cell: Cell
+
+        if raw_cell.startswith('"') and raw_cell.endswith('"'):
+            # This will be something like:
+            #   "Something is happening now"
+            #   "Speech act participants"
+            assert len(raw_cell) > 2
+            cell = Label(raw_cell[1:-1])
+        elif raw_cell.startswith(":"):
+            # This will be something like:
+            #   : "ê-/kâ- word"
+            #   : "ni-/ki- word"
+            _colon, content, _empty = raw_cell.split('"')
+            cell = Heading(content)
         else:
-            # "{{ lemma }}" is a proprietary format
-            return InflectionCell.from_raw_nds_cell(raw_cell)
+            raw_cell = raw_cell.strip()
+            if raw_cell == "":
+                if has_row_header:
+                    cell = InflectionCell()
+                else:
+                    cell = ""
+            else:
+                # "{{ lemma }}" is a proprietary format
+                cell = InflectionCell.from_raw_nds_cell(raw_cell)
+
+        cells.append(cell)
+    return cells
