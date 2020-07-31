@@ -90,6 +90,7 @@ def parse_layout(layout_file: Path) -> Table:
 
     return table
 
+
 # TODO: is this class even needed anymore?
 class Combiner:
     """
@@ -107,7 +108,7 @@ class Combiner:
         self._layout_tables = import_layouts(layout_dir)
 
     def get_combined_table(
-            self, category: WordClass, paradigm_size: ParadigmSize
+        self, category: WordClass, paradigm_size: ParadigmSize
     ) -> List[List[str]]:
         """
         Return the appropriate layout.
