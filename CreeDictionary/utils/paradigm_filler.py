@@ -7,7 +7,6 @@ from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
 import hfstol
-
 from paradigm import (
     Cell,
     EmptyRow,
