@@ -263,15 +263,17 @@ lacuna
 [lacuna]: #lacuna
 [lacunae]: #lacuna
 
-"Gaps" in a [paradigm]. Any form that does not exist in a paradigm, where you would otherwise think it exists. For example, in Standard English, there isn't a "consistent" second person plural pronoun.
+"Gaps" in a [paradigm]. Any form that does not exist in a paradigm. For
+example, the English word “pants”:
 
 |   | Singular | Plural |
-| -:|:--------:|:------:|
-| 1 |     I    |   We   |
-| 2 |    You   |    —   |
-| 3 |  She/He  |  They  |
+|:-:|:--------:|:------:|
+|   |     —    | pants  |
 
-Some would argue (read: Eddie would argue) that there **is** no second person plural pronoun in Standard English. This is a **lacuna**. However, varieties of English, such as AAVE have a definite entry here.
+
+Pants doesn't have a singular! Is “pants” a mass noun? Or is it a count
+noun? There's “pant leg”, but no “\*pant” This is a **lacuna**: a gap in
+the paradigm, where you would otherwise expect a valid form.
 
 
 lemma
