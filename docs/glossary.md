@@ -271,9 +271,9 @@ example, the English word “pants”:
 |   |     —    | pants  |
 
 
-Pants doesn't have a singular! Is “pants” a mass noun? Or is it a count
-noun? There's “pant leg”, but no “\*pant” This is a **lacuna**: a gap in
-the paradigm, where you would otherwise expect a valid form.
+Pants doesn't have a singular form! There's “pant leg”, but no “\*pant”
+This is a **lacuna**: a gap in the paradigm, where you would otherwise
+expect a valid form.
 
 
 lemma
