@@ -56,9 +56,7 @@ export function retrieveListOfSpeakers() {
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
         // it's almost the same as before, but this time we're looping through the recordingData to get JUST the names and inserting those into the DDL
-        for (let recordingData of recordings) {
-          // speaker URL is recordingData.recording_url
-          
+        for (let recordingData of recordings) {          
           // TODOkobe: if all is working/Eddie has approved, perhaps refactor into a function?
           // create a option element
           let listOption = document.createElement('option')
@@ -74,6 +72,17 @@ export function retrieveListOfSpeakers() {
           
           // TODOkobe: if there was to be a check for "if there's speakers with the same name, add something to the way they're rendered", it would end up right here as a loop within this loop,,,
         }
+      
+        // audio playback for the specific speaker
+        recordingsPlayback.addEventListener('click', () => {
+          let speakerPosition = recordingsDropdown.selectedIndex
+          let audioURLPosition = recordings[speakerPosition].recording_url
+
+          // play the audio associated with that specific index
+          let audio = new Audio(audioURLPosition) // poorly named...position isn't it 💀
+          audio.preload = 'none'
+          audio.play()
+        })
   }
 
   function setupButton(createdSpeakerButton, recordingData) {
