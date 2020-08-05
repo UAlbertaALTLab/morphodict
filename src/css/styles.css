@@ -543,7 +543,7 @@ html {
  *
  * Makes the SVG of the speaker-playback look like a button.
  */
-.speaker-play-button {
+.speaker-playback-action-button {
   margin-left: 0.5em;
 }
 /**
