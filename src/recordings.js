@@ -55,13 +55,25 @@ export function retrieveListOfSpeakers() {
 
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
-    for (let recordingData of recordings) {
-      // Create the list element
-      let individualSpeaker = SimpleTemplate.fromId('template:recording-item')
-      // put the list item into the DOM
-      setupButton(individualSpeaker, recordingData)
-      recordingsList.appendChild(individualSpeaker.element)
-    }
+        // it's almost the same as before, but this time we're looping through the recordingData to get JUST the names and inserting those into the DDL
+        for (let recordingData of recordings) {
+          // speaker URL is recordingData.recording_url
+          
+          // TODOkobe: if all is working/Eddie has approved, perhaps refactor into a function?
+          // create a option element
+          let listOption = document.createElement('option')
+          
+          // create a new textnode that is the speaker's name
+          let nodeSpeakerName = document.createTextNode(recordingData.speaker_name)
+    
+          // place the newly created node into the option element...
+          listOption.appendChild(nodeSpeakerName)
+    
+          // ...and insert the option element into the dropdown list 😌
+          recordingsDropdown.appendChild(listOption)
+          
+          // TODOkobe: if there was to be a check for "if there's speakers with the same name, add something to the way they're rendered", it would end up right here as a loop within this loop,,,
+        }
   }
 
   function setupButton(createdSpeakerButton, recordingData) {
