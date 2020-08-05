@@ -539,6 +539,14 @@ html {
 }
 
 /**
+ * ELEMENT speaker-play-button
+ *
+ * Makes the SVG of the speaker-playback look like a button.
+ */
+.speaker-play-button {
+  margin-left: 0.5em;
+}
+/**
  * BLOCK wordclass
  */
 .wordclass {
