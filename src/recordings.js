@@ -34,8 +34,6 @@ export function retrieveListOfSpeakers() {
   let recordingsPlayback = document.getElementById('selected-speaker-playback')
   let recordingsLink = document.getElementById('selected-speaker-external-link')
 
-  // set the length of the DDL to be 0 (to empty out the DDL)
-  recordingsDropdown.length = 0
 
   // Request the JSON for all recordings of this wordform
   fetch(derivedURL)
