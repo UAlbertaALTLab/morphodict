@@ -28,7 +28,14 @@ export function retrieveListOfSpeakers() {
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`
 
   let recordingsList = document.querySelector('.recordings-list') // to be deleted, but not yet because it'll break the refactoring 💀
+  
+  // select for our elements for playback and link-generation
   let recordingsDropdown = document.getElementById('recordings-dropdown')
+  let recordingsPlayback = document.getElementById('selected-speaker-playback')
+  let recordingsLink = document.getElementById('selected-speaker-external-link')
+
+  // set the length of the DDL to be 0 (to empty out the DDL)
+  recordingsDropdown.length = 0
 
   // Request the JSON for all recordings of this wordform
   fetch(derivedURL)
