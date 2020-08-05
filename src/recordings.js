@@ -83,6 +83,15 @@ export function retrieveListOfSpeakers() {
           audio.preload = 'none'
           audio.play()
         })
+
+        // link for the specific speaker
+        recordingsLink.addEventListener('click', () => {
+          let speakerPosition = recordingsDropdown.selectedIndex
+          let speakerBioLink = recordings[speakerPosition].speaker_bio_url
+          
+          // open the speaker's link in a new tab!
+          window.open(speakerBioLink, '_blank')
+        })
   }
 
   // the function that creates a link for an individual speaker's bio to be clicked
