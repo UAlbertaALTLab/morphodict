@@ -62,7 +62,7 @@ export function retrieveListOfSpeakers() {
           let listOption = document.createElement('option')
           
           // create a new textnode that is the speaker's name
-          let nodeSpeakerName = document.createTextNode(recordingData.speaker_name)
+          let nodeSpeakerName = document.createTextNode(recordingData.speaker_name + ', ' + recordingData.dialect)
     
           // place the newly created node into the option element...
           listOption.appendChild(nodeSpeakerName)
