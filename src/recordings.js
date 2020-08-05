@@ -85,22 +85,6 @@ export function retrieveListOfSpeakers() {
         })
   }
 
-  function setupButton(createdSpeakerButton, recordingData) {
-    // Add appropriate text
-    createdSpeakerButton.slot['speaker-name'] = recordingData['speaker_name']
-    // TODO: this should be derived from the recording JSON
-    // TODO: as of 2020-06-04, it does not include this data :(
-    createdSpeakerButton.slot['speaker-dialect'] = recordingData['dialect']
-
-    // Setup audio
-    let audio = new Audio(recordingData.recording_url)
-    audio.preload = 'none'
-    createdSpeakerButton.element.addEventListener('click', () => {
-      audio.play()
-      displaySpeakerBioLink(recordingData)
-    })
-  }
-
   // the function that creates a link for an individual speaker's bio to be clicked
   function displaySpeakerBioLink(recordingData) {
     // the URL to be placed into the DOM
