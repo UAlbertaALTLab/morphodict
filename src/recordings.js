@@ -93,45 +93,4 @@ export function retrieveListOfSpeakers() {
           window.open(speakerBioLink, '_blank')
         })
   }
-
-  // the function that creates a link for an individual speaker's bio to be clicked
-  function displaySpeakerBioLink(recordingData) {
-    // the URL to be placed into the DOM
-    let insertedURL = recordingData['speaker_bio_url']
-
-    // select for the area to place the speaker link
-    let container = document.querySelector('.speaker-link')
-
-    // variable (speaker's name) to be inserted into the DOM
-    let speakerName = recordingData['speaker_name']
-
-    // generate a new link and append it to the page if there isn't already one
-    if (container.childElementCount < 1) {
-      // clone our template so we can insert it into the DOM
-      let createdLink = SimpleTemplate.fromId('template:speaker-bio-link')
-
-      // set the speaker-link text with the name of the speaker
-      createdLink.slot['speaker-name'] = speakerName
-
-      // set the link URL
-      createdLink.element.href = insertedURL
-
-      // and place the node into the DOM
-      container.appendChild(createdLink.element)
-    } else {
-      // remove the node that was created:
-      container.removeChild(container.childNodes[1]) // may need to extract the inner parameter based on Eddie's feedback...
-
-      // create a new node for the new speaker name
-      let newSpeakerNode = SimpleTemplate.fromId('template:speaker-bio-link')
-      // ...and place the newly clicked speaker's name into it
-      newSpeakerNode.slot['speaker-name'] = speakerName
-
-      // get the URL again and reinsert into the newly created node
-      newSpeakerNode.element.href = insertedURL
-
-      // place said node into the DOM
-      container.appendChild(newSpeakerNode.element)
-    }
-  }
 }
