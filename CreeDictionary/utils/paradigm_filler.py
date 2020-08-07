@@ -1,10 +1,8 @@
 """
 fill a paradigm table according to a lemma
 """
-import csv
 import logging
 from copy import deepcopy
-from os.path import dirname
 from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
 
@@ -132,8 +130,10 @@ class ParadigmFiller:
                         # We do nothing to static and empty cells.
                         continue
                     elif isinstance(cell, InflectionCell):
-                        lookup_strings.append(cell.create_concat_analysis(lemma))
-                        string_locations.append((row_with_replacements, col_ind))
+                        if cell.has_analysis:
+
+                            lookup_strings.append(cell.create_concat_analysis(lemma))
+                            string_locations.append((row_with_replacements, col_ind))
                     else:
                         raise ValueError("Unexpected Cell Type")
 
@@ -194,6 +194,8 @@ class ParadigmFiller:
                 if isinstance(cell, StaticCell) or cell == "":
                     continue
                 elif isinstance(cell, InflectionCell):
+                    if not cell.has_analysis:
+                        continue
                     analysis = cell.create_concat_analysis(lemma)
                     analyses.add(analysis)
                 else:

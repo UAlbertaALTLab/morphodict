@@ -738,9 +738,11 @@ html {
   font-weight: var(--strong-font-weight);
 }
 
-.paradigm-cell--lacuna{
-  /* stub, fill if needed */
+.paradigm-cell--no-analysis{
+  background-color: lightgray;
 }
+
+
 
 .paradigm-label--row, .paradigm-cell {
   vertical-align: top; /* When a label applies to multiple wordforms */
