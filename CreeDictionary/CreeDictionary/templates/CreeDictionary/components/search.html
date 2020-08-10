@@ -9,6 +9,14 @@
       <input id="search" class="search-bar__input" data-cy="search"
              type="text" required name="q"
              placeholder="Search in Cree or English"
+             {% comment %}
+             autocorrect="off" is a Safari extension that disables...
+             autocorrect! This is necessary since autocorrect often tries to
+             turn Cree words into English words, which is no bueno.
+
+             See: https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/Attributes.html#//apple_ref/doc/uid/TP40008058-autocorrect
+
+             {% endcomment %}
              autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false"
              value="{{ query_string|default:"" }}">
     </label>

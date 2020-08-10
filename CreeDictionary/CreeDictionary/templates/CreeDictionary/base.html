@@ -68,13 +68,13 @@
     {% endblock %}
   </div>
 
-  <section class="search-results">
+  <div class="search-results">
     <ol class="search-results__results" id="search-result-list">
       {% if did_search %}
         {% include "CreeDictionary/word-entries.html" %}
       {% endif %}
     </ol>
-  </section>
+  </div>
 
   {% if lemma_id %}
     {% include 'CreeDictionary/word-detail.html' %}
