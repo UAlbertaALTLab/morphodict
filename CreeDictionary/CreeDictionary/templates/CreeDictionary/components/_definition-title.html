@@ -42,8 +42,7 @@
         </div>
 
         <div class="tooltip" role="tooltip">
-          <span
-            data-cy="linguistic-breakdown">
+          <div data-cy="linguistic-breakdown">
             {# TODO: this should be the STEM: #}
             <strong>{{ result.lemma_wordform.text }}:</strong>
             <ol class="linguistic-breakdown">
@@ -55,7 +54,7 @@
                 {% endfor %}
               {% endwith %}
             </ol>
-          </span>
+          </div>
 
           <div class="tooltip__arrow" data-popper-arrow></div>
         </div>
