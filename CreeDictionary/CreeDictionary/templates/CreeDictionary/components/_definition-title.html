@@ -33,7 +33,7 @@
 
     &#32; {# separate title proper from icons #}
 
-    <span class="definition__icons" data-wordform="{{ result.matched_cree }}">
+    <div class="definition__icons" data-wordform="{{ result.matched_cree }}">
       {% if result.linguistic_breakdown_head or result.linguistic_breakdown_tail %}
         <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip data-cy="information-mark">
           <img
@@ -61,6 +61,6 @@
         </div>
         {# NB: the "Play recording" icon will be appened here #}
       {% endif %}
-    </span>
+    </div>
   </h2>
 {% endspaceless %}

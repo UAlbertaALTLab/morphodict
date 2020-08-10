@@ -447,6 +447,10 @@ html {
   font-weight: var(--strong-font-weight);
 }
 
+.definition__icons {
+  display: inline;
+}
+
 .definition-title__tooltip-text{
   font-size: 0.5em;
   font-weight: normal;
