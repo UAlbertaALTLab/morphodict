@@ -9,8 +9,8 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext">
   <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
-  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
-  <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
+  <script src="{% url 'js_reverse' %}"></script>
   <script src={% static 'CreeDictionary/js/index.js' %}></script>
 
   {% if lemma_id and paradigm_size %}
