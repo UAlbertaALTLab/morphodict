@@ -21,15 +21,15 @@
 
   {# First line of the header #}
   {# TODO: change data-cy=definition-title #}
-  <h2 class="definition-title definition-title--search-result" data-cy="matched-wordform">
+  <div class="definition-title definition-title--search-result" data-cy="matched-wordform">
     {# the matched head itself: #}
-    <dfn class="definition__matched-head" data-cy="definition-title">
+    <h2 class="definition-title__title definition__matched-head" data-cy="definition-title">
       {% if result.is_lemma %}
         <a data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
       {% else %}
         {% orth result.matched_cree %}
       {% endif %}
-    </dfn>
+    </h2>
 
     &#32; {# separate title proper from icons #}
 
@@ -62,5 +62,5 @@
         {# NB: the "Play recording" icon will be appened here #}
       {% endif %}
     </div>
-  </h2>
+  </div>
 {% endspaceless %}

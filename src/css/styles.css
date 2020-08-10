@@ -437,6 +437,11 @@ html {
   font-size: var(--definition-title-size);
 }
 
+.definition-title__title {
+  display: inline;
+  font-size: inherit;
+}
+
 .definition-title--search-result {
   margin: 0;
 }
