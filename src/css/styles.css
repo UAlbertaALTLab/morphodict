@@ -437,6 +437,11 @@ html {
   font-size: var(--definition-title-size);
 }
 
+.definition-title__title {
+  display: inline;
+  font-size: inherit;
+}
+
 .definition-title--search-result {
   margin: 0;
 }
@@ -445,6 +450,10 @@ html {
   /* Text */
   font-style: normal;
   font-weight: var(--strong-font-weight);
+}
+
+.definition__icons {
+  display: inline;
 }
 
 .definition-title__tooltip-text{
