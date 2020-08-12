@@ -55,7 +55,6 @@ export function retrieveListOfSpeakers() {
 
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
-        // it's almost the same as before, but this time we're looping through the recordingData to get JUST the names and inserting those into the DDL
         for (let recordingData of recordings) {          
           // TODOkobe: if all is working/Eddie has approved, perhaps refactor into a function?
           // create a option element
