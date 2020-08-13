@@ -6,7 +6,7 @@ describe('Orthography selection', function () {
       cy.visit('/')
 
       // Get the introduction: it should be in SRO
-      cy.contains('h1', 'tânisi!')
+      cy.contains('h2', 'tânisi!')
         .as('greeting')
 
       // Switch to syllabics
@@ -66,7 +66,7 @@ describe('Orthography selection', function () {
       cy.visit('/')
 
       // Get the introduction: it should be in SRO
-      cy.contains('h1', 'tânisi!')
+      cy.contains('h2', 'tânisi!')
         .as('greeting')
 
       // Switch to syllabics
