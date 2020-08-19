@@ -41,7 +41,13 @@ context('Regressions', () => {
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should display relevant English results', () => {
 
-    cy.visitSearch('eats')
+    cy.visitSearch('see')
+    cy.get('[data-cy=search-results]')
+      .should('contain', 'wâpiw')
+      .and('contain', 'wâpahtam')
+      .and('contain', 'wâpamêw')
+
+    cy.visitSearch('eat')
     cy.get('[data-cy=search-results]')
       .should('contain', 'mîcisow')
       .and('contain', 'mîciw')
@@ -108,11 +114,11 @@ context('Regressions', () => {
     // Note: It's in dispute whether minôsis should be treated as a diminutive form of minôs
     // todo: enable this test if fst recognized minôsis as diminutive minôs
     it.skip('should show minôs and minôsis for minôsis', () => {
-      cy.visitSearch('minôsis')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'minôsis')
-        .and('contain', 'minôs')
-    }
+        cy.visitSearch('minôsis')
+        cy.get('[data-cy=search-results]')
+          .should('contain', 'minôsis')
+          .and('contain', 'minôs')
+      }
     )
   })
 

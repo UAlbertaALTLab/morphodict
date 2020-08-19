@@ -1,30 +1,5 @@
 context('Searching', () => {
 
-  // todo: A better English lemmatizer/stemmer
-  describe('it should handles inflected English words', () => {
-
-    it.skip('should treat English "sees" and "see" equally ', () => {
-
-      // both sees/see should give these results
-      cy.visitSearch('see')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'wâpiw')
-        .and('contain', 'wâpahtam')
-        .and('contain', 'wâpamêw')
-
-      cy.visitSearch('sees')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'wâpiw')
-        .and('contain', 'wâpahtam')
-        .and('contain', 'wâpamêw')
-
-
-    })
-
-
-  })
-
-
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for an exact lemma', () => {
