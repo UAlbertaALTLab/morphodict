@@ -1,14 +1,13 @@
 import re
 import xml.etree.ElementTree as ET
-from collections import defaultdict
 from pathlib import Path
-from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
+from typing import Dict, List, Set
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import init
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.english_keyword_extraction import extract_keywords
+from utils.english_keyword_extraction import stem_keywords
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
@@ -175,7 +174,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         )
 
         for translation in entry.translations:
-            for english_keyword in extract_keywords(translation.text):
+            for english_keyword in stem_keywords(translation.text):
                 db_keywords.append(
                     EnglishKeyword(
                         id=keyword_counter, text=english_keyword, lemma=db_wordform
@@ -257,7 +256,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     db_lemma = db_wordform
                     # as inflections sometimes bear definition with them
                     for translation in entry.translations:
-                        for english_keyword in extract_keywords(translation.text):
+                        for english_keyword in stem_keywords(translation.text):
                             db_keywords.append(
                                 EnglishKeyword(
                                     id=keyword_counter,

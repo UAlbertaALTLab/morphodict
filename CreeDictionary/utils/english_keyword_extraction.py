@@ -1,5 +1,5 @@
 import re
-from typing import List
+from typing import Set
 
 import snowballstemmer
 
@@ -10,18 +10,16 @@ stop_words = {"a", "an", "the", "s/he", "s.o.", "s.t."}
 stemmer = snowballstemmer.EnglishStemmer()
 
 
-def extract_keywords(translation: str) -> List[str]:
+def stem_keywords(translation: str) -> Set[str]:
     """
     returns lowercased keywords from the translation, by stripping stop words like a/an s/he s.o. s.t.
 
-    returned list has no duplicates
-
-    >>> sorted(extract_keywords("s/he is of a that kind (previously mentioned)"))
+    >>> sorted(stem_keywords("s/he is of a that kind (previously mentioned)"))
     ['is', 'kind', 'mention', 'of', 'previous', 'that']
     """
     words = set(word_pattern.findall(translation.lower()))
 
     # .strip('.') is because of the trailing periods in some translation
-    return stemmer.stemWords(
-        {word.strip(".") for word in words if word not in stop_words}
+    return set(
+        stemmer.stemWords([word.strip(".") for word in words if word not in stop_words])
     )

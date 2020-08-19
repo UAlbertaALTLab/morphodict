@@ -102,21 +102,11 @@ def test_search_for_exact_lemma(lemma: Wordform):
     # assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.definitions)
 
 
-@pytest.mark.skip(reason="need a better English stemmer/lemmatizer")
 @pytest.mark.django_db
 def test_search_for_english() -> None:
     """
     Search for a word that is definitely in English.
     """
-
-    # todo: this
-
-    # s = snowballstemmer.EnglishStemmer()
-
-    # >>> s.stemWord('story')
-    # 'stori'
-    # >>> s.stemWord('stories')
-    # 'stori'
 
     # This should match "âcimowin" and related words:
     search_results = Wordform.search("story")
