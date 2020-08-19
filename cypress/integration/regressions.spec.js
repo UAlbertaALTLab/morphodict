@@ -40,11 +40,6 @@ context('Regressions', () => {
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should display relevant English results', () => {
-    cy.visitSearch('see')
-    cy.get('[data-cy=search-results]')
-      .should('contain', 'wâpiw')
-      .and('contain', 'wâpahtam')
-      .and('contain', 'wâpamêw')
 
     cy.visitSearch('eat')
     cy.get('[data-cy=search-results]')

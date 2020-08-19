@@ -6,7 +6,7 @@ If installed as a package, command `manage-db` will be added to python environme
 
 ## Examples
 
-- Unlink the database and import crkeng.xml and engcrk.xml to the database (migrations will also be applied)
+- Unlink the database and import crkeng.xml to the database (migrations will also be applied)
 
     `manage-db import /res/dictionaries/`
     
