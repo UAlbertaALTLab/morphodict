@@ -246,7 +246,7 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = Wordform.search("sleep")
+    results = Wordform.search("sleeps")
     assert results[0].matched_cree == "nipâw"
 
 

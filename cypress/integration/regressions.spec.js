@@ -41,7 +41,7 @@ context('Regressions', () => {
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should display relevant English results', () => {
 
-    cy.visitSearch('eat')
+    cy.visitSearch('eats')
     cy.get('[data-cy=search-results]')
       .should('contain', 'mîcisow')
       .and('contain', 'mîciw')
