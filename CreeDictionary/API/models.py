@@ -21,8 +21,6 @@ from urllib.parse import quote
 
 import attr
 from attr import attrs
-
-import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -30,9 +28,11 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+from sortedcontainers import SortedSet
+
+import CreeDictionary.hfstol as temp_hfstol
 from paradigm import Layout
 from shared import paradigm_filler
-from sortedcontainers import SortedSet
 from utils import (
     Language,
     ParadigmSize,
@@ -939,6 +939,9 @@ class EnglishKeyword(models.Model):
     lemma = models.ForeignKey(
         Wordform, on_delete=models.CASCADE, related_name="english_keyword"
     )
+
+    def __repr__(self) -> str:
+        return f"<EnglishKeyword(text={self.text!r} of {self.lemma!r} ({self.id})>"
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
