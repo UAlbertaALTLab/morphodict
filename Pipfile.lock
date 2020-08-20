@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "ec6a8993948fe64e41563a3de5fa0677db5a48e226ca5f5114d5bc4b15430e00"
+            "sha256": "c73bb804415c4486baac95912db190cd55a5de8b6ece9a543ec9ca1c21d93b90"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -129,6 +129,14 @@
             ],
             "index": "pypi",
             "version": "==0.2.1"
+        },
+        "snowballstemmer": {
+            "hashes": [
+                "sha256:209f257d7533fdb3cb73bdbd24f436239ca3b2fa67d56f6ff88e86be08cc5ef0",
+                "sha256:df3bac3df4c2c01363f3dd2cfa78cce2840a79b9f1c2d2de9ce8d31683992f52"
+            ],
+            "index": "pypi",
+            "version": "==2.0.0"
         },
         "sortedcontainers": {
             "file": "https://eddieantonio.keybase.pub/sortedcontainers-2.1.0.tar.gz",

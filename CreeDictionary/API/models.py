@@ -42,6 +42,7 @@ from utils import (
     get_modified_distance,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
+from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
 
@@ -534,11 +535,11 @@ class Wordform(models.Model):
         # todo: allow inflected forms to be searched through English. (requires database migration
         #  since now EnglishKeywords are bound to lemmas)
         english_results: Set[EnglishResult] = set()
-        if " " not in user_query:  # a whole word
+        for stemmed_keyword in stem_keywords(user_query):
 
             # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(
-                text__iexact=user_query, **extra_constraints
+                text__iexact=stemmed_keyword, **extra_constraints
             ).values("lemma__id")
             for wordform in Wordform.objects.filter(
                 id__in=lemma_ids, as_is=False, **extra_constraints

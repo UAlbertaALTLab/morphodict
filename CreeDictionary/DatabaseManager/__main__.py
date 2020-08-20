@@ -29,7 +29,7 @@ subparsers.required = True
 
 import_parser = subparsers.add_parser(
     "import",
-    help="Import from specified engcrk.xml and crkeng.xml. This assumes the database is at migration 0001",
+    help="Import from specified crkeng.xml. This assumes the database is at migration 0001",
 )
 
 build_test_db_parser = subparsers.add_parser(
@@ -38,7 +38,7 @@ build_test_db_parser = subparsers.add_parser(
 add_multi_processing_argument(build_test_db_parser)
 
 import_parser.add_argument(
-    "xml_directory_name", help="The directory that has crkeng.xml and engcrk.xml"
+    "xml_directory_name", help="The directory that has crkeng.xml"
 )
 
 add_multi_processing_argument(import_parser)

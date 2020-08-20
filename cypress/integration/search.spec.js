@@ -1,4 +1,5 @@
 context('Searching', () => {
+
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for an exact lemma', () => {
@@ -11,7 +12,7 @@ context('Searching', () => {
     })
 
     it('should perform the search by going directly to the URL', () => {
-      cy.visit('/search?q=minos', { escapeComponents: false })
+      cy.visit('/search?q=minos', {escapeComponents: false})
 
       cy.get('[data-cy=search-results]')
         .should('contain', 'cat')
@@ -141,7 +142,7 @@ context('Searching', () => {
         .contains('[data-cy=definition-title]', 'nipê-âcimon')
 
       cy.get('@searchResult').get('[data-cy=reference-to-lemma]')
-        .contains( 'âcimow')
+        .contains('âcimow')
     })
   })
 
@@ -277,7 +278,7 @@ context('Searching', () => {
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
 
       // has to use force: true since div is not clickable
-      cy.get('[data-cy=information-mark]').first().click({force:true})
+      cy.get('[data-cy=information-mark]').first().click({force: true})
 
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
         // NOTE: this depends on Antti's relabellings; if they change,
@@ -293,7 +294,7 @@ context('Searching', () => {
 
       // lock onto the searchbar
       cy.get('[data-cy=search]')
-      // get a word (nipaw)
+        // get a word (nipaw)
         .type('nipaw')
 
       // tab through the elements to force the tooltip to pop up
@@ -309,7 +310,7 @@ context('Searching', () => {
       cy.visit('/')
       // lock onto the searchbar
       cy.get('[data-cy=search]')
-      // get a word (use nipaw)
+        // get a word (use nipaw)
         .type('nipaw')
 
       // tab through the page elements until arriving on the '?' icon
@@ -325,11 +326,11 @@ context('Searching', () => {
 
       // lock onto the searchbar
       cy.get('[data-cy=search]')
-      // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
+        // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
         .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
 
       // force the tooltip to appear
-      cy.get('[data-cy=information-mark]').first().click({force:true})
+      cy.get('[data-cy=information-mark]').first().click({force: true})
 
       // check that the z-index of the tooltip is greater than that of all other page elements
       cy.get('[data-cy=information-mark]').first().focus().next().should('have.css', 'z-index', '1') // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
@@ -370,7 +371,7 @@ context('Searching', () => {
   describe('display of the header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
-    const inflectionalCategory = 'VAI-1'
+    const inflectionalCategory = 'VAI-v'
     const plainEnglishInflectionalCategory = 'like: nipâw'
     const nonLemmaFormWithDefinition = 'nîminâniwan'
     const nonLemmaFormWithoutDefinition = 'ninîmin'
@@ -607,6 +608,7 @@ context('Searching', () => {
         .should('contain', 'like: pê-')
         .and('not.contain', 'None')
     })
+
     /**
      * @returns {string} the wordform, as if you typed very quickly on your niece's peanut butter-smeared iPad
      */
