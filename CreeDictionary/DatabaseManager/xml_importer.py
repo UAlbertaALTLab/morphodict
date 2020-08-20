@@ -7,7 +7,6 @@ from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import init
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
-from utils.english_keyword_extraction import stem_keywords
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
@@ -18,6 +17,7 @@ from utils.crkeng_xml_utils import (
     convert_xml_inflectional_category_to_word_class,
 )
 from utils.data_classes import XMLEntry
+from utils.english_keyword_extraction import stem_keywords
 from utils.profiling import timed
 
 init()  # for windows compatibility
