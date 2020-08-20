@@ -1,16 +1,11 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
-import csv
-import glob
-from os import path
-from os.path import dirname
-from pathlib import Path
 from typing import Dict, Iterable, List, Set, Tuple
 
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import normative_generator
-from utils import WordClass, fst_analysis_parser
+from utils import fst_analysis_parser
 from utils.paradigm_filler import ParadigmFiller
 
 

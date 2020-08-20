@@ -8,7 +8,7 @@ from collections import defaultdict
 from itertools import chain
 from typing import Dict, List, Set
 
-from DatabaseManager.xml_importer import find_latest_xml_files
+from DatabaseManager.xml_importer import find_latest_xml_file
 from shared import descriptive_analyzer
 from tqdm import tqdm
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
@@ -40,21 +40,14 @@ def build_test_xml(multi_processing: int = 2):
     Determine relevant entries in crkeng.xml and build a smaller xml file for testing.
     """
 
-    crkeng_file_path, engcrk_file_path = find_latest_xml_files(
-        shared_res_dir / "dictionaries"
-    )
+    crkeng_file_path = find_latest_xml_file(shared_res_dir / "dictionaries")
 
-    print(
-        f"Building test dictionary files using {crkeng_file_path.name} and {crkeng_file_path.name}"
-    )
+    print(f"Building test dictionary files using {crkeng_file_path.name}")
 
     crkeng_root = ET.parse(str(crkeng_file_path)).getroot()
-    engcrk_root = ET.parse(str(engcrk_file_path)).getroot()
 
     # relevant entries in crkeng.xml file we want to determine
     relevant_xml_ls: Set[str] = set()
-    # relevant entries in engcrk.xml file we want to determine
-    relevant_eng_words: Set[str] = set()
 
     xml_ls: Set[str] = set()
     crkeng_entries = crkeng_root.findall(".//e")
@@ -62,43 +55,11 @@ def build_test_xml(multi_processing: int = 2):
         xml_l = extract_l_str(element)
         xml_ls.add(xml_l)
 
-    engcrk_elements = engcrk_root.findall(".//e")
-    eng_word_to_cree_words: Dict[str, List[str]] = defaultdict(list)
-    for element in engcrk_elements:
-        eng_element = element.find("lg/l")
-        assert (
-            eng_element is not None
-        ), f"{str(ET.tostring(element))} does not have an l element"
-        eng_word = eng_element.text
-
-        # 2019/12/04: there is this fuckery in engcrk.xml, where l does not have a text (and pos is a strand of hair)
-        """
-        <e>
-           <lg xml:lang="eng">
-              <l pos="("></l>
-           </lg>
-           <mg>
-           <tg xml:lang="crk">
-              <trunc sources="CW">[single] hair of otter</trunc>
-              <t rank="1.0" pos="N">nikikopîway</t>
-           </tg>
-           </mg>
-        </e>
-        """
-        if eng_word is None:
-            continue
-        cree_word_elements = element.findall(".//tg//t")
-        for cree_word_element in cree_word_elements:
-            cree_word = cree_word_element.text
-            assert cree_word is not None
-            eng_word_to_cree_words[eng_word].append(cree_word)
-
     test_words = get_test_words()
 
     print(f"Analyzing xml l elements and test words with {multi_processing} processes")
     word_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
-        xml_ls | test_words | set(chain(*eng_word_to_cree_words.values())),
-        multi_process=multi_processing,
+        xml_ls | test_words, multi_process=multi_processing,
     )
     print("Analysis done")
 
@@ -127,17 +88,6 @@ def build_test_xml(multi_processing: int = 2):
                     relevant_xml_ls.add(xml_l)
                     break
 
-    for eng_word in tqdm(
-        eng_word_to_cree_words, desc="screening relevant entries in engcrk.xml"
-    ):
-        assert isinstance(eng_word, str)  # mypy is being stupid
-        for engcrk_cree_word in eng_word_to_cree_words[eng_word]:
-            for analysis in word_to_analyses[engcrk_cree_word]:
-                lemma = fst_analysis_parser.extract_lemma(analysis)
-                if lemma in test_word_lemmas:
-                    relevant_eng_words.add(eng_word)
-                    break
-
     relevant_crkeng_entries = []
 
     for element in crkeng_entries:
@@ -145,20 +95,7 @@ def build_test_xml(multi_processing: int = 2):
         if xml_l in relevant_xml_ls:
             relevant_crkeng_entries.append(element)
 
-    relevant_engcrk_entries = []
-
-    for element in engcrk_elements:
-        eng_element = element.find("lg/l")
-        assert eng_element is not None
-        eng_word = eng_element.text
-        if eng_word in relevant_eng_words:
-            relevant_engcrk_entries.append(element)
-
     crkeng_xml_utils.write_xml_from_elements(
         list(crkeng_root.findall(".//source")) + relevant_crkeng_entries,
         shared_res_dir / "test_dictionaries" / "crkeng.xml",
-    )
-
-    crkeng_xml_utils.write_xml_from_elements(
-        relevant_engcrk_entries, shared_res_dir / "test_dictionaries" / "engcrk.xml"
     )
