@@ -537,12 +537,12 @@ class Wordform(models.Model):
         english_results: Set[EnglishResult] = set()
         for stemmed_keyword in stem_keywords(user_query):
 
-            # this requires database to be changed as currently EnglishKeyword are associated with lemmas
             lemma_ids = EnglishKeyword.objects.filter(
                 text__iexact=stemmed_keyword, **extra_constraints
             ).values("lemma__id")
+
             for wordform in Wordform.objects.filter(
-                id__in=lemma_ids, as_is=False, **extra_constraints
+                id__in=lemma_ids, **extra_constraints
             ):
                 english_results.add(
                     EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -936,6 +936,8 @@ class EnglishKeyword(models.Model):
 
     text = models.CharField(max_length=20)
 
+    # N.B., this says "lemma", but it can actually be ANY Wordform
+    # (lemma or non-lemma)
     lemma = models.ForeignKey(
         Wordform, on_delete=models.CASCADE, related_name="english_keyword"
     )

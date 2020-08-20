@@ -331,9 +331,7 @@ context('Regressions', () => {
     ]
 
     for (const [englishName, creeName] of testCases) {
-      // TODO: Regina should work, but it doesn't. It may have to do with the
-      // fact that the Cree word is a compound? ¯\_(ツ)_/¯
-      (englishName === 'Regina' ? it.skip : it)(`should have a definition for ${englishName}`, function () {
+      it(`should have a definition for ${englishName}`, function () {
         cy.visitSearch(englishName.toLowerCase())
 
         cy.contains('[data-cy=matched-wordform]', creeName)
