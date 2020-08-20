@@ -164,6 +164,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         Returns a list of EnglishKeyword instances parsed from the translation text.
         """
         nonlocal keyword_counter
+
         keywords = [
             EnglishKeyword(id=unique_id, text=english_keyword, lemma=wordform)
             for unique_id, english_keyword in enumerate(
@@ -267,12 +268,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                 if is_lemma:
                     db_lemma = db_wordform
-                    # TODO: I think this needs to be unindented!
-                    # as inflections sometimes bear definition with them
-                    for translation in entry.translations:
-                        db_keywords.extend(
-                            generate_english_keywords(db_wordform, translation)
-                        )
 
                 # now we create definition for all (possibly non-lemma) entries in the xml that are forms of this lemma.
 
@@ -292,25 +287,26 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         ):
                             entries_with_translations.append(homographic_entry)
 
-                # The case when we don't have holographic entries in xml,
+                # The case when we don't have homographic entries in xml,
                 # The generated inflection doesn't have a definition
 
                 for entry_with_translation in entries_with_translations:
 
-                    for (
-                        str_definition,
-                        source_strings,
-                    ) in entry_with_translation.translations:
+                    for translation in entry_with_translation.translations:
                         db_definition = Definition(
                             id=definition_counter,
-                            text=str_definition,
+                            text=translation.text,
                             wordform=db_wordform,
                         )
                         assert definition_counter not in citations
-                        citations[definition_counter] = set(source_strings)
+                        citations[definition_counter] = set(translation.sources)
 
                         definition_counter += 1
                         db_definitions.append(db_definition)
+
+                        db_keywords.extend(
+                            generate_english_keywords(db_wordform, translation)
+                        )
 
         assert db_lemma is not None
         for wordform in db_wordforms_for_analysis:
