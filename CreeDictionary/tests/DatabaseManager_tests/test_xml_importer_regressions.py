@@ -96,4 +96,4 @@ def test_import_calgary(shared_datadir):
 
     results = EnglishKeyword.objects.filter(text__startswith="calgar")
     assert len(results) >= 1
-    assert "otôskwanihk" in {r.lemma.text for r in results}
+    assert {"otôskwanihk"} == {r.lemma.text for r in results}
