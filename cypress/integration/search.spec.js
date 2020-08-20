@@ -368,7 +368,7 @@ context('Searching', () => {
   })
 
   // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
-  describe.only('display of the header', function () {
+  describe('display of the header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
     const inflectionalCategory = /VAI-v|VAI-1/
