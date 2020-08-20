@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r>
+    <source id="CW">
+        <title>Cree : Words / nēhiyawēwin : itwēwina</title>
+    </source>
+    <source id="MD">
+        <title>Maskwacîs Cree Dictionary</title>
+    </source>
+
+    <e>
+       <lg>
+          <l pos="N">otôskwanihk</l>
+          <lc>INM</lc>
+          <stem>-tôskwan-</stem>
+       </lg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="N" sources="CW">Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River</t>
+       </tg>
+       </mg>
+    </e>
+
+    <e>
+       <lg>
+          <l pos="N">mitôskwan</l>
+          <lc>NDI-1</lc>
+          <stem>-tôskwan-</stem>
+       </lg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="N" sources="MD CW">elbow</t>
+       </tg>
+       </mg>
+    </e>
+
+    <e>
+       <lg>
+          <l pos="N">nitôskwan</l>
+          <lc>NDI-1</lc>
+          <stem>-tôskwan-</stem>
+       </lg>
+       <mg>
+       <tg xml:lang="eng">
+           <t pos="N" sources="CW">my elbow</t>
+       </tg>
+       </mg>
+    </e>
+</r>
