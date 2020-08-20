@@ -31,6 +31,7 @@ attrs = "~=19.1"
 django-js-reverse = "~=0.9"
 sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.1.0.tar.gz"}
 marisa-trie = "~=0.7"
+secure = "*"
 
 [scripts]
 # look stuff up
