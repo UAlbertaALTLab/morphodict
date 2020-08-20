@@ -114,11 +114,11 @@ context('Regressions', () => {
     // Note: It's in dispute whether minôsis should be treated as a diminutive form of minôs
     // todo: enable this test if fst recognized minôsis as diminutive minôs
     it.skip('should show minôs and minôsis for minôsis', () => {
-        cy.visitSearch('minôsis')
-        cy.get('[data-cy=search-results]')
-          .should('contain', 'minôsis')
-          .and('contain', 'minôs')
-      }
+      cy.visitSearch('minôsis')
+      cy.get('[data-cy=search-results]')
+        .should('contain', 'minôsis')
+        .and('contain', 'minôs')
+    }
     )
   })
 
@@ -314,6 +314,29 @@ context('Regressions', () => {
 
         cy.contains('[data-cy=elaboration]', inflectsLike)
           .should('contain', emoji)
+      })
+    }
+  })
+
+  /**
+   * Ensure homographic entries can have paradigms shown
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   */
+  context('results for common place names', function () {
+    const testCases = [
+      ['Calgary', 'otôskwanihk'],
+      ['Regina', 'oskana kâ-asastêki'],
+      ['Saskatoon', 'misâskwatômina'],
+    ]
+
+    for (const [englishName, creeName] of testCases) {
+      // TODO: Regina should work, but it doesn't. It may have to do with the
+      // fact that the Cree word is a compound? ¯\_(ツ)_/¯
+      (englishName === 'Regina' ? it.skip : it)(`should have a definition for ${englishName}`, function () {
+        cy.visitSearch(englishName.toLowerCase())
+
+        cy.contains('[data-cy=matched-wordform]', creeName)
       })
     }
   })
