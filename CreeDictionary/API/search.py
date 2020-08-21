@@ -73,3 +73,11 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
+
+
+class WordformSearchMixin:
+    """
+    To be mixed in with a WordformManager to provide this functionality:
+
+        Wordform.objects.search()
+    """

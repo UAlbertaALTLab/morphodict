@@ -20,7 +20,6 @@ from typing import (
 )
 from urllib.parse import quote
 
-from API.search import SearchResult
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -31,6 +30,7 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
+from API.search import SearchResult, WordformSearchMixin
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
@@ -92,7 +92,7 @@ NormatizedCree = NewType("NormatizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
-class WordformManager(models.Manager):
+class WordformManager(models.Manager, WordformSearchMixin):
     """
     Adds search to wordforms.
     """
