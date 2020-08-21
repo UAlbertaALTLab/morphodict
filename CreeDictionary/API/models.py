@@ -507,20 +507,6 @@ class Wordform(models.Model):
 
         return CreeAndEnglish(cree_results, english_results)
 
-    @classmethod
-    def search(cls, user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
-        """
-        Use Wordform.objects.search() instead
-        """
-        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
-        warnings.warn(
-            "Use Wordform.objects.search() instead",
-            category=DeprecationWarning,
-            stacklevel=2,
-        )
-        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
-        return cls._search(user_query, **extra_constraints)
-
     @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
