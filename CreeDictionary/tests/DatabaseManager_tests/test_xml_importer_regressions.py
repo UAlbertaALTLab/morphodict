@@ -1,5 +1,6 @@
 import pytest
-from API.models import Wordform
+
+from API.models import EnglishKeyword, Wordform
 from tests.conftest import migrate_and_import
 
 
@@ -81,3 +82,18 @@ def test_import_maskwa(shared_datadir):
     migrate_and_import(shared_datadir / "crkeng-maskwa")
 
     assert not Wordform.objects.filter(text="maskwa", is_lemma=True).get().as_is
+
+
+@pytest.mark.django_db
+def test_import_calgary(shared_datadir):
+    """
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/353
+    """
+
+    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+    # searching with maskwak didn't yield an inflection of "maskwa" as "maskwa" wasn't disambiguated and was marked as_is
+    migrate_and_import(shared_datadir / "crkeng-calgary")
+
+    results = EnglishKeyword.objects.filter(text__startswith="calgar")
+    assert len(results) >= 1
+    assert {"otôskwanihk"} == {r.lemma.text for r in results}

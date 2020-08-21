@@ -317,4 +317,25 @@ context('Regressions', () => {
       })
     }
   })
+
+  /**
+   * Ensure homographic entries can have paradigms shown
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   */
+  context('results for common place names', function () {
+    const testCases = [
+      ['Calgary', 'otôskwanihk'],
+      ['Regina', 'oskana kâ-asastêki'],
+      ['Saskatoon', 'misâskwatômina'],
+    ]
+
+    for (const [englishName, creeName] of testCases) {
+      it(`should have a definition for ${englishName}`, function () {
+        cy.visitSearch(englishName.toLowerCase())
+
+        cy.contains('[data-cy=matched-wordform]', creeName)
+      })
+    }
+  })
 })

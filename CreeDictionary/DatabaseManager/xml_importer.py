@@ -3,8 +3,9 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Dict, List, Set
 
-from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import init
+
+from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
@@ -16,7 +17,7 @@ from utils.crkeng_xml_utils import (
     IndexedXML,
     convert_xml_inflectional_category_to_word_class,
 )
-from utils.data_classes import XMLEntry
+from utils.data_classes import XMLEntry, XMLTranslation
 from utils.english_keyword_extraction import stem_keywords
 from utils.profiling import timed
 
@@ -154,6 +155,25 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     definition_counter = 1
     keyword_counter = 1
 
+    def generate_english_keywords(
+        wordform: Wordform, translation: XMLTranslation
+    ) -> List[EnglishKeyword]:
+        """
+        MUTATES keyword_counter!!!!!!!!!
+
+        Returns a list of EnglishKeyword instances parsed from the translation text.
+        """
+        nonlocal keyword_counter
+
+        keywords = [
+            EnglishKeyword(id=unique_id, text=english_keyword, lemma=wordform)
+            for unique_id, english_keyword in enumerate(
+                stem_keywords(translation.text), start=keyword_counter
+            )
+        ]
+        keyword_counter += len(keywords)
+        return keywords
+
     db_inflections: List[Wordform] = []
     db_definitions: List[Definition] = []
     db_keywords: List[EnglishKeyword] = []
@@ -173,15 +193,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             as_is=True,
         )
 
+        # Insert keywords for as-is entries
         for translation in entry.translations:
-            for english_keyword in stem_keywords(translation.text):
-                db_keywords.append(
-                    EnglishKeyword(
-                        id=keyword_counter, text=english_keyword, lemma=db_wordform
-                    )
-                )
-
-                keyword_counter += 1
+            db_keywords.extend(generate_english_keywords(db_wordform, translation))
 
         db_wordform.lemma = db_wordform
 
@@ -254,18 +268,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                 if is_lemma:
                     db_lemma = db_wordform
-                    # as inflections sometimes bear definition with them
-                    for translation in entry.translations:
-                        for english_keyword in stem_keywords(translation.text):
-                            db_keywords.append(
-                                EnglishKeyword(
-                                    id=keyword_counter,
-                                    text=english_keyword,
-                                    lemma=db_wordform,
-                                )
-                            )
-
-                            keyword_counter += 1
 
                 # now we create definition for all (possibly non-lemma) entries in the xml that are forms of this lemma.
 
@@ -285,25 +287,26 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         ):
                             entries_with_translations.append(homographic_entry)
 
-                # The case when we don't have holographic entries in xml,
+                # The case when we don't have homographic entries in xml,
                 # The generated inflection doesn't have a definition
 
                 for entry_with_translation in entries_with_translations:
 
-                    for (
-                        str_definition,
-                        source_strings,
-                    ) in entry_with_translation.translations:
+                    for translation in entry_with_translation.translations:
                         db_definition = Definition(
                             id=definition_counter,
-                            text=str_definition,
+                            text=translation.text,
                             wordform=db_wordform,
                         )
                         assert definition_counter not in citations
-                        citations[definition_counter] = set(source_strings)
+                        citations[definition_counter] = set(translation.sources)
 
                         definition_counter += 1
                         db_definitions.append(db_definition)
+
+                        db_keywords.extend(
+                            generate_english_keywords(db_wordform, translation)
+                        )
 
         assert db_lemma is not None
         for wordform in db_wordforms_for_analysis:

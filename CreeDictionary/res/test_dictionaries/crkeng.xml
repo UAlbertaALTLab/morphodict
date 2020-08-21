@@ -18,6 +18,16 @@
 	</source>
 	
 
+   
+	<source id="AE">
+		
+      
+		<title>Alberta Elders' Cree Dictionary</title>
+		
+   
+	</source>
+	
+
 
 
 	<e>
@@ -140,7 +150,7 @@
 			<l pos="V">acâhkosiwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>acâhkosiwi-</stem>
@@ -214,7 +224,7 @@
 			<l pos="V">ahcahkowan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ahcahkowan-</stem>
@@ -288,7 +298,7 @@
 			<l pos="V">ahcahkowiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ahcahkowi-</stem>
@@ -304,43 +314,6 @@
 				
        
 				<t pos="V" sources="CW">it is a spirit</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">ahkwêhtawapiwak</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>ahkwêhtawapi-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">they sit in layers on top of one another</t>
 				
    
 			</tg>
@@ -436,7 +409,7 @@
 			<l pos="V">ahpîhcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ahpîhcimo-</stem>
@@ -584,7 +557,7 @@
 			<l pos="V">akocimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>akocimo-</stem>
@@ -621,7 +594,7 @@
 			<l pos="V">akocin</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>akocin-</stem>
@@ -710,7 +683,7 @@
 			<l pos="V">akohcin</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>akohcin-</stem>
@@ -747,7 +720,7 @@
 			<l pos="V">akwamow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>akwamo-</stem>
@@ -1302,7 +1275,7 @@
 			<l pos="V">amiskowiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>amiskowi-</stem>
@@ -2021,7 +1994,7 @@
 			<l pos="V">asawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>asawâpi-</stem>
@@ -2147,7 +2120,7 @@
 			<l pos="V">asêtâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>asêtâcimo-</stem>
@@ -2310,7 +2283,7 @@
 			<l pos="V">atamiskâtowak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>atamiskâto-</stem>
@@ -2384,7 +2357,7 @@
 			<l pos="V">atamiskotâtowak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>atamiskotâto-</stem>
@@ -2513,7 +2486,7 @@
 			<l pos="V">atâhkowiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>atâhkowi-</stem>
@@ -2661,7 +2634,7 @@
 			<l pos="V">atoskêwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>atoskêwi-kîsikâ-</stem>
@@ -2824,7 +2797,7 @@
 			<l pos="V">awahkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awahkê-</stem>
@@ -3079,7 +3052,7 @@
 			<l pos="V">awasêwêmakan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>awasêwêmakan-</stem>
@@ -3116,7 +3089,7 @@
 			<l pos="V">awasêwêpahtâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awasêwêpahtâ-</stem>
@@ -3153,7 +3126,7 @@
 			<l pos="V">awasêwêpayihow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awasêwêpayiho-</stem>
@@ -3227,7 +3200,7 @@
 			<l pos="V">awasêwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awasêwê-</stem>
@@ -3738,7 +3711,7 @@
 			<l pos="V">awasitêw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>awasitê-</stem>
@@ -3812,7 +3785,7 @@
 			<l pos="V">awasow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awaso-</stem>
@@ -3960,7 +3933,7 @@
 			<l pos="V">awâsisîwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>awâsisîwi-</stem>
@@ -4256,7 +4229,7 @@
 			<l pos="V">ayamihâwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>ayamihâwi-kîsikâ-</stem>
@@ -4293,7 +4266,7 @@
 			<l pos="V">ayamihêwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>ayamihêwi-kîsikâ-</stem>
@@ -4367,7 +4340,7 @@
 			<l pos="V">ayâniwiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>ayâniwi-</stem>
@@ -4404,7 +4377,7 @@
 			<l pos="V">ayâtan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ayâtan-</stem>
@@ -4441,7 +4414,7 @@
 			<l pos="V">ayâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>ayâ-</stem>
@@ -4530,7 +4503,7 @@
 			<l pos="V">ayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ayâ-</stem>
@@ -4782,7 +4755,7 @@
 			<l pos="V">ayênânêwopiponêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ayênânêwopiponê-</stem>
@@ -4819,7 +4792,7 @@
 			<l pos="V">ayinânêwopiponêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ayinânêwopiponê-</stem>
@@ -5093,7 +5066,7 @@
 			<l pos="V">aywêpiwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>aywêpiwi-kîsikâ-</stem>
@@ -5182,7 +5155,7 @@
 			<l pos="V">âcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>âcimo-</stem>
@@ -5286,7 +5259,7 @@
 			<l pos="V">âhci-ayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>âhci-ayâ-</stem>
@@ -5323,7 +5296,7 @@
 			<l pos="V">âkawaskwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>âkawaskwê-</stem>
@@ -5360,7 +5333,7 @@
 			<l pos="V">âkwâ-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>âkwâ-kîsikâ-</stem>
@@ -5545,7 +5518,7 @@
 			<l pos="V">âpihtâ-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>âpihtâ-kîsikâ-</stem>
@@ -5582,7 +5555,7 @@
 			<l pos="V">âpihtâ-kîsikâwi-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>âpihtâ-kîsikâwi-mîciso-</stem>
@@ -5656,7 +5629,7 @@
 			<l pos="V">âpihtâ-nîpin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>âpihtâ-nîpin-</stem>
@@ -5693,7 +5666,7 @@
 			<l pos="V">âpihtâ-pipon</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>âpihtâ-pipon-</stem>
@@ -5767,7 +5740,7 @@
 			<l pos="V">âpihtâ-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>âpihtâ-tipiskâ-</stem>
@@ -5804,7 +5777,7 @@
 			<l pos="V">âpihtâwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>âpihtâwi-kîsikâ-</stem>
@@ -5878,7 +5851,7 @@
 			<l pos="V">âstê-ayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>âstê-ayâ-</stem>
@@ -5915,7 +5888,7 @@
 			<l pos="V">âstê-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>âstê-kîsikâ-</stem>
@@ -6063,7 +6036,7 @@
 			<l pos="V">cahcahkâyôskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>cahcahkâyôskâ-</stem>
@@ -6140,7 +6113,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>cahcahkiw-sâkahikan- NI-1</stem>
+			<stem>cahcahkiw-sâkahikan- [NI-1]</stem>
 			
    
 		</lg>
@@ -6177,7 +6150,7 @@
 			<l pos="V">cimihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>cimihtawakê-</stem>
@@ -6251,7 +6224,7 @@
 			<l pos="V">cîwêhtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>cîwêhtawakê-</stem>
@@ -6873,7 +6846,7 @@
 			<l pos="V">ihkatawahkâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>ihkatawahkâ-</stem>
@@ -6910,7 +6883,7 @@
 			<l pos="V">isi-ayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>isi-ayâ-</stem>
@@ -6947,7 +6920,7 @@
 			<l pos="V">isitâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>isitâcimo-</stem>
@@ -6984,7 +6957,7 @@
 			<l pos="V">iskwâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>iskwâpi-</stem>
@@ -7058,7 +7031,7 @@
 			<l pos="V">itahtopiponêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>itahtopiponê-</stem>
@@ -7095,7 +7068,7 @@
 			<l pos="V">itahtopiponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>itahtopiponwê-</stem>
@@ -7221,7 +7194,7 @@
 			<l pos="V">îkatêtâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>îkatêtâcimo-</stem>
@@ -7295,7 +7268,7 @@
 			<l pos="V">kakihcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kakihcimo-</stem>
@@ -7547,7 +7520,7 @@
 			<l pos="V">kaskawan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>kaskawan-</stem>
@@ -7584,7 +7557,7 @@
 			<l pos="V">kaskawanipêscâsin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>kaskawanipêscâsin-</stem>
@@ -7621,7 +7594,7 @@
 			<l pos="V">kaskawanipêstâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>kaskawanipêstâ-</stem>
@@ -7658,7 +7631,7 @@
 			<l pos="V">kaski-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>kaski-tipiskâ-</stem>
@@ -7747,7 +7720,7 @@
 			<l pos="V">katawasisin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>katawasisin-</stem>
@@ -7784,7 +7757,7 @@
 			<l pos="V">katawasisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>katawasisi-</stem>
@@ -7977,7 +7950,7 @@
 			<l pos="V">kawacihkwamiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawacihkwami-</stem>
@@ -8014,7 +7987,7 @@
 			<l pos="V">kawacipayiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawacipayi-</stem>
@@ -8066,7 +8039,7 @@
 			<l pos="V">kawaciw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawaci-</stem>
@@ -8170,7 +8143,7 @@
 			<l pos="V">kawaciyawêpayiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawaciyawêpayi-</stem>
@@ -8259,7 +8232,7 @@
 			<l pos="V">kawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawahikê-</stem>
@@ -8452,7 +8425,7 @@
 			<l pos="V">kawatâpâwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawatâpâwê-</stem>
@@ -8578,7 +8551,7 @@
 			<l pos="V">kawatimisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kawatimiso-</stem>
@@ -8615,7 +8588,7 @@
 			<l pos="V">kawatin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>kawatin-</stem>
@@ -8729,7 +8702,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>âyiman- VII-n</stem>
+			<stem>âyiman- [VII-n]</stem>
 			
    
 		</lg>
@@ -8766,7 +8739,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nikamômakan- VII-n</stem>
+			<stem>nikamômakan- [VII-n]</stem>
 			
    
 		</lg>
@@ -8803,7 +8776,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>ohpawakâstan- VII-n</stem>
+			<stem>ohpawakâstan- [VII-n]</stem>
 			
    
 		</lg>
@@ -8840,7 +8813,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>ohpawakin- VTI-1</stem>
+			<stem>ohpawakin- [VTI-1]</stem>
 			
    
 		</lg>
@@ -8877,7 +8850,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>pêyakwâskon- VTI-1</stem>
+			<stem>pêyakwâskon- [VTI-1]</stem>
 			
    
 		</lg>
@@ -8985,7 +8958,7 @@
 			<l pos="V">kâkîsimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kâkîsimo-</stem>
@@ -9259,7 +9232,7 @@
 			<l pos="V">kêtayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kêtayiwinisê-</stem>
@@ -9370,7 +9343,7 @@
 			<l pos="V">kihci-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>kihci-kîsikâ-</stem>
@@ -9533,7 +9506,7 @@
 			<l pos="V">kinohtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kinohtawakê-</stem>
@@ -9659,7 +9632,7 @@
 			<l pos="V">kipihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kipihtawakê-</stem>
@@ -9896,7 +9869,7 @@
 			<l pos="V">kisîhkwasiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kisîhkwasi-</stem>
@@ -9933,7 +9906,7 @@
 			<l pos="V">kisîmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kisîmo-</stem>
@@ -9970,7 +9943,7 @@
 			<l pos="V">kisîpêkinayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kisîpêkinayiwinisê-</stem>
@@ -10007,7 +9980,7 @@
 			<l pos="V">kiskimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kiskimo-</stem>
@@ -10118,7 +10091,7 @@
 			<l pos="V">kiskinowâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kiskinowâpi-</stem>
@@ -10155,7 +10128,7 @@
 			<l pos="V">kiskinwahamâkosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kiskinwahamâkosi-</stem>
@@ -10296,7 +10269,7 @@
 			<l pos="V">kistâpawacikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kistâpawacikê-</stem>
@@ -10370,7 +10343,7 @@
 			<l pos="V">kistâpawayow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kistâpawayo-</stem>
@@ -10447,7 +10420,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>kitohcikan- NI-1 ;; natoht- VTI-1</stem>
+			<stem>kitohcikan- [NI-1] + natoht- [VTI-1]</stem>
 			
    
 		</lg>
@@ -10555,7 +10528,7 @@
 			<l pos="V">kitohcikanihkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kitohcikanihkê-</stem>
@@ -10592,7 +10565,7 @@
 			<l pos="V">kitohcikêsiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kitohcikêsi-</stem>
@@ -10629,7 +10602,7 @@
 			<l pos="V">kitohcikêskiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kitohcikêski-</stem>
@@ -10666,7 +10639,7 @@
 			<l pos="V">kitohcikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kitohcikê-</stem>
@@ -10740,7 +10713,7 @@
 			<l pos="V">kiyakihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kiyakihtawakê-</stem>
@@ -10955,7 +10928,7 @@
 			<l pos="V">kîkisêpâ-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kîkisêpâ-mîciso-</stem>
@@ -11189,47 +11162,10 @@
 		<lg>
 			
       
-			<l pos="V">kîs-âyâw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>kîs-âyâ-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he is finished, s/he is through</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">kîsi-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kîsi-mîciso-</stem>
@@ -11266,7 +11202,7 @@
 			<l pos="V">kîsi-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>kîsi-tipiskâ-</stem>
@@ -11303,7 +11239,7 @@
 			<l pos="V">kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>kîsikâ-</stem>
@@ -11469,7 +11405,7 @@
 			<l pos="V">kîsikâwihkwâmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kîsikâwihkwâmi-</stem>
@@ -11580,7 +11516,7 @@
 			<l pos="V">kîskihtawakayêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kîskihtawakayê-</stem>
@@ -11654,7 +11590,7 @@
 			<l pos="V">kîsopwêni-pipon</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>kîsopwêni-pipon-</stem>
@@ -11670,43 +11606,6 @@
 				
        
 				<t pos="V" sources="CW">it is a mild winter</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">kîsôwiyawêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>kîsôwiyawê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he has a warm body</t>
 				
    
 			</tg>
@@ -12239,7 +12138,7 @@
 			<l pos="V">kwêskîmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>kwêskîmo-</stem>
@@ -12313,7 +12212,7 @@
 			<l pos="V">maci-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>maci-kîsikâ-</stem>
@@ -12387,7 +12286,7 @@
 			<l pos="V">mahkihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mahkihtawakê-</stem>
@@ -12439,7 +12338,7 @@
 			<l pos="V">mamihcisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mamihcisi-</stem>
@@ -12580,7 +12479,7 @@
 			<l pos="V">manitowi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>manitowi-kîsikâ-</stem>
@@ -12654,7 +12553,7 @@
 			<l pos="V">maskawacistin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>maskawacistin-</stem>
@@ -12691,7 +12590,7 @@
 			<l pos="V">maskawahcâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>maskawahcâ-</stem>
@@ -12728,7 +12627,7 @@
 			<l pos="V">maskawahkâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>maskawahkâ-</stem>
@@ -12909,7 +12808,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>maskwacîs- NI-1</stem>
+			<stem>maskwacîs- [NI-1]</stem>
 			
    
 		</lg>
@@ -13032,7 +12931,7 @@
 			<l pos="V">matwê-nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>matwê-nipâ-</stem>
@@ -13069,7 +12968,7 @@
 			<l pos="V">mawapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mawapi-</stem>
@@ -13180,7 +13079,7 @@
 			<l pos="V">mâci-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâci-mîciso-</stem>
@@ -13217,7 +13116,7 @@
 			<l pos="V">mâci-nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâci-nipâ-</stem>
@@ -13365,7 +13264,7 @@
 			<l pos="V">mâmawapiwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâmawapi-</stem>
@@ -13439,7 +13338,7 @@
 			<l pos="V">mâmawaskitêwa</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>mâmawaskitê-</stem>
@@ -13476,7 +13375,7 @@
 			<l pos="V">mâmawatoskêwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâmawatoskê-</stem>
@@ -13513,7 +13412,7 @@
 			<l pos="V">mâmawi-mîcisowak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâmawi-mîciso-</stem>
@@ -13550,7 +13449,7 @@
 			<l pos="V">mâmawi-nipâwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâmawi-nipâ-</stem>
@@ -13698,7 +13597,7 @@
 			<l pos="V">mâtinawê-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>mâtinawê-kîsikâ-</stem>
@@ -13735,7 +13634,7 @@
 			<l pos="V">mâtinawi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>mâtinawi-kîsikâ-</stem>
@@ -13824,7 +13723,7 @@
 			<l pos="V">mâyâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mâyâcimo-</stem>
@@ -13913,7 +13812,7 @@
 			<l pos="V">mâyi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>mâyi-kîsikâ-</stem>
@@ -13965,7 +13864,7 @@
 			<l pos="V">mâyi-pipon</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>mâyi-pipon-</stem>
@@ -14165,7 +14064,7 @@
 			<l pos="V">mêkwâ-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>mêkwâ-kîsikâ-</stem>
@@ -14202,7 +14101,7 @@
 			<l pos="V">mêkwâ-pimâtisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mêkwâ-pimâtisi-</stem>
@@ -14254,7 +14153,7 @@
 			<l pos="V">mêkwâ-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>mêkwâ-tipiskâ-</stem>
@@ -14365,7 +14264,7 @@
 			<l pos="V">mêskotayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mêskotayiwinisê-</stem>
@@ -14381,6 +14280,43 @@
 				
        
 				<t pos="V" sources="CW">s/he changes his/her clothes</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">micôskwanis</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-côskwanis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">little elbow</t>
 				
    
 			</tg>
@@ -14439,7 +14375,7 @@
 			<l pos="V">mihkawakîw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mihkawakî-</stem>
@@ -14651,6 +14587,80 @@
 		<lg>
 			
       
+			<l pos="N">misâskwatômina</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>misâskwatômin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">saskatoon berries</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">misâskwatôminihk</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>misâskwatômin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Saskatoon, SK; literally: at the Saskatoon berry</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">misi-minôs</l>
 			
       
@@ -14728,7 +14738,7 @@
 			<l pos="N">mistahi-maskwa</l>
 			
       
-			<lc>NA-3</lc>
+			<lc>NA-4w</lc>
 			
       
 			<stem>mistahi-maskw-</stem>
@@ -14781,6 +14791,43 @@
 				
        
 				<t pos="N" sources="CW">tongue string</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mitôskwan</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">elbow</t>
 				
    
 			</tg>
@@ -14913,7 +14960,7 @@
 			<l pos="V">miyo-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>miyo-kîsikâ-</stem>
@@ -14965,7 +15012,7 @@
 			<l pos="V">miyo-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>miyo-tipiskâ-</stem>
@@ -15002,7 +15049,7 @@
 			<l pos="V">miyonâkohcikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>miyonâkohcikê-</stem>
@@ -15091,7 +15138,7 @@
 			<l pos="V">mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîciso-</stem>
@@ -15143,7 +15190,7 @@
 			<l pos="V">mîcisowamahcihow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîcisowamahciho-</stem>
@@ -15432,7 +15479,7 @@
 			<l pos="V">mîcisowinâhtikohkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîcisowinâhtikohkê-</stem>
@@ -15469,7 +15516,7 @@
 			<l pos="V">mîcisowinihkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîcisowinihkê-</stem>
@@ -15847,7 +15894,7 @@
 			<l pos="V">mîskotayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîskotayiwinisê-</stem>
@@ -16259,10 +16306,47 @@
 		<lg>
 			
       
+			<l pos="V">môhkomânitôskwanêw</l>
+			
+      
+			<lc>VAI-1</lc>
+			
+      
+			<stem>môhkomânitôskwanê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he has knife edges on elbows</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="V">mônisôniyâwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mônisôniyâwê-</stem>
@@ -16299,7 +16383,7 @@
 			<l pos="V">môniyâhkâsow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>môniyâhkâso-</stem>
@@ -16662,7 +16746,7 @@
 			<l pos="V">môniyâwi-itwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>môniyâwi-itwê-</stem>
@@ -16736,7 +16820,7 @@
 			<l pos="V">môniyâwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>môniyâwi-</stem>
@@ -16847,7 +16931,7 @@
 			<l pos="V">nahikohtâkanêmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nahikohtâkanêmo-</stem>
@@ -16936,7 +17020,7 @@
 			<l pos="V">namiskwêyiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>namiskwêyi-</stem>
@@ -17173,7 +17257,7 @@
 			<l pos="V">nanamiskwêyiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nanamiskwêyi-</stem>
@@ -17336,7 +17420,7 @@
 			<l pos="V">nanâtawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nanâtawâpi-</stem>
@@ -17758,7 +17842,7 @@
 			<l pos="V">nawacîhisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawacîhiso-</stem>
@@ -17832,7 +17916,7 @@
 			<l pos="V">nawacîstamâsow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawacîstamâso-</stem>
@@ -17906,7 +17990,7 @@
 			<l pos="V">nawacîw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawacî-</stem>
@@ -18032,7 +18116,7 @@
 			<l pos="V">nawakapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakapi-</stem>
@@ -18084,7 +18168,7 @@
 			<l pos="V">nawakipahtâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakipahtâ-</stem>
@@ -18121,7 +18205,7 @@
 			<l pos="V">nawakipayihow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakipayiho-</stem>
@@ -18195,7 +18279,7 @@
 			<l pos="V">nawakiskwêpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakiskwêpi-</stem>
@@ -18247,7 +18331,7 @@
 			<l pos="V">nawakiskwêyiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakiskwêyi-</stem>
@@ -18336,7 +18420,7 @@
 			<l pos="V">nawakîw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawakî-</stem>
@@ -18388,7 +18472,7 @@
 			<l pos="V">nawasawâpamow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawasawâpamo-</stem>
@@ -18640,7 +18724,7 @@
 			<l pos="V">nawasônikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawasônikê</stem>
@@ -18744,7 +18828,7 @@
 			<l pos="V">nawaswâsiwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawaswâsiwê-</stem>
@@ -18885,7 +18969,7 @@
 			<l pos="V">nawaswâtitowak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawaswâtito-</stem>
@@ -18922,7 +19006,7 @@
 			<l pos="V">nawaswêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawaswê-</stem>
@@ -19070,7 +19154,7 @@
 			<l pos="V">nawatâskitêw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>nawatâskitê-</stem>
@@ -19263,7 +19347,7 @@
 			<l pos="V">nayawapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nayawapi-</stem>
@@ -19300,7 +19384,7 @@
 			<l pos="V">nâh-nanamiskwêkâpawiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nanamiskwêkâpawi-</stem>
@@ -19337,7 +19421,7 @@
 			<l pos="V">nâh-nawaswâtitowak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nawaswâtito-</stem>
@@ -19522,7 +19606,7 @@
 			<l pos="V">nânitawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nânitawâpi-</stem>
@@ -19670,7 +19754,7 @@
 			<l pos="V">nâtisôniyâhkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nâtisôniyâhkê-</stem>
@@ -19707,7 +19791,7 @@
 			<l pos="V">nâtisôniyâwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nâtisôniyâwê-</stem>
@@ -19848,7 +19932,7 @@
 			<l pos="V">nêhiyawascikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nêhiyawascikê-</stem>
@@ -19922,7 +20006,7 @@
 			<l pos="V">nêhiyawasinahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nêhiyawasinahikê-</stem>
@@ -20033,7 +20117,7 @@
 			<l pos="V">nêhiyawi-kiskinwahamâkosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nêhiyawi-kiskinwahamâkosi-</stem>
@@ -20174,7 +20258,7 @@
 			<l pos="V">nêmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nêmo-</stem>
@@ -20300,7 +20384,7 @@
 			<l pos="V">nêwo-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nêwo-kîsikâ-</stem>
@@ -20408,6 +20492,43 @@
 		<lg>
 			
       
+			<l pos="N">nicôskwanis</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-côskwanis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my little elbow</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">nihcawakâs</l>
 			
       
@@ -20485,7 +20606,7 @@
 			<l pos="V">nihtâ-kitohcikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nihtâ-kitohcikê-</stem>
@@ -20537,7 +20658,7 @@
 			<l pos="V">nihtâ-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nihtâ-mîciso-</stem>
@@ -20574,7 +20695,7 @@
 			<l pos="V">nikamômakan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>nikamômakan-</stem>
@@ -20611,7 +20732,7 @@
 			<l pos="V">nikotwâsiko-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nikotwâsiko-kîsikâ-</stem>
@@ -20648,7 +20769,7 @@
 			<l pos="V">nikotwâso-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nikotwâso-kîsikâ-</stem>
@@ -20719,80 +20840,6 @@
 		<lg>
 			
       
-			<l pos="V">nimitawaham</l>
-			
-      
-			<lc>VTI-1</lc>
-			
-      
-			<stem>nimitawah-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he canoes to the open water; s/he canoes to the prairie, open country</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">nimitâwaham</l>
-			
-      
-			<lc>VTI-1</lc>
-			
-      
-			<stem>nimitâwah-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he goes out to sea; s/he goes out into the lake</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="N">nipawâkan</l>
 			
       
@@ -20833,7 +20880,7 @@
 			<l pos="V">nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nipâ-</stem>
@@ -21048,7 +21095,7 @@
 			<l pos="V">nipowâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nipowâpi-</stem>
@@ -21085,7 +21132,7 @@
 			<l pos="V">nipômakan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>nipômakan-</stem>
@@ -21455,7 +21502,7 @@
 			<l pos="V">nisto-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nisto-kîsikâ-</stem>
@@ -21529,7 +21576,7 @@
 			<l pos="V">nisto-tipiskwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nisto-tipiskwê-</stem>
@@ -21603,7 +21650,7 @@
 			<l pos="V">nistohkwâmiwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistohkwâmi-</stem>
@@ -21692,7 +21739,7 @@
 			<l pos="V">nistohtêwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistohtê-</stem>
@@ -21803,7 +21850,7 @@
 			<l pos="V">nistokâtêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistokâtê-</stem>
@@ -21840,7 +21887,7 @@
 			<l pos="V">nistokâtêwêyâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>nistokâtêwêyâ-</stem>
@@ -21877,7 +21924,7 @@
 			<l pos="V">nistokêwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistokê-</stem>
@@ -21988,7 +22035,7 @@
 			<l pos="V">nistopiponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistopiponwê-</stem>
@@ -22062,7 +22109,7 @@
 			<l pos="V">nistosinwak</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>nistosin-</stem>
@@ -22136,7 +22183,7 @@
 			<l pos="V">nistoyawêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nistoyawê-</stem>
@@ -22170,47 +22217,10 @@
 		<lg>
 			
       
-			<l pos="V">nistôskwêwêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>nistôskwêwê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">he has three wives</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">nitawahcikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nitawahcikê-</stem>
@@ -22247,7 +22257,7 @@
 			<l pos="V">nitawastimwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nitawastimwê-</stem>
@@ -22358,7 +22368,7 @@
 			<l pos="V">nitawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nitawâpi-</stem>
@@ -22432,7 +22442,7 @@
 			<l pos="V">nitawi-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nitawi-mîciso-</stem>
@@ -22580,7 +22590,7 @@
 			<l pos="V">nitopayiwinihkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nitopayiwinihkê-</stem>
@@ -22596,6 +22606,43 @@
 				
        
 				<t pos="V" sources="CW">he leads a war-party, he conducts a war-party; he arranges a raid</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">nitôskwan</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my elbow</t>
 				
    
 			</tg>
@@ -22891,7 +22938,7 @@
 			<l pos="V">niyânaniwa</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>niyânani-</stem>
@@ -22943,7 +22990,7 @@
 			<l pos="V">niyânaniwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>niyânani-</stem>
@@ -22995,7 +23042,7 @@
 			<l pos="V">niyânano-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>niyânano-kîsikâ-</stem>
@@ -23217,7 +23264,7 @@
 			<l pos="V">niyâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>niyâ-</stem>
@@ -23254,7 +23301,7 @@
 			<l pos="V">nîkân-ayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nîkân-ayâ-</stem>
@@ -23291,7 +23338,7 @@
 			<l pos="V">nîminâniwan</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nîmi-</stem>
@@ -23328,7 +23375,7 @@
 			<l pos="V">nîmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nîmi-</stem>
@@ -23439,7 +23486,7 @@
 			<l pos="V">nîpin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>nîpin-</stem>
@@ -23602,7 +23649,7 @@
 			<l pos="V">nîpinisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nîpinisi-</stem>
@@ -23879,7 +23926,7 @@
 			<l pos="V">nîso-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nîso-kîsikâ-</stem>
@@ -23990,7 +24037,7 @@
 			<l pos="V">nîso-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>nîso-tipiskâ-</stem>
@@ -24064,7 +24111,7 @@
 			<l pos="V">nîsopiponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nîsopiponwê-</stem>
@@ -24279,7 +24326,7 @@
 			<l pos="V">nôhtê-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nôhtê-mîciso-</stem>
@@ -24331,7 +24378,7 @@
 			<l pos="V">nôhtê-nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nôhtê-nipâ-</stem>
@@ -24368,7 +24415,7 @@
 			<l pos="V">nôhtêpayiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nôhtêpayi-</stem>
@@ -24420,7 +24467,7 @@
 			<l pos="V">nôhtêpayiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>nôhtêpayi-</stem>
@@ -24472,7 +24519,7 @@
 			<l pos="V">nôkohcikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nôkohcikê-</stem>
@@ -24635,7 +24682,7 @@
 			<l pos="V">nôtamiskwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nôtamiskwê-</stem>
@@ -24672,7 +24719,7 @@
 			<l pos="V">ocêhtowi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>ocêhtowi-kîsikâ-</stem>
@@ -24709,7 +24756,7 @@
 			<l pos="V">ocikisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ocikisi-</stem>
@@ -24746,7 +24793,7 @@
 			<l pos="V">ocipicikâtêw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>ocipicikâtê-</stem>
@@ -24887,7 +24934,7 @@
 			<l pos="V">ocipitikow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ocipitiko-</stem>
@@ -24939,7 +24986,7 @@
 			<l pos="V">ociwâmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ociwâmi-</stem>
@@ -25117,7 +25164,7 @@
 			<l pos="V">ohci-wayawîw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohci-wayawî-</stem>
@@ -25169,7 +25216,7 @@
 			<l pos="V">ohciciwan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ohciciwan-</stem>
@@ -25258,7 +25305,7 @@
 			<l pos="V">ohcikawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcikawâpi-</stem>
@@ -25436,7 +25483,7 @@
 			<l pos="V">ohcikawitêyikomêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcikawitêyikomê-</stem>
@@ -25525,7 +25572,7 @@
 			<l pos="V">ohcinâkosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcinâkosi-</stem>
@@ -25562,7 +25609,7 @@
 			<l pos="V">ohcinâkwan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ohcinâkwan-</stem>
@@ -25599,7 +25646,7 @@
 			<l pos="V">ohcinêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcinê-</stem>
@@ -25636,7 +25683,7 @@
 			<l pos="V">ohcipahtâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcipahtâ-</stem>
@@ -25673,7 +25720,7 @@
 			<l pos="V">ohcipayin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ohcipayin-</stem>
@@ -25725,7 +25772,7 @@
 			<l pos="V">ohcipayiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcipayi-</stem>
@@ -25777,7 +25824,7 @@
 			<l pos="V">ohcipayiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>ohcipayi-</stem>
@@ -25866,7 +25913,7 @@
 			<l pos="V">ohcipiciw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcipici-</stem>
@@ -25977,7 +26024,7 @@
 			<l pos="V">ohcisin</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>ohcisin-</stem>
@@ -26014,7 +26061,7 @@
 			<l pos="V">ohciskanawêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohciskanawê-</stem>
@@ -26051,7 +26098,7 @@
 			<l pos="V">ohcistin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>ohcistin-</stem>
@@ -26177,7 +26224,7 @@
 			<l pos="V">ohciyâkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohciyâkê-</stem>
@@ -26214,7 +26261,7 @@
 			<l pos="V">ohcîw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohcî-</stem>
@@ -26251,7 +26298,7 @@
 			<l pos="V">ohtawakayêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohtawakayê-</stem>
@@ -26325,7 +26372,7 @@
 			<l pos="V">ohtiskawapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>ohtiskawapi-</stem>
@@ -26466,7 +26513,7 @@
 			<l pos="V">okitohcikaniw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>okitohcikani-</stem>
@@ -26570,7 +26617,7 @@
 			<l pos="V">omisimiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>omisimi-</stem>
@@ -26607,7 +26654,7 @@
 			<l pos="V">omistikomiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>omistikomi-</stem>
@@ -26644,7 +26691,7 @@
 			<l pos="V">omîciwiniw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>omîciwini-</stem>
@@ -26718,7 +26765,7 @@
 			<l pos="V">opawahikaniw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>opawahikani-</stem>
@@ -26844,7 +26891,7 @@
 			<l pos="V">opêpîmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>opêpîmi-</stem>
@@ -26918,7 +26965,7 @@
 			<l pos="V">opimîmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>opimîmi-</stem>
@@ -27140,7 +27187,7 @@
 			<l pos="V">osâwi-sôniyâwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>osâwi-sôniyâwê-</stem>
@@ -27177,7 +27224,7 @@
 			<l pos="V">osâwi-sôniyâwiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>osâwi-sôniyâwi-</stem>
@@ -27300,6 +27347,43 @@
 		<lg>
 			
       
+			<l pos="N">oskana kâ-asastêki</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>oskan- [NI-1] + asastê- [VII-v]</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Regina, SK; Pile-o'-Bones; literally: where the bones are piled</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">oskayiwinis</l>
 			
       
@@ -27340,7 +27424,7 @@
 			<l pos="V">osôniyâmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>osôniyâmi-</stem>
@@ -27377,7 +27461,7 @@
 			<l pos="V">otami-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>otami-mîciso-</stem>
@@ -27488,7 +27572,7 @@
 			<l pos="V">otayisiyinîmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>otayisiyinîmi-</stem>
@@ -27525,7 +27609,7 @@
 			<l pos="V">otâkwani-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>otâkwani-mîciso-</stem>
@@ -27636,7 +27720,7 @@
 			<l pos="V">otâkwani-mîcisowinihkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>otâkwani-mîcisowinihkê</stem>
@@ -27710,7 +27794,7 @@
 			<l pos="V">otânisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>otânisi-</stem>
@@ -27778,6 +27862,43 @@
 				
        
 				<t pos="N" sources="CW">his/her innards (e.g. of an animal)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">otôskwanihk</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River</t>
 				
    
 			</tg>
@@ -28066,7 +28187,7 @@
 			<l pos="V">pa-pasakwâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pasakwâpi-</stem>
@@ -28103,7 +28224,7 @@
 			<l pos="V">pahkwêsikani-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>pahkwêsikani-kîsikâ-</stem>
@@ -28318,7 +28439,7 @@
 			<l pos="V">paminawasow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>paminawaso-</stem>
@@ -28355,7 +28476,7 @@
 			<l pos="V">paminâwasow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>paminâwaso-</stem>
@@ -28444,7 +28565,7 @@
 			<l pos="V">papâm-âyâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>papâm-âyâ-</stem>
@@ -28481,7 +28602,7 @@
 			<l pos="V">papâmâmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>papâmâmo-</stem>
@@ -28533,7 +28654,7 @@
 			<l pos="V">papâmitâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>papâmitâcimo-</stem>
@@ -28585,7 +28706,7 @@
 			<l pos="V">pasakwâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pasakwâpi-</stem>
@@ -28815,7 +28936,7 @@
 			<l pos="V">pawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pawahikê-</stem>
@@ -28867,7 +28988,7 @@
 			<l pos="V">pawahiminêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pawahiminê-</stem>
@@ -28904,7 +29025,7 @@
 			<l pos="V">pawahokêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pawahokê-</stem>
@@ -29067,7 +29188,7 @@
 			<l pos="V">pâh-pasakwâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pasakwâpi-</stem>
@@ -29156,7 +29277,7 @@
 			<l pos="V">pâh-pawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pawahikê-</stem>
@@ -29301,47 +29422,10 @@
 		<lg>
 			
       
-			<l pos="V">pâh-piskihcayâw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>piskihcayâ-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">it is divided, it is partitioned</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">pâhkwâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pâhkwâpi-</stem>
@@ -29467,7 +29551,7 @@
 			<l pos="V">pê-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>mîciso-</stem>
@@ -29504,7 +29588,7 @@
 			<l pos="V">pê-nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>nipâ-</stem>
@@ -29667,7 +29751,7 @@
 			<l pos="V">pêkwatâmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêkwatâmo-</stem>
@@ -30274,7 +30358,7 @@
 			<l pos="V">pêyako-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>pêyako-kîsikâ-</stem>
@@ -30311,7 +30395,7 @@
 			<l pos="V">pêyako-nîmâskwêwinêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyako-nîmâskwêwinê-</stem>
@@ -30348,7 +30432,7 @@
 			<l pos="V">pêyako-nîpawiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyako-nîpawi-</stem>
@@ -30422,7 +30506,7 @@
 			<l pos="V">pêyako-tipiskwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyako-tipiskwê-</stem>
@@ -30459,7 +30543,7 @@
 			<l pos="V">pêyakocihcêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakocihcê-</stem>
@@ -30652,7 +30736,7 @@
 			<l pos="V">pêyakohkwâmiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakohkwâmi-</stem>
@@ -30759,7 +30843,7 @@
 			<l pos="V">pêyakokamikosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakokamikosi-</stem>
@@ -30796,7 +30880,7 @@
 			<l pos="V">pêyakokâpawiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakokâpawi-</stem>
@@ -30870,7 +30954,7 @@
 			<l pos="V">pêyakokâtêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakokâtê-</stem>
@@ -30922,7 +31006,7 @@
 			<l pos="V">pêyakokêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakokê-</stem>
@@ -31011,7 +31095,7 @@
 			<l pos="V">pêyakonêhow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakonêho-</stem>
@@ -31174,7 +31258,7 @@
 			<l pos="V">pêyakopêhikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakopêhikê-</stem>
@@ -31211,7 +31295,7 @@
 			<l pos="V">pêyakopiponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakopiponwê-</stem>
@@ -31337,7 +31421,7 @@
 			<l pos="V">pêyakosimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakosimo-</stem>
@@ -31414,7 +31498,7 @@
 			<l pos="V">pêyakosisâniwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakosisâniwi-</stem>
@@ -31488,7 +31572,7 @@
 			<l pos="V">pêyakotêskanêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakotêskanê-</stem>
@@ -31525,7 +31609,7 @@
 			<l pos="V">pêyakow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyako-</stem>
@@ -31577,7 +31661,7 @@
 			<l pos="V">pêyakowiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakowi-</stem>
@@ -31703,7 +31787,7 @@
 			<l pos="V">pêyakôskânêsiwak</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakôskânêsi-</stem>
@@ -31792,7 +31876,7 @@
 			<l pos="V">pêyakwahpicikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakwahpicikê-</stem>
@@ -31940,7 +32024,7 @@
 			<l pos="V">pêyakwan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>pêyakwan-</stem>
@@ -32096,7 +32180,7 @@
 			<l pos="V">pêyakwapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakwapi-</stem>
@@ -32133,7 +32217,7 @@
 			<l pos="V">pêyakwaskan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>pêyakwaskan-</stem>
@@ -32244,7 +32328,7 @@
 			<l pos="V">pêyakwaskisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakwaskiso-</stem>
@@ -32281,7 +32365,7 @@
 			<l pos="V">pêyakwaskokâpawiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>pêyakwaskokâpawi-</stem>
@@ -32585,7 +32669,7 @@
 			<l pos="V">pêyakwêkan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>pêyakwêkan-</stem>
@@ -32622,7 +32706,7 @@
 			<l pos="V">pêyakwêyimisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pêyakwêyimiso-</stem>
@@ -32696,7 +32780,7 @@
 			<l pos="V">piminawasosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piminawasosi-</stem>
@@ -32733,7 +32817,7 @@
 			<l pos="V">piminawasow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piminawaso-</stem>
@@ -32859,7 +32943,7 @@
 			<l pos="V">pimitâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pimitâcimo-</stem>
@@ -32963,7 +33047,7 @@
 			<l pos="V">pimohtêskanawan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>pimohtêskanawan-</stem>
@@ -33074,7 +33158,7 @@
 			<l pos="V">pipon</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>pipon-</stem>
@@ -33474,7 +33558,7 @@
 			<l pos="V">piponâspinêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piponâspinê-</stem>
@@ -33585,7 +33669,7 @@
 			<l pos="V">piponihêwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piponihêwi-</stem>
@@ -33622,7 +33706,7 @@
 			<l pos="V">piponisiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piponisi-</stem>
@@ -33726,7 +33810,7 @@
 			<l pos="V">piponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>piponwê-</stem>
@@ -33800,7 +33884,7 @@
 			<l pos="V">pîhawawâskwêyâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>pîhawawâskwêyâ-</stem>
@@ -33874,7 +33958,7 @@
 			<l pos="V">pîhtokêtâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pîhtokêtâcimo-</stem>
@@ -33963,7 +34047,7 @@
 			<l pos="V">pîmayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pîmayiwinisê-</stem>
@@ -34000,7 +34084,7 @@
 			<l pos="V">pîwapiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pîwapi-</stem>
@@ -34037,7 +34121,7 @@
 			<l pos="V">pohciniskêyiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pohciniskêyi-</stem>
@@ -34074,7 +34158,7 @@
 			<l pos="V">pohcipayihow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pohcipayiho-</stem>
@@ -34126,7 +34210,7 @@
 			<l pos="V">pohcipayin</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>pohcipayin-</stem>
@@ -34393,7 +34477,7 @@
 			<l pos="V">postayiwinisahisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>postayiwinisahiso-</stem>
@@ -34430,7 +34514,7 @@
 			<l pos="V">postayiwinisêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>postayiwinisê-</stem>
@@ -34504,7 +34588,7 @@
 			<l pos="V">pôn-âpihtâ-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>pôn-âpihtâ-kîsikâ-</stem>
@@ -34541,7 +34625,7 @@
 			<l pos="V">pôn-âpihtâ-tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>pôn-âpihtâ-tipiskâ-</stem>
@@ -34578,7 +34662,7 @@
 			<l pos="V">pôn-âyamihêwi-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>pôn-âyamihêwi-kîsikâ-</stem>
@@ -34615,7 +34699,7 @@
 			<l pos="V">pôni-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>pôni-mîciso-</stem>
@@ -34652,7 +34736,7 @@
 			<l pos="V">samiskamâsow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>samiskamâso-</stem>
@@ -34689,7 +34773,7 @@
 			<l pos="V">sasîpihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sasîpihtawakê-</stem>
@@ -34742,43 +34826,6 @@
 				
        
 				<t pos="V" sources="CW">s/he spreads (it/him) for s.o.</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">sawâhpinêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>sawâhpinê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he has unexplainable pain</t>
 				
    
 			</tg>
@@ -34963,7 +35010,7 @@
 			<l pos="V">sêkwasow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sêkwaso-</stem>
@@ -35148,7 +35195,7 @@
 			<l pos="V">sîtawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sîtawahikê-</stem>
@@ -35185,7 +35232,7 @@
 			<l pos="V">sôniyâhkâkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâhkâkê-</stem>
@@ -35296,7 +35343,7 @@
 			<l pos="V">sôniyâhkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâhkê-</stem>
@@ -35400,7 +35447,7 @@
 			<l pos="V">sôniyâskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>sôniyâskâ-</stem>
@@ -35489,7 +35536,7 @@
 			<l pos="V">sôniyâw-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>sôniyâw-kîsikâ-</stem>
@@ -35600,7 +35647,7 @@
 			<l pos="V">sôniyâw-okimâwiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâw-okimâwi-</stem>
@@ -35711,7 +35758,7 @@
 			<l pos="V">sôniyâwan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>sôniyâwan-</stem>
@@ -35859,7 +35906,7 @@
 			<l pos="V">sôniyâwâskosiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâwâskosi-</stem>
@@ -35896,7 +35943,7 @@
 			<l pos="V">sôniyâwi-pîwayêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâwi-pîwayê-</stem>
@@ -35933,7 +35980,7 @@
 			<l pos="V">sôniyâwihkêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>sôniyâwihkê-</stem>
@@ -36059,7 +36106,7 @@
 			<l pos="V">sôniyâwiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>sôniyâwi-</stem>
@@ -36170,7 +36217,7 @@
 			<l pos="V">tahkohci-pahkisin</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>tahkohci-pahkisin-</stem>
@@ -36207,7 +36254,7 @@
 			<l pos="V">tahkohcikâpawiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tahkohcikâpawi-</stem>
@@ -36244,7 +36291,7 @@
 			<l pos="V">tahkohcipayihow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tahkohcipayiho-</stem>
@@ -36281,7 +36328,7 @@
 			<l pos="V">tahkohcipayiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>tahkohcipayi-</stem>
@@ -36318,7 +36365,7 @@
 			<l pos="V">tahkohcisin</l>
 			
       
-			<lc>VAI-n</lc>
+			<lc>VAI-2</lc>
 			
       
 			<stem>tahkohcisin-</stem>
@@ -36496,7 +36543,7 @@
 			<l pos="V">tahtopiponwêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tahtopiponwê-</stem>
@@ -36570,7 +36617,7 @@
 			<l pos="V">takosinômakan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>takosinômakan-</stem>
@@ -36681,7 +36728,7 @@
 			<l pos="V">tastawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tastawahikê-</stem>
@@ -36829,7 +36876,7 @@
 			<l pos="V">tawahcâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>tawahcâ-</stem>
@@ -36866,7 +36913,7 @@
 			<l pos="V">tawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tawahikê-</stem>
@@ -36903,7 +36950,7 @@
 			<l pos="V">tawahkahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tawahkahikê-</stem>
@@ -36977,7 +37024,7 @@
 			<l pos="V">tawaskisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tawaskiso-</stem>
@@ -37014,7 +37061,7 @@
 			<l pos="V">tawastêw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>tawastê-</stem>
@@ -37125,7 +37172,7 @@
 			<l pos="V">tawayâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tawayâ-</stem>
@@ -37162,7 +37209,7 @@
 			<l pos="V">tawâstêw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>tawâstê-</stem>
@@ -37528,7 +37575,7 @@
 			<l pos="V">tânitahtopiponêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tânitahtopiponê-</stem>
@@ -37602,7 +37649,7 @@
 			<l pos="V">têpakohpopiponêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>têpakohpopiponê-</stem>
@@ -37639,7 +37686,7 @@
 			<l pos="V">têpi-mîcisow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>têpi-mîciso-</stem>
@@ -37676,7 +37723,7 @@
 			<l pos="V">têpi-nipâw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>têpi-nipâ-</stem>
@@ -37750,7 +37797,7 @@
 			<l pos="V">têwihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>têwihtawakê-</stem>
@@ -37787,7 +37834,7 @@
 			<l pos="V">têyihtawakêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>têyihtawakê-</stem>
@@ -38039,7 +38086,7 @@
 			<l pos="V">tipinawahikêw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>tipinawahikê-</stem>
@@ -38143,7 +38190,7 @@
 			<l pos="V">tipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>tipiskâ-</stem>
@@ -38343,7 +38390,7 @@
 			<l pos="V">wahkêmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wahkêmo-</stem>
@@ -38395,7 +38442,7 @@
 			<l pos="V">wanimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wanimo-</stem>
@@ -38432,7 +38479,7 @@
 			<l pos="V">wanitipiskâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>wanitipiskâ-</stem>
@@ -38484,7 +38531,7 @@
 			<l pos="V">wayawîtâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wayawîtâcimo-</stem>
@@ -38625,7 +38672,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He sees it.</t>
+				<t pos="V" sources="MD AE">He sees it.</t>
 				
    
 			</tg>
@@ -38751,7 +38798,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He sees him.</t>
+				<t pos="V" sources="MD AE">He sees him.</t>
 				
    
 			</tg>
@@ -38767,6 +38814,21 @@
 				
        
 				<t pos="V" sources="CW">s/he sees s.o., s/he witnesses s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="AE">S/he sees him/her.</t>
 				
    
 			</tg>
@@ -39010,7 +39072,7 @@
 			<l pos="V">wâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wâpi-</stem>
@@ -39087,7 +39149,7 @@
 			<l pos="V">wâsêkamatawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wâsêkamatawâpi-</stem>
@@ -39124,7 +39186,7 @@
 			<l pos="V">wâwâsêkamatawâpiw</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>wâwâsêkamatawâpi-</stem>
@@ -39657,7 +39719,7 @@
 			<l pos="V">wîpâci-kîsikâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-1v</lc>
 			
       
 			<stem>wîpâci-kîsikâ-</stem>
@@ -39805,7 +39867,7 @@
 			<l pos="V">yahkîmow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>yahkîmo-</stem>
@@ -39931,7 +39993,7 @@
 			<l pos="V">yêkawahcâw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>yêkawahcâ-</stem>
@@ -39968,7 +40030,7 @@
 			<l pos="V">yêkawan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-2n</lc>
 			
       
 			<stem>yêkawan-</stem>
@@ -40005,7 +40067,7 @@
 			<l pos="V">yîkatêtâcimow</l>
 			
       
-			<lc>VAI-v</lc>
+			<lc>VAI-1</lc>
 			
       
 			<stem>yîkatêtâcimo-</stem>
@@ -40079,7 +40141,7 @@
 			<l pos="V">yîkwawan</l>
 			
       
-			<lc>VII-n</lc>
+			<lc>VII-1n</lc>
 			
       
 			<stem>yîkwawan-</stem>
@@ -40116,7 +40178,7 @@
 			<l pos="V">yîkwawanipayiw</l>
 			
       
-			<lc>VII-v</lc>
+			<lc>VII-2v</lc>
 			
       
 			<stem>yîkwawanipayi-</stem>
@@ -51145,7 +51207,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; kwâskwêkotê- VII</stem>
+			<stem>nipiy- [NI] + kwâskwêkotê- [VII]</stem>
 			
    
 		</lg>
@@ -51182,7 +51244,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; pahkihtin- VII</stem>
+			<stem>nipiy- [NI] + pahkihtin- [VII]</stem>
 			
    
 		</lg>
@@ -51219,7 +51281,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; pitihkwê- VII</stem>
+			<stem>nipiy- [NI] + pitihkwê- [VII]</stem>
 			
    
 		</lg>
@@ -51626,7 +51688,7 @@
 			<lc>VAI-1</lc>
 			
       
-			<stem>nistôskwêwê-</stem>
+			<stem>nistoskwêwê-</stem>
 			
    
 		</lg>
@@ -52477,7 +52539,7 @@
 			<lc>VAI-1</lc>
 			
       
-			<stem>osiko-âyâ-</stem>
+			<stem>osiko-ayâ-</stem>
 			
    
 		</lg>

@@ -128,3 +128,9 @@ kîsikâw
 nîminâniwan
 # ...and its lemma:
 nîmiw
+
+# Missing place names
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/353
+otôskwanihk
+oskana kâ-asastêki
+misâskwatôminihk
