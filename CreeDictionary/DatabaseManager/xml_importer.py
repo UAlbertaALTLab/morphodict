@@ -3,9 +3,8 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import Dict, List, Set
 
-from colorama import init
-
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
+from colorama import init
 from DatabaseManager import xml_entry_lemma_finder
 from DatabaseManager.cree_inflection_generator import expand_inflections
 from DatabaseManager.log import DatabaseManagerLogger
