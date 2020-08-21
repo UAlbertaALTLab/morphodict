@@ -1,5 +1,6 @@
 import logging
 import unicodedata
+import warnings
 from collections import defaultdict
 from functools import cmp_to_key, partial
 from itertools import chain
@@ -21,8 +22,6 @@ from urllib.parse import quote
 
 import attr
 from attr import attrs
-
-import CreeDictionary.hfstol as temp_hfstol
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -30,9 +29,11 @@ from django.db.models import Max, Q, QuerySet
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+from sortedcontainers import SortedSet
+
+import CreeDictionary.hfstol as temp_hfstol
 from paradigm import Layout
 from shared import paradigm_filler
-from sortedcontainers import SortedSet
 from utils import (
     Language,
     ParadigmSize,
@@ -154,6 +155,15 @@ NormatizedCree = NewType("NormatizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
+class WordformManager(models.Manager):
+    """
+    Adds search to wordforms.
+    """
+
+    def search(self, query: str, **constraints) -> SortedSet[SearchResult]:
+        return Wordform._search(query, **constraints)
+
+
 class Wordform(models.Model):
     # this is initialized upon app ready.
     # this helps speed up preverb match
@@ -166,6 +176,8 @@ class Wordform(models.Model):
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
+
+    objects = WordformManager()
 
     def get_absolute_url(self) -> str:
         """
@@ -561,8 +573,22 @@ class Wordform(models.Model):
 
         return CreeAndEnglish(cree_results, english_results)
 
+    @classmethod
+    def search(cls, user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
+        """
+        Use Wordform.objects.search() instead
+        """
+        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
+        warnings.warn(
+            "Use Wordform.objects.search() instead",
+            category=DeprecationWarning,
+            stacklevel=2,
+        )
+        warnings.simplefilter("always", DeprecationWarning)  # turn off filter
+        return cls._search(user_query, **extra_constraints)
+
     @staticmethod
-    def search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
+    def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
 
         :param user_query:
