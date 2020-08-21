@@ -97,9 +97,6 @@ class WordformManager(models.Manager, WordformSearchMixin):
     Adds search to wordforms.
     """
 
-    def search(self, query: str, **constraints) -> SortedSet[SearchResult]:
-        return Wordform._search(query, **constraints)
-
 
 class Wordform(models.Model):
     # this is initialized upon app ready.

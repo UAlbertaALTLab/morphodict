@@ -6,6 +6,7 @@ from typing import Tuple, cast
 import attr
 from attr import attrs
 
+from API.models import SortedSet
 from API.schema import SerializedSearchResult
 from utils import Language
 
@@ -81,3 +82,8 @@ class WordformSearchMixin:
 
         Wordform.objects.search()
     """
+
+    def search(self, query: str, **constraints) -> SortedSet[SearchResult]:
+        from .models import Wordform
+
+        return Wordform._search(query, **constraints)
