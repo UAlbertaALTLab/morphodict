@@ -20,12 +20,11 @@ from typing import (
 )
 from urllib.parse import quote
 
-import attr
-from attr import attrs
+from API.search import SearchResult
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
-from django.db.models import Max, Q, QuerySet
+from django.db.models import Max, Q
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
@@ -48,7 +47,7 @@ from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .affix_search import AffixSearcher
-from .schema import SerializedDefinition, SerializedSearchResult, SerializedWordform
+from .schema import SerializedDefinition, SerializedWordform
 
 logger = logging.getLogger(__name__)
 
@@ -87,68 +86,6 @@ def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     user_query = remove_cree_diacritics(user_query)
 
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
-
-
-@attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
-class SearchResult:
-    """
-    Contains all of the information needed to display a search result.
-
-    Comment:
-    Each instance corresponds visually to one card shown on the interface
-    """
-
-    # the text of the match
-    matched_cree: str
-
-    is_lemma: bool
-
-    # English or Cree
-    matched_by: Language
-
-    # The matched lemma
-    lemma_wordform: "Wordform"
-
-    # triple dots in type annotation means they can be empty
-
-    # user friendly linguistic breakdowns
-    linguistic_breakdown_head: Tuple[str, ...]
-    linguistic_breakdown_tail: Tuple[str, ...]
-
-    # Sequence of all preverb tags, in order
-    # Optional: we might not have some preverbs in our database
-    preverbs: Tuple["Preverb", ...]
-
-    # TODO: there are things to be figured out for this :/
-    # Sequence of all reduplication tags present, in order
-    reduplication_tags: Tuple[str, ...]
-    # Sequence of all initial change tags
-    initial_change_tags: Tuple[str, ...]
-
-    definitions: Tuple["Definition", ...]
-
-    def serialize(self) -> SerializedSearchResult:
-        """
-        serialize the instance, can be used before passing into a template / in an API view, etc.
-        """
-        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
-        # it avoids unnecessary database access and makes APIs easier to create
-        result = attr.asdict(self)
-        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
-        result["lemma_wordform"] = self.lemma_wordform.serialize()
-
-        result["preverbs"] = []
-        for pv in self.preverbs:
-            if isinstance(pv, str):
-                result["preverbs"].append(pv)
-            else:  # Wordform
-                result["preverbs"].append(pv.serialize())
-
-        result["matched_by"] = self.matched_by.name
-        result["definitions"] = [
-            definition.serialize() for definition in self.definitions
-        ]
-        return cast(SerializedSearchResult, result)
 
 
 NormatizedCree = NewType("NormatizedCree", str)
