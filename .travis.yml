@@ -42,7 +42,9 @@ jobs:
         - pipenv install
         - npm ci
         - npm run build
-      script: npm run test:ci
+      script:
+        - npm run stop-only
+        - npm run test:ci
 
     - stage: deploy
       language: shell
