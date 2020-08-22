@@ -296,12 +296,16 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
 
+class SortedSetWithExtraMethods(SortedSet):
+    def extend(self, items):
+        for it in items:
+            self.add(it)
+
 class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
     """
     def __init__(self, query: str, constraints: dict):
-        self.results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(query))
         self.query = query
         self.constraints = constraints
 
@@ -311,13 +315,10 @@ class WordformSearch:
         :return: sorted search results
         """
         res = fetch_lemma_by_user_query(self.query, **self.constraints)
-        self._add_all(self.prepare_cree_results(res.cree_results))
-        self._add_all(self.prepare_english_results(res.english_results))
-        return self.results
-
-    def _add_all(self, results: Iterable[SearchResult]):
-        for res in results:
-            self.results.add(res)
+        results = SortedSetWithExtraMethods(key=sort_by_user_query(self.query))
+        results.extend(self.prepare_cree_results(res.cree_results))
+        results.extend(self.prepare_english_results(res.english_results))
+        return results
 
     # consistent with SearchResult.preverb
     @staticmethod
