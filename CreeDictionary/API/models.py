@@ -19,6 +19,7 @@ from typing import (
 )
 from urllib.parse import quote
 
+from API.result_utils import replace_user_friendly_tags
 from API.utils import SortedSetWithExtend
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -45,18 +46,12 @@ from utils import (
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS, partition_analysis
-from utils.types import ConcatAnalysis, FSTTag, Label
+from utils.types import ConcatAnalysis, FSTTag
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
 
 logger = logging.getLogger(__name__)
-
-
-def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
-    """ replace fst-tags to cute ones"""
-    return LABELS.english.get_full_relabelling(fst_tags)
-
 
 WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
 
