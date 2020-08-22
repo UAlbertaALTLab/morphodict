@@ -13,7 +13,6 @@ from typing import (
 )
 
 import attr
-from API.models import Wordform
 from API.result_utils import MatchedEnglish
 from attr import attrs
 
