@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import typing
 from typing import Tuple, cast, Iterable
 
 import attr
@@ -9,8 +8,7 @@ from attr import attrs
 from API.schema import SerializedSearchResult
 from utils import Language
 
-if typing.TYPE_CHECKING:
-    from .models import Wordform, Preverb, Definition
+from .models import Wordform, Preverb, Definition
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
