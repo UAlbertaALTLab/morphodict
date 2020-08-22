@@ -328,9 +328,7 @@ class WordformSearch:
                     replace_user_friendly_tags(linguistic_breakdown_tail)
                 ),
                 lemma_wordform=cree_result.lemma,
-                preverbs=self.get_preverbs_from_head_breakdown(
-                    linguistic_breakdown_head
-                ),
+                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
                 reduplication_tags=(),
                 initial_change_tags=(),
                 definitions=definitions,
@@ -352,9 +350,7 @@ class WordformSearch:
                 is_lemma=result.matched_cree.is_lemma,
                 matched_by=Language.ENGLISH,
                 lemma_wordform=result.matched_cree.lemma,
-                preverbs=self.get_preverbs_from_head_breakdown(
-                    linguistic_breakdown_head
-                ),
+                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
                 reduplication_tags=(),
                 initial_change_tags=(),
                 linguistic_breakdown_head=tuple(
@@ -370,40 +366,39 @@ class WordformSearch:
                 #       when EnglishKeyword can be associated with non-lemmas
             )
 
-    # consistent with SearchResult.preverb
-    @staticmethod
-    def get_preverbs_from_head_breakdown(
-        head_breakdown: List[FSTTag],
-    ) -> Tuple["Preverb", ...]:
-        results = []
 
-        for tag in head_breakdown:
-            preverb_result: Optional[Preverb] = None
-            if tag.startswith("PV/"):
-                # use altlabel.tsv to figure out the preverb
+def get_preverbs_from_head_breakdown(
+    head_breakdown: List[FSTTag],
+) -> Tuple["Preverb", ...]:
+    results = []
 
-                # ling_short looks like: "Preverb: âpihci-"
-                ling_short = LABELS.linguistic_short.get(tag)
-                if ling_short is not None and ling_short != "":
-                    # looks like: "âpihci"
-                    normative_preverb_text = ling_short[len("Preverb: ") : -1]
-                    preverb_results = fetch_preverbs(normative_preverb_text)
+    for tag in head_breakdown:
+        preverb_result: Optional[Preverb] = None
+        if tag.startswith("PV/"):
+            # use altlabel.tsv to figure out the preverb
 
-                    # find the one that looks the most similar
-                    if preverb_results:
-                        preverb_result = min(
-                            preverb_results,
-                            key=lambda pr: get_modified_distance(
-                                normative_preverb_text, pr.text.strip("-"),
-                            ),
-                        )
+            # ling_short looks like: "Preverb: âpihci-"
+            ling_short = LABELS.linguistic_short.get(tag)
+            if ling_short is not None and ling_short != "":
+                # looks like: "âpihci"
+                normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                preverb_results = fetch_preverbs(normative_preverb_text)
 
-                    else:  # can't find a match for the preverb in the database
-                        preverb_result = normative_preverb_text
+                # find the one that looks the most similar
+                if preverb_results:
+                    preverb_result = min(
+                        preverb_results,
+                        key=lambda pr: get_modified_distance(
+                            normative_preverb_text, pr.text.strip("-"),
+                        ),
+                    )
 
-            if preverb_result is not None:
-                results.append(preverb_result)
-        return tuple(results)
+                else:  # can't find a match for the preverb in the database
+                    preverb_result = normative_preverb_text
+
+        if preverb_result is not None:
+            results.append(preverb_result)
+    return tuple(results)
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
