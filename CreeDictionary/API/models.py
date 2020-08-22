@@ -318,14 +318,13 @@ class WordformSearch:
             user_query, **extra_constraints
         )
 
-        # consistent with SearchResult.preverb
-
         search = WordformSearch(user_query)
-        search.prepare_cree_results(cree_results, search.get_preverbs_from_head_breakdown)
-        search.prepare_english_results(english_results, search.get_preverbs_from_head_breakdown)
+        search.prepare_cree_results(cree_results)
+        search.prepare_english_results(english_results)
 
         return search.results
 
+    # consistent with SearchResult.preverb
     @staticmethod
     def get_preverbs_from_head_breakdown(head_breakdown: List[FSTTag]) -> Tuple["Preverb", ...]:
         results = []
@@ -358,7 +357,7 @@ class WordformSearch:
                 results.append(preverb_result)
         return tuple(results)
 
-    def prepare_cree_results(self, cree_results, get_preverbs_from_head_breakdown):
+    def prepare_cree_results(self, cree_results):
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -395,7 +394,7 @@ class WordformSearch:
                         replace_user_friendly_tags(linguistic_breakdown_tail)
                     ),
                     lemma_wordform=cree_result.lemma,
-                    preverbs=get_preverbs_from_head_breakdown(
+                    preverbs=self.get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
                     reduplication_tags=(),
@@ -404,7 +403,7 @@ class WordformSearch:
                 )
             )
 
-    def prepare_english_results(self, english_results, get_preverbs_from_head_breakdown):
+    def prepare_english_results(self, english_results):
         for result in english_results:
             try:
                 (
@@ -422,7 +421,7 @@ class WordformSearch:
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
                     lemma_wordform=result.matched_cree.lemma,
-                    preverbs=get_preverbs_from_head_breakdown(
+                    preverbs=self.get_preverbs_from_head_breakdown(
                         linguistic_breakdown_head
                     ),
                     reduplication_tags=(),
