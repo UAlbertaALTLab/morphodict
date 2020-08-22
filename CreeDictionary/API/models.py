@@ -300,6 +300,8 @@ class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
     """
+    def __init__(self, user_query: str):
+        self.results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
 
     @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
@@ -315,8 +317,6 @@ class WordformSearch:
         cree_results, english_results = fetch_lemma_by_user_query(
             user_query, **extra_constraints
         )
-
-        results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
 
         def get_preverbs_from_head_breakdown(
             head_breakdown: List[FSTTag],
@@ -352,11 +352,11 @@ class WordformSearch:
                     results.append(preverb_result)
             return tuple(results)
 
-        search = WordformSearch()
-        search.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results)
-        search.prepare_english_results(english_results, get_preverbs_from_head_breakdown, results)
+        search = WordformSearch(user_query)
+        search.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, search.results)
+        search.prepare_english_results(english_results, get_preverbs_from_head_breakdown, search.results)
 
-        return results
+        return search.results
 
     def prepare_cree_results(self, cree_results, get_preverbs_from_head_breakdown, results):
         # Create the search results
