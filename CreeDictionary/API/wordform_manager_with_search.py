@@ -6,10 +6,10 @@ from sortedcontainers import SortedSet
 if typing.TYPE_CHECKING:
     # Avoid runtime circular-dependency
     # without this line,
-    # search_mixin.py
+    # wordform_manager_with_search.py
     #   would depend on search.py
     #   which depends on models.py
-    #   which depends on search_mixin.py 💥
+    #   which depends on wordform_manager_with_search.py 💥
     from .search import SearchResult
 
 

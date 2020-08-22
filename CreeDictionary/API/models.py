@@ -31,7 +31,7 @@ from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from API.search import SearchResult
-from API.search_mixin import WordformManager
+from API.wordform_manager_with_search import WordformManager
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
