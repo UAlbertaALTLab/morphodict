@@ -1,4 +1,5 @@
 import logging
+import typing
 import unicodedata
 from collections import defaultdict
 from itertools import chain
@@ -277,6 +278,9 @@ class Wordform(models.Model):
 Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 
+if typing.TYPE_CHECKING:
+    from .search import SearchResult
+
 class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
@@ -286,7 +290,7 @@ class WordformSearch:
         self.query = query
         self.constraints = constraints
 
-    def perform(self) -> SortedSet[SearchResult]:
+    def perform(self) -> SortedSet["SearchResult"]:
         """
         Do the search
         :return: sorted search results
@@ -300,6 +304,8 @@ class WordformSearch:
     def prepare_cree_results(
         self, cree_results: Set["CreeResult"]
     ) -> Iterable[SearchResult]:
+        from .search import SearchResult
+
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -338,6 +344,8 @@ class WordformSearch:
     def prepare_english_results(
         self, english_results: Set["EnglishResult"]
     ) -> Iterable[SearchResult]:
+        from .search import SearchResult
+
         for result in english_results:
             (
                 linguistic_breakdown_head,
