@@ -13,9 +13,9 @@ if typing.TYPE_CHECKING:
     from .search import SearchResult
 
 
-class WordformSearchMixin:
+class WordformManager(models.Manager):
     """
-    To be mixed in with a WordformManager to provide this functionality:
+    Adds Search to Wordform objects:
 
         Wordform.objects.search()
     """
@@ -25,9 +25,3 @@ class WordformSearchMixin:
 
         search = WordformSearch(query, constraints)
         return search.perform()
-
-
-class WordformManager(models.Manager, WordformSearchMixin):
-    """
-    Adds search to wordforms.
-    """
