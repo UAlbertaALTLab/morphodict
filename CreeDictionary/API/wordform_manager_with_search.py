@@ -13,7 +13,7 @@ if typing.TYPE_CHECKING:
     from .search import SearchResult
 
 
-class WordformManager(models.Manager):
+class WordformManagerWithSearch(models.Manager):
     """
     Adds Search to Wordform objects:
 

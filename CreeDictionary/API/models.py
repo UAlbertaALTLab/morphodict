@@ -31,7 +31,7 @@ from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from API.search import SearchResult
-from API.wordform_manager_with_search import WordformManager
+from API.wordform_manager_with_search import WordformManagerWithSearch
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
@@ -106,7 +106,7 @@ class Wordform(models.Model):
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
 
-    objects = WordformManager()
+    objects = WordformManagerWithSearch()
 
     def get_absolute_url(self) -> str:
         """
