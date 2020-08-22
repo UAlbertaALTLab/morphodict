@@ -184,8 +184,6 @@ class WordformSearch:
     def prepare_cree_results(
         self, cree_results: Set["CreeResult"]
     ) -> Iterable["SearchResult"]:
-        from .search import SearchResult, get_preverbs_from_head_breakdown
-
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -222,8 +220,6 @@ class WordformSearch:
     def prepare_english_results(
         self, english_results: Set["EnglishResult"]
     ) -> Iterable["SearchResult"]:
-        from .search import SearchResult, get_preverbs_from_head_breakdown
-
         for result in english_results:
             (
                 linguistic_breakdown_head,
@@ -330,13 +326,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-    from .search import (
-        filter_cw_wordforms,
-        CreeAndEnglish,
-        CreeResult,
-        EnglishResult,
-        Lemma,
-    )
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
@@ -486,8 +475,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
     # preverbs should be presented
     # exhaustively search preverbs here (since we can't use fst on preverbs.)
-
-    from .search import fetch_preverbs
 
     for preverb_wf in fetch_preverbs(user_query):
         cree_results.add(
