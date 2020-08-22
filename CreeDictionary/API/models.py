@@ -32,7 +32,6 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from API.search import SearchResult, filter_cw_wordforms
 from API.wordform_manager_with_search import WordformManagerWithSearch
 from paradigm import Layout
 from shared import paradigm_filler
@@ -51,6 +50,9 @@ from utils.types import ConcatAnalysis, FSTTag
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
+
+if typing.TYPE_CHECKING:
+    from .search import SearchResult
 
 logger = logging.getLogger(__name__)
 
@@ -278,8 +280,6 @@ class Wordform(models.Model):
 Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 
-if typing.TYPE_CHECKING:
-    from .search import SearchResult
 
 class WordformSearch:
     """
@@ -303,7 +303,7 @@ class WordformSearch:
 
     def prepare_cree_results(
         self, cree_results: Set["CreeResult"]
-    ) -> Iterable[SearchResult]:
+    ) -> Iterable["SearchResult"]:
         from .search import SearchResult
 
         # Create the search results
@@ -343,7 +343,7 @@ class WordformSearch:
 
     def prepare_english_results(
         self, english_results: Set["EnglishResult"]
-    ) -> Iterable[SearchResult]:
+    ) -> Iterable["SearchResult"]:
         from .search import SearchResult
 
         for result in english_results:
@@ -427,6 +427,8 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
+    from .search import filter_cw_wordforms
+
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
     # Normalize to UTF8 NFC
@@ -615,7 +617,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
             )  # will become  (user_query, inflection.text, wordform)
 
     return CreeAndEnglish(cree_results, english_results)
-
 
 
 class CreeResult(NamedTuple):
