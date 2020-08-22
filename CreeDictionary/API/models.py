@@ -322,7 +322,9 @@ class WordformSearch:
         results.extend(self.prepare_english_results(res.english_results))
         return results
 
-    def prepare_cree_results(self, cree_results) -> Iterable[SearchResult]:
+    def prepare_cree_results(
+        self, cree_results: Set["CreeResult"]
+    ) -> Iterable[SearchResult]:
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -366,7 +368,9 @@ class WordformSearch:
                 definitions=definitions,
             )
 
-    def prepare_english_results(self, english_results) -> Iterable[SearchResult]:
+    def prepare_english_results(
+        self, english_results: Set["EnglishResult"]
+    ) -> Iterable[SearchResult]:
         for result in english_results:
             try:
                 (
@@ -404,7 +408,7 @@ class WordformSearch:
     # consistent with SearchResult.preverb
     @staticmethod
     def get_preverbs_from_head_breakdown(
-            head_breakdown: List[FSTTag],
+        head_breakdown: List[FSTTag],
     ) -> Tuple["Preverb", ...]:
         results = []
 
