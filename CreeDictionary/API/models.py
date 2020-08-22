@@ -335,7 +335,10 @@ class WordformSearch:
                 is_lemma = False
                 definitions = ()
 
-            linguistic_breakdown_head, linguistic_breakdown_tail, = safe_partition_analysis(cree_result.analysis)
+            (
+                linguistic_breakdown_head,
+                linguistic_breakdown_tail,
+            ) = safe_partition_analysis(cree_result.analysis)
 
             # todo: tags
             yield SearchResult(
@@ -361,7 +364,10 @@ class WordformSearch:
         self, english_results: Set["EnglishResult"]
     ) -> Iterable[SearchResult]:
         for result in english_results:
-            linguistic_breakdown_head, linguistic_breakdown_tail = safe_partition_analysis(result.lemma.analysis)
+            (
+                linguistic_breakdown_head,
+                linguistic_breakdown_tail,
+            ) = safe_partition_analysis(result.lemma.analysis)
 
             yield SearchResult(
                 matched_cree=result.matched_cree.text,
@@ -424,11 +430,9 @@ class WordformSearch:
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
     try:
-        (
-            linguistic_breakdown_head,
-            _,
-            linguistic_breakdown_tail,
-        ) = partition_analysis(analysis)
+        (linguistic_breakdown_head, _, linguistic_breakdown_tail,) = partition_analysis(
+            analysis
+        )
     except ValueError:
         linguistic_breakdown_head = []
         linguistic_breakdown_tail = []
