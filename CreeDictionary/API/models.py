@@ -300,6 +300,7 @@ class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
     """
+
     @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
@@ -351,14 +352,13 @@ class WordformSearch:
                     results.append(preverb_result)
             return tuple(results)
 
-        WordformSearch.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results)
-
-        WordformSearch.prepare_english_results(english_results, get_preverbs_from_head_breakdown, results)
+        search = WordformSearch()
+        search.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results)
+        search.prepare_english_results(english_results, get_preverbs_from_head_breakdown, results)
 
         return results
 
-    @staticmethod
-    def prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results):
+    def prepare_cree_results(self, cree_results, get_preverbs_from_head_breakdown, results):
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -404,8 +404,7 @@ class WordformSearch:
                 )
             )
 
-    @staticmethod
-    def prepare_english_results(english_results, get_preverbs_from_head_breakdown, results):
+    def prepare_english_results(self, english_results, get_preverbs_from_head_breakdown, results):
         for result in english_results:
             try:
                 (
