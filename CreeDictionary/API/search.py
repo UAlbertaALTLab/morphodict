@@ -35,7 +35,7 @@ class SearchResult:
     matched_by: Language
 
     # The matched lemma
-    lemma_wordform: "Wordform"
+    lemma_wordform: Wordform
 
     # triple dots in type annotation means they can be empty
 
@@ -45,7 +45,7 @@ class SearchResult:
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
-    preverbs: Tuple["Preverb", ...]
+    preverbs: Tuple[Preverb, ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
@@ -53,7 +53,7 @@ class SearchResult:
     # Sequence of all initial change tags
     initial_change_tags: Tuple[str, ...]
 
-    definitions: Tuple["Definition", ...]
+    definitions: Tuple[Definition, ...]
 
     def serialize(self) -> SerializedSearchResult:
         """
@@ -79,7 +79,7 @@ class SearchResult:
         return cast(SerializedSearchResult, result)
 
 
-def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
+def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
     """
     return the wordforms that has definition from CW dictionary
 
