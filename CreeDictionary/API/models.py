@@ -9,20 +9,15 @@ from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
 
-from API.wordform_manager_with_search import WordformManagerWithSearch
 from paradigm import Layout
 from shared import paradigm_filler
-from utils import (
-    ParadigmSize,
-    PartOfSpeech,
-    WordClass,
-    fst_analysis_parser,
-)
+from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
+from .wordform_manager_with_search import WordformManagerWithSearch
 
 logger = logging.getLogger(__name__)
 
