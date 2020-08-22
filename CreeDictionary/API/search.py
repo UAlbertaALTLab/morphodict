@@ -3,7 +3,7 @@
 from typing import Tuple, cast, Iterable, List, Optional, Union, Set, NamedTuple
 
 import attr
-from API.models import Wordform, CreeResult, Lemma
+from API.models import Wordform, Lemma
 from API.result_utils import MatchedEnglish
 from attr import attrs
 
@@ -11,7 +11,7 @@ from API.schema import SerializedSearchResult
 from utils import Language, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
-from utils.types import FSTTag
+from utils.types import FSTTag, ConcatAnalysis
 
 from .models import Wordform, Definition
 
@@ -78,6 +78,29 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
+
+
+class CreeResult(NamedTuple):
+    """
+    - analysis: a string, fst analysis of normatized cree
+
+    - normatized_cree: a wordform, the Cree inflection that matches the analysis
+        Can be a string that's not saved in the database since our database do not store all the
+        weird inflections
+
+    - lemma: a Wordform object, the lemma of the matched inflection
+    """
+
+    analysis: ConcatAnalysis
+    normatized_cree: Union[Wordform, str]
+    lemma: Lemma
+
+    @property
+    def normatized_cree_text(self) -> str:
+        if isinstance(self.normatized_cree, Wordform):
+            return self.normatized_cree.text
+        else:  # is str
+            return self.normatized_cree
 
 
 class EnglishResult(NamedTuple):

@@ -7,11 +7,9 @@ from typing import (
     Dict,
     Iterable,
     List,
-    NamedTuple,
     NewType,
     Optional,
     Set,
-    Union,
 )
 from urllib.parse import quote
 
@@ -259,7 +257,7 @@ Lemma = NewType("Lemma", Wordform)
 
 
 if typing.TYPE_CHECKING:
-    from .search import CreeAndEnglish, EnglishResult
+    from .search import CreeAndEnglish, CreeResult, EnglishResult
 
 
 class WordformSearch:
@@ -369,7 +367,7 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-    from .search import filter_cw_wordforms, CreeAndEnglish, EnglishResult
+    from .search import filter_cw_wordforms, CreeAndEnglish, CreeResult, EnglishResult
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
@@ -561,29 +559,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
             )  # will become  (user_query, inflection.text, wordform)
 
     return CreeAndEnglish(cree_results, english_results)
-
-
-class CreeResult(NamedTuple):
-    """
-    - analysis: a string, fst analysis of normatized cree
-
-    - normatized_cree: a wordform, the Cree inflection that matches the analysis
-        Can be a string that's not saved in the database since our database do not store all the
-        weird inflections
-
-    - lemma: a Wordform object, the lemma of the matched inflection
-    """
-
-    analysis: ConcatAnalysis
-    normatized_cree: Union[Wordform, str]
-    lemma: Lemma
-
-    @property
-    def normatized_cree_text(self) -> str:
-        if isinstance(self.normatized_cree, Wordform):
-            return self.normatized_cree.text
-        else:  # is str
-            return self.normatized_cree
 
 
 class DictionarySource(models.Model):
