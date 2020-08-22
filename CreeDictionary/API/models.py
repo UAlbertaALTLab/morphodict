@@ -19,7 +19,7 @@ from typing import (
 )
 from urllib.parse import quote
 
-from API.result_utils import replace_user_friendly_tags
+from API.result_utils import replace_user_friendly_tags, safe_partition_analysis
 from API.utils import SortedSetWithExtend
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -45,7 +45,7 @@ from utils import (
 )
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
-from utils.fst_analysis_parser import LABELS, partition_analysis
+from utils.fst_analysis_parser import LABELS
 from utils.types import ConcatAnalysis, FSTTag
 
 from .affix_search import AffixSearcher
@@ -397,17 +397,6 @@ class WordformSearch:
             if preverb_result is not None:
                 results.append(preverb_result)
         return tuple(results)
-
-
-def safe_partition_analysis(analysis: ConcatAnalysis):
-    try:
-        (linguistic_breakdown_head, _, linguistic_breakdown_tail,) = partition_analysis(
-            analysis
-        )
-    except ValueError:
-        linguistic_breakdown_head = []
-        linguistic_breakdown_tail = []
-    return linguistic_breakdown_head, linguistic_breakdown_tail
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
