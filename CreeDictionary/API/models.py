@@ -305,18 +305,6 @@ class WordformSearch:
         self.query = query
         self.constraints = constraints
 
-    @staticmethod
-    def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
-        """
-
-        :param user_query:
-        :param extra_constraints: additional fields to disambiguate
-        :return:
-        """
-
-        search = WordformSearch(user_query, extra_constraints)
-        return search.perform()
-
     def perform(self) -> SortedSet[SearchResult]:
         """
         Do the search
