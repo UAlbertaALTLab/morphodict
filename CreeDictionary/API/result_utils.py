@@ -1,6 +1,6 @@
 import typing
 from functools import cmp_to_key, partial
-from typing import List, Callable, Any, cast
+from typing import List, Callable, Any, cast, NewType
 
 from utils import Language, get_modified_distance
 
@@ -9,6 +9,9 @@ from utils.types import FSTTag, Label, ConcatAnalysis
 
 if typing.TYPE_CHECKING:
     from API.search import SearchResult
+
+
+MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
