@@ -296,218 +296,6 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def fetch_lemma_by_user_query(
-        user_query: str, **extra_constraints
-    ) -> "CreeAndEnglish":
-        """
-        treat the user query as cree and:
-
-        Give the analysis of user query and matched lemmas.
-        There can be multiple analysis for user queries
-        One analysis could match multiple lemmas as well due to underspecified database fields.
-        (inflectional_category and pos can be empty)
-
-        treat the user query as English keyword and:
-
-        Give a list of matched lemmas
-
-        :param user_query: can be English or Cree (syllabics or not)
-        :param extra_constraints: additional fields to disambiguate
-        """
-        # Whitespace won't affect results, but the FST can't deal with it:
-        user_query = user_query.strip()
-        # Normalize to UTF8 NFC
-        user_query = unicodedata.normalize("NFC", user_query)
-        user_query = (
-            user_query.replace("ā", "â")
-            .replace("ē", "ê")
-            .replace("ī", "î")
-            .replace("ō", "ô")
-        )
-        user_query = syllabics2sro(user_query)
-
-        user_query = user_query.lower()
-
-        # build up result_lemmas in 2 ways
-        # 1. affix search (return all results that ends/starts with the query string)
-        # 2. spell relax in descriptive fst
-        # 2. definition containment of the query word
-
-        cree_results: Set[CreeResult] = set()
-
-        # there will be too many matches for some shorter queries
-        if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
-            # prefix and suffix search
-            ids_by_prefix = Wordform.affix_searcher.search_by_prefix(user_query)
-            ids_by_suffix = Wordform.affix_searcher.search_by_suffix(user_query)
-
-            for wf in Wordform.objects.filter(
-                id__in=set(chain(ids_by_prefix, ids_by_suffix)), **extra_constraints
-            ):
-                cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
-
-        # utilize the spell relax in descriptive_analyzer
-        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
-        # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
-        fst_analyses: Set[ConcatAnalysis] = set(
-            a.concatenate() for a in temp_hfstol.analyze(user_query)
-        )
-
-        all_standard_forms = []
-
-        for analysis in fst_analyses:
-            # todo: test
-
-            exactly_matched_wordforms = Wordform.objects.filter(
-                analysis=analysis, as_is=False, **extra_constraints
-            )
-
-            if exactly_matched_wordforms.exists():
-                for wf in exactly_matched_wordforms:
-                    cree_results.add(
-                        CreeResult(ConcatAnalysis(wf.analysis), wf, Lemma(wf.lemma))
-                    )
-            else:
-                # When the user query is outside of paradigm tables
-                # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
-                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+3Sg'}
-                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO+Err/Orth'
-
-                lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(
-                    analysis
-                )
-                if lemma_wc is None:
-                    logger.error(
-                        f"fst_analysis_parser cannot understand analysis {analysis}"
-                    )
-                    continue
-
-                # now we generate the standardized form of the user query for display purpose
-                # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
-                normatized_form_for_analysis = [
-                    *temp_hfstol.generate(
-                        analysis.replace("+Err/Orth", "").replace("+Err/Frag", "")
-                    )
-                ]
-                all_standard_forms.extend(normatized_form_for_analysis)
-                if len(all_standard_forms) == 0:
-                    logger.error(
-                        f"can not generate standardized form for analysis {analysis}"
-                    )
-                normatized_user_query = min(
-                    normatized_form_for_analysis,
-                    key=lambda f: get_modified_distance(f, user_query),
-                )
-
-                lemma, word_class = lemma_wc
-                matched_lemma_wordforms = Wordform.objects.filter(
-                    text=lemma, is_lemma=True, **extra_constraints
-                )
-
-                # now we get wordform objects from database
-                # Note:
-                # non-analyzable matches should not be displayed (mostly from MD)
-                # like "nipa", which means kill him
-                # those results are filtered out by `as_is=False` below
-                # suggested by Arok Wolvengrey
-
-                if word_class.pos is PartOfSpeech.PRON:
-                    # specially handle pronouns.
-                    # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
-                    # "ôma" has multiple analysis
-                    # ôma+Ipc+Foc
-                    # ôma+Pron+Dem+Prox+I+Sg
-                    # ôma+Pron+Def+Prox+I+Sg
-                    # it's ambiguous which one is the lemma in the importing process thus it's labeled "as_is"
-
-                    # a more permanent fix requires every pronouns lemma to be listed and specified
-                    for lemma_wordform in matched_lemma_wordforms:
-                        cree_results.add(
-                            CreeResult(
-                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
-                                normatized_user_query,
-                                Lemma(lemma_wordform),
-                            )
-                        )
-                else:
-                    for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=word_class.pos.name, **extra_constraints
-                    ):
-                        cree_results.add(
-                            CreeResult(
-                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
-                                normatized_user_query,
-                                Lemma(lemma_wordform),
-                            )
-                        )
-
-        # we choose to trust CW and show those matches with definition from CW.
-        # text__in = all_standard_forms help match those lemmas that are labeled as_is but trust-worthy nonetheless
-        # because they come from CW
-        # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
-        for cw_as_is_wordform in filter_cw_wordforms(
-            Wordform.objects.filter(
-                text__in=all_standard_forms + [user_query],
-                as_is=True,
-                is_lemma=True,
-                **extra_constraints,
-            )
-        ):
-            cree_results.add(
-                CreeResult(
-                    ConcatAnalysis(cw_as_is_wordform.analysis),
-                    cw_as_is_wordform,
-                    Lemma(cw_as_is_wordform),
-                )
-            )
-
-        # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
-        # preverbs should be presented
-        # exhaustively search preverbs here (since we can't use fst on preverbs.)
-
-        for preverb_wf in fetch_preverbs(user_query):
-            cree_results.add(
-                CreeResult(
-                    ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
-                )
-            )
-
-        # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
-        # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
-        # that comes from CW
-
-        # now we get results searched by English
-        # todo: remind user "are you searching in cree/english?"
-        # todo: allow inflected forms to be searched through English. (requires database migration
-        #  since now EnglishKeywords are bound to lemmas)
-        english_results: Set[EnglishResult] = set()
-        for stemmed_keyword in stem_keywords(user_query):
-
-            lemma_ids = EnglishKeyword.objects.filter(
-                text__iexact=stemmed_keyword, **extra_constraints
-            ).values("lemma__id")
-
-            for wordform in Wordform.objects.filter(
-                id__in=lemma_ids, **extra_constraints
-            ):
-                english_results.add(
-                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
-                )  # will become  (user_query, inflection.text, inflection.lemma)
-
-            # explained above, preverbs should be presented
-            for wordform in Wordform.objects.filter(
-                Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
-                id__in=lemma_ids,
-                as_is=True,
-                **extra_constraints,
-            ):
-                english_results.add(
-                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
-                )  # will become  (user_query, inflection.text, wordform)
-
-        return CreeAndEnglish(cree_results, english_results)
-
-    @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
 
@@ -518,7 +306,7 @@ class Wordform(models.Model):
         cree_results: Set[CreeResult]
         english_results: Set[EnglishResult]
 
-        cree_results, english_results = Wordform.fetch_lemma_by_user_query(
+        cree_results, english_results = fetch_lemma_by_user_query(
             user_query, **extra_constraints
         )
 
@@ -642,6 +430,212 @@ class Wordform(models.Model):
             )
 
         return results
+
+
+def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
+    """
+    treat the user query as cree and:
+
+    Give the analysis of user query and matched lemmas.
+    There can be multiple analysis for user queries
+    One analysis could match multiple lemmas as well due to underspecified database fields.
+    (inflectional_category and pos can be empty)
+
+    treat the user query as English keyword and:
+
+    Give a list of matched lemmas
+
+    :param user_query: can be English or Cree (syllabics or not)
+    :param extra_constraints: additional fields to disambiguate
+    """
+    # Whitespace won't affect results, but the FST can't deal with it:
+    user_query = user_query.strip()
+    # Normalize to UTF8 NFC
+    user_query = unicodedata.normalize("NFC", user_query)
+    user_query = (
+        user_query.replace("ā", "â")
+        .replace("ē", "ê")
+        .replace("ī", "î")
+        .replace("ō", "ô")
+    )
+    user_query = syllabics2sro(user_query)
+
+    user_query = user_query.lower()
+
+    # build up result_lemmas in 2 ways
+    # 1. affix search (return all results that ends/starts with the query string)
+    # 2. spell relax in descriptive fst
+    # 2. definition containment of the query word
+
+    cree_results: Set[CreeResult] = set()
+
+    # there will be too many matches for some shorter queries
+    if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
+        # prefix and suffix search
+        ids_by_prefix = Wordform.affix_searcher.search_by_prefix(user_query)
+        ids_by_suffix = Wordform.affix_searcher.search_by_suffix(user_query)
+
+        for wf in Wordform.objects.filter(
+            id__in=set(chain(ids_by_prefix, ids_by_suffix)), **extra_constraints
+        ):
+            cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+
+    # utilize the spell relax in descriptive_analyzer
+    # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
+    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+    fst_analyses: Set[ConcatAnalysis] = set(
+        a.concatenate() for a in temp_hfstol.analyze(user_query)
+    )
+
+    all_standard_forms = []
+
+    for analysis in fst_analyses:
+        # todo: test
+
+        exactly_matched_wordforms = Wordform.objects.filter(
+            analysis=analysis, as_is=False, **extra_constraints
+        )
+
+        if exactly_matched_wordforms.exists():
+            for wf in exactly_matched_wordforms:
+                cree_results.add(
+                    CreeResult(ConcatAnalysis(wf.analysis), wf, Lemma(wf.lemma))
+                )
+        else:
+            # When the user query is outside of paradigm tables
+            # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
+            # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+3Sg'}
+            # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO+Err/Orth'
+
+            lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
+            if lemma_wc is None:
+                logger.error(
+                    f"fst_analysis_parser cannot understand analysis {analysis}"
+                )
+                continue
+
+            # now we generate the standardized form of the user query for display purpose
+            # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
+            normatized_form_for_analysis = [
+                *temp_hfstol.generate(
+                    analysis.replace("+Err/Orth", "").replace("+Err/Frag", "")
+                )
+            ]
+            all_standard_forms.extend(normatized_form_for_analysis)
+            if len(all_standard_forms) == 0:
+                logger.error(
+                    f"can not generate standardized form for analysis {analysis}"
+                )
+            normatized_user_query = min(
+                normatized_form_for_analysis,
+                key=lambda f: get_modified_distance(f, user_query),
+            )
+
+            lemma, word_class = lemma_wc
+            matched_lemma_wordforms = Wordform.objects.filter(
+                text=lemma, is_lemma=True, **extra_constraints
+            )
+
+            # now we get wordform objects from database
+            # Note:
+            # non-analyzable matches should not be displayed (mostly from MD)
+            # like "nipa", which means kill him
+            # those results are filtered out by `as_is=False` below
+            # suggested by Arok Wolvengrey
+
+            if word_class.pos is PartOfSpeech.PRON:
+                # specially handle pronouns.
+                # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
+                # "ôma" has multiple analysis
+                # ôma+Ipc+Foc
+                # ôma+Pron+Dem+Prox+I+Sg
+                # ôma+Pron+Def+Prox+I+Sg
+                # it's ambiguous which one is the lemma in the importing process thus it's labeled "as_is"
+
+                # a more permanent fix requires every pronouns lemma to be listed and specified
+                for lemma_wordform in matched_lemma_wordforms:
+                    cree_results.add(
+                        CreeResult(
+                            ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                            normatized_user_query,
+                            Lemma(lemma_wordform),
+                        )
+                    )
+            else:
+                for lemma_wordform in matched_lemma_wordforms.filter(
+                    as_is=False, pos=word_class.pos.name, **extra_constraints
+                ):
+                    cree_results.add(
+                        CreeResult(
+                            ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                            normatized_user_query,
+                            Lemma(lemma_wordform),
+                        )
+                    )
+
+    # we choose to trust CW and show those matches with definition from CW.
+    # text__in = all_standard_forms help match those lemmas that are labeled as_is but trust-worthy nonetheless
+    # because they come from CW
+    # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
+    for cw_as_is_wordform in filter_cw_wordforms(
+        Wordform.objects.filter(
+            text__in=all_standard_forms + [user_query],
+            as_is=True,
+            is_lemma=True,
+            **extra_constraints,
+        )
+    ):
+        cree_results.add(
+            CreeResult(
+                ConcatAnalysis(cw_as_is_wordform.analysis),
+                cw_as_is_wordform,
+                Lemma(cw_as_is_wordform),
+            )
+        )
+
+    # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
+    # preverbs should be presented
+    # exhaustively search preverbs here (since we can't use fst on preverbs.)
+
+    for preverb_wf in fetch_preverbs(user_query):
+        cree_results.add(
+            CreeResult(
+                ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+            )
+        )
+
+    # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
+    # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
+    # that comes from CW
+
+    # now we get results searched by English
+    # todo: remind user "are you searching in cree/english?"
+    # todo: allow inflected forms to be searched through English. (requires database migration
+    #  since now EnglishKeywords are bound to lemmas)
+    english_results: Set[EnglishResult] = set()
+    for stemmed_keyword in stem_keywords(user_query):
+
+        lemma_ids = EnglishKeyword.objects.filter(
+            text__iexact=stemmed_keyword, **extra_constraints
+        ).values("lemma__id")
+
+        for wordform in Wordform.objects.filter(id__in=lemma_ids, **extra_constraints):
+            english_results.add(
+                EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
+            )  # will become  (user_query, inflection.text, inflection.lemma)
+
+        # explained above, preverbs should be presented
+        for wordform in Wordform.objects.filter(
+            Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
+            id__in=lemma_ids,
+            as_is=True,
+            **extra_constraints,
+        ):
+            english_results.add(
+                EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
+            )  # will become  (user_query, inflection.text, wordform)
+
+    return CreeAndEnglish(cree_results, english_results)
 
 
 # it's a str when the preverb does not exist in the database

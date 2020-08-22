@@ -3,9 +3,10 @@ from collections import Iterable
 from typing import List
 
 import pytest
-from API.models import Wordform
-from CreeDictionary import settings
 from hypothesis import assume, given
+
+from API.models import Wordform, fetch_lemma_by_user_query
+from CreeDictionary import settings
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language
@@ -54,7 +55,7 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     """
 
     query = lemma.text
-    cree_results, _ = Wordform.fetch_lemma_by_user_query(query)
+    cree_results, _ = fetch_lemma_by_user_query(query)
 
     exact_match = False
     matched_lemma_count = 0
@@ -172,7 +173,7 @@ def test_search_space_characters_in_matched_term(term):
     assert word is not None
 
     # Now try searching for it:
-    cree_results, _ = Wordform.fetch_lemma_by_user_query(term)
+    cree_results, _ = fetch_lemma_by_user_query(term)
     assert len(cree_results) > 0
 
 
