@@ -1,5 +1,6 @@
 import typing
 
+from django.db import models
 from sortedcontainers import SortedSet
 
 if typing.TYPE_CHECKING:
@@ -24,3 +25,9 @@ class WordformSearchMixin:
 
         search = WordformSearch(query, constraints)
         return search.perform()
+
+
+class WordformManager(models.Manager, WordformSearchMixin):
+    """
+    Adds search to wordforms.
+    """

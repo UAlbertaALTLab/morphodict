@@ -31,7 +31,7 @@ from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from API.search import SearchResult
-from API.search_mixin import WordformSearchMixin
+from API.search_mixin import WordformManager
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
@@ -91,12 +91,6 @@ def fetch_preverbs(user_query: str) -> Set["Wordform"]:
 
 NormatizedCree = NewType("NormatizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
-
-
-class WordformManager(models.Manager, WordformSearchMixin):
-    """
-    Adds search to wordforms.
-    """
 
 
 class Wordform(models.Model):
