@@ -5,8 +5,8 @@ from typing import Tuple, cast
 
 import attr
 from attr import attrs
+from sortedcontainers import SortedSet
 
-from API.models import SortedSet
 from API.schema import SerializedSearchResult
 from utils import Language
 
