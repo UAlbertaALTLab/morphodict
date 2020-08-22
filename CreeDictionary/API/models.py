@@ -322,41 +322,6 @@ class WordformSearch:
         results.extend(self.prepare_english_results(res.english_results))
         return results
 
-    # consistent with SearchResult.preverb
-    @staticmethod
-    def get_preverbs_from_head_breakdown(
-        head_breakdown: List[FSTTag],
-    ) -> Tuple["Preverb", ...]:
-        results = []
-
-        for tag in head_breakdown:
-            preverb_result: Optional[Preverb] = None
-            if tag.startswith("PV/"):
-                # use altlabel.tsv to figure out the preverb
-
-                # ling_short looks like: "Preverb: âpihci-"
-                ling_short = LABELS.linguistic_short.get(tag)
-                if ling_short is not None and ling_short != "":
-                    # looks like: "âpihci"
-                    normative_preverb_text = ling_short[len("Preverb: ") : -1]
-                    preverb_results = fetch_preverbs(normative_preverb_text)
-
-                    # find the one that looks the most similar
-                    if preverb_results:
-                        preverb_result = min(
-                            preverb_results,
-                            key=lambda pr: get_modified_distance(
-                                normative_preverb_text, pr.text.strip("-"),
-                            ),
-                        )
-
-                    else:  # can't find a match for the preverb in the database
-                        preverb_result = normative_preverb_text
-
-            if preverb_result is not None:
-                results.append(preverb_result)
-        return tuple(results)
-
     def prepare_cree_results(self, cree_results) -> Iterable[SearchResult]:
         # Create the search results
         for cree_result in cree_results:
@@ -435,6 +400,41 @@ class WordformSearch:
                 #       This may be an empty tuple in the future
                 #       when EnglishKeyword can be associated with non-lemmas
             )
+
+    # consistent with SearchResult.preverb
+    @staticmethod
+    def get_preverbs_from_head_breakdown(
+            head_breakdown: List[FSTTag],
+    ) -> Tuple["Preverb", ...]:
+        results = []
+
+        for tag in head_breakdown:
+            preverb_result: Optional[Preverb] = None
+            if tag.startswith("PV/"):
+                # use altlabel.tsv to figure out the preverb
+
+                # ling_short looks like: "Preverb: âpihci-"
+                ling_short = LABELS.linguistic_short.get(tag)
+                if ling_short is not None and ling_short != "":
+                    # looks like: "âpihci"
+                    normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                    preverb_results = fetch_preverbs(normative_preverb_text)
+
+                    # find the one that looks the most similar
+                    if preverb_results:
+                        preverb_result = min(
+                            preverb_results,
+                            key=lambda pr: get_modified_distance(
+                                normative_preverb_text, pr.text.strip("-"),
+                            ),
+                        )
+
+                    else:  # can't find a match for the preverb in the database
+                        preverb_result = normative_preverb_text
+
+            if preverb_result is not None:
+                results.append(preverb_result)
+        return tuple(results)
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
