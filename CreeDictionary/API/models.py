@@ -271,7 +271,6 @@ class Wordform(models.Model):
 
 
 # it's a str when the preverb does not exist in the database
-Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 
 

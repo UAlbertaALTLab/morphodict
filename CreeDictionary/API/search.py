@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable, List, Optional
+from typing import Tuple, cast, Iterable, List, Optional, Union
 
 import attr
-from API.models import Preverb, fetch_preverbs
+from API.models import fetch_preverbs, Wordform
 from attr import attrs
 
 from API.schema import SerializedSearchResult
@@ -11,7 +11,9 @@ from utils import Language, get_modified_distance
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
-from .models import Wordform, Preverb, Definition
+from .models import Wordform, Definition
+
+Preverb = Union[Wordform, str]
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
