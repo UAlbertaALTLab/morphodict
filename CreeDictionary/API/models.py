@@ -300,8 +300,10 @@ class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
     """
-    def __init__(self, user_query: str):
-        self.results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
+    def __init__(self, query: str, constraints: dict):
+        self.results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(query))
+        self.query = query
+        self.constraints = constraints
 
     @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
@@ -311,13 +313,19 @@ class WordformSearch:
         :param extra_constraints: additional fields to disambiguate
         :return:
         """
-        res = fetch_lemma_by_user_query(user_query, **extra_constraints)
 
-        search = WordformSearch(user_query)
-        search.prepare_cree_results(res.cree_results)
-        search.prepare_english_results(res.english_results)
+        search = WordformSearch(user_query, extra_constraints)
+        return search.perform()
 
-        return search.results
+    def perform(self) -> SortedSet[SearchResult]:
+        """
+        Do the search
+        :return: sorted search results
+        """
+        res = fetch_lemma_by_user_query(self.query, **self.constraints)
+        self.prepare_cree_results(res.cree_results)
+        self.prepare_english_results(res.english_results)
+        return self.results
 
     # consistent with SearchResult.preverb
     @staticmethod
