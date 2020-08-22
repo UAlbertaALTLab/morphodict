@@ -312,8 +312,12 @@ class WordformSearch:
         """
         res = fetch_lemma_by_user_query(self.query, **self.constraints)
         self.prepare_cree_results(res.cree_results)
-        self.prepare_english_results(res.english_results)
+        self._add_all(self.prepare_english_results(res.english_results))
         return self.results
+
+    def _add_all(self, results: Iterable[SearchResult]):
+        for res in results:
+            self.results.add(res)
 
     # consistent with SearchResult.preverb
     @staticmethod
@@ -394,7 +398,7 @@ class WordformSearch:
                 )
             )
 
-    def prepare_english_results(self, english_results):
+    def prepare_english_results(self, english_results) -> Iterable[SearchResult]:
         for result in english_results:
             try:
                 (
@@ -406,8 +410,7 @@ class WordformSearch:
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []
 
-            self.results.add(
-                SearchResult(
+            yield SearchResult(
                     matched_cree=result.matched_cree.text,
                     is_lemma=result.matched_cree.is_lemma,
                     matched_by=Language.ENGLISH,
@@ -429,7 +432,6 @@ class WordformSearch:
                     #       This may be an empty tuple in the future
                     #       when EnglishKeyword can be associated with non-lemmas
                 )
-            )
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
     """
