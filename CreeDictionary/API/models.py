@@ -372,15 +372,7 @@ class WordformSearch:
         self, english_results: Set["EnglishResult"]
     ) -> Iterable[SearchResult]:
         for result in english_results:
-            try:
-                (
-                    linguistic_breakdown_head,
-                    _,
-                    linguistic_breakdown_tail,
-                ) = partition_analysis(result.lemma.analysis)
-            except ValueError:
-                linguistic_breakdown_head = []
-                linguistic_breakdown_tail = []
+            linguistic_breakdown_head, linguistic_breakdown_tail = safe_partition_analysis(result.lemma.analysis)
 
             yield SearchResult(
                 matched_cree=result.matched_cree.text,
@@ -439,6 +431,19 @@ class WordformSearch:
             if preverb_result is not None:
                 results.append(preverb_result)
         return tuple(results)
+
+
+def safe_partition_analysis(analysis: ConcatAnalysis):
+    try:
+        (
+            linguistic_breakdown_head,
+            _,
+            linguistic_breakdown_tail,
+        ) = partition_analysis(analysis)
+    except ValueError:
+        linguistic_breakdown_head = []
+        linguistic_breakdown_tail = []
+    return linguistic_breakdown_head, linguistic_breakdown_tail
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
