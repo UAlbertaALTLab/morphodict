@@ -1,11 +1,8 @@
 import logging
 import unicodedata
 from collections import defaultdict
-from functools import cmp_to_key, partial
 from itertools import chain
 from typing import (
-    Any,
-    Callable,
     Dict,
     Iterable,
     List,
@@ -15,14 +12,13 @@ from typing import (
     Set,
     Tuple,
     Union,
-    cast,
 )
 from urllib.parse import quote
 
 from API.result_utils import (
     replace_user_friendly_tags,
     safe_partition_analysis,
-    sort_search_result,
+    sort_by_user_query,
 )
 from API.utils import SortedSetWithExtend
 from cree_sro_syllabics import syllabics2sro
@@ -611,23 +607,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
-
-
-def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
-    """
-    Returns a key function that sorts search results ranked by their distance
-    to the user query.
-    """
-    # mypy doesn't really know how to handle partial(), so we tell it the
-    # correct type with cast()
-    # See: https://github.com/python/mypy/issues/1484
-    return cmp_to_key(
-        cast(
-            Callable[[Any, Any], Any],
-            partial(sort_search_result, user_query=user_query),
-        )
-    )
-
 
 Lemma = NewType("Lemma", Wordform)
 

@@ -1,5 +1,6 @@
 import typing
-from typing import List
+from functools import cmp_to_key, partial
+from typing import List, Callable, Any, cast
 
 from utils import Language, get_modified_distance
 
@@ -83,3 +84,19 @@ def sort_search_result(
                 Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
                 - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
             )
+
+
+def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
+    """
+    Returns a key function that sorts search results ranked by their distance
+    to the user query.
+    """
+    # mypy doesn't really know how to handle partial(), so we tell it the
+    # correct type with cast()
+    # See: https://github.com/python/mypy/issues/1484
+    return cmp_to_key(
+        cast(
+            Callable[[Any, Any], Any],
+            partial(sort_search_result, user_query=user_query),
+        )
+    )
