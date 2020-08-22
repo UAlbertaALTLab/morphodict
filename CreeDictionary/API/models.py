@@ -1,6 +1,5 @@
 import logging
 import unicodedata
-import warnings
 from collections import defaultdict
 from functools import cmp_to_key, partial
 from itertools import chain
@@ -20,6 +19,7 @@ from typing import (
 )
 from urllib.parse import quote
 
+from API.utils import SortedSetWithExtend
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -294,12 +294,6 @@ class Wordform(models.Model):
             self.lemma_id = self.id
 
         super(Wordform, self).save(*args, **kwargs)
-
-
-class SortedSetWithExtend(SortedSet):
-    def extend(self, items):
-        for it in items:
-            self.add(it)
 
 
 class WordformSearch:
