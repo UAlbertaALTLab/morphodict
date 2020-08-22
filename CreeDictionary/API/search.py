@@ -161,7 +161,7 @@ class CreeAndEnglish(NamedTuple):
 
 class WordformSearch:
     """
-    Intermediate class while I'm figuring out this refactor :/
+    Handles searching for one particular query, and an optional set of constraints.
     """
 
     def __init__(self, query: str, constraints: dict):
