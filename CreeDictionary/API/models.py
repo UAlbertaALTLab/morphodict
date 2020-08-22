@@ -30,7 +30,7 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from API.search import SearchResult
+from API.search import SearchResult, filter_cw_wordforms
 from API.wordform_manager_with_search import WordformManagerWithSearch
 from paradigm import Layout
 from shared import paradigm_filler
@@ -51,19 +51,6 @@ from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
 
 logger = logging.getLogger(__name__)
-
-
-def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
-    """
-    return the wordforms that has definition from CW dictionary
-
-    :param q: an Iterable of Wordforms
-    """
-    for wordform in q:
-        for definition in wordform.definitions.all():
-            if "CW" in definition.source_ids:
-                yield wordform
-                break
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:

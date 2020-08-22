@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 import typing
-from typing import Tuple, cast
+from typing import Tuple, cast, Iterable
 
 import attr
 from attr import attrs
@@ -73,3 +73,16 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
+
+
+def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
+    """
+    return the wordforms that has definition from CW dictionary
+
+    :param q: an Iterable of Wordforms
+    """
+    for wordform in q:
+        for definition in wordform.definitions.all():
+            if "CW" in definition.source_ids:
+                yield wordform
+                break
