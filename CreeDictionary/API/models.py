@@ -258,6 +258,10 @@ class Wordform(models.Model):
 Lemma = NewType("Lemma", Wordform)
 
 
+if typing.TYPE_CHECKING:
+    from .search import CreeAndEnglish, EnglishResult
+
+
 class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
@@ -349,10 +353,6 @@ class WordformSearch:
             )
 
 
-if typing.TYPE_CHECKING:
-    from .search import CreeAndEnglish
-
-
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
     """
     treat the user query as cree and:
@@ -369,7 +369,7 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-    from .search import filter_cw_wordforms, CreeAndEnglish
+    from .search import filter_cw_wordforms, CreeAndEnglish, EnglishResult
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
@@ -584,21 +584,6 @@ class CreeResult(NamedTuple):
             return self.normatized_cree.text
         else:  # is str
             return self.normatized_cree
-
-
-class EnglishResult(NamedTuple):
-    """
-    - matched_english: a string, the English that matches user query, currently it will just be the same as user query.
-        (unicode normalized, lowercased)
-
-    - normatized_cree: a string, the Cree inflection that matches the English
-
-    - lemma: a Wordform object, the lemma of the matched inflection
-    """
-
-    matched_english: MatchedEnglish
-    matched_cree: Wordform
-    lemma: Lemma
 
 
 class DictionarySource(models.Model):

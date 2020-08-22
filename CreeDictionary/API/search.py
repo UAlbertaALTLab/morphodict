@@ -3,7 +3,8 @@
 from typing import Tuple, cast, Iterable, List, Optional, Union, Set, NamedTuple
 
 import attr
-from API.models import Wordform, CreeResult, EnglishResult
+from API.models import Wordform, CreeResult, Lemma
+from API.result_utils import MatchedEnglish
 from attr import attrs
 
 from API.schema import SerializedSearchResult
@@ -77,6 +78,21 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
+
+
+class EnglishResult(NamedTuple):
+    """
+    - matched_english: a string, the English that matches user query, currently it will just be the same as user query.
+        (unicode normalized, lowercased)
+
+    - normatized_cree: a string, the Cree inflection that matches the English
+
+    - lemma: a Wordform object, the lemma of the matched inflection
+    """
+
+    matched_english: MatchedEnglish
+    matched_cree: Wordform
+    lemma: Lemma
 
 
 class CreeAndEnglish(NamedTuple):
