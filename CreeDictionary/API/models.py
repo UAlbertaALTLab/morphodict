@@ -56,8 +56,6 @@ if typing.TYPE_CHECKING:
 
 logger = logging.getLogger(__name__)
 
-WordformID = NewType("WordformID", int)  # the id of an wordform object in the database
-
 
 def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     """
@@ -74,7 +72,6 @@ def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
-NormatizedCree = NewType("NormatizedCree", str)
 MatchedEnglish = NewType("MatchedEnglish", str)
 
 
