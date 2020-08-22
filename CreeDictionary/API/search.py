@@ -86,4 +86,5 @@ class WordformSearchMixin:
     def search(self, query: str, **constraints) -> SortedSet[SearchResult]:
         from .models import WordformSearch
 
-        return WordformSearch._search(query, **constraints)
+        search = WordformSearch(query, constraints)
+        return search.perform()
