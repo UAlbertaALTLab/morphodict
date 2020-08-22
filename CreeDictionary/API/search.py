@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable, List, Optional, Union
+from typing import Tuple, cast, Iterable, List, Optional, Union, Set
 
 import attr
-from API.models import fetch_preverbs, Wordform
+from API.models import Wordform
 from attr import attrs
 
 from API.schema import SerializedSearchResult
 from utils import Language, get_modified_distance
+from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
@@ -123,3 +124,18 @@ def get_preverbs_from_head_breakdown(
         if preverb_result is not None:
             results.append(preverb_result)
     return tuple(results)
+
+
+def fetch_preverbs(user_query: str) -> Set[Wordform]:
+    """
+    Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
+    trailing dash relaxation is used
+
+    :param user_query: unicode normalized, to_lower-ed
+    """
+
+    if user_query.endswith("-"):
+        user_query = user_query[:-1]
+    user_query = remove_cree_diacritics(user_query)
+
+    return Wordform.PREVERB_ASCII_LOOKUP[user_query]

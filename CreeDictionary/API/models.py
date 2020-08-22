@@ -43,7 +43,6 @@ from utils import (
     fst_analysis_parser,
     get_modified_distance,
 )
-from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS
 from utils.types import ConcatAnalysis, FSTTag
@@ -55,21 +54,6 @@ if typing.TYPE_CHECKING:
     from .search import SearchResult
 
 logger = logging.getLogger(__name__)
-
-
-def fetch_preverbs(user_query: str) -> Set["Wordform"]:
-    """
-    Search for preverbs in the database by matching the circumflex-stripped forms. MD only contents are filtered out.
-    trailing dash relaxation is used
-
-    :param user_query: unicode normalized, to_lower-ed
-    """
-
-    if user_query.endswith("-"):
-        user_query = user_query[:-1]
-    user_query = remove_cree_diacritics(user_query)
-
-    return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
 class Wordform(models.Model):
@@ -531,6 +515,8 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
     # preverbs should be presented
     # exhaustively search preverbs here (since we can't use fst on preverbs.)
+
+    from .search import fetch_preverbs
 
     for preverb_wf in fetch_preverbs(user_query):
         cree_results.add(
