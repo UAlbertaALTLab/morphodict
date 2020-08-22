@@ -4,40 +4,40 @@ import logging
 import unicodedata
 from itertools import chain
 from typing import (
-    Tuple,
-    cast,
     Iterable,
     List,
-    Optional,
-    Union,
-    Set,
     NamedTuple,
     NewType,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+    cast
 )
 
 import attr
-from API.result_utils import (
-    MatchedEnglish,
-    sort_by_user_query,
-    safe_partition_analysis,
-    replace_user_friendly_tags,
-)
-from API.utils import SortedSetWithExtend
-from CreeDictionary import hfstol as temp_hfstol
 from attr import attrs
-
-from API.schema import SerializedSearchResult
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db.models import Q
 from sortedcontainers import SortedSet
-from utils import Language, get_modified_distance, fst_analysis_parser, PartOfSpeech
+
+from CreeDictionary import hfstol as temp_hfstol
+from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS
-from utils.types import FSTTag, ConcatAnalysis
+from utils.types import ConcatAnalysis, FSTTag
 
-from .models import Wordform, Definition, EnglishKeyword
+from .models import Definition, EnglishKeyword, Wordform
+from .result_utils import (
+    MatchedEnglish,
+    replace_user_friendly_tags,
+    safe_partition_analysis,
+    sort_by_user_query
+)
+from .schema import SerializedSearchResult
+from .utils import SortedSetWithExtend
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
