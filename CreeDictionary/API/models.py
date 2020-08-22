@@ -351,6 +351,49 @@ class WordformSearch:
                     results.append(preverb_result)
             return tuple(results)
 
+        WordformSearch.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results)
+
+        for result in english_results:
+
+            try:
+                (
+                    linguistic_breakdown_head,
+                    _,
+                    linguistic_breakdown_tail,
+                ) = partition_analysis(result.lemma.analysis)
+            except ValueError:
+                linguistic_breakdown_head = []
+                linguistic_breakdown_tail = []
+
+            results.add(
+                SearchResult(
+                    matched_cree=result.matched_cree.text,
+                    is_lemma=result.matched_cree.is_lemma,
+                    matched_by=Language.ENGLISH,
+                    lemma_wordform=result.matched_cree.lemma,
+                    preverbs=get_preverbs_from_head_breakdown(
+                        linguistic_breakdown_head
+                    ),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
+                    definitions=tuple(result.matched_cree.definitions.all()),
+                    # todo: current EnglishKeyword is bound to
+                    #       lemmas, whose definitions are guaranteed in the database.
+                    #       This may be an empty tuple in the future
+                    #       when EnglishKeyword can be associated with non-lemmas
+                )
+            )
+
+        return results
+
+    @staticmethod
+    def prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, results):
         # Create the search results
         for cree_result in cree_results:
 
@@ -396,45 +439,6 @@ class WordformSearch:
                     definitions=definitions,
                 )
             )
-
-        for result in english_results:
-
-            try:
-                (
-                    linguistic_breakdown_head,
-                    _,
-                    linguistic_breakdown_tail,
-                ) = partition_analysis(result.lemma.analysis)
-            except ValueError:
-                linguistic_breakdown_head = []
-                linguistic_breakdown_tail = []
-
-            results.add(
-                SearchResult(
-                    matched_cree=result.matched_cree.text,
-                    is_lemma=result.matched_cree.is_lemma,
-                    matched_by=Language.ENGLISH,
-                    lemma_wordform=result.matched_cree.lemma,
-                    preverbs=get_preverbs_from_head_breakdown(
-                        linguistic_breakdown_head
-                    ),
-                    reduplication_tags=(),
-                    initial_change_tags=(),
-                    linguistic_breakdown_head=tuple(
-                        replace_user_friendly_tags(linguistic_breakdown_head)
-                    ),
-                    linguistic_breakdown_tail=tuple(
-                        replace_user_friendly_tags(linguistic_breakdown_tail)
-                    ),
-                    definitions=tuple(result.matched_cree.definitions.all()),
-                    # todo: current EnglishKeyword is bound to
-                    #       lemmas, whose definitions are guaranteed in the database.
-                    #       This may be an empty tuple in the future
-                    #       when EnglishKeyword can be associated with non-lemmas
-                )
-            )
-
-        return results
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
