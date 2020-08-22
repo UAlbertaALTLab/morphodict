@@ -349,6 +349,10 @@ class WordformSearch:
             )
 
 
+if typing.TYPE_CHECKING:
+    from .search import CreeAndEnglish
+
+
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":
     """
     treat the user query as cree and:
@@ -365,7 +369,7 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-    from .search import filter_cw_wordforms
+    from .search import filter_cw_wordforms, CreeAndEnglish
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
@@ -595,20 +599,6 @@ class EnglishResult(NamedTuple):
     matched_english: MatchedEnglish
     matched_cree: Wordform
     lemma: Lemma
-
-
-class CreeAndEnglish(NamedTuple):
-    """
-    Duct tapes together two kinds of search results:
-
-     - cree results -- an ordered set of CreeResults, should be sorted by the modified levenshtein distance between the
-        analysis and the matched normatized form
-     - english results -- an ordered set of EnglishResults, sorting mechanism is to be determined
-    """
-
-    # MatchedCree are inflections
-    cree_results: Set[CreeResult]
-    english_results: Set[EnglishResult]
 
 
 class DictionarySource(models.Model):

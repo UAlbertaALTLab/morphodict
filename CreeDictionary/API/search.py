@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable, List, Optional, Union, Set
+from typing import Tuple, cast, Iterable, List, Optional, Union, Set, NamedTuple
 
 import attr
-from API.models import Wordform
+from API.models import Wordform, CreeResult, EnglishResult
 from attr import attrs
 
 from API.schema import SerializedSearchResult
@@ -77,6 +77,20 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
+
+
+class CreeAndEnglish(NamedTuple):
+    """
+    Duct tapes together two kinds of search results:
+
+     - cree results -- an ordered set of CreeResults, should be sorted by the modified levenshtein distance between the
+        analysis and the matched normatized form
+     - english results -- an ordered set of EnglishResults, sorting mechanism is to be determined
+    """
+
+    # MatchedCree are inflections
+    cree_results: Set[CreeResult]
+    english_results: Set[EnglishResult]
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
