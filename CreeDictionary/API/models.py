@@ -311,7 +311,7 @@ class WordformSearch:
         :return: sorted search results
         """
         res = fetch_lemma_by_user_query(self.query, **self.constraints)
-        self.prepare_cree_results(res.cree_results)
+        self._add_all(self.prepare_cree_results(res.cree_results))
         self._add_all(self.prepare_english_results(res.english_results))
         return self.results
 
@@ -352,7 +352,7 @@ class WordformSearch:
                 results.append(preverb_result)
         return tuple(results)
 
-    def prepare_cree_results(self, cree_results):
+    def prepare_cree_results(self, cree_results) -> Iterable[SearchResult]:
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -377,8 +377,7 @@ class WordformSearch:
                 linguistic_breakdown_tail = []
 
             # todo: tags
-            self.results.add(
-                SearchResult(
+            yield SearchResult(
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
                     matched_by=Language.CREE,
@@ -396,7 +395,6 @@ class WordformSearch:
                     initial_change_tags=(),
                     definitions=definitions,
                 )
-            )
 
     def prepare_english_results(self, english_results) -> Iterable[SearchResult]:
         for result in english_results:
