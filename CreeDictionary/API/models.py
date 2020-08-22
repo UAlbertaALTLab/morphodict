@@ -7,7 +7,6 @@ from typing import (
     Dict,
     Iterable,
     List,
-    NewType,
     Optional,
     Set,
 )
@@ -252,10 +251,6 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
 
-# it's a str when the preverb does not exist in the database
-Lemma = NewType("Lemma", Wordform)
-
-
 if typing.TYPE_CHECKING:
     from .search import CreeAndEnglish, CreeResult, EnglishResult
 
@@ -367,7 +362,13 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-    from .search import filter_cw_wordforms, CreeAndEnglish, CreeResult, EnglishResult
+    from .search import (
+        filter_cw_wordforms,
+        CreeAndEnglish,
+        CreeResult,
+        EnglishResult,
+        Lemma,
+    )
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()

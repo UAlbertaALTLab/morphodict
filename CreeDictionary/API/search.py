@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable, List, Optional, Union, Set, NamedTuple
+from typing import (
+    Tuple,
+    cast,
+    Iterable,
+    List,
+    Optional,
+    Union,
+    Set,
+    NamedTuple,
+    NewType,
+)
 
 import attr
-from API.models import Wordform, Lemma
+from API.models import Wordform
 from API.result_utils import MatchedEnglish
 from attr import attrs
 
@@ -15,7 +25,9 @@ from utils.types import FSTTag, ConcatAnalysis
 
 from .models import Wordform, Definition
 
+# it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
+Lemma = NewType("Lemma", Wordform)
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
