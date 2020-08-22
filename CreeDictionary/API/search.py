@@ -5,7 +5,6 @@ from typing import Tuple, cast
 
 import attr
 from attr import attrs
-from sortedcontainers import SortedSet
 
 from API.schema import SerializedSearchResult
 from utils import Language
@@ -74,17 +73,3 @@ class SearchResult:
             definition.serialize() for definition in self.definitions
         ]
         return cast(SerializedSearchResult, result)
-
-
-class WordformSearchMixin:
-    """
-    To be mixed in with a WordformManager to provide this functionality:
-
-        Wordform.objects.search()
-    """
-
-    def search(self, query: str, **constraints) -> SortedSet[SearchResult]:
-        from .models import WordformSearch
-
-        search = WordformSearch(query, constraints)
-        return search.perform()

@@ -30,7 +30,8 @@ from django.utils.functional import cached_property
 from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
-from API.search import SearchResult, WordformSearchMixin
+from API.search import SearchResult
+from API.search_mixin import WordformSearchMixin
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
