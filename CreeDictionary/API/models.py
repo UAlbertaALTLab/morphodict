@@ -273,6 +273,10 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
 
+# it's a str when the preverb does not exist in the database
+Preverb = Union[Wordform, str]
+Lemma = NewType("Lemma", Wordform)
+
 class WordformSearch:
     """
     Intermediate class while I'm figuring out this refactor :/
@@ -604,11 +608,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndE
 
     return CreeAndEnglish(cree_results, english_results)
 
-
-# it's a str when the preverb does not exist in the database
-Preverb = Union[Wordform, str]
-
-Lemma = NewType("Lemma", Wordform)
 
 
 class CreeResult(NamedTuple):
