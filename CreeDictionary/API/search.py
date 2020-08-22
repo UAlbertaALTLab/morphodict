@@ -1,17 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from functools import cmp_to_key, partial
-from typing import List, Callable, Any, cast, NewType
-
-from utils import Language, get_modified_distance
-
-from utils.fst_analysis_parser import LABELS, partition_analysis
-from utils.types import FSTTag, Label, ConcatAnalysis
-
 import logging
 import unicodedata
+from functools import cmp_to_key, partial
 from itertools import chain
 from typing import (
+    Any,
+    Callable,
     Iterable,
     List,
     NamedTuple,
@@ -20,7 +15,7 @@ from typing import (
     Set,
     Tuple,
     Union,
-    cast
+    cast,
 )
 
 import attr
@@ -34,8 +29,8 @@ from CreeDictionary import hfstol as temp_hfstol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
-from utils.fst_analysis_parser import LABELS
-from utils.types import ConcatAnalysis, FSTTag
+from utils.fst_analysis_parser import LABELS, partition_analysis
+from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedSearchResult
@@ -520,8 +515,6 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> CreeAndEn
     return CreeAndEnglish(cree_results, english_results)
 
 
-
-
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """ replace fst-tags to cute ones"""
     return LABELS.english.get_full_relabelling(fst_tags)
@@ -539,7 +532,7 @@ def safe_partition_analysis(analysis: ConcatAnalysis):
 
 
 def sort_search_result(
-        res_a: "SearchResult", res_b: "SearchResult", user_query: str
+    res_a: "SearchResult", res_b: SearchResult, user_query: str
 ) -> float:
     """
     determine how we sort search results.
@@ -592,8 +585,8 @@ def sort_search_result(
             return 0
         else:  # both in rankings
             return (
-                    Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
-                    - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
+                Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
+                - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
             )
 
 
