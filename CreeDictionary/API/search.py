@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable
+from typing import Tuple, cast, Iterable, List, Optional
 
 import attr
+from API.models import Preverb, fetch_preverbs
 from attr import attrs
 
 from API.schema import SerializedSearchResult
-from utils import Language
+from utils import Language, get_modified_distance
+from utils.fst_analysis_parser import LABELS
+from utils.types import FSTTag
 
 from .models import Wordform, Preverb, Definition
 
@@ -84,3 +87,37 @@ def filter_cw_wordforms(q: Iterable["Wordform"]) -> Iterable["Wordform"]:
             if "CW" in definition.source_ids:
                 yield wordform
                 break
+
+
+def get_preverbs_from_head_breakdown(
+    head_breakdown: List[FSTTag],
+) -> Tuple[Preverb, ...]:
+    results = []
+
+    for tag in head_breakdown:
+        preverb_result: Optional[Preverb] = None
+        if tag.startswith("PV/"):
+            # use altlabel.tsv to figure out the preverb
+
+            # ling_short looks like: "Preverb: âpihci-"
+            ling_short = LABELS.linguistic_short.get(tag)
+            if ling_short is not None and ling_short != "":
+                # looks like: "âpihci"
+                normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                preverb_results = fetch_preverbs(normative_preverb_text)
+
+                # find the one that looks the most similar
+                if preverb_results:
+                    preverb_result = min(
+                        preverb_results,
+                        key=lambda pr: get_modified_distance(
+                            normative_preverb_text, pr.text.strip("-"),
+                        ),
+                    )
+
+                else:  # can't find a match for the preverb in the database
+                    preverb_result = normative_preverb_text
+
+        if preverb_result is not None:
+            results.append(preverb_result)
+    return tuple(results)
