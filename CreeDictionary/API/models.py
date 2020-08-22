@@ -335,18 +335,7 @@ class WordformSearch:
                 is_lemma = False
                 definitions = ()
 
-            try:
-                (
-                    linguistic_breakdown_head,
-                    _,
-                    linguistic_breakdown_tail,
-                ) = partition_analysis(cree_result.analysis)
-            except ValueError:
-                # when the lemma has as-is = True,
-                # analysis could be programmatically generated and not parsable
-                # see xml_importer.py::generate_as_is_analysis
-                linguistic_breakdown_head = []
-                linguistic_breakdown_tail = []
+            linguistic_breakdown_head, linguistic_breakdown_tail, = safe_partition_analysis(cree_result.analysis)
 
             # todo: tags
             yield SearchResult(
