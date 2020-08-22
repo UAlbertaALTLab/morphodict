@@ -295,6 +295,11 @@ class Wordform(models.Model):
 
         super(Wordform, self).save(*args, **kwargs)
 
+
+class WordformSearch:
+    """
+    Intermediate class while I'm figuring out this refactor :/
+    """
     @staticmethod
     def _search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
         """
