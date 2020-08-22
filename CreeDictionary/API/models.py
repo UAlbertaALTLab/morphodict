@@ -353,12 +353,12 @@ class WordformSearch:
             return tuple(results)
 
         search = WordformSearch(user_query)
-        search.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown, search.results)
-        search.prepare_english_results(english_results, get_preverbs_from_head_breakdown, search.results)
+        search.prepare_cree_results(cree_results, get_preverbs_from_head_breakdown)
+        search.prepare_english_results(english_results, get_preverbs_from_head_breakdown)
 
         return search.results
 
-    def prepare_cree_results(self, cree_results, get_preverbs_from_head_breakdown, results):
+    def prepare_cree_results(self, cree_results, get_preverbs_from_head_breakdown):
         # Create the search results
         for cree_result in cree_results:
             matched_cree = cree_result.normatized_cree_text
@@ -383,7 +383,7 @@ class WordformSearch:
                 linguistic_breakdown_tail = []
 
             # todo: tags
-            results.add(
+            self.results.add(
                 SearchResult(
                     matched_cree=matched_cree,
                     is_lemma=is_lemma,
@@ -404,7 +404,7 @@ class WordformSearch:
                 )
             )
 
-    def prepare_english_results(self, english_results, get_preverbs_from_head_breakdown, results):
+    def prepare_english_results(self, english_results, get_preverbs_from_head_breakdown):
         for result in english_results:
             try:
                 (
@@ -416,7 +416,7 @@ class WordformSearch:
                 linguistic_breakdown_head = []
                 linguistic_breakdown_tail = []
 
-            results.add(
+            self.results.add(
                 SearchResult(
                     matched_cree=result.matched_cree.text,
                     is_lemma=result.matched_cree.is_lemma,
