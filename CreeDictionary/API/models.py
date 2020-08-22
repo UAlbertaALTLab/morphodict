@@ -5,20 +5,13 @@ from collections import defaultdict
 from itertools import chain
 from typing import (
     Dict,
-    Iterable,
     List,
     Optional,
     Set,
 )
 from urllib.parse import quote
 
-from API.result_utils import (
-    replace_user_friendly_tags,
-    safe_partition_analysis,
-    sort_by_user_query,
-    MatchedEnglish,
-)
-from API.utils import SortedSetWithExtend
+from API.result_utils import MatchedEnglish
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db import models, transaction
@@ -26,14 +19,12 @@ from django.db.models import Max, Q
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from sortedcontainers import SortedSet
 
 import CreeDictionary.hfstol as temp_hfstol
 from API.wordform_manager_with_search import WordformManagerWithSearch
 from paradigm import Layout
 from shared import paradigm_filler
 from utils import (
-    Language,
     ParadigmSize,
     PartOfSpeech,
     WordClass,
@@ -46,9 +37,6 @@ from utils.types import ConcatAnalysis, FSTTag
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
-
-if typing.TYPE_CHECKING:
-    from .search import SearchResult
 
 logger = logging.getLogger(__name__)
 
@@ -252,98 +240,7 @@ class Wordform(models.Model):
 
 
 if typing.TYPE_CHECKING:
-    from .search import CreeAndEnglish, CreeResult, EnglishResult
-
-
-class WordformSearch:
-    """
-    Intermediate class while I'm figuring out this refactor :/
-    """
-
-    def __init__(self, query: str, constraints: dict):
-        self.query = query
-        self.constraints = constraints
-
-    def perform(self) -> SortedSet["SearchResult"]:
-        """
-        Do the search
-        :return: sorted search results
-        """
-        res = fetch_lemma_by_user_query(self.query, **self.constraints)
-        results = SortedSetWithExtend(key=sort_by_user_query(self.query))
-        results.extend(self.prepare_cree_results(res.cree_results))
-        results.extend(self.prepare_english_results(res.english_results))
-        return results
-
-    def prepare_cree_results(
-        self, cree_results: Set["CreeResult"]
-    ) -> Iterable["SearchResult"]:
-        from .search import SearchResult, get_preverbs_from_head_breakdown
-
-        # Create the search results
-        for cree_result in cree_results:
-            matched_cree = cree_result.normatized_cree_text
-            if isinstance(cree_result.normatized_cree, Wordform):
-                is_lemma = cree_result.normatized_cree.is_lemma
-                definitions = tuple(cree_result.normatized_cree.definitions.all())
-            else:
-                is_lemma = False
-                definitions = ()
-
-            (
-                linguistic_breakdown_head,
-                linguistic_breakdown_tail,
-            ) = safe_partition_analysis(cree_result.analysis)
-
-            # todo: tags
-            yield SearchResult(
-                matched_cree=matched_cree,
-                is_lemma=is_lemma,
-                matched_by=Language.CREE,
-                linguistic_breakdown_head=tuple(
-                    replace_user_friendly_tags(linguistic_breakdown_head)
-                ),
-                linguistic_breakdown_tail=tuple(
-                    replace_user_friendly_tags(linguistic_breakdown_tail)
-                ),
-                lemma_wordform=cree_result.lemma,
-                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
-                reduplication_tags=(),
-                initial_change_tags=(),
-                definitions=definitions,
-            )
-
-    def prepare_english_results(
-        self, english_results: Set["EnglishResult"]
-    ) -> Iterable["SearchResult"]:
-        from .search import SearchResult, get_preverbs_from_head_breakdown
-
-        for result in english_results:
-            (
-                linguistic_breakdown_head,
-                linguistic_breakdown_tail,
-            ) = safe_partition_analysis(result.lemma.analysis)
-
-            yield SearchResult(
-                matched_cree=result.matched_cree.text,
-                is_lemma=result.matched_cree.is_lemma,
-                matched_by=Language.ENGLISH,
-                lemma_wordform=result.matched_cree.lemma,
-                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
-                reduplication_tags=(),
-                initial_change_tags=(),
-                linguistic_breakdown_head=tuple(
-                    replace_user_friendly_tags(linguistic_breakdown_head)
-                ),
-                linguistic_breakdown_tail=tuple(
-                    replace_user_friendly_tags(linguistic_breakdown_tail)
-                ),
-                definitions=tuple(result.matched_cree.definitions.all()),
-                # todo: current EnglishKeyword is bound to
-                #       lemmas, whose definitions are guaranteed in the database.
-                #       This may be an empty tuple in the future
-                #       when EnglishKeyword can be associated with non-lemmas
-            )
+    from .search import CreeAndEnglish
 
 
 def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> "CreeAndEnglish":

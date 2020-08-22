@@ -13,16 +13,23 @@ from typing import (
 )
 
 import attr
-from API.result_utils import MatchedEnglish
+from API.result_utils import (
+    MatchedEnglish,
+    sort_by_user_query,
+    safe_partition_analysis,
+    replace_user_friendly_tags,
+)
+from API.utils import SortedSetWithExtend
 from attr import attrs
 
 from API.schema import SerializedSearchResult
+from sortedcontainers import SortedSet
 from utils import Language, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag, ConcatAnalysis
 
-from .models import Wordform, Definition
+from .models import Wordform, Definition, fetch_lemma_by_user_query
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
@@ -141,6 +148,97 @@ class CreeAndEnglish(NamedTuple):
     # MatchedCree are inflections
     cree_results: Set[CreeResult]
     english_results: Set[EnglishResult]
+
+
+class WordformSearch:
+    """
+    Intermediate class while I'm figuring out this refactor :/
+    """
+
+    def __init__(self, query: str, constraints: dict):
+        self.query = query
+        self.constraints = constraints
+
+    def perform(self) -> SortedSet["SearchResult"]:
+        """
+        Do the search
+        :return: sorted search results
+        """
+        res = fetch_lemma_by_user_query(self.query, **self.constraints)
+        results = SortedSetWithExtend(key=sort_by_user_query(self.query))
+        results.extend(self.prepare_cree_results(res.cree_results))
+        results.extend(self.prepare_english_results(res.english_results))
+        return results
+
+    def prepare_cree_results(
+        self, cree_results: Set["CreeResult"]
+    ) -> Iterable["SearchResult"]:
+        from .search import SearchResult, get_preverbs_from_head_breakdown
+
+        # Create the search results
+        for cree_result in cree_results:
+            matched_cree = cree_result.normatized_cree_text
+            if isinstance(cree_result.normatized_cree, Wordform):
+                is_lemma = cree_result.normatized_cree.is_lemma
+                definitions = tuple(cree_result.normatized_cree.definitions.all())
+            else:
+                is_lemma = False
+                definitions = ()
+
+            (
+                linguistic_breakdown_head,
+                linguistic_breakdown_tail,
+            ) = safe_partition_analysis(cree_result.analysis)
+
+            # todo: tags
+            yield SearchResult(
+                matched_cree=matched_cree,
+                is_lemma=is_lemma,
+                matched_by=Language.CREE,
+                linguistic_breakdown_head=tuple(
+                    replace_user_friendly_tags(linguistic_breakdown_head)
+                ),
+                linguistic_breakdown_tail=tuple(
+                    replace_user_friendly_tags(linguistic_breakdown_tail)
+                ),
+                lemma_wordform=cree_result.lemma,
+                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
+                reduplication_tags=(),
+                initial_change_tags=(),
+                definitions=definitions,
+            )
+
+    def prepare_english_results(
+        self, english_results: Set["EnglishResult"]
+    ) -> Iterable["SearchResult"]:
+        from .search import SearchResult, get_preverbs_from_head_breakdown
+
+        for result in english_results:
+            (
+                linguistic_breakdown_head,
+                linguistic_breakdown_tail,
+            ) = safe_partition_analysis(result.lemma.analysis)
+
+            yield SearchResult(
+                matched_cree=result.matched_cree.text,
+                is_lemma=result.matched_cree.is_lemma,
+                matched_by=Language.ENGLISH,
+                lemma_wordform=result.matched_cree.lemma,
+                preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
+                reduplication_tags=(),
+                initial_change_tags=(),
+                linguistic_breakdown_head=tuple(
+                    replace_user_friendly_tags(linguistic_breakdown_head)
+                ),
+                linguistic_breakdown_tail=tuple(
+                    replace_user_friendly_tags(linguistic_breakdown_tail)
+                ),
+                definitions=tuple(result.matched_cree.definitions.all()),
+                # todo: current EnglishKeyword is bound to
+                #       lemmas, whose definitions are guaranteed in the database.
+                #       This may be an empty tuple in the future
+                #       when EnglishKeyword can be associated with non-lemmas
+            )
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:

@@ -21,7 +21,7 @@ class WordformManagerWithSearch(models.Manager):
     """
 
     def search(self, query: str, **constraints) -> SortedSet["SearchResult"]:
-        from .models import WordformSearch
+        from .search import WordformSearch
 
         search = WordformSearch(query, constraints)
         return search.perform()
