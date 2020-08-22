@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-from typing import Tuple, cast, Iterable
+from typing import Tuple, cast, Iterable, NewType
 
 import attr
 from attr import attrs
@@ -9,6 +9,9 @@ from API.schema import SerializedSearchResult
 from utils import Language
 
 from .models import Wordform, Preverb, Definition
+
+
+MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable

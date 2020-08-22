@@ -21,6 +21,7 @@ from API.result_utils import (
     safe_partition_analysis,
     sort_by_user_query,
 )
+from API.search import MatchedEnglish
 from API.utils import SortedSetWithExtend
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -70,9 +71,6 @@ def fetch_preverbs(user_query: str) -> Set["Wordform"]:
     user_query = remove_cree_diacritics(user_query)
 
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
-
-
-MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 class Wordform(models.Model):
