@@ -311,16 +311,11 @@ class WordformSearch:
         :param extra_constraints: additional fields to disambiguate
         :return:
         """
-        cree_results: Set[CreeResult]
-        english_results: Set[EnglishResult]
-
-        cree_results, english_results = fetch_lemma_by_user_query(
-            user_query, **extra_constraints
-        )
+        res = fetch_lemma_by_user_query(user_query, **extra_constraints)
 
         search = WordformSearch(user_query)
-        search.prepare_cree_results(cree_results)
-        search.prepare_english_results(english_results)
+        search.prepare_cree_results(res.cree_results)
+        search.prepare_english_results(res.english_results)
 
         return search.results
 
