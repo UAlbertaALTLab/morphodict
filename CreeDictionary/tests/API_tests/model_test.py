@@ -37,7 +37,7 @@ def test_when_linguistic_breakdown_absent():
     # it's not analyzable by the fst and should not have a linguistic breakdown
 
     query = "pe-"
-    search_results = Wordform.objects.search(query)
+    search_results = Wordform.search(query)
 
     assert len(search_results) == 1
 
@@ -82,7 +82,7 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    search_results = Wordform.objects.search(query)
+    search_results = Wordform.search(query)
 
     exact_matches = {
         result
@@ -111,7 +111,7 @@ def test_search_for_english() -> None:
     """
 
     # This should match "âcimowin" and related words:
-    search_results = Wordform.objects.search("story")
+    search_results = Wordform.search("story")
 
     assert search_results[0].matched_by == Language.ENGLISH
 
@@ -123,7 +123,7 @@ def test_search_for_pronoun() -> None:
     result that says "ôma"
     """
 
-    search_results = Wordform.objects.search("oma")
+    search_results = Wordform.search("oma")
     assert "ôma" in {res.matched_cree for res in search_results}
 
 
@@ -135,7 +135,7 @@ def test_search_for_stored_non_lemma():
     # "S/he would tell us stories."
     lemma_str = "âcimêw"
     query = "ê-kî-âcimikoyâhk"
-    search_results = Wordform.objects.search(query)
+    search_results = Wordform.search(query)
 
     assert len(search_results) >= 1
 
@@ -207,7 +207,7 @@ def test_search_serialization_json_parsable(query):
     """
     Test SearchResult.serialize produces json compatible results
     """
-    results = Wordform.objects.search(query)
+    results = Wordform.search(query)
     for result in results:
 
         serialized = result.serialize()
@@ -223,7 +223,7 @@ def test_search_words_with_preverbs():
     """
     preverbs should be extracted and present in SearchResult instances
     """
-    results = Wordform.objects.search("nitawi-nipâw")
+    results = Wordform.search("nitawi-nipâw")
     assert len(results) == 1
     search_result = results.pop()
 
@@ -237,7 +237,7 @@ def test_search_text_with_ambiguous_word_classes():
     Results of all word classes should be searched when the query is ambiguous
     """
     # pipon can be viewed as a Verb as well as a Noun
-    results = Wordform.objects.search("pipon")
+    results = Wordform.search("pipon")
     assert {r.lemma_wordform.pos for r in results if r.matched_cree == "pipon"} == {
         "N",
         "V",
@@ -248,7 +248,7 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = Wordform.objects.search("sleep")
+    results = Wordform.search("sleep")
     assert results[0].matched_cree == "nipâw"
 
 
@@ -272,7 +272,7 @@ def test_lemma_and_syncretic_form_ranking(lemma):
     and uses a **non-stable** sort or comparison.
     """
 
-    results = Wordform.objects.search(lemma)
+    results = Wordform.search(lemma)
     assert len(results) >= 2
     maskwa_results = [res for res in results if res.lemma_wordform.text == lemma]
     assert len(maskwa_results) >= 2
