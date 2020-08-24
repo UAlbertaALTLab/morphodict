@@ -51,7 +51,7 @@ For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installat
 
 ### XML Dictionary Files
 
-Download `crkeng.xml` and `engcrk.xml` and place them under `CreeDictionary/res/dictionaries/`
+Download `crkeng.xml` and place it under `CreeDictionary/res/dictionaries/`
 
 These files are copyright protected and not allowed on GitHub. Ask coworkers or download from production server under the same directory. On Sapir, the directory is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
 

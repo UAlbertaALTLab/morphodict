@@ -18,6 +18,16 @@
 	</source>
 	
 
+   
+	<source id="AE">
+		
+      
+		<title>Alberta Elders' Cree Dictionary</title>
+		
+   
+	</source>
+	
+
 
 
 	<e>
@@ -304,43 +314,6 @@
 				
        
 				<t pos="V" sources="CW">it is a spirit</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">ahkwêhtawapiwak</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>ahkwêhtawapi-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">they sit in layers on top of one another</t>
 				
    
 			</tg>
@@ -6140,7 +6113,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>cahcahkiw-sâkahikan- NI-1</stem>
+			<stem>cahcahkiw-sâkahikan- [NI-1]</stem>
 			
    
 		</lg>
@@ -8729,7 +8702,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>âyiman- VII-n</stem>
+			<stem>âyiman- [VII-n]</stem>
 			
    
 		</lg>
@@ -8766,7 +8739,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nikamômakan- VII-n</stem>
+			<stem>nikamômakan- [VII-n]</stem>
 			
    
 		</lg>
@@ -8803,7 +8776,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>ohpawakâstan- VII-n</stem>
+			<stem>ohpawakâstan- [VII-n]</stem>
 			
    
 		</lg>
@@ -8840,7 +8813,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>ohpawakin- VTI-1</stem>
+			<stem>ohpawakin- [VTI-1]</stem>
 			
    
 		</lg>
@@ -8877,7 +8850,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>pêyakwâskon- VTI-1</stem>
+			<stem>pêyakwâskon- [VTI-1]</stem>
 			
    
 		</lg>
@@ -10447,7 +10420,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>kitohcikan- NI-1 ;; natoht- VTI-1</stem>
+			<stem>kitohcikan- [NI-1] + natoht- [VTI-1]</stem>
 			
    
 		</lg>
@@ -11189,43 +11162,6 @@
 		<lg>
 			
       
-			<l pos="V">kîs-âyâw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>kîs-âyâ-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he is finished, s/he is through</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">kîsi-mîcisow</l>
 			
       
@@ -11670,43 +11606,6 @@
 				
        
 				<t pos="V" sources="CW">it is a mild winter</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">kîsôwiyawêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>kîsôwiyawê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he has a warm body</t>
 				
    
 			</tg>
@@ -12909,7 +12808,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>maskwacîs- NI-1</stem>
+			<stem>maskwacîs- [NI-1]</stem>
 			
    
 		</lg>
@@ -14399,6 +14298,43 @@
 		<lg>
 			
       
+			<l pos="N">micôskwanis</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-côskwanis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">little elbow</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">mihcawakâs</l>
 			
       
@@ -14651,6 +14587,80 @@
 		<lg>
 			
       
+			<l pos="N">misâskwatômina</l>
+			
+      
+			<lc>NI-1</lc>
+			
+      
+			<stem>misâskwatômin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">saskatoon berries</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">misâskwatôminihk</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>misâskwatômin-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Saskatoon, SK; literally: at the Saskatoon berry</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">misi-minôs</l>
 			
       
@@ -14781,6 +14791,43 @@
 				
        
 				<t pos="N" sources="CW">tongue string</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">mitôskwan</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="MD CW">elbow</t>
 				
    
 			</tg>
@@ -16241,6 +16288,43 @@
 				
        
 				<t pos="V" sources="CW">s/he eats s.o. (e.g. bread)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="V">môhkomânitôskwanêw</l>
+			
+      
+			<lc>VAI-1</lc>
+			
+      
+			<stem>môhkomânitôskwanê-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="CW">s/he has knife edges on elbows</t>
 				
    
 			</tg>
@@ -20408,6 +20492,43 @@
 		<lg>
 			
       
+			<l pos="N">nicôskwanis</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-côskwanis-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my little elbow</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">nihcawakâs</l>
 			
       
@@ -20701,80 +20822,6 @@
 				
        
 				<t pos="N" sources="CW">my kitten</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">nimitawaham</l>
-			
-      
-			<lc>VTI-1</lc>
-			
-      
-			<stem>nimitawah-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he canoes to the open water; s/he canoes to the prairie, open country</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">nimitâwaham</l>
-			
-      
-			<lc>VTI-1</lc>
-			
-      
-			<stem>nimitâwah-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he goes out to sea; s/he goes out into the lake</t>
 				
    
 			</tg>
@@ -22170,43 +22217,6 @@
 		<lg>
 			
       
-			<l pos="V">nistôskwêwêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>nistôskwêwê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">he has three wives</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">nitawahcikêw</l>
 			
       
@@ -22596,6 +22606,43 @@
 				
        
 				<t pos="V" sources="CW">he leads a war-party, he conducts a war-party; he arranges a raid</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">nitôskwan</l>
+			
+      
+			<lc>NDI-1</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">my elbow</t>
 				
    
 			</tg>
@@ -27300,6 +27347,43 @@
 		<lg>
 			
       
+			<l pos="N">oskana kâ-asastêki</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>oskan- [NI-1] + asastê- [VII-v]</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Regina, SK; Pile-o'-Bones; literally: where the bones are piled</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
 			<l pos="N">oskayiwinis</l>
 			
       
@@ -27778,6 +27862,43 @@
 				
        
 				<t pos="N" sources="CW">his/her innards (e.g. of an animal)</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+
+	</e>
+	
+
+
+	<e>
+		
+   
+		<lg>
+			
+      
+			<l pos="N">otôskwanihk</l>
+			
+      
+			<lc>INM</lc>
+			
+      
+			<stem>-tôskwan-</stem>
+			
+   
+		</lg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="N" sources="CW">Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River</t>
 				
    
 			</tg>
@@ -29283,43 +29404,6 @@
 				
        
 				<t pos="Ipc" sources="CW">the same, all of them</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
-			<l pos="V">pâh-piskihcayâw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>piskihcayâ-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">it is divided, it is partitioned</t>
 				
    
 			</tg>
@@ -34760,43 +34844,6 @@
 		<lg>
 			
       
-			<l pos="V">sawâhpinêw</l>
-			
-      
-			<lc>VAI-v</lc>
-			
-      
-			<stem>sawâhpinê-</stem>
-			
-   
-		</lg>
-		
-   
-		<mg>
-			
-   
-			<tg xml:lang="eng">
-				
-       
-				<t pos="V" sources="CW">s/he has unexplainable pain</t>
-				
-   
-			</tg>
-			
-   
-		</mg>
-		
-
-	</e>
-	
-
-
-	<e>
-		
-   
-		<lg>
-			
-      
 			<l pos="V">sâpwâpahtam</l>
 			
       
@@ -38625,7 +38672,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He sees it.</t>
+				<t pos="V" sources="MD AE">He sees it.</t>
 				
    
 			</tg>
@@ -38751,7 +38798,7 @@
 			<tg xml:lang="eng">
 				
        
-				<t pos="V" sources="MD">He sees him.</t>
+				<t pos="V" sources="MD AE">He sees him.</t>
 				
    
 			</tg>
@@ -38767,6 +38814,21 @@
 				
        
 				<t pos="V" sources="CW">s/he sees s.o., s/he witnesses s.o.</t>
+				
+   
+			</tg>
+			
+   
+		</mg>
+		
+   
+		<mg>
+			
+   
+			<tg xml:lang="eng">
+				
+       
+				<t pos="V" sources="AE">S/he sees him/her.</t>
 				
    
 			</tg>
@@ -51145,7 +51207,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; kwâskwêkotê- VII</stem>
+			<stem>nipiy- [NI] + kwâskwêkotê- [VII]</stem>
 			
    
 		</lg>
@@ -51182,7 +51244,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; pahkihtin- VII</stem>
+			<stem>nipiy- [NI] + pahkihtin- [VII]</stem>
 			
    
 		</lg>
@@ -51219,7 +51281,7 @@
 			<lc>INM</lc>
 			
       
-			<stem>nipiy- NI; pitihkwê- VII</stem>
+			<stem>nipiy- [NI] + pitihkwê- [VII]</stem>
 			
    
 		</lg>
@@ -51626,7 +51688,7 @@
 			<lc>VAI-1</lc>
 			
       
-			<stem>nistôskwêwê-</stem>
+			<stem>nistoskwêwê-</stem>
 			
    
 		</lg>
@@ -52477,7 +52539,7 @@
 			<lc>VAI-1</lc>
 			
       
-			<stem>osiko-âyâ-</stem>
+			<stem>osiko-ayâ-</stem>
 			
    
 		</lg>
