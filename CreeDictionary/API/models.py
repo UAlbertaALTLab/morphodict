@@ -19,7 +19,6 @@ from utils.types import FSTTag
 
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
-from .wordform_manager_with_search import WordformManagerWithSearch
 
 # Avoid a runtime circular-dependency;
 # without this line,
@@ -44,8 +43,6 @@ class Wordform(models.Model):
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
-
-    objects = WordformManagerWithSearch()
 
     def get_absolute_url(self) -> str:
         """
