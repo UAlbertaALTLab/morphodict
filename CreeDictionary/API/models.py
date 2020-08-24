@@ -1,4 +1,5 @@
 import logging
+import typing
 from collections import defaultdict
 from typing import Dict, List, Optional, Set
 from urllib.parse import quote
@@ -8,6 +9,7 @@ from django.db.models import Max
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+from sortedcontainers import SortedSet
 
 from paradigm import Layout
 from shared import paradigm_filler
@@ -18,6 +20,14 @@ from utils.types import FSTTag
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
 from .wordform_manager_with_search import WordformManagerWithSearch
+
+# Avoid a runtime circular-dependency;
+# without this line,
+#  - model.py imports search.py; and,
+#  - search.py imports model.py 💥
+if typing.TYPE_CHECKING:
+    from .search import SearchResult
+
 
 logger = logging.getLogger(__name__)
 
@@ -218,6 +228,13 @@ class Wordform(models.Model):
             self.lemma_id = self.id
 
         super(Wordform, self).save(*args, **kwargs)
+
+    @classmethod
+    def search(cls, query: str, **constraints) -> SortedSet["SearchResult"]:
+        from .search import WordformSearch
+
+        search = WordformSearch(query, constraints)
+        return search.perform()
 
 
 class DictionarySource(models.Model):
