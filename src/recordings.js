@@ -30,9 +30,9 @@ export function retrieveListOfSpeakers() {
   let recordingsList = document.querySelector('.recordings-list') // to be deleted, but not yet because it'll break the refactoring 💀
   
   // select for our elements for playback and link-generation
-  let recordingsDropdown = document.getElementById('recordings-dropdown')
-  let recordingsPlayback = document.getElementById('selected-speaker-playback')
-  let recordingsLink = document.getElementById('selected-speaker-external-link')
+  let recordingsDropdown = document.querySelector('.multiple-recordings select')
+  let recordingsPlayback = document.querySelector('[data-action="play-current-recording"]')
+  let recordingsLink = document.querySelector('[data-action="learn-about-speaker"]')
 
 
   // Request the JSON for all recordings of this wordform
