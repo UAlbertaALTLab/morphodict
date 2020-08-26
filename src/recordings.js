@@ -26,8 +26,6 @@ export function retrieveListOfSpeakers() {
   // get the value of the wordform from the page
   let wordform = document.getElementById('data:head').value
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`
-
-  let recordingsList = document.querySelector('.recordings-list') // to be deleted, but not yet because it'll break the refactoring 💀
   
   // select for our elements for playback and link-generation
   let recordingsDropdown = document.querySelector('.multiple-recordings select')
@@ -45,10 +43,8 @@ export function retrieveListOfSpeakers() {
       let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
       recordingsHeading.classList.remove('definition__recordings--not-loaded')
 
-      // we only want to display our list of speakers once!
-      if (recordingsList.childElementCount < numberOfRecordings) {
-        displaySpeakerList(returnedData)
-      }
+      // display our list of speakers
+      displaySpeakerList(returnedData)
     })
 
   ////////////////////////////////// helpers /////////////////////////////////
@@ -68,8 +64,6 @@ export function retrieveListOfSpeakers() {
     
           // ...and insert the option element into the dropdown list 😌
           recordingsDropdown.appendChild(listOption)
-          
-          // TODOkobe: if there was to be a check for "if there's speakers with the same name, add something to the way they're rendered", it would end up right here as a loop within this loop,,,
     }
       
     // audio playback for the specific speaker
