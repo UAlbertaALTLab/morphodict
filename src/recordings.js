@@ -75,10 +75,10 @@ export function retrieveListOfSpeakers() {
     // audio playback for the specific speaker
     recordingsPlayback.addEventListener('click', () => {
           let speakerPosition = recordingsDropdown.selectedIndex
-          let audioURLPosition = recordings[speakerPosition].recording_url
+          let audioURL = recordings[speakerPosition].recording_url
 
           // play the audio associated with that specific index
-          let audio = new Audio(audioURLPosition) // poorly named...position isn't it 💀
+          let audio = new Audio(audioURL)
           audio.preload = 'none'
           audio.play()
     })
