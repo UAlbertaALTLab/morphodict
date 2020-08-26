@@ -2,6 +2,7 @@
 fill a paradigm table according to a lemma
 """
 import logging
+import re
 from copy import deepcopy
 from pathlib import Path
 from typing import Dict, List, Sequence, Set, Tuple
@@ -73,7 +74,12 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
+    def __init__(
+        self,
+        layout_dir: Path,
+        generator_hfstol_path: Path,
+        generator_with_boundary_path: Path,
+    ):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
@@ -82,6 +88,9 @@ class ParadigmFiller:
         """
         self._layout_tables = self._import_layouts(layout_dir)
         self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
+        self._generator_with_boundary = hfstol.HFSTOL.from_file(
+            generator_with_boundary_path
+        )
 
     @classmethod
     def default_filler(cls):
@@ -91,6 +100,9 @@ class ParadigmFiller:
         return ParadigmFiller(
             shared_res_dir / "layouts",
             shared_res_dir / "fst" / "crk-normative-generator.hfstol",
+            shared_res_dir
+            / "fst"
+            / "crk-normative-generator-with-morpheme-boundaries.hfstol",
         )
 
     def fill_paradigm(
@@ -139,6 +151,9 @@ class ParadigmFiller:
 
         # Generate ALL OF THE INFLECTIONS!
         results = self._generator.feed_in_bulk_fast(lookup_strings)
+        results_with_boundaries = self._generator_with_boundary.feed_in_bulk_fast(
+            lookup_strings
+        )
 
         # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
@@ -146,10 +161,13 @@ class ParadigmFiller:
             row, col_ind = location
             analysis = lookup_strings[i]
             results_for_cell = sorted(results[analysis])
+            # todo: use all results
+            first_result = sorted(results_with_boundaries[analysis])[0]
             # TODO: this should actually produce TWO rows!
             inflection_cell = row[col_ind]
             assert isinstance(inflection_cell, InflectionCell)
             inflection_cell.inflection = " / ".join(results_for_cell)
+            inflection_cell.morphemes = tuple(re.split("<|>", first_result))
             inflection_cell.frequency = self._frequency.get(analysis, 0)
 
         return tables

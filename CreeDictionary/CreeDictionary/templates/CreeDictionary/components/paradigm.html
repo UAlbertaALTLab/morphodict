@@ -48,7 +48,8 @@
                       {% elif cell.frequency > 0 %}
                         {# observed form #}
                       <td class="paradigm-cell paradigm-cell--observed">
-                        {% orth cell.inflection %}
+                        {{ cell.morphemes|join:"·" }}
+{#                        {% orth cell.inflection %}#}
                       </td>
                       {% else %}
                         {# unobserved form #}

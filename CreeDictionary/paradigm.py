@@ -6,7 +6,7 @@ Classes related to paradigms: both layouts and the filled paradigms.
 """
 
 from string import Template
-from typing import Iterable, List, Optional, Union
+from typing import Iterable, List, Optional, Union, Tuple
 
 from attr import attrib, attrs
 from typing_extensions import Literal
@@ -93,7 +93,7 @@ class Heading(StaticCell):
 
 
 # frozen=False is a reminder that the inflection is default as None and generated later
-# inflection related info like inflection frequency is also generated later
+# inflection related info like inflection frequency and morphemes are also generated later
 @attrs(frozen=False, auto_attribs=True, eq=False, repr=False)
 class InflectionCell:
     # the analysis of the inflection (with the lemma to be filled out)
@@ -105,6 +105,8 @@ class InflectionCell:
 
     # the frequency of the inflection in the corpus
     frequency: Optional[int] = None
+
+    morphemes: Optional[Tuple[str]] = None
 
     @property
     def has_analysis(self):
@@ -119,6 +121,7 @@ class InflectionCell:
                 and self.analysis.template == other.analysis.template
                 and self.inflection == other.inflection
                 and self.frequency == other.frequency
+                and self.morphemes == other.morphemes
             )
             or (self.analysis is None and other.analysis is None)
         )
