@@ -556,6 +556,7 @@ html {
  */
 .multiple-recordings__action-button {
   margin-left: 0.5em;
+  margin-bottom: 1em; /* makes the button line up with the select */
 }
 /**
  * BLOCK wordclass
