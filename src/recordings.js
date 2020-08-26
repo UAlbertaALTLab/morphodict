@@ -55,7 +55,7 @@ export function retrieveListOfSpeakers() {
 
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
-        for (let recordingData of recordings) {          
+    for (let recordingData of recordings) {          
           // TODOkobe: if all is working/Eddie has approved, perhaps refactor into a function?
           // create a option element
           let listOption = document.createElement('option')
@@ -70,10 +70,10 @@ export function retrieveListOfSpeakers() {
           recordingsDropdown.appendChild(listOption)
           
           // TODOkobe: if there was to be a check for "if there's speakers with the same name, add something to the way they're rendered", it would end up right here as a loop within this loop,,,
-        }
+    }
       
-        // audio playback for the specific speaker
-        recordingsPlayback.addEventListener('click', () => {
+    // audio playback for the specific speaker
+    recordingsPlayback.addEventListener('click', () => {
           let speakerPosition = recordingsDropdown.selectedIndex
           let audioURLPosition = recordings[speakerPosition].recording_url
 
@@ -81,15 +81,15 @@ export function retrieveListOfSpeakers() {
           let audio = new Audio(audioURLPosition) // poorly named...position isn't it 💀
           audio.preload = 'none'
           audio.play()
-        })
+    })
 
-        // link for the specific speaker
-        recordingsLink.addEventListener('click', () => {
+    // link for the specific speaker
+    recordingsLink.addEventListener('click', () => {
           let speakerPosition = recordingsDropdown.selectedIndex
           let speakerBioLink = recordings[speakerPosition].speaker_bio_url
           
           // open the speaker's link in a new tab!
           window.open(speakerBioLink, '_blank')
-        })
+    })
   }
 }
