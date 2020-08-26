@@ -36,8 +36,10 @@ def presentational_pos(wordform: Union[Wordform, dict]) -> str:
 
     # special case. In the source, some preverbs have pos labelled as IPC
     # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
-    inflectional_category = crkeng_xml_utils.convert_xml_inflectional_category_to_word_class(
-        wordform_dict["inflectional_category"]
+    inflectional_category = (
+        crkeng_xml_utils.convert_xml_inflectional_category_to_word_class(
+            wordform_dict["inflectional_category"]
+        )
     )
     if inflectional_category is not None:
         if inflectional_category is WordClass.IPV:

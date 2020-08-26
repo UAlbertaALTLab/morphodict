@@ -7,6 +7,8 @@ from itertools import chain
 from string import Template
 from typing import Dict, Iterable, List, Optional, Set, Tuple, cast
 
+from typing_extensions import Literal
+
 import utils.fst_analysis_parser
 from colorama import Fore, init
 from DatabaseManager.log import DatabaseManagerLogger
@@ -14,7 +16,6 @@ from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
-from typing_extensions import Literal
 from utils import WordClass, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
 from utils.data_classes import XMLEntry
@@ -69,7 +70,9 @@ crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
 def identify_entries(
-    crkeng_xml: IndexedXML, multi_processing: int = 1, verbose=True,
+    crkeng_xml: IndexedXML,
+    multi_processing: int = 1,
+    verbose=True,
 ) -> Tuple[Dict[XMLEntry, ConcatAnalysis], List[XMLEntry]]:
     """
     For every entry in the XML file, try to find its lemma analysis according to the FST.

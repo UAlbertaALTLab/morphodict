@@ -10,7 +10,7 @@ def does_inflectional_category_match_xml_entry(
     """
     check whether an xml entry matches with an `InflectionCategory`
         if neither xml_pos and xml_ic are understood: False
-        
+
         if only xml_pos is understood: check if xml_pos matches ic
 
         if both xml_pos and xml_ic are understood: check both

@@ -280,7 +280,8 @@ def get_preverbs_from_head_breakdown(
                     preverb_result = min(
                         preverb_results,
                         key=lambda pr: get_modified_distance(
-                            normative_preverb_text, pr.text.strip("-"),
+                            normative_preverb_text,
+                            pr.text.strip("-"),
                         ),
                     )
 
@@ -476,7 +477,9 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> CreeAndEn
     for preverb_wf in fetch_preverbs(user_query):
         cree_results.add(
             CreeResult(
-                ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                ConcatAnalysis(preverb_wf.analysis),
+                preverb_wf,
+                Lemma(preverb_wf),
             )
         )
 
@@ -521,9 +524,11 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
     try:
-        (linguistic_breakdown_head, _, linguistic_breakdown_tail,) = partition_analysis(
-            analysis
-        )
+        (
+            linguistic_breakdown_head,
+            _,
+            linguistic_breakdown_tail,
+        ) = partition_analysis(analysis)
     except ValueError:
         linguistic_breakdown_head = []
         linguistic_breakdown_tail = []

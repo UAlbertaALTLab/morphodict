@@ -59,7 +59,8 @@ def build_test_xml(multi_processing: int = 2):
 
     print(f"Analyzing xml l elements and test words with {multi_processing} processes")
     word_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
-        xml_ls | test_words, multi_process=multi_processing,
+        xml_ls | test_words,
+        multi_process=multi_processing,
     )
     print("Analysis done")
 

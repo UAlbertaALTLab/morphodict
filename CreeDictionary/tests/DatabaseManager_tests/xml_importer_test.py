@@ -87,11 +87,30 @@ def test_import_xml_crkeng_small_common_xml_l_different_ic(shared_datadir):
         # should use un-timestamped files if necessary
         (["crkeng.xml"], 0),
         # should use un-timestamped files if necessary but timestamped files take higher precedence
-        (["crkeng_cw_md_200113.xml", "crkeng.xml",], 0),
+        (
+            [
+                "crkeng_cw_md_200113.xml",
+                "crkeng.xml",
+            ],
+            0,
+        ),
         # should compare timestamps
-        (["crkeng_200314.xml", "crkeng_200112.xml",], 0,),
+        (
+            [
+                "crkeng_200314.xml",
+                "crkeng_200112.xml",
+            ],
+            0,
+        ),
         # irrelevant files should not matter
-        (["crkeng_200314.xml", "README.md", "crkeng_200112.xml",], 0,),
+        (
+            [
+                "crkeng_200314.xml",
+                "README.md",
+                "crkeng_200112.xml",
+            ],
+            0,
+        ),
     ],
 )
 def test_find_latest_xml_files(tmp_path_factory, file_names, expected_crkeng_index):

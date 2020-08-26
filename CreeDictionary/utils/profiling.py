@@ -15,7 +15,9 @@ def timed(
     :param msg: the message printed to stdout. "{func_name}", "{minute}" and "{second}" will be replaced
     """
 
-    def decorator(function: Callable,):
+    def decorator(
+        function: Callable,
+    ):
         @wraps(function)
         def timed_func(*args, **kw):
             ts = time.time()

@@ -56,7 +56,8 @@ def cmd_entry(argv=None):
         ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
         build_test_xml(args.process_count)
         import_xmls(
-            shared_res_dir / "test_dictionaries", args.process_count,
+            shared_res_dir / "test_dictionaries",
+            args.process_count,
         )
     else:
         raise NotImplementedError

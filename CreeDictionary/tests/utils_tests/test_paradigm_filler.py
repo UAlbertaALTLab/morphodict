@@ -31,7 +31,10 @@ def test_import_prefilled_layouts(shared_datadir) -> None:
         ["", Heading("Ownership")],
         ["", Heading("One")],
         [Label("my"), InflectionCell(Template("${lemma}+N+A+Px1Sg+Sg"))],
-        [Label("your (one)"), InflectionCell(Template("${lemma}+N+A+Px2Sg+Sg")),],
+        [
+            Label("your (one)"),
+            InflectionCell(Template("${lemma}+N+A+Px2Sg+Sg")),
+        ],
         ["", Heading("Further")],
         [Label("his/her"), InflectionCell(Template("${lemma}+N+A+Px3Sg+Obv"))],
     ]
@@ -89,5 +92,6 @@ def paradigm_filler(shared_datadir) -> ParadigmFiller:
     be used in tests!
     """
     return ParadigmFiller(
-        shared_datadir / "layouts", shared_datadir / "crk-normative-generator.hfstol",
+        shared_datadir / "layouts",
+        shared_datadir / "crk-normative-generator.hfstol",
     )

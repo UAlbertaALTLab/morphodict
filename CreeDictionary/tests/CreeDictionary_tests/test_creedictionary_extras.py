@@ -49,7 +49,11 @@ def test_naughty_html():
 
 @pytest.mark.parametrize(
     "orth,inner_text",
-    [("Latn", "wâpamêw"), ("Latn-x-macron", "wāpamēw"), ("Cans", "ᐚᐸᒣᐤ"),],
+    [
+        ("Latn", "wâpamêw"),
+        ("Latn-x-macron", "wāpamēw"),
+        ("Cans", "ᐚᐸᒣᐤ"),
+    ],
 )
 def test_provide_orthograpy(orth, inner_text):
     context = Context({"wordform": "wâpamêw"})

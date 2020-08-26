@@ -70,7 +70,10 @@ def _create_in_memory_crkeng(entries: List[XMLEntry]) -> StringIO:
 @pytest.mark.parametrize(
     ("entry_lemma_pos_ic", "expected_analysis"),
     [
-        (("yôwamêw", "V", "VTA-1"), "yôwamêw+V+TA+Ind+3Sg+4Sg/PlO",),
+        (
+            ("yôwamêw", "V", "VTA-1"),
+            "yôwamêw+V+TA+Ind+3Sg+4Sg/PlO",
+        ),
         (("ahin", "V", ""), "ahêw+V+TA+Ind+3Sg+4Sg/PlO"),
     ],
 )
@@ -88,7 +91,8 @@ def test_lemma_extraction_single_identifiable_entry(
 
 
 @pytest.mark.parametrize(
-    ("entry_lemma_pos_ic",), [(("yêkawiskâwikamâhk", "N", "INM"),)],
+    ("entry_lemma_pos_ic",),
+    [(("yêkawiskâwikamâhk", "N", "INM"),)],
 )
 def test_lemma_extraction_unidentifiable_entry(
     entry_lemma_pos_ic: Tuple[str, str, str]
