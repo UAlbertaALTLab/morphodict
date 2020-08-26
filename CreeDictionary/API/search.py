@@ -34,7 +34,6 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedSearchResult
-from .utils import SortedSetWithExtend
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
@@ -174,9 +173,9 @@ class WordformSearch:
         :return: sorted search results
         """
         res = fetch_lemma_by_user_query(self.query, **self.constraints)
-        results = SortedSetWithExtend(key=sort_by_user_query(self.query))
-        results.extend(self.prepare_cree_results(res.cree_results))
-        results.extend(self.prepare_english_results(res.english_results))
+        results = SortedSet(key=sort_by_user_query(self.query))
+        results |= self.prepare_cree_results(res.cree_results)
+        results |= self.prepare_english_results(res.english_results)
         return results
 
     def prepare_cree_results(
