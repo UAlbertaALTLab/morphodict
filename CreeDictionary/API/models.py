@@ -9,10 +9,9 @@ from django.db.models import Max
 from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
-from sortedcontainers import SortedSet
-
 from paradigm import Layout
 from shared import paradigm_filler
+from sortedcontainers import SortedSet
 from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag

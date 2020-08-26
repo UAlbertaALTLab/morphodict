@@ -3,11 +3,10 @@ from collections import Iterable
 from typing import List
 
 import pytest
-from hypothesis import assume, given
-
 from API.models import Wordform
 from API.search import fetch_lemma_by_user_query
 from CreeDictionary import settings
+from hypothesis import assume, given
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language

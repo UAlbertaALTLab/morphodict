@@ -20,12 +20,12 @@ from typing import (
 
 import attr
 from attr import attrs
+
 from cree_sro_syllabics import syllabics2sro
+from CreeDictionary import hfstol as temp_hfstol
 from django.conf import settings
 from django.db.models import Q
 from sortedcontainers import SortedSet
-
-from CreeDictionary import hfstol as temp_hfstol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
