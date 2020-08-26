@@ -43,7 +43,7 @@ context('Recordings', function () {
       // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     })
 
-    it.only('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
+    it('should display the lemma\'s multiple speakers when the speaker icon is clicked', () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch('wâpamêw')
 
