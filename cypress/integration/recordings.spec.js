@@ -56,7 +56,7 @@ context('Recordings', function () {
         .click()
 
       // the names of the speakers should appear on the page in a dropdown list (select tag)
-      cy.get('[data-cy=recordings-list]').find('select')
+      cy.get('[data-cy=multiple-recordings]').find('select')
     })
 
     it('should play an individual speaker\'s pronounciation of the word when the speaker\'s name is clicked', () => {
