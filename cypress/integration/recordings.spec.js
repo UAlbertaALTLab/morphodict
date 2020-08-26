@@ -71,11 +71,11 @@ context('Recordings', function () {
         // click the icon
         .click()
 
-      // the names of the speakers should appear on the page as a list of buttons to be interacted with
-      cy.get('[data-cy=recordings-list]').find('button')
+      // the names of the speakers should appear on the page via the select tag
+      cy.get('[data-cy=multiple-recordings]').find('button')
 
-      // clicking the buttons should output sound (can't figure out how to play them serially + not at once...but that may be okay?)
-      cy.get('[data-cy=recordings-list__item]').click({ multiple: true })
+      // clicking the 'play' button should output sound
+      cy.get('[data-cy=play-selected-speaker]').click()
     })
 
     it('should open a link to the speaker\'s webpage in a new tab', () => {
