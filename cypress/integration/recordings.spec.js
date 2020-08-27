@@ -78,23 +78,20 @@ context('Recordings', function () {
       cy.get('[data-cy=play-selected-speaker]').click()
     })
 
-    it('should open a link to the speaker\'s webpage in a new tab', () => {
-      // begin from the paradigm page
-      cy.visit('/word/wâpamêw/')
+    it.only('should open a link to the speaker\'s webpage in a new tab', () => {
+      // 'wâpamêw' is the word that we have a bunch of recordings for
+      cy.visitSearch('wâpamêw')
+
+      // select the word and move to its paradigm,
+      cy.get('[data-cy=definition-title]').first().click()
 
       // then hover/focus on the speaker icon
       cy.get('[data-cy=play-recording]').focus()
         // click the icon
         .click()
 
-      // the names of the speakers should appear on the page as a list of buttons to be interacted with
-      cy.get('[data-cy=recordings-list]').find('li')
-
-      // clicking the buttons should output sound
-      cy.get('[data-cy=recordings-list__item]').click({ multiple: true })
-
-      // the name of the speaker should appear as a link: said link should contain the base speaker link URL
-      cy.get('[data-cy=recordings-list__item-speaker]').should('have.attr', 'href').should('contain', 'https://www.altlab.dev/maskwacis/Speakers/')
+      // the name of the speaker should appear as a link: clicking the link should open a new tab
+      cy.get('[data-cy=learn-about-speaker]').should('have.attr', 'target', '_blank')
     })
   })
 })
