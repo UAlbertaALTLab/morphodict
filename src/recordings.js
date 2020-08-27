@@ -82,8 +82,8 @@ export function retrieveListOfSpeakers() {
           let speakerPosition = recordingsDropdown.selectedIndex
           let speakerBioLink = recordings[speakerPosition].speaker_bio_url
           
-          // open the speaker's link in a new tab!
-          window.open(speakerBioLink, '_blank')
+          // change the URL of the selected speaker
+          recordingsLink.href = speakerBioLink
     })
   }
 }
