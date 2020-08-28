@@ -558,6 +558,10 @@ html {
   margin-left: 0.5em;
   margin-bottom: 1em; /* makes the button line up with the select */
 }
+a.multiple-recordings__action-button {
+  font-weight: var(--body-font-weight);
+  font-style: italic;
+}
 /**
  * BLOCK wordclass
  */
