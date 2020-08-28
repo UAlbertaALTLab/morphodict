@@ -78,7 +78,7 @@ context('Recordings', function () {
       cy.get('[data-cy=play-selected-speaker]').click()
     })
 
-    it.only('should open a link to the speaker\'s webpage in a new tab', () => {
+    it('should open a link to the speaker\'s webpage in a new tab', () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch('wâpamêw')
 
