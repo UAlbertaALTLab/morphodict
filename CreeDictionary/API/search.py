@@ -20,7 +20,6 @@ from typing import (
 
 import attr
 from attr import attrs
-
 from cree_sro_syllabics import syllabics2sro
 from CreeDictionary import hfstol as temp_hfstol
 from django.conf import settings
