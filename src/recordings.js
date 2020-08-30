@@ -37,8 +37,6 @@ export function retrieveListOfSpeakers() {
   fetch(derivedURL)
     .then(request => request.json())
     .then(returnedData => {
-      let numberOfRecordings = returnedData.length // number of records on the server
-
       // Unhide the explainer text
       let recordingsHeading = document.querySelector('.definition__recordings--not-loaded')
       recordingsHeading.classList.remove('definition__recordings--not-loaded')
