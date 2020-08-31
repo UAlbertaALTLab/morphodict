@@ -50,18 +50,11 @@ export function retrieveListOfSpeakers() {
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
     for (let recordingData of recordings) {          
-          // TODOkobe: if all is working/Eddie has approved, perhaps refactor into a function?
-          // create a option element
-          let listOption = document.createElement('option')
-          
-          // create a new textnode that is the speaker's name
-          let nodeSpeakerName = document.createTextNode(recordingData.speaker_name + ', ' + recordingData.dialect)
-    
-          // place the newly created node into the option element...
-          listOption.appendChild(nodeSpeakerName)
-    
-          // ...and insert the option element into the dropdown list 😌
-          recordingsDropdown.appendChild(listOption)
+          // using a template, place the speaker's name and dialect into the dropdown
+          let individualSpeaker = SimpleTemplate.fromId('template:speakerList')
+          individualSpeaker.slot.speakerName = recordingData.speaker_name
+          individualSpeaker.slot.speakerDialect = recordingData.dialect
+          recordingsDropdown.appendChild(individualSpeaker.element)
     }
       
     // audio playback for the specific speaker
