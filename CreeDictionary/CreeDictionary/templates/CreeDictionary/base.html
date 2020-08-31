@@ -39,22 +39,6 @@
     </button>
   </template>
 
-  {# The speaker button template (multiple recordings) #}
-  <template id="template:recording-item">
-    <li class="recordings-list__item" data-cy="recordings-list__item">
-      <button class="audio-snippet">
-        <slot name="speaker-name"></slot>,
-        <slot name="speaker-dialect"></slot>
-      </button>
-  </template>
-
-  {# The speaker-bio links template #}
-  <template id="template:speaker-bio-link">
-    <a href="" target="_blank" rel="noopener" data-cy="recordings-list__item-speaker">Learn more about
-      <slot name="speaker-name"></slot>.
-   </a>
-  </template>
-
 
 {% endspaceless %}
 
