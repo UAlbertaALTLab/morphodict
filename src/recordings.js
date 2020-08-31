@@ -50,31 +50,31 @@ export function retrieveListOfSpeakers() {
   // the function that displays an individual speaker's name
   function displaySpeakerList(recordings) {
     for (let recordingData of recordings) {          
-          // using a template, place the speaker's name and dialect into the dropdown
-          let individualSpeaker = SimpleTemplate.fromId('template:speakerList')
-          individualSpeaker.slot.speakerName = recordingData.speaker_name
-          individualSpeaker.slot.speakerDialect = recordingData.dialect
-          recordingsDropdown.appendChild(individualSpeaker.element)
+      // using a template, place the speaker's name and dialect into the dropdown
+      let individualSpeaker = SimpleTemplate.fromId('template:speakerList')
+      individualSpeaker.slot.speakerName = recordingData.speaker_name
+      individualSpeaker.slot.speakerDialect = recordingData.dialect
+      recordingsDropdown.appendChild(individualSpeaker.element)
     }
       
     // audio playback for the specific speaker
     recordingsPlayback.addEventListener('click', () => {
-          let speakerPosition = recordingsDropdown.selectedIndex
-          let audioURL = recordings[speakerPosition].recording_url
+      let speakerPosition = recordingsDropdown.selectedIndex
+      let audioURL = recordings[speakerPosition].recording_url
 
-          // play the audio associated with that specific index
-          let audio = new Audio(audioURL)
-          audio.preload = 'none'
-          audio.play()
+      // play the audio associated with that specific index
+      let audio = new Audio(audioURL)
+      audio.preload = 'none'
+      audio.play()
     })
 
     // link for the specific speaker
     recordingsLink.addEventListener('click', () => {
-          let speakerPosition = recordingsDropdown.selectedIndex
-          let speakerBioLink = recordings[speakerPosition].speaker_bio_url
+      let speakerPosition = recordingsDropdown.selectedIndex
+      let speakerBioLink = recordings[speakerPosition].speaker_bio_url
           
-          // change the URL of the selected speaker
-          recordingsLink.href = speakerBioLink
+      // change the URL of the selected speaker
+      recordingsLink.href = speakerBioLink
     })
   }
 }
