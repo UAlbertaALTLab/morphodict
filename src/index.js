@@ -88,9 +88,9 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function readDjangoJsonScript(id) {
   const jsonScriptElement = document.getElementById(id)
-  if (jsonScriptElement){
+  if (jsonScriptElement) {
     return JSON.parse(jsonScriptElement.textContent)
-  }else{
+  } else {
     return undefined
   }
 }
@@ -193,11 +193,44 @@ function setupParadigmSizeToggleButton() {
   })
 }
 
+/**
+ * A debounce function. Documentation: https://davidwalsh.name/javascript-debounce-function
+ * @param  {Function} func      The function to debounce
+ * @param  {Number}   wait      The time to wait, in milliseconds
+ * @param  {Boolean}  immediate Whether to invoke the function immediately
+ * @return {Function}
+ */
+function debounce(func, wait, immediate) {
+
+  let timeout
+
+  return function debounced(...args) {
+
+    const later = () => {
+      timeout = null
+      if (!immediate) func.apply(this, args)
+    }
+
+    const callNow = immediate && !timeout
+
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+
+    if (callNow) func.apply(this, args)
+
+  }
+}
+
 
 function setupSearchBar() {
   let searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-    loadSearchResults(searchBar)
+
+    indicateLoading()
+    debounce(() => {
+      loadSearchResults(searchBar)
+    }, 450)()
+
   })
 }
 
@@ -288,7 +321,6 @@ function loadSearchResults(searchInput) {
 
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
     hideProse()
-    indicateLoading()
 
     fetch(searchURL)
       .then(response => response.text())
