@@ -221,16 +221,18 @@ function debounce(func, wait, immediate) {
   }
 }
 
+const debouncedLoadSearchResults = debounce(() => {
+  const searchBar = document.getElementById('search')
+  loadSearchResults(searchBar)
+}, 700)
+
+
 
 function setupSearchBar() {
-  let searchBar = document.getElementById('search')
+  const searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-
     indicateLoading()
-    debounce(() => {
-      loadSearchResults(searchBar)
-    }, 450)()
-
+    debouncedLoadSearchResults()
   })
 }
 
