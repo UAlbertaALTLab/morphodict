@@ -252,8 +252,7 @@ context('Searching', () => {
     it("should show the 'info' icon to allow users to access additional information", () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
-      cy.visit('/')
-      cy.search(searchTerm)
+      cy.visitSearch(searchTerm)
 
       cy.get('[data-cy=search-result]').find('[data-cy=information-mark]')
     })
@@ -261,8 +260,7 @@ context('Searching', () => {
 
   describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
     it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
-      cy.visit('/')
-      cy.search('ewapamat')
+      cy.visitSearch('ewapamat')
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
@@ -276,8 +274,7 @@ context('Searching', () => {
     })
 
     it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
-      cy.visit('/')
-      cy.search('ewapamat')
+      cy.visitSearch('ewapamat')
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
@@ -294,10 +291,8 @@ context('Searching', () => {
     })
 
     it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
-      // begin from the homepage
-      cy.visit('/')
 
-      cy.search('nipaw')
+      cy.visitSearch('nipaw')
 
       // tab through the elements to force the tooltip to pop up
       cy.get('[data-cy=information-mark]').first().click()
@@ -320,11 +315,8 @@ context('Searching', () => {
     })
 
     it('should not overlap other page elements when being displayed in the page', () => {
-      // begin from the homepage
-      cy.visit('/')
-
       // Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!
-      cy.search('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
+      cy.visitSearch('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
 
 
       // force the tooltip to appear
@@ -340,9 +332,7 @@ context('Searching', () => {
     const NON_WORD = 'pîpîpôpô'
 
     it('should report no results found for ordinary search', function () {
-      cy.visit('/')
-
-      cy.search(NON_WORD)
+      cy.visitSearch(NON_WORD)
 
       cy.location().should((loc) => {
         expect(loc.pathname).to.eq('/search')
