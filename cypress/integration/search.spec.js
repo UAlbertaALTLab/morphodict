@@ -125,14 +125,14 @@ context('Searching', () => {
 
       cy.clearSearchBar()
 
-            cy.visitSearch('ayiman')
+      cy.visitSearch('ayiman')
         .searchResultsContain('âyiman')
 
     })
 
     it('should handle English-influenced spelling', () => {
       cy.visitSearch('atchakosuk')
-      .searchResultsContain('atâhk')
+        .searchResultsContain('atâhk')
     })
   })
 
