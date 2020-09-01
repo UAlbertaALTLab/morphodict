@@ -245,3 +245,44 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
   )
 
 })
+
+
+
+/**
+ * this command will type on the search bar with the given query
+ * Note the search bar is not cleared, use cy.clearSearchBar to clear it
+ *
+ * `options` can have bool pressEnter, and integer waitTime
+ *
+ * pressEnter has default false, waitTime has default 500 for results to be shown.
+ *
+ * when pressEnter is true, an {enter} key will follow so that the search goes off immediately.
+ * The site should be refreshed so no wait is needed, waitTime will default to 0
+ *
+ */
+Cypress.Commands.add('search', {prevSubject: false}, (query, options) => {
+
+  options = options || {pressEnter: false, waitTime: 500}
+
+  if (options.pressEnter === true){
+    options.waitTime = 0
+  }
+
+  cy.get('[data-cy=search]')
+    .type(query + (options.pressEnter ? '{enter}' : '')).wait(options.waitTime)
+})
+
+/**
+ * this command clears the search bar
+ */
+Cypress.Commands.add('clearSearchBar', {prevSubject: false}, () => {
+  cy.get('[data-cy=search]').clear()
+})
+
+/**
+ * this command clears the search bar
+ */
+Cypress.Commands.add('searchResultsContain', {prevSubject: false}, (expectedString) => {
+  return cy.get('[data-cy=search-results]')
+    .should('contain', expectedString)
+})

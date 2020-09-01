@@ -1,30 +1,49 @@
 context('Searching', () => {
+  
+  describe('I want to see search results showing dynamically while I type', () => {
+    // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+    it('should search for first minos, then minosis', () => {
+      cy.visit('/')
+      cy.search('minos')
+        .searchResultsContain('cat')
+
+      // makes it minos+is = minosis
+      cy.search('is')
+        .searchResultsContain('kitten')
+    })
+  })
+
+  describe('I want to see search results showing immediately after pressing enter', () => {
+    // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+    it('shows results for minosis immediately after enter is pressed', () => {
+      cy.visit('/')
+      cy.search('minosis', {pressEnter:true})
+        .searchResultsContain('kitten')
+
+    })
+  })
+  
+  
+  describe('I want to see search results by the url', () => {
+    it('perform the search by going directly to the URL', () => {
+      cy.visitSearch('minos')
+        .searchResultsContain('cat')
+    })
+  })
+  
 
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for an exact lemma', () => {
-      cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('minos')
-
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'cat')
-    })
-
-    it('should perform the search by going directly to the URL', () => {
-      cy.visit('/search?q=minos', {escapeComponents: false})
-
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'cat')
+      cy.visitSearch('minos')
+        .searchResultsContain('cat')
     })
   })
 
-  describe('When I type at the search bar, I should see results instantly', function () {
-    it('should display results in the page', function () {
+  describe('I want to have url changed dynamically according to the page', function () {
+    it('should display corresponding url', function () {
       cy.visit('/')
-
-      cy.get('[data-cy=search]')
-        .type('niya')
+      cy.search('niya')
 
       cy.location('pathname')
         .should('contain', '/search')
@@ -36,8 +55,7 @@ context('Searching', () => {
       let originalPathname, originalSearch
       cy.visit('/')
 
-      cy.get('[data-cy=search]')
-        .type('niya')
+      cy.search('niya')
 
       cy.location().should((loc) => {
         originalPathname = loc.pathname
@@ -94,34 +112,27 @@ context('Searching', () => {
   describe('I want the search for a Cree word to tolerate a query which may be spelled in a non-standard or slightly incorrect way.', () => {
     it('should treat apostrophes as short-Is ', () => {
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('tan\'si')
 
-      cy.get('[data-cy=search-results]')
-        .contains('tânisi')
+      cy.visitSearch('tan\'si')
+        .searchResultsContain('tânisi')
     })
 
     it('should forgive omitted long vowel marking', () => {
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('acimew')
+      
+      cy.visitSearch('acimew')
+        .searchResultsContain('âcimêw')
 
-      cy.get('[data-cy=search-results]')
-        .contains('âcimêw')
+      cy.clearSearchBar()
 
-      cy.get('[data-cy=search]')
-        .clear()
-        .type('ayiman')
+            cy.visitSearch('ayiman')
+        .searchResultsContain('âyiman')
 
-      cy.get('[data-cy=search-results]')
-        .contains('âyiman')
     })
 
     it('should handle English-influenced spelling', () => {
       cy.visitSearch('atchakosuk')
-
-      cy.get('[data-cy=search-results]')
-        .contains('atâhk')
+      .searchResultsContain('atâhk')
     })
   })
 
@@ -130,8 +141,8 @@ context('Searching', () => {
       // *nipe-acimon == nipê-âcimon == PV/pe+âcimow+V+AI+Ind+1Sg
       const searchTerm = 'nipe-acimon'
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type(searchTerm)
+
+      cy.visitSearch(searchTerm)
 
       cy.get('[data-cy=search-results]')
         .contains('[data-cy=search-result]', /Form of/i)
@@ -149,18 +160,15 @@ context('Searching', () => {
   it('should leave out not normatized content', () => {
     // nipa means "Kill Him" in MD
     cy.visitSearch('nipa')
-
-    cy.get('[data-cy=search-results]')
-      .should('contain', 'sleeps')
+      .searchResultsContain('sleeps')
       .and('not.contain', 'Kill')
   })
 
   it('should do prefix search and suffix search', () => {
     cy.visitSearch('nipaw')
+      .searchResultsContain('nipawâkan')
+      .searchResultsContain('mâci-nipâw')
 
-    cy.get('[data-cy=search-results]')
-      .should('contain', 'nipawâkan')
-      .and('contain', 'mâci-nipâw')
   })
 
   describe('Loading indicator', () => {
@@ -245,8 +253,7 @@ context('Searching', () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = 'niya'
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type(searchTerm)
+      cy.search(searchTerm)
 
       cy.get('[data-cy=search-result]').find('[data-cy=information-mark]')
     })
@@ -255,8 +262,7 @@ context('Searching', () => {
   describe('A tooltip should show up when the user click/focus on the i icon beside the matched wordform', () => {
     it('should show tooltip when the user focuses on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('ewapamat')
+      cy.search('ewapamat')
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
@@ -271,8 +277,7 @@ context('Searching', () => {
 
     it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
       cy.visit('/')
-      cy.get('[data-cy=search]')
-        .type('ewapamat')
+      cy.search('ewapamat')
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
@@ -292,10 +297,7 @@ context('Searching', () => {
       // begin from the homepage
       cy.visit('/')
 
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-        // get a word (nipaw)
-        .type('nipaw')
+      cy.search('nipaw')
 
       // tab through the elements to force the tooltip to pop up
       cy.get('[data-cy=information-mark]').first().click()
@@ -308,10 +310,7 @@ context('Searching', () => {
       // goodness, that's a mouthful and should _probably_ be worded better.
       // begin from the homepage
       cy.visit('/')
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-        // get a word (use nipaw)
-        .type('nipaw')
+      cy.search('nipaw')
 
       // tab through the page elements until arriving on the '?' icon
       cy.get('[data-cy=information-mark]').first().click()
@@ -324,10 +323,9 @@ context('Searching', () => {
       // begin from the homepage
       cy.visit('/')
 
-      // lock onto the searchbar
-      cy.get('[data-cy=search]')
-        // get a word (Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!)
-        .type('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
+      // Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!
+      cy.search('e-ki-nitawi-kah-kimoci-kotiskaweyahk')
+
 
       // force the tooltip to appear
       cy.get('[data-cy=information-mark]').first().click({force: true})
@@ -344,8 +342,7 @@ context('Searching', () => {
     it('should report no results found for ordinary search', function () {
       cy.visit('/')
 
-      cy.get('[data-cy=search]')
-        .type(NON_WORD)
+      cy.search(NON_WORD)
 
       cy.location().should((loc) => {
         expect(loc.pathname).to.eq('/search')
