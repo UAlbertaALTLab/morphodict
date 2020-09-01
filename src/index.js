@@ -224,7 +224,7 @@ function debounce(func, wait, immediate) {
 const debouncedLoadSearchResults = debounce(() => {
   const searchBar = document.getElementById('search')
   loadSearchResults(searchBar)
-}, 700)
+}, 450)
 
 
 
