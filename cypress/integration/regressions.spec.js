@@ -179,8 +179,8 @@ context('Regressions', () => {
    */
   it('should search from the about page', function () {
     cy.visit('/about')
-    cy.get('[data-cy="search"]')
-      .type('acâhkos')
+
+    cy.search('acâhkos')
 
     cy.url()
       .should('contain', '/search')
