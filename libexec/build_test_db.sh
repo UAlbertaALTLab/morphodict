@@ -12,8 +12,8 @@ set -e
 
 echo "Creating test_db.sqlite3 from scratch..."
 
-pipenv run python CreeDictionary/manage.py migrate API 0001
-
-manage-db build-test-db "$@"
+"$(dirname "$0")"/remake-api-migrations.sh
 
 pipenv run python CreeDictionary/manage.py migrate
+
+manage-db build-test-db "$@"

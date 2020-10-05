@@ -97,3 +97,15 @@
   /* What we actually want: (Safari ignores this line) */
   list-style: " – ";
 }
+
+/**
+ * TOOLTIP specific styling
+ *
+ * Should remove the numbering for ol
+ */
+.linguistic-breakdown__breakdown-stem {
+  /* Fallback (for Safari) */
+  list-style: disc;
+  /* What we actually want: (Safari ignores this line) */
+  list-style: " – ";
+}

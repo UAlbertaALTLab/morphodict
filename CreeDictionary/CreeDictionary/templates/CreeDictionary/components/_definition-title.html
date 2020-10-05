@@ -43,9 +43,12 @@
 
         <div class="tooltip" role="tooltip">
           <div data-cy="linguistic-breakdown">
-            {# TODO: this should be the STEM: #}
-            <strong>{{ result.lemma_wordform.text }}:</strong>
             <ol class="linguistic-breakdown">
+              {% if result.lemma_wordform.stem %}
+                <li class="linguistic-breakdown__breakdown-stem" data-cy="linguistic-breakdown__breakdown-stem">
+                  Stem: {{ result.lemma_wordform.stem }}
+                </li>
+              {% endif %}
               {% with tags=result.linguistic_breakdown_head|add:result.linguistic_breakdown_tail %}
                 {% for linguistic_tag in tags %}
                   <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">

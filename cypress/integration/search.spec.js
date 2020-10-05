@@ -264,7 +264,6 @@ context('Searching', () => {
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
-        .and('contain', 'wâpamêw') // lemma
         .and('contain', 'complementizer') // preververb
         .and('contain', 'Action word') // verb
 
@@ -273,7 +272,7 @@ context('Searching', () => {
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
     })
 
-    it('should show tooltip when the user clicks on the i icon beside ê-wâpamat', () => {
+    it('should show tooltip with relevant linguistic breakdowns when the user clicks on the i icon beside ê-wâpamat', () => {
       cy.visitSearch('ewapamat')
 
       // not visible at the start
@@ -285,12 +284,12 @@ context('Searching', () => {
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
         // NOTE: this depends on Antti's relabellings; if they change,
         // this assertion has to change :/
-        .and('contain', 'wâpamêw') // lemma
         .and('contain', 'Action word') // verb
         .and('contain', 'you (one) → him/her') // 3Sg -> 4Sg/PlO
+        .and('contain', 'wâpam-') // stem
     })
 
-    it('should show linguistic breakdowns as an ordered list when the user clicks on the ? icon beside a word', () => {
+    it('should show linguistic breakdowns as an ordered list when the user clicks on the i icon beside a word', () => {
 
       cy.visitSearch('nipaw')
 
