@@ -1016,13 +1016,6 @@ a.multiple-recordings__action-button {
 }
 
 /**
- * Makes the toggle look like a link.
- */
-.toggle-box--link-like > .toggle-box__toggle {
-  color: var(--link-action-color);
-}
-
-/**
  * MODIFIER large
  *
  * A slightly larger toggle-box.
@@ -1171,8 +1164,8 @@ a.menu-choice__label:active {
 .box--bad-outcome {
   color: var(--bad-outcome-color);
   background-color: var(--bad-outcome-bg-color);
-  text-shadow: 1px 1px 0 var(--embossed-highlight),
-               2px 2px 2px var(--bad-outcome-shadow);
+  text-shadow: 1px 1px 1px var(--embossed-highlight),
+               0   0   1px var(--bad-outcome-shadow);
 }
 
 /******************************** ABOUT PAGE ********************************/

@@ -20,39 +20,74 @@
   --tablet-search-bar-width:  561px;
 
   /* Colors */
-  --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
-  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
-  --app-body-color:         #000000; /* Color of body text. */
-  --cite-text-color:        #182457; /* Color of dictionary citation element. */
+  /* Coolors Exported Palette - https://coolors.co/ffebcd-231f20-0e79b2-a20011-4f0147 */
+  --blanched-almond:    hsl( 36 100% 90%);
+  --raisin-black:       hsl(345   6% 13%);
+  --maximum-yellow-red: hsl( 40  89% 61%);
+  --ruby-red:           hsl(354 100% 32%);
+  --tyrian-purple:      hsl(306  98% 16%);
+
+  --blanched-almond-h:      36;
+  --blanched-almond-hs:     36 100%;
+  --raisin-black-hs:       345   6%;
+  --star-command-blue-hs:  201  85%;
+  --maximum-yellow-red-hs:  40  89%;
+  --ruby-red-hs:           354 100%;
+  --tyrian-purple-hs:      306  98%;
+
+  --blanched-almond:    hsl(var(--blanched-almond-hs) 90%);
+  --raisin-black:       hsl(var(--raisin-black-hs) 13%);
+  --star-command-blue:  hsl(var(--star-command-blue-hs) 38%);
+  --maximum-yellow-red: hsl(var(--maximum-yellow-red-hs) 61%);
+  --ruby-red:           hsl(var(--ruby-red-hs) 32%);
+  --tyrian-purple:      hsl(var(--tyrian-purple-hs) 16%);
+
+  /* Concrete color choices: */
+  --app-bg-color:           hsl(var(--blanched-almond-hs) 95%); /* Background color of the entire application. */
+  --app-title-color:        var(--ruby-red); /* Color of the "itwêwina" title. */
+  --app-body-color:         var(--raisin-black); /* Color of body text. */
+
+  --cite-text-color:        hsl(var(--star-command-blue-hs) 25%); /* Color of dictionary citation element. */
   --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
-  --popup-color:            #000000; /* Color of popup/tooltip text. */
-  --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
-  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
-  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
+
+  --box-bg-color:           hsl(var(--blanched-almond-hs) 99%); /* Background color of "boxes" */
+
+  --popup-color:            var(--raisin-black); /* Color of popup/tooltip text. */
+  --popup-bg-color:         var(--box-bg-color); /* Color of popup/tooltip background. */
+
+  --footer-bg-color:        hsl(var(--blanched-almond-h) 90% 85%); /* Background color of the "sunken" footer. */
+  --footer-text-color:      hsl(var(--raisin-black-hs)  5%); /* Background color of the "sunken" footer. */
+
+  /* DEPRECATED: */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
-  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
-  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
-  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
-  --menu-caption-color:     #626262; /* Color of text for menu captions. */
-  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
-  --paradigm-button-color-alt:  #5A6FCC; /* ... when hovered or active */
-  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
-  --prose-heading-color:    #283C95;
-  --prose-title-color:      #1D2D72; /* For BIG section titles. */
-  --link-color:             #0F76B5; /* Regular links */
-  --link-visited-color:     #A568DB; /* Visited link */
-  --link-hover-color:       #5E8DC3; /* Hover over a link. */
-  --link-active-color:      #0E6790; /* Currently active link. */
-  --link-action-color:      #A568DB; /* A link that implies an immediate action. */
-  --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
-  --play-button-color:      #286995; /* The play button in a head (definition-title). */
-  --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+
+  --search-border-color:    hsl(var(--blanched-almond-h) 70% 80%); /* Color of the search bar's (unfocused) border */
+  --search-focus-color:     hsl(var(--star-command-blue-hs) 60%); /* Color of the search bar when focused */
+  --placeholder-text-color: hsl(var(--raisin-black-hs) 20%); /* The placeholder should be faint, but visible. */
+
+  --paradigm-button-color:  var(--star-command-blue); /* Color of the paradigm "show more" button. */
+  --paradigm-button-color-alt:  hsl(var(--star-command-blue-hs) 30%); /* ... when hovered or active */
+  --paradigm-border-color:  hsl(var(--star-command-blue-hs) 30%); /* Color of the paradigm border and button. */
+
+  --prose-title-color:      var(--star-command-blue); /* For BIG section titles. */
+  --prose-heading-color:    hsl(var(--star-command-blue-hs) 30%);
+
+  --link-color:             var(--star-command-blue); /* Regular links */
+  --link-visited-color:     var(--tyrian-purple); /* Visited link */
+  --link-hover-color:       hsl(var(--star-command-blue-hs) 66%); /* Hover over a link. */
+  --link-active-color:      var(--ruby-red); /* Currently active link. */
+
+  --play-button-color:      var(--star-command-blue); /* The play button in a head (definition-title). */
+  --soft-hr-color:          hsl(var(--blanched-almond-hs) 90%); /* Make the <hr> less harsh */
+
+  --menu-caption-color:     var(--raisin-black); /* Color of text for menu captions. */
   --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
-  --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
-  --bad-outcome-color:      #1A090D; /* A dark red text colour */
-  --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
-  --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
-  --embossed-highlight:     #e0e0e0;
+  --menu-hover-bg-color:    var(--star-command-blue); /* A dark background to contrast highlighted menu items. */
+
+  --bad-outcome-color:      hsl(var(--ruby-red-hs) 30%); /* A dark red text colour */
+  --bad-outcome-bg-color:   hsl(var(--ruby-red-hs) 90%); /* A light red (not quite pink) background */
+  --bad-outcome-shadow:     hsl(var(--ruby-red-hs) 10%);
+  --embossed-highlight:     hsl(var(--ruby-red-hs) 90%);
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
