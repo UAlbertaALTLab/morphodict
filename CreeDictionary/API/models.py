@@ -190,7 +190,10 @@ class Wordform(models.Model):
 
     # some lemmas have stems, they are shown in linguistic analysis
     # e.g. wâpam- is the stem for wâpamêw
-    stem = models.CharField(max_length=128, blank=True,)
+    stem = models.CharField(
+        max_length=128,
+        blank=True,
+    )
 
     class Meta:
         indexes = [
