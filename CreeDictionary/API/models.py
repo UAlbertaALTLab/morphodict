@@ -188,6 +188,10 @@ class Wordform(models.Model):
         help_text="The identified lemma of this wordform. Defaults to self",
     )
 
+    # some lemmas have stems, they are shown in linguistic analysis
+    # e.g. wâpam- is the stem for wâpamêw
+    stem = models.CharField(max_length=128, blank=True,)
+
     class Meta:
         indexes = [
             # analysis is for faster user query (in function fetch_lemma_by_user_query below)

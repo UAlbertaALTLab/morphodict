@@ -1,5 +1,6 @@
+#!/bin/sh
+
 # expected to be called from pipfile
-# 0001 is the basis of the import script in Database Manager
 # "$@" passes additional arguments to the shell script
 
 if [ $# -lt 1 ] ; then
@@ -22,8 +23,8 @@ fi
 
 echo "Creating db.sqlite3 from scratch..."
 
-pipenv run python CreeDictionary/manage.py migrate API 0001
-
-manage-db import "$@"
+"$(dirname "$0")"/remake-api-migrations.sh
 
 pipenv run python CreeDictionary/manage.py migrate
+
+manage-db import "$@"

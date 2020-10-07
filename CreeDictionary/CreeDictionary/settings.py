@@ -153,6 +153,35 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ############################### Morphodict configuration ###############################
 
+MORPHODICT_SOURCES = [
+    {
+        "abbrv": "MD",
+        "title": "Maskwacîs Dictionary of Cree Words / Nehiyaw Pîkiskweninisa",
+        "editor": "Maskwaschees Cultural College",
+        "publisher": "Maskwachees Cultural College",
+        "year": 2009,
+        "city": "Maskwacîs, Alberta",
+    },
+    {
+        "abbrv": "CW",
+        "title": "nêhiyawêwin : itwêwina / Cree : Words",
+        "editor": "Arok Wolvengrey",
+        "year": 2001,
+        "publisher": "Canadian Plains Research Center",
+        "city": "Regina, Saskatchewan",
+    },
+    {
+        "abbrv": "AE",
+        "title": "Alberta Elders' Cree Dictionary/"
+        "alperta ohci kehtehayak nehiyaw otwestamâkewasinahikan",
+        "author": "Nancy LeClaire, George Cardinal",
+        "editor": "Earle H. Waugh",
+        "year": 2002,
+        "publisher": "The University of Alberta Press",
+        "city": "Edmonton, Alberta",
+    },
+]
+
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
 

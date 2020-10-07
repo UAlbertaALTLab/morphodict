@@ -55,11 +55,7 @@ _urlpatterns = [
         "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    (
-        "_lemma_details/",
-        views.lemma_details_internal,
-        "cree-dictionary-lemma-detail",
-    ),
+    ("_lemma_details/", views.lemma_details_internal, "cree-dictionary-lemma-detail",),
     # cree word translation for click-in-text #todo (for matt): this
     (
         "_translate-cree/<str:query_string>/",
@@ -67,11 +63,7 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
-    (
-        "",
-        include("morphodict.urls"),
-        "cree-dictionary-change-orthography",
-    ),
+    ("", include("morphodict.urls"), "cree-dictionary-change-orthography",),
 ]
 
 # XXX: ugly hack to make this work on a local instance and on Sapir

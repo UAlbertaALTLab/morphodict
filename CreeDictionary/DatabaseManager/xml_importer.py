@@ -1,7 +1,9 @@
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Dict, List, Set
+from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
+
+from django.conf import settings
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import init
@@ -113,6 +115,15 @@ def find_latest_xml_file(dir_name: Path) -> Path:
     )
 
 
+def import_sources():
+    """
+    Import dictionary sources to the dictionary.
+    """
+
+    for src in settings.MORPHODICT_SOURCES:
+        DictionarySource(**src).save()
+
+
 @timed()
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
@@ -181,8 +192,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     # now we import as is entries to the database, the entries that we fail to provide an lemma analysis.
     for entry in as_is_entries:
         upper_pos = entry.pos.upper()
-
-        db_wordform = Wordform(
+        wordform_dict = dict(
             id=wordform_counter,
             text=entry.l,
             analysis=generate_as_is_analysis(entry.l, entry.pos, entry.ic),
@@ -191,6 +201,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             is_lemma=True,  # is_lemma field should be true for as_is entries
             as_is=True,
         )
+        if entry.stem is not None:
+            wordform_dict["stem"] = entry.stem
+
+        db_wordform = Wordform(**wordform_dict)
 
         # Insert keywords for as-is entries
         for translation in entry.translations:
@@ -221,8 +235,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     # now we import identified entries to the database, the entries we successfully identify with their lemma analyses
     for (entry, lemma_analysis) in identified_entry_to_analysis.items():
-        lemma_text_and_word_class = (
-            fst_analysis_parser.extract_lemma_text_and_word_class(lemma_analysis)
+        lemma_text_and_word_class = fst_analysis_parser.extract_lemma_text_and_word_class(
+            lemma_analysis
         )
         assert lemma_text_and_word_class is not None
 
@@ -235,10 +249,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         # build wordforms and definition in db
         for generated_analysis, generated_wordform_texts in expanded[lemma_analysis]:
 
-            generated_lemma_text_and_ic = (
-                fst_analysis_parser.extract_lemma_text_and_word_class(
-                    generated_analysis
-                )
+            generated_lemma_text_and_ic = fst_analysis_parser.extract_lemma_text_and_word_class(
+                generated_analysis
             )
             assert generated_lemma_text_and_ic is not None
             generated_lemma_text, generated_ic = generated_lemma_text_and_ic
@@ -252,8 +264,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     is_lemma = True
                 else:
                     is_lemma = False
-
-                db_wordform = Wordform(
+                wordform_dict = dict(
                     id=wordform_counter,
                     text=generated_wordform_text,
                     analysis=generated_analysis,
@@ -262,6 +273,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     inflectional_category=entry.ic,
                     as_is=False,
                 )
+                if entry.stem is not None:
+                    wordform_dict["stem"] = entry.stem
+                db_wordform = Wordform(**wordform_dict)
 
                 db_wordforms_for_analysis.append(db_wordform)
                 wordform_counter += 1
@@ -338,3 +352,12 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     logger.info("Inserting English keywords to database...")
     EnglishKeyword.objects.bulk_create(db_keywords)
     logger.info("Done inserting.")
+
+    # Convert the sources (stored as a string) to citations
+    # The reason why this is not done in the first place and there is a conversion:
+    #   django's efficient `bulk_create` method we use above doesn't play well with ManyToManyField
+    for dfn in Definition.objects.all():
+        source_ids = sorted(source.abbrv for source in dfn.citations.all())
+        for source_id in source_ids:
+            dfn.citations.add(source_id)
+        dfn.save()
