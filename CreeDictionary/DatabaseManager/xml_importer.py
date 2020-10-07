@@ -3,8 +3,6 @@ import xml.etree.ElementTree as ET
 from pathlib import Path
 from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
 
-from django.conf import settings
-
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from colorama import init
 from DatabaseManager import xml_entry_lemma_finder
@@ -13,6 +11,7 @@ from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
+from django.conf import settings
 from utils import PartOfSpeech, fst_analysis_parser
 from utils.crkeng_xml_utils import (
     IndexedXML,
@@ -235,8 +234,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     # now we import identified entries to the database, the entries we successfully identify with their lemma analyses
     for (entry, lemma_analysis) in identified_entry_to_analysis.items():
-        lemma_text_and_word_class = fst_analysis_parser.extract_lemma_text_and_word_class(
-            lemma_analysis
+        lemma_text_and_word_class = (
+            fst_analysis_parser.extract_lemma_text_and_word_class(lemma_analysis)
         )
         assert lemma_text_and_word_class is not None
 
@@ -249,8 +248,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         # build wordforms and definition in db
         for generated_analysis, generated_wordform_texts in expanded[lemma_analysis]:
 
-            generated_lemma_text_and_ic = fst_analysis_parser.extract_lemma_text_and_word_class(
-                generated_analysis
+            generated_lemma_text_and_ic = (
+                fst_analysis_parser.extract_lemma_text_and_word_class(
+                    generated_analysis
+                )
             )
             assert generated_lemma_text_and_ic is not None
             generated_lemma_text, generated_ic = generated_lemma_text_and_ic
