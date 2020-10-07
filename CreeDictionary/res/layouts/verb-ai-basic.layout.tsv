@@ -15,7 +15,7 @@
 "you (one)"	PV/e+${lemma}+V+AI+Cnj+2Sg
 "s/he"	PV/e+${lemma}+V+AI+Cnj+3Sg
 "we (but not you)"	PV/e+${lemma}+V+AI+Cnj+1Pl
-"you and we"	PV/e+${lemma}+V+AI+Cnj+12P
+"you and we"	PV/e+${lemma}+V+AI+Cnj+12Pl
 "you (all)"	PV/e+${lemma}+V+AI+Cnj+2Pl
 "they"	PV/e+${lemma}+V+AI+Cnj+3Pl
 "s/he/they (further)"	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl
