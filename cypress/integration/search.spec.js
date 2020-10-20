@@ -1,5 +1,4 @@
 context('Searching', () => {
-  
   describe('I want to see search results showing dynamically while I type', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for first minos, then minosis', () => {
@@ -22,15 +21,15 @@ context('Searching', () => {
 
     })
   })
-  
-  
+
+
   describe('I want to see search results by the url', () => {
     it('perform the search by going directly to the URL', () => {
       cy.visitSearch('minos')
         .searchResultsContain('cat')
     })
   })
-  
+
 
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
@@ -119,7 +118,7 @@ context('Searching', () => {
 
     it('should forgive omitted long vowel marking', () => {
       cy.visit('/')
-      
+
       cy.visitSearch('acimew')
         .searchResultsContain('âcimêw')
 
@@ -323,6 +322,29 @@ context('Searching', () => {
 
       // check that the z-index of the tooltip is greater than that of all other page elements
       cy.get('[data-cy=information-mark]').first().focus().next().should('have.css', 'z-index', '1') // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
+    })
+
+    /**
+     * https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/549
+     */
+    it('displays the stem prominently', function () {
+      cy.visitSearch('pê-nîmiw')
+
+      // Open the linguistic breakdown popup
+      cy.get('[data-cy=search-result]')
+        .find('[data-cy=information-mark]')
+        .first()
+        .click()
+
+      cy.get('[data-cy=linguistic-breakdown]')
+        .as('linguistic-breakdown')
+        .should('be.visible')
+
+      cy.get('@linguistic-breakdown')
+        .contains('nîmi-')
+        .should(($el) => {
+          expect(+$el.css('font-weight')).to.be.greaterThan(400)
+        })
     })
   })
 

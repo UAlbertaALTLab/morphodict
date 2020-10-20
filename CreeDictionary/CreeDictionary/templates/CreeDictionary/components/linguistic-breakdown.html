@@ -28,12 +28,10 @@
 
       <div class="tooltip" role="tooltip">
         <div data-cy="linguistic-breakdown">
+          {% if result.lemma_wordform.stem %}
+            <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
+          {% endif %}
           <ol class="linguistic-breakdown">
-            {% if result.lemma_wordform.stem %}
-              <li class="linguistic-breakdown__breakdown-stem" data-cy="linguistic-breakdown__breakdown-stem">
-                Stem: {{ result.lemma_wordform.stem }}
-              </li>
-            {% endif %}
             {% with tags=result.linguistic_breakdown_head|add:result.linguistic_breakdown_tail %}
               {% for linguistic_tag in tags %}
                 <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">

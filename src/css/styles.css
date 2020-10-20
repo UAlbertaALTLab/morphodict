@@ -582,6 +582,23 @@ a.multiple-recordings__action-button {
   cursor: help;
 }
 
+/*************************** LINGUISTIC BREAKDOWN ***************************/
+
+/**
+ * BLOCK linguistic-breakdown
+ *
+ * Contains linguistic information about a wordform.
+ */
+
+/**
+ * ELEMENT linguistic-breakdown__stem
+ *
+ * The stem of the word that is then inflected.
+ */
+.linguistic-breakdown__stem {
+  margin: 0;
+}
+
 /**
  * BLOCK cleave-inflection-from-lemma
  *
