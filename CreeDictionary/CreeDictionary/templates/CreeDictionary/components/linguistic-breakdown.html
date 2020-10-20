@@ -34,9 +34,7 @@
 
           <ol class="linguistic-breakdown__list">
             {% for tag in result.relevant_tags %}
-              <li class="linguistic-breakdown__breakdown-tail" data-cy="linguistic-breakdown__breakdown-tail">
-                <data value="{{ tag.value }}">{{ tag.in_plain_english }}</data>
-              </li>
+              <li><data value="{{ tag.value }}">{{ tag.in_plain_english }}</data></li>
             {% endfor %}
           </ol>
         </div>

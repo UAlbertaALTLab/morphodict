@@ -600,27 +600,17 @@ a.multiple-recordings__action-button {
 }
 
 /**
- * TOOLTIP specific styling
+ * ELEMENT list
  *
- * Should remove the numbering from the lists that come with the linguistic breakdowns
+ * The list that describes each morphosyntactic feature (tag).
  */
-.linguistic-breakdown__breakdown-tail {
-  /* Fallback (for Safari) */
-  list-style: disc;
-  /* What we actually want: (Safari ignores this line) */
-  list-style: " – ";
-}
+.linguistic-breakdown__list {
+  padding-left: 3em;
 
-/**
- * TOOLTIP specific styling
- *
- * Should remove the numbering for ol
- */
-.linguistic-breakdown__breakdown-stem {
-  /* Fallback (for Safari) */
-  list-style: disc;
-  /* What we actually want: (Safari ignores this line) */
-  list-style: " – ";
+  /* Create a hanging indent: */
+  text-indent: -1em;
+
+  list-style: none;
 }
 
 /**
