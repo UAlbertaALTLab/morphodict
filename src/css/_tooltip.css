@@ -85,27 +85,3 @@
   border-bottom: 0;
   border-left: 0;
 }
-
-/**
- * TOOLTIP specific styling
- *
- * Should remove the numbering from the lists that come with the linguistic breakdowns
- */
-.linguistic-breakdown__breakdown-tail {
-  /* Fallback (for Safari) */
-  list-style: disc;
-  /* What we actually want: (Safari ignores this line) */
-  list-style: " – ";
-}
-
-/**
- * TOOLTIP specific styling
- *
- * Should remove the numbering for ol
- */
-.linguistic-breakdown__breakdown-stem {
-  /* Fallback (for Safari) */
-  list-style: disc;
-  /* What we actually want: (Safari ignores this line) */
-  list-style: " – ";
-}
