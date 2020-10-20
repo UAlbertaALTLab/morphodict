@@ -55,28 +55,11 @@ class LinguisticTag(Protocol):
     def value(self) -> FSTTag:
         ...
 
-    @property
-    def in_plain_english(self) -> str:
-        ...
-
-    def serialize(self) -> SerializedLinguisticTag:
-        ...
-
-
-@attrs(auto_attribs=True, frozen=True)
-class SimpleLinguisticTag(LinguisticTag):
-    """
-    A linguistic feature/tag pair.
-    """
-
-    # The value in its original form (e.g., +V)
-    value: FSTTag
-
     # TODO: linguistic feature
 
     @property
     def in_plain_english(self) -> str:
-        return LABELS.english.get(self.value) or "???"
+        ...
 
     def serialize(self) -> SerializedLinguisticTag:
         return SerializedLinguisticTag(
@@ -84,9 +67,26 @@ class SimpleLinguisticTag(LinguisticTag):
         )
 
 
+class SimpleLinguisticTag(LinguisticTag):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    def __init__(self, value: FSTTag):
+        self._value = value
+
+    @property
+    def value(self) -> FSTTag:
+        return self._value
+
+    @property
+    def in_plain_english(self) -> str:
+        return LABELS.english.get(self.value) or "???"
+
+
 class CompoundLinguisticTag(LinguisticTag):
-    def __init__(self, tags: Iterable[LinguisticTag]) -> None:
-        self._fst_tags = tuple(t.value for t in tags)
+    def __init__(self, tags: Iterable[FSTTag]) -> None:
+        self._fst_tags = tuple(tags)
 
     @property
     def value(self):
@@ -95,6 +95,17 @@ class CompoundLinguisticTag(LinguisticTag):
     @property
     def in_plain_english(self):
         return LABELS.english.get_longest(self._fst_tags)
+
+
+def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
+    """
+    Returns the appropriate LinguisticTag, no matter how many tags you chuck at it!
+    """
+    assert len(tags) > 0
+    if len(tags) == 1:
+        return SimpleLinguisticTag(tags[0])
+    else:
+        return CompoundLinguisticTag(tags)
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -164,15 +175,17 @@ class SearchResult:
         return cast(SerializedSearchResult, result)
 
     @property
-    def relevant_tags(self) -> Tuple[SimpleLinguisticTag, ...]:
+    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
         """
         Tags and features to display in the linguistic breakdown pop-up.
         This omits preverbs and other features displayed elsewhere
 
         In itwêwina, these tags are derived from the suffix features exclusively.
+        We chunk based on the English relabelleings!
         """
         return tuple(
-            SimpleLinguisticTag(value=cast(FSTTag, tag)) for tag in self.raw_suffix_tags
+            linguistic_tag_from_fst_tags(fst_tags)
+            for fst_tags in LABELS.english.chunk(self.raw_suffix_tags)
         )
 
 
