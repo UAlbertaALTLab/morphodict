@@ -84,6 +84,19 @@ class SimpleLinguisticTag(LinguisticTag):
         )
 
 
+class CompoundLinguisticTag(LinguisticTag):
+    def __init__(self, tags: Iterable[LinguisticTag]) -> None:
+        self._fst_tags = tuple(t.value for t in tags)
+
+    @property
+    def value(self):
+        return "".join(self._fst_tags)
+
+    @property
+    def in_plain_english(self):
+        return LABELS.english.get_longest(self._fst_tags)
+
+
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
 class SearchResult:
     """
