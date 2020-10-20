@@ -263,7 +263,6 @@ context('Searching', () => {
 
       // not visible at the start
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
-        .and('contain', 'complementizer') // preververb
         .and('contain', 'Action word') // verb
 
       cy.get('[data-cy=information-mark]').first().focus()
@@ -278,14 +277,16 @@ context('Searching', () => {
       cy.get('[data-cy=linguistic-breakdown]').should('not.be.visible')
 
       // has to use force: true since div is not clickable
-      cy.get('[data-cy=information-mark]').first().click({force: true})
+      cy.get('[data-cy=information-mark]').first().click()
 
       cy.get('[data-cy=linguistic-breakdown]').should('be.visible')
+        .and('contain', 'wâpam-') // stem
         // NOTE: this depends on Antti's relabellings; if they change,
         // this assertion has to change :/
         .and('contain', 'Action word') // verb
-        .and('contain', 'you (one) → him/her') // 3Sg -> 4Sg/PlO
-        .and('contain', 'wâpam-') // stem
+      // TODO: these two should be on one line...
+        .and('contain', 'you (one)')  // 3Sg
+        .and('contain', '→ him/her/it')  // -> 4Sg/PlO
     })
 
     it('should show linguistic breakdowns as an ordered list when the user clicks on the i icon beside a word', () => {

@@ -14,6 +14,7 @@ from typing import (
     Optional,
     Set,
     Tuple,
+    TypeVar,
     Union,
     cast,
 )
@@ -24,6 +25,7 @@ from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
 from django.db.models import Q
 from sortedcontainers import SortedSet
+from typing_extensions import Protocol
 
 from CreeDictionary import hfstol as temp_hfstol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
@@ -44,15 +46,33 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 logger = logging.getLogger(__name__)
 
 
+class LinguisticTag(Protocol):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    @property
+    def value(self) -> FSTTag:
+        ...
+
+    @property
+    def in_plain_english(self) -> str:
+        ...
+
+    def serialize(self) -> SerializedLinguisticTag:
+        ...
+
+
 @attrs(auto_attribs=True, frozen=True)
-class LinguisticTag:
+class SimpleLinguisticTag(LinguisticTag):
     """
     A linguistic feature/tag pair.
     """
 
     # The value in its original form (e.g., +V)
     value: FSTTag
-    # TODO: feature
+
+    # TODO: linguistic feature
 
     @property
     def in_plain_english(self) -> str:
@@ -131,7 +151,7 @@ class SearchResult:
         return cast(SerializedSearchResult, result)
 
     @property
-    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+    def relevant_tags(self) -> Tuple[SimpleLinguisticTag, ...]:
         """
         Tags and features to display in the linguistic breakdown pop-up.
         This omits preverbs and other features displayed elsewhere
@@ -139,7 +159,7 @@ class SearchResult:
         In itwêwina, these tags are derived from the suffix features exclusively.
         """
         return tuple(
-            LinguisticTag(value=cast(FSTTag, tag)) for tag in self.raw_suffix_tags
+            SimpleLinguisticTag(value=cast(FSTTag, tag)) for tag in self.raw_suffix_tags
         )
 
 
