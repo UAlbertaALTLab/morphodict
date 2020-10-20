@@ -327,7 +327,7 @@ context('Searching', () => {
     /**
      * https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/549
      */
-    it('displays the stem prominently', function () {
+    it('displays the stem prominently in the linguistic breakdown', function () {
       cy.visitSearch('pê-nîmiw')
 
       // Open the linguistic breakdown popup
@@ -345,6 +345,26 @@ context('Searching', () => {
         .should(($el) => {
           expect(+$el.css('font-weight')).to.be.greaterThan(400)
         })
+    })
+
+    it('displays the suffix features in the linguistic breakdown', function () {
+      cy.visitSearch('pê-nîmiw')
+
+      // Open the linguistic breakdown popup
+      cy.get('[data-cy=search-result]')
+        .find('[data-cy=information-mark]')
+        .first()
+        .click()
+
+      cy.get('[data-cy=linguistic-breakdown]')
+        .as('linguistic-breakdown')
+        .should('be.visible')
+      cy.get('@linguistic-breakdown')
+        .contains('li', 'Action word')
+      cy.get('@linguistic-breakdown')
+        .contains('li', 'ni-/ki- word')
+      cy.get('@linguistic-breakdown')
+        .contains('li', 's/he')
     })
   })
 
