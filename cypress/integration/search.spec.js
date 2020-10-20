@@ -283,10 +283,8 @@ context('Searching', () => {
         .and('contain', 'wâpam-') // stem
         // NOTE: this depends on Antti's relabellings; if they change,
         // this assertion has to change :/
-        .and('contain', 'Action word') // verb
-      // TODO: these two should be on one line...
-        .and('contain', 'you (one)')  // 3Sg
-        .and('contain', '→ him/her/it')  // -> 4Sg/PlO
+        .and('contain', 'Action word - like') // VTA
+        .and('contain', 'you (one) → him/her')  // 3Sg -> 4Sg/PlO
     })
 
     it('should show linguistic breakdowns as an ordered list when the user clicks on the i icon beside a word', () => {
