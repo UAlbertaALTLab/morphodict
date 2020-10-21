@@ -96,7 +96,9 @@ class _RelabelFetcher:
     """
 
     def __init__(
-        self, data: Relabelling._DataStructure, label: LabelFriendliness,
+        self,
+        data: Relabelling._DataStructure,
+        label: LabelFriendliness,
     ):
         self._data = data
         self._friendliness = label

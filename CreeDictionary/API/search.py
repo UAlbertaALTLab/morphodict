@@ -19,15 +19,15 @@ from typing import (
     cast,
 )
 
+from typing_extensions import Protocol
+
 import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
+from CreeDictionary import hfstol as temp_hfstol
 from django.conf import settings
 from django.db.models import Q
 from sortedcontainers import SortedSet
-from typing_extensions import Protocol
-
-from CreeDictionary import hfstol as temp_hfstol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
@@ -63,7 +63,8 @@ class LinguisticTag(Protocol):
 
     def serialize(self) -> SerializedLinguisticTag:
         return SerializedLinguisticTag(
-            value=self.value, in_plain_english=self.in_plain_english,
+            value=self.value,
+            in_plain_english=self.in_plain_english,
         )
 
 
@@ -365,7 +366,8 @@ def get_preverbs_from_head_breakdown(
                     preverb_result = min(
                         preverb_results,
                         key=lambda pr: get_modified_distance(
-                            normative_preverb_text, pr.text.strip("-"),
+                            normative_preverb_text,
+                            pr.text.strip("-"),
                         ),
                     )
 
@@ -561,7 +563,9 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> CreeAndEn
     for preverb_wf in fetch_preverbs(user_query):
         cree_results.add(
             CreeResult(
-                ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                ConcatAnalysis(preverb_wf.analysis),
+                preverb_wf,
+                Lemma(preverb_wf),
             )
         )
 
@@ -606,9 +610,11 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
     try:
-        (linguistic_breakdown_head, _, linguistic_breakdown_tail,) = partition_analysis(
-            analysis
-        )
+        (
+            linguistic_breakdown_head,
+            _,
+            linguistic_breakdown_tail,
+        ) = partition_analysis(analysis)
     except ValueError:
         linguistic_breakdown_head = []
         linguistic_breakdown_tail = []
