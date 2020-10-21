@@ -7,7 +7,7 @@ from utils.cree_lev_dist import remove_cree_diacritics
 
 
 class AffixSearcher:
-    def __init__(self, words: Iterable[Tuple[str, int]]):
+    def __init__(self, words: List[Tuple[str, int]]):
         """
         :param words: expects lowered, no diacritics words with their ids
         """

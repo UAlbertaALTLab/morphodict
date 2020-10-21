@@ -82,7 +82,7 @@ def initialize_affix_search():
     except OperationalError:
         return
 
-    Wordform.affix_searcher = AffixSearcher(chain(lowered_no_diacritics_cree_with_id, lowered_english_keywords_with_wf_id))
+    Wordform.affix_searcher = AffixSearcher(lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id)
     logger.info("Finished building tries")
 
 
