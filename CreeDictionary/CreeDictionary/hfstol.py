@@ -31,7 +31,7 @@ else:
 def analyze(wordform: str) -> Iterable[Analysis]:
     with write_temporary_file(f"{wordform}\n") as input_file:
         output = check_output(
-            [_hfstol, "-q", _analyzer_path],
+            [_hfstol, "-q", str(_analyzer_path)],
             stdin=input_file,
             stderr=DEVNULL,
             encoding="UTF-8",

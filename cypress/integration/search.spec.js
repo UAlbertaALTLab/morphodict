@@ -16,7 +16,7 @@ context('Searching', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('shows results for minosis immediately after enter is pressed', () => {
       cy.visit('/')
-      cy.search('minosis', {pressEnter:true})
+      cy.search('minosis', {pressEnter: true})
         .searchResultsContain('kitten')
 
     })
@@ -163,12 +163,21 @@ context('Searching', () => {
       .and('not.contain', 'Kill')
   })
 
-  it('should do prefix search and suffix search', () => {
+  it('should do prefix search and suffix search for Cree', () => {
     cy.visitSearch('nipaw')
       .searchResultsContain('nipawâkan')
       .searchResultsContain('mâci-nipâw')
+  })
+
+  it.only('should do prefix search and suffix search for English', () => {
+    cy.visitSearch('sleep')
+      .searchResultsContain('sleeping')
+
+    cy.visitSearch('katoon')
+      .searchResultsContain('saskatoon')
 
   })
+
 
   describe('Loading indicator', () => {
     beforeEach(() => {
