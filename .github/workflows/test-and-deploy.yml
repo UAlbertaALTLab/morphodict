@@ -1,8 +1,7 @@
 # Based on: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Test and deploy
-
-on: [ push ]
+on: [push]
 
 jobs:
   unit-test:
@@ -46,7 +45,7 @@ jobs:
       uses: dschep/install-pipenv-action@v1
     - name: 📥 Install dependencies
       run: pipenv install
-    - name: Cypress run
+    - name: 🌲 Cypress run
       uses: cypress-io/github-action@v2
       env:
         DEBUG: "True"
