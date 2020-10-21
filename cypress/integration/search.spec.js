@@ -1,5 +1,5 @@
 context('Searching', () => {
-  
+
   describe('I want to see search results showing dynamically while I type', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('should search for first minos, then minosis', () => {
@@ -17,20 +17,20 @@ context('Searching', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     it('shows results for minosis immediately after enter is pressed', () => {
       cy.visit('/')
-      cy.search('minosis', {pressEnter:true})
+      cy.search('minosis', {pressEnter: true})
         .searchResultsContain('kitten')
 
     })
   })
-  
-  
+
+
   describe('I want to see search results by the url', () => {
     it('perform the search by going directly to the URL', () => {
       cy.visitSearch('minos')
         .searchResultsContain('cat')
     })
   })
-  
+
 
   describe('I want to know what a Cree word means in English', () => {
     // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
@@ -119,7 +119,7 @@ context('Searching', () => {
 
     it('should forgive omitted long vowel marking', () => {
       cy.visit('/')
-      
+
       cy.visitSearch('acimew')
         .searchResultsContain('âcimêw')
 
@@ -164,12 +164,21 @@ context('Searching', () => {
       .and('not.contain', 'Kill')
   })
 
-  it('should do prefix search and suffix search', () => {
+  it('should do prefix search and suffix search for Cree', () => {
     cy.visitSearch('nipaw')
       .searchResultsContain('nipawâkan')
       .searchResultsContain('mâci-nipâw')
+  })
+
+  it('should do prefix search and suffix search for English', () => {
+    cy.visitSearch('sleep')
+      .searchResultsContain('sleeping')
+
+    cy.visitSearch('berry')
+      .searchResultsContain('bearberry')
 
   })
+
 
   describe('Loading indicator', () => {
     beforeEach(() => {

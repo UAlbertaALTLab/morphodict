@@ -1,0 +1,840 @@
+"""
+A language independent specification of the search function
+
+This file has abstract classes that need to be implemented
+"""
+
+import unicodedata
+import logging
+from collections import defaultdict
+from functools import cmp_to_key, partial
+from itertools import chain
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    Iterable,
+    List,
+    NamedTuple,
+    NewType,
+    Optional,
+    Set,
+    Tuple,
+    Union,
+    cast,
+)
+from urllib.parse import quote
+
+import attr
+from attr import attrs
+
+import CreeDictionary.hfstol as temp_hfstol
+from cree_sro_syllabics import syllabics2sro
+from django.conf import settings
+from django.db import models, transaction
+from django.db.models import Max, Q, QuerySet
+from django.forms import model_to_dict
+from django.urls import reverse
+from django.utils.functional import cached_property
+from paradigm import Layout
+from shared import paradigm_filler
+from sortedcontainers import SortedSet
+from utils import (
+    Language,
+    ParadigmSize,
+    PartOfSpeech,
+    WordClass,
+    fst_analysis_parser,
+    get_modified_distance,
+)
+from utils.cree_lev_dist import remove_cree_diacritics
+from utils.fst_analysis_parser import LABELS, partition_analysis
+from utils.types import ConcatAnalysis, FSTTag, Label
+
+
+class Wordform(models.Model):
+    # this is initialized upon app ready.
+    # this helps speed up preverb match
+    # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
+    # pure MD content won't be included
+    PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
+
+    # initialized in apps.py
+    affix_searcher: AffixSearcher
+
+    # this is initialized upon app ready.
+    MORPHEME_RANKINGS: Dict[str, float] = {}
+
+    def get_absolute_url(self) -> str:
+        """
+        :return: url that looks like
+         "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?inflectional_category=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
+         it's the least strict url that guarantees unique match in the database
+        """
+        assert self.is_lemma, "There is no page for non-lemmas"
+        lemma_url = reverse(
+            "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
+        )
+        if self.homograph_disambiguator is not None:
+            lemma_url += f"?{self.homograph_disambiguator}={quote(str(getattr(self, self.homograph_disambiguator)))}"
+
+        return lemma_url
+
+    def serialize(self) -> SerializedWordform:
+        """
+        Intended to be passed in a JSON API or into templates.
+
+        :return: json parsable result
+        """
+        result = model_to_dict(self)
+        result["definitions"] = [
+            definition.serialize() for definition in self.definitions.all()
+        ]
+        result["lemma_url"] = self.get_absolute_url()
+
+        # Displayed in the word class/inflection help:
+        result["inflectional_category_plain_english"] = LABELS.english.get(
+            self.inflectional_category
+        )
+        result["inflectional_category_linguistic"] = LABELS.linguistic_long.get(
+            self.inflectional_category
+        )
+        result["wordclass_emoji"] = self.get_emoji_for_cree_wordclass()
+
+        return result
+
+    def get_emoji_for_cree_wordclass(self) -> Optional[str]:
+        """
+        Attempts to get an emoji description of the full wordclass.
+        e.g., "👤👵🏽" for "nôhkom"
+        """
+        maybe_word_class = self.word_class
+        if maybe_word_class is None:
+            return None
+        fst_tag_str = maybe_word_class.to_fst_output_style().strip("+")
+        tags = [FSTTag(t) for t in fst_tag_str.split("+")]
+        return LABELS.emoji.get_longest(tags)
+
+    @cached_property
+    def homograph_disambiguator(self) -> Optional[str]:
+        """
+        :return: the least strict field name that guarantees unique match together with the text field.
+            could be pos, inflectional_category, analysis, id or None when the text is enough to disambiguate
+        """
+        homographs = Wordform.objects.filter(text=self.text)
+        if homographs.count() == 1:
+            return None
+        for field in "pos", "inflectional_category", "analysis":
+            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
+                return field
+        return "id"  # id always guarantees unique match
+
+    @property
+    def word_class(self) -> Optional[WordClass]:
+        from_analysis = fst_analysis_parser.extract_word_class(self.analysis)
+        if from_analysis:
+            return from_analysis
+
+        # Can't get it from the analysis? Maybe its the (deprecated) part-of-speech?
+        try:
+            return WordClass(self.pos)
+        except ValueError:
+            return None
+
+    def get_paradigm_layouts(
+        self, size: ParadigmSize = ParadigmSize.BASIC
+    ) -> List[Layout]:
+        """
+        :param size: How detail the paradigm table is
+        """
+        wc = fst_analysis_parser.extract_word_class(self.analysis)
+        if wc is not None:
+            tables = paradigm_filler.fill_paradigm(self.text, wc, size)
+        else:
+            tables = []
+        return tables
+
+    @property
+    def md_only(self) -> bool:
+        """
+        check if the wordform instance has only definition from the MD source
+        """
+        for definition in self.definitions.all():
+            if set(definition.source_ids) - {"MD"}:
+                return False
+        return True
+
+    # override pk to allow use of bulk_create
+    # auto-increment is also implemented in the overridden save() method below
+    id = models.PositiveIntegerField(primary_key=True)
+
+    text = models.CharField(max_length=40)
+
+    inflectional_category = models.CharField(
+        max_length=10,
+        help_text="Inflectional category directly from source xml file",  # e.g. NI-3
+    )
+    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in PartOfSpeech] + [("", "")]
+    pos = models.CharField(
+        max_length=4,
+        choices=RECOGNIZABLE_POS,
+        help_text="Part of speech parsed from source. Can be unspecified",
+    )
+
+    analysis = models.CharField(
+        max_length=50,
+        default="",
+        help_text="fst analysis or the best possible generated if the source is not analyzable",
+        # see xml_importer.py::generate_as_is_analysis
+    )
+    is_lemma = models.BooleanField(
+        default=False,
+        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
+        " analyzable or it's ambiguous",
+    )
+
+    # if as_is is False. pos field is guaranteed to be not empty
+    # and will be values from `constants.POS` enum class
+
+    # if as_is is True, inflectional_category and pos fields can be under-specified, i.e. they can be empty strings
+    as_is = models.BooleanField(
+        default=False,
+        help_text="The lemma of this wordform is not determined during the importing process."
+        "is_lemma defaults to true and lemma field defaults to self",
+    )
+
+    lemma = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="inflections",
+        help_text="The identified lemma of this wordform. Defaults to self",
+    )
+
+    class Meta:
+        indexes = [
+            # analysis is for faster user query (in function fetch_lemma_by_user_query below)
+            models.Index(fields=["analysis"]),
+            # text index benefits fast lemma matching in function fetch_lemma_by_user_query
+            models.Index(fields=["text"]),
+        ]
+
+    def __str__(self):
+        return self.text
+
+    def __repr__(self):
+        cls_name = type(self).__name__
+        return f"<{cls_name}: {self.text} {self.analysis}>"
+
+    @transaction.atomic
+    def save(self, *args, **kwargs):
+        """
+        Ensure id is auto-incrementing.
+        Infer foreign key 'lemma' to be self if self.is_lemma is set to True. (friendly to test creation)
+        """
+        max_id = Wordform.objects.aggregate(Max("id"))
+        if max_id["id__max"] is None:
+            self.id = 0
+        else:
+            self.id = max_id["id__max"] + 1
+
+        # infer lemma if it is not set.
+        # this helps with adding entries in django admin as the ui for
+        # `lemma` takes forever to load.
+        # Also helps with tests as it's now easier to create entries
+
+        if self.is_lemma:
+            self.lemma_id = self.id
+
+        super(Wordform, self).save(*args, **kwargs)
+
+    @staticmethod
+    def fetch_lemma_by_user_query(
+        user_query: str, **extra_constraints
+    ) -> "CreeAndEnglish":
+        """
+        treat the user query as cree and:
+
+        Give the analysis of user query and matched lemmas.
+        There can be multiple analysis for user queries
+        One analysis could match multiple lemmas as well due to underspecified database fields.
+        (inflectional_category and pos can be empty)
+
+        treat the user query as English keyword and:
+
+        Give a list of matched lemmas
+
+        :param user_query: can be English or Cree (syllabics or not)
+        :param extra_constraints: additional fields to disambiguate
+        """
+        # Whitespace won't affect results, but the FST can't deal with it:
+        user_query = user_query.strip()
+        # Normalize to UTF8 NFC
+        user_query = unicodedata.normalize("NFC", user_query)
+        user_query = (
+            user_query.replace("ā", "â")
+            .replace("ē", "ê")
+            .replace("ī", "î")
+            .replace("ō", "ô")
+        )
+        user_query = syllabics2sro(user_query)
+
+        user_query = user_query.lower()
+
+        # build up result_lemmas in 2 ways
+        # 1. affix search (return all results that ends/starts with the query string)
+        # 2. spell relax in descriptive fst
+        # 2. definition containment of the query word
+
+        cree_results: Set[CreeResult] = set()
+
+        # there will be too many matches for some shorter queries
+        if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
+            # prefix and suffix search
+            ids_by_prefix = Wordform.affix_searcher.search_by_prefix(user_query)
+            ids_by_suffix = Wordform.affix_searcher.search_by_suffix(user_query)
+
+            for wf in Wordform.objects.filter(
+                id__in=set(chain(ids_by_prefix, ids_by_suffix)), **extra_constraints
+            ):
+                cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+
+        # utilize the spell relax in descriptive_analyzer
+        # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
+        # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+        fst_analyses: Set[ConcatAnalysis] = set(
+            a.concatenate() for a in temp_hfstol.analyze(user_query)
+        )
+
+        all_standard_forms = []
+
+        for analysis in fst_analyses:
+            # todo: test
+
+            exactly_matched_wordforms = Wordform.objects.filter(
+                analysis=analysis, as_is=False, **extra_constraints
+            )
+
+            if exactly_matched_wordforms.exists():
+                for wf in exactly_matched_wordforms:
+                    cree_results.add(
+                        CreeResult(ConcatAnalysis(wf.analysis), wf, Lemma(wf.lemma))
+                    )
+            else:
+                # When the user query is outside of paradigm tables
+                # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
+                # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+Prs+3Sg'}
+                # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+Prs+3Sg+4Sg/PlO+Err/Orth'
+
+                lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(
+                    analysis
+                )
+                if lemma_wc is None:
+                    logger.error(
+                        f"fst_analysis_parser cannot understand analysis {analysis}"
+                    )
+                    continue
+
+                # now we generate the standardized form of the user query for display purpose
+                # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
+                normatized_form_for_analysis = [
+                    *temp_hfstol.generate(analysis.replace("+Err/Orth", ""))
+                ]
+                all_standard_forms.extend(normatized_form_for_analysis)
+                if len(all_standard_forms) == 0:
+                    logger.error(
+                        f"can not generate standardized form for analysis {analysis}"
+                    )
+                normatized_user_query = min(
+                    normatized_form_for_analysis,
+                    key=lambda f: get_modified_distance(f, user_query),
+                )
+
+                lemma, word_class = lemma_wc
+                matched_lemma_wordforms = Wordform.objects.filter(
+                    text=lemma, is_lemma=True, **extra_constraints
+                )
+
+                # now we get wordform objects from database
+                # Note:
+                # non-analyzable matches should not be displayed (mostly from MD)
+                # like "nipa", which means kill him
+                # those results are filtered out by `as_is=False` below
+                # suggested by Arok Wolvengrey
+
+                if word_class.pos is PartOfSpeech.PRON:
+                    # specially handle pronouns.
+                    # this is a temporary fix, otherwise "ôma" won't appear in the search results, since
+                    # "ôma" has multiple analysis
+                    # ôma+Ipc+Foc
+                    # ôma+Pron+Dem+Prox+I+Sg
+                    # ôma+Pron+Def+Prox+I+Sg
+                    # it's ambiguous which one is the lemma in the importing process thus it's labeled "as_is"
+
+                    # a more permanent fix requires every pronouns lemma to be listed and specified
+                    for lemma_wordform in matched_lemma_wordforms:
+                        cree_results.add(
+                            CreeResult(
+                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                                normatized_user_query,
+                                Lemma(lemma_wordform),
+                            )
+                        )
+                else:
+                    for lemma_wordform in matched_lemma_wordforms.filter(
+                        as_is=False, pos=word_class.pos.name, **extra_constraints
+                    ):
+                        cree_results.add(
+                            CreeResult(
+                                ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                                normatized_user_query,
+                                Lemma(lemma_wordform),
+                            )
+                        )
+
+        # we choose to trust CW and show those matches with definition from CW.
+        # text__in = all_standard_forms help match those lemmas that are labeled as_is but trust-worthy nonetheless
+        # because they come from CW
+        # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
+        for cw_as_is_wordform in filter_cw_wordforms(
+            Wordform.objects.filter(
+                text__in=all_standard_forms + [user_query],
+                as_is=True,
+                is_lemma=True,
+                **extra_constraints,
+            )
+        ):
+            cree_results.add(
+                CreeResult(
+                    ConcatAnalysis(cw_as_is_wordform.analysis),
+                    cw_as_is_wordform,
+                    Lemma(cw_as_is_wordform),
+                )
+            )
+
+        # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
+        # preverbs should be presented
+        # exhaustively search preverbs here (since we can't use fst on preverbs.)
+
+        for preverb_wf in fetch_preverbs(user_query):
+            cree_results.add(
+                CreeResult(
+                    ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
+                )
+            )
+
+        # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
+        # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
+        # that comes from CW
+
+        # now we get results searched by English
+        # todo: remind user "are you searching in cree/english?"
+        # todo: allow inflected forms to be searched through English. (requires database migration
+        #  since now EnglishKeywords are bound to lemmas)
+        english_results: Set[EnglishResult] = set()
+        if " " not in user_query:  # a whole word
+
+            # this requires database to be changed as currently EnglishKeyword are associated with lemmas
+            lemma_ids = EnglishKeyword.objects.filter(
+                text__iexact=user_query, **extra_constraints
+            ).values("lemma__id")
+            for wordform in Wordform.objects.filter(
+                id__in=lemma_ids, as_is=False, **extra_constraints
+            ):
+                english_results.add(
+                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
+                )  # will become  (user_query, inflection.text, inflection.lemma)
+
+            # explained above, preverbs should be presented
+            for wordform in Wordform.objects.filter(
+                Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
+                id__in=lemma_ids,
+                as_is=True,
+                **extra_constraints,
+            ):
+                english_results.add(
+                    EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
+                )  # will become  (user_query, inflection.text, wordform)
+
+        return CreeAndEnglish(cree_results, english_results)
+
+    @staticmethod
+    def search(user_query: str, **extra_constraints) -> SortedSet[SearchResult]:
+        """
+
+        :param user_query:
+        :param extra_constraints: additional fields to disambiguate
+        :return:
+        """
+        cree_results: Set[CreeResult]
+        english_results: Set[EnglishResult]
+
+        cree_results, english_results = Wordform.fetch_lemma_by_user_query(
+            user_query, **extra_constraints
+        )
+
+        results: SortedSet[SearchResult] = SortedSet(key=sort_by_user_query(user_query))
+
+        def get_preverbs_from_head_breakdown(
+            head_breakdown: List[FSTTag],
+        ) -> Tuple[Preverb, ...]:  # consistent with SearchResult.preverb
+
+            results = []
+            for tag in head_breakdown:
+
+                preverb_result: Optional[Preverb] = None
+                if tag.startswith("PV/"):
+                    # use altlabel.tsv to figure out the preverb
+
+                    # ling_short looks like: "Preverb: âpihci-"
+                    ling_short = LABELS.linguistic_short.get(tag)
+                    if ling_short is not None and ling_short != "":
+                        # looks like: "âpihci"
+                        normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                        preverb_results = fetch_preverbs(normative_preverb_text)
+
+                        # find the one that looks the most similar
+                        if preverb_results:
+                            preverb_result = min(
+                                preverb_results,
+                                key=lambda pr: get_modified_distance(
+                                    normative_preverb_text, pr.text.strip("-"),
+                                ),
+                            )
+
+                        else:  # can't find a match for the preverb in the database
+                            preverb_result = normative_preverb_text
+
+                if preverb_result is not None:
+                    results.append(preverb_result)
+            return tuple(results)
+
+        # Create the search results
+        for cree_result in cree_results:
+
+            matched_cree = cree_result.normatized_cree_text
+            if isinstance(cree_result.normatized_cree, Wordform):
+                is_lemma = cree_result.normatized_cree.is_lemma
+                definitions = tuple(cree_result.normatized_cree.definitions.all())
+            else:
+                is_lemma = False
+                definitions = ()
+
+            try:
+                (
+                    linguistic_breakdown_head,
+                    _,
+                    linguistic_breakdown_tail,
+                ) = partition_analysis(cree_result.analysis)
+            except ValueError:
+                # when the lemma has as-is = True,
+                # analysis could be programmatically generated and not parsable
+                # see xml_importer.py::generate_as_is_analysis
+                linguistic_breakdown_head = []
+                linguistic_breakdown_tail = []
+
+            # todo: tags
+            results.add(
+                SearchResult(
+                    matched_cree=matched_cree,
+                    is_lemma=is_lemma,
+                    matched_by=Language.CREE,
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
+                    lemma_wordform=cree_result.lemma,
+                    preverbs=get_preverbs_from_head_breakdown(
+                        linguistic_breakdown_head
+                    ),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                    definitions=definitions,
+                )
+            )
+
+        for result in english_results:
+
+            try:
+                (
+                    linguistic_breakdown_head,
+                    _,
+                    linguistic_breakdown_tail,
+                ) = partition_analysis(result.lemma.analysis)
+            except ValueError:
+                linguistic_breakdown_head = []
+                linguistic_breakdown_tail = []
+
+            results.add(
+                SearchResult(
+                    matched_cree=result.matched_cree.text,
+                    is_lemma=result.matched_cree.is_lemma,
+                    matched_by=Language.ENGLISH,
+                    lemma_wordform=result.matched_cree.lemma,
+                    preverbs=get_preverbs_from_head_breakdown(
+                        linguistic_breakdown_head
+                    ),
+                    reduplication_tags=(),
+                    initial_change_tags=(),
+                    linguistic_breakdown_head=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_head)
+                    ),
+                    linguistic_breakdown_tail=tuple(
+                        replace_user_friendly_tags(linguistic_breakdown_tail)
+                    ),
+                    definitions=tuple(result.matched_cree.definitions.all()),
+                    # todo: current EnglishKeyword is bound to
+                    #       lemmas, whose definitions are guaranteed in the database.
+                    #       This may be an empty tuple in the future
+                    #       when EnglishKeyword can be associated with non-lemmas
+                )
+            )
+
+        return results
+
+
+# it's a str when the preverb does not exist in the database
+Preverb = Union[Wordform, str]
+
+
+def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
+    """
+    Returns a key function that sorts search results ranked by their distance
+    to the user query.
+    """
+    # mypy doesn't really know how to handle partial(), so we tell it the
+    # correct type with cast()
+    # See: https://github.com/python/mypy/issues/1484
+    return cmp_to_key(
+        cast(
+            Callable[[Any, Any], Any],
+            partial(sort_search_result, user_query=user_query),
+        )
+    )
+
+
+Lemma = NewType("Lemma", Wordform)
+
+
+class CreeResult(NamedTuple):
+    """
+    - analysis: a string, fst analysis of normatized cree
+
+    - normatized_cree: a wordform, the Cree inflection that matches the analysis
+        Can be a string that's not saved in the database since our database do not store all the
+        weird inflections
+
+    - lemma: a Wordform object, the lemma of the matched inflection
+    """
+
+    analysis: ConcatAnalysis
+    normatized_cree: Union[Wordform, str]
+    lemma: Lemma
+
+    @property
+    def normatized_cree_text(self) -> str:
+        if isinstance(self.normatized_cree, Wordform):
+            return self.normatized_cree.text
+        else:  # is str
+            return self.normatized_cree
+
+
+class EnglishResult(NamedTuple):
+    """
+    - matched_english: a string, the English that matches user query, currently it will just be the same as user query.
+        (unicode normalized, lowercased)
+
+    - normatized_cree: a string, the Cree inflection that matches the English
+
+    - lemma: a Wordform object, the lemma of the matched inflection
+    """
+
+    matched_english: MatchedEnglish
+    matched_cree: Wordform
+    lemma: Lemma
+
+
+def sort_search_result(
+    res_a: SearchResult, res_b: SearchResult, user_query: str
+) -> float:
+    """
+    determine how we sort search results.
+
+    :return:   0: does not matter;
+              >0: res_a should appear after res_b;
+              <0: res_a should appear before res_b.
+    """
+
+    if res_a.matched_by is Language.CREE and res_b.matched_by is Language.CREE:
+        # both from cree
+        a_dis = get_modified_distance(user_query, res_a.matched_cree)
+        b_dis = get_modified_distance(user_query, res_b.matched_cree)
+        difference = a_dis - b_dis
+        if difference:
+            return difference
+
+        # Both results are EXACTLY the same form!
+        # Further disambiguate by checking if one is the lemma.
+        if res_a.is_lemma and res_b.is_lemma:
+            return 0
+        elif res_a.is_lemma:
+            return -1
+        elif res_b.is_lemma:
+            return 1
+        else:
+            # Somehow, both forms exactly match the user query and neither
+            # is a lemma?
+            return 0
+
+    # todo: better English sort
+    elif res_a.matched_by is Language.CREE:
+        # a from cree, b from English
+        return -1
+    elif res_b.matched_by is Language.CREE:
+        # a from English, b from Cree
+        return 1
+    else:
+        # both from English
+        a_in_rankings = res_a.matched_cree in Wordform.MORPHEME_RANKINGS
+        b_in_rankings = res_b.matched_cree in Wordform.MORPHEME_RANKINGS
+
+        if a_in_rankings and not b_in_rankings:
+            return -1
+        elif not a_in_rankings and b_in_rankings:
+            return 1
+        elif not a_in_rankings and not b_in_rankings:
+            return 0
+        else:  # both in rankings
+            return (
+                Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
+                - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
+            )
+
+
+class CreeAndEnglish(NamedTuple):
+    """
+    Duct tapes together two kinds of search results:
+
+     - cree results -- an ordered set of CreeResults, should be sorted by the modified levenshtein distance between the
+        analysis and the matched normatized form
+     - english results -- an ordered set of EnglishResults, sorting mechanism is to be determined
+    """
+
+    # MatchedCree are inflections
+    cree_results: Set[CreeResult]
+    english_results: Set[EnglishResult]
+
+
+class DictionarySource(models.Model):
+    """
+    Represents bibliographic information for a set of definitions.
+
+    A Definition is said to cite a DictionarySource.
+    """
+
+    # A short, unique, uppercased ID. This will be exposed to users!
+    #  e.g., CW for "Cree: Words"
+    #     or MD for "Maskwacîs Dictionary"
+    abbrv = models.CharField(max_length=8, primary_key=True)
+
+    # Bibliographic information:
+    title = models.CharField(
+        max_length=256,
+        null=False,
+        blank=False,
+        help_text="What is the primary title of the dictionary source?",
+    )
+    author = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text="Separate multiple authors with commas. See also: editor",
+    )
+    editor = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text=(
+            "Who edited or compiled this volume? "
+            "Separate multiple editors with commas."
+        ),
+    )
+    year = models.IntegerField(
+        null=True, blank=True, help_text="What year was this dictionary published?"
+    )
+    publisher = models.CharField(
+        max_length=128, blank=True, help_text="What was the publisher?"
+    )
+    city = models.CharField(
+        max_length=64, blank=True, help_text="What is the city of the publisher?"
+    )
+
+    def __str__(self):
+        """
+        Will print a short citation like:
+
+            [CW] “Cree : Words” (Ed. Arok Wolvengrey)
+        """
+        # These should ALWAYS be present
+        abbrv = self.abbrv
+        title = self.title
+
+        # Both of these are optional:
+        author = self.author
+        editor = self.editor
+
+        author_or_editor = ""
+        if author:
+            author_or_editor += f" by {author}"
+        if editor:
+            author_or_editor += f" (Ed. {editor})"
+
+        return f"[{abbrv}]: “{title}”{author_or_editor}"
+
+
+class Definition(models.Model):
+    # override pk to allow use of bulk_create
+    id = models.PositiveIntegerField(primary_key=True)
+
+    text = models.CharField(max_length=200)
+
+    # A definition **cites** one or more dictionary sources.
+    citations = models.ManyToManyField(DictionarySource)
+
+    # A definition defines a particular wordform
+    wordform = models.ForeignKey(
+        Wordform, on_delete=models.CASCADE, related_name="definitions"
+    )
+
+    # Why this property exists:
+    # because DictionarySource should be its own model, but most code only
+    # cares about the source IDs. So this removes the coupling to how sources
+    # are stored and returns the source IDs right away.
+    @property
+    def source_ids(self):
+        """
+        A tuple of the source IDs that this definition cites.
+        """
+        return tuple(sorted(source.abbrv for source in self.citations.all()))
+
+    def serialize(self) -> SerializedDefinition:
+        """
+        :return: json parsable format
+        """
+        return {"text": self.text, "source_ids": self.source_ids}
+
+    def __str__(self):
+        return self.text
+
+
+class EnglishKeyword(models.Model):
+    # override pk to allow use of bulk_create
+    id = models.PositiveIntegerField(primary_key=True)
+
+    text = models.CharField(max_length=20)
+
+    lemma = models.ForeignKey(
+        Wordform, on_delete=models.CASCADE, related_name="english_keyword"
+    )
+
+    class Meta:
+        indexes = [models.Index(fields=["text"])]

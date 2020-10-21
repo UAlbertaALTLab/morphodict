@@ -1,5 +1,6 @@
 import logging
 import string
+from itertools import chain
 from pathlib import Path
 
 from django.apps import AppConfig
@@ -29,7 +30,7 @@ def initialize_preverb_search():
     # many preverbs are normalized so that both inflectional_category and pos are set to IPV.
     try:
         for preverb_wordform in Wordform.objects.filter(
-            Q(inflectional_category="IPV") | Q(pos="IPV")
+                Q(inflectional_category="IPV") | Q(pos="IPV")
         ):
             if not preverb_wordform.md_only:
                 Wordform.PREVERB_ASCII_LOOKUP[
@@ -61,20 +62,27 @@ def initialize_affix_search():
     """
     logger.info("Building tries for affix search...")
     from .models import Wordform
+    from .models import EnglishKeyword
 
     try:
-        lowered_no_diacritics_text_with_id = [
+        lowered_no_diacritics_cree_with_id = [
             (remove_cree_diacritics(text.lower()), wf_id)
             for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
                 "text", "id"
             )
         ]
+
+        lowered_english_keywords_with_wf_id = [(kw, wf_id) for kw, wf_id in
+                                               EnglishKeyword.objects.all().values_list(
+                                                   "text", "lemma__id"
+                                               )]
+
         # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
         # exists. Then an OperationalError will occur.
     except OperationalError:
         return
 
-    Wordform.affix_searcher = AffixSearcher(lowered_no_diacritics_text_with_id)
+    Wordform.affix_searcher = AffixSearcher(chain(lowered_no_diacritics_cree_with_id, lowered_english_keywords_with_wf_id))
     logger.info("Finished building tries")
 
 
