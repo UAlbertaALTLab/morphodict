@@ -8,7 +8,7 @@ from typing_extensions import Literal, TypedDict
 
 class SerializedDefinition(TypedDict):
     text: str
-    source_ids: Tuple[str]
+    source_ids: Tuple[str, ...]
 
 
 class SerializedWordform(TypedDict):
