@@ -582,6 +582,37 @@ a.multiple-recordings__action-button {
   cursor: help;
 }
 
+/*************************** LINGUISTIC BREAKDOWN ***************************/
+
+/**
+ * BLOCK linguistic-breakdown
+ *
+ * Contains linguistic information about a wordform.
+ */
+
+/**
+ * ELEMENT linguistic-breakdown__stem
+ *
+ * The stem of the word that is then inflected.
+ */
+.linguistic-breakdown__stem {
+  margin: 0;
+}
+
+/**
+ * ELEMENT list
+ *
+ * The list that describes each morphosyntactic feature (tag).
+ */
+.linguistic-breakdown__list {
+  padding-left: 3em;
+
+  /* Create a hanging indent: */
+  text-indent: -1em;
+
+  list-style: none;
+}
+
 /**
  * BLOCK cleave-inflection-from-lemma
  *

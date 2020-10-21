@@ -69,3 +69,14 @@ def test_get_full_relabelling():
         "ni-/ki- word",
         "s/he → him/her/them",
     ]
+
+
+def test_chunks_make_full_labels():
+    tag_set = ("V", "TA", "Prs", "Ind", "3Sg", "4Sg/PlO")
+    chunks = list(labels.english.chunk(tag_set))
+    assert chunks == [
+        ("V", "TA"),
+        ("Prs",),
+        ("Ind",),
+        ("3Sg", "4Sg/PlO"),
+    ]

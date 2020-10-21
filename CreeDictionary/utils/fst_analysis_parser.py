@@ -119,6 +119,21 @@ class _RelabelFetcher:
         _unmatched, label = self._get_longest(tags)
         return label
 
+    def chunk(self, tags: Iterable[FSTTag]) -> Iterable[Tuple[FSTTag, ...]]:
+        """
+        Chunk FST Labels that match relabellings and yield the tags.
+        """
+        tag_set = tuple(tags)
+        while tag_set:
+            unmatched, _ = self._get_longest(tag_set)
+            prefix_length = len(tag_set) - len(unmatched)
+            if prefix_length == 0:
+                # There was no relabelling found, but we can just return the first tag.
+                prefix_length = 1
+
+            yield tag_set[:prefix_length]
+            tag_set = tag_set[prefix_length:]
+
     def get_full_relabelling(self, tags: Iterable[FSTTag]) -> List[Label]:
         """
         Relabels all tags, trying to match prefixes
