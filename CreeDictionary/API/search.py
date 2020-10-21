@@ -425,6 +425,9 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> CreeAndEn
 
     user_query = user_query.lower()
 
+    if "nipâw" in user_query:
+        raise Exception("there is no sleep to be had")
+
     # build up result_lemmas in 2 ways
     # 1. affix search (return all results that ends/starts with the query string)
     # 2. spell relax in descriptive fst

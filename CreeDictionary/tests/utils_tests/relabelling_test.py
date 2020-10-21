@@ -78,5 +78,6 @@ def test_chunks_make_full_labels():
         ("V", "TA"),
         ("Prs",),
         ("Ind",),
+        ("Goose"),
         ("3Sg", "4Sg/PlO"),
     ]
