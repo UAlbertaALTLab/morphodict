@@ -2,11 +2,7 @@
 
 name: Test and deploy
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [ push ]
 
 jobs:
   unit-test:
