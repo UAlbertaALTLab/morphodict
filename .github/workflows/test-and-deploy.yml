@@ -32,4 +32,4 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
-      run: pipenv run test --cov=CreeDictionary
+      run: pipenv run test -v --cov=CreeDictionary
