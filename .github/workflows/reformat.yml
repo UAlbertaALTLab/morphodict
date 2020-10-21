@@ -37,10 +37,9 @@ jobs:
       with:
         python-version: 3.6
     - name: Install dependencies
-      run: "pip install 'isort[pyproject]==4.3.21' black"
+      run: "pip install black"
     - name: Reformat Python
       run: |
-        isort -y
         black .
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
