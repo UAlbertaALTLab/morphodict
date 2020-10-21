@@ -437,6 +437,11 @@ html {
   font-size: var(--definition-title-size);
 }
 
+.definition-title__title {
+  display: inline;
+  font-size: inherit;
+}
+
 .definition-title--search-result {
   margin: 0;
 }
@@ -445,6 +450,10 @@ html {
   /* Text */
   font-style: normal;
   font-weight: var(--strong-font-weight);
+}
+
+.definition__icons {
+  display: inline;
 }
 
 .definition-title__tooltip-text{
@@ -479,9 +488,10 @@ html {
 }
 
 /**
- * The actual SVG for the 🔊 icon
+ * The actual SVG for the 🔊 icon and the speaker playback/external link buttons
  */
-.definition-title__play-icon {
+.definition-title__play-icon,
+.speaker-playback-action-button {
   width: 100%;
   height: var(--tooltip-icon-size);
 
@@ -493,7 +503,8 @@ html {
  *
  * Should be a button that looks like a link.
  */
-.definition-title__play-button {
+.definition-title__play-button,
+.multiple-recordings__action-button {
   /* Reset the button appearance: */
   width: 1em;
   height: 1em;
@@ -538,6 +549,19 @@ html {
   cursor: pointer;
 }
 
+/**
+ * ELEMENT speaker-play-button
+ *
+ * Makes the SVG of the speaker-playback look like a button.
+ */
+.multiple-recordings__action-button {
+  margin-left: 0.5em;
+  margin-bottom: 1em; /* makes the button line up with the select */
+}
+a.multiple-recordings__action-button {
+  font-weight: var(--body-font-weight);
+  font-style: italic;
+}
 /**
  * BLOCK wordclass
  */
@@ -707,20 +731,17 @@ html {
 
 .paradigm-title {
   text-align: center;
-  font-family: var(--strong-font-weight);
+  font-style: italic;
+  font-weight: var(--body-font-weight);
 }
 
 .paradigm-label {
   text-align: left;
-}
-
-.paradigm-label--row {
   font-style: italic;
   font-weight: var(--body-font-weight);
 }
 
 .paradigm-label--col {
-  font-weight: var(--strong-font-weight);
   /* Sometimes the label is too dang wide, so just hide it. */
   overflow-x: ellipsis;
 }
@@ -728,6 +749,16 @@ html {
 .paradigm-cell {
   font-weight: var(--body-font-weight);
 }
+
+.paradigm-cell--observed{
+  font-weight: var(--strong-font-weight);
+}
+
+.paradigm-cell--no-analysis{
+  background-color: lightgray;
+}
+
+
 
 .paradigm-label--row, .paradigm-cell {
   vertical-align: top; /* When a label applies to multiple wordforms */

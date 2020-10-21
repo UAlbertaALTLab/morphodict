@@ -6,11 +6,15 @@
   <title>itwêwina: the online Cree dictionary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0091FF">
+  <link rel="icon" type="image/png" href="{% static 'CreeDictionary/images/itwewina-32.png' %}">
+  <link rel="alternate icon" type="image/svg+xml" href="{% static 'CreeDictionary/images/itwewina.svg' %}">
+  <link rel="mask-icon" href="{% static 'CreeDictionary/images/itwewina-safari-pinned-tab.svg' %}" color="#FAEBD7">
+  <link rel="apple-touch-icon" href="{% static 'CreeDictionary/images/itwewina-192.png' %}">
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700|Raleway&display=swap&subset=latin-ext">
   <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
-  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse    #}
-  <script src="{% url 'js_reverse' %}" type="text/javascript"></script>
+  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
+  <script src="{% url 'js_reverse' %}"></script>
   <script src={% static 'CreeDictionary/js/index.js' %}></script>
 
   {% if lemma_id and paradigm_size %}
@@ -39,21 +43,7 @@
     </button>
   </template>
 
-  {# The speaker button template (multiple recordings) #}
-  <template id="template:recording-item">
-    <li class="recordings-list__item" data-cy="recordings-list__item">
-      <button class="audio-snippet">
-        <slot name="speaker-name"></slot>,
-        <slot name="speaker-dialect"></slot>
-      </button>
-  </template>
 
-  {# The speaker-bio links template #}
-  <template id="template:speaker-bio-link">
-    <a href="" target="_blank" rel="noopener" data-cy="recordings-list__item-speaker">Learn more about
-      <slot name="speaker-name"></slot>.
-   </a>
-  </template>
 {% endspaceless %}
 
 {% comment %}
@@ -68,13 +58,13 @@
     {% endblock %}
   </div>
 
-  <section class="search-results">
+  <div class="search-results">
     <ol class="search-results__results" id="search-result-list">
       {% if did_search %}
         {% include "CreeDictionary/word-entries.html" %}
       {% endif %}
     </ol>
-  </section>
+  </div>
 
   {% if lemma_id %}
     {% include 'CreeDictionary/word-detail.html' %}

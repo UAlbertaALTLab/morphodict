@@ -29,7 +29,7 @@ subparsers.required = True
 
 import_parser = subparsers.add_parser(
     "import",
-    help="Import from specified engcrk.xml and crkeng.xml. This assumes the database is at migration 0005",
+    help="Import from specified crkeng.xml. This assumes the database is at migration 0001",
 )
 
 build_test_db_parser = subparsers.add_parser(
@@ -38,7 +38,7 @@ build_test_db_parser = subparsers.add_parser(
 add_multi_processing_argument(build_test_db_parser)
 
 import_parser.add_argument(
-    "xml_directory_name", help="The directory that has crkeng.xml and engcrk.xml"
+    "xml_directory_name", help="The directory that has crkeng.xml"
 )
 
 add_multi_processing_argument(import_parser)
@@ -56,7 +56,8 @@ def cmd_entry(argv=None):
         ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
         build_test_xml(args.process_count)
         import_xmls(
-            shared_res_dir / "test_dictionaries", args.process_count,
+            shared_res_dir / "test_dictionaries",
+            args.process_count,
         )
     else:
         raise NotImplementedError

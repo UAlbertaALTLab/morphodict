@@ -1,9 +1,0 @@
-name: "Animate noun basic paradigm"	
-paradigm: "noun-na.paradigm"	
-layout:	
-  type: "basic"	
-tooltips:	
-  eng:	
-    "1s poss (sg)": "1st person singular possessor, singular noun"	
-    "2s poss (sg)": "2nd person singular possessor, singular noun"	
-    "3s poss (obv)": "3rd person singular possessor, obviative noun"	

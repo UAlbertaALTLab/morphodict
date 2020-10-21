@@ -36,6 +36,16 @@ import {
 
 const NO_BREAK_SPACE = '\u00A0'
 
+/**
+ * Milliseconds, we only send search requests after this long of time of inactivity has passed.
+ * Prevents too many invalid requests from being sent during typing
+ *
+ * Check the brief blog post to read a study about people's typing speed:
+ * https://madoshakalaka.github.io/2020/08/31/how-hard-should-you-debounce-on-a-responsive-search-bar.html
+ * @type {number}
+ */
+const SERACH_BAR_DEBOUNCE_TIME = 450
+
 
 //////////////////////////////// On page load ////////////////////////////////
 
@@ -88,9 +98,9 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function readDjangoJsonScript(id) {
   const jsonScriptElement = document.getElementById(id)
-  if (jsonScriptElement){
+  if (jsonScriptElement) {
     return JSON.parse(jsonScriptElement.textContent)
-  }else{
+  } else {
     return undefined
   }
 }
@@ -193,11 +203,46 @@ function setupParadigmSizeToggleButton() {
   })
 }
 
+/**
+ * A debounce function. Documentation: https://davidwalsh.name/javascript-debounce-function
+ * @param  {Function} func      The function to debounce
+ * @param  {Number}   wait      The time to wait, in milliseconds
+ * @param  {Boolean}  immediate Whether to invoke the function immediately
+ * @return {Function}
+ */
+function debounce(func, wait, immediate) {
+
+  let timeout
+
+  return function debounced(...args) {
+
+    const later = () => {
+      timeout = null
+      if (!immediate) func.apply(this, args)
+    }
+
+    const callNow = immediate && !timeout
+
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+
+    if (callNow) func.apply(this, args)
+
+  }
+}
+
+const debouncedLoadSearchResults = debounce(() => {
+  const searchBar = document.getElementById('search')
+  loadSearchResults(searchBar)
+}, SERACH_BAR_DEBOUNCE_TIME)
+
+
 
 function setupSearchBar() {
-  let searchBar = document.getElementById('search')
+  const searchBar = document.getElementById('search')
   searchBar.addEventListener('input', () => {
-    loadSearchResults(searchBar)
+    indicateLoading()
+    debouncedLoadSearchResults()
   })
 }
 
@@ -288,7 +333,6 @@ function loadSearchResults(searchInput) {
 
     window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
     hideProse()
-    indicateLoading()
 
     fetch(searchURL)
       .then(response => response.text())

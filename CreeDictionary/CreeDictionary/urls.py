@@ -55,7 +55,11 @@ _urlpatterns = [
         "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    ("_lemma_details/", views.lemma_details_internal, "cree-dictionary-lemma-detail",),
+    (
+        "_lemma_details/",
+        views.lemma_details_internal,
+        "cree-dictionary-lemma-detail",
+    ),
     # cree word translation for click-in-text #todo (for matt): this
     (
         "_translate-cree/<str:query_string>/",
@@ -63,7 +67,11 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
-    ("", include("morphodict.urls"), None,),
+    (
+        "",
+        include("morphodict.urls"),
+        "cree-dictionary-change-orthography",
+    ),
 ]
 
 # XXX: ugly hack to make this work on a local instance and on Sapir
@@ -73,10 +81,7 @@ prefix = "cree-dictionary/" if settings.RUNNING_ON_SAPIR else ""
 
 for route, view, name in _urlpatterns:
     # kwarg `name` for url reversion in html/py/js code
-    if name is not None:
-        urlpatterns.append(path(prefix + route, view, name=name))
-    else:
-        urlpatterns.append(path(prefix + route, view))
+    urlpatterns.append(path(prefix + route, view, name=name))
 
 # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))

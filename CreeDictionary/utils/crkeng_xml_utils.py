@@ -316,7 +316,10 @@ class IndexedXML(Iterable[XMLEntry]):
 
         try:
             values_to_entries = self._indexes[
-                cast(Tuple[NamedTupleFieldName], field_names,)
+                cast(
+                    Tuple[NamedTupleFieldName],
+                    field_names,
+                )
             ]
         except ValueError:
             raise ValueError(f"index with field names {list(constraints)} is not built")

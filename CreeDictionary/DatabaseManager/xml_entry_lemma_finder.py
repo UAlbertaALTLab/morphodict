@@ -5,7 +5,9 @@ import csv
 from collections import defaultdict
 from itertools import chain
 from string import Template
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict, Iterable, List, Optional, Set, Tuple, cast
+
+from typing_extensions import Literal
 
 import utils.fst_analysis_parser
 from colorama import Fore, init
@@ -14,7 +16,6 @@ from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
 from shared import strict_analyzer
-from typing_extensions import Literal
 from utils import WordClass, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
 from utils.data_classes import XMLEntry
@@ -69,7 +70,9 @@ crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
 def identify_entries(
-    crkeng_xml: IndexedXML, multi_processing: int = 1, verbose=True,
+    crkeng_xml: IndexedXML,
+    multi_processing: int = 1,
+    verbose=True,
 ) -> Tuple[Dict[XMLEntry, ConcatAnalysis], List[XMLEntry]]:
     """
     For every entry in the XML file, try to find its lemma analysis according to the FST.
@@ -77,6 +80,11 @@ def identify_entries(
     :returns: Entries with their lemma analyses. And "as is" entries that we fail to provide a lemma analysis,
         either because the FST doesn't recognize the entry or there are ambiguities.
     """
+
+    def get_all_ls() -> Iterable[str]:
+        ls = crkeng_xml.values_list("l", flat=True)
+        assert all(isinstance(l, str) for l in ls)  # type: ignore
+        return cast(Iterable[str], ls)
 
     logger = DatabaseManagerLogger(__name__, verbose)
     logger.info("Determining lemma analysis for entries...")
@@ -86,15 +94,15 @@ def identify_entries(
     # The second return value. Lemmas that we fail to provide a lemma analysis
     as_is_entries = []
 
-    ls = crkeng_xml.values_list("l", flat=True)
-
-    l_to_analyses = strict_analyzer.feed_in_bulk_fast(ls, multi_processing)
+    ls = get_all_ls()
+    l_to_analyses = cast(
+        Dict[FSTLemma, Set[ConcatAnalysis]],
+        strict_analyzer.feed_in_bulk_fast(ls, multi_processing),
+    )
 
     produced_extra_lemmas: List[FSTLemma] = []
 
-    fst_analysis_to_fst_lemma_wc: Dict[
-        ConcatAnalysis, Tuple[FSTLemma, WordClass]
-    ] = dict()
+    fst_analysis_to_fst_lemma_wc: Dict[ConcatAnalysis, Tuple[FSTLemma, WordClass]] = {}
     for fst_analysis in chain.from_iterable(l_to_analyses.values()):
         x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
         assert x is not None
@@ -103,9 +111,10 @@ def identify_entries(
         if produced_lemma not in l_to_analyses:
             produced_extra_lemmas.append(produced_lemma)
 
-    produced_extra_lemma_to_analysis: Dict[
-        FSTLemma, Set[ConcatAnalysis]
-    ] = strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas)
+    produced_extra_lemma_to_analysis = cast(
+        Dict[FSTLemma, Set[ConcatAnalysis]],
+        strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas),
+    )
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
         x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)

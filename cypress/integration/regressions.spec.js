@@ -32,7 +32,7 @@ context('Regressions', () => {
     cy.get('[data-cy=search-results]')
       .should('contain', 'awâsisîwiw')
 
-    cy.visitSearch('na nipat')
+    cy.visitSearch('e nipat')
     cy.get('[data-cy=search-results]')
       .should('contain', 'nipâw')
   })
@@ -40,6 +40,7 @@ context('Regressions', () => {
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should display relevant English results', () => {
+
     cy.visitSearch('see')
     cy.get('[data-cy=search-results]')
       .should('contain', 'wâpiw')
@@ -178,8 +179,8 @@ context('Regressions', () => {
    */
   it('should search from the about page', function () {
     cy.visit('/about')
-    cy.get('[data-cy="search"]')
-      .type('acâhkos')
+
+    cy.search('acâhkos')
 
     cy.url()
       .should('contain', '/search')
@@ -313,6 +314,27 @@ context('Regressions', () => {
 
         cy.contains('[data-cy=elaboration]', inflectsLike)
           .should('contain', emoji)
+      })
+    }
+  })
+
+  /**
+   * Ensure homographic entries can have paradigms shown
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   */
+  context('results for common place names', function () {
+    const testCases = [
+      ['Calgary', 'otôskwanihk'],
+      ['Regina', 'oskana kâ-asastêki'],
+      ['Saskatoon', 'misâskwatômina'],
+    ]
+
+    for (const [englishName, creeName] of testCases) {
+      it(`should have a definition for ${englishName}`, function () {
+        cy.visitSearch(englishName.toLowerCase())
+
+        cy.contains('[data-cy=matched-wordform]', creeName)
       })
     }
   })

@@ -20,7 +20,7 @@ It _minimally_ consists of:
 One possible linguistic analysis of the [wordform][] "sabía" in
 Spanish is:
 
-    saber+V+Pst+Past+1Sg
+    saber+V+Past+1Sg
 
 In other words, the breakdown is:
 
@@ -256,6 +256,24 @@ head
 The highest level structure of a [dictionary][].
 Each head is listed alphabetically (with derivations (phrases on the
 [wordform][]) coming after the \'root\' listing).
+
+
+lacuna
+======
+[lacuna]: #lacuna
+[lacunae]: #lacuna
+
+"Gaps" in a [paradigm]. Any form that does not exist in a paradigm. For
+example, the English word “pants”:
+
+|   | Singular | Plural |
+|:-:|:--------:|:------:|
+|   |     —    | pants  |
+
+
+Pants doesn't have a singular form! There's “pant leg”, but no “\*pant”
+This is a **lacuna**: a gap in the paradigm, where you would otherwise
+expect a valid form.
 
 
 lemma

@@ -1,7 +1,0 @@
-"1s poss (sg)"	=N+I+D+Px1Sg+Sg
-"2s poss (sg)"	=N+I+D+Px2Sg+Sg
-"3s poss (sg)"	=N+I+D+Px3Sg+Sg
-	: "Unspecified possessor"
-"X poss (sg)"	=N+I+D+PxX+Sg
-"X poss (pl)"	=N+I+D+PxX+Pl
-"X poss (loc)"	=N+I+D+PxX+Loc

@@ -38,8 +38,31 @@
                     {% elif cell == "" %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
+                      {# it's an InflectionCell #}
                       {# TODO: split this over multiple rows #}
-                      <td class="paradigm-cell">{% orth cell %}</td>
+                      {% if cell.inflection == "" %}
+                        {# use em dash to denote that the form doesn't exist #}
+                        <td class="paradigm-cell paradigm-cell--lacuna">
+                          —
+                        </td>
+                      {% elif cell.frequency > 0 %}
+                        {# observed form #}
+                      <td class="paradigm-cell paradigm-cell--observed">
+                        {% orth cell.inflection %}
+                      </td>
+                      {% else %}
+                        {# unobserved form #}
+                        {% if not cell.has_analysis %}
+                          <td class="paradigm-cell paradigm-cell--no-analysis">
+
+                          </td>
+                        {% else %}
+                          <td class="paradigm-cell paradigm-cell--unobserved">
+                            {% orth cell.inflection %}
+                          </td>
+                        {% endif %}
+
+                      {% endif %}
                     {% endif %}
                   {% endfor %}
                 </tr>

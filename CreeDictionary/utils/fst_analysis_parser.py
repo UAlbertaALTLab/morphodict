@@ -96,7 +96,9 @@ class _RelabelFetcher:
     """
 
     def __init__(
-        self, data: Relabelling._DataStructure, label: LabelFriendliness,
+        self,
+        data: Relabelling._DataStructure,
+        label: LabelFriendliness,
     ):
         self._data = data
         self._friendliness = label
@@ -206,24 +208,26 @@ def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTT
 
 def extract_lemma(analysis: str) -> Optional[FSTLemma]:
     res = re.search(analysis_pattern, analysis)
-    if res is not None:
 
-        group = res.group("category")
-        if group:
-            end = res.span("category")[0]
-            # print(res.groups())
-            cursor = end - 1
-
-            while cursor > 0 and analysis[cursor] != "+":
-                cursor -= 1
-            if analysis[cursor] == "+":
-                cursor += 1
-            # print(cursor, end)
-            return FSTLemma(analysis[cursor:end])
-        else:
-            return None
-    else:
+    if res is None:
+        # Cannot find word class
         return None
+
+    assert (
+        res.group("category") is not None
+    ), f"failed to capture word class in analysis: {analysis}"
+
+    end = res.span("category")[0]
+    cursor = end - 1
+
+    # Search for prefix tag(s), if they exist
+    while cursor > 0 and analysis[cursor] != "+":
+        cursor -= 1
+    # Nudge the cursor to start where the lemma starts
+    if analysis[cursor] == "+":
+        cursor += 1
+
+    return FSTLemma(analysis[cursor:end])
 
 
 def extract_lemma_text_and_word_class(

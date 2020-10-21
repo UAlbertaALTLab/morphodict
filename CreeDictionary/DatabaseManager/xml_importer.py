@@ -1,6 +1,5 @@
 import re
 import xml.etree.ElementTree as ET
-from collections import defaultdict
 from pathlib import Path
 from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
 
@@ -12,12 +11,14 @@ from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
+from django.conf import settings
 from utils import PartOfSpeech, fst_analysis_parser
 from utils.crkeng_xml_utils import (
     IndexedXML,
     convert_xml_inflectional_category_to_word_class,
 )
-from utils.data_classes import XMLEntry
+from utils.data_classes import XMLEntry, XMLTranslation
+from utils.english_keyword_extraction import stem_keywords
 from utils.profiling import timed
 
 init()  # for windows compatibility
@@ -88,114 +89,15 @@ def format_element_error(msg: str, element: ET.Element) -> str:
     return f"{msg} \n {ET.tostring(element, encoding='unicode')}"
 
 
-class EngcrkCree(NamedTuple):
-    """
-    A cree word extracted from engcrk.xml.
-    The corresponding wordform in the database is to be determined later
-    """
-
-    wordform: str
-    pos: PartOfSpeech
-
-
-def load_engcrk_xml(filename: Path) -> DefaultDict[EngcrkCree, List[str]]:
-    """
-    :return: Dict[EngcrkCree , [english1, english2, english3 ...]] pos is in uppercase
-    """
-
-    # The structure in engcrk.xml
-
-    """
-        <e>
-
-            <lg xml:lang="eng">
-                <l pos="N">August</l>
-            </lg>
-
-            <mg>
-                <tg xml:lang="crk">
-                    <trunc sources="MD">august. [The flying month].</trunc>
-                    <t pos="N" rank="1.0">Ohpahow-pisim</t>
-                </tg>
-            </mg>
-
-            <mg>
-                <tg xml:lang="crk">
-                    <trunc sources="CW">Flying-Up Moon; August</trunc>
-                    <t pos="N" rank="1.0">ohpahowi-pîsim</t>
-                </tg>
-            </mg>
-        </e>
-    """
-
-    filename = Path(filename)
-
-    assert filename.exists(), "%s does not exist" % filename
-
-    res: DefaultDict[EngcrkCree, List[str]] = defaultdict(list)
-
-    root = ET.parse(str(filename)).getroot()
-    elements = root.findall(".//e")
-
-    for element in elements:
-        l_element = element.find("lg/l")
-        if l_element is None:
-            logger.debug(
-                format_element_error(f"<e> lacks an <l> in file {filename}", element)
-            )
-            continue
-
-        if l_element.text is None:
-            logger.debug(format_element_error("<l> does not have text", element))
-            continue
-
-        t_elements = element.findall("mg/tg/t")
-
-        if not t_elements:
-            logger.debug(
-                format_element_error(f"<e> lacks <t> in file {filename}", element)
-            )
-            continue
-
-        for t_element in t_elements:
-            if t_element.text is None:
-                logger.debug(
-                    format_element_error(
-                        f"<t> does not have text in file {filename}", element
-                    )
-                )
-                continue
-            cree_word = t_element.text
-            pos_str = t_element.get("pos")
-            assert pos_str is not None
-            try:
-                pos = PartOfSpeech(pos_str.upper())
-            except ValueError:
-                logger.debug(
-                    format_element_error(
-                        f"Cree word {cree_word} has a unrecognizable pos {pos_str}",
-                        element,
-                    )
-                )
-                continue
-
-            res[EngcrkCree(cree_word, pos)].append(l_element.text)
-
-    return res
-
-
-def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
+def find_latest_xml_file(dir_name: Path) -> Path:
     """
     Find the latest timestamped xml files, with un-timestamped files as a fallback if no timestamped file is found
 
     :raise FileNotFoundError: if either file can't be found
     """
-    name_pattern = re.compile(
-        r"^(?P<direction>(crkeng|engcrk)).*?(?P<timestamp>\d{6})?\.xml$"
-    )
+    name_pattern = re.compile(r"^crkeng.*?(?P<timestamp>\d{6})?\.xml$")
 
     crkeng_file_path_to_timestamp: Dict[Path, str] = {}
-    engcrk_file_path_to_timestamp: Dict[Path, str] = {}
 
     for file in dir_name.glob("*.xml"):
         res = re.match(name_pattern, file.name)
@@ -203,43 +105,41 @@ def find_latest_xml_files(dir_name: Path) -> Tuple[Path, Path]:
             timestamp = "000000"
             if res.group("timestamp") is not None:
                 timestamp = res.group("timestamp")
-            if res.group("direction") == "crkeng":
-                crkeng_file_path_to_timestamp[file] = timestamp
-            else:  # engcrk
-                engcrk_file_path_to_timestamp[file] = timestamp
+            crkeng_file_path_to_timestamp[file] = timestamp
     if len(crkeng_file_path_to_timestamp) == 0:
         raise FileNotFoundError(f"No legal xml files for crkeng found under {dir_name}")
-    if len(engcrk_file_path_to_timestamp) == 0:
-        raise FileNotFoundError(f"No legal xml files for engcrk found under {dir_name}")
 
-    return (
-        max(
-            crkeng_file_path_to_timestamp, key=crkeng_file_path_to_timestamp.__getitem__
-        ),
-        max(
-            engcrk_file_path_to_timestamp, key=engcrk_file_path_to_timestamp.__getitem__
-        ),
+    return max(
+        crkeng_file_path_to_timestamp, key=crkeng_file_path_to_timestamp.__getitem__
     )
+
+
+def import_sources():
+    """
+    Import dictionary sources to the dictionary.
+    """
+
+    for src in settings.MORPHODICT_SOURCES:
+        DictionarySource(**src).save()
 
 
 @timed()
 def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     """
-    Import from crkeng and engcrk files, `dir_name` can host a series of xml files. The latest timestamped files will be
+    Import from crkeng files, `dir_name` can host a series of xml files. The latest timestamped files will be
     used, with un-timestamped files as a fallback.
 
     :param multi_processing: Use multiple hfstol processes to speed up importing
-    :param dir_name: the directory that has pattern (crkeng|engcrk).*?(?P<timestamp>\d{6})?\.xml
-    (e.g. engcrk_cw_md_200319.xml or engcrk.xml) files, beware the timestamp has format yymmdd
+    :param dir_name: the directory that has pattern crkeng.*?(?P<timestamp>\d{6})?\.xml
+    (e.g. crkeng_cw_md_200319.xml or crkeng.xml) files, beware the timestamp has format yymmdd
     :param verbose: print to stdout or not
     """
     logger.set_print_info_on_console(verbose)
 
-    crkeng_file_path, engcrk_file_path = find_latest_xml_files(dir_name)
+    crkeng_file_path = find_latest_xml_file(dir_name)
     logger.info(f"using crkeng file: {crkeng_file_path}")
-    logger.info(f"using engcrk file: {engcrk_file_path}")
 
-    assert crkeng_file_path.exists() and engcrk_file_path.exists()
+    assert crkeng_file_path.exists()
 
     with open(crkeng_file_path) as f:
         crkeng_xml = IndexedXML.from_xml_file(f)
@@ -251,10 +151,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         src = DictionarySource(abbrv=source_abbreviation)
         src.save()
         logger.info("Created source: %s", source_abbreviation)
-
-    logger.info("Loading English keywords...")
-    engcrk_cree_to_keywords = load_engcrk_xml(engcrk_file_path)
-    logger.info("English keywords loaded")
 
     # these two will be imported to the database
     (
@@ -268,6 +164,25 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     definition_counter = 1
     keyword_counter = 1
 
+    def generate_english_keywords(
+        wordform: Wordform, translation: XMLTranslation
+    ) -> List[EnglishKeyword]:
+        """
+        MUTATES keyword_counter!!!!!!!!!
+
+        Returns a list of EnglishKeyword instances parsed from the translation text.
+        """
+        nonlocal keyword_counter
+
+        keywords = [
+            EnglishKeyword(id=unique_id, text=english_keyword, lemma=wordform)
+            for unique_id, english_keyword in enumerate(
+                stem_keywords(translation.text), start=keyword_counter
+            )
+        ]
+        keyword_counter += len(keywords)
+        return keywords
+
     db_inflections: List[Wordform] = []
     db_definitions: List[Definition] = []
     db_keywords: List[EnglishKeyword] = []
@@ -276,8 +191,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     # now we import as is entries to the database, the entries that we fail to provide an lemma analysis.
     for entry in as_is_entries:
         upper_pos = entry.pos.upper()
-
-        db_wordform = Wordform(
+        wordform_dict = dict(
             id=wordform_counter,
             text=entry.l,
             analysis=generate_as_is_analysis(entry.l, entry.pos, entry.ic),
@@ -286,18 +200,14 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             is_lemma=True,  # is_lemma field should be true for as_is entries
             as_is=True,
         )
+        if entry.stem is not None:
+            wordform_dict["stem"] = entry.stem
 
-        if upper_pos in RECOGNIZABLE_POS:
-            for english_keywords in engcrk_cree_to_keywords[
-                EngcrkCree(entry.l, PartOfSpeech(upper_pos))
-            ]:
-                db_keywords.append(
-                    EnglishKeyword(
-                        id=keyword_counter, text=english_keywords, lemma=db_wordform
-                    )
-                )
+        db_wordform = Wordform(**wordform_dict)
 
-                keyword_counter += 1
+        # Insert keywords for as-is entries
+        for translation in entry.translations:
+            db_keywords.extend(generate_english_keywords(db_wordform, translation))
 
         db_wordform.lemma = db_wordform
 
@@ -324,8 +234,8 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
     # now we import identified entries to the database, the entries we successfully identify with their lemma analyses
     for (entry, lemma_analysis) in identified_entry_to_analysis.items():
-        lemma_text_and_word_class = fst_analysis_parser.extract_lemma_text_and_word_class(
-            lemma_analysis
+        lemma_text_and_word_class = (
+            fst_analysis_parser.extract_lemma_text_and_word_class(lemma_analysis)
         )
         assert lemma_text_and_word_class is not None
 
@@ -338,8 +248,10 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
         # build wordforms and definition in db
         for generated_analysis, generated_wordform_texts in expanded[lemma_analysis]:
 
-            generated_lemma_text_and_ic = fst_analysis_parser.extract_lemma_text_and_word_class(
-                generated_analysis
+            generated_lemma_text_and_ic = (
+                fst_analysis_parser.extract_lemma_text_and_word_class(
+                    generated_analysis
+                )
             )
             assert generated_lemma_text_and_ic is not None
             generated_lemma_text, generated_ic = generated_lemma_text_and_ic
@@ -353,8 +265,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     is_lemma = True
                 else:
                     is_lemma = False
-
-                db_wordform = Wordform(
+                wordform_dict = dict(
                     id=wordform_counter,
                     text=generated_wordform_text,
                     analysis=generated_analysis,
@@ -363,6 +274,9 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                     inflectional_category=entry.ic,
                     as_is=False,
                 )
+                if entry.stem is not None:
+                    wordform_dict["stem"] = entry.stem
+                db_wordform = Wordform(**wordform_dict)
 
                 db_wordforms_for_analysis.append(db_wordform)
                 wordform_counter += 1
@@ -370,19 +284,6 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
 
                 if is_lemma:
                     db_lemma = db_wordform
-                    # as inflections sometimes bear definition with them
-                    for english_keywords in engcrk_cree_to_keywords[
-                        EngcrkCree(generated_wordform_text, generated_pos)
-                    ]:
-                        db_keywords.append(
-                            EnglishKeyword(
-                                id=keyword_counter,
-                                text=english_keywords,
-                                lemma=db_wordform,
-                            )
-                        )
-
-                        keyword_counter += 1
 
                 # now we create definition for all (possibly non-lemma) entries in the xml that are forms of this lemma.
 
@@ -402,25 +303,26 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
                         ):
                             entries_with_translations.append(homographic_entry)
 
-                # The case when we don't have holographic entries in xml,
+                # The case when we don't have homographic entries in xml,
                 # The generated inflection doesn't have a definition
 
                 for entry_with_translation in entries_with_translations:
 
-                    for (
-                        str_definition,
-                        source_strings,
-                    ) in entry_with_translation.translations:
+                    for translation in entry_with_translation.translations:
                         db_definition = Definition(
                             id=definition_counter,
-                            text=str_definition,
+                            text=translation.text,
                             wordform=db_wordform,
                         )
                         assert definition_counter not in citations
-                        citations[definition_counter] = set(source_strings)
+                        citations[definition_counter] = set(translation.sources)
 
                         definition_counter += 1
                         db_definitions.append(db_definition)
+
+                        db_keywords.extend(
+                            generate_english_keywords(db_wordform, translation)
+                        )
 
         assert db_lemma is not None
         for wordform in db_wordforms_for_analysis:
@@ -451,3 +353,12 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     logger.info("Inserting English keywords to database...")
     EnglishKeyword.objects.bulk_create(db_keywords)
     logger.info("Done inserting.")
+
+    # Convert the sources (stored as a string) to citations
+    # The reason why this is not done in the first place and there is a conversion:
+    #   django's efficient `bulk_create` method we use above doesn't play well with ManyToManyField
+    for dfn in Definition.objects.all():
+        source_ids = sorted(source.abbrv for source in dfn.citations.all())
+        for source_id in source_ids:
+            dfn.citations.add(source_id)
+        dfn.save()
