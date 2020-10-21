@@ -170,12 +170,12 @@ context('Searching', () => {
       .searchResultsContain('mâci-nipâw')
   })
 
-  it('should do prefix search and suffix search for English', () => {
+  it.only('should do prefix search and suffix search for English', () => {
     cy.visitSearch('sleep')
       .searchResultsContain('sleeping')
 
-    cy.visitSearch('berry')
-      .searchResultsContain('bearberry')
+    cy.visitSearch('katoon')
+      .searchResultsContain('saskatoon')
 
   })
 
