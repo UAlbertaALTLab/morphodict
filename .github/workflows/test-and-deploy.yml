@@ -19,11 +19,11 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.6
-    - name: Install system dependencies
-      run: apt install hfst
+    - name: 🖥 Install system dependencies
+      run: sudo apt-get install -y hfst
     - name: ☤ Install pipenv
       uses: dschep/install-pipenv-action@v1
-    - name: Install dependencies
+    - name: 📥 Install dependencies
       run: pipenv install --dev
-    - name: Run unit tests
+    - name: 🩺 Run unit tests
       run: pipenv run test --cov=CreeDictionary
