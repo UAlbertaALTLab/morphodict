@@ -169,15 +169,15 @@ context('Searching', () => {
       .searchResultsContain('mâci-nipâw')
   })
 
-  it.only('should do prefix search and suffix search for English', () => {
+  it('should do prefix search for English', () => {
     cy.visitSearch('sleep')
       .searchResultsContain('sleeping')
-
-    cy.visitSearch('katoon')
-      .searchResultsContain('saskatoon')
-
   })
 
+  it('should do suffix search for English', () => {
+    cy.visitSearch('katoon')
+      .searchResultsContain('saskatoon')
+  })
 
   describe('Loading indicator', () => {
     beforeEach(() => {
