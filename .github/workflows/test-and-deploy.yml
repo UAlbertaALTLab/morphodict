@@ -26,4 +26,7 @@ jobs:
     - name: 📥 Install dependencies
       run: pipenv install --dev
     - name: 🩺 Run unit tests
+      env:
+        DEBUG: "True"
+        USE_TEST_DB: "True"
       run: pipenv run test --cov=CreeDictionary
