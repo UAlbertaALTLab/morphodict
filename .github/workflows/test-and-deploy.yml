@@ -50,3 +50,5 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
+      with:
+        start: npm start
