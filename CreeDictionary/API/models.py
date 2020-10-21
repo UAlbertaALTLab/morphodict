@@ -21,6 +21,9 @@ from utils.types import FSTTag
 from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
 
+# Don't start evicting cache entries until we've seen over this many unique definitions:
+MAX_SOURCE_ID_CACHE_ENTRIES = 4096
+
 # Avoid a runtime circular-dependency;
 # without this line,
 #  - model.py imports search.py; and,
@@ -358,7 +361,16 @@ class EnglishKeyword(models.Model):
         indexes = [models.Index(fields=["text"])]
 
 
-@lru_cache(maxsize=512)
+@lru_cache(maxsize=MAX_SOURCE_ID_CACHE_ENTRIES)
 def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
+    """
+    Returns all of the dictionary source IDs (e.g., "MD", "CW").
+    This is cached so to reduce the amount of duplicate queries made to the database,
+    especially during serialization.
+
+    See:
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/558
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/531
+    """
     dfn = Definition.objects.get(pk=definition_id)
     return tuple(sorted(source.abbrv for source in dfn.citations.all()))
