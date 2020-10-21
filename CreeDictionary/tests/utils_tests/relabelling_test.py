@@ -4,6 +4,7 @@
 from io import StringIO
 
 import pytest
+
 from utils.fst_analysis_parser import Relabelling
 
 labels = Relabelling.from_tsv(
@@ -68,4 +69,15 @@ def test_get_full_relabelling():
         "something is happening now",
         "ni-/ki- word",
         "s/he → him/her/them",
+    ]
+
+
+def test_chunks_make_full_labels():
+    tag_set = ("V", "TA", "Prs", "Ind", "3Sg", "4Sg/PlO")
+    chunks = list(labels.english.chunk(tag_set))
+    assert chunks == [
+        ("V", "TA"),
+        ("Prs",),
+        ("Ind",),
+        ("3Sg", "4Sg/PlO"),
     ]

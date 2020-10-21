@@ -14,6 +14,7 @@ from typing import (
     Optional,
     Set,
     Tuple,
+    TypeVar,
     Union,
     cast,
 )
@@ -21,10 +22,12 @@ from typing import (
 import attr
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
-from CreeDictionary import hfstol as temp_hfstol
 from django.conf import settings
 from django.db.models import Q
 from sortedcontainers import SortedSet
+from typing_extensions import Protocol
+
+from CreeDictionary import hfstol as temp_hfstol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
@@ -32,7 +35,7 @@ from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
 
 from .models import Definition, EnglishKeyword, Wordform
-from .schema import SerializedSearchResult
+from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
@@ -41,6 +44,68 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 
 
 logger = logging.getLogger(__name__)
+
+
+class LinguisticTag(Protocol):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    @property
+    def value(self) -> FSTTag:
+        ...
+
+    # TODO: linguistic feature
+
+    @property
+    def in_plain_english(self) -> str:
+        ...
+
+    def serialize(self) -> SerializedLinguisticTag:
+        return SerializedLinguisticTag(
+            value=self.value, in_plain_english=self.in_plain_english,
+        )
+
+
+class SimpleLinguisticTag(LinguisticTag):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    def __init__(self, value: FSTTag):
+        self._value = value
+
+    @property
+    def value(self) -> FSTTag:
+        return self._value
+
+    @property
+    def in_plain_english(self) -> str:
+        return LABELS.english.get(self.value) or "???"
+
+
+class CompoundLinguisticTag(LinguisticTag):
+    def __init__(self, tags: Iterable[FSTTag]) -> None:
+        self._fst_tags = tuple(tags)
+
+    @property
+    def value(self):
+        return "".join(self._fst_tags)
+
+    @property
+    def in_plain_english(self):
+        return LABELS.english.get_longest(self._fst_tags)
+
+
+def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
+    """
+    Returns the appropriate LinguisticTag, no matter how many tags you chuck at it!
+    """
+    assert len(tags) > 0
+    if len(tags) == 1:
+        return SimpleLinguisticTag(tags[0])
+    else:
+        return CompoundLinguisticTag(tags)
 
 
 @attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
@@ -68,6 +133,9 @@ class SearchResult:
     # user friendly linguistic breakdowns
     linguistic_breakdown_head: Tuple[str, ...]
     linguistic_breakdown_tail: Tuple[str, ...]
+
+    # The suffix tags, straight from the FST
+    raw_suffix_tags: Tuple[FSTTag, ...]
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
@@ -102,7 +170,23 @@ class SearchResult:
         result["definitions"] = [
             definition.serialize() for definition in self.definitions
         ]
+        result["relevant_tags"] = tuple(t.serialize() for t in self.relevant_tags)
+
         return cast(SerializedSearchResult, result)
+
+    @property
+    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+        """
+        Tags and features to display in the linguistic breakdown pop-up.
+        This omits preverbs and other features displayed elsewhere
+
+        In itwêwina, these tags are derived from the suffix features exclusively.
+        We chunk based on the English relabelleings!
+        """
+        return tuple(
+            linguistic_tag_from_fst_tags(fst_tags)
+            for fst_tags in LABELS.english.chunk(self.raw_suffix_tags)
+        )
 
 
 class CreeResult(NamedTuple):
@@ -206,6 +290,7 @@ class WordformSearch:
                 linguistic_breakdown_tail=tuple(
                     replace_user_friendly_tags(linguistic_breakdown_tail)
                 ),
+                raw_suffix_tags=tuple(linguistic_breakdown_tail),
                 lemma_wordform=cree_result.lemma,
                 preverbs=get_preverbs_from_head_breakdown(linguistic_breakdown_head),
                 reduplication_tags=(),
@@ -236,6 +321,7 @@ class WordformSearch:
                 linguistic_breakdown_tail=tuple(
                     replace_user_friendly_tags(linguistic_breakdown_tail)
                 ),
+                raw_suffix_tags=tuple(linguistic_breakdown_tail),
                 definitions=tuple(result.matched_cree.definitions.all()),
                 # todo: current EnglishKeyword is bound to
                 #       lemmas, whose definitions are guaranteed in the database.
@@ -279,8 +365,7 @@ def get_preverbs_from_head_breakdown(
                     preverb_result = min(
                         preverb_results,
                         key=lambda pr: get_modified_distance(
-                            normative_preverb_text,
-                            pr.text.strip("-"),
+                            normative_preverb_text, pr.text.strip("-"),
                         ),
                     )
 
@@ -476,9 +561,7 @@ def fetch_lemma_by_user_query(user_query: str, **extra_constraints) -> CreeAndEn
     for preverb_wf in fetch_preverbs(user_query):
         cree_results.add(
             CreeResult(
-                ConcatAnalysis(preverb_wf.analysis),
-                preverb_wf,
-                Lemma(preverb_wf),
+                ConcatAnalysis(preverb_wf.analysis), preverb_wf, Lemma(preverb_wf),
             )
         )
 
@@ -523,11 +606,9 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
     try:
-        (
-            linguistic_breakdown_head,
-            _,
-            linguistic_breakdown_tail,
-        ) = partition_analysis(analysis)
+        (linguistic_breakdown_head, _, linguistic_breakdown_tail,) = partition_analysis(
+            analysis
+        )
     except ValueError:
         linguistic_breakdown_head = []
         linguistic_breakdown_tail = []

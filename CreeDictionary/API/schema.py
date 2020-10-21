@@ -33,6 +33,14 @@ class SerializedWordform(TypedDict):
     definition: List[SerializedDefinition]
 
 
+class SerializedLinguisticTag(TypedDict):
+    # The tag in its original form, e.g., from the FST
+    value: str
+
+    # The value of the feature, written in plain English
+    in_plain_english: str
+
+
 class SerializedSearchResult(TypedDict):
     # the text of the match
     matched_cree: str
@@ -53,6 +61,9 @@ class SerializedSearchResult(TypedDict):
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
     preverbs: Tuple[Union[str, SerializedWordform], ...]
+
+    # This omits preverbs and other features displayed elsewhere
+    relevant_tags: Tuple[SerializedLinguisticTag, ...]
 
     # TODO: there are things to be figured out for this :/
     # Sequence of all reduplication tags present, in order
