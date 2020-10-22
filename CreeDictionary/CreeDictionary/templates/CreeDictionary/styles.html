@@ -108,5 +108,108 @@
   </div>
   <div class="tooltip__arrow" ></div>
 </div>
+
+{# definition #}
+<article class="definition" id="paradigm">
+  <header class="definition__header">
+    <h1 id="head" class="definition-title">
+      <dfn class="definition__matched-head"><data id="data:head" value="mîcisow">{% orth 'mîcisow' %}</data></dfn>&nbsp;<span class="wordclass">(Verb)</span>
+    </h1>
+  </header>
+
+  <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown" data-cy="multiple-recordings">
+    <p class="multiple-recordings__help-text explainer">Choose a name from the dropdown to hear the word said by the speaker.</p>
+    <select name="recordings-dropdown" data-cy="recordings-dropdown" class="multiple-recordings__dropdown">
+    <template id="template:speakerList"><option><slot name="speakerName"></slot>, <slot name="speakerDialect"></slot></option></template>
+    </select>
+    <button class="multiple-recordings__action-button" data-action="play-current-recording" aria-label="Play recording" data-cy="play-selected-speaker"> <svg class="definition__icon speaker-playback-action-button" focusable="false"><use xlink:href="#play-solid"></use></svg></button>
+    <a class="multiple-recordings__action-button" data-action="learn-about-speaker" aria-label="Learn more about speaker" data-cy="learn-about-speaker" target="_blank" rel="noopener"> Learn more about the speaker.  </a>
+  </section>
+
+  <section class="definition__meanings">
+    <ol class="meanings">
+      <li class="meanings__meaning">He eats.  <cite class="cite-dict">MD</cite></li>
+      <li class="meanings__meaning">s/he eats, s/he has a meal <cite class="cite-dict">CW</cite></li>
+    </ol>
+  </section>
+
+  <section class="definition__paradigm paradigm" data-cy="paradigm">
+    <div class="HACK-overflow-x-scroll">
+      <table class="paradigm__table">
+        <tbody>
+          <tr><th class="paradigm-title" colspan="2">Something is happening now</th></tr>
+          <tr class="paradigm-row"><td class="paradigm-cell paradigm-cell--empty"></td><th scope="col" class="paradigm-label paradigm-label--col">
+                    ni-/ki- word
+                  </th></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    I
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="nimīcison" data-orth-latn="nimîcison" data-orth-cans="ᓂᒦᒋᓱᐣ">nimîcison</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you (one)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="kimīcison" data-orth-latn="kimîcison" data-orth-cans="ᑭᒦᒋᓱᐣ">kimîcison</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    s/he
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisow" data-orth-latn="mîcisow" data-orth-cans="ᒦᒋᓱᐤ">mîcisow</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    we (but not you)
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="nimīcisonān" data-orth-latn="nimîcisonân" data-orth-cans="ᓂᒦᒋᓱᓈᐣ">nimîcisonân</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you and we
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="kimīcisonaw / kimīcisonānaw" data-orth-latn="kimîcisonaw / kimîcisonânaw" data-orth-cans="ᑭᒦᒋᓱᓇᐤ / ᑭᒦᒋᓱᓈᓇᐤ">kimîcisonaw / kimîcisonânaw</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you (all)
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="kimīcisonāwāw" data-orth-latn="kimîcisonâwâw" data-orth-cans="ᑭᒦᒋᓱᓈᐚᐤ">kimîcisonâwâw</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    they
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisowak" data-orth-latn="mîcisowak" data-orth-cans="ᒦᒋᓱᐘᐠ">mîcisowak</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    s/he/they (further)
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisoyiwa" data-orth-latn="mîcisoyiwa" data-orth-cans="ᒦᒋᓱᔨᐘ">mîcisoyiwa</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    someone
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisonāniwan / mīcisonāniwiw" data-orth-latn="mîcisonâniwan / mîcisonâniwiw" data-orth-cans="ᒦᒋᓱᓈᓂᐘᐣ / ᒦᒋᓱᓈᓂᐏᐤ">mîcisonâniwan / mîcisonâniwiw</span></td></tr></tbody><tbody><tr class="paradigm-row"><td class="paradigm-cell paradigm-cell--empty"></td><th scope="col" class="paradigm-label paradigm-label--col">
+                    ê-/kâ- word
+                  </th></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    I
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyān" data-orth-latn="ê-mîcisoyân" data-orth-cans="ᐁ ᒦᒋᓱᔮᐣ">ê-mîcisoyân</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you (one)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyan" data-orth-latn="ê-mîcisoyan" data-orth-cans="ᐁ ᒦᒋᓱᔭᐣ">ê-mîcisoyan</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    s/he
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisot" data-orth-latn="ê-mîcisot" data-orth-cans="ᐁ ᒦᒋᓱᐟ">ê-mîcisot</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    we (but not you)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyāhk" data-orth-latn="ê-mîcisoyâhk" data-orth-cans="ᐁ ᒦᒋᓱᔮᕽ">ê-mîcisoyâhk</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you and we
+                  </th><td class="paradigm-cell paradigm-cell--unobserved"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyahk" data-orth-latn="ê-mîcisoyahk" data-orth-cans="ᐁ ᒦᒋᓱᔭᕽ">ê-mîcisoyahk</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you (all)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyēk" data-orth-latn="ê-mîcisoyêk" data-orth-cans="ᐁ ᒦᒋᓱᔦᐠ">ê-mîcisoyêk</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    they
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisocik" data-orth-latn="ê-mîcisocik" data-orth-cans="ᐁ ᒦᒋᓱᒋᐠ">ê-mîcisocik</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    s/he/they (further)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisoyit" data-orth-latn="ê-mîcisoyit" data-orth-cans="ᐁ ᒦᒋᓱᔨᐟ">ê-mîcisoyit</span></td></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    someone
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="ē-mīcisohk / ē-mīcisonāniwahk / ē-mīcisonāniwik" data-orth-latn="ê-mîcisohk / ê-mîcisonâniwahk / ê-mîcisonâniwik" data-orth-cans="ᐁ ᒦᒋᓱᕽ / ᐁ ᒦᒋᓱᓈᓂᐘᕽ / ᐁ ᒦᒋᓱᓈᓂᐏᐠ">ê-mîcisohk / ê-mîcisonâniwahk / ê-mîcisonâniwik</span></td></tr></tbody><tbody><tr><th class="paradigm-title" colspan="2">Command/Request</th></tr><tr class="paradigm-row"><td class="paradigm-cell paradigm-cell--empty"></td><th scope="col" class="paradigm-label paradigm-label--col">
+                    Right now
+                  </th></tr><tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row">
+                    you (one)
+                  </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīciso" data-orth-latn="mîciso" data-orth-cans="ᒦᒋᓱ">mîciso</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
+      <span class="paradigm__size-toggle-plus-minus"> + </span>
+      <span class="paradigm__size-toggle-button-text"> show more </span>
+    </button>
+  </section>
+
+  <section class="definition__paradigm paradigm" data-cy="paradigm">
+    <div class="HACK-overflow-x-scroll">
+      <table class="paradigm__table">
+        <tbody>
+          <tr><th class="paradigm-title" colspan="2">Something is happening now</th></tr>
+          <tr class="paradigm-row"><td class="paradigm-cell paradigm-cell--empty"></td><th scope="col" class="paradigm-label paradigm-label--col"> ni-/ki- word </th></tr>
+          <tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row"> I </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="nimīcison" data-orth-latn="nimîcison" data-orth-cans="ᓂᒦᒋᓱᐣ">nimîcison</span></td></tr>
+          <tr class="paradigm-row"><th scope="row" class="paradigm-label paradigm-label--row"> you (one) </th><td class="paradigm-cell paradigm-cell--observed"><span lang="cr" data-orth="" data-orth-latn-x-macron="kimīcison" data-orth-latn="kimîcison" data-orth-cans="ᑭᒦᒋᓱᐣ">kimîcison</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <button class="paradigm__size-toggle-button paradigm__size-toggle-button--loading" data-cy="paradigm-toggle-button">
+      <span class="paradigm__size-toggle-plus-minus"> + </span>
+      <span class="paradigm__size-toggle-button-text"> show more </span>
+    </button>
+  </section>
+</article>
 {% endblock %}
 {# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}
