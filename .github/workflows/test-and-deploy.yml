@@ -49,5 +49,6 @@ jobs:
       uses: cypress-io/github-action@v2
       with:
         build: npm run build
-        start: npm run debug-server
-        wait-on: 'http-get://localhost:8000/'
+        start: 'env USE_TEST_DB=True DEBUG=True pipenv run python CreeDictionary/manage.py runserver'
+        wait-on: 'tcp:localhost:8000'
+        wait-on-timeout: 120
