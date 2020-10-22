@@ -2,13 +2,111 @@
 {% load static %}
 {% load morphodict_orth %}
 
-{% block prose %}
-  <section class="prose box box--spaced">
-    <h2 class="prose__section-title">Prose Section Title</h2>
+{% block content %}
+{# prose/writing #}
+<section class="prose box box--spaced">
+  <h2 class="prose__section-title">Prose Section Title</h2>
 
-    <h3 class="prose__heading"> Prose Section Heading / {% orth 'nêhiyawêwin' %}</h3>
-    <p> prose </p>
-  </section>
+  <h3 class="prose__heading"> Prose Section Heading / {% orth 'nêhiyawêwin' %}</h3>
+  <p> This is some text in English. </p>
+  <p> ôma môniyâwi-masinahikêwin.  </p>
+  <p> ōma mōniyāwi-masinahikēwin.  </p>
+  <p> ᐆᒪ ᓀᐦᐃᔭᐏ ᒐᐦᑭᐯᐦᐃᑲᓇ᙮ </p>
+</section>
+
+{# Search results #}
+<div class="search-results">
+  <ol class="search-results__results" id="search-result-list">
+    <li class="search-results__result" data-cy="search-results">
+      <article class="definition box box--rounded" data-cy="search-result">
+        <header class="definition__header">
+          <div class="definition-title definition-title--search-result" data-cy="matched-wordform">
+            <h2 class="definition-title__title definition__matched-head" data-cy="definition-title">
+              <a data-cy="lemma-link" href="/cree-dictionary/word/p%C3%AA-m%C3%AEcisow/"><span lang="cr" data-orth="" data-orth-latn-x-macron="pē-mīcisow" data-orth-latn="pê-mîcisow" data-orth-cans="ᐯ ᒦᒋᓱᐤ">pê-mîcisow</span></a>
+            </h2>
+            <div class="definition__icons" data-wordform="pê-mîcisow">
+              <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip="" data-cy="information-mark">
+                <img src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}" alt="linguistic breakdown">
+              </div>
+            </div>
+          </div>
+
+          <div class="definition__elaboration" data-cy="elaboration">
+            <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip="" tabindex="0" aria-describedby="tooltip:0"><span class="wordclass__emoji">🧑🏽➡️</span>
+              —
+              <span class="wordclass__help">like: <span lang="cr" data-orth="" data-orth-latn-x-macron="nipāw" data-orth-latn="nipâw" data-orth-cans="ᓂᐹᐤ">nipâw</span></span></span><div id="tooltip:0" class="tooltip" role="tooltip">
+              vowel-final animate intransitive verb (VAI-v)
+              <div class="tooltip__arrow" data-popper-arrow=""></div></div></div>
+        </header>
+
+        <ol class="meanings meanings--search-result">
+          <li class="meanings__meaning" data-cy="lemma-meaning">s/he comes and eats
+            <cite class="cite-dict">CW</cite>
+          </li>
+        </ol>
+
+        <ol class="preverb-breakdown"></ol>
+      </article>
+    </li>
+
+    <li class="search-results__result" data-cy="search-results">
+      <article class="definition box box--rounded" data-cy="search-result">
+        <header class="definition__header">
+          <div class="definition-title definition-title--search-result" data-cy="matched-wordform"><h2 class="definition-title__title definition__matched-head" data-cy="definition-title"><span lang="cr" data-orth="" data-orth-latn-x-macron="pē-mīcisow" data-orth-latn="pê-mîcisow" data-orth-cans="ᐯ ᒦᒋᓱᐤ">pê-mîcisow</span></h2>
+            <div class="definition__icons" data-wordform="pê-mîcisow"><div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip="" data-cy="information-mark"><img src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}" alt="linguistic breakdown"></div><div class="tooltip" role="tooltip" style="margin: 0px;"><div data-cy="linguistic-breakdown"><h3 class="linguistic-breakdown__stem"> mîciso- </h3><ol class="linguistic-breakdown__list"><li><data value="VAI">Action word - like: mîcisow, nipâw</data></li><li><data value="Ind">ni-/ki- word</data></li><li><data value="3Sg">s/he</data></li></ol></div><div class="tooltip__arrow" data-popper-arrow="" style=""></div></div></div></div>
+        </header>
+
+        <ol class="meanings meanings--search-result">
+        </ol>
+
+        <ol class="preverb-breakdown"><li><span>Preverb:
+              <a href="/cree-dictionary/search?q=p%C3%AA-"><span lang="cr" data-orth="" data-orth-latn-x-macron="pē-" data-orth-latn="pê-" data-orth-cans="ᐯ">pê-</span></a></span><div tabindex="0" class="preverb-breakdown__tooltip-icon" data-has-tooltip="" data-cy="information-mark"><img src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}" alt="preverb breakdown"></div><div class="tooltip" role="tooltip" style="margin: 0px;"><p class="preverb-breakdown__preverb-definition">come and; towards, approaching; hither; thence, from there on down; [towards focus]
+              <cite class="cite-dict cite-dict--popup">CW</cite></p><div class="tooltip__arrow" data-popper-arrow="" style=""></div></div></li></ol>
+        <p class="definition__reference-to-lemma" data-cy="reference-to-lemma"> form of <a class="definition__matched-lemma" href="/cree-dictionary/word/m%C3%AEcisow/"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisow" data-orth-latn="mîcisow" data-orth-cans="ᒦᒋᓱᐤ">mîcisow</span></a></p>
+
+        <hr class="cleave-inflection-from-lemma">
+
+        <header class="definition__header">
+          <h2 class="definition-title definition-title--search-result">
+            <dfn class="definition__matched-head" data-cy="definition-title">
+              <a href="/cree-dictionary/word/m%C3%AEcisow/"><span lang="cr" data-orth="" data-orth-latn-x-macron="mīcisow" data-orth-latn="mîcisow" data-orth-cans="ᒦᒋᓱᐤ">mîcisow</span></a>
+            </dfn>
+          </h2>
+
+          <div class="definition__elaboration" data-cy="elaboration"><span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip="" tabindex="0" aria-describedby="tooltip:1"><span class="wordclass__emoji">🧑🏽➡️</span>
+              —
+              <span class="wordclass__help">like: <span lang="cr" data-orth="" data-orth-latn-x-macron="nipāw" data-orth-latn="nipâw" data-orth-cans="ᓂᐹᐤ">nipâw</span></span></span><div id="tooltip:1" class="tooltip" role="tooltip">
+              vowel-final animate intransitive verb (VAI-v)
+              <div class="tooltip__arrow" data-popper-arrow=""></div></div></div>
+        </header>
+
+        <ol class="meanings meanings--search-result">
+          <li class="meanings__meaning" data-cy="lemma-meaning">He eats.
+            <cite class="cite-dict">MD</cite>
+          </li>
+          <li class="meanings__meaning" data-cy="lemma-meaning">s/he eats, s/he has a meal
+            <cite class="cite-dict">CW</cite>
+          </li>
+        </ol>
+      </article>
+    </li>
+  </ol>
+</div>
+
+{# popups #}
+<div
+  class="tooltip" role="tooltip"
+  style="display: block; position: relative; max-width: 30ch"
+  data-popper-arrow data-popper-placement="bottom left"
+>
+  <div data-cy="linguistic-breakdown"><h3 class="linguistic-breakdown__stem"> mîciso- </h3>
+    <ol class="linguistic-breakdown__list">
+      <li><data value="VAI">Action word - like: mîcisow, nipâw</data></li>
+      <li><data value="Ind">ni-/ki- word</data></li>
+      <li><data value="3Sg">s/he</data></li>
+    </ol>
+  </div>
+  <div class="tooltip__arrow" ></div>
+</div>
 {% endblock %}
-
 {# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}
