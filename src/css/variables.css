@@ -21,38 +21,38 @@
 
   /* Colors */
   --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
-  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
   --app-body-color:         #000000; /* Color of body text. */
+  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
+  --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
+  --bad-outcome-color:      #1A090D; /* A dark red text colour */
+  --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
+  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
   --cite-text-color:        #182457; /* Color of dictionary citation element. */
   --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
-  --popup-color:            #000000; /* Color of popup/tooltip text. */
-  --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
+  --embossed-highlight:     #e0e0e0;
   --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
   --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
-  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
-  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
-  --box-bg-color:           #FFFDFD; /* Background color of "boxes" */
-  --menu-caption-color:     #626262; /* Color of text for menu captions. */
-  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
-  --paradigm-button-color-alt:  #5A6FCC; /* ... when hovered or active */
-  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
-  --prose-heading-color:    #283C95;
-  --prose-title-color:      #1D2D72; /* For BIG section titles. */
-  --link-color:             #0F76B5; /* Regular links */
-  --link-visited-color:     #A568DB; /* Visited link */
-  --link-hover-color:       #5E8DC3; /* Hover over a link. */
-  --link-active-color:      #0E6790; /* Currently active link. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
+  --link-active-color:      #0E6790; /* Currently active link. */
+  --link-color:             #0F76B5; /* Regular links */
+  --link-hover-color:       #5E8DC3; /* Hover over a link. */
+  --link-visited-color:     #A568DB; /* Visited link */
+  --menu-caption-color:     #626262; /* Color of text for menu captions. */
+  --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
+  --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
+  --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */
+  --paradigm-button-color-alt:  #5A6FCC; /* ... when hovered or active */
+  --paradigm-button-color:  #283C95; /* Color of the paradigm "show more" button. */
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
+  --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
+  --popup-color:            #000000; /* Color of popup/tooltip text. */
+  --prose-heading-color:    #283C95;
+  --prose-title-color:      #1D2D72; /* For BIG section titles. */
+  --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
+  --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
-  --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
-  --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
-  --bad-outcome-color:      #1A090D; /* A dark red text colour */
-  --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
-  --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
-  --embossed-highlight:     #e0e0e0;
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
@@ -60,20 +60,20 @@
   --blue-filter: invert(20%) sepia(20%) saturate(7344%) hue-rotate(220deg) brightness(90%) contrast(93%);
 
   /* Font sizes */
-  --root-font-size:                 1.00em;
   --branding-font-size:             1.50em; /* the title, e.g., "itwêwina" */
   --branding-subtitle-font-size:    0.75em; /* the subtitle, e.g., "Plains Cree Dictionary" */
+  --cite-text-font-size:            0.50em;
   --definition-title-size:          2.00em;
   --elaboration-size:               1.25em;
-  --tooltip-icon-size:              1.75rem; /* size of the ℹ️  button or 🔊 button */
+  --footer-font-size:               0.85em;
   --preverb-breakdown-size:         1.50em;
   --prominent-font-size:            1.50em; /* For text that should be prominent! */
   --prose-heading-font-size:        1.25em;
   --prose-section-title-font-size:  1.33em;
+  --root-font-size:                 1.00em;
   --search-result-font-size:        1.33em;
-  --footer-font-size:               0.85em;
   --toggle-box-large-font-size:     1.14em;
-  --cite-text-font-size:            0.50em;
+  --tooltip-icon-size:              1.75rem; /* size of the ℹ️  button or 🔊 button */
   /* Font families */
   --syllabics-fonts:
     Gadugi,                             /* Windows 10 */
