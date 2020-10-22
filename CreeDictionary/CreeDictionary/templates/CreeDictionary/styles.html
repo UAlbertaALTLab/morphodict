@@ -1,0 +1,14 @@
+{% extends 'CreeDictionary/base.html' %}
+{% load static %}
+{% load morphodict_orth %}
+
+{% block prose %}
+  <section class="prose box box--spaced">
+    <h2 class="prose__section-title">Prose Section Title</h2>
+
+    <h3 class="prose__heading"> Prose Section Heading / {% orth 'nêhiyawêwin' %}</h3>
+    <p> prose </p>
+  </section>
+{% endblock %}
+
+{# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}
