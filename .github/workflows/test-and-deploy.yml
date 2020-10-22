@@ -28,27 +28,4 @@ jobs:
         DEBUG: "True"
         USE_TEST_DB: "True"
       run: pipenv run test -v --cov=CreeDictionary
-
-  integration-test:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: 🐍 Set up Python 3.6
-      uses: actions/setup-python@v2
-      with:
-        python-version: 3.6
-    - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y hfst
-    - name: ☤ Install pipenv
-      uses: dschep/install-pipenv-action@v1
-    - name: 📥 Install dependencies
-      run: pipenv install
-    - name: 🌲 Cypress run
-      uses: cypress-io/github-action@v2
-      with:
-        build: npm run build
-        start: 'env USE_TEST_DB=True DEBUG=True pipenv run python CreeDictionary/manage.py runserver'
-        wait-on: 'http://localhost:8000/'
         wait-on-timeout: 120
