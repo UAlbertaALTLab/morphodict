@@ -1,10 +1,11 @@
 from http import HTTPStatus
 
-from API.models import Wordform
-from CreeDictionary.forms import WordSearchForm
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
+
+from API.models import Wordform
+from CreeDictionary.forms import WordSearchForm
 from utils import ParadigmSize
 
 from .utils import url_for_query
@@ -175,3 +176,12 @@ def redirect_search(request, query_string: str):
 
     """
     return redirect(url_for_query(query_string), permanent=True)
+
+
+def styles(request):
+    """
+    Display ALL of the styles.
+
+    This should only be accessible in DEBUG mode.
+    """
+    return render(request, "CreeDictionary/styles.html")
