@@ -52,3 +52,4 @@ jobs:
         USE_TEST_DB: "True"
       with:
         start: npm start
+        wait-on: 'http://localhost:8000/'
