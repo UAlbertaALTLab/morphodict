@@ -47,9 +47,7 @@ jobs:
       run: pipenv install
     - name: 🌲 Cypress run
       uses: cypress-io/github-action@v2
-      env:
-        DEBUG: "True"
-        USE_TEST_DB: "True"
       with:
-        start: npm start
-        wait-on: 'http://localhost:8000/'
+        build: npm run build
+        start: npm run debug-server
+        wait-on: 'http-get://localhost:8000/'
