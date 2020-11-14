@@ -59,8 +59,8 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
 
     exact_match = False
     matched_lemma_count = 0
-    for analysis, matched_cree, lemma in cree_results:
-        if lemma.id == lemma.id:
+    for analysis, matched_cree, resultant_lemma in cree_results:
+        if resultant_lemma.id == lemma.id:
             exact_match = True
         matched_lemma_count += 1
 
