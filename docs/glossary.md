@@ -281,8 +281,20 @@ lemma
 [lemma]: #lemma
 [lemmas]: #lemma
 [lemmata]: #lemma
+[base form]: #lemma
+[baseform]: #lemma
 
-The base form of a [word form]; the form chosen to depict the basic representation of the paradigm. Often the least structurally and semantically marked form.  Unlike a [stem] or [root], a lemma is always a [word form].
+The _base form_ of a [word form]; this is a form chosen to depict the basic
+representation of the paradigm. Often the least structurally and
+semantically marked form.  Unlike a [stem] or [root], a lemma is always
+a valid [word form].
+
+If a term is defined in a dictionary, its [head] will be the lemma.
+e.g., you might not find a definition for "smartphones" in a dictionary of
+contemporary English; instead, you'll find a definition for
+"smartphone" (the lemma), and "smartphones" is one of its [inflected
+forms]. However, non-lemma forms may also be [heads] in a dictionary,
+depending on context.
 
 ### Part of
 
@@ -294,7 +306,8 @@ morpheme
 ========
 [morpheme]: #morpheme
 
-The most atomic part of a wordform. A morpheme cannot be broken down into any subsequent parts.
+An indivisible part of language with meaning; A morpheme cannot be
+broken down into any subsequent parts, without changing its meaning.
 
 
 normatize
@@ -346,6 +359,27 @@ Can be a
 --------
 
 -   **1** [head][]
+
+
+root
+====
+[root]: #root
+
+The smallest form of a term (a morpheme) from which all [inflected forms][] are based off
+of. The root might not be a valid [wordform].
+
+For example, in English, _childr-_ is the root of _child_ and
+_children_.
+
+### In Plains Cree
+
+ - _\*atimw-_ is the root of the lemma
+   [atim](https://itwewina.dev/?q=atim), however, it is not a valid
+   wordform on its own. It can be inflected to create _atim_ and
+   _atimwak_.
+ * _mow-_ is the root of the lemma [mowêw](https://itwewina.dev/?q=mowêw),
+   and it also happens to be a valid inflected form of mowêw (an
+   imperative form)
 
 
 standardize
@@ -437,12 +471,29 @@ wordform
 
 In linguistics, the different ways that a word can exist in a language.
 (Not to be confused with [lemma] – which is its own special type of
-wordform). A wordform _must_ be able to exist by itself.
+wordform). A wordform _must_ be able to exist by itself. Contrast this
+to [morpheme][] and [phrase][].
 
 
 stem
 ====
 [stem]: #stem
 
-In linguistics, the root of a word (from which all inflected forms are
-based off of).
+In linguistics, please use the term [root][] instead.
+
+In natural language processing and information retrieval, the stem is
+a potentially garbled form of the input term that aids in indexing
+a large number of related terms. Typically this involves using naïve
+heuristics to remove both [inflectional][] and [derivational][]
+[affixes][] from the input term. The stem does _not_ have to be
+linguistically meaningful, and the stem is often not a valid [wordform].
+
+For example, "connection" can be _stemmed_ to "connect" using the [Porter
+stemming algorithm].
+
+Naïve stemming heuristics can be replaced with a linguistic analyzer
+that is able to return the [lemma][] of a term, however, this is not
+available for every language, and may not be necessary to create
+a satisfactory information retrieval system.
+
+[Porter stemming algorithm]: https://tartarus.org/martin/PorterStemmer/def.txt
