@@ -33,7 +33,6 @@ sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.
 marisa-trie = "~=0.7"
 secure = "*"
 snowballstemmer = "*"
-gitdir = "*"
 
 [scripts]
 # look stuff up
