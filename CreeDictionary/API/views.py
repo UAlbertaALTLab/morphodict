@@ -1,14 +1,28 @@
-from django.http import JsonResponse
+from typing import List, Union
 
-# todo: update api documentation
+from API.schema import SerializedSearchResult
+from django.http import JsonResponse, HttpResponseBadRequest
+from .models import Wordform
 
 
-def translate_cree(request, query_string: str) -> JsonResponse:
+def click_in_text(request) -> Union[JsonResponse, HttpResponseBadRequest]:
     """
     click-in-text api
-
-    note: returned definition is for lemma, not the queried inflected form.
-    see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/wiki/Web-API for API specifications
+    see SerializedSearchResult in schema.py for API specifications
     """
-    # todo (for matt): rewrite this
-    pass
+
+    q = request.GET.get("q")
+    if q is None:
+        return HttpResponseBadRequest("query param q missing")
+    elif q == '':
+        return HttpResponseBadRequest("query param q is an empty string")
+
+    results: List[SerializedSearchResult] = []
+    for result in Wordform.search(q):
+        results.append(result.serialize())
+
+    response = {"results": results}
+
+    json_response = JsonResponse(response)
+    json_response["Access-Control-Allow-Origin"] = "*"
+    return json_response
