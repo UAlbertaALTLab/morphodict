@@ -44,7 +44,7 @@ def analyze(wordform: str) -> Iterable[Analysis]:
 def generate(analysis: str) -> Iterable[str]:
     with write_temporary_file(f"{analysis}\n") as input_file:
         output = check_output(
-            [_hfstol, "-q", _generator_path],
+            [_hfstol, "-q", str(_generator_path)],
             stdin=input_file,
             stderr=DEVNULL,
             encoding="UTF-8",
