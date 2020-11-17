@@ -35,6 +35,9 @@ RUNNING_ON_SAPIR = (
 # Debug is default to False
 # Turn it to True in development
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+ENABLE_DJANGO_DEBUG_TOOLBAR = (
+    os.environ.get("ENABLE_DJANGO_DEBUG_TOOLBAR", str(DEBUG)).lower() == "true"
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if RUNNING_ON_SAPIR:  # pragma: no cover
@@ -78,20 +81,20 @@ MIDDLEWARE = [
 ]
 
 # configure tools for development, CI, and production
-if DEBUG:
-    if not CI:  # enable django-debug-toolbar for development
-        INSTALLED_APPS.append("debug_toolbar")
-        MIDDLEWARE.insert(
-            0, "debug_toolbar.middleware.DebugToolbarMiddleware"
-        )  # middleware order is important
+if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
+    # enable django-debug-toolbar for development
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE.insert(
+        0, "debug_toolbar.middleware.DebugToolbarMiddleware"
+    )  # middleware order is important
 
-        # works with django-debug-toolbar app
-        DEBUG_TOOLBAR_CONFIG = {
-            # Toolbar options
-            "SHOW_COLLAPSED": True,  # collapse the toolbar by default
-        }
+    # works with django-debug-toolbar app
+    DEBUG_TOOLBAR_CONFIG = {
+        # Toolbar options
+        "SHOW_COLLAPSED": True,  # collapse the toolbar by default
+    }
 
-        INTERNAL_IPS = ["127.0.0.1"]
+    INTERNAL_IPS = ["127.0.0.1"]
 
 if RUNNING_ON_SAPIR:  # pragma: no cover
     # Sapir uses `wsgi_express` that requires mod_wsgi

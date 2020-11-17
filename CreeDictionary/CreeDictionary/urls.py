@@ -1,6 +1,8 @@
 """
 Definition of urls for CreeDictionary.
 """
+import API.views as api_views
+from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -8,9 +10,6 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
-
-import API.views as api_views
-from CreeDictionary import views
 
 # 2019/May/21 Matt Yan:
 
@@ -56,11 +55,7 @@ _urlpatterns = [
         "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    (
-        "_lemma_details/",
-        views.lemma_details_internal,
-        "cree-dictionary-lemma-detail",
-    ),
+    ("_lemma_details/", views.lemma_details_internal, "cree-dictionary-lemma-detail",),
     # cree word translation for click-in-text #todo (for matt): this
     (
         "_translate-cree/<str:query_string>/",
@@ -68,11 +63,7 @@ _urlpatterns = [
         "cree-dictionary-word-translation-api",
     ),
     ("admin/", admin.site.urls, "admin"),
-    (
-        "",
-        include("morphodict.urls"),
-        "cree-dictionary-change-orthography",
-    ),
+    ("", include("morphodict.urls"), "cree-dictionary-change-orthography",),
 ]
 
 # Add style debugger, but only in DEBUG mode!
@@ -95,7 +86,7 @@ if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
 
-    if not settings.CI:
+    if settings.ENABLE_DJANGO_DEBUG_TOOLBAR:
         import debug_toolbar
 
         # necessary for debug_toolbar to work
