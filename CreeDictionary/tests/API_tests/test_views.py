@@ -32,7 +32,6 @@ def test_click_in_text_correct_usage():
 def test_click_in_text_no_params():
     c = Client()
 
-    # niskak means goose in plains Cree
     response = c.get(reverse("cree-dictionary-word-click-in-text-api"))
 
     assert response.status_code == 400
