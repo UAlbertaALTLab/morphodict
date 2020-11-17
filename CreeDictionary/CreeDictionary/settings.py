@@ -15,6 +15,7 @@ import posixpath
 from pathlib import Path
 from sys import stderr
 
+from .coerce import to_boolean
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -28,20 +29,18 @@ SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
 
 # sapir.artsrn.ualberta.ca has some... special requirements,
 # so let's hear about it!
-RUNNING_ON_SAPIR = (
-    os.environ.get("RUNNING_ON_SAPIR", str(HOST_IS_SAPIR)).lower() == "true"
-)
+RUNNING_ON_SAPIR = to_boolean(os.environ.get("RUNNING_ON_SAPIR", HOST_IS_SAPIR))
 
 # Debug is default to False
 # Turn it to True in development
-DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
+DEBUG = to_boolean(os.environ.get("DEBUG", False))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if RUNNING_ON_SAPIR:  # pragma: no cover
     assert not DEBUG
 
 # travis has CI equals True
-CI = os.environ.get("CI", "False").lower() == "true"
+CI = to_boolean(os.environ.get("CI", False))
 
 # The Django debug toolbar is a great help when... you know... debugging Django,
 # but it has a few issues:
@@ -51,9 +50,7 @@ CI = os.environ.get("CI", "False").lower() == "true"
 # The reasonable default is to enable it on development machines and let the developer
 # opt out of it, if needed.
 if "ENABLE_DJANGO_DEBUG_TOOLBAR" in os.environ:
-    ENABLE_DJANGO_DEBUG_TOOLBAR = (
-        os.environ["ENABLE_DJANGO_DEBUG_TOOLBAR"].lower() == "true"
-    )
+    ENABLE_DJANGO_DEBUG_TOOLBAR = to_boolean(os.environ["ENABLE_DJANGO_DEBUG_TOOLBAR"])
 else:
     ENABLE_DJANGO_DEBUG_TOOLBAR = DEBUG
 
@@ -144,8 +141,8 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-USE_TEST_DB = os.environ.get("USE_TEST_DB", "False").lower() == "true"
-# if this is set, then use existing test database
+# if this is set, use existing test database
+USE_TEST_DB = to_boolean(os.environ.get("USE_TEST_DB", False))
 
 
 if not USE_TEST_DB:
