@@ -1,7 +1,7 @@
 from typing import List, Union
 
 from API.schema import SerializedSearchResult
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from .models import Wordform
 
 
