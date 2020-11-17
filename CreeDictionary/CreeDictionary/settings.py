@@ -35,9 +35,6 @@ RUNNING_ON_SAPIR = (
 # Debug is default to False
 # Turn it to True in development
 DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
-ENABLE_DJANGO_DEBUG_TOOLBAR = (
-    os.environ.get("ENABLE_DJANGO_DEBUG_TOOLBAR", str(DEBUG)).lower() == "true"
-)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if RUNNING_ON_SAPIR:  # pragma: no cover
@@ -45,6 +42,29 @@ if RUNNING_ON_SAPIR:  # pragma: no cover
 
 # travis has CI equals True
 CI = os.environ.get("CI", "False").lower() == "true"
+
+# The Django debug toolbar is a great help when... you know... debugging Django,
+# but it has a few issues:
+#  - the middleware SIGNIFICANTLY increases request times
+#  - the debug toolbar adds junk on the DOM, which may interfere with end-to-end tests
+#
+# The reasonable default is to enable it on development machines and let the developer
+# opt out of it, if needed.
+if "ENABLE_DJANGO_DEBUG_TOOLBAR" in os.environ:
+    ENABLE_DJANGO_DEBUG_TOOLBAR = (
+        os.environ["ENABLE_DJANGO_DEBUG_TOOLBAR"].lower() == "true"
+    )
+else:
+    ENABLE_DJANGO_DEBUG_TOOLBAR = DEBUG
+
+# The debug toolbar should ALWAYS be turned off:
+#  - when DEBUG is disabled
+#  - in CI environments
+if not DEBUG or CI:
+    ENABLE_DJANGO_DEBUG_TOOLBAR = False
+
+
+# Host settings:
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
