@@ -17,6 +17,8 @@ environment!
 
 The debug toolbar is **always disabled** on production and in CI.
 
+[Django debug toolbar]: https://github.com/jazzband/django-debug-toolbar
+
 # USE_TEST_DB
 
 It specifies whether to use `test_db.sqlite3` instead of `db.sqlite3`. It defaults to production setting "False". you should add `USE_TEST_DB=True` in .env file.
