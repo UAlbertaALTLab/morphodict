@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 from .models import Wordform
 
 
-def click_in_text(request) -> Union[JsonResponse, HttpResponseBadRequest]:
+def click_in_text(request) -> HttpResponse:
     """
     click-in-text api
     see SerializedSearchResult in schema.py for API specifications
