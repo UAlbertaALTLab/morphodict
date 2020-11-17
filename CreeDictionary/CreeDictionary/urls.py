@@ -55,12 +55,16 @@ _urlpatterns = [
         "cree-dictionary-search-results",
     ),
     # internal use to render paradigm and detailed info for a lemma
-    ("_lemma_details/", views.lemma_details_internal, "cree-dictionary-lemma-detail",),
-    # cree word translation for click-in-text #todo (for matt): this
     (
-        "_translate-cree/<str:query_string>/",
-        api_views.translate_cree,
-        "cree-dictionary-word-translation-api",
+        "_lemma_details/",
+        views.lemma_details_internal,
+        "cree-dictionary-lemma-detail",
+    ),
+    # cree word translation for click-in-text
+    (
+        "click-in-text/",
+        api_views.click_in_text,
+        "cree-dictionary-word-click-in-text-api",
     ),
     ("admin/", admin.site.urls, "admin"),
     ("", include("morphodict.urls"), "cree-dictionary-change-orthography",),
