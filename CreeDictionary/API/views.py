@@ -1,4 +1,4 @@
-from typing import List, Union
+from typing import List
 
 from API.schema import SerializedSearchResult
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
