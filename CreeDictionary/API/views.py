@@ -14,7 +14,7 @@ def click_in_text(request) -> HttpResponse:
     q = request.GET.get("q")
     if q is None:
         return HttpResponseBadRequest("query param q missing")
-    elif q == '':
+    elif q == "":
         return HttpResponseBadRequest("query param q is an empty string")
 
     results: List[SerializedSearchResult] = []

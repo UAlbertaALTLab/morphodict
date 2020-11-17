@@ -24,9 +24,10 @@ def test_click_in_text_correct_usage():
     c = Client()
 
     # niskak means goose in plains Cree
-    response = c.get(reverse("cree-dictionary-word-click-in-text-api")+"?q=niskak")
+    response = c.get(reverse("cree-dictionary-word-click-in-text-api") + "?q=niskak")
 
-    assert b'goose' in response.content
+    assert b"goose" in response.content
+
 
 @pytest.mark.django_db
 def test_click_in_text_no_params():
