@@ -67,7 +67,11 @@ _urlpatterns = [
         "cree-dictionary-word-click-in-text-api",
     ),
     ("admin/", admin.site.urls, "admin"),
-    ("", include("morphodict.urls"), "cree-dictionary-change-orthography",),
+    (
+        "",
+        include("morphodict.urls"),
+        "cree-dictionary-change-orthography",
+    ),
 ]
 
 # Add style debugger, but only in DEBUG mode!
