@@ -55,7 +55,7 @@ jobs:
       with:
         ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
-      uses: actions/setup-node@v1.4.2
+      uses: actions/setup-node@v1
       with:
         node-version: '12'
     - name: Install dependencies
