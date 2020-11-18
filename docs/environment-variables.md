@@ -4,6 +4,21 @@ Django magical variable. This defaults to the production setting `False`.
 You should add `DEBUG=False` to .env file in development.
 Note: `DEBUG` CANNOT be enabled on Sapir!
 
+# ENABLE_DJANGO_DEBUG_TOOLBAR
+
+Whether to enable the [Django debug toolbar]. If unset, the default
+depends on whether `DEBUB` is on, and whether the code is running on
+`CI`. Since you probably want to use debugging tools when `DEBUG` is on,
+it's enabled if `DEBUG` is enabled; however, this toolbar is _slow_ and
+may interfere with end-to-end tests.
+
+Set `ENABLE_DJANGO_DEBUG_TOOLBAR=False` to disable it in your dev
+environment!
+
+The debug toolbar is **always disabled** on production and in CI.
+
+[Django debug toolbar]: https://github.com/jazzband/django-debug-toolbar
+
 # USE_TEST_DB
 
 It specifies whether to use `test_db.sqlite3` instead of `db.sqlite3`. It defaults to production setting "False". you should add `USE_TEST_DB=True` in .env file.
