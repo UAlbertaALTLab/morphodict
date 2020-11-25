@@ -1,10 +1,13 @@
 # Based on: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
+# Note: to skip both travis and github actions, add both [skip ci/travis] and [skip actions] to your commit message
+
 name: Test and deploy
 on: [push]
 
 jobs:
   unit-test:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
     runs-on: ubuntu-latest
 
