@@ -1,5 +1,8 @@
 name: Reformats various files
 
+
+# Note: to skip both travis and github actions, add both [skip ci/travis] and [skip actions] to your commit message
+
 on:
   push:
     branches: [ master ]
@@ -8,6 +11,7 @@ jobs:
   # NOTE: Do all jobs SEQUENTIALLY to avoid merges
 
   reformat-altlabel:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -25,6 +29,7 @@ jobs:
         commit_message: "🤖🧹 reformat crk.altlabel [skip travis]"
 
   reformat-python:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
     # Ensure this is run **sequentially**
     needs: reformat-altlabel
@@ -47,6 +52,7 @@ jobs:
         commit_message: "🤖🧹 reformat Python files [skip travis]"
 
   reformat-javascript:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
     # Ensure this is run **sequentially**
     needs: reformat-python
