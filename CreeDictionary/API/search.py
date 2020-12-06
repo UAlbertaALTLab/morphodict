@@ -254,14 +254,16 @@ class WordformSearch:
         Do the search
         :return: sorted search results
         """
-        res = fetch_lemma_by_user_query(self.query, self._affix_search, **self.constraints)
+        res = fetch_lemma_by_user_query(
+            self.query, self._affix_search, **self.constraints
+        )
         results = SortedSet(key=sort_by_user_query(self.query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
 
     def prepare_cree_results(
-            self, cree_results: Set[CreeResult]
+        self, cree_results: Set[CreeResult]
     ) -> Iterable[SearchResult]:
         # Create the search results
         for cree_result in cree_results:
@@ -298,7 +300,7 @@ class WordformSearch:
             )
 
     def prepare_english_results(
-            self, english_results: Set[EnglishResult]
+        self, english_results: Set[EnglishResult]
     ) -> Iterable[SearchResult]:
         for result in english_results:
             (
@@ -343,7 +345,7 @@ def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
 
 
 def get_preverbs_from_head_breakdown(
-        head_breakdown: List[FSTTag],
+    head_breakdown: List[FSTTag],
 ) -> Tuple[Preverb, ...]:
     results = []
 
@@ -356,7 +358,7 @@ def get_preverbs_from_head_breakdown(
             ling_short = LABELS.linguistic_short.get(tag)
             if ling_short is not None and ling_short != "":
                 # looks like: "âpihci"
-                normative_preverb_text = ling_short[len("Preverb: "): -1]
+                normative_preverb_text = ling_short[len("Preverb: ") : -1]
                 preverb_results = fetch_preverbs(normative_preverb_text)
 
                 # find the one that looks the most similar
@@ -392,7 +394,9 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
-def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extra_constraints) -> CreeAndEnglish:
+def fetch_lemma_by_user_query(
+    user_query: str, affix_search: bool = True, **extra_constraints
+) -> CreeAndEnglish:
     """
     treat the user query as cree and:
 
@@ -416,9 +420,9 @@ def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extr
     user_query = unicodedata.normalize("NFC", user_query)
     user_query = (
         user_query.replace("ā", "â")
-            .replace("ē", "ê")
-            .replace("ī", "î")
-            .replace("ō", "ô")
+        .replace("ē", "ê")
+        .replace("ī", "î")
+        .replace("ō", "ô")
     )
     user_query = syllabics2sro(user_query)
 
@@ -439,7 +443,7 @@ def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extr
 
         # todo: this needs refactoring, our affix searcher now also return entries matched by English
         for wf in Wordform.objects.filter(
-                id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
+            id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
         ):
             cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
@@ -526,7 +530,7 @@ def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extr
                     )
             else:
                 for lemma_wordform in matched_lemma_wordforms.filter(
-                        as_is=False, pos=word_class.pos.name, **extra_constraints
+                    as_is=False, pos=word_class.pos.name, **extra_constraints
                 ):
                     cree_results.add(
                         CreeResult(
@@ -541,12 +545,12 @@ def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extr
     # because they come from CW
     # text__in = [user_query] help matching entries with spaces in it, which fst can't analyze.
     for cw_as_is_wordform in filter_cw_wordforms(
-            Wordform.objects.filter(
-                text__in=all_standard_forms + [user_query],
-                as_is=True,
-                is_lemma=True,
-                **extra_constraints,
-            )
+        Wordform.objects.filter(
+            text__in=all_standard_forms + [user_query],
+            as_is=True,
+            is_lemma=True,
+            **extra_constraints,
+        )
     ):
         cree_results.add(
             CreeResult(
@@ -591,10 +595,10 @@ def fetch_lemma_by_user_query(user_query: str, affix_search: bool = True, **extr
 
         # explained above, preverbs should be presented
         for wordform in Wordform.objects.filter(
-                Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
-                id__in=lemma_ids,
-                as_is=True,
-                **extra_constraints,
+            Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
+            id__in=lemma_ids,
+            as_is=True,
+            **extra_constraints,
         ):
             english_results.add(
                 EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -622,7 +626,7 @@ def safe_partition_analysis(analysis: ConcatAnalysis):
 
 
 def sort_search_result(
-        res_a: "SearchResult", res_b: SearchResult, user_query: str
+    res_a: "SearchResult", res_b: SearchResult, user_query: str
 ) -> float:
     """
     determine how we sort search results.
@@ -675,8 +679,8 @@ def sort_search_result(
             return 0
         else:  # both in rankings
             return (
-                    Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
-                    - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
+                Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
+                - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
             )
 
 
