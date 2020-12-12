@@ -22,20 +22,18 @@ def django_db_setup():
 
 
 @pytest.mark.django_db
-def test_click_in_text_correct_usage():
-    c = Client()
-
+def test_click_in_text_correct_usage(client):
     # niskak means goose in plains Cree
-    response = c.get(reverse("cree-dictionary-word-click-in-text-api") + "?q=niskak")
+    response = client.get(
+        reverse("cree-dictionary-word-click-in-text-api") + "?q=niskak"
+    )
 
     assert b"goose" in response.content
 
 
 @pytest.mark.django_db
-def test_click_in_text_no_params():
-    c = Client()
-
-    response = c.get(reverse("cree-dictionary-word-click-in-text-api"))
+def test_click_in_text_no_params(client):
+    response = client.get(reverse("cree-dictionary-word-click-in-text-api"))
 
     assert response.status_code == 400
 
@@ -51,17 +49,15 @@ class TestClickInTextDisablesAffixSearch:
     EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
 
     @pytest.mark.django_db
-    def test_normal_search_uses_affix_search(self):
-        c = Client()
-        normal_search_response = c.get(
+    def test_normal_search_uses_affix_search(self, client):
+        normal_search_response = client.get(
             reverse("cree-dictionary-search") + f"?q={self.ASCII_WAPAMEW}"
         ).content.decode("utf-8")
         assert self.EXPECTED_SUFFIX_SEARCH_RESULT in normal_search_response
 
     @pytest.mark.django_db
-    def test_click_in_text_disables_affix_search(self):
-        c = Client()
-        click_in_text_response = c.get(
+    def test_click_in_text_disables_affix_search(self, client):
+        click_in_text_response = client.get(
             reverse("cree-dictionary-word-click-in-text-api")
             + f"?q={self.ASCII_WAPAMEW}"
         ).content.decode("utf-8")
