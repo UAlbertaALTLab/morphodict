@@ -2,6 +2,9 @@ import pytest
 from django.conf import settings
 from django.urls import reverse
 
+ASCII_WAPAMEW = "wapamew"
+EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
+
 
 @pytest.fixture(scope="module")
 def django_db_setup():
@@ -33,10 +36,6 @@ def test_click_in_text_no_params(client):
     response = client.get(reverse("cree-dictionary-word-click-in-text-api"))
 
     assert response.status_code == 400
-
-
-ASCII_WAPAMEW = "wapamew"
-EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
 
 
 @pytest.mark.django_db
