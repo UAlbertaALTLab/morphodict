@@ -1,8 +1,9 @@
+import time
+
 import pytest
+from django.conf import settings
 from django.test import Client
 from django.urls import reverse
-from django.conf import settings
-import time
 
 
 @pytest.fixture(scope="module")
