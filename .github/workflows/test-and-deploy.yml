@@ -20,7 +20,7 @@ jobs:
     - name: 🖥 Install system dependencies
       run: sudo apt-get install -y hfst
     - name: ☤ Install pipenv
-      uses: dschep/install-pipenv-action@v1
+      run: python3 -m pip install pipenv
     - name: 📥 Install dependencies
       run: |
         pipenv install --dev
