@@ -17,8 +17,8 @@ tqdm = "~=4.40"
 python-levenshtein = "*"
 django-debug-toolbar = "~=2.2"
 isort = {extras = ["pyproject"],version = "*"}
-gitignore-parser = "*"
-toml = "*"
+gitignore-parser = "~=0.0"
+toml = "~=0.10"
 
 [packages]
 colorama = "~=0.4"
