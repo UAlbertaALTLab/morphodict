@@ -70,7 +70,8 @@ def get_not_ignored_dirs() -> List[Path]:
     return _get_not_ignored_dirs(PROJECT_ROOT, [])
 
 
-def fail_and_provide_suggestion(reason: str, suggestion: str) -> NoReturn:
+# this function only runs when tests fail. So it shouldn't be covered
+def fail_and_provide_suggestion(reason: str, suggestion: str) -> NoReturn: # pragma: no cover
     print(reason, file=stderr)
     print(suggestion, file=stderr)
     pytest.fail(reason)
@@ -127,7 +128,7 @@ def test_dirs_get_docs():
     lacking_dirs = not_ignored_dirs - ones_with_docs
 
 
-    if len(lacking_dirs) != 0:
+    if len(lacking_dirs) != 0: # pragma: no cover
         failing_reason += f"{len(lacking_dirs)} directories are missing documentation. Consider adding them to .dirdocignore or add the entries inside {doc_file.relative_to(PROJECT_ROOT)}"
 
         failing_suggestion += f"Consider adding the following entries inside {doc_file.relative_to(PROJECT_ROOT)}:" + \
@@ -135,12 +136,12 @@ def test_dirs_get_docs():
                               format_as_lines_relative_to_project(lacking_dirs, as_md_header=True)
 
     extra_dirs = ones_with_docs - not_ignored_dirs
-    if len(extra_dirs) != 0:
+    if len(extra_dirs) != 0: # pragma: no cover
         failing_reason += f"{len(extra_dirs)} directories are ignored but existent in {doc_file.relative_to(PROJECT_ROOT)}. Consider deleting them"
 
         failing_suggestion += f"Consider deleting following entries inside {doc_file.relative_to(PROJECT_ROOT)}:\n" + \
                               format_as_lines_relative_to_project(extra_dirs, as_md_header=True)
 
 
-    if failing_reason != "":
+    if failing_reason != "": # pragma: no cover
         fail_and_provide_suggestion("\n" + failing_reason, "\n" + failing_suggestion)
