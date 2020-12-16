@@ -2,18 +2,20 @@ All directories in this file are relative to project root
 
 Each directory should start with three hashes 
 
-###.github
-configuration files that interact with GitHub services 
-###.github/workflows
+### .github
+configuration files that interact with GitHub services
+
+### .github/workflows
 workflow (interchangeably, actions) that runs by GitHub Actions service when code pushes to GitHub.
-###CreeDictionary
+
+### CreeDictionary
 
 A Django site with _django apps_ inside
 
-###CreeDictionary/API
+### CreeDictionary/API
 One of the django apps of our project. It defines click-in-text (our other project) API. 
 
-###CreeDictionary/API/migrations
+### CreeDictionary/API/migrations
 Django Migrations of the API app
 
 Migrations are not used to migrate database on production
@@ -27,59 +29,62 @@ and when our unit tests build test in memory database.
 
 This directory is managed by the rebuild script and does not require manual intervention
 
-###CreeDictionary/CreeDictionary
+### CreeDictionary/CreeDictionary
 One of the django apps of our project. It's the main part of our online dictionary.
 
-###CreeDictionary/CreeDictionary/static
+### CreeDictionary/CreeDictionary/static
 static files (A django concept) for the CreeDictionary app. They are usually javascripts and images
 
 
-###CreeDictionary/CreeDictionary/templates
+### CreeDictionary/CreeDictionary/templates
 templates (A django concept, usually for HTML) for the CreeDictionary app.
 
-###CreeDictionary/CreeDictionary/static/CreeDictionary
+### CreeDictionary/CreeDictionary/static/CreeDictionary
 see below
-###CreeDictionary/CreeDictionary/templates/CreeDictionary
+
+### CreeDictionary/CreeDictionary/templates/CreeDictionary
 You might think there is no stupid reason such verbose-looking directories should exist. But it's Django. 
 
 
-###CreeDictionary/API/templatetags
+### CreeDictionary/API/templatetags
 see below
-###CreeDictionary/morphodict/templatetags
+
+### CreeDictionary/morphodict/templatetags
 see below
-###CreeDictionary/CreeDictionary/templatetags
+
+### CreeDictionary/CreeDictionary/templatetags
 defines custom tags you can use in django templates.
 A tag looks in the form of {{}} or {{ | }} and is a Django feature
 
-###CreeDictionary/DatabaseManager
+### CreeDictionary/DatabaseManager
 
 A python module with a CLI that manages importation of xml files to our db.sqlite3. Not used at runtime.
 
 See more under the directorie's readme.md about how to use it
 
-###CreeDictionary/DatabaseManager/logs
+### CreeDictionary/DatabaseManager/logs
 
 Logs Database manager emits
 
-###CreeDictionary/django_logs
+### CreeDictionary/django_logs
 
 This directory stores logs on production.
 
-###CreeDictionary/morphodict
+### CreeDictionary/morphodict
 
 A django app that has our language invariant components of the project. This is currently a WIP.
 
-###CreeDictionary/morphodict/tests
+### CreeDictionary/morphodict/tests
 
 Tests that belong to morphodict. 
 It's separate from most tests as in the future morphodict might be extracted to a standalone django app.  
 
-###CreeDictionary/res
+### CreeDictionary/res
 
 Data files. See README under the directory to see explanation of its contents.  
 
 
-###CreeDictionary/res/dictionaries
+### CreeDictionary/res/dictionaries
 
 Dictionary files that are not public. This directory's contents are ignored by a local .gitignore
 
@@ -94,15 +99,15 @@ It's was also used to be stored on Sapir server with a timestamp like the follow
 
 The last six digits is a timestamp of when this file is built, in the format of yymmdd.
 
-###CreeDictionary/res/fst
+### CreeDictionary/res/fst
 
 Ask your supervisor what an FST is. 
 
-###CreeDictionary/res/layouts
+### CreeDictionary/res/layouts
 
 Files that determine how paradigm tables in our app look like. 
 
-###CreeDictionary/res/lemma_tags
+### CreeDictionary/res/lemma_tags
 
 Files here store templates of common lemma analyses for each [word class](./glossary.md#word-class)
 
@@ -113,99 +118,96 @@ i.e.
 
 See it's local README for a detailed explanation of the motivation and usage behind it.
 
-###CreeDictionary/res/test_dictionaries
+### CreeDictionary/res/test_dictionaries
 
 A subset of our proper dictionaries. This is loaded in our test database for test purposes.
 Database generation is managed by DatabaseManager CLI's.
 
-###CreeDictionary/shared
+### CreeDictionary/shared
 
 Expensive initializations / utilities that are shared in multiple places.
 
-###CreeDictionary/tests
+### CreeDictionary/tests
 
 Where all tests except morphodict's tests reside.
 
-###CreeDictionary/tests/API_tests
+### CreeDictionary/tests/API_tests
 
 Test for the API django app
 
-###CreeDictionary/tests/CreeDictionary_tests
+### CreeDictionary/tests/CreeDictionary_tests
 
 Test for the CreeDictionary django app
 
-###CreeDictionary/tests/DatabaseManager_tests
+### CreeDictionary/tests/DatabaseManager_tests
 
 Test for the DatabaseManager python module
 
-###CreeDictionary/tests/DatabaseManager_tests/data
+### CreeDictionary/tests/DatabaseManager_tests/data
 
 Input cases for Database Manager CLI. Minimal examples of test dictionary inputs.
 
-
-
-###CreeDictionary/utils
+### CreeDictionary/utils
 
 A python module of Utility functions
 
-###CreeDictionary/tests/utils_tests
+### CreeDictionary/tests/utils_tests
 
 Tests for the utils module.
 
-###CreeDictionary/tests/utils_tests/data
+### CreeDictionary/tests/utils_tests/data
 
 Test data for the utils module
 
-###CreeDictionary/tests/utils_tests/data/layouts
+### CreeDictionary/tests/utils_tests/data/layouts
 
 More test data for the utils module
 
-
-###cypress
+### cypress
 
 Cypress is our integration testing tool. This is where test scripts and helpers reside.
 
-###cypress/fixtures
+### cypress/fixtures
 
 Test data for integration tests.
 
-###cypress/fixtures/recording
+### cypress/fixtures/recording
 
 Test data for integration tests.
 
-###cypress/fixtures/recording/_search
+### cypress/fixtures/recording/_search
 
 Test data for integration tests.
 
-###cypress/integration
+### cypress/integration
 
 Detailed specification of the tests.
 
-###cypress/support
+### cypress/support
 
 Our integration test utilities.
 
-###docs
+### docs
 
 The most important thing in the word
 
-###docs/images
+### docs/images
 
 images used in the docs
 
-###libexec
+### libexec
 
 Utility tools that are usually dependency free and ran by developers.
 
-###src
+### src
 
 All our javascripts and css. They eventually are compiled to static folders.
 
-###src/css
+### src/css
 
 All our css. They eventually are compiled to static folders.
 
-###src/css/vendor
+### src/css/vendor
 
 vendor css are the css that standardize browser differences.
 
