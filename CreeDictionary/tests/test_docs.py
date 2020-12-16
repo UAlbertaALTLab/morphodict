@@ -88,7 +88,7 @@ def format_fix_suggestion_as_lines_relative_to_project(paths: List[Path], as_md_
     ret = ""
     for p in paths:
         if as_md_header:
-            ret += "###"
+            ret += "### "
         ret += str(p.relative_to(PROJECT_ROOT)) + "\n"
 
     return ret
