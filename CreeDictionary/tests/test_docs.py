@@ -9,7 +9,7 @@ from sys import stderr
 from functools import partial
 from sortedcontainers import SortedSet
 
-IgnoreCheck = Callable[[str], bool]
+IgnoreCheck = Callable[[Path], bool]
 """
 If a path is ignored, it gives True. If a path is not ignored, it gives False
 """
@@ -70,13 +70,13 @@ def get_not_ignored_dirs() -> List[Path]:
     return _get_not_ignored_dirs(PROJECT_ROOT, [])
 
 
-def fail_and_provide_suggestion(reason: str, suggestion: str) -> NoReturn:
+def fail_and_provide_suggestion(reason: str, suggestion: str):
     print(reason, file=stderr)
     print(suggestion, file=stderr)
     pytest.fail(reason)
 
 
-def format_as_lines_relative_to_project(paths: Path, as_md_header: bool=False) -> str:
+def format_as_lines_relative_to_project(paths: List[Path], as_md_header: bool=False) -> str:
     """
     :param paths: absolute paths
     :param as_md_header: if True, adds ### to each Path
