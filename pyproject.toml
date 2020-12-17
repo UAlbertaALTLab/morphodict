@@ -10,3 +10,6 @@ skip = [
     "migrations",
     "node_modules",
 ]
+
+[tool.dirdoc]
+doc_file = "docs/directory-structure.md"
