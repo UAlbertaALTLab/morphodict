@@ -97,7 +97,7 @@ def format_fix_suggestion_as_lines_relative_to_project(paths: List[Path], as_md_
 def test_dirs_get_docs():
     parsed_tml = toml.loads((PROJECT_ROOT / "pyproject.toml").read_text())
 
-    # if we were to use vallina set, the suggestions would come out in allphabetical order
+    # if we were to use the vanilla set, the suggestions would come out in alphabetical order
     # which makes less sense than depth first order in terms of directory presentation
     ones_with_docs = SortedSet()
     non_existent_dirs = SortedSet()
