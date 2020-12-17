@@ -34,7 +34,9 @@ def get_project_root():
 PROJECT_ROOT = get_project_root()
 
 
-def _get_not_ignored_dirs(root: Path, ancestral_ignores: List[IgnoreCheck]) -> List[Path]:
+def _get_not_ignored_dirs(
+    root: Path, ancestral_ignores: List[IgnoreCheck]
+) -> List[Path]:
     """
     :param root: must be a existent directory
     :return: all dirs that are not gitignored, not including root. sorted in a depth first manner
@@ -47,7 +49,9 @@ def _get_not_ignored_dirs(root: Path, ancestral_ignores: List[IgnoreCheck]) -> L
     ignores_in_control = ancestral_ignores.copy()
 
     # is_file also checks for existence
-    for own_ignore in filter(Path.is_file, [root / ".gitignore", root / ".dirdocignore"]):
+    for own_ignore in filter(
+        Path.is_file, [root / ".gitignore", root / ".dirdocignore"]
+    ):
         ignores_in_control.append(parse_gitignore(own_ignore))
 
     # glob('*') returns direct children only
@@ -71,15 +75,21 @@ def get_not_ignored_dirs() -> List[Path]:
 
 
 # this function only runs when tests fail. So it shouldn't be covered
-def fail_and_provide_suggestion(reason: str, suggestion: str) -> NoReturn: # pragma: no cover
+def fail_and_provide_suggestion(
+    reason: str, suggestion: str
+) -> NoReturn:  # pragma: no cover
     print(reason, file=stderr)
     print(suggestion, file=stderr)
     pytest.fail(reason)
-    raise Exception("If you see this. Some thing impossible has happened. This line shouldn't be reached.")
+    raise Exception(
+        "If you see this. Some thing impossible has happened. This line shouldn't be reached."
+    )
 
 
 # this function only runs when tests fail. So it shouldn't be covered
-def format_fix_suggestion_as_lines_relative_to_project(paths: List[Path], as_md_header: bool=False) -> str: # pragma: no cover
+def format_fix_suggestion_as_lines_relative_to_project(
+    paths: List[Path], as_md_header: bool = False
+) -> str:  # pragma: no cover
     """
     :param paths: absolute paths
     :param as_md_header: if True, adds ### to each Path
@@ -107,9 +117,9 @@ def test_dirs_get_docs():
     for line in doc_file.read_text().splitlines():
         if line.lstrip().startswith("###"):
             dir_with_doc = Path(PROJECT_ROOT / line.partition("###")[2].strip())
-            if (not dir_with_doc.exists()):
+            if not dir_with_doc.exists():
                 non_existent_dirs.add(dir_with_doc)
-            if (not dir_with_doc.is_dir()):
+            if not dir_with_doc.is_dir():
                 non_dir_docs.add(dir_with_doc)
             ones_with_docs.add(dir_with_doc)
 
@@ -118,31 +128,40 @@ def test_dirs_get_docs():
     if len(non_existent_dirs) != 0:
         failing_reason += f"{len(non_existent_dirs)} non existent entrie(s) found in {doc_file.relative_to(PROJECT_ROOT)}\n"
         failing_suggestion += "Could you delete the following entries? :\n"
-        failing_suggestion += format_fix_suggestion_as_lines_relative_to_project(non_existent_dirs)
+        failing_suggestion += format_fix_suggestion_as_lines_relative_to_project(
+            non_existent_dirs
+        )
     if len(non_dir_docs) != 0:
         failing_reason += f"{len(non_dir_docs)} entrie(s) found in {doc_file.relative_to(PROJECT_ROOT)} are not directories\n"
         failing_suggestion += "Could you delete the following entries? :\n"
-        failing_suggestion += format_fix_suggestion_as_lines_relative_to_project(non_dir_docs)
-
+        failing_suggestion += format_fix_suggestion_as_lines_relative_to_project(
+            non_dir_docs
+        )
 
     not_ignored_dirs = SortedSet(get_not_ignored_dirs())
     lacking_dirs = not_ignored_dirs - ones_with_docs
 
-
-    if len(lacking_dirs) != 0: # pragma: no cover
+    if len(lacking_dirs) != 0:  # pragma: no cover
         failing_reason += f"{len(lacking_dirs)} directories are missing documentation. Consider adding them to .dirdocignore or add the entries inside {doc_file.relative_to(PROJECT_ROOT)}"
 
-        failing_suggestion += f"Consider adding the following entries inside {doc_file.relative_to(PROJECT_ROOT)}:" + \
-                              "todo: document about directories\n" + \
-                              format_fix_suggestion_as_lines_relative_to_project(lacking_dirs, as_md_header=True)
+        failing_suggestion += (
+            f"Consider adding the following entries inside {doc_file.relative_to(PROJECT_ROOT)}:"
+            + "todo: document about directories\n"
+            + format_fix_suggestion_as_lines_relative_to_project(
+                lacking_dirs, as_md_header=True
+            )
+        )
 
     extra_dirs = ones_with_docs - not_ignored_dirs
-    if len(extra_dirs) != 0: # pragma: no cover
+    if len(extra_dirs) != 0:  # pragma: no cover
         failing_reason += f"{len(extra_dirs)} directories are ignored but existent in {doc_file.relative_to(PROJECT_ROOT)}. Consider deleting them"
 
-        failing_suggestion += f"Consider deleting following entries inside {doc_file.relative_to(PROJECT_ROOT)}:\n" + \
-                              format_fix_suggestion_as_lines_relative_to_project(extra_dirs, as_md_header=True)
+        failing_suggestion += (
+            f"Consider deleting following entries inside {doc_file.relative_to(PROJECT_ROOT)}:\n"
+            + format_fix_suggestion_as_lines_relative_to_project(
+                extra_dirs, as_md_header=True
+            )
+        )
 
-
-    if failing_reason != "": # pragma: no cover
+    if failing_reason != "":  # pragma: no cover
         fail_and_provide_suggestion("\n" + failing_reason, "\n" + failing_suggestion)
