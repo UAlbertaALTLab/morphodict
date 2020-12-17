@@ -38,7 +38,7 @@
 "2s"	PV/ka+${lemma}+V+AI+Ind+2Sg	
 "3s"	PV/ka+${lemma}+V+AI+Ind+3Sg	
 "1p"	PV/ka+${lemma}+V+AI+Ind+1Pl	
-"21"	PV/ka+${lemma}+V+AI+Ind+12P	
+"21"	PV/ka+${lemma}+V+AI+Ind+12Pl	
 "2p"	PV/ka+${lemma}+V+AI+Ind+2Pl	
 "3p"	PV/ka+${lemma}+V+AI+Ind+3Pl	
 "4"	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl	
