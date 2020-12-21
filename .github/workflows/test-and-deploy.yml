@@ -60,4 +60,4 @@ jobs:
         pttts CreeDictionary/API/schema.py types/index.ts
 
         # assert version change if the current types are different
-        python3 .github/workflows/check_types_version_bump.py ./types /usr/local/lib/node_modules/@altlab/types
+        python3 .github/workflows/check_types_version_bump.py ./types $(npm root -g)/@altlab/types
