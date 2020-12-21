@@ -72,3 +72,5 @@ class SerializedSearchResult(TypedDict):
     initial_change_tags: Tuple[str, ...]
 
     definitions: Tuple[SerializedDefinition, ...]
+
+    some_extra_field: List[str]
