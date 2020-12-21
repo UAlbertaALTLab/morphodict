@@ -42,7 +42,6 @@
     "wait-on": "^3.3.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.6.0",
-    "python-typing-to-typescript": "^1.0.10"
+    "@popperjs/core": "^2.6.0"
   }
 }

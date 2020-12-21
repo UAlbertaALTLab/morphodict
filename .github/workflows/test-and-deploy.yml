@@ -31,3 +31,33 @@ jobs:
         DEBUG: "True"
         USE_TEST_DB: "True"
       run: pipenv run test -v --cov=CreeDictionary
+
+# This syncs up API/schema.py to our @altlab/types package
+# If there is an update to the type output (index.ts), but the version number is untouched. This
+# will fail. Because developer needs to choose which version to bump.
+  type-package-check:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: 🐍 Set up Python 3.6
+      uses: actions/setup-python@v2
+      with: # python-typing-to-typescript requires python 3.9
+        python-version: 3.9
+
+    - name: Setup Node 14
+      uses: actions/setup-node@v1
+      with:
+        node-version: '14'
+
+    - name: "❓ Check if types changed"
+      run: |
+        # get published version and the conversion tool we are using
+        npm install -g @altlab/types python-typing-to-typescript
+
+        # convert our current schema.py to index.ts
+        pttts CreeDictionary/API/schema.py types/index.ts
+
+        # assert version change if the current types are different
+        python3 .github/workflows/check_types_version_bump.py ./types /usr/local/lib/node_modules/@altlab/types
