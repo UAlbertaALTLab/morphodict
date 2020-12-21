@@ -39,7 +39,7 @@ else:
         # print diff to stderr and exit with 1
         with open(current_index_file) as f_a, open(published_index_file) as f_b:
             sys.stderr.writelines(
-                context_diff(f_a.readlines(), f_b.readlines(), fromfile=args.file_a, tofile=args.file_b))
+                context_diff(f_a.readlines(), f_b.readlines(), fromfile="current generated types file", tofile="old published types file"))
         print("API type file has changed. See the diff above.", file=sys.stderr)
         print(
             "Please bump types package version. "
