@@ -72,5 +72,3 @@ class SerializedSearchResult(TypedDict):
     initial_change_tags: Tuple[str, ...]
 
     definitions: Tuple[SerializedDefinition, ...]
-
-    oopsies: List[str] # extra field but I forget to bump types package version
