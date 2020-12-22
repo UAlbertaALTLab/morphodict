@@ -44,7 +44,7 @@ else:
         print(
             "Please bump types package version. "
             "Is the change a major change which breaks old interface,"
-            " is it a backwards compatible feature, or it's a bug fix?)",
+            " is it a backwards compatible feature, or it's a bug fix?",
             file=sys.stderr)
         sys.exit(1)
     else:
