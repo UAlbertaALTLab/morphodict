@@ -54,7 +54,7 @@ jobs:
     - name: "❓ Generate current types and check if types changed"
       run: |
         # get published version and the conversion tool we are using
-        npm install -g @altlab/types python-typing-to-typescript
+        npm install -g @altlab/types python-typing-to-typescript@^1.1
 
         # convert our current schema.py to index.ts
         pttts CreeDictionary/API/schema.py types/index.ts
