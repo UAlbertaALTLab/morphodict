@@ -65,7 +65,7 @@ jobs:
     - name: "📖 Generate README" # it's just copy-pasting our index.ts file
       run: |
         echo '"""typescript' >> types/README.md
-        cat types/index.ts types/README.md
+        cat types/index.ts >> types/README.md
         echo '"""' >> types/README.md
 
     - name: "📁 Publish new NPM package"
