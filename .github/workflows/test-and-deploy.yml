@@ -51,7 +51,7 @@ jobs:
       with:
         node-version: '14'
 
-    - name: "❓ Check if types changed"
+    - name: "❓ Generate current types and check if types changed"
       run: |
         # get published version and the conversion tool we are using
         npm install -g @altlab/types python-typing-to-typescript
@@ -61,3 +61,16 @@ jobs:
 
         # assert version change if the current types are different
         python3 .github/workflows/check_types_version_bump.py ./types $(npm root -g)/@altlab/types
+
+    - name: "📖 Generate README" # it's just copy-pasting our index.ts file
+      run: |
+        echo '"""typescript' >> types/README.md
+        cat types/index.ts types/README.md
+        echo '"""' >> types/README.md
+
+    - name: "📁 Publish new NPM package"
+      uses: JS-DevTools/npm-publish@v1
+      with:
+        token: ${{ secrets.TYPES_NPM_PACKAGE_PUBLISH_TOKEN }}
+        package: ./types/package.json
+        check-version: true # won't run if version is not bumped
