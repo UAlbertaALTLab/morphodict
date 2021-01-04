@@ -1,6 +1,12 @@
-All directories in this file are relative to project root
+Directories
+===========
 
-Each directory should start with three hashes
+This is an EXHAUSTIVE list of all directories in this project. If you're
+confused about the purpose of a directory, look here!
+
+All directories in this file are relative to project root.
+
+<!-- Note to documenters: Each directory should start with three hashes! -->
 
 ### .github
 
@@ -204,7 +210,12 @@ images used in the docs
 
 ### libexec
 
-Utility tools that are usually dependency free and ran by developers.
+Utility programs that are *usually* dependency free and ran by
+developers or automated scripts. The programs here do not need to be
+distributed with the main app, but are useful for maintenance tasks (often
+run in CI).
+
+Why the name "libexec"? [History](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html#usrlibexec).
 
 ### src
 
