@@ -16,7 +16,7 @@ jobs:
   unit-test:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
-    runs-on: ${{ env.ACTIONS_OS_VERSION }}
+    runs-on: ubuntu-16.04
 
     steps:
     - uses: actions/checkout@v2
