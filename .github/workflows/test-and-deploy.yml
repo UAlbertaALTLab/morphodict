@@ -64,8 +64,10 @@ jobs:
         pipenv install --dev
     - name: 📥 Install Node dependencies
       run: npm ci
-    - name: 🛑 halt tests if Cypress tests are marked as '.only'
+    - name: 🛑 Halt tests if Cypress tests are marked as '.only'
       run: npm run stop-only
+    - name: 🏗 Build frontend
+      run: npm run build
     - name: 🌲 Run Cypress tests
       env:
         DEBUG: "True"
