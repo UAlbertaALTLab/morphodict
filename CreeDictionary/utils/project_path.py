@@ -25,9 +25,12 @@ def _get_project_root() -> Path:
 
 PROJECT_ROOT = _get_project_root()
 
-_PROJECT_PATHS: Dict[str, Path] = {path_name: PROJECT_ROOT / Path(rel_path) for path_name, rel_path in
-                                   toml.loads((PROJECT_ROOT / "pyproject.toml").read_text())[
-                                       "project_paths"].items()}
+_PROJECT_PATHS: Dict[str, Path] = {
+    path_name: PROJECT_ROOT / Path(rel_path)
+    for path_name, rel_path in toml.loads(
+        (PROJECT_ROOT / "pyproject.toml").read_text()
+    )["project_paths"].items()
+}
 
 
 def get_project_path(name: str) -> Optional[Path]:
