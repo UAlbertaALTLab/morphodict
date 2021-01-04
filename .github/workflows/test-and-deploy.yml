@@ -15,14 +15,23 @@ env:
 
 jobs:
   should-run-tests:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-20.04
+
     steps:
-      - run: echo 'Running for ${{ github.ref }}!'
+    - uses: actions/checkout@v2
+      with:
+        # The git history is needed for good evaluation of Pull Request commit messages.
+        # By default this action checkout only last commit.
+        # For PR it's temporary merge commit to current master and orginal commit message is missing.
+        # For big projects can be set to 1000 for performance reasons.
+        fetch-depth: '0'
+    - uses: mstachniuk/ci-skip@v1
 
   unit-test:
-    needs: [should-run-tests]
     runs-on: ubuntu-16.04
+
+    if: env.CI_SKIP != 'true'
+    needs: [should-run-tests]
 
     steps:
     - uses: actions/checkout@v2
@@ -46,10 +55,11 @@ jobs:
       run: pipenv run test -v --cov=CreeDictionary
 
   integration-test:
-    needs: [should-run-tests]
-
     runs-on: ubuntu-16.04
 
+    needs: [should-run-tests]
+
+    if: env.CI_SKIP != 'true'
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -124,11 +134,13 @@ jobs:
 
   deploy-to-sapir:
     runs-on: ubuntu-20.04
+
+    # TODO: type '[skip deploy]' in a commit message and the app will be tested, but not deployed
     if: github.ref == 'refs/heads/master'
     needs:
     - unit-test
     - integration-test
-    # type '[skip deploy]' in a commit message and the app will be tested, but not deployed
+
     steps:
     - uses: actions/checkout@v2
     - env:
