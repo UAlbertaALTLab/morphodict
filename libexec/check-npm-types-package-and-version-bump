@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 check if we need to bump the version of @altlab/types package
 The fact that this is only needed during github actions make me not place it under libexec directory.
@@ -10,8 +12,8 @@ from difflib import context_diff
 from pathlib import Path
 
 parser = argparse.ArgumentParser(
-    description="This script checks if our published types file and our current types file are the same."
-    "If they are the same. Then we assert the package version hasn't changed."
+    description="This script checks if our published types file and our current types file are the same. "
+    "If they are the same. Then we assert the package version hasn't changed. "
     "Otherwise, we assert that the package version is different (which implies it has been bumped)."
 )
 

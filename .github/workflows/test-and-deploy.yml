@@ -60,7 +60,7 @@ jobs:
         pttts CreeDictionary/API/schema.py types/index.ts
 
         # assert version change if the current types are different
-        python3 .github/workflows/check_types_version_bump.py ./types $(npm root -g)/@altlab/types
+        libexec/check-npm-types-package-and-version-bump ./types $(npm root -g)/@altlab/types
 
     - name: "📖 Generate README" # it's just copy-pasting our index.ts file
       run: |
