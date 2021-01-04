@@ -1,13 +1,14 @@
-from pathlib import Path
-from gitignore_parser import parse_gitignore
-from os import path
 import os
-from typing import List, Callable, NoReturn
-import pytest
-from sys import stderr
 from functools import partial
+from os import path
+from pathlib import Path
+from sys import stderr
+from typing import Callable, List, NoReturn
+
+import pytest
+from gitignore_parser import parse_gitignore
 from sortedcontainers import SortedSet
-from utils import PROJECT_ROOT, get_project_path
+from utils.project_path import PROJECT_ROOT, get_project_path
 
 IgnoreCheck = Callable[[Path], bool]
 """

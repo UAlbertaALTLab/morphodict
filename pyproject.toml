@@ -16,7 +16,9 @@ skip = [
 [project_paths]
 # A place to store paths to different components in our project.
 # Here they are all written relative to project root.
-# we have get_project_path function in CreeDictionary.utils module that resolves to these paths
+# we have get_project_path function in CreeDictionary.utils.project_path
+# module that resolves to these paths
+# TODO: use `pip install project-paths` (requires Python 3.8+)
 
 # the file we write documentation for directories
 dir_doc_file = "docs/directory-structure.md"
