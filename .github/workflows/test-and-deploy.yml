@@ -6,12 +6,17 @@ name: Test and deploy
 on: [push]
 env:
   ACTIONS_PYTHON_VERSION: 3.6
+  # Currently available versions (2021-01-04) are:
+  #   - ubuntu-16.04
+  #   - ubuntu-18.04 (@ubuntu-latest)
+  #   - ubuntu-20.04 (soon-to-be @ubuntu-latest)
+  ACTIONS_OS_VERSION: ubuntu-16.04
 
 jobs:
   unit-test:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ env.ACTIONS_OS_VERSION }}
 
     steps:
     - uses: actions/checkout@v2
@@ -40,7 +45,7 @@ jobs:
   type-package-check:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python 3.9
