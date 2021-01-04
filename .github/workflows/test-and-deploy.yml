@@ -4,19 +4,27 @@
 
 name: Test and deploy
 on: [push]
+env:
+  ACTIONS_PYTHON_VERSION: 3.6
+  ACTIONS_NODE_VERSION: 12
+  # Currently available versions (2021-01-04) are:
+  #   - ubuntu-16.04
+  #   - ubuntu-18.04 (@ubuntu-latest)
+  #   - ubuntu-20.04 (soon-to-be @ubuntu-latest)
+  ACTIONS_OS_VERSION: ubuntu-16.04
 
 jobs:
   unit-test:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-16.04
 
     steps:
     - uses: actions/checkout@v2
-    - name: 🐍 Set up Python 3.6
+    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
       uses: actions/setup-python@v2
       with:
-        python-version: 3.6
+        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: 🖥 Install system dependencies
       run: sudo apt-get install -y hfst
     - name: ☤ Install pipenv
@@ -32,13 +40,47 @@ jobs:
         USE_TEST_DB: "True"
       run: pipenv run test -v --cov=CreeDictionary
 
+  integration-test:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+
+    runs-on: ubuntu-16.04
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+    - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ env.ACTIONS_NODE_VERSION }}
+    - name: 🖥 Install system dependencies
+      run: sudo apt-get install -y hfst libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+    - name: ☤ Install pipenv
+      run: python3 -m pip install pipenv
+    - name: 📥 Install Python dependencies
+      run: |
+        pipenv install --dev
+    - name: 📥 Install Node dependencies
+      run: npm ci
+    - name: 🛑 Halt tests if Cypress tests are marked as '.only'
+      run: npm run stop-only
+    - name: 🏗 Build frontend
+      run: npm run build
+    - name: 🌲 Run Cypress tests
+      env:
+        DEBUG: "True"
+        USE_TEST_DB: "True"
+      run: npm run test:ci
+
 # This syncs up API/schema.py to our @altlab/types package
 # If there is an update to the type output (index.ts), but the version number is untouched. This
 # will fail. Because developer needs to choose which version to bump.
   type-package-check:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python 3.9
