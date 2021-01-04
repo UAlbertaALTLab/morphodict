@@ -220,3 +220,15 @@ All our css. They eventually are compiled to static folders.
 that ["makes browsers render all elements more consistently ..."][normalize].
 
 [normalize]: https://necolas.github.io/normalize.css/
+
+### types
+
+Npm package `@altlab/types` with typescript that serve as our API schema.
+
+The typescript file is generated through  CI from python TypedDict's under `CreeDictionary/API/schema.py`
+
+When the source file is changed, be sure to bump the package version. It's OK to forget - 
+our CI will check if the package version is bumped when the produced type file has changed. 
+
+Note this package is separate from the "package" under the project root level,
+the latter being javascript dependencies of our project.

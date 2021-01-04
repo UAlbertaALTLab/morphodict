@@ -30,7 +30,7 @@ class SerializedWordform(TypedDict):
     wordclass_emoji: str
 
     # ---- foreign keys ----
-    definition: List[SerializedDefinition]
+    definitions: List[SerializedDefinition]
 
 
 class SerializedLinguisticTag(TypedDict):

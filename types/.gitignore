@@ -1,0 +1,3 @@
+# fool-proof: these two files are managed by CI/CD and shouldn't be manually added
+/README.md
+/index.ts

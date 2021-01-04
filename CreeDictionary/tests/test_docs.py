@@ -3,35 +3,16 @@ from gitignore_parser import parse_gitignore
 from os import path
 import os
 from typing import List, Callable, NoReturn
-import toml
 import pytest
 from sys import stderr
 from functools import partial
 from sortedcontainers import SortedSet
+from utils import PROJECT_ROOT, get_project_path
 
 IgnoreCheck = Callable[[Path], bool]
 """
 If a path is ignored, it gives True. If a path is not ignored, it gives False
 """
-
-FILE_DIR = Path(path.dirname(__file__))
-
-
-def get_project_root():
-    """
-    bubbles up until we see a directory with .git folder
-
-    :return: The root directory of the repository
-    """
-    # Uhh I actually don't know any reliable way to do this
-    # this sounds like a reasonable method. You are Welcome to fix it.
-    current = FILE_DIR
-    while not (current / ".git").is_dir():
-        current = current.parent
-    return current
-
-
-PROJECT_ROOT = get_project_root()
 
 
 def _get_not_ignored_dirs(
@@ -105,7 +86,6 @@ def format_fix_suggestion_as_lines_relative_to_project(
 
 
 def test_dirs_get_docs():
-    parsed_tml = toml.loads((PROJECT_ROOT / "pyproject.toml").read_text())
 
     # if we were to use the vanilla set, the suggestions would come out in alphabetical order
     # which makes less sense than depth first order in terms of directory presentation
@@ -113,7 +93,7 @@ def test_dirs_get_docs():
     non_existent_dirs = SortedSet()
     non_dir_docs = SortedSet()
 
-    doc_file = Path(PROJECT_ROOT / parsed_tml["tool"]["dirdoc"]["doc_file"])
+    doc_file = get_project_path("dir_doc_file")
     for line in doc_file.read_text().splitlines():
         if line.lstrip().startswith("###"):
             dir_with_doc = Path(PROJECT_ROOT / line.partition("###")[2].strip())

@@ -1,0 +1,22 @@
+{
+  "name": "@altlab/types",
+  "version": "1.1.1",
+  "description": "types for the itwewina (or cree-intelligent-dictionary) project",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git"
+  },
+  "keywords": [
+    "types",
+    "typescript",
+    "API",
+    "schema"
+  ],
+  "author": "Matt Yan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues"
+  },
+  "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme"
+}

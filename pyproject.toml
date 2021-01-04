@@ -11,5 +11,12 @@ skip = [
     "node_modules",
 ]
 
-[tool.dirdoc]
-doc_file = "docs/directory-structure.md"
+
+
+[project_paths]
+# A place to store paths to different components in our project.
+# Here they are all written relative to project root.
+# we have get_project_path function in CreeDictionary.utils module that resolves to these paths
+
+# the file we write documentation for directories
+dir_doc_file = "docs/directory-structure.md"
