@@ -116,3 +116,17 @@ jobs:
         token: ${{ secrets.TYPES_NPM_PACKAGE_PUBLISH_TOKEN }}
         package: ./types/package.json
         check-version: true # won't run if version is not bumped
+
+  deploy-to-sapir:
+    runs-on: ubuntu-20.04
+    if: "github.ref == 'master'"
+    needs:
+    - unit-test
+    - integration-test
+    # type '[skip deploy]' in a commit message and the app will be tested, but not deployed
+    steps:
+    - uses: actions/checkout@v2
+    - env:
+        SAPIR_REDEPLOY_KEY: ${{ secrets.SAPIR_REDEPLOY_KEY }}
+      run: |
+        curl --verbose --fail -dsecret=$SAPIR_REDEPLOY_KEY https://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
