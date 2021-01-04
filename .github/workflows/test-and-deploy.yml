@@ -134,4 +134,4 @@ jobs:
     - env:
         SAPIR_REDEPLOY_KEY: ${{ secrets.SAPIR_REDEPLOY_KEY }}
       run: |
-        curl --verbose --fail -dsecret=$SAPIR_REDEPLOY_KEY https://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+        curl --verbose --fail -dsecret=$SAPIR_REDEPLOY_KEY http://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
