@@ -14,9 +14,14 @@ env:
   ACTIONS_OS_VERSION: ubuntu-16.04
 
 jobs:
-  unit-test:
+  should-run-tests:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+    runs-on: ubuntu-20.04
+    steps:
+      - run: echo 'Running for ${{ github.ref }}!'
 
+  unit-test:
+    needs: [should-run-tests]
     runs-on: ubuntu-16.04
 
     steps:
@@ -41,7 +46,7 @@ jobs:
       run: pipenv run test -v --cov=CreeDictionary
 
   integration-test:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+    needs: [should-run-tests]
 
     runs-on: ubuntu-16.04
 
@@ -78,7 +83,7 @@ jobs:
 # If there is an update to the type output (index.ts), but the version number is untouched. This
 # will fail. Because developer needs to choose which version to bump.
   type-package-check:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+    needs: [should-run-tests]
 
     runs-on: ubuntu-20.04
     steps:
