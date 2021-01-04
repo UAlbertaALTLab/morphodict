@@ -72,7 +72,7 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
-      run: npm test:ci
+      run: npm run test:ci
 
 # This syncs up API/schema.py to our @altlab/types package
 # If there is an update to the type output (index.ts), but the version number is untouched. This
