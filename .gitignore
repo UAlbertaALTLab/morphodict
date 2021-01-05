@@ -18,6 +18,7 @@ pip-delete-this-directory.txt
 .hypothesis/
 .pytest_cache/
 .mypy_cache/
+/coverage.xml
 
 # Django stuff
 DatabaseManager.log*
