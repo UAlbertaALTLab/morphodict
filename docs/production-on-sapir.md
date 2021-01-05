@@ -1,12 +1,15 @@
 Production on Sapir
 -------------------
 
-As of <time datetime="2019-11-18">November 18, 2019</time>, the Cree
-Dictionary is deployed on a server called **Sapir**. You can visit the
+As of <time datetime="2021-01-05">January 5, 2021</time>, the itwêwina
+is deployed on a server called **Sapir**. You can visit the
 production website here:
 
 <https://sapir.artsrn.ualberta.ca/cree-dictionary>
 
+
+It was supposed to be deprecated in 2020 and decommissions in 2021, but
+here we are :/
 
 ## Redeployment Script
 
@@ -32,43 +35,69 @@ The script does the following in sequence:
 - to know details of how redeployment works, check the [repository of redeploy](https://github.com/eddieantonio/redeploy)
 
 
-## Limit of `redeploy`
+## Limits of `redeploy`
 
 `redeploy` does not sync the database file. To make changes to the database, we need to sync our database file, which is
 guaranteed to work as SQLite database and is operating system independent.
 
-When you want to make changes to the database, do a `$ pipenv run pull-db` first to pull database from Sapir.
-
-Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database.
-If your username on Sapir is different from your username on you local
-machine, add environment variable `SAPIR_USER=<your name>` in `.env` file.
-
-It has admin authentication information stored and shouldn't be
-overwritten. And it probably has edited tables. After the changes, do
- `$ pipenv run push-db` to upload the changed database back to Sapir
-
+ > ⚠️ Ask Eddie how database updates are done. It's really bad and
+ > shameful.
 
 ## Set up
 
 This only needs to be done once and is probably already done. This serves for documentation purpose.
 
-- pull the code
-- `sudo PIPENV_VENV_IN_PROJECT=1 pipenv install`
+ 1. Pull the code on Sapir, somewhere in `/opt`.
 
-    This creates `.venv` folder under current directory. Without the environment variable pipenv will create virtual
-    environment under the users home, which causes permission issues.
+ 2. Make sure the folder is owned by User `www-data` and group `www-data`.
+    This is the user that Apache is running under!
 
-- `sudo pipenv run pip install mod_wsgi`
+The following commands will probably require the following prefix:
 
-    DO NOT use `pipenv install`. mod_wsgi is used on sapir only to serve the application
+    # sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1
 
-- setup mod_wsgi
+ - `env` sets environment variables before running a command
+ - `HOME=/tmp` allows npm and pip/pipenv to cache things in the "home"
+   directory; since the home directory while `sudo`'d is `/root`, set it
+   to `/tmp` so there are no write errors or permission errors!
+ - `PIPENV_VENV_IN_PROJECT=1` makes sure the virtual environment is
+   stored in the project folder in a subdirectory called `.venv`
 
-    ```.bash
-    $ sudo pipenv run python CreeDictionary/manage.py runmodwsgi --setup-only --port=8091 --user www-data --group www-data --server-root=mod_wsgi-express-8091
-    ```
+3. Create the virtual environment:
 
-    this creates folder `mod_wsgi-express-8091`, which contains a separate apache to serve the application.
+    This creates `.venv` folder under current directory. Without the
+    environment variable pipenv will create virtual environment under
+    the users home, which causes permission issues.
+
+        pipenv run pip install mod_wsgi
+
+4. Install Gunicorn, (or any WSGI server, really):
+
+        pipenv run install-server
+
+5. Collect static files
+
+        pipenv run collect-static
+
+6. Copy the database
+
+   You should copy it `CreeDictionary/` within the repo to
+   `db.sqlite3`.
+
+7. Configure environment variables
+
+8. Now try the server!
+
+   This should start a server:
+
+        pipenv run gunicorn-locally
+
+Make sure it responds to requests!
+
+        curl -i localhost:8000/
+
+This should return a bunch of HTML with a 200 success code.
+      
 
 - Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
 

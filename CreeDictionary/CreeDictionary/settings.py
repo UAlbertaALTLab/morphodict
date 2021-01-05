@@ -68,7 +68,7 @@ if DEBUG:
 elif RUNNING_ON_SAPIR:  # pragma: no cover
     ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
 
 # Application definition
 
@@ -267,52 +267,24 @@ else:
         "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
     )
 
-log_dir = Path(BASE_DIR) / "django_logs"
-log_dir.mkdir(exist_ok=True)
-
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "filters": {
         "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
         "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
-        "require_run_main_true": {"()": "CreeDictionary.settings.RunMainFilter"},
     },
     "handlers": {
-        "write_debug_to_file_prod": {
-            "level": "DEBUG",
-            "class": "logging.handlers.RotatingFileHandler",
-            "filename": str(log_dir / "django.log"),
-            "maxBytes": 1024 * 1024 * 15,  # 15MB
-            "backupCount": 10,
-            "filters": ["require_debug_false"],
-        },
-        "write_info_to_console_dev": {
+        "console": {
             "level": "INFO",
-            # without require_run_main_true, loggers from API.apps will print twice
-            "filters": ["require_debug_true", "require_run_main_true"],
             "class": "logging.StreamHandler",
         },
-    },  # learn how different loggers are used in django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+    },
+    # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
     "loggers": {
         "django": {
-            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
-            "level": "DEBUG",
-        },
-        # loggers created with logging.get_logger(__name__) under API app will use the configuration here
-        "API": {
-            "handlers": ["write_debug_to_file_prod", "write_info_to_console_dev"],
+            "handlers": ["console"],
             "level": "DEBUG",
         },
     },
 }
-
-
-class RunMainFilter(logging.Filter):
-    """
-    When DEBUG is True, django clones two processes, one is the main processes, while the other is for hot swapping.
-    The main process sets RUN_MAIN to true
-    """
-
-    def filter(self, record):
-        return os.environ.get("RUN_MAIN") == "true"
