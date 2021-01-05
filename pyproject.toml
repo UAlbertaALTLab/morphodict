@@ -1,6 +1,7 @@
 [tool.black]
 exclude = "migrations/"
 
+
 [tool.isort]
 # Match what Black will do:
 multi_line_output = 3
@@ -11,6 +12,17 @@ skip = [
     "node_modules",
 ]
 
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--doctest-modules"
+
+testpaths = [
+    "CreeDictionary"
+]
+
+# pytest-django
+DJANGO_SETTINGS_MODULE = "CreeDictionary.settings"
 
 
 [project_paths]
