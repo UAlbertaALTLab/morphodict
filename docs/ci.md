@@ -8,17 +8,21 @@ We use continuous integration (CI) to test and check our code on every
 Serivces
 --------
 
- - TravisCI — runs unit and integration tests
+ - GitHub Actions
+   * runs unit and integration tests
+   * reformats reformats Python and JavaScript code on the default branch
  - codecov — measures and tracks code coverage
  - Cypress — stores test recordings
- - GitHub Actions — reformats Python and JavaScript code on the default branch
  - redeploy (proprietary) — pulls the latest code on the production server
+
+Note: as of this writing (2020-01-04), codecov and Cypress Dashboard are
+not configured.
 
 
 Cypress
 -------
 
-On TravisCI, the integration test run using this rule:
+On GitHub Actions, the integration test run using this rule:
 
     npm run test:ci
 
