@@ -65,7 +65,7 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 
 [requires]
-python_version = "3.8"
+python_version = "3.9"
 
 [pipenv]
 # this allows "black>=19.10b0" to work
