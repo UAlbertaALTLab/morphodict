@@ -9,7 +9,7 @@ jobs:
   # NOTE: Do all jobs SEQUENTIALLY to avoid merges
 
   reformat-altlabel:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"`
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
