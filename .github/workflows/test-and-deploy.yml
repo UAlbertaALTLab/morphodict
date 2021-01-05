@@ -3,7 +3,7 @@ on: [push]
 
 env:
   # Version required to run itwêwina:
-  ACTIONS_PYTHON_VERSION: 3.7
+  ACTIONS_PYTHON_VERSION: 3.8
   # Version required to run npm build:
   ACTIONS_NODE_VERSION: 12
   # Version running on Sapir:
