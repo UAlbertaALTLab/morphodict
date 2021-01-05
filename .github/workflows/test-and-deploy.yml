@@ -14,24 +14,46 @@ env:
   ACTIONS_OS_VERSION: ubuntu-16.04
 
 jobs:
+  # Skips tests if [skip ci] is present in the commit message
   should-run-tests:
     runs-on: ubuntu-20.04
+
+    outputs:
+      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
 
     steps:
     - uses: actions/checkout@v2
       with:
-        # The git history is needed for good evaluation of Pull Request commit messages.
-        # By default this action checkout only last commit.
-        # For PR it's temporary merge commit to current master and orginal commit message is missing.
-        # For big projects can be set to 1000 for performance reasons.
+        # ci-skip needs to do a partial checkout
         fetch-depth: '0'
-    - uses: mstachniuk/ci-skip@v1
+    - id: ci-skip
+      uses: mstachniuk/ci-skip@v1
+      with:
+        commit-filter: '[skip ci]'
+
+  # Skips deploy if [skip deploy] is present in the commit message
+  should-deploy:
+    runs-on: ubuntu-20.04
+
+    outputs:
+      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
+
+    if: github.ref == 'refs/heads/master'
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        # ci-skip needs to do a partial checkout
+        fetch-depth: '0'
+    - id: ci-skip
+      uses: mstachniuk/ci-skip@v1
+      with:
+        commit-filter: '[skip deploy]'
 
   unit-test:
     runs-on: ubuntu-16.04
 
-    if: env.CI_SKIP != 'true'
     needs: [should-run-tests]
+    if: needs.should-run-tests.outputs.should-run == 'true'
 
     steps:
     - uses: actions/checkout@v2
@@ -58,8 +80,8 @@ jobs:
     runs-on: ubuntu-16.04
 
     needs: [should-run-tests]
+    if: needs.should-run-tests.outputs.should-run == 'true'
 
-    if: env.CI_SKIP != 'true'
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -93,9 +115,11 @@ jobs:
 # If there is an update to the type output (index.ts), but the version number is untouched. This
 # will fail. Because developer needs to choose which version to bump.
   type-package-check:
-    needs: [should-run-tests]
-
     runs-on: ubuntu-20.04
+
+    needs: [should-deploy]
+    if: needs.should-deploy.outputs.should-run == 'true'
+
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python 3.9
@@ -135,11 +159,11 @@ jobs:
   deploy-to-sapir:
     runs-on: ubuntu-20.04
 
-    # TODO: type '[skip deploy]' in a commit message and the app will be tested, but not deployed
-    if: github.ref == 'refs/heads/master'
     needs:
+    - should-deploy
     - unit-test
     - integration-test
+    if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
     - uses: actions/checkout@v2
