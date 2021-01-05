@@ -15,9 +15,6 @@ Serivces
  - Cypress — stores test recordings
  - redeploy (proprietary) — pulls the latest code on the production server
 
-Note: as of this writing (2020-01-04), codecov and Cypress Dashboard are
-not configured.
-
 
 Cypress
 -------
@@ -34,6 +31,7 @@ Which, in turn, does the following:
    tests
 
 `$CYPRESS_OPTS` is intended to be either empty or `--record`. If set to
-`--record`, it will upload recordings to the Cypress Dashboard. Note
-that **if there is no more room for recordings** on our Cypress plan, **the
-build will fail**.
+`--record --key SECRET_KEY`, it will upload recordings to the Cypress
+Dashboard. Note that **if there is no more room for recordings** on our
+Cypress plan, **the build will fail**. We're on Cypress's open-source
+plan, which should give us some extra space to deal with!
