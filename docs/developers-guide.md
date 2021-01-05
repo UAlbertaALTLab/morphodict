@@ -14,7 +14,7 @@ Clone the repo and `cd` into it, as usual.
 
 ### Install Python
 
-Get Python 3.6 and [Pipenv](https://github.com/pypa/pipenv#installation).
+Get Python 3.9 and [Pipenv](https://github.com/pypa/pipenv#installation).
 
 Within the directory, install all Python dependencies:
 
