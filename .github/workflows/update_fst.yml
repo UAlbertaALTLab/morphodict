@@ -1,12 +1,11 @@
 name: Update FST files
-
 on: repository_dispatch
 
-# Note: to skip both travis and github actions, add both [skip ci/travis] and [skip actions] to your commit message
+# TODO: this needs to be updated for the gielalt/lang-crk repo!
+# TODO: this should commit using the actions user!
 
 jobs:
   build:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
 
     steps:
