@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "67a59c49e879d1011d3f0938c26936883ad8b49eb86fd05f8309c2d20693e35d"
+            "sha256": "5ea23c6948b71aeaadf6f22a38d8a1a39de37a92b339b8c7112244dae004ed83"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -81,6 +81,17 @@
         "creedictionary": {
             "editable": true,
             "path": "./CreeDictionary"
+        },
+        "dawg": {
+            "hashes": [
+                "sha256:34881e06278d4a54cf0b402c0c8b587bef0caa78f0eee595adc7a2aa530e48ce",
+                "sha256:73760ad1272b1b47997f1a768b8f3bf547c92475bcd62185f4ab7e1bc691964e",
+                "sha256:7aecc4c89243edaf1efe7a4d769d993a7cd9307a8a04f48e07c4fc7c44bdd38f",
+                "sha256:83ce4a73f7632b0ed31af16c2750533ecbed347bad1148a52f6436e348b5b7ac",
+                "sha256:fb90b799fb7d6d728531840529c812a9ee17736da71e8a596ede8bfd6c62bf36"
+            ],
+            "index": "pypi",
+            "version": "==0.8.0"
         },
         "django": {
             "hashes": [

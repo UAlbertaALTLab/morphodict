@@ -35,6 +35,7 @@ sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.
 marisa-trie = "~=0.7"
 secure = "*"
 snowballstemmer = "*"
+dawg = "~=0.8"
 
 [scripts]
 # look stuff up
