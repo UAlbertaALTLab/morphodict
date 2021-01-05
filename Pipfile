@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 black = ">=19.10b0"
-pytest = "~=5.1"
+pytest = "~=6.0.0"
 pytest-django = "~=4.1"
 pytest-cov = "~=2.7"
 pytest-datadir = "~=1.3"
