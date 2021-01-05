@@ -18,6 +18,7 @@ bind = f"0.0.0.0:{PORT}"
 workers = int(os.getenv("GUNICORN_WORKERS", 3))
 
 capture_output = True
-loglevel = os.getenv("GUNICORN_LOG_LEVEL", "info")
-access_log = Path(os.getenv("GUNICORN_ACCESS_LOG", log_prefix / "access.log"))
-error_log = Path(os.getenv("GUNICORN_ACCESS_LOG", log_prefix / "error.log"))
+disable_redirect_access_to_syslog = True
+loglevel = os.getenv("GUNICORN_LOG_LEVEL", "debug")
+errorlog = "-"
+accesslog = str(os.getenv("GUNICORN_ACCESS_LOG", log_prefix / "access.log"))

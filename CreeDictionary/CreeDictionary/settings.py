@@ -270,13 +270,9 @@ else:
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
-    "filters": {
-        "require_debug_false": {"()": "django.utils.log.RequireDebugFalse"},
-        "require_debug_true": {"()": "django.utils.log.RequireDebugTrue"},
-    },
     "handlers": {
         "console": {
-            "level": "INFO",
+            "level": "DEBUG",
             "class": "logging.StreamHandler",
         },
     },
@@ -285,6 +281,7 @@ LOGGING = {
         "django": {
             "handlers": ["console"],
             "level": "DEBUG",
+            "propagate": True,
         },
     },
 }
