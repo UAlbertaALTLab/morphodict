@@ -117,7 +117,7 @@ jobs:
         DEBUG: "True"
         USE_TEST_DB: "True"
         # Enables uploading test runs to Cypress Dashboard:
-        CYPRESS_OPTS: --record --key ${{ secrets.CYPRES_RECORD_KEY }}
+        CYPRESS_OPTS: "--record --key ${{ secrets.CYPRESS_RECORD_KEY }}"
       run: npm run test:ci
 
   # This syncs up API/schema.py to our @altlab/types package
