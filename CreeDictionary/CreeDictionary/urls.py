@@ -2,7 +2,6 @@
 Definition of urls for CreeDictionary.
 """
 import API.views as api_views
-from CreeDictionary import views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -10,6 +9,8 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
+
+from CreeDictionary import views
 
 # 2019/May/21 Matt Yan:
 
@@ -29,7 +30,7 @@ from django_js_reverse.views import urls_js
 
 
 # TODO: Convert this to an idiomatic Django style when we drop support for
-# Sapir and mod-wsgi.
+# Sapir
 _urlpatterns = [
     # user interface
     ("", views.index, "cree-dictionary-index"),

@@ -113,10 +113,6 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
 
     INTERNAL_IPS = ["127.0.0.1"]
 
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    # Sapir uses `wsgi_express` that requires mod_wsgi
-    INSTALLED_APPS.append("mod_wsgi.server")
-
 ROOT_URLCONF = "CreeDictionary.urls"
 
 TEMPLATES = [
