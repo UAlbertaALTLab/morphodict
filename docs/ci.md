@@ -8,17 +8,18 @@ We use continuous integration (CI) to test and check our code on every
 Serivces
 --------
 
- - TravisCI — runs unit and integration tests
+ - GitHub Actions
+   * runs unit and integration tests
+   * reformats reformats Python and JavaScript code on the default branch
  - codecov — measures and tracks code coverage
  - Cypress — stores test recordings
- - GitHub Actions — reformats Python and JavaScript code on the default branch
  - redeploy (proprietary) — pulls the latest code on the production server
 
 
 Cypress
 -------
 
-On TravisCI, the integration test run using this rule:
+On GitHub Actions, the integration test run using this rule:
 
     npm run test:ci
 
@@ -30,6 +31,7 @@ Which, in turn, does the following:
    tests
 
 `$CYPRESS_OPTS` is intended to be either empty or `--record`. If set to
-`--record`, it will upload recordings to the Cypress Dashboard. Note
-that **if there is no more room for recordings** on our Cypress plan, **the
-build will fail**.
+`--record --key SECRET_KEY`, it will upload recordings to the Cypress
+Dashboard. Note that **if there is no more room for recordings** on our
+Cypress plan, **the build will fail**. We're on Cypress's open-source
+plan, which should give us some extra space to deal with!

@@ -1,17 +1,18 @@
-# Based on: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
-
-# Note: to skip both travis and github actions, add both [skip ci/travis] and [skip actions] to your commit message
-
 name: Test and deploy
 on: [push]
+
 env:
+  # Version required to run itwêwina:
   ACTIONS_PYTHON_VERSION: 3.6
+  # Version required to run npm build:
   ACTIONS_NODE_VERSION: 12
-  # Currently available versions (2021-01-04) are:
+  # Version running on Sapir:
+  ACTIONS_OS_VERSION: ubuntu-16.04
+  # N.B.: Currently available versions (2021-01-04) are:
   #   - ubuntu-16.04
   #   - ubuntu-18.04 (@ubuntu-latest)
   #   - ubuntu-20.04 (soon-to-be @ubuntu-latest)
-  ACTIONS_OS_VERSION: ubuntu-16.04
+  # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 jobs:
   # Skips tests if [skip ci] is present in the commit message
@@ -49,6 +50,7 @@ jobs:
       with:
         commit-filter: '[skip deploy]'
 
+  # Run Pytest unit tests
   unit-test:
     runs-on: ubuntu-16.04
 
@@ -74,8 +76,13 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
-      run: pipenv run test -v --cov=CreeDictionary
+      run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
+    - name: 📤 Upload Codecov coverage report
+      uses: codecov/codecov-action@v1
+      with:
+        fail_ci_if_error: true
 
+  # Runs Cypress acceptance tests
   integration-test:
     runs-on: ubuntu-16.04
 
@@ -109,11 +116,13 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
+        # Enables uploading test runs to Cypress Dashboard:
+        CYPRESS_OPTS: "--record --key ${{ secrets.CYPRESS_RECORD_KEY }}"
       run: npm run test:ci
 
-# This syncs up API/schema.py to our @altlab/types package
-# If there is an update to the type output (index.ts), but the version number is untouched. This
-# will fail. Because developer needs to choose which version to bump.
+  # This syncs up API/schema.py to our @altlab/types package
+  # If there is an update to the type output (index.ts), but the version number is untouched. This
+  # will fail. Because developer needs to choose which version to bump.
   type-package-check:
     runs-on: ubuntu-20.04
 

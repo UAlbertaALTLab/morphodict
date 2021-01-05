@@ -10,7 +10,8 @@ production website here:
 
 ## Redeployment Script
 
-`.travis.yml` is configured so that, after a successful build on master,
+`.github/workflows/test-and-deploy.yml` is configured so that,
+after a successful build on master,
 Sapir will execute a script that updates and restarts the app. This is
 enabled by a tool `redeploy`, maintained by
 [Eddie](https://github.com/eddieantonio).

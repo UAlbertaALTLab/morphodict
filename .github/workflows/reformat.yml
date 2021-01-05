@@ -1,7 +1,5 @@
-name: Reformats various files
-
-
-# Note: to skip both travis and github actions, add both [skip ci/travis] and [skip actions] to your commit message
+name: Reformats source files
+# write [skip reformat] to skip this workflow!
 
 on:
   push:
@@ -11,7 +9,7 @@ jobs:
   # NOTE: Do all jobs SEQUENTIALLY to avoid merges
 
   reformat-altlabel:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,10 +24,9 @@ jobs:
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
-        commit_message: "🤖🧹 reformat crk.altlabel [skip travis]"
+        commit_message: "🤖🧹 reformat crk.altlabel [skip ci]"
 
   reformat-python:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
     # Ensure this is run **sequentially**
     needs: reformat-altlabel
@@ -49,10 +46,9 @@ jobs:
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
-        commit_message: "🤖🧹 reformat Python files [skip travis]"
+        commit_message: "🤖🧹 reformat Python files [skip ci]"
 
   reformat-javascript:
-    if: "! contains(toJSON(github.event.commits.*.message), '[skip actions]')"
     runs-on: ubuntu-latest
     # Ensure this is run **sequentially**
     needs: reformat-python
@@ -71,4 +67,4 @@ jobs:
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
-        commit_message: "🤖🧹 reformat JavaScript files [skip travis]"
+        commit_message: "🤖🧹 reformat JavaScript files [skip ci]"

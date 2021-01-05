@@ -39,7 +39,7 @@ DEBUG = to_boolean(os.environ.get("DEBUG", False))
 if RUNNING_ON_SAPIR:  # pragma: no cover
     assert not DEBUG
 
-# travis has CI equals True
+# GitHub Actions and other services set CI to `true`
 CI = to_boolean(os.environ.get("CI", False))
 
 # The Django debug toolbar is a great help when... you know... debugging Django,
