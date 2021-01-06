@@ -80,10 +80,6 @@ See more under the directory's README.md about how to use it
 DatabaseManager outputs logs when it imports xml dictionaries into the database. Here are logs that record details of
 what happened to the xml entries during the importation.
 
-### CreeDictionary/django_logs
-
-This directory stores logs on production.
-
 ### CreeDictionary/morphodict
 
 A django app that has our language invariant components of the project. This is currently a WIP.
