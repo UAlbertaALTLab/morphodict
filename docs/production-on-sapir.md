@@ -86,6 +86,12 @@ The following commands will probably require the following prefix:
 
 7. Configure environment variables
 
+I set up logs to write to `/var/log/cree-dictionary`, so you'll want to
+create the folders appropriately:
+
+   # sudo mkdir /var/log/cree-dictionary
+   # sudo chown www-data-:www-data /var/log/cree-dictionary
+
 8. Now try the server!
 
    This should start a server:
@@ -97,35 +103,55 @@ Make sure it responds to requests!
         curl -i localhost:8000/
 
 This should return a bunch of HTML with a 200 success code.
-      
 
-- Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
+**Note**: static file hosting will not work, as that the static file
+hosting is disabled when `DEBUG` is unset or `False`.
+
+
+8. Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
 
     ```
+    # Inspired by: https://docs.gunicorn.org/en/stable/deploy.html#systemd
     [Unit]
-    Description=Cree Dictionary HTTP service
+    Description=Cree Intelligent Dictionary (gunicorn)
+    Requires=cree-dictionary-python-3.9.socket
+    After=network.target
 
     [Service]
-    Type=forking
-    EnvironmentFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/envvars
-    PIDFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/httpd.pid
-    ExecStart=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl start
-    ExecReload=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl graceful
-    ExecStop=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl stop
-    KillSignal=SIGCONT
-    PrivateTmp=true
+    Type=notify
+    User=www-data
+    Group=www-data
+    RuntimeDirectory=cree-dictionary
+    WorkingDirectory=/data/texts/opt/cree-intelligent-dictionary-python-3.9/
+    ExecStart=/data/texts/opt/cree-intelligent-dictionary-python-3.9/.venv/bin/gunicorn \
+        --config CreeDictionary/CreeDictionary/gunicorn.conf.py \
+        CreeDictionary.wsgi:application
+    # Gunicorn will reload if the main process is sent SIGHUP
+    ExecReload=/bin/kill -s HUP $MAINPID
+    KillMode=mixed
+    TimeoutStopSec=10
 
     [Install]
     WantedBy=multi-user.target
     ```
 
-- `sudo pipenv run collect-static`
+9. Enable the socket
 
-- `sudo systemctl enable cree-dictionary.service`
+       # sudo systemctl enable cree-dictionary.service
 
-- `sudo mkdir CreeDictionary/res/dictionaries`
+10. Test the socket:
 
-- `cd .. && sudo chown -R www-data:www-data cree-intelligent-dictionary/`
+   Through some systemd magic that I do not understand, accessing the
+   socket starts up the service. Try out the socket pretending you are
+   `www-data`:
+
+       # sudo -u www-data curl -v --unix-socket /run/cree-dictionary-python-3.9.socket -H'Host: sapir.artsrn.ualberta.ca' http:/cree-dictionary/
+
+You should get the same HTML response with status code 200 like before.
+
+TODO: write systemd stuff
+
+TODO: write apache stuff
 
 
 - Have a `cree-dictionary.conf` with the following content under `etc/apache2/sites-available/`
