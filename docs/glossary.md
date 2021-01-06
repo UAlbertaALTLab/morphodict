@@ -317,8 +317,6 @@ multicharacter symbol
 =====================
 [multicharacter symbol]: #multicharacter-symbol
 
-cree-intelligent-dic
-
 In LEXC, a symbol in the FST's alphabet that is realized in text form
 as multiple Unicode characters. These are used for tags, e.g., `+V`,
 `+TA`, `+Err/Orth`; and special symbols used in phonological rules,
@@ -331,8 +329,7 @@ there is no need to parse the analysis to find tags.
 For example, "nêpât" is transduced to the following ten symbols
 (separated by `|`):
 
-
-   IC+ | n | i | p | â | w | +V | +AI | +Cnj | +3Sg
+    IC+ | n | i | p | â | w | +V | +AI | +Cnj | +3Sg
 
 
 normatize
