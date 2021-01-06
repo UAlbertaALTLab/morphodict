@@ -315,6 +315,9 @@ broken down into any subsequent parts, without changing its meaning.
 
 multicharacter symbol
 =====================
+[multicharacter symbol]: #multicharacter-symbol
+
+cree-intelligent-dic
 
 In LEXC, a symbol in the FST's alphabet that is realized in text form
 as multiple Unicode characters. These are used for tags, e.g., `+V`,
