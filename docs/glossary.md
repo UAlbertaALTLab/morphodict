@@ -313,6 +313,25 @@ An indivisible part of language with meaning; A morpheme cannot be
 broken down into any subsequent parts, without changing its meaning.
 
 
+multicharacter symbol
+=====================
+
+In LEXC, a symbol in the FST's alphabet that is realized in text form
+as multiple Unicode characters. These are used for tags, e.g., `+V`,
+`+TA`, `+Err/Orth`; and special symbols used in phonological rules,
+e.g., the `t2` in `nit2<nipa>n`.
+
+Note to FST implementors: since tags are **always** multicharacter
+symbols, if the FST output has all the symbols separated, then
+there is no need to parse the analysis to find tags.
+
+For example, "nêpât" is transduced to the following ten symbols
+(separated by `|`):
+
+
+   IC+ | n | i | p | â | w | +V | +AI | +Cnj | +3Sg
+
+
 normatize
 =========
 [normatize]: #normatize
@@ -413,13 +432,16 @@ In the Plains Cree FST, these tags either end with a `+` for prefixes (e.g.,
 `PV/e+`, or start with `+` sign for everything else (e.g., `+N`, `+TA`,
 `+V`).
 
- - General word class: `+V`, `+N`, `+Ipc`
- - Specific word class `+TA`, `+TI`, `+VI`
+ - General word class: `+V`, `+N`, `+Ipc`, `+Prop`
+ - Specific word class `+TA`, `+TI`, `+VI`, `+I`, `+A`
+ - Whether a noun is dependent: `+D`
+ - Tense: `+Prs`, `+Fut`, `+Prt` (really, denotes which tense preverb exists)
  - Order: `+Ind`, `+Cnj`
- - Subject: `+1Sg`, `+3Pl`, `+4Sg/Pl`
+ - Subject: `+1Sg`, `+3Pl`, `+4Sg/Pl`, `+5Sg/Pl`
  - Object: `+1SgO`, `+3PlO`, `+4Sg/PlO`
+ - The possessor of a noun: `+Px1Sg`, `+Px2Sg`, `+Px4Sg`
  - Preverbs: `PV/e+`, `PV/kaa+`
- - Reduplcation: `Rdpl/w+`, `Rdpl/s+`
+ - Reduplcation: `RdplW+`, `RdplS+`
  - and many more!
 
 See this document for more info: https://giellalt.uit.no/lang/crk/crk.html
