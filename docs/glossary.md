@@ -182,7 +182,10 @@ Is a
 inflectional category
 =====================
 [inflectional category]: #inflectional-category
+[inflectional class]: #inflectional-class
 [inflectional categories]: #inflectional-category
+
+> also, _inflectional class_
 
 A more detailed categorization of a [word class][].
 Things that belong to the same inflection category have the same
@@ -395,6 +398,31 @@ are synonymous.
 
 See also: [normatize][]
 
+
+tag
+===
+[tag]: #translation
+
+A [multicharacter symbol] that represents a linguistic feature.
+
+
+In Plains Cree
+--------------
+
+In the Plains Cree FST, these tags either end with a `+` for prefixes (e.g.,
+`PV/e+`, or start with `+` sign for everything else (e.g., `+N`, `+TA`,
+`+V`).
+
+ - General word class: `+V`, `+N`, `+Ipc`
+ - Specific word class `+TA`, `+TI`, `+VI`
+ - Order: `+Ind`, `+Cnj`
+ - Subject: `+1Sg`, `+3Pl`, `+4Sg/Pl`
+ - Object: `+1SgO`, `+3PlO`, `+4Sg/PlO`
+ - Preverbs: `PV/e+`, `PV/kaa+`
+ - Reduplcation: `Rdpl/w+`, `Rdpl/s+`
+ - and many more!
+
+See this document for more info: https://giellalt.uit.no/lang/crk/crk.html
 
 translation
 ===========
