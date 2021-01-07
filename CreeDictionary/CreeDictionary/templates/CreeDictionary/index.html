@@ -5,7 +5,7 @@
 {% load morphodict_orth %}
 
 {% block prose %}
-<article class="prose box"{% if did_search or lemma_id %} style="display:none"{% endif %}>
+<article class="prose box"{% if should_hide_prose %} style="display:none"{% endif %}>
   <h2 class="prose__heading no-italics">{% orth 'tânisi!' %}</h2>
   <p>{% orth 'itwêwina' %} is a Plains Cree Dictionary.</p>
   {% with long_word='ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk' %}

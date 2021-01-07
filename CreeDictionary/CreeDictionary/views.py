@@ -1,12 +1,12 @@
 from http import HTTPStatus
 
+from API.models import Wordform
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
-
-from API.models import Wordform
-from CreeDictionary.forms import WordSearchForm
 from utils import ParadigmSize
+
+from CreeDictionary.forms import WordSearchForm
 
 from .utils import url_for_query
 
@@ -45,6 +45,8 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     if lemma.count() == 1:
         lemma = lemma.get()
         context = {
+            "should_hide_prose": True,
+            "displaying_paradigm": True,
             "lemma_id": lemma.id,
             "lemma": lemma,
             "paradigm_size": paradigm_size,
@@ -83,6 +85,8 @@ def index(request):  # pragma: no cover
         "query_string": user_query,
         "search_results": search_results,
         "did_search": did_search,
+        "should_hide_prose": did_search,
+        "displaying_paradigm": False,
     }
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
