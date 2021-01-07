@@ -63,6 +63,10 @@ build-test-db = "sh ./libexec/build_test_db.sh"
 # , well structured database is ready.
 push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3'
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
+# Utitlities
+install-server = "pip install gunicorn==20.0.4"
+collect-static = "python CreeDictionary/manage.py collectstatic --no-input"
+gunicorn-locally = "gunicorn CreeDictionary.wsgi"
 
 [requires]
 python_version = "3.9"
