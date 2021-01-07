@@ -1,12 +1,15 @@
 Production on Sapir
 -------------------
 
-As of <time datetime="2019-11-18">November 18, 2019</time>, the Cree
-Dictionary is deployed on a server called **Sapir**. You can visit the
+As of <time datetime="2021-01-05">January 5, 2021</time>, the itwêwina
+is deployed on a server called **Sapir**. You can visit the
 production website here:
 
 <https://sapir.artsrn.ualberta.ca/cree-dictionary>
 
+
+It was supposed to be deprecated in 2020 and decommissions in 2021, but
+here we are :/
 
 ## Redeployment Script
 
@@ -32,87 +35,218 @@ The script does the following in sequence:
 - to know details of how redeployment works, check the [repository of redeploy](https://github.com/eddieantonio/redeploy)
 
 
-## Limit of `redeploy`
+## Limits of `redeploy`
 
 `redeploy` does not sync the database file. To make changes to the database, we need to sync our database file, which is
 guaranteed to work as SQLite database and is operating system independent.
 
-When you want to make changes to the database, do a `$ pipenv run pull-db` first to pull database from Sapir.
-
-Just make sure your user is in `www-data` group on Sapir so that www-data on Sapir has access to the uploaded database.
-If your username on Sapir is different from your username on you local
-machine, add environment variable `SAPIR_USER=<your name>` in `.env` file.
-
-It has admin authentication information stored and shouldn't be
-overwritten. And it probably has edited tables. After the changes, do
- `$ pipenv run push-db` to upload the changed database back to Sapir
-
+ > ⚠️ Ask Eddie how database updates are done. It's really bad and
+ > shameful.
 
 ## Set up
 
 This only needs to be done once and is probably already done. This serves for documentation purpose.
 
-- pull the code
-- `sudo PIPENV_VENV_IN_PROJECT=1 pipenv install`
+### Clone the code on Sapir
 
-    This creates `.venv` folder under current directory. Without the environment variable pipenv will create virtual
-    environment under the users home, which causes permission issues.
+Clone it to somewhere in `/opt` which is actually a symlink to `/data/texts/opt`.
 
-- `sudo pipenv run pip install mod_wsgi`
+I've chosen `/data/texts/opt/cree-intelligent-dictionary-python-3.9`
+because `/data/texts/opt/cree-intelligent-dictionary` is being used by
+the old install.
 
-    DO NOT use `pipenv install`. mod_wsgi is used on sapir only to serve the application
+### Make sure it has the correct owner and access rights
 
-- setup mod_wsgi
-
-    ```.bash
-    $ sudo pipenv run python CreeDictionary/manage.py runmodwsgi --setup-only --port=8091 --user www-data --group www-data --server-root=mod_wsgi-express-8091
-    ```
-
-    this creates folder `mod_wsgi-express-8091`, which contains a separate apache to serve the application.
-
-- Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
-
-    ```
-    [Unit]
-    Description=Cree Dictionary HTTP service
-
-    [Service]
-    Type=forking
-    EnvironmentFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/envvars
-    PIDFile=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/httpd.pid
-    ExecStart=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl start
-    ExecReload=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl graceful
-    ExecStop=/data/texts/opt/cree-intelligent-dictionary/mod_wsgi-express-8091/apachectl stop
-    KillSignal=SIGCONT
-    PrivateTmp=true
-
-    [Install]
-    WantedBy=multi-user.target
-    ```
-
-- `sudo pipenv run collect-static`
-
-- `sudo systemctl enable cree-dictionary.service`
-
-- `sudo mkdir CreeDictionary/res/dictionaries`
-
-- `cd .. && sudo chown -R www-data:www-data cree-intelligent-dictionary/`
+Make sure the folder is owned by user `www-data` and group `www-data`.
+This is the user that Apache/the server is running under!
 
 
-- Have a `cree-dictionary.conf` with the following content under `etc/apache2/sites-available/`
+```sh
+sudo chown www-data:www-data /data/texts/opt/cree-intelligent-dictionary-python-3.9
+```
 
-    ```.conf
-    # Add a trailing slash if it's missing.
-    RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
+The following commands will probably require the following prefix:
+
+```sh
+# sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1
+```
+
+ - `env` sets environment variables before running a command
+ - `HOME=/tmp` allows npm and pip/pipenv to cache things in the "home"
+   directory; since the home directory while `sudo`'d is `/root`, set it
+   to `/tmp` so there are no write errors or permission errors!
+ - `PIPENV_VENV_IN_PROJECT=1` makes sure the virtual environment is
+   stored in the project folder in a subdirectory called `.venv`
+
+## Create the virtual environment:
+
+This creates `.venv` folder under current directory. Without the
+environment variable pipenv will create virtual environment under the
+users home, which causes permission issues.
+
+```sh
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv install
+```
+
+### Collect static files
+
+You NEED to `collect-static` because the server will crash on startup
+otherwise.
+
+```
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run collect-static
+```
+
+### Copy the database
+
+You should copy the database file to `CreeDictionary/db.sqlite3`.
+
+### Setup logging
+
+I set up logs to write to `/var/log/cree-dictionary`, so you'll want to
+create the folders appropriately:
+
+   # mkdir /var/log/cree-dictionary
+   # chown www-data:www-data /var/log/cree-dictionary
+
+If you want to configure logging, see `gunicorn.conf.py`!
 
 
-    # A proxy for the cree-dictionary service, "sudo systemctl status cree-dictionary"
-    ProxyPreserveHost On
-    ProxyPass /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
-    ProxyPassReverse /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
-    ```
+### Now try the server!
 
-- `sudo a2ensite cree-dictionary`
+This should start a server:
+
+    # sudo -u www-data .venv/bin/gunicorn CreeDictionary.wsgi
+
+Make sure it responds to requests!
+
+    $ curl -i localhost:8000/
+
+This should return a bunch of HTML with a 200 success code.
+
+**Note**: static file hosting will not work, as that the static file
+hosting is disabled when `DEBUG` is unset or `False`.
+
+### Create the systemd configuration
+
+According to [Gunicorn's docs](https://docs.gunicorn.org/en/stable/deploy.html#systemd),
+you'll need two unit files: one for the Unix domain socket, and one for
+the actual service proper.
+
+Create the unit file for the socket:
+
+```systemd
+# /etc/systemd/system/cree-dictionary-python-3.9.socket
+[Unit]
+Description=Cree Dictionary (gunicorn) socket
+
+[Socket]
+ListenStream=/run/cree-dictionary-python-3.9.socket
+User=www-data
+
+[Install]
+WantedBy=sockets.target
+```
+
+Create the unit file for the service:
+
+```systemd
+# /etc/systemd/system/cree-dictionary-python-3.9.service
+[Unit]
+Description=Cree Intelligent Dictionary (gunicorn)
+Requires=cree-dictionary-python-3.9.socket
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+RuntimeDirectory=cree-dictionary
+WorkingDirectory=/data/texts/opt/cree-intelligent-dictionary-python-3.9/
+ExecStart=/data/texts/opt/cree-intelligent-dictionary-python-3.9/.venv/bin/gunicorn \
+    --config gunicorn.conf.py \
+    CreeDictionary.wsgi:application
+# Gunicorn will reload if the main process is sent SIGHUP
+ExecReload=/bin/kill -s HUP $MAINPID
+# Sends SIGTERM to gunicorn and SIGKILL to child processes if there are
+# unruly child processes
+# See: https://www.freedesktop.org/software/systemd/man/systemd.kill.html#KillMode=
+KillMode=mixed
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Reload systemd
+
+In order for systemd to acknowledge your changes to the unit files, you
+need to reload it:
+
+    # systemctl daemon-reload
+
+### Enable the socket
+
+Enabling the socket permanently requires the socket AND service to start
+on boot:
+
+    # sudo systemctl enable cree-dictionary.service
+
+### Test the socket:
+
+Through some systemd magic that I do not understand, accessing the
+socket starts up the service. Try out the socket pretending you are
+`www-data`:
+
+    # sudo -u www-data curl -v --unix-socket /run/cree-dictionary-python-3.9.socket -H'Host: sapir.artsrn.ualberta.ca' http:/cree-dictionary/
+
+You should get the same HTML response with status code 200 like before.
+
+### Write the Apache config
+
+Write an Apache config file at
+`/etc/apache2/sites-available/cree-dictionary-python-3.9.conf`. It will
+need to setup the reverse proxy, reverse proxy exception, and static
+file hosting. It will have to have the following at minimum:
+
+```conf
+# Add a trailing slash if it's missing.
+RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
+
+
+# Proxy to the Cree Intelligent Dictionary (itwêwina) service (Gunicorn/Python 3.9)
+ProxyPreserveHost On
+# Do not proxy /static/:
+ProxyPass        "/cree-dictionary/static" !
+ProxyPass        /cree-dictionary/ unix:/run/cree-dictionary-python-3.9.socket|http://sapir.artsrn.ualberta.ca/cree-dictionary/
+ProxyPassReverse /cree-dictionary/ unix:/run/cree-dictionary-python-3.9.socket|http://sapir.artsrn.ualberta.ca/cree-dictionary/
+
+Alias "/cree-dictionary/static" "/data/texts/opt/cree-intelligent-dictionary-python-3.9/CreeDictionary/static"
+<Directory "/data/texts/opt/cree-intelligent-dictionary-python-3.9/CreeDictionary/static">
+    AllowOverride None
+    Require all granted
+</Directory>
+```
+
+Then you can enable the site with this command:
+
+    # a2ensite cree-dictionary-python-3.9
+
+Test out the config by using this command:
+
+    # apachectl -t
+
+It should say `Syntax OK`
+
+### Reload Apache
+
+    # service apache2 reload
+
+Then try it!
+
+    $ curl  https://sapir.artsrn.ualberta.ca/cree-dictionary/
+
+(should return an HTML page with status 200)
 
 # `RUNNING_ON_SAPIR` setting and environment variable
 
@@ -120,6 +254,12 @@ This setting is `True` when the app detects it's running on Sapir during
 startup. You can also force this setting by doing setting the
 environment variable to `True`.
 
+You can set the environment variable by adding the following to `.env`:
+
+    RUNNING_ON_SAPIR=True
+
 This settings enables certain "features" (read: hacks) required for
 running the application properly on Sapir. These features are not
 required in other production scenarios.
+
+Note: the variable `RUNNING_ON_SAPIR` _should_ be phased out!

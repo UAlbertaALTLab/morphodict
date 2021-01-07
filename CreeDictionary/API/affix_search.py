@@ -2,7 +2,7 @@ from collections import defaultdict
 from itertools import chain
 from typing import Dict, Iterable, List, Tuple
 
-import marisa_trie
+import dawg
 from utils.cree_lev_dist import remove_cree_diacritics
 
 
@@ -15,8 +15,11 @@ class AffixSearcher:
         for w, w_id in words:
             self.text_to_ids[w].append(w_id)
 
-        self.trie = marisa_trie.Trie([t[0] for t in words])
-        self.inverse_trie = marisa_trie.Trie([t[0][::-1] for t in words])
+        # TODO: why are there empty words in the first place?????
+        non_empty_words = [t for t in words if len(t[0]) > 0]
+
+        self.trie = dawg.CompletionDAWG([t[0] for t in non_empty_words])
+        self.inverse_trie = dawg.CompletionDAWG([t[0][::-1] for t in non_empty_words])
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
