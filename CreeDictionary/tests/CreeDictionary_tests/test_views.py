@@ -1,3 +1,4 @@
+import logging
 from typing import Dict, Optional
 
 import pytest
@@ -7,6 +8,7 @@ from django.http import (
     HttpResponseNotFound,
 )
 from django.test import Client
+from django.urls import reverse
 
 
 class TestLemmaDetailsInternal4xx:
@@ -45,3 +47,33 @@ class TestLemmaDetailsInternal4xx:
             "/_lemma_details/", {"lemma-id": 1, "paradigm-size": "BASIC"}
         )
         assert response.status_code == HttpResponseNotAllowed.status_code
+
+
+def test_index_renders_without_errors(client: Client, caplog):
+    """
+    Ensure the index page renders without template errors.
+    """
+    with caplog.at_level(logging.DEBUG):
+        client.get(reverse("cree-dictionary-index"))
+
+    template_errors = [log for log in caplog.records if is_template_error(log)]
+    assert len(template_errors) == 0
+
+
+def is_template_error(record: logging.LogRecord) -> bool:
+    """
+    Looking for an error log that looks like this:
+
+        Exception while resolving variable 'X' in template 'Y'.
+        Traceback (most recent call last):
+            ...
+        SomeError: error
+
+    """
+    if record.name != "django.template":
+        return False
+
+    if not record.exc_info:
+        return False
+
+    return True
