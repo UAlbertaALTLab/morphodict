@@ -1,4 +1,5 @@
 from http import HTTPStatus
+from typing import Any, Dict, Literal
 
 from API.models import Wordform
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -9,6 +10,10 @@ from utils import ParadigmSize
 from CreeDictionary.forms import WordSearchForm
 
 from .utils import url_for_query
+
+# The index template expects to be rendered in the following "modes";
+# The mode dictates which variables MUST be present in the context.
+IndexPageMode = Literal["home-page", "search-page", "word-detail"]
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -44,16 +49,15 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     lemma = Wordform.objects.filter(**filter_args)
     if lemma.count() == 1:
         lemma = lemma.get()
-        context = {
-            "should_hide_prose": True,
-            "displaying_paradigm": True,
-            "lemma_id": lemma.id,
-            "lemma": lemma,
-            "paradigm_size": paradigm_size,
-            "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size)
+        context = create_context_for_index_template(
+            "word-detail",
+            lemma_id=lemma.id,
+            lemma=lemma,
+            paradigm_size=paradigm_size,
+            paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
             if lemma
             else None,
-        }
+        )
         return HttpResponse(render(request, "CreeDictionary/index.html", context))
     else:
         return redirect(url_for_query(lemma_text or ""))
@@ -79,15 +83,19 @@ def index(request):  # pragma: no cover
         search_results = []
         did_search = False
 
-    context = {
-        "word_search_form": WordSearchForm(),
+    if did_search:
+        mode = "search-page"
+    else:
+        mode = "home-page"
+
+    context = create_context_for_index_template(
+        mode,
+        word_search_form=WordSearchForm(),
         # when we have initial query word to search and display
-        "query_string": user_query,
-        "search_results": search_results,
-        "did_search": did_search,
-        "should_hide_prose": did_search,
-        "displaying_paradigm": False,
-    }
+        query_string=user_query,
+        search_results=search_results,
+        did_search=did_search,
+    )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
@@ -189,3 +197,23 @@ def styles(request):
     This should only be accessible in DEBUG mode.
     """
     return render(request, "CreeDictionary/styles.html")
+
+
+def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:
+    """
+    Creates the context vars for anything using the CreeDictionary/index.html template.
+    """
+
+    if mode == "home-page":
+        context = {"should_hide_prose": False, "displaying_paradigm": False}
+    elif mode == "search-page":
+        context = {"should_hide_prose": True, "displaying_paradigm": False}
+    elif mode == "word-detail":
+        context = {"should_hide_prose": True, "displaying_paradigm": True}
+        assert "lemma_id" in kwargs, "word detail page requires lemma_id"
+        assert "paradigm_size" in kwargs, "word detail page requires paradigm_size"
+    else:
+        raise AssertionError("should never happen")
+
+    context.update(kwargs)
+    return context
