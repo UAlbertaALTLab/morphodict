@@ -60,10 +60,15 @@ the old install.
 Make sure the folder is owned by user `www-data` and group `www-data`.
 This is the user that Apache/the server is running under!
 
+
+```sh
+sudo chown www-data:www-data /data/texts/opt/cree-intelligent-dictionary-python-3.9
+```
+
 The following commands will probably require the following prefix:
 
 ```sh
-# sudo -u www-data env HOME=/tmp
+# sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1
 ```
 
  - `env` sets environment variables before running a command
@@ -83,44 +88,39 @@ users home, which causes permission issues.
 sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv install
 ```
 
-### Install Gunicorn, (or any WSGI server, really):
-
-```
-sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run install-server
-```
-
 ### Collect static files
 
+You NEED to `collect-static` because the server will crash on startup
+otherwise.
+
 ```
-sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run
-collect-static
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run collect-static
 ```
 
 ### Copy the database
 
-You should copy it `CreeDictionary/` within the repo to `db.sqlite3`.
+You should copy the database file to `CreeDictionary/db.sqlite3`.
 
-### Configure environment variables
+### Setup logging
 
 I set up logs to write to `/var/log/cree-dictionary`, so you'll want to
 create the folders appropriately:
 
-```sh
-# sudo mkdir /var/log/cree-dictionary
-# sudo chown www-data-:www-data /var/log/cree-dictionary
-```
+   # mkdir /var/log/cree-dictionary
+   # chown www-data:www-data /var/log/cree-dictionary
+
+If you want to configure logging, see `gunicorn.conf.py`!
+
 
 ### Now try the server!
 
 This should start a server:
 
-```sh
-# sudo -u www-data .venv/bin/gunicorn CreeDictionary.wsgi
-```
+    # sudo -u www-data .venv/bin/gunicorn CreeDictionary.wsgi
 
 Make sure it responds to requests!
 
-    curl -i localhost:8000/
+    $ curl -i localhost:8000/
 
 This should return a bunch of HTML with a 200 success code.
 
@@ -151,17 +151,7 @@ WantedBy=sockets.target
 Create the unit file for the service:
 
 ```systemd
-[Unit]
-Description=Cree Dictionary (gunicorn) socket
-
-[Socket]
-ListenStream=/run/cree-dictionary-python-3.9.socket
-User=www-data
-
-[Install]
-WantedBy=sockets.target
-root@arrl-web003:/data/texts/opt/cree-intelligent-dictionary-python-3.9# cat /etc/systemd/system/cree-dictionary-python-3.9.service
-# Inspired by: https://docs.gunicorn.org/en/stable/deploy.html#systemd
+# /etc/systemd/system/cree-dictionary-python-3.9.service
 [Unit]
 Description=Cree Intelligent Dictionary (gunicorn)
 Requires=cree-dictionary-python-3.9.socket
@@ -178,6 +168,9 @@ ExecStart=/data/texts/opt/cree-intelligent-dictionary-python-3.9/.venv/bin/gunic
     CreeDictionary.wsgi:application
 # Gunicorn will reload if the main process is sent SIGHUP
 ExecReload=/bin/kill -s HUP $MAINPID
+# Sends SIGTERM to gunicorn and SIGKILL to child processes if there are
+# unruly child processes
+# See: https://www.freedesktop.org/software/systemd/man/systemd.kill.html#KillMode=
 KillMode=mixed
 TimeoutStopSec=10
 
@@ -187,9 +180,15 @@ WantedBy=multi-user.target
 
 ### Reload systemd
 
+In order for systemd to acknowledge your changes to the unit files, you
+need to reload it:
+
     # systemctl daemon-reload
 
 ### Enable the socket
+
+Enabling the socket permanently requires the socket AND service to start
+on boot:
 
     # sudo systemctl enable cree-dictionary.service
 
@@ -231,15 +230,21 @@ Alias "/cree-dictionary/static" "/data/texts/opt/cree-intelligent-dictionary-pyt
 
 Then you can enable the site with this command:
 
-    a2ensite cree-dictionary-python-3.9
+    # a2ensite cree-dictionary-python-3.9
+
+Test out the config by using this command:
+
+    # apachectl -t
+
+It should say `Syntax OK`
 
 ### Reload Apache
 
-    service apache2 reload
+    # service apache2 reload
 
 Then try it!
 
-    curl  https://sapir.artsrn.ualberta.ca/cree-dictionary/
+    $ curl  https://sapir.artsrn.ualberta.ca/cree-dictionary/
 
 (should return an HTML page with status 200)
 
@@ -248,6 +253,10 @@ Then try it!
 This setting is `True` when the app detects it's running on Sapir during
 startup. You can also force this setting by doing setting the
 environment variable to `True`.
+
+You can set the environment variable by adding the following to `.env`:
+
+    RUNNING_ON_SAPIR=True
 
 This settings enables certain "features" (read: hacks) required for
 running the application properly on Sapir. These features are not
