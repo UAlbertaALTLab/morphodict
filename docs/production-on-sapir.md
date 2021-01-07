@@ -1,14 +1,14 @@
 Production on Sapir
 -------------------
 
-As of <time datetime="2021-01-05">January 5, 2021</time>, the itwêwina
+As of <time datetime="2021-01-05">January 5, 2021</time>, itwêwina
 is deployed on a server called **Sapir**. You can visit the
 production website here:
 
 <https://sapir.artsrn.ualberta.ca/cree-dictionary>
 
 
-It was supposed to be deprecated in 2020 and decommissions in 2021, but
+It was supposed to be deprecated in 2020 and decommissioned in 2021, but
 here we are :/
 
 ## Redeployment Script
