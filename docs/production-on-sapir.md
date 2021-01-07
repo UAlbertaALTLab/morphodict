@@ -47,14 +47,24 @@ guaranteed to work as SQLite database and is operating system independent.
 
 This only needs to be done once and is probably already done. This serves for documentation purpose.
 
- 1. Pull the code on Sapir, somewhere in `/opt`.
+### Clone the code on Sapir
 
- 2. Make sure the folder is owned by User `www-data` and group `www-data`.
-    This is the user that Apache is running under!
+Clone it to somewhere in `/opt` which is actually a symlink to `/data/texts/opt`.
+
+I've chosen `/data/texts/opt/cree-intelligent-dictionary-python-3.9`
+because `/data/texts/opt/cree-intelligent-dictionary` is being used by
+the old install.
+
+### Make sure it has the correct owner and access rights
+
+Make sure the folder is owned by user `www-data` and group `www-data`.
+This is the user that Apache/the server is running under!
 
 The following commands will probably require the following prefix:
 
-    # sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1
+```sh
+# sudo -u www-data env HOME=/tmp
+```
 
  - `env` sets environment variables before running a command
  - `HOME=/tmp` allows npm and pip/pipenv to cache things in the "home"
@@ -63,111 +73,175 @@ The following commands will probably require the following prefix:
  - `PIPENV_VENV_IN_PROJECT=1` makes sure the virtual environment is
    stored in the project folder in a subdirectory called `.venv`
 
-3. Create the virtual environment:
+## Create the virtual environment:
 
-    This creates `.venv` folder under current directory. Without the
-    environment variable pipenv will create virtual environment under
-    the users home, which causes permission issues.
+This creates `.venv` folder under current directory. Without the
+environment variable pipenv will create virtual environment under the
+users home, which causes permission issues.
 
-        pipenv run pip install mod_wsgi
+```sh
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv install
+```
 
-4. Install Gunicorn, (or any WSGI server, really):
+### Install Gunicorn, (or any WSGI server, really):
 
-        pipenv run install-server
+```
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run install-server
+```
 
-5. Collect static files
+### Collect static files
 
-        pipenv run collect-static
+```
+sudo -u www-data env HOME=/tmp PIPENV_VENV_IN_PROJECT=1 pipenv run
+collect-static
+```
 
-6. Copy the database
+### Copy the database
 
-   You should copy it `CreeDictionary/` within the repo to
-   `db.sqlite3`.
+You should copy it `CreeDictionary/` within the repo to `db.sqlite3`.
 
-7. Configure environment variables
+### Configure environment variables
 
 I set up logs to write to `/var/log/cree-dictionary`, so you'll want to
 create the folders appropriately:
 
-   # sudo mkdir /var/log/cree-dictionary
-   # sudo chown www-data-:www-data /var/log/cree-dictionary
+```sh
+# sudo mkdir /var/log/cree-dictionary
+# sudo chown www-data-:www-data /var/log/cree-dictionary
+```
 
-8. Now try the server!
+### Now try the server!
 
-   This should start a server:
+This should start a server:
 
-        pipenv run gunicorn-locally
+```sh
+# sudo -u www-data .venv/bin/gunicorn CreeDictionary.wsgi
+```
 
 Make sure it responds to requests!
 
-        curl -i localhost:8000/
+    curl -i localhost:8000/
 
 This should return a bunch of HTML with a 200 success code.
 
 **Note**: static file hosting will not work, as that the static file
 hosting is disabled when `DEBUG` is unset or `False`.
 
+### Create the systemd configuration
 
-8. Create a service file `/etc/systemd/system/cree-dictionary.service` with the following content
+According to [Gunicorn's docs](https://docs.gunicorn.org/en/stable/deploy.html#systemd),
+you'll need two unit files: one for the Unix domain socket, and one for
+the actual service proper.
 
-    ```
-    # Inspired by: https://docs.gunicorn.org/en/stable/deploy.html#systemd
-    [Unit]
-    Description=Cree Intelligent Dictionary (gunicorn)
-    Requires=cree-dictionary-python-3.9.socket
-    After=network.target
+Create the unit file for the socket:
 
-    [Service]
-    Type=notify
-    User=www-data
-    Group=www-data
-    RuntimeDirectory=cree-dictionary
-    WorkingDirectory=/data/texts/opt/cree-intelligent-dictionary-python-3.9/
-    ExecStart=/data/texts/opt/cree-intelligent-dictionary-python-3.9/.venv/bin/gunicorn \
-        --config CreeDictionary/CreeDictionary/gunicorn.conf.py \
-        CreeDictionary.wsgi:application
-    # Gunicorn will reload if the main process is sent SIGHUP
-    ExecReload=/bin/kill -s HUP $MAINPID
-    KillMode=mixed
-    TimeoutStopSec=10
+```systemd
+# /etc/systemd/system/cree-dictionary-python-3.9.socket
+[Unit]
+Description=Cree Dictionary (gunicorn) socket
 
-    [Install]
-    WantedBy=multi-user.target
-    ```
+[Socket]
+ListenStream=/run/cree-dictionary-python-3.9.socket
+User=www-data
 
-9. Enable the socket
+[Install]
+WantedBy=sockets.target
+```
 
-       # sudo systemctl enable cree-dictionary.service
+Create the unit file for the service:
 
-10. Test the socket:
+```systemd
+[Unit]
+Description=Cree Dictionary (gunicorn) socket
 
-   Through some systemd magic that I do not understand, accessing the
-   socket starts up the service. Try out the socket pretending you are
-   `www-data`:
+[Socket]
+ListenStream=/run/cree-dictionary-python-3.9.socket
+User=www-data
 
-       # sudo -u www-data curl -v --unix-socket /run/cree-dictionary-python-3.9.socket -H'Host: sapir.artsrn.ualberta.ca' http:/cree-dictionary/
+[Install]
+WantedBy=sockets.target
+root@arrl-web003:/data/texts/opt/cree-intelligent-dictionary-python-3.9# cat /etc/systemd/system/cree-dictionary-python-3.9.service
+# Inspired by: https://docs.gunicorn.org/en/stable/deploy.html#systemd
+[Unit]
+Description=Cree Intelligent Dictionary (gunicorn)
+Requires=cree-dictionary-python-3.9.socket
+After=network.target
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+RuntimeDirectory=cree-dictionary
+WorkingDirectory=/data/texts/opt/cree-intelligent-dictionary-python-3.9/
+ExecStart=/data/texts/opt/cree-intelligent-dictionary-python-3.9/.venv/bin/gunicorn \
+    --config gunicorn.conf.py \
+    CreeDictionary.wsgi:application
+# Gunicorn will reload if the main process is sent SIGHUP
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+### Reload systemd
+
+    # systemctl daemon-reload
+
+### Enable the socket
+
+    # sudo systemctl enable cree-dictionary.service
+
+### Test the socket:
+
+Through some systemd magic that I do not understand, accessing the
+socket starts up the service. Try out the socket pretending you are
+`www-data`:
+
+    # sudo -u www-data curl -v --unix-socket /run/cree-dictionary-python-3.9.socket -H'Host: sapir.artsrn.ualberta.ca' http:/cree-dictionary/
 
 You should get the same HTML response with status code 200 like before.
 
-TODO: write systemd stuff
+### Write the Apache config
 
-TODO: write apache stuff
+Write an Apache config file at
+`/etc/apache2/sites-available/cree-dictionary-python-3.9.conf`. It will
+need to setup the reverse proxy, reverse proxy exception, and static
+file hosting. It will have to have the following at minimum:
+
+```conf
+# Add a trailing slash if it's missing.
+RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
 
 
-- Have a `cree-dictionary.conf` with the following content under `etc/apache2/sites-available/`
+# Proxy to the Cree Intelligent Dictionary (itwêwina) service (Gunicorn/Python 3.9)
+ProxyPreserveHost On
+# Do not proxy /static/:
+ProxyPass        "/cree-dictionary/static" !
+ProxyPass        /cree-dictionary/ unix:/run/cree-dictionary-python-3.9.socket|http://sapir.artsrn.ualberta.ca/cree-dictionary/
+ProxyPassReverse /cree-dictionary/ unix:/run/cree-dictionary-python-3.9.socket|http://sapir.artsrn.ualberta.ca/cree-dictionary/
 
-    ```.conf
-    # Add a trailing slash if it's missing.
-    RedirectMatch 301 "^/cree-dictionary$"  "/cree-dictionary/"
+Alias "/cree-dictionary/static" "/data/texts/opt/cree-intelligent-dictionary-python-3.9/CreeDictionary/static"
+<Directory "/data/texts/opt/cree-intelligent-dictionary-python-3.9/CreeDictionary/static">
+    AllowOverride None
+    Require all granted
+</Directory>
+```
 
+Then you can enable the site with this command:
 
-    # A proxy for the cree-dictionary service, "sudo systemctl status cree-dictionary"
-    ProxyPreserveHost On
-    ProxyPass /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
-    ProxyPassReverse /cree-dictionary/ http://0.0.0.0:8091/cree-dictionary/
-    ```
+    a2ensite cree-dictionary-python-3.9
 
-- `sudo a2ensite cree-dictionary`
+### Reload Apache
+
+    service apache2 reload
+
+Then try it!
+
+    curl  https://sapir.artsrn.ualberta.ca/cree-dictionary/
+
+(should return an HTML page with status 200)
 
 # `RUNNING_ON_SAPIR` setting and environment variable
 
@@ -178,3 +252,5 @@ environment variable to `True`.
 This settings enables certain "features" (read: hacks) required for
 running the application properly on Sapir. These features are not
 required in other production scenarios.
+
+Note: the variable `RUNNING_ON_SAPIR` _should_ be phased out!
