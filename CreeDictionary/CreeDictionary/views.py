@@ -13,7 +13,7 @@ from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
-IndexPageMode = Literal["home-page", "search-page", "word-detail"]
+IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -170,14 +170,24 @@ def about(request):  # pragma: no cover
     """
     About page.
     """
-    return render(request, "CreeDictionary/about.html")
+    context = create_context_for_index_template("info-page")
+    return render(
+        request,
+        "CreeDictionary/about.html",
+        context,
+    )
 
 
 def contact_us(request):  # pragma: no cover
     """
     Contact us page.
     """
-    return render(request, "CreeDictionary/contact-us.html")
+    context = create_context_for_index_template("info-page")
+    return render(
+        request,
+        "CreeDictionary/contact-us.html",
+        context,
+    )
 
 
 def redirect_search(request, query_string: str):
@@ -204,7 +214,9 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
     Creates the context vars for anything using the CreeDictionary/index.html template.
     """
 
-    if mode == "home-page":
+    context: Dict[str, Any]
+
+    if mode in ("home-page", "info-page"):
         context = {"should_hide_prose": False, "displaying_paradigm": False}
     elif mode == "search-page":
         context = {"should_hide_prose": True, "displaying_paradigm": False}
@@ -214,6 +226,14 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
         assert "paradigm_size" in kwargs, "word detail page requires paradigm_size"
     else:
         raise AssertionError("should never happen")
+    # Note: there will NEVER be a case where should_hide_prose=False
+    # and displaying_paradigm=True -- that means show an info (like home, about,
+    # contact us, etc. AND show a word paradigm at the same time
 
     context.update(kwargs)
+
+    # Templates require query_string and did_search pair:
+    context.setdefault("query_string", "")
+    context.setdefault("did_search", False)
+
     return context

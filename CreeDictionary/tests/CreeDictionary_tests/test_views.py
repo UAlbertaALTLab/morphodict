@@ -56,6 +56,7 @@ class TestLemmaDetailsInternal4xx:
         reverse("cree-dictionary-index"),
         reverse("cree-dictionary-search") + "?q=kotiskâwêw",
         reverse("cree-dictionary-about"),
+        reverse("cree-dictionary-contact-us"),
     ],
 )
 def test_pages_render_without_template_errors(url: str, client: Client, caplog):
