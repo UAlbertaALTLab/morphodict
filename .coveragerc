@@ -1,6 +1,26 @@
+# coverage.py configuration
+# see: https://coverage.readthedocs.io/en/coverage-5.3/config.html
 [run]
+branch = True
 omit =
   CreeDictionary/CreeDictionary/settings.py
   CreeDictionary/manage.py
   CreeDictionary/setup.py
   CreeDictionary/tests/*
+
+[report]
+exclude_lines =
+    # Have to re-enable the standard pragma
+    pragma: no cover
+
+    # Don't complain about missing debug-only code:
+    if settings\.DEBUG:
+
+    # Don't complain if tests don't hit defensive assertion code:
+    raise AssertionError
+    raise NotImplementedError
+
+    # Don't complain if non-runnable code isn't run:
+    if 0:
+
+# vim: set ft=dosini:
