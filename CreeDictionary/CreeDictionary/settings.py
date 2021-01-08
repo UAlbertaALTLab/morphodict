@@ -15,6 +15,8 @@ import posixpath
 from pathlib import Path
 from sys import stderr
 
+from secrets import token_hex
+
 from .coerce import to_boolean
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
@@ -24,8 +26,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "72bcb9a0-d71c-4d51-8694-6bbec435ab34"
+# As of 2021-01-08, there are no logins or encrypted cookies, but Django needs this to
+# be non-empty, so create a new key everytime :/
+SECRET_KEY = os.getenv("SECRET_KEY", token_hex())
 
 # sapir.artsrn.ualberta.ca has some... special requirements,
 # so let's hear about it!
