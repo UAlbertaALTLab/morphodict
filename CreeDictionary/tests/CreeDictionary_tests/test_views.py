@@ -49,8 +49,16 @@ class TestLemmaDetailsInternal4xx:
         assert response.status_code == HttpResponseNotAllowed.status_code
 
 
-@pytest.mark.parametrize("url", [reverse("cree-dictionary-index")])
-def test_index_renders_without_errors(url: str, client: Client, caplog):
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "url",
+    [
+        reverse("cree-dictionary-index"),
+        reverse("cree-dictionary-search") + "?q=kotiskâwêw",
+        reverse("cree-dictionary-about"),
+    ],
+)
+def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     """
     Ensure the index page renders without template errors.
     """
