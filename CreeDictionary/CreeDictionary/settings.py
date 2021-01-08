@@ -13,9 +13,8 @@ import logging
 import os
 import posixpath
 from pathlib import Path
-from sys import stderr
-
 from secrets import token_hex
+from sys import stderr
 
 from .coerce import to_boolean
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
@@ -275,7 +274,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "console": {
-            "level": "DEBUG",
+            "level": os.getenv("LOG_LEVEL", "INFO"),
             "class": "logging.StreamHandler",
         },
     },
