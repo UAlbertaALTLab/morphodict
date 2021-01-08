@@ -17,10 +17,10 @@
   <script src="{% url 'js_reverse' %}"></script>
   <script src={% static 'CreeDictionary/js/index.js' %}></script>
 
-  {% if lemma_id and paradigm_size %}
+  {% if displaying_paradigm %}
     {% comment %}
-    meaning we are on lemma details/paradigm page. This variable can be utilized by javascript to dynamically request
-    other things (e.g. different sized paradigms) about the lemma
+      On the lemma details/paradigm page:
+      This makes 'lemma-id' and 'paradigm-size' avaialble to JavaScript.
     {% endcomment %}
     {{ lemma_id|json_script:"lemma-id" }}
     {{ paradigm_size.value|json_script:"paradigm-size" }}
@@ -67,7 +67,7 @@
     </ol>
   </div>
 
-  {% if lemma_id %}
+  {% if displaying_paradigm %}
     {% include 'CreeDictionary/word-detail.html' %}
   {% endif %}
 {% endblock %}{# content #}
