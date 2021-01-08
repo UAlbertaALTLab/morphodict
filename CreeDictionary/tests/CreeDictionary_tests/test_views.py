@@ -49,12 +49,15 @@ class TestLemmaDetailsInternal4xx:
         assert response.status_code == HttpResponseNotAllowed.status_code
 
 
-def test_index_renders_without_errors(client: Client, caplog):
+@pytest.mark.parametrize("url", [reverse("cree-dictionary-index")])
+def test_index_renders_without_errors(url: str, client: Client, caplog):
     """
     Ensure the index page renders without template errors.
     """
     with caplog.at_level(logging.DEBUG):
-        client.get(reverse("cree-dictionary-index"))
+        req = client.get(url)
+
+    assert req.status_code == 200
 
     template_errors = [log for log in caplog.records if is_template_error(log)]
     assert len(template_errors) == 0
