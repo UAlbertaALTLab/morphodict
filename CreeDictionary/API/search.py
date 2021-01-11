@@ -723,15 +723,19 @@ def prepare_query_text(user_query: str) -> InternalForm:
     """
     Takes a raw query and cleans it up.
     """
+    return to_internal_form(clean_query_text(user_query))
 
+
+def clean_query_text(user_query: str) -> str:
+    """
+    Cleans up the query text before it is passed to further steps.
+    """
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
     # All internal text should be in NFC form --
     # that is, all characters that can be composed are composed.
     user_query = unicodedata.normalize("NFC", user_query)
-    user_query = user_query.lower()
-
-    return to_internal_form(user_query)
+    return user_query.lower()
 
 
 def to_internal_form(user_query: str) -> InternalForm:
