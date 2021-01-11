@@ -257,10 +257,13 @@ class WordformSearch:
         :return: sorted search results
         """
 
-        res = fetch_lemma_by_user_query(
-            self.query, self._affix_search, **self.constraints
+        cleaned_query = clean_query_text(self.query)
+
+        res = fetch_cree_and_english_results(
+            to_internal_form(cleaned_query), self._affix_search, **self.constraints
         )
-        results = SortedSet(key=sort_by_user_query(self.query))
+
+        results = SortedSet(key=sort_by_user_query(cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
