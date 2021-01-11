@@ -393,7 +393,6 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
 
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
-
 # TODO: RENAME
 # TODO: REFACTOR!!!
 def fetch_lemma_by_user_query(
@@ -700,8 +699,9 @@ def clean_query(user_query: str) -> str:
     # All internal text should be in NFC form --
     # that is, all characters that can be composed are composed.
     user_query = unicodedata.normalize("NFC", user_query)
+    user_query = user_query.lower()
     user_query = to_sro_circumflex(user_query)
-    return user_query.lower()
+    return user_query
 
 
 def to_sro_circumflex(text: str) -> str:
