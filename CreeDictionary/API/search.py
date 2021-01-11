@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import unicodedata
-
-import attr
 import logging
-from CreeDictionary import hfstol as temp_hfstol
-from attr import attrs
-from cree_sro_syllabics import syllabics2sro
-from django.conf import settings
-from django.db.models import Q
+import unicodedata
 from functools import cmp_to_key, partial
 from itertools import chain
-from sortedcontainers import SortedSet
 from typing import (
     Any,
     Callable,
@@ -25,12 +17,21 @@ from typing import (
     Union,
     cast,
 )
+
+import attr
+from attr import attrs
+from cree_sro_syllabics import syllabics2sro
+from django.conf import settings
+from django.db.models import Q
+from sortedcontainers import SortedSet
 from typing_extensions import Protocol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
+
+from CreeDictionary import hfstol as temp_hfstol
 
 from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedLinguisticTag, SerializedSearchResult
@@ -397,10 +398,25 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
 
 # TODO: RENAME
 # TODO: REFACTOR!!!
+# TODO: DISCONTINUE
 def fetch_lemma_by_user_query(
     user_query: str, affix_search: bool = True, **extra_constraints
 ) -> CreeAndEnglish:
     """
+    HERE BE DRAGONS!
+
+    Historically, this function has been the bulk of our search backend, performing both
+    Cree and English search. However, I honestly don't understand how it works. As of
+    this writing (2021-01-11), I am refactoring the function to bring some order to it
+    and hopefully understanding how it works. I extracted most of the logic to
+    fetch_cree_and_english_results() which is a very Long Method (code smell).
+
+    And, oh yeah: this function fetches more than just lemmas 🙃
+
+    Original documentation as follows (I don't really understand it):
+
+    ---
+
     treat the user query as cree and:
 
     Give the analysis of user query and matched lemmas.
@@ -417,7 +433,18 @@ def fetch_lemma_by_user_query(
     :param extra_constraints: additional fields to disambiguate
     """
 
-    user_query = clean_query(user_query)
+    return fetch_cree_and_english_results(
+        clean_query(user_query), affix_search, **extra_constraints
+    )
+
+
+def fetch_cree_and_english_results(
+    user_query: InternalForm, affix_search: bool, **extra_constraints
+) -> CreeAndEnglish:
+    """
+    The bulk of the logic fetch_lemma_by_user_query(), minus the cleaning up the user's
+    query.
+    """
 
     # build up result_lemmas in 2 ways
     # 1. affix search (return all results that ends/starts with the query string)
@@ -715,10 +742,5 @@ def to_sro_circumflex(text: str) -> str:
     >>> to_sro_circumflex("ᑖᓂᓯ")
     'tânisi'
     """
-    text = (
-        text.replace("ā", "â")
-        .replace("ē", "ê")
-        .replace("ī", "î")
-        .replace("ō", "ô")
-    )
+    text = text.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
     return syllabics2sro(text)
