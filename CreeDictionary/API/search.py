@@ -394,6 +394,8 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
+# TODO: RENAME
+# TODO: REFACTOR!!!
 def fetch_lemma_by_user_query(
     user_query: str, affix_search: bool = True, **extra_constraints
 ) -> CreeAndEnglish:
@@ -414,19 +416,7 @@ def fetch_lemma_by_user_query(
     :param extra_constraints: additional fields to disambiguate
     """
 
-    # Whitespace won't affect results, but the FST can't deal with it:
-    user_query = user_query.strip()
-    # Normalize to UTF8 NFC
-    user_query = unicodedata.normalize("NFC", user_query)
-    user_query = (
-        user_query.replace("ā", "â")
-        .replace("ē", "ê")
-        .replace("ī", "î")
-        .replace("ō", "ô")
-    )
-    user_query = syllabics2sro(user_query)
-
-    user_query = user_query.lower()
+    user_query = clean_query(user_query)
 
     # build up result_lemmas in 2 ways
     # 1. affix search (return all results that ends/starts with the query string)
@@ -698,3 +688,23 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
             partial(sort_search_result, user_query=user_query),
         )
     )
+
+
+def clean_query(user_query: str) -> str:
+    """
+    Takes a raw query and cleans it up.
+    """
+
+    # Whitespace won't affect results, but the FST can't deal with it:
+    user_query = user_query.strip()
+    # Normalize to UTF8 NFC
+    user_query = unicodedata.normalize("NFC", user_query)
+    user_query = (
+        user_query.replace("ā", "â")
+        .replace("ē", "ê")
+        .replace("ī", "î")
+        .replace("ō", "ô")
+    )
+    user_query = syllabics2sro(user_query)
+
+    return user_query.lower()
