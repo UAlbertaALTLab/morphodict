@@ -256,6 +256,7 @@ class WordformSearch:
         Do the search
         :return: sorted search results
         """
+
         res = fetch_lemma_by_user_query(
             self.query, self._affix_search, **self.constraints
         )
@@ -434,7 +435,7 @@ def fetch_lemma_by_user_query(
     """
 
     return fetch_cree_and_english_results(
-        clean_query(user_query), affix_search, **extra_constraints
+        prepare_query_text(user_query), affix_search, **extra_constraints
     )
 
 
@@ -718,7 +719,7 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
     )
 
 
-def clean_query(user_query: str) -> InternalForm:
+def prepare_query_text(user_query: str) -> InternalForm:
     """
     Takes a raw query and cleans it up.
     """
