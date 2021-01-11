@@ -729,8 +729,17 @@ def clean_query(user_query: str) -> InternalForm:
     # that is, all characters that can be composed are composed.
     user_query = unicodedata.normalize("NFC", user_query)
     user_query = user_query.lower()
-    user_query = to_sro_circumflex(user_query)
-    return InternalForm(user_query)
+
+    return to_internal_form(user_query)
+
+
+def to_internal_form(user_query: str) -> InternalForm:
+    """
+    Convert text to the internal form used by the database entries, tries, FSTs, etc.
+
+    In itwêwina, the Plains Cree dictionary, this means SRO circumflexes.
+    """
+    return InternalForm(to_sro_circumflex(user_query))
 
 
 def to_sro_circumflex(text: str) -> str:
