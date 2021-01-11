@@ -1,18 +1,15 @@
 context('Searching', () => {
   describe('Loading indicator', () => {
     beforeEach(() => {
-      cy.server()
       cy.visit('/')
     })
 
-    // TODO: implement workaround for fetch()
-    it.skip('should display a loading indicator', () => {
-      cy.route({
-        url: '/_search_results/amisk',
-        delay: 200, // milliseconds of delay
-        response: `<ol><li data-cy="search-results">
+    it('should display a loading indicator', () => {
+      cy.intercept('**/_search_results/amisk', {
+        body: `<ol><li data-cy="search-results">
             <span lang="cr">amisk</span>: beaver
-        </li></ol>`
+        </li></ol>`,
+        delayMs: 200,
       }).as('search')
 
       // We have typed all but ONE character of the search string:
