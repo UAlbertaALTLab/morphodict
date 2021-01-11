@@ -1,6 +1,6 @@
 context('Searching', () => {
   // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
-  describe('display of the header', function () {
+  context('result header', function () {
     const lemma = 'nîmiw'
     const wordclassEmoji = '➡️' // the arrow is the most consistent thing, which means verb
     const inflectionalCategory = /VAI-v|VAI-1/
@@ -218,18 +218,6 @@ context('Searching', () => {
         .should('be.visible')
       cy.get('@elaboration')
         .contains('[role="tooltip"]', inflectionalCategory)
-    })
-
-    // Regression: it used to display 'Preverb — None' :/
-    it.skip('should not display wordclass help if it does not exist', function () {
-      // Preverbs do not have an elaboration (right now)
-      const preverb = 'nitawi-'
-      cy.visitSearch(preverb)
-
-      // TODO: I DON'T KNOW WHAT IT SHOULD ACTUALL SHOW 😱
-      cy.get('[data-cy=search-result]')
-        .contains('[data-cy=word-class]', 'Preverb')
-        .should('not.contain', 'None')
     })
 
     // Regression: it used to display 'like — pê-' :/
