@@ -699,12 +699,23 @@ def clean_query(user_query: str) -> str:
     user_query = user_query.strip()
     # Normalize to UTF8 NFC
     user_query = unicodedata.normalize("NFC", user_query)
-    user_query = (
-        user_query.replace("ā", "â")
+    user_query = to_sro_circumflex(user_query)
+    return user_query.lower()
+
+
+def to_sro_circumflex(text: str) -> str:
+    """
+    Convert text to Plains Cree SRO with circumflexes (êîôâ).
+
+    >>> to_sro_circumflex("tān'si")
+    "tân'si"
+    >>> to_sro_circumflex("ᑖᓂᓯ")
+    "tânisi"
+    """
+    text = (
+        text.replace("ā", "â")
         .replace("ē", "ê")
         .replace("ī", "î")
         .replace("ō", "ô")
     )
-    user_query = syllabics2sro(user_query)
-
-    return user_query.lower()
+    return syllabics2sro(text)
