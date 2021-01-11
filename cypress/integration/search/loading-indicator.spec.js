@@ -35,12 +35,10 @@ context('Searching', () => {
         .should('not.be.visible')
     })
 
-    // TODO: implement workaround for fetch()
-    it.skip('should display an error indicator when loading fails', () => {
-      cy.route({
-        url: '/_search_results/amisk',
-        status: 500,
-        response: 'Internal Server Error!'
+    it('should display an error indicator when loading fails', () => {
+      cy.intercept('/_search_results/amisk', {
+        statusCode: 500,
+        body: 'Internal Server Error!'
       }).as('search')
 
       // We have typed all but ONE character of the search string:
@@ -67,5 +65,4 @@ context('Searching', () => {
         .should('have.class', 'search-progress--error')
     })
   })
-
 })
