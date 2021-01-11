@@ -336,10 +336,10 @@ function loadSearchResults(searchInput) {
 
     fetch(searchURL)
       .then(response => {
-        if (!response.ok) {
-          return Promise.reject()
+        if (response.ok) {
+          return response.text()
         }
-        response.text()
+        return Promise.reject()
       })
       .then((html) => {
         // user input may have changed during the request
