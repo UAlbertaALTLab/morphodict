@@ -697,7 +697,8 @@ def clean_query(user_query: str) -> str:
 
     # Whitespace won't affect results, but the FST can't deal with it:
     user_query = user_query.strip()
-    # Normalize to UTF8 NFC
+    # All internal text should be in NFC form --
+    # that is, all characters that can be composed are composed.
     user_query = unicodedata.normalize("NFC", user_query)
     user_query = to_sro_circumflex(user_query)
     return user_query.lower()
@@ -710,7 +711,7 @@ def to_sro_circumflex(text: str) -> str:
     >>> to_sro_circumflex("tān'si")
     "tân'si"
     >>> to_sro_circumflex("ᑖᓂᓯ")
-    "tânisi"
+    'tânisi'
     """
     text = (
         text.replace("ā", "â")
