@@ -39,6 +39,7 @@ from .schema import SerializedLinguisticTag, SerializedSearchResult
 Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
+InternalForm = NewType("InternalForm", str)
 
 logger = logging.getLogger(__name__)
 
@@ -393,6 +394,7 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
 
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
+
 # TODO: RENAME
 # TODO: REFACTOR!!!
 def fetch_lemma_by_user_query(
@@ -689,7 +691,7 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
     )
 
 
-def clean_query(user_query: str) -> str:
+def clean_query(user_query: str) -> InternalForm:
     """
     Takes a raw query and cleans it up.
     """
@@ -701,7 +703,7 @@ def clean_query(user_query: str) -> str:
     user_query = unicodedata.normalize("NFC", user_query)
     user_query = user_query.lower()
     user_query = to_sro_circumflex(user_query)
-    return user_query
+    return InternalForm(user_query)
 
 
 def to_sro_circumflex(text: str) -> str:
