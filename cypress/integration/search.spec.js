@@ -1,6 +1,6 @@
 context('Searching', () => {
-  describe('I want to see search results by the url', () => {
-    it('perform the search by going directly to the URL', () => {
+  describe('I want to see search results by the URL', () => {
+    it('performs the search by going directly to the URL', () => {
       cy.visitSearch('minos')
         .searchResultsContain('cat')
     })
@@ -15,7 +15,7 @@ context('Searching', () => {
     })
   })
 
-  describe('I want to have url changed dynamically according to the page', function () {
+  describe('I want to have URL changed dynamically according to the page', function () {
     it('should display corresponding url', function () {
       cy.visit('/')
       cy.search('niya')
