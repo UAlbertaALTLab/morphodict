@@ -35,6 +35,7 @@ secure = "*"
 snowballstemmer = "*"
 dawg = "~=0.8"
 gunicorn = "*"
+environs = {extras = ["django"], version = "*"}
 
 [scripts]
 # look stuff up
