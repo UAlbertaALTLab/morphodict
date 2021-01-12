@@ -18,10 +18,8 @@ from environs import Env
 
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Build paths inside project like this: os.fspath(BASE_PATH / "some_file.txt")
-BASE_PATH = Path(BASE_DIR)
+BASE_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 ####################### Load settings from environment variables #######################
 
