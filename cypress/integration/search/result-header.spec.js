@@ -115,7 +115,7 @@ context('Searching', () => {
     })
 
     // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
-    it('should display an inflected form and its lemma', function () {
+    it('should display an inflected form (without definition) and its lemma', function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition))
 
       // make sure we get at least one search result...
@@ -158,7 +158,7 @@ context('Searching', () => {
         .should('contain', wordclassEmoji)
         .and('contain', plainEnglishInflectionalCategory)
 
-      // Inflectional category tool tip
+      // Inflectional category tooltip
       cy.get('@elaboration')
         .get('[data-cy="word-class"]')
         .first()
@@ -171,7 +171,7 @@ context('Searching', () => {
     })
 
     // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=6.%20Lemma%20definition
-    it('should display an inflected form and its lemma', function () {
+    it('should display the definition of a lemma', function () {
       cy.visitSearch(fudgeUpOrthography(lemma))
 
       // make sure we get at least one search result...
