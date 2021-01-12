@@ -109,17 +109,6 @@ context('Regressions', () => {
         .should('contain', 'atâhk')
         .and('contain', 'acâhkos')
     })
-
-    // see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176#issuecomment-563336151
-    // Note: It's in dispute whether minôsis should be treated as a diminutive form of minôs
-    // todo: enable this test if fst recognized minôsis as diminutive minôs
-    it.skip('should show minôs and minôsis for minôsis', () => {
-      cy.visitSearch('minôsis')
-      cy.get('[data-cy=search-results]')
-        .should('contain', 'minôsis')
-        .and('contain', 'minôs')
-    }
-    )
   })
 
 
