@@ -173,6 +173,12 @@ Or, for interactive use:
 
     npx cypress open
 
+> **Eddie “sez”**: My workflow is to have three terminals open:
+>
+> 1. Vim (editing files)
+> 2. `npm start` — start the development server
+> 3. `npx cypress open` — start Cypress interactively 
+>
 
 Profiling Code
 --------------
