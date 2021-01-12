@@ -54,7 +54,13 @@ def running_on_sapir_without_script_name():
     """
     wsgi_script_name = os.getenv("SCRIPT_NAME", "")
 
-    return settings.RUNNING_ON_SAPIR and wsgi_script_name == ""
+    if not settings.RUNNING_ON_SAPIR:
+        return False
+
+    if wsgi_script_name == "":
+        return True
+    else:
+        return False
 
 
 # TODO: Convert this to an idiomatic Django style when we drop support for
