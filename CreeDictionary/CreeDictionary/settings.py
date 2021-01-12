@@ -276,15 +276,13 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    # on sapir /cree-dictionary/ is used to identify the service of the app
-    # XXX: this is kind of a hack :/
-    STATIC_URL = "/cree-dictionary/static/"
-else:
-    STATIC_URL = "/static/"
+STATIC_URL = env(
+    "STATIC_URL",
+    # XXX: hack to use the correct URL on Sapir if this setting is not explicitly set
+    default="/cree-dictionary/static/" if RUNNING_ON_SAPIR else "/static/",
+)
 
-# TODO: configure this from the environment!
-STATIC_ROOT = os.fspath(BASE_PATH / "static")
+STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_PATH / "static"))
 
 if DEBUG:
     # Use the default static storage backed for debug purposes.
