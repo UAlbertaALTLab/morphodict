@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 import secrets
+from pathlib import Path
 
 from environs import Env
 
@@ -19,6 +20,8 @@ from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# Build paths inside project like this: os.fspath(BASE_PATH / "some_file.txt")
+BASE_PATH = Path(BASE_DIR)
 
 ####################### Load settings from environment variables #######################
 
@@ -150,14 +153,14 @@ if USE_TEST_DB:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "test_db.sqlite3"),
+            "NAME": os.fspath(BASE_PATH / "test_db.sqlite3"),
         }
     }
 else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+            "NAME": os.fspath(BASE_PATH / "db.sqlite3"),
         }
     }
 
@@ -273,7 +276,8 @@ if RUNNING_ON_SAPIR:  # pragma: no cover
 else:
     STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+# TODO: configure this from the environment!
+STATIC_ROOT = os.fspath(BASE_PATH / "static")
 
 if DEBUG:
     # Use the default static storage backed for debug purposes.
