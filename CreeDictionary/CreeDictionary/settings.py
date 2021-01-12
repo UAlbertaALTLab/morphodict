@@ -29,6 +29,8 @@ env = Env()
 env.read_env()
 
 
+################################# Core Django Settings #################################
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -36,60 +38,27 @@ env.read_env()
 # be non-empty, so create a new key everytime :/
 SECRET_KEY = env("SECRET_KEY", default=secrets.token_hex())
 
-# sapir.artsrn.ualberta.ca has some... special requirements,
-# so let's hear about it!
-RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
-
 # Debug is default to False
 # Turn it to True in development
 DEBUG = env.bool("DEBUG", default=False)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    assert not DEBUG
-
-# GitHub Actions and other services set CI to `true`
-CI = env.bool("CI", default=False)
-
-# The Django debug toolbar is a great help when... you know... debugging Django,
-# but it has a few issues:
-#  - the middleware SIGNIFICANTLY increases request times
-#  - the debug toolbar adds junk on the DOM, which may interfere with end-to-end tests
-#
-# The reasonable default is to enable it on development machines and let the developer
-# opt out of it, if needed.
-ENABLE_DJANGO_DEBUG_TOOLBAR = env.bool("ENABLE_DJANGO_DEBUG_TOOLBAR", default=DEBUG)
-
-# The debug toolbar should ALWAYS be turned off:
-#  - when DEBUG is disabled
-#  - in CI environments
-if not DEBUG or CI:
-    ENABLE_DJANGO_DEBUG_TOOLBAR = False
-
-
-# Host settings:
-
-if DEBUG:
-    ALLOWED_HOSTS = ["*"]
-elif RUNNING_ON_SAPIR:  # pragma: no cover
-    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
-else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
-
 # Application definition
 
 INSTALLED_APPS = [
-    # Add your apps here to enable them
+    # Django core apps:
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Third-party apps:
+    "django_js_reverse",
+    # Internal apps
+    # TODO: these are kind of a mess.
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "morphodict.apps.MorphodictConfig",
-    "django_js_reverse",
 ]
 
 MIDDLEWARE = [
@@ -103,23 +72,9 @@ MIDDLEWARE = [
     "securemiddleware.set_secure_headers",
 ]
 
-# configure tools for development, CI, and production
-if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
-    # enable django-debug-toolbar for development
-    INSTALLED_APPS.append("debug_toolbar")
-    MIDDLEWARE.insert(
-        0, "debug_toolbar.middleware.DebugToolbarMiddleware"
-    )  # middleware order is important
-
-    # works with django-debug-toolbar app
-    DEBUG_TOOLBAR_CONFIG = {
-        # Toolbar options
-        "SHOW_COLLAPSED": True,  # collapse the toolbar by default
-    }
-
-    INTERNAL_IPS = ["127.0.0.1"]
-
 ROOT_URLCONF = "CreeDictionary.urls"
+
+WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 
 TEMPLATES = [
     {
@@ -138,14 +93,68 @@ TEMPLATES = [
     }
 ]
 
-WSGI_APPLICATION = "CreeDictionary.wsgi.application"
+
+################################### Custom settings ####################################
+
+# sapir.artsrn.ualberta.ca has some... special requirements,
+# so let's hear about it!
+RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
+
+# SECURITY WARNING: don't run with debug turned on in production!
+if RUNNING_ON_SAPIR:  # pragma: no cover
+    assert not DEBUG
+
+# GitHub Actions and other services set CI to `true`
+CI = env.bool("CI", default=False)
+
+# Use existing test database (required for running unit tests and integration tests!)
+USE_TEST_DB = env.bool("USE_TEST_DB", default=False)
+
+# The Django debug toolbar is a great help when... you know... debugging Django,
+# but it has a few issues:
+#  - the middleware SIGNIFICANTLY increases request times
+#  - the debug toolbar adds junk on the DOM, which may interfere with end-to-end tests
+#
+# The reasonable default is to enable it on development machines and let the developer
+# opt out of it, if needed.
+ENABLE_DJANGO_DEBUG_TOOLBAR = env.bool("ENABLE_DJANGO_DEBUG_TOOLBAR", default=DEBUG)
+
+# The debug toolbar should ALWAYS be turned off:
+#  - when DEBUG is disabled
+#  - in CI environments
+if not DEBUG or CI:
+    ENABLE_DJANGO_DEBUG_TOOLBAR = False
+
+# configure tools for development, CI, and production
+if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
+    # enable django-debug-toolbar for development
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE.insert(
+        0, "debug_toolbar.middleware.DebugToolbarMiddleware"
+    )  # middleware order is important
+
+    # works with django-debug-toolbar app
+    DEBUG_TOOLBAR_CONFIG = {
+        # Toolbar options
+        "SHOW_COLLAPSED": True,  # collapse the toolbar by default
+    }
+
+    INTERNAL_IPS = ["127.0.0.1"]
+
+
+############################## More Core Django settings ###############################
+
+# Host settings:
+
+if DEBUG:
+    ALLOWED_HOSTS = ["*"]
+elif RUNNING_ON_SAPIR:  # pragma: no cover
+    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
+else:  # pragma: no cover
+    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
-
-# if this is set, use existing test database
-USE_TEST_DB = env.bool("USE_TEST_DB", default=False)
-
 
 if USE_TEST_DB:
     DATABASES = {
