@@ -52,7 +52,9 @@ def running_on_sapir_without_script_name():
     See: https://docs.gunicorn.org/en/stable/faq.html#how-do-i-set-script-name
     See: https://wsgi.readthedocs.io/en/latest/definitions.html#envvar-SCRIPT_NAME
     """
-    return settings.RUNNING_ON_SAPIR and os.getenv("SCRIPT_NAME", "") == ""
+    wsgi_script_name = os.getenv("SCRIPT_NAME", "")
+
+    return settings.RUNNING_ON_SAPIR and wsgi_script_name == ""
 
 
 # TODO: Convert this to an idiomatic Django style when we drop support for
