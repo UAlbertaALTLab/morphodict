@@ -32,6 +32,29 @@ from CreeDictionary import views
 # url reversion
 
 
+def running_on_sapir_without_script_name():
+    """
+    The WSGI SCRIPT_NAME environment variable indicates the part of the URL's path before the
+    first slash handled within this application.
+
+    Usually, SCRIPT_NAME is the empty string. On Sapir, it SHOULD be "/cree-dictionary":
+
+                                           SCRIPT_NAME
+                                        ,--------------.
+                                        v              v
+        https://sapir.artsrn.ualberta.ca/cree-dictionary/
+
+    However, we have not configured it this way :/
+
+    This function enables a hack when we're running on sapir, but the script name is not
+    set.
+
+    See: https://docs.gunicorn.org/en/stable/faq.html#how-do-i-set-script-name
+    See: https://wsgi.readthedocs.io/en/latest/definitions.html#envvar-SCRIPT_NAME
+    """
+    return settings.RUNNING_ON_SAPIR and os.getenv("SCRIPT_NAME", "") == ""
+
+
 # TODO: Convert this to an idiomatic Django style when we drop support for
 # Sapir
 _urlpatterns = [
@@ -85,7 +108,7 @@ if settings.DEBUG:
 # XXX: ugly hack to make this work on a local instance and on Sapir
 # TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
-if settings.RUNNING_ON_SAPIR and os.getenv("SCRIPT_NAME", "") == "":
+if running_on_sapir_without_script_name():
     prefix = "cree-dictionary/"
 else:
     prefix = ""
