@@ -82,7 +82,10 @@ if settings.DEBUG:
 # XXX: ugly hack to make this work on a local instance and on Sapir
 # TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
-prefix = "cree-dictionary/" if settings.RUNNING_ON_SAPIR else ""
+if settings.RUNNING_ON_SAPIR:
+    prefix = "cree-dictionary/"
+else:
+    prefix = ""
 
 for route, view, name in _urlpatterns:
     # kwarg `name` for url reversion in html/py/js code
