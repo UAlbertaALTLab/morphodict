@@ -73,12 +73,16 @@ class TestLemmaDetailsInternal4xx:
         reverse("cree-dictionary-search") + "?q=kotiskâwêw",
         reverse("cree-dictionary-about"),
         reverse("cree-dictionary-contact-us"),
-        reverse("cree-dictionary-index-with-lemma", args=["wâpamêw"]),
+        # Note: do NOT test word-detail page, as this page has tonnes of "errors"
+        # checking for things like is_title, is_label, is_heading, etc.
     ],
 )
 def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     """
     Ensure the index page renders without template errors.
+
+    Note: template errors are not necessarily errors, but Django logs them anyway 🙃
+    See: https://docs.djangoproject.com/en/3.1/ref/templates/api/#how-invalid-variables-are-handled
     """
     with caplog.at_level(logging.DEBUG):
         req = client.get(url)
