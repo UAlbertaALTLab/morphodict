@@ -201,9 +201,9 @@ class Wordform(models.Model):
 
     class Meta:
         indexes = [
-            # analysis is for faster user query (in function fetch_lemma_by_user_query below)
+            # analysis is for faster user query (see search.py)
             models.Index(fields=["analysis"]),
-            # text index benefits fast lemma matching in function fetch_lemma_by_user_query
+            # text index benefits fast wordform matching (see search.py)
             models.Index(fields=["text"]),
         ]
 
