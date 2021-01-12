@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     # Third-party apps:
     "django_js_reverse",
     # Internal apps
-    # TODO: these are kind of a mess.
+    # TODO: our internal app organization is kind of a mess 🙃
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "morphodict.apps.MorphodictConfig",
@@ -82,7 +82,6 @@ TEMPLATES = [
         "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
-            # 'threaded': True,
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
@@ -96,8 +95,9 @@ TEMPLATES = [
 
 ################################### Custom settings ####################################
 
-# sapir.artsrn.ualberta.ca has some... special requirements,
-# so let's hear about it!
+# sapir.artsrn.ualberta.ca has some... special requirements (read: hacks)
+# Eventually these hacks will go away.
+# But eventually is not now :/
 RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
 
 # SECURITY WARNING: don't run with debug turned on in production!
