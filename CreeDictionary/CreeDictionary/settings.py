@@ -158,6 +158,19 @@ else:
         }
     }
 
+
+################################## SecurityMiddleware ##################################
+
+# Send X-Content-Type-Options: nosniff header
+# (prevents browser from guessing content type and doing unwise things)
+# See: https://owasp.org/www-project-secure-headers/#x-content-type-options
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Do not allow embedding within an <iframe> ANYWHERE
+# See: https://owasp.org/www-project-secure-headers/#x-frame-options
+X_FRAME_OPTIONS = "DENY"
+
+
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
 
