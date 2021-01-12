@@ -443,7 +443,7 @@ def fetch_lemma_by_user_query(
 
 
 def fetch_cree_and_english_results(
-    user_query: InternalForm, affix_search: bool, **extra_constraints
+    user_query: InternalForm, affix_search: bool = True, **extra_constraints
 ) -> CreeAndEnglish:
     """
     The bulk of the logic fetch_lemma_by_user_query(), minus the cleaning up the user's

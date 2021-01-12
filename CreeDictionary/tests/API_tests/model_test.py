@@ -1,13 +1,15 @@
 import json
+from typing import List
+
 import pytest
 from API.models import Wordform
-from API.search import fetch_lemma_by_user_query
-from CreeDictionary import settings
+from API.search import fetch_cree_and_english_results, to_internal_form
 from hypothesis import assume, given
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
-from typing import List
 from utils.enums import Language
+
+from CreeDictionary import settings
 
 
 @pytest.fixture(scope="module")
@@ -23,9 +25,6 @@ def django_db_setup():
 
     # all functions in this file should use the existing test_db.sqlite3
     assert settings.USE_TEST_DB
-
-
-#### Tests for Inflection.fetch_lemmas_by_user_query()
 
 
 @pytest.mark.django_db
@@ -53,7 +52,7 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     """
 
     query = lemma.text
-    cree_results, _ = fetch_lemma_by_user_query(query)
+    cree_results, _ = fetch_cree_and_english_results(to_internal_form(query))
 
     exact_match = False
     matched_lemma_count = 0
@@ -172,7 +171,7 @@ def test_search_space_characters_in_matched_term(term):
     assert word is not None
 
     # Now try searching for it:
-    cree_results, _ = fetch_lemma_by_user_query(term)
+    cree_results, _ = fetch_cree_and_english_results(to_internal_form(term))
     assert len(cree_results) > 0
 
 
