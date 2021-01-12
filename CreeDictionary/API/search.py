@@ -400,11 +400,8 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
-# TODO: RENAME
-# TODO: REFACTOR!!!
-# TODO: DISCONTINUE
-def fetch_lemma_by_user_query(
-    user_query: str, affix_search: bool = True, **extra_constraints
+def fetch_cree_and_english_results(
+    user_query: InternalForm, affix_search: bool = True, **extra_constraints
 ) -> CreeAndEnglish:
     """
     HERE BE DRAGONS!
@@ -412,12 +409,9 @@ def fetch_lemma_by_user_query(
     Historically, this function has been the bulk of our search backend, performing both
     Cree and English search. However, I honestly don't understand how it works. As of
     this writing (2021-01-11), I am refactoring the function to bring some order to it
-    and hopefully understanding how it works. I extracted most of the logic to
-    fetch_cree_and_english_results() which is a very Long Method (code smell).
+    and hopefully understanding how it works.
 
-    And, oh yeah: this function fetches more than just lemmas 🙃
-
-    Original documentation as follows (I don't really understand it):
+    Original documentation for fetch_lemma_by_user_query() as follows (I don't really understand it):
 
     ---
 
@@ -435,19 +429,6 @@ def fetch_lemma_by_user_query(
     :param affix_search: whether to perform affix search or not (both English and Cree)
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
-    """
-
-    return fetch_cree_and_english_results(
-        prepare_query_text(user_query), affix_search, **extra_constraints
-    )
-
-
-def fetch_cree_and_english_results(
-    user_query: InternalForm, affix_search: bool = True, **extra_constraints
-) -> CreeAndEnglish:
-    """
-    The bulk of the logic fetch_lemma_by_user_query(), minus the cleaning up the user's
-    query.
     """
 
     # build up result_lemmas in 2 ways
@@ -720,13 +701,6 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
             partial(sort_search_result, user_query=user_query),
         )
     )
-
-
-def prepare_query_text(user_query: str) -> InternalForm:
-    """
-    Takes a raw query and cleans it up.
-    """
-    return to_internal_form(clean_query_text(user_query))
 
 
 def clean_query_text(user_query: str) -> str:
