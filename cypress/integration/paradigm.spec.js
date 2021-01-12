@@ -13,7 +13,7 @@ describe(' I want to search for a Cree word and see its inflectional paradigm', 
 
   // Create test cases for each word above
   for (let {pos, lemma, inflections} of testCases) {
-    it(`should display the paradigm for an ${pos} word`, () => {
+    it(`should display the paradigm for a word belonging to the ${pos} word class`, () => {
       cy.visitSearch(lemma)
       cy.get('[data-cy=search-results]')
         .contains('a', lemma)
