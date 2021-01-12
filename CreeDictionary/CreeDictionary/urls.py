@@ -2,6 +2,7 @@
 Definition of urls for CreeDictionary.
 """
 
+import logging
 import os
 
 import API.views as api_views
@@ -14,6 +15,8 @@ from django.urls import include, path
 from django_js_reverse.views import urls_js
 
 from CreeDictionary import views
+
+logger = logging.getLogger(__name__)
 
 # 2019/May/21 Matt Yan:
 
@@ -58,8 +61,10 @@ def running_on_sapir_without_script_name():
         return False
 
     if wsgi_script_name == "":
+        logger.warn("Running on Sapir WITHOUT a valid script name; using hacky URLs")
         return True
     else:
+        logger.info("Running on Sapir with script name: %r", wsgi_script_name)
         return False
 
 
