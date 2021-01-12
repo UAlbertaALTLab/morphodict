@@ -9,12 +9,9 @@ https://docs.djangoproject.com/en/1.9/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
-import logging
+
 import os
-import posixpath
-from pathlib import Path
-from secrets import token_hex
-from sys import stderr
+import secrets
 
 from environs import Env
 
@@ -33,7 +30,7 @@ env.read_env()
 
 # As of 2021-01-08, there are no logins or encrypted cookies, but Django needs this to
 # be non-empty, so create a new key everytime :/
-SECRET_KEY = env("SECRET_KEY", default=token_hex())
+SECRET_KEY = env("SECRET_KEY", default=secrets.token_hex())
 
 # sapir.artsrn.ualberta.ca has some... special requirements,
 # so let's hear about it!
