@@ -18,7 +18,6 @@ from sys import stderr
 
 from environs import Env
 
-from .coerce import to_boolean
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
