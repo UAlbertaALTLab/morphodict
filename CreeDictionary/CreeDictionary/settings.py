@@ -16,11 +16,18 @@ from pathlib import Path
 from secrets import token_hex
 from sys import stderr
 
+from environs import Env
+
 from .coerce import to_boolean
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = Env()
+# Read environment variables from project .env, if it exists
+env.read_env(os.path.join(BASE_DIR, ".env"))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
@@ -31,18 +38,18 @@ SECRET_KEY = os.getenv("SECRET_KEY", token_hex())
 
 # sapir.artsrn.ualberta.ca has some... special requirements,
 # so let's hear about it!
-RUNNING_ON_SAPIR = to_boolean(os.environ.get("RUNNING_ON_SAPIR", HOST_IS_SAPIR))
+RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", HOST_IS_SAPIR)
 
 # Debug is default to False
 # Turn it to True in development
-DEBUG = to_boolean(os.environ.get("DEBUG", False))
+DEBUG = env.bool("DEBUG", False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if RUNNING_ON_SAPIR:  # pragma: no cover
     assert not DEBUG
 
 # GitHub Actions and other services set CI to `true`
-CI = to_boolean(os.environ.get("CI", False))
+CI = env.bool("CI", False)
 
 # The Django debug toolbar is a great help when... you know... debugging Django,
 # but it has a few issues:
@@ -51,10 +58,7 @@ CI = to_boolean(os.environ.get("CI", False))
 #
 # The reasonable default is to enable it on development machines and let the developer
 # opt out of it, if needed.
-if "ENABLE_DJANGO_DEBUG_TOOLBAR" in os.environ:
-    ENABLE_DJANGO_DEBUG_TOOLBAR = to_boolean(os.environ["ENABLE_DJANGO_DEBUG_TOOLBAR"])
-else:
-    ENABLE_DJANGO_DEBUG_TOOLBAR = DEBUG
+ENABLE_DJANGO_DEBUG_TOOLBAR = env.bool("ENABLE_DJANGO_DEBUG_TOOLBAR", DEBUG)
 
 # The debug toolbar should ALWAYS be turned off:
 #  - when DEBUG is disabled
@@ -140,7 +144,7 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 # if this is set, use existing test database
-USE_TEST_DB = to_boolean(os.environ.get("USE_TEST_DB", False))
+USE_TEST_DB = env.bool("USE_TEST_DB", False)
 
 
 if USE_TEST_DB:
@@ -287,7 +291,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "console": {
-            "level": os.getenv("LOG_LEVEL", "INFO"),
+            "level": env.log_level("LOG_LEVEL", default="INFO"),
             "class": "logging.StreamHandler",
         },
     },
