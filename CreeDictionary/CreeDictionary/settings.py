@@ -20,8 +20,11 @@ from .hostutils import HOST_IS_SAPIR, HOSTNAME
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-env = Env()
+####################### Load settings from environment variables #######################
+
 # Read environment variables from project .env, if it exists
+# See: https://github.com/sloria/environs#readme
+env = Env()
 env.read_env()
 
 
