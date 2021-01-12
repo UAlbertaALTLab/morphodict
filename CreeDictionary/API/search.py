@@ -257,10 +257,10 @@ class WordformSearch:
         :return: sorted search results
         """
 
-        cleaned_query = clean_query_text(self.query)
+        cleaned_query = to_internal_form(clean_query_text(self.query))
 
         res = fetch_cree_and_english_results(
-            to_internal_form(cleaned_query), self._affix_search, **self.constraints
+            cleaned_query, self._affix_search, **self.constraints
         )
 
         results = SortedSet(key=sort_by_user_query(cleaned_query))
@@ -687,7 +687,7 @@ def sort_search_result(
             )
 
 
-def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
+def sort_by_user_query(user_query: InternalForm) -> Callable[[Any], Any]:
     """
     Returns a key function that sorts search results ranked by their distance
     to the user query.
