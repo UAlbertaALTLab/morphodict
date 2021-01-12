@@ -34,8 +34,21 @@ logger = logging.getLogger(__name__)
 # Note: re_path here, for example "re_path("^(cree-dictionary/)?some/url")", isn't a good solution. It messes up with
 # url reversion
 
+# 2021-01-12 Eddie Antonio Santos:
+#
+# I'm in the process of fixing this on Sapir.
+#
+# This routing code needs to know how to handle both when SCRIPT_NAME is
+# specified as '/cree-dictionary' and when it's not.
+#
+# Then, the Gunicorn config on Sapir must be changed to supply -v
+# SCRIPT_NAME='/cree-dictionary' in its startup options.
+#
+# The following function, as well as any comments ands hacks associated with it can be
+# deleted soon!
 
-def running_on_sapir_without_script_name():
+
+def running_on_sapir_without_script_name():  # pragma: no cover
     """
     The WSGI SCRIPT_NAME environment variable indicates the part of the URL's path before the
     first slash handled within this application.
@@ -119,9 +132,8 @@ if settings.DEBUG:
     _urlpatterns.append(("styles", views.styles, "styles"))
 
 # XXX: ugly hack to make this work on a local instance and on Sapir
-# TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
-if running_on_sapir_without_script_name():
+if running_on_sapir_without_script_name():  # pragma: no cover
     prefix = "cree-dictionary/"
 else:
     prefix = ""
