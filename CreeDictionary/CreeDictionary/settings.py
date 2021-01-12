@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env = Env()
 # Read environment variables from project .env, if it exists
-env.read_env(os.path.join(BASE_DIR, ".env"))
+env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -33,22 +33,22 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 
 # As of 2021-01-08, there are no logins or encrypted cookies, but Django needs this to
 # be non-empty, so create a new key everytime :/
-SECRET_KEY = os.getenv("SECRET_KEY", token_hex())
+SECRET_KEY = env("SECRET_KEY", default=token_hex())
 
 # sapir.artsrn.ualberta.ca has some... special requirements,
 # so let's hear about it!
-RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", HOST_IS_SAPIR)
+RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
 
 # Debug is default to False
 # Turn it to True in development
-DEBUG = env.bool("DEBUG", False)
+DEBUG = env.bool("DEBUG", default=False)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if RUNNING_ON_SAPIR:  # pragma: no cover
     assert not DEBUG
 
 # GitHub Actions and other services set CI to `true`
-CI = env.bool("CI", False)
+CI = env.bool("CI", default=False)
 
 # The Django debug toolbar is a great help when... you know... debugging Django,
 # but it has a few issues:
@@ -57,7 +57,7 @@ CI = env.bool("CI", False)
 #
 # The reasonable default is to enable it on development machines and let the developer
 # opt out of it, if needed.
-ENABLE_DJANGO_DEBUG_TOOLBAR = env.bool("ENABLE_DJANGO_DEBUG_TOOLBAR", DEBUG)
+ENABLE_DJANGO_DEBUG_TOOLBAR = env.bool("ENABLE_DJANGO_DEBUG_TOOLBAR", default=DEBUG)
 
 # The debug toolbar should ALWAYS be turned off:
 #  - when DEBUG is disabled
@@ -143,7 +143,7 @@ WSGI_APPLICATION = "CreeDictionary.wsgi.application"
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 # if this is set, use existing test database
-USE_TEST_DB = env.bool("USE_TEST_DB", False)
+USE_TEST_DB = env.bool("USE_TEST_DB", default=False)
 
 
 if USE_TEST_DB:
