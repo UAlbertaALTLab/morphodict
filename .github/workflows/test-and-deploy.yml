@@ -72,6 +72,9 @@ jobs:
         pipenv install --dev
         # Install pytest plugin to show failed tests on the web
         pipenv run pip install pytest-github-actions-annotate-failures
+    - name: 🧶 Run linters/static-analysis
+      run: |
+        pipenv run mypy CreeDictionary
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
