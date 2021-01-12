@@ -1,6 +1,9 @@
 """
 Definition of urls for CreeDictionary.
 """
+
+import os
+
 import API.views as api_views
 from django.conf import settings
 from django.conf.urls import url
@@ -82,7 +85,7 @@ if settings.DEBUG:
 # XXX: ugly hack to make this work on a local instance and on Sapir
 # TODO: this should use the SCRIPT_NAME WSGI variable instead.
 urlpatterns = []
-if settings.RUNNING_ON_SAPIR:
+if settings.RUNNING_ON_SAPIR and os.getenv("SCRIPT_NAME", "") == "":
     prefix = "cree-dictionary/"
 else:
     prefix = ""
