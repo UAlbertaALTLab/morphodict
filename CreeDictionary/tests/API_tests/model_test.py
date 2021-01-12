@@ -276,3 +276,42 @@ def test_lemma_and_syncretic_form_ranking(lemma):
     assert any(res.is_lemma for res in maskwa_results)
     first_result = maskwa_results[0]
     assert first_result.is_lemma, f"unexpected first result: {first_result}"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "query,top_result,later_result",
+    [
+        # With long vowel ending (1Sg conjunct)
+        ("ê-kotiskâwêyâhk", "ê-kotiskâwêyâhk", "ê-kotiskâwêyahk"),
+        # With short vowel ending (2Sg conjunct)
+        ("ê-kotiskâwêyahk", "ê-kotiskâwêyahk", "ê-kotiskâwêyâhk"),
+        # With long vowel ending (1Sg conjunct)
+        ("ᐁᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ"),
+        # With short vowel ending (2Sg conjunct)
+        ("ᐁᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ"),
+    ],
+)
+def test_search_results_order(query: str, top_result: str, later_result: str):
+    """
+    Ensure that some search results appear before others.
+    """
+    results = Wordform.search(query)
+
+    top_result_pos = position_in_results(top_result, results)
+    later_result_pos = position_in_results(later_result, results)
+    assert (
+        top_result_pos < later_result_pos
+    ), f"{top_result} did not come before {later_result}"
+
+
+def position_in_results(wordform: str, search_results) -> int:
+    """
+    Find the EXACT wordform in the results.
+    """
+    wordform = to_internal_form(wordform)
+
+    for pos, result in enumerate(search_results):
+        if wordform == result.matched_cree:
+            return pos
+    raise AssertionError(f"{wordform} not found in results: {search_results}")
