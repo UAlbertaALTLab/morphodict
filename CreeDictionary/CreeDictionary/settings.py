@@ -156,6 +156,16 @@ else:  # pragma: no cover
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
+
+def defaultDatabasePath():
+    """
+    The default is to store the production database in the repository. This might not be
+    the best solution :/
+    """
+    path = BASE_PATH / "db.sqlite3"
+    return f"sqlite:///{path}"
+
+
 if USE_TEST_DB:
     DATABASES = {
         "default": {
@@ -165,12 +175,8 @@ if USE_TEST_DB:
     }
 else:
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.fspath(BASE_PATH / "db.sqlite3"),
-        }
+        "default": env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
     }
-
 
 ################################## SecurityMiddleware ##################################
 
