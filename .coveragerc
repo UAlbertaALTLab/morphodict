@@ -23,4 +23,7 @@ exclude_lines =
     # Don't complain if non-runnable code isn't run:
     if 0:
 
+    # an ellipses all alone on its own line (e.g., when defining a Protocol):
+    ^\\s*[.][.][.]\\s*$
+
 # vim: set ft=dosini:
