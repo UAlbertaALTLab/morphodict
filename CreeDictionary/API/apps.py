@@ -55,7 +55,7 @@ def read_morpheme_rankings():
 
 def initialize_affix_search():
     """
-    build tries and attach to Wordform class to facilitate prefix/suffix search
+    Build tries and attach to Wordform class to facilitate prefix/suffix search
     """
     logger.info("Building tries for affix search...")
     from .models import EnglishKeyword, Wordform, set_combined_affix_searcher
@@ -69,7 +69,7 @@ def initialize_affix_search():
         return
 
     lowered_no_diacritics_cree_with_id = [
-        (remove_cree_diacritics(text.lower()), wf_id)
+        (text, wf_id)
         for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
             "text", "id"
         )
