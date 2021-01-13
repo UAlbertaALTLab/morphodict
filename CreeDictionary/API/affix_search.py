@@ -41,18 +41,18 @@ class AffixSearcher:
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        prefix = self.to_simplified_form(prefix)
-        return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(prefix)])
+        term = self.to_simplified_form(prefix)
+        return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(term)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
         """
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        suffix = self.to_simplified_form(suffix)
+        term = self.to_simplified_form(suffix)
 
         return chain(
-            *[self.text_to_ids[x[::-1]] for x in self._suffixes.keys(suffix[::-1])]
+            *[self.text_to_ids[x[::-1]] for x in self._suffixes.keys(term[::-1])]
         )
 
     # TODO: return type should be InternalForm
@@ -64,4 +64,4 @@ class AffixSearcher:
         and choose a single letter case here!
         """
         # TODO: make this work for not just Cree!
-        return remove_cree_diacritics(query.lower())
+        return SimplifiedForm(remove_cree_diacritics(query.lower()))
