@@ -390,7 +390,7 @@ def affix_searcher_for_english() -> AffixSearcher:
 
 
 # TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_cree() -> AffixSearcher:
+def affix_searcher_for_both_languages_even_though_that_is_silly() -> AffixSearcher:
     """
     :return: the affix searcher that contains Cree affixes.
     """

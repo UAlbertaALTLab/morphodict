@@ -34,7 +34,7 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol as temp_hfstol
 
-from .models import Definition, EnglishKeyword, Wordform, affix_searcher_for_cree
+from .models import Definition, EnglishKeyword, Wordform, affix_searcher_for_both_languages_even_though_that_is_silly
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
@@ -621,7 +621,7 @@ def do_affix_search(query: InternalForm, search_constraints) -> List[Wordform]:
 
     results: List[Wordform] = []
 
-    affixes = affix_searcher_for_cree()
+    affixes = affix_searcher_for_both_languages_even_though_that_is_silly()
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
 
