@@ -1,5 +1,6 @@
 import logging
 from pathlib import Path
+from itertools import chain
 
 from django.apps import AppConfig
 from django.db import OperationalError
@@ -72,10 +73,9 @@ def initialize_affix_search():
         Wordform.objects.filter(is_lemma=True).values_list("text", "id")
     )
 
-    lowered_english_keywords_with_wf_id = [
-        (kw, wf_id)
-        for kw, wf_id in EnglishKeyword.objects.all().values_list("text", "lemma__id")
-    ]
+    lowered_english_keywords_with_wf_id = list(
+        EnglishKeyword.objects.all().values_list("text", "lemma__id")
+    )
 
     set_combined_affix_searcher(
         AffixSearcher(
@@ -83,6 +83,21 @@ def initialize_affix_search():
         )
     )
     logger.info("Finished building tries")
+
+
+class _TemporaryComposeAffixSearchers(AffixSearcher):
+    def __init__(self, *searchers: AffixSearcher):
+        self._searchers = searchers
+
+    def search_by_prefix(self, prefix: str):
+        return chain(
+            *[searcher.search_by_prefix(prefix) for searcher in self._searchers]
+        )
+
+    def search_by_suffix(self, suffix: str):
+        return chain(
+            *[searcher.search_by_suffix(suffix) for searcher in self._searchers]
+        )
 
 
 class APIConfig(AppConfig):
