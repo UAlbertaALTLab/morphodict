@@ -77,10 +77,11 @@ def initialize_affix_search():
         EnglishKeyword.objects.all().values_list("text", "lemma__id")
     )
 
+    english_affix_searcher = AffixSearcher(lowered_english_keywords_with_wf_id)
+    cree_affix_searcher = AffixSearcher(lowered_no_diacritics_cree_with_id)
+
     set_combined_affix_searcher(
-        AffixSearcher(
-            lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id
-        )
+        _TemporaryComposeAffixSearchers(cree_affix_searcher, english_affix_searcher)
     )
     logger.info("Finished building tries")
 
