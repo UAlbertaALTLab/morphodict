@@ -9,7 +9,7 @@ from itertools import chain
 from typing import Dict, List, Set
 
 from DatabaseManager.xml_importer import find_latest_xml_file
-from shared import descriptive_analyzer
+from shared import expensive
 from tqdm import tqdm
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
@@ -58,7 +58,7 @@ def build_test_xml(multi_processing: int = 2):
     test_words = get_test_words()
 
     print(f"Analyzing xml l elements and test words with {multi_processing} processes")
-    word_to_analyses = descriptive_analyzer.feed_in_bulk_fast(
+    word_to_analyses = expensive.descriptive_analyzer.feed_in_bulk_fast(
         xml_ls | test_words,
         multi_process=multi_processing,
     )
