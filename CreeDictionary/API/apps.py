@@ -63,6 +63,7 @@ def initialize_affix_search():
     logger.info("Building tries for affix search...")
     from .models import Wordform
     from .models import EnglishKeyword
+    from .models import set_combined_affix_searcher
 
     try:
         lowered_no_diacritics_cree_with_id = [
@@ -84,9 +85,9 @@ def initialize_affix_search():
     except OperationalError:
         return
 
-    Wordform.affix_searcher = AffixSearcher(
+    set_combined_affix_searcher(AffixSearcher(
         lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id
-    )
+    ))
     logger.info("Finished building tries")
 
 
