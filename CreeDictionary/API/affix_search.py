@@ -23,8 +23,8 @@ class AffixSearcher:
         # TODO: why are there empty words in the first place?????
         non_empty_words = [t for t in words if len(t[0]) > 0]
 
-        self.trie = dawg.CompletionDAWG([t[0] for t in non_empty_words])
-        self.inverse_trie = dawg.CompletionDAWG([t[0][::-1] for t in non_empty_words])
+        self._prefixes = dawg.CompletionDAWG([t[0] for t in non_empty_words])
+        self._suffixes = dawg.CompletionDAWG([t[0][::-1] for t in non_empty_words])
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
@@ -32,7 +32,7 @@ class AffixSearcher:
         """
         # lower & remove diacritics
         prefix = self.to_internal_form(prefix)
-        return chain(*[self.text_to_ids[t] for t in self.trie.keys(prefix)])
+        return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(prefix)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
         """
@@ -42,7 +42,7 @@ class AffixSearcher:
         suffix = self.to_internal_form(suffix)
 
         return chain(
-            *[self.text_to_ids[x[::-1]] for x in self.inverse_trie.keys(suffix[::-1])]
+            *[self.text_to_ids[x[::-1]] for x in self._suffixes.keys(suffix[::-1])]
         )
 
     # TODO: return type should be InternalForm
