@@ -441,7 +441,7 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        do_affix_search(cree_results, user_query, extra_constraints)
+        do_affix_search(cree_results, user_query, extra_constraints, None)
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -603,9 +603,10 @@ def fetch_cree_and_english_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constraints):
+def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constraints, add_affix_result: Callable[[Wordform], Any]):
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
+    :param add_affix_results:
     """
 
     if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
