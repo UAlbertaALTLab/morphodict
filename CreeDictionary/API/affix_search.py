@@ -33,7 +33,7 @@ class AffixSearcher:
             [text for text, _ in words_marked_for_indexing]
         )
         self._suffixes = dawg.CompletionDAWG(
-            [text[::-1] for text, _ in words_marked_for_indexing]
+            [_to_suffix(text) for text, _ in words_marked_for_indexing]
         )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
@@ -52,7 +52,10 @@ class AffixSearcher:
         term = self.to_simplified_form(suffix)
 
         return chain(
-            *[self.text_to_ids[x[::-1]] for x in self._suffixes.keys(term[::-1])]
+            *[
+                self.text_to_ids[_from_suffix(x)]
+                for x in self._suffixes.keys(_to_suffix(term))
+            ]
         )
 
     # TODO: return type should be InternalForm
@@ -65,3 +68,10 @@ class AffixSearcher:
         """
         # TODO: make this work for not just Cree!
         return SimplifiedForm(remove_cree_diacritics(query.lower()))
+
+
+def _to_suffix(text: SimplifiedForm) -> SimplifiedForm:
+    return SimplifiedForm(text[::-1])
+
+
+_from_suffix = _to_suffix
