@@ -12,6 +12,18 @@ from .affix_search import AffixSearcher
 logger = logging.getLogger(__name__)
 
 
+class APIConfig(AppConfig):
+    name = "API"
+
+    def ready(self):
+        """
+        This function is called when you restart dev server or touch wsgi.py
+        """
+        initialize_preverb_search()
+        initialize_affix_search()
+        read_morpheme_rankings()
+
+
 def initialize_preverb_search():
     from django.db.models import Q
 
@@ -119,15 +131,3 @@ class _TemporaryComposeAffixSearchers(AffixSearcher):
         return chain(
             *[searcher.search_by_suffix(suffix) for searcher in self._searchers]
         )
-
-
-class APIConfig(AppConfig):
-    name = "API"
-
-    def ready(self):
-        """
-        This function is called when you restart dev server or touch wsgi.py
-        """
-        initialize_preverb_search()
-        initialize_affix_search()
-        read_morpheme_rankings()
