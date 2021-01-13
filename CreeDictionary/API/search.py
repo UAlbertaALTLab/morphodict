@@ -443,11 +443,13 @@ def fetch_cree_and_english_results(
 
     cree_results: Set[CreeResult] = set()
 
-    add_cree_result = lambda w: cree_results.add(CreeResult.from_wordform(w))
-
     # there will be too many matches for some shorter queries
     if affix_search:
-        do_affix_search(user_query, add_cree_result, extra_constraints)
+        do_affix_search(
+            user_query,
+            lambda word: cree_results.add(CreeResult.from_wordform(word)),
+            extra_constraints,
+        )
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -609,7 +611,9 @@ def fetch_cree_and_english_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_affix_search(query: InternalForm, add_affix_result: Callable[[Wordform], Any], search_constraints):
+def do_affix_search(
+    query: InternalForm, add_affix_result: Callable[[Wordform], Any], search_constraints
+):
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     :param add_affix_results:
@@ -628,8 +632,6 @@ def do_affix_search(query: InternalForm, add_affix_result: Callable[[Wordform], 
         id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
     ):
         add_affix_result(wf)
-
-
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
