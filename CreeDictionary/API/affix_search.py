@@ -16,7 +16,7 @@ class AffixSearcher:
 
     # TODO: "int" should be Wordform PK type
 
-    def __init__(self, words: List[Tuple[str, int]]):
+    def __init__(self, words: Iterable[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
 
         words_marked_for_indexing = [
