@@ -380,7 +380,6 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
     return tuple(sorted(source.abbrv for source in dfn.citations.all()))
 
 
-
 # TODO: move this to search, without causing an import cycle!
 def affix_searcher_for_english() -> AffixSearcher:
     """
