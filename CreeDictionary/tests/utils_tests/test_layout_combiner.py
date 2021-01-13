@@ -1,5 +1,4 @@
-from shared import shared_res_dir
-from utils import ParadigmSize, WordClass
+from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.paradigm_layout_combiner import import_layouts
 
 

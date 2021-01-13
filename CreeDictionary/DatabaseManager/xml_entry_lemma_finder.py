@@ -15,7 +15,7 @@ from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from shared import strict_analyzer
+from shared import expensive
 from utils import WordClass, shared_res_dir
 from utils.crkeng_xml_utils import IndexedXML
 from utils.data_classes import XMLEntry
@@ -97,7 +97,7 @@ def identify_entries(
     ls = get_all_ls()
     l_to_analyses = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        strict_analyzer.feed_in_bulk_fast(ls, multi_processing),
+        expensive.strict_analyzer.feed_in_bulk_fast(ls, multi_processing),
     )
 
     produced_extra_lemmas: List[FSTLemma] = []
@@ -113,7 +113,7 @@ def identify_entries(
 
     produced_extra_lemma_to_analysis = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas),
+        expensive.strict_analyzer.feed_in_bulk_fast(produced_extra_lemmas),
     )
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):

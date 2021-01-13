@@ -4,7 +4,7 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 from typing import Dict, Iterable, List, Set, Tuple
 
 from DatabaseManager.log import DatabaseManagerLogger
-from shared import normative_generator
+from shared import expensive
 from utils import fst_analysis_parser
 from utils.paradigm_filler import ParadigmFiller
 
@@ -41,7 +41,7 @@ def expand_inflections(
     logger.info("Generating inflections using %d processes..." % multi_processing)
 
     # optimized for efficiency by calling hfstol once and for all
-    generated_analyses_to_inflections = normative_generator.feed_in_bulk_fast(
+    generated_analyses_to_inflections = expensive.normative_generator.feed_in_bulk_fast(
         analysis_queue, multi_processing
     )
 
