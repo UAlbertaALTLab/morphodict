@@ -34,7 +34,12 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol as temp_hfstol
 
-from .models import Definition, EnglishKeyword, Wordform, affix_searcher_for_both_languages_even_though_that_is_silly
+from .models import (
+    Definition,
+    EnglishKeyword,
+    Wordform,
+    affix_searcher_for_both_languages_even_though_that_is_silly,
+)
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
@@ -445,7 +450,11 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        wordforms_matching_affix = do_affix_search(user_query, extra_constraints)
+        wordforms_matching_affix = do_affix_search(
+            user_query,
+            extra_constraints,
+            affix_searcher_for_both_languages_even_though_that_is_silly(),
+        )
 
         for word in wordforms_matching_affix:
             cree_results.add(CreeResult.from_wordform(word))
@@ -610,7 +619,9 @@ def fetch_cree_and_english_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_affix_search(query: InternalForm, search_constraints) -> List[Wordform]:
+def do_affix_search(
+    query: InternalForm, search_constraints, affixes: AffixSearcher
+) -> List[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
@@ -621,7 +632,6 @@ def do_affix_search(query: InternalForm, search_constraints) -> List[Wordform]:
 
     results: List[Wordform] = []
 
-    affixes = affix_searcher_for_both_languages_even_though_that_is_silly()
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
 
