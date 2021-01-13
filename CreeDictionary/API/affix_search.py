@@ -33,7 +33,7 @@ class AffixSearcher:
             [text for text, _ in words_marked_for_indexing]
         )
         self._suffixes = dawg.CompletionDAWG(
-            [_to_suffix(text) for text, _ in words_marked_for_indexing]
+            [_reverse(text) for text, _ in words_marked_for_indexing]
         )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
@@ -53,8 +53,8 @@ class AffixSearcher:
 
         return chain(
             *[
-                self.text_to_ids[_from_suffix(x)]
-                for x in self._suffixes.keys(_to_suffix(term))
+                self.text_to_ids[_reverse(key)]
+                for key in self._suffixes.keys(_reverse(term))
             ]
         )
 
@@ -70,8 +70,5 @@ class AffixSearcher:
         return SimplifiedForm(remove_cree_diacritics(query.lower()))
 
 
-def _to_suffix(text: SimplifiedForm) -> SimplifiedForm:
+def _reverse(text: SimplifiedForm) -> SimplifiedForm:
     return SimplifiedForm(text[::-1])
-
-
-_from_suffix = _to_suffix
