@@ -68,12 +68,9 @@ def initialize_affix_search():
         logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
         return
 
-    lowered_no_diacritics_cree_with_id = [
-        (text, wf_id)
-        for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
-            "text", "id"
-        )
-    ]
+    lowered_no_diacritics_cree_with_id = list(
+        Wordform.objects.filter(is_lemma=True).values_list("text", "id")
+    )
 
     lowered_english_keywords_with_wf_id = [
         (kw, wf_id)
