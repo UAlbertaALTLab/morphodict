@@ -606,16 +606,20 @@ def do_cree_affix_search(cree_results: Set[CreeResult], user_query: InternalForm
     """
     Augments the given set with results from performing both a suffix and prefix search on the Cree wordforms.
     """
-    if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
-        # prefix and suffix search
-        ids_by_prefix = list(Wordform.affix_searcher.search_by_prefix(user_query))
-        ids_by_suffix = list(Wordform.affix_searcher.search_by_suffix(user_query))
 
-        # todo: this needs refactoring, our affix searcher now also return entries matched by English
-        for wf in Wordform.objects.filter(
-                id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
-        ):
-            cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+    if len(user_query) <= settings.AFFIX_SEARCH_THRESHOLD:
+        # Affix is too short; will return WAY too many results, so just don't
+        return
+
+    # prefix and suffix search
+    ids_by_prefix = list(Wordform.affix_searcher.search_by_prefix(user_query))
+    ids_by_suffix = list(Wordform.affix_searcher.search_by_suffix(user_query))
+
+    # todo: this needs refactoring, our affix searcher now also return entries matched by English
+    for wf in Wordform.objects.filter(
+            id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
+    ):
+        cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
