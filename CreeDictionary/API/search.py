@@ -439,9 +439,12 @@ def fetch_cree_and_english_results(
 
     cree_results: Set[CreeResult] = set()
 
+    def add_cree_result(wordform: Wordform):
+        cree_results.add(CreeResult(wordform.analysis, wordform, wordform.lemma))
+
     # there will be too many matches for some shorter queries
     if affix_search:
-        do_affix_search(cree_results, user_query, extra_constraints, None)
+        do_affix_search(cree_results, user_query, extra_constraints, add_cree_result)
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -612,9 +615,6 @@ def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constr
     if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
         # Affix is too short; will return WAY too many results, so just don't
         return
-
-    def add_affix_result(wordform: Wordform):
-        results.add(CreeResult(wordform.analysis, wordform, wordform.lemma))
 
     affixes = affix_searcher_for_cree()
     ids_by_prefix = list(affixes.search_by_prefix(query))
