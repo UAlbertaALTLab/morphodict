@@ -212,6 +212,10 @@ class CreeResult(NamedTuple):
         else:  # is str
             return self.normatized_cree
 
+    @classmethod
+    def from_wordform(cls, wordform: Wordform) -> "CreeResult":
+        return cls(wordform.analysis, wordform, wordform.lemma)
+
 
 class EnglishResult(NamedTuple):
     """
