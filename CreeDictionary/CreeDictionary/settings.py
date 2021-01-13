@@ -17,6 +17,7 @@ from pathlib import Path
 from environs import Env
 
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
+from .save_secret_key import save_secret_key
 
 # Build paths inside project like this: os.fspath(BASE_PATH / "some_file.txt")
 BASE_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -31,12 +32,11 @@ env.read_env()
 
 ################################# Core Django Settings #################################
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
+SECRET_KEY = env("SECRET_KEY", default=None)
 
-# As of 2021-01-08, there are no logins or encrypted cookies, but Django needs this to
-# be non-empty, so create a new key everytime :/
-SECRET_KEY = env("SECRET_KEY", default=secrets.token_hex())
+if SECRET_KEY is None:
+    # Generate a new key and save it!
+    SECRET_KEY = save_secret_key(secrets.token_hex())
 
 # Debug is default to False
 # Turn it to True in development
