@@ -54,12 +54,20 @@ def read_morpheme_rankings():
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
 
 
-def initialize_affix_search():
+def initialize_affix_search() -> None:
     """
     Build tries and attach to Wordform class to facilitate prefix/suffix search
     """
     logger.info("Building tries for affix search...")
-    from .models import EnglishKeyword, Wordform, set_combined_affix_searcher
+    from .models import (
+        EnglishKeyword,
+        Wordform,
+        set_affix_searcher_for_english,
+        set_combined_affix_searcher,
+        set_affix_searcher_for_cree,
+        affix_searcher_for_cree,
+        affix_searcher_for_english,
+    )
 
     try:
         Wordform.objects.count()
@@ -77,11 +85,13 @@ def initialize_affix_search():
         EnglishKeyword.objects.all().values_list("text", "lemma__id")
     )
 
-    english_affix_searcher = AffixSearcher(lowered_english_keywords_with_wf_id)
-    cree_affix_searcher = AffixSearcher(lowered_no_diacritics_cree_with_id)
+    set_affix_searcher_for_cree(AffixSearcher(lowered_english_keywords_with_wf_id))
+    set_affix_searcher_for_english(AffixSearcher(lowered_no_diacritics_cree_with_id))
 
     set_combined_affix_searcher(
-        _TemporaryComposeAffixSearchers(cree_affix_searcher, english_affix_searcher)
+        _TemporaryComposeAffixSearchers(
+            affix_searcher_for_cree(), affix_searcher_for_english()
+        )
     )
     logger.info("Finished building tries")
 
