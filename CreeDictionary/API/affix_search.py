@@ -7,17 +7,18 @@ from utils.cree_lev_dist import remove_cree_diacritics
 
 
 class AffixSearcher:
+    """
+    Enables prefix and suffix searches given a list of words and their wordform IDs.
+    """
 
     # TODO: "int" should be Wordform PK type
     # TODO: "str" should be InternalForm
 
     def __init__(self, words: List[Tuple[str, int]]):
-        """
-        :param words: expects lowered, no diacritics words with their ids
-        """
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
-        for w, w_id in words:
-            self.text_to_ids[self.to_internal_form(w)].append(w_id)
+
+        for text, wordform_id in words:
+            self.text_to_ids[self.to_internal_form(text)].append(wordform_id)
 
         # TODO: why are there empty words in the first place?????
         non_empty_words = [t for t in words if len(t[0]) > 0]
