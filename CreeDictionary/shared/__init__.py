@@ -11,7 +11,7 @@ from utils import shared_res_dir
 _fst_dir = shared_res_dir / "fst"
 
 
-class FilteredHFSTOL:
+class HFSTOLWithoutFragmentAnalyses:
     """
     Acts like HFSTOL but removes analyses with +Err/Frag.
     """
@@ -42,10 +42,12 @@ class FilteredHFSTOL:
 paradigm_filler = pf.ParadigmFiller.default_filler()
 
 
-descriptive_analyzer = FilteredHFSTOL.from_file(
+descriptive_analyzer = HFSTOLWithoutFragmentAnalyses.from_file(
     _fst_dir / "crk-descriptive-analyzer.hfstol"
 )
 
-strict_analyzer = FilteredHFSTOL.from_file(_fst_dir / "crk-strict-analyzer.hfstol")
+strict_analyzer = HFSTOLWithoutFragmentAnalyses.from_file(
+    _fst_dir / "crk-strict-analyzer.hfstol"
+)
 
 normative_generator = HFSTOL.from_file(_fst_dir / "crk-normative-generator.hfstol")
