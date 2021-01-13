@@ -17,7 +17,7 @@ class AffixSearcher:
         """
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
         for w, w_id in words:
-            self.text_to_ids[w].append(w_id)
+            self.text_to_ids[self.to_internal_form(w)].append(w_id)
 
         # TODO: why are there empty words in the first place?????
         non_empty_words = [t for t in words if len(t[0]) > 0]
