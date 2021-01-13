@@ -32,15 +32,19 @@ class FilteredHFSTOL:
             for wordform, analyses in original.items()
         }
 
+    @classmethod
+    def from_file(cls, path) -> HFSTOL:
+        return cls(HFSTOL.from_file(path))
+
 
 paradigm_filler = pf.ParadigmFiller.default_filler()
 
-descriptive_analyzer = FilteredHFSTOL(
-    HFSTOL.from_file(shared_res_dir / "fst" / "crk-descriptive-analyzer.hfstol")
+descriptive_analyzer = FilteredHFSTOL.from_file(
+    shared_res_dir / "fst" / "crk-descriptive-analyzer.hfstol"
 )
 
-strict_analyzer = FilteredHFSTOL(
-    HFSTOL.from_file(shared_res_dir / "fst" / "crk-strict-analyzer.hfstol")
+strict_analyzer = FilteredHFSTOL.from_file(
+    shared_res_dir / "fst" / "crk-strict-analyzer.hfstol"
 )
 
 normative_generator = HFSTOL.from_file(
