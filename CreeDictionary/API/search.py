@@ -443,8 +443,7 @@ def fetch_cree_and_english_results(
 
     cree_results: Set[CreeResult] = set()
 
-    def add_cree_result(wordform: Wordform):
-        cree_results.add(CreeResult.from_wordform(wordform))
+    add_cree_result = lambda w: cree_results.add(CreeResult.from_wordform(w))
 
     # there will be too many matches for some shorter queries
     if affix_search:
