@@ -5,8 +5,9 @@ shared (expensive) instances
 from typing import Dict, Iterable, Set, Tuple
 
 from hfstol import HFSTOL
-from utils import paradigm_filler as pf
 from utils import shared_res_dir
+
+from .expensive import paradigm_filler
 
 _fst_dir = shared_res_dir / "fst"
 
@@ -37,9 +38,6 @@ class HFSTOLWithoutFragmentAnalyses:
     @classmethod
     def from_file(cls, path) -> HFSTOL:
         return cls(HFSTOL.from_file(path))
-
-
-paradigm_filler = pf.ParadigmFiller.default_filler()
 
 
 descriptive_analyzer = HFSTOLWithoutFragmentAnalyses.from_file(
