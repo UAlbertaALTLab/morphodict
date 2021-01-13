@@ -445,11 +445,7 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        wordforms_matching_affix = do_affix_search(
-            user_query,
-            lambda word: ...,
-            extra_constraints,
-        )
+        wordforms_matching_affix = do_affix_search(user_query, extra_constraints)
 
         for word in wordforms_matching_affix:
             cree_results.add(CreeResult.from_wordform(word))
@@ -614,9 +610,7 @@ def fetch_cree_and_english_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_affix_search(
-    query: InternalForm, add_affix_result: Callable[[Wordform], Any], search_constraints
-) -> List[Wordform]:
+def do_affix_search(query: InternalForm, search_constraints) -> List[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
@@ -630,7 +624,6 @@ def do_affix_search(
     affixes = affix_searcher_for_cree()
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
-
 
     # todo: this needs refactoring, our affix searcher now also return entries matched by English
     for wf in Wordform.objects.filter(
