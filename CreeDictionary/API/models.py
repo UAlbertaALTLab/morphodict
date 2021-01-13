@@ -378,3 +378,30 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
     """
     dfn = Definition.objects.get(pk=definition_id)
     return tuple(sorted(source.abbrv for source in dfn.citations.all()))
+
+
+
+# TODO: move this to search, without causing an import cycle!
+def affix_searcher_for_english() -> AffixSearcher:
+    """
+    :return: the affix searcher that contains English affixes.
+    """
+    # TODO: split affix searcher!
+    return Wordform.affix_searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def affix_searcher_for_cree() -> AffixSearcher:
+    """
+    :return: the affix searcher that contains Cree affixes.
+    """
+    # TODO: split affix searcher!
+    return Wordform.affix_searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def set_combined_affix_searcher(searcher: AffixSearcher):
+    """
+    Sets the new value of the combined affix searcher (contains both Cree and English results).
+    """
+    Wordform.affix_searcher = searcher
