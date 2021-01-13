@@ -300,20 +300,28 @@ else:
         "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
     )
 
+log_level = env.log_level("LOG_LEVEL", default="INFO")
+
+# To debug what the *actual* config ends up being, use the logging_tree package
+# See https://stackoverflow.com/a/53058203/14558
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "handlers": {
         "console": {
-            "level": env.log_level("LOG_LEVEL", default="INFO"),
+            "level": log_level,
             "class": "logging.StreamHandler",
         },
     },
-    # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+    'root': {
+        'handlers': ['console'],
+        'level': log_level,
+    },
     "loggers": {
+        # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
         "django": {
-            "handlers": ["console"],
-            "level": "DEBUG",
+            "handlers": [],
+            "level": log_level,
             "propagate": True,
         },
     },
