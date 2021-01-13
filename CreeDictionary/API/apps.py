@@ -61,24 +61,24 @@ def initialize_affix_search():
     from .models import EnglishKeyword, Wordform, set_combined_affix_searcher
 
     try:
-        lowered_no_diacritics_cree_with_id = [
-            (remove_cree_diacritics(text.lower()), wf_id)
-            for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
-                "text", "id"
-            )
-        ]
-
-        lowered_english_keywords_with_wf_id = [
-            (kw, wf_id)
-            for kw, wf_id in EnglishKeyword.objects.all().values_list(
-                "text", "lemma__id"
-            )
-        ]
-
+        Wordform.objects.count()
+    except OperationalError:
         # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
         # exists. Then an OperationalError will occur.
-    except OperationalError:
+        logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
         return
+
+    lowered_no_diacritics_cree_with_id = [
+        (remove_cree_diacritics(text.lower()), wf_id)
+        for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
+            "text", "id"
+        )
+    ]
+
+    lowered_english_keywords_with_wf_id = [
+        (kw, wf_id)
+        for kw, wf_id in EnglishKeyword.objects.all().values_list("text", "lemma__id")
+    ]
 
     set_combined_affix_searcher(
         AffixSearcher(
