@@ -445,11 +445,14 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        do_affix_search(
+        wordforms_matching_affix = do_affix_search(
             user_query,
-            lambda word: cree_results.add(CreeResult.from_wordform(word)),
+            lambda word: ...,
             extra_constraints,
         )
+
+        for word in wordforms_matching_affix:
+            cree_results.add(CreeResult.from_wordform(word))
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -620,7 +623,7 @@ def do_affix_search(
 
     if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
         # Affix is too short; will return WAY too many results, so just don't
-        return
+        return []
 
     results: List[Wordform] = []
 
@@ -633,7 +636,6 @@ def do_affix_search(
     for wf in Wordform.objects.filter(
         id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
     ):
-        add_affix_result(wf)
         results.append(wf)
 
     return results
