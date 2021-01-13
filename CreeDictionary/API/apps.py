@@ -1,6 +1,4 @@
 import logging
-import string
-from itertools import chain
 from pathlib import Path
 
 from django.apps import AppConfig
@@ -14,18 +12,17 @@ logger = logging.getLogger(__name__)
 
 
 def initialize_preverb_search():
-    from .models import Wordform
     from django.db.models import Q
+
+    from .models import Wordform
 
     # Hashing to speed up exhaustive preverb matching
     # so that we won't need to search from the database every time the user searches for a preverb or when the user
     # query contains a preverb
-
     # An all inclusive filtering mechanism is inflectional_category=IPV OR pos="IPV". Don't rely on a single one
     # due to the inconsistent labelling in the source crkeng.xml.
     # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
     # For "sa", the source gives pos=IPV ic="" (unspecified)
-
     # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
     # many preverbs are normalized so that both inflectional_category and pos are set to IPV.
     try:
@@ -61,9 +58,7 @@ def initialize_affix_search():
     build tries and attach to Wordform class to facilitate prefix/suffix search
     """
     logger.info("Building tries for affix search...")
-    from .models import Wordform
-    from .models import EnglishKeyword
-    from .models import set_combined_affix_searcher
+    from .models import EnglishKeyword, Wordform, set_combined_affix_searcher
 
     try:
         lowered_no_diacritics_cree_with_id = [
@@ -85,9 +80,11 @@ def initialize_affix_search():
     except OperationalError:
         return
 
-    set_combined_affix_searcher(AffixSearcher(
-        lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id
-    ))
+    set_combined_affix_searcher(
+        AffixSearcher(
+            lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id
+        )
+    )
     logger.info("Finished building tries")
 
 
