@@ -77,16 +77,14 @@ def initialize_affix_search() -> None:
         logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
         return
 
-    lowered_no_diacritics_cree_with_id = list(
-        Wordform.objects.filter(is_lemma=True).values_list("text", "id")
+    set_affix_searcher_for_cree(
+        AffixSearcher((EnglishKeyword.objects.all().values_list("text", "lemma__id")))
     )
-
-    lowered_english_keywords_with_wf_id = list(
-        EnglishKeyword.objects.all().values_list("text", "lemma__id")
+    set_affix_searcher_for_english(
+        AffixSearcher(
+            (Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
+        )
     )
-
-    set_affix_searcher_for_cree(AffixSearcher(lowered_english_keywords_with_wf_id))
-    set_affix_searcher_for_english(AffixSearcher(lowered_no_diacritics_cree_with_id))
 
     set_combined_affix_searcher(
         _TemporaryComposeAffixSearchers(
