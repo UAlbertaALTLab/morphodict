@@ -1,9 +1,12 @@
 from collections import defaultdict
 from itertools import chain
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, List, Tuple, NewType
 
 import dawg
 from utils.cree_lev_dist import remove_cree_diacritics
+
+# A simplified form intended to be used within the affix search trie.
+SimplifiedForm = NewType("SimplifiedForm", str)
 
 
 class AffixSearcher:
@@ -17,14 +20,21 @@ class AffixSearcher:
     def __init__(self, words: List[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
 
-        for text, wordform_id in words:
+        words_marked_for_indexing = [
+            (simplified_text, wordform_id)
+            for raw_text, wordform_id in words
+            if (simplified_text := self.to_simplified_form(raw_text))
+        ]
+
+        for text, wordform_id in words_marked_for_indexing:
             self.text_to_ids[self.to_simplified_form(text)].append(wordform_id)
 
-        # TODO: why are there empty words in the first place?????
-        non_empty_words = [t for t in words if len(t[0]) > 0]
-
-        self._prefixes = dawg.CompletionDAWG([t[0] for t in non_empty_words])
-        self._suffixes = dawg.CompletionDAWG([t[0][::-1] for t in non_empty_words])
+        self._prefixes = dawg.CompletionDAWG(
+            [text for text, _ in words_marked_for_indexing]
+        )
+        self._suffixes = dawg.CompletionDAWG(
+            [text[::-1] for text, _ in words_marked_for_indexing]
+        )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
@@ -47,7 +57,7 @@ class AffixSearcher:
 
     # TODO: return type should be InternalForm
     @staticmethod
-    def to_simplified_form(query: str) -> str:
+    def to_simplified_form(query: str) -> SimplifiedForm:
         """
         Convert to a simplified form of the word and its orthography to facilitate affix
         search.  You SHOULD throw out diacritics, choose a Unicode Normalization form,
