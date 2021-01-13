@@ -78,9 +78,7 @@ def initialize_affix_search() -> None:
         return
 
     set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
-    set_affix_searcher_for_english(
-        AffixSearcher((EnglishKeyword.objects.all().values_list("text", "lemma__id")))
-    )
+    set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
 
     set_combined_affix_searcher(
         _TemporaryComposeAffixSearchers(
@@ -90,9 +88,18 @@ def initialize_affix_search() -> None:
     logger.info("Finished building tries")
 
 
+def fetch_english_keywords_with_ids():
+    """
+    Return pairs of indexed English keywords with their coorepsonding Wordform IDs.
+    """
+    from .models import EnglishKeyword
+
+    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
+
+
 def fetch_cree_lemmas_with_ids():
     """
-    Return pairs of Cree lemmas with thier coorepsonding Wordform IDs.
+    Return pairs of Cree lemmas with their coorepsonding Wordform IDs.
     """
     from .models import Wordform
 
