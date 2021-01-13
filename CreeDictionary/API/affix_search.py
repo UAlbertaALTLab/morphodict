@@ -7,6 +7,10 @@ from utils.cree_lev_dist import remove_cree_diacritics
 
 
 class AffixSearcher:
+
+    # TODO: "int" should be Wordform PK type
+    # TODO: "str" should be InternalForm
+
     def __init__(self, words: List[Tuple[str, int]]):
         """
         :param words: expects lowered, no diacritics words with their ids
@@ -26,7 +30,7 @@ class AffixSearcher:
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        prefix = remove_cree_diacritics(prefix.lower())
+        prefix = self.to_internal_form(prefix)
         return chain(*[self.text_to_ids[t] for t in self.trie.keys(prefix)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
@@ -34,8 +38,14 @@ class AffixSearcher:
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        suffix = remove_cree_diacritics(suffix.lower())
+        suffix = self.to_internal_form(suffix)
 
         return chain(
             *[self.text_to_ids[x[::-1]] for x in self.inverse_trie.keys(suffix[::-1])]
         )
+
+    # TODO: return type should be InternalForm
+    @staticmethod
+    def to_internal_form(query: str) -> str:
+        # TODO: make this work for not just Cree!
+        return remove_cree_diacritics(query.lower())
