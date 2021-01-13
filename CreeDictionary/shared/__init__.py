@@ -8,6 +8,8 @@ from hfstol import HFSTOL
 from utils import paradigm_filler as pf
 from utils import shared_res_dir
 
+_fst_dir = shared_res_dir / "fst"
+
 
 class FilteredHFSTOL:
     """
@@ -39,14 +41,11 @@ class FilteredHFSTOL:
 
 paradigm_filler = pf.ParadigmFiller.default_filler()
 
+
 descriptive_analyzer = FilteredHFSTOL.from_file(
-    shared_res_dir / "fst" / "crk-descriptive-analyzer.hfstol"
+    _fst_dir / "crk-descriptive-analyzer.hfstol"
 )
 
-strict_analyzer = FilteredHFSTOL.from_file(
-    shared_res_dir / "fst" / "crk-strict-analyzer.hfstol"
-)
+strict_analyzer = FilteredHFSTOL.from_file(_fst_dir / "crk-strict-analyzer.hfstol")
 
-normative_generator = HFSTOL.from_file(
-    shared_res_dir / "fst" / "crk-normative-generator.hfstol"
-)
+normative_generator = HFSTOL.from_file(_fst_dir / "crk-normative-generator.hfstol")
