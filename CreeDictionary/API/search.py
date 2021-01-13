@@ -441,7 +441,7 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        do_cree_affix_search(cree_results, user_query, extra_constraints)
+        do_affix_search(cree_results, user_query, extra_constraints)
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -603,24 +603,24 @@ def fetch_cree_and_english_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_cree_affix_search(cree_results: Set[CreeResult], user_query: InternalForm, extra_constraints):
+def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constraints):
     """
-    Augments the given set with results from performing both a suffix and prefix search on the Cree wordforms.
+    Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
 
-    if len(user_query) <= settings.AFFIX_SEARCH_THRESHOLD:
+    if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
         # Affix is too short; will return WAY too many results, so just don't
         return
 
     affixes = affix_searcher_for_cree()
-    ids_by_prefix = list(affixes.search_by_prefix(user_query))
-    ids_by_suffix = list(affixes.search_by_suffix(user_query))
+    ids_by_prefix = list(affixes.search_by_prefix(query))
+    ids_by_suffix = list(affixes.search_by_suffix(query))
 
     # todo: this needs refactoring, our affix searcher now also return entries matched by English
     for wf in Wordform.objects.filter(
-            id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
+        id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
     ):
-        cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+        results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
