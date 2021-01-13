@@ -335,7 +335,12 @@ function loadSearchResults(searchInput) {
     hideProse()
 
     fetch(searchURL)
-      .then(response => response.text())
+      .then(response => {
+        if (response.ok) {
+          return response.text()
+        }
+        return Promise.reject()
+      })
       .then((html) => {
         // user input may have changed during the request
         const inputNow = searchInput.value

@@ -4,7 +4,7 @@ from cree_sro_syllabics import syllabics2sro
 from django.contrib import admin
 from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
-from shared import descriptive_analyzer
+from shared import expensive
 
 from .models import Definition, DictionarySource, Wordform
 
@@ -80,9 +80,9 @@ class InflectionAdmin(admin.ModelAdmin):
         search_term = search_term.lower()
 
         # utilize the spell relax in descriptive_analyzer
-        fst_analyses: Set[str] = descriptive_analyzer.feed_in_bulk_fast([search_term])[
-            search_term
-        ]
+        fst_analyses: Set[str] = expensive.descriptive_analyzer.feed_in_bulk_fast(
+            [search_term]
+        )[search_term]
         unfiltered_queryset = Wordform.objects.filter(analysis__in=fst_analyses)
         unfiltered_queryset |= Wordform.objects.filter(text=search_term)
         return unfiltered_queryset & queryset, True

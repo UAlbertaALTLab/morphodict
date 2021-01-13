@@ -71,7 +71,7 @@ mode, whether Django should use `./CreeDictionary/test_db.sqlite3`
 instead of the production database, and whether the JavaScript should be
 minified.
 
-The enviroment variables go into effect when using `pipenv shell`, or by
+The environment variables go into effect when using `pipenv shell`, or by
 running a program with `pipenv run`.
 
 
@@ -100,6 +100,16 @@ database. For better performance, enable multi-processing with
 `PROCESS_COUNT` being at most your CPU core count:
 
     manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT
+
+### Compile JavaScript and CSS
+
+Our JavaScript and CSS must be built before being used. Run this
+command:
+
+    npm run build
+
+(note: this is always run via `npm start`)
+
 
 ### Create an admin account (optional)
 
@@ -163,6 +173,12 @@ Or, for interactive use:
 
     npx cypress open
 
+> **Eddie “sez”**: My workflow is to have three terminals open:
+>
+> 1. Vim (editing files)
+> 2. `npm start` — start the development server
+> 3. `npx cypress open` — start Cypress interactively 
+>
 
 Profiling Code
 --------------

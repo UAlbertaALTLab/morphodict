@@ -1,17 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-import unicodedata
-
-import attr
 import logging
-from CreeDictionary import hfstol as temp_hfstol
-from attr import attrs
-from cree_sro_syllabics import syllabics2sro
-from django.conf import settings
-from django.db.models import Q
+import unicodedata
 from functools import cmp_to_key, partial
 from itertools import chain
-from sortedcontainers import SortedSet
 from typing import (
     Any,
     Callable,
@@ -25,12 +17,21 @@ from typing import (
     Union,
     cast,
 )
+
+import attr
+from attr import attrs
+from cree_sro_syllabics import syllabics2sro
+from django.conf import settings
+from django.db.models import Q
+from sortedcontainers import SortedSet
 from typing_extensions import Protocol
 from utils import Language, PartOfSpeech, fst_analysis_parser, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
+
+from CreeDictionary import hfstol as temp_hfstol
 
 from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedLinguisticTag, SerializedSearchResult
@@ -39,6 +40,7 @@ from .schema import SerializedLinguisticTag, SerializedSearchResult
 Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
+InternalForm = NewType("InternalForm", str)
 
 logger = logging.getLogger(__name__)
 
@@ -254,10 +256,14 @@ class WordformSearch:
         Do the search
         :return: sorted search results
         """
-        res = fetch_lemma_by_user_query(
-            self.query, self._affix_search, **self.constraints
+
+        cleaned_query = to_internal_form(clean_query_text(self.query))
+
+        res = fetch_cree_and_english_results(
+            cleaned_query, self._affix_search, **self.constraints
         )
-        results = SortedSet(key=sort_by_user_query(self.query))
+
+        results = SortedSet(key=sort_by_user_query(cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
@@ -394,10 +400,21 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
     return Wordform.PREVERB_ASCII_LOOKUP[user_query]
 
 
-def fetch_lemma_by_user_query(
-    user_query: str, affix_search: bool = True, **extra_constraints
+def fetch_cree_and_english_results(
+    user_query: InternalForm, affix_search: bool = True, **extra_constraints
 ) -> CreeAndEnglish:
     """
+    HERE BE DRAGONS!
+
+    Historically, this function has been the bulk of our search backend, performing both
+    Cree and English search. However, I honestly don't understand how it works. As of
+    this writing (2021-01-11), I am refactoring the function to bring some order to it
+    and hopefully understanding how it works.
+
+    Original documentation for fetch_lemma_by_user_query() as follows (I don't really understand it):
+
+    ---
+
     treat the user query as cree and:
 
     Give the analysis of user query and matched lemmas.
@@ -413,20 +430,6 @@ def fetch_lemma_by_user_query(
     :param user_query: can be English or Cree (syllabics or not)
     :param extra_constraints: additional fields to disambiguate
     """
-
-    # Whitespace won't affect results, but the FST can't deal with it:
-    user_query = user_query.strip()
-    # Normalize to UTF8 NFC
-    user_query = unicodedata.normalize("NFC", user_query)
-    user_query = (
-        user_query.replace("ā", "â")
-        .replace("ē", "ê")
-        .replace("ī", "î")
-        .replace("ō", "ô")
-    )
-    user_query = syllabics2sro(user_query)
-
-    user_query = user_query.lower()
 
     # build up result_lemmas in 2 ways
     # 1. affix search (return all results that ends/starts with the query string)
@@ -684,7 +687,7 @@ def sort_search_result(
             )
 
 
-def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
+def sort_by_user_query(user_query: InternalForm) -> Callable[[Any], Any]:
     """
     Returns a key function that sorts search results ranked by their distance
     to the user query.
@@ -698,3 +701,37 @@ def sort_by_user_query(user_query: str) -> Callable[[Any], Any]:
             partial(sort_search_result, user_query=user_query),
         )
     )
+
+
+def clean_query_text(user_query: str) -> str:
+    """
+    Cleans up the query text before it is passed to further steps.
+    """
+    # Whitespace won't affect results, but the FST can't deal with it:
+    user_query = user_query.strip()
+    # All internal text should be in NFC form --
+    # that is, all characters that can be composed are composed.
+    user_query = unicodedata.normalize("NFC", user_query)
+    return user_query.lower()
+
+
+def to_internal_form(user_query: str) -> InternalForm:
+    """
+    Convert text to the internal form used by the database entries, tries, FSTs, etc.
+
+    In itwêwina, the Plains Cree dictionary, this means SRO circumflexes.
+    """
+    return InternalForm(to_sro_circumflex(user_query))
+
+
+def to_sro_circumflex(text: str) -> str:
+    """
+    Convert text to Plains Cree SRO with circumflexes (êîôâ).
+
+    >>> to_sro_circumflex("tān'si")
+    "tân'si"
+    >>> to_sro_circumflex("ᑖᓂᓯ")
+    'tânisi'
+    """
+    text = text.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
+    return syllabics2sro(text)

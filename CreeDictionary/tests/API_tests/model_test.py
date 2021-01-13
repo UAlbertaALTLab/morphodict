@@ -1,13 +1,15 @@
 import json
+from typing import List
+
 import pytest
 from API.models import Wordform
-from API.search import fetch_lemma_by_user_query
-from CreeDictionary import settings
+from API.search import fetch_cree_and_english_results, to_internal_form
 from hypothesis import assume, given
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
-from typing import List
 from utils.enums import Language
+
+from CreeDictionary import settings
 
 
 @pytest.fixture(scope="module")
@@ -23,9 +25,6 @@ def django_db_setup():
 
     # all functions in this file should use the existing test_db.sqlite3
     assert settings.USE_TEST_DB
-
-
-#### Tests for Inflection.fetch_lemmas_by_user_query()
 
 
 @pytest.mark.django_db
@@ -53,7 +52,7 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     """
 
     query = lemma.text
-    cree_results, _ = fetch_lemma_by_user_query(query)
+    cree_results, _ = fetch_cree_and_english_results(to_internal_form(query))
 
     exact_match = False
     matched_lemma_count = 0
@@ -172,7 +171,7 @@ def test_search_space_characters_in_matched_term(term):
     assert word is not None
 
     # Now try searching for it:
-    cree_results, _ = fetch_lemma_by_user_query(term)
+    cree_results, _ = fetch_cree_and_english_results(to_internal_form(term))
     assert len(cree_results) > 0
 
 
@@ -277,3 +276,42 @@ def test_lemma_and_syncretic_form_ranking(lemma):
     assert any(res.is_lemma for res in maskwa_results)
     first_result = maskwa_results[0]
     assert first_result.is_lemma, f"unexpected first result: {first_result}"
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "query,top_result,later_result",
+    [
+        # With long vowel ending (1Sg conjunct)
+        ("ê-kotiskâwêyâhk", "ê-kotiskâwêyâhk", "ê-kotiskâwêyahk"),
+        # With short vowel ending (2Sg conjunct)
+        ("ê-kotiskâwêyahk", "ê-kotiskâwêyahk", "ê-kotiskâwêyâhk"),
+        # With long vowel ending (1Sg conjunct)
+        ("ᐁᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ"),
+        # With short vowel ending (2Sg conjunct)
+        ("ᐁᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔭᕽ", "ᐁ ᑯᑎᐢᑳᐍᔮᕽ"),
+    ],
+)
+def test_search_results_order(query: str, top_result: str, later_result: str):
+    """
+    Ensure that some search results appear before others.
+    """
+    results = Wordform.search(query)
+
+    top_result_pos = position_in_results(top_result, results)
+    later_result_pos = position_in_results(later_result, results)
+    assert (
+        top_result_pos < later_result_pos
+    ), f"{top_result} did not come before {later_result}"
+
+
+def position_in_results(wordform: str, search_results) -> int:
+    """
+    Find the EXACT wordform in the results.
+    """
+    wordform = to_internal_form(wordform)
+
+    for pos, result in enumerate(search_results):
+        if wordform == result.matched_cree:
+            return pos
+    raise AssertionError(f"{wordform} not found in results: {search_results}")
