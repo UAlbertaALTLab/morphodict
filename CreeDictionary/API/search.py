@@ -612,9 +612,9 @@ def do_cree_affix_search(cree_results: Set[CreeResult], user_query: InternalForm
         # Affix is too short; will return WAY too many results, so just don't
         return
 
-    # prefix and suffix search
-    ids_by_prefix = list(affix_searcher_for_cree().search_by_prefix(user_query))
-    ids_by_suffix = list(affix_searcher_for_cree().search_by_suffix(user_query))
+    affixes = affix_searcher_for_cree()
+    ids_by_prefix = list(affixes.search_by_prefix(user_query))
+    ids_by_suffix = list(affixes.search_by_suffix(user_query))
 
     # todo: this needs refactoring, our affix searcher now also return entries matched by English
     for wf in Wordform.objects.filter(
