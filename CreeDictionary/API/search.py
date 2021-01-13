@@ -439,16 +439,17 @@ def fetch_cree_and_english_results(
     cree_results: Set[CreeResult] = set()
 
     # there will be too many matches for some shorter queries
-    if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD and affix_search:
-        # prefix and suffix search
-        ids_by_prefix = list(Wordform.affix_searcher.search_by_prefix(user_query))
-        ids_by_suffix = list(Wordform.affix_searcher.search_by_suffix(user_query))
+    if affix_search:
+        if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD:
+            # prefix and suffix search
+            ids_by_prefix = list(Wordform.affix_searcher.search_by_prefix(user_query))
+            ids_by_suffix = list(Wordform.affix_searcher.search_by_suffix(user_query))
 
-        # todo: this needs refactoring, our affix searcher now also return entries matched by English
-        for wf in Wordform.objects.filter(
-            id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
-        ):
-            cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+            # todo: this needs refactoring, our affix searcher now also return entries matched by English
+            for wf in Wordform.objects.filter(
+                id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
+            ):
+                cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
