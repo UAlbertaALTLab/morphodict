@@ -11,7 +11,7 @@ from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
 from paradigm import Layout
-from shared import paradigm_filler
+from shared import expensive
 from sortedcontainers import SortedSet
 from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
@@ -131,7 +131,7 @@ class Wordform(models.Model):
         """
         wc = fst_analysis_parser.extract_word_class(self.analysis)
         if wc is not None:
-            tables = paradigm_filler.fill_paradigm(self.text, wc, size)
+            tables = expensive.paradigm_filler.fill_paradigm(self.text, wc, size)
         else:
             tables = []
         return tables
