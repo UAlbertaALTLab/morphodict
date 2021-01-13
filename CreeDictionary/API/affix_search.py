@@ -18,7 +18,7 @@ class AffixSearcher:
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
 
         for text, wordform_id in words:
-            self.text_to_ids[self.to_internal_form(text)].append(wordform_id)
+            self.text_to_ids[self.to_simplified_form(text)].append(wordform_id)
 
         # TODO: why are there empty words in the first place?????
         non_empty_words = [t for t in words if len(t[0]) > 0]
@@ -31,7 +31,7 @@ class AffixSearcher:
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        prefix = self.to_internal_form(prefix)
+        prefix = self.to_simplified_form(prefix)
         return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(prefix)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
@@ -39,7 +39,7 @@ class AffixSearcher:
         :return: an iterable of ids
         """
         # lower & remove diacritics
-        suffix = self.to_internal_form(suffix)
+        suffix = self.to_simplified_form(suffix)
 
         return chain(
             *[self.text_to_ids[x[::-1]] for x in self._suffixes.keys(suffix[::-1])]
@@ -47,6 +47,11 @@ class AffixSearcher:
 
     # TODO: return type should be InternalForm
     @staticmethod
-    def to_internal_form(query: str) -> str:
+    def to_simplified_form(query: str) -> str:
+        """
+        Convert to a simplified form of the word and its orthography to facilitate affix
+        search.  You SHOULD throw out diacritics, choose a Unicode Normalization form,
+        and choose a single letter case here!
+        """
         # TODO: make this work for not just Cree!
         return remove_cree_diacritics(query.lower())
