@@ -613,25 +613,30 @@ def fetch_cree_and_english_results(
 
 def do_affix_search(
     query: InternalForm, add_affix_result: Callable[[Wordform], Any], search_constraints
-):
+) -> List[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
-    :param add_affix_results:
     """
 
     if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
         # Affix is too short; will return WAY too many results, so just don't
         return
 
+    results: List[Wordform] = []
+
     affixes = affix_searcher_for_cree()
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
+
 
     # todo: this needs refactoring, our affix searcher now also return entries matched by English
     for wf in Wordform.objects.filter(
         id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
     ):
         add_affix_result(wf)
+        results.append(wf)
+
+    return results
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
