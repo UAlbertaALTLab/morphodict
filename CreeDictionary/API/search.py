@@ -19,6 +19,7 @@ from typing import (
 )
 
 import attr
+from API.affix_search import AffixSearcher
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -697,6 +698,29 @@ def sort_search_result(
                 Wordform.MORPHEME_RANKINGS[res_a.matched_cree]
                 - Wordform.MORPHEME_RANKINGS[res_b.matched_cree]
             )
+
+
+def affix_searcher_for_english() -> AffixSearcher:
+    """
+    :return: the affix searcher that contains English affixes.
+    """
+    # TODO: split affix searcher!
+    return Wordform.affix_searcher
+
+
+def affix_searcher_for_cree() -> AffixSearcher:
+    """
+    :return: the affix searcher that contains Cree affixes.
+    """
+    # TODO: split affix searcher!
+    return Wordform.affix_searcher
+
+
+def set_combined_affix_searcher(searcher: AffixSearcher):
+    """
+    Sets the new value of the combined affix searcher (contains both Cree and English results).
+    """
+    Wordform.affix_searcher = searcher
 
 
 def sort_by_user_query(user_query: InternalForm) -> Callable[[Any], Any]:
