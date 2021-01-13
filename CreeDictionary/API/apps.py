@@ -77,11 +77,7 @@ def initialize_affix_search() -> None:
         logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
         return
 
-    set_affix_searcher_for_cree(
-        AffixSearcher(
-            (Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
-        )
-    )
+    set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
     set_affix_searcher_for_english(
         AffixSearcher((EnglishKeyword.objects.all().values_list("text", "lemma__id")))
     )
@@ -92,6 +88,15 @@ def initialize_affix_search() -> None:
         )
     )
     logger.info("Finished building tries")
+
+
+def fetch_cree_lemmas_with_ids():
+    """
+    Return pairs of Cree lemmas with thier coorepsonding Wordform IDs.
+    """
+    from .models import Wordform
+
+    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
 
 
 class _TemporaryComposeAffixSearchers(AffixSearcher):
