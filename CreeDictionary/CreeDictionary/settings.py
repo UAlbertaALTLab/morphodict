@@ -313,9 +313,9 @@ LOGGING = {
             "class": "logging.StreamHandler",
         },
     },
-    'root': {
-        'handlers': ['console'],
-        'level': log_level,
+    "root": {
+        "handlers": ["console"],
+        "level": log_level,
     },
     "loggers": {
         # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
