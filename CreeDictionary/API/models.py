@@ -43,6 +43,9 @@ class Wordform(models.Model):
 
     # initialized in apps.py
     affix_searcher: AffixSearcher
+    # TODO: I don't know where else to put these global variables :/
+    _cree_affix_searcher: AffixSearcher
+    _english_affix_searcher: AffixSearcher
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
@@ -387,6 +390,26 @@ def affix_searcher_for_both_languages_even_though_that_is_silly() -> AffixSearch
     """
     # TODO: split affix searcher!
     return Wordform.affix_searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def affix_searcher_for_cree() -> AffixSearcher:
+    return Wordform._cree_affix_searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def affix_searcher_for_english() -> AffixSearcher:
+    return Wordform._english_affix_searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def set_affix_searcher_for_cree(searcher: AffixSearcher):
+    Wordform._cree_affix_searcher = searcher
+
+
+# TODO: move this to search, without causing an import cycle!
+def set_affix_searcher_for_english(searcher: AffixSearcher):
+    Wordform._english_affix_searcher = searcher
 
 
 # TODO: move this to search, without causing an import cycle!

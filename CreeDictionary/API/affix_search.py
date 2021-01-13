@@ -15,7 +15,6 @@ class AffixSearcher:
     """
 
     # TODO: "int" should be Wordform PK type
-    # TODO: "str" should be InternalForm
 
     def __init__(self, words: List[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
