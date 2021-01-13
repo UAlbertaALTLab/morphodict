@@ -381,15 +381,6 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
 
 
 # TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_english() -> AffixSearcher:
-    """
-    :return: the affix searcher that contains English affixes.
-    """
-    # TODO: split affix searcher!
-    return Wordform.affix_searcher
-
-
-# TODO: move this to search, without causing an import cycle!
 def affix_searcher_for_both_languages_even_though_that_is_silly() -> AffixSearcher:
     """
     :return: the affix searcher that contains Cree affixes.
