@@ -16,3 +16,7 @@ normative_generator = HFSTOL.from_file(_fst_dir / "crk-normative-generator.hfsto
 descriptive_analyzer = HFSTOLWithoutFragmentAnalyses.from_file(
     _fst_dir / "crk-descriptive-analyzer.hfstol"
 )
+
+strict_analyzer = HFSTOLWithoutFragmentAnalyses.from_file(
+    _fst_dir / "crk-strict-analyzer.hfstol"
+)
