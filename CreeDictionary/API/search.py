@@ -612,6 +612,9 @@ def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constr
         # Affix is too short; will return WAY too many results, so just don't
         return
 
+    def add_affix_result(wordform: Wordform):
+        results.add(CreeResult(wordform.analysis, wordform, wordform.lemma))
+
     affixes = affix_searcher_for_cree()
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
@@ -620,7 +623,9 @@ def do_affix_search(results: Set[CreeResult], query: InternalForm, search_constr
     for wf in Wordform.objects.filter(
         id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
     ):
-        results.add(CreeResult(wf.analysis, wf, wf.lemma))
+        add_affix_result(wf)
+
+
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
