@@ -78,12 +78,12 @@ def initialize_affix_search() -> None:
         return
 
     set_affix_searcher_for_cree(
-        AffixSearcher((EnglishKeyword.objects.all().values_list("text", "lemma__id")))
-    )
-    set_affix_searcher_for_english(
         AffixSearcher(
             (Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
         )
+    )
+    set_affix_searcher_for_english(
+        AffixSearcher((EnglishKeyword.objects.all().values_list("text", "lemma__id")))
     )
 
     set_combined_affix_searcher(
