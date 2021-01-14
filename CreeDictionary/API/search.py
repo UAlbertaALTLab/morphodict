@@ -468,8 +468,9 @@ def fetch_cree_and_english_results(
         )
 
         for word in english_keywords_matching_affix:
-            # TODO: fix this call:
-            cree_results.add(CreeResult.from_wordform(word))
+            english_results.add(
+                EnglishResult(MatchedEnglish(user_query), word, word.lemma)
+            )
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
