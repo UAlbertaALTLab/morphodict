@@ -113,6 +113,33 @@ def test_search_for_english() -> None:
 
 
 @pytest.mark.django_db
+def test_compare_simple_vs_affix_search() -> None:
+    """
+    There are two generalized search methods:
+     - simple_search()
+     - search_with_affixes()
+
+    The only difference is that there should be more things returned via affix search.
+    """
+
+    # The prefix should be a complete wordform, as well as a valid prefix of the lemma
+    prefix = "wâpam"
+    lemma = "wâpamêw"
+    assert lemma.startswith(prefix)
+
+    simple_results = Wordform.simple_search(prefix)
+    general_results = Wordform.search_with_affixes(prefix)
+
+    assert len(simple_results) <= len(general_results)
+
+    assert results_contains_wordform(prefix, simple_results)
+    assert not results_contains_wordform(lemma, simple_results)
+
+    assert results_contains_wordform(prefix, general_results)
+    assert results_contains_wordform(lemma, general_results)
+
+
+@pytest.mark.django_db
 def test_search_for_pronoun() -> None:
     """
     Search for a common pronoun "ôma". Make sure "oma" returns at least one
@@ -314,3 +341,11 @@ def position_in_results(wordform: str, search_results) -> int:
         if wordform == result.matched_cree:
             return pos
     raise AssertionError(f"{wordform} not found in results: {search_results}")
+
+
+def results_contains_wordform(wordform: str, search_results) -> bool:
+    try:
+        position_in_results(wordform, search_results)
+        return True
+    except AssertionError:
+        return False
