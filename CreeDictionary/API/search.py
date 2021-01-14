@@ -38,7 +38,8 @@ from .models import (
     Definition,
     EnglishKeyword,
     Wordform,
-    affix_searcher_for_both_languages_even_though_that_is_silly,
+    affix_searcher_for_cree,
+    affix_searcher_for_english,
 )
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
@@ -451,13 +452,23 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        wordforms_matching_affix = do_affix_search(
+        cree_words_matching_affix = do_affix_search(
             user_query,
             extra_constraints,
-            affix_searcher_for_both_languages_even_though_that_is_silly(),
+            affix_searcher_for_cree(),
         )
 
-        for word in wordforms_matching_affix:
+        for word in cree_words_matching_affix:
+            cree_results.add(CreeResult.from_wordform(word))
+
+        english_keywords_matching_affix = do_affix_search(
+            user_query,
+            extra_constraints,
+            affix_searcher_for_english(),
+        )
+
+        for word in english_keywords_matching_affix:
+            # TODO: fix this call:
             cree_results.add(CreeResult.from_wordform(word))
 
     # utilize the spell relax in descriptive_analyzer
