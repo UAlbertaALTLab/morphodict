@@ -1,6 +1,5 @@
 import logging
 from pathlib import Path
-from itertools import chain
 
 from django.apps import AppConfig
 from django.db import OperationalError
@@ -74,11 +73,8 @@ def initialize_affix_search() -> None:
     from .models import (
         EnglishKeyword,
         Wordform,
-        set_affix_searcher_for_english,
-        set_combined_affix_searcher,
         set_affix_searcher_for_cree,
-        affix_searcher_for_cree,
-        affix_searcher_for_english,
+        set_affix_searcher_for_english,
     )
 
     try:
@@ -92,11 +88,6 @@ def initialize_affix_search() -> None:
     set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
     set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
 
-    set_combined_affix_searcher(
-        _TemporaryComposeAffixSearchers(
-            affix_searcher_for_cree(), affix_searcher_for_english()
-        )
-    )
     logger.info("Finished building tries")
 
 
@@ -116,18 +107,3 @@ def fetch_cree_lemmas_with_ids():
     from .models import Wordform
 
     return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
-
-
-class _TemporaryComposeAffixSearchers(AffixSearcher):
-    def __init__(self, *searchers: AffixSearcher):
-        self._searchers = searchers
-
-    def search_by_prefix(self, prefix: str):
-        return chain(
-            *[searcher.search_by_prefix(prefix) for searcher in self._searchers]
-        )
-
-    def search_by_suffix(self, suffix: str):
-        return chain(
-            *[searcher.search_by_suffix(suffix) for searcher in self._searchers]
-        )

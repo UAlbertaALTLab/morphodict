@@ -384,15 +384,6 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
 
 
 # TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_both_languages_even_though_that_is_silly() -> AffixSearcher:
-    """
-    :return: the affix searcher that contains Cree affixes.
-    """
-    # TODO: split affix searcher!
-    return Wordform.affix_searcher
-
-
-# TODO: move this to search, without causing an import cycle!
 def affix_searcher_for_cree() -> AffixSearcher:
     return Wordform._cree_affix_searcher
 
@@ -410,11 +401,3 @@ def set_affix_searcher_for_cree(searcher: AffixSearcher):
 # TODO: move this to search, without causing an import cycle!
 def set_affix_searcher_for_english(searcher: AffixSearcher):
     Wordform._english_affix_searcher = searcher
-
-
-# TODO: move this to search, without causing an import cycle!
-def set_combined_affix_searcher(searcher: AffixSearcher):
-    """
-    Sets the new value of the combined affix searcher (contains both Cree and English results).
-    """
-    Wordform.affix_searcher = searcher
