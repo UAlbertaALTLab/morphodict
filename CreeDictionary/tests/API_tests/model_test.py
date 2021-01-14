@@ -331,6 +331,8 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     ), f"{top_result} did not come before {later_result}"
 
 
+####################################### Helpers ########################################
+
 def position_in_results(wordform: str, search_results) -> int:
     """
     Find the EXACT wordform in the results.
@@ -344,6 +346,9 @@ def position_in_results(wordform: str, search_results) -> int:
 
 
 def results_contains_wordform(wordform: str, search_results) -> bool:
+    """
+    Returns True if the wordform is found in the search results.
+    """
     try:
         position_in_results(wordform, search_results)
         return True
