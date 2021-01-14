@@ -119,9 +119,12 @@ jobs:
       env:
         DEBUG: "True"
         USE_TEST_DB: "True"
+        # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/cree-intelligent-dictionary
+        CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
+      run: |
         # Enables uploading test runs to Cypress Dashboard:
-        CYPRESS_OPTS: "--record --key ${{ secrets.CYPRESS_RECORD_KEY }}"
-      run: npm run test:ci
+        if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
+        npm run test:ci
 
   # This syncs up API/schema.py to our @altlab/types package
   # If there is an update to the type output (index.ts), but the version number is untouched. This
