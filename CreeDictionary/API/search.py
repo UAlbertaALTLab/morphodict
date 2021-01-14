@@ -275,9 +275,10 @@ class _BaseWordformSearch:
         return results
 
     def fetch_cree_and_english_results(self):
-        return fetch_cree_and_english_results(
-            self.cleaned_query, self._affix_search, **self.constraints
-        )
+        """
+        Subclasses must implement this!
+        """
+        raise NotImplementedError
 
     def prepare_cree_results(
         self, cree_results: Set[CreeResult]
@@ -349,7 +350,10 @@ class _BaseWordformSearch:
 
 
 class WordformSearch(_BaseWordformSearch):
-    pass
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(
+            self.cleaned_query, self._affix_search, **self.constraints
+        )
 
 
 def make_searcher(
