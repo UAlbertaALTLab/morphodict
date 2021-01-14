@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from django.apps import AppConfig
+from django.apps import AppConfig, apps
 from django.db import OperationalError
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -41,6 +41,15 @@ class APIConfig(AppConfig):
         set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
 
         logger.info("Finished building tries")
+
+    @classmethod
+    def active_instance(cls) -> "APIConfig":
+        """
+        Fetch the instance of this Config from the Django app registry.
+
+        This way you can get access to the affix searchers in other modules!
+        """
+        return apps.get_app_config(cls.app_label)
 
 
 def initialize_preverb_search():
@@ -85,7 +94,6 @@ def read_morpheme_rankings():
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
 
 
-
 def fetch_english_keywords_with_ids():
     """
     Return pairs of indexed English keywords with their coorepsonding Wordform IDs.
@@ -106,9 +114,11 @@ def fetch_cree_lemmas_with_ids():
 
 def set_affix_searcher_for_cree(searcher: AffixSearcher):
     from .models import Wordform
+
     Wordform._cree_affix_searcher = searcher
 
 
 def set_affix_searcher_for_english(searcher: AffixSearcher):
     from .models import Wordform
+
     Wordform._english_affix_searcher = searcher
