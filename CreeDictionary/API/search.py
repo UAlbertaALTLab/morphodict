@@ -650,9 +650,8 @@ def do_affix_search(
     """
     results: List[Wordform] = []
 
-    ids_by_prefix = list(affixes.search_by_prefix(query))
-    ids_by_suffix = list(affixes.search_by_suffix(query))
-    matched_ids = set(ids_by_prefix + ids_by_suffix)
+    matched_ids = set(affixes.search_by_prefix(query))
+    matched_ids |= set(affixes.search_by_suffix(query))
 
     for wf in Wordform.objects.filter(id__in=matched_ids, **search_constraints):
         results.append(wf)
