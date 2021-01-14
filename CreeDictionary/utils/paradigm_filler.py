@@ -73,7 +73,7 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path = None):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
@@ -81,7 +81,10 @@ class ParadigmFiller:
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
         self._layout_tables = self._import_layouts(layout_dir)
-        self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
+        if generator_hfstol_path is None:
+            raise NotImplementedError
+        else:
+            self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
     @classmethod
     def default_filler(cls):
