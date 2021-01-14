@@ -333,6 +333,7 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
 
 ####################################### Helpers ########################################
 
+
 def position_in_results(wordform: str, search_results) -> int:
     """
     Find the EXACT wordform in the results.
