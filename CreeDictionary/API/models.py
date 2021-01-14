@@ -249,14 +249,16 @@ class Wordform(models.Model):
         return search.perform()
 
     @staticmethod
-    def simple_search(
-         query: str, **constraints
-    ) -> SortedSet["SearchResult"]:
+    def simple_search(query: str, **constraints) -> SortedSet["SearchResult"]:
+        """
+        Search, trying to match full wordforms or keywords within definitions.
+
+        Does NOT try to match affixes!
+        """
         from .search import WordformSearchWithExactMatch
 
         search = WordformSearchWithExactMatch(query, constraints)
         return search.perform()
-
 
 
 class DictionarySource(models.Model):
