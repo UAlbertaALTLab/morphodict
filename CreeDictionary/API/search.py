@@ -652,11 +652,9 @@ def do_affix_search(
 
     ids_by_prefix = list(affixes.search_by_prefix(query))
     ids_by_suffix = list(affixes.search_by_suffix(query))
+    matched_ids = set(ids_by_prefix + ids_by_suffix)
 
-    # todo: this needs refactoring, our affix searcher now also return entries matched by English
-    for wf in Wordform.objects.filter(
-        id__in=set(ids_by_prefix + ids_by_suffix), **search_constraints
-    ):
+    for wf in Wordform.objects.filter(id__in=matched_ids, **search_constraints):
         results.append(wf)
 
     return results
