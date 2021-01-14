@@ -41,11 +41,6 @@ class Wordform(models.Model):
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
-    # Affix search is initialized in apps.py
-    # TODO: I don't know where else to put these global variables :/
-    _cree_affix_searcher: AffixSearcher
-    _english_affix_searcher: AffixSearcher
-
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
 
