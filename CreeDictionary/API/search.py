@@ -348,17 +348,6 @@ class _BaseWordformSearch:
             )
 
 
-class WordformSearchWithVariableAffixSearch(_BaseWordformSearch):
-    def __init__(self, query: str, constraints: dict, affix_search: bool):
-        super().__init__(query, constraints)
-        self._affix_search = affix_search
-
-    def fetch_cree_and_english_results(self):
-        return fetch_cree_and_english_results(
-            self.cleaned_query, self._affix_search, **self.constraints
-        )
-
-
 class WordformSearchWithExactMatch(_BaseWordformSearch):
     """
     Searches for exact matches in both the wordforms and EnglishKeyword tables.
