@@ -240,7 +240,7 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def search_with_affixes(query: str, **constraints) -> SortedSet["SearchResult"]:
+    def search_with_affixes(query: str) -> SortedSet["SearchResult"]:
         """
         Search for wordforms matching:
          - the wordform text
@@ -250,11 +250,11 @@ class Wordform(models.Model):
         """
         from .search import WordformSearchWithAffixes
 
-        search = WordformSearchWithAffixes(query, constraints)
+        search = WordformSearchWithAffixes(query, {})
         return search.perform()
 
     @staticmethod
-    def simple_search(query: str, **constraints) -> SortedSet["SearchResult"]:
+    def simple_search(query: str) -> SortedSet["SearchResult"]:
         """
         Search, trying to match full wordforms or keywords within definitions.
 
@@ -262,7 +262,7 @@ class Wordform(models.Model):
         """
         from .search import WordformSearchWithExactMatch
 
-        search = WordformSearchWithExactMatch(query, constraints)
+        search = WordformSearchWithExactMatch(query, {})
         return search.perform()
 
 
