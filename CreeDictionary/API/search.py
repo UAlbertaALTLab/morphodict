@@ -644,7 +644,7 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
 
 def do_affix_search(
     query: InternalForm, search_constraints, affixes: AffixSearcher
-) -> List[Wordform]:
+) -> Iterable[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
