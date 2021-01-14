@@ -266,13 +266,13 @@ class _BaseWordformSearch:
         :return: sorted search results
         """
 
-        res = self.fetch_cree_and_english_results()
+        res = self.fetch_bilingual_results()
         results = SortedSet(key=sort_by_user_query(self.cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
 
-    def fetch_cree_and_english_results(self):
+    def fetch_bilingual_results(self) -> CreeAndEnglish:
         """
         Subclasses must implement this!
         """
@@ -352,7 +352,7 @@ class WordformSearchWithExactMatch(_BaseWordformSearch):
     Searches for exact matches in both the wordforms and EnglishKeyword tables.
     """
 
-    def fetch_cree_and_english_results(self):
+    def fetch_bilingual_results(self) -> CreeAndEnglish:
         return fetch_cree_and_english_results(self.cleaned_query, affix_search=False)
 
 
@@ -361,7 +361,7 @@ class WordformSearchWithAffixes(_BaseWordformSearch):
     Same as WordformSearchWithExactMatch, but augments results with searches on affixes.
     """
 
-    def fetch_cree_and_english_results(self):
+    def fetch_bilingual_results(self) -> CreeAndEnglish:
         return fetch_cree_and_english_results(self.cleaned_query, affix_search=True)
 
 
