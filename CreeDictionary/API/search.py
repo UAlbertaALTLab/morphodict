@@ -252,7 +252,7 @@ class CreeAndEnglish(NamedTuple):
     english_results: Set[EnglishResult]
 
 
-class WordformSearch:
+class _BaseWordformSearch:
     """
     Handles searching for one particular query, and an optional set of constraints.
     """
@@ -346,6 +346,10 @@ class WordformSearch:
                 #       This may be an empty tuple in the future
                 #       when EnglishKeyword can be associated with non-lemmas
             )
+
+
+class WordformSearch(_BaseWordformSearch):
+    pass
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
