@@ -268,14 +268,16 @@ class WordformSearch:
         :return: sorted search results
         """
 
-        res = fetch_cree_and_english_results(
-            self.cleaned_query, self._affix_search, **self.constraints
-        )
-
+        res = self.fetch_cree_and_english_results()
         results = SortedSet(key=sort_by_user_query(self.cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
+
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(
+            self.cleaned_query, self._affix_search, **self.constraints
+        )
 
     def prepare_cree_results(
         self, cree_results: Set[CreeResult]
