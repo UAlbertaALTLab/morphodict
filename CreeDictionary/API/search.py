@@ -258,7 +258,7 @@ class WordformSearch:
     """
 
     def __init__(self, query: str, constraints: dict, affix_search: bool):
-        self.query = query
+        self.cleaned_query = to_internal_form(clean_query_text(query))
         self._affix_search = affix_search
         self.constraints = constraints
 
@@ -268,13 +268,11 @@ class WordformSearch:
         :return: sorted search results
         """
 
-        cleaned_query = to_internal_form(clean_query_text(self.query))
-
         res = fetch_cree_and_english_results(
-            cleaned_query, self._affix_search, **self.constraints
+            self.cleaned_query, self._affix_search, **self.constraints
         )
 
-        results = SortedSet(key=sort_by_user_query(cleaned_query))
+        results = SortedSet(key=sort_by_user_query(self.cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
