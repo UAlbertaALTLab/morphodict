@@ -353,9 +353,7 @@ class WordformSearchWithExactMatch(_BaseWordformSearch):
     """
 
     def fetch_cree_and_english_results(self):
-        return fetch_cree_and_english_results(
-            self.cleaned_query, affix_search=False
-        )
+        return fetch_cree_and_english_results(self.cleaned_query, affix_search=False)
 
 
 class WordformSearchWithAffixes(_BaseWordformSearch):
@@ -364,9 +362,7 @@ class WordformSearchWithAffixes(_BaseWordformSearch):
     """
 
     def fetch_cree_and_english_results(self):
-        return fetch_cree_and_english_results(
-            self.cleaned_query, affix_search=True
-        )
+        return fetch_cree_and_english_results(self.cleaned_query, affix_search=True)
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
@@ -541,9 +537,7 @@ def _fetch_results(
             )
 
             lemma, word_class = lemma_wc
-            matched_lemma_wordforms = Wordform.objects.filter(
-                text=lemma, is_lemma=True
-            )
+            matched_lemma_wordforms = Wordform.objects.filter(text=lemma, is_lemma=True)
 
             # now we get wordform objects from database
             # Note:
@@ -624,9 +618,9 @@ def _fetch_results(
     #  since now EnglishKeywords are bound to lemmas)
     for stemmed_keyword in stem_keywords(user_query):
 
-        lemma_ids = EnglishKeyword.objects.filter(
-            text__iexact=stemmed_keyword
-        ).values("lemma__id")
+        lemma_ids = EnglishKeyword.objects.filter(text__iexact=stemmed_keyword).values(
+            "lemma__id"
+        )
 
         for wordform in Wordform.objects.filter(id__in=lemma_ids):
             english_results.add(
