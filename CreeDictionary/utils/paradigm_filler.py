@@ -82,7 +82,9 @@ class ParadigmFiller:
         """
         self._layout_tables = self._import_layouts(layout_dir)
         if generator_hfstol_path is None:
-            raise NotImplementedError
+            from shared import expensive
+
+            self._generator = expensive.normative_generator
         else:
             self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
 
@@ -91,10 +93,7 @@ class ParadigmFiller:
         """
         Return a filler that uses .layout files, .paradigm files and the fst from the res folder
         """
-        return ParadigmFiller(
-            shared_res_dir / "layouts",
-            shared_res_dir / "fst" / "crk-normative-generator.hfstol",
-        )
+        return ParadigmFiller(shared_res_dir / "layouts")
 
     def fill_paradigm(
         self, lemma: str, category: WordClass, paradigm_size: ParadigmSize
