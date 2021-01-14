@@ -257,9 +257,8 @@ class _BaseWordformSearch:
     Handles searching for one particular query, and an optional set of constraints.
     """
 
-    def __init__(self, query: str, constraints: dict, affix_search: bool):
+    def __init__(self, query: str, constraints: dict):
         self.cleaned_query = to_internal_form(clean_query_text(query))
-        self._affix_search = affix_search
         self.constraints = constraints
 
     def perform(self) -> SortedSet[SearchResult]:
@@ -349,7 +348,11 @@ class _BaseWordformSearch:
             )
 
 
-class WordformSearch(_BaseWordformSearch):
+class WordformSearchWithVariableAffixSearch(_BaseWordformSearch):
+    def __init__(self, query: str, constraints: dict, affix_search: bool):
+        super().__init__(query, constraints)
+        self._affix_search = affix_search
+
     def fetch_cree_and_english_results(self):
         return fetch_cree_and_english_results(
             self.cleaned_query, self._affix_search, **self.constraints
@@ -362,7 +365,7 @@ def make_searcher(
     """
     Create a searcher given the parameters.
     """
-    return WordformSearch(query, constraints, affix_search)
+    return WordformSearchWithVariableAffixSearch(query, constraints, affix_search)
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
