@@ -76,7 +76,7 @@ def index(request):  # pragma: no cover
 
     if user_query:
         search_results = [
-            search_result.serialize() for search_result in Wordform.search(user_query)
+            search_result.serialize() for search_result in Wordform.search_with_affixes(user_query)
         ]
         did_search = True
     else:
@@ -103,7 +103,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
-    results = Wordform.search(query_string)
+    results = Wordform.search_with_affixes(query_string)
     return render(
         request,
         "CreeDictionary/word-entries.html",

@@ -1,41 +1,71 @@
 from collections import defaultdict
 from itertools import chain
-from typing import Dict, Iterable, List, Tuple
+from typing import Dict, Iterable, List, Tuple, NewType
 
 import dawg
 from utils.cree_lev_dist import remove_cree_diacritics
 
+# A simplified form intended to be used within the affix search trie.
+SimplifiedForm = NewType("SimplifiedForm", str)
+
 
 class AffixSearcher:
-    def __init__(self, words: List[Tuple[str, int]]):
-        """
-        :param words: expects lowered, no diacritics words with their ids
-        """
+    """
+    Enables prefix and suffix searches given a list of words and their wordform IDs.
+    """
+
+    # TODO: "int" should be Wordform PK type
+
+    def __init__(self, words: Iterable[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
-        for w, w_id in words:
-            self.text_to_ids[w].append(w_id)
 
-        # TODO: why are there empty words in the first place?????
-        non_empty_words = [t for t in words if len(t[0]) > 0]
+        words_marked_for_indexing = [
+            (simplified_text, wordform_id)
+            for raw_text, wordform_id in words
+            if (simplified_text := self.to_simplified_form(raw_text))
+        ]
 
-        self.trie = dawg.CompletionDAWG([t[0] for t in non_empty_words])
-        self.inverse_trie = dawg.CompletionDAWG([t[0][::-1] for t in non_empty_words])
+        for text, wordform_id in words_marked_for_indexing:
+            self.text_to_ids[self.to_simplified_form(text)].append(wordform_id)
+
+        self._prefixes = dawg.CompletionDAWG(
+            [text for text, _ in words_marked_for_indexing]
+        )
+        self._suffixes = dawg.CompletionDAWG(
+            [_reverse(text) for text, _ in words_marked_for_indexing]
+        )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
-        :return: an iterable of ids
+        :return: an iterable of Wordform IDs that match the prefix
         """
-        # lower & remove diacritics
-        prefix = remove_cree_diacritics(prefix.lower())
-        return chain(*[self.text_to_ids[t] for t in self.trie.keys(prefix)])
+        term = self.to_simplified_form(prefix)
+        return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(term)])
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
         """
-        :return: an iterable of ids
+        :return: an iterable of Wordform IDs that match the suffix
         """
-        # lower & remove diacritics
-        suffix = remove_cree_diacritics(suffix.lower())
+        term = self.to_simplified_form(suffix)
 
         return chain(
-            *[self.text_to_ids[x[::-1]] for x in self.inverse_trie.keys(suffix[::-1])]
+            *[
+                self.text_to_ids[_reverse(key)]
+                for key in self._suffixes.keys(_reverse(term))
+            ]
         )
+
+    @staticmethod
+    def to_simplified_form(query: str) -> SimplifiedForm:
+        """
+        Convert to a simplified form of the word and its orthography to facilitate affix
+        search.  You SHOULD throw out diacritics, choose a Unicode Normalization form,
+        and choose a single letter case here!
+        """
+        # TODO: make this work for not just Cree!
+        # TODO: allow users to override this method
+        return SimplifiedForm(remove_cree_diacritics(query.lower()))
+
+
+def _reverse(text: SimplifiedForm) -> SimplifiedForm:
+    return SimplifiedForm(text[::-1])

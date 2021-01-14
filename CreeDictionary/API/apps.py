@@ -1,6 +1,4 @@
 import logging
-import string
-from itertools import chain
 from pathlib import Path
 
 from django.apps import AppConfig
@@ -13,19 +11,30 @@ from .affix_search import AffixSearcher
 logger = logging.getLogger(__name__)
 
 
+class APIConfig(AppConfig):
+    name = "API"
+
+    def ready(self):
+        """
+        This function is called when you restart dev server or touch wsgi.py
+        """
+        initialize_preverb_search()
+        initialize_affix_search()
+        read_morpheme_rankings()
+
+
 def initialize_preverb_search():
-    from .models import Wordform
     from django.db.models import Q
+
+    from .models import Wordform
 
     # Hashing to speed up exhaustive preverb matching
     # so that we won't need to search from the database every time the user searches for a preverb or when the user
     # query contains a preverb
-
     # An all inclusive filtering mechanism is inflectional_category=IPV OR pos="IPV". Don't rely on a single one
     # due to the inconsistent labelling in the source crkeng.xml.
     # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
     # For "sa", the source gives pos=IPV ic="" (unspecified)
-
     # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
     # many preverbs are normalized so that both inflectional_category and pos are set to IPV.
     try:
@@ -56,47 +65,45 @@ def read_morpheme_rankings():
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
 
 
-def initialize_affix_search():
+def initialize_affix_search() -> None:
     """
-    build tries and attach to Wordform class to facilitate prefix/suffix search
+    Build tries and attach to Wordform class to facilitate prefix/suffix search
     """
     logger.info("Building tries for affix search...")
-    from .models import Wordform
-    from .models import EnglishKeyword
+    from .models import (
+        EnglishKeyword,
+        Wordform,
+        set_affix_searcher_for_cree,
+        set_affix_searcher_for_english,
+    )
 
     try:
-        lowered_no_diacritics_cree_with_id = [
-            (remove_cree_diacritics(text.lower()), wf_id)
-            for text, wf_id in Wordform.objects.filter(is_lemma=True).values_list(
-                "text", "id"
-            )
-        ]
-
-        lowered_english_keywords_with_wf_id = [
-            (kw, wf_id)
-            for kw, wf_id in EnglishKeyword.objects.all().values_list(
-                "text", "lemma__id"
-            )
-        ]
-
+        Wordform.objects.count()
+    except OperationalError:
         # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
         # exists. Then an OperationalError will occur.
-    except OperationalError:
+        logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
         return
 
-    Wordform.affix_searcher = AffixSearcher(
-        lowered_no_diacritics_cree_with_id + lowered_english_keywords_with_wf_id
-    )
+    set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
+    set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
+
     logger.info("Finished building tries")
 
 
-class APIConfig(AppConfig):
-    name = "API"
+def fetch_english_keywords_with_ids():
+    """
+    Return pairs of indexed English keywords with their coorepsonding Wordform IDs.
+    """
+    from .models import EnglishKeyword
 
-    def ready(self):
-        """
-        This function is called when you restart dev server or touch wsgi.py
-        """
-        initialize_preverb_search()
-        initialize_affix_search()
-        read_morpheme_rankings()
+    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
+
+
+def fetch_cree_lemmas_with_ids():
+    """
+    Return pairs of Cree lemmas with their coorepsonding Wordform IDs.
+    """
+    from .models import Wordform
+
+    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")

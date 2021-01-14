@@ -18,7 +18,7 @@ def click_in_text(request) -> HttpResponse:
         return HttpResponseBadRequest("query param q is an empty string")
 
     results: List[SerializedSearchResult] = []
-    for result in Wordform.search(q, affix_search=False):
+    for result in Wordform.simple_search(q):
         results.append(result.serialize())
 
     response = {"results": results}

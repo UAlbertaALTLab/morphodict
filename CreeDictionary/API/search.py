@@ -19,6 +19,7 @@ from typing import (
 )
 
 import attr
+from API.affix_search import AffixSearcher
 from attr import attrs
 from cree_sro_syllabics import syllabics2sro
 from django.conf import settings
@@ -33,7 +34,13 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol as temp_hfstol
 
-from .models import Definition, EnglishKeyword, Wordform
+from .models import (
+    Definition,
+    EnglishKeyword,
+    Wordform,
+    affix_searcher_for_cree,
+    affix_searcher_for_english,
+)
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
@@ -211,6 +218,10 @@ class CreeResult(NamedTuple):
         else:  # is str
             return self.normatized_cree
 
+    @classmethod
+    def from_wordform(cls, wordform: Wordform) -> "CreeResult":
+        return cls(wordform.analysis, wordform, wordform.lemma)
+
 
 class EnglishResult(NamedTuple):
     """
@@ -241,15 +252,13 @@ class CreeAndEnglish(NamedTuple):
     english_results: Set[EnglishResult]
 
 
-class WordformSearch:
+class _BaseWordformSearch:
     """
-    Handles searching for one particular query, and an optional set of constraints.
+    Handles searching for one particular query.
     """
 
-    def __init__(self, query: str, constraints: dict, affix_search: bool):
-        self.query = query
-        self._affix_search = affix_search
-        self.constraints = constraints
+    def __init__(self, query: str):
+        self.cleaned_query = to_internal_form(clean_query_text(query))
 
     def perform(self) -> SortedSet[SearchResult]:
         """
@@ -257,16 +266,17 @@ class WordformSearch:
         :return: sorted search results
         """
 
-        cleaned_query = to_internal_form(clean_query_text(self.query))
-
-        res = fetch_cree_and_english_results(
-            cleaned_query, self._affix_search, **self.constraints
-        )
-
-        results = SortedSet(key=sort_by_user_query(cleaned_query))
+        res = self.fetch_cree_and_english_results()
+        results = SortedSet(key=sort_by_user_query(self.cleaned_query))
         results |= self.prepare_cree_results(res.cree_results)
         results |= self.prepare_english_results(res.english_results)
         return results
+
+    def fetch_cree_and_english_results(self):
+        """
+        Subclasses must implement this!
+        """
+        raise NotImplementedError
 
     def prepare_cree_results(
         self, cree_results: Set[CreeResult]
@@ -337,6 +347,24 @@ class WordformSearch:
             )
 
 
+class WordformSearchWithExactMatch(_BaseWordformSearch):
+    """
+    Searches for exact matches in both the wordforms and EnglishKeyword tables.
+    """
+
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(self.cleaned_query, affix_search=False)
+
+
+class WordformSearchWithAffixes(_BaseWordformSearch):
+    """
+    Same as WordformSearchWithExactMatch, but augments results with searches on affixes.
+    """
+
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(self.cleaned_query, affix_search=True)
+
+
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
     """
     return the wordforms that has definition from CW dictionary
@@ -401,7 +429,7 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
 
 
 def fetch_cree_and_english_results(
-    user_query: InternalForm, affix_search: bool = True, **extra_constraints
+    user_query: InternalForm, affix_search: bool = True
 ) -> CreeAndEnglish:
     """
     HERE BE DRAGONS!
@@ -428,7 +456,6 @@ def fetch_cree_and_english_results(
 
     :param affix_search: whether to perform affix search or not (both English and Cree)
     :param user_query: can be English or Cree (syllabics or not)
-    :param extra_constraints: additional fields to disambiguate
     """
 
     # build up result_lemmas in 2 ways
@@ -437,19 +464,27 @@ def fetch_cree_and_english_results(
     # 2. definition containment of the query word
 
     cree_results: Set[CreeResult] = set()
+    english_results: Set[EnglishResult] = set()
 
     # there will be too many matches for some shorter queries
-    if len(user_query) > settings.AFFIX_SEARCH_THRESHOLD and affix_search:
-        # prefix and suffix search
-        ids_by_prefix = list(Wordform.affix_searcher.search_by_prefix(user_query))
-        ids_by_suffix = list(Wordform.affix_searcher.search_by_suffix(user_query))
+    if affix_search and not query_would_return_too_many_results(user_query):
+        do_cree_affix_seach(user_query, cree_results)
+        do_english_affix_search(user_query, english_results)
 
-        # todo: this needs refactoring, our affix searcher now also return entries matched by English
-        for wf in Wordform.objects.filter(
-            id__in=set(ids_by_prefix + ids_by_suffix), **extra_constraints
-        ):
-            cree_results.add(CreeResult(wf.analysis, wf, wf.lemma))
+    _fetch_results(user_query, cree_results, english_results)
 
+    return CreeAndEnglish(cree_results, english_results)
+
+
+def _fetch_results(
+    user_query: InternalForm,
+    cree_results: Set[CreeResult],
+    english_results: Set[EnglishResult],
+):
+    """
+    The rest of this method is code Eddie has NOT refactored, so I don't really
+    understand what's going on here:
+    """
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
     # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
@@ -463,7 +498,7 @@ def fetch_cree_and_english_results(
         # todo: test
 
         exactly_matched_wordforms = Wordform.objects.filter(
-            analysis=analysis, as_is=False, **extra_constraints
+            analysis=analysis, as_is=False
         )
 
         if exactly_matched_wordforms.exists():
@@ -502,9 +537,7 @@ def fetch_cree_and_english_results(
             )
 
             lemma, word_class = lemma_wc
-            matched_lemma_wordforms = Wordform.objects.filter(
-                text=lemma, is_lemma=True, **extra_constraints
-            )
+            matched_lemma_wordforms = Wordform.objects.filter(text=lemma, is_lemma=True)
 
             # now we get wordform objects from database
             # Note:
@@ -533,7 +566,7 @@ def fetch_cree_and_english_results(
                     )
             else:
                 for lemma_wordform in matched_lemma_wordforms.filter(
-                    as_is=False, pos=word_class.pos.name, **extra_constraints
+                    as_is=False, pos=word_class.pos.name
                 ):
                     cree_results.add(
                         CreeResult(
@@ -552,7 +585,6 @@ def fetch_cree_and_english_results(
             text__in=all_standard_forms + [user_query],
             as_is=True,
             is_lemma=True,
-            **extra_constraints,
         )
     ):
         cree_results.add(
@@ -584,14 +616,13 @@ def fetch_cree_and_english_results(
     # todo: remind user "are you searching in cree/english?"
     # todo: allow inflected forms to be searched through English. (requires database migration
     #  since now EnglishKeywords are bound to lemmas)
-    english_results: Set[EnglishResult] = set()
     for stemmed_keyword in stem_keywords(user_query):
 
-        lemma_ids = EnglishKeyword.objects.filter(
-            text__iexact=stemmed_keyword, **extra_constraints
-        ).values("lemma__id")
+        lemma_ids = EnglishKeyword.objects.filter(text__iexact=stemmed_keyword).values(
+            "lemma__id"
+        )
 
-        for wordform in Wordform.objects.filter(id__in=lemma_ids, **extra_constraints):
+        for wordform in Wordform.objects.filter(id__in=lemma_ids):
             english_results.add(
                 EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
             )  # will become  (user_query, inflection.text, inflection.lemma)
@@ -601,13 +632,47 @@ def fetch_cree_and_english_results(
             Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
             id__in=lemma_ids,
             as_is=True,
-            **extra_constraints,
         ):
             english_results.add(
                 EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
             )  # will become  (user_query, inflection.text, wordform)
 
     return CreeAndEnglish(cree_results, english_results)
+
+
+def do_english_affix_search(query, english_results):
+    english_keywords_matching_affix = do_affix_search(
+        query,
+        affix_searcher_for_english(),
+    )
+    for word in english_keywords_matching_affix:
+        english_results.add(EnglishResult(MatchedEnglish(query), word, word.lemma))
+
+
+def do_cree_affix_seach(query, cree_results):
+    cree_words_matching_affix = do_affix_search(
+        query,
+        affix_searcher_for_cree(),
+    )
+    for word in cree_words_matching_affix:
+        cree_results.add(CreeResult.from_wordform(word))
+
+
+def query_would_return_too_many_results(query: InternalForm) -> bool:
+    """
+    If we do an search on too short an affix, the tries will match
+    WAY too many results.
+    """
+    return len(query) <= settings.AFFIX_SEARCH_THRESHOLD
+
+
+def do_affix_search(query: InternalForm, affixes: AffixSearcher) -> Iterable[Wordform]:
+    """
+    Augments the given set with results from performing both a suffix and prefix search on the wordforms.
+    """
+    matched_ids = set(affixes.search_by_prefix(query))
+    matched_ids |= set(affixes.search_by_suffix(query))
+    return Wordform.objects.filter(id__in=matched_ids)
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
