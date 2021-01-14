@@ -70,12 +70,7 @@ def initialize_affix_search() -> None:
     Build tries and attach to Wordform class to facilitate prefix/suffix search
     """
     logger.info("Building tries for affix search...")
-    from .models import (
-        EnglishKeyword,
-        Wordform,
-        set_affix_searcher_for_cree,
-        set_affix_searcher_for_english,
-    )
+    from .models import EnglishKeyword, Wordform
 
     try:
         Wordform.objects.count()
@@ -107,3 +102,13 @@ def fetch_cree_lemmas_with_ids():
     from .models import Wordform
 
     return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
+
+
+def set_affix_searcher_for_cree(searcher: AffixSearcher):
+    from .models import Wordform
+    Wordform._cree_affix_searcher = searcher
+
+
+def set_affix_searcher_for_english(searcher: AffixSearcher):
+    from .models import Wordform
+    Wordform._english_affix_searcher = searcher
