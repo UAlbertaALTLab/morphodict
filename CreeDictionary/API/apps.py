@@ -14,13 +14,33 @@ logger = logging.getLogger(__name__)
 class APIConfig(AppConfig):
     name = "API"
 
-    def ready(self):
+    def ready(self) -> None:
         """
         This function is called when you restart dev server or touch wsgi.py
         """
         initialize_preverb_search()
-        initialize_affix_search()
+        self._initialize_affix_search()
         read_morpheme_rankings()
+
+    def _initialize_affix_search(self) -> None:
+        """
+        Build tries to facilitate prefix/suffix search
+        """
+        logger.info("Building tries for affix search...")
+        from .models import EnglishKeyword, Wordform
+
+        try:
+            Wordform.objects.count()
+        except OperationalError:
+            # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
+            # exists. Then an OperationalError will occur.
+            logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
+            return
+
+        set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
+        set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
+
+        logger.info("Finished building tries")
 
 
 def initialize_preverb_search():
@@ -64,26 +84,6 @@ def read_morpheme_rankings():
             freq, morpheme, *_ = cells
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
 
-
-def initialize_affix_search() -> None:
-    """
-    Build tries and attach to Wordform class to facilitate prefix/suffix search
-    """
-    logger.info("Building tries for affix search...")
-    from .models import EnglishKeyword, Wordform
-
-    try:
-        Wordform.objects.count()
-    except OperationalError:
-        # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
-        # exists. Then an OperationalError will occur.
-        logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
-        return
-
-    set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
-    set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
-
-    logger.info("Finished building tries")
 
 
 def fetch_english_keywords_with_ids():
