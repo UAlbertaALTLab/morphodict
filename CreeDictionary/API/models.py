@@ -243,9 +243,9 @@ class Wordform(models.Model):
     def search(
         cls, query: str, affix_search: bool = True, **constraints
     ) -> SortedSet["SearchResult"]:
-        from .search import WordformSearch
+        from .search import make_searcher
 
-        search = WordformSearch(query, constraints, affix_search)
+        search = make_searcher(query, constraints, affix_search)
         return search.perform()
 
 

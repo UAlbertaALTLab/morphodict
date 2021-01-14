@@ -352,6 +352,15 @@ class WordformSearch(_BaseWordformSearch):
     pass
 
 
+def make_searcher(
+    query: str, constraints, affix_search: bool = True
+) -> _BaseWordformSearch:
+    """
+    Create a searcher given the parameters.
+    """
+    return WordformSearch(query, constraints, affix_search)
+
+
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
     """
     return the wordforms that has definition from CW dictionary
