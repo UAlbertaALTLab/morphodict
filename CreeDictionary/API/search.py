@@ -34,13 +34,7 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol as temp_hfstol
 
-from .models import (
-    Definition,
-    EnglishKeyword,
-    Wordform,
-    affix_searcher_for_cree,
-    affix_searcher_for_english,
-)
+from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
@@ -800,3 +794,18 @@ def to_sro_circumflex(text: str) -> str:
     """
     text = text.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
     return syllabics2sro(text)
+
+
+def affix_searcher_for_cree() -> AffixSearcher:
+    """
+    Returns the affix searcher that matches Cree lemmas
+    """
+    return Wordform._cree_affix_searcher
+
+
+def affix_searcher_for_english() -> AffixSearcher:
+    """
+    Returns the affix searcher that matches English keywords (mined from the dictionary
+    definitions
+    """
+    return Wordform._english_affix_searcher

@@ -397,13 +397,3 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
     """
     dfn = Definition.objects.get(pk=definition_id)
     return tuple(sorted(source.abbrv for source in dfn.citations.all()))
-
-
-# TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_cree() -> AffixSearcher:
-    return Wordform._cree_affix_searcher
-
-
-# TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_english() -> AffixSearcher:
-    return Wordform._english_affix_searcher
