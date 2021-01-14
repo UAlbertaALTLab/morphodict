@@ -250,7 +250,7 @@ class Wordform(models.Model):
         """
         from .search import WordformSearchWithAffixes
 
-        search = WordformSearchWithAffixes(query, {})
+        search = WordformSearchWithAffixes(query)
         return search.perform()
 
     @staticmethod
@@ -262,7 +262,7 @@ class Wordform(models.Model):
         """
         from .search import WordformSearchWithExactMatch
 
-        search = WordformSearchWithExactMatch(query, {})
+        search = WordformSearchWithExactMatch(query)
         return search.perform()
 
 

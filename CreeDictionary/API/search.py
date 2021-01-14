@@ -254,12 +254,11 @@ class CreeAndEnglish(NamedTuple):
 
 class _BaseWordformSearch:
     """
-    Handles searching for one particular query, and an optional set of constraints.
+    Handles searching for one particular query.
     """
 
-    def __init__(self, query: str, constraints: dict):
+    def __init__(self, query: str):
         self.cleaned_query = to_internal_form(clean_query_text(query))
-        self.constraints = constraints
 
     def perform(self) -> SortedSet[SearchResult]:
         """
@@ -355,7 +354,7 @@ class WordformSearchWithExactMatch(_BaseWordformSearch):
 
     def fetch_cree_and_english_results(self):
         return fetch_cree_and_english_results(
-            self.cleaned_query, affix_search=False, **self.constraints
+            self.cleaned_query, affix_search=False
         )
 
 
@@ -366,7 +365,7 @@ class WordformSearchWithAffixes(_BaseWordformSearch):
 
     def fetch_cree_and_english_results(self):
         return fetch_cree_and_english_results(
-            self.cleaned_query, affix_search=True, **self.constraints
+            self.cleaned_query, affix_search=True
         )
 
 
@@ -434,7 +433,7 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
 
 
 def fetch_cree_and_english_results(
-    user_query: InternalForm, affix_search: bool = True, **extra_constraints
+    user_query: InternalForm, affix_search: bool = True
 ) -> CreeAndEnglish:
     """
     HERE BE DRAGONS!
@@ -461,7 +460,6 @@ def fetch_cree_and_english_results(
 
     :param affix_search: whether to perform affix search or not (both English and Cree)
     :param user_query: can be English or Cree (syllabics or not)
-    :param extra_constraints: additional fields to disambiguate
     """
 
     # build up result_lemmas in 2 ways
@@ -474,10 +472,10 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search and not query_would_return_too_many_results(user_query):
-        do_cree_affix_seach(user_query, cree_results, extra_constraints)
-        do_english_affix_search(user_query, english_results, extra_constraints)
+        do_cree_affix_seach(user_query, cree_results)
+        do_english_affix_search(user_query, english_results)
 
-    _fetch_results(user_query, cree_results, english_results, **extra_constraints)
+    _fetch_results(user_query, cree_results, english_results)
 
     return CreeAndEnglish(cree_results, english_results)
 
@@ -486,7 +484,6 @@ def _fetch_results(
     user_query: InternalForm,
     cree_results: Set[CreeResult],
     english_results: Set[EnglishResult],
-    **extra_constraints,
 ):
     """
     The rest of this method is code Eddie has NOT refactored, so I don't really
@@ -505,7 +502,7 @@ def _fetch_results(
         # todo: test
 
         exactly_matched_wordforms = Wordform.objects.filter(
-            analysis=analysis, as_is=False, **extra_constraints
+            analysis=analysis, as_is=False
         )
 
         if exactly_matched_wordforms.exists():
@@ -545,7 +542,7 @@ def _fetch_results(
 
             lemma, word_class = lemma_wc
             matched_lemma_wordforms = Wordform.objects.filter(
-                text=lemma, is_lemma=True, **extra_constraints
+                text=lemma, is_lemma=True
             )
 
             # now we get wordform objects from database
@@ -575,7 +572,7 @@ def _fetch_results(
                     )
             else:
                 for lemma_wordform in matched_lemma_wordforms.filter(
-                    as_is=False, pos=word_class.pos.name, **extra_constraints
+                    as_is=False, pos=word_class.pos.name
                 ):
                     cree_results.add(
                         CreeResult(
@@ -594,7 +591,6 @@ def _fetch_results(
             text__in=all_standard_forms + [user_query],
             as_is=True,
             is_lemma=True,
-            **extra_constraints,
         )
     ):
         cree_results.add(
@@ -629,10 +625,10 @@ def _fetch_results(
     for stemmed_keyword in stem_keywords(user_query):
 
         lemma_ids = EnglishKeyword.objects.filter(
-            text__iexact=stemmed_keyword, **extra_constraints
+            text__iexact=stemmed_keyword
         ).values("lemma__id")
 
-        for wordform in Wordform.objects.filter(id__in=lemma_ids, **extra_constraints):
+        for wordform in Wordform.objects.filter(id__in=lemma_ids):
             english_results.add(
                 EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
             )  # will become  (user_query, inflection.text, inflection.lemma)
@@ -642,7 +638,6 @@ def _fetch_results(
             Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
             id__in=lemma_ids,
             as_is=True,
-            **extra_constraints,
         ):
             english_results.add(
                 EnglishResult(MatchedEnglish(user_query), wordform, Lemma(wordform))
@@ -651,20 +646,18 @@ def _fetch_results(
     return CreeAndEnglish(cree_results, english_results)
 
 
-def do_english_affix_search(query, english_results, extra_constraints):
+def do_english_affix_search(query, english_results):
     english_keywords_matching_affix = do_affix_search(
         query,
-        extra_constraints,
         affix_searcher_for_english(),
     )
     for word in english_keywords_matching_affix:
         english_results.add(EnglishResult(MatchedEnglish(query), word, word.lemma))
 
 
-def do_cree_affix_seach(query, cree_results, extra_constraints):
+def do_cree_affix_seach(query, cree_results):
     cree_words_matching_affix = do_affix_search(
         query,
-        extra_constraints,
         affix_searcher_for_cree(),
     )
     for word in cree_words_matching_affix:
@@ -680,17 +673,18 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
 
 
 def do_affix_search(
-    query: InternalForm, search_constraints, affixes: AffixSearcher
+    query: InternalForm, affixes: AffixSearcher
 ) -> Iterable[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
+    # TODO: simplify!
     results: List[Wordform] = []
 
     matched_ids = set(affixes.search_by_prefix(query))
     matched_ids |= set(affixes.search_by_suffix(query))
 
-    for wf in Wordform.objects.filter(id__in=matched_ids, **search_constraints):
+    for wf in Wordform.objects.filter(id__in=matched_ids):
         results.append(wf)
 
     return results
