@@ -451,7 +451,7 @@ def fetch_cree_and_english_results(
     english_results: Set[EnglishResult] = set()
 
     # there will be too many matches for some shorter queries
-    if affix_search:
+    if affix_search and not query_would_return_too_many_results(user_query):
         do_cree_affix_seach(user_query, cree_results, extra_constraints)
         do_english_affix_search(user_query, english_results, extra_constraints)
 
@@ -648,10 +648,6 @@ def do_affix_search(
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
-
-    if query_would_return_too_many_results(query):
-        return []
-
     results: List[Wordform] = []
 
     ids_by_prefix = list(affixes.search_by_prefix(query))
