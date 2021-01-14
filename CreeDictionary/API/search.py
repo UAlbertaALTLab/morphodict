@@ -452,25 +452,8 @@ def fetch_cree_and_english_results(
 
     # there will be too many matches for some shorter queries
     if affix_search:
-        cree_words_matching_affix = do_affix_search(
-            user_query,
-            extra_constraints,
-            affix_searcher_for_cree(),
-        )
-
-        for word in cree_words_matching_affix:
-            cree_results.add(CreeResult.from_wordform(word))
-
-        english_keywords_matching_affix = do_affix_search(
-            user_query,
-            extra_constraints,
-            affix_searcher_for_english(),
-        )
-
-        for word in english_keywords_matching_affix:
-            english_results.add(
-                EnglishResult(MatchedEnglish(user_query), word, word.lemma)
-            )
+        do_cree_affix_seach(user_query, cree_results, extra_constraints)
+        do_english_affix_search(user_query, english_results, extra_constraints)
 
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
@@ -629,6 +612,26 @@ def fetch_cree_and_english_results(
             )  # will become  (user_query, inflection.text, wordform)
 
     return CreeAndEnglish(cree_results, english_results)
+
+
+def do_english_affix_search(query, english_results, extra_constraints):
+    english_keywords_matching_affix = do_affix_search(
+        query,
+        extra_constraints,
+        affix_searcher_for_english(),
+    )
+    for word in english_keywords_matching_affix:
+        english_results.add(EnglishResult(MatchedEnglish(query), word, word.lemma))
+
+
+def do_cree_affix_seach(query, cree_results, extra_constraints):
+    cree_words_matching_affix = do_affix_search(
+        query,
+        extra_constraints,
+        affix_searcher_for_cree(),
+    )
+    for word in cree_words_matching_affix:
+        cree_results.add(CreeResult.from_wordform(word))
 
 
 def do_affix_search(
