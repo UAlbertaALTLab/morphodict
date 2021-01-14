@@ -634,6 +634,14 @@ def do_cree_affix_seach(query, cree_results, extra_constraints):
         cree_results.add(CreeResult.from_wordform(word))
 
 
+def query_would_return_too_many_results(query: InternalForm) -> bool:
+    """
+    If we do an search on too short an affix, the tries will match
+    WAY too many results.
+    """
+    return len(query) <= settings.AFFIX_SEARCH_THRESHOLD
+
+
 def do_affix_search(
     query: InternalForm, search_constraints, affixes: AffixSearcher
 ) -> List[Wordform]:
@@ -641,8 +649,7 @@ def do_affix_search(
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
 
-    if len(query) <= settings.AFFIX_SEARCH_THRESHOLD:
-        # Affix is too short; will return WAY too many results, so just don't
+    if query_would_return_too_many_results(query):
         return []
 
     results: List[Wordform] = []
