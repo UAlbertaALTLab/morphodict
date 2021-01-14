@@ -455,6 +455,21 @@ def fetch_cree_and_english_results(
         do_cree_affix_seach(user_query, cree_results, extra_constraints)
         do_english_affix_search(user_query, english_results, extra_constraints)
 
+    _fetch_results(user_query, cree_results, english_results, **extra_constraints)
+
+    return CreeAndEnglish(cree_results, english_results)
+
+
+def _fetch_results(
+    user_query: InternalForm,
+    cree_results: Set[CreeResult],
+    english_results: Set[EnglishResult],
+    **extra_constraints,
+):
+    """
+    The rest of this method is code Eddie has NOT refactored, so I don't really
+    understand what's going on here:
+    """
     # utilize the spell relax in descriptive_analyzer
     # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
     # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
