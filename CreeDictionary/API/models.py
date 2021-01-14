@@ -241,11 +241,11 @@ class Wordform(models.Model):
 
     @classmethod
     def search(
-        cls, query: str, affix_search: bool = True, **constraints
+        cls, query: str, **constraints
     ) -> SortedSet["SearchResult"]:
         from .search import make_searcher
 
-        search = make_searcher(query, constraints, affix_search)
+        search = make_searcher(query, constraints, affix_search=True)
         return search.perform()
 
     @staticmethod
