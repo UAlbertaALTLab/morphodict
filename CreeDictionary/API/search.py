@@ -34,6 +34,7 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol as temp_hfstol
 
+from .apps import APIConfig
 from .models import Definition, EnglishKeyword, Wordform
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
@@ -800,7 +801,7 @@ def affix_searcher_for_cree() -> AffixSearcher:
     """
     Returns the affix searcher that matches Cree lemmas
     """
-    return Wordform._cree_affix_searcher
+    return APIConfig.active_instance().cree_affix_searcher
 
 
 def affix_searcher_for_english() -> AffixSearcher:

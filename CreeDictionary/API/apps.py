@@ -14,6 +14,8 @@ logger = logging.getLogger(__name__)
 class APIConfig(AppConfig):
     name = "API"
 
+    cree_affix_searcher: AffixSearcher
+
     def ready(self) -> None:
         """
         This function is called when you restart dev server or touch wsgi.py
@@ -37,7 +39,7 @@ class APIConfig(AppConfig):
             logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
             return
 
-        set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
+        self.cree_affix_searcher = AffixSearcher(fetch_cree_lemmas_with_ids())
         set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
 
         logger.info("Finished building tries")
@@ -49,7 +51,7 @@ class APIConfig(AppConfig):
 
         This way you can get access to the affix searchers in other modules!
         """
-        return apps.get_app_config(cls.app_label)
+        return apps.get_app_config(cls.name)
 
 
 def initialize_preverb_search():
