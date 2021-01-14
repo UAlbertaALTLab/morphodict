@@ -241,9 +241,16 @@ class Wordform(models.Model):
 
     @staticmethod
     def search(query: str, **constraints) -> SortedSet["SearchResult"]:
-        from .search import make_searcher
+        """
+        Search for wordforms matching:
+         - the wordform text
+         - the definition keyword text
+         - affixes of the wordform text
+         - affixes of the definition keyword text
+        """
+        from .search import WordformSearchWithAffixes
 
-        search = make_searcher(query, constraints, affix_search=True)
+        search = WordformSearchWithAffixes(query, constraints)
         return search.perform()
 
     @staticmethod
