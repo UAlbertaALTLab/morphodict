@@ -370,18 +370,6 @@ class WordformSearchWithAffixes(_BaseWordformSearch):
         )
 
 
-def make_searcher(
-    query: str, constraints, affix_search: bool = True
-) -> _BaseWordformSearch:
-    """
-    Create a searcher given the parameters.
-    """
-    if affix_search:
-        return WordformSearchWithAffixes(query, constraints)
-    else:
-        return WordformSearchWithExactMatch(query, constraints)
-
-
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
     """
     return the wordforms that has definition from CW dictionary
