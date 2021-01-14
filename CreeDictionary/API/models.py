@@ -239,10 +239,8 @@ class Wordform(models.Model):
 
         super(Wordform, self).save(*args, **kwargs)
 
-    @classmethod
-    def search(
-        cls, query: str, **constraints
-    ) -> SortedSet["SearchResult"]:
+    @staticmethod
+    def search(query: str, **constraints) -> SortedSet["SearchResult"]:
         from .search import make_searcher
 
         search = make_searcher(query, constraints, affix_search=True)
