@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-from hfstol import HFSTOL
+from hfst_optimized_lookup import TransducerFile
 from utils import paradigm_filler as pf
 from utils import shared_res_dir
 
@@ -11,14 +11,14 @@ _fst_dir = shared_res_dir / "fst"
 
 # These are part of the public API, but don't instantiate them yet!
 paradigm_filler: pf.ParadigmFiller
-normative_generator: HFSTOL
-descriptive_analyzer: HFSTOL
-strict_analyzer: HFSTOL
+normative_generator: TransducerFile
+descriptive_analyzer: TransducerFile
+strict_analyzer: TransducerFile
 
 # How to create one of the above 👆🏼 instances
 _instance_factory = dict(
     paradigm_filler=lambda: pf.ParadigmFiller.default_filler(),
-    normative_generator=lambda: HFSTOL.from_file(
+    normative_generator=lambda: TransducerFile(
         _fst_dir / "crk-normative-generator.hfstol"
     ),
     descriptive_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(

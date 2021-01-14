@@ -125,12 +125,11 @@ def import_sources():
 
 
 @timed()
-def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
+def import_xmls(dir_name: Path, verbose=True):
     r"""
     Import from crkeng files, `dir_name` can host a series of xml files. The latest timestamped files will be
     used, with un-timestamped files as a fallback.
 
-    :param multi_processing: Use multiple hfstol processes to speed up importing
     :param dir_name: the directory that has pattern crkeng.*?(?P<timestamp>\d{6})?\.xml
     (e.g. crkeng_cw_md_200319.xml or crkeng.xml) files, beware the timestamp has format yymmdd
     :param verbose: print to stdout or not
@@ -157,7 +156,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
     (
         identified_entry_to_analysis,
         as_is_entries,
-    ) = xml_entry_lemma_finder.identify_entries(crkeng_xml, multi_processing)
+    ) = xml_entry_lemma_finder.identify_entries(crkeng_xml)
 
     logger.info("Structuring wordforms, english keywords, and definition objects...")
 
@@ -229,9 +228,7 @@ def import_xmls(dir_name: Path, multi_processing: int = 1, verbose=True):
             db_definitions.append(db_definition)
 
     # generate ALL inflections within the paradigm tables from the lemma analysis
-    expanded = expand_inflections(
-        identified_entry_to_analysis.values(), multi_processing
-    )
+    expanded = expand_inflections(identified_entry_to_analysis.values())
 
     # now we import identified entries to the database, the entries we successfully identify with their lemma analyses
     for (entry, lemma_analysis) in identified_entry_to_analysis.items():

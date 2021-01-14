@@ -80,7 +80,7 @@ class InflectionAdmin(admin.ModelAdmin):
         search_term = search_term.lower()
 
         # utilize the spell relax in descriptive_analyzer
-        fst_analyses: Set[str] = expensive.descriptive_analyzer.feed_in_bulk_fast(
+        fst_analyses: Set[str] = expensive.descriptive_analyzer.bulk_lookup(
             [search_term]
         )[search_term]
         unfiltered_queryset = Wordform.objects.filter(analysis__in=fst_analyses)

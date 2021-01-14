@@ -10,9 +10,7 @@ from utils import PartOfSpeech, shared_res_dir
 def test_import_nice_xml(shared_datadir):
     migrate_and_import(shared_datadir / "crkeng-small-nice-0")
 
-    expanded = expand_inflections(
-        ["yôwamêw+V+TA+Ind+3Sg+4Sg/PlO"], multi_processing=1, verbose=False
-    )
+    expanded = expand_inflections(["yôwamêw+V+TA+Ind+3Sg+4Sg/PlO"], verbose=False)
     for analysis_and_inflections in expanded.values():
         for analysis, inflections in analysis_and_inflections:
             for inflection in inflections:

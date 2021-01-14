@@ -35,7 +35,7 @@ def get_test_words() -> Set[str]:
 
 
 @timed()
-def build_test_xml(multi_processing: int = 2):
+def build_test_xml():
     """
     Determine relevant entries in crkeng.xml and build a smaller xml file for testing.
     """
@@ -57,11 +57,8 @@ def build_test_xml(multi_processing: int = 2):
 
     test_words = get_test_words()
 
-    print(f"Analyzing xml l elements and test words with {multi_processing} processes")
-    word_to_analyses = expensive.descriptive_analyzer.feed_in_bulk_fast(
-        xml_ls | test_words,
-        multi_process=multi_processing,
-    )
+    print(f"Analyzing xml l elements and test words")
+    word_to_analyses = expensive.descriptive_analyzer.bulk_lookup(xml_ls | test_words)
     print("Analysis done")
 
     test_word_lemmas: Set[str] = set()
