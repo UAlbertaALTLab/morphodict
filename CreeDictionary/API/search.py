@@ -666,22 +666,13 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
     return len(query) <= settings.AFFIX_SEARCH_THRESHOLD
 
 
-def do_affix_search(
-    query: InternalForm, affixes: AffixSearcher
-) -> Iterable[Wordform]:
+def do_affix_search(query: InternalForm, affixes: AffixSearcher) -> Iterable[Wordform]:
     """
     Augments the given set with results from performing both a suffix and prefix search on the wordforms.
     """
-    # TODO: simplify!
-    results: List[Wordform] = []
-
     matched_ids = set(affixes.search_by_prefix(query))
     matched_ids |= set(affixes.search_by_suffix(query))
-
-    for wf in Wordform.objects.filter(id__in=matched_ids):
-        results.append(wf)
-
-    return results
+    return Wordform.objects.filter(id__in=matched_ids)
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
