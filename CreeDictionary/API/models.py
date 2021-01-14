@@ -240,7 +240,7 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def search(query: str, **constraints) -> SortedSet["SearchResult"]:
+    def search_with_affixes(query: str, **constraints) -> SortedSet["SearchResult"]:
         """
         Search for wordforms matching:
          - the wordform text
