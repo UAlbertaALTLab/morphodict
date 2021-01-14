@@ -76,7 +76,8 @@ def index(request):  # pragma: no cover
 
     if user_query:
         search_results = [
-            search_result.serialize() for search_result in Wordform.search_with_affixes(user_query)
+            search_result.serialize()
+            for search_result in Wordform.search_with_affixes(user_query)
         ]
         did_search = True
     else:
