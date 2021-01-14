@@ -15,6 +15,7 @@ class APIConfig(AppConfig):
     name = "API"
 
     cree_affix_searcher: AffixSearcher
+    english_affix_searcher: AffixSearcher
 
     def ready(self) -> None:
         """
@@ -40,7 +41,7 @@ class APIConfig(AppConfig):
             return
 
         self.cree_affix_searcher = AffixSearcher(fetch_cree_lemmas_with_ids())
-        set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
+        self.english_affix_searcher = AffixSearcher(fetch_english_keywords_with_ids())
 
         logger.info("Finished building tries")
 

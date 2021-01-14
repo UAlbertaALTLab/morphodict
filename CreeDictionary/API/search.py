@@ -809,4 +809,4 @@ def affix_searcher_for_english() -> AffixSearcher:
     Returns the affix searcher that matches English keywords (mined from the dictionary
     definitions
     """
-    return Wordform._english_affix_searcher
+    return APIConfig.active_instance().english_affix_searcher
