@@ -359,13 +359,38 @@ class WordformSearchWithVariableAffixSearch(_BaseWordformSearch):
         )
 
 
+class WordformSearchWithExactMatch(_BaseWordformSearch):
+    """
+    Searches for exact matches in both the wordforms and EnglishKeyword tables.
+    """
+
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(
+            self.cleaned_query, affix_search=False, **self.constraints
+        )
+
+
+class WordformSearchWithAffixes(_BaseWordformSearch):
+    """
+    Same as WordformSearchWithExactMatch, but augments results with searches on affixes.
+    """
+
+    def fetch_cree_and_english_results(self):
+        return fetch_cree_and_english_results(
+            self.cleaned_query, affix_search=True, **self.constraints
+        )
+
+
 def make_searcher(
     query: str, constraints, affix_search: bool = True
 ) -> _BaseWordformSearch:
     """
     Create a searcher given the parameters.
     """
-    return WordformSearchWithVariableAffixSearch(query, constraints, affix_search)
+    if affix_search:
+        return WordformSearchWithAffixes(query, constraints)
+    else:
+        return WordformSearchWithExactMatch(query, constraints)
 
 
 def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
