@@ -447,6 +447,7 @@ def fetch_cree_and_english_results(
     # 2. definition containment of the query word
 
     cree_results: Set[CreeResult] = set()
+    english_results: Set[EnglishResult] = set()
 
     # there will be too many matches for some shorter queries
     if affix_search:
@@ -593,7 +594,6 @@ def fetch_cree_and_english_results(
     # todo: remind user "are you searching in cree/english?"
     # todo: allow inflected forms to be searched through English. (requires database migration
     #  since now EnglishKeywords are bound to lemmas)
-    english_results: Set[EnglishResult] = set()
     for stemmed_keyword in stem_keywords(user_query):
 
         lemma_ids = EnglishKeyword.objects.filter(
