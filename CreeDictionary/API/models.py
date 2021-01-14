@@ -248,6 +248,16 @@ class Wordform(models.Model):
         search = make_searcher(query, constraints, affix_search)
         return search.perform()
 
+    @staticmethod
+    def simple_search(
+         query: str, **constraints
+    ) -> SortedSet["SearchResult"]:
+        from .search import WordformSearchWithExactMatch
+
+        search = WordformSearchWithExactMatch(query, constraints)
+        return search.perform()
+
+
 
 class DictionarySource(models.Model):
     """
