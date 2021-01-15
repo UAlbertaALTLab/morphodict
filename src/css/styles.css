@@ -150,11 +150,14 @@ html {
  */
 .top-bar {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-template-areas:
    "logo nav"
    "search search";
+
+  padding: 1rem var(--page-gutter) 0;
 }
 
 /**
@@ -208,9 +211,6 @@ html {
  *
  * Displays the title and subtitle/tagline of the application.
  */
-.branding {
-  padding: 1rem var(--page-gutter) 0;
-}
 
 /**
  * ELEMENT
@@ -423,6 +423,10 @@ html {
   cursor: not-allowed;
 }
 
+/**************************** LANGUAGE SELECTOR *****************************/
+.language-selector {
+  /* TODO: we're gonna mess with the size and stuff */
+}
 
 /****************************** SEARCH RESULTS ******************************/
 
@@ -1040,6 +1044,7 @@ a.multiple-recordings__action-button {
 }
 
 .toggle-box__toggle::after {
+  /* The little toggle arrow */
   content: url("img/fa/chevron-circle-down.svg");
 
   display: inline-block;
@@ -1049,10 +1054,12 @@ a.multiple-recordings__action-button {
   vertical-align: middle;
 
   transition: transform .25s;
+  /* make the little arrow appear to the point right */
   transform: rotate(-90deg);
 }
 
 .toggle-box[open] > .toggle-box__toggle::after {
+  /* make the little arrow appear to point down */
   transform: rotate(0);
 }
 
