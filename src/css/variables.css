@@ -77,12 +77,10 @@
   /* Font families */
   --syllabics-fonts:
     Gadugi,                             /* Windows 10 */
-    'Euphemia UCAS',                    /* macOS/iOS */
-    Euphemia,                           /* Windows Vista/7/8 */
     'Aboriginal Sans',                  /* From languagegeek.com */
     'Noto Sans Canadian Aboriginal';    /* Fallback: ChromeOS/Chomebook and other platforms. */
-  --heading-font-family: Raleway, var(--syllabics-fonts), sans-serif;
   --body-font-family: 'Open Sans', var(--syllabics-fonts), sans-serif;
+  --heading-font-family: var(--body-font-family);
   /* Font weights */
   --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
   --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */

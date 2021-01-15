@@ -1,10 +1,17 @@
+{% load static %}
 {% load morphodict_orth %}
 
 <div class="top-bar app__header">
-  <header class="branding top-bar__logo"><a href="{% url 'cree-dictionary-index' %}">
-      <h1 class="branding__heading branding__title">{% orth 'itwêwina' %}</h1>
-      <p class="branding__heading branding__subtitle" role="doc-subtitle">Plains Cree Dictionary</p>
-  </a></header>
+  <header class="branding top-bar__logo">
+    <a class="branding__logo" href="{% url 'cree-dictionary-index' %}">
+      <img class="branding__image" src="{% static 'CreeDictionary/images/itwewina-192.png' %}" alt="mîkiwâhp (teepee) logo">
+
+      <hgroup class="branding__text">
+        <h1 class="branding__heading branding__title">{% orth 'itwêwina' %}</h1>
+        <p class="branding__heading branding__subtitle" role="doc-subtitle">Plains Cree Dictionary</p>
+      </hgroup>
+    </a>
+  </header>
 
   <nav class="top-bar__nav">
     <details class="toggle-box toggle-box--with-menu">

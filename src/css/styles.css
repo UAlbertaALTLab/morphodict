@@ -209,13 +209,7 @@ html {
  * Displays the title and subtitle/tagline of the application.
  */
 .branding {
-  padding: 0 var(--page-gutter);
-
-  background: transparent;  /* Fallback */
-  background: linear-gradient(to right, var(--header-stripe-color) 0%,
-                                        var(--header-stripe-color) var(--header-stripe-width),
-                                        rgba(0,0,0,0) var(--header-stripe-width),
-                                        rgba(0,0,0,0) 100%);
+  padding: 1rem var(--page-gutter) 0;
 }
 
 /**
@@ -237,6 +231,21 @@ html {
   text-decoration: none;
 }
 
+.branding__logo {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT branding__image
+ *
+ * The teepee SVG image.
+ */
+.branding__image {
+  max-height: 3rem;
+  margin-right: 1.375rem;
+}
+
 /**
  * ELEMENT branding__title
  *
@@ -248,11 +257,10 @@ html {
   color: var(--app-title-color);
 
   /* Text */
-  font-weight: 400;
+  font-weight: 700;
   font-size: var(--branding-font-size);
   line-height: normal;
   font-family: var(--heading-font-family);
-  letter-spacing: 4px;
 }
 
 /**
@@ -261,6 +269,8 @@ html {
  * Contains the subtitle or tagline of the application.
  */
 .branding__subtitle {
+  width: max-content;
+
   /* Text */
   font-weight: var(--body-font-weight);
   font-size: var(--branding-subtitle-font-size);;
