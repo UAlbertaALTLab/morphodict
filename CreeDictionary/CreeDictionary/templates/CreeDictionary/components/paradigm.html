@@ -1,10 +1,13 @@
 {% spaceless %}
 
   {% comment %}
-
     The paradigm table, including the button at the bottom.
 
-    e.g.,
+    Parameters:
+      paradigm_tables: List[List[Row]] (see paradigm.py)
+      paradigm_size: utils.enums.ParadigmSize (TODO: use str value directly)
+
+    Example:
 
         | something is happening now |
         | I    | ninipân | ê-nipâyân |
