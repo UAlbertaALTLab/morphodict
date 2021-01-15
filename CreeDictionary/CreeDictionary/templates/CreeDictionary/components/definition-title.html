@@ -33,9 +33,6 @@
 
     &#32; {# separate title proper from icons #}
 
-    <div class="definition__icons" data-wordform="{{ result.matched_cree }}">
-      {% include "CreeDictionary/components/linguistic-breakdown.html" %}
-      {# NB: 🔊 Recording button is added here dynamically by JavaScript #}
-    </div>
+    {% include "CreeDictionary/components/definition__icons.html" %}
   </div>
 {% endspaceless %}
