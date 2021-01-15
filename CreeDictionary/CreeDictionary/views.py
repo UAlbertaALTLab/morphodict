@@ -51,8 +51,12 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
         lemma = lemma.get()
         context = create_context_for_index_template(
             "word-detail",
+            # TODO: rename this to wordform ID
             lemma_id=lemma.id,
+            # TODO: remove this parameter in favour of...
             lemma=lemma,
+            # ...this parameter
+            wordform=lemma.serialize(),
             paradigm_size=paradigm_size,
             paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
             if lemma

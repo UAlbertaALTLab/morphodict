@@ -17,6 +17,7 @@
   {% load inflection_extras %}
   {% load morphodict_orth %}
 
+  {# TODO: this ID should NOT be "paradigm"!!!! #}
   <article class="definition" id="paradigm">
     <header class="definition__header">
       <h1 id="head" class="definition-title">
@@ -24,8 +25,10 @@
           <data id="data:head" value="{{ lemma.text }}">
             {% orth lemma.text %}
           </data>
-        </dfn>&nbsp;<span class="wordclass">({{ lemma|presentational_pos }})</span>
+        </dfn>
       </h1>
+
+      {% include "CreeDictionary/components/definition__elaboration.html" with lemma=wordform verbose=True %}
     </header>
 
     <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown" data-cy="multiple-recordings">
