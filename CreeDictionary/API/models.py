@@ -41,9 +41,6 @@ class Wordform(models.Model):
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
-    # initialized in apps.py
-    affix_searcher: AffixSearcher
-
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
 
@@ -236,13 +233,30 @@ class Wordform(models.Model):
 
         super(Wordform, self).save(*args, **kwargs)
 
-    @classmethod
-    def search(
-        cls, query: str, affix_search: bool = True, **constraints
-    ) -> SortedSet["SearchResult"]:
-        from .search import WordformSearch
+    @staticmethod
+    def search_with_affixes(query: str) -> SortedSet["SearchResult"]:
+        """
+        Search for wordforms matching:
+         - the wordform text
+         - the definition keyword text
+         - affixes of the wordform text
+         - affixes of the definition keyword text
+        """
+        from .search import WordformSearchWithAffixes
 
-        search = WordformSearch(query, constraints, affix_search)
+        search = WordformSearchWithAffixes(query)
+        return search.perform()
+
+    @staticmethod
+    def simple_search(query: str) -> SortedSet["SearchResult"]:
+        """
+        Search, trying to match full wordforms or keywords within definitions.
+
+        Does NOT try to match affixes!
+        """
+        from .search import WordformSearchWithExactMatch
+
+        search = WordformSearchWithExactMatch(query)
         return search.perform()
 
 
