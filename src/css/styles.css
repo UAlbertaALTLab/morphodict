@@ -1006,8 +1006,7 @@ a.multiple-recordings__action-button {
 }
 
 .partner-logos__logo:hover {
-  /* Make it have a hover effect like a link, to make it look clickable. */
-  background-color: var(--link-hover-color);
+  background-color: rgba(50% 50% 50% / 50%);
 }
 
 .partner-logos__logo > img {
