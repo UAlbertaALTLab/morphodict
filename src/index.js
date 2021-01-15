@@ -169,6 +169,11 @@ function updateQueryParam(key, value) {
 function setupParadigmSizeToggleButton() {
   const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
 
+  if (!toggleButton) {
+    // There's nothing to toggle, hence nothing to setup. Done!
+    return
+  }
+
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
   toggleButton.addEventListener('click', () => {
     // Make it look like it's loading:
