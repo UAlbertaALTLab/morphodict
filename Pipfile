@@ -18,6 +18,7 @@ python-levenshtein = "*"
 django-debug-toolbar = "~=2.2"
 isort = {extras = ["pyproject"],version = "*"}
 toml = "~=0.10"
+pipfile-requirements = "*"
 
 [packages]
 colorama = "~=0.4"
