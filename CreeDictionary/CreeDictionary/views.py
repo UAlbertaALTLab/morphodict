@@ -107,7 +107,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     results = Wordform.search_with_affixes(query_string)
     return render(
         request,
-        "CreeDictionary/word-entries.html",
+        "CreeDictionary/search-results.html",
         {
             "query_string": query_string,
             "search_results": [r.serialize() for r in results],
