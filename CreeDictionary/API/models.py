@@ -92,7 +92,11 @@ class Wordform(models.Model):
         """
         if enum := self.word_class:
             return enum.value
-        return None
+        # Every entry in the Cree Dictionary (itwêwina) SHOULD have an applicable
+        # wordclass from crk.relabel.tsv.  So if everything is going well, this line
+        # should never be reached:
+        # TODO: should we crash with an assertion error instead?
+        return None  # pragma: no cover
 
     def get_emoji_for_cree_wordclass(self) -> Optional[str]:
         """
