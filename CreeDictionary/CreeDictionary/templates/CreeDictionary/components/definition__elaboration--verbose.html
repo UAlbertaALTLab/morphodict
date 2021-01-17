@@ -40,7 +40,7 @@
 
   {% if ic_short %}
     <p class="elaboration__row elaboration__ic-row">
-      {{ inflectional_category_linguistic }} ({{ ic }})
+    <small> {{ ic_short }}{% if ic_linguistic %}: {{ ic_linguistic }} {% endif %}</small>
     </p>
   {% endif %}
 {% endspaceless %}
