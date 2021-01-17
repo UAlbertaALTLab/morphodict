@@ -27,7 +27,8 @@
     {# TODO: clean up this big conditional #}
     {% if verbose %}
       {% with ic=lemma.inflectional_category emoji=lemma.wordclass_emoji %}
-        {% include "CreeDictionary/components/definition__elaboration--verbose.html" with wordclass=lemma.wordclass ic_linguistic=lemma.inflectional_category_linguistic ic_short=lemma.inflectional_category emoji=lemma.wordclass_emoji %}
+        {# Django's parser is not good and does not understand linebreaks, so this HAS TO BE all on one line: #}
+        {% include "CreeDictionary/components/definition__elaboration--verbose.html" with wordclass=lemma.wordclass ic_linguistic=lemma.inflectional_category_linguistic ic_short=lemma.inflectional_category ic_plain_english=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji %}
       {% endwith %}
 
     {% else %}{# not verbose #}
