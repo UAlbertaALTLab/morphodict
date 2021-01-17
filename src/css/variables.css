@@ -47,7 +47,7 @@
   --placeholder-text-color: #949494; /* The placeholder should be faint, but visible. */
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
   --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
-  --popup-color:            #-000001; /* Color of popup/tooltip text. */
+  --popup-color:            #000000; /* Color of popup/tooltip text. */
   --prose-heading-color:    #A20010;
   --prose-title-color:      #1D2D72; /* For BIG section titles. */
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
