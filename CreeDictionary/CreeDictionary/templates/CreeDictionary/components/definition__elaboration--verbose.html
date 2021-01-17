@@ -16,7 +16,7 @@
 
     Example:
 
-      VTA 🧑🏽➡️🧑🏽
+      🧑🏽➡️🧑🏽— like wîcihêw
       VTA-1: transitive animate verb – class 1: regular
 
   {% endcomment %}
@@ -27,11 +27,11 @@
   {% if ic_plain_english or emoji %}
     <p class="elaboration__row elaboration__wordclass-row">
       {% if ic_plain_english %}
-        <span class="wordclass wordclass--described" data-cy="word-class">
+        <span class="wordclass" data-cy="word-class">
           {% if emoji %}
             <span class="wordclass__emoji">{{ emoji }}</span>
           {% endif %}
-          {% if emoji and ic %} — {% endif %}
+          {% if emoji and ic_plain_english %} — {% endif %}
           <span class="wordclass__help">{% cree_example ic_plain_english %}</span>
         </span>
       {% elif emoji %}
