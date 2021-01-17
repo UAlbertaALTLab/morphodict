@@ -445,19 +445,12 @@ html {
 
 .definition-title {
   font-size: var(--definition-title-size);
+  margin: 0;
 }
 
 .definition-title__title {
   display: inline;
   font-size: inherit;
-}
-
-.definition-title--search-result {
-  margin: 0;
-}
-
-.definition-title--word-detail-page {
-  margin: 0;
 }
 
 .definition__matched-head {
