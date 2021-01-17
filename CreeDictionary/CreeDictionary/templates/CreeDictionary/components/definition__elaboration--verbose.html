@@ -2,19 +2,17 @@
   {% comment %}
     ## .definition__elaboration--verbose ##
 
+    Parameters:
+      wordclass: str — wordclass
+      ic_short: str — short form of the inflectional category
+      ic_linguistic: str — the full description of the inflectional category
+      emoji: str -- An emoji str representing the wordclass. Useful for Algonquian languages.
+
     The "elaboration" of a defined head. This contains word class,
     inflectional category, and other information about the head itself.
 
     It's verbose because it contains A LOT of information — more than you'd
     find on the search page, for instance.
-
-    Parameters:
-      lemma: SerializedWordform
-      ic: str — inflectional category, in linguistic terms
-      emoji: str -- An emoji str representing the wordclass. Useful for Algonquian languages.
-
-    The line below the lemma that describes the wordclass and the inflectional
-    category.
 
     Example:
 
@@ -26,10 +24,10 @@
   {% load creedictionary_extras %}
   {% load inflection_extras %}
 
-  {% if lemma.wordclass or emoji %}
+  {% if wordclass or emoji %}
     <p class="elaboration__row elaboration__wordclass-row">
-      {% if lemma.wordclass %}
-        <span class="wordclass__full">{{ lemma.wordclass }}</span>
+      {% if wordclass %}
+        <span class="wordclass__full">{{ wordclass }}</span>
       {% endif %}
 
       &#32; {# space between sections #}
@@ -40,9 +38,9 @@
     </p>
   {% endif %}
 
-  {% if ic %}
+  {% if ic_short %}
     <p class="elaboration__row elaboration__ic-row">
-      {{ lemma.inflectional_category_linguistic }} ({{ ic }})
+      {{ inflectional_category_linguistic }} ({{ ic }})
     </p>
   {% endif %}
 {% endspaceless %}
