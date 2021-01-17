@@ -26,26 +26,8 @@
   <div class="definition__elaboration" data-cy="elaboration">
     {# TODO: clean up this big conditional #}
     {% if verbose %}
-      {% with ic=lemma.inflectional_category emoji=lemma.wordclass_emoji id=request|unique_id %}
-        {% if lemma.wordclass or emoji %}
-          <p class="elaboration__row elaboration__wordclass-row">
-            {% if lemma.wordclass %}
-              <span class="wordclass__full">{{ lemma.wordclass }}</span>
-            {% endif %}
-
-            &#32; {# space between sections #}
-
-            {% if emoji %}
-              <span class="wordclass__emoji">{{ emoji }}</span>
-            {% endif %}
-          </p>
-        {% endif %}
-
-        {% if ic %}
-          <p class="elaboration__row elaboration__ic-row">
-            {{ lemma.inflectional_category_linguistic }} ({{ ic }})
-          </p>
-        {% endif %}
+      {% with ic=lemma.inflectional_category emoji=lemma.wordclass_emoji %}
+        {% include "CreeDictionary/components/definition__elaboration--verbose.html" %}
       {% endwith %}
 
     {% else %}{# not verbose #}
