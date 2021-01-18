@@ -4,10 +4,9 @@ fill a paradigm table according to a lemma
 import logging
 from copy import deepcopy
 from pathlib import Path
-from typing import cast, Dict, List, Sequence, Set, Tuple
+from typing import Dict, List, Sequence, Set, Tuple, cast
 
 from hfst_optimized_lookup import TransducerFile
-
 from paradigm import (
     Cell,
     EmptyRow,
@@ -74,7 +73,7 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path = None):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
@@ -82,17 +81,20 @@ class ParadigmFiller:
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
         self._layout_tables = self._import_layouts(layout_dir)
-        self._generator = TransducerFile(generator_hfstol_path)
+
+        if generator_hfstol_path is None:
+            from shared import expensive
+
+            self._generator = expensive.normative_generator
+        else:
+            self._generator = TransducerFile(generator_hfstol_path)
 
     @classmethod
     def default_filler(cls):
         """
         Return a filler that uses .layout files, .paradigm files and the fst from the res folder
         """
-        return ParadigmFiller(
-            shared_res_dir / "layouts",
-            shared_res_dir / "fst" / "crk-normative-generator.hfstol",
-        )
+        return ParadigmFiller(shared_res_dir / "layouts")
 
     def fill_paradigm(
         self, lemma: str, category: WordClass, paradigm_size: ParadigmSize
