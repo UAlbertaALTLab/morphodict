@@ -15,8 +15,7 @@ def analyze(wordform: str) -> Iterable[Analysis]:
 
 
 def generate(analysis: str) -> Iterable[str]:
-    for wordform in normative_generator.lookup(analysis):
-        yield wordform
+    return normative_generator.lookup(analysis)
 
 
 def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, None]:
