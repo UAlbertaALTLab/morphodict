@@ -79,8 +79,24 @@ class Wordform(models.Model):
             self.inflectional_category
         )
         result["wordclass_emoji"] = self.get_emoji_for_cree_wordclass()
+        result["wordclass"] = self.wordclass_text
 
         return result
+
+    @property
+    def wordclass_text(self) -> Optional[str]:
+        """
+        Returns the human readable text of the wordclass.
+
+        Not to be confused with the poorly-named "word_class"
+        """
+        if enum := self.word_class:
+            return enum.value
+        # Every entry in the Cree Dictionary (itwêwina) SHOULD have an applicable
+        # wordclass from crk.relabel.tsv.  So if everything is going well, this line
+        # should never be reached:
+        # TODO: should we crash with an assertion error instead?
+        return None  # pragma: no cover
 
     def get_emoji_for_cree_wordclass(self) -> Optional[str]:
         """
@@ -108,6 +124,7 @@ class Wordform(models.Model):
                 return field
         return "id"  # id always guarantees unique match
 
+    # TODO: rename! it should not have an underscore!
     @property
     def word_class(self) -> Optional[WordClass]:
         from_analysis = fst_analysis_parser.extract_word_class(self.analysis)
