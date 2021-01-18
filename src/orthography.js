@@ -81,14 +81,8 @@ function updateUI(button) {
     // there absolutely should be a <de
     throw new Error('Could not find relevant <details> element!')
   }
-  let summaryElement = detailsElement.querySelector('summary')
-  if (!summaryElement) {
-    throw new Error('Could not find relevant <summary> element!')
-  }
 
-  // Change the title appropriately and close the menu
-  summaryElement.innerText = button.innerText
-  detailsElement.open = false
+  closeMenu()
 
   // Clear the selected class from all options
   for (let el of detailsElement.querySelectorAll('[data-orth-switch]')) {
@@ -96,6 +90,10 @@ function updateUI(button) {
     li.classList.remove('menu-choice--selected')
   }
   button.closest('.menu-choice').classList.add('menu-choice--selected')
+
+  function closeMenu() {
+    detailsElement.open = false
+  }
 }
 
 /**

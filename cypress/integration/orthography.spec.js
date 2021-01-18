@@ -11,7 +11,6 @@ describe('Orthography selection', function () {
 
       // Switch to syllabics
       cy.get('[data-cy=language-selector]')
-        .contains('SRO (êîôâ)')
         .click()
         .parent('details')
         .as('menu')
@@ -31,7 +30,6 @@ describe('Orthography selection', function () {
 
       // It should say so on the button
       cy.get('[data-cy=language-selector]')
-        .contains('Syllabics')
         .click()
 
       // Opening the menu, we should find that syllabics is highligted, and
@@ -51,8 +49,6 @@ describe('Orthography selection', function () {
       cy.visit('/about')
       cy.contains('h1', 'ᐃᑘᐏᓇ')
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
-      cy.get('[data-cy=language-selector]')
-        .contains('Syllabics')
     })
 
     it('should persist my preference after a page load', function () {
@@ -60,7 +56,7 @@ describe('Orthography selection', function () {
       // There was a bug with setting cookies via fetch():
       //    https://github.com/cypress-io/cypress/issues/4433
       // This should work in Cypress 3.5.0 using Chrome.
-      // As of 2020-03-05 this STILL doesn't work in Travis-CI :((((
+      // TODO: switch CI to use Chrome instead of Electron!
       skipOn('electron')
 
       cy.visit('/')
@@ -94,8 +90,6 @@ describe('Orthography selection', function () {
       // It should be in syllabics.
       cy.contains('h1', 'ᐃᑘᐏᓇ')
       cy.contains('.prose__heading', 'ᓀᐦᐃᔭᐍᐏᐣ')
-      cy.get('[data-cy=language-selector]')
-        .contains('Syllabics')
     })
 
     it('should display Cree examples in syllabics', function () {

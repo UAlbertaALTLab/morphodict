@@ -1,6 +1,6 @@
 from collections import defaultdict
 from itertools import chain
-from typing import Dict, Iterable, List, Tuple, NewType
+from typing import Dict, Iterable, List, NewType, Tuple
 
 import dawg
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -40,19 +40,17 @@ class AffixSearcher:
         :return: an iterable of Wordform IDs that match the prefix
         """
         term = self.to_simplified_form(prefix)
-        return chain(*[self.text_to_ids[t] for t in self._prefixes.keys(term)])
+        matched_words = self._prefixes.keys(term)
+        return chain.from_iterable(self.text_to_ids[t] for t in matched_words)
 
     def search_by_suffix(self, suffix: str) -> Iterable[int]:
         """
         :return: an iterable of Wordform IDs that match the suffix
         """
         term = self.to_simplified_form(suffix)
-
-        return chain(
-            *[
-                self.text_to_ids[_reverse(key)]
-                for key in self._suffixes.keys(_reverse(term))
-            ]
+        matched_reversed_words = self._suffixes.keys(_reverse(term))
+        return chain.from_iterable(
+            self.text_to_ids[_reverse(t)] for t in matched_reversed_words
         )
 
     @staticmethod

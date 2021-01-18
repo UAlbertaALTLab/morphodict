@@ -5,7 +5,7 @@ from typing import Any, Callable
 
 
 def timed(
-    msg: str = "{func_name} finished in {minute:02.0f}:{second:02.0f}",
+    msg: str = "{func_name} finished in {minute:02.0f}:{second:06.3f}",
 ) -> Callable[[Callable], Any]:
     """
     report the time a function consumes after the function finishes

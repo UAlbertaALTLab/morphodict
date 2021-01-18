@@ -61,4 +61,4 @@ def migrate_and_import(dictionary_dir):
     Do the initial migration and import the xml
     """
     call_command("migrate", "API", "0001")
-    import_xmls(dictionary_dir, multi_processing=1)
+    import_xmls(dictionary_dir)

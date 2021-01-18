@@ -41,11 +41,6 @@ class Wordform(models.Model):
     # pure MD content won't be included
     PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
 
-    # Affix search is initialized in apps.py
-    # TODO: I don't know where else to put these global variables :/
-    _cree_affix_searcher: AffixSearcher
-    _english_affix_searcher: AffixSearcher
-
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
 
@@ -397,23 +392,3 @@ def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
     """
     dfn = Definition.objects.get(pk=definition_id)
     return tuple(sorted(source.abbrv for source in dfn.citations.all()))
-
-
-# TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_cree() -> AffixSearcher:
-    return Wordform._cree_affix_searcher
-
-
-# TODO: move this to search, without causing an import cycle!
-def affix_searcher_for_english() -> AffixSearcher:
-    return Wordform._english_affix_searcher
-
-
-# TODO: move this to search, without causing an import cycle!
-def set_affix_searcher_for_cree(searcher: AffixSearcher):
-    Wordform._cree_affix_searcher = searcher
-
-
-# TODO: move this to search, without causing an import cycle!
-def set_affix_searcher_for_english(searcher: AffixSearcher):
-    Wordform._english_affix_searcher = searcher

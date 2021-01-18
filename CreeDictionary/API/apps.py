@@ -1,7 +1,7 @@
 import logging
 from pathlib import Path
 
-from django.apps import AppConfig
+from django.apps import AppConfig, apps
 from django.db import OperationalError
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -14,13 +14,45 @@ logger = logging.getLogger(__name__)
 class APIConfig(AppConfig):
     name = "API"
 
-    def ready(self):
+    cree_affix_searcher: AffixSearcher
+    english_affix_searcher: AffixSearcher
+
+    def ready(self) -> None:
         """
         This function is called when you restart dev server or touch wsgi.py
         """
         initialize_preverb_search()
-        initialize_affix_search()
+        self._initialize_affix_search()
         read_morpheme_rankings()
+
+    def _initialize_affix_search(self) -> None:
+        """
+        Build tries to facilitate prefix/suffix search
+        """
+        logger.info("Building tries for affix search...")
+        from .models import EnglishKeyword, Wordform
+
+        try:
+            Wordform.objects.count()
+        except OperationalError:
+            # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
+            # exists. Then an OperationalError will occur.
+            logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
+            return
+
+        self.cree_affix_searcher = AffixSearcher(fetch_cree_lemmas_with_ids())
+        self.english_affix_searcher = AffixSearcher(fetch_english_keywords_with_ids())
+
+        logger.info("Finished building tries")
+
+    @classmethod
+    def active_instance(cls) -> "APIConfig":
+        """
+        Fetch the instance of this Config from the Django app registry.
+
+        This way you can get access to the affix searchers in other modules!
+        """
+        return apps.get_app_config(cls.name)
 
 
 def initialize_preverb_search():
@@ -63,32 +95,6 @@ def read_morpheme_rankings():
         if len(cells) >= 2:
             freq, morpheme, *_ = cells
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
-
-
-def initialize_affix_search() -> None:
-    """
-    Build tries and attach to Wordform class to facilitate prefix/suffix search
-    """
-    logger.info("Building tries for affix search...")
-    from .models import (
-        EnglishKeyword,
-        Wordform,
-        set_affix_searcher_for_cree,
-        set_affix_searcher_for_english,
-    )
-
-    try:
-        Wordform.objects.count()
-    except OperationalError:
-        # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
-        # exists. Then an OperationalError will occur.
-        logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
-        return
-
-    set_affix_searcher_for_cree(AffixSearcher(fetch_cree_lemmas_with_ids()))
-    set_affix_searcher_for_english(AffixSearcher(fetch_english_keywords_with_ids()))
-
-    logger.info("Finished building tries")
 
 
 def fetch_english_keywords_with_ids():
