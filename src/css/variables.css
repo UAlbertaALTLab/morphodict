@@ -53,6 +53,7 @@
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
   --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+  --deemphasized-text-color:#444444; /* Text that should be de-emphasized. */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/

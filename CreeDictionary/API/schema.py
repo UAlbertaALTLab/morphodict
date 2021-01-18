@@ -28,6 +28,7 @@ class SerializedWordform(TypedDict):
     inflectional_category_plain_english: str
     inflectional_category_linguistic: str
     wordclass_emoji: str
+    wordclass: str
 
     # ---- foreign keys ----
     definitions: List[SerializedDefinition]

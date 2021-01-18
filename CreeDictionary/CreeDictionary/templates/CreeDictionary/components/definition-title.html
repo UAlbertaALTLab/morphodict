@@ -1,7 +1,9 @@
 {% spaceless %}
-
   {% comment %}
     ## .definition-title ##
+
+    Parameters:
+      result: SerializedSearchResult
 
     Example:
 
@@ -21,7 +23,7 @@
 
   {# First line of the header #}
   {# TODO: change data-cy=definition-title #}
-  <div class="definition-title definition-title--search-result" data-cy="matched-wordform">
+  <div class="definition-title" data-cy="matched-wordform">
     {# the matched head itself: #}
     <h2 class="definition-title__title definition__matched-head" data-cy="definition-title">
       {% if result.is_lemma %}
@@ -33,9 +35,6 @@
 
     &#32; {# separate title proper from icons #}
 
-    <div class="definition__icons" data-wordform="{{ result.matched_cree }}">
-      {% include "CreeDictionary/components/linguistic-breakdown.html" %}
-      {# NB: 🔊 Recording button is added here dynamically by JavaScript #}
-    </div>
+    {% include "CreeDictionary/components/definition__icons.html" %}
   </div>
 {% endspaceless %}
