@@ -524,7 +524,6 @@ html {
 .multiple-recordings__action-button {
   /* Reset the button appearance: */
   width: 1em;
-  height: 1em;
   padding: 0;
   border: 0;
   margin: 0;
@@ -573,7 +572,6 @@ html {
  */
 .multiple-recordings__action-button {
   margin-left: 0.5em;
-  margin-bottom: 1em; /* makes the button line up with the select */
 }
 a.multiple-recordings__action-button {
   font-weight: var(--body-font-weight);
