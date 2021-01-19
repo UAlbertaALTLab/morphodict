@@ -111,14 +111,6 @@ command:
 (note: this is always run via `npm start`)
 
 
-### Create an admin account (optional)
-
-To use the Django admin interface, you need to make yourself an admin
-account:
-
-    python ./CreeDictionary/manage.py createsuperuser
-
-
 Running the development server
 ------------------------------
 
@@ -127,7 +119,6 @@ Running the development server
 This starts both the Django server, and the Rollup watch process.
 
  - Homepage: <http://127.0.0.1:8000/>
- - Admin: <http://127.0.0.1:8000/admin>
 
 
 Where are the JavaScript files?
