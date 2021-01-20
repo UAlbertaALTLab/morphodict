@@ -35,11 +35,6 @@ def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, Non
         if suffixes == ["?"]:
             continue
 
-        # The descriptive analyzer REALLY likes finding fragments (for spell-checking
-        # purposes), but they're not useful in this dictionary, so just skip 'em
-        if "Err/Frag" in suffixes:
-            continue
-
         yield Analysis(
             raw_prefixes="+".join(prefixes),
             lemma=lemma,
