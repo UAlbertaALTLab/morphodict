@@ -5,8 +5,6 @@ from hfst_optimized_lookup import TransducerFile
 from utils import paradigm_filler as pf
 from utils import shared_res_dir
 
-from .workaround import HFSTOLWithoutFragmentAnalyses
-
 _fst_dir = shared_res_dir / "fst"
 
 # These are part of the public API, but don't instantiate them yet!
