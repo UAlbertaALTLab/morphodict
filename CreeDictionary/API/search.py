@@ -32,7 +32,7 @@ from utils.english_keyword_extraction import stem_keywords
 from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import ConcatAnalysis, FSTTag, Label
 
-from CreeDictionary import hfstol as temp_hfstol
+from CreeDictionary import hfstol
 
 from .apps import APIConfig
 from .models import Definition, EnglishKeyword, Wordform
@@ -480,11 +480,11 @@ def _fetch_results(
     The rest of this method is code Eddie has NOT refactored, so I don't really
     understand what's going on here:
     """
-    # utilize the spell relax in relaxed_analyzer
-    # TODO: use shared.relaxed_analyzer (HFSTOL) when this bug is fixed:
-    # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+    # Use the spell relaxataion to try to decipher the query
+    #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
+    #         thus, we can match "acâhkos" in the dictionary!
     fst_analyses: Set[ConcatAnalysis] = set(
-        a.concatenate() for a in temp_hfstol.analyze(user_query)
+        a.concatenate() for a in hfstol.analyze(user_query)
     )
 
     all_standard_forms = []
@@ -517,7 +517,7 @@ def _fetch_results(
             # now we generate the standardized form of the user query for display purpose
             # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
             normatized_form_for_analysis = [
-                *temp_hfstol.generate(
+                *hfstol.generate(
                     analysis.replace("+Err/Orth", "").replace("+Err/Frag", "")
                 )
             ]
