@@ -69,7 +69,8 @@ def test_analyses_do_not_contain_err_orth():
     Regression: old FSTs used to contain an +Err/Orth tag that made invalidated some
     assumptions in the rest of the codebase.
     """
-    non_standard_form = "môy"  # non-standard form of "namôya"
+    # old FSTs produce +Err/Orth if when the hyphen is missing between ê- and *wâpamât
+    non_standard_form = "êwâpamât"
     assert all(
         "+Err/Orth" not in analysis.raw_suffixes
         for analysis in analyze(non_standard_form)
