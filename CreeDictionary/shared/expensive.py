@@ -18,14 +18,16 @@ strict_analyzer: TransducerFile
 # How to create one of the above 👆🏼 instances
 _instance_factory = dict(
     paradigm_filler=lambda: pf.ParadigmFiller.default_filler(),
+    # TODO: rename to strict_generator
     normative_generator=lambda: TransducerFile(
-        _fst_dir / "crk-normative-generator.hfstol"
+        _fst_dir / "crk-strict-generator.hfstol"
     ),
+    # TODO: rename to relaxed_analyzer
     descriptive_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(
-        _fst_dir / "crk-descriptive-analyzer.hfstol"
+        _fst_dir / "crk-relaxed-analyzer-for-dictionary.hfstol"
     ),
     strict_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(
-        _fst_dir / "crk-strict-analyzer.hfstol"
+        _fst_dir / "crk-strict-analyzer-for-dictionary.hfstol"
     ),
 )
 
