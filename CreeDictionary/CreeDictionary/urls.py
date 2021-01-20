@@ -127,6 +127,7 @@ _urlpatterns = [
         include("morphodict.urls"),
         "cree-dictionary-change-orthography",
     ),
+    ("search-quality/", include("search_quality.urls"), "search_quality"),
 ]
 
 # Add style debugger, but only in DEBUG mode!

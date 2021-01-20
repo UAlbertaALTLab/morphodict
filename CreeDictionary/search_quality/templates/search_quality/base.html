@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="referrer" content="no-referrer">
+  <title>{% block title %}search quality{% endblock %}</title>
+  <style>
+    {#“How to change Bootstrap's global default font size?”#}
+    {#https://stackoverflow.com/a/46204739/14558#}
+    html {
+      font-size: 12px;
+    }
+
+    table.sticky-table {
+        /* https://stackoverflow.com/questions/50361698/border-style-do-not-work-with-sticky-position-element */
+        border-collapse: separate !important;
+        border-spacing: 0;
+    }
+    table.sticky-table thead.sticky {
+        /* At least one T/R/B/L position style has to be set for sticky to work;
+         * everything else is just to make the borders look better */
+        top: 0;
+        position: sticky;
+    }
+    table.sticky-table td, table.sticky-table thead.sticky th {
+        border: 0.5px solid lightgray;
+    }
+    table.sticky-table thead.sticky th {
+        border-bottom: none;
+        background-color: white;
+    }
+  </style>
+  {# cargo-cult from  https://getbootstrap.com/docs/4.6/getting-started/introduction/ #}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+</head>
+<body class="container">
+{% block body %}
+{% endblock %}
+</body>
+</html>
