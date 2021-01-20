@@ -85,7 +85,7 @@ class ParadigmFiller:
         if generator_hfstol_path is None:
             from shared import expensive
 
-            self._generator = expensive.normative_generator
+            self._generator = expensive.strict_generator
         else:
             self._generator = TransducerFile(generator_hfstol_path)
 

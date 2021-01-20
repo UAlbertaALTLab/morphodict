@@ -58,7 +58,7 @@ def build_test_xml():
     test_words = get_test_words()
 
     print(f"Analyzing xml l elements and test words")
-    word_to_analyses = expensive.descriptive_analyzer.bulk_lookup(xml_ls | test_words)
+    word_to_analyses = expensive.relaxed_analyzer.bulk_lookup(xml_ls | test_words)
     print("Analysis done")
 
     test_word_lemmas: Set[str] = set()
