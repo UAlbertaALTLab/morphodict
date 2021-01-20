@@ -480,7 +480,7 @@ def _fetch_results(
     The rest of this method is code Eddie has NOT refactored, so I don't really
     understand what's going on here:
     """
-    # Use the spell relaxataion to try to decipher the query
+    # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
     fst_analyses: Set[ConcatAnalysis] = set(
@@ -505,7 +505,6 @@ def _fetch_results(
             # When the user query is outside of paradigm tables
             # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
             # e.g. Initial change: nêpât: {'IC+nipâw+V+AI+Cnj+3Sg'}
-            # e.g. Err/Orth: ewapamat: {'PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO+Err/Orth'
 
             lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
             if lemma_wc is None:
@@ -549,7 +548,7 @@ def _fetch_results(
                 for lemma_wordform in matched_lemma_wordforms:
                     cree_results.add(
                         CreeResult(
-                            ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                            ConcatAnalysis(analysis),
                             normatized_user_query,
                             Lemma(lemma_wordform),
                         )
@@ -560,7 +559,7 @@ def _fetch_results(
                 ):
                     cree_results.add(
                         CreeResult(
-                            ConcatAnalysis(analysis.replace("+Err/Orth", "")),
+                            ConcatAnalysis(analysis),
                             normatized_user_query,
                             Lemma(lemma_wordform),
                         )
