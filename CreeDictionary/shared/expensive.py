@@ -11,19 +11,17 @@ _fst_dir = shared_res_dir / "fst"
 
 # These are part of the public API, but don't instantiate them yet!
 paradigm_filler: pf.ParadigmFiller
-normative_generator: TransducerFile
-descriptive_analyzer: TransducerFile
+strict_generator: TransducerFile
+relaxed_analyzer: TransducerFile
 strict_analyzer: TransducerFile
 
 # How to create one of the above 👆🏼 instances
 _instance_factory = dict(
     paradigm_filler=lambda: pf.ParadigmFiller.default_filler(),
-    # TODO: rename to strict_generator
-    normative_generator=lambda: TransducerFile(
+    strict_generator=lambda: TransducerFile(
         _fst_dir / "crk-strict-generator.hfstol"
     ),
-    # TODO: rename to relaxed_analyzer
-    descriptive_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(
+    relaxed_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(
         _fst_dir / "crk-relaxed-analyzer-for-dictionary.hfstol"
     ),
     strict_analyzer=lambda: HFSTOLWithoutFragmentAnalyses.from_file(
@@ -39,7 +37,7 @@ def __getattr__(name: str):
     When an instance is accessed for the very first time, e.g.,
 
         from shared import expensive
-        expensive.descriptive_analyzer
+        expensive.relaxed_analyzer
 
     That instance will NOT exist in the module namespace (i.e., globals()).
     Since Python 3.7, we can intercept this access, and PERMANENTLY add that instance to

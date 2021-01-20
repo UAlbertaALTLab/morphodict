@@ -480,8 +480,8 @@ def _fetch_results(
     The rest of this method is code Eddie has NOT refactored, so I don't really
     understand what's going on here:
     """
-    # utilize the spell relax in descriptive_analyzer
-    # TODO: use shared.descriptive_analyzer (HFSTOL) when this bug is fixed:
+    # utilize the spell relax in relaxed_analyzer
+    # TODO: use shared.relaxed_analyzer (HFSTOL) when this bug is fixed:
     # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
     fst_analyses: Set[ConcatAnalysis] = set(
         a.concatenate() for a in temp_hfstol.analyze(user_query)
