@@ -515,12 +515,7 @@ def _fetch_results(
                 continue
 
             # now we generate the standardized form of the user query for display purpose
-            # notice Err/Orth tags needs to be stripped because it makes our generator generate un-normatized forms
-            normatized_form_for_analysis = [
-                *hfstol.generate(
-                    analysis.replace("+Err/Orth", "").replace("+Err/Frag", "")
-                )
-            ]
+            normatized_form_for_analysis = list(hfstol.generate(analysis))
             all_standard_forms.extend(normatized_form_for_analysis)
             if len(all_standard_forms) == 0:
                 logger.error(
