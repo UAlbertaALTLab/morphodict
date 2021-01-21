@@ -5,6 +5,8 @@ Definition of urls for CreeDictionary.
 import logging
 import os
 
+from django.contrib import admin
+
 import API.views as api_views
 from django.conf import settings
 from django.conf.urls import url
@@ -118,6 +120,7 @@ _urlpatterns = [
         api_views.click_in_text,
         "cree-dictionary-word-click-in-text-api",
     ),
+    ("admin/", admin.site.urls, "admin"),
     (
         "",
         include("morphodict.urls"),
