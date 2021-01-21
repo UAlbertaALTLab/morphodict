@@ -14,6 +14,7 @@ def admin_url_for(obj):
 
 
 class CustomModelAdmin(admin.ModelAdmin):
+    # Make everything read-only
     # https://stackoverflow.com/a/53070092/14558
     def has_change_permission(self, request, obj=None):
         return False
@@ -25,19 +26,25 @@ class CustomModelAdmin(admin.ModelAdmin):
         return False
 
     def __init__(self, model, admin_site):
+        self.exclude = []
+
         # If the subclass already defined FOO_as_link in list_display, use that
         def maybe_link(field_name):
             if field_name + "_as_link" in self.list_display:
+                self.exclude.append(field_name)
                 return field_name + "_as_link"
             return field_name
 
+        # Show all easily-displayable fields
         self.list_display = tuple(
             maybe_link(field.name)
             for field in model._meta.get_fields()
             if not field.many_to_many and not field.auto_created
         )
-        print(self.list_display)
         self.list_select_related = True
+
+        # This makes the _as_link function get used on the detail page
+        self.readonly_fields = self.list_display
 
         field_names = [f.name for f in model._meta.get_fields()]
         if "id" in field_names:
@@ -88,10 +95,43 @@ class DictionarySourceAdmin(CustomModelAdmin):
     pass
 
 
+class DefinitionInline(admin.TabularInline):
+    model = Definition
+    show_change_link = True
+    view_on_site = False
+
+
+class EnglishKeywordInline(admin.TabularInline):
+    model = EnglishKeyword
+    show_change_link = True
+    view_on_site = False
+
+
+class WordformInline(admin.TabularInline):
+    model = Wordform
+    show_change_link = True
+    verbose_name = "Inflection"
+    verbose_name_plural = "Inflections"
+
+    def get_view_on_site_url(self, obj=None):
+        # get_absolute_url() throws exceptions if obj is not a lemma
+        if obj.is_lemma:
+            return obj.get_absolute_url()
+        return None
+
+
 @admin.register(Wordform)
-class DictionarySourceAdmin(CustomModelAdmin):
+class WordformAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
     search_fields = ("text", "analysis", "stem")
+    list_filter = ("is_lemma", "as_is")
+
+    inlines = [DefinitionInline, EnglishKeywordInline, WordformInline]
+
+    def view_on_site(self, obj):
+        if obj.is_lemma:
+            return obj.get_absolute_url()
+        return None
 
     def lemma_as_link(self, obj: Wordform):
         if obj.lemma == obj:
