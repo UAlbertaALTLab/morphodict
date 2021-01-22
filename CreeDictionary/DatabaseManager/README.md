@@ -8,11 +8,7 @@ If installed as a package, command `manage-db` will be added to python environme
 
 - Unlink the database and import crkeng.xml to the database (migrations will also be applied)
 
-    `manage-db import /res/dictionaries/`
-    
-- Use multi-process acceleration
-
-    `manage-db import /res/dictionaries/ --multi-process 2`
+    `manage-db import res/dictionaries/`
     
 - Help for sub-command `import`
 

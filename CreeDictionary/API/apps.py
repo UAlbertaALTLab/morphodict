@@ -25,10 +25,16 @@ class APIConfig(AppConfig):
 
     def ready(self) -> None:
         # FIXME don’t use this method, it gets called during startup of *every*
-        # management command, wasting time, and the database config will point
-        # at the production database even if you run `manage.py test`
+        # management command, wasting time, and when you’re running tests, the
+        # database config inside this method can point at the production
+        # database (!!)
         #
         # https://docs.djangoproject.com/en/3.1/ref/applications/#django.apps.AppConfig.ready
+        #
+        # Suggestions if you really want eager loading:
+        #   - The runserver auto-reloading sets a RUN_MAIN environment variable, you
+        #     could set that
+        #   - wsgi.py could set something too
         """
         This function is called when you restart dev server or touch wsgi.py
         """

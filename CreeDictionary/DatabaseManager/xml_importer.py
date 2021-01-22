@@ -124,6 +124,12 @@ def import_sources():
         DictionarySource(**src).save()
 
 
+class ProcessedEntry(NamedTuple):
+    stem: str
+    ic: str
+    lemma_analysis: str
+
+
 @timed()
 def import_xmls(crkeng_file_path: Path, verbose=True):
     r"""
@@ -233,6 +239,8 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
     # generate ALL inflections within the paradigm tables from the lemma analysis
     expanded = expand_inflections(identified_entry_to_analysis.values())
 
+    seen_lemmas: Set[ProcessedEntry] = set()
+
     # now we import identified entries to the database, the entries we successfully identify with their lemma analyses
     for (entry, lemma_analysis) in identified_entry_to_analysis.items():
         lemma_text_and_word_class = (
@@ -242,6 +250,13 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
 
         fst_lemma_text, word_class = lemma_text_and_word_class
         generated_pos = word_class.pos
+
+        p_entry = ProcessedEntry(
+            stem=entry.stem, ic=entry.ic, lemma_analysis=lemma_analysis
+        )
+        if p_entry in seen_lemmas:
+            continue
+        seen_lemmas.add(p_entry)
 
         db_wordforms_for_analysis = []
         db_lemma = None
@@ -254,6 +269,7 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
                     generated_analysis
                 )
             )
+
             assert generated_lemma_text_and_ic is not None
             generated_lemma_text, generated_ic = generated_lemma_text_and_ic
 

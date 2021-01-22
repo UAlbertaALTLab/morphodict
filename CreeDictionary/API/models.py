@@ -17,7 +17,6 @@ from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
-from .affix_search import AffixSearcher
 from .schema import SerializedDefinition, SerializedWordform
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
