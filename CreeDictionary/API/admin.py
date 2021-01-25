@@ -56,6 +56,13 @@ class CustomModelAdmin(admin.ModelAdmin):
         super().__init__(model, admin_site)
 
 
+def add_short_description(func, short_description):
+    # There’s currently no reasonable way in mypy to declare attributes on
+    # function objects
+    # https://github.com/python/mypy/issues/2087
+    func.short_description = short_description
+
+
 @admin.register(Definition)
 class DefinitionAdmin(CustomModelAdmin):
     list_display = ("wordform_as_link",)
@@ -71,7 +78,7 @@ class DefinitionAdmin(CustomModelAdmin):
             name=str(obj.wordform),
         )
 
-    wordform_as_link.short_description = "Wordform"
+    add_short_description(wordform_as_link, "Wordform")
 
 
 @admin.register(EnglishKeyword)
@@ -87,7 +94,7 @@ class EnglishKeywordAdmin(CustomModelAdmin):
             name=str(obj.lemma),
         )
 
-    lemma_as_link.short_description = "Lemma"
+    add_short_description(lemma_as_link, "Lemma")
 
 
 @admin.register(DictionarySource)
@@ -144,4 +151,4 @@ class WordformAdmin(CustomModelAdmin):
             name=str(obj.lemma),
         )
 
-    lemma_as_link.short_description = "Lemma"
+    add_short_description(lemma_as_link, "Lemma")
