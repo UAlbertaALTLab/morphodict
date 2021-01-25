@@ -19,7 +19,10 @@ class Command(BaseCommand):
         if not options["yes_really"]:
             self.stdout.write("Showing status only. Counts of what would be deleted:")
 
-        # The order matters due to foreign keys
+        # The order matters due to foreign keys. This is *much* better than
+        # doing it by hand at the SQLite prompt, but if maintaining the
+        # order becomes a burden, we could use Django’s meta-model API to
+        # topologically sort the dependencies between models.
         for model in [
             EnglishKeyword,
             Definition.citations.through,
@@ -31,4 +34,6 @@ class Command(BaseCommand):
 
             if options["yes_really"]:
                 cursor = connection.cursor()
+                # SQLite does not have truncate; it would potentially be
+                # faster to drop and recreate these tables.
                 cursor.execute(f"DELETE FROM {model._meta.db_table}")
