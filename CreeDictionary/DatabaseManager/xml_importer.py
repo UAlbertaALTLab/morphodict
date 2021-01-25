@@ -125,18 +125,21 @@ def import_sources():
 
 
 @timed()
-def import_xmls(dir_name: Path, verbose=True):
+def import_xmls(crkeng_file_path: Path, verbose=True):
     r"""
-    Import from crkeng files, `dir_name` can host a series of xml files. The latest timestamped files will be
-    used, with un-timestamped files as a fallback.
+    Import from crkeng files, either directly from the specified file or from
+    the latest dictionary file in the specified directory.
 
-    :param dir_name: the directory that has pattern crkeng.*?(?P<timestamp>\d{6})?\.xml
-    (e.g. crkeng_cw_md_200319.xml or crkeng.xml) files, beware the timestamp has format yymmdd
+    :param crkeng_file_path: either a file or a directory that has pattern
+    crkeng.*?(?P<timestamp>\d{6})?\.xml (e.g. crkeng_cw_md_200319.xml or
+    crkeng.xml) files, beware the timestamp has format yymmdd. The latest
+    timestamped files will be used, with un-timestamped files as a fallback.
     :param verbose: print to stdout or not
     """
     logger.set_print_info_on_console(verbose)
 
-    crkeng_file_path = find_latest_xml_file(dir_name)
+    if crkeng_file_path.is_dir():
+        crkeng_file_path = find_latest_xml_file(crkeng_file_path)
     logger.info(f"using crkeng file: {crkeng_file_path}")
 
     assert crkeng_file_path.exists()
