@@ -183,7 +183,8 @@ On Mac:
 
 On Windows:
 
-> Download hfstol binary file. Add bin folder to system path.
+> Download [hfst-latest.zip](https://apertium.projectjj.com/win32/nightly/)
+> and unpack it. Add the `hfst/bin` folder to your system path.
 
 On Linux:
 
