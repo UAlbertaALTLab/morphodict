@@ -33,7 +33,7 @@ def test_when_linguistic_breakdown_absent():
     # it's not analyzable by the normative fst and should not have a linguistic breakdown
     # however, in the latest version of the descriptive FST pê- can get analyzed as a fragment, receiving the +Err/Frag tag.
     # nevertheless, currently we ignore the +Err/Frag cases.
-    
+
     query = "pe-"
     search_results = Wordform.search_with_affixes(query)
 
@@ -126,7 +126,7 @@ def test_compare_simple_vs_affix_search() -> None:
 
     # The prefix should be a complete wordform, as well as a valid prefix of the lemma
     # AA: Is this true? As one can search with an incomplete wordform and get results, e.g. 'wâpamê'
-    
+
     prefix = "wâpam"
     lemma = "wâpamêw"
     assert lemma.startswith(prefix)
