@@ -8,7 +8,7 @@ context('Regressions', () => {
     cy.visitSearch('acâhkos')
 
     cy.get('[data-cy=search-results]')
-      .should('contain', 'atâhk')
+      .should('contain', 'atâhk') // 'acâhkos' is a diminutive of 'atâhk'
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
@@ -19,7 +19,7 @@ context('Regressions', () => {
 
     cy.visitSearch('acâhkosa kâ-otakohpit')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'acâhkosa kâ-otakohpit')
+      .should('contain', 'acâhkosa kâ-otakohpit') // Contrary to appearance, this is a full compound match, not an example of parsing 'acâhkosa'
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
@@ -34,20 +34,20 @@ context('Regressions', () => {
 
     cy.visitSearch('e nipat')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'nipâw')
+      .should('contain', 'nipâw') // 'e nipat' is a relaxed spelling of 'ê-nipât' which is a conjunct form of 'nipâw'
   })
 
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
   it('should display relevant English results', () => {
 
-    cy.visitSearch('see')
+    cy.visitSearch('see') // At the very least, we should see the three primary translations for 'see' from the VAI, VTI, and VTA classes.
     cy.get('[data-cy=search-results]')
       .should('contain', 'wâpiw')
       .and('contain', 'wâpahtam')
       .and('contain', 'wâpamêw')
 
-    cy.visitSearch('eat')
+    cy.visitSearch('eat') // At the very least, we should see the three primary translations for 'eat' from the VAI, VTI, and VTA classes.
     cy.get('[data-cy=search-results]')
       .should('contain', 'mîcisow')
       .and('contain', 'mîciw')
@@ -62,7 +62,7 @@ context('Regressions', () => {
   it('should show preverbs', () => {
     cy.visitSearch('ati')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'ati-')
+      .should('contain', 'ati-') // A preverb written without the hyphen should match the canonical form with the hyphen
 
     cy.visitSearch('ati-')
     cy.get('[data-cy=search-results]')
@@ -70,25 +70,25 @@ context('Regressions', () => {
 
     cy.visitSearch('nitawi')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'nitawi-')
+      .should('contain', 'nitawi-') // A preverb written without the hyphen should match the canonical form with the hyphen
 
     cy.visitSearch('pe')
     cy.get('[data-cy=search-results]')
-      .should('contain', 'pê-')
+      .should('contain', 'pê-') // A preverb written without the hyphen should match the canonical form with the hyphen
 
   })
 
   // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/160
   it('should show results for pronouns', () => {
-    cy.visitSearch('oma')
+    cy.visitSearch('oma') // relaxed spelling matching standard spelling
     cy.get('[data-cy=search-results]')
-      .should('contain', 'ôma')
+      .should('contain', 'ôma') // 'that (inanimate)'
 
-    cy.visitSearch('awa')
+    cy.visitSearch('awa') // 'this (animate)'
     cy.get('[data-cy=search-results]')
       .should('contain', 'awa')
 
-    cy.visitSearch('niya')
+    cy.visitSearch('niya') // 'I/me/my'
     cy.get('[data-cy=search-results]')
       .should('contain', 'niya')
   })
@@ -127,7 +127,7 @@ context('Regressions', () => {
   it('should just show two meanings for the lemma nipâw', () => {
     cy.visitSearch('nipâw')
     cy.get('[data-cy=search-results]').first()
-      .find('[data-cy=lemma-meaning]').should('have.length', 2)
+      .find('[data-cy=lemma-meaning]').should('have.length', 2) // 'nipâw' has distinct translations in both CW and MD
   })
 
 
@@ -162,10 +162,10 @@ context('Regressions', () => {
   it('should show 3>1,2 rather than 3\', 3 in the VTA layout', function () {
     // Go to a VTA word:
     cy.visitSearch('wâpamêw')
-    cy.contains('a', 'wâpamêw')
+    cy.contains('a', 'wâpamêw') // I cannot immediately understand what this test tries to achieve
       .click()
 
-    // N.B.: This test will fail if the word changes. ¯\_(ツ)_/¯
+    // N.B.: This test will fail if the word changes. ¯\_(ツ)_/¯ // This concerns the plain English relabeling of the paradigm layout labels.
     cy.contains('th', 's/he → him/her/them (further)') // 3Sg -> 4 (lemma)
     cy.contains('th', 's/he → me')                  // 3Sg -> 1Sg
     cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
@@ -190,7 +190,7 @@ context('Regressions', () => {
 
 
   /**
-   * Ensure English names with capitalization gets matches
+   * Ensure English names with capitalization get matches
    *
    * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/343
    */
@@ -226,7 +226,7 @@ context('Regressions', () => {
 
     // there should be only one result
     cy.get('[data-cy=search-results]')
-      .should('contain', 'kîsikâw')
+      .should('contain', 'kîsikâw') // 'day', 'it is day(time)'
   })
 
 
@@ -262,7 +262,7 @@ context('Regressions', () => {
         cy.get('[data-cy=lemma-link]').its('length').then(length => {
 
           for (let i = 0; i < length; i++) {
-            cy.visitSearch('nôhtêpayiw')
+            cy.visitSearch('nôhtêpayiw') // 'nôhtêpayiw' has both an AI and II meaning
             cy.get('[data-cy=lemma-link]').eq(i).click()
             cy.get('[data-cy=paradigm]').should('be.visible')
           }
