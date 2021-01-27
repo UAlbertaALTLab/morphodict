@@ -17,6 +17,7 @@ from django_js_reverse.views import urls_js
 
 from CreeDictionary import views
 
+
 logger = logging.getLogger(__name__)
 
 # 2019/May/21 Matt Yan:
@@ -145,6 +146,8 @@ for route, view, name in _urlpatterns:
 
 # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
+
+admin.site.site_url = "/" + prefix
 
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
