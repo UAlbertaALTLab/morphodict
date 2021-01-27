@@ -30,8 +30,10 @@ def django_db_setup():
 @pytest.mark.django_db
 def test_when_linguistic_breakdown_absent():
     # pê- is a preverb
-    # it's not analyzable by the fst and should not have a linguistic breakdown
-
+    # it's not analyzable by the normative fst and should not have a linguistic breakdown
+    # however, in the latest version of the descriptive FST pê- can get analyzed as a fragment, receiving the +Err/Frag tag.
+    # nevertheless, currently we ignore the +Err/Frag cases.
+    
     query = "pe-"
     search_results = Wordform.search_with_affixes(query)
 
@@ -123,6 +125,8 @@ def test_compare_simple_vs_affix_search() -> None:
     """
 
     # The prefix should be a complete wordform, as well as a valid prefix of the lemma
+    # AA: Is this true? As one can search with an incomplete wordform and get results, e.g. 'wâpamê'
+    
     prefix = "wâpam"
     lemma = "wâpamêw"
     assert lemma.startswith(prefix)
@@ -269,7 +273,7 @@ def test_search_text_with_ambiguous_word_classes():
 
 @pytest.mark.django_db
 def test_lemma_ranking_most_frequent_word():
-    # the English sleep should many cree words. But nipâw should show first because
+    # the English sleep should many Cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
     results = Wordform.search_with_affixes("sleep")
     assert results[0].matched_cree == "nipâw"
