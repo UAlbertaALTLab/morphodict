@@ -1,7 +1,7 @@
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple
+from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple, Optional
 
 from colorama import init
 from django.conf import settings
@@ -125,7 +125,7 @@ def import_sources():
 
 
 class ProcessedEntry(NamedTuple):
-    stem: str
+    stem: Optional[str]
     ic: str
     lemma_analysis: str
 
