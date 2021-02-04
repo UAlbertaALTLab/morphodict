@@ -25,11 +25,7 @@ ARG WSGI_USER=itwewina
 
 # Create the user/group for the application
 RUN groupadd --system --gid ${UID_GID} ${WSGI_USER} \
- && useradd --no-log-init --system --gid ${WSGI_USER} --uid ${UID_GID} ${WSGI_USER}
-
-# Setup Python deps
-ADD Pipfile /app/Pipfile
-ADD Pipfile /app/Pipfile.lock
+ && useradd --no-log-init --system --gid ${WSGI_USER} --uid ${UID_GID} ${WSGI_USER} --create-home
 
 # TODO: move package.json dependences from build and test
 #  - [ ] must document in development guide
@@ -44,17 +40,25 @@ RUN set -ex \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
  && pip install pipenv \
- && pipenv install \
- && npm ci \
- && npm run build \
- && apt-get purge -y --auto-remove -o APT::AutoRemove:RecommendsImportant=false $BUILD_DEPS \
  && rm -rf /var/lib/apt/lists/* \
- && mkdir /data/
+ && mkdir /data/ /app/ \
+ && chown ${WSGI_USER} /data /app
+
+USER ${WSGI_USER}
+
+# Setup Python deps
+ADD Pipfile /app/Pipfile
+ADD Pipfile.lock /app/Pipfile.lock
+
+WORKDIR /app/
+
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
 # Copy the application files. Make sure .dockerignore is setup properly so it
 # doesn't copy unnecessary files
-WORKDIR /app/
 ADD . /app/
+RUN npm ci \
+ && npm run build \
 
 # Gunicorn will listen on this port:
 EXPOSE 8000
@@ -63,3 +67,4 @@ EXPOSE 8000
 # These should be built and
 
 # Where to find the WSGI file
+CMD /app/.venv/bin/gunicorn --bind 127.0.0.1:8000 CreeDictionary.wsgi:application
