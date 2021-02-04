@@ -1,3 +1,5 @@
+# See: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
 # Do not copy files these when dealing with Docker
 
 # Dependencies
@@ -6,7 +8,7 @@ node_modules/
 
 # Logs
 CreeDictionary/DatabaseManager/logs/
-*.log
+*/*.log
 
 # Caches
 .hypothesis/
@@ -14,13 +16,17 @@ CreeDictionary/DatabaseManager/logs/
 .pytest_cache/
 
 # Databases
-*.sqlite3
+**/*.sqlite3
 
 # Tests
 CreeDictionary/tests/
-./cypress
+cypress/
 
 # Development files
 .git/
 .vscode/
 .idea/
+.github/
+
+# When running `make debug-context`, prevent from adding itself
+context/
