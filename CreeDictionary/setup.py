@@ -5,7 +5,7 @@ setup(
     packages=find_packages(),
     entry_points={
         "console_scripts": [
-            "manage-db=DatabaseManager.__main__:cmd_entry",
+            "manage-db=DatabaseManager.main:main",
         ]
     },
 )

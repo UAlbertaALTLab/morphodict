@@ -24,7 +24,6 @@ pipfile-requirements = "*"
 colorama = "~=0.4"
 coverage = "~=4.5"
 cree-sro-syllabics = ">=2020.6.23"
-hfstol = "~=1.2.2"
 pytz = "==2019.2"
 Django = "~=2.2"
 creedictionary = {path = "./CreeDictionary",editable = true} # needed to install and use database manager
@@ -37,6 +36,7 @@ snowballstemmer = "*"
 dawg = "~=0.8"
 gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
+hfst-optimized-lookup = "*"
 
 [scripts]
 # look stuff up

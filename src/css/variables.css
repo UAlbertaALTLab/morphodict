@@ -20,9 +20,9 @@
   --tablet-search-bar-width:  561px;
 
   /* Colors */
-  --app-bg-color:           #F7F7F7; /* Background color of the entire application. */
+  --app-bg-color:           #F5F5F5; /* Background color of the entire application. */
   --app-body-color:         #000000; /* Color of body text. */
-  --app-title-color:        #0091FF; /* Color of the "itwêwina" title. */
+  --app-title-color:        #A20010; /* Color of the "itwêwina" title. */
   --bad-outcome-bg-color:   #E3A7AF; /* A light red (not quite pink) background */
   --bad-outcome-color:      #1A090D; /* A dark red text colour */
   --bad-outcome-shadow:     rgba(206, 77, 77, 0.2);
@@ -48,11 +48,12 @@
   --play-button-color:      #286995; /* The play button in a head (definition-title). */
   --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
   --popup-color:            #000000; /* Color of popup/tooltip text. */
-  --prose-heading-color:    #283C95;
+  --prose-heading-color:    #A20010;
   --prose-title-color:      #1D2D72; /* For BIG section titles. */
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
   --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */
+  --deemphasized-text-color:#444444; /* Text that should be de-emphasized. */
 
   /* special way of changing svg fill color when svg is embedded in <img> */
   /* to change the color. Generate a "filter" attribute with the desired color code*/
@@ -77,12 +78,10 @@
   /* Font families */
   --syllabics-fonts:
     Gadugi,                             /* Windows 10 */
-    'Euphemia UCAS',                    /* macOS/iOS */
-    Euphemia,                           /* Windows Vista/7/8 */
     'Aboriginal Sans',                  /* From languagegeek.com */
     'Noto Sans Canadian Aboriginal';    /* Fallback: ChromeOS/Chomebook and other platforms. */
-  --heading-font-family: Raleway, var(--syllabics-fonts), sans-serif;
   --body-font-family: 'Open Sans', var(--syllabics-fonts), sans-serif;
+  --heading-font-family: var(--body-font-family);
   /* Font weights */
   --body-font-weight:           400; /* Make sure these weights line up with the Google fonts! */
   --link-font-weight:           700; /* TODO: I don't like this. 700 is too bold. */

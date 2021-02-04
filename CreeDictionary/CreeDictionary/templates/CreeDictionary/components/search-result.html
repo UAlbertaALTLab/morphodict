@@ -1,0 +1,103 @@
+{% spaceless %}
+  {% comment %}
+    ## .definition ##
+
+    PARAMETERS:
+     result: SerializedSearchResult
+
+    A search result. Has these different forms:
+
+    Examples:
+      For a lemma
+      -----------
+
+        wâpamêw ℹ️  🔊
+        🧑🏽➡️🧑🏽— like: wîcihêw
+
+         1. s/he sees s.o. [CW]
+
+
+      For a non-lemma form without an explicit definition
+      ---------------------------------------------------
+
+        niwâpamâw ℹ️  🔊
+        form of wâpamêw
+        ---------------
+        wâpamêw ℹ️  🔊
+        🧑🏽➡️🧑🏽— like: wîcihêw
+
+         1. s/he sees s.o. [CW]
+
+
+      For a non-lemma form with its own definition
+      --------------------------------------------
+
+        nîminâniwan ℹ️  🔊
+
+          1. it is a dance, a time of dancing [CW]
+
+        form of nîmiw
+        ---------------
+        nîmiw ℹ️  🔊
+        🧑🏽➡️— like: nipâw
+
+    (see: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445)
+  {% endcomment %}
+
+  {% load morphodict_orth %}
+
+  <article class="definition box box--rounded" data-cy="search-result">
+    <header class="definition__header">
+      {% include "CreeDictionary/components/definition-title.html" %}
+      {% if result.is_lemma %}
+        {% include "CreeDictionary/components/definition__elaboration.html" with lemma=result.lemma_wordform %}
+      {% endif %}
+    </header>
+
+    {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
+    <ol class="meanings meanings--search-result">
+      {% for def in result.definitions %}
+      <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
+        {% for source in def.source_ids %}
+        <cite class="cite-dict">{{ source }}</cite>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ol>
+
+    {% include "CreeDictionary/components/preverb-breakdown.html" %}
+
+    {# Show the matched lemma (when this is NOT a lemma). #}
+    {% if not result.is_lemma %}
+      <p class="definition__reference-to-lemma" data-cy="reference-to-lemma">
+        form of <a
+          class="definition__matched-lemma"
+          href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+      </p>
+
+      <hr class="cleave-inflection-from-lemma">
+
+      <header class="definition__header">
+        <h2 class="definition-title definition-title--search-result">
+          {# TODO: change data-cy=definition-title #}
+          <dfn class="definition__matched-head" data-cy="definition-title">
+            <a href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+          </dfn>
+        </h2>
+
+        {% include 'CreeDictionary/components/definition__elaboration.html' with lemma=result.lemma_wordform %}
+      </header>
+
+      {# Theses are the definitions for the lemma, gauranteed to exist in the database #}
+      <ol class="meanings meanings--search-result">
+        {% for def in result.lemma_wordform.definitions %}
+        <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
+          {% for source in def.source_ids %}
+          <cite class="cite-dict">{{ source }}</cite>
+          {% endfor %}
+        </li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+  </article>
+{% endspaceless %}

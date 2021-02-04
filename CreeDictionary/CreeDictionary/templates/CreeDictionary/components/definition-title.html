@@ -1,0 +1,40 @@
+{% spaceless %}
+  {% comment %}
+    ## .definition-title ##
+
+    Parameters:
+      result: SerializedSearchResult
+
+    Example:
+
+      nîminâniwan ℹ️ 🔊
+        ,---------^-------.
+        | nîmiw           |
+        |   action word   |
+        |   ni-/ki- word  |
+        |   now           |
+        |   somebody      |
+        `-----------------'
+
+  {% endcomment %}
+
+  {% load morphodict_orth %}
+  {% load static %}
+
+  {# First line of the header #}
+  {# TODO: change data-cy=definition-title #}
+  <div class="definition-title" data-cy="matched-wordform">
+    {# the matched head itself: #}
+    <h2 class="definition-title__title definition__matched-head" data-cy="definition-title">
+      {% if result.is_lemma %}
+        <a data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+      {% else %}
+        {% orth result.matched_cree %}
+      {% endif %}
+    </h2>
+
+    &#32; {# separate title proper from icons #}
+
+    {% include "CreeDictionary/components/definition__icons.html" %}
+  </div>
+{% endspaceless %}

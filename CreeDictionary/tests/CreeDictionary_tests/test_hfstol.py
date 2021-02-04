@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
+
 from CreeDictionary.hfstol import analyze, generate
 
 
@@ -61,3 +62,28 @@ def test_generate(analysis, wordform):
 
 def test_generate_non_word():
     assert [] == list(generate("pîpîpôpô+Ipc"))
+
+
+def test_analyses_do_not_contain_err_orth():
+    """
+    Regression: old FSTs used to contain an +Err/Orth tag that made invalidated some
+    assumptions in the rest of the codebase.
+    """
+    # old FSTs produce +Err/Orth if when the hyphen is missing between ê- and *wâpamât
+    non_standard_form = "êwâpamât"
+    assert all(
+        "+Err/Orth" not in analysis.raw_suffixes
+        for analysis in analyze(non_standard_form)
+    )
+
+
+def test_analyses_do_not_contain_err_frag():
+    """
+    Regression: old FSTs used to produce MANY analyses, incling ones called +Err/Frag
+    that are only useful in tagging documents — but confuse dictionary applications!
+    """
+    possible_fragment = "kâ"
+    assert all(
+        "+Err/Frag" not in analysis.raw_suffixes
+        for analysis in analyze(possible_fragment)
+    )

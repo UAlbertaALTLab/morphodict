@@ -64,7 +64,6 @@ export function retrieveListOfSpeakers() {
 
       // play the audio associated with that specific index
       let audio = new Audio(audioURL)
-      audio.preload = 'none'
       audio.play()
     })
 
