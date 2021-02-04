@@ -1,6 +1,6 @@
 FROM python:3.9-slim-buster
 
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>
+LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 
 # (2021-01-15): This Dockerfile was derived from Gūnáhà:
 #  - https://github.com/UAlbertaALTLab/gunaha/blob/master/Dockerfile
@@ -28,8 +28,8 @@ RUN groupadd --system --gid ${UID_GID} ${WSGI_USER} \
  && useradd --no-log-init --system --gid ${WSGI_USER} --uid ${UID_GID} ${WSGI_USER}
 
 # Setup Python deps
-# NOTE: this is created by pipfile-requirements (see Makefile)
-ADD requirements.txt /app/requirements.txt
+ADD Pipfile /app/Pipfile
+ADD Pipfile /app/Pipfile.lock
 
 # TODO: move package.json dependences from build and test
 #  - [ ] must document in development guide
@@ -41,13 +41,10 @@ RUN set -ex \
     build-essential \
     nodejs \
     " \
- && RUNTIME_DEPS=" \
-    hfst \
- " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
- && apt-get install -y --no-install-recommends $RUNTIME_DEPS \
- && pip install --no-cache-dir -r /app/requirements.txt \
+ && pip install pipenv \
+ && pipenv install \
  && npm ci \
  && npm run build \
  && apt-get purge -y --auto-remove -o APT::AutoRemove:RecommendsImportant=false $BUILD_DEPS \
