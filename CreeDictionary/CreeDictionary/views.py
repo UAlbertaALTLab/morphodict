@@ -118,9 +118,8 @@ def search_results(request, query_string: str):  # pragma: no cover
         },
     )
 
-
 @require_GET
-def lemma_details_internal(request):
+def paradigm_internal(request):
     """
     Render word-detail.html for a lemma. `index` view function renders a whole page that contains word-detail.html too.
     This function, however, is used by javascript to dynamically replace the paradigm with the ones of different sizes.
@@ -162,7 +161,7 @@ def lemma_details_internal(request):
 
     return render(
         request,
-        "CreeDictionary/word-detail.html",
+        "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,

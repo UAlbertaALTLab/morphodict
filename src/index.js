@@ -179,7 +179,7 @@ function setupParadigmSizeToggleButton() {
     // Make it look like it's loading:
     toggleButton.classList.add('paradigm__size-toggle-button--loading')
 
-    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
+    fetch(Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
       if (r.ok) {
         return r.text()
       } else {
@@ -198,12 +198,12 @@ function setupParadigmSizeToggleButton() {
         }
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
         const oldParadigmNode = document.getElementById('paradigm')
-        oldParadigmNode.parentElement.replaceChild(paradigmFrag, oldParadigmNode)
+        oldParadigmNode.firstElementChild.replaceWith(paradigmFrag)
         paradigmSize = nextParadigmSize
         setupParadigmSizeToggleButton() // prepare the new button
       }
     ).catch(
-      r => console.error(r)
+      err => console.error(err)
     )
   })
 }
