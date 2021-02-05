@@ -346,7 +346,7 @@ context('Regressions', () => {
     cy.get('[data-cy=paradigm-toggle-button')
       .click()
 
-    cy.url()
+    cy.location('search')
       .should("include", "paradigm-size=FULL")
 
     cy.get('[data-cy=play-recording]')

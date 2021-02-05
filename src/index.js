@@ -179,7 +179,7 @@ function setupParadigmSizeToggleButton() {
     // Make it look like it's loading:
     toggleButton.classList.add('paradigm__size-toggle-button--loading')
 
-    fetch(Urls['cree-dictionary-lemma-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
+    fetch(Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
       if (r.ok) {
         return r.text()
       } else {

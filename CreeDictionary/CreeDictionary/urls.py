@@ -115,6 +115,12 @@ _urlpatterns = [
         views.lemma_details_internal,
         "cree-dictionary-lemma-detail",
     ),
+    # internal use to render paradigm and only the paradigm
+    (
+        "_paradigm_details/",
+        views.paradigm_internal,
+        "cree-dictionary-paradigm-detail",
+    ),
     # cree word translation for click-in-text
     (
         "click-in-text/",
