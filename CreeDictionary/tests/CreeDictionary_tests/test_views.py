@@ -60,7 +60,8 @@ class TestLemmaDetailsInternal4xx:
     def test_paradigm_details_internal_wrong_method(self, method: str):
         c = Client()
         response = getattr(c, method)(
-            reverse("cree-dictionary-paradigm-detail"), {"lemma-id": 1, "paradigm-size": "BASIC"}
+            reverse("cree-dictionary-paradigm-detail"),
+            {"lemma-id": 1, "paradigm-size": "BASIC"},
         )
         assert response.status_code == HttpResponseNotAllowed.status_code
 

@@ -118,6 +118,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         },
     )
 
+
 @require_GET
 def paradigm_internal(request):
     """
