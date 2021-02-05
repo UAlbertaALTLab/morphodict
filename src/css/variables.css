@@ -30,8 +30,8 @@
   --cite-text-color:        #182457; /* Color of dictionary citation element. */
   --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
   --embossed-highlight:     #e0e0e0;
-  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
-  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
+  --footer-bg-color:        #832020;
+  --footer-text-color:      #FFFFFF;
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --link-active-color:      #0E6790; /* Currently active link. */
@@ -49,7 +49,7 @@
   --popup-bg-color:         #ffffff; /* Color of popup/tooltip background. */
   --popup-color:            #000000; /* Color of popup/tooltip text. */
   --prose-heading-color:    #A20010;
-  --prose-title-color:      #1D2D72; /* For BIG section titles. */
+  --prose-title-color:      #6D000B; /* For BIG section titles. */
   --search-border-color:    #979797; /* Color of the search bar's (unfocused) border */
   --search-focus-color:     #1C9DFE; /* Color of the search bar when focused */
   --soft-hr-color:          #CCCCCC; /* Make the <hr> less harsh */

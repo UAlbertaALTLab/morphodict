@@ -870,6 +870,8 @@ a.multiple-recordings__action-button {
 
   /* Color */
   color: var(--footer-text-color);
+  background-image: url(img/footer-1366w.jpg);
+  background-position: top center;
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
 
@@ -1011,8 +1013,7 @@ a.multiple-recordings__action-button {
 }
 
 .partner-logos__logo:hover {
-  /* Make it have a hover effect like a link, to make it look clickable. */
-  background-color: var(--link-hover-color);
+  background-color: rgba(50% 50% 50% / 50%);
 }
 
 .partner-logos__logo > img {
