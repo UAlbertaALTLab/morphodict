@@ -1,0 +1,18 @@
+{% spaceless %}
+  {% comment %}
+    ## .definition__icons ##
+
+    Parameters:
+      result: SerializedSearchResult
+
+    Example:
+
+      ℹ️ 🔊
+
+  {% endcomment %}
+
+  <div class="definition__icons" data-wordform="{{ result.matched_cree }}">
+    {% include "CreeDictionary/components/linguistic-breakdown.html" %}
+    {# NB: 🔊 Recording button is added here dynamically by JavaScript #}
+  </div>
+{% endspaceless %}

@@ -30,30 +30,14 @@ With Node installed, install all of the JavaScript dependencies using `npm`:
 
     npm install
 
-### Install HFST
-
-Make sure `hfst-optimized-lookup` is installed.
-
-On Mac:
-
->     brew install UAlbertaALTLab/hfst/hfst
-
-On Windows:
-
-> Download hfstol binary file. Add bin folder to system path.
-
-On Linux:
-
->     sudo apt-get install -y hfst
-
-For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu).
-
-
 ### XML Dictionary Files
 
 Download `crkeng.xml` and place it under `CreeDictionary/res/dictionaries/`
 
 These files are copyright protected and not allowed on GitHub. Ask coworkers or download from production server under the same directory. On Sapir, the directory is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
+
+If you do not have access to the full `crkeng.xml`, use the excerpt in this
+repository at `CreeDictionary/res/test_dictionaries/crkeng.xml`.
 
 ### Environment
 
@@ -95,11 +79,7 @@ Now import the dictionaries into the database:
 
     manage-db import CreeDictionary/res/dictionaries/
 
-It takes several minutes to process the XML file and write into the
-database. For better performance, enable multi-processing with
-`PROCESS_COUNT` being at most your CPU core count:
-
-    manage-db import CreeDictionary/res/dictionaries/ --muti-processing PROCESS_COUNT
+This typically takes 10-15 minutes on the full dictionary.
 
 ### Compile JavaScript and CSS
 
@@ -111,14 +91,6 @@ command:
 (note: this is always run via `npm start`)
 
 
-### Create an admin account (optional)
-
-To use the Django admin interface, you need to make yourself an admin
-account:
-
-    python ./CreeDictionary/manage.py createsuperuser
-
-
 Running the development server
 ------------------------------
 
@@ -127,7 +99,6 @@ Running the development server
 This starts both the Django server, and the Rollup watch process.
 
  - Homepage: <http://127.0.0.1:8000/>
- - Admin: <http://127.0.0.1:8000/admin>
 
 
 Where are the JavaScript files?
@@ -199,6 +170,27 @@ To run it on all of the files:
     pipenv run format
 
 > **Protip**! Make this a part of your git pre-commit hook!
+
+#### Optional: Install HFST
+
+You don’t need this to run the dictionary, but having these tools installed
+can be useful if you are building, modifying, or directly interacting with
+FSTs.
+
+On Mac:
+
+>     brew install UAlbertaALTLab/hfst/hfst
+
+On Windows:
+
+> Download [hfst-latest.zip](https://apertium.projectjj.com/win32/nightly/)
+> and unpack it. Add the `hfst/bin` folder to your system path.
+
+On Linux:
+
+>     sudo apt-get install -y hfst
+
+For help, see [HFSTOL installation guide](https://github.com/hfst/hfst#installation-packages-for-debian-and-ubuntu).
 
 
 <!-- links -->

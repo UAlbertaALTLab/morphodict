@@ -1,11 +1,12 @@
 import logging
+from functools import cached_property
 from pathlib import Path
 
 from django.apps import AppConfig, apps
 from django.db import OperationalError
+
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
-
 from .affix_search import AffixSearcher
 
 logger = logging.getLogger(__name__)
@@ -14,36 +15,31 @@ logger = logging.getLogger(__name__)
 class APIConfig(AppConfig):
     name = "API"
 
-    cree_affix_searcher: AffixSearcher
-    english_affix_searcher: AffixSearcher
+    @cached_property
+    def cree_affix_searcher(self) -> AffixSearcher:
+        return AffixSearcher(fetch_cree_lemmas_with_ids())
+
+    @cached_property
+    def english_affix_searcher(self) -> AffixSearcher:
+        return AffixSearcher(fetch_english_keywords_with_ids())
 
     def ready(self) -> None:
+        # FIXME don’t use this method, it gets called during startup of *every*
+        # management command, wasting time, and when you’re running tests, the
+        # database config inside this method can point at the production
+        # database (!!)
+        #
+        # https://docs.djangoproject.com/en/3.1/ref/applications/#django.apps.AppConfig.ready
+        #
+        # Suggestions if you really want eager loading:
+        #   - The runserver auto-reloading sets a RUN_MAIN environment variable, you
+        #     could set that
+        #   - wsgi.py could set something too
         """
         This function is called when you restart dev server or touch wsgi.py
         """
         initialize_preverb_search()
-        self._initialize_affix_search()
         read_morpheme_rankings()
-
-    def _initialize_affix_search(self) -> None:
-        """
-        Build tries to facilitate prefix/suffix search
-        """
-        logger.info("Building tries for affix search...")
-        from .models import EnglishKeyword, Wordform
-
-        try:
-            Wordform.objects.count()
-        except OperationalError:
-            # apps.py will also get called during migration, it's possible that neither Wordform table nor text field
-            # exists. Then an OperationalError will occur.
-            logger.exception("Cannot build tries: Wordform table does not exist (yet)!")
-            return
-
-        self.cree_affix_searcher = AffixSearcher(fetch_cree_lemmas_with_ids())
-        self.english_affix_searcher = AffixSearcher(fetch_english_keywords_with_ids())
-
-        logger.info("Finished building tries")
 
     @classmethod
     def active_instance(cls) -> "APIConfig":

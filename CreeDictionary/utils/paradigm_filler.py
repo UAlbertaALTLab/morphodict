@@ -4,9 +4,9 @@ fill a paradigm table according to a lemma
 import logging
 from copy import deepcopy
 from pathlib import Path
-from typing import Dict, List, Sequence, Set, Tuple
+from typing import Dict, List, Sequence, Set, Tuple, cast
 
-import hfstol
+from hfst_optimized_lookup import TransducerFile
 from paradigm import (
     Cell,
     EmptyRow,
@@ -49,7 +49,7 @@ def import_frequency() -> Dict[ConcatAnalysis, int]:
 
 class ParadigmFiller:
     _layout_tables: Dict[LayoutID, Layout]
-
+    _generator: TransducerFile
     _frequency = import_frequency()
 
     @staticmethod
@@ -73,7 +73,7 @@ class ParadigmFiller:
 
         return layout_tables
 
-    def __init__(self, layout_dir: Path, generator_hfstol_path: Path):
+    def __init__(self, layout_dir: Path, generator_hfstol_path: Path = None):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
         inits fst generator
@@ -81,17 +81,20 @@ class ParadigmFiller:
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
         self._layout_tables = self._import_layouts(layout_dir)
-        self._generator = hfstol.HFSTOL.from_file(generator_hfstol_path)
+
+        if generator_hfstol_path is None:
+            from shared import expensive
+
+            self._generator = expensive.strict_generator
+        else:
+            self._generator = TransducerFile(generator_hfstol_path)
 
     @classmethod
     def default_filler(cls):
         """
         Return a filler that uses .layout files, .paradigm files and the fst from the res folder
         """
-        return ParadigmFiller(
-            shared_res_dir / "layouts",
-            shared_res_dir / "fst" / "crk-normative-generator.hfstol",
-        )
+        return ParadigmFiller(shared_res_dir / "layouts")
 
     def fill_paradigm(
         self, lemma: str, category: WordClass, paradigm_size: ParadigmSize
@@ -138,7 +141,7 @@ class ParadigmFiller:
                         raise ValueError("Unexpected Cell Type")
 
         # Generate ALL OF THE INFLECTIONS!
-        results = self._generator.feed_in_bulk_fast(lookup_strings)
+        results = self._generator.bulk_lookup(lookup_strings)
 
         # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
@@ -163,7 +166,9 @@ class ParadigmFiller:
         form.
         """
         analyses = self.expand_analyses(lemma, wordclass)
-        return self._generator.feed_in_bulk_fast(analyses)
+        return cast(
+            Dict[ConcatAnalysis, Sequence[str]], self._generator.bulk_lookup(analyses)
+        )
 
     def inflect_all(self, lemma: str, wordclass: WordClass) -> Set[str]:
         """

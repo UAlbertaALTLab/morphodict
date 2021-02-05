@@ -1,0 +1,50 @@
+{% spaceless %}
+  {% comment %}
+    ## .definition__elaboration--verbose ##
+
+    Parameters:
+      wordclass: str — wordclass
+      ic_short: str — short form of the inflectional category
+      ic_linguistic: str — the full description of the inflectional category
+      emoji: str -- An emoji str representing the wordclass. Useful for Algonquian languages.
+
+    The "elaboration" of a defined head. This contains word class,
+    inflectional category, and other information about the head itself.
+
+    It's verbose because it contains A LOT of information — more than you'd
+    find on the search page, for instance.
+
+    Example:
+
+      🧑🏽➡️🧑🏽— like wîcihêw
+      VTA-1: transitive animate verb – class 1: regular
+
+  {% endcomment %}
+
+  {% load creedictionary_extras %}
+  {% load inflection_extras %}
+
+  {% if ic_plain_english or emoji %}
+    <p class="elaboration__row elaboration__wordclass-row">
+      {% if ic_plain_english %}
+        <span class="wordclass" data-cy="word-class">
+          {% if emoji %}
+            <span class="wordclass__emoji">{{ emoji }}</span>
+          {% endif %}
+          {% if emoji and ic_plain_english %} — {% endif %}
+          <span class="wordclass__help">{% cree_example ic_plain_english %}</span>
+        </span>
+      {% elif emoji %}
+        <span class="wordclass" data-cy="word-class">
+          <span class="wordclass__emoji">{{ emoji }}</span>
+        </span>
+      {% endif %}
+    </p>
+  {% endif %}
+
+  {% if ic_short %}
+    <p class="elaboration__row elaboration__ic-row">
+    <small> {{ ic_short }}{% if ic_linguistic %}: {{ ic_linguistic }} {% endif %}</small>
+    </p>
+  {% endif %}
+{% endspaceless %}

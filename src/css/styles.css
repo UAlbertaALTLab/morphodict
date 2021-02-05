@@ -445,15 +445,12 @@ html {
 
 .definition-title {
   font-size: var(--definition-title-size);
+  margin: 0;
 }
 
 .definition-title__title {
   display: inline;
   font-size: inherit;
-}
-
-.definition-title--search-result {
-  margin: 0;
 }
 
 .definition__matched-head {
@@ -508,6 +505,16 @@ html {
   overflow: hidden;
 }
 
+.elaboration__row {
+  /* There's normally TOO MUCH MARGIN for these, so get rid of it: */
+  margin-block: 0;
+}
+
+.elaboration__ic-row {
+  /* make the font a lil' lighter */
+  color: var(--deemphasized-text-color);
+}
+
 /**
  * ELEMENT play-button
  *
@@ -517,7 +524,6 @@ html {
 .multiple-recordings__action-button {
   /* Reset the button appearance: */
   width: 1em;
-  height: 1em;
   padding: 0;
   border: 0;
   margin: 0;
@@ -566,7 +572,6 @@ html {
  */
 .multiple-recordings__action-button {
   margin-left: 0.5em;
-  margin-bottom: 1em; /* makes the button line up with the select */
 }
 a.multiple-recordings__action-button {
   font-weight: var(--body-font-weight);

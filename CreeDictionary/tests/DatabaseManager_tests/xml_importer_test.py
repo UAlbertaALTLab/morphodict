@@ -10,9 +10,7 @@ from utils import PartOfSpeech, shared_res_dir
 def test_import_nice_xml(shared_datadir):
     migrate_and_import(shared_datadir / "crkeng-small-nice-0")
 
-    expanded = expand_inflections(
-        ["yôwamêw+V+TA+Ind+3Sg+4Sg/PlO"], multi_processing=1, verbose=False
-    )
+    expanded = expand_inflections(["yôwamêw+V+TA+Ind+3Sg+4Sg/PlO"], verbose=False)
     for analysis_and_inflections in expanded.values():
         for analysis, inflections in analysis_and_inflections:
             for inflection in inflections:
@@ -57,19 +55,6 @@ def test_import_xml_common_analysis_definition_merge(shared_datadir):
     # DatabaseManager_tests/data/crkeng-small-common-analysis-different-ic/crkeng.xml
 
     assert Wordform.objects.get(text="pisiniw").definitions.count() == 2
-
-
-@pytest.mark.django_db
-def test_import_xml_crkeng_small_duplicate_l_pos_ic(shared_datadir):
-    # This test shows the behavior of the importer when entries with duplicate (l, pos, ic) in the xml file exists
-    # It's a rare case
-
-    # two Wordform objects will be created, each with the pooled translations from the two entries
-    migrate_and_import(shared_datadir / "crkeng-small-duplicate-l-pos-ic")
-
-    lemmas = Wordform.objects.filter(text="asawâpiwin", is_lemma=True)
-    assert lemmas.count() == 2
-    assert {len(o.definitions.all()) for o in lemmas} == {4}
 
 
 @pytest.mark.django_db

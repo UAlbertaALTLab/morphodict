@@ -5,16 +5,18 @@ Definition of urls for CreeDictionary.
 import logging
 import os
 
+from django.contrib import admin
+
 import API.views as api_views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
-from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
 from CreeDictionary import views
+
 
 logger = logging.getLogger(__name__)
 
@@ -144,6 +146,8 @@ for route, view, name in _urlpatterns:
 
 # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
 urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
+
+admin.site.site_url = "/" + prefix
 
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development

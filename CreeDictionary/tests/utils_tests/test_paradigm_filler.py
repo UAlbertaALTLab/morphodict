@@ -87,7 +87,7 @@ def test_inflect_all_with_analyses(paradigm_filler) -> None:
 @pytest.fixture
 def paradigm_filler(shared_datadir) -> ParadigmFiller:
     """
-    hese layout, paradigm, and hfstol files are **pinned** test data;
+    These layout, paradigm, and hfstol files are **pinned** test data;
     the real files in use are hosted under res/ folder, and should not
     be used in tests!
     """

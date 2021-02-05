@@ -10,7 +10,7 @@ from utils.paradigm_filler import ParadigmFiller
 
 
 def expand_inflections(
-    analyses: Iterable[str], multi_processing: int = 1, verbose=True
+    analyses: Iterable[str], verbose=True
 ) -> Dict[str, List[Tuple[str, Set[str]]]]:
     """
     for every lemma fst analysis, generate all inflections according to paradigm files
@@ -38,11 +38,11 @@ def expand_inflections(
         to_generated[analysis] = generated_analyses
         analysis_queue.extend(generated_analyses)
 
-    logger.info("Generating inflections using %d processes..." % multi_processing)
+    logger.info("Generating inflections ...")
 
     # optimized for efficiency by calling hfstol once and for all
-    generated_analyses_to_inflections = expensive.normative_generator.feed_in_bulk_fast(
-        analysis_queue, multi_processing
+    generated_analyses_to_inflections = expensive.strict_generator.bulk_lookup(
+        analysis_queue
     )
 
     logger.info("Done generating inflections")
