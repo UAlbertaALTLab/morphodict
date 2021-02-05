@@ -118,59 +118,6 @@ def search_results(request, query_string: str):  # pragma: no cover
         },
     )
 
-
-@require_GET
-def lemma_details_internal(request):
-    """
-    Render word-detail.html for a lemma. `index` view function renders a whole page that contains word-detail.html too.
-    This function, however, is used by javascript to dynamically replace the paradigm with the ones of different sizes.
-
-    `lemma-id` and `paradigm-size` are the expected query params in the request
-
-    4xx errors will have a single string as error message
-
-    :raise 400 Bad Request: when the query params are not as expected or inappropriate
-    :raise 404 Not Found: when the lemma-id isn't found in the database
-    :raise 405 Method Not Allowed: when method other than GET is used
-    """
-    lemma_id = request.GET.get("lemma-id")
-    paradigm_size = request.GET.get("paradigm-size")
-    # guards
-    if lemma_id is None or paradigm_size is None:
-        return HttpResponseBadRequest("query params missing")
-    try:
-        lemma_id = int(lemma_id)
-    except ValueError:
-        return HttpResponseBadRequest("lemma-id should be a non-negative integer")
-    else:
-        if lemma_id < 0:
-            return HttpResponseBadRequest(
-                "lemma-id is negative and should be non-negative"
-            )
-    try:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
-    except ValueError:
-        return HttpResponseBadRequest(
-            f"paradigm-size is not one {[x.value for x in ParadigmSize]}"
-        )
-
-    try:
-        lemma = Wordform.objects.get(id=lemma_id)
-    except Wordform.DoesNotExist:
-        return HttpResponseNotFound("specified lemma-id is not found in the database")
-    # end guards
-
-    return render(
-        request,
-        "CreeDictionary/word-detail.html",
-        {
-            "lemma": lemma,
-            "paradigm_size": paradigm_size.value,
-            "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size),
-        },
-    )
-
-
 @require_GET
 def paradigm_internal(request):
     """
