@@ -327,4 +327,30 @@ context('Regressions', () => {
       })
     }
   })
+
+  /**
+   * Ensure audio is playable after clicking "show more"
+   * 
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/636 
+   */
+
+  it.only("should show audio button after showing more", () => {
+    cy.visitSearch("minôs")
+
+    cy.contains('[data-cy=lemma-link]', "minôs")
+      .click()
+
+    cy.get('[data-cy=play-recording]')
+      .should("be.visible")
+
+    cy.get('[data-cy=paradigm-toggle-button')
+      .click()
+
+    cy.url()
+      .should("include", "paradigm-size=FULL")
+
+    cy.get('[data-cy=play-recording]')
+      .should("be.visible")
+
+  })
 })
