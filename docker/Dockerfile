@@ -22,6 +22,7 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 # /etc/login.defs:/UID_MAX/, which defaults to 60,000
 ARG UID_GID=60002
 ARG WSGI_USER=itwewina
+ARG EXPOSE_PORT=8000
 
 # Create the user/group for the application
 RUN groupadd --system --gid ${UID_GID} ${WSGI_USER} \
@@ -35,7 +36,10 @@ RUN groupadd --system --gid ${UID_GID} ${WSGI_USER} \
 RUN set -ex \
  && BUILD_DEPS=" \
     build-essential \
+    tini \
     nodejs \
+    npm \
+    moreutils `# for sponge` \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
@@ -46,25 +50,39 @@ RUN set -ex \
 
 USER ${WSGI_USER}
 
-# Setup Python deps
-ADD Pipfile /app/Pipfile
-ADD Pipfile.lock /app/Pipfile.lock
-
 WORKDIR /app/
+
+# Setup Python deps
+ADD --chown=${WSGI_USER} Pipfile .
+ADD --chown=${WSGI_USER} Pipfile.lock .
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
+ADD --chown=${WSGI_USER} package.json .
+ADD --chown=${WSGI_USER} package-lock.json .
+# cypress is a big, heavy package that takes a long time to install and
+# that we absolutely don’t need in production
+RUN grep -Ev '"@?cypress' package.json | sponge package.json
+
+RUN npm install
+
 # Copy the application files. Make sure .dockerignore is setup properly so it
 # doesn't copy unnecessary files
-ADD . /app/
-RUN npm ci \
- && npm run build \
+ADD --chown=${WSGI_USER} . /app/
+
+RUN NODE_ENV=production npm run build
 
 # Gunicorn will listen on this port:
-EXPOSE 8000
+EXPOSE ${EXPOSE_PORT}
 
-# TODO: put static files in a good place
-# These should be built and
+# Among other things -- see
+# https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
+# -- this makes typing Ctrl-C into docker-compose work
+ENTRYPOINT ["tini", "--"]
 
-# Where to find the WSGI file
-CMD /app/.venv/bin/gunicorn --bind 127.0.0.1:8000 CreeDictionary.wsgi:application
+WORKDIR /app/CreeDictionary
+ENV EXPOSE_PORT=${EXPOSE_PORT}
+CMD /app/.venv/bin/gunicorn \
+    --access-logfile - \
+    --bind 0.0.0.0:${EXPOSE_PORT} \
+    CreeDictionary.wsgi:application

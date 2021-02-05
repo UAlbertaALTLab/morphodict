@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eba599bfc2109f298609a129931a35b2fb899fe99a9c271d516303b57e53951a"
+            "sha256": "0e5b1a632e9dfab48fba5e7e3106721776e5508c11148bc9a0d5b7a0af10e89f"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -78,10 +78,6 @@
             "index": "pypi",
             "version": "==2020.6.23"
         },
-        "creedictionary": {
-            "editable": true,
-            "path": "./CreeDictionary"
-        },
         "dawg": {
             "hashes": [
                 "sha256:34881e06278d4a54cf0b402c0c8b587bef0caa78f0eee595adc7a2aa530e48ce",
@@ -151,10 +147,10 @@
         },
         "hfst-optimized-lookup": {
             "hashes": [
-                "sha256:bad3881dfb419e46ae430ad72b4709eb376d37e30a4b7397b1890f1564815de8"
+                "sha256:a6c9fa5329fc5d80b5f38023b37ccb1669b8805d49877bee298ad541fb8321f2"
             ],
             "index": "pypi",
-            "version": "==0.0.9"
+            "version": "==0.0.10"
         },
         "marshmallow": {
             "hashes": [
@@ -209,6 +205,14 @@
             ],
             "markers": "python_version >= '3.5'",
             "version": "==0.4.1"
+        },
+        "tqdm": {
+            "hashes": [
+                "sha256:4621f6823bab46a9cc33d48105753ccbea671b68bab2c50a9f0be23d4065cb5a",
+                "sha256:fe3d08dd00a526850568d542ff9de9bbc2a09a791da3c334f3213d8d0bbbca65"
+            ],
+            "index": "pypi",
+            "version": "==4.56.0"
         },
         "typing-extensions": {
             "hashes": [
@@ -439,14 +443,6 @@
             ],
             "version": "==0.8.1"
         },
-        "pipfile-requirements": {
-            "hashes": [
-                "sha256:d47591d46d8bfecf9257967992feae31fa83aff7ab6417373c7de5ea92ab849f",
-                "sha256:dc2ff7515ce35f8b37a500e87e7b9cd39f0f5c18eb6024543366eb6d4226869b"
-            ],
-            "index": "pypi",
-            "version": "==0.3.0"
-        },
         "pluggy": {
             "hashes": [
                 "sha256:15b2acde666561e1298d71b523007ed7364de07029219b604cf808bfa1c765b0",
@@ -611,14 +607,6 @@
             "index": "pypi",
             "version": "==0.10.2"
         },
-        "tqdm": {
-            "hashes": [
-                "sha256:4621f6823bab46a9cc33d48105753ccbea671b68bab2c50a9f0be23d4065cb5a",
-                "sha256:fe3d08dd00a526850568d542ff9de9bbc2a09a791da3c334f3213d8d0bbbca65"
-            ],
-            "index": "pypi",
-            "version": "==4.56.0"
-        },
         "typed-ast": {
             "hashes": [
                 "sha256:07d49388d5bf7e863f7fa2f124b1b1d89d8aa0e2f7812faff0a5658c01c59aa1",
@@ -668,7 +656,7 @@
                 "sha256:1b465e494e3e0d8939b50680403e3aedaa2bc434b7d5af64dfd3c958d7f5ae80",
                 "sha256:de3eedaad74a2683334e282005cd8d7f22f4d55fa690a2a1020a416cb0a47e73"
             ],
-            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4.0'",
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4' and python_version < '4'",
             "version": "==1.26.3"
         }
     }
