@@ -334,7 +334,7 @@ context('Regressions', () => {
    * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/636 
    */
 
-  it.only("should show audio button after showing more", () => {
+  it("should show audio button after showing more", () => {
     cy.visitSearch("minôs")
 
     cy.contains('[data-cy=lemma-link]', "minôs")
