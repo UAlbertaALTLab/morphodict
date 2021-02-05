@@ -30,8 +30,8 @@
   --cite-text-color:        #182457; /* Color of dictionary citation element. */
   --cite-text-popup-color:  var(--cite-text-color); /* Color of dictionary citation element. */
   --embossed-highlight:     #e0e0e0;
-  --footer-bg-color:        #EBE9E9; /* Background color of the "sunken" footer. */
-  --footer-text-color:      #404040; /* Background color of the "sunken" footer. */
+  --footer-bg-color:        #832020;
+  --footer-text-color:      #FFFFFF;
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --link-active-color:      #0E6790; /* Currently active link. */
