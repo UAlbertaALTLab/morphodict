@@ -7,8 +7,8 @@ from ...run_sample import gen_run_sample
 
 
 class Command(BaseCommand):
-    help = """Run all the queries in a sample file and save the result 
-    
+    help = """Run all the queries in a sample file and save the result
+
     The resulting json.gz file can later be analyzed for quality of the search
     results, and results run at different times and with different search
     algorithms can be compared.

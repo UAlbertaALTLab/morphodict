@@ -19,7 +19,7 @@ def gen_run_sample(sample_file: PathLike = DEFAULT_SAMPLE_FILE, *, out_file: Pat
 
         # If we were being rigorous about timing, we’d run all the queries
         # multiple times in randomized orders to spread out the effects of
-        # warmup and cachine
+        # warmup and caching
         start_time = time.time()
         results = [r.serialize() for r in Wordform.search_with_affixes(query)]
         time_taken = time.time() - start_time
