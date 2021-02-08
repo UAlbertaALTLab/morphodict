@@ -14,11 +14,15 @@
         | You  | kinipân | ê-nipâyan |
         | [       + show more      ] |
 
+    Notes:
+     - has class `js-replaceable-paradigm` so that JavaScript can replace this
+       contents with a different paradigm.
+
   {% endcomment %}
 
   {% load morphodict_orth %}
 
-  <section class="definition__paradigm paradigm" data-cy="paradigm">
+  <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
     {# XXX: we should find a better way to contain all the data in the table :/ #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">

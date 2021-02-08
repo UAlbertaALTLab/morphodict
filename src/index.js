@@ -198,7 +198,7 @@ function setupParadigmSizeToggleButton() {
         }
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
         const oldParadigmNode = document.getElementById('paradigm')
-        oldParadigmNode.firstElementChild.replaceWith(paradigmFrag)
+        oldParadigmNode.querySelector('.js-replaceable-paradigm').replaceWith(paradigmFrag)
         paradigmSize = nextParadigmSize
         setupParadigmSizeToggleButton() // prepare the new button
       }
