@@ -5,6 +5,8 @@ from typing import List, Tuple, Union
 
 from typing_extensions import Literal, TypedDict
 
+from utils.types import FSTTag
+
 
 class SerializedDefinition(TypedDict):
     text: str
@@ -58,6 +60,9 @@ class SerializedSearchResult(TypedDict):
     # user friendly linguistic breakdowns
     linguistic_breakdown_head: Tuple[str, ...]
     linguistic_breakdown_tail: Tuple[str, ...]
+
+    # The suffix tags, straight from the FST
+    raw_suffix_tags: Tuple[FSTTag, ...]
 
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
