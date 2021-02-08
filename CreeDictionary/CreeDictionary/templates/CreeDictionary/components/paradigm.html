@@ -17,6 +17,8 @@
     JavaScript hooks:
      - .js-replaceable-paradigm: encapsulates the ENTIRE paradgim so that
        JavaScript can replace the contents with a different paradigm.
+     - .js-paradigm-size-button: the button for advancing the paradigm size
+        (basic, full, linguistic, etc.)
      - .js-plus-minus: the + or - sign in the [± show more/less] button
      - .js-button-text: the text in the [± show more/less] button
 
@@ -82,7 +84,7 @@
       </table>
     </div>
 
-    <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
+    <button class="paradigm__size-toggle-button js-paradigm-size-button" data-cy="paradigm-toggle-button">
       <span class="paradigm__size-toggle-plus-minus js-plus-minus">
         {% if paradigm_size.value == 'LINGUISTIC' %}- {% else %}+ {% endif %}
       </span>

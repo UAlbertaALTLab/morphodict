@@ -167,7 +167,7 @@ function updateQueryParam(key, value) {
  *  - prepare the new "show more/less" button to do these 3
  */
 function setupParadigmSizeToggleButton() {
-  const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
+  const toggleButton = document.querySelector('.js-paradigm-size-button')
 
   if (!toggleButton) {
     // There's nothing to toggle, hence nothing to setup. Done!
