@@ -44,7 +44,7 @@ def count_results(results: list[SerializedSearchResult]):
     return sum(1 if r["is_lemma"] else 2 for r in results)
 
 
-class OptionalPartialSerializedWordform(TypedDict, total=False):
+class PartialSerializedWordform(TypedDict, total=False):
     text: str
     inflectional_category: str
 
@@ -58,7 +58,7 @@ class DuplicateAnnotatedSearchResult(TypedDict, total=False):
     """
 
     matched_cree: str
-    lemma_wordform: OptionalPartialSerializedWordform
+    lemma_wordform: PartialSerializedWordform
 
     raw_suffix_tags: tuple[FSTTag, ...]
 
@@ -139,52 +139,55 @@ def analyze(results_file, sample_definition: SampleDefinition = None):
     analysis: Analysis = {}
 
     for row in sample_definition:
-        keyword = row["English"]
+        keyword = row["Query"]
+
         keyword_search_results = search_results.get(keyword, None)
 
         if keyword_search_results is None:
             analysis[keyword] = None
+            continue
 
-        else:
-            result_list = keyword_search_results["results"]
+        result_list = keyword_search_results["results"]
 
-            dupe_info = count_and_annotate_dupes(result_list)
+        dupe_info = count_and_annotate_dupes(result_list)
 
-            query_analysis: SingleQueryAnalysis = {
-                "time_taken_seconds": keyword_search_results["time_taken_seconds"],
-                "result_count": count_results(result_list),
-                "total_duplicate_count": dupe_info["total"],
-                "unique_duplicate_count": dupe_info["unique"],
-            }
+        query_analysis: SingleQueryAnalysis = {
+            "time_taken_seconds": keyword_search_results["time_taken_seconds"],
+            "result_count": count_results(result_list),
+            "total_duplicate_count": dupe_info["total"],
+            "unique_duplicate_count": dupe_info["unique"],
+        }
 
-            # How many top expected results does the sample specify for this
-            # query?
-            specified_result_count = 0
-            result_found_count = 0
-            threeten_good_result_count = 0
+        # How many top expected results does the sample specify for this
+        # query?
+        specified_result_count = 0
+        result_found_count = 0
+        threeten_good_result_count = 0
 
-            for i in [i + 1 for i in range(3)]:
-                # mypy does not like dynamic keys
-                word = cast(dict, row)[f"Nêhiyawêwin_{i}"]
+        for i in (1, 2, 3):
+            # mypy does not like dynamic keys
+            word = cast(dict, row)[f"Nêhiyawêwin_{i}"]
 
-                if word:
-                    cast(dict, query_analysis)[f"word_{i}"] = word
-                    rank = find_rank(word, result_list)
-                    cast(dict, query_analysis)[f"word_{i}_rank"] = rank
+            if not word:
+                continue
 
-                    specified_result_count += 1
-                    if type(rank) == int:
-                        result_found_count += 1
+            cast(dict, query_analysis)[f"word_{i}"] = word
+            rank = find_rank(word, result_list)
+            cast(dict, query_analysis)[f"word_{i}_rank"] = rank
 
-                        if rank < 10:
-                            threeten_good_result_count += 1
+            specified_result_count += 1
+            if isinstance(rank, int):
+                result_found_count += 1
 
-            query_analysis["topthree_score_percent"] = (
-                100 * result_found_count / specified_result_count
-            )
-            query_analysis["threeten_score_percent"] = (
-                100 * threeten_good_result_count / specified_result_count
-            )
+                if rank < 10:
+                    threeten_good_result_count += 1
+
+        query_analysis["topthree_score_percent"] = (
+            100 * result_found_count / specified_result_count
+        )
+        query_analysis["threeten_score_percent"] = (
+            100 * threeten_good_result_count / specified_result_count
+        )
 
         analysis[keyword] = query_analysis
 

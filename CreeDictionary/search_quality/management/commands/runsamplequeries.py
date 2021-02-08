@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 from django.core.management import BaseCommand
 
 from ... import DEFAULT_SAMPLE_FILE, RESULTS_DIR
-from ...sample import gen_run_sample
+from ...run_sample import gen_run_sample
 
 
 class Command(BaseCommand):

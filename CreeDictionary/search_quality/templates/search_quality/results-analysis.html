@@ -25,6 +25,7 @@
     </ul>
   </details>
   </p>
+
   <table class="table table-striped table-hover table-sm sticky-table">
     <thead class="sticky">
     <tr>
@@ -61,8 +62,8 @@
         <td class="text-right">{{ results.total_duplicate_count|blank_if_zero }}</td>
         <td class="text-right">{{ results.unique_duplicate_count|blank_if_zero }}</td>
         <td class="text-right">{{ results.time_taken_seconds|floatformat:"3" }}</td>
-        <td class="text-right">{{ results.topthree_score_percent|floatformat }}%</td>
-        <td class="text-right">{{ results.threeten_score_percent|floatformat }}%</td>
+        <td class="text-right">{{ results.topthree_score_percent|floatformat|add_percent_sign }}</td>
+        <td class="text-right">{{ results.threeten_score_percent|floatformat|add_percent_sign }}</td>
       </tr>
     {% endfor %}
     </tbody>

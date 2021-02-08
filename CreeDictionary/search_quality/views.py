@@ -1,4 +1,3 @@
-import json
 import logging
 import time
 from json import dumps
@@ -15,11 +14,13 @@ from django.http import (
 from django.urls import reverse
 from django.utils.html import conditional_escape
 from django.utils.text import slugify
+from django.views.decorators.http import require_http_methods
 from django.views.generic import TemplateView
 
 from . import RESULTS_DIR, DEFAULT_SAMPLE_FILE
 from .analyze_results import analyze, load_results_file, count_and_annotate_dupes
-from .sample import load_sample_definition, gen_run_sample
+from .run_sample import gen_run_sample
+from .sample import load_sample_definition
 
 logger = logging.getLogger(__name__)
 
@@ -76,16 +77,16 @@ class ResultsAnalysisView(LoginRequiredMixin, TemplateView):
             "total_duplicate_count",
             "time_taken_seconds",
         ]:
-            context[f"average_{k}"] = mean(r[k] for r in analysis.values())
+            context[f"average_{k}"] = mean(
+                r[k] for r in analysis.values() if r is not None
+            )
 
         return context
 
 
 @staff_member_required
+@require_http_methods(["POST"])
 def run(request):
-    if request.method != "POST":
-        raise Http404()
-
     label = request.POST.get("label", None)
     if label:
         label = slugify(label)
@@ -102,12 +103,12 @@ def run(request):
         for status in gen_run_sample(out_file=out_file):
             yield conditional_escape(status) + "\n"
 
-        done_url = reverse(
+        results_url = reverse(
             "search_quality:results-analysis",
             kwargs={"path": out_file.name},
         )
 
-        yield f'</pre><a href="{conditional_escape(done_url)}">Done!</a>'
+        yield f'</pre>Done. <a href="{conditional_escape(results_url)}">View results</a>'
 
     # Sadly, although this old trick for sending out a live-updating web page
     # works with Firefox and Chrome, it doesn’t seem to work with Safari. And it
