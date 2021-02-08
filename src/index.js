@@ -175,9 +175,9 @@ function setupParadigmSizeToggleButton() {
   }
 
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
+
   toggleButton.addEventListener('click', () => {
-    // Make it look like it's loading:
-    toggleButton.classList.add('paradigm__size-toggle-button--loading')
+    displayButtonAsLoading(toggleButton)
 
     fetch(Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
       if (r.ok) {
@@ -214,7 +214,13 @@ function setupParadigmSizeToggleButton() {
   function mostDetailedParadigmSizeIsSelected() {
     return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
   }
+}
 
+/**
+ * Make the button look like it's loading.
+ */
+function displayButtonAsLoading(toggleButton) {
+  toggleButton.classList.add('paradigm__size-toggle-button--loading')
 }
 
 /**
