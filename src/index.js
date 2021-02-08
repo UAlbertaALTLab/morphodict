@@ -190,12 +190,9 @@ function setupParadigmSizeToggleButton() {
         const paradigmFrag = document.createRange().createContextualFragment(text)
 
         if (mostDetailedParadigmSizeIsSelected()) {
-          paradigmFrag.querySelector('.js-button-text').textContent = 'show less'
-          paradigmFrag.querySelector('.js-plus-minus').textContent = '- '
-
+          setParadigmSizeToggleButtonText('-', 'show less')
         } else {
-          paradigmFrag.querySelector('.js-button-text').textContent = 'show more'
-          paradigmFrag.querySelector('.js-plus-minus').textContent = '+ '
+          setParadigmSizeToggleButtonText('+', 'show more')
         }
 
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
@@ -203,6 +200,11 @@ function setupParadigmSizeToggleButton() {
         oldParadigmNode.querySelector('.js-replaceable-paradigm').replaceWith(paradigmFrag)
         paradigmSize = nextParadigmSize
         setupParadigmSizeToggleButton() // prepare the new button
+
+        function setParadigmSizeToggleButtonText(symbol, text) {
+          paradigmFrag.querySelector('.js-button-text').textContent = text
+          paradigmFrag.querySelector('.js-plus-minus').textContent = symbol
+        }
       }
     ).catch(
       err => console.error(err)
@@ -212,6 +214,7 @@ function setupParadigmSizeToggleButton() {
   function mostDetailedParadigmSizeIsSelected() {
     return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
   }
+
 }
 
 /**
