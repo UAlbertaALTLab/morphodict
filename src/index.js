@@ -82,9 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    if (document.getElementById('paradigm')) { // if the lemma has a paradigm thus having a "show more/less" button
-      setupParadigmSizeToggleButton()
-    }
+    setupParadigmSizeToggleButton()
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
@@ -187,8 +185,10 @@ function setupParadigmSizeToggleButton() {
       }
     }).then(
       text => {
-        const paradigmFrag = document.createRange().createContextualFragment(text)
+        const newParadigm = document.createRange().createContextualFragment(text)
 
+        // TODO: is this necessary? Shouldn't the component itself know what
+        // text to use?
         if (mostDetailedParadigmSizeIsSelected()) {
           setParadigmSizeToggleButtonText('-', 'show less')
         } else {
@@ -196,14 +196,16 @@ function setupParadigmSizeToggleButton() {
         }
 
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
-        const oldParadigmNode = document.getElementById('paradigm')
-        oldParadigmNode.querySelector('.js-replaceable-paradigm').replaceWith(paradigmFrag)
+
+        const paradigmContainer = document.getElementById('paradigm')
+        paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
+
         paradigmSize = nextParadigmSize
-        setupParadigmSizeToggleButton() // prepare the new button
+        setupParadigmSizeToggleButton()
 
         function setParadigmSizeToggleButtonText(symbol, text) {
-          paradigmFrag.querySelector('.js-button-text').textContent = text
-          paradigmFrag.querySelector('.js-plus-minus').textContent = symbol
+          newParadigm.querySelector('.js-button-text').textContent = text
+          newParadigm.querySelector('.js-plus-minus').textContent = symbol
         }
       }
     ).catch((err) => {
