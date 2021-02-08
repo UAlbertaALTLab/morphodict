@@ -188,7 +188,7 @@ function setupParadigmSizeToggleButton() {
     }).then(
       text => {
         const paradigmFrag = document.createRange().createContextualFragment(text)
-        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1) {
+        if (mostDetailedParadigmSizeIsSelected()) {
           paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show less'
           paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '- '
 
@@ -206,6 +206,10 @@ function setupParadigmSizeToggleButton() {
       err => console.error(err)
     )
   })
+
+  function mostDetailedParadigmSizeIsSelected() {
+    return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
+  }
 }
 
 /**
