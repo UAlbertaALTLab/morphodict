@@ -206,9 +206,10 @@ function setupParadigmSizeToggleButton() {
           paradigmFrag.querySelector('.js-plus-minus').textContent = symbol
         }
       }
-    ).catch(
-      err => console.error(err)
-    )
+    ).catch((err) => {
+      displayButtonAsError(toggleButton)
+      console.error(err)
+    })
   })
 
   function mostDetailedParadigmSizeIsSelected() {
@@ -221,6 +222,14 @@ function setupParadigmSizeToggleButton() {
  */
 function displayButtonAsLoading(toggleButton) {
   toggleButton.classList.add('paradigm__size-toggle-button--loading')
+}
+
+/**
+ * Make the button look like something went wrong.
+ */
+function displayButtonAsError(toggleButton) {
+  toggleButton.classList.remove('paradigm__size-toggle-button--loading')
+  // TODO: should have an error state for the toggle button!
 }
 
 /**
