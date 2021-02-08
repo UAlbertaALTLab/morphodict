@@ -82,9 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    if (document.getElementById('paradigm')) { // if the lemma has a paradigm thus having a "show more/less" button
-      setupParadigmSizeToggleButton()
-    }
+    setupParadigmSizeToggleButton()
   } else {
     throw new Error(`Could not match route: ${route}`)
   }
@@ -167,7 +165,7 @@ function updateQueryParam(key, value) {
  *  - prepare the new "show more/less" button to do these 3
  */
 function setupParadigmSizeToggleButton() {
-  const toggleButton = document.getElementsByClassName('paradigm__size-toggle-button')[0]
+  const toggleButton = document.querySelector('.js-paradigm-size-button')
 
   if (!toggleButton) {
     // There's nothing to toggle, hence nothing to setup. Done!
@@ -175,9 +173,9 @@ function setupParadigmSizeToggleButton() {
   }
 
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
+
   toggleButton.addEventListener('click', () => {
-    // Make it look like it's loading:
-    toggleButton.classList.add('paradigm__size-toggle-button--loading')
+    displayButtonAsLoading(toggleButton)
 
     fetch(Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
       if (r.ok) {
@@ -187,25 +185,53 @@ function setupParadigmSizeToggleButton() {
       }
     }).then(
       text => {
-        const paradigmFrag = document.createRange().createContextualFragment(text)
-        if (allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1) {
-          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show less'
-          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '- '
+        const newParadigm = document.createRange().createContextualFragment(text)
 
+        // TODO: is this necessary? Shouldn't the component itself know what
+        // text to use?
+        if (mostDetailedParadigmSizeIsSelected()) {
+          setParadigmSizeToggleButtonText('-', 'show less')
         } else {
-          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show more'
-          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '+ '
+          setParadigmSizeToggleButtonText('+', 'show more')
         }
+
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
-        const oldParadigmNode = document.getElementById('paradigm')
-        oldParadigmNode.firstElementChild.replaceWith(paradigmFrag)
+
+        const paradigmContainer = document.getElementById('paradigm')
+        paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
+
         paradigmSize = nextParadigmSize
-        setupParadigmSizeToggleButton() // prepare the new button
+        setupParadigmSizeToggleButton()
+
+        function setParadigmSizeToggleButtonText(symbol, text) {
+          newParadigm.querySelector('.js-button-text').textContent = text
+          newParadigm.querySelector('.js-plus-minus').textContent = symbol
+        }
       }
-    ).catch(
-      err => console.error(err)
-    )
+    ).catch((err) => {
+      displayButtonAsError(toggleButton)
+      console.error(err)
+    })
   })
+
+  function mostDetailedParadigmSizeIsSelected() {
+    return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
+  }
+}
+
+/**
+ * Make the button look like it's loading.
+ */
+function displayButtonAsLoading(toggleButton) {
+  toggleButton.classList.add('paradigm__size-toggle-button--loading')
+}
+
+/**
+ * Make the button look like something went wrong.
+ */
+function displayButtonAsError(toggleButton) {
+  toggleButton.classList.remove('paradigm__size-toggle-button--loading')
+  // TODO: should have an error state for the toggle button!
 }
 
 /**
