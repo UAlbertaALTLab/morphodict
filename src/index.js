@@ -188,14 +188,16 @@ function setupParadigmSizeToggleButton() {
     }).then(
       text => {
         const paradigmFrag = document.createRange().createContextualFragment(text)
+
         if (mostDetailedParadigmSizeIsSelected()) {
-          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show less'
-          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '- '
+          paradigmFrag.querySelector('.js-button-text').textContent = 'show less'
+          paradigmFrag.querySelector('.js-plus-minus').textContent = '- '
 
         } else {
-          paradigmFrag.querySelector('.paradigm__size-toggle-button-text').textContent = 'show more'
-          paradigmFrag.querySelector('.paradigm__size-toggle-plus-minus').textContent = '+ '
+          paradigmFrag.querySelector('.js-button-text').textContent = 'show more'
+          paradigmFrag.querySelector('.js-plus-minus').textContent = '+ '
         }
+
         window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
         const oldParadigmNode = document.getElementById('paradigm')
         oldParadigmNode.querySelector('.js-replaceable-paradigm').replaceWith(paradigmFrag)

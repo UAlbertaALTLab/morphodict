@@ -14,9 +14,11 @@
         | You  | kinipân | ê-nipâyan |
         | [       + show more      ] |
 
-    Notes:
-     - has class `js-replaceable-paradigm` so that JavaScript can replace this
-       contents with a different paradigm.
+    JavaScript hooks:
+     - .js-replaceable-paradigm: encapsulates the ENTIRE paradgim so that
+       JavaScript can replace the contents with a different paradigm.
+     - .js-plus-minus: the + or - sign in the [± show more/less] button
+     - .js-button-text: the text in the [± show more/less] button
 
   {% endcomment %}
 
@@ -81,10 +83,10 @@
     </div>
 
     <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
-      <span class="paradigm__size-toggle-plus-minus">
+      <span class="paradigm__size-toggle-plus-minus js-plus-minus">
         {% if paradigm_size.value == 'LINGUISTIC' %}- {% else %}+ {% endif %}
       </span>
-      <span class="paradigm__size-toggle-button-text">
+      <span class="paradigm__size-toggle-button-text js-button-text">
         show {% if paradigm_size.value == 'LINGUISTIC' %}less{% else %}more{% endif %}
       </span>
     </button>

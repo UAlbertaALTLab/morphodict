@@ -351,6 +351,5 @@ context('Regressions', () => {
 
     cy.get('[data-cy=play-recording]')
       .should('be.visible')
-
   })
 })
