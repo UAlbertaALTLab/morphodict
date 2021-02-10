@@ -37,9 +37,8 @@ RUN set -ex \
  && BUILD_DEPS=" \
     build-essential \
     tini \
-    nodejs \
-    npm \
     moreutils `# for sponge` \
+    gnupg \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
@@ -47,6 +46,20 @@ RUN set -ex \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /data/ /app/ \
  && chown ${WSGI_USER} /data /app
+
+# Install Node + npm
+# (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
+# Using instructions from: https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
+WORKDIR /tmp
+COPY docker/nodesource.gpg.key .
+RUN set -ex \
+    && VERSION=node_12.x \
+    && DISTRO="buster" `# must be in sync with Dockerfile` \
+    && apt-key add nodesource.gpg.key \ 
+    && (echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list) \
+    && (echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list) \
+    && apt-get update \
+    && apt-get install nodejs
 
 USER ${WSGI_USER}
 
@@ -64,13 +77,13 @@ ADD --chown=${WSGI_USER} package-lock.json .
 # that we absolutely don’t need in production
 RUN grep -Ev '"@?cypress' package.json | sponge package.json
 
-RUN npm install
+#RUN npm install
 
 # Copy the application files. Make sure .dockerignore is setup properly so it
 # doesn't copy unnecessary files
 ADD --chown=${WSGI_USER} . /app/
 
-RUN NODE_ENV=production npm run build
+#RUN NODE_ENV=production npm run build
 
 # Gunicorn will listen on this port:
 EXPOSE ${EXPOSE_PORT}
