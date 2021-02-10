@@ -2,9 +2,7 @@
 {% load humanize %}
 {% load search_quality_extras %}
 
-{% block body %}
-  <h1><a href="{% url 'search_quality:index' %}">Search quality</a>
-  </h1>
+{% block content %}
   <h2>Analysis for <tt>{{ name }}</tt></h2>
   <p>
   310 score: {{ average_threeten_score_percent|floatformat }}%<br/>
@@ -68,5 +66,4 @@
     {% endfor %}
     </tbody>
   </table>
-
 {% endblock %}

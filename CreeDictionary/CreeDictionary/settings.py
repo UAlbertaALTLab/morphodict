@@ -49,7 +49,6 @@ DEBUG = env.bool("DEBUG", default=False)
 
 INSTALLED_APPS = [
     # Django core apps:
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -67,6 +66,8 @@ INSTALLED_APPS = [
     "search_quality",
     "morphodict.apps.MorphodictConfig",
     "DatabaseManager",
+    # This comes last so that other apps can override templates
+    "django.contrib.admin",
 ]
 
 MIDDLEWARE = [
