@@ -19,6 +19,7 @@ django-debug-toolbar = "~=2.2"
 isort = {extras = ["pyproject"],version = "*"}
 toml = "~=0.10"
 mypy = "*"
+pytest-env = "*"
 
 [packages]
 colorama = "~=0.4"
