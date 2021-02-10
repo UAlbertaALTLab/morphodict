@@ -38,7 +38,7 @@ RUN set -ex \
     build-essential \
     tini \
     moreutils `# for sponge` \
-    gnupg \
+    gnupg `# for verifying nodesource certificate` \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
@@ -59,7 +59,7 @@ RUN set -ex \
     && (echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list) \
     && (echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list) \
     && apt-get update \
-    && apt-get install nodejs
+    && apt-get install -y --no-install-recommends nodejs
 
 USER ${WSGI_USER}
 
