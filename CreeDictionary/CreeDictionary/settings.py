@@ -51,9 +51,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    # WhiteNoise nostatic HAS to come before Django's staticfiles
+    # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
-    # Third-party apps:
     "django_js_reverse",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
@@ -66,6 +68,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Static files with WhiteNoise:
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",

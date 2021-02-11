@@ -36,6 +36,7 @@ gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "~=4.40"
+whitenoise = "*"
 
 [scripts]
 # look stuff up
