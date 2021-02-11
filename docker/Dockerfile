@@ -97,10 +97,9 @@ ENTRYPOINT ["tini", "--"]
 WORKDIR /app/CreeDictionary
 ENV EXPOSE_PORT=${EXPOSE_PORT}
 
-# HACK! For some reason that I (Eddie) don't understand, Docker inherits my
-# USE_TEST_DB flag when running via docker-compose up --build,
-# so explicitly set it to False:
-ENV USE_TEST_DB=False
+
+ENV DEBUG=True
+ENV ENABLE_DJANGO_DEBUG_TOOLBAR=False
 CMD /app/.venv/bin/gunicorn \
     --access-logfile - \
     --bind 0.0.0.0:${EXPOSE_PORT} \

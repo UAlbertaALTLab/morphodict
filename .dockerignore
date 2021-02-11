@@ -30,3 +30,6 @@ cypress/
 
 # When running `make debug-context`, prevent from adding itself
 context/
+
+# Do NOT inherit the .env file from the context
+.env
