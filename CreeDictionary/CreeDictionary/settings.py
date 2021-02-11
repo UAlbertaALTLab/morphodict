@@ -52,12 +52,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.humanize",
     # Third-party apps:
     "django_js_reverse",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
+    "search_quality",
     "morphodict.apps.MorphodictConfig",
     "DatabaseManager",
 ]

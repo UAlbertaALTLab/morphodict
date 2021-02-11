@@ -14,11 +14,19 @@
         | You  | kinipân | ê-nipâyan |
         | [       + show more      ] |
 
+    JavaScript hooks:
+     - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
+       JavaScript can replace the contents with a different paradigm.
+     - .js-paradigm-size-button: the button for advancing the paradigm size
+       (basic, full, linguistic, etc.)
+     - .js-plus-minus: the + or - sign in the [± show more/less] button
+     - .js-button-text: the text in the [± show more/less] button
+
   {% endcomment %}
 
   {% load morphodict_orth %}
 
-  <section class="definition__paradigm paradigm" data-cy="paradigm">
+  <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
     {# XXX: we should find a better way to contain all the data in the table :/ #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
@@ -76,11 +84,11 @@
       </table>
     </div>
 
-    <button class="paradigm__size-toggle-button" data-cy="paradigm-toggle-button">
-      <span class="paradigm__size-toggle-plus-minus">
+    <button class="paradigm__size-toggle-button js-paradigm-size-button" data-cy="paradigm-toggle-button">
+      <span class="paradigm__size-toggle-plus-minus js-plus-minus">
         {% if paradigm_size.value == 'LINGUISTIC' %}- {% else %}+ {% endif %}
       </span>
-      <span class="paradigm__size-toggle-button-text">
+      <span class="paradigm__size-toggle-button-text js-button-text">
         show {% if paradigm_size.value == 'LINGUISTIC' %}less{% else %}more{% endif %}
       </span>
     </button>

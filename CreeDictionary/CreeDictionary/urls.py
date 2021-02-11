@@ -109,11 +109,11 @@ _urlpatterns = [
         views.search_results,
         "cree-dictionary-search-results",
     ),
-    # internal use to render paradigm and detailed info for a lemma
+    # internal use to render paradigm and only the paradigm
     (
-        "_lemma_details/",
-        views.lemma_details_internal,
-        "cree-dictionary-lemma-detail",
+        "_paradigm_details/",
+        views.paradigm_internal,
+        "cree-dictionary-paradigm-detail",
     ),
     # cree word translation for click-in-text
     (
@@ -127,6 +127,7 @@ _urlpatterns = [
         include("morphodict.urls"),
         "cree-dictionary-change-orthography",
     ),
+    ("search-quality/", include("search_quality.urls"), "search_quality"),
 ]
 
 # Add style debugger, but only in DEBUG mode!

@@ -43,7 +43,7 @@ class TestLemmaDetailsInternal4xx:
             ],  # we'll never have as many as 99999999 entries in the database so it's a non-existent id
         ],
     )
-    def test_lemma_details_internal_400_404(
+    def test_paradigm_details_internal_400_404(
         self, lemma_id: Optional[str], paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
@@ -53,14 +53,15 @@ class TestLemmaDetailsInternal4xx:
             get_data["lemma-id"] = lemma_id
         if paradigm_size is not None:
             get_data["paradigm-size"] = paradigm_size
-        response = c.get("/_lemma_details/", get_data)
+        response = c.get(reverse("cree-dictionary-paradigm-detail"), get_data)
         assert response.status_code == expected_code
 
     @pytest.mark.parametrize(("method",), (("post",), ("put",), ("delete",)))
-    def test_lemma_details_internal_wrong_method(self, method: str):
+    def test_paradigm_details_internal_wrong_method(self, method: str):
         c = Client()
         response = getattr(c, method)(
-            "/_lemma_details/", {"lemma-id": 1, "paradigm-size": "BASIC"}
+            reverse("cree-dictionary-paradigm-detail"),
+            {"lemma-id": 1, "paradigm-size": "BASIC"},
         )
         assert response.status_code == HttpResponseNotAllowed.status_code
 

@@ -17,8 +17,7 @@
   {% load inflection_extras %}
   {% load morphodict_orth %}
 
-  {# TODO: this ID should NOT be "paradigm"!!!! #}
-  <article class="definition" id="paradigm">
+  <article class="definition">
     <header class="definition__header">
       <h1 id="head" class="definition-title">
         <dfn class="definition__matched-head">
@@ -60,8 +59,10 @@
       </ol>
     </section>
 
-    {% if paradigm_tables %}
-      {% include './components/paradigm.html' %}
-    {% endif %}
+    <section id="paradigm">
+      {% if paradigm_tables %}
+        {% include './components/paradigm.html' %}
+      {% endif %}
+    </section>
   </article>
 {% endspaceless %}
