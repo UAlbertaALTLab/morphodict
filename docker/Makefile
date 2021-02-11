@@ -20,6 +20,8 @@ db.sqlite3:
 	-echo '#' Creating an empty SQLite3 database: $@
 	sqlite3 $@ 'VACUUM'
 
+/etc/systemd/service/docker-compose@.service: docker-compose@.service
+	sudo cp $< $@
 
 # Key used to verify Nodesource packages on apt.
 nodesource.gpg.key:
