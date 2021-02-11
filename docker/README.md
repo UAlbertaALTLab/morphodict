@@ -3,6 +3,8 @@
 The current setup was created with the intent of using it in production,
 not for development.
 
+Here are the steps that `make` will run:
+
   - Run `sqlite3 db.sqlite3 VACUUM` to create an empty database file
 
     Otherwise `docker-compose` will create a *directory* instead

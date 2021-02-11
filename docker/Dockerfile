@@ -55,7 +55,7 @@ COPY docker/nodesource.gpg.key .
 RUN set -ex \
     && VERSION=node_12.x \
     && DISTRO="buster" `# must be in sync with Dockerfile` \
-    && apt-key add nodesource.gpg.key \ 
+    && apt-key add nodesource.gpg.key \
     && (echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list) \
     && (echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list) \
     && apt-get update \
@@ -77,13 +77,14 @@ ADD --chown=${WSGI_USER} package-lock.json .
 # that we absolutely don’t need in production
 RUN grep -Ev '"@?cypress' package.json | sponge package.json
 
-#RUN npm install
+RUN npm install
 
 # Copy the application files. Make sure .dockerignore is setup properly so it
 # doesn't copy unnecessary files
 ADD --chown=${WSGI_USER} . /app/
 
-#RUN NODE_ENV=production npm run build
+RUN NODE_ENV=production npm run build \
+ && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
 
 # Gunicorn will listen on this port:
 EXPOSE ${EXPOSE_PORT}
