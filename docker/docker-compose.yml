@@ -7,4 +7,5 @@ services:
     volumes:
       - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
     ports:
-      - 8000:8000
+      # gunaha was using 8000, so let's use 8001, yay!
+      - 8001:8000
