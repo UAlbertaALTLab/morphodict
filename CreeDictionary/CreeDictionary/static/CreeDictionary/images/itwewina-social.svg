@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1200"
+   height="450"
+   version="1.1"
+   id="svg846"
+   sodipodi:docname="itwewina-social.svg"
+   inkscape:version="1.0.1 (c497b03c, 2020-09-10)">
+  <metadata
+     id="metadata850">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1279"
+     inkscape:window-height="1080"
+     id="namedview848"
+     showgrid="false"
+     inkscape:zoom="0.37522116"
+     inkscape:cx="603.57877"
+     inkscape:cy="413.54825"
+     inkscape:window-x="1401"
+     inkscape:window-y="222"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg846"
+     inkscape:pagecheckerboard="false" />
+  <defs
+     id="defs836">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="a">
+      <path
+         d="M 0,192 H 192 V 0 H 0 Z"
+         id="path833" />
+    </clipPath>
+  </defs>
+  <g
+     stroke-width="0.904744"
+     id="g844"
+     transform="matrix(1.5078111,0,0,1.5078111,10.230242,32.000355)">
+    <g
+       clip-path="url(#a)"
+       transform="matrix(1.70499,0,0,-1.70499,-31.605,295.089)"
+       id="g840"
+       style="stroke-width:0.518631">
+      <path
+         d="M 152.727,60.295 C 132.173,17.31 66.007,8.863 33.7,59.452 l 59.9,82.308 z"
+         fill="#ffebcd"
+         id="path838"
+         style="stroke-width:0.212913" />
+    </g>
+    <path
+       d="m 140.238,0.014 c -0.501,-0.093 -0.985,0.279 -1.094,0.845 -1.01,5.133 -5.655,28.8 -9.34,47.718 -0.258,1.326 1.426,1.835 1.82,0.55 L 145.974,2.34 c 0.195,-0.63 -0.15,-1.296 -0.723,-1.401 z m -23.49,0.203 -5.012,0.926 c -0.573,0.108 -0.919,0.772 -0.724,1.399 l 14.35,46.786 c 0.394,1.288 2.08,0.78 1.821,-0.547 C 123.497,29.865 118.85,6.197 117.843,1.063 117.732,0.497 117.25,0.125 116.749,0.217 Z M 94.044,5.559 a 0.923,0.923 0 0 0 -0.31,0.037 L 87.968,7.34 c -0.633,0.19 -0.873,0.973 -0.462,1.498 l 34.299,43.997 c 0.733,0.941 2.145,-0.095 1.506,-1.104 C 112.641,34.891 98.331,12.191 94.799,6.024 A 0.917,0.917 0 0 0 94.044,5.559 Z m 68.808,1.626 a 0.92,0.92 0 0 0 -0.755,0.462 c -3.53,6.169 -17.842,28.87 -28.511,45.71 a 0.927,0.927 0 0 0 -0.14,0.632 l -0.727,-0.802 c -4.598,-5.065 -6.474,-1.626 -2.31,3.919 37.29,49.657 87.59,124.234 98.403,135.082 -17.815,26.757 -46.472,56.346 -94.235,58.402 -51.588,2.223 -83.773,-21.26 -108.483,-57.059 7.896,-5.874 60.73,-84.446 99.5,-136.07 4.163,-5.545 2.288,-8.984 -2.31,-3.917 L 14.438,173.716 c 0.178,0.85 0.783,2.27 1.586,3.924 -0.26,-0.445 -0.525,-0.882 -0.784,-1.33 15.479,42.407 51.909,79.69 117.902,79.69 56.167,0 88.7,-42.044 101.813,-69.659 2.962,-4.869 6.139,-10.747 6.606,-12.98 L 134.174,54.796 c 0.31,0.075 0.655,0 0.917,-0.335 l 34.298,-43.997 c 0.411,-0.525 0.17,-1.307 -0.462,-1.498 l -5.77,-1.744 a 0.91,0.91 0 0 0 -0.306,-0.037 z m -32.284,8.831 c -0.584,-0.003 -1.57,0.009 -3.159,0.075 a 0.69,0.69 0 0 0 -0.667,0.72 c 0.201,3.993 0.507,16.81 0.71,27.352 0.017,0.879 1.309,0.923 1.386,0.048 l 2.415,-27.443 a 0.69,0.69 0 0 0 -0.685,-0.752 z m -19.056,4.009 -1.863,0.3 a 1.359,1.359 0 0 0 -0.981,1.98 L 121.11,45.58 c 0.384,0.716 1.466,0.204 1.154,-0.545 -3.99,-9.58 -8.758,-21.11 -10.052,-24.606 a 0.634,0.634 0 0 0 -0.7,-0.404 z m 34.257,0.477 a 0.964,0.964 0 0 0 -1.054,0.61 c -1.112,2.957 -4.219,10.52 -7.388,18.169 -0.469,1.13 1.164,1.902 1.74,0.821 l 9.544,-17.847 a 0.965,0.965 0 0 0 -0.697,-1.409 z M 130.523,96.45 c -12.26,16.954 -1.043,23.213 1.565,29.213 2.61,5.998 -2.87,16.954 -6.26,23.737 -3.392,6.782 -1.305,14.347 5.217,15.13 -8.87,-5.998 -0.002,-21.912 4.17,-31.042 4.176,-9.128 1.308,-15.65 -3.127,-20.607 -4.434,-4.957 -3.392,-8.606 -1.565,-16.431 z m -2.785,93.682 c -12.687,0 -22.975,10.549 -22.975,23.565 0,13.014 10.288,23.564 22.975,23.564 12.688,0 22.975,-10.55 22.975,-23.564 0,-13.016 -10.287,-23.565 -22.975,-23.565 z"
+       fill="#a20011"
+       id="path842"
+       style="stroke-width:0.212913" />
+  </g>
+  <g
+     id="g880"
+     transform="matrix(1.0866127,0,0,1.0866127,32.000019,40.845547)"
+     style="stroke-width:0.920293">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:140.151px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#a20011;fill-opacity:1;stroke-width:0.920293"
+       x="409.41617"
+       y="164.69031"
+       id="text854"><tspan
+         sodipodi:role="line"
+         id="tspan852"
+         x="409.41617"
+         y="164.69031"
+         style="stroke-width:0.920293">itwêwina</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:62.0491px;line-height:1.25;font-family:'Open Sans';-inkscape-font-specification:'Open Sans, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.920293"
+       x="413.38605"
+       y="268.04105"
+       id="text858"><tspan
+         sodipodi:role="line"
+         id="tspan856"
+         x="413.38605"
+         y="268.04105"
+         style="stroke-width:0.920293">Plains Cree Dictionary</tspan></text>
+  </g>
+</svg>
