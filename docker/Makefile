@@ -6,7 +6,7 @@
 #  		(what is copied to the Docker VM to build the image)
 
 .PHONY: run
-run: db.sqlite3 nodesource.gpg.key
+run: db.sqlite3 nodesource.gpg.key /etc/systemd/service/docker-compose@.service
 	docker-compose up --build
 
 .PHONY: debug-context

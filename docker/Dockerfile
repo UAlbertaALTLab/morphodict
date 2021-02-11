@@ -21,12 +21,11 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 # To avoid overlap with user IDs, use an ID over
 # /etc/login.defs:/UID_MAX/, which defaults to 60,000
 ARG UID_GID=60003
-ARG WSGI_USER=itwewina
 ARG EXPOSE_PORT=8000
 
 # Create the user/group for the application
-RUN groupadd --system --gid ${UID_GID} ${WSGI_USER} \
- && useradd --no-log-init --system --gid ${WSGI_USER} --uid ${UID_GID} ${WSGI_USER} --create-home
+RUN groupadd --system --gid ${UID_GID} itwewina \
+ && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
 
 # TODO: move package.json dependences from build and test
 #  - [ ] must document in development guide
@@ -45,7 +44,7 @@ RUN set -ex \
  && pip install pipenv \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /data/ /app/ \
- && chown ${WSGI_USER} /data /app
+ && chown itwewina /data /app
 
 # Install Node + npm
 # (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
@@ -61,18 +60,18 @@ RUN set -ex \
     && apt-get update \
     && apt-get install -y --no-install-recommends nodejs
 
-USER ${WSGI_USER}
+USER itwewina
 
 WORKDIR /app/
 
 # Setup Python deps
-ADD --chown=${WSGI_USER} Pipfile .
-ADD --chown=${WSGI_USER} Pipfile.lock .
+ADD --chown=itwewina Pipfile .
+ADD --chown=itwewina Pipfile.lock .
 
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
 
-ADD --chown=${WSGI_USER} package.json .
-ADD --chown=${WSGI_USER} package-lock.json .
+ADD --chown=itwewina package.json .
+ADD --chown=itwewina package-lock.json .
 # cypress is a big, heavy package that takes a long time to install and
 # that we absolutely don’t need in production
 RUN grep -Ev '"@?cypress' package.json | sponge package.json
@@ -81,7 +80,7 @@ RUN npm install
 
 # Copy the application files. Make sure .dockerignore is setup properly so it
 # doesn't copy unnecessary files
-ADD --chown=${WSGI_USER} . /app/
+ADD --chown=itwewina . /app/
 
 RUN NODE_ENV=production npm run build \
  && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
