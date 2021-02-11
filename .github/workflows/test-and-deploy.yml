@@ -78,7 +78,6 @@ jobs:
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
-        USE_TEST_DB: "True"
       run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1
@@ -118,7 +117,6 @@ jobs:
     - name: 🌲 Run Cypress tests
       env:
         DEBUG: "True"
-        USE_TEST_DB: "True"
         # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/cree-intelligent-dictionary
         CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
       run: |
