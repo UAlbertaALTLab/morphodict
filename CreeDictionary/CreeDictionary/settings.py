@@ -19,6 +19,9 @@ from environs import Env
 from .hostutils import HOST_IS_SAPIR, HOSTNAME
 from .save_secret_key import save_secret_key
 
+# Where this application should be deployed:
+PRODUCTION_HOST = "itwewina.altlab.app"
+
 # Build paths inside project like this: os.fspath(BASE_PATH / "some_file.txt")
 BASE_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -158,7 +161,7 @@ if DEBUG:
 elif RUNNING_ON_SAPIR:  # pragma: no cover
     ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
+    ALLOWED_HOSTS = [PRODUCTION_HOST, HOSTNAME, "localhost"]
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
