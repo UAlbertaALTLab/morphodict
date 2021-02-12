@@ -51,9 +51,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    # WhiteNoise nostatic HAS to come before Django's staticfiles
+    # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
-    # Third-party apps:
     "django_js_reverse",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
@@ -61,10 +63,13 @@ INSTALLED_APPS = [
     "CreeDictionary.apps.CreeDictionaryConfig",
     "search_quality",
     "morphodict.apps.MorphodictConfig",
+    "DatabaseManager",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Static files with WhiteNoise:
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -298,9 +303,7 @@ if DEBUG:
 else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `python manage.py collectstatic`!
-    STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    )
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
 
