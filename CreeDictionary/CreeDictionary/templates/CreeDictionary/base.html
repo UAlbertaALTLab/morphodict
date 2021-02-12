@@ -3,26 +3,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>itwêwina: the online Cree dictionary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#A20010">
   {% block metatags %}
-  <!-- Primary Meta Tags -->
-  <meta name="description" content="A smart, online dictionary of Plains Cree (Y-Dialect) | nêhiyawi-masinahikan kâ-iyinîsit">
-
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://itwewina.altlab.app/">
-  <meta property="og:title" content="itwêwina: the Plains Cree dictionary">
-  <meta property="og:description" content="A smart, online dictionary of Plains Cree (Y-Dialect) | nêhiyawi-masinahikan kâ-iyinîsit">
-  <meta property="og:image" content="{% static 'CreeDictionary/images/itwewina-social.svg' %}">
-
-  <!-- Twitter -->
-  <meta property="twitter:card" content="summary_large_image">
-  <meta property="twitter:url" content="https://itwewina.altlab.app/">
-  <meta property="twitter:title" content="itwêwina: the Plains Cree dictionary">
-  <meta property="twitter:description" content="A smart, online dictionary of Plains Cree (Y-Dialect) | nêhiyawi-masinahikan kâ-iyinîsit">
-  <meta property="twitter:image" content="{% static 'CreeDictionary/images/itwewina-social.svg' %}">
+  {% include 'CreeDictionary/components/metatags.html' %}
   {% endblock %}
   <link rel="icon" type="image/png" href="{% static 'CreeDictionary/images/itwewina-32.png' %}">
   <link rel="alternate icon" type="image/svg+xml" href="{% static 'CreeDictionary/images/itwewina.svg' %}">
