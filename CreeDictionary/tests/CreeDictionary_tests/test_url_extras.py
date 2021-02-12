@@ -11,17 +11,24 @@ def test_orth_template_tag():
     """
     asset = "CreeDictionary/favicon.ico"
 
+    django_builtin_static = render_builtin_django_static(asset)
+    assert not django_builtin_static.startswith("http")
+
+    abstatic_url = render_with_abstatic(asset)
+    assert abstatic_url.startswith("http")
+    assert abstatic_url.endswith(django_builtin_static)
+
+
+def render_with_abstatic(asset: str) -> str:
     request = HttpRequest()
     request.META.setdefault("HTTP_HOST", "example.com")
 
-    django_builtin_static = Template(
-        "{% load static %}" "{% static '" + asset + "' %}"
-    ).render(Context({}))
-    assert not django_builtin_static.startswith("http")
-
     context = RequestContext(request, {})
     template = Template("{% load url_extras %}" "{% abstatic '" + asset + "' %}")
-    rendered = template.render(context)
+    return template.render(context)
 
-    assert rendered.startswith("http")
-    assert rendered.endswith(django_builtin_static)
+
+def render_builtin_django_static(asset: str) -> str:
+    return Template("{% load static %}" "{% static '" + asset + "' %}").render(
+        Context({})
+    )
