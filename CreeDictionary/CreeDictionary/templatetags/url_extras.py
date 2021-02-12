@@ -33,15 +33,31 @@ class AbstaticNode(StaticNode):
 
 def is_absolute_uri(url: ParseResult) -> bool:
     """
-    What is an absolute URL?
+    Returns True if the parsed result is an "absolute URI".
 
-    From: https://stackoverflow.com/a/17407021/6626414
+    We define an "absolute URI" as containing at mimimum a **scheme** and an
+    **host** (a.k.a., an authority).
 
-    > Absolute URLs contain a great deal of information which may already be known from
-    > the context of the base document's retrieval, including the scheme, network
-    > location, and parts of the URL path.
+    It must contain SH according to the nomenclature defined in this proposal:
+    https://gist.github.com/andrewdotn/eebeaa60d48c3c0f6f9fc75f0ede8d03#proposal
 
-    See also: https://tools.ietf.org/html/rfc1808
+    Examples of absolute URIs:
+        [SH  ]  https://example.com
+        [SHP ]  https://example.com/
+        [SHPF]  https://example.com/foo/cat.gif
+
+    What are NOT absolute URIs:
+        [   F]  cat.gif
+        [  P ]  /
+        [  PF]  /foo/cat.gif
+        [ HPF]  //example.com/foo/cat.gif†
+        [S  F]  https:cat.gif (uncommon)
+        [S PF]  https:/foo/cat.gif (uncommon)
+
+    †: This is called a "network-path reference, and relies on inferring the scheme
+       based on an existing base URI. For our purposes, this is not "absolute" enough!
+       Source: https://tools.ietf.org/html/rfc3986#section-4.2
+
     """
     # netloc == authority, i.e., [username[:password]@]example.com[:443]
     if url.scheme and url.netloc:
