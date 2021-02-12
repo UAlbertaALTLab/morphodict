@@ -27,7 +27,7 @@ class AbstaticNode(StaticNode):
             return url_to_asset
 
         # Delegate to Django to provide its own schema and authority:
-        path_and_file = urlunparse(parsed_url._replace(scheme="", netloc=""))
+        path_and_file = to_pf_url(parsed_url)
         return context["request"].build_absolute_uri(path_and_file)
 
 
@@ -63,6 +63,14 @@ def is_absolute_uri(url: ParseResult) -> bool:
     if url.scheme and url.netloc:
         return True
     return False
+
+
+def to_pf_url(url: ParseResult):
+    """
+    Returns *P*ath and *F*ile as defined here:
+    https://gist.github.com/andrewdotn/eebeaa60d48c3c0f6f9fc75f0ede8d03#proposal
+    """
+    return urlunparse(url._replace(scheme="", netloc=""))
 
 
 @register.tag
