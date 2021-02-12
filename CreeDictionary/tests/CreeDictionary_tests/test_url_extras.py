@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.template import RequestContext, Context, Template
 
 
-def test_orth_template_tag():
+def test_abstatic():
     """
     Test that the {% abstatic %} tag returns a static path.
     """
@@ -17,6 +17,21 @@ def test_orth_template_tag():
     abstatic_url = render_with_abstatic(asset)
     assert abstatic_url.startswith("http")
     assert abstatic_url.endswith(django_builtin_static)
+    assert abstatic_url != django_builtin_static
+
+
+def test_abstatic_static_url_set(settings):
+    """
+    When STATIC_URL is set to an absolute URI, {% abstatic %} should be identical to
+    Django's builtin {% static %}.
+    """
+    settings.STATIC_URL = "https://cdn.example.com"
+
+    asset = "CreeDictionary/favicon.ico"
+
+    django_builtin_static = render_builtin_django_static(asset)
+    abstatic_url = render_with_abstatic(asset)
+    assert abstatic_url == django_builtin_static
 
 
 def render_with_abstatic(asset: str) -> str:
@@ -29,6 +44,5 @@ def render_with_abstatic(asset: str) -> str:
 
 
 def render_builtin_django_static(asset: str) -> str:
-    return Template("{% load static %}" "{% static '" + asset + "' %}").render(
-        Context({})
-    )
+    template = Template("{% load static %}" "{% static '" + asset + "' %}")
+    return template.render(Context())
