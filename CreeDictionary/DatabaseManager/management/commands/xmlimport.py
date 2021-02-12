@@ -7,9 +7,11 @@ from django.core.management import BaseCommand, call_command
 
 
 class Command(BaseCommand):
-    help = """Erase all rows from all definition-related database tables.
+    help = """Import a dictionary .xml file into db search tables.
 
-    This is useful to run before importing a new dictionary.
+    At a high level, this will (1) analyze each wordform to get a lemma, then
+    (2) generate all wordforms of the lemmas. During this process, definitions
+    are associated with wordforms, and are also stemmed to allow searching.
     """
 
     def add_arguments(self, parser: ArgumentParser):
