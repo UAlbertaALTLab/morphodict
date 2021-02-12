@@ -32,6 +32,7 @@
   --embossed-highlight:     #e0e0e0;
   --footer-bg-color:        #832020;
   --footer-text-color:      #FFFFFF;
+  --footer-link-hover-color: #FFC0C0;
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --link-active-color:      #0E6790; /* Currently active link. */
