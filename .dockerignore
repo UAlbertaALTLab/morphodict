@@ -32,4 +32,4 @@ cypress/
 context/
 
 # Do NOT inherit the .env file from the context
-.env
+/.env
