@@ -8,7 +8,7 @@
 #  		container
 #  make unit-file
 #  		copies the systemd unit file to the right location;
-#  		make require sudo
+#  		requires sudo
 #  make debug-context
 #  		runs a temporary Docker container to inspect the context
 #  		(what is copied to the Docker VM to build the image)
@@ -47,9 +47,8 @@ db.sqlite3:
 #
 # Required during **container runtime**
 .env:
-	-echo '#' Creating a .env file with a secret key
-	printf "SECRET_KEY=" > $@
-	python3 -c "import secrets; print(secrets.token_hex())" >> $@
+	-echo '#' Creating an empty .env file
+	touch $@
 
 # Key used to verify Nodesource packages on apt.
 #
