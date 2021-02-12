@@ -4,8 +4,6 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    environment:
-      - DEBUG=False
     volumes:
       - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
       - "./.env:/app/.env"

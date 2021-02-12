@@ -96,9 +96,6 @@ ENTRYPOINT ["tini", "--"]
 WORKDIR /app/CreeDictionary
 ENV EXPOSE_PORT=${EXPOSE_PORT}
 
-
-ENV DEBUG=True
-ENV ENABLE_DJANGO_DEBUG_TOOLBAR=False
 CMD /app/.venv/bin/gunicorn \
     --access-logfile - \
     --bind 0.0.0.0:${EXPOSE_PORT} \
