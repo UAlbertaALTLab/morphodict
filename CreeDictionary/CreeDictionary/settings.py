@@ -303,9 +303,7 @@ if DEBUG:
 else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `python manage.py collectstatic`!
-    STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    )
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
 
