@@ -54,6 +54,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     # WhiteNoise nostatic HAS to come before Django's staticfiles
     # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     "whitenoise.runserver_nostatic",
@@ -176,6 +178,11 @@ else:
     DATABASES = {
         "default": env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
     }
+
+################################ Django sites framework ################################
+
+# See: https://docs.djangoproject.com/en/2.2/ref/contrib/sites/#enabling-the-sites-framework
+SITE_ID = 1
 
 ################################## SecurityMiddleware ##################################
 
