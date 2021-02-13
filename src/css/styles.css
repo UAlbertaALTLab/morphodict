@@ -1182,6 +1182,7 @@ a.menu-choice__label:active {
 .menu-choice--selected {
   font-weight: var(--strong-font-weight);
 
+  color: var(--menu-selected-color);
   background-color: var(--menu-selected-bg-color);
 }
 
