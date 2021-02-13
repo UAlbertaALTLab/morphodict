@@ -108,19 +108,15 @@ if settings.DEBUG:
 
 # XXX: ugly hack to make this work on a local instance and on Sapir
 urlpatterns = []
-if running_on_sapir_without_script_name():  # pragma: no cover
-    prefix = "cree-dictionary/"
-else:
-    prefix = ""
 
 for route, view, name in _urlpatterns:
     # kwarg `name` for url reversion in html/py/js code
-    urlpatterns.append(path(prefix + route, view, name=name))
+    urlpatterns.append(path(route, view, name=name))
 
 # magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse
-urlpatterns.append(url(fr"^{prefix}jsreverse/$", urls_js, name="js_reverse"))
+urlpatterns.append(url(fr"^jsreverse/$", urls_js, name="js_reverse"))
 
-admin.site.site_url = "/" + prefix
+admin.site.site_url = "/"
 
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
