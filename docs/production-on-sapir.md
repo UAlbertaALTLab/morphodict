@@ -1,7 +1,7 @@
 Production on Sapir
 -------------------
 
-Before <time datetime="2021-01-05">February 12, 2021</time>, itwêwina
+Before <time datetime="2021-02-12">February 12, 2021</time>, itwêwina
 was deployed on a server called **Sapir**. It used to be located here:
 
 <https://sapir.artsrn.ualberta.ca/cree-dictionary>
