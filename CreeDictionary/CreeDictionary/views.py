@@ -195,15 +195,6 @@ def contact_us(request):  # pragma: no cover
     )
 
 
-def styles(request):
-    """
-    Display ALL of the styles.
-
-    This should only be accessible in DEBUG mode.
-    """
-    return render(request, "CreeDictionary/styles.html")
-
-
 def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:
     """
     Creates the context vars for anything using the CreeDictionary/index.html template.

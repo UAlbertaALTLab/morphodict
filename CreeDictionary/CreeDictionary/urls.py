@@ -55,10 +55,6 @@ urlpatterns = [
     path("jsreverse", urls_js, name="js_reverse"),
 ]
 
-# Add style debugger, but only in DEBUG mode!
-if settings.DEBUG:
-    urlpatterns.append(path("styles", views.styles, name="styles"))
-
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()
