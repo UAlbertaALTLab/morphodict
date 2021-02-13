@@ -19,12 +19,6 @@ urlpatterns = [
     # user interface
     path("", views.index, name="cree-dictionary-index"),
     path("search", views.index, name="cree-dictionary-search"),
-    # DEPRECATED: this route 👇 is a permanent redirect to the route above ☝️
-    path(
-        "search/<str:query_string>/",
-        views.redirect_search,
-        name="cree-dictionary-index-with-query",
-    ),
     # word is a user-friendly alternative for the linguistic term "lemma"
     path(
         "word/<str:lemma_text>/",

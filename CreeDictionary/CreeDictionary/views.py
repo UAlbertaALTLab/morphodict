@@ -195,16 +195,6 @@ def contact_us(request):  # pragma: no cover
     )
 
 
-def redirect_search(request, query_string: str):
-    """
-    Permanently redirect from old search URL to new search URL.
-
-        /search/TERM -> /search?q=TERM
-
-    """
-    return redirect(url_for_query(query_string), permanent=True)
-
-
 def styles(request):
     """
     Display ALL of the styles.
