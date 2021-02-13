@@ -870,7 +870,6 @@ a.multiple-recordings__action-button {
 
   /* Color */
   color: var(--footer-text-color);
-  background-image: url(img/footer-1366w.jpg);
   background-position: top center;
   background-color: var(--footer-bg-color);
   box-shadow: inset 0 4px 4px rgba(0, 0, 0, 0.1);
@@ -882,6 +881,19 @@ a.multiple-recordings__action-button {
    "basic"
    "advanced"
    "copyright";
+}
+
+/*
+ * Some tool like Modernizer or... I don't know... some manually minified code
+ * snippet, should add the .webp class to the body to signal that the browser
+ * supports a webp background image. Space savings are HUGE.
+ */
+body.webp .footer {
+  background-image: url(img/footer-1366w.webp);
+}
+
+body:not(.webp) .footer {
+  background-image: url(img/footer-1366w.jpg);
 }
 
 .footer a:link {
