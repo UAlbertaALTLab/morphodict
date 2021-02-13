@@ -39,6 +39,7 @@
   --link-hover-color:       #5E8DC3; /* Hover over a link. */
   --link-visited-color:     #A568DB; /* Visited link */
   --menu-caption-color:     #626262; /* Color of text for menu captions. */
+  --menu-selected-bg-color: #DEE4F9;
   --menu-hover-bg-color:    #0072C8; /* A dark background to contrast highlighted menu items. */
   --menu-hover-color:       var(--box-bg-color); /* An inverted colour scheme */
   --paradigm-border-color:  #828A95; /* Color of the paradigm border and button. */

@@ -1182,7 +1182,7 @@ a.menu-choice__label:active {
 .menu-choice--selected {
   font-weight: var(--strong-font-weight);
 
-  background-color: #DEE4F9;
+  background-color: var(--menu-selected-bg-color);
 }
 
 /*********************************** BOX ************************************/
