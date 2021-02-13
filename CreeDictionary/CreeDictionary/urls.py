@@ -5,18 +5,16 @@ Definition of urls for CreeDictionary.
 import logging
 import os
 
-from django.contrib import admin
-
 import API.views as api_views
 from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
 from CreeDictionary import views
-
 
 logger = logging.getLogger(__name__)
 
@@ -52,35 +50,9 @@ logger = logging.getLogger(__name__)
 
 def running_on_sapir_without_script_name():  # pragma: no cover
     """
-    The WSGI SCRIPT_NAME environment variable indicates the part of the URL's path before the
-    first slash handled within this application.
-
-    Usually, SCRIPT_NAME is the empty string. On Sapir, it SHOULD be "/cree-dictionary":
-
-                                           SCRIPT_NAME
-                                        ,--------------.
-                                        v              v
-        https://sapir.artsrn.ualberta.ca/cree-dictionary/
-
-    However, we have not configured it this way :/
-
-    This function enables a hack when we're running on sapir, but the script name is not
-    set.
-
-    See: https://docs.gunicorn.org/en/stable/faq.html#how-do-i-set-script-name
-    See: https://wsgi.readthedocs.io/en/latest/definitions.html#envvar-SCRIPT_NAME
+    No longer required.
     """
-    wsgi_script_name = os.getenv("SCRIPT_NAME", "")
-
-    if not settings.RUNNING_ON_SAPIR:
-        return False
-
-    if wsgi_script_name == "":
-        logger.warn("Running on Sapir WITHOUT a valid script name; using hacky URLs")
-        return True
-    else:
-        logger.info("Running on Sapir with script name: %r", wsgi_script_name)
-        return False
+    return False
 
 
 # TODO: Convert this to an idiomatic Django style when we drop support for
