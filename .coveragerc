@@ -14,7 +14,7 @@ exclude_lines =
     pragma: no cover
 
     # Don't complain about missing debug-only code:
-    if settings\.DEBUG:
+    if settings\.DEBUG\b
 
     # Don't complain if tests don't hit defensive assertion code:
     raise AssertionError
