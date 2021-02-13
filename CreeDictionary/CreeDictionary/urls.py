@@ -16,10 +16,10 @@ from django_js_reverse.views import urls_js
 from CreeDictionary import views
 
 urlpatterns = [
-    # user interface
+    ################################# Primary URLs #################################
     path("", views.index, name="cree-dictionary-index"),
     path("search", views.index, name="cree-dictionary-search"),
-    # word is a user-friendly alternative for the linguistic term "lemma"
+    # "word" is a user-friendly alternative for the linguistic term "lemma"
     path(
         "word/<str:lemma_text>/",
         views.lemma_details,
@@ -27,6 +27,7 @@ urlpatterns = [
     ),
     path("about", views.about, name="cree-dictionary-about"),
     path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
+    ################################# Internal API #################################
     # internal use to render boxes of search results
     path(
         "_search_results/<str:query_string>/",
@@ -45,21 +46,18 @@ urlpatterns = [
         api_views.click_in_text,
         name="cree-dictionary-word-click-in-text-api",
     ),
+    ############################## Other applications ##############################
     path("admin/", admin.site.urls),
-    path(
-        "",
-        include("morphodict.urls"),
-        name="cree-dictionary-change-orthography",
-    ),
     path("search-quality/", include("search_quality.urls")),
+    path("", include("morphodict.urls")),
+    ################################# Special URLS #################################
+    # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
+    path("jsreverse", urls_js, name="js_reverse"),
 ]
 
 # Add style debugger, but only in DEBUG mode!
 if settings.DEBUG:
     urlpatterns.append(path("styles", views.styles, name="styles"))
-
-# Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
-urlpatterns.append(url(fr"^jsreverse/$", urls_js, name="js_reverse"))
 
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
