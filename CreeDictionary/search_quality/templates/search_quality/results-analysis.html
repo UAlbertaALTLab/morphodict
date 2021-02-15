@@ -7,8 +7,11 @@
   <p>
   310 score: {{ average_threeten_score_percent|floatformat }}%<br/>
   top3 score: {{ average_topthree_score_percent|floatformat }}%<br/>
+  Average result count: {{ average_result_count|floatformat }}<br/>
   Average duplicate count: {{ average_total_duplicate_count|floatformat }}<br/>
-  Average search time: {{ average_time_taken_seconds|floatformat }}s
+  Average search time: {{ average_time_taken_seconds|floatformat }}s<br/>
+  This result file covers {{ result_set_length }} / {{ sample_definition_length }}
+  = {{ result_set_percent|floatformat }}% of the current <tt>sample.csv</tt>.
   </p>
   <p>
   <details>

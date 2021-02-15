@@ -1,5 +1,5 @@
 import csv
-from typing import Iterable, TypedDict
+from typing import TypedDict
 
 
 class SampleCsvRow(TypedDict):
@@ -11,7 +11,7 @@ class SampleCsvRow(TypedDict):
     Notes: str
 
 
-SampleDefinition = Iterable[SampleCsvRow]
+SampleDefinition = list[SampleCsvRow]
 
 
 def dict_with_spaces_in_keys_to_underscores(d: dict):
@@ -19,8 +19,19 @@ def dict_with_spaces_in_keys_to_underscores(d: dict):
 
 
 def load_sample_definition(input_file) -> SampleDefinition:
+    queries = []
+    seen = set()
     with open(input_file) as csvfile:
         reader = csv.DictReader(csvfile)
 
-        for row in reader:
-            yield dict_with_spaces_in_keys_to_underscores(row)
+        for i, row in enumerate(reader):
+            to_yield = dict_with_spaces_in_keys_to_underscores(row)
+            queries.append(to_yield)
+            if to_yield["Query"] in seen:
+                raise Exception(
+                    f"Duplicate query: {to_yield['Query']!r} on line {i + 1}"
+                )
+            else:
+                seen.add(to_yield["Query"])
+
+    return queries
