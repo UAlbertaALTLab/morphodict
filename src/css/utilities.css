@@ -38,6 +38,14 @@
 }
 
 /**
+ * Fill the width of the container.
+ */
+.fill-width {
+  width: 100%;
+}
+
+
+/**
  * Don't use this class.
  *
  * Instead, find a better way to wrap content in whatever this class is
@@ -50,3 +58,4 @@
 
   overflow-x: scroll;
 }
+

@@ -1130,9 +1130,10 @@ a.multiple-recordings__action-button {
 /* See also: https://www.w3.org/TR/wai-aria-practices/examples/menu-button/menu-button-links.html */
 
 .menu {
-  min-width: 10rem;
+  min-width: 24ch;
   border: solid 1px rgba(209, 209, 209, 0.33);
 
+  font-size: 1.2em;
   text-align: left;
 
   background-color: var(--box-bg-color);
@@ -1162,7 +1163,7 @@ a.multiple-recordings__action-button {
 
 .menu-choice__label {
   display: block;
-  padding: 9px;
+  padding: 1rem;
 }
 
 .menu-choice:hover {
@@ -1181,7 +1182,8 @@ a.menu-choice__label:active {
 .menu-choice--selected {
   font-weight: var(--strong-font-weight);
 
-  background-color: #DEE4F9;
+  color: var(--menu-selected-color);
+  background-color: var(--menu-selected-bg-color);
 }
 
 /*********************************** BOX ************************************/
