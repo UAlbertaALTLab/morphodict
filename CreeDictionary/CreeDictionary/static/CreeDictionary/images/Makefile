@@ -11,12 +11,17 @@
 all: itwewina-32.png itwewina-192.png
 
 
-itwewina-32.png: itwewina.svg
-	inkscape --export-area-page -w 32 -h 32 --export-type=png $< -o $@
-	optipng $@
+define svg2png
+inkscape --export-area-page $(PNG_EXPORT_OPTIONS) --export-type=png $< -o $@
+optipng $@
+endef
 
+itwewina-32.png: PNG_EXPORT_OPTIONS=--export-width=32 --export-height=32
+itwewina-32.png: itwewina.svg
+	$(svg2png)
+
+itwewina-192.png: PNG_EXPORT_OPTIONS=--export-width=192 --export-height=192
 itwewina-192.png: itwewina.svg
-	inkscape --export-area-page -w 192 -h 192 --export-type=png $< -o $@
-	optipng $@
+	$(svg2png)
 
 .PHONY: all
