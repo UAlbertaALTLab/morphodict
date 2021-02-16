@@ -1,0 +1,35 @@
+{% spaceless %}
+  {% comment %}
+    Inserted into the <head>, this adds tags for social media preview.
+
+    Parameters:
+     - title — the title of the webpage -- as this goes in the tab bar, it's
+       the link in search results, and is visible in social media links is the
+       MOST important part!
+     - description — a short summary of the current page
+  {% endcomment %}
+
+  {% load url_extras %}
+
+  {% with title_="itwêwina: the online Cree dictionary" desc_="A smart, online dictionary of Plains Cree (Y-Dialect) | nêhiyawi-masinahikan kâ-iyiniwâk" %}
+  {% abstatic 'CreeDictionary/images/itwewina-social.svg' as image_url %}
+
+  {# Primary Meta Tags #}
+  <title>{{ title|default:title_ }}</title>
+  <meta name="description" content="{{ description|default:desc_ }}">
+
+  {# Open Graph / Facebook #}
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://itwewina.altlab.app/">
+  <meta property="og:title" content="{{ title|default:title_ }}">
+  <meta property="og:description" content="{{ description|default:desc_ }}">
+  <meta property="og:image" content="{{ image_url }}">
+
+  {# Twitter #}
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://itwewina.altlab.app/">
+  <meta property="twitter:title" content="{{ title|default:title_ }}">
+  <meta property="twitter:description" content="{{ description|default:desc_ }}">
+  <meta property="twitter:image" content="{{ image_url }}">
+  {% endwith %}
+{% endspaceless %}
