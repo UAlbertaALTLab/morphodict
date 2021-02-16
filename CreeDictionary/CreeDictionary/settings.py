@@ -16,7 +16,7 @@ from pathlib import Path
 
 from environs import Env
 
-from .hostutils import HOST_IS_SAPIR, HOSTNAME
+from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
 
 # Where this application should be deployed:
@@ -105,15 +105,6 @@ TEMPLATES = [
 
 ################################### Custom settings ####################################
 
-# sapir.artsrn.ualberta.ca has some... special requirements (read: hacks)
-# Eventually these hacks will go away.
-# But eventually is not now :/
-RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    assert not DEBUG
-
 # GitHub Actions and other services set CI to `true`
 CI = env.bool("CI", default=False)
 
@@ -158,8 +149,6 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
-elif RUNNING_ON_SAPIR:  # pragma: no cover
-    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
 else:  # pragma: no cover
     ALLOWED_HOSTS = [PRODUCTION_HOST, HOSTNAME, "localhost"]
 
@@ -292,11 +281,7 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-STATIC_URL = env(
-    "STATIC_URL",
-    # XXX: hack to use the correct URL on Sapir if this setting is not explicitly set
-    default="/cree-dictionary/static/" if RUNNING_ON_SAPIR else "/static/",
-)
+STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_PATH / "static"))
 
