@@ -3,15 +3,17 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>itwêwina: the online Cree dictionary</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#A20010">
+  {% block metatags %}
+  {% include 'CreeDictionary/components/metatags.html' %}
+  {% endblock %}
   <link rel="icon" type="image/png" href="{% static 'CreeDictionary/images/itwewina-32.png' %}">
   <link rel="alternate icon" type="image/svg+xml" href="{% static 'CreeDictionary/images/itwewina.svg' %}">
   <link rel="mask-icon" href="{% static 'CreeDictionary/images/itwewina-safari-pinned-tab.svg' %}" color="#FAEBD7">
   <link rel="apple-touch-icon" href="{% static 'CreeDictionary/images/itwewina-192.png' %}">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
   {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
   <script src="{% url 'js_reverse' %}"></script>
@@ -42,8 +44,6 @@
       </svg>
     </button>
   </template>
-
-
 {% endspaceless %}
 
 {% comment %}

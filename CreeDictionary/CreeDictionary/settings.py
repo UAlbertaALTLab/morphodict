@@ -16,8 +16,11 @@ from pathlib import Path
 
 from environs import Env
 
-from .hostutils import HOST_IS_SAPIR, HOSTNAME
+from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
+
+# Where this application should be deployed:
+PRODUCTION_HOST = "itwewina.altlab.app"
 
 # Build paths inside project like this: os.fspath(BASE_PATH / "some_file.txt")
 BASE_PATH = Path(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -51,9 +54,11 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    # WhiteNoise nostatic HAS to come before Django's staticfiles
+    # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.humanize",
-    # Third-party apps:
     "django_js_reverse",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
@@ -61,10 +66,13 @@ INSTALLED_APPS = [
     "CreeDictionary.apps.CreeDictionaryConfig",
     "search_quality",
     "morphodict.apps.MorphodictConfig",
+    "DatabaseManager",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    # Static files with WhiteNoise:
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -96,15 +104,6 @@ TEMPLATES = [
 
 
 ################################### Custom settings ####################################
-
-# sapir.artsrn.ualberta.ca has some... special requirements (read: hacks)
-# Eventually these hacks will go away.
-# But eventually is not now :/
-RUNNING_ON_SAPIR = env.bool("RUNNING_ON_SAPIR", default=HOST_IS_SAPIR)
-
-# SECURITY WARNING: don't run with debug turned on in production!
-if RUNNING_ON_SAPIR:  # pragma: no cover
-    assert not DEBUG
 
 # GitHub Actions and other services set CI to `true`
 CI = env.bool("CI", default=False)
@@ -150,10 +149,8 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
 
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
-elif RUNNING_ON_SAPIR:  # pragma: no cover
-    ALLOWED_HOSTS = ["sapir.artsrn.ualberta.ca"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
+    ALLOWED_HOSTS = [PRODUCTION_HOST, HOSTNAME, "localhost"]
 
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
@@ -284,11 +281,7 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-STATIC_URL = env(
-    "STATIC_URL",
-    # XXX: hack to use the correct URL on Sapir if this setting is not explicitly set
-    default="/cree-dictionary/static/" if RUNNING_ON_SAPIR else "/static/",
-)
+STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_PATH / "static"))
 
@@ -298,9 +291,7 @@ if DEBUG:
 else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `python manage.py collectstatic`!
-    STATICFILES_STORAGE = (
-        "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
-    )
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
 

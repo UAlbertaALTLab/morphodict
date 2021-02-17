@@ -15,23 +15,6 @@ env:
   # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 jobs:
-  # Skips tests if [skip ci] is present in the commit message
-  should-run-tests:
-    runs-on: ubuntu-20.04
-
-    outputs:
-      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        # ci-skip needs to do a partial checkout
-        fetch-depth: '0'
-    - id: ci-skip
-      uses: mstachniuk/ci-skip@v1
-      with:
-        commit-filter: '[skip ci]'
-
   # Skips deploy if [skip deploy] is present in the commit message
   should-deploy:
     runs-on: ubuntu-20.04
@@ -53,9 +36,6 @@ jobs:
   # Run Pytest unit tests
   unit-test:
     runs-on: ubuntu-16.04
-
-    needs: [should-run-tests]
-    if: needs.should-run-tests.outputs.should-run == 'true'
 
     steps:
     - uses: actions/checkout@v2
@@ -87,9 +67,6 @@ jobs:
   # Runs Cypress acceptance tests
   integration-test:
     runs-on: ubuntu-16.04
-
-    needs: [should-run-tests]
-    if: needs.should-run-tests.outputs.should-run == 'true'
 
     steps:
     - uses: actions/checkout@v2

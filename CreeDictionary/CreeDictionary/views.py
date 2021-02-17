@@ -195,25 +195,6 @@ def contact_us(request):  # pragma: no cover
     )
 
 
-def redirect_search(request, query_string: str):
-    """
-    Permanently redirect from old search URL to new search URL.
-
-        /search/TERM -> /search?q=TERM
-
-    """
-    return redirect(url_for_query(query_string), permanent=True)
-
-
-def styles(request):
-    """
-    Display ALL of the styles.
-
-    This should only be accessible in DEBUG mode.
-    """
-    return render(request, "CreeDictionary/styles.html")
-
-
 def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:
     """
     Creates the context vars for anything using the CreeDictionary/index.html template.

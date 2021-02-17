@@ -1,0 +1,35 @@
+# See: https://docs.docker.com/engine/reference/builder/#dockerignore-file
+
+# Do not copy files these when dealing with Docker
+
+# Dependencies
+node_modules/
+.venv/
+
+# Logs
+CreeDictionary/DatabaseManager/logs/
+*/*.log
+
+# Caches
+.hypothesis/
+.mypy_cache
+.pytest_cache/
+
+# Databases
+**/*.sqlite3
+
+# Tests
+CreeDictionary/tests/
+cypress/
+
+# Development files
+.git/
+.vscode/
+.idea/
+.github/
+
+# When running `make debug-context`, prevent from adding itself
+context/
+
+# Do NOT inherit the .env file from the context
+/.env

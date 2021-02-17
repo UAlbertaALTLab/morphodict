@@ -1,15 +1,11 @@
 Production on Sapir
 -------------------
 
-As of <time datetime="2021-01-05">January 5, 2021</time>, itwêwina
-is deployed on a server called **Sapir**. You can visit the
-production website here:
+Before <time datetime="2021-02-12">February 12, 2021</time>, itwêwina
+was deployed on a server called **Sapir**. It used to be located here:
 
 <https://sapir.artsrn.ualberta.ca/cree-dictionary>
 
-
-It was supposed to be deprecated in 2020 and decommissioned in 2021, but
-here we are :/
 
 ## Redeployment Script
 
@@ -247,19 +243,3 @@ Then try it!
     $ curl  https://sapir.artsrn.ualberta.ca/cree-dictionary/
 
 (should return an HTML page with status 200)
-
-# `RUNNING_ON_SAPIR` setting and environment variable
-
-This setting is `True` when the app detects it's running on Sapir during
-startup. You can also force this setting by doing setting the
-environment variable to `True`.
-
-You can set the environment variable by adding the following to `.env`:
-
-    RUNNING_ON_SAPIR=True
-
-This settings enables certain "features" (read: hacks) required for
-running the application properly on Sapir. These features are not
-required in other production scenarios.
-
-Note: the variable `RUNNING_ON_SAPIR` _should_ be phased out!
