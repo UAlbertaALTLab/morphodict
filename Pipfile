@@ -47,6 +47,7 @@ generate = "hfst-optimized-lookup CreeDictionary/res/fst/crk-normative-generator
 test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
+runserver_for_tests = "env USE_TEST_DB=true python CreeDictionary/manage.py runserver"
 # format
 format = "black CreeDictionary"
 # `import-xml` removes the database and builds a new one from the start,
