@@ -21,6 +21,10 @@ testpaths = [
     "CreeDictionary"
 ]
 
+env = [
+    "USE_TEST_DB=true"
+]
+
 # pytest-django
 DJANGO_SETTINGS_MODULE = "CreeDictionary.settings"
 
