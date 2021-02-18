@@ -282,6 +282,8 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
+LOGIN_URL = "/admin/login"
+
 STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_PATH / "static"))
