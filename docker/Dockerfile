@@ -23,13 +23,19 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 ARG UID_GID=60003
 ARG EXPOSE_PORT=8000
 
+ARG NODE_VERSION=v12.20.2
+
+# Install Node + npm
+# (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
+WORKDIR /tmp
+ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
+RUN tar xf node.tar.gz\
+ && mv node-${NODE_VERSION}-linux-x64 /opt/node
+ENV PATH="/opt/node/bin:${PATH}"
+
 # Create the user/group for the application
 RUN groupadd --system --gid ${UID_GID} itwewina \
  && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
-
-# TODO: move package.json dependences from build and test
-#  - [ ] must document in development guide
-
 # Install and build dependencies,
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
@@ -37,7 +43,6 @@ RUN set -ex \
     build-essential \
     tini \
     moreutils `# for sponge` \
-    gnupg `# for verifying nodesource certificate` \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
@@ -45,20 +50,6 @@ RUN set -ex \
  && rm -rf /var/lib/apt/lists/* \
  && mkdir /data/ /app/ \
  && chown itwewina /data /app
-
-# Install Node + npm
-# (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
-# Using instructions from: https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
-WORKDIR /tmp
-COPY docker/nodesource.gpg.key .
-RUN set -ex \
-    && VERSION=node_12.x \
-    && DISTRO="buster" `# must be in sync with Dockerfile` \
-    && apt-key add nodesource.gpg.key \
-    && (echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list) \
-    && (echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list) \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends nodejs
 
 USER itwewina
 
