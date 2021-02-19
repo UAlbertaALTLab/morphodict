@@ -42,7 +42,6 @@ RUN set -ex \
  && BUILD_DEPS=" \
     build-essential \
     tini \
-    moreutils `# for sponge` \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
@@ -54,26 +53,15 @@ RUN set -ex \
 USER itwewina
 
 WORKDIR /app/
-
-# Setup Python deps
-ADD --chown=itwewina Pipfile .
-ADD --chown=itwewina Pipfile.lock .
-
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
-
-ADD --chown=itwewina package.json .
-ADD --chown=itwewina package-lock.json .
-# cypress is a big, heavy package that takes a long time to install and
-# that we absolutely don’t need in production
-RUN grep -Ev '"@?cypress' package.json | sponge package.json
-
-RUN npm install
-
-# Copy the application files. Make sure .dockerignore is setup properly so it
-# doesn't copy unnecessary files
 ADD --chown=itwewina . /app/
 
-RUN NODE_ENV=production npm run build \
+# Install Python and NodeJS apps
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy\
+ && npm install --only=production
+
+# Build the application:
+ENV NODE_ENV=production
+RUN npm run build \
  && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
 
 # Gunicorn will listen on this port:
