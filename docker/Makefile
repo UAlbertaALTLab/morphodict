@@ -2,7 +2,10 @@
 #
 # ## Commands ##
 #
-#  make run [default]
+#  make dev [default]
+#  		builds and starts the Docker container using docker-compose for
+#  		development.
+#  make run
 #  		builds and starts the Docker container using docker-compose
 #  		creates any necessary files for building the image/running the
 #  		container
@@ -16,11 +19,11 @@
 SYSTEMD_SERVICE = docker-compose-itwewina
 
 .PHONY: dev
-dev: db.sqlite3 nodesource.gpg.key .env
+dev: db.sqlite3 .env
 	docker-compose --file docker-compose.dev.yml up --build --remove-orphans
 
 .PHONY: run
-run: db.sqlite3 nodesource.gpg.key .env
+run: db.sqlite3 .env
 	docker-compose up --build
 
 .PHONY: unit-file
@@ -53,9 +56,3 @@ db.sqlite3:
 .env:
 	-echo '#' Creating an empty .env file
 	touch $@
-
-# Key used to verify Nodesource packages on apt.
-#
-# Required during **image build**
-nodesource.gpg.key:
-	curl -sSL -O https://deb.nodesource.com/gpgkey/nodesource.gpg.key
