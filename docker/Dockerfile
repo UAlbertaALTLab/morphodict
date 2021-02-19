@@ -1,28 +1,27 @@
-############################### Builder image ################################
-FROM python:3.9-slim-buster AS builder
-
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
-
-# (2021-01-15): This Dockerfile was derived from Gūnáhà:
-#  - https://github.com/UAlbertaALTLab/gunaha/blob/master/Dockerfile
+# = CHANGELOG =
 #
-# Changes:
+# 2021-02-19:
 #
+#  - Use a multi-stage build to keep the application image small
+#
+# 2021-01-15:
+#
+#  - This Dockerfile was derived from Gūnáhà:
+#    https://github.com/UAlbertaALTLab/gunaha/blob/master/Dockerfile
 #  - use Gunicorn instead of uwsgi; I'm not sure why I chose uwsgi for Gūnáhà,
 #    but I've got itwêwina working with Gunicorn, so I'm gonna stick with that
 #
 
+################################ Build stage #################################
+FROM python:3.9-slim-buster AS builder
 
-# Directories:
-#
-# /app — the app code will live here
-#
+LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 
 ARG UID_GID=60003
 ARG NODE_VERSION=v12.20.2
 
 # Install Node + npm
-# (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
+# (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
 WORKDIR /tmp
 ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
 RUN tar xf node.tar.gz\
@@ -48,9 +47,9 @@ USER itwewina
 
 WORKDIR /app/
 
-# Install Python and NodeJS apps
+# Install Python and NodeJS dependencies
 ADD Pipfile Pipfile.lock package.json package-lock.json /app/
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy\
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
  && npm install --only=production
 
 # Add everything else now:
@@ -77,9 +76,9 @@ ARG TINI_VERSION=v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN chmod +x /bin/tini
 
+# Create a NON-ROOT USER that will run the application code:
 RUN groupadd --system --gid ${UID_GID} itwewina \
  && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
-
 COPY --from=builder --chown=itwewina /app /app
 
 WORKDIR /app/CreeDictionary
@@ -87,8 +86,7 @@ WORKDIR /app/CreeDictionary
 # Gunicorn will listen on this port:
 EXPOSE 8000
 
-# Among other things -- see
-# https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
-# -- this makes typing Ctrl-C into docker-compose work
+# Among other things, tini makes typing Ctrl-C into docker-compose work
+# see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
 CMD ["/app/.venv/bin/gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "CreeDictionary.wsgi:application"]
