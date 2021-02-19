@@ -15,6 +15,10 @@
 
 SYSTEMD_SERVICE = docker-compose-itwewina
 
+.PHONY: dev
+dev: db.sqlite3 nodesource.gpg.key .env
+	docker-compose --file docker-compose.dev.yml up --build --remove-orphans
+
 .PHONY: run
 run: db.sqlite3 nodesource.gpg.key .env
 	docker-compose up --build

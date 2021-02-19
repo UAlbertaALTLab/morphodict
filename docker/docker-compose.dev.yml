@@ -1,0 +1,11 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
+      - "./.env:/app/.env"
+    ports:
+      - 8000:8000
