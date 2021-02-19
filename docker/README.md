@@ -34,8 +34,3 @@ And then enable the service:
 
     sudo systemctl daemon-reload
     sudo systemctl enable docker-compose-itwewina
-
-## Future work
-
-  - smaller Docker image without dev dependencies through multi-stage
-    builds

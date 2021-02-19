@@ -24,7 +24,7 @@ ARG NODE_VERSION=v12.20.2
 # (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
 WORKDIR /tmp
 ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
-RUN tar xf node.tar.gz\
+RUN tar xf node.tar.gz \
  && mv node-${NODE_VERSION}-linux-x64 /opt/node
 ENV PATH="/opt/node/bin:${PATH}"
 
@@ -34,14 +34,11 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 # Install and build dependencies,
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
- && BUILD_DEPS=" \
-    build-essential \
-    " \
  && apt-get update \
- && apt-get install -y --no-install-recommends $BUILD_DEPS \
+ && apt-get install -y --no-install-recommends build-essential \
  && pip install pipenv \
- && mkdir /data/ /app/ \
- && chown itwewina /data /app
+ && mkdir /app/ \
+ && chown itwewina /app
 
 USER itwewina
 
@@ -79,8 +76,9 @@ RUN chmod +x /bin/tini
 # Create a NON-ROOT USER that will run the application code:
 RUN groupadd --system --gid ${UID_GID} itwewina \
  && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
-COPY --from=builder --chown=itwewina /app /app
 
+# Copy over the built application from the builder:
+COPY --from=builder --chown=itwewina /app /app
 WORKDIR /app/CreeDictionary
 
 # Gunicorn will listen on this port:
