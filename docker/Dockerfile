@@ -1,102 +1,90 @@
-FROM python:3.9-slim-buster
-
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
-
-# (2021-01-15): This Dockerfile was derived from Gūnáhà:
-#  - https://github.com/UAlbertaALTLab/gunaha/blob/master/Dockerfile
+# = CHANGELOG =
 #
-# Changes:
+# 2021-02-19:
 #
+#  - Use a multi-stage build to keep the application image small
+#
+# 2021-01-15:
+#
+#  - This Dockerfile was derived from Gūnáhà:
+#    https://github.com/UAlbertaALTLab/gunaha/blob/master/Dockerfile
 #  - use Gunicorn instead of uwsgi; I'm not sure why I chose uwsgi for Gūnáhà,
 #    but I've got itwêwina working with Gunicorn, so I'm gonna stick with that
 #
 
+################################ Build stage #################################
+FROM python:3.9-slim-buster AS builder
 
-# Directories:
-#
-# /app — the app code will live here
-#
+LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 
-# Choose an ID that will be consistent across all machines in the network
-# To avoid overlap with user IDs, use an ID over
-# /etc/login.defs:/UID_MAX/, which defaults to 60,000
 ARG UID_GID=60003
-ARG EXPOSE_PORT=8000
+ARG NODE_VERSION=v12.20.2
+
+# Install Node + npm
+# (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
+WORKDIR /tmp
+ADD https://nodejs.org/dist/${NODE_VERSION}/node-${NODE_VERSION}-linux-x64.tar.gz /tmp/node.tar.gz
+RUN tar xf node.tar.gz \
+ && mv node-${NODE_VERSION}-linux-x64 /opt/node
+ENV PATH="/opt/node/bin:${PATH}"
 
 # Create the user/group for the application
 RUN groupadd --system --gid ${UID_GID} itwewina \
  && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
-
-# TODO: move package.json dependences from build and test
-#  - [ ] must document in development guide
-
 # Install and build dependencies,
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
- && BUILD_DEPS=" \
-    build-essential \
-    tini \
-    moreutils `# for sponge` \
-    gnupg `# for verifying nodesource certificate` \
-    " \
  && apt-get update \
- && apt-get install -y --no-install-recommends $BUILD_DEPS \
+ && apt-get install -y --no-install-recommends build-essential \
  && pip install pipenv \
- && rm -rf /var/lib/apt/lists/* \
- && mkdir /data/ /app/ \
- && chown itwewina /data /app
-
-# Install Node + npm
-# (note: default npm is too old for the apt-install'd version of NodeJS??!?!?!)
-# Using instructions from: https://github.com/nodesource/distributions/blob/master/README.md#manual-installation
-WORKDIR /tmp
-COPY docker/nodesource.gpg.key .
-RUN set -ex \
-    && VERSION=node_12.x \
-    && DISTRO="buster" `# must be in sync with Dockerfile` \
-    && apt-key add nodesource.gpg.key \
-    && (echo "deb https://deb.nodesource.com/$VERSION $DISTRO main" | tee /etc/apt/sources.list.d/nodesource.list) \
-    && (echo "deb-src https://deb.nodesource.com/$VERSION $DISTRO main" | tee -a /etc/apt/sources.list.d/nodesource.list) \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends nodejs
+ && mkdir /app/ \
+ && chown itwewina /app
 
 USER itwewina
 
 WORKDIR /app/
 
-# Setup Python deps
-ADD --chown=itwewina Pipfile .
-ADD --chown=itwewina Pipfile.lock .
+# Install Python and NodeJS dependencies
+ADD Pipfile Pipfile.lock package.json package-lock.json /app/
+RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
+ && npm install --only=production
 
-RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy
-
-ADD --chown=itwewina package.json .
-ADD --chown=itwewina package-lock.json .
-# cypress is a big, heavy package that takes a long time to install and
-# that we absolutely don’t need in production
-RUN grep -Ev '"@?cypress' package.json | sponge package.json
-
-RUN npm install
-
-# Copy the application files. Make sure .dockerignore is setup properly so it
-# doesn't copy unnecessary files
+# Add everything else now:
 ADD --chown=itwewina . /app/
 
-RUN NODE_ENV=production npm run build \
+# Build the application:
+ENV NODE_ENV=production
+RUN npm run build \
  && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
 
-# Gunicorn will listen on this port:
-EXPOSE ${EXPOSE_PORT}
 
-# Among other things -- see
-# https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
-# -- this makes typing Ctrl-C into docker-compose work
-ENTRYPOINT ["tini", "--"]
+############################# Application image ##############################
 
+FROM python:3.9-slim-buster
+LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+
+# Choose an ID that will be consistent across all machines in the network
+# To avoid overlap with user IDs, use an ID over
+# /etc/login.defs:/UID_MAX/, which defaults to 60,000
+ARG UID_GID=60003
+ARG TINI_VERSION=v0.19.0
+
+# Install tini
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
+RUN chmod +x /bin/tini
+
+# Create a NON-ROOT USER that will run the application code:
+RUN groupadd --system --gid ${UID_GID} itwewina \
+ && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
+
+# Copy over the built application from the builder:
+COPY --from=builder --chown=itwewina /app /app
 WORKDIR /app/CreeDictionary
-ENV EXPOSE_PORT=${EXPOSE_PORT}
 
-CMD /app/.venv/bin/gunicorn \
-    --access-logfile - \
-    --bind 0.0.0.0:${EXPOSE_PORT} \
-    CreeDictionary.wsgi:application
+# Gunicorn will listen on this port:
+EXPOSE 8000
+
+# Among other things, tini makes typing Ctrl-C into docker-compose work
+# see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
+ENTRYPOINT ["tini", "--"]
+CMD ["/app/.venv/bin/gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "CreeDictionary.wsgi:application"]

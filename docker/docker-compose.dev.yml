@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      # Unlike the production docker-compose.yml,
+      # use the given test database (no need to set USE_TEST_DB=True!)
+      - "../CreeDictionary/test_db.sqlite3:/app/CreeDictionary/db.sqlite3"
+      - "./.env:/app/.env"
+    ports:
+      # Unlike the production docker-compose.yml,
+      # expose port 8000, just like manage.py runserver so that Cypress
+      # integration tests can be run transparently on the Docker version.
+      - 8000:8000
