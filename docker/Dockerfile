@@ -1,4 +1,5 @@
-FROM python:3.9-slim-buster
+############################### Builder image ################################
+FROM python:3.9-slim-buster AS builder
 
 LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 
@@ -17,12 +18,7 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 # /app — the app code will live here
 #
 
-# Choose an ID that will be consistent across all machines in the network
-# To avoid overlap with user IDs, use an ID over
-# /etc/login.defs:/UID_MAX/, which defaults to 60,000
 ARG UID_GID=60003
-ARG EXPOSE_PORT=8000
-
 ARG NODE_VERSION=v12.20.2
 
 # Install Node + npm
@@ -41,41 +37,58 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 RUN set -ex \
  && BUILD_DEPS=" \
     build-essential \
-    tini \
     " \
  && apt-get update \
  && apt-get install -y --no-install-recommends $BUILD_DEPS \
  && pip install pipenv \
- && rm -rf /var/lib/apt/lists/* \
  && mkdir /data/ /app/ \
  && chown itwewina /data /app
 
 USER itwewina
 
 WORKDIR /app/
-ADD --chown=itwewina . /app/
 
 # Install Python and NodeJS apps
+ADD Pipfile Pipfile.lock package.json package-lock.json /app/
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy\
  && npm install --only=production
+
+# Add everything else now:
+ADD --chown=itwewina . /app/
 
 # Build the application:
 ENV NODE_ENV=production
 RUN npm run build \
  && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
 
+
+############################# Application image ##############################
+
+FROM python:3.9-slim-buster
+LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+
+# Choose an ID that will be consistent across all machines in the network
+# To avoid overlap with user IDs, use an ID over
+# /etc/login.defs:/UID_MAX/, which defaults to 60,000
+ARG UID_GID=60003
+ARG TINI_VERSION=v0.19.0
+
+# Install tini
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
+RUN chmod +x /bin/tini
+
+RUN groupadd --system --gid ${UID_GID} itwewina \
+ && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
+
+COPY --from=builder --chown=itwewina /app /app
+
+WORKDIR /app/CreeDictionary
+
 # Gunicorn will listen on this port:
-EXPOSE ${EXPOSE_PORT}
+EXPOSE 8000
 
 # Among other things -- see
 # https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 # -- this makes typing Ctrl-C into docker-compose work
 ENTRYPOINT ["tini", "--"]
-
-WORKDIR /app/CreeDictionary
-ENV EXPOSE_PORT=${EXPOSE_PORT}
-
-CMD /app/.venv/bin/gunicorn \
-    --access-logfile - \
-    --bind 0.0.0.0:${EXPOSE_PORT} \
-    CreeDictionary.wsgi:application
+CMD ["/app/.venv/bin/gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "CreeDictionary.wsgi:application"]
