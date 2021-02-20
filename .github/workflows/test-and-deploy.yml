@@ -102,8 +102,8 @@ jobs:
         npm run test:ci
 
   # This syncs up API/schema.py to our @altlab/types package
-  # If there is an update to the type output (index.ts), but the version number is untouched. This
-  # will fail. Because developer needs to choose which version to bump.
+  # If there is an update to the type output (index.ts), but the version number is untouched,
+  # this will fail because the developer needs to choose which version to bump.
   type-package-check:
     runs-on: ubuntu-20.04
 
@@ -146,7 +146,7 @@ jobs:
         package: ./types/package.json
         check-version: true # won't run if version is not bumped
 
-  deploy-to-sapir:
+  trigger-deployment:
     runs-on: ubuntu-20.04
 
     needs:
@@ -156,8 +156,8 @@ jobs:
     if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
-    - uses: actions/checkout@v2
-    - env:
-        SAPIR_REDEPLOY_KEY: ${{ secrets.SAPIR_REDEPLOY_KEY }}
-      run: |
-        curl --verbose --fail -dsecret=$SAPIR_REDEPLOY_KEY http://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+    - name: send HTTP request to deploy.altlab.dev webhook
+      run: >-
+        curl -X POST https://deploy.altlab.dev/korp-frontend-dev -d '{
+        "secret": "${{ secrets.DEPLOY_ALTLAB_DEV }}" }' -H 'Content-Type:
+        application/json'
