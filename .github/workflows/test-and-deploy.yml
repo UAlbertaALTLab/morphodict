@@ -158,6 +158,6 @@ jobs:
     steps:
     - name: send HTTP request to deploy.altlab.dev webhook
       run: >-
-        curl -X POST https://deploy.altlab.dev/korp-frontend-dev -d '{
-        "secret": "${{ secrets.DEPLOY_ALTLAB_DEV }}" }' -H 'Content-Type:
-        application/json'
+        curl -X POST https://deploy.altlab.dev/itwewina -d '{
+        "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }' -H 'Content-Type:
+          application/json'
