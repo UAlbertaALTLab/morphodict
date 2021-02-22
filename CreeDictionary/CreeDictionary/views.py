@@ -1,6 +1,8 @@
 from http import HTTPStatus
 from typing import Any, Dict, Literal
 
+from django.conf import settings
+
 from API.models import Wordform
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
@@ -223,3 +225,11 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
     context.setdefault("did_search", False)
 
     return context
+
+
+def google_site_verification(request):
+    code = settings.GOOGLE_SITE_VERIFICATION
+    return HttpResponse(
+        f"google-site-verification: google{code}.html",
+        content_type="text/html; charset=UTF-8",
+    )
