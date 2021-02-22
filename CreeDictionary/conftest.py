@@ -3,10 +3,14 @@ from django.conf import settings
 
 # See “`conftest.py`: sharing fixtures across multiple files”
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
+from django.core.management import call_command
+
+from API.models import Wordform
+from utils import shared_res_dir
 
 
-@pytest.fixture(scope="module")
-def django_db_setup():
+@pytest.fixture(scope="session")
+def django_db_setup(request, django_db_blocker):
     """
     Normally pytest-django creates a new, empty in-memory database and runs
     all your migrations for you.
@@ -35,3 +39,22 @@ def django_db_setup():
     # If this environment variable is set, a conditional in settings.py
     # should have pointed the database at CreeDictionary/test_db.sqlite3
     assert settings.USE_TEST_DB
+
+    # We’d like the output from the DB setup to go directly to stdout regardless
+    # of any capture settings. This is a workaround for “ScopeMismatch: You
+    # tried to access the 'function' scoped fixture 'capsys' with a 'session'
+    # scoped request object”:
+    # https://github.com/pytest-dev/pytest/issues/2704#issuecomment-603387680
+    capmanager = request.config.pluginmanager.getplugin("capturemanager")
+    with capmanager.global_and_fixture_disabled():
+
+        with django_db_blocker.unblock():
+            print("\nSyncing test database")
+            call_command("migrate", verbosity=0)
+            if Wordform.objects.count() == 0:
+                print("No wordforms found, generating")
+                call_command(
+                    "xmlimport",
+                    "import",
+                    shared_res_dir / "test_dictionaries" / "crkeng.xml",
+                )

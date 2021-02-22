@@ -4,9 +4,7 @@ from pathlib import Path
 
 import pytest
 from API.models import Wordform
-from DatabaseManager.xml_importer import import_xmls
-from django.core.management import call_command
-from hypothesis import assume, settings
+from hypothesis import settings
 from hypothesis.strategies import SearchStrategy
 
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
@@ -53,12 +51,3 @@ def lemmas():
     Strategy to return lemmas from the database.
     """
     return WordformStrategy(is_lemma=True, as_is=False)
-
-
-def migrate_and_import(dictionary_dir):
-    """
-    assuming a fresh in memory database
-    Do the initial migration and import the xml
-    """
-    call_command("migrate", "API", "0001")
-    import_xmls(dictionary_dir)

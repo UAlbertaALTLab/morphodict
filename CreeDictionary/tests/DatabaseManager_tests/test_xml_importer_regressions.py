@@ -1,6 +1,6 @@
 import pytest
 from API.models import EnglishKeyword, Wordform
-from tests.conftest import migrate_and_import
+from tests.DatabaseManager_tests.conftest import migrate_and_import
 
 
 @pytest.mark.django_db
