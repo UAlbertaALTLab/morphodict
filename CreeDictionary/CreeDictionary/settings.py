@@ -106,6 +106,11 @@ TEMPLATES = [
 
 ################################### Custom settings ####################################
 
+# Apps that have non-admin users typically have a stylized login page, but
+# we only have admin logins. This setting will redirect to the admin login
+# page if an anonymous user requests a page that requires permissions.
+LOGIN_URL = "/admin/login"
+
 # GitHub Actions and other services set CI to `true`
 CI = env.bool("CI", default=False)
 
@@ -282,8 +287,6 @@ AFFIX_SEARCH_THRESHOLD = 4
 
 ############################## staticfiles app ###############################
 
-LOGIN_URL = "/admin/login"
-
 STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_PATH / "static"))
@@ -295,6 +298,8 @@ else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `python manage.py collectstatic`!
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+######################################## logging ###############################
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
 
