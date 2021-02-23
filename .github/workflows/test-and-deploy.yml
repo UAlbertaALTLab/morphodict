@@ -157,7 +157,26 @@ jobs:
 
     steps:
     - name: send HTTP request to deploy.altlab.dev webhook
+      # Be careful with spacing here.
+      #
+      # What https://yaml-multiline.info *doesn’t* warn you about: although
+      # `>-` means “replace newlines with spaces,” if you have an extra
+      # space on the next line, the newline gets preserved!
+      #
+      # So although
+      #
+      #     foo: >-
+      #       a
+      #        a
+      #
+      # means `{ "foo": "a a" }`,
+      #
+      #     foo: >-
+      #       a
+      #        a
+      #
+      # turns into `{ "foo": "a\n a" }` !
       run: >-
-        curl -X POST https://deploy.altlab.dev/itwewina --fail -d '{
-        "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }' -H 'Content-Type:
-          application/json'
+        curl -X POST https://deploy.altlab.dev/itwewina --fail
+        -d '{ "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }'
+        -H 'Content-Type: application/json'
