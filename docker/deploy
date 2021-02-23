@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+
+# This script is called by the deploy.altlab.dev webhook
+
+import os
+from pathlib import Path
+from subprocess import check_call
+
+os.chdir(Path(__file__).parent)
+
+check_call(["git", "pull"])
+check_call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])

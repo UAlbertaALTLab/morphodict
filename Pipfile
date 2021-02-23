@@ -18,6 +18,7 @@ django-debug-toolbar = "~=2.2"
 isort = {extras = ["pyproject"],version = "*"}
 toml = "~=0.10"
 mypy = "*"
+pytest-env = "*"
 
 [packages]
 colorama = "~=0.4"
@@ -46,6 +47,7 @@ generate = "hfst-optimized-lookup CreeDictionary/res/fst/crk-normative-generator
 test = "pytest --mypy CreeDictionary/"
 # run dev server
 dev = "python CreeDictionary/manage.py runserver"
+runserver_for_tests = "env USE_TEST_DB=true python CreeDictionary/manage.py runserver"
 # format
 format = "black CreeDictionary"
 # `import-xml` removes the database and builds a new one from the start,
@@ -53,13 +55,8 @@ format = "black CreeDictionary"
 # so that we can move to a more continuous workflow where manual database modification can be persisted
 # example usage: pipenv run import-xml CreeDictionary/res/dictionaries/ --multi-process 2
 import-xml = "sh ./libexec/import.sh"
-# do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
-# Supply `-m|--multi-processing N` to speed up
-# Extra arguments will be passed to subcommand `build-test-db` of `manage-db`, use `manage-db build-test-db -h` to see
-# detailed help
-# It takes about half a minute with -m 2
-# example usage: `pipenv run build-test-db -m 2`
-build-test-db = "sh ./libexec/build_test_db.sh"
+# building the test db takes about half a minute
+build-test-db = "./libexec/build_test_db.sh"
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.

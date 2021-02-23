@@ -63,6 +63,14 @@ urlpatterns = [
     path("jsreverse", urls_js, name="js_reverse"),
 ]
 
+if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):
+    urlpatterns.append(
+        path(
+            f"google{settings.GOOGLE_SITE_VERIFICATION}.html",
+            views.google_site_verification,
+        )
+    )
+
 if settings.DEBUG:
     # saves the need to `manage.py collectstatic` in development
     urlpatterns += staticfiles_urlpatterns()

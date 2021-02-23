@@ -15,23 +15,6 @@ env:
   # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 jobs:
-  # Skips tests if [skip ci] is present in the commit message
-  should-run-tests:
-    runs-on: ubuntu-20.04
-
-    outputs:
-      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
-
-    steps:
-    - uses: actions/checkout@v2
-      with:
-        # ci-skip needs to do a partial checkout
-        fetch-depth: '0'
-    - id: ci-skip
-      uses: mstachniuk/ci-skip@v1
-      with:
-        commit-filter: '[skip ci]'
-
   # Skips deploy if [skip deploy] is present in the commit message
   should-deploy:
     runs-on: ubuntu-20.04
@@ -54,9 +37,6 @@ jobs:
   unit-test:
     runs-on: ubuntu-16.04
 
-    needs: [should-run-tests]
-    if: needs.should-run-tests.outputs.should-run == 'true'
-
     steps:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
@@ -78,7 +58,6 @@ jobs:
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
-        USE_TEST_DB: "True"
       run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1
@@ -88,9 +67,6 @@ jobs:
   # Runs Cypress acceptance tests
   integration-test:
     runs-on: ubuntu-16.04
-
-    needs: [should-run-tests]
-    if: needs.should-run-tests.outputs.should-run == 'true'
 
     steps:
     - uses: actions/checkout@v2
@@ -118,7 +94,6 @@ jobs:
     - name: 🌲 Run Cypress tests
       env:
         DEBUG: "True"
-        USE_TEST_DB: "True"
         # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/cree-intelligent-dictionary
         CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
       run: |
@@ -127,8 +102,8 @@ jobs:
         npm run test:ci
 
   # This syncs up API/schema.py to our @altlab/types package
-  # If there is an update to the type output (index.ts), but the version number is untouched. This
-  # will fail. Because developer needs to choose which version to bump.
+  # If there is an update to the type output (index.ts), but the version number is untouched,
+  # this will fail because the developer needs to choose which version to bump.
   type-package-check:
     runs-on: ubuntu-20.04
 
@@ -171,7 +146,7 @@ jobs:
         package: ./types/package.json
         check-version: true # won't run if version is not bumped
 
-  deploy-to-sapir:
+  trigger-deployment:
     runs-on: ubuntu-20.04
 
     needs:
@@ -181,8 +156,8 @@ jobs:
     if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
-    - uses: actions/checkout@v2
-    - env:
-        SAPIR_REDEPLOY_KEY: ${{ secrets.SAPIR_REDEPLOY_KEY }}
-      run: |
-        curl --verbose --fail -dsecret=$SAPIR_REDEPLOY_KEY http://sapir.artsrn.ualberta.ca/redeploy/cree-dictionary
+    - name: send HTTP request to deploy.altlab.dev webhook
+      run: >-
+        curl -X POST https://deploy.altlab.dev/itwewina --fail -d '{
+        "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }' -H 'Content-Type:
+          application/json'

@@ -1,20 +1,18 @@
 Continuous Integration
 ======================
 
-We use continuous integration (CI) to test and check our code on every
-`git push`.
+We use continuous integration (CI) to test and check our code on every `git push`.
 
-
-Serivces
+Services
 --------
 
- - GitHub Actions
-   * runs unit and integration tests
-   * reformats reformats Python and JavaScript code on the default branch
- - codecov — measures and tracks code coverage
- - Cypress — stores test recordings
- - redeploy (proprietary) — pulls the latest code on the production server
-
+- **GitHub Actions**
+  * runs unit tests (pytest)
+  * runs integration tests (Cypress)
+  * reformats Python and JavaScript code on the default branch
+  * triggers deployment via webhook at `deploy.altlab.dev`
+- **codecov:** measures and tracks code coverage
+- **Cypress:** stores test recordings
 
 Cypress
 -------

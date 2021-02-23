@@ -1,19 +1,17 @@
-# should be called from pipfile
+#!/bin/bash
 
-# -i makes it interactive, ask user to comfirm before he deletes the database
-# "$@" passes extra arguments to subcommand build-test-db
-
-DB_FILE=CreeDictionary/test_db.sqlite3
-if [ -f "$DB_FILE" ]; then
-  rm -i $DB_FILE
+if [ -z "${PIPENV_ACTIVE}" ]; then
+    echo "Error: This script must be run in a pipenv." 1>&2
+    exit 1
 fi
 
-set -e
+set -eu
 
-echo "Creating test_db.sqlite3 from scratch..."
+export USE_TEST_DB=True
 
-"$(dirname "$0")"/remake-api-migrations.sh
+DIR="$(dirname -- "${0}")"
 
-pipenv run python CreeDictionary/manage.py migrate
+"${DIR}/../CreeDictionary/manage.py" migrate
+"${DIR}/../CreeDictionary/manage.py" xmlimport import \
+    "${DIR}/../CreeDictionary/res/test_dictionaries/crkeng.xml"
 
-manage-db build-test-db "$@"

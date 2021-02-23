@@ -11,14 +11,14 @@ understand the linguistic analysis of each word.
 Production Website
 ------------------
 
-View it here: <https://sapir.artsrn.ualberta.ca/cree-dictionary>
+View it here: <https://itwewina.altlab.app/>
 
 
 Contributing
 ------------
 
  - [Developer's guide](./docs/developers-guide.md)
- - [Production server: Sapir](./docs/production-on-sapir.md)
+ - ~~[Production server: Sapir](./docs/production-on-sapir.md)~~
  - [Continuous Integration](./docs/ci.md)
 
 Credits
@@ -29,4 +29,4 @@ See [AUTHORS.md](./AUTHORS.md).
 License
 -------
 
-Copyright © 2019–2020 University of Alberta. This project licensed under Apache License Version 2.0.
+Copyright © 2019–2021 University of Alberta. This project licensed under Apache License Version 2.0.

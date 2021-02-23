@@ -30,15 +30,6 @@ With Node installed, install all of the JavaScript dependencies using `npm`:
 
     npm install
 
-### XML Dictionary Files
-
-Download `crkeng.xml` and place it under `CreeDictionary/res/dictionaries/`
-
-These files are copyright protected and not allowed on GitHub. Ask coworkers or download from production server under the same directory. On Sapir, the directory is `/opt/cree-intelligent-dictionary/CreeDictionary/res/dictionaries/`
-
-If you do not have access to the full `crkeng.xml`, use the excerpt in this
-repository at `CreeDictionary/res/test_dictionaries/crkeng.xml`.
-
 ### Environment
 
 Create a file named `.env` in the project root using the following
@@ -51,13 +42,13 @@ USE_TEST_DB=true
 ```
 
 These are environment variables that affect whether Django is in debug
-mode, whether Django should use `./CreeDictionary/test_db.sqlite3`
-instead of the production database, and whether the JavaScript should be
-minified.
+mode and whether Django should use `./CreeDictionary/test_db.sqlite3`
+instead of the full `db.sqlite3` which must be built from
+non-redistributable files.
 
 The environment variables go into effect when using `pipenv shell`, or by
-running a program with `pipenv run`.
-
+running a program with `pipenv run`. However, `pytest` is configured to
+always `USE_TEST_DB`, regardless of the `.env` file contents.
 
 ### The development environment
 
@@ -65,19 +56,27 @@ Run `pipenv shell` so that all of the Python dependencies work:
 
     pipenv shell
 
-### Initialize Database
+### Full database
 
-As with any Django app, you must create and apply all migrations.
+> Note: if you have `USE_TEST_DB=true`, you can skip this
 
-    pipenv run make-migrations && pipenv run migrate
+Download `crkeng.xml` and place it under `CreeDictionary/res/dictionaries/`
 
-### Build Database
+These files are copyright protected and not allowed on GitHub. Ask
+coworkers about the ‘altlab’ repo.
 
-> Note: if you have `USE_TEST_DB=true`, you can skip this step
+If you do not have access to the full `crkeng.xml`, set `USE_TEST_DB=false`
+and use the excerpt in this repository at
+`CreeDictionary/res/test_dictionaries/crkeng.xml`.
+
+As is the custom with Django app, migrations are used to initialize the
+schema. Apply them with
+
+    ./CreeDictionary/manage.py migrate
 
 Now import the dictionaries into the database:
 
-    manage-db import CreeDictionary/res/dictionaries/
+    ./CreeDictionary/manage.py xmlimport CreeDictionary/res/dictionaries/crkeng.xml
 
 This typically takes 10-15 minutes on the full dictionary.
 
@@ -171,7 +170,8 @@ To run it on all of the files:
 
 > **Protip**! Make this a part of your git pre-commit hook!
 
-#### Optional: Install HFST
+Optional: Install HFST
+----------------------
 
 You don’t need this to run the dictionary, but having these tools installed
 can be useful if you are building, modifying, or directly interacting with

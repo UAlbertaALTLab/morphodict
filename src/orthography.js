@@ -45,17 +45,21 @@ export function changeOrth(which) {
  * Switches orthography and updates the UI.
  */
 function handleClickSwitchOrthography(evt) {
-  let target = evt.target
+  let target = findClosestOrthographySwitch(evt.target)
   // Determine that this is a orthography changing button.
-  if (target.dataset.orthSwitch === undefined) {
+  if (!target) {
     return
   }
 
-  // target is a <button data-orth-swith value="ORTHOGRAPHY">
+  // target is a <button data-orth-swith="ORTHOGRAPHY">
   let orth = target.value
   changeOrth(orth)
   updateUI(target)
   updateCookies(orth)
+}
+
+function findClosestOrthographySwitch(el) {
+  return el.closest('[data-orth-switch]')
 }
 
 /**

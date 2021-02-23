@@ -144,6 +144,8 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
 
     INTERNAL_IPS = ["127.0.0.1"]
 
+# Used for verification with https://search.google.com/search-console
+GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 
 ############################## More Core Django settings ###############################
 

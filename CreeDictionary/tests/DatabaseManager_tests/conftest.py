@@ -6,6 +6,8 @@ from django.db import connection
 from django.test.utils import setup_databases, teardown_databases
 from pytest_django.lazy_django import get_django_version
 
+from DatabaseManager.xml_importer import import_xmls
+
 
 @contextmanager
 def no_migration():
@@ -97,3 +99,12 @@ def django_db_setup(request, django_test_environment, django_db_blocker):
                 )
 
     request.addfinalizer(teardown_database)
+
+
+def migrate_and_import(dictionary_dir):
+    """
+    assuming a fresh in memory database
+    Do the initial migration and import the xml
+    """
+    call_command("migrate", "API", "0001")
+    import_xmls(dictionary_dir)
