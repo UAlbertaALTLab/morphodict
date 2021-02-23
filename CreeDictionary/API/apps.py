@@ -1,4 +1,5 @@
 import logging
+import os
 from functools import cached_property
 from pathlib import Path
 
@@ -24,22 +25,31 @@ class APIConfig(AppConfig):
         return AffixSearcher(fetch_english_keywords_with_ids())
 
     def ready(self) -> None:
-        # FIXME don’t use this method, it gets called during startup of *every*
+        # This function is called when you restart dev server or touch wsgi.py
+        #
+        # Avoid using this method. It gets called during startup of *every*
         # management command, wasting time, and when you’re running tests, the
         # database config inside this method can point at the production
         # database (!!)
         #
         # https://docs.djangoproject.com/en/3.1/ref/applications/#django.apps.AppConfig.ready
         #
-        # Suggestions if you really want eager loading:
-        #   - The runserver auto-reloading sets a RUN_MAIN environment variable, you
-        #     could set that
-        #   - wsgi.py could set something too
-        """
-        This function is called when you restart dev server or touch wsgi.py
-        """
+        # For when you you really want eager loading:
+        #   - The runserver auto-reloading sets a RUN_MAIN environment variable
+        #   - Our wsgi.py sets PERFORM_TIME_CONSUMING_INITIALIZATIONS
+        """"""
+        if (
+            "RUN_MAIN" in os.environ
+            or "PERFORM_TIME_CONSUMING_INITIALIZATIONS" in os.environ
+        ):
+            self.perform_time_consuming_initializations()
+
+    def perform_time_consuming_initializations(self):
+        logger.debug("calling initialize_preverb_search()")
         initialize_preverb_search()
+        logger.debug("calling read_morpheme_rankings()")
         read_morpheme_rankings()
+        logger.debug("done")
 
     @classmethod
     def active_instance(cls) -> "APIConfig":
