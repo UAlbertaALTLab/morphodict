@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "4094f712d26136433b6567472937e435044f2af7702e78208e0bf68e8e63e9ea"
+            "sha256": "1b038d67004fe6145c1814694ce82f9c9ad3e80dce80129ad7ae364c1eb91614"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -136,6 +136,11 @@
             ],
             "index": "pypi",
             "version": "==9.3.1"
+        },
+        "foma": {
+            "git": "https://github.com/andrewdotn/foma",
+            "ref": "8510db0adebaf4851ab9d05bb439248b5084d934",
+            "subdirectory": "foma/python"
         },
         "gunicorn": {
             "hashes": [
@@ -472,7 +477,7 @@
                 "sha256:c203ec8783bf771a155b207279b9bccb8dea02d8f0c9e5f8ead507bc3246ecc1",
                 "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"
             ],
-            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2'",
+            "markers": "python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==2.4.7"
         },
         "pysnooper": {
