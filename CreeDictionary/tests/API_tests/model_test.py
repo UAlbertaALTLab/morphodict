@@ -2,29 +2,13 @@ import json
 from typing import List
 
 import pytest
+from hypothesis import assume, given
+
 from API.models import Wordform
 from API.search import fetch_cree_and_english_results, to_internal_form
-from hypothesis import assume, given
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language
-
-from CreeDictionary import settings
-
-
-@pytest.fixture(scope="module")
-def django_db_setup():
-    """
-    This works with pytest-django plugin.
-    This fixture tells all functions marked with pytest.mark.django_db in this file
-    to use the database specified in settings.py
-    which is the existing test_db.sqlite3 if USE_TEST_DB=True is passed.
-
-    Instead of by default, an empty database in memory.
-    """
-
-    # all functions in this file should use the existing test_db.sqlite3
-    assert settings.USE_TEST_DB
 
 
 @pytest.mark.django_db
