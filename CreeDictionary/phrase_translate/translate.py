@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-
 import logging
 import os
 import re
 import readline
+import sys
 from argparse import ArgumentParser, BooleanOptionalAction
 from functools import cache
 from pathlib import Path
@@ -11,11 +11,16 @@ from pathlib import Path
 import django
 import foma
 
+# Allow this script to be run directly from command line without pyproject.toml
+# https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
+package_dir = os.fspath((Path(__file__).parent.parent).absolute())
+if package_dir not in sys.path:
+    sys.path.append(package_dir)
+
 from phrase_translate.tag_map import (
     noun_wordform_to_phrase_tag_info,
     verb_wordform_to_phrase_tag_info,
 )
-from utils.fst_analysis_parser import partition_analysis
 from utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)
