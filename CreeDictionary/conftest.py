@@ -5,6 +5,7 @@ from django.conf import settings
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
 from django.core.management import call_command
 
+from API.apps import initialize_preverb_search
 from API.models import Wordform
 from utils import shared_res_dir
 
@@ -24,6 +25,9 @@ def django_db_setup(request, django_db_blocker):
       - with the ~1400 entries in the test DB, it takes ~30 seconds to
         generate all the wordforms, which would be too long to wait every
         time you wanted to run a single unit test.
+
+    Also see the docs at
+    https://pytest-django.readthedocs.io/en/latest/database.html#examples
 
     If you want different behaviour for some tests, you can create your own
     django_db_setup fixture in a test file or per-directory conftest.py.
@@ -58,3 +62,4 @@ def django_db_setup(request, django_db_blocker):
                     "import",
                     shared_res_dir / "test_dictionaries" / "crkeng.xml",
                 )
+                initialize_preverb_search()
