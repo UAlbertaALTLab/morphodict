@@ -13,16 +13,16 @@ from phrase_translate.translate import inflect_english_phrase
             "Cree book",
             "in my little Cree book",
         ),
-        # (
-        #     "PV/e+wîtatoskêmêw+V+TA+Cnj+1Sg+2SgO",
-        #     "s/he works together with s.o.",
-        #     "I work together with you",
-        # ),
-        # (
-        #     "PV/e+wîtapimêw+V+TA+Cnj+1Sg+2SgO",
-        #     "s/he sits with s.o., s/he stays with s.o., s/he is present with s.o.",
-        #     "I sit with you, I stay with you, I am present with you",
-        # ),
+        (
+            "PV/e+wîtatoskêmêw+V+TA+Cnj+1Sg+2SgO",
+            "s/he works together with s.o.",
+            "I work together with you",
+        ),
+        (
+            "PV/e+wîtapimêw+V+TA+Cnj+1Sg+2SgO",
+            "s/he sits with s.o., s/he stays with s.o., s/he is present with s.o.",
+            "I sit with you, I stay with you, I am present with you",
+        ),
     ),
 )
 def test_translations(analysis, definition, english_phrase):

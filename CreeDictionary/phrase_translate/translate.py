@@ -11,16 +11,18 @@ from pathlib import Path
 import django
 import foma
 
+
+package_dir = os.fspath((Path(__file__).parent.parent).absolute())
+if package_dir not in sys.path:
+    sys.path.append(package_dir)
+
+
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
 from phrase_translate.crk_tag_map import (
     noun_wordform_to_phrase,
     verb_wordform_to_phrase,
 )
-
-package_dir = os.fspath((Path(__file__).parent.parent).absolute())
-if package_dir not in sys.path:
-    sys.path.append(package_dir)
 
 from utils.fst_analysis_parser import partition_analysis
 
@@ -135,7 +137,7 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
             englishVerbEntryToInflectedPhraseFst(), tagged_phrase
         )
 
-        return phrase
+        return phrase.strip()
 
 
 def main():
