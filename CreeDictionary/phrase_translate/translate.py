@@ -13,38 +13,20 @@ import foma
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
+from phrase_translate.crk_tag_map import (
+    noun_wordform_to_phrase,
+    verb_wordform_to_phrase,
+)
+
 package_dir = os.fspath((Path(__file__).parent.parent).absolute())
 if package_dir not in sys.path:
     sys.path.append(package_dir)
 
-from phrase_translate.tag_map import (
-    noun_wordform_to_phrase_tag_info,
-    verb_wordform_to_phrase_tag_info,
-)
+from utils.fst_analysis_parser import partition_analysis
+
 from utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)
-
-
-noun_wordform_to_phrase_tags = {}
-noun_tag_precedences = {}
-for k, v, prec in noun_wordform_to_phrase_tag_info:
-    if v == "copy":
-        v = k[1:] + "+"
-    noun_wordform_to_phrase_tags[k] = v
-
-    if v is not None:
-        noun_tag_precedences[v] = prec
-
-verb_wordform_to_phrase_tags = {}
-verb_tag_precedences = {}
-for k, v, prec in verb_wordform_to_phrase_tag_info:
-    if v == "copy":
-        v = k[1:] + "+"
-    verb_wordform_to_phrase_tags[k] = v
-
-    if v is not None:
-        verb_tag_precedences[v] = prec
 
 
 @cache
@@ -63,7 +45,8 @@ def englishNounEntryToInflectedPhraseFst():
 @cache
 def englishVerbEntryToInflectedPhraseFst():
     return foma.FST.load(
-        shared_fst_dir / "transcriptor-cw-eng-verb-entry2inflected-phrase.fomabin"
+        shared_fst_dir
+        / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags.fomabin"
     )
 
 
@@ -131,16 +114,7 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
         cree_wordform_tag_list = preverb_tags + tags
 
     if "+N" in cree_wordform_tag_list:
-        tags_for_phrase = []
-
-        for wordform_tag in cree_wordform_tag_list:
-            phrase_tag = noun_wordform_to_phrase_tags[wordform_tag]
-            if phrase_tag is not None and phrase_tag not in tags_for_phrase:
-                tags_for_phrase.append(phrase_tag)
-
-        logger.debug(f"{tags_for_phrase=}")
-
-        tags_for_phrase.sort(key=lambda tag: noun_tag_precedences[tag])
+        tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
 
         logger.debug(f"{tags_for_phrase=}")
 
@@ -153,18 +127,7 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
         return phrase.strip()
 
     if "+V" in cree_wordform_tag_list:
-        tags_for_phrase = []
-
-        for wordform_tag in cree_wordform_tag_list:
-            phrase_tag = verb_wordform_to_phrase_tags[wordform_tag]
-            if phrase_tag is not None and phrase_tag not in tags_for_phrase:
-                tags_for_phrase.append(phrase_tag)
-
-        logger.debug(f"{tags_for_phrase=}")
-
-        tags_for_phrase.sort(key=lambda tag: verb_tag_precedences[tag])
-
-        logger.debug(f"{tags_for_phrase=}")
+        tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
 
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         logger.debug(f"{tagged_phrase=}")

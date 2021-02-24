@@ -1,29 +1,33 @@
 import pytest
 
-from API.models import Wordform
 from phrase_translate.translate import inflect_english_phrase
 
 
-@pytest.mark.django_db
-def test_translate_star() -> None:
-    star = Wordform.objects.get(text="acâhkosa", lemma__text="atâhk")
-    assert inflect_english_phrase(star.analysis, "star") == "little star over there"
+@pytest.mark.parametrize(
+    ("analysis", "definition", "english_phrase"),
+    (
+        ("masinahikan+N+Dim+Px1Sg+Loc", "book", "in my little book"),
+        ("atâhk+N+A+Der/Dim+N+A+Obv", "star", "little star over there"),
+        (
+            "nêhiyawasinahikan+N+I+Der/Dim+N+I+Px1Sg+Loc",
+            "Cree book",
+            "in my little Cree book",
+        ),
+        # (
+        #     "PV/e+wîtatoskêmêw+V+TA+Cnj+1Sg+2SgO",
+        #     "s/he works together with s.o.",
+        #     "I work together with you",
+        # ),
+        # (
+        #     "PV/e+wîtapimêw+V+TA+Cnj+1Sg+2SgO",
+        #     "s/he sits with s.o., s/he stays with s.o., s/he is present with s.o.",
+        #     "I sit with you, I stay with you, I am present with you",
+        # ),
+    ),
+)
+def test_translations(analysis, definition, english_phrase):
+    assert inflect_english_phrase(analysis, definition) == english_phrase
 
 
-def test_in_my_little_book():
-    assert (
-        inflect_english_phrase("masinahikan+N+Dim+Px1Sg+Loc", "book")
-        == "in my little book"
-    )
-
-
-@pytest.mark.django_db
-def test_translate_in_my_little_cree_book():
-    wordform = Wordform.objects.get(
-        text="ninêhiyawasinahikanisihk", lemma__text="nêhiyawasinahikan"
-    )
-    print(wordform.analysis)
-    assert (
-        inflect_english_phrase(wordform.analysis, "Cree book")
-        == "in my little Cree book"
-    )
+# kimaskomisinâhk
+# kimâyi-isîhcikêwinisinawa
