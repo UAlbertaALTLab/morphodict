@@ -1,29 +1,30 @@
 import logging
-import re
 from argparse import ArgumentParser
 
 from django.core.management import BaseCommand
 from django.db.models import Max
 from tqdm import tqdm
 
-import foma
-
-import phrase_translate
 from API.models import Wordform, Definition, DictionarySource
 from phrase_translate.translate import (
     inflect_english_phrase,
     parse_analysis_and_tags,
     FomaLookupException,
 )
-from utils import shared_res_dir
 
 logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
-    help = """Please fill me in.
+    help = """Translate wordforms into English phrases
     
-    Otherwise nobody will know what this command does.
+    This command:
+      - iterates over all wordforms in the database
+      - uses the wordform inflection analysis and the phrase-translator FSTs to
+        auto-generate phrase definitions from the definitions of the
+        corresponding lemmas
+      - saves these auto-generated wordform definitions to the database with
+        source name “auto”
     """
 
     def add_arguments(self, parser: ArgumentParser):
@@ -51,6 +52,9 @@ class Command(BaseCommand):
                 logger.info(f"No definition found for lemma of {w}")
             else:
                 try:
+                    if not w.analysis:
+                        continue
+
                     tags = parse_analysis_and_tags(w.analysis)
                     phrase = inflect_english_phrase(tags, wordform_definition1.text)
 
@@ -69,7 +73,9 @@ class Command(BaseCommand):
                     d.save()
                     logger.info(f"saved definition {d.id} {w.text}: {d}")
                 except KeyError as e:
-                    logger.error(f"Unknown tag for {w.text} {w.analysis}", e)
+                    logger.error(
+                        f"Unknown tag {e.args[0]} for {w.text} {w.analysis}", e
+                    )
                     raise
 
                 except FomaLookupException as e:

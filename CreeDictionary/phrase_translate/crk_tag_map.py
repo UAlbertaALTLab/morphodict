@@ -20,6 +20,11 @@ from phrase_translate.tag_map import TagMap
 # possessives number 2. This precedence number is associated with the output
 # tag; it is an error to give a different precedence value to multiple
 # definitions that output the same tag.
+#
+# Additionally, all multi-mappings are applied before single maps, and consume
+# their tags. For example, a match on (("+A, "+B"), "foo", 1) will take the tags
+# "+A" and "+B" out of consideration before the rules ("+A", COPY, 1) or ("+B",
+# COPY, 1) are considered.
 
 COPY = TagMap.COPY
 
@@ -69,6 +74,7 @@ verb_wordform_to_phrase = TagMap(
     (("PV/ka+", "+Ind"), "Fut+", 1),
     (("PV/ka+", "+Cnj"), "Inf+", 1),
     (("PV/ta+", "+Cnj"), "Inf+", 1),  # future definite
+    ("+Ind", "Prs+", 1),
     (TagMap.DEFAULT, "Prs+", 1),  # default to present tense
     # Person - Subject
     ("+1Sg", COPY, 2),
@@ -86,8 +92,11 @@ verb_wordform_to_phrase = TagMap(
     ("+2SgO", COPY, 3),
     ("+3SgO", COPY, 3),
     ("+1PlO", COPY, 3),
+    ("+12PlO", COPY, 3),
     ("+2PlO", COPY, 3),
     ("+3PlO", COPY, 3),
+    ("+4Pl", COPY, 3),
+    ("+4Sg", COPY, 3),
     ("+4Sg/PlO", COPY, 3),
     ("+5Sg/PlO", COPY, 3),
     ("+XO", COPY, 3),

@@ -68,35 +68,14 @@ def foma_down_wrapper(fst, thing_to_lookup):
     return _foma_wrapper(fst, foma.FST.apply_down, thing_to_lookup)
 
 
-tag_re = re.compile(
-    r"""
-    ^
-    \s* # optional space
-    ([^+]*) # the lemma: not tags
-    ( # then a group of:
-        ( # tags:
-            \+ # literal +
-             [^+]+ # at least one non-‘+’ character
-        )* # zero or more of them
-    )
-    $
-""",
-    re.VERBOSE,
-)
-
-
 def parse_analysis_and_tags(analysis):
-    """ fill me in """
-    analysis_and_tags = tag_re.match(analysis)
-    if not analysis_and_tags:
-        raise Exception("could not parse analysis")
+    """Extract tags into a list in the form required by inflect_english_phrase
 
-    lemma = analysis_and_tags.group(1)
-    logger.debug(f"{lemma=}")
-    tags = analysis_and_tags.group(2)
-    wordform_tag_list = list("+" + tag for tag in tags.split("+") if tag)
-    logger.debug(f"{wordform_tag_list=}")
-    return wordform_tag_list
+    >>> parse_analysis_and_tags('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
+    ['PV/e+', 'PV/ki+', '+V', '+TA', '+Cnj', '+1Pl', '+2SgO']
+    """
+    head_tags, lemma, tail_tags = partition_analysis(analysis)
+    return [t + "+" for t in head_tags] + ["+" + t for t in tail_tags]
 
 
 def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition):

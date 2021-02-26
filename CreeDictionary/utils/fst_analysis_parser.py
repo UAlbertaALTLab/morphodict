@@ -1,12 +1,10 @@
 import csv
 import re
 from enum import IntEnum, auto
-from pathlib import Path
 from typing import Dict, Iterable, List, Optional, TextIO, Tuple, TypeVar, Union
 
 from utils.enums import WordClass
 from utils.types import FSTLemma, FSTTag, Label
-
 from .shared_res_dir import shared_res_dir
 
 Default = TypeVar("Default")
@@ -218,6 +216,8 @@ def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTT
     (['PV/e'], 'fakeword', ['N', 'I'])
     >>> partition_analysis('fakeword+N+I')
     ([], 'fakeword', ['N', 'I'])
+    >>> partition_analysis('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
+    (['PV/e', 'PV/ki'], 'atamihêw', ['V', 'TA', 'Cnj', '1Pl', '2SgO'])
     """
 
     match = partition_pattern.match(analysis)
