@@ -7,7 +7,8 @@ from phrase_translate.tag_map import TagMap
 #   - A literal tag, e.g., "N+", which will be matched exactly
 #   - A tuple of tags, e.g., ("PV/e+, "+Ind") which will be matched as a
 #     subsequence
-#   - DEFAULT if the phrase_tag should be used if
+#   - DEFAULT if the phrase_tag should be used if no other mapping applies at
+#     this precedence level
 #
 # phrase_tag can be:
 #   - None if the wordform_tag is not used in the phrase transcription
@@ -62,13 +63,13 @@ verb_wordform_to_phrase = TagMap(
     (("+Imp", "+Imm"), "Imm+", 1),  # Immediate imperative
     (("+Imp", "+Del"), "Del+", 1),  # Delayed imperative
     (("PV/wi+", "+Ind"), "Int+", 1),  # Intentional
-    ("PV/wi+", "Int+", 1),
+    ("PV/wi+", "Int+", 1),  # Also accept PV/wi without indicative as intentional
     (("PV/e+", "+Cnj"), None, 1),  # conjunctive marker
     # Note that these crk features as disjoint, but both are needed for the eng feature
-    # (("PV/ka+", "+Ind"), "Fut+", 1),
-    # (("PV/ka+...+Cnj", "Inf+", 1),
-    # ("PV/ta+...+Cnj", "Inf+", 1),
-    (TagMap.DEFAULT, "Prs+", 1),
+    (("PV/ka+", "+Ind"), "Fut+", 1),
+    (("PV/ka+", "+Cnj"), "Inf+", 1),
+    (("PV/ta+", "+Cnj"), "Inf+", 1),  # future definite
+    (TagMap.DEFAULT, "Prs+", 1),  # default to present tense
     # Person - Subject
     ("+1Sg", COPY, 2),
     ("+2Sg", COPY, 2),
@@ -91,4 +92,3 @@ verb_wordform_to_phrase = TagMap(
     ("+5Sg/PlO", COPY, 3),
     ("+XO", COPY, 3),
 )
-# - Future Conditional

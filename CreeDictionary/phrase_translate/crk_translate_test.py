@@ -47,6 +47,21 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
             WAPAMEW_DEFINITION,
             "I want to see them",
         ),
+        (
+            "PV/ka+wâpamêw+V+TA+Ind+4Sg/Pl+3SgO",
+            WAPAMEW_DEFINITION,
+            "s/he/they are going to see him/her",
+        ),
+        (
+            "PV/ka+wâpamêw+V+TA+Cnj+1Sg+2PlO",
+            WAPAMEW_DEFINITION,
+            "for me to see you all",
+        ),
+        (
+            "PV/ta+wâpamêw+V+TA+Cnj+3Sg+1PlO",
+            WAPAMEW_DEFINITION,
+            "for him/her to see us",
+        ),
     ),
 )
 def test_translations(analysis, definition, english_phrase):
