@@ -68,7 +68,12 @@ class Command(BaseCommand):
                     else:
                         id = max_id["id__max"] + 1
 
-                    d = Definition.objects.create(id=id, text=phrase, wordform_id=w.id)
+                    d = Definition.objects.create(
+                        id=id,
+                        text=phrase,
+                        wordform_id=w.id,
+                        auto_translation_source_id=wordform_definition1.id,
+                    )
                     d.citations.add(ds)
                     d.save()
                     logger.info(f"saved definition {d.id} {w.text}: {d}")
