@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from phrase_translate.tag_map import TagMap
@@ -19,7 +21,7 @@ def test_raises_on_unknown_tag(simple_tag_map):
 
 @pytest.fixture
 def tag_map_with_precedence():
-    return TagMap(("+A", "abc+", 1), ("+B", "copy", 2), ("+C", None, 0))
+    return TagMap(("+A", "abc+", 1), ("+B", TagMap.COPY, 2), ("+C", None, 0))
 
 
 def test_map_with_precedence(tag_map_with_precedence):
@@ -35,7 +37,7 @@ def test_mapping_to_none(tag_map_with_precedence):
 
 @pytest.fixture
 def tag_map_with_multiples():
-    return TagMap(("+A", "copy", 1), ("+A2", "A+", 1), ("+B", "copy", 2))
+    return TagMap(("+A", TagMap.COPY, 1), ("+A2", "A+", 1), ("+B", TagMap.COPY, 2))
 
 
 def test_dedupe(tag_map_with_multiples):
@@ -45,7 +47,9 @@ def test_dedupe(tag_map_with_multiples):
 
 @pytest.fixture
 def tag_map_wth_multi_map():
-    return TagMap((("+A", "+B"), "abc+", 1), ("+A", "copy", 2), ("+B", "copy", 3))
+    return TagMap(
+        (("+A", "+B"), "abc+", 1), ("+A", TagMap.COPY, 2), ("+B", TagMap.COPY, 3)
+    )
 
 
 def test_multi_map(tag_map_wth_multi_map):
@@ -53,3 +57,21 @@ def test_multi_map(tag_map_wth_multi_map):
     assert tag_map_wth_multi_map.map_tags(["+B"]) == ["B+"]
     assert tag_map_wth_multi_map.map_tags(["+B", "+A"]) == ["A+", "B+"]
     assert tag_map_wth_multi_map.map_tags(["+A", "+B"]) == ["abc+"]
+
+
+@pytest.fixture
+def tag_map_with_default():
+    return TagMap(("+A", TagMap.COPY, 1), (TagMap.DEFAULT, "+B", 1))
+
+
+def test_use_default(tag_map_with_default):
+    assert tag_map_with_default.map_tags(["+A"]) == ["A+"]
+    assert tag_map_with_default.map_tags([]) == ["+B"]
+
+
+def test_can_supply_multiple_defaults():
+    with pytest.raises(
+        Exception,
+        match=re.escape("multiple defaults supplied for precedence 1: +A, +B"),
+    ):
+        TagMap((TagMap.DEFAULT, "+A", 1), (TagMap.DEFAULT, "+B", 1))

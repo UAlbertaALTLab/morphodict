@@ -32,11 +32,6 @@ logger = logging.getLogger(__name__)
 
 
 @cache
-def creeRelaxedAnalyzerFst():
-    return foma.FST.load(shared_fst_dir / "crk-anl-desc-dict.fomabin")
-
-
-@cache
 def englishNounEntryToInflectedPhraseFst():
     return foma.FST.load(
         shared_fst_dir
