@@ -4,6 +4,8 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+    image: itwewina
+    container_name: itwewina
     volumes:
       - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
       - "./.env:/app/.env"
