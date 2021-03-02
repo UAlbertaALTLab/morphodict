@@ -35,7 +35,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
         (
             "PV/ki+wâpamêw+V+TA+Ind+2Pl+1PlO",
             WAPAMEW_DEFINITION,
-            "you all see>ed us",
+            "you all saw us",
         ),
         (
             "PV/wi+wâpamêw+V+TA+Ind+4Sg/Pl+3PlO",
