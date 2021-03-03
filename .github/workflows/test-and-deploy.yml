@@ -44,7 +44,7 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y hfst
+      run: sudo apt-get install -y libfoma0
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
     - name: 📥 Install dependencies
@@ -79,7 +79,7 @@ jobs:
       with:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
     - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y hfst libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
     - name: 📥 Install Python dependencies

@@ -35,7 +35,11 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
  && apt-get update \
- && apt-get install -y --no-install-recommends build-essential \
+ && apt-get install -y --no-install-recommends \
+    build-essential \
+    libfoma0 \
+    git `# for installing python packages direct from github` \
+ && rm -rf /var/cache/apt \
  && pip install pipenv \
  && mkdir /app/ \
  && chown itwewina /app
@@ -68,6 +72,13 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 # /etc/login.defs:/UID_MAX/, which defaults to 60,000
 ARG UID_GID=60003
 ARG TINI_VERSION=v0.19.0
+
+RUN set -ex \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends \
+    libfoma0 \
+    git `# for installing python packages direct from github` \
+ && rm -rf /var/cache/apt
 
 # Install tini
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
