@@ -165,7 +165,12 @@ def main():
         print("Some examples in the test database: acâhkosa, kimasinahikanisa")
     try:
         readline.read_init_file()
-        history_file = Path("~/.itwewina.translate.history").expanduser()
+    except FileNotFoundError, e:
+        # GNU readline can complain here, but libedit does not
+        pass
+
+    history_file = Path("~/.itwewina.translate.history").expanduser()
+    try:
         if history_file.exists():
             readline.read_history_file(history_file)
         while True:
