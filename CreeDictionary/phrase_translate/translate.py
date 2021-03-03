@@ -165,7 +165,7 @@ def main():
         print("Some examples in the test database: acâhkosa, kimasinahikanisa")
     try:
         readline.read_init_file()
-    except FileNotFoundError, e:
+    except FileNotFoundError:
         # GNU readline can complain here, but libedit does not
         pass
 
