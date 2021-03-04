@@ -8,7 +8,7 @@ from DatabaseManager.xml_importer import import_xmls
 
 @pytest.mark.django_db
 def test_import_nice_xml(shared_datadir):
-    call_command("migrate", "API", "0001")
+    call_command("migrate", "API")
     import_xmls(shared_datadir / "crkeng-small-nice-0")
 
     expanded = expand_inflections(["yôwamêw+V+TA+Ind+3Sg+4Sg/PlO"], verbose=False)
