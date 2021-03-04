@@ -32,7 +32,6 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
     :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
-    print("hello from lemma details")
     extra_constraints = {
         k: v
         for k, v in request.GET.items()
@@ -78,7 +77,6 @@ def index(request):  # pragma: no cover
     :param query_string: optional initial search results to display
     :return:
     """
-    print("hello from index")
 
     user_query = request.GET.get("q", None)
 
@@ -112,7 +110,6 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
-    print("hello from search results")
     results = Wordform.search_with_affixes(query_string)
     return render(
         request,
