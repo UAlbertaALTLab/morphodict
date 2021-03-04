@@ -84,6 +84,10 @@ WORKDIR /app/CreeDictionary
 # Gunicorn will listen on this port:
 EXPOSE 8000
 
+# Activate the Python virtual environment
+ENV VIRTUAL_ENV="/app/.venv"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
