@@ -33,3 +33,5 @@ context/
 
 # Do NOT inherit the .env file from the context
 /.env
+# Prevent changes from the Dockerfile from requiring a new docker build!
+docker/
