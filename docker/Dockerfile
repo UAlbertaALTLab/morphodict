@@ -80,7 +80,7 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 # Copy over the built application from the builder:
 COPY --from=builder --chown=itwewina /app /app
 
-USER itwêwina
+USER itwewina
 WORKDIR /app/CreeDictionary
 
 # Gunicorn will bind to this port:
