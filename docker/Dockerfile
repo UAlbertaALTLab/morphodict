@@ -79,9 +79,11 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 
 # Copy over the built application from the builder:
 COPY --from=builder --chown=itwewina /app /app
+
+USER itwêwina
 WORKDIR /app/CreeDictionary
 
-# Gunicorn will listen on this port:
+# Gunicorn will bind to this port:
 EXPOSE 8000
 
 # Activate the Python virtual environment
@@ -91,4 +93,4 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["/app/.venv/bin/gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "CreeDictionary.wsgi:application"]
+CMD ["gunicorn", "CreeDictionary.wsgi:application"]
