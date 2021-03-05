@@ -181,7 +181,7 @@ jobs:
       #
       #     foo: >-
       #       a
-      #        a
+      #       a
       #
       # means `{ "foo": "a a" }`,
       #
