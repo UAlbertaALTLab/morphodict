@@ -3,10 +3,26 @@
 # This script is called by the deploy.altlab.dev webhook
 
 import os
+from argparse import ArgumentParser
 from pathlib import Path
 from subprocess import check_call
 
-os.chdir(Path(__file__).parent)
 
-check_call(["git", "pull"])
-check_call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("--verbose", action="store_true")
+    args = parser.parse_args()
+
+    def call(*call_args):
+        if args.verbose:
+            print(call_args)
+        check_call(*call_args)
+
+    os.chdir(Path(__file__).parent)
+
+    call(["git", "pull"])
+    call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])
+
+
+if __name__ == "__main__":
+    main()
