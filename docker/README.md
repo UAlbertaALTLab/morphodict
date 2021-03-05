@@ -1,9 +1,45 @@
 # Docker for itwêwina
 
-The current setup was created with the intent of using it in production,
-not for development.
+itwêwina.altlab.app is deployed on a single host with docker-compose.
 
-The `itwewina` container will expose **port 8001** to the machine.
+Here's how it works.
+
+## Overview
+
+This setup uses [multiple compose files][] so that configuration can be
+shared in development and production.
+
+> Note: Eddie does not _normally_ use for Docker development, but the
+> everything is set up here to do so!
+
+[multiple compose files]: https://docs.docker.com/compose/extends/#multiple-compose-files
+
+The shared configuration is in `docker-compose.yml`.
+
+**`docker-compose.yml` is not a complete configuration by itself**.
+
+Instead, this file **MUST** be combined with either `./development.yml`
+or `./production.yml`, depending on your configuration:
+
+    # Development
+    docker-compose -f docker-compose.yml -f production.yml up
+    # Production
+    docker-compose -f docker-compose.yml -f developmen.yml up
+
+For convenience, `docker-compose.override.yml` is a symlink to
+`development.yml`. This means that `docker-compose up` with no `-f`
+arguments will use the `development.yml` by default.
+
+    # Runs development by default:
+    docker-compose up
+
+
+## Production
+
+The `itwewina` container will expose **port 8001** to the machine. See
+the [application registry]!
+
+[application-registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
 
 Please refer to the `Makefile` for the files that must be created before
 `docker-compose up --build` can be run.
