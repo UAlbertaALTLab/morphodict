@@ -39,7 +39,7 @@ arguments will use the `development.yml` by default.
 The `itwewina` container will expose **port 8001** to the machine. See
 the [application registry]!
 
-[application-registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
+[application registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
 
 Please refer to the `Makefile` for the files that must be created before
 `docker-compose up --build` can be run.
