@@ -1,10 +1,18 @@
 # Base docker-compose for itwewina.
 #
-# The settings here are intended for DEVELOPMENT only!
+# NOTE!!!!!!!!!
+# This docker-compose file is useless standalone. You **MUST** combine it with
+# either ./production.yml or ./development.yml.
+#
+# Why? Because docker-compose merges the `ports` setting in a sad way :(
 #
 # To use in production, use the following:
 #
 #     docker-compose -f docker-compose.yml -f production.yml
+#
+# To use in development, use the following:
+#
+#     docker-compose -f docker-compose.yml -f development.yml
 #
 # See: https://docs.docker.com/compose/extends/#multiple-compose-files
 
@@ -16,10 +24,4 @@ services:
       context: ..
       dockerfile: docker/Dockerfile
     volumes:
-      # Use the test database (no need to set USE_TEST_DB=True!)
-      - "../CreeDictionary/test_db.sqlite3:/app/CreeDictionary/db.sqlite3"
       - "./.env:/app/.env"
-    ports:
-      # Expose port 8000, just like `manage.py runserver` so that Cypress
-      # integration tests can be run transparently on the Docker version!
-      - 8000:8000

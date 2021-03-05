@@ -20,7 +20,7 @@ SYSTEMD_SERVICE = docker-compose-itwewina
 
 .PHONY: dev
 dev: db.sqlite3 .env ../CreeDictionary/test_db.sqlite3
-	docker-compose --file docker-compose.dev.yml up --build --remove-orphans
+	docker-compose -f docker-compose.yml -f development.yml up --build --remove-orphans
 
 .PHONY: run
 run: db.sqlite3 .env
