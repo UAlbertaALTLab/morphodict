@@ -24,7 +24,7 @@ dev: db.sqlite3 .env ../CreeDictionary/test_db.sqlite3
 
 .PHONY: run
 run: db.sqlite3 .env
-	docker-compose up --build
+	docker-compose -f docker-compose.yml -f production.yml up --build --remove-orphans
 
 .PHONY: unit-file
 unit-file: $(SYSTEMD_SERVICE).service
