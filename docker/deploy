@@ -22,6 +22,16 @@ def main():
 
     call(["git", "pull"])
     call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])
+    call(
+        [
+            "docker-compose",
+            "exec",
+            "-T",
+            "itwewina",
+            "./manage.py",
+            "migrate",
+        ]
+    )
 
 
 if __name__ == "__main__":
