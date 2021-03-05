@@ -9,4 +9,11 @@ from subprocess import check_call
 os.chdir(Path(__file__).parent)
 
 check_call(["git", "pull"])
-check_call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])
+check_call(
+    [
+        "docker-compose",
+        "-f", "docker-compose.yml",
+        "-f", "production.yml",
+        "up", "--build", "-d", "--remove-orphans",
+    ]
+)

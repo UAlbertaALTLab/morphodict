@@ -1,0 +1,16 @@
+# Overrides settings in docker-compose.yml to make it suitable for running in
+# production.
+#
+# See: https://docs.docker.com/compose/extends/#adding-and-overriding-configuration
+
+version: "3"
+
+services:
+  itwewina:
+    restart: always
+    volumes:
+      # TODO: should the database be stored in /data/application-data/itwewina?
+      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
+    ports:
+      # See: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
+      - 8001:8000

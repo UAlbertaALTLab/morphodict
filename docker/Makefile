@@ -19,7 +19,7 @@
 SYSTEMD_SERVICE = docker-compose-itwewina
 
 .PHONY: dev
-dev: db.sqlite3 .env
+dev: db.sqlite3 .env ../CreeDictionary/test_db.sqlite3
 	docker-compose --file docker-compose.dev.yml up --build --remove-orphans
 
 .PHONY: run
@@ -56,3 +56,7 @@ db.sqlite3:
 .env:
 	-echo '#' Creating an empty .env file
 	touch $@
+
+../CreeDictionary/test_db.sqlite3:
+	-echo '#' Creating the test database (by running unit tests)
+	cd .. && pipenv run pytest

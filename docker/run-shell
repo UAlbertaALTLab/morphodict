@@ -2,6 +2,6 @@
 
 DIR="$(dirname -- "${0}")"
 
-exec docker-compose -f "${DIR}/docker-compose.yml" exec app \
+exec docker-compose -f "${DIR}/docker-compose.yml" exec itwewina \
         /bin/bash
 
