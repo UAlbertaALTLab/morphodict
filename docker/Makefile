@@ -58,5 +58,5 @@ db.sqlite3:
 	touch $@
 
 ../CreeDictionary/test_db.sqlite3:
-	-echo '#' Creating the test database (by running unit tests)
+	@echo '# Creating the test database by running the unit tests'
 	cd .. && pipenv run pytest
