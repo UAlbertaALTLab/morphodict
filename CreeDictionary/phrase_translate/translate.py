@@ -48,21 +48,19 @@ class FomaLookupException(Exception):
     pass
 
 
-def _foma_wrapper(fst, func, thing_to_lookup):
-    l = list(func(fst, thing_to_lookup))
+def foma_lookup(fst, thing_to_lookup):
+    # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
+    # the FST object built by the C-language `apply_init()` function in libfoma,
+    # so they are about 100x slower than calling the C-language `apply_up` and
+    # `apply_down` directly.
+    #
+    # But __getitem__ does do the caching and runs at an acceptable speed.
+    l = fst[thing_to_lookup]
     if len(l) == 0:
         raise FomaLookupException(f"{thing_to_lookup} not found")
     if len(l) > 1:
         raise FomaLookupException(f"multiple found for {thing_to_lookup}: {l}")
-    return l[0]
-
-
-def foma_up_wrapper(fst, thing_to_lookup):
-    return _foma_wrapper(fst, foma.FST.apply_up, thing_to_lookup)
-
-
-def foma_down_wrapper(fst, thing_to_lookup):
-    return _foma_wrapper(fst, foma.FST.apply_down, thing_to_lookup)
+    return l[0].decode("UTF-8")
 
 
 def parse_analysis_and_tags(analysis):
@@ -88,26 +86,15 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
 
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-
-        logger.debug(f"{tags_for_phrase=}")
-
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug(f"{tagged_phrase=}")
-        phrase = foma_down_wrapper(
-            englishNounEntryToInflectedPhraseFst(), tagged_phrase
-        )
+        phrase = foma_lookup(englishNounEntryToInflectedPhraseFst(), tagged_phrase)
 
         return phrase.strip()
 
-    if "+V" in cree_wordform_tag_list:
+    elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug(f"{tagged_phrase=}")
-        phrase = foma_down_wrapper(
-            englishVerbEntryToInflectedPhraseFst(), tagged_phrase
-        )
-
+        phrase = foma_lookup(englishVerbEntryToInflectedPhraseFst(), tagged_phrase)
         return phrase.strip()
 
 
@@ -174,11 +161,12 @@ def main():
         if history_file.exists():
             readline.read_history_file(history_file)
         while True:
-            to_lookup = input("> ")
-            do_lookup(to_lookup)
-    except EOFError:
-        print("")
-        pass
+            try:
+                to_lookup = input("> ")
+                do_lookup(to_lookup)
+            except EOFError:
+                print("")
+                break
     finally:
         # Not appending on every input because not supported by macOS python
         # using libedit aka editline
