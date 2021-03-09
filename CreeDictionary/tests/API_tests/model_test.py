@@ -64,7 +64,7 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    search_results = Wordform.search_with_affixes(query)
+    search_results = Wordform.search_with_affixes(query, include_auto_definitions=False)
 
     exact_matches = {
         result
@@ -221,7 +221,7 @@ def test_search_serialization_json_parsable(query):
     results = Wordform.search_with_affixes(query)
     for result in results:
 
-        serialized = result.serialize()
+        serialized = result.serialize(include_auto_definitions=False)
         try:
             json.dumps(serialized)
         except Exception as e:
