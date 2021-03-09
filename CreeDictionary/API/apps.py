@@ -37,7 +37,6 @@ class APIConfig(AppConfig):
         # For when you you really want eager loading:
         #   - The runserver auto-reloading sets a RUN_MAIN environment variable
         #   - Our wsgi.py sets PERFORM_TIME_CONSUMING_INITIALIZATIONS
-        """"""
         if (
             "RUN_MAIN" in os.environ
             or "PERFORM_TIME_CONSUMING_INITIALIZATIONS" in os.environ
