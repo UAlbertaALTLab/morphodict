@@ -132,6 +132,10 @@ def main():
             print(f"  lemma: {lemma.analysis}")
 
             for d in wordform.lemma.definitions.all():
+                # Don’t try to re-translate already-translated items
+                if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
+                    continue
+
                 print(f"    definition: {d} →")
                 phrase = inflect_english_phrase(wordform_tags, d.text)
                 if phrase is None:
