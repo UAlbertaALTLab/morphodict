@@ -75,9 +75,7 @@ ARG TINI_VERSION=v0.19.0
 
 RUN set -ex \
  && apt-get update \
- && apt-get install -y --no-install-recommends \
-    libfoma0 \
-    git `# for installing python packages direct from github` \
+ && apt-get install -y --no-install-recommends libfoma0 \
  && rm -rf /var/cache/apt
 
 # Install tini
