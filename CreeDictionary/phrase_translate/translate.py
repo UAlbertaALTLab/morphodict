@@ -48,6 +48,18 @@ class FomaLookupException(Exception):
     pass
 
 
+class FomaLookupNotFoundException(FomaLookupException):
+    def __init__(self, thing_to_lookup):
+        super().__init__(f"{thing_to_lookup!r} not found in FST")
+
+
+class FomaLookupMultipleFoundException(FomaLookupException):
+    def __init__(self, thing_to_lookup, result_list):
+        super().__init__(
+            f"{len(result_list)} things were returned, but only 1 was expected for {thing_to_lookup!r}: {result_list!r}"
+        )
+
+
 def foma_lookup(fst, thing_to_lookup):
     # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
     # the FST object built by the C-language `apply_init()` function in libfoma,
@@ -57,9 +69,9 @@ def foma_lookup(fst, thing_to_lookup):
     # But __getitem__ does do the caching and runs at an acceptable speed.
     l = fst[thing_to_lookup]
     if len(l) == 0:
-        raise FomaLookupException(f"{thing_to_lookup} not found")
+        raise FomaLookupNotFoundException(thing_to_lookup)
     if len(l) > 1:
-        raise FomaLookupException(f"multiple found for {thing_to_lookup}: {l}")
+        raise FomaLookupMultipleFoundException(thing_to_lookup, l)
     return l[0].decode("UTF-8")
 
 

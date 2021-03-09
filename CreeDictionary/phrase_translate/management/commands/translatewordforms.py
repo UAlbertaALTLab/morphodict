@@ -11,7 +11,8 @@ from phrase_translate.tag_map import UnknownTagError
 from phrase_translate.translate import (
     inflect_english_phrase,
     parse_analysis_and_tags,
-    FomaLookupException,
+    FomaLookupNotFoundException,
+    FomaLookupMultipleFoundException,
 )
 
 logger = logging.getLogger(__name__)
@@ -93,9 +94,11 @@ class Command(BaseCommand):
 
         # Some status counts to report at the end:
         # no translation returned, typically because no +N or +V tag
-        no_translation = 0
+        no_translation_count = 0
+        # foma returned 0 analyses
+        no_analysis_count = 0
         # foma returned n != 1 analyses
-        error_count = 0
+        multiple_analyses_count = 0
 
         wordform_count = Wordform.objects.count()
         for w in tqdm(
@@ -111,14 +114,17 @@ class Command(BaseCommand):
                     phrase = inflect_english_phrase(tags, definition.text)
                 except UnknownTagError:
                     raise Exception(f"Unknown tag for {w.text} {w.analysis}")
-                except FomaLookupException as e:
+                except FomaLookupNotFoundException as e:
+                    no_analysis_count += 1
+                    continue
+                except FomaLookupMultipleFoundException as e:
                     logger.debug(f"Couldn’t handle {w.text}: {e}")
-                    error_count += 1
+                    multiple_analyses_count += 1
                     continue
 
                 if not phrase:
                     logger.debug(f"no translation for {w.text} {tags}")
-                    no_translation += 1
+                    no_translation_count += 1
                     continue
 
                 auto_definition = Definition(
@@ -137,4 +143,6 @@ class Command(BaseCommand):
 
         definition_buffer.save()
         citation_buffer.save()
-        print(f"Translation done. {no_translation=:,}, {error_count=:,}")
+        print(
+            f"Translation done. {no_translation_count=:,}, {no_analysis_count=:,} {multiple_analyses_count=:,}"
+        )
