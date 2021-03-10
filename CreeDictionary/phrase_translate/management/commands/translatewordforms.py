@@ -1,9 +1,13 @@
 import logging
-from argparse import ArgumentParser
+from argparse import (
+    ArgumentParser,
+    RawDescriptionHelpFormatter,
+)
 from collections import defaultdict
+from dataclasses import dataclass, asdict
 
 from django.core.management import BaseCommand
-from django.db.models import Max
+from django.db.models import Max, Q
 from tqdm import tqdm
 
 from API.models import Wordform, Definition, DictionarySource
@@ -59,11 +63,28 @@ class InsertBuffer:
         self._buffer = []
 
 
+@dataclass
+class InsertStats:
+    wordforms_examined: int = 0
+    # wordforms without an analysis
+    no_wordform_analysis: int = 0
+    definitions_created: int = 0
+    # no translation returned, typically because no +N or +V tag
+    no_translation_count: int = 0
+    # phrase generator FST returned 0 analyses
+    no_phrase_analysis_count: int = 0
+    # phrase generator FST returned multiple analyses
+    multiple_phrase_analyses_count: int = 0
+
+    def __str__(self):
+        return "\n".join(f"{k}: {v:,}" for k, v in asdict(self).items())
+
+
 class Command(BaseCommand):
     help = """Translate wordforms into English phrases
     
     This command:
-      - iterates over all wordforms in the database
+      - iterates over wordforms, by default everything in the database
       - uses the wordform inflection analysis and the phrase-translator FSTs to
         auto-generate phrase definitions from the definitions of the
         corresponding lemmas
@@ -72,77 +93,107 @@ class Command(BaseCommand):
     """
 
     def add_arguments(self, parser: ArgumentParser):
-        parser.add_argument("--log-level")
+        # Retain markdown-ish formatting in command help
+        parser.formatter_class = RawDescriptionHelpFormatter
+
+        # Prevent our args from getting all mixed in with default Django ones
+        group = parser.add_argument_group("translatewordforms-specific options")
+        group.add_argument("--log-level")
+        group.add_argument(
+            "wordforms",
+            nargs="*",
+            help="""
+            Only translate the given wordforms, instead of the default of
+            processing the entire database
+            """,
+        )
 
     def handle(self, *args, **options):
         if options["log_level"]:
-            logger.setLevel(options["log_level"])
+            logger.parent.setLevel(options["log_level"])
 
         (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
-        Definition.objects.filter(citations__abbrv="auto").delete()
 
+        if options["wordforms"]:
+            wordforms_queryset = Wordform.objects.filter(text__in=options["wordforms"])
+        else:
+            wordforms_queryset = Wordform.objects.all()
+        wordforms_queryset = wordforms_queryset.select_related("lemma")
+
+        logger.info("Removing existing auto-definitions")
+        if options["wordforms"]:
+            wordform_filter = dict(wordform__in=wordforms_queryset)
+        else:
+            wordform_filter = {}
+        deleted_rows, deleted_row_details = Definition.objects.filter(
+            citations__abbrv="auto", **wordform_filter
+        ).delete()
+        logger.info(
+            f"Deleted {deleted_rows:,} rows for auto-definitions: {deleted_row_details}"
+        )
+
+        logger.info("Building cache of existing non-auto definitions")
         definitions = defaultdict(set)
-        for d in Definition.objects.all().iterator():
+        for d in Definition.objects.filter(~Q(citations__abbrv="auto")).iterator():
             definitions[d.wordform_id].add(d)
         defn_count = sum(
             len(definition_list) for definition_list in definitions.values()
         )
-        logger.info(f"loaded {defn_count} definitions")
+        logger.info(f"Loaded {defn_count} definitions")
 
         definition_buffer = InsertBuffer(manager=Definition.objects)
         citation_buffer = InsertBuffer(manager=Definition.citations.through.objects)
 
-        # Some status counts to report at the end:
-        # no translation returned, typically because no +N or +V tag
-        no_translation_count = 0
-        # foma returned 0 analyses
-        no_analysis_count = 0
-        # foma returned n != 1 analyses
-        multiple_analyses_count = 0
+        insert_stats = InsertStats()
 
-        wordform_count = Wordform.objects.count()
-        for w in tqdm(
-            Wordform.objects.filter(is_lemma=False).select_related("lemma").iterator(),
-            total=wordform_count,
-        ):
-            for definition in definitions.get(w.lemma_id, []):
+        try:
+            wordform_count = wordforms_queryset.count()
+            for w in tqdm(wordforms_queryset.iterator(), total=wordform_count):
+                insert_stats.wordforms_examined += 1
+
                 if not w.analysis:
+                    logger.debug(f"no analysis for {w.id} {w.text}")
+                    insert_stats.no_wordform_analysis += 1
                     continue
 
-                tags = parse_analysis_and_tags(w.analysis)
-                try:
-                    phrase = inflect_english_phrase(tags, definition.text)
-                except UnknownTagError:
-                    raise Exception(f"Unknown tag for {w.text} {w.analysis}")
-                except FomaLookupNotFoundException as e:
-                    no_analysis_count += 1
-                    continue
-                except FomaLookupMultipleFoundException as e:
-                    logger.debug(f"Couldn’t handle {w.text}: {e}")
-                    multiple_analyses_count += 1
-                    continue
+                for definition in definitions.get(w.lemma_id, []):
+                    tags = parse_analysis_and_tags(w.analysis)
+                    try:
+                        phrase = inflect_english_phrase(tags, definition.text)
+                    except UnknownTagError:
+                        raise Exception(f"Unknown tag for {w.text} {w.analysis}")
+                    except FomaLookupNotFoundException as e:
+                        logger.debug(f"Couldn’t handle {w.text}: {e}")
+                        insert_stats.no_phrase_analysis_count += 1
+                        continue
+                    except FomaLookupMultipleFoundException as e:
+                        logger.debug(f"Couldn’t handle {w.text}: {e}")
+                        insert_stats.multiple_phrase_analyses_count += 1
+                        continue
 
-                if not phrase:
-                    logger.debug(f"no translation for {w.text} {tags}")
-                    no_translation_count += 1
-                    continue
+                    if not phrase:
+                        logger.debug(f"no translation for {w.text} {tags}")
+                        insert_stats.no_translation_count += 1
+                        continue
 
-                auto_definition = Definition(
-                    text=phrase,
-                    wordform_id=w.id,
-                    auto_translation_source_id=definition.id,
-                )
-
-                definition_buffer.add(auto_definition)
-                citation_buffer.add(
-                    Definition.citations.through(
-                        dictionarysource_id=ds.abbrv,
-                        definition_id=auto_definition.id,
+                    auto_definition = Definition(
+                        text=phrase,
+                        wordform_id=w.id,
+                        auto_translation_source_id=definition.id,
                     )
-                )
 
-        definition_buffer.save()
-        citation_buffer.save()
-        print(
-            f"Translation done. {no_translation_count=:,}, {no_analysis_count=:,} {multiple_analyses_count=:,}"
-        )
+                    definition_buffer.add(auto_definition)
+                    citation_buffer.add(
+                        Definition.citations.through(
+                            dictionarysource_id=ds.abbrv,
+                            definition_id=auto_definition.id,
+                        )
+                    )
+                    insert_stats.definitions_created += 1
+
+            definition_buffer.save()
+            citation_buffer.save()
+            logger.info("Translation done")
+        finally:
+            logger.info("Stats:")
+            logger.info(insert_stats)
