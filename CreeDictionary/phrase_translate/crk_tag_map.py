@@ -1,5 +1,22 @@
 from phrase_translate.tag_map import TagMap
 
+## Motivation
+#
+# TagMap handles the mapping from analysis FST tags to phrase-generation
+# FST tags. As the wordform analysis and phrase-generation FSTs do fairly
+# different things, using different but related sets of tags, we need to specify
+# how to translate from one to the other.
+#
+# For example, one generic wordform analysis for ‘acâhkosa’ is
+# `acâhkosa+N+A+Der/Dim+N+A+Obv`. But the phrase-generation FST takes as input
+# tags and definition in the form `Obv+Dim+ star`, and outputs the inflected
+# phrase `little star over there`. `Obv` has the same tag name but is now a
+# start tag, not an end tag, and `Der/Dim` needs to be translated to just `Dim`.
+# As well, the phrase-generation FST has stricter ordering requirements on the
+# input tags.
+#
+## Use
+#
 # A TagMap is iniialized with a sequence of (wordform_tag, phrase_tag,
 # precedence) tuples
 #
@@ -12,21 +29,23 @@ from phrase_translate.tag_map import TagMap
 #
 # phrase_tag can be:
 #   - None if the wordform_tag is not used in the phrase transcription
-#   - COPY if the characters of the wordform_tag match the phrase_tag, for
-#     example: ("+Sg", COPY, x) means ("+Sg", "Sg+", x)
+#   - COPY_TAG_NAME if the characters of the wordform_tag match the
+#     phrase_tag, for example: ("+Sg", COPY_TAG_NAME, x) means the same
+#     thing as ("+Sg", "Sg+", x), but with less potential for copy-paste
+#     mistakes.
 #
-# The precedence number is used to sort tags before sending to the phrase FST,
-# so if you want Pl/Sg before Px, you could give Pl and Sg number 1 and the
-# possessives number 2. This precedence number is associated with the output
-# tag; it is an error to give a different precedence value to multiple
-# definitions that output the same tag.
+# All multi-mappings are applied before single maps, and consume their tags. For
+# example, a match on (("+A, "+B"), "foo", 1) will take the tags "+A" and "+B"
+# out of consideration before the rules ("+A", COPY, 1) or ("+B", COPY, 1) are
+# considered.
 #
-# Additionally, all multi-mappings are applied before single maps, and consume
-# their tags. For example, a match on (("+A, "+B"), "foo", 1) will take the tags
-# "+A" and "+B" out of consideration before the rules ("+A", COPY, 1) or ("+B",
-# COPY, 1) are considered.
+# The precedence number is used to sort tags before sending them to the phrase
+# FST. For example, if you want Pl/Sg before Px, you could give Pl and Sg
+# precedence number 1 and the possessives number 2. This precedence number is
+# associated with the output tag; it is an error to give a different precedence
+# value to multiple definitions that output the same tag.
 
-COPY = TagMap.COPY
+COPY_TAG_NAME = TagMap.COPY_TAG_NAME
 
 noun_wordform_to_phrase = TagMap(
     ("+N", None, 0),
@@ -34,24 +53,24 @@ noun_wordform_to_phrase = TagMap(
     ("+I", None, 0),
     ("+D", None, 0),
     # Number
-    ("+Sg", COPY, 1),
-    ("+Pl", COPY, 1),
-    ("+Obv", COPY, 1),
-    ("+Loc", COPY, 1),
-    ("+Distr", COPY, 1),
+    ("+Sg", COPY_TAG_NAME, 1),
+    ("+Pl", COPY_TAG_NAME, 1),
+    ("+Obv", COPY_TAG_NAME, 1),
+    ("+Loc", COPY_TAG_NAME, 1),
+    ("+Distr", COPY_TAG_NAME, 1),
     # Diminutive
-    ("+Dim", COPY, 2),
+    ("+Dim", COPY_TAG_NAME, 2),
     ("+Der/Dim", "Dim+", 2),
     # Possessives
-    ("+Px1Sg", COPY, 3),
-    ("+Px2Sg", COPY, 3),
-    ("+Px3Sg", COPY, 3),
-    ("+Px1Pl", COPY, 3),
-    ("+Px2Pl", COPY, 3),
-    ("+Px12Pl", COPY, 3),
-    ("+Px3Pl", COPY, 3),
-    ("+Px4Sg/Pl", COPY, 3),
-    ("+PxX", COPY, 3),
+    ("+Px1Sg", COPY_TAG_NAME, 3),
+    ("+Px2Sg", COPY_TAG_NAME, 3),
+    ("+Px3Sg", COPY_TAG_NAME, 3),
+    ("+Px1Pl", COPY_TAG_NAME, 3),
+    ("+Px2Pl", COPY_TAG_NAME, 3),
+    ("+Px12Pl", COPY_TAG_NAME, 3),
+    ("+Px3Pl", COPY_TAG_NAME, 3),
+    ("+Px4Sg/Pl", COPY_TAG_NAME, 3),
+    ("+PxX", COPY_TAG_NAME, 3),
 )
 
 # Cree tense/aspects:
@@ -77,27 +96,27 @@ verb_wordform_to_phrase = TagMap(
     ("+Ind", "Prs+", 1),
     (TagMap.DEFAULT, "Prs+", 1),  # default to present tense
     # Person - Subject
-    ("+1Sg", COPY, 2),
-    ("+2Sg", COPY, 2),
-    ("+3Sg", COPY, 2),
-    ("+1Pl", COPY, 2),
+    ("+1Sg", COPY_TAG_NAME, 2),
+    ("+2Sg", COPY_TAG_NAME, 2),
+    ("+3Sg", COPY_TAG_NAME, 2),
+    ("+1Pl", COPY_TAG_NAME, 2),
     ("+12Pl", "21Pl+", 2),
-    ("+2Pl", COPY, 2),
-    ("+3Pl", COPY, 2),
-    ("+4Sg/Pl", COPY, 2),
-    ("+5Sg/Pl", COPY, 2),
-    ("+X", COPY, 2),
+    ("+2Pl", COPY_TAG_NAME, 2),
+    ("+3Pl", COPY_TAG_NAME, 2),
+    ("+4Sg/Pl", COPY_TAG_NAME, 2),
+    ("+5Sg/Pl", COPY_TAG_NAME, 2),
+    ("+X", COPY_TAG_NAME, 2),
     # Person - Object
-    ("+1SgO", COPY, 3),
-    ("+2SgO", COPY, 3),
-    ("+3SgO", COPY, 3),
-    ("+1PlO", COPY, 3),
-    ("+12PlO", COPY, 3),
-    ("+2PlO", COPY, 3),
-    ("+3PlO", COPY, 3),
-    ("+4Pl", COPY, 3),
-    ("+4Sg", COPY, 3),
-    ("+4Sg/PlO", COPY, 3),
-    ("+5Sg/PlO", COPY, 3),
-    ("+XO", COPY, 3),
+    ("+1SgO", COPY_TAG_NAME, 3),
+    ("+2SgO", COPY_TAG_NAME, 3),
+    ("+3SgO", COPY_TAG_NAME, 3),
+    ("+1PlO", COPY_TAG_NAME, 3),
+    ("+12PlO", COPY_TAG_NAME, 3),
+    ("+2PlO", COPY_TAG_NAME, 3),
+    ("+3PlO", COPY_TAG_NAME, 3),
+    ("+4Pl", COPY_TAG_NAME, 3),
+    ("+4Sg", COPY_TAG_NAME, 3),
+    ("+4Sg/PlO", COPY_TAG_NAME, 3),
+    ("+5Sg/PlO", COPY_TAG_NAME, 3),
+    ("+XO", COPY_TAG_NAME, 3),
 )

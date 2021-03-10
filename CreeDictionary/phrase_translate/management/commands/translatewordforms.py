@@ -7,6 +7,7 @@ from django.db.models import Max
 from tqdm import tqdm
 
 from API.models import Wordform, Definition, DictionarySource
+from phrase_translate.tag_map import UnknownTagError
 from phrase_translate.translate import (
     inflect_english_phrase,
     parse_analysis_and_tags,
@@ -101,40 +102,37 @@ class Command(BaseCommand):
             Wordform.objects.select_related("lemma").iterator(), total=wordform_count
         ):
             for definition in definitions.get(w.lemma_id, []):
+                if not w.analysis:
+                    continue
+
+                tags = parse_analysis_and_tags(w.analysis)
                 try:
-                    if not w.analysis:
-                        continue
-
-                    tags = parse_analysis_and_tags(w.analysis)
                     phrase = inflect_english_phrase(tags, definition.text)
-
-                    if not phrase:
-                        logger.debug(f"no translation for {w.text} {tags}")
-                        no_translation += 1
-                        continue
-
-                    auto_definition = Definition(
-                        text=phrase,
-                        wordform_id=w.id,
-                        auto_translation_source_id=definition.id,
-                    )
-
-                    definition_buffer.add(auto_definition)
-                    citation_buffer.add(
-                        Definition.citations.through(
-                            dictionarysource_id=ds.abbrv,
-                            definition_id=auto_definition.id,
-                        )
-                    )
-                except KeyError as e:
-                    logger.debug(
-                        f"Unknown tag {e.args[0]} for {w.text} {w.analysis}", e
-                    )
-                    raise
-
+                except UnknownTagError:
+                    raise Exception(f"Unknown tag for {w.text} {w.analysis}")
                 except FomaLookupException as e:
                     logger.debug(f"Couldn’t handle {w.text}: {e}")
                     error_count += 1
+                    continue
+
+                if not phrase:
+                    logger.debug(f"no translation for {w.text} {tags}")
+                    no_translation += 1
+                    continue
+
+                auto_definition = Definition(
+                    text=phrase,
+                    wordform_id=w.id,
+                    auto_translation_source_id=definition.id,
+                )
+
+                definition_buffer.add(auto_definition)
+                citation_buffer.add(
+                    Definition.citations.through(
+                        dictionarysource_id=ds.abbrv,
+                        definition_id=auto_definition.id,
+                    )
+                )
 
         definition_buffer.save()
         citation_buffer.save()

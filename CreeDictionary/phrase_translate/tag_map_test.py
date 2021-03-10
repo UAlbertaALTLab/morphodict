@@ -2,7 +2,7 @@ import re
 
 import pytest
 
-from phrase_translate.tag_map import TagMap
+from phrase_translate.tag_map import TagMap, UnknownTagError
 
 
 @pytest.fixture
@@ -15,13 +15,13 @@ def test_simple_tag_map(simple_tag_map):
 
 
 def test_raises_on_unknown_tag(simple_tag_map):
-    with pytest.raises(Exception):
+    with pytest.raises(UnknownTagError):
         simple_tag_map.map_tags(["+foo"])
 
 
 @pytest.fixture
 def tag_map_with_precedence():
-    return TagMap(("+A", "abc+", 1), ("+B", TagMap.COPY, 2), ("+C", None, 0))
+    return TagMap(("+A", "abc+", 1), ("+B", TagMap.COPY_TAG_NAME, 2), ("+C", None, 0))
 
 
 def test_map_with_precedence(tag_map_with_precedence):
@@ -37,7 +37,11 @@ def test_mapping_to_none(tag_map_with_precedence):
 
 @pytest.fixture
 def tag_map_with_multiples():
-    return TagMap(("+A", TagMap.COPY, 1), ("+A2", "A+", 1), ("+B", TagMap.COPY, 2))
+    return TagMap(
+        ("+A", TagMap.COPY_TAG_NAME, 1),
+        ("+A2", "A+", 1),
+        ("+B", TagMap.COPY_TAG_NAME, 2),
+    )
 
 
 def test_dedupe(tag_map_with_multiples):
@@ -48,7 +52,9 @@ def test_dedupe(tag_map_with_multiples):
 @pytest.fixture
 def tag_map_wth_multi_map():
     return TagMap(
-        (("+A", "+B"), "abc+", 1), ("+A", TagMap.COPY, 2), ("+B", TagMap.COPY, 3)
+        (("+A", "+B"), "abc+", 1),
+        ("+A", TagMap.COPY_TAG_NAME, 2),
+        ("+B", TagMap.COPY_TAG_NAME, 3),
     )
 
 
@@ -61,7 +67,7 @@ def test_multi_map(tag_map_wth_multi_map):
 
 @pytest.fixture
 def tag_map_with_default():
-    return TagMap(("+A", TagMap.COPY, 1), (TagMap.DEFAULT, "+B", 1))
+    return TagMap(("+A", TagMap.COPY_TAG_NAME, 1), (TagMap.DEFAULT, "+B", 1))
 
 
 def test_use_default(tag_map_with_default):
