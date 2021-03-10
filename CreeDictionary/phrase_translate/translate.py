@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
+
+from __future__ import annotations
+
 import logging
 import os
 import readline
 import sys
+import typing
 from argparse import ArgumentParser, BooleanOptionalAction
 from functools import cache
 from pathlib import Path
+from typing import Iterable
 
 import django
 import foma
+
+if typing.TYPE_CHECKING:
+    # When this file is run directly as __main__, importing Django models at
+    # top-level will blow up because Django is not configured yet.
+    from API.models import Wordform
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -109,6 +119,26 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
         return phrase.strip()
 
 
+def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
+    for wordform in wordforms:
+        wordform_tags = parse_analysis_and_tags(wordform.analysis)
+        print(f"wordform: {wordform.text} {wordform_tags}")
+
+        lemma = wordform.lemma
+        print(f"  lemma: {lemma.analysis}")
+
+        for d in wordform.lemma.definitions.all():
+            # Don’t try to re-translate already-translated items
+            if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
+                continue
+
+            print(f"    definition: {d} →")
+            phrase = inflect_english_phrase(wordform_tags, d.text)
+            if phrase is None:
+                phrase = "(not supported)"
+            print(f"      {phrase}")
+
+
 def main():
     parser = ArgumentParser()
     parser.add_argument("--quiet", action=BooleanOptionalAction)
@@ -136,26 +166,10 @@ def main():
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup).select_related("lemma")
 
-        for wordform in wordforms:
-            wordform_tags = parse_analysis_and_tags(wordform.analysis)
-            print(f"wordform: {wordform.text} {wordform_tags}")
-
-            lemma = wordform.lemma
-            print(f"  lemma: {lemma.analysis}")
-
-            for d in wordform.lemma.definitions.all():
-                # Don’t try to re-translate already-translated items
-                if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
-                    continue
-
-                print(f"    definition: {d} →")
-                phrase = inflect_english_phrase(wordform_tags, d.text)
-                if phrase is None:
-                    phrase = "(not supported)"
-                print(f"      {phrase}")
-
         if wordforms.count() == 0:
             print("not found in database :/")
+        else:
+            translate_and_print_wordforms(wordforms)
 
     if args.wordform:
         for wordform in args.wordform:
