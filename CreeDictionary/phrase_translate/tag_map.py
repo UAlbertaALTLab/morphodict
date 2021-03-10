@@ -86,6 +86,3 @@ class TagMap:
         tags_for_phrase.sort(key=self._precedences.__getitem__)
 
         return tags_for_phrase
-
-    # def by_tag_precedence(self, tag):
-    #     return self._precedences[tag]
