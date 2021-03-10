@@ -63,6 +63,11 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
             "for him/her to see us",
         ),
         (
+            "wâpamêw+V+TA+Ind+4Sg/Pl+12PlO",
+            WAPAMEW_DEFINITION,
+            "s/he/they see you and us",
+        ),
+        (
             "atamihêw+V+TA+Ind+4Sg/Pl+2PlO",
             "s/he makes s.o. smile",
             "s/he/they make you all smile",
