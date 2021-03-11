@@ -103,4 +103,5 @@ EXPOSE 9191
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["uwsgi", "--http", ":8000", "--stats", "0.0.0.0:9191", "uwsgi.ini"]
+# uwsgi --http-socket is intended to be used behind, e.g., nginx
+CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "uwsgi.ini"]
