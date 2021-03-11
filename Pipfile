@@ -65,7 +65,6 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # Utitlities
 collect-static = "python CreeDictionary/manage.py collectstatic --no-input"
-gunicorn-locally = "gunicorn CreeDictionary.wsgi"
 
 [requires]
 python_version = "3.9"
