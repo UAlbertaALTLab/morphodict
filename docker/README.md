@@ -6,27 +6,7 @@ Here's how it works!
 
 ## Overview
 
-This folder uses [multiple compose files][] so that configuration can be
-shared upon in [staging][] and production environments.
-
-[multiple compose files]: https://docs.docker.com/compose/extends/#multiple-compose-files
-[staging]: https://en.wikipedia.org/wiki/Deployment_environment#Staging
-
-The shared configuration is in `docker-compose.yml`.
-
-**`docker-compose.yml` is not a complete configuration by itself**.
-
-Instead, this file **MUST** be combined with either `./staging.yml`
-or `./production.yml`, depending on your configuration:
-
-    # Staging
-    docker-compose -f docker-compose.yml -f staging.yml up
-    # Production
-    docker-compose -f docker-compose.yml -f production.yml up
-
-For convenience, `docker-compose.override.yml` is a symlink to
-`production.yml`. This means that `docker-compose up` with no `-f`
-arguments will start the production environment by default.
+This `docker-compose.yml` is intended to run on production.
 
     # Runs production by default:
     docker-compose up
@@ -37,6 +17,11 @@ the [application registry]!
 [application registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
 
 ## Staging
+
+If you want to try the docker-compose configuration locally before
+trying it on production, use **staging**:
+
+    make staging
 
 Use this environment to test the Docker deployment _before_ pushing to
 production. It should use the actual Docker image used in production,
