@@ -75,12 +75,8 @@ ARG TINI_VERSION=v0.19.0
 
 RUN set -ex \
  && apt-get update \
- && apt-get install -y --no-install-recommends libfoma0 \
+ && apt-get install -y --no-install-recommends tini libfoma0 \
  && rm -rf /var/cache/apt
-
-# Install tini
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
-RUN chmod +x /bin/tini
 
 # Create a NON-ROOT USER that will run the application code:
 RUN groupadd --system --gid ${UID_GID} itwewina \
@@ -102,4 +98,4 @@ ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["gunicorn", "CreeDictionary.wsgi:application"]
+CMD ["uwsgi", "--master", "--http", ":8000", "uwsgi.ini"]
