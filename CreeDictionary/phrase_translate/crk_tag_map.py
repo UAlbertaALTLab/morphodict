@@ -111,7 +111,7 @@ verb_wordform_to_phrase = TagMap(
     ("+2SgO", COPY_TAG_NAME, 3),
     ("+3SgO", COPY_TAG_NAME, 3),
     ("+1PlO", COPY_TAG_NAME, 3),
-    ("+12PlO", COPY_TAG_NAME, 3),
+    ("+12PlO", "21PlO+", 3),
     ("+2PlO", COPY_TAG_NAME, 3),
     ("+3PlO", COPY_TAG_NAME, 3),
     ("+4Pl", COPY_TAG_NAME, 3),

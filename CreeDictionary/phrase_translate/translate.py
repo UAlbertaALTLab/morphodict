@@ -88,7 +88,6 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         phrase = foma_lookup(englishNounEntryToInflectedPhraseFst(), tagged_phrase)
-
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
