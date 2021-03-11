@@ -2,35 +2,33 @@
 
 itwêwina.altlab.app is deployed on a single host with docker-compose.
 
-Here's how it works.
+Here's how it works!
 
 ## Overview
 
-This setup uses [multiple compose files][] so that configuration can be
-shared in development and production.
-
-> Note: Eddie does not _normally_ use for Docker development, but the
-> everything is set up here to do so!
+This folder uses [multiple compose files][] so that configuration can be
+shared upon in [staging][] and production environments.
 
 [multiple compose files]: https://docs.docker.com/compose/extends/#multiple-compose-files
+[staging]: https://en.wikipedia.org/wiki/Deployment_environment#Staging
 
 The shared configuration is in `docker-compose.yml`.
 
 **`docker-compose.yml` is not a complete configuration by itself**.
 
-Instead, this file **MUST** be combined with either `./development.yml`
+Instead, this file **MUST** be combined with either `./staging.yml`
 or `./production.yml`, depending on your configuration:
 
-    # Development
-    docker-compose -f docker-compose.yml -f production.yml up
+    # Staging
+    docker-compose -f docker-compose.yml -f staging.yml up
     # Production
-    docker-compose -f docker-compose.yml -f developmen.yml up
+    docker-compose -f docker-compose.yml -f production.yml up
 
 For convenience, `docker-compose.override.yml` is a symlink to
-`development.yml`. This means that `docker-compose up` with no `-f`
-arguments will use the `development.yml` by default.
+`production.yml`. This means that `docker-compose up` with no `-f`
+arguments will start the production environment by default.
 
-    # Runs development by default:
+    # Runs production by default:
     docker-compose up
 
 

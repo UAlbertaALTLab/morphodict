@@ -1,5 +1,8 @@
 # Overrides settings in docker-compose.yml to make it suitable for running in
-# development.
+# locally.
+#
+# Use this configuration to experiment with docker/docker-compose BEFORE
+# PUSHING TO PRODUCTION!
 #
 # See: https://docs.docker.com/compose/extends/#adding-and-overriding-configuration
 

@@ -2,17 +2,17 @@
 #
 # NOTE!!!!!!!!!
 # This docker-compose file is useless standalone. You **MUST** combine it with
-# either ./production.yml or ./development.yml.
+# either ./production.yml or ./staging.yml.
 #
 # Why? Because docker-compose merges the `ports` setting in a sad way :(
+#
+# To use in experiment before running in production, use the following:
+#
+#     docker-compose -f docker-compose.yml -f staging.yml
 #
 # To use in production, use the following:
 #
 #     docker-compose -f docker-compose.yml -f production.yml
-#
-# To use in development, use the following:
-#
-#     docker-compose -f docker-compose.yml -f development.yml
 #
 # See: https://docs.docker.com/compose/extends/#multiple-compose-files
 

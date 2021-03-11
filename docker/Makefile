@@ -2,10 +2,10 @@
 #
 # ## Commands ##
 #
-#  make dev [default]
+#  make staging [default]
 #  		builds and starts the Docker container using docker-compose for
-#  		development.
-#  make run
+#  		testing the production build elsewhere.
+#  make production
 #  		builds and starts the Docker container using docker-compose
 #  		creates any necessary files for building the image/running the
 #  		container
@@ -18,12 +18,12 @@
 
 SYSTEMD_SERVICE = docker-compose-itwewina
 
-.PHONY: dev
-dev: db.sqlite3 .env ../CreeDictionary/test_db.sqlite3
-	docker-compose -f docker-compose.yml -f development.yml up --build --remove-orphans
+.PHONY: staging
+staging: db.sqlite3 .env ../CreeDictionary/test_db.sqlite3
+	docker-compose -f docker-compose.yml -f staging.yml up --build --remove-orphans
 
-.PHONY: run
-run: db.sqlite3 .env
+.PHONY: production
+production: db.sqlite3 .env
 	docker-compose -f docker-compose.yml -f production.yml up --build --remove-orphans
 
 .PHONY: unit-file
