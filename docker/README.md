@@ -31,13 +31,21 @@ arguments will start the production environment by default.
     # Runs production by default:
     docker-compose up
 
-
-## Production
-
 The `itwewina` container will expose **port 8001** to the machine. See
 the [application registry]!
 
 [application registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
+
+## Staging
+
+Use this environment to test the Docker deployment _before_ pushing to
+production. It should use the actual Docker image used in production,
+with few modifications.
+
+When satisfied with the Docker environment used in staging, move it to
+production:
+
+## Production
 
 Please refer to the `Makefile` for the files that must be created before
 `docker-compose up --build` can be run.
