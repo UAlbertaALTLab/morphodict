@@ -34,6 +34,9 @@ services:
       # CYPRESS_BASE_URL=https://localhost:8001 cypress rund
       #
       # See: https://docs.cypress.io/guides/guides/environment-variables.html#We-can-move-this-into-a-Cypress-environment-variable
+
+      # uWSGI stats can be accessed here on localhost:
+      - "9191:9191"
     volumes:
       - "./.env:/app/.env"
       # TODO: should the production database be stored in /data/application-data/itwewina?

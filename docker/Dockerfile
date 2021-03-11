@@ -87,15 +87,20 @@ COPY --from=builder --chown=itwewina /app /app
 
 USER itwewina
 WORKDIR /app/CreeDictionary
-
-# Gunicorn will bind to this port:
-EXPOSE 8000
-
 # Activate the Python virtual environment
 ENV VIRTUAL_ENV="/app/.venv"
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
+# uWSGI will bind HTTP to this port:
+EXPOSE 8000
+# uWSGI stats are accessible on this port
+# I view them with this command:
+#
+#    $ nc 127.0.0.1 9191 | jq
+#
+EXPOSE 9191
+
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["uwsgi", "--master", "--http", ":8000", "uwsgi.ini"]
+CMD ["uwsgi", "--http", ":8000", "--stats", "0.0.0.0:9191", "uwsgi.ini"]
