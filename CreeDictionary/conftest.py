@@ -1,12 +1,16 @@
+import json
+import secrets
+
 import pytest
 from django.conf import settings
 
 # See “`conftest.py`: sharing fixtures across multiple files”
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
+from django.contrib.auth.models import User
 from django.core.management import call_command
 
 from API.apps import initialize_preverb_search, APIConfig
-from API.models import Wordform
+from API.models import Wordform, Definition
 from utils import shared_res_dir
 
 
@@ -55,12 +59,41 @@ def django_db_setup(request, django_db_blocker):
         with django_db_blocker.unblock():
             print("\nSyncing test database")
             call_command("migrate", verbosity=0)
-            if Wordform.objects.count() == 0:
-                print("No wordforms found, generating")
-                call_command(
-                    "xmlimport",
-                    "import",
-                    shared_res_dir / "test_dictionaries" / "crkeng.xml",
-                )
+
+            import_test_dictionary()
+
+            add_some_auto_translations()
+
+            ensure_cypress_admin_user()
+
             # Tests that rely on affix search will fail without this
             APIConfig.active_instance().perform_time_consuming_initializations()
+
+
+def ensure_cypress_admin_user():
+    cypress_user, created = User.objects.get_or_create(username="cypress")
+    if created:
+        password = secrets.token_hex(20)
+        (settings.BASE_PATH / ".cypress-user.json").write_text(
+            json.dumps({"username": "cypress", "password": password}, indent=2) + "\n"
+        )
+        cypress_user.set_password(password)
+        # Our only login page is the admin login page, which only accepts logins
+        # from staff users.
+        cypress_user.is_staff = True
+        cypress_user.save()
+
+
+def add_some_auto_translations():
+    if not Definition.objects.filter(auto_translation_source__isnull=False).exists():
+        call_command("translatewordforms", wordforms=["acâhkosa"])
+
+
+def import_test_dictionary():
+    if Wordform.objects.count() == 0:
+        print("No wordforms found, generating")
+        call_command(
+            "xmlimport",
+            "import",
+            shared_res_dir / "test_dictionaries" / "crkeng.xml",
+        )

@@ -100,8 +100,8 @@ class Command(BaseCommand):
         group = parser.add_argument_group("translatewordforms-specific options")
         group.add_argument("--log-level")
         group.add_argument(
-            "wordforms",
-            nargs="*",
+            "--wordforms",
+            nargs="+",
             help="""
             Only translate the given wordforms, instead of the default of
             processing the entire database
