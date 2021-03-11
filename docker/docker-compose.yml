@@ -20,6 +20,7 @@ version: "3"
 
 services:
   itwewina:
+    restart: always
     build:
       context: ..
       dockerfile: docker/Dockerfile
@@ -35,3 +36,5 @@ services:
       # See: https://docs.cypress.io/guides/guides/environment-variables.html#We-can-move-this-into-a-Cypress-environment-variable
     volumes:
       - "./.env:/app/.env"
+      # TODO: should the production database be stored in /data/application-data/itwewina?
+      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
