@@ -33,7 +33,6 @@ sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.
 secure = "*"
 snowballstemmer = "*"
 dawg = "~=0.8"
-gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "~=4.40"
