@@ -38,6 +38,7 @@ hfst-optimized-lookup = "*"
 tqdm = "~=4.40"
 whitenoise = "*"
 foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
+uwsgi = "*"
 
 [scripts]
 # look stuff up
