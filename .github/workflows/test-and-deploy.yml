@@ -47,6 +47,16 @@ jobs:
       run: sudo apt-get install -y libfoma0
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
+
+    # Copy-paste from
+    # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+    - uses: actions/cache@v2
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pipenv-
+
     - name: 📥 Install dependencies
       run: |
         pipenv install --dev
@@ -89,6 +99,16 @@ jobs:
       run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
+
+    # Copy-paste from
+    # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+    - uses: actions/cache@v2
+      with:
+        path: ~/.local/share/virtualenvs
+        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pipenv-
+
     - name: 📥 Install Python dependencies
       run: |
         pipenv install --dev
