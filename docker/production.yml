@@ -11,6 +11,3 @@ services:
     volumes:
       # TODO: should the database be stored in /data/application-data/itwewina?
       - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
-    ports:
-      # See: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
-      - 8001:8000

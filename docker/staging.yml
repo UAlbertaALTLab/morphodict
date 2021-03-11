@@ -13,7 +13,3 @@ services:
     volumes:
       # Use the test database (no need to set USE_TEST_DB=True!)
       - "../CreeDictionary/test_db.sqlite3:/app/CreeDictionary/db.sqlite3"
-    ports:
-      # Expose port 8000, just like `manage.py runserver` so that Cypress
-      # integration tests can be run transparently on the Docker version!
-      - 8000:8000
