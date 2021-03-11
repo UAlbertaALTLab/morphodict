@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "search_quality",
+    "phrase_translate",
     "morphodict.apps.MorphodictConfig",
     "DatabaseManager",
     # This comes last so that other apps can override templates

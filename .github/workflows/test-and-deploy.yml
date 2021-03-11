@@ -44,7 +44,7 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y hfst
+      run: sudo apt-get install -y libfoma0
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
     - name: 📥 Install dependencies
@@ -52,6 +52,13 @@ jobs:
         pipenv install --dev
         # Install pytest plugin to show failed tests on the web
         pipenv run pip install pytest-github-actions-annotate-failures
+    - name: Do LFS checkout
+      # actions/checkout@v2 has a `with: lfs: true` option, but it only
+      # knows how to talk to GitHub’s LFS server.
+      #
+      # These actions are automatic if you have run `git lfs install`
+      # even once on your dev machine.
+      run: git lfs install --local && git lfs fetch && git lfs checkout
     - name: 🧶 Run linters/static-analysis
       run: |
         pipenv run mypy CreeDictionary
@@ -79,12 +86,19 @@ jobs:
       with:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
     - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y hfst libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
     - name: 📥 Install Python dependencies
       run: |
         pipenv install --dev
+    - name: Do LFS checkout
+      # actions/checkout@v2 has a `with: lfs: true` option, but it only
+      # knows how to talk to GitHub’s LFS server.
+      #
+      # These actions are automatic if you have run `git lfs install`
+      # even once on your dev machine.
+      run: git lfs install --local && git lfs fetch && git lfs checkout
     - name: 📥 Install Node dependencies
       run: npm ci
     - name: 🛑 Halt tests if Cypress tests are marked as '.only'
@@ -167,7 +181,7 @@ jobs:
       #
       #     foo: >-
       #       a
-      #        a
+      #       a
       #
       # means `{ "foo": "a a" }`,
       #

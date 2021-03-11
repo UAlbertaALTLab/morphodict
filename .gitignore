@@ -4,9 +4,6 @@ __pycache__/
 *.prof
 build/
 dist/
-eggs/
-*.egg-info/
-*.egg
 pip-log.txt
 pip-delete-this-directory.txt
 

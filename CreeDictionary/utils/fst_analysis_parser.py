@@ -1,12 +1,10 @@
 import csv
 import re
 from enum import IntEnum, auto
-from pathlib import Path
 from typing import Dict, Iterable, List, Optional, TextIO, Tuple, TypeVar, Union
 
 from utils.enums import WordClass
 from utils.types import FSTLemma, FSTTag, Label
-
 from .shared_res_dir import shared_res_dir
 
 Default = TypeVar("Default")
@@ -187,6 +185,27 @@ def read_labels() -> Relabelling:
 
 LABELS: Relabelling = read_labels()
 
+partition_pattern = re.compile(
+    r"""
+    ^
+    (
+       (?: # prefix tag, e.g., ‘PV/e+’
+         # The Multichar_Symbols ending with + in crk-dict.lexc start with one
+         # of the following:
+         (?:PV|IC|1|2|3|Rdpl)
+         [^+]* # more
+         \+ # literal plus
+        )*
+    )
+    ([^+]+) # lemma
+    (
+        (?:\+[^+]+)* # tag
+    )
+    $
+    """,
+    re.VERBOSE,
+)
+
 
 def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTTag]]:
     """
@@ -197,28 +216,20 @@ def partition_analysis(analysis: str) -> Tuple[List[FSTTag], FSTLemma, List[FSTT
     (['PV/e'], 'fakeword', ['N', 'I'])
     >>> partition_analysis('fakeword+N+I')
     ([], 'fakeword', ['N', 'I'])
+    >>> partition_analysis('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
+    (['PV/e', 'PV/ki'], 'atamihêw', ['V', 'TA', 'Cnj', '1Pl', '2SgO'])
     """
-    res = re.search(analysis_pattern, analysis)
-    if res is not None:
 
-        group = res.group("category")
-        if group:
-            end = res.span("category")[0]
-            cursor = end - 1
+    match = partition_pattern.match(analysis)
+    if not match:
+        raise ValueError(f"analysis not parsable: {analysis}")
 
-            while cursor > 0 and analysis[cursor] != "+":
-                cursor -= 1
-            if analysis[cursor] == "+":
-                cursor += 1
-
-            return (
-                [FSTTag(t) for t in analysis[: cursor - 1].split("+")]
-                if cursor > 1
-                else [],
-                FSTLemma(analysis[cursor:end]),
-                [FSTTag(t) for t in analysis[end + 1 :].split("+")],
-            )
-    raise ValueError(f"analysis not parsable: {analysis}")
+    pre, lemma, post = match.groups()
+    return (
+        [FSTTag(t) for t in pre.split("+") if t],
+        FSTLemma(lemma),
+        [FSTTag(t) for t in post.split("+") if t],
+    )
 
 
 def extract_lemma(analysis: str) -> Optional[FSTLemma]:

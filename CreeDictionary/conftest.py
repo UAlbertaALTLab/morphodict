@@ -5,7 +5,7 @@ from django.conf import settings
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
 from django.core.management import call_command
 
-from API.apps import initialize_preverb_search
+from API.apps import initialize_preverb_search, APIConfig
 from API.models import Wordform
 from utils import shared_res_dir
 
@@ -62,4 +62,5 @@ def django_db_setup(request, django_db_blocker):
                     "import",
                     shared_res_dir / "test_dictionaries" / "crkeng.xml",
                 )
-                initialize_preverb_search()
+            # Tests that rely on affix search will fail without this
+            APIConfig.active_instance().perform_time_consuming_initializations()

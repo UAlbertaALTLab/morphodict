@@ -355,6 +355,12 @@ class Definition(models.Model):
         Wordform, on_delete=models.CASCADE, related_name="definitions"
     )
 
+    # If this definition is auto-generated based on a different definition,
+    # point at the source definition.
+    auto_translation_source = models.ForeignKey(
+        "self", on_delete=models.CASCADE, null=True
+    )
+
     # Why this property exists:
     # because DictionarySource should be its own model, but most code only
     # cares about the source IDs. So this removes the coupling to how sources
