@@ -9,6 +9,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
     ("analysis", "definition", "english_phrase"),
     (
         ("masinahikan+N+Dim+Px1Sg+Loc", "book", "in my little book"),
+        ("masinahikan+N+I+Px12Pl+Pl", "book", "your and our books"),
         ("atâhk+N+A+Der/Dim+N+A+Obv", "star", "little star over there"),
         (
             "nêhiyawasinahikan+N+I+Der/Dim+N+I+Px1Sg+Loc",
