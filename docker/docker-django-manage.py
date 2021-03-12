@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # Fun fact! This started as a shell script but the .py extension confused black.
 import os
@@ -19,7 +19,7 @@ os.execv(
         "-f",
         dir.absolute() / "docker-compose.yml",
         "exec",
-        "app",
+        "itwewina",
         "/app/.venv/bin/python",
         "./manage.py",
     ]
