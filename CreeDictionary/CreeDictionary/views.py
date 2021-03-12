@@ -58,7 +58,9 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
             # TODO: remove this parameter in favour of...
             lemma=lemma,
             # ...this parameter
-            wordform=lemma.serialize(),
+            wordform=lemma.serialize(
+                include_auto_definitions=should_include_auto_definitions(request)
+            ),
             paradigm_size=paradigm_size,
             paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
             if lemma
@@ -82,8 +84,13 @@ def index(request):  # pragma: no cover
 
     if user_query:
         search_results = [
-            search_result.serialize()
-            for search_result in Wordform.search_with_affixes(user_query)
+            search_result.serialize(
+                include_auto_definitions=should_include_auto_definitions(request)
+            )
+            for search_result in Wordform.search_with_affixes(
+                user_query,
+                include_auto_definitions=should_include_auto_definitions(request),
+            )
         ]
         did_search = True
     else:
@@ -110,13 +117,20 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
-    results = Wordform.search_with_affixes(query_string)
+    results = Wordform.search_with_affixes(
+        query_string, include_auto_definitions=should_include_auto_definitions(request)
+    )
     return render(
         request,
         "CreeDictionary/search-results.html",
         {
             "query_string": query_string,
-            "search_results": [r.serialize() for r in results],
+            "search_results": [
+                r.serialize(
+                    include_auto_definitions=should_include_auto_definitions(request)
+                )
+                for r in results
+            ],
         },
     )
 
@@ -233,3 +247,11 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
+
+
+## Helper functions
+
+
+def should_include_auto_definitions(request):
+    # For now, show auto-translations if and only if the user is logged in
+    return request.user.is_authenticated

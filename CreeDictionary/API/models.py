@@ -16,6 +16,7 @@ from sortedcontainers import SortedSet
 from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
+from .helpers import serialize_definitions
 
 from .schema import SerializedDefinition, SerializedWordform
 
@@ -28,7 +29,6 @@ MAX_SOURCE_ID_CACHE_ENTRIES = 4096
 #  - search.py imports model.py 💥
 if typing.TYPE_CHECKING:
     from .search import SearchResult
-
 
 logger = logging.getLogger(__name__)
 
@@ -58,16 +58,16 @@ class Wordform(models.Model):
 
         return lemma_url
 
-    def serialize(self) -> SerializedWordform:
+    def serialize(self, include_auto_definitions) -> SerializedWordform:
         """
         Intended to be passed in a JSON API or into templates.
 
         :return: json parsable result
         """
         result = model_to_dict(self)
-        result["definitions"] = [
-            definition.serialize() for definition in self.definitions.all()
-        ]
+        result["definitions"] = serialize_definitions(
+            self.definitions.all(), include_auto_definitions=include_auto_definitions
+        )
         result["lemma_url"] = self.get_absolute_url()
 
         # Displayed in the word class/inflection help:
@@ -250,7 +250,9 @@ class Wordform(models.Model):
         super(Wordform, self).save(*args, **kwargs)
 
     @staticmethod
-    def search_with_affixes(query: str) -> SortedSet["SearchResult"]:
+    def search_with_affixes(
+        query: str, include_auto_definitions=False
+    ) -> SortedSet["SearchResult"]:
         """
         Search for wordforms matching:
          - the wordform text
@@ -261,10 +263,12 @@ class Wordform(models.Model):
         from .search import WordformSearchWithAffixes
 
         search = WordformSearchWithAffixes(query)
-        return search.perform()
+        return search.perform(include_auto_definitions=include_auto_definitions)
 
     @staticmethod
-    def simple_search(query: str) -> SortedSet["SearchResult"]:
+    def simple_search(
+        query: str, include_auto_definitions=False
+    ) -> SortedSet["SearchResult"]:
         """
         Search, trying to match full wordforms or keywords within definitions.
 
@@ -273,7 +277,7 @@ class Wordform(models.Model):
         from .search import WordformSearchWithExactMatch
 
         search = WordformSearchWithExactMatch(query)
-        return search.perform()
+        return search.perform(include_auto_definitions=include_auto_definitions)
 
 
 class DictionarySource(models.Model):
