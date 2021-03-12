@@ -1,5 +1,3 @@
-import os
-import sys
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -32,21 +30,12 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        from DatabaseManager.test_db_builder import build_test_xml
         from DatabaseManager.xml_importer import import_xmls
-        from utils import shared_res_dir
 
         if options["command_name"] == "import":
             if options["wipe_first"]:
                 call_command("wipedefinitions", yes_really=True)
 
             import_xmls(Path(options["xml_path"]))
-
-        elif options["command_name"] == "build-test-db":
-            assert (
-                os.environ.get("USE_TEST_DB", "false").lower() == "true"
-            ), "Environment variable USE_TEST_DB has to be True to create test_db.sqlite3"
-            build_test_xml()
-            import_xmls(shared_res_dir / "test_dictionaries")
         else:
             raise NotImplementedError
