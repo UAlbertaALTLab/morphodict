@@ -15,7 +15,7 @@ skip = [
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--doctest-modules"
+addopts = "--doctest-modules --ignore=CreeDictionary/gunicorn.conf.py"
 
 testpaths = [
     "CreeDictionary"

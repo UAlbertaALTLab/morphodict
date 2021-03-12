@@ -22,7 +22,7 @@
       <h1 id="head" class="definition-title">
         <dfn class="definition__matched-head">
           <data id="data:head" value="{{ lemma.text }}">
-            {% orth lemma.text %}
+            {% orth wordform.text %}
           </data>
         </dfn>
       </h1>
@@ -32,6 +32,7 @@
 
     <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown" data-cy="multiple-recordings">
       <p class="multiple-recordings__help-text explainer">Choose a name from the dropdown to hear the word said by the speaker.</p>
+
       <select name="recordings-dropdown" data-cy="recordings-dropdown" class="multiple-recordings__dropdown">
         <template id="template:speakerList">
           <option><slot name="speakerName"></slot>, <slot name="speakerDialect"></slot></option>
@@ -49,7 +50,7 @@
 
     <section class="definition__meanings">
       <ol class="meanings">
-        {% for def in lemma.definitions.all %}
+        {% for def in wordform.definitions %}
           <li class="meanings__meaning">{{ def.text }}
             {% for source in def.source_ids %}
               <cite class="cite-dict">{{ source }}</cite>

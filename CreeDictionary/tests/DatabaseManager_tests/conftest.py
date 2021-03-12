@@ -106,5 +106,5 @@ def migrate_and_import(dictionary_dir):
     assuming a fresh in memory database
     Do the initial migration and import the xml
     """
-    call_command("migrate", "API", "0001")
+    call_command("migrate", "API")
     import_xmls(dictionary_dir)

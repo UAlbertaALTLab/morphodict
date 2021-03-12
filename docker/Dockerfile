@@ -35,7 +35,11 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
  && apt-get update \
- && apt-get install -y --no-install-recommends build-essential \
+ && apt-get install -y --no-install-recommends \
+    build-essential \
+    libfoma0 \
+    git `# for installing python packages direct from github` \
+ && rm -rf /var/cache/apt \
  && pip install pipenv \
  && mkdir /app/ \
  && chown itwewina /app
@@ -69,6 +73,11 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 ARG UID_GID=60003
 ARG TINI_VERSION=v0.19.0
 
+RUN set -ex \
+ && apt-get update \
+ && apt-get install -y --no-install-recommends libfoma0 \
+ && rm -rf /var/cache/apt
+
 # Install tini
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
 RUN chmod +x /bin/tini
@@ -79,12 +88,18 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 
 # Copy over the built application from the builder:
 COPY --from=builder --chown=itwewina /app /app
+
+USER itwewina
 WORKDIR /app/CreeDictionary
 
-# Gunicorn will listen on this port:
+# Gunicorn will bind to this port:
 EXPOSE 8000
+
+# Activate the Python virtual environment
+ENV VIRTUAL_ENV="/app/.venv"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["/app/.venv/bin/gunicorn", "--access-logfile", "-", "--bind", "0.0.0.0:8000", "CreeDictionary.wsgi:application"]
+CMD ["gunicorn", "CreeDictionary.wsgi:application"]

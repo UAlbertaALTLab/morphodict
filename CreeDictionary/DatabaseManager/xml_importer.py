@@ -115,15 +115,6 @@ def find_latest_xml_file(dir_name: Path) -> Path:
     )
 
 
-def import_sources():
-    """
-    Import dictionary sources to the dictionary.
-    """
-
-    for src in settings.MORPHODICT_SOURCES:
-        DictionarySource(**src).save()
-
-
 class ProcessedEntry(NamedTuple):
     stem: Optional[str]
     ic: str

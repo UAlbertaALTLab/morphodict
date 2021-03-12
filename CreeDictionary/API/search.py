@@ -35,7 +35,13 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 from CreeDictionary import hfstol
 
 from .apps import APIConfig
-from .models import Definition, EnglishKeyword, Wordform
+from .helpers import serialize_definitions
+from .models import (
+    Definition,
+    EnglishKeyword,
+    Wordform,
+    get_all_source_ids_for_definition,
+)
 from .schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
@@ -151,7 +157,7 @@ class SearchResult:
 
     definitions: Tuple[Definition, ...]
 
-    def serialize(self) -> SerializedSearchResult:
+    def serialize(self, include_auto_definitions) -> SerializedSearchResult:
         """
         serialize the instance, can be used before passing into a template / in an API view, etc.
         """
@@ -159,19 +165,23 @@ class SearchResult:
         # it avoids unnecessary database access and makes APIs easier to create
         result = attr.asdict(self)
         # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
-        result["lemma_wordform"] = self.lemma_wordform.serialize()
+        result["lemma_wordform"] = self.lemma_wordform.serialize(
+            include_auto_definitions=include_auto_definitions
+        )
 
         result["preverbs"] = []
         for pv in self.preverbs:
             if isinstance(pv, str):
                 result["preverbs"].append(pv)
             else:  # Wordform
-                result["preverbs"].append(pv.serialize())
+                result["preverbs"].append(
+                    pv.serialize(include_auto_definitions=include_auto_definitions)
+                )
 
         result["matched_by"] = self.matched_by.name
-        result["definitions"] = [
-            definition.serialize() for definition in self.definitions
-        ]
+        result["definitions"] = serialize_definitions(
+            self.definitions, include_auto_definitions
+        )
         result["relevant_tags"] = tuple(t.serialize() for t in self.relevant_tags)
 
         return cast(SerializedSearchResult, result)
@@ -247,6 +257,19 @@ class CreeAndEnglish(NamedTuple):
     english_results: Set[EnglishResult]
 
 
+def filter_auto_definitions(
+    definitions: tuple[Definition, ...], include_auto_definitions: bool
+) -> tuple[Definition, ...]:
+    if include_auto_definitions:
+        return definitions
+
+    ret = []
+    for d in definitions:
+        if "auto" not in get_all_source_ids_for_definition(d.id):
+            ret.append(d)
+    return tuple(ret)
+
+
 class _BaseWordformSearch:
     """
     Handles searching for one particular query.
@@ -255,7 +278,7 @@ class _BaseWordformSearch:
     def __init__(self, query: str):
         self.cleaned_query = to_internal_form(clean_query_text(query))
 
-    def perform(self) -> SortedSet[SearchResult]:
+    def perform(self, include_auto_definitions) -> SortedSet[SearchResult]:
         """
         Do the search
         :return: sorted search results
@@ -263,8 +286,12 @@ class _BaseWordformSearch:
 
         res = self.fetch_bilingual_results()
         results = SortedSet(key=sort_by_user_query(self.cleaned_query))
-        results |= self.prepare_cree_results(res.cree_results)
-        results |= self.prepare_english_results(res.english_results)
+        results |= self.prepare_cree_results(
+            res.cree_results, include_auto_definitions=include_auto_definitions
+        )
+        results |= self.prepare_english_results(
+            res.english_results, include_auto_definitions=include_auto_definitions
+        )
         return results
 
     def fetch_bilingual_results(self) -> CreeAndEnglish:
@@ -274,7 +301,7 @@ class _BaseWordformSearch:
         raise NotImplementedError
 
     def prepare_cree_results(
-        self, cree_results: Set[CreeResult]
+        self, cree_results: Set[CreeResult], include_auto_definitions: bool
     ) -> Iterable[SearchResult]:
         # Create the search results
         for cree_result in cree_results:
@@ -290,6 +317,8 @@ class _BaseWordformSearch:
                 linguistic_breakdown_head,
                 linguistic_breakdown_tail,
             ) = safe_partition_analysis(cree_result.analysis)
+
+            definitions = filter_auto_definitions(definitions, include_auto_definitions)
 
             # todo: tags
             yield SearchResult(
@@ -311,7 +340,7 @@ class _BaseWordformSearch:
             )
 
     def prepare_english_results(
-        self, english_results: Set[EnglishResult]
+        self, english_results: Set[EnglishResult], include_auto_definitions: bool
     ) -> Iterable[SearchResult]:
         for result in english_results:
             (

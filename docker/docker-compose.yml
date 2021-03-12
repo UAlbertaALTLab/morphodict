@@ -1,12 +1,40 @@
+# Base docker-compose for itwewina.
+#
+# NOTE!!!!!!!!!
+# This docker-compose file is useless standalone. You **MUST** combine it with
+# either ./production.yml or ./staging.yml.
+#
+# Why? Because docker-compose merges the `ports` setting in a sad way :(
+#
+# To use in experiment before running in production, use the following:
+#
+#     docker-compose -f docker-compose.yml -f staging.yml
+#
+# To use in production, use the following:
+#
+#     docker-compose -f docker-compose.yml -f production.yml
+#
+# See: https://docs.docker.com/compose/extends/#multiple-compose-files
+
 version: "3"
+
 services:
-  app:
+  itwewina:
+    restart: always
     build:
       context: ..
       dockerfile: docker/Dockerfile
-    volumes:
-      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
-      - "./.env:/app/.env"
     ports:
-      # gunaha was using 8000, so let's use 8001, yay!
+      # Why port 8001?
+      # See: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
       - 8001:8000
+      # Note: If you want to run the Cypress tests on the staging container, use the
+      # following:
+      #
+      # CYPRESS_BASE_URL=https://localhost:8001 cypress rund
+      #
+      # See: https://docs.cypress.io/guides/guides/environment-variables.html#We-can-move-this-into-a-Cypress-environment-variable
+    volumes:
+      - "./.env:/app/.env"
+      # TODO: should the production database be stored in /data/application-data/itwewina?
+      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
