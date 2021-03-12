@@ -87,7 +87,10 @@ def index(request):  # pragma: no cover
             search_result.serialize(
                 include_auto_definitions=should_include_auto_definitions(request)
             )
-            for search_result in Wordform.search_with_affixes(user_query)
+            for search_result in Wordform.search_with_affixes(
+                user_query,
+                include_auto_definitions=should_include_auto_definitions(request),
+            )
         ]
         did_search = True
     else:
