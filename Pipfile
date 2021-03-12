@@ -33,12 +33,12 @@ sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.
 secure = "*"
 snowballstemmer = "*"
 dawg = "~=0.8"
-gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "~=4.40"
 whitenoise = "*"
 foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
+uwsgi = "*"
 
 [scripts]
 # look stuff up
@@ -65,7 +65,6 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # Utitlities
 collect-static = "python CreeDictionary/manage.py collectstatic --no-input"
-gunicorn-locally = "gunicorn CreeDictionary.wsgi"
 
 [requires]
 python_version = "3.9"

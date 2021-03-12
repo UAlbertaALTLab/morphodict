@@ -68,3 +68,4 @@ CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
 CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map
+docker-compose.override.yml
