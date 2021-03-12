@@ -7,7 +7,8 @@ from django.urls import reverse
 
 class WordformSitemap(Sitemap):
     """
-    Make heads available on world.
+    Make heads available in the sitemap.
+    This way, web crawlers can index ALL THE WORDS!
     """
 
     def items(self):

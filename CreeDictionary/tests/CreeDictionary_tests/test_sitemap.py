@@ -22,8 +22,6 @@ def test_can_access_sitemap(client, sitemap_url):
 
 @pytest.mark.django_db
 def test_sitemap_has_valid_locations(client, sitemap_url):
-    URLS_TO_SAMPLE = 10
-
     r = client.get(sitemap_url)
     root = ET.fromstring(r.content)
     # Expecting the following:
