@@ -19,7 +19,7 @@ os.execv(
         "-f",
         dir.absolute() / "docker-compose.yml",
         "exec",
-        "app",
+        "itwewina",
         "/app/.venv/bin/python",
         "./manage.py",
     ]
