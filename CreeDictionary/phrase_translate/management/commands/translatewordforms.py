@@ -99,7 +99,8 @@ class Command(BaseCommand):
 
         wordform_count = Wordform.objects.count()
         for w in tqdm(
-            Wordform.objects.select_related("lemma").iterator(), total=wordform_count
+            Wordform.objects.filter(is_lemma=False).select_related("lemma").iterator(),
+            total=wordform_count,
         ):
             for definition in definitions.get(w.lemma_id, []):
                 if not w.analysis:
