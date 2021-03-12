@@ -28,12 +28,12 @@ def test_sitemap_has_valid_locations(client, sitemap_url):
     # <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     #   <!-- primary site urls -->
     #   <url>
-    #     <loc>//itwewina.altlab.app/</loc>
+    #     <loc>http://itwewina.altlab.app/</loc>
     #   </url>
     #
     #   <!-- head word forms -->
     #   <url>
-    #     <loc>//itwewina.altlab.app/</loc>
+    #     <loc>http://itwewina.altlab.app/word/atim/</loc>
     #   </url>
     # </urlset>
     ns = {"sitemap": "http://www.sitemaps.org/schemas/sitemap/0.9"}
