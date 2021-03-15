@@ -1,11 +1,12 @@
+import hashlib
 import logging
 import os
 import shutil
 import subprocess
-from argparse import ArgumentParser, RawDescriptionHelpFormatter
+from argparse import ArgumentParser, RawDescriptionHelpFormatter, BooleanOptionalAction
 from pathlib import Path
 from subprocess import check_call
-from textwrap import dedent
+from time import strftime
 from typing import Optional
 
 from django.core.management import BaseCommand
@@ -60,7 +61,7 @@ class BranchSpecification:
 
         return check_call(*args, **kwargs2)
 
-    def setup_pipenv(self):
+    def setup_package_managers(self):
         self.check_call_in_dir(["pipenv", "install", "--dev"])
         # If the Pipfile has changed since the last run, `install` does
         # *not* remove any now-extraneous packages
@@ -70,8 +71,14 @@ class BranchSpecification:
         db_file = self.checkout_dir / "CreeDictionary" / "db.sqlite3"
 
         if db_file.exists():
-            logger.info(f"{db_file} exists, not building")
-            return
+            # The file exists, but might it be useful?
+            stat = db_file.stat()
+            if stat.st_size < 100_000_000:
+                logger.info(f"{db_file} exists but is too small to be valid, removing")
+                db_file.unlink()
+            else:
+                logger.info(f"{db_file} exists, not building")
+                return
 
         try:
             self.check_call_in_dir(
@@ -106,7 +113,11 @@ class BranchSpecification:
         )
 
 
-class LegacyImportBranchSpecification(BranchSpecification):
+class DatabaseManagerUsingImportBranchSpecification(BranchSpecification):
+    def __init__(self, branch_name, database_manager_module_name):
+        super().__init__(branch_name=branch_name)
+        self.database_manager_module_name = database_manager_module_name
+
     def _do_build_db(self, crkeng_xml):
         logger.info("In child method")
         self.check_call_in_dir(
@@ -115,7 +126,7 @@ class LegacyImportBranchSpecification(BranchSpecification):
                 "run",
                 "python",
                 "-m",
-                "DatabaseManager.__main__",
+                self.database_manager_module_name,
                 "import",
                 crkeng_xml.parent,
             ]
@@ -123,8 +134,16 @@ class LegacyImportBranchSpecification(BranchSpecification):
 
 
 BRANCHES = [
-    LegacyImportBranchSpecification(branch_name="v2020"),
-    LegacyImportBranchSpecification(branch_name="v2021-01-25-post-dupe"),
+    # Note: marisa-trie segfaults on Ubuntu 20.10 due to this GCC bug:
+    # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=99375
+    # My workaround was to build python 3.6.13 with CC=clang
+    DatabaseManagerUsingImportBranchSpecification(
+        branch_name="v2020", database_manager_module_name="DatabaseManager.__main__"
+    ),
+    DatabaseManagerUsingImportBranchSpecification(
+        branch_name="v2021-01-25-post-dupe",
+        database_manager_module_name="DatabaseManager.main",
+    ),
     BranchSpecification(branch_name="main"),
 ]
 
@@ -147,6 +166,12 @@ def check_output_str(param, cwd):
     while output.endswith("\n"):
         output = output[:-1]
     return output
+
+
+def hash_file(path):
+    hash = hashlib.sha256()
+    hash.update(path.read_bytes())
+    return hash.hexdigest()
 
 
 class Command(BaseCommand):
@@ -178,6 +203,12 @@ class Command(BaseCommand):
             help="Path to checkout of git repo containing full crkeng.xml; clone it from altlab.dev:/data/altlab.git",
         )
         parser.add_argument(
+            "--re-run",
+            action=BooleanOptionalAction,
+            default=False,
+            help="re-run even if sample file, with sample.csv hash in name, already exists",
+        )
+        parser.add_argument(
             "--branch",
             action="append",
             default=[],
@@ -187,6 +218,12 @@ class Command(BaseCommand):
     def handle(self, *args, **options) -> None:
         if not options["branch"]:
             options["branch"] = DEFAULT_BRANCHES
+
+        sample_csv_file = Path(options["csv_file"])
+
+        sample_csv_hash = hash_file(sample_csv_file)[:12]
+        date = strftime("%Y-%m-%d")
+        results_base_name = f"{date}-{sample_csv_hash}"
 
         script_dir = Path(__file__).parent
 
@@ -208,17 +245,40 @@ class Command(BaseCommand):
             branch.reset_hard()
 
             shutil.copy(
-                options["csv_file"],
+                sample_csv_file,
                 branch.checkout_dir
                 / "CreeDictionary"
                 / "search_quality"
                 / "sample.csv",
             )
 
-            branch.setup_pipenv()
+            branch.setup_package_managers()
             branch.build_dictionary_if_needed(
                 crkeng_xml=Path(options["altlab_repo_checkout_dir"])
                 / "crk"
                 / "dicts"
                 / "crkeng.xml"
+            )
+
+            output_file = (
+                script_dir
+                / ".."
+                / ".."
+                / "sample_results"
+                / f"{results_base_name}-{branch.name}.json.gz"
+            ).absolute()
+
+            if output_file.exists() and not options["re_run"]:
+                continue
+
+            branch.check_call_in_dir(
+                [
+                    "pipenv",
+                    "run",
+                    "python",
+                    "CreeDictionary/manage.py",
+                    "runsamplequeries",
+                    "--query-results-file",
+                    output_file,
+                ]
             )
