@@ -2,6 +2,7 @@ from argparse import ArgumentParser
 
 from django.core.management import BaseCommand
 
+from API.apps import APIConfig
 from ... import DEFAULT_SAMPLE_FILE, RESULTS_DIR
 from ...run_sample import gen_run_sample
 
@@ -21,6 +22,8 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
+        APIConfig.active_instance().perform_time_consuming_initializations()
+
         for status in gen_run_sample(
             options["csv_file"], out_file=options["query_results_file"]
         ):
