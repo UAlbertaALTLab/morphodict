@@ -168,9 +168,21 @@ def check_output_str(param, cwd):
     return output
 
 
-def hash_file(path):
-    hash = hashlib.sha256()
-    hash.update(path.read_bytes())
+def git_blob_style_hash(data: bytes):
+    """Return the hash of data as a hex string
+
+    This is the hash that git uses for hashing blobs. You can pass the hash
+    returned by this function to git to find a copy of the file in the history
+    of a repository, for example
+
+        git whatchanged --all --find-object=acab3218a50a
+
+    >>> git_blob_style_hash(b'hi\\n')
+    '45b983be36b73c0788dc9cbcb76cbb80fc7bb057'
+    """
+    hash = hashlib.sha1()
+    hash.update(b"blob %d\0" % len(data))
+    hash.update(data)
     return hash.hexdigest()
 
 
@@ -221,7 +233,7 @@ class Command(BaseCommand):
 
         sample_csv_file = Path(options["csv_file"])
 
-        sample_csv_hash = hash_file(sample_csv_file)[:12]
+        sample_csv_hash = git_blob_style_hash(sample_csv_file.read_bytes())[:12]
         date = strftime("%Y-%m-%d")
         results_base_name = f"{date}-{sample_csv_hash}"
 
