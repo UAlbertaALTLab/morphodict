@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Combine samples in survey_results directory into one
 
@@ -13,12 +15,18 @@ The algorithm is:
       2. Sort by highest points first
 """
 import csv
+from argparse import ArgumentParser, BooleanOptionalAction
 from collections import defaultdict
+from io import StringIO
 from pathlib import Path
 
 
 def iter_results(input_file):
-    """Return a sequence of dicts, regardless of whether file has a header or not"""
+    """Yield dicts for rows from a CSV file, whether it has a header or not
+
+    The reason we don’t just add a header to every .csv file and use DictReader
+    is that these .csv files may have arbitrarily many columns.
+    """
     reader = csv.reader(input_file)
 
     have_header = None
@@ -28,7 +36,7 @@ def iter_results(input_file):
     seen_queries = set()
 
     first_row = True
-    for row in reader:
+    for row_index, row in enumerate(reader):
         print("got row", row)
         if first_row:
             first_row = False
@@ -67,16 +75,70 @@ def iter_results(input_file):
         yield {"Query": query_term, "Values": values}
 
 
+def combine_results(result_lists):
+    points = defaultdict(int)
+    for results in result_lists:
+        for i, result in enumerate(results):
+            points[result] += 1 / (i + 1)
+
+    def by_points_then_length_then_alphabetical(result):
+        """
+        First, sort by most points. Break ties using the heuristic, “shorter
+        words are easier and most likely what people want to see first,” then
+        fall back to alphabetical.
+        """
+        return (-points[result], len(result), result)
+
+    print("points are", points)
+
+    return sorted(points.keys(), key=by_points_then_length_then_alphabetical)
+
+
 def main():
+    script_dir = Path(__file__).parent
+
+    parser = ArgumentParser(
+        description="""
+        Use ranked voting to combine files in survey_sample/*.csv into
+        sample.csv.
+        """
+    )
+    parser.add_argument("--write", action=BooleanOptionalAction, default="yes")
+    parser.add_argument("--output-file", default=script_dir / "sample.csv")
+    args = parser.parse_args()
+
     survey_files = (Path(__file__).parent / "survey_results").glob("*.csv")
 
-    query_values = defaultdict(lambda term: defaultdict(0))
+    queries = defaultdict(list)
 
     for filename in survey_files:
         with open(filename, "rt", newline="") as f:
             for row in iter_results(f):
-                query = row["Query"]
                 values = row["Values"]
+                query = row["Query"]
+                queries[query].append(values)
+
+    output_text = StringIO(newline="")
+
+    class LfDialect(csv.excel):
+        "Avoid git warning, “CRLF will be replaced by LF”"
+        lineterminator = "\n"
+
+    csv_out = csv.writer(output_text, dialect=LfDialect)
+    csv_out.writerow(["Query", "Nêhiyawêwin 1", "Nêhiyawêwin 2", "Nêhiyawêwin 3"])
+
+    for query, results in queries.items():
+        print(f"{query=}")
+        print(f"{results=}")
+        combined = combine_results(results)
+        print(combined)
+        csv_out.writerow([query] + combined[:3])
+
+    if args.write:
+        Path(args.output_file).write_text(output_text.getvalue())
+        print(f"Wrote to {args.output_file}")
+    else:
+        print(output_text.getvalue())
 
 
 if __name__ == "__main__":
