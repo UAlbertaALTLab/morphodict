@@ -5,6 +5,7 @@ from pathlib import Path
 
 from django.apps import AppConfig, apps
 from django.db import OperationalError
+from django.db.models import Q
 
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -61,8 +62,6 @@ class APIConfig(AppConfig):
 
 
 def initialize_preverb_search():
-    from django.db.models import Q
-
     from .models import Wordform
 
     # Hashing to speed up exhaustive preverb matching
@@ -88,7 +87,7 @@ def initialize_preverb_search():
             Q(inflectional_category="IPV") | Q(pos="IPV")
         ).prefetch_related("definitions__citations")
         for preverb_wordform in queryset:
-            if not has_non_md_non_auto_definitions(preverb_wordform):
+            if has_non_md_non_auto_definitions(preverb_wordform):
                 Wordform.PREVERB_ASCII_LOOKUP[
                     remove_cree_diacritics(preverb_wordform.text.strip("-"))
                 ].add(preverb_wordform)
