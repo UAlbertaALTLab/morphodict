@@ -74,11 +74,21 @@ def initialize_preverb_search():
     # For "sa", the source gives pos=IPV ic="" (unspecified)
     # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
     # many preverbs are normalized so that both inflectional_category and pos are set to IPV.
+
+    def has_non_md_non_auto_definitions(wordform):
+        "This may look slow, but isn’t if prefetch_related has been used"
+        for d in wordform.definitions.all():
+            for c in d.citations.all():
+                if c.abbrv not in ["auto", "MD"]:
+                    return True
+        return False
+
     try:
-        for preverb_wordform in Wordform.objects.filter(
+        queryset = Wordform.objects.filter(
             Q(inflectional_category="IPV") | Q(pos="IPV")
-        ):
-            if not preverb_wordform.md_only:
+        ).prefetch_related("definitions__citations")
+        for preverb_wordform in queryset:
+            if not has_non_md_non_auto_definitions(preverb_wordform):
                 Wordform.PREVERB_ASCII_LOOKUP[
                     remove_cree_diacritics(preverb_wordform.text.strip("-"))
                 ].add(preverb_wordform)
