@@ -1,4 +1,7 @@
-const { join } = require('path')
+const { join: joinPath } = require('path')
+
+const ADMIN_LOGIN_URL = '/admin/login/'
+const ADMIN_URL = '/admin/'
 
 Cypress.Commands.add('login', () => {
   cy.visit('/admin/login/')
@@ -7,12 +10,12 @@ Cypress.Commands.add('login', () => {
     .should('have.attr', 'value')
     .as('csrfToken')
 
-  cy.readFile(join(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
+  cy.readFile(joinPath(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
     .then(({username, password}) => {
       cy.get('@csrfToken').then(function (token) {
         cy.request({
           method: 'POST',
-          url: '/admin/login/',
+          url: ADMIN_LOGIN_URL,
           form: true,
           body: {
             username,
@@ -36,7 +39,7 @@ context('Admin interface', () => {
   it('should redirect anonymous users to the login page', function() {
     cy.visit('/admin')
     cy.location().then(({pathname}) =>
-      expect(pathname).to.contain('/admin/login/'))
+      expect(pathname).to.contain(ADMIN_LOGIN_URL))
   })
 
   it('should allow login', function() {
@@ -44,12 +47,13 @@ context('Admin interface', () => {
     // USE_TEST_DB=True, because the `cypress` user only gets created in the
     // test database.
     cy.visit('/admin')
-    cy.readFile(join(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json')).then(cypressUser => {
-      cy.get('#id_username').type(cypressUser.username)
-      cy.get('#id_password').type(cypressUser.password)
-      cy.get('.submit-row > input').click()
-    })
-    cy.location('pathname').should('eq', '/admin/')
+    cy.readFile(joinPath(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
+      .then(cypressUser => {
+        cy.get('#id_username').type(cypressUser.username)
+        cy.get('#id_password').type(cypressUser.password)
+        cy.get('.submit-row > input').click()
+      })
+    cy.location('pathname').should('eq', ADMIN_URL)
   })
 
   it('should show auto-translations to logged-in users', function() {
