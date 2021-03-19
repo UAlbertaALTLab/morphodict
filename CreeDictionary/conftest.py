@@ -5,9 +5,7 @@ from django.conf import settings
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
 from django.core.management import call_command
 
-from API.apps import initialize_preverb_search, APIConfig
-from API.models import Wordform
-from utils import shared_res_dir
+from API.apps import APIConfig
 
 
 @pytest.fixture(scope="session")
@@ -54,13 +52,7 @@ def django_db_setup(request, django_db_blocker):
 
         with django_db_blocker.unblock():
             print("\nSyncing test database")
-            call_command("migrate", verbosity=0)
-            if Wordform.objects.count() == 0:
-                print("No wordforms found, generating")
-                call_command(
-                    "xmlimport",
-                    "import",
-                    shared_res_dir / "test_dictionaries" / "crkeng.xml",
-                )
+            call_command("ensuretestdb", verbosity=0)
+
             # Tests that rely on affix search will fail without this
             APIConfig.active_instance().perform_time_consuming_initializations()

@@ -284,7 +284,10 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "console": {
-            "level": log_level,
+            # The handler should print anything that gets to it, so that
+            # debugging can be enabled for specific loggers without also turning
+            # on debug loggers for all of django/python
+            "level": "NOTSET",
             "class": "logging.StreamHandler",
         },
     },
