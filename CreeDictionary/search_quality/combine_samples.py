@@ -58,6 +58,9 @@ def iter_results(input_file):
                 raise Exception(f"More entries in row {row} than header values")
 
         query_term = row[0].strip()
+        # max_col may be None here, but that’s ok, because `row[1:None]` is
+        # the Python way of saying `row[1:]` when the blank in the middle
+        # of `:]` is actually a variable in `row[1:max_col]` below.
         max_col = column_count
         if have_notes:
             if row[column_count - 2].strip():
