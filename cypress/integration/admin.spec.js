@@ -1,12 +1,48 @@
-const { join } = require('path');
+const { join } = require('path')
+
+Cypress.Commands.add('login', () => {
+  cy.visit('/admin/login/')
+  cy.get('[name=csrfmiddlewaretoken]')
+    .should('exist')
+    .should('have.attr', 'value')
+    .as('csrfToken')
+
+  cy.readFile(join(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
+    .then(({username, password}) => {
+      cy.get('@csrfToken').then(function (token) {
+        cy.request({
+          method: 'POST',
+          url: '/admin/login/',
+          form: true,
+          body: {
+            username,
+            password,
+            next: '/admin'
+          },
+          headers: {
+            'X-CSRFTOKEN': token,
+          },
+          followRedirect: false
+        }).then(response => {
+          expect(response.status).to.eql(302)
+          expect(response.headers).to.have.property('location')
+          expect(response.headers.location).to.not.contain('login')
+        })
+      })
+    })
+})
 
 context('Admin interface', () => {
   it('should redirect anonymous users to the login page', function() {
     cy.visit('/admin')
-    cy.location().should('match', /\/admin\/login\//)
+    cy.location().then(({pathname}) =>
+      expect(pathname).to.contain('/admin/login/'))
   })
 
-  function login() {
+  it('should allow login', function() {
+    // If this test fails, you are probably using `manage.py runserver` without
+    // USE_TEST_DB=True, because the `cypress` user only gets created in the
+    // test database.
     cy.visit('/admin')
     cy.readFile(join(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json')).then(cypressUser => {
       cy.get('#id_username').type(cypressUser.username)
@@ -14,15 +50,10 @@ context('Admin interface', () => {
       cy.get('.submit-row > input').click()
     })
     cy.location('pathname').should('eq', '/admin/')
-
-  }
-
-  it('should allow login', function() {
-    login()
   })
 
   it('should show auto-translations to logged-in users', function() {
-    login()
+    cy.login()
     cy.visitSearch('acâhkosa')
     cy
       .get('[data-cy=search-result]').contains('little star over there')

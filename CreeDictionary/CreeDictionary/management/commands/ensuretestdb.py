@@ -45,9 +45,17 @@ def add_some_auto_translations():
 
 def ensure_cypress_admin_user():
     cypress_user, created = User.objects.get_or_create(username="cypress")
-    if created:
+
+    user_file_valid = False
+    user_info_file = settings.BASE_PATH / ".cypress-user.json"
+    if user_info_file.exists():
+        user_info = json.load(user_info_file.read_text())
+        if cypress_user.check_password(user_info.get("password", "")):
+            user_file_valid = True
+
+    if created or not user_file_valid:
         password = secrets.token_hex(20)
-        (settings.BASE_PATH / ".cypress-user.json").write_text(
+        user_info_file.write_text(
             json.dumps({"username": "cypress", "password": password}, indent=2) + "\n"
         )
         cypress_user.set_password(password)
