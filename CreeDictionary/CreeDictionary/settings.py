@@ -49,7 +49,6 @@ DEBUG = env.bool("DEBUG", default=False)
 
 INSTALLED_APPS = [
     # Django core apps:
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -65,8 +64,11 @@ INSTALLED_APPS = [
     "API.apps.APIConfig",
     "CreeDictionary.apps.CreeDictionaryConfig",
     "search_quality",
+    "phrase_translate",
     "morphodict.apps.MorphodictConfig",
     "DatabaseManager",
+    # This comes last so that other apps can override templates
+    "django.contrib.admin",
 ]
 
 MIDDLEWARE = [
@@ -105,6 +107,11 @@ TEMPLATES = [
 
 ################################### Custom settings ####################################
 
+# Apps that have non-admin users typically have a stylized login page, but
+# we only have admin logins. This setting will redirect to the admin login
+# page if an anonymous user requests a page that requires permissions.
+LOGIN_URL = "/admin/login"
+
 # GitHub Actions and other services set CI to `true`
 CI = env.bool("CI", default=False)
 
@@ -142,6 +149,8 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
 
     INTERNAL_IPS = ["127.0.0.1"]
 
+# Used for verification with https://search.google.com/search-console
+GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 
 ############################## More Core Django settings ###############################
 
@@ -203,35 +212,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ############################### Morphodict configuration ###############################
 
-MORPHODICT_SOURCES = [
-    {
-        "abbrv": "MD",
-        "title": "Maskwacîs Dictionary of Cree Words / Nehiyaw Pîkiskweninisa",
-        "editor": "Maskwaschees Cultural College",
-        "publisher": "Maskwachees Cultural College",
-        "year": 2009,
-        "city": "Maskwacîs, Alberta",
-    },
-    {
-        "abbrv": "CW",
-        "title": "nêhiyawêwin : itwêwina / Cree : Words",
-        "editor": "Arok Wolvengrey",
-        "year": 2001,
-        "publisher": "Canadian Plains Research Center",
-        "city": "Regina, Saskatchewan",
-    },
-    {
-        "abbrv": "AE",
-        "title": "Alberta Elders' Cree Dictionary/"
-        "alperta ohci kehtehayak nehiyaw otwestamâkewasinahikan",
-        "author": "Nancy LeClaire, George Cardinal",
-        "editor": "Earle H. Waugh",
-        "year": 2002,
-        "publisher": "The University of Alberta Press",
-        "city": "Edmonton, Alberta",
-    },
-]
-
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
 
@@ -292,6 +272,8 @@ else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `python manage.py collectstatic`!
     STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+######################################## logging ###############################
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
 

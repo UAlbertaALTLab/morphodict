@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+
+{% block userlinks %}
+  <a href="{% url 'search_quality:index' %}">Search quality</a> /
+{{ block.super }}
+{% endblock %}

@@ -2,13 +2,13 @@
 #
 # ## Commands ##
 #
-#  make dev [default]
-#  		builds and starts the Docker container using docker-compose for
-#  		development.
-#  make run
+#  make production [default]
 #  		builds and starts the Docker container using docker-compose
 #  		creates any necessary files for building the image/running the
 #  		container
+#  make staging
+#  		builds and starts the Docker container using docker-compose for
+#  		testing the production build elsewhere.
 #  make unit-file
 #  		copies the systemd unit file to the right location;
 #  		requires sudo
@@ -18,13 +18,14 @@
 
 SYSTEMD_SERVICE = docker-compose-itwewina
 
-.PHONY: dev
-dev: db.sqlite3 .env
-	docker-compose --file docker-compose.dev.yml up --build --remove-orphans
+.PHONY: production
+production: db.sqlite3 .env
+	docker-compose up --build --remove-orphans
 
-.PHONY: run
-run: db.sqlite3 .env
-	docker-compose up --build
+.PHONY: staging
+staging: .env ../CreeDictionary/test_db.sqlite3
+	ln -f ../CreeDictionary/test_db.sqlite3 ./db.sqlite3
+	docker-compose up --build --remove-orphans
 
 .PHONY: unit-file
 unit-file: $(SYSTEMD_SERVICE).service
@@ -44,7 +45,7 @@ debug-context:
 # Required during **container runtime**
 db.sqlite3:
 	-echo '#' Creating an empty SQLite3 database: $@
-	sqlite3 $@ 'VACUUM'
+	touch $@
 
 # Contains configuration, like the SECRET_KEY
 #
@@ -56,3 +57,7 @@ db.sqlite3:
 .env:
 	-echo '#' Creating an empty .env file
 	touch $@
+
+../CreeDictionary/test_db.sqlite3:
+	@echo '# Creating the test database by running the unit tests'
+	cd .. && pipenv run pytest

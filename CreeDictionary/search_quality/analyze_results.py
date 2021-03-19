@@ -74,7 +74,7 @@ def count_and_annotate_dupes(
     in the JSON.
 
     Returns (# of duplicate results, # of unique duplicates)
-    e.g., ['cat', 'cat', 'dog', 'dog', 'dog', 'horse'] would return (5, 2)
+    e.g., ['cat', 'cat', 'dog', 'dog', 'dog', 'horse'] would return (3, 2)
     """
 
     dupllcate_results = 0

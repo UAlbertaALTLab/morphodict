@@ -36,9 +36,10 @@
   --header-stripe-color:    var(--app-title-color); /* Color of the "stripe" to the left of the title. */
   --link-action-color:      #A568DB; /* A link that implies an immediate action. */
   --link-active-color:      #0E6790; /* Currently active link. */
-  --link-color:             #0F76B5; /* Regular links */
-  --link-hover-color:       #5E8DC3; /* Hover over a link. */
-  --link-visited-color:     #A568DB; /* Visited link */
+  /* Triad based on #95211E */
+  --link-color:             #1685DE; /* Regular links */
+  --link-hover-color:       #95211E; /* Hover over a link. */
+  --link-visited-color:     #941686; /* Visited link */
   --menu-caption-color:     #626262; /* Color of text for menu captions. */
   --menu-selected-color:    var(--box-bg-color);
   --menu-selected-bg-color: #0072C8;

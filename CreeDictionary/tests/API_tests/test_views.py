@@ -1,24 +1,8 @@
 import pytest
-from django.conf import settings
 from django.urls import reverse
 
 ASCII_WAPAMEW = "wapamew"
 EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
-
-
-@pytest.fixture(scope="module")
-def django_db_setup():
-    """
-    This works with pytest-django plugin.
-    This fixture tells all functions marked with pytest.mark.django_db in this file
-    to use the database specified in settings.py
-    which is the existing test_db.sqlite3 if USE_TEST_DB=True is passed.
-
-    Instead of by default, an empty database in memory.
-    """
-
-    # all functions in this file should use the existing test_db.sqlite3
-    assert settings.USE_TEST_DB
 
 
 @pytest.mark.django_db

@@ -34,8 +34,21 @@
   {# cargo-cult from  https://getbootstrap.com/docs/4.6/getting-started/introduction/ #}
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 </head>
-<body class="container">
+<body>
 {% block body %}
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="nav-link navbar-brand h1" href="{% url 'search_quality:index' %}">
+    Search quality
+  </a>
+  <ul class="navbar-nav ml-auto">
+  <a class="nav-link" href="{% url 'cree-dictionary-index' %}">View site</a>
+  <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+  </ul>
+</nav>
+<div class="container">
+{% block content %}
+{% endblock %}
+</div>
 {% endblock %}
 </body>
 </html>

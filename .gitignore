@@ -4,9 +4,6 @@ __pycache__/
 *.prof
 build/
 dist/
-eggs/
-*.egg-info/
-*.egg
 pip-log.txt
 pip-delete-this-directory.txt
 
@@ -71,3 +68,4 @@ CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
 CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map
+docker-compose.override.yml

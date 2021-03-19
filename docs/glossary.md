@@ -124,15 +124,19 @@ A new [wordform] created from a [lemma]; this new wordform has a separate lemma 
 
  - **1** [derivational paradigm]
 
+dictionary
+==========
+[dictionary]: #dictionary
+
+???
 
 dictionary entry
 ================
 [dictionary entry]: #dictionary-entry
 [dictionary entries]: #dictionary-entry
 
-The main content of a [dictionary][]. Consists of
-the [head][] (in one or more [orthothographical][]
-representations), the [word class][], and the
+The main content of a [dictionary][]. Consists of the [head][] (in one or
+more [orthographical representations][]), the [word class][], and the
 [definitions][].
 
 Part of
@@ -248,7 +252,7 @@ gloss
 Sometimes a sloppy synonym for [translation][].
 More specifically, a _gloss_ is a one-to-one
 mapping between one language and another, often accompanied by relevant
-[tags][] for [morphosyntactic features][]. Glosses are more
+[tags][tag] for [morphosyntactic features][]. Glosses are more
 specific and less "fluent" than a [translation][].
 
 
@@ -304,6 +308,12 @@ depending on context.
 * **1** or more [word form]
 * **1** [head]
 
+meaning
+========
+[meaning]: #meaning
+
+???
+
 
 morpheme
 ========
@@ -312,6 +322,12 @@ morpheme
 An indivisible part of language with meaning; A morpheme cannot be
 broken down into any subsequent parts, without changing its meaning.
 
+
+morphosyntactic feature
+=======================
+[morphosyntactic feature]: #morphosyntactic-feature
+
+???
 
 multicharacter symbol
 =====================
@@ -347,6 +363,11 @@ See also: [standardize][]
 - e.g., the normative form of "icecream" is "ice cream"
 - e.g., the normative form of "atchakosuk" is "acâhkosak"
 
+orthographical representation
+=============================
+[orthographical representation]: #orthographical-representation
+
+???
 
 part of speech
 ==============

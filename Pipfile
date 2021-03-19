@@ -33,11 +33,12 @@ sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.
 secure = "*"
 snowballstemmer = "*"
 dawg = "~=0.8"
-gunicorn = "*"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "~=4.40"
 whitenoise = "*"
+foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
+uwsgi = "*"
 
 [scripts]
 # look stuff up
@@ -55,13 +56,8 @@ format = "black CreeDictionary"
 # so that we can move to a more continuous workflow where manual database modification can be persisted
 # example usage: pipenv run import-xml CreeDictionary/res/dictionaries/ --multi-process 2
 import-xml = "sh ./libexec/import.sh"
-# do this after you change the list of words in res/test_db_words.txt to rebuild test_db.sqlite3
-# Supply `-m|--multi-processing N` to speed up
-# Extra arguments will be passed to subcommand `build-test-db` of `manage-db`, use `manage-db build-test-db -h` to see
-# detailed help
-# It takes about half a minute with -m 2
-# example usage: `pipenv run build-test-db -m 2`
-build-test-db = "sh ./libexec/build_test_db.sh"
+# building the test db takes about half a minute
+build-test-db = "./libexec/build_test_db.sh"
 # warning: do not use these.
 # eventually we will scrap them and use a migration based work flow to preserve database changes AFTER a new
 # , well structured database is ready.
@@ -69,7 +65,6 @@ push-db = 'rsync --progress CreeDictionary/db.sqlite3 $SAPIR_USER@sapir.artsrn.u
 pull-db = 'rsync --progress $SAPIR_USER@sapir.artsrn.ualberta.ca:/opt/cree-intelligent-dictionary/CreeDictionary/db.sqlite3 CreeDictionary/db.sqlite3'
 # Utitlities
 collect-static = "python CreeDictionary/manage.py collectstatic --no-input"
-gunicorn-locally = "gunicorn CreeDictionary.wsgi"
 
 [requires]
 python_version = "3.9"

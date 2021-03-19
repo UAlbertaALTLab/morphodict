@@ -1,15 +1,20 @@
 {% extends 'search_quality/base.html' %}
 
-{% block body %}
-<h1>Search quality</h1>
+{% block content %}
+  <h2>
+  Saved result samples
+  </h2>
   <ul>
   {% for json_gz in json_gz %}
     <li><a href="{% url 'search_quality:results-analysis' json_gz %}">{{json_gz}}</a></li>
   {% endfor %}
   </ul>
+  <h2>
+  Create a new sample
+  </h2>
   <form action="{% url 'search_quality:run-analysis' %}" method=POST>
     {% csrf_token %}
     <input name="label" placeholder="optional run label">
-    <button type="submit">Run a new sample</button>
+    <button type="submit">Run</button>
   </form>
 {% endblock %}

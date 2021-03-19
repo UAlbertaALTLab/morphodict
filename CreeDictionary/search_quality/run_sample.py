@@ -21,7 +21,10 @@ def gen_run_sample(sample_file: PathLike = DEFAULT_SAMPLE_FILE, *, out_file: Pat
         # multiple times in randomized orders to spread out the effects of
         # warmup and caching
         start_time = time.time()
-        results = [r.serialize() for r in Wordform.search_with_affixes(query)]
+        results = [
+            r.serialize(include_auto_definitions=False)
+            for r in Wordform.search_with_affixes(query)
+        ]
         time_taken = time.time() - start_time
 
         combined_results[query] = {

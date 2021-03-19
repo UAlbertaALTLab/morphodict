@@ -23,6 +23,11 @@ User experience and interface design (UX/UI).
 Quantitative linguist and doggo enthusiast.
 
 
+#### [Daniel W. Hieber](https://danielhieber.com)
+
+Documentary linguist with a focus on language typology and digital linguistics.
+
+
 #### [Aida Radu](https://github.com/aradu12)
 
 Linguist. 2020 software development intern.
@@ -69,4 +74,3 @@ Special Thanks
 [Anna Kazantseva][ILT]
 
 [Roland Khun][ILT]
-

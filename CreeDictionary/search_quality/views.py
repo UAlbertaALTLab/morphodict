@@ -67,15 +67,24 @@ class ResultsAnalysisView(LoginRequiredMixin, TemplateView):
 
         file = self._resolve_url_param_to_file(kwargs["path"])
 
+        sample_definition = load_sample_definition(DEFAULT_SAMPLE_FILE)
         context["name"] = file.name
-        analysis = analyze(file, load_sample_definition(DEFAULT_SAMPLE_FILE))
+        analysis = analyze(file, sample_definition)
         context["analysis"] = analysis
+        context["sample_definition_length"] = len(sample_definition)
+        queries = set(q["Query"] for q in sample_definition)
+        result_set_length = len(
+            queries.intersection(k for k, v in analysis.items() if v is not None)
+        )
+        context["result_set_length"] = result_set_length
+        context["result_set_percent"] = 100 * result_set_length / len(sample_definition)
 
         for k in [
-            "topthree_score_percent",
+            "result_count",
             "threeten_score_percent",
-            "total_duplicate_count",
             "time_taken_seconds",
+            "topthree_score_percent",
+            "total_duplicate_count",
         ]:
             context[f"average_{k}"] = mean(
                 r[k] for r in analysis.values() if r is not None
@@ -100,15 +109,21 @@ def run(request):
     def executor():
         yield "<h1>Running sample</h1>\n<pre>"
 
-        for status in gen_run_sample(out_file=out_file):
-            yield conditional_escape(status) + "\n"
+        try:
+            for status in gen_run_sample(out_file=out_file):
+                yield conditional_escape(status) + "\n"
 
-        results_url = reverse(
-            "search_quality:results-analysis",
-            kwargs={"path": out_file.name},
-        )
+            results_url = reverse(
+                "search_quality:results-analysis",
+                kwargs={"path": out_file.name},
+            )
 
-        yield f'</pre>Done. <a href="{conditional_escape(results_url)}">View results</a>'
+            yield f'</pre>Done. <a href="{conditional_escape(results_url)}">View results</a>'
+        except Exception as e:
+            yield f"""</pre>
+                <div style="color: red">Error: {conditional_escape(str(e))}</div>
+                <div>Check the server log for more details.</div>"""
+            raise
 
     # Sadly, although this old trick for sending out a live-updating web page
     # works with Firefox and Chrome, it doesn’t seem to work with Safari. And it
