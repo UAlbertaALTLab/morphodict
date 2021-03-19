@@ -75,12 +75,8 @@ ARG TINI_VERSION=v0.19.0
 
 RUN set -ex \
  && apt-get update \
- && apt-get install -y --no-install-recommends libfoma0 \
+ && apt-get install -y --no-install-recommends tini libfoma0 \
  && rm -rf /var/cache/apt
-
-# Install tini
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /bin/tini
-RUN chmod +x /bin/tini
 
 # Create a NON-ROOT USER that will run the application code:
 RUN groupadd --system --gid ${UID_GID} itwewina \
@@ -91,15 +87,21 @@ COPY --from=builder --chown=itwewina /app /app
 
 USER itwewina
 WORKDIR /app/CreeDictionary
-
-# Gunicorn will bind to this port:
-EXPOSE 8000
-
 # Activate the Python virtual environment
 ENV VIRTUAL_ENV="/app/.venv"
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 
+# uWSGI will bind HTTP to this port:
+EXPOSE 8000
+# uWSGI stats are accessible on this port
+# I view them with this command:
+#
+#    $ nc 127.0.0.1 9191 | jq
+#
+EXPOSE 9191
+
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-CMD ["gunicorn", "CreeDictionary.wsgi:application"]
+# uwsgi --http-socket is intended to be used behind, e.g., nginx
+CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "uwsgi.ini"]

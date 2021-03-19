@@ -218,6 +218,8 @@ class Wordform(models.Model):
             models.Index(fields=["analysis"]),
             # text index benefits fast wordform matching (see search.py)
             models.Index(fields=["text"]),
+            models.Index(fields=["inflectional_category"]),
+            models.Index(fields=["pos"]),
         ]
 
     def __str__(self):
