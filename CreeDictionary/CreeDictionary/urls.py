@@ -9,11 +9,13 @@ from django.conf import settings
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
 from CreeDictionary import views
+from CreeDictionary.sitemaps import sitemaps
 
 urlpatterns = [
     ################################# Primary URLs #################################
@@ -50,6 +52,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("search-quality/", include("search_quality.urls")),
     path("", include("morphodict.urls")),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
+    ),
     ################################# Special URLS #################################
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
