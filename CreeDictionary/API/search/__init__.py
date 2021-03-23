@@ -34,15 +34,15 @@ from utils.types import ConcatAnalysis, FSTTag, Label
 
 from CreeDictionary import hfstol
 
-from .apps import APIConfig
-from .helpers import serialize_definitions
-from .models import (
+from API.apps import APIConfig
+from API.helpers import serialize_definitions
+from API.models import (
     Definition,
     EnglishKeyword,
     Wordform,
     get_all_source_ids_for_definition,
 )
-from .schema import SerializedLinguisticTag, SerializedSearchResult
+from API.schema import SerializedLinguisticTag, SerializedSearchResult
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
@@ -751,7 +751,7 @@ def sort_search_result(
         # a from English, b from Cree
         return 1
     else:
-        from .models import Wordform
+        from ..models import Wordform
 
         # both from English
         a_in_rankings = res_a.matched_cree in Wordform.MORPHEME_RANKINGS
