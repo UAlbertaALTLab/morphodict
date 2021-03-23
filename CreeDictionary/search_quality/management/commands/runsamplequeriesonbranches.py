@@ -161,7 +161,7 @@ def find_branch(branch_name):
 
 
 def check_output_str(param, cwd):
-    "A check_output wrapper that returns strings, and omits trailing newlines"
+    """Run check_output, but return a string, and without trailing newlines"""
     output = subprocess.check_output(param).decode("UTF-8")
     while output.endswith("\n"):
         output = output[:-1]
