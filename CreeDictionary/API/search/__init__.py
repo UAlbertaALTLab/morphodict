@@ -1,10 +1,10 @@
 from sortedcontainers import SortedSet
 
-from API.search.sortme import (
+from .lookup import (
     WordformSearchWithAffixes,
     WordformSearchWithExactMatch,
-    SearchResult,
 )
+from .types import SearchResult
 
 
 def search_with_affixes(

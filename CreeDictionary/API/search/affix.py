@@ -1,3 +1,14 @@
+"""
+Affix search
+
+This was originally intended to suggest compound words, so that searching for
+‘nipâw’ would also return ‘maci-nipâw’.
+
+But the current implementation, developed as a step towards that, is more like
+tab-completion. It uses tries to expand queries, so that searching for ‘snowm’
+also returns results for ‘snowmobile’
+"""
+
 from collections import defaultdict
 from functools import cached_property
 from itertools import chain
@@ -6,15 +17,14 @@ from typing import Dict, Iterable, List, NewType, Tuple
 import dawg
 from django.conf import settings
 
-
 from API.models import Wordform, EnglishKeyword
+from utils.cree_lev_dist import remove_cree_diacritics
 from .types import (
     EnglishResult,
     MatchedEnglish,
     CreeResult,
     InternalForm,
 )
-from utils.cree_lev_dist import remove_cree_diacritics
 
 # A simplified form intended to be used within the affix search trie.
 SimplifiedForm = NewType("SimplifiedForm", str)
@@ -115,6 +125,20 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
     return len(query) <= settings.AFFIX_SEARCH_THRESHOLD
 
 
+def fetch_english_keywords_with_ids():
+    """
+    Return pairs of indexed English keywords with their corresponding Wordform IDs.
+    """
+    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
+
+
+def fetch_cree_lemmas_with_ids():
+    """
+    Return pairs of Cree lemmas with their corresponding Wordform IDs.
+    """
+    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
+
+
 class _Cache:
     """A holder for cached properties since caching module attributes is messy
 
@@ -147,17 +171,3 @@ class _Cache:
 
 
 cache = _Cache()
-
-
-def fetch_english_keywords_with_ids():
-    """
-    Return pairs of indexed English keywords with their corresponding Wordform IDs.
-    """
-    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
-
-
-def fetch_cree_lemmas_with_ids():
-    """
-    Return pairs of Cree lemmas with their corresponding Wordform IDs.
-    """
-    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")

@@ -6,7 +6,7 @@ from hypothesis import assume, given
 
 from API.models import Wordform
 from API.search import search_with_affixes, simple_search
-from API.search.sortme import fetch_cree_and_english_results
+from API.search.lookup import fetch_cree_and_english_results
 from API.search.core import to_internal_form
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
