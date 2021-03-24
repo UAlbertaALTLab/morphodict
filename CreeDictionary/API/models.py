@@ -23,13 +23,6 @@ from .schema import SerializedDefinition, SerializedWordform
 # Don't start evicting cache entries until we've seen over this many unique definitions:
 MAX_SOURCE_ID_CACHE_ENTRIES = 4096
 
-# Avoid a runtime circular-dependency;
-# without this line,
-#  - model.py imports search.py; and,
-#  - search.py imports model.py 💥
-if typing.TYPE_CHECKING:
-    from .search import SearchResult
-
 logger = logging.getLogger(__name__)
 
 
@@ -248,36 +241,6 @@ class Wordform(models.Model):
             self.lemma_id = self.id
 
         super(Wordform, self).save(*args, **kwargs)
-
-    @staticmethod
-    def search_with_affixes(
-        query: str, include_auto_definitions=False
-    ) -> SortedSet["SearchResult"]:
-        """
-        Search for wordforms matching:
-         - the wordform text
-         - the definition keyword text
-         - affixes of the wordform text
-         - affixes of the definition keyword text
-        """
-        from .search import WordformSearchWithAffixes
-
-        search = WordformSearchWithAffixes(query)
-        return search.perform(include_auto_definitions=include_auto_definitions)
-
-    @staticmethod
-    def simple_search(
-        query: str, include_auto_definitions=False
-    ) -> SortedSet["SearchResult"]:
-        """
-        Search, trying to match full wordforms or keywords within definitions.
-
-        Does NOT try to match affixes!
-        """
-        from .search import WordformSearchWithExactMatch
-
-        search = WordformSearchWithExactMatch(query)
-        return search.perform(include_auto_definitions=include_auto_definitions)
 
 
 class DictionarySource(models.Model):

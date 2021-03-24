@@ -5,7 +5,9 @@ import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform
-from API.search import fetch_cree_and_english_results, to_internal_form
+from API.search import search_with_affixes, simple_search
+from API.search.sortme import fetch_cree_and_english_results
+from API.search.core import to_internal_form
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 from utils.enums import Language
@@ -19,7 +21,7 @@ def test_when_linguistic_breakdown_absent():
     # nevertheless, currently we ignore the +Err/Frag cases.
 
     query = "pe-"
-    search_results = Wordform.search_with_affixes(query)
+    search_results = search_with_affixes(query)
 
     assert len(search_results) == 1
 
@@ -64,7 +66,7 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    search_results = Wordform.search_with_affixes(query, include_auto_definitions=False)
+    search_results = search_with_affixes(query, include_auto_definitions=False)
 
     exact_matches = {
         result
@@ -93,7 +95,7 @@ def test_search_for_english() -> None:
     """
 
     # This should match "âcimowin" and related words:
-    search_results = Wordform.search_with_affixes("story")
+    search_results = search_with_affixes("story")
 
     assert search_results[0].matched_by == Language.ENGLISH
 
@@ -115,8 +117,8 @@ def test_compare_simple_vs_affix_search() -> None:
     lemma = "wâpamêw"
     assert lemma.startswith(prefix)
 
-    simple_results = Wordform.simple_search(prefix)
-    general_results = Wordform.search_with_affixes(prefix)
+    simple_results = simple_search(prefix)
+    general_results = search_with_affixes(prefix)
 
     assert len(simple_results) <= len(general_results)
 
@@ -134,7 +136,7 @@ def test_search_for_pronoun() -> None:
     result that says "ôma"
     """
 
-    search_results = Wordform.search_with_affixes("oma")
+    search_results = search_with_affixes("oma")
     assert "ôma" in {res.matched_cree for res in search_results}
 
 
@@ -146,7 +148,7 @@ def test_search_for_stored_non_lemma():
     # "S/he would tell us stories."
     lemma_str = "âcimêw"
     query = "ê-kî-âcimikoyâhk"
-    search_results = Wordform.search_with_affixes(query)
+    search_results = search_with_affixes(query)
 
     assert len(search_results) >= 1
 
@@ -218,7 +220,7 @@ def test_search_serialization_json_parsable(query):
     """
     Test SearchResult.serialize produces json compatible results
     """
-    results = Wordform.search_with_affixes(query)
+    results = search_with_affixes(query)
     for result in results:
 
         serialized = result.serialize(include_auto_definitions=False)
@@ -234,7 +236,7 @@ def test_search_words_with_preverbs():
     """
     preverbs should be extracted and present in SearchResult instances
     """
-    results = Wordform.search_with_affixes("nitawi-nipâw")
+    results = search_with_affixes("nitawi-nipâw")
     assert len(results) == 1
     search_result = results.pop()
 
@@ -248,7 +250,7 @@ def test_search_text_with_ambiguous_word_classes():
     Results of all word classes should be searched when the query is ambiguous
     """
     # pipon can be viewed as a Verb as well as a Noun
-    results = Wordform.search_with_affixes("pipon")
+    results = search_with_affixes("pipon")
     assert {r.lemma_wordform.pos for r in results if r.matched_cree == "pipon"} == {
         "N",
         "V",
@@ -259,7 +261,7 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many Cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = Wordform.search_with_affixes("sleep")
+    results = search_with_affixes("sleep")
     assert results[0].matched_cree == "nipâw"
 
 
@@ -283,7 +285,7 @@ def test_lemma_and_syncretic_form_ranking(lemma):
     and uses a **non-stable** sort or comparison.
     """
 
-    results = Wordform.search_with_affixes(lemma)
+    results = search_with_affixes(lemma)
     assert len(results) >= 2
     maskwa_results = [res for res in results if res.lemma_wordform.text == lemma]
     assert len(maskwa_results) >= 2
@@ -310,7 +312,7 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     """
     Ensure that some search results appear before others.
     """
-    results = Wordform.search_with_affixes(query)
+    results = search_with_affixes(query)
 
     top_result_pos = position_in_results(top_result, results)
     later_result_pos = position_in_results(later_result, results)

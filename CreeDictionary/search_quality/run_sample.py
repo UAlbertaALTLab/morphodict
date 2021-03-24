@@ -3,7 +3,7 @@ import json
 import time
 from os import PathLike
 
-from API.models import Wordform
+from API.search import search_with_affixes
 from . import SampleSearchResultsJson, DEFAULT_SAMPLE_FILE
 from .analyze_results import count_results
 from .sample import load_sample_definition
@@ -23,7 +23,7 @@ def gen_run_sample(sample_file: PathLike = DEFAULT_SAMPLE_FILE, *, out_file: Pat
         start_time = time.time()
         results = [
             r.serialize(include_auto_definitions=False)
-            for r in Wordform.search_with_affixes(query)
+            for r in search_with_affixes(query)
         ]
         time_taken = time.time() - start_time
 
