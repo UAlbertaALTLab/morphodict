@@ -21,8 +21,6 @@ version: "3"
 services:
   itwewina:
     restart: always
-    # XXX: I can't pull this right now WITHOUT authenticating, despite the
-    # fact that it's public. Confusing :/
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     ports:
       # Why port 8001?
