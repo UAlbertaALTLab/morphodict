@@ -7,6 +7,8 @@ from API.models import Wordform
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
+
+from API.search import search_with_affixes
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
@@ -87,7 +89,7 @@ def index(request):  # pragma: no cover
             search_result.serialize(
                 include_auto_definitions=should_include_auto_definitions(request)
             )
-            for search_result in Wordform.search_with_affixes(
+            for search_result in search_with_affixes(
                 user_query,
                 include_auto_definitions=should_include_auto_definitions(request),
             )
@@ -117,7 +119,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
-    results = Wordform.search_with_affixes(
+    results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
     )
     return render(

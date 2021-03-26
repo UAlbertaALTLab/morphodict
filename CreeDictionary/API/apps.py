@@ -1,6 +1,5 @@
 import logging
 import os
-from functools import cached_property
 from pathlib import Path
 
 from django.apps import AppConfig, apps
@@ -9,21 +8,12 @@ from django.db.models import Q
 
 from utils import shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
-from .affix_search import AffixSearcher
 
 logger = logging.getLogger(__name__)
 
 
 class APIConfig(AppConfig):
     name = "API"
-
-    @cached_property
-    def cree_affix_searcher(self) -> AffixSearcher:
-        return AffixSearcher(fetch_cree_lemmas_with_ids())
-
-    @cached_property
-    def english_affix_searcher(self) -> AffixSearcher:
-        return AffixSearcher(fetch_english_keywords_with_ids())
 
     def ready(self) -> None:
         # This function is called when you restart dev server or touch wsgi.py
@@ -45,10 +35,17 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
+        logger.debug("loading affix caches")
+        from API.search import affix
+
+        affix.cache.preload()
+
         logger.debug("calling initialize_preverb_search()")
         initialize_preverb_search()
+
         logger.debug("calling read_morpheme_rankings()")
         read_morpheme_rankings()
+
         logger.debug("done")
 
     @classmethod
@@ -109,21 +106,3 @@ def read_morpheme_rankings():
         if len(cells) >= 2:
             freq, morpheme, *_ = cells
             Wordform.MORPHEME_RANKINGS[morpheme] = float(freq)
-
-
-def fetch_english_keywords_with_ids():
-    """
-    Return pairs of indexed English keywords with their coorepsonding Wordform IDs.
-    """
-    from .models import EnglishKeyword
-
-    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
-
-
-def fetch_cree_lemmas_with_ids():
-    """
-    Return pairs of Cree lemmas with their coorepsonding Wordform IDs.
-    """
-    from .models import Wordform
-
-    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
