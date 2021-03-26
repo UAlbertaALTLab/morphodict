@@ -23,4 +23,4 @@ jobs:
         file: docker/Dockerfile
         push: true
         tags: |
-          ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+          ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
