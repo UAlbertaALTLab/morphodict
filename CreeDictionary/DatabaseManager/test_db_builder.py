@@ -4,13 +4,12 @@ build test_db.sqlite3 from res/test_db_words.txt
 
 import logging
 import xml.etree.ElementTree as ET
-from collections import defaultdict
-from itertools import chain
-from typing import Dict, List, Set
+from typing import Set
+
+from tqdm import tqdm
 
 from DatabaseManager.xml_importer import find_latest_xml_file
 from shared import expensive
-from tqdm import tqdm
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
 from utils.profiling import timed

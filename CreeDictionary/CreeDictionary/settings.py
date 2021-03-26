@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "django.contrib.sites",
+    "django.contrib.sitemaps",
     # WhiteNoise nostatic HAS to come before Django's staticfiles
     # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     "whitenoise.runserver_nostatic",
@@ -186,6 +188,11 @@ else:
         "default": env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
     }
 
+################################ Django sites framework ################################
+
+# See: https://docs.djangoproject.com/en/2.2/ref/contrib/sites/#enabling-the-sites-framework
+SITE_ID = 1
+
 ################################## SecurityMiddleware ##################################
 
 # Send X-Content-Type-Options: nosniff header
@@ -284,7 +291,10 @@ LOGGING = {
     "disable_existing_loggers": False,
     "handlers": {
         "console": {
-            "level": log_level,
+            # The handler should print anything that gets to it, so that
+            # debugging can be enabled for specific loggers without also turning
+            # on debug loggers for all of django/python
+            "level": "NOTSET",
             "class": "logging.StreamHandler",
         },
     },

@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
+
+from __future__ import annotations
+
 import logging
 import os
 import readline
 import sys
+import typing
 from argparse import ArgumentParser, BooleanOptionalAction
 from functools import cache
 from pathlib import Path
+from typing import Iterable
 
 import django
 import foma
+
+if typing.TYPE_CHECKING:
+    # When this file is run directly as __main__, importing Django models at
+    # top-level will blow up because Django is not configured yet.
+    from API.models import Wordform
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -48,6 +58,18 @@ class FomaLookupException(Exception):
     pass
 
 
+class FomaLookupNotFoundException(FomaLookupException):
+    def __init__(self, thing_to_lookup):
+        super().__init__(f"{thing_to_lookup!r} not found in FST")
+
+
+class FomaLookupMultipleFoundException(FomaLookupException):
+    def __init__(self, thing_to_lookup, result_list):
+        super().__init__(
+            f"{len(result_list)} things were returned, but only 1 was expected for {thing_to_lookup!r}: {result_list!r}"
+        )
+
+
 def foma_lookup(fst, thing_to_lookup):
     # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
     # the FST object built by the C-language `apply_init()` function in libfoma,
@@ -57,9 +79,9 @@ def foma_lookup(fst, thing_to_lookup):
     # But __getitem__ does do the caching and runs at an acceptable speed.
     l = fst[thing_to_lookup]
     if len(l) == 0:
-        raise FomaLookupException(f"{thing_to_lookup} not found")
+        raise FomaLookupNotFoundException(thing_to_lookup)
     if len(l) > 1:
-        raise FomaLookupException(f"multiple found for {thing_to_lookup}: {l}")
+        raise FomaLookupMultipleFoundException(thing_to_lookup, l)
     return l[0].decode("UTF-8")
 
 
@@ -88,13 +110,35 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         phrase = foma_lookup(englishNounEntryToInflectedPhraseFst(), tagged_phrase)
+        logger.debug("tagged_phrase = %s\n", tagged_phrase)
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         phrase = foma_lookup(englishVerbEntryToInflectedPhraseFst(), tagged_phrase)
+        logger.debug("tagged_phrase = %s\n", tagged_phrase)
         return phrase.strip()
+
+
+def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
+    for wordform in wordforms:
+        wordform_tags = parse_analysis_and_tags(wordform.analysis)
+        print(f"wordform: {wordform.text} {wordform_tags}")
+
+        lemma = wordform.lemma
+        print(f"  lemma: {lemma.analysis}")
+
+        for d in wordform.lemma.definitions.all():
+            # Don’t try to re-translate already-translated items
+            if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
+                continue
+
+            print(f"    definition: {d} →")
+            phrase = inflect_english_phrase(wordform_tags, d.text)
+            if phrase is None:
+                phrase = "(not supported)"
+            print(f"      {phrase}")
 
 
 def main():
@@ -115,35 +159,19 @@ def main():
     parser.add_argument("wordform", nargs="*")
     args = parser.parse_args()
 
-    os.environ["LOG_LEVEL"] = args.log_level
     os.environ["DJANGO_SETTINGS_MODULE"] = args.django_settings_module
     django.setup()
+    logger.setLevel(args.log_level)
 
     from API.models import Wordform
 
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup).select_related("lemma")
 
-        for wordform in wordforms:
-            wordform_tags = parse_analysis_and_tags(wordform.analysis)
-            print(f"wordform: {wordform.text} {wordform_tags}")
-
-            lemma = wordform.lemma
-            print(f"  lemma: {lemma.analysis}")
-
-            for d in wordform.lemma.definitions.all():
-                # Don’t try to re-translate already-translated items
-                if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
-                    continue
-
-                print(f"    definition: {d} →")
-                phrase = inflect_english_phrase(wordform_tags, d.text)
-                if phrase is None:
-                    phrase = "(not supported)"
-                print(f"      {phrase}")
-
         if wordforms.count() == 0:
             print("not found in database :/")
+        else:
+            translate_and_print_wordforms(wordforms)
 
     if args.wordform:
         for wordform in args.wordform:

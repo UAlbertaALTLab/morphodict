@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# type: ignore
 
 # Fun fact! This started as a shell script but the .py extension confused black.
 import os

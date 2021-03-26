@@ -39,7 +39,10 @@ context('General', function () {
   describe('I want see all written Cree in Western Cree Syllabics', function () {
     it('should be accessible from the language selector', function () {
       cy.get('[data-cy=language-selector]')
-        .type('{enter}')
+        // this should be `.type('{enter}')` but that mysteriously fails when
+        // running cypress against firefox on Ubuntu, even though pressing enter
+        // in the browser *does* work. Workaround is to click() instead.
+        .click()
 
       cy.get('[data-cy=orthography-choices]')
         .should('be.visible')
