@@ -21,7 +21,8 @@ def main():
     os.chdir(Path(__file__).parent)
 
     call(["git", "pull"])
-    call(["docker-compose", "up", "--build", "-d", "--remove-orphans"])
+    call(["docker-compose", "pull"])
+    call(["docker-compose", "up", "-d", "--remove-orphans"])
     call(
         [
             "docker-compose",

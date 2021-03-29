@@ -135,6 +135,32 @@ jobs:
         if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
         npm run test:ci
 
+  build-docker-image:
+    runs-on: ubuntu-20.04
+
+    # Only build the Docker Image when we're deploying!
+    needs:
+     - should-deploy 
+    if: needs.should-deploy.outputs.should-run == 'true'
+
+    steps:
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+    - name: Cache Docker layers
+      uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v2
+      with:
+        file: docker/Dockerfile
+        push: true
+        tags: |
+          ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
+
   # This syncs up API/schema.py to our @altlab/types package
   # If there is an update to the type output (index.ts), but the version number is untouched,
   # this will fail because the developer needs to choose which version to bump.
@@ -187,9 +213,26 @@ jobs:
     - should-deploy
     - unit-test
     - integration-test
+    - build-docker-image
+
     if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+    - name: Cache Docker layers
+      uses: satackey/action-docker-layer-caching@v0.0.11
+      continue-on-error: true
+    - name: Pull existing image
+      run: docker pull ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
+    - name: Tag previously successfully created image as latest
+      run: docker tag ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }} ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+    - name: Update the latest tag
+      run : docker push ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     - name: send HTTP request to deploy.altlab.dev webhook
       # Be careful with spacing here.
       #
