@@ -37,5 +37,4 @@ services:
       - "9191:9191"
     volumes:
       - "./.env:/app/.env"
-      # TODO: should the production database be stored in /data/application-data/itwewina?
-      - "./db.sqlite3:/app/CreeDictionary/db.sqlite3"
+      - "/data_local/application-data/itwewina/db.sqlite3:/app/CreeDictionary/db.sqlite3"
