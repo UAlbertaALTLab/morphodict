@@ -438,5 +438,10 @@ class _WordformCache:
                 ret[morpheme] = float(freq)
         return ret
 
+    def preload(self):
+        # Accessing these cached properties will preload them
+        self.PREVERB_ASCII_LOOKUP
+        self.MORPHEME_RANKINGS
 
-WordformCache = _WordformCache()
+
+wordform_cache = _WordformCache()

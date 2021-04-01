@@ -32,15 +32,12 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
-        logger.debug("loading affix caches")
+        logger.debug("preloading caches")
         from API.search import affix
-        from API.models import WordformCache
+        from API.models import wordform_cache
 
         affix.cache.preload()
-
-        # Accessing these cached properties will preload them
-        WordformCache.PREVERB_ASCII_LOOKUP
-        WordformCache.MORPHEME_RANKINGS
+        wordform_cache.preload()
 
         logger.debug("done")
 

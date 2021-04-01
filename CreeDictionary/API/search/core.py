@@ -9,7 +9,7 @@ from API.models import (
     Wordform,
     Definition,
     get_all_source_ids_for_definition,
-    WordformCache,
+    wordform_cache,
 )
 from utils import Language, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
@@ -242,7 +242,7 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
         user_query = user_query[:-1]
     user_query = remove_cree_diacritics(user_query)
 
-    return WordformCache.PREVERB_ASCII_LOOKUP[user_query]
+    return wordform_cache.PREVERB_ASCII_LOOKUP[user_query]
 
 
 def filter_auto_definitions(

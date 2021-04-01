@@ -1,6 +1,6 @@
 from utils import Language, get_modified_distance
 from .types import SearchResult
-from ..models import WordformCache
+from ..models import wordform_cache
 
 
 def sort_search_result(
@@ -45,8 +45,8 @@ def sort_search_result(
     else:
 
         # both from English
-        a_in_rankings = res_a.matched_cree in WordformCache.MORPHEME_RANKINGS
-        b_in_rankings = res_b.matched_cree in WordformCache.MORPHEME_RANKINGS
+        a_in_rankings = res_a.matched_cree in wordform_cache.MORPHEME_RANKINGS
+        b_in_rankings = res_b.matched_cree in wordform_cache.MORPHEME_RANKINGS
 
         if a_in_rankings and not b_in_rankings:
             return -1
@@ -56,6 +56,6 @@ def sort_search_result(
             return 0
         else:  # both in rankings
             return (
-                WordformCache.MORPHEME_RANKINGS[res_a.matched_cree]
-                - WordformCache.MORPHEME_RANKINGS[res_b.matched_cree]
+                wordform_cache.MORPHEME_RANKINGS[res_a.matched_cree]
+                - wordform_cache.MORPHEME_RANKINGS[res_b.matched_cree]
             )
