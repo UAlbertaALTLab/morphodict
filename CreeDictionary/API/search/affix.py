@@ -128,14 +128,16 @@ def fetch_target_language_keywords_with_ids():
     """
     Return pairs of indexed English keywords with their corresponding Wordform IDs.
     """
-    return EnglishKeyword.objects.all().values_list("text", "lemma__id")
+    # Slurp up all the results to prevent walking the database multiple times
+    return tuple(EnglishKeyword.objects.all().values_list("text", "lemma__id"))
 
 
 def fetch_source_language_lemmas_with_ids():
     """
     Return pairs of Cree lemmas with their corresponding Wordform IDs.
     """
-    return Wordform.objects.filter(is_lemma=True).values_list("text", "id")
+    # Slurp up all the results to prevent walking the database multiple times
+    return tuple(Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
 
 
 class _Cache:

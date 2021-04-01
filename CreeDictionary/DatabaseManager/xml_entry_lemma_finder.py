@@ -1,16 +1,20 @@
 """
 EXPAND lemma with inflections from xml according to an fst and paradigm/layout files
 """
-import csv
-from collections import defaultdict
-from itertools import chain
-from string import Template
-from typing import Dict, Iterable, List, Optional, Set, Tuple, cast
 
+import csv
+import json
+from collections import defaultdict
+from dataclasses import dataclass, asdict
+from itertools import chain
+from pathlib import Path
+from string import Template
+from typing import Dict, Iterable, List, Optional, Set, Tuple, cast, Sequence
+
+from colorama import Fore, init
 from typing_extensions import Literal
 
 import utils.fst_analysis_parser
-from colorama import Fore, init
 from DatabaseManager.log import DatabaseManagerLogger
 from DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
@@ -69,8 +73,34 @@ class DefaultLemmaPicker:
 crk_default_lemma_picker = DefaultLemmaPicker(language="crk")
 
 
+@dataclass
+class ImportInconsistency:
+    xml_entry: XMLEntry
+    reason: str
+    analyses: Sequence[ConcatAnalysis] = ()
+
+
+class InconsistencyCollection:
+    def __init__(self):
+        self._inconsistencies: list[ImportInconsistency] = []
+
+    def add(self, inconsistency: ImportInconsistency):
+        self._inconsistencies.append(inconsistency)
+
+    def write_to_disk(self, path_without_extension: Path) -> Path:
+        """
+        Write the collected inconsistencies to disk, returning the list of saved paths.
+        """
+        outfile = path_without_extension.with_suffix(".jsonl")
+        with open(outfile, "w") as f:
+            for i in self._inconsistencies:
+                f.write(json.dumps(asdict(i), ensure_ascii=False) + "\n")
+        return outfile
+
+
 def identify_entries(
     crkeng_xml: IndexedXML,
+    write_out_inconsistencies=False,
     verbose=True,
 ) -> Tuple[Dict[XMLEntry, ConcatAnalysis], List[XMLEntry]]:
     """
@@ -131,11 +161,14 @@ def identify_entries(
     success_counter = 0
     dup_counter = 0
 
+    inconsistency_collection = InconsistencyCollection()
+
     for xml_l, analyses in l_to_analyses.items():
 
         if len(analyses) == 0:
 
             for entry in crkeng_xml.filter(l=xml_l):
+                inconsistency_collection.add(ImportInconsistency(entry, "no analysis"))
                 as_is_entries.append(entry)
                 logger.debug(
                     "xml entry %s with pos %s ic %s can not be analyzed by fst strict analyzer"
@@ -198,6 +231,11 @@ def identify_entries(
                         break
 
                 if len(ambiguities) == 0:
+                    inconsistency_collection.add(
+                        ImportInconsistency(
+                            entry, "pos conflict", possible_lemma_analyses
+                        )
+                    )
                     logger.debug(
                         "xml entry %s with pos %s ic %s have analyses by fst strict analyzer. "
                         "Yet all analyses conflict with the pos/ic in xml file"
@@ -217,6 +255,11 @@ def identify_entries(
                         entry_to_analysis[entry] = res
                         success_counter += 1
                     else:
+                        inconsistency_collection.add(
+                            ImportInconsistency(
+                                entry, "multiple analyses", possible_lemma_analyses
+                            )
+                        )
                         logger.debug(
                             "xml entry %s with pos %s ic %s have more "
                             "than one potential analyses by fst strict analyzer."
@@ -245,5 +288,11 @@ def identify_entries(
     logger.info(
         f"{Fore.BLUE}These words will be labeled 'as-is', meaning their lemmas are undetermined.{Fore.RESET}"
     )
+
+    if write_out_inconsistencies:
+        output_file = inconsistency_collection.write_to_disk(
+            Path("import-inconsistencies")
+        )
+        logger.info(f"Wrote inconsistency report to {output_file}")
 
     return entry_to_analysis, as_is_entries

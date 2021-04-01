@@ -1,17 +1,27 @@
+from __future__ import annotations
+
 import logging
 from collections import defaultdict
 from functools import lru_cache
-from typing import Dict, List, Optional, Set, Tuple
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 from urllib.parse import quote
 
 from django.db import models, transaction
-from django.db.models import Max
+from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 
 from paradigm import Layout
 from shared import expensive
-from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
+from utils import (
+    ParadigmSize,
+    PartOfSpeech,
+    WordClass,
+    fst_analysis_parser,
+    shared_res_dir,
+)
+from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 from .schema import SerializedDefinition
@@ -33,14 +43,6 @@ class WordformLemmaManager(models.Manager):
 
 
 class Wordform(models.Model):
-    # this is initialized upon app ready.
-    # this helps speed up preverb match
-    # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
-    # pure MD content won't be included
-    PREVERB_ASCII_LOOKUP: Dict[str, Set["Wordform"]] = defaultdict(set)
-
-    # this is initialized upon app ready.
-    MORPHEME_RANKINGS: Dict[str, float] = {}
 
     objects = WordformLemmaManager()
 
@@ -352,3 +354,79 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
+
+
+@lru_cache(maxsize=MAX_SOURCE_ID_CACHE_ENTRIES)
+def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
+    """
+    Returns all of the dictionary source IDs (e.g., "MD", "CW").
+    This is cached so to reduce the amount of duplicate queries made to the database,
+    especially during serialization.
+
+    See:
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/558
+     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/531
+    """
+    dfn = Definition.objects.get(pk=definition_id)
+    return tuple(sorted(source.abbrv for source in dfn.citations.all()))
+
+
+class _WordformCache:
+    @cached_property
+    def PREVERB_ASCII_LOOKUP(self) -> dict[str, set[models.Wordform]]:
+        logger.debug("initializing preverb search")
+        # Hashing to speed up exhaustive preverb matching
+        # will look like: {"pe": {...}, "e": {...}, "nitawi": {...}}
+        # so that we won't need to search from the database every time the user searches for a preverb or when the user
+        # query contains a preverb
+        # An all inclusive filtering mechanism is inflectional_category=IPV OR pos="IPV". Don't rely on a single one
+        # due to the inconsistent labelling in the source crkeng.xml.
+        # e.g. for preverb "pe", the source gives pos=Ipc ic=IPV.
+        # For "sa", the source gives pos=IPV ic="" (unspecified)
+        # after https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/262
+        # many preverbs are normalized so that both inflectional_category and pos are set to IPV.
+
+        def has_non_md_non_auto_definitions(wordform):
+            "This may look slow, but isn’t if prefetch_related has been used"
+            for d in wordform.definitions.all():
+                for c in d.citations.all():
+                    if c.abbrv not in ["auto", "MD"]:
+                        return True
+            return False
+
+        lookup = defaultdict(set)
+        queryset = Wordform.objects.filter(
+            Q(inflectional_category="IPV") | Q(pos="IPV")
+        ).prefetch_related("definitions__citations")
+        for preverb_wordform in queryset:
+            if has_non_md_non_auto_definitions(preverb_wordform):
+                lookup[remove_cree_diacritics(preverb_wordform.text.strip("-"))].add(
+                    preverb_wordform
+                )
+        return lookup
+
+    @cached_property
+    def MORPHEME_RANKINGS(self) -> Dict[str, float]:
+        logger.debug("reading morpheme rankings")
+        ret = {}
+
+        lines = (
+            Path(shared_res_dir / "W_aggr_corp_morph_log_freq.txt")
+            .read_text()
+            .splitlines()
+        )
+        for line in lines:
+            cells = line.split("\t")
+            # todo: use the third row
+            if len(cells) >= 2:
+                freq, morpheme, *_ = cells
+                ret[morpheme] = float(freq)
+        return ret
+
+    def preload(self):
+        # Accessing these cached properties will preload them
+        self.PREVERB_ASCII_LOOKUP
+        self.MORPHEME_RANKINGS
+
+
+wordform_cache = _WordformCache()

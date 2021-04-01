@@ -8,6 +8,7 @@ from django.db.models import Q
 from API.models import (
     Wordform,
     EnglishKeyword,
+    wordform_cache,
 )
 from CreeDictionary import hfstol
 from utils import get_modified_distance, fst_analysis_parser, PartOfSpeech
@@ -185,4 +186,4 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
         user_query = user_query[:-1]
     user_query = remove_cree_diacritics(user_query)
 
-    return Wordform.PREVERB_ASCII_LOOKUP[user_query]
+    return wordform_cache.PREVERB_ASCII_LOOKUP[user_query]

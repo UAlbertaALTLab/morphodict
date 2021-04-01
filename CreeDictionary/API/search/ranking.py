@@ -4,8 +4,9 @@ from functools import cmp_to_key, partial
 from typing import Callable, Any, cast
 
 from utils import get_modified_distance
-from .types import Result
 from . import core
+from .types import Result
+from ..models import wordform_cache
 
 
 def sort_search_result(
@@ -53,11 +54,9 @@ def sort_search_result(
         # a from target, b from source
         return 1
     else:
-        from ..models import Wordform
-
         # both from English
-        a_in_rankings = res_a.wordform.text in Wordform.MORPHEME_RANKINGS
-        b_in_rankings = res_b.wordform.text in Wordform.MORPHEME_RANKINGS
+        a_in_rankings = res_a.wordform.text in wordform_cache.MORPHEME_RANKINGS
+        b_in_rankings = res_b.wordform.text in wordform_cache.MORPHEME_RANKINGS
 
         if a_in_rankings and not b_in_rankings:
             return -1
@@ -67,8 +66,8 @@ def sort_search_result(
             return 0
         else:  # both in rankings
             return (
-                Wordform.MORPHEME_RANKINGS[res_a.wordform.text]
-                - Wordform.MORPHEME_RANKINGS[res_b.wordform.text]
+                wordform_cache.MORPHEME_RANKINGS[res_a.wordform.text]
+                - wordform_cache.MORPHEME_RANKINGS[res_b.wordform.text]
             )
 
 
