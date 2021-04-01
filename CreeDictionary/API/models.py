@@ -2,9 +2,8 @@ from __future__ import annotations
 
 import logging
 from collections import defaultdict
-from functools import lru_cache
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional
 from urllib.parse import quote
 
 from django.db import models, transaction
@@ -354,21 +353,6 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
-
-
-@lru_cache(maxsize=MAX_SOURCE_ID_CACHE_ENTRIES)
-def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
-    """
-    Returns all of the dictionary source IDs (e.g., "MD", "CW").
-    This is cached so to reduce the amount of duplicate queries made to the database,
-    especially during serialization.
-
-    See:
-     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/558
-     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/531
-    """
-    dfn = Definition.objects.get(pk=definition_id)
-    return tuple(sorted(source.abbrv for source in dfn.citations.all()))
 
 
 class _WordformCache:
