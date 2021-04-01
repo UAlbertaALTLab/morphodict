@@ -5,7 +5,12 @@ from typing import Tuple, cast, Set, Iterable, List, Callable, Any, Optional
 from cree_sro_syllabics import syllabics2sro
 from sortedcontainers import SortedSet
 
-from API.models import Wordform, Definition, get_all_source_ids_for_definition
+from API.models import (
+    Wordform,
+    Definition,
+    get_all_source_ids_for_definition,
+    wordform_cache,
+)
 from utils import Language, get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS, partition_analysis
@@ -237,7 +242,7 @@ def fetch_preverbs(user_query: str) -> Set[Wordform]:
         user_query = user_query[:-1]
     user_query = remove_cree_diacritics(user_query)
 
-    return Wordform.PREVERB_ASCII_LOOKUP[user_query]
+    return wordform_cache.PREVERB_ASCII_LOOKUP[user_query]
 
 
 def filter_auto_definitions(
