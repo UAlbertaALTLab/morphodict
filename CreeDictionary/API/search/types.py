@@ -1,78 +1,22 @@
-from typing import NamedTuple, Union, Set, NewType, Iterable, Tuple, cast
+from __future__ import annotations
 
-import attr
-from attr import attrs
+import dataclasses
+from dataclasses import dataclass, field
+from enum import Enum
+from typing import Union, NewType, Iterable, Tuple, Optional
 
 from typing_extensions import Protocol
 
-from API.helpers import serialize_definitions
-from API.models import Wordform, Definition
-from API.schema import SerializedLinguisticTag, SerializedSearchResult
-from utils import Language
+from API.models import Wordform
+from API.schema import SerializedLinguisticTag
 from utils.fst_analysis_parser import LABELS
-from utils.types import ConcatAnalysis, FSTTag
+from utils.types import FSTTag
 
 # it's a str when the preverb does not exist in the database
 Preverb = Union[Wordform, str]
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
 InternalForm = NewType("InternalForm", str)
-
-
-class CreeResult(NamedTuple):
-    """
-    - analysis: a string, fst analysis of normatized cree
-
-    - normatized_cree: a wordform, the Cree inflection that matches the analysis
-        Can be a string that's not saved in the database since our database do not store all the
-        weird inflections
-
-    - lemma: a Wordform object, the lemma of the matched inflection
-    """
-
-    analysis: ConcatAnalysis
-    normatized_cree: Union[Wordform, str]
-    lemma: Lemma
-
-    @property
-    def normatized_cree_text(self) -> str:
-        if isinstance(self.normatized_cree, Wordform):
-            return self.normatized_cree.text
-        else:  # is str
-            return self.normatized_cree
-
-    @classmethod
-    def from_wordform(cls, wordform: Wordform) -> "CreeResult":
-        return cls(wordform.analysis, wordform, wordform.lemma)
-
-
-class EnglishResult(NamedTuple):
-    """
-    - matched_english: a string, the English that matches user query, currently it will just be the same as user query.
-        (unicode normalized, lowercased)
-
-    - normatized_cree: a string, the Cree inflection that matches the English
-
-    - lemma: a Wordform object, the lemma of the matched inflection
-    """
-
-    matched_english: MatchedEnglish
-    matched_cree: Wordform
-    lemma: Lemma
-
-
-class CreeAndEnglish(NamedTuple):
-    """
-    Duct tapes together two kinds of search results:
-
-     - cree results -- an ordered set of CreeResults, should be sorted by the modified levenshtein distance between the
-        analysis and the matched normatized form
-     - english results -- an ordered set of EnglishResults, sorting mechanism is to be determined
-    """
-
-    # MatchedCree are inflections
-    cree_results: Set[CreeResult]
-    english_results: Set[EnglishResult]
 
 
 class LinguisticTag(Protocol):
@@ -138,86 +82,87 @@ def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
         return CompoundLinguisticTag(tags)
 
 
-@attrs(auto_attribs=True, frozen=True)  # frozen makes it hashable
-class SearchResult:
+class Language(Enum):
+    SOURCE = "Source"
+    TARGET = "Target"
+
+
+def wordforms_match(w1: Wordform, w2: Wordform) -> bool:
+    """Return whether two wordform objects represent the same wordform
+
+    Either they both have IDs which match, or the text and analysis match.
     """
-    Contains all of the information needed to display a search result.
+    if w1.id is not None or w2.id is not None:
+        return w1.id == w2.id
+    return w1.text == w2.text and w1.analysis == w2.analysis
 
-    Comment:
-    Each instance corresponds visually to one card shown on the interface
+
+@dataclass
+class Result:
+    """
+    A target-language wordform and the features that link it to a query.
+
+    The features—is it an exact source-language match for the query? Is the edit
+    distance low? &c.—that make this a candidate result for a search query are
+    required to rank different results before showing them to the user.
+
+    Search methods may generate candidate results that are ultimately not sent
+    to users, so any user-friendly tagging/relabelling is instead done in
+    PresentationResult class.
     """
 
-    # the text of the match
-    matched_cree: str
+    def __post_init__(self):
+        if all(
+            getattr(self, field.name) == None
+            for field in dataclasses.fields(Result)
+            if field.init and field.name != "wordform"
+        ):
+            raise Exception("No features were provided for why this is a result.")
 
-    is_lemma: bool
+        self.is_lemma = self.wordform.is_lemma
+        self.lemma_wordform = self.wordform.lemma
 
-    # English or Cree
-    matched_by: Language
+    def add_features_from(self, other: Result):
+        """Add the features from `other` into this object
 
-    # The matched lemma
-    lemma_wordform: Wordform
-
-    # triple dots in type annotation means they can be empty
-
-    # user friendly linguistic breakdowns
-    linguistic_breakdown_head: Tuple[str, ...]
-    linguistic_breakdown_tail: Tuple[str, ...]
-
-    # The suffix tags, straight from the FST
-    raw_suffix_tags: Tuple[FSTTag, ...]
-
-    # Sequence of all preverb tags, in order
-    # Optional: we might not have some preverbs in our database
-    preverbs: Tuple[Preverb, ...]
-
-    # TODO: there are things to be figured out for this :/
-    # Sequence of all reduplication tags present, in order
-    reduplication_tags: Tuple[str, ...]
-    # Sequence of all initial change tags
-    initial_change_tags: Tuple[str, ...]
-
-    definitions: Tuple[Definition, ...]
-
-    def serialize(self, include_auto_definitions) -> SerializedSearchResult:
+        Good results can match for many different reasons. This method merges
+        features from a different result object for the same wordform into the
+        current object.
         """
-        serialize the instance, can be used before passing into a template / in an API view, etc.
-        """
-        # note: passing in serialized "dumb" object instead of smart ones to templates is a Django best practice
-        # it avoids unnecessary database access and makes APIs easier to create
-        result = attr.asdict(self)
-        # lemma field will refer to lemma_wordform itself, which makes it impossible to serialize
-        result["lemma_wordform"] = self.lemma_wordform.serialize(
-            include_auto_definitions=include_auto_definitions
-        )
+        assert wordforms_match(self.wordform, other.wordform)
 
-        result["preverbs"] = []
-        for pv in self.preverbs:
-            if isinstance(pv, str):
-                result["preverbs"].append(pv)
-            else:  # Wordform
-                result["preverbs"].append(
-                    pv.serialize(include_auto_definitions=include_auto_definitions)
-                )
+        for field in dataclasses.fields(Result):
+            if field.init and field.name != "wordform":
+                other_value = getattr(other, field.name)
+                if other_value is not None:
+                    setattr(self, field.name, other_value)
 
-        result["matched_by"] = self.matched_by.name
-        result["definitions"] = serialize_definitions(
-            self.definitions, include_auto_definitions
-        )
-        result["relevant_tags"] = tuple(t.serialize() for t in self.relevant_tags)
+    wordform: Wordform
+    lemma_wordform: Lemma = field(init=False)
+    is_lemma: bool = field(init=False)
 
-        return cast(SerializedSearchResult, result)
+    #: What, if any, was the matching string?
+    source_language_match: Optional[str] = None
 
+    source_language_affix_match: Optional[bool] = None
+    target_language_affix_match: Optional[bool] = None
+
+    target_language_keyword_match: Optional[str] = None
+    pronoun_as_is_match: Optional[bool] = None
+
+    analyzable_inflection_match: Optional[bool] = None
+
+    is_preverb_match: Optional[bool] = None
+
+    is_cw_as_is_wordform: Optional[bool] = None
+
+    #: Was anything in the query a target-language match for this result?
+    did_match_target_language: Optional[bool] = None
+
+    #: Was anything in the query a source-language match for this result?
     @property
-    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
-        """
-        Tags and features to display in the linguistic breakdown pop-up.
-        This omits preverbs and other features displayed elsewhere
+    def did_match_source_language(self) -> bool:
+        return self.source_language_match is not None
 
-        In itwêwina, these tags are derived from the suffix features exclusively.
-        We chunk based on the English relabelleings!
-        """
-        return tuple(
-            linguistic_tag_from_fst_tags(fst_tags)
-            for fst_tags in LABELS.english.chunk(self.raw_suffix_tags)
-        )
+    def __str__(self):
+        return f"Result<wordform={self.wordform}>"

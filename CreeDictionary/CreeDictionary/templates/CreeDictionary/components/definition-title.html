@@ -29,7 +29,7 @@
       {% if result.is_lemma %}
         <a data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
       {% else %}
-        {% orth result.matched_cree %}
+        {% orth result.wordform_text %}
       {% endif %}
     </h2>
 

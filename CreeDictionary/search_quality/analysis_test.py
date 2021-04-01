@@ -12,28 +12,25 @@ def test_count_no_dupes_on_empty_list():
 
 
 ACÂKHOS_1: DuplicateAnnotatedSearchResult = {
-    "matched_cree": "acâhkos",
+    "wordform_text": "acâhkos",
     "lemma_wordform": {
         "text": "atâhk",
         "inflectional_category": "NA-3",
     },
-    "raw_suffix_tags": tuple(map(FSTTag, ["N", "A", "Sg"])),
 }
 ACÂKHOS_2: DuplicateAnnotatedSearchResult = {
-    "matched_cree": "acâhkos",
+    "wordform_text": "acâhkos",
     "lemma_wordform": {
         "text": "acâhkos",
         "inflectional_category": "NA-1",
     },
-    "raw_suffix_tags": tuple(map(FSTTag, ["N", "A", "Sg"])),
 }
 MISATIM_1: DuplicateAnnotatedSearchResult = {
-    "matched_cree": "misatim",
+    "wordform_text": "misatim",
     "lemma_wordform": {
         "text": "misatim",
         "inflectional_category": "NA-3",
     },
-    "raw_suffix_tags": tuple(map(FSTTag, ["N", "A", "Sg"])),
 }
 
 

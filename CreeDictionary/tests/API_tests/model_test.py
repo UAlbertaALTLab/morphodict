@@ -5,12 +5,10 @@ import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform
-from API.search import search_with_affixes, simple_search
-from API.search.lookup import fetch_cree_and_english_results
+from API.search import search_with_affixes, simple_search, search
 from API.search.core import to_internal_form
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
-from utils.enums import Language
 
 
 @pytest.mark.django_db
@@ -21,14 +19,14 @@ def test_when_linguistic_breakdown_absent():
     # nevertheless, currently we ignore the +Err/Frag cases.
 
     query = "pe-"
-    search_results = search_with_affixes(query)
+    search_results = search(query=query).presentation_results()
 
     assert len(search_results) == 1
 
     result = search_results[0]
     assert (
-        result.linguistic_breakdown_head == ()
-        and result.linguistic_breakdown_tail == ("like: pê-",)
+        result.friendly_linguistic_breakdown_head == ()
+        and result.friendly_linguistic_breakdown_tail == ("like: pê-",)
     )
 
 
@@ -40,17 +38,17 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
     """
 
     query = lemma.text
-    cree_results, _ = fetch_cree_and_english_results(to_internal_form(query))
+    results = search(query=query).presentation_results()
 
     exact_match = False
     matched_lemma_count = 0
-    for analysis, matched_cree, resultant_lemma in cree_results:
-        if resultant_lemma.id == lemma.id:
+    for r in results:
+        if r.wordform.id == lemma.id:
             exact_match = True
         matched_lemma_count += 1
 
     assert matched_lemma_count >= 1, f"Could not find {query!r} in the database"
-    assert exact_match, f"No exact matches for {query!r} in {cree_results}"
+    assert exact_match, f"No exact matches for {query!r} in {results}"
 
 
 @pytest.mark.django_db
@@ -66,7 +64,7 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assume(lemma.text == lemma_from_analysis)
 
     query = lemma.text
-    search_results = search_with_affixes(query, include_auto_definitions=False)
+    search_results = search(query=query).presentation_results()
 
     exact_matches = {
         result
@@ -77,10 +75,8 @@ def test_search_for_exact_lemma(lemma: Wordform):
 
     # Let's look at that search result in more detail
     exact_match = exact_matches.pop()
-    assert exact_match.matched_cree == lemma.text
+    assert exact_match.source_language_match == lemma.text
     assert not exact_match.preverbs
-    assert not exact_match.reduplication_tags
-    assert not exact_match.initial_change_tags
     # todo: enable the two lines below when #230 is fixed
     #   https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/230
     #   or there will be flaky local tests and ci tests
@@ -95,17 +91,15 @@ def test_search_for_english() -> None:
     """
 
     # This should match "âcimowin" and related words:
-    search_results = search_with_affixes("story")
+    search_results = search(query="story").presentation_results()
 
-    assert search_results[0].matched_by == Language.ENGLISH
+    assert any(r.wordform.text == "âcimowin" for r in search_results)
 
 
 @pytest.mark.django_db
 def test_compare_simple_vs_affix_search() -> None:
     """
-    There are two generalized search methods:
-     - simple_search()
-     - search_with_affixes()
+    Searches can include affixes or not; by default, they do.
 
     The only difference is that there should be more things returned via affix search.
     """
@@ -117,8 +111,8 @@ def test_compare_simple_vs_affix_search() -> None:
     lemma = "wâpamêw"
     assert lemma.startswith(prefix)
 
-    simple_results = simple_search(prefix)
-    general_results = search_with_affixes(prefix)
+    simple_results = search(query=prefix, include_affixes=False).presentation_results()
+    general_results = search(query=prefix).presentation_results()
 
     assert len(simple_results) <= len(general_results)
 
@@ -136,8 +130,8 @@ def test_search_for_pronoun() -> None:
     result that says "ôma"
     """
 
-    search_results = search_with_affixes("oma")
-    assert "ôma" in {res.matched_cree for res in search_results}
+    search_results = search(query="oma").presentation_results()
+    assert any(r.wordform.text == "ôma" for r in search_results)
 
 
 @pytest.mark.django_db
@@ -148,12 +142,12 @@ def test_search_for_stored_non_lemma():
     # "S/he would tell us stories."
     lemma_str = "âcimêw"
     query = "ê-kî-âcimikoyâhk"
-    search_results = search_with_affixes(query)
+    search_results = search(query=query).presentation_results()
 
     assert len(search_results) >= 1
 
     exact_matches = [
-        result for result in search_results if result.matched_cree == query
+        result for result in search_results if result.wordform.text == query
     ]
     assert len(exact_matches) >= 1
 
@@ -187,7 +181,7 @@ def test_search_space_characters_in_matched_term(term):
     assert word is not None
 
     # Now try searching for it:
-    cree_results, _ = fetch_cree_and_english_results(to_internal_form(term))
+    cree_results = search(query=term).presentation_results()
     assert len(cree_results) > 0
 
 
@@ -218,17 +212,14 @@ def test_paradigm():
 @pytest.mark.parametrize("query", ["nipaw", "nitawi", "nitawi-nipaw", "e-nitawi-nipaw"])
 def test_search_serialization_json_parsable(query):
     """
-    Test SearchResult.serialize produces json compatible results
+    Test serialize produces json compatible results
     """
-    results = search_with_affixes(query)
-    for result in results:
-
-        serialized = result.serialize(include_auto_definitions=False)
-        try:
-            json.dumps(serialized)
-        except Exception as e:
-            print(e)
-            pytest.fail("SearchResult.serialized method failed to be json compatible")
+    results = search(query=query).serialized_presentation_results()
+    try:
+        json.dumps(results)
+    except Exception as e:
+        pytest.fail("SearchResult.serialized method failed to be json compatible")
+        raise
 
 
 @pytest.mark.django_db
@@ -236,7 +227,7 @@ def test_search_words_with_preverbs():
     """
     preverbs should be extracted and present in SearchResult instances
     """
-    results = search_with_affixes("nitawi-nipâw")
+    results = search(query="nitawi-nipâw").presentation_results()
     assert len(results) == 1
     search_result = results.pop()
 
@@ -250,8 +241,8 @@ def test_search_text_with_ambiguous_word_classes():
     Results of all word classes should be searched when the query is ambiguous
     """
     # pipon can be viewed as a Verb as well as a Noun
-    results = search_with_affixes("pipon")
-    assert {r.lemma_wordform.pos for r in results if r.matched_cree == "pipon"} == {
+    results = search(query="pipon").presentation_results()
+    assert {r.lemma_wordform.pos for r in results if r.wordform.text == "pipon"} == {
         "N",
         "V",
     }
@@ -261,8 +252,8 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many Cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = search_with_affixes("sleep")
-    assert results[0].matched_cree == "nipâw"
+    results = search(query="sleep").presentation_results()
+    assert results[0].wordform.text == "nipâw"
 
 
 @pytest.mark.django_db
@@ -285,7 +276,7 @@ def test_lemma_and_syncretic_form_ranking(lemma):
     and uses a **non-stable** sort or comparison.
     """
 
-    results = search_with_affixes(lemma)
+    results = search(query=lemma).presentation_results()
     assert len(results) >= 2
     maskwa_results = [res for res in results if res.lemma_wordform.text == lemma]
     assert len(maskwa_results) >= 2
@@ -312,7 +303,7 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     """
     Ensure that some search results appear before others.
     """
-    results = search_with_affixes(query)
+    results = search(query=query).presentation_results()
 
     top_result_pos = position_in_results(top_result, results)
     later_result_pos = position_in_results(later_result, results)
@@ -324,24 +315,20 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
 ####################################### Helpers ########################################
 
 
-def position_in_results(wordform: str, search_results) -> int:
+def position_in_results(wordform_text: str, search_results) -> int:
     """
     Find the EXACT wordform in the results.
     """
-    wordform = to_internal_form(wordform)
+    wordform_text = to_internal_form(wordform_text)
 
     for pos, result in enumerate(search_results):
-        if wordform == result.matched_cree:
+        if wordform_text == result.wordform.text:
             return pos
-    raise AssertionError(f"{wordform} not found in results: {search_results}")
+    raise AssertionError(f"{wordform_text} not found in results: {search_results}")
 
 
 def results_contains_wordform(wordform: str, search_results) -> bool:
     """
     Returns True if the wordform is found in the search results.
     """
-    try:
-        position_in_results(wordform, search_results)
-        return True
-    except AssertionError:
-        return False
+    return any(r.wordform.text == wordform for r in search_results)

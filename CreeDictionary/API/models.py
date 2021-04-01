@@ -1,5 +1,4 @@
 import logging
-import typing
 from collections import defaultdict
 from functools import lru_cache
 from typing import Dict, List, Optional, Set, Tuple
@@ -7,23 +6,30 @@ from urllib.parse import quote
 
 from django.db import models, transaction
 from django.db.models import Max
-from django.forms import model_to_dict
 from django.urls import reverse
 from django.utils.functional import cached_property
+
 from paradigm import Layout
 from shared import expensive
-from sortedcontainers import SortedSet
 from utils import ParadigmSize, PartOfSpeech, WordClass, fst_analysis_parser
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
-from .helpers import serialize_definitions
-
-from .schema import SerializedDefinition, SerializedWordform
+from .schema import SerializedDefinition
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
 MAX_SOURCE_ID_CACHE_ENTRIES = 4096
 
 logger = logging.getLogger(__name__)
+
+
+class WordformLemmaManager(models.Manager):
+    """We are essentially always going to want the lemma
+
+    So make preselecting it the default.
+    """
+
+    def get_queryset(self):
+        return super().get_queryset().select_related("lemma")
 
 
 class Wordform(models.Model):
@@ -35,6 +41,8 @@ class Wordform(models.Model):
 
     # this is initialized upon app ready.
     MORPHEME_RANKINGS: Dict[str, float] = {}
+
+    objects = WordformLemmaManager()
 
     def get_absolute_url(self) -> str:
         """
@@ -50,30 +58,6 @@ class Wordform(models.Model):
             lemma_url += f"?{self.homograph_disambiguator}={quote(str(getattr(self, self.homograph_disambiguator)))}"
 
         return lemma_url
-
-    def serialize(self, include_auto_definitions) -> SerializedWordform:
-        """
-        Intended to be passed in a JSON API or into templates.
-
-        :return: json parsable result
-        """
-        result = model_to_dict(self)
-        result["definitions"] = serialize_definitions(
-            self.definitions.all(), include_auto_definitions=include_auto_definitions
-        )
-        result["lemma_url"] = self.get_absolute_url()
-
-        # Displayed in the word class/inflection help:
-        result["inflectional_category_plain_english"] = LABELS.english.get(
-            self.inflectional_category
-        )
-        result["inflectional_category_linguistic"] = LABELS.linguistic_long.get(
-            self.inflectional_category
-        )
-        result["wordclass_emoji"] = self.get_emoji_for_cree_wordclass()
-        result["wordclass"] = self.wordclass_text
-
-        return result
 
     @property
     def wordclass_text(self) -> Optional[str]:
@@ -335,11 +319,11 @@ class Definition(models.Model):
     # cares about the source IDs. So this removes the coupling to how sources
     # are stored and returns the source IDs right away.
     @property
-    def source_ids(self) -> Tuple[str, ...]:
+    def source_ids(self) -> list[str]:
         """
         A tuple of the source IDs that this definition cites.
         """
-        return get_all_source_ids_for_definition(self.id)
+        return sorted(set(c.abbrv for c in self.citations.all()))
 
     def serialize(self) -> SerializedDefinition:
         """
@@ -368,18 +352,3 @@ class EnglishKeyword(models.Model):
 
     class Meta:
         indexes = [models.Index(fields=["text"])]
-
-
-@lru_cache(maxsize=MAX_SOURCE_ID_CACHE_ENTRIES)
-def get_all_source_ids_for_definition(definition_id: int) -> Tuple[str, ...]:
-    """
-    Returns all of the dictionary source IDs (e.g., "MD", "CW").
-    This is cached so to reduce the amount of duplicate queries made to the database,
-    especially during serialization.
-
-    See:
-     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/pull/558
-     - https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/531
-    """
-    dfn = Definition.objects.get(pk=definition_id)
-    return tuple(sorted(source.abbrv for source in dfn.citations.all()))

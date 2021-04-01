@@ -166,7 +166,7 @@ def main():
     from API.models import Wordform
 
     def do_lookup(to_lookup: str):
-        wordforms = Wordform.objects.filter(text=to_lookup).select_related("lemma")
+        wordforms = Wordform.objects.filter(text=to_lookup)
 
         if wordforms.count() == 0:
             print("not found in database :/")

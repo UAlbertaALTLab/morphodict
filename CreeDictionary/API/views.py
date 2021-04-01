@@ -1,8 +1,5 @@
-from typing import List
-
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
 
-from API.schema import SerializedSearchResult
 from .search import simple_search
 
 
@@ -18,9 +15,7 @@ def click_in_text(request) -> HttpResponse:
     elif q == "":
         return HttpResponseBadRequest("query param q is an empty string")
 
-    results: List[SerializedSearchResult] = []
-    for result in simple_search(q, include_auto_definitions=False):
-        results.append(result.serialize(include_auto_definitions=False))
+    results = simple_search(q, include_auto_definitions=False)
 
     response = {"results": results}
 

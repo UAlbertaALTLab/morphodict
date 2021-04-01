@@ -20,11 +20,10 @@ from django.conf import settings
 from API.models import Wordform, EnglishKeyword
 from utils.cree_lev_dist import remove_cree_diacritics
 from .types import (
-    EnglishResult,
-    MatchedEnglish,
-    CreeResult,
     InternalForm,
+    Result,
 )
+from . import core
 
 # A simplified form intended to be used within the affix search trie.
 SimplifiedForm = NewType("SimplifiedForm", str)
@@ -99,22 +98,22 @@ def do_affix_search(query: InternalForm, affixes: AffixSearcher) -> Iterable[Wor
     return Wordform.objects.filter(id__in=matched_ids)
 
 
-def do_english_affix_search(query, english_results):
-    english_keywords_matching_affix = do_affix_search(
-        query,
-        cache.english_affix_searcher,
+def do_target_language_affix_search(search_run: core.SearchRun):
+    matching_words = do_affix_search(
+        search_run.internal_query,
+        cache.target_language_affix_searcher,
     )
-    for word in english_keywords_matching_affix:
-        english_results.add(EnglishResult(MatchedEnglish(query), word, word.lemma))
+    for word in matching_words:
+        search_run.add_result(Result(word, target_language_affix_match=True))
 
 
-def do_cree_affix_seach(query, cree_results):
-    cree_words_matching_affix = do_affix_search(
-        query,
-        cache.cree_affix_searcher,
+def do_source_language_affix_search(search_run: core.SearchRun):
+    matching_words = do_affix_search(
+        search_run.internal_query,
+        cache.source_language_affix_searcher,
     )
-    for word in cree_words_matching_affix:
-        cree_results.add(CreeResult.from_wordform(word))
+    for word in matching_words:
+        search_run.add_result(Result(word, source_language_affix_match=True))
 
 
 def query_would_return_too_many_results(query: InternalForm) -> bool:
@@ -125,14 +124,14 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
     return len(query) <= settings.AFFIX_SEARCH_THRESHOLD
 
 
-def fetch_english_keywords_with_ids():
+def fetch_target_language_keywords_with_ids():
     """
     Return pairs of indexed English keywords with their corresponding Wordform IDs.
     """
     return EnglishKeyword.objects.all().values_list("text", "lemma__id")
 
 
-def fetch_cree_lemmas_with_ids():
+def fetch_source_language_lemmas_with_ids():
     """
     Return pairs of Cree lemmas with their corresponding Wordform IDs.
     """
@@ -147,27 +146,27 @@ class _Cache:
     """
 
     @cached_property
-    def cree_affix_searcher(self) -> AffixSearcher:
+    def source_language_affix_searcher(self) -> AffixSearcher:
         """
-        Returns the affix searcher that matches Cree lemmas
+        Returns the affix searcher that matches source language lemmas
         """
-        return AffixSearcher(fetch_cree_lemmas_with_ids())
+        return AffixSearcher(fetch_source_language_lemmas_with_ids())
 
     @cached_property
-    def english_affix_searcher(self) -> AffixSearcher:
+    def target_language_affix_searcher(self) -> AffixSearcher:
         """
-        Returns the affix searcher that matches English keywords (mined from the dictionary
+        Returns the affix searcher that matches target language keywords mined from the dictionary
         definitions
         """
-        return AffixSearcher(fetch_english_keywords_with_ids())
+        return AffixSearcher(fetch_target_language_keywords_with_ids())
 
     def preload(self):
         """Preload caches by accessing cached properties
 
         To be called on production server startup.
         """
-        self.cree_affix_searcher
-        self.english_affix_searcher
+        self.source_language_affix_searcher
+        self.target_language_affix_searcher
 
 
 cache = _Cache()

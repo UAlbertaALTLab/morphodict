@@ -57,12 +57,20 @@ class DuplicateAnnotatedSearchResult(TypedDict, total=False):
     manually approximate the relation.
     """
 
-    matched_cree: str
+    wordform_text: Optional[str]
+    # legacy, deprecated
+    matched_cree: Optional[str]
+
     lemma_wordform: PartialSerializedWordform
-
-    raw_suffix_tags: tuple[FSTTag, ...]
-
     is_duplicate_of: Optional[str]
+
+
+def get_result_text(r: DuplicateAnnotatedSearchResult | SerializedSearchResult):
+    # Use the new language-independent key if available
+    if "wordform_text" in r:
+        return r["wordform_text"]
+    # Fall back to old thing
+    return r["matched_cree"]
 
 
 def count_and_annotate_dupes(
@@ -85,10 +93,9 @@ def count_and_annotate_dupes(
         r = cast(DuplicateAnnotatedSearchResult, r_)
         normalized = "\n".join(
             [
-                r["matched_cree"],
+                get_result_text(r),
                 r["lemma_wordform"]["text"],
                 r["lemma_wordform"]["inflectional_category"],
-                ",".join(r["raw_suffix_tags"]),
             ]
         )
         if normalized in seen:
@@ -113,7 +120,7 @@ def find_rank(word: str, results: list[SerializedSearchResult]):
     index = 1
     for r in results:
         # We also have the definition here, could include it
-        if word == r["matched_cree"]:
+        if word == get_result_text(r):
             return index
         index += 1 if r["is_lemma"] else 2
     return "☹"
