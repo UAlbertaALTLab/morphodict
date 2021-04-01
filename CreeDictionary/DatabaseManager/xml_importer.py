@@ -1,10 +1,9 @@
 import re
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import DefaultDict, Dict, List, NamedTuple, Set, Tuple, Optional
+from typing import Dict, List, NamedTuple, Set, Optional
 
 from colorama import init
-from django.conf import settings
 
 from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
 from DatabaseManager import xml_entry_lemma_finder
@@ -156,7 +155,9 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
     (
         identified_entry_to_analysis,
         as_is_entries,
-    ) = xml_entry_lemma_finder.identify_entries(crkeng_xml)
+    ) = xml_entry_lemma_finder.identify_entries(
+        crkeng_xml, write_out_inconsistencies=True
+    )
 
     logger.info("Structuring wordforms, english keywords, and definition objects...")
 
