@@ -4,9 +4,9 @@ context('Word details', () => {
     //
     const testCases = [
       {wc: 'VTA', ic: 'VTA-1', word: 'mowêw'},
-      {wc: 'VAI', ic: 'VAI-v', word: 'wâpiw'},
+      {wc: 'VAI', ic: 'VAI-1', word: 'wâpiw'},
       {wc: 'VTI', ic: 'VTI-3', word: 'mîciw'},
-      {wc: 'VII', ic: 'VII-n', word: 'nîpin'},
+      {wc: 'VII', ic: 'VII-1n', word: 'nîpin'},
       // TODO: pretty sure this should be NAD, but the labels say otherwise:
       {wc: 'NDA', ic: 'NDA-1', word: 'nôhkom'},
       // TODO: pretty sure this should be NID, but the labels say otherwise:
