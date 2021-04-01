@@ -885,11 +885,14 @@ a.multiple-recordings__action-button {
 }
 
 .footer a:link,
-.footer a:visited {
+.footer a:visited
+.footer .linklike:link,
+.footer .linklike:visited {
   color: var(--footer-text-color);
 }
 
-.footer a:hover {
+.footer a:hover,
+.footer .linklike:hover {
   color: var(--footer-link-hover-color);
 }
 
@@ -925,6 +928,12 @@ a.multiple-recordings__action-button {
 
 .footer__link {
   font-weight: var(--strong-font-weight);
+}
+
+.footer__option-header {
+  font-size: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /**

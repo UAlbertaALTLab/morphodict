@@ -37,6 +37,21 @@
   cursor: pointer;
 }
 
+.linklike {
+  text-decoration: underline;
+}
+
+/**
+ * Place this on a <ul> or <ol> to get rid of the bullets and weird
+ * indentation.
+ */
+.unbullet {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
 /**
  * Fill the width of the container.
  */

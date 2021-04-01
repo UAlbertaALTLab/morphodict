@@ -2,6 +2,7 @@ from http import HTTPStatus
 from typing import Any, Dict, Literal
 
 from django.conf import settings
+from django.views import View
 
 from API.models import Wordform
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -249,6 +250,35 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
+
+
+DISPLAY_MODES = {"basic", "traditional"}
+DEFAULT_DISPLAY_MODE = "basic"
+
+
+class ChangeDisplayMode(View):
+    """
+    Sets the mode= cookie, which affects how search results are rendered.
+
+        > POST /change-mode HTTP/1.1
+        > Cookie: display-mode=basic
+        >
+        > mode=traditional
+
+        < HTTP/1.1 204 No Content
+        < Set-Cookie: mode=traditional
+    """
+
+    def post(self, request) -> HttpResponse:
+        mode = request.POST.get("mode")
+
+        # Tried to set to an unknown display mode
+        if mode not in DISPLAY_MODES:
+            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
+
+        response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+        response.set_cookie("mode", mode)
+        return response
 
 
 ## Helper functions
