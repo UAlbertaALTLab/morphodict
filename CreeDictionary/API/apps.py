@@ -35,9 +35,9 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
-        logger.debug("loading affix caches")
         from API.search import affix
 
+        logger.debug("loading affix caches")
         affix.cache.preload()
 
         logger.debug("calling initialize_preverb_search()")
