@@ -49,7 +49,7 @@ def ensure_cypress_admin_user():
     user_file_valid = False
     user_info_file = settings.BASE_PATH / ".cypress-user.json"
     if user_info_file.exists():
-        user_info = json.load(user_info_file.read_text())
+        user_info = json.loads(user_info_file.read_text())
         if cypress_user.check_password(user_info.get("password", "")):
             user_file_valid = True
 
