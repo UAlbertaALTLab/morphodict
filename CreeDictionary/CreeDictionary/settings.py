@@ -172,7 +172,7 @@ def defaultDatabasePath():
     The default is to store the production database in the repository. This might not be
     the best solution :/
     """
-    path = BASE_PATH / "db.sqlite3"
+    path = BASE_PATH / "db" / "db.sqlite3"
     return f"sqlite:///{path}"
 
 
