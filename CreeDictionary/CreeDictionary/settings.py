@@ -169,10 +169,24 @@ else:  # pragma: no cover
 
 def defaultDatabasePath():
     """
-    The default is to store the production database in the repository. This might not be
-    the best solution :/
+    The default is to store the database in the repository folder. In
+    production, docker can mount the database from elsewhere.
+
+    Note that we deviate from the default slightly by putting the database
+    in a dedicated `db` directory, and mounting the entire directory with
+    docker, instead of only mounting the `.sqlite3` file.
+
+    This is so that the additional `-shm` and `-wal` files that SQLite
+    creates if running in write-ahead-logging aka WAL mode are kept
+    together as one unit.
+
+    This also helps out in some situations with swapping out database files
+    that have had migrations applied offline. If `foo` is a file that is
+    also a docker mount, and you `mv foo bar && touch foo` from outside the
+    container, the container file `foo` now points at the outside `bar`.
+    Things are more normal with directory mounts.
     """
-    path = BASE_PATH / "db.sqlite3"
+    path = BASE_PATH / "db" / "db.sqlite3"
     return f"sqlite:///{path}"
 
 
