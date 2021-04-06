@@ -13,7 +13,7 @@ from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
 # it's a str when the preverb does not exist in the database
-Preverb = Union[Wordform, str]
+Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
 InternalForm = NewType("InternalForm", str)
@@ -162,7 +162,10 @@ class Result:
     #: Was anything in the query a source-language match for this result?
     @property
     def did_match_source_language(self) -> bool:
-        return self.source_language_match is not None
+        return (
+            self.source_language_match is not None
+            or self.source_language_affix_match is not None
+        )
 
     def __str__(self):
         return f"Result<wordform={self.wordform}>"

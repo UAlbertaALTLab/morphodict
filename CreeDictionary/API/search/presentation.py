@@ -9,6 +9,7 @@ from . import types, core, lookup
 from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import FSTTag, Label, ConcatAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
+from ..models import Wordform
 from ..schema import SerializedWordform
 
 
@@ -162,8 +163,14 @@ def get_preverbs_from_head_breakdown(
                         ),
                     )
 
-                else:  # can't find a match for the preverb in the database
-                    preverb_result = normative_preverb_text
+                else:
+                    # Can't find a match for the preverb in the database.
+                    # This happens when searching against the test database for
+                    # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
+                    # lacks lacks ê and kî.
+                    preverb_result = Wordform(
+                        text=normative_preverb_text, is_lemma=True
+                    )
 
         if preverb_result is not None:
             results.append(preverb_result)

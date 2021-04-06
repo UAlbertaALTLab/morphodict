@@ -22,10 +22,7 @@ def sort_search_result(
               <0: res_a should appear before res_b.
     """
 
-    if (
-        res_a.source_language_match is not None
-        and res_b.source_language_match is not None
-    ):
+    if res_a.did_match_source_language and res_b.did_match_source_language:
         # both from source
         a_dis = get_modified_distance(search_run.internal_query, res_a.wordform.text)
         b_dis = get_modified_distance(search_run.internal_query, res_b.wordform.text)
