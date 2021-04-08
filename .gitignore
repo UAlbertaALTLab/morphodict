@@ -67,6 +67,7 @@ cypress/videos
 
 # Generated files:
 CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
+CreeDictionary/CreeDictionary/static/CreeDictionary/js/click-in-text-embedded-test.js
 CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map

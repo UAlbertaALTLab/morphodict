@@ -4,22 +4,24 @@
  * Creates the proper static files.
  */
 
-import * as path from "path";
+import * as path from 'path'
 
-require("dotenv").config(); // Load environment variables from .env
+require('dotenv').config();  // Load environment variables from .env
 
 /////////////////////////////// Rollup plugins ///////////////////////////////
-import { terser } from "rollup-plugin-terser";
-import resolve from "rollup-plugin-node-resolve";
-import commonjs from "rollup-plugin-commonjs";
-import postcss from "rollup-plugin-postcss";
+import {terser} from 'rollup-plugin-terser'
+import resolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
+import postcss from 'rollup-plugin-postcss'
+
 
 ///////////////////////////////// Constants //////////////////////////////////
 
-const STATIC_DIR = "./CreeDictionary/CreeDictionary/static/CreeDictionary/";
+const STATIC_DIR = './CreeDictionary/CreeDictionary/static/CreeDictionary/';
 
 // Production mode when debug is false.
 const production = !process.env.DEBUG;
+
 
 /////////////////////////////////// Config ///////////////////////////////////
 
