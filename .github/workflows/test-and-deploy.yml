@@ -48,14 +48,22 @@ jobs:
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
 
-    # Copy-paste from
+    # This started out life as a copy-paste from
     # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
+        # is based on a hash of the absolute path of the Pipfile, so
+        # it will be reused between CI runs.
+        #
+        # But it contains symlinks to $pythonLocation set by
+        # @actions/setup-python, which can break when the CI host minor
+        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
+        # the cache key.
+        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-pipenv-
+          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
 
     - name: 📥 Install dependencies
       run: |
@@ -100,14 +108,22 @@ jobs:
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
 
-    # Copy-paste from
+    # This started out life as a copy-paste from
     # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
+        # is based on a hash of the absolute path of the Pipfile, so
+        # it will be reused between CI runs.
+        #
+        # But it contains symlinks to $pythonLocation set by
+        # @actions/setup-python, which can break when the CI host minor
+        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
+        # the cache key.
+        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-pipenv-
+          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
 
     - name: 📥 Install Python dependencies
       run: |

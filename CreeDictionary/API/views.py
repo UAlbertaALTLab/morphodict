@@ -1,6 +1,8 @@
 from typing import List
 
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
+from django.shortcuts import render
 
 from API.schema import SerializedSearchResult
 from .search import simple_search
@@ -27,3 +29,9 @@ def click_in_text(request) -> HttpResponse:
     json_response = JsonResponse(response)
     json_response["Access-Control-Allow-Origin"] = "*"
     return json_response
+
+
+def click_in_text_embedded_test(request):
+    if not settings.DEBUG:
+        raise Http404()
+    return render(request, "API/click-in-text-embedded-test.html")
