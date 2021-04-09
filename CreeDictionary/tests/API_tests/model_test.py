@@ -25,8 +25,8 @@ def test_when_linguistic_breakdown_absent():
 
     result = search_results[0]
     assert (
-        result.friendly_linguistic_breakdown_head == ()
-        and result.friendly_linguistic_breakdown_tail == ("like: pê-",)
+        result.friendly_linguistic_breakdown_head == []
+        and result.friendly_linguistic_breakdown_tail == ["like: pê-"]
     )
 
 
