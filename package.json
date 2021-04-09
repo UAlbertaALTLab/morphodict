@@ -28,6 +28,7 @@
     "wait-on": "^3.3.0"
   },
   "dependencies": {
+    "@altlab/click-in-text": "^0.1.2",
     "@popperjs/core": "^2.6.0",
     "acorn": "^7.4.1",
     "cssnano": "^4.1.10",
