@@ -101,14 +101,18 @@ class Result:
     """
     A target-language wordform and the features that link it to a query.
 
-    The features can be gathered together from multiple search methods to allow
-    better inferences about how good a result is.
+    Features of a wordform allow better inferences about how good a result is.
 
-    Some examples of the features to be used for ranking could include:
+    Some examples of these features could include:
       - Is this Result a match between a source-language query and wordform
         text, or between a target-language query term and a word in the
         definition text?
       - What is the edit distance between the query term and the wordform?
+      - What is the best cosine vector distance between a definition of the
+        result wordform and the query terms?
+
+    The best search results will presumably have better scores on more features
+    of greater importance.
 
     Search methods may generate candidate results that are ultimately not sent
     to users, so any user-friendly tagging/relabelling is instead done in
