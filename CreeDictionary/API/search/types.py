@@ -12,7 +12,6 @@ from API.schema import SerializedLinguisticTag
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
 
-# it's a str when the preverb does not exist in the database
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
@@ -102,9 +101,14 @@ class Result:
     """
     A target-language wordform and the features that link it to a query.
 
-    The features—is it an exact source-language match for the query? Is the edit
-    distance low? &c.—that make this a candidate result for a search query are
-    required to rank different results before showing them to the user.
+    The features can be gathered together from multiple search methods to allow
+    better inferences about how good a result is.
+
+    Some examples of the features to be used for ranking could include:
+      - Is this Result a match between a source-language query and wordform
+        text, or between a target-language query term and a word in the
+        definition text?
+      - What is the edit distance between the query term and the wordform?
 
     Search methods may generate candidate results that are ultimately not sent
     to users, so any user-friendly tagging/relabelling is instead done in

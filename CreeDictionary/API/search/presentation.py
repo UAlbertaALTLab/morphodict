@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Tuple, Optional
+from typing import List, Tuple, Optional, TypedDict, Iterable
 
 from django.forms import model_to_dict
 
@@ -10,7 +10,18 @@ from utils.fst_analysis_parser import LABELS, partition_analysis
 from utils.types import FSTTag, Label, ConcatAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from ..models import Wordform
-from ..schema import SerializedWordform
+from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
+
+
+class SerializedPresentationResult(TypedDict):
+    lemma_wordform: SerializedWordform
+    wordform_text: str
+    is_lemma: bool
+    definitions: Iterable[SerializedDefinition]
+    preverbs: Iterable[SerializedWordform]
+    friendly_linguistic_breakdown_head: Iterable[Label]
+    friendly_linguistic_breakdown_tail: Iterable[Label]
+    relevant_tags: Iterable[SerializedLinguisticTag]
 
 
 class PresentationResult:
@@ -38,16 +49,17 @@ class PresentationResult:
 
         self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
 
-        self.friendly_linguistic_breakdown_head = tuple(
-            replace_user_friendly_tags(self.linguistic_breakdown_head)
+        self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
+            self.linguistic_breakdown_head
         )
-        self.friendly_linguistic_breakdown_tail = tuple(
-            replace_user_friendly_tags(self.linguistic_breakdown_tail)
+        self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
+            self.linguistic_breakdown_tail
         )
 
-    def serialize(self):
-        ret = {
+    def serialize(self) -> SerializedPresentationResult:
+        return {
             "lemma_wordform": serialize_wordform(self.lemma_wordform),
+            "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
             "definitions": serialize_definitions(
                 self.wordform.definitions.all(),
@@ -61,12 +73,6 @@ class PresentationResult:
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
         }
-        if isinstance(self.wordform, str):
-            ret["wordform_text"] = self.wordform
-        else:
-            ret["wordform_text"] = self.wordform.text
-
-        return ret
 
     @property
     def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
@@ -149,7 +155,7 @@ def get_preverbs_from_head_breakdown(
             # ling_short looks like: "Preverb: âpihci-"
             ling_short = LABELS.linguistic_short.get(tag)
             if ling_short is not None and ling_short != "":
-                # looks like: "âpihci"
+                # convert to "âpihci" by dropping prefix and last character
                 normative_preverb_text = ling_short[len("Preverb: ") : -1]
                 preverb_results = lookup.fetch_preverbs(normative_preverb_text)
 

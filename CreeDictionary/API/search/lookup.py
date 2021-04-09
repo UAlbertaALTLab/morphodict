@@ -161,13 +161,13 @@ def fetch_results(search_run: core.SearchRun):
             search_run.add_result(Result(wordform, is_preverb_match=True))
 
 
-def filter_cw_wordforms(q: Iterable[Wordform]) -> Iterable[Wordform]:
+def filter_cw_wordforms(queryset: Iterable[Wordform]) -> Iterable[Wordform]:
     """
     return the wordforms that has definition from CW dictionary
 
-    :param q: an Iterable of Wordforms
+    :param queryset: an Iterable of Wordforms
     """
-    for wordform in q:
+    for wordform in queryset:
         for definition in wordform.definitions.all():
             if "CW" in definition.source_ids:
                 yield wordform
