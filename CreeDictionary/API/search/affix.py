@@ -18,6 +18,7 @@ import dawg
 from django.conf import settings
 
 from API.models import Wordform, EnglishKeyword
+from utils import get_modified_distance
 from utils.cree_lev_dist import remove_cree_diacritics
 from .types import (
     InternalForm,
@@ -113,7 +114,15 @@ def do_source_language_affix_search(search_run: core.SearchRun):
         cache.source_language_affix_searcher,
     )
     for word in matching_words:
-        search_run.add_result(Result(word, source_language_affix_match=True))
+        search_run.add_result(
+            Result(
+                word,
+                source_language_affix_match=True,
+                query_wordform_edit_distance=get_modified_distance(
+                    word.text, search_run.internal_query
+                ),
+            )
+        )
 
 
 def query_would_return_too_many_results(query: InternalForm) -> bool:

@@ -5,8 +5,8 @@ import pytest
 from hypothesis import assume, given
 
 from API.models import Wordform
-from API.search import search_with_affixes, simple_search, search
-from API.search.core import to_internal_form
+from API.search import search
+from API.search.util import to_sro_circumflex
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
 
@@ -319,7 +319,7 @@ def position_in_results(wordform_text: str, search_results) -> int:
     """
     Find the EXACT wordform in the results.
     """
-    wordform_text = to_internal_form(wordform_text)
+    wordform_text = to_sro_circumflex(wordform_text)
 
     for pos, result in enumerate(search_results):
         if wordform_text == result.wordform.text:

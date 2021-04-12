@@ -44,7 +44,15 @@ def fetch_results(search_run: core.SearchRun):
 
         if exactly_matched_wordforms.exists():
             for wf in exactly_matched_wordforms:
-                search_run.add_result(Result(wf, source_language_match=wf.text))
+                search_run.add_result(
+                    Result(
+                        wf,
+                        source_language_match=wf.text,
+                        query_wordform_edit_distance=get_modified_distance(
+                            wf.text, search_run.internal_query
+                        ),
+                    )
+                )
         else:
             # When the user query is outside of paradigm tables
             # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik

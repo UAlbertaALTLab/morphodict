@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import dataclasses
+import json
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Union, NewType, Iterable, Tuple, Optional
 
 from typing_extensions import Protocol
 
-from API.models import Wordform
+from API.models import Wordform, wordform_cache
 from API.schema import SerializedLinguisticTag
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
@@ -129,6 +130,14 @@ class Result:
 
         self.is_lemma = self.wordform.is_lemma
         self.lemma_wordform = self.wordform.lemma
+        self.wordform_length = len(self.wordform.text)
+
+        if self.did_match_source_language and self.query_wordform_edit_distance is None:
+            raise Exception("must include edit distance on source language matches")
+
+        self.morpheme_ranking = wordform_cache.MORPHEME_RANKINGS.get(
+            self.wordform.text, None
+        ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
 
     def add_features_from(self, other: Result):
         """Add the features from `other` into this object
@@ -139,18 +148,18 @@ class Result:
         """
         assert wordforms_match(self.wordform, other.wordform)
 
-        for field in dataclasses.fields(Result):
-            if field.init and field.name != "wordform":
-                other_value = getattr(other, field.name)
-                if other_value is not None:
-                    setattr(self, field.name, other_value)
+        for field_name, other_value in other._features():
+            if other_value is not None:
+                setattr(self, field_name, other_value)
 
     wordform: Wordform
     lemma_wordform: Lemma = field(init=False)
     is_lemma: bool = field(init=False)
+    wordform_length: int = field(init=False)
 
     #: What, if any, was the matching string?
     source_language_match: Optional[str] = None
+    query_wordform_edit_distance: Optional[float] = None
 
     source_language_affix_match: Optional[bool] = None
     target_language_affix_match: Optional[bool] = None
@@ -166,6 +175,24 @@ class Result:
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
+
+    morpheme_ranking: Optional[float] = None
+
+    def _features(self):
+        for field in dataclasses.fields(Result):
+            if field.name not in ["wordform", "lemma_wordform"]:
+                yield field.name, getattr(self, field.name)
+
+    def features_json(self):
+        return json.dumps(
+            {
+                field_name: value
+                for field_name, value in self._features()
+                if value is not None
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
 
     #: Was anything in the query a source-language match for this result?
     @property

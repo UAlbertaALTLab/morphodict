@@ -1,15 +1,13 @@
-import unicodedata
 from typing import Union
 
-from cree_sro_syllabics import syllabics2sro
 from django.db.models import prefetch_related_objects
 
 from API.models import Wordform
 from . import types, presentation, ranking
+from .query import Query
+from .util import first_non_none_value
 
 # This type is the int pk for a saved wordform, or (text, analysis) for an unsaved one.
-from .types import InternalForm
-
 WordformKey = Union[int, tuple[str, str]]
 
 
@@ -28,10 +26,12 @@ class SearchRun:
     and to add results to the result collection for future ranking.
     """
 
-    def __init__(self, query: str, include_auto_definitions=False):
-        self.query = query
-        self.internal_query = to_internal_form(clean_query_text(query))
-        self.include_auto_definitions = include_auto_definitions
+    def __init__(self, query: str, include_auto_definitions=None):
+        self.query = Query(query)
+        self.internal_query = self.query.query_string
+        self.include_auto_definitions = first_non_none_value(
+            self.query.auto, include_auto_definitions, default=False
+        )
         self._results = {}
 
     include_auto_definition: bool
@@ -70,37 +70,3 @@ class SearchRun:
 
     def __str__(self):
         return f"SearchRun<query={self.query}>"
-
-
-def to_internal_form(user_query: str) -> InternalForm:
-    """
-    Convert text to the internal form used by the database entries, tries, FSTs, etc.
-
-    In itwêwina, the Plains Cree dictionary, this means SRO circumflexes.
-    """
-    return InternalForm(to_sro_circumflex(user_query))
-
-
-def to_sro_circumflex(text: str) -> str:
-    """
-    Convert text to Plains Cree SRO with circumflexes (êîôâ).
-
-    >>> to_sro_circumflex("tān'si")
-    "tân'si"
-    >>> to_sro_circumflex("ᑖᓂᓯ")
-    'tânisi'
-    """
-    text = text.replace("ā", "â").replace("ē", "ê").replace("ī", "î").replace("ō", "ô")
-    return syllabics2sro(text)
-
-
-def clean_query_text(user_query: str) -> str:
-    """
-    Cleans up the query text before it is passed to further steps.
-    """
-    # Whitespace won't affect results, but the FST can't deal with it:
-    user_query = user_query.strip()
-    # All internal text should be in NFC form --
-    # that is, all characters that can be composed are composed.
-    user_query = unicodedata.normalize("NFC", user_query)
-    return user_query.lower()
