@@ -46,18 +46,24 @@ urlpatterns = [
         views.paradigm_internal,
         name="cree-dictionary-paradigm-detail",
     ),
+    path(
+        "_change_display_mode",
+        views.ChangeDisplayMode.as_view(),
+        name="cree-dictionary-change-display-mode",
+    ),
+    ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
         "click-in-text/",
         api_views.click_in_text,
         name="cree-dictionary-word-click-in-text-api",
     ),
-    # Post to change the display mode:
     path(
-        "_change_display_mode",
-        views.ChangeDisplayMode.as_view(),
-        name="cree-dictionary-change-display-mode",
+        "click-in-text-embedded-test/",
+        api_views.click_in_text_embedded_test,
+        name="cree-dictionary-click-in-text-embedded-test",
     ),
+    # Post to change the display mode:
     ############################## Other applications ##############################
     path("admin/", admin.site.urls),
     path("search-quality/", include("search_quality.urls")),

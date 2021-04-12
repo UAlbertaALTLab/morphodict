@@ -53,6 +53,3 @@ def django_db_setup(request, django_db_blocker):
         with django_db_blocker.unblock():
             print("\nSyncing test database")
             call_command("ensuretestdb", verbosity=0)
-
-            # Tests that rely on affix search will fail without this
-            APIConfig.active_instance().perform_time_consuming_initializations()

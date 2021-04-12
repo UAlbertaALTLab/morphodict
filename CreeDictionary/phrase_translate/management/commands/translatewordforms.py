@@ -7,6 +7,7 @@ from collections import defaultdict
 from dataclasses import dataclass, asdict
 
 from django.core.management import BaseCommand
+from django.db import transaction
 from django.db.models import Max, Q
 from tqdm import tqdm
 
@@ -114,11 +115,10 @@ class Command(BaseCommand):
 
         (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
 
+        extra_kwargs = {}
         if options["wordforms"]:
-            wordforms_queryset = Wordform.objects.filter(text__in=options["wordforms"])
-        else:
-            wordforms_queryset = Wordform.objects.all()
-        wordforms_queryset = wordforms_queryset.select_related("lemma")
+            extra_kwargs = dict(text__in=options["wordforms"])
+        wordforms_queryset = Wordform.objects.filter(is_lemma=False, **extra_kwargs)
 
         logger.info("Removing existing auto-definitions")
         if options["wordforms"]:

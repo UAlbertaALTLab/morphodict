@@ -1,15 +1,7 @@
-from sortedcontainers import SortedSet
-
-from .lookup import (
-    WordformSearchWithAffixes,
-    WordformSearchWithExactMatch,
-)
-from .types import SearchResult
+from .runner import search
 
 
-def search_with_affixes(
-    query: str, include_auto_definitions=False
-) -> SortedSet[SearchResult]:
+def search_with_affixes(query: str, include_auto_definitions=False):
     """
     Search for wordforms matching:
      - the wordform text
@@ -18,18 +10,20 @@ def search_with_affixes(
      - affixes of the definition keyword text
     """
 
-    search = WordformSearchWithAffixes(query)
-    return search.perform(include_auto_definitions=include_auto_definitions)
+    return search(
+        query=query, include_auto_definitions=include_auto_definitions
+    ).serialized_presentation_results()
 
 
-def simple_search(
-    query: str, include_auto_definitions=False
-) -> SortedSet[SearchResult]:
+def simple_search(query: str, include_auto_definitions=False):
     """
     Search, trying to match full wordforms or keywords within definitions.
 
     Does NOT try to match affixes!
     """
 
-    search = WordformSearchWithExactMatch(query)
-    return search.perform(include_auto_definitions=include_auto_definitions)
+    return search(
+        query=query,
+        include_affixes=False,
+        include_auto_definitions=include_auto_definitions,
+    ).serialized_presentation_results()

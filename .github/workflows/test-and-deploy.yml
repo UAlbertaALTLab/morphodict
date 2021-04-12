@@ -48,14 +48,22 @@ jobs:
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
 
-    # Copy-paste from
+    # This started out life as a copy-paste from
     # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
+        # is based on a hash of the absolute path of the Pipfile, so
+        # it will be reused between CI runs.
+        #
+        # But it contains symlinks to $pythonLocation set by
+        # @actions/setup-python, which can break when the CI host minor
+        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
+        # the cache key.
+        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-pipenv-
+          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
 
     - name: 📥 Install dependencies
       run: |
@@ -100,14 +108,22 @@ jobs:
     - name: ☤ Install pipenv
       run: python3 -m pip install pipenv
 
-    # Copy-paste from
+    # This started out life as a copy-paste from
     # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
+        # is based on a hash of the absolute path of the Pipfile, so
+        # it will be reused between CI runs.
+        #
+        # But it contains symlinks to $pythonLocation set by
+        # @actions/setup-python, which can break when the CI host minor
+        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
+        # the cache key.
+        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
         restore-keys: |
-          ${{ runner.os }}-pipenv-
+          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
 
     - name: 📥 Install Python dependencies
       run: |
@@ -160,51 +176,6 @@ jobs:
         push: true
         tags: |
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
-
-  # This syncs up API/schema.py to our @altlab/types package
-  # If there is an update to the type output (index.ts), but the version number is untouched,
-  # this will fail because the developer needs to choose which version to bump.
-  type-package-check:
-    runs-on: ubuntu-20.04
-
-    needs: [should-deploy]
-    if: needs.should-deploy.outputs.should-run == 'true'
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: 🐍 Set up Python 3.9
-      uses: actions/setup-python@v2
-      with: # python-typing-to-typescript requires python 3.9
-        python-version: 3.9
-
-    - name: Setup Node 14
-      uses: actions/setup-node@v1
-      with:
-        node-version: '14'
-
-    - name: "❓ Generate current types and check if types changed"
-      run: |
-        # get published version and the conversion tool we are using
-        npm install -g @altlab/types python-typing-to-typescript@^1.1
-
-        # convert our current schema.py to index.ts
-        pttts CreeDictionary/API/schema.py types/index.ts
-
-        # assert version change if the current types are different
-        libexec/check-npm-types-package-and-version-bump ./types $(npm root -g)/@altlab/types
-
-    - name: "📖 Generate README" # it's just copy-pasting our index.ts file
-      run: |
-        echo "\`\`\`typescript" >> types/README.md
-        cat types/index.ts >> types/README.md
-        echo "\`\`\`" >> types/README.md
-
-    - name: "📁 Publish new NPM package"
-      uses: JS-DevTools/npm-publish@v1
-      with:
-        token: ${{ secrets.TYPES_NPM_PACKAGE_PUBLISH_TOKEN }}
-        package: ./types/package.json
-        check-version: true # won't run if version is not bumped
 
   trigger-deployment:
     runs-on: ubuntu-20.04

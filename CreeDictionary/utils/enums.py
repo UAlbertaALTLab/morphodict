@@ -1,11 +1,6 @@
 from enum import Enum
 
 
-class Language(Enum):
-    ENGLISH = "ENGLISH"
-    CREE = "CREE"
-
-
 class ParadigmSize(Enum):
     BASIC = "BASIC"
     FULL = "FULL"

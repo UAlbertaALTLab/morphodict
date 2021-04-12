@@ -9,7 +9,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFou
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
-from API.search import search_with_affixes
+from API.search import search_with_affixes, presentation
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
@@ -61,9 +61,7 @@ def lemma_details(request, lemma_text: str = None):  # pragma: no cover
             # TODO: remove this parameter in favour of...
             lemma=lemma,
             # ...this parameter
-            wordform=lemma.serialize(
-                include_auto_definitions=should_include_auto_definitions(request)
-            ),
+            wordform=presentation.serialize_wordform(lemma),
             paradigm_size=paradigm_size,
             paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
             if lemma
@@ -86,15 +84,10 @@ def index(request):  # pragma: no cover
     user_query = request.GET.get("q", None)
 
     if user_query:
-        search_results = [
-            search_result.serialize(
-                include_auto_definitions=should_include_auto_definitions(request)
-            )
-            for search_result in search_with_affixes(
-                user_query,
-                include_auto_definitions=should_include_auto_definitions(request),
-            )
-        ]
+        search_results = search_with_affixes(
+            user_query,
+            include_auto_definitions=should_include_auto_definitions(request),
+        )
         did_search = True
     else:
         search_results = []
@@ -126,15 +119,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/search-results.html",
-        {
-            "query_string": query_string,
-            "search_results": [
-                r.serialize(
-                    include_auto_definitions=should_include_auto_definitions(request)
-                )
-                for r in results
-            ],
-        },
+        {"query_string": query_string, "search_results": results},
     )
 
 

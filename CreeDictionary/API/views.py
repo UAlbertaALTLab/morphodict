@@ -1,8 +1,7 @@
-from typing import List
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
+from django.shortcuts import render
 
-from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse
-
-from API.schema import SerializedSearchResult
 from .search import simple_search
 
 
@@ -18,12 +17,16 @@ def click_in_text(request) -> HttpResponse:
     elif q == "":
         return HttpResponseBadRequest("query param q is an empty string")
 
-    results: List[SerializedSearchResult] = []
-    for result in simple_search(q, include_auto_definitions=False):
-        results.append(result.serialize(include_auto_definitions=False))
+    results = simple_search(q, include_auto_definitions=False)
 
     response = {"results": results}
 
     json_response = JsonResponse(response)
     json_response["Access-Control-Allow-Origin"] = "*"
     return json_response
+
+
+def click_in_text_embedded_test(request):
+    if not settings.DEBUG:
+        raise Http404()
+    return render(request, "API/click-in-text-embedded-test.html")

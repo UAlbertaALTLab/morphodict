@@ -1,7 +1,7 @@
 """
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
-from typing import List, Tuple, Union
+from typing import List, Tuple, Union, Optional, Sequence
 
 from typing_extensions import Literal, TypedDict
 
@@ -10,7 +10,7 @@ from utils.types import FSTTag
 
 class SerializedDefinition(TypedDict):
     text: str
-    source_ids: Tuple[str, ...]
+    source_ids: Sequence[str]
 
 
 class SerializedWordform(TypedDict):
@@ -46,7 +46,9 @@ class SerializedLinguisticTag(TypedDict):
 
 class SerializedSearchResult(TypedDict):
     # the text of the match
-    matched_cree: str
+    wordform_text: str
+    # legacy name, deprecated
+    matched_cree: Optional[str]
 
     is_lemma: bool
 
@@ -70,11 +72,5 @@ class SerializedSearchResult(TypedDict):
 
     # This omits preverbs and other features displayed elsewhere
     relevant_tags: Tuple[SerializedLinguisticTag, ...]
-
-    # TODO: there are things to be figured out for this :/
-    # Sequence of all reduplication tags present, in order
-    reduplication_tags: Tuple[str, ...]
-    # Sequence of all initial change tags
-    initial_change_tags: Tuple[str, ...]
 
     definitions: Tuple[SerializedDefinition, ...]
