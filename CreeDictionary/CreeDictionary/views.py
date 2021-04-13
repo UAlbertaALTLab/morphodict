@@ -1,15 +1,13 @@
 from http import HTTPStatus
 from typing import Any, Dict, Literal
 
-from django.conf import settings
-from django.views import View
-
 from API.models import Wordform
+from API.search import presentation, search_with_affixes
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from django.views import View
 from django.views.decorators.http import require_GET
-
-from API.search import search_with_affixes, presentation
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
@@ -261,7 +259,15 @@ class ChangeDisplayMode(View):
         if mode not in DISPLAY_MODES:
             return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
-        response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+        if who_asked_us := request.headers.get("Referer"):
+            # The browser should refresh the page that asked us.
+            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
+            response.headers["Location"] = who_asked_us
+        else:
+            # We don't know where to redirect, so send no content.
+            # (also, this probably should never happen?)
+            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+
         response.set_cookie("mode", mode)
         return response
 

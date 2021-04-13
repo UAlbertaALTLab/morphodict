@@ -87,12 +87,16 @@
       <ul class="unbullet">
         <li>
           <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
-            <button class="unbutton linklike footer__link" type="submit" name="mode" value="basic">Basic mode</button>
+            <button class="unbutton linklike footer__link" type="submit" name="mode" value="basic" data-cy="enable-basic-mode">
+              Basic mode
+            </button>
             {% csrf_token %}
           </form>
         <li>
           <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
-            <button class="unbutton linklike footer__link" type="submit" name="mode" value="traditional">Traditional mode</button>
+            <button class="unbutton linklike footer__link" type="submit" name="mode" value="traditional" data-cy="enable-traditional-mode">
+              Traditional mode
+            </button>
             {% csrf_token %}
           </form>
         </ul>
