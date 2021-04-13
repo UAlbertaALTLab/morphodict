@@ -1,20 +1,9 @@
-from typing import Union
-
 from django.db.models import prefetch_related_objects
 
-from API.models import Wordform
 from . import types, presentation, ranking
 from .query import Query
 from .util import first_non_none_value
-
-# This type is the int pk for a saved wordform, or (text, analysis) for an unsaved one.
-WordformKey = Union[int, tuple[str, str]]
-
-
-def _wordform_key(wordform: Wordform) -> WordformKey:
-    if wordform.id is not None:
-        return wordform.id
-    return (wordform.text, wordform.analysis)
+from ..models import WordformKey
 
 
 class SearchRun:
@@ -40,7 +29,7 @@ class SearchRun:
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):
             raise TypeError(f"{result} is {type(result)}, not Result")
-        key = _wordform_key(result.wordform)
+        key = result.wordform.key
         if key in self._results:
             self._results[key].add_features_from(result)
         else:

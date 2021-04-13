@@ -3,13 +3,16 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, Literal, Optional
+from typing import Dict, Optional, Union
+from typing import Literal
 from urllib.parse import quote
 
 from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
+
+from CreeDictionary.relabelling import LABELS
 from utils import (
     PartOfSpeech,
     WordClass,
@@ -17,9 +20,7 @@ from utils import (
     shared_res_dir,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
-from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
-
 from .schema import SerializedDefinition
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
@@ -36,6 +37,10 @@ class WordformLemmaManager(models.Manager):
 
     def get_queryset(self):
         return super().get_queryset().select_related("lemma")
+
+
+# This type is the int pk for a saved wordform, or (text, analysis) for an unsaved one.
+WordformKey = Union[int, tuple[str, str]]
 
 
 class Wordform(models.Model):
@@ -115,6 +120,16 @@ class Wordform(models.Model):
             return WordClass(self.pos)
         except ValueError:
             return None
+
+    @property
+    def key(self) -> WordformKey:
+        """A value to check if objects represent the ‘same’ wordform
+
+        Works even if the objects are unsaved.
+        """
+        if self.id is not None:
+            return self.id
+        return (self.text, self.analysis)
 
     # override pk to allow use of bulk_create
     # auto-increment is also implemented in the overridden save() method below

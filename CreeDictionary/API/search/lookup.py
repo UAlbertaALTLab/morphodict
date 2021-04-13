@@ -157,7 +157,7 @@ def fetch_results(search_run: core.SearchRun):
 
         for wordform in Wordform.objects.filter(id__in=lemma_ids):
             search_run.add_result(
-                Result(wordform, target_language_keyword_match=stemmed_keyword)
+                Result(wordform, target_language_keyword_match=[stemmed_keyword])
             )
 
         # explained above, preverbs should be presented
