@@ -1,4 +1,5 @@
 import logging
+from http import HTTPStatus
 from typing import Dict, Optional
 
 import pytest
@@ -76,6 +77,37 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
 
     template_errors = [log for log in caplog.records if is_template_error(log)]
     assert len(template_errors) == 0
+
+
+@pytest.mark.parametrize("mode", ["basic", "traditional"])
+@pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
+def test_change_display_mode_sets_cookie(mode, whence, client: Client):
+    """
+    Changing the display mode should set some cookies and MAYBE do a redirect.
+    """
+
+    url = reverse("cree-dictionary-change-display-mode")
+    headers = {}
+    if whence:
+        # referer (sic) is the correct spelling in HTTP
+        # (spelling is not the IETF's strong suit)
+        headers["HTTP_REFERER"] = whence
+
+    res = client.post(url, {"mode": mode}, **headers)
+
+    # morsel is Python's official term for a chunk of a cookie
+    # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
+    assert (morsel := res.cookies.get("mode")) is not None
+    assert morsel.value == mode
+
+    if whence:
+        assert res.status_code == HTTPStatus.SEE_OTHER
+        assert res.headers.get("Location") == whence
+    else:
+        assert res.status_code in (HTTPStatus.OK, HTTPStatus.NO_CONTENT)
+
+
+####################################### Helpers ########################################
 
 
 def is_template_error(record: logging.LogRecord) -> bool:
