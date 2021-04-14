@@ -46,6 +46,7 @@ urlpatterns = [
         views.paradigm_internal,
         name="cree-dictionary-paradigm-detail",
     ),
+    # POST to this URL to change the display mode:
     path(
         "_change_display_mode",
         views.ChangeDisplayMode.as_view(),
@@ -63,7 +64,6 @@ urlpatterns = [
         api_views.click_in_text_embedded_test,
         name="cree-dictionary-click-in-text-embedded-test",
     ),
-    # Post to change the display mode:
     ############################## Other applications ##############################
     path("admin/", admin.site.urls),
     path("search-quality/", include("search_quality.urls")),

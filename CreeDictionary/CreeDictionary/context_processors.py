@@ -9,10 +9,10 @@ from .display_options import DEFAULT_DISPLAY_MODE, DISPLAY_MODE_COOKIE, DISPLAY_
 
 def display(request: HttpRequest):
     """
-    Django context processor that augments the context with "display". "display" has the
-    following:
+    Django context processor that adds the "display" variable.
+    "display" has the following attributes:
 
-     - display.mode -- "basic" or "traditional"
+     - display.mode -- "community" or "linguistic"
     """
     return {"display": _Display(request)}
 

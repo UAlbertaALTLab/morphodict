@@ -241,12 +241,14 @@ class ChangeDisplayMode(View):
     Sets the mode= cookie, which affects how search results are rendered.
 
         > POST /change-mode HTTP/1.1
-        > Cookie: display-mode=basic
+        > Referer: /search?q=miciw
+        > Cookie: mode=community
         >
-        > mode=traditional
+        > mode=linguistic
 
-        < HTTP/1.1 204 No Content
-        < Set-Cookie: mode=traditional
+        < HTTP/1.1 302 See Other
+        < Set-Cookie: mode=linguistic
+        < Location: /search?q=miciw
     """
 
     def post(self, request) -> HttpResponse:
@@ -257,7 +259,7 @@ class ChangeDisplayMode(View):
             return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
         if who_asked_us := request.headers.get("Referer"):
-            # The browser should refresh the page that asked us.
+            # Force the browser to refersh the page that issued this request.
             response = HttpResponse(status=HTTPStatus.SEE_OTHER)
             response.headers["Location"] = who_asked_us
         else:

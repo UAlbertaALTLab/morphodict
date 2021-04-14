@@ -28,9 +28,6 @@ def ensure_context_processors_are_enabled(settings):
 
 
 def test_render_with_display_mode_unset() -> None:
-    """
-    Render the request using an invalid display mode.
-    """
     request = HttpRequest()
     context = RequestContext(request, {})
 
