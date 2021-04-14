@@ -15,16 +15,20 @@ context('Searching', () => {
 
     it('shows the inflectional class in linguistic mode', function () {
       cy.visitSearch(lemma)
-      cy.get('[data-cy=search-result]:first')
-        .contains(inflectionalClass)
-        .should('not.be.visible')
+
+      inflectionalClassInDefinitionTitle()
+        .should('not.exist')
 
       cy.get('[data-cy=enable-traditional-mode]')
         .click()
 
-      cy.get('[data-cy=search-result]:first')
+      inflectionalClassInDefinitionTitle()
         .contains(inflectionalClass)
         .should('be.visible')
     })
+
+    function inflectionalClassInDefinitionTitle() {
+      return cy.get('[data-cy=matched-wordform]:first [data-cy=inflectional-class]')
+    }
   })
 })
