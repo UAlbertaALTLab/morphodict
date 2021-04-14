@@ -12,7 +12,7 @@ DISPLAY_MODE_COOKIE = "mode"
 DISPLAY_MODES = {
     # Community-mode: uses emoji and hides inflectional class
     "community",
-    # Linguist-mode: Displays inflectional class, always
+    # Linguist-mode: always displays inflectional class (e.g., VTA-1, NA-3, IPJ, etc.)
     "linguistic",
 }
 DEFAULT_DISPLAY_MODE = "community"
