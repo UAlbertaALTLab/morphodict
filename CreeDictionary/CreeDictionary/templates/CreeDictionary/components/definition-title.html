@@ -16,6 +16,19 @@
         |   somebody      |
         `-----------------'
 
+    In linguistic mode, the inflectional class is always shown
+
+    Example:
+
+      nîminâniwan /VAI-1/ ℹ️ 🔊
+                ,---------^-------.
+                | nîmiw           |
+                |   action word   |
+                |   ni-/ki- word  |
+                |   now           |
+                |   somebody      |
+                `-----------------'
+
   {% endcomment %}
 
   {% load morphodict_orth %}
@@ -32,6 +45,13 @@
         {% orth result.wordform_text %}
       {% endif %}
     </h2>
+
+    {% if display_options.mode == 'linguistic' %}
+      &#32; {# separate inflectiona class from wordform #}
+      <span class="definition-title__inflectional-class" data-cy="inflectional-class">
+        {{ result.lemma_wordform.inflectional_category }}
+      </span>
+    {% endif %}
 
     &#32; {# separate title proper from icons #}
 

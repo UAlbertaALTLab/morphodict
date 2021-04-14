@@ -82,10 +82,27 @@
       <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
     </ul>
 
-    <ul class="footer__links footer__advanced-links">
-      <li><a href="/change-locale?en-x-linguist" class="footer-links__link feature-unavailable">Enable Linguist
-        Mode</a></li>
-    </ul>
+    <div class="footer__links footer__advanced-links">
+      <h2 class="footer__option-header"> View search results in: </h2>
+      <ul class="unbullet">
+        <li>
+          <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
+            <button class="unbutton linklike footer__link" type="submit" name="mode" value="community" data-cy="enable-basic-mode">
+              Community mode
+            </button>
+            {% csrf_token %}
+          </form>
+        </li>
+        <li>
+          <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
+            <button class="unbutton linklike footer__link" type="submit" name="mode" value="linguistic" data-cy="enable-traditional-mode">
+              Linguist mode
+            </button>
+            {% csrf_token %}
+          </form>
+        </li>
+      </ul>
+    </div>
 
     <div class="footer__copyright copyright">
       <p class="copyright__line">2019–{% now "Y" %} © Alberta Language Technology Lab.</p>

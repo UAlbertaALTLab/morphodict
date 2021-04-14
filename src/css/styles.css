@@ -453,6 +453,11 @@ html {
   font-size: inherit;
 }
 
+.definition-title__inflectional-class {
+  font-style: italic;
+  font-size: 0.66em;
+}
+
 .definition__matched-head {
   /* Text */
   font-style: normal;
@@ -595,6 +600,16 @@ a.multiple-recordings__action-button {
   text-decoration: underline dotted;
 
   cursor: help;
+}
+
+
+/**
+ * ELEMENT inflectional-class
+ *
+ * The fully-written inflectional class.
+ */
+.wordclass__inflectional-class {
+  font-size: smaller;
 }
 
 /*************************** LINGUISTIC BREAKDOWN ***************************/
@@ -885,11 +900,14 @@ a.multiple-recordings__action-button {
 }
 
 .footer a:link,
-.footer a:visited {
+.footer a:visited
+.footer .linklike:link,
+.footer .linklike:visited {
   color: var(--footer-text-color);
 }
 
-.footer a:hover {
+.footer a:hover,
+.footer .linklike:hover {
   color: var(--footer-link-hover-color);
 }
 
@@ -925,6 +943,12 @@ a.multiple-recordings__action-button {
 
 .footer__link {
   font-weight: var(--strong-font-weight);
+}
+
+.footer__option-header {
+  font-size: inherit;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /**

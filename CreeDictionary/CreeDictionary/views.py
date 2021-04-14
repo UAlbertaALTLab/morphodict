@@ -1,18 +1,18 @@
 from http import HTTPStatus
 from typing import Any, Dict, Literal
 
-from django.conf import settings
-
 from API.models import Wordform
+from API.search import presentation, search_with_affixes
+from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from django.views import View
 from django.views.decorators.http import require_GET
-
-from API.search import search_with_affixes, presentation
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
 
+from .display_options import DISPLAY_MODES, DISPLAY_MODE_COOKIE
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -234,6 +234,41 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
+
+
+class ChangeDisplayMode(View):
+    """
+    Sets the mode= cookie, which affects how search results are rendered.
+
+        > POST /change-mode HTTP/1.1
+        > Referer: /search?q=miciw
+        > Cookie: mode=community
+        >
+        > mode=linguistic
+
+        < HTTP/1.1 302 See Other
+        < Set-Cookie: mode=linguistic
+        < Location: /search?q=miciw
+    """
+
+    def post(self, request) -> HttpResponse:
+        mode = request.POST.get(DISPLAY_MODE_COOKIE)
+
+        # Tried to set to an unknown display mode
+        if mode not in DISPLAY_MODES:
+            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
+
+        if who_asked_us := request.headers.get("Referer"):
+            # Force the browser to refresh the page that issued this request.
+            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
+            response.headers["Location"] = who_asked_us
+        else:
+            # We don't know where to redirect, so send no content.
+            # (also, this probably should never happen?)
+            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+
+        response.set_cookie(DISPLAY_MODE_COOKIE, mode)
+        return response
 
 
 ## Helper functions

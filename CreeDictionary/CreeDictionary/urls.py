@@ -17,6 +17,10 @@ from django_js_reverse.views import urls_js
 from CreeDictionary import views
 from CreeDictionary.sitemaps import sitemaps
 
+# TODO: use URL namespaces:
+# e.g., cree-dictionary:index instead of cree-dictionary-index
+# See: https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces
+
 urlpatterns = [
     ################################# Primary URLs #################################
     path("", views.index, name="cree-dictionary-index"),
@@ -42,6 +46,13 @@ urlpatterns = [
         views.paradigm_internal,
         name="cree-dictionary-paradigm-detail",
     ),
+    # POST to this URL to change the display mode:
+    path(
+        "_change_display_mode",
+        views.ChangeDisplayMode.as_view(),
+        name="cree-dictionary-change-display-mode",
+    ),
+    ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
         "click-in-text/",
