@@ -7,7 +7,7 @@ from morphodict.templatetags.morphodict_orth import orth
 
 def test_orth_requires_two_arguments():
     """
-    orth() original only took one argument, but now it must take two.
+    orth() originally took only one argument, but now it must take two.
     """
     with pytest.raises(TypeError):
         orth("wâpamêw")
