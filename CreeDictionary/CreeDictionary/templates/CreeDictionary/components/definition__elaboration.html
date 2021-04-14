@@ -43,7 +43,7 @@
 
         {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
           {% if ic %}
-            {% if display.mode == 'community' %}
+            {% if display_options.mode == 'community' %}
               <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="tooltip:{{ id }}">
                 {% if emoji %}
                   <span class="wordclass__emoji">{{ emoji }}</span>
@@ -56,7 +56,7 @@
                 {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
                 <div class="tooltip__arrow" data-popper-arrow></div>
               </div>
-            {% elif display.mode == 'linguistic' %}
+            {% elif display_options.mode == 'linguistic' %}
                 <span class="wordclass__inflectional-class"> {{ lemma.inflectional_category_linguistic }} </span>
             {% endif %}
           {% elif emoji %}

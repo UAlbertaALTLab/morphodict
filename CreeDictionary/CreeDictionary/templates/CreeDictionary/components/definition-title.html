@@ -46,7 +46,7 @@
       {% endif %}
     </h2>
 
-    {% if display.mode == 'linguistic' %}
+    {% if display_options.mode == 'linguistic' %}
       &#32; {# separate inflectiona class from wordform #}
       <span class="definition-title__inflectional-class" data-cy="inflectional-class">
         {{ result.lemma_wordform.inflectional_category }}

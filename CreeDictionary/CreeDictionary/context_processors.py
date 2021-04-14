@@ -7,17 +7,17 @@ from django.http import HttpRequest
 from .display_options import DEFAULT_DISPLAY_MODE, DISPLAY_MODE_COOKIE, DISPLAY_MODES
 
 
-def display(request: HttpRequest):
+def display_options(request: HttpRequest):
     """
     Django context processor that adds the "display" variable.
     "display" has the following attributes:
 
      - display.mode -- "community" or "linguistic"
     """
-    return {"display": _Display(request)}
+    return {"display_options": _DisplayOptions(request)}
 
 
-class _Display:
+class _DisplayOptions:
     """
     Provides the `display` template variable.
     """

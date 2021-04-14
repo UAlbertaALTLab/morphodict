@@ -16,7 +16,7 @@ from CreeDictionary.display_options import (
 
 @pytest.fixture(autouse=True)
 def ensure_context_processors_are_enabled(settings):
-    desired_processor = "CreeDictionary.context_processors.display"
+    desired_processor = "CreeDictionary.context_processors.display_options"
     settings.TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -31,7 +31,7 @@ def test_render_with_display_mode_unset() -> None:
     request = HttpRequest()
     context = RequestContext(request, {})
 
-    template = Template("{{ display.mode }}")
+    template = Template("{{ display_options.mode }}")
     assert template.render(context) == DEFAULT_DISPLAY_MODE
 
 
@@ -44,7 +44,7 @@ def test_use_display_mode(mode: str) -> None:
     request.COOKIES[DISPLAY_MODE_COOKIE] = mode
     context = RequestContext(request, {})
 
-    template = Template("{{ display.mode }}")
+    template = Template("{{ display_options.mode }}")
     assert template.render(context) == mode
 
 
@@ -59,6 +59,6 @@ def test_set_bad_display_mode() -> None:
     request.COOKIES[DISPLAY_MODE_COOKIE] = bad_mode
     context = RequestContext(request, {})
 
-    template = Template("{{ display.mode }}")
+    template = Template("{{ display_options.mode }}")
     assert template.render(context) != bad_mode
     assert template.render(context) == DEFAULT_DISPLAY_MODE
