@@ -259,7 +259,7 @@ class ChangeDisplayMode(View):
             return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
         if who_asked_us := request.headers.get("Referer"):
-            # Force the browser to refersh the page that issued this request.
+            # Force the browser to refresh the page that issued this request.
             response = HttpResponse(status=HTTPStatus.SEE_OTHER)
             response.headers["Location"] = who_asked_us
         else:

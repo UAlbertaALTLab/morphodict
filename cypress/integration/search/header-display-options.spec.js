@@ -1,5 +1,5 @@
 /**
- * Similar to ./result-header.spec.js -- displays a more deta
+ * Similar to ./result-header.spec.js -- displays more data
  */
 context('Searching', () => {
   after(() => {
