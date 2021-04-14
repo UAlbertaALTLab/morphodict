@@ -17,6 +17,14 @@
             | verb (VAI)     |
             `-------^--------'
 
+
+    In linguistic mode, the emoji is replaced with the full inflectional class.
+
+      vowel-final transitive animate verb — /like nipâw/
+            ,-------^--------.
+            | verb (VAI)     |
+            `-------^--------'
+
   {% endcomment %}
 
   {% load creedictionary_extras %}
@@ -35,18 +43,22 @@
 
         {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
           {% if ic %}
-            <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="tooltip:{{ id }}">
-              {% if emoji %}
-                <span class="wordclass__emoji">{{ emoji }}</span>
-              {% endif %}
-              {% if emoji and ic %} — {% endif %}
-              <span class="wordclass__help">{% cree_example ic %}</span>
-            </span>
+            {% if display.mode == 'community' %}
+              <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="tooltip:{{ id }}">
+                {% if emoji %}
+                  <span class="wordclass__emoji">{{ emoji }}</span>
+                {% endif %}
+                {% if emoji and ic %} — {% endif %}
+                <span class="wordclass__help">{% cree_example ic %}</span>
+              </span>
 
-            <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-              {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
-              <div class="tooltip__arrow" data-popper-arrow></div>
-            </div>
+              <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                <div class="tooltip__arrow" data-popper-arrow></div>
+              </div>
+            {% elif display.mode == 'linguistic' %}
+                <span class="wordclass__inflectional-class"> {{ lemma.inflectional_category_linguistic }} </span>
+            {% endif %}
           {% elif emoji %}
             <span class="wordclass" data-cy="word-class">
               <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>

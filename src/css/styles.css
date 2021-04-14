@@ -602,6 +602,16 @@ a.multiple-recordings__action-button {
   cursor: help;
 }
 
+
+/**
+ * ELEMENT inflecional-class
+ *
+ * The fully-written inflectional class.
+ */
+.wordclass__inflectional-class {
+  font-size: smaller;
+}
+
 /*************************** LINGUISTIC BREAKDOWN ***************************/
 
 /**
