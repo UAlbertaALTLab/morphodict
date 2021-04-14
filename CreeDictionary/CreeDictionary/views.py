@@ -12,6 +12,7 @@ from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
 
+from .display_options import DISPLAY_MODES
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -233,10 +234,6 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
-
-
-DISPLAY_MODES = {"basic", "traditional"}
-DEFAULT_DISPLAY_MODE = "basic"
 
 
 class ChangeDisplayMode(View):
