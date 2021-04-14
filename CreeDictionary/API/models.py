@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Literal, Optional
 from urllib.parse import quote
 
 from django.db import models, transaction
@@ -45,7 +45,7 @@ class Wordform(models.Model):
 
     objects = WordformLemmaManager()
 
-    def get_absolute_url(self) -> str:
+    def get_absolute_url(self, ambiguity: Literal["allow", "avoid"] = "avoid") -> str:
         """
         :return: url that looks like
          "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?inflectional_category=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
@@ -55,6 +55,11 @@ class Wordform(models.Model):
         lemma_url = reverse(
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
         )
+
+        if ambiguity == "allow":
+            # avoids doing an expensive lookup to disambiguate
+            return lemma_url
+
         if self.homograph_disambiguator is not None:
             lemma_url += f"?{self.homograph_disambiguator}={quote(str(getattr(self, self.homograph_disambiguator)))}"
 

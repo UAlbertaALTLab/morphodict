@@ -14,6 +14,9 @@ class WordformSitemap(Sitemap):
     def items(self):
         return Wordform.objects.filter(is_lemma=True)
 
+    def location(self, item: Wordform):
+        return item.get_absolute_url(ambiguity="allow")
+
 
 class StaticViewSitemap(Sitemap):
     """
