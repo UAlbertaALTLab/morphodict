@@ -10,7 +10,6 @@ from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-
 from paradigm import Layout
 from shared import expensive
 from utils import (
@@ -23,6 +22,7 @@ from utils import (
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
+
 from .schema import SerializedDefinition
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
@@ -196,9 +196,18 @@ class Wordform(models.Model):
             models.Index(fields=["analysis"]),
             # text index benefits fast wordform matching (see search.py)
             models.Index(fields=["text"]),
+            # When we *just* want to lookup text wordforms that are "lemmas"
+            # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
+            # Used by:
+            #  - affix tree intialization
+            #  - sitemap generation
+            models.Index(fields=["is_lemma", "text"], name="lemma_text_idx"),
+            # TODO: do we need these indices?
             models.Index(fields=["inflectional_category"]),
             models.Index(fields=["pos"]),
         ]
+
+        ordering = ["is_lemma", "text"]
 
     def __str__(self):
         return self.text
