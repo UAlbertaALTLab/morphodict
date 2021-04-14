@@ -9,5 +9,10 @@ plans for more fine-grained control over the display of, e.g., search results.
 
 
 DISPLAY_MODE_COOKIE = "mode"
-DISPLAY_MODES = {"basic", "traditional"}
-DEFAULT_DISPLAY_MODE = "basic"
+DISPLAY_MODES = {
+    # Community-mode: uses emoji and hides inflectional class
+    "community",
+    # Linguist-mode: Displays inflectional class, always
+    "linguistic",
+}
+DEFAULT_DISPLAY_MODE = "community"

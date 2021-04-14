@@ -11,6 +11,8 @@ from django.http import (
 from django.test import Client
 from django.urls import reverse
 
+from CreeDictionary.display_options import DISPLAY_MODES
+
 
 class TestLemmaDetailsInternal4xx:
     @pytest.mark.django_db
@@ -79,7 +81,7 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     assert len(template_errors) == 0
 
 
-@pytest.mark.parametrize("mode", ["basic", "traditional"])
+@pytest.mark.parametrize("mode", DISPLAY_MODES)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     """
