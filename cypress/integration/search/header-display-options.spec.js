@@ -19,7 +19,7 @@ context('Searching', () => {
         .contains(inflectionalClass)
         .should('not.be.visible')
 
-      cy.get('[data-cy=enable-basic-mode]')
+      cy.get('[data-cy=enable-traditional-mode]')
         .click()
 
       cy.get('[data-cy=search-result]:first')

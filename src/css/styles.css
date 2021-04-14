@@ -453,6 +453,11 @@ html {
   font-size: inherit;
 }
 
+.definition-title__inflectional-class {
+  font-style: italic;
+  font-size: 0.66em;
+}
+
 .definition__matched-head {
   /* Text */
   font-style: normal;
