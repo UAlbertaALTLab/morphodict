@@ -8,5 +8,6 @@ plans for more fine-grained control over the display of, e.g., search results.
 """
 
 
+DISPLAY_MODE_COOKIE = "mode"
 DISPLAY_MODES = {"basic", "traditional"}
 DEFAULT_DISPLAY_MODE = "basic"

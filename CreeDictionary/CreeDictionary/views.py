@@ -12,7 +12,7 @@ from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
 
-from .display_options import DISPLAY_MODES
+from .display_options import DISPLAY_MODES, DISPLAY_MODE_COOKIE
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -250,7 +250,7 @@ class ChangeDisplayMode(View):
     """
 
     def post(self, request) -> HttpResponse:
-        mode = request.POST.get("mode")
+        mode = request.POST.get(DISPLAY_MODE_COOKIE)
 
         # Tried to set to an unknown display mode
         if mode not in DISPLAY_MODES:
@@ -265,7 +265,7 @@ class ChangeDisplayMode(View):
             # (also, this probably should never happen?)
             response = HttpResponse(status=HTTPStatus.NO_CONTENT)
 
-        response.set_cookie("mode", mode)
+        response.set_cookie(DISPLAY_MODE_COOKIE, mode)
         return response
 
 
