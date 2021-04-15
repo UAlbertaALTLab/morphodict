@@ -37,7 +37,7 @@ class Command(BaseCommand):
             survey = survey_collection.combined_results_for(query)
             top3 = survey[:3]
 
-            results = search(query=f"verbose:1 cvd:1 {query}")._results.values()
+            results = search(query=f"verbose:1 cvd:1 {query}").sorted_results()
             try:
                 prefetch_related_objects(
                     [r.wordform for r in results], "definitions__citations"
@@ -48,7 +48,7 @@ class Command(BaseCommand):
             for i, r in enumerate(results):
                 ret = json.loads(r.features_json())
                 ret["query"] = query
-                ret["candidate_number"] = i
+                ret["main_branch_sort_rank"] = i + 1
                 ret["wordform_text"] = r.wordform.text
                 ret["definitions"] = [
                     [d.text, ", ".join(c.abbrv for c in d.citations.all())]

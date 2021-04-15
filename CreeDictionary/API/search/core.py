@@ -35,9 +35,13 @@ class SearchRun:
         else:
             self._results[key] = result
 
-    def presentation_results(self) -> list[presentation.PresentationResult]:
+    def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
         results.sort(key=ranking.sort_by_user_query(self))
+        return results
+
+    def presentation_results(self) -> list[presentation.PresentationResult]:
+        results = self.sorted_results()
         try:
             prefetch_related_objects(
                 [r.wordform for r in results],
