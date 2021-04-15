@@ -200,7 +200,7 @@ def contact_us(request):  # pragma: no cover
 
 def query_help(request):  # pragma: no cover
     """
-    Query help page. Not yet linked from anywhere else on site.
+    Query help page. Not yet linked from any public parts of site.
     """
     context = create_context_for_index_template("info-page")
     return render(
