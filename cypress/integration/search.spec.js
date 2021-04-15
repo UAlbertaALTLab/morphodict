@@ -247,4 +247,19 @@ context('Searching', () => {
         .should('contain', NON_WORD)
     })
   })
+
+  describe('fancy queries', function() {
+    it('should show search features for a verbose search', function() {
+      cy.visitSearch('verbose:1 acahkosa')
+
+      cy.get('[data-cy=verbose-info]').should('contain', 'morpheme_ranking')
+    })
+
+    it('should show auto-translations with auto:y', function() {
+      cy.visitSearch('auto:y acâhkosa')
+      cy
+        .get('[data-cy=search-result]').contains('little star over there')
+        .get('.cite-dict').contains('auto')
+    })
+  })
 })
