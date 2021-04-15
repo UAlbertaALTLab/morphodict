@@ -12,7 +12,8 @@ class WordformSitemap(Sitemap):
     """
 
     def items(self):
-        return Wordform.objects.filter(is_lemma=True)
+        # Use lemma_text_idx (is_lemma, text) index.
+        return Wordform.objects.filter(is_lemma=True).order_by("is_lemma", "text")
 
     def location(self, item: Wordform):
         return item.get_absolute_url(ambiguity="allow")

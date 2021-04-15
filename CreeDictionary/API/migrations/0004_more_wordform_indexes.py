@@ -10,10 +10,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AlterModelOptions(
-            name='wordform',
-            options={'ordering': ['is_lemma', 'text']},
-        ),
         migrations.AddIndex(
             model_name='wordform',
             index=models.Index(fields=['is_lemma', 'text'], name='lemma_text_idx'),

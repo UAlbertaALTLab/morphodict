@@ -197,9 +197,9 @@ class Wordform(models.Model):
 
     class Meta:
         indexes = [
-            # analysis is for faster user query (see search.py)
+            # analysis is for faster user query (see search/lookup.py)
             models.Index(fields=["analysis"]),
-            # text index benefits fast wordform matching (see search.py)
+            # text index benefits fast wordform matching (see search/lookup.py)
             models.Index(fields=["text"]),
             # When we *just* want to lookup text wordforms that are "lemmas"
             # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
@@ -207,12 +207,10 @@ class Wordform(models.Model):
             #  - affix tree intialization
             #  - sitemap generation
             models.Index(fields=["is_lemma", "text"], name="lemma_text_idx"),
-            # TODO: do we need these indices?
+            # pos and inflectional_category are used when generating the preverb cache:
             models.Index(fields=["inflectional_category"]),
             models.Index(fields=["pos"]),
         ]
-
-        ordering = ["is_lemma", "text"]
 
     def __str__(self):
         return self.text
