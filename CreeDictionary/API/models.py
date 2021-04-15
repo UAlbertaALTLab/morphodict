@@ -3,14 +3,13 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List, Literal, Optional
 from urllib.parse import quote
 
 from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-
 from paradigm import Layout
 from shared import expensive
 from utils import (
@@ -23,6 +22,7 @@ from utils import (
 from utils.cree_lev_dist import remove_cree_diacritics
 from utils.fst_analysis_parser import LABELS
 from utils.types import FSTTag
+
 from .schema import SerializedDefinition
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
@@ -45,7 +45,7 @@ class Wordform(models.Model):
 
     objects = WordformLemmaManager()
 
-    def get_absolute_url(self) -> str:
+    def get_absolute_url(self, ambiguity: Literal["allow", "avoid"] = "avoid") -> str:
         """
         :return: url that looks like
          "/words/nipaw" "/words/nipâw?pos=xx" "/words/nipâw?inflectional_category=xx" "/words/nipâw?analysis=xx" "/words/nipâw?id=xx"
@@ -55,6 +55,11 @@ class Wordform(models.Model):
         lemma_url = reverse(
             "cree-dictionary-index-with-lemma", kwargs={"lemma_text": self.text}
         )
+
+        if ambiguity == "allow":
+            # avoids doing an expensive lookup to disambiguate
+            return lemma_url
+
         if self.homograph_disambiguator is not None:
             lemma_url += f"?{self.homograph_disambiguator}={quote(str(getattr(self, self.homograph_disambiguator)))}"
 
@@ -192,10 +197,17 @@ class Wordform(models.Model):
 
     class Meta:
         indexes = [
-            # analysis is for faster user query (see search.py)
+            # analysis is for faster user query (see search/lookup.py)
             models.Index(fields=["analysis"]),
-            # text index benefits fast wordform matching (see search.py)
+            # text index benefits fast wordform matching (see search/lookup.py)
             models.Index(fields=["text"]),
+            # When we *just* want to lookup text wordforms that are "lemmas"
+            # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
+            # Used by:
+            #  - affix tree intialization
+            #  - sitemap generation
+            models.Index(fields=["is_lemma", "text"], name="lemma_text_idx"),
+            # pos and inflectional_category are used when generating the preverb cache:
             models.Index(fields=["inflectional_category"]),
             models.Index(fields=["pos"]),
         ]
