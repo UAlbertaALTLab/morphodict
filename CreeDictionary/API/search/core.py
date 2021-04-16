@@ -68,5 +68,5 @@ class SearchRun:
     def serialized_presentation_results(self):
         return [r.serialize() for r in self.presentation_results()]
 
-    def __str__(self):
-        return f"SearchRun<query={self.query}>"
+    def __repr__(self):
+        return f"SearchRun<query={self.query!r}>"

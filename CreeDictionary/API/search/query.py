@@ -41,6 +41,9 @@ class Query:
 
         self.is_valid = self.query_string != ""
 
+    def __repr__(self) -> str:
+        return f"<Query {self.raw_query_string!r}>"
+
     is_valid: bool
     verbose: Optional[bool] = None
     auto: Optional[bool] = None
