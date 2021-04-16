@@ -18,7 +18,7 @@ Contributing
 ------------
 
  - [Developer's guide](./docs/developers-guide.md)
- - ~~[Production server: Sapir](./docs/production-on-sapir.md)~~
+ - [Production server: Whorf](./docs/production-on-whorf.md)
  - [Continuous Integration](./docs/ci.md)
 
 Credits
