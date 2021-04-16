@@ -6,25 +6,32 @@ Updated: <time datetime="2021-04-16">April 16, 2021</time>.
 itwêwina is deployed on ALTLab's "Whorf Cluster"; specifically, a host
 called `itw.altlab.dev`. Its web address is:
 
-<https://itwewina.altlab.dev>
+<https://itwewina.altlab.app>
 
 ## Where is everything?
 
 All paths are on `itw.altlab.dev`, unless otherwise specified:
 
-<dl>
-<dt>The `itwewina` user's home directory</dt> 
-<dd>`/opt/docker-compose/itwewina`</dd>
-<dt>The cloned repository</dt> 
-<dd>`/opt/docker-compose/itwewina/cree-intelligent-dictionary`</dd>
-<dt>The database</dt> 
-<dd>Please refer to the `volumes` key in the [`docker-compose.yml`][docker-compose] file</dd>
-<dt>The Docker image</dt>
-<dd>The [GitHub container registry][ghcr]</dd>
-</dl>
+### The `itwewina` user's home directory
+
+   `/opt/docker-compose/itwewina`
+
+### The cloned repository
+
+`/opt/docker-compose/itwewina/cree-intelligent-dictionary`
+
+### The database
+
+Please refer to the `volumes` key in the [`docker-compose.yml`][docker-compose] file
+
+### The Docker image
+
+The [GitHub container registry][ghcr].
 
 
 ## Important files to check for deployment
+
+These are the files I am most-often modifying when mucking about with the deployment:
 
  - `docker/docker-compose.yml`
  - `docker/Dockerfile`
