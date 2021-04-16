@@ -16,7 +16,7 @@ context('Searching', () => {
       inflectionalClassInDefinitionTitle()
         .should('not.exist')
 
-      cy.get('[data-cy=enable-traditional-mode]')
+      cy.get('[data-cy=enable-linguistic-mode]')
         .click()
 
       inflectionalClassInDefinitionTitle()
@@ -31,7 +31,7 @@ context('Searching', () => {
 
   function setDefaultDisplayMode() {
     cy.visit('/')
-    cy.get('[data-cy=enable-basic-mode]')
+    cy.get('[data-cy=enable-community-mode]')
       .click()
   }
 })
