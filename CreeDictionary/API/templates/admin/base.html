@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+
+{% block userlinks %}
+  <a href="{% url 'cree-dictionary-query-help' %}">Query help</a> /
+{{ block.super }}
+{% endblock %}

@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from typing import List, Tuple, Optional, TypedDict, Iterable
+from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast
 
 from django.forms import model_to_dict
 
@@ -57,7 +57,7 @@ class PresentationResult:
         )
 
     def serialize(self) -> SerializedPresentationResult:
-        return {
+        ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(self.lemma_wordform),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -73,6 +73,9 @@ class PresentationResult:
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
         }
+        if self._search_run.query.verbose:
+            cast(Any, ret)["verbose_info"] = self._result
+        return ret
 
     @property
     def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
