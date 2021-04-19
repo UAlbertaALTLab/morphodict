@@ -11,8 +11,9 @@ from django.views.decorators.http import require_GET
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
+from CreeDictionary.generate_paradigm import generate_paradigm
 
-from .display_options import DISPLAY_MODES, DISPLAY_MODE_COOKIE
+from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -24,51 +25,48 @@ IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 # it should be used on the view functions that are well covered by integration tests
 
 
-def lemma_details(request, lemma_text: str = None):  # pragma: no cover
+def lemma_details(request, lemma_text: str):
     """
-    lemma detail page. Fall back to search page if no lemma is found or multiple lemmas are found
+    Head word detail page. Will render a paradigm, if applicable. Fall back to search page if no lemma is found or multiple lemmas are found
 
-    possible query params are "pos"/"inflectional_category"/"analysis"/"id" to further specify the lemma,
-    "paradigm-size" (default is BASIC) to specify the size of the paradigm
+    Possible query params:
+
+      To disambiguate the head word (see: Wordform.homograph_disambiguator):
+        - pos
+        - inflectional_category
+        - analysis
+        - id
+
+      To affect the paradigm size:
+
+        - paradigm-size (default is BASIC) to specify the size of the paradigm
 
     :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
-    extra_constraints = {
-        k: v
-        for k, v in request.GET.items()
-        if k in {"pos", "inflectional_category", "analysis", "id"}
-    }
 
-    paradigm_size = request.GET.get("paradigm-size")
-    if paradigm_size is None:
-        paradigm_size = ParadigmSize.BASIC
-    else:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
+    lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True)
+    if additional_filters := disambiguating_filter_from_query_params(request.GET):
+        lemma = lemma.filter(**additional_filters)
 
-    filter_args = dict(is_lemma=True, **extra_constraints)
-    if lemma_text is not None:
-        filter_args["text"] = lemma_text
-
-    lemma = Wordform.objects.filter(**filter_args)
-    if lemma.count() == 1:
-        lemma = lemma.get()
-        context = create_context_for_index_template(
-            "word-detail",
-            # TODO: rename this to wordform ID
-            lemma_id=lemma.id,
-            # TODO: remove this parameter in favour of...
-            lemma=lemma,
-            # ...this parameter
-            wordform=presentation.serialize_wordform(lemma),
-            paradigm_size=paradigm_size,
-            paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
-            if lemma
-            else None,
-        )
-        return HttpResponse(render(request, "CreeDictionary/index.html", context))
-    else:
+    if lemma.count() != 1:
+        # The result is either empty or ambiguous; either way, do a search!
         return redirect(url_for_query(lemma_text or ""))
+
+    lemma = lemma.get()
+    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
+    context = create_context_for_index_template(
+        "word-detail",
+        # TODO: rename this to wordform ID
+        lemma_id=lemma.id,
+        # TODO: remove this parameter in favour of...
+        lemma=lemma,
+        # ...this parameter
+        wordform=presentation.serialize_wordform(lemma),
+        paradigm_size=paradigm_size,
+        paradigm_tables=generate_paradigm(lemma, paradigm_size),
+    )
+    return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
 def index(request):  # pragma: no cover
@@ -169,7 +167,7 @@ def paradigm_internal(request):
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size),
+            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
         },
     )
 
@@ -289,3 +287,30 @@ class ChangeDisplayMode(View):
 def should_include_auto_definitions(request):
     # For now, show auto-translations if and only if the user is logged in
     return request.user.is_authenticated
+
+
+def disambiguating_filter_from_query_params(query_params: dict[str, str]):
+    """
+    Sometimes wordforms may have the same text (a.k.a., be homographs/homophones),
+    thus need to be disambiguate further before displaying a paradigm.
+
+    This computes the intersection between the provided query parameters and the valid
+    disambiguating filters used for homograph disambiguation.
+    """
+    keys_present = query_params.keys() & {
+        # e.g., VTA-1, VTI-3
+        # Since inflectional category, by definition, indicates the paradigm of the
+        # associated head word, this is the preferred disambiguator. It **should** work
+        # most of the time.
+        "inflectional_category",
+        # e.g., N or V.
+        # This is the "general word class"  a.k.a., not enough information to know
+        # what paradigm to use. This disambiguator is discouraged.
+        "pos",
+        # e.g., câhkinêw+V+TA+Ind+5Sg/Pl+4Sg/PlO
+        # I'm honestly not sure why this was chosen as a disambiguator ¯\_(ツ)_/¯
+        "analysis",
+        # Last resort: ephemeral database ID. This is NOT STABLE across database imports!
+        "id",
+    }
+    return {key: query_params[key] for key in keys_present}
