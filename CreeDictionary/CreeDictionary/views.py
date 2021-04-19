@@ -11,8 +11,9 @@ from django.views.decorators.http import require_GET
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
+from CreeDictionary.generate_paradigm import generate_paradigm
 
-from .display_options import DISPLAY_MODES, DISPLAY_MODE_COOKIE
+from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -63,7 +64,7 @@ def lemma_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size),
+        paradigm_tables=generate_paradigm(lemma, paradigm_size),
     )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -166,7 +167,7 @@ def paradigm_internal(request):
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": lemma.get_paradigm_layouts(size=paradigm_size),
+            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
         },
     )
 
