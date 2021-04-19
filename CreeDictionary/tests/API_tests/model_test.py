@@ -1,16 +1,12 @@
 import json
-from typing import List
 
 import pytest
-from CreeDictionary.generate_paradigm import generate_paradigm
 from hypothesis import assume, given
 
 from API.models import Wordform
 from API.search import search
 from API.search.util import to_sro_circumflex
-from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
-from utils import ParadigmSize
 
 
 @pytest.mark.django_db
@@ -185,31 +181,6 @@ def test_search_space_characters_in_matched_term(term):
     # Now try searching for it:
     cree_results = search(query=term).presentation_results()
     assert len(cree_results) > 0
-
-
-def _paradigms_contain_inflection(paradigms: List[Layout], inflection: str) -> bool:
-    for paradigm in paradigms:
-        for row in paradigm:
-            if isinstance(row, (EmptyRowType, TitleRow)):
-                continue
-            for cell in row:
-                if isinstance(cell, InflectionCell) and cell.inflection == inflection:
-                    return True
-    return False
-
-
-@pytest.mark.django_db
-def test_paradigm():
-    """
-    Test we can generate a paradigm from a given lemma.
-    """
-
-    nipaw = Wordform.objects.get(text="nipâw", is_lemma=True)
-    nipaw_paradigm = generate_paradigm(nipaw, ParadigmSize.BASIC)
-    assert _paradigms_contain_inflection(nipaw_paradigm, "ninipân")
-    assert _paradigms_contain_inflection(nipaw_paradigm, "kinipân")
-    assert _paradigms_contain_inflection(nipaw_paradigm, "nipâw")
-    assert _paradigms_contain_inflection(nipaw_paradigm, "ninipânân")
 
 
 @pytest.mark.django_db
