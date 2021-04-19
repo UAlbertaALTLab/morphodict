@@ -32,7 +32,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
             WAPAMEW_DEFINITION,
             "let you and us see him/her now",
         ),
-        ("wâpamêw+V+TA+Imp+Del+2Sg+3PlO", WAPAMEW_DEFINITION, "let you see them later"),
+        ("wâpamêw+V+TA+Imp+Del+2Sg+3PlO", WAPAMEW_DEFINITION, "(you) see them later"),
         (
             "PV/ki+wâpamêw+V+TA+Ind+2Pl+1PlO",
             WAPAMEW_DEFINITION,

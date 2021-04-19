@@ -1,3 +1,4 @@
+import json
 import logging
 from argparse import (
     ArgumentParser,
@@ -5,13 +6,14 @@ from argparse import (
 )
 from collections import defaultdict
 from dataclasses import dataclass, asdict
+from typing import Iterable
 
 from django.core.management import BaseCommand
-from django.db import transaction
-from django.db.models import Max, Q
+from django.db.models import Max, Q, prefetch_related_objects
 from tqdm import tqdm
 
 from API.models import Wordform, Definition, DictionarySource
+from phrase_translate.definition_processing import remove_parentheticals
 from phrase_translate.tag_map import UnknownTagError
 from phrase_translate.translate import (
     inflect_english_phrase,
@@ -65,7 +67,7 @@ class InsertBuffer:
 
 
 @dataclass
-class InsertStats:
+class TranslationStats:
     wordforms_examined: int = 0
     # wordforms without an analysis
     no_wordform_analysis: int = 0
@@ -99,6 +101,13 @@ class Command(BaseCommand):
 
         # Prevent our args from getting all mixed in with default Django ones
         group = parser.add_argument_group("translatewordforms-specific options")
+        group.add_argument(
+            "--jsonl-only",
+            help="""
+            Instead of writing to the database, write translations to the named
+            JSONL file instead. Useful for further review or analysis.
+            """,
+        )
         group.add_argument("--log-level")
         group.add_argument(
             "--wordforms",
@@ -109,22 +118,72 @@ class Command(BaseCommand):
             """,
         )
 
-    def handle(self, *args, **options):
-        if options["log_level"]:
-            logger.parent.setLevel(options["log_level"])
+    def generate_translations(self) -> Iterable[tuple[Wordform, list[Definition]]]:
+        logger.info("Building cache of existing non-auto definitions")
+        definitions = defaultdict(set)
+        for d in Definition.objects.filter(
+            ~Q(citations__abbrv="auto")
+        ).prefetch_related("citations"):
+            definitions[d.wordform_id].add(d)
+        defn_count = sum(
+            len(definition_list) for definition_list in definitions.values()
+        )
+        logger.info(f"Loaded {defn_count} definitions")
 
-        (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
+        wordform_count = self.wordforms_queryset.count()
+        for wordform in tqdm(self.wordforms_queryset.iterator(), total=wordform_count):
+            self.translation_stats.wordforms_examined += 1
 
-        extra_kwargs = {}
-        if options["wordforms"]:
-            extra_kwargs = dict(text__in=options["wordforms"])
-        wordforms_queryset = Wordform.objects.filter(is_lemma=False, **extra_kwargs)
+            wordform_auto_definitions: list[Definition] = []
+
+            if not wordform.analysis:
+                logger.debug(f"no analysis for {wordform.id} {wordform.text}")
+                self.translation_stats.no_wordform_analysis += 1
+                continue
+
+            for definition in definitions.get(wordform.lemma_id, []):
+                tags = parse_analysis_and_tags(wordform.analysis)
+                try:
+                    input_text = remove_parentheticals(definition.text)
+
+                    phrase = inflect_english_phrase(tags, input_text)
+                except UnknownTagError:
+                    raise Exception(
+                        f"Unknown tag for {wordform.text} {wordform.analysis}"
+                    )
+                except FomaLookupNotFoundException as e:
+                    logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+                    self.translation_stats.no_phrase_analysis_count += 1
+                    continue
+                except FomaLookupMultipleFoundException as e:
+                    logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+                    self.translation_stats.multiple_phrase_analyses_count += 1
+                    continue
+
+                if not phrase:
+                    logger.debug(f"no translation for {wordform.text} {tags}")
+                    self.translation_stats.no_translation_count += 1
+                    continue
+
+                wordform_auto_definitions.append(
+                    Definition(
+                        text=phrase,
+                        wordform_id=wordform.id,
+                        auto_translation_source=definition,
+                    )
+                )
+
+                self.translation_stats.definitions_created += 1
+
+            yield wordform, wordform_auto_definitions
+
+    def write_translations_to_database(self, wordforms) -> None:
+        if wordforms:
+            wordform_filter = dict(wordform__in=self.wordforms_queryset)
+        else:
+            wordform_filter = {}  # No restriction
 
         logger.info("Removing existing auto-definitions")
-        if options["wordforms"]:
-            wordform_filter = dict(wordform__in=wordforms_queryset)
-        else:
-            wordform_filter = {}
         deleted_rows, deleted_row_details = Definition.objects.filter(
             citations__abbrv="auto", **wordform_filter
         ).delete()
@@ -132,68 +191,71 @@ class Command(BaseCommand):
             f"Deleted {deleted_rows:,} rows for auto-definitions: {deleted_row_details}"
         )
 
-        logger.info("Building cache of existing non-auto definitions")
-        definitions = defaultdict(set)
-        for d in Definition.objects.filter(~Q(citations__abbrv="auto")).iterator():
-            definitions[d.wordform_id].add(d)
-        defn_count = sum(
-            len(definition_list) for definition_list in definitions.values()
-        )
-        logger.info(f"Loaded {defn_count} definitions")
+        (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
 
         definition_buffer = InsertBuffer(manager=Definition.objects)
         citation_buffer = InsertBuffer(manager=Definition.citations.through.objects)
 
-        insert_stats = InsertStats()
+        for _, definitions in self.generate_translations():
+            for auto_definition in definitions:
+                definition_buffer.add(auto_definition)
+                citation_buffer.add(
+                    Definition.citations.through(
+                        dictionarysource_id=ds.abbrv,
+                        definition_id=auto_definition.id,
+                    )
+                )
+
+        definition_buffer.save()
+        citation_buffer.save()
+        logger.info("Translation done")
+
+    def write_translations_to_jsonl(self, filename):
+        with open(filename, "w") as out:
+            for wordform, auto_definitions in self.generate_translations():
+                out.write(
+                    json.dumps(
+                        {
+                            "wordform_text": wordform.text,
+                            "wordform_analysis": wordform.analysis,
+                            "wordform_lemma_text": wordform.lemma.text,
+                            "wordform_lemma_analysis": wordform.lemma.analysis,
+                            "translations": [
+                                (
+                                    d.auto_translation_source.text,
+                                    ",".join(
+                                        c.abbrv
+                                        for c in d.auto_translation_source.citations.all()
+                                    ),
+                                    d.text,
+                                )
+                                for d in auto_definitions
+                            ],
+                        },
+                        ensure_ascii=False,
+                    )
+                    + "\n"
+                )
+
+    def handle(self, *args, **options):
+        if options["log_level"]:
+            logger.parent.setLevel(options["log_level"])
+
+        extra_kwargs = {}
+        if options["wordforms"]:
+            extra_kwargs = dict(text__in=options["wordforms"])
+        self.wordforms_queryset = Wordform.objects.filter(
+            is_lemma=False, **extra_kwargs
+        )
+
+        self.translation_stats = TranslationStats()
 
         try:
-            wordform_count = wordforms_queryset.count()
-            for w in tqdm(wordforms_queryset.iterator(), total=wordform_count):
-                insert_stats.wordforms_examined += 1
+            if filename := options["jsonl_only"]:
+                self.write_translations_to_jsonl(filename)
+            else:
+                self.write_translations_to_database(wordforms=options["wordforms"])
 
-                if not w.analysis:
-                    logger.debug(f"no analysis for {w.id} {w.text}")
-                    insert_stats.no_wordform_analysis += 1
-                    continue
-
-                for definition in definitions.get(w.lemma_id, []):
-                    tags = parse_analysis_and_tags(w.analysis)
-                    try:
-                        phrase = inflect_english_phrase(tags, definition.text)
-                    except UnknownTagError:
-                        raise Exception(f"Unknown tag for {w.text} {w.analysis}")
-                    except FomaLookupNotFoundException as e:
-                        logger.debug(f"Couldn’t handle {w.text}: {e}")
-                        insert_stats.no_phrase_analysis_count += 1
-                        continue
-                    except FomaLookupMultipleFoundException as e:
-                        logger.debug(f"Couldn’t handle {w.text}: {e}")
-                        insert_stats.multiple_phrase_analyses_count += 1
-                        continue
-
-                    if not phrase:
-                        logger.debug(f"no translation for {w.text} {tags}")
-                        insert_stats.no_translation_count += 1
-                        continue
-
-                    auto_definition = Definition(
-                        text=phrase,
-                        wordform_id=w.id,
-                        auto_translation_source_id=definition.id,
-                    )
-
-                    definition_buffer.add(auto_definition)
-                    citation_buffer.add(
-                        Definition.citations.through(
-                            dictionarysource_id=ds.abbrv,
-                            definition_id=auto_definition.id,
-                        )
-                    )
-                    insert_stats.definitions_created += 1
-
-            definition_buffer.save()
-            citation_buffer.save()
-            logger.info("Translation done")
         finally:
             logger.info("Stats:")
-            logger.info(insert_stats)
+            logger.info(self.translation_stats)

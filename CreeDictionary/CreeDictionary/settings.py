@@ -200,7 +200,13 @@ if USE_TEST_DB:
     }
 else:
     DATABASES = {
-        "default": env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
+        "default": (
+            # The default SQLite timeout is 5 seconds, which can be too low and
+            # give "Database is locked" errors when doing large backend updates
+            # on a live system. Attempt to increase this.
+            {"OPTIONS": {"timeout": 30}}
+            | env.dj_db_url("DATABASE_URL", default=defaultDatabasePath())
+        )
     }
 
 ################################ Django sites framework ################################
@@ -298,6 +304,7 @@ else:
 ######################################## logging ###############################
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
+query_log_level = env.log_level("QUERY_LOG_LEVEL", default=log_level)
 
 # To debug what the *actual* config ends up being, use the logging_tree package
 # See https://stackoverflow.com/a/53058203/14558
@@ -318,11 +325,12 @@ LOGGING = {
         "level": log_level,
     },
     "loggers": {
-        # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.0/topics/logging/#id3
+        # learn how different loggers are used in Django: https://docs.djangoproject.com/en/3.2/topics/logging/#id3
         "django": {
             "handlers": [],
             "level": log_level,
             "propagate": True,
         },
+        "django.db.backends": {"level": query_log_level},
     },
 }
