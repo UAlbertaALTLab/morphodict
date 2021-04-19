@@ -66,25 +66,6 @@ class ParadigmFiller:
     _generator: TransducerFile
     _frequency = import_frequency()
 
-    @staticmethod
-    def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
-        """
-        Imports .layout files into memory.
-
-        :param layout_dir: the directory that has .layout files and .layout.csv files
-        """
-        layout_tables = {}
-        layouts = import_layouts(layout_dir)
-
-        for wc in WordClass:
-            if not wc.has_inflections():
-                continue
-
-            for size in ParadigmSize:
-                layout_tables[(wc, size)] = rows_to_layout(layouts[wc, size])
-
-        return layout_tables
-
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path = None):
         """
         Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
@@ -112,19 +93,20 @@ class ParadigmFiller:
         self, lemma: str, category: WordClass, paradigm_size: ParadigmSize
     ) -> List[Layout]:
         """
-        returns a paradigm table filled with words
+        Returns a paradigm table filled with word forms
 
         :returns: filled paradigm tables
         """
+
+        if not category.has_inflections():
+            return []
+
         # We want to lookup all of the inflections in bulk,
         # so set up some data structures that will allow us to:
         #  - store all unique things to lookup
         #  - remember which strings need to be replaced after lookups
         lookup_strings: List[ConcatAnalysis] = []
         string_locations: List[Tuple[List[Cell], int]] = []
-
-        if category is WordClass.IPC or category is WordClass.Pron:
-            return []
 
         layout_table = deepcopy(self._layout_tables[(category, paradigm_size)])
 
@@ -219,6 +201,25 @@ class ParadigmFiller:
                     raise ValueError("Unexpected cell type")
 
         return analyses
+
+    @staticmethod
+    def _import_layouts(layout_dir) -> Dict[LayoutID, Layout]:
+        """
+        Imports .layout files into memory.
+
+        :param layout_dir: the directory that has .layout files and .layout.csv files
+        """
+        layout_tables = {}
+        layouts = import_layouts(layout_dir)
+
+        for wc in WordClass:
+            if not wc.has_inflections():
+                continue
+
+            for size in ParadigmSize:
+                layout_tables[(wc, size)] = rows_to_layout(layouts[wc, size])
+
+        return layout_tables
 
 
 def import_layouts(layout_file_dir: Path) -> LayoutTable:
