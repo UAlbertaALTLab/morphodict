@@ -44,11 +44,14 @@ def lemma_details(request, lemma_text: str = None):
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
 
-    extra_constraints = {
-        k: v
-        for k, v in request.GET.items()
-        if k in {"pos", "inflectional_category", "analysis", "id"}
-    }
+    lemma = Wordform.objects.filter(is_lemma=True)
+
+    if lemma_text:
+        # TODO: is lemma_text really allowed to be blank?
+        lemma = lemma.filter(text=lemma_text)
+
+    if additional_filters := disambiguating_filter_from_query_params(request.GET):
+        lemma = lemma.filter(additional_filters)
 
     paradigm_size = request.GET.get("paradigm-size")
     if paradigm_size is None:
@@ -56,11 +59,6 @@ def lemma_details(request, lemma_text: str = None):
     else:
         paradigm_size = ParadigmSize(paradigm_size.upper())
 
-    filter_args = dict(is_lemma=True, **extra_constraints)
-    if lemma_text is not None:
-        filter_args["text"] = lemma_text
-
-    lemma = Wordform.objects.filter(**filter_args)
     if lemma.count() == 1:
         lemma = lemma.get()
         context = create_context_for_index_template(
@@ -299,3 +297,29 @@ class ChangeDisplayMode(View):
 def should_include_auto_definitions(request):
     # For now, show auto-translations if and only if the user is logged in
     return request.user.is_authenticated
+
+def disambiguating_filter_from_query_params(query_params: dict[str, str]):
+    """
+    Sometimes wordforms may have the same text (a.k.a., be homographs/homophones),
+    thus need to be disambiguate further before displaying a paradigm.
+
+    This computes the intersection between the provided query parameters and the valid
+    disambiguating filters used for homograph disambiguation.
+    """
+    keys_present = query_params.keys() & {
+        # e.g., VTA-1, VTI-3
+        # Since inflectional category, by definition, indicates the paradigm of the
+        # associated head word, this is the preferred disambiguator. It **should** work
+        # most of the time.
+        "inflectional_category",
+        # e.g., N or V.
+        # This is the "general word class"  a.k.a., not enough information to know
+        # what paradigm to use. This disambiguator is discouraged.
+        "pos",
+        # e.g., câhkinêw+V+TA+Ind+5Sg/Pl+4Sg/PlO
+        # I'm honestly not sure why this was chosen as a disambiguator ¯\_(ツ)_/¯
+        "analysis",
+        # Last resort: ephemeral database ID. This is NOT STABLE across database imports!
+        "id",
+    }
+    return {key: query_params[key] for key in keys_present}
