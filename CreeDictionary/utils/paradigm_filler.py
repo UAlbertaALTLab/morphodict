@@ -73,17 +73,15 @@ class ParadigmFiller:
 
         :param layout_dir: the directory that has .layout files and .layout.csv files
         """
-        combiner = Combiner(layout_dir)
-
         layout_tables = {}
+        layouts = import_layouts(layout_dir)
 
         for wc in WordClass:
             if not wc.has_inflections():
                 continue
+
             for size in ParadigmSize:
-                layout_tables[(wc, size)] = rows_to_layout(
-                    combiner.get_combined_table(wc, size)
-                )
+                layout_tables[(wc, size)] = rows_to_layout(layouts[wc, size])
 
         return layout_tables
 
@@ -221,35 +219,6 @@ class ParadigmFiller:
                     raise ValueError("Unexpected cell type")
 
         return analyses
-
-
-class Combiner:
-    """
-    Ties together the paradigm layouts and a generator to create "pre-filled" layouts.
-    """
-
-    _layout_tables: Dict[Tuple[WordClass, ParadigmSize], Table]
-
-    def __init__(self, layout_dir: Path):
-        """
-        Reads ALL of the .tsv layout files into memory and initializes the FST generator
-
-        :param layout_dir: the absolute directory of your .tsv layout files
-        """
-        self._layout_tables = import_layouts(layout_dir)
-
-    def get_combined_table(
-        self, category: WordClass, paradigm_size: ParadigmSize
-    ) -> List[List[str]]:
-        """
-        Return the appropriate layout.
-        """
-
-        if category is WordClass.IPC or category is WordClass.Pron:
-            return []
-
-        # Can be returned unchanged!
-        return self._layout_tables[(category, paradigm_size)]
 
 
 def import_layouts(layout_file_dir: Path) -> LayoutTable:
