@@ -1,18 +1,30 @@
 import pytest
-from CreeDictionary.generate_paradigm import generate_paradigm
 from API.models import Wordform
-from paradigm import Layout, EmptyRowType, TitleRow, InflectionCell
+from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from utils import ParadigmSize
+
+from CreeDictionary.generate_paradigm import generate_paradigm
 
 
 @pytest.mark.parametrize(
     "lemma,examples",
     [
-        # VAI
-        ("nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
         # VTA
         ("wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin", "ê-wâpamât"]),
-        # TODO: other word classes
+        # VAI
+        ("nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
+        # VTI
+        ("mîcisow", ["mîcisow", "nimîcison", "kimîcison", "ê-mîcisoyit"]),
+        # VII
+        ("nîpin", ["nîpin", "nîpin", "ê-nîpihk"]),
+        # NAD
+        ("nôhkom", ["nôhkom", "kôhkom", "ohkoma"]),
+        # NID
+        ("mîpit", ["mîpit", "nîpit", "kîpit", "wîpit"]),
+        # NA
+        ("minôs", ["minôs", "minôsak", "minôsa"]),
+        # NI
+        ("nipiy", ["nipiy", "nipîhk", "ninipiy", "kinipiy"]),
     ],
 )
 @pytest.mark.django_db
