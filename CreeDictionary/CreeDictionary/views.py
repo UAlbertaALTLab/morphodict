@@ -45,17 +45,15 @@ def lemma_details(request, lemma_text: str):
     """
 
     lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True)
-
     if additional_filters := disambiguating_filter_from_query_params(request.GET):
         lemma = lemma.filter(**additional_filters)
-
-    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
 
     if lemma.count() != 1:
         # The result is either empty or ambiguous; either way, do a search!
         return redirect(url_for_query(lemma_text or ""))
 
     lemma = lemma.get()
+    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
