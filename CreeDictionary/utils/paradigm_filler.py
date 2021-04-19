@@ -21,8 +21,8 @@ from utils.types import ConcatAnalysis
 
 logger = logging.getLogger()
 
-Table = List[List[str]]
-LayoutTable = Dict[Tuple[WordClass, ParadigmSize], Table]
+RawTable = List[List[str]]
+LayoutTable = Dict[Tuple[WordClass, ParadigmSize], RawTable]
 LayoutID = Tuple[WordClass, ParadigmSize]
 
 PARADIGM_NAME_TO_WC = {
@@ -257,7 +257,7 @@ def import_layouts(layout_file_dir: Path) -> LayoutTable:
     return layout_tables
 
 
-def parse_layout(layout_file: Path) -> Table:
+def parse_layout(layout_file: Path) -> RawTable:
     """
     Parses a layout in the TSV format.
     """
@@ -268,7 +268,7 @@ def parse_layout(layout_file: Path) -> Table:
     if "\n--\n" in file_text:
         raise NotImplementedError("NDS YAML header not supported")
 
-    table: Table = []
+    table: RawTable = []
 
     lines = file_text.splitlines()
     for row_no, line in enumerate(lines, start=1):
