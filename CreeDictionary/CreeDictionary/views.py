@@ -49,11 +49,7 @@ def lemma_details(request, lemma_text: str):
     if additional_filters := disambiguating_filter_from_query_params(request.GET):
         lemma = lemma.filter(**additional_filters)
 
-    paradigm_size = request.GET.get("paradigm-size")
-    if paradigm_size is None:
-        paradigm_size = ParadigmSize.BASIC
-    else:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
+    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
 
     if lemma.count() == 1:
         lemma = lemma.get()
