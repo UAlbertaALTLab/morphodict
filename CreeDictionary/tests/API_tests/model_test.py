@@ -2,6 +2,7 @@ import json
 from typing import List
 
 import pytest
+from CreeDictionary.generate_paradigm import generate_paradigm
 from hypothesis import assume, given
 
 from API.models import Wordform
@@ -9,6 +10,7 @@ from API.search import search
 from API.search.util import to_sro_circumflex
 from paradigm import EmptyRowType, InflectionCell, Layout, TitleRow
 from tests.conftest import lemmas
+from utils import ParadigmSize
 
 
 @pytest.mark.django_db
@@ -198,10 +200,12 @@ def _paradigms_contain_inflection(paradigms: List[Layout], inflection: str) -> b
 
 @pytest.mark.django_db
 def test_paradigm():
+    """
+    Test we can generate a paradigm from a given lemma.
+    """
 
-    nipaw_paradigm = Wordform.objects.get(
-        text="nipâw", is_lemma=True
-    ).get_paradigm_layouts()
+    nipaw = Wordform.objects.get(text="nipâw", is_lemma=True)
+    nipaw_paradigm = generate_paradigm(nipaw, ParadigmSize.BASIC)
     assert _paradigms_contain_inflection(nipaw_paradigm, "ninipân")
     assert _paradigms_contain_inflection(nipaw_paradigm, "kinipân")
     assert _paradigms_contain_inflection(nipaw_paradigm, "nipâw")
