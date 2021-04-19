@@ -3,17 +3,14 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, List, Literal, Optional
+from typing import Dict, Literal, Optional
 from urllib.parse import quote
 
 from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-from paradigm import Layout
-from shared import expensive
 from utils import (
-    ParadigmSize,
     PartOfSpeech,
     WordClass,
     fst_analysis_parser,
@@ -118,19 +115,6 @@ class Wordform(models.Model):
             return WordClass(self.pos)
         except ValueError:
             return None
-
-    def get_paradigm_layouts(
-        self, size: ParadigmSize = ParadigmSize.BASIC
-    ) -> List[Layout]:
-        """
-        :param size: How detail the paradigm table is
-        """
-        wc = fst_analysis_parser.extract_word_class(self.analysis)
-        if wc is not None:
-            tables = expensive.paradigm_filler.fill_paradigm(self.text, wc, size)
-        else:
-            tables = []
-        return tables
 
     @property
     def md_only(self) -> bool:
