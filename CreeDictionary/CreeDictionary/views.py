@@ -24,16 +24,26 @@ IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 # it should be used on the view functions that are well covered by integration tests
 
 
-def lemma_details(request, lemma_text: str = None):  # pragma: no cover
+def lemma_details(request, lemma_text: str = None):
     """
-    lemma detail page. Fall back to search page if no lemma is found or multiple lemmas are found
+    Head word detail page. Will render a paradigm, if applicable. Fall back to search page if no lemma is found or multiple lemmas are found
 
-    possible query params are "pos"/"inflectional_category"/"analysis"/"id" to further specify the lemma,
-    "paradigm-size" (default is BASIC) to specify the size of the paradigm
+    Possible query params:
+
+      To disambiguate the head word (see: Wordform.homograph_disambiguator):
+        - pos
+        - inflectional_category
+        - analysis
+        - id
+
+      To affect the paradigm size:
+
+        - paradigm-size (default is BASIC) to specify the size of the paradigm
 
     :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param lemma_text: the exact form of the lemma (no spell relaxation)
     """
+
     extra_constraints = {
         k: v
         for k, v in request.GET.items()
