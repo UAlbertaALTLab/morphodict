@@ -294,6 +294,7 @@ def should_include_auto_definitions(request):
     # For now, show auto-translations if and only if the user is logged in
     return request.user.is_authenticated
 
+
 def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     """
     Sometimes wordforms may have the same text (a.k.a., be homographs/homophones),
