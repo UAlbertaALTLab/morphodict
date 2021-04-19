@@ -63,9 +63,7 @@ def lemma_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
-        if lemma
-        else None,
+        paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size),
     )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
