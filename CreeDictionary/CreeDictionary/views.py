@@ -51,24 +51,25 @@ def lemma_details(request, lemma_text: str):
 
     paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
 
-    if lemma.count() == 1:
-        lemma = lemma.get()
-        context = create_context_for_index_template(
-            "word-detail",
-            # TODO: rename this to wordform ID
-            lemma_id=lemma.id,
-            # TODO: remove this parameter in favour of...
-            lemma=lemma,
-            # ...this parameter
-            wordform=presentation.serialize_wordform(lemma),
-            paradigm_size=paradigm_size,
-            paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
-            if lemma
-            else None,
-        )
-        return HttpResponse(render(request, "CreeDictionary/index.html", context))
-    else:
+    if lemma.count() != 1:
+        # The result is either empty or ambiguous; either way, do a search!
         return redirect(url_for_query(lemma_text or ""))
+
+    lemma = lemma.get()
+    context = create_context_for_index_template(
+        "word-detail",
+        # TODO: rename this to wordform ID
+        lemma_id=lemma.id,
+        # TODO: remove this parameter in favour of...
+        lemma=lemma,
+        # ...this parameter
+        wordform=presentation.serialize_wordform(lemma),
+        paradigm_size=paradigm_size,
+        paradigm_tables=lemma.get_paradigm_layouts(size=paradigm_size)
+        if lemma
+        else None,
+    )
+    return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 
 def index(request):  # pragma: no cover
