@@ -26,9 +26,11 @@ logger = logging.getLogger()
 
 
 def import_frequency() -> Dict[ConcatAnalysis, int]:
+    # TODO: store this in the database, rather than as a source file
+    # TODO: make a management command that updates wordform frequencies
     FILENAME = "attested-wordforms.txt"
 
-    res: Dict[ConcatAnalysis, int] = {}
+    res: dict[ConcatAnalysis, int] = {}
     lines = (shared_res_dir / FILENAME).read_text(encoding="UTF-8").splitlines()
     for line in lines:
         line = line.strip()
