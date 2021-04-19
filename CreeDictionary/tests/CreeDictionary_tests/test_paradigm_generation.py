@@ -5,13 +5,16 @@ from paradigm import Layout, EmptyRowType, TitleRow, InflectionCell
 from utils import ParadigmSize
 
 
-@pytest.mark.parametrize("lemma,examples", [
-    # VAI
-    ("nipâw", ["nipâw", "ninipân", "kinipân",  "ninipânân"]),
-    # VTA
-    ("wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin",  "ê-wâpamât"]),
-    # TODO: other word classes
-])
+@pytest.mark.parametrize(
+    "lemma,examples",
+    [
+        # VAI
+        ("nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
+        # VTA
+        ("wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin", "ê-wâpamât"]),
+        # TODO: other word classes
+    ],
+)
 @pytest.mark.django_db
 def test_paradigm(lemma: str, examples: list[str]):
     """
