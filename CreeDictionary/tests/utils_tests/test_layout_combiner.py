@@ -1,5 +1,5 @@
 from utils import ParadigmSize, WordClass, shared_res_dir
-from utils.paradigm_layout_combiner import import_layouts
+from utils.paradigm_filler import import_layouts
 
 
 def test_import_layouts_na_basic(shared_datadir) -> None:
