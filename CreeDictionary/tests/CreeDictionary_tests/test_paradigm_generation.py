@@ -3,7 +3,7 @@ from API.models import Wordform
 from utils.paradigm_filler import EmptyRowType, TitleRow, InflectionCell, Layout
 from utils import ParadigmSize
 
-from CreeDictionary.generate_paradigm import generate_paradigm
+from CreeDictionary.paradigm.generation import generate_paradigm
 
 
 @pytest.mark.parametrize(
