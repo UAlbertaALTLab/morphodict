@@ -11,7 +11,7 @@ from django.views.decorators.http import require_GET
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
-from CreeDictionary.generate_paradigm import generate_paradigm
+from CreeDictionary.paradigm.generation import generate_paradigm
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query

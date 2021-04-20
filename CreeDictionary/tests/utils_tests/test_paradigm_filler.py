@@ -6,9 +6,16 @@ Note: if the upstream layouts change, so will these tests!
 from string import Template
 
 import pytest
-from paradigm import EmptyRow, Heading, InflectionCell, Label, TitleRow
 from utils import ParadigmSize, WordClass
-from utils.paradigm_filler import ParadigmFiller, import_frequency
+
+from CreeDictionary.paradigm.filler import (
+    EmptyRow,
+    Heading,
+    InflectionCell,
+    Label,
+    ParadigmFiller,
+    import_layouts,
+)
 
 
 def test_import_prefilled_layouts(shared_datadir) -> None:
@@ -95,3 +102,26 @@ def paradigm_filler(shared_datadir) -> ParadigmFiller:
         shared_datadir / "layouts",
         shared_datadir / "crk-normative-generator.hfstol",
     )
+
+
+def test_import_layouts_na_basic(shared_datadir) -> None:
+    """
+    Ensure that we can import paradigm layout templates from the plain text files.
+    """
+
+    imported_layout = import_layouts(shared_datadir / "layouts")
+    assert imported_layout[WordClass.NA, ParadigmSize.BASIC] == [
+        ['"One"', "${lemma}+N+A+Sg"],
+        ['"Many"', "${lemma}+N+A+Pl"],
+        ['"Further"', "${lemma}+N+A+Obv"],
+        [""],
+        ["", ': "Smaller/Lesser/Younger"'],
+        ['"One"', "${lemma}+N+A+Der/Dim+N+A+Sg"],
+        [""],
+        ["", ': "Ownership"'],
+        ["", ': "One"'],
+        ['"my"', "${lemma}+N+A+Px1Sg+Sg"],
+        ['"your (one)"', "${lemma}+N+A+Px2Sg+Sg"],
+        ["", ': "Further"'],
+        ['"his/her"', "${lemma}+N+A+Px3Sg+Obv"],
+    ]

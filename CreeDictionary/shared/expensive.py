@@ -2,20 +2,17 @@
 # -*- coding: UTF-8 -*-
 
 from hfst_optimized_lookup import TransducerFile
-from utils import paradigm_filler as pf
 from utils import shared_res_dir
 
 _fst_dir = shared_res_dir / "fst"
 
 # These are part of the public API, but don't instantiate them yet!
-paradigm_filler: pf.ParadigmFiller
 strict_generator: TransducerFile
 relaxed_analyzer: TransducerFile
 strict_analyzer: TransducerFile
 
 # How to create one of the above 👆🏼 instances
 _instance_factory = dict(
-    paradigm_filler=lambda: pf.ParadigmFiller.default_filler(),
     strict_generator=lambda: TransducerFile(_fst_dir / "crk-strict-generator.hfstol"),
     relaxed_analyzer=lambda: TransducerFile(
         _fst_dir / "crk-relaxed-analyzer-for-dictionary.hfstol"

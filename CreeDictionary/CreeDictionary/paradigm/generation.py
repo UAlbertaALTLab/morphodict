@@ -2,11 +2,13 @@
 Handles paradigm generation.
 """
 
-import shared.expensive
-from paradigm import Layout
+from functools import cache
+
 from utils.fst_analysis_parser import extract_word_class
 from utils.enums import ParadigmSize
 from API.models import Wordform
+
+from .filler import Layout, ParadigmFiller
 
 
 def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:
@@ -22,4 +24,12 @@ def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:
         # Cannot determine how the the lemma inflects; no paradigm :/
         return []
 
-    return shared.expensive.paradigm_filler.fill_paradigm(lemma.text, word_class, size)
+    return paradigm_filler().fill_paradigm(lemma.text, word_class, size)
+
+
+@cache
+def paradigm_filler() -> ParadigmFiller:
+    """
+    Returns a cached instance of the default paradigm filler.
+    """
+    return ParadigmFiller.default_filler()
