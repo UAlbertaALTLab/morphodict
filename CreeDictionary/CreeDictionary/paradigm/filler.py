@@ -28,7 +28,7 @@ PARADIGM_NAME_TO_WC = {
     "verb-ti": WordClass.VTI,
 }
 
-FREQUENCY_FILENAME = "attested-wordforms.txt"
+CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
 
 
 ##################################### Simple types #####################################
@@ -352,9 +352,7 @@ def import_frequency() -> dict[ConcatAnalysis, int]:
     # TODO: make a management command that updates wordform frequencies
 
     res: dict[ConcatAnalysis, int] = {}
-    lines = (
-        (shared_res_dir / FREQUENCY_FILENAME).read_text(encoding="UTF-8").splitlines()
-    )
+    lines = CORPUS_FREQUENCY_FILE.read_text(encoding="UTF-8").splitlines()
     for line in lines:
         line = line.strip()
         if not line:
@@ -365,7 +363,7 @@ def import_frequency() -> dict[ConcatAnalysis, int]:
             freq, _, *analyses = line.split()
         except ValueError:
             # not enough value to unpack, which means the line has less than 3 values
-            logger.warning(f'line "{line}" is broken in {FREQUENCY_FILENAME}')
+            logger.warning(f'line "{line}" is broken in {CORPUS_FREQUENCY_FILE}')
         else:
             for analysis in analyses:
                 res[ConcatAnalysis(analysis)] = int(freq)
