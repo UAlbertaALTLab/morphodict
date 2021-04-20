@@ -28,6 +28,8 @@ PARADIGM_NAME_TO_WC = {
     "verb-ti": WordClass.VTI,
 }
 
+FREQUENCY_FILENAME = "attested-wordforms.txt"
+
 
 ##################################### Simple types #####################################
 
@@ -42,8 +44,8 @@ LayoutID = tuple[WordClass, ParadigmSize]
 class ParadigmFiller:
     def __init__(self, layout_dir: Path, generator_hfstol_path: Path = None):
         """
-        Combine .layout, .layout.csv, .paradigm files to paradigm tables of different sizes and store them in memory
-        inits fst generator
+        Combine .layout, .layout.csv, .paradigm files to paradigm tables of different
+        sizes and store them in memory.
 
         :param layout_dir: the directory for .layout and .layout.cvs files
         """
@@ -60,7 +62,8 @@ class ParadigmFiller:
     @classmethod
     def default_filler(cls):
         """
-        Return a filler that uses .layout files, .paradigm files and the fst from the res folder
+        Return a filler that uses .layout files, .paradigm files and the fst from the
+        res (resources) folder.
         """
         return ParadigmFiller(shared_res_dir / "layouts")
 
@@ -206,9 +209,9 @@ class EmptyRowType:
     """
 
     # Do a bunch of stuff to make this an empty row.
-    _instance: "EmptyRowType"
+    _instance: EmptyRowType
 
-    def __new__(cls) -> "EmptyRowType":
+    def __new__(cls) -> EmptyRowType:
         if not hasattr(cls, "_instance"):
             cls._instance = super().__new__(cls)
         return cls._instance
@@ -216,14 +219,14 @@ class EmptyRowType:
     def __repr__(self) -> str:
         return "EmptyRowType"
 
-    def __deepcopy__(self, _memo) -> "EmptyRowType":
+    def __deepcopy__(self, _memo) -> EmptyRowType:
         return self
 
-    def __copy__(self) -> "EmptyRowType":
+    def __copy__(self) -> EmptyRowType:
         return self
 
     def __reduce__(self):
-        return (EmptyRowType, ())
+        return EmptyRowType, ()
 
 
 EmptyRow = EmptyRowType()
@@ -348,10 +351,11 @@ Layout = list[Row]
 def import_frequency() -> dict[ConcatAnalysis, int]:
     # TODO: store this in the database, rather than as a source file
     # TODO: make a management command that updates wordform frequencies
-    FILENAME = "attested-wordforms.txt"
 
     res: dict[ConcatAnalysis, int] = {}
-    lines = (shared_res_dir / FILENAME).read_text(encoding="UTF-8").splitlines()
+    lines = (
+        (shared_res_dir / FREQUENCY_FILENAME).read_text(encoding="UTF-8").splitlines()
+    )
     for line in lines:
         line = line.strip()
         if not line:
@@ -360,8 +364,9 @@ def import_frequency() -> dict[ConcatAnalysis, int]:
 
         try:
             freq, _, *analyses = line.split()
-        except ValueError:  # not enough value to unpack, which means the line has less than 3 values
-            logger.warn(f'line "{line}" is broken in {FILENAME}')
+        except ValueError:
+            # not enough value to unpack, which means the line has less than 3 values
+            logger.warning(f'line "{line}" is broken in {FREQUENCY_FILENAME}')
         else:
             for analysis in analyses:
                 res[ConcatAnalysis(analysis)] = int(freq)
@@ -441,7 +446,7 @@ def rows_to_layout(rows: Iterable[list[str]]) -> Layout:
 
         has_content = False
         n_labels = 0
-        last_label: str
+        last_label: Optional[str] = None
 
         for cell in row:
             if isinstance(cell, Label):
@@ -453,6 +458,7 @@ def rows_to_layout(rows: Iterable[list[str]]) -> Layout:
         if not has_content and n_labels == 0:
             layout.append(EmptyRow)
         elif not has_content and n_labels == 1:
+            assert last_label is not None
             layout.append(TitleRow(last_label, span=len(row)))
         else:
             layout.append(row)
