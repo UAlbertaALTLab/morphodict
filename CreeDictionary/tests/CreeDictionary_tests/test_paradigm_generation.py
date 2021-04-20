@@ -1,6 +1,11 @@
 import pytest
 from API.models import Wordform
-from CreeDictionary.paradigm.filler import EmptyRowType, TitleRow, InflectionCell, Layout
+from CreeDictionary.paradigm.filler import (
+    EmptyRowType,
+    TitleRow,
+    InflectionCell,
+    Layout,
+)
 from utils import ParadigmSize
 
 from CreeDictionary.paradigm.generation import generate_paradigm
