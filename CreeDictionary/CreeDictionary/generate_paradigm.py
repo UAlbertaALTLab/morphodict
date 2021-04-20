@@ -3,7 +3,7 @@ Handles paradigm generation.
 """
 
 import shared.expensive
-from paradigm import Layout
+from utils.paradigm_filler import Layout
 from utils.fst_analysis_parser import extract_word_class
 from utils.enums import ParadigmSize
 from API.models import Wordform

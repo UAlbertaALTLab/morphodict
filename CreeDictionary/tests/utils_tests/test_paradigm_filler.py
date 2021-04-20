@@ -6,9 +6,9 @@ Note: if the upstream layouts change, so will these tests!
 from string import Template
 
 import pytest
-from paradigm import EmptyRow, Heading, InflectionCell, Label, TitleRow
 from utils import ParadigmSize, WordClass
-from utils.paradigm_filler import ParadigmFiller, import_frequency
+from utils.paradigm_filler import ParadigmFiller, import_frequency, EmptyRow, TitleRow, \
+    Label, Heading, InflectionCell
 
 
 def test_import_prefilled_layouts(shared_datadir) -> None:
