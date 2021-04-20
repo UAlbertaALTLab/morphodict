@@ -4,10 +4,11 @@ Handles paradigm generation.
 
 from functools import cache
 
-from utils.paradigm_filler import Layout, ParadigmFiller
 from utils.fst_analysis_parser import extract_word_class
 from utils.enums import ParadigmSize
 from API.models import Wordform
+
+from .filler import Layout, ParadigmFiller
 
 
 def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:

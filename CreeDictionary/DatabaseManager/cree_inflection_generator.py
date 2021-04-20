@@ -6,7 +6,7 @@ from typing import Dict, Iterable, List, Set, Tuple
 from DatabaseManager.log import DatabaseManagerLogger
 from shared import expensive
 from utils import fst_analysis_parser
-from utils.paradigm_filler import ParadigmFiller
+from CreeDictionary.paradigm.filler import ParadigmFiller
 
 
 def expand_inflections(

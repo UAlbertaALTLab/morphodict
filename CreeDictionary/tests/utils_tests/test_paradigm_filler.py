@@ -7,8 +7,7 @@ from string import Template
 
 import pytest
 from utils import ParadigmSize, WordClass
-from utils.paradigm_filler import ParadigmFiller, import_frequency, EmptyRow, TitleRow, \
-    Label, Heading, InflectionCell
+from CreeDictionary.paradigm.filler import ParadigmFiller, EmptyRow, Label, Heading, InflectionCell
 
 
 def test_import_prefilled_layouts(shared_datadir) -> None:
