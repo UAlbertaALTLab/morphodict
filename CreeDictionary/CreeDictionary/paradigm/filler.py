@@ -15,7 +15,7 @@ from hfst_optimized_lookup import TransducerFile
 from utils import ParadigmSize, WordClass, shared_res_dir
 from utils.types import ConcatAnalysis
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 PARADIGM_NAME_TO_WC = {
     "noun-na": WordClass.NA,
@@ -117,9 +117,8 @@ class ParadigmFiller:
 
         # string_locations and lookup_strings have parallel indices.
         assert len(string_locations) == len(lookup_strings)
-        for i, location in enumerate(string_locations):
+        for location, analysis in zip(string_locations, lookup_strings):
             row, col_ind = location
-            analysis = lookup_strings[i]
             results_for_cell = sorted(results[analysis])
             # TODO: this should actually produce TWO rows!
             inflection_cell = row[col_ind]
@@ -389,7 +388,7 @@ def import_layouts(layout_file_dir: Path) -> Layouts:
         stem, _dot, _extensions = layout_file.name.partition(".")
         *wc_str, size_str = stem.split("-")
 
-        # Figure out if it's worth converting layout this layout.
+        # Figure out if it's worth converting this layout.
         try:
             size = ParadigmSize(size_str.upper())
         except ValueError:
