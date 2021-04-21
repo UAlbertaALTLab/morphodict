@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import csv
-from enum import IntEnum, auto
+from enum import IntEnum
 from typing import Iterable, Optional, TextIO, Tuple, TypeVar, Union
 
 from utils import shared_res_dir
