@@ -7,6 +7,8 @@ from typing import Iterable, Optional, TextIO, TypeVar, Union
 from utils import shared_res_dir
 from utils.types import FSTTag, Label
 
+CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
+
 Default = TypeVar("Default")
 
 
@@ -183,7 +185,7 @@ class _RelabelFetcher:
 
 
 def read_labels() -> Relabelling:
-    with (shared_res_dir / "crk.altlabel.tsv").open(encoding="UTF-8") as tsv_file:
+    with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
         return Relabelling.from_tsv(tsv_file)
 
 
