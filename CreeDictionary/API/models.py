@@ -17,7 +17,7 @@ from utils import (
     shared_res_dir,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
-from utils.fst_analysis_parser import LABELS
+from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
 
 from .schema import SerializedDefinition

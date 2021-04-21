@@ -10,7 +10,7 @@ from typing_extensions import Protocol
 
 from API.models import Wordform, wordform_cache
 from API.schema import SerializedLinguisticTag
-from utils.fst_analysis_parser import LABELS
+from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
 
 Preverb = Wordform
