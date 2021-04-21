@@ -8,7 +8,15 @@ from utils.types import FSTTag, Label
 Default = TypeVar("Default")
 
 
-class LabelFriendliness(IntEnum):
+class _LabelFriendliness(IntEnum):
+    """
+    Weird enum that I'm not sure should have ever existed.
+
+    I **think** it's an IntEnum because its values correspond with the columns in
+    crk.altlabel.txv. Maybe.
+
+    .. deprecated:: 2021.4.21
+    """
     LINGUISTIC_SHORT = auto()
     LINGUISTIC_LONG = auto()
     ENGLISH = auto()
@@ -18,7 +26,7 @@ class LabelFriendliness(IntEnum):
 
 class Relabelling:
     """
-    Given an FST tag a desired "LabelFriendliness", provides access to the
+    Given an FST tag a desired "_LabelFriendliness", provides access to the
     relabellings, as written by the linguists (mostly Antti).
 
     Use the shortcuts:
@@ -30,18 +38,18 @@ class Relabelling:
         .emoji[tag]             or .emoji.get(tag, default)
     """
 
-    _DataStructure = Dict[Tuple[FSTTag, ...], Dict[LabelFriendliness, Optional[Label]]]
+    _DataStructure = Dict[Tuple[FSTTag, ...], Dict[_LabelFriendliness, Optional[Label]]]
 
     def __init__(self, data: _DataStructure) -> None:
         self._data = data
 
         self.linguistic_short = _RelabelFetcher(
-            data, LabelFriendliness.LINGUISTIC_SHORT
+            data, _LabelFriendliness.LINGUISTIC_SHORT
         )
-        self.linguistic_long = _RelabelFetcher(data, LabelFriendliness.LINGUISTIC_LONG)
-        self.english = _RelabelFetcher(data, LabelFriendliness.ENGLISH)
-        self.cree = _RelabelFetcher(data, LabelFriendliness.NEHIYAWEWIN)
-        self.emoji = _RelabelFetcher(data, LabelFriendliness.EMOJI)
+        self.linguistic_long = _RelabelFetcher(data, _LabelFriendliness.LINGUISTIC_LONG)
+        self.english = _RelabelFetcher(data, _LabelFriendliness.ENGLISH)
+        self.cree = _RelabelFetcher(data, _LabelFriendliness.NEHIYAWEWIN)
+        self.emoji = _RelabelFetcher(data, _LabelFriendliness.EMOJI)
 
     def __contains__(self, key: object) -> bool:
         if isinstance(key, str):
@@ -60,20 +68,20 @@ class Relabelling:
             tag_set = tuple(FSTTag(tag) for tag in row[0].split("+"))
             assert tag_set, f"Found a line with content, but no tag: {row!r}"
 
-            tag_dict: Dict[LabelFriendliness, Optional[Label]] = {
-                LabelFriendliness.LINGUISTIC_SHORT: None,
-                LabelFriendliness.LINGUISTIC_LONG: None,
-                LabelFriendliness.ENGLISH: None,
-                LabelFriendliness.NEHIYAWEWIN: None,
-                LabelFriendliness.EMOJI: None,
+            tag_dict: Dict[_LabelFriendliness, Optional[Label]] = {
+                _LabelFriendliness.LINGUISTIC_SHORT: None,
+                _LabelFriendliness.LINGUISTIC_LONG: None,
+                _LabelFriendliness.ENGLISH: None,
+                _LabelFriendliness.NEHIYAWEWIN: None,
+                _LabelFriendliness.EMOJI: None,
             }
 
             try:
-                tag_dict[LabelFriendliness.LINGUISTIC_SHORT] = Label(row[1])
-                tag_dict[LabelFriendliness.LINGUISTIC_LONG] = Label(row[2])
-                tag_dict[LabelFriendliness.ENGLISH] = Label(row[3])
-                tag_dict[LabelFriendliness.NEHIYAWEWIN] = Label(row[4])
-                tag_dict[LabelFriendliness.EMOJI] = Label(row[5])
+                tag_dict[_LabelFriendliness.LINGUISTIC_SHORT] = Label(row[1])
+                tag_dict[_LabelFriendliness.LINGUISTIC_LONG] = Label(row[2])
+                tag_dict[_LabelFriendliness.ENGLISH] = Label(row[3])
+                tag_dict[_LabelFriendliness.NEHIYAWEWIN] = Label(row[4])
+                tag_dict[_LabelFriendliness.EMOJI] = Label(row[5])
             except IndexError:  # some of them do not have that many columns
                 pass
 
@@ -90,7 +98,7 @@ class _RelabelFetcher:
     def __init__(
         self,
         data: Relabelling._DataStructure,
-        label: LabelFriendliness,
+        label: _LabelFriendliness,
     ):
         self._data = data
         self._friendliness = label
