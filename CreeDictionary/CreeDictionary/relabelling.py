@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import csv
 from enum import IntEnum, auto
-from typing import Dict, Iterable, List, Optional, TextIO, Tuple, TypeVar, Union
+from typing import Iterable, Optional, TextIO, TypeVar, Union
 
 from utils import shared_res_dir
 from utils.types import FSTTag, Label
@@ -38,7 +40,7 @@ class Relabelling:
         .emoji[tag]             or .emoji.get(tag, default)
     """
 
-    _DataStructure = Dict[Tuple[FSTTag, ...], Dict[_LabelFriendliness, Optional[Label]]]
+    _DataStructure = dict[tuple[FSTTag, ...], dict[_LabelFriendliness, Optional[Label]]]
 
     def __init__(self, data: _DataStructure) -> None:
         self._data = data
@@ -57,7 +59,7 @@ class Relabelling:
         return key in self._data
 
     @classmethod
-    def from_tsv(cls, tsv_file: TextIO) -> "Relabelling":
+    def from_tsv(cls, tsv_file: TextIO) -> Relabelling:
         res = {}
         reader = csv.reader(tsv_file, delimiter="\t")
         for row in list(reader)[1:]:
@@ -68,7 +70,7 @@ class Relabelling:
             tag_set = tuple(FSTTag(tag) for tag in row[0].split("+"))
             assert tag_set, f"Found a line with content, but no tag: {row!r}"
 
-            tag_dict: Dict[_LabelFriendliness, Optional[Label]] = {
+            tag_dict: dict[_LabelFriendliness, Optional[Label]] = {
                 _LabelFriendliness.LINGUISTIC_SHORT: None,
                 _LabelFriendliness.LINGUISTIC_LONG: None,
                 _LabelFriendliness.ENGLISH: None,
@@ -119,7 +121,7 @@ class _RelabelFetcher:
         _unmatched, label = self._get_longest(tags)
         return label
 
-    def chunk(self, tags: Iterable[FSTTag]) -> Iterable[Tuple[FSTTag, ...]]:
+    def chunk(self, tags: Iterable[FSTTag]) -> Iterable[tuple[FSTTag, ...]]:
         """
         Chunk FST Labels that match relabellings and yield the tags.
         """
@@ -134,7 +136,7 @@ class _RelabelFetcher:
             yield tag_set[:prefix_length]
             tag_set = tag_set[prefix_length:]
 
-    def get_full_relabelling(self, tags: Iterable[FSTTag]) -> List[Label]:
+    def get_full_relabelling(self, tags: Iterable[FSTTag]) -> list[Label]:
         """
         Relabels all tags, trying to match prefixes
         """
@@ -158,7 +160,7 @@ class _RelabelFetcher:
 
     def _get_longest(
         self, tags: Iterable[FSTTag]
-    ) -> Tuple[Tuple[FSTTag, ...], Optional[Label]]:
+    ) -> tuple[tuple[FSTTag, ...], Optional[Label]]:
         """
         Returns the unmatched tags, and the relabelling of the matched tags from the
         prefix.
