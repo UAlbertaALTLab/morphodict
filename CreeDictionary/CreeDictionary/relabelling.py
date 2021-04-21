@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import csv
 from enum import IntEnum, auto
-from typing import Iterable, Optional, TextIO, TypeVar, Union
+from typing import Iterable, Optional, TextIO, Tuple, TypeVar, Union
 
 from utils import shared_res_dir
 from utils.types import FSTTag, Label
@@ -18,6 +18,7 @@ class _LabelFriendliness(IntEnum):
 
     Values are assigned according to their corresponding column in crk.altlabel.tsv
     """
+
     LINGUISTIC_SHORT = 1
     LINGUISTIC_LONG = 2
     ENGLISH = 3
@@ -40,7 +41,7 @@ class Relabelling:
     """
 
     # This data structure is kind of a weird, but I'm keeping it for now.
-    _DataStructure = dict[tuple[FSTTag, ...], dict[_LabelFriendliness, Optional[Label]]]
+    _DataStructure = dict[Tuple[FSTTag, ...], dict[_LabelFriendliness, Optional[Label]]]
 
     def __init__(self, data: _DataStructure) -> None:
         self._data = data
@@ -77,16 +78,7 @@ class Relabelling:
 
             tag_dict = {}
             for column_no in _LabelFriendliness:
-                try:
-                    raw_label = row[column_no]
-                    if cleaned_label := raw_label.strip():
-                        label = Label(cleaned_label)
-                    else:
-                        label = None
-                except IndexError:
-                    # Some columns are empty.
-                    label = None
-                tag_dict[column_no] = label
+                tag_dict[column_no] = _label_from_column_or_none(column_no, row)
 
             res[tag_set] = tag_dict
 
@@ -181,6 +173,23 @@ class _RelabelFetcher:
                 return try_tags[end:], entry[self._friendliness]
 
         return try_tags, None
+
+
+def _label_from_column_or_none(column_no: _LabelFriendliness, row) -> Optional[Label]:
+    """
+    Extract a non-empty label from row, else return none.
+    """
+    try:
+        raw_label = row[column_no]
+    except IndexError:
+        # Some columns are empty.
+        return None
+
+    cleaned_label = raw_label.strip()
+    if cleaned_label == "":
+        return None
+
+    return Label(cleaned_label)
 
 
 def read_labels() -> Relabelling:
