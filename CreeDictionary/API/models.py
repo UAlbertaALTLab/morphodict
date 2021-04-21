@@ -116,16 +116,6 @@ class Wordform(models.Model):
         except ValueError:
             return None
 
-    @property
-    def md_only(self) -> bool:
-        """
-        check if the wordform instance has only definition from the MD source
-        """
-        for definition in self.definitions.all():
-            if set(definition.source_ids) - {"MD"}:
-                return False
-        return True
-
     # override pk to allow use of bulk_create
     # auto-increment is also implemented in the overridden save() method below
     id = models.PositiveIntegerField(primary_key=True)
