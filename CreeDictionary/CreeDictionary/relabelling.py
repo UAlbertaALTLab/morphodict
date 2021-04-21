@@ -16,16 +16,13 @@ class _LabelFriendliness(IntEnum):
     """
     Weird enum that I'm not sure should have ever existed.
 
-    I **think** it's an IntEnum because its values correspond with the columns in
-    crk.altlabel.txv. Maybe.
-
-    .. deprecated:: 2021.4.21
+    Values are assigned according to their corresponding column in crk.altlabel.tsv
     """
-    LINGUISTIC_SHORT = auto()
-    LINGUISTIC_LONG = auto()
-    ENGLISH = auto()
-    NEHIYAWEWIN = auto()
-    EMOJI = auto()
+    LINGUISTIC_SHORT = 1
+    LINGUISTIC_LONG = 2
+    ENGLISH = 3
+    NEHIYAWEWIN = 4
+    EMOJI = 5
 
 
 class Relabelling:
@@ -65,7 +62,12 @@ class Relabelling:
     def from_tsv(cls, tsv_file: TextIO) -> Relabelling:
         res = {}
         reader = csv.reader(tsv_file, delimiter="\t")
-        for row in list(reader)[1:]:
+        rows = iter(reader)
+
+        # Skip header:
+        next(rows)
+
+        for row in rows:
             if not any(row):
                 # Skip empty row
                 continue
@@ -73,22 +75,18 @@ class Relabelling:
             tag_set = tuple(FSTTag(tag) for tag in row[0].split("+"))
             assert tag_set, f"Found a line with content, but no tag: {row!r}"
 
-            tag_dict: dict[_LabelFriendliness, Optional[Label]] = {
-                _LabelFriendliness.LINGUISTIC_SHORT: None,
-                _LabelFriendliness.LINGUISTIC_LONG: None,
-                _LabelFriendliness.ENGLISH: None,
-                _LabelFriendliness.NEHIYAWEWIN: None,
-                _LabelFriendliness.EMOJI: None,
-            }
-
-            try:
-                tag_dict[_LabelFriendliness.LINGUISTIC_SHORT] = Label(row[1])
-                tag_dict[_LabelFriendliness.LINGUISTIC_LONG] = Label(row[2])
-                tag_dict[_LabelFriendliness.ENGLISH] = Label(row[3])
-                tag_dict[_LabelFriendliness.NEHIYAWEWIN] = Label(row[4])
-                tag_dict[_LabelFriendliness.EMOJI] = Label(row[5])
-            except IndexError:  # some of them do not have that many columns
-                pass
+            tag_dict = {}
+            for column_no in _LabelFriendliness:
+                try:
+                    raw_label = row[column_no]
+                    if cleaned_label := raw_label.strip():
+                        label = Label(cleaned_label)
+                    else:
+                        label = None
+                except IndexError:
+                    # Some columns are empty.
+                    label = None
+                tag_dict[column_no] = label
 
             res[tag_set] = tag_dict
 
