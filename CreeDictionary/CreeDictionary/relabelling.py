@@ -9,8 +9,6 @@ from utils.types import FSTTag, Label
 
 CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
 
-Default = TypeVar("Default")
-
 
 class _LabelFriendliness(IntEnum):
     """
@@ -101,7 +99,7 @@ class _RelabelFetcher:
     def __getitem__(self, key: FSTTag) -> Optional[Label]:
         return self._data[(key,)][self._friendliness]
 
-    def get(self, key: FSTTag, default: Default = None) -> Union[Label, Default, None]:
+    def get(self, key: FSTTag, default: Optional[Label] = None) -> Optional[Label]:
         """
         Get a relabelling for the given FST tag.
         """
