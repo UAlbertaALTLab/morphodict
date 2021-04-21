@@ -30,10 +30,10 @@ class _LabelFriendliness(IntEnum):
 
 class Relabelling:
     """
-    Given an FST tag a desired "_LabelFriendliness", provides access to the
-    relabellings, as written by the linguists (mostly Antti).
+    Given an FST tag, provides access to the relabellings, as written by the linguists
+    (mostly Antti).
 
-    Use the shortcuts:
+    Access as the following:
 
         .linguistic_short[tag]  or .linguistic_short.get(tag, default)
         .linguistic_long[tag]   or .linguistic_long.get(tag, default)
@@ -42,6 +42,7 @@ class Relabelling:
         .emoji[tag]             or .emoji.get(tag, default)
     """
 
+    # This data structure is kind of a weird, but I'm keeping it for now.
     _DataStructure = dict[tuple[FSTTag, ...], dict[_LabelFriendliness, Optional[Label]]]
 
     def __init__(self, data: _DataStructure) -> None:
