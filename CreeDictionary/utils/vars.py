@@ -1,1 +1,0 @@
-# Place global variables here!
