@@ -41,17 +41,17 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
         (
             "PV/wi+wâpamêw+V+TA+Ind+4Sg/Pl+3PlO",
             WAPAMEW_DEFINITION,
-            "s/he/they want to see them",
+            "s/he/they are going to see them",
         ),
         (
             "PV/e+PV/wi+wâpamêw+V+TA+Cnj+1Sg+3PlO",
             WAPAMEW_DEFINITION,
-            "I want to see them",
+            "I am going to see them",
         ),
         (
             "PV/ka+wâpamêw+V+TA+Ind+4Sg/Pl+3SgO",
             WAPAMEW_DEFINITION,
-            "s/he/they are going to see him/her",
+            "s/he/they will see him/her",
         ),
         (
             "PV/ka+wâpamêw+V+TA+Cnj+1Sg+2PlO",
