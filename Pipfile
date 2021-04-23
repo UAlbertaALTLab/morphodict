@@ -10,7 +10,7 @@ pytest-django = "~=4.1"
 pytest-cov = "~=2.7"
 pytest-datadir = "~=1.3"
 pytest-mypy = "~=0.4"
-hypothesis = {extras = ["django"],version = "~=4.34"}
+hypothesis = {version = "~=4.34", extras = ["django"]}
 codecov = "*"
 pysnooper = "*"
 python-levenshtein = "*"
@@ -29,7 +29,6 @@ Django = "~=3.2"
 typing-extensions = "~=3.7"
 attrs = "~=19.1"
 django-js-reverse = "~=0.9"
-sortedcontainers = {file = "https://eddieantonio.keybase.pub/sortedcontainers-2.1.0.tar.gz"}
 secure = "*"
 snowballstemmer = "*"
 dawg = "~=0.8"
