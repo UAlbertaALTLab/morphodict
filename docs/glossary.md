@@ -311,24 +311,13 @@ representation of the paradigm. Often the least structurally and
 semantically marked form.  Unlike a [stem] or [root], a lemma is always
 a valid [word form].
 
-> ⚠️  **FIXME** — this next paragraph makes at least two contradictory
-> statements:
->
->  - a head is a lemma
->  - non-lemma wordforms may be heads
->
-> If a non-lemma wordform is a head, and a head is a lemma, then a non-lemma
-> would be a lemma.
->
-> ‘nîminâniwan’ is a head wordform in the *Cree Words* toolbox file,
-> with its own definition, and is also an inflection of the lemma
-> *nîmiw*. So it’s a head but not a lemma, right?
->
-> Also phrases can be heads.
->
-> Maybe we could say instead, “In a dictionary, the definitions of a lemma
-> implicitly provide definitions for the inflected forms of the lemma.
-> Non-lemma wordforms may also have additional definitions.” ?
+In a dictionary, the definitions of a lemma implicitly provide definitions for
+the inflected forms of the lemma.
+
+> ⚠️ **FIXME** — in itwêwina, we have been associating additional definitions
+> with non-lemma wordforms. This is somewhat at odds with typical linguistic
+> usage, where a lemma is the canonical form of a lexeme. Then, providing a
+> definition for a wordform implies that the wordform is its own lexeme.
 
 If a term is defined in a dictionary, its [head] will be the lemma.
 e.g., you might not find a definition for "smartphones" in a dictionary of
@@ -341,6 +330,13 @@ depending on context.
 
 * **1** or more [word form]
 * **1** [head]
+
+lexeme
+=====
+
+A related set of wordforms.
+
+Other sources may also call this a lexical entry or lexical item.
 
 meaning
 ========
