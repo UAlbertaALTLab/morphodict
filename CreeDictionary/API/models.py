@@ -3,16 +3,13 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Dict, Optional, Union
-from typing import Literal
+from typing import Dict, Literal, Optional, Union
 from urllib.parse import quote
 
 from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-
-from CreeDictionary.relabelling import LABELS
 from utils import (
     PartOfSpeech,
     WordClass,
@@ -20,7 +17,9 @@ from utils import (
     shared_res_dir,
 )
 from utils.cree_lev_dist import remove_cree_diacritics
+from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
+
 from .schema import SerializedDefinition
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:

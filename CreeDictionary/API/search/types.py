@@ -138,7 +138,7 @@ class Result:
         """
         assert self.wordform.key == other.wordform.key
 
-        for field_name, other_value in other._features():
+        for field_name, other_value in other.features().items():
             if other_value is not None:
                 self_value = getattr(self, field_name)
                 # combine lists, applying uniq
@@ -173,18 +173,18 @@ class Result:
 
     morpheme_ranking: Optional[float] = None
 
-    def _features(self):
+    def features(self):
+        ret = {}
         for field in dataclasses.fields(Result):
             if field.name not in ["wordform", "lemma_wordform"]:
-                yield field.name, getattr(self, field.name)
+                value = getattr(self, field.name)
+                if value is not None:
+                    ret[field.name] = value
+        return ret
 
     def features_json(self):
         return json.dumps(
-            {
-                field_name: value
-                for field_name, value in self._features()
-                if value is not None
-            },
+            self.features(),
             ensure_ascii=False,
             indent=2,
         )
