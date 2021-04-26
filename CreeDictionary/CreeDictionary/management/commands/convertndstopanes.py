@@ -16,156 +16,20 @@ from utils import ParadigmSize
 
 from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
 from CreeDictionary.paradigm.generation import paradigm_filler
+from CreeDictionary.paradigm.panes import (
+    BaseLabelCell,
+    CellTemplate,
+    ColumnLabel,
+    EmptyCell,
+    HeaderRow,
+    InflectionCellTemplate,
+    MissingForm,
+    Pane,
+    ParadigmTemplate,
+    RowLabel,
+    RowTemplate,
+)
 from CreeDictionary.relabelling import LABELS
-
-
-class CellTemplate:
-    is_label: bool = False
-    is_inflection: bool = False
-    is_empty = bool = False
-
-
-class InflectionCellTemplate(CellTemplate):
-    is_inflection = True
-
-    def __init__(self, analysis: str):
-        self.analysis = analysis
-        assert "{{lemma}}" in analysis or "+" in analysis
-
-    def __str__(self):
-        return self.analysis
-
-
-class MissingForm(InflectionCellTemplate):
-    def __init__(self):
-        pass
-
-    def __str__(self):
-        return "--"
-
-
-class EmptyCellType(CellTemplate):
-    is_empty = True
-
-    def __new__(cls) -> EmptyCellType:
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __str__(self):
-        return ""
-
-    def __repr__(self):
-        return "EmptyCell"
-
-
-EmptyCell = EmptyCellType()
-del EmptyCellType
-
-
-class BaseLabelCell(CellTemplate):
-    is_label = True
-    label_for: str
-    prefix: str
-
-    def __init__(self, tags):
-        self._tags = tags
-
-    def __str__(self):
-        return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
-
-
-class UnknownLabelTagMixin(BaseLabelCell):
-    UNANALYZABLE = ("?",)
-
-    def __init__(self, original: str):
-        super().__init__(self.UNANALYZABLE)
-        self.original = original
-
-    def __str__(self):
-        return f"{self.prefix} <!{self.original}!>"
-
-
-class RowLabel(BaseLabelCell):
-    label_for = "row"
-    prefix = "_"
-
-
-class ColumnLabel(BaseLabelCell):
-    label_for = "column"
-    prefix = "|"
-
-
-class UnknownRowLabel(RowLabel, UnknownLabelTagMixin):
-    """
-    A row with a label that cannot be looked up
-    """
-
-
-class UnknownColumnLabel(ColumnLabel, UnknownLabelTagMixin):
-    """
-    A column with a label that cannot be looked up
-    """
-
-
-class RowTemplate:
-    def __init__(self, cells: list[CellTemplate]):
-        self._cells = tuple(cells)
-
-    def cells(self):
-        yield from self._cells
-
-    def __str__(self):
-        return "\t".join(str(cell) for cell in self.cells())
-
-
-class HeaderRow(RowTemplate):
-    def __init__(self, tags_or_header):
-        if isinstance(tags_or_header, tuple):
-            self._tags = tags_or_header
-        else:
-            assert isinstance(tags_or_header, str)
-            self._original_title = tags_or_header
-
-    def __str__(self):
-        if hasattr(self, "_tags"):
-            tags = "+".join(self._tags)
-            return f"# {tags}"
-        else:
-            return f"# <!{self._original_title}!>"
-
-
-class Pane:
-    def __init__(self, rows: list[RowTemplate]):
-        self._rows = tuple(rows)
-
-    def rows(self):
-        yield from self._rows
-
-    def __str__(self):
-        return "\n".join(str(row) for row in self.rows())
-
-
-class ParadigmTemplate:
-    def __init__(self, panes: list[Pane]):
-        self._panes = tuple(panes)
-
-    def panes(self):
-        yield from self._panes
-
-    @classmethod
-    def loads(cls, string):
-        raise NotImplementedError
-
-    def dumps(self):
-        pane_text = []
-        for pane in self.panes():
-            pane_text.append(str(pane))
-
-        return "\n\n".join(pane_text)
-
-    def __str__(self):
-        return self.dumps()
 
 
 class Command(BaseCommand):
@@ -243,6 +107,32 @@ class Command(BaseCommand):
             rows.append(RowTemplate(cells))
 
         return ParadigmTemplate(Pane(rows) for rows in panes)
+
+
+class UnknownLabelTagMixin(BaseLabelCell):
+    """
+    Mixin to a RowLabel or ColumnLabel to display <!ORIGINAL LABEL!> instead of an FST tag.
+    """
+    UNANALYZABLE = ("?",)
+
+    def __init__(self, original: str):
+        super().__init__(self.UNANALYZABLE)
+        self.original = original
+
+    def __str__(self):
+        return f"{self.prefix} <!{self.original}!>"
+
+
+class UnknownRowLabel(RowLabel, UnknownLabelTagMixin):
+    """
+    A row with a label that cannot be looked up
+    """
+
+
+class UnknownColumnLabel(ColumnLabel, UnknownLabelTagMixin):
+    """
+    A column with a label that cannot be looked up
+    """
 
 
 def snoop_unambiguous_plain_english_tags():
