@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Iterable
+
 """
 Provides all classes for pane-based paradigms.
 """
@@ -11,7 +13,7 @@ class ParadigmTemplate:
     placeholders that can be filled at runtime to generate a displayable paradigm.
     """
 
-    def __init__(self, panes: list[Pane]):
+    def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
 
     def panes(self):
@@ -42,7 +44,7 @@ class Pane:
 
     A pane contains a number of rows.
     """
-    def __init__(self, rows: list[Row]):
+    def __init__(self, rows: Iterable[Row]):
         self._rows = tuple(rows)
 
     def rows(self):
@@ -57,7 +59,7 @@ class Row:
     A single row from a pane. Rows contain cells.
     """
 
-    def __init__(self, cells: list[Cell]):
+    def __init__(self, cells: Iterable[Cell]):
         self._cells = tuple(cells)
 
     def cells(self):
