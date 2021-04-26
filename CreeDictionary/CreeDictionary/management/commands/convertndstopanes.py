@@ -142,9 +142,9 @@ class HeaderRow(RowTemplate):
     def __str__(self):
         if hasattr(self, "_tags"):
             tags = "+".join(self._tags)
-            return f"= {tags}"
+            return f"# {tags}"
         else:
-            return f"= <!{self._original_title}!>"
+            return f"# <!{self._original_title}!>"
 
 
 class Pane:
@@ -182,22 +182,27 @@ class ParadigmTemplate:
 
 class Command(BaseCommand):
     def add_arguments(self, parser):
+        parser.add_argument("outdir", help="where to save the new panes", type=Path)
         parser.add_argument(
-            "outdir",
-            nargs="?",
-            help="where to save the new panes",
+            "-f", "--force", help="overwrites files if present", action="store_true"
         )
 
-    def handle(self, *args, **options):
+    def handle(self, *, outdir: Path, force=False, **options):
         existing_paradigms = paradigm_filler()
         english_templates = snoop_all_plain_english_templates(existing_paradigms)
         self.label_to_tags = snoop_unambiguous_plain_english_tags()
 
+        outdir.mkdir(exist_ok=True)
+
         for word_class, full_paradigm in english_templates.items():
+            pane_file = outdir / f"{word_class.value}.tsv"
+
+            if pane_file.exists() and not force:
+                print("not overwriting", pane_file)
+                continue
+
             paradigm_template = self.convert_layout_to_new_format(full_paradigm)
-            print("=====", word_class, "======")
-            print(paradigm_template)
-            print()
+            pane_file.write_text(paradigm_template.dumps(), encoding="UTF-8")
 
     def cell_template_from_text(self, text, is_first_cell):
         if tags := self.label_to_tags.get(text):
