@@ -99,8 +99,10 @@ class Command(BaseCommand):
                         new_cell = InflectionCell(analysis.template)
                     else:
                         new_cell = MissingForm()
-                elif cell.is_label:
+                elif cell.is_label or hasattr(cell, "text"):
                     new_cell = self.cell_template_from_text(cell.text, first_cell)
+                else:
+                    raise AssertionError("Not sure what type this is")
                 cells.append(new_cell)
                 first_cell = False
 
