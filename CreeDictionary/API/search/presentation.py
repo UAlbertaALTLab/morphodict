@@ -142,7 +142,7 @@ def safe_partition_analysis(analysis: ConcatAnalysis):
 
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
-    """ replace fst-tags to cute ones"""
+    """replace fst-tags to cute ones"""
     return LABELS.english.get_full_relabelling(fst_tags)
 
 
