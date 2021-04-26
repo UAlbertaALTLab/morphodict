@@ -74,11 +74,9 @@ del EmptyCellType
 
 class BaseLabelCell(CellTemplate):
     is_label = True
-    label_for: str = ErrorOnStr()
-    prefix: str = ErrorOnStr()
+    label_for: str
+    prefix: str
 
-
-class LabelFromTagMixin(BaseLabelCell):
     def __init__(self, tags):
         self._tags = tags
 
@@ -87,37 +85,36 @@ class LabelFromTagMixin(BaseLabelCell):
 
 
 class UnknownLabelTagMixin(BaseLabelCell):
+    UNANALYZABLE = ("?",)
+
     def __init__(self, original: str):
+        super().__init__(self.UNANALYZABLE)
         self.original = original
 
     def __str__(self):
         return f"{self.prefix} <!{self.original}!>"
 
 
-class BaseRowLabel(BaseLabelCell):
+class RowLabel(BaseLabelCell):
     label_for = "row"
     prefix = "_"
 
 
-class BaseColumnLabel(BaseLabelCell):
+class ColumnLabel(BaseLabelCell):
     label_for = "column"
     prefix = "|"
 
 
-class RowLabel(BaseRowLabel, LabelFromTagMixin):
-    ...
+class UnknownRowLabel(RowLabel, UnknownLabelTagMixin):
+    """
+    A row with a label that cannot be looked up
+    """
 
 
-class ColumnLabel(BaseColumnLabel, LabelFromTagMixin):
-    ...
-
-
-class UnknownRowLabel(BaseRowLabel, UnknownLabelTagMixin):
-    ...
-
-
-class UnknownColumnLabel(BaseColumnLabel, UnknownLabelTagMixin):
-    ...
+class UnknownColumnLabel(ColumnLabel, UnknownLabelTagMixin):
+    """
+    A column with a label that cannot be looked up
+    """
 
 
 class RowTemplate:
