@@ -18,16 +18,16 @@ from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
 from CreeDictionary.paradigm.generation import paradigm_filler
 from CreeDictionary.paradigm.panes import (
     BaseLabelCell,
-    CellTemplate,
+    Cell,
     ColumnLabel,
     EmptyCell,
     HeaderRow,
-    InflectionCellTemplate,
+    InflectionCell,
     MissingForm,
     Pane,
     ParadigmTemplate,
     RowLabel,
-    RowTemplate,
+    Row,
 )
 from CreeDictionary.relabelling import LABELS
 
@@ -91,12 +91,12 @@ class Command(BaseCommand):
             cells = []
             first_cell = True
             for cell in row:
-                new_cell: CellTemplate
+                new_cell: Cell
                 if cell == "":
                     new_cell = EmptyCell
                 elif hasattr(cell, "analysis"):
                     if analysis := cell.analysis:
-                        new_cell = InflectionCellTemplate(analysis.template)
+                        new_cell = InflectionCell(analysis.template)
                     else:
                         new_cell = MissingForm()
                 elif cell.is_label:
@@ -104,7 +104,7 @@ class Command(BaseCommand):
                 cells.append(new_cell)
                 first_cell = False
 
-            rows.append(RowTemplate(cells))
+            rows.append(Row(cells))
 
         return ParadigmTemplate(Pane(rows) for rows in panes)
 

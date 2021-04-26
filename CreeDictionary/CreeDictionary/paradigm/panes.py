@@ -42,7 +42,7 @@ class Pane:
 
     A pane contains a number of rows.
     """
-    def __init__(self, rows: list[RowTemplate]):
+    def __init__(self, rows: list[Row]):
         self._rows = tuple(rows)
 
     def rows(self):
@@ -52,12 +52,12 @@ class Pane:
         return "\n".join(str(row) for row in self.rows())
 
 
-class RowTemplate:
+class Row:
     """
     A single row from a pane. Rows contain cells.
     """
 
-    def __init__(self, cells: list[CellTemplate]):
+    def __init__(self, cells: list[Cell]):
         self._cells = tuple(cells)
 
     def cells(self):
@@ -67,7 +67,7 @@ class RowTemplate:
         return "\t".join(str(cell) for cell in self.cells())
 
 
-class HeaderRow(RowTemplate):
+class HeaderRow(Row):
     """
     A row that acts as a header for the rest of the pane.
     """
@@ -87,7 +87,7 @@ class HeaderRow(RowTemplate):
             return f"# <!{self._original_title}!>"
 
 
-class CellTemplate:
+class Cell:
     """
     A single cell from a paradigm.
     """
@@ -96,7 +96,7 @@ class CellTemplate:
     is_empty = bool = False
 
 
-class InflectionCellTemplate(CellTemplate):
+class InflectionCell(Cell):
     """
     A cell that contains an inflection.
     """
@@ -110,7 +110,7 @@ class InflectionCellTemplate(CellTemplate):
         return self.analysis
 
 
-class MissingForm(CellTemplate):
+class MissingForm(Cell):
     """
     A missing form from the paradigm that should show up in the template as a placeholder.
     Note: a missing form is a valid position in the paradigm, however, we display that
@@ -123,7 +123,7 @@ class MissingForm(CellTemplate):
         return "--"
 
 
-class EmptyCellType(CellTemplate):
+class EmptyCellType(Cell):
     """
     A completely empty cell. This is used for spacing in the paradigm. There is no
     semantic content. Compare with MissingForm.
@@ -145,7 +145,7 @@ class EmptyCellType(CellTemplate):
 EmptyCell = EmptyCellType()
 
 
-class BaseLabelCell(CellTemplate):
+class BaseLabelCell(Cell):
     is_label = True
     label_for: str
     prefix: str
