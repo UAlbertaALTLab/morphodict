@@ -25,9 +25,3 @@ The process to update the auto-translated phrases is as follows:
 
         cd /opt/docker-compose/itwewina/cree-intelligent-dictionary/docker \
           && docker-compose exec itwewina ./manage.py translatewordforms
-
-    If the process fails partway with a “Database is Locked” error, you can
-    make a copy of the database, run the translation against it, then copy
-    the database back, at the risk of losing any changes made to the
-    production database between the two copies. Currently those lost
-    changes would be limited to user account creation and password updates.
