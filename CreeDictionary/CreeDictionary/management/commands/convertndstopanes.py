@@ -12,20 +12,11 @@ from collections import defaultdict
 from pathlib import Path
 
 from django.core.management import BaseCommand
-from utils import ParadigmSize, WordClass, shared_res_dir  # type: ignore
+from utils import ParadigmSize
 
-from CreeDictionary.paradigm.filler import EmptyRow, TitleRow  # type: ignore
-from CreeDictionary.paradigm.generation import paradigm_filler  # type: ignore
-from CreeDictionary.relabelling import LABELS, _LabelFriendliness  # type: ignore
-
-
-class ErrorOnStr(str):
-    def __str__(self):
-        raise TypeError("Cannot render string")
-
-
-def identity(x):
-    return x
+from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
+from CreeDictionary.paradigm.generation import paradigm_filler
+from CreeDictionary.relabelling import LABELS
 
 
 class CellTemplate:
@@ -178,7 +169,7 @@ class ParadigmTemplate:
 
 
 class Command(BaseCommand):
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: ArgumentParser):
         parser.add_argument("outdir", help="where to save the new panes", type=Path)
         parser.add_argument(
             "-f", "--force", help="overwrites files if present", action="store_true"
