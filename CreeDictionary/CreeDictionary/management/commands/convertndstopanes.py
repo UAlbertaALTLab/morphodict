@@ -26,8 +26,9 @@ from CreeDictionary.paradigm.panes import (
     MissingForm,
     Pane,
     ParadigmTemplate,
-    RowLabel,
     Row,
+    RowLabel,
+    _BaseRow,
 )
 from CreeDictionary.relabelling import LABELS
 
@@ -84,8 +85,10 @@ class Command(BaseCommand):
             rows = panes[-1]
 
             if isinstance(row, TitleRow):
-                tags = self.label_to_tags.get(row.title)
-                rows.append(HeaderRow(tags or row.title))
+                if tags := self.label_to_tags.get(row.title):
+                    rows.append(HeaderRow(tags))
+                else:
+                    rows.append(UnknownHeaderRow(row.title))
                 continue
 
             cells = []
@@ -111,27 +114,35 @@ class Command(BaseCommand):
         return ParadigmTemplate(Pane(rows) for rows in panes)
 
 
-class UnknownLabelTagMixin(BaseLabelCell):
+class UnknownLabelTagMixin:
     """
     Mixin to a RowLabel or ColumnLabel to display <!ORIGINAL LABEL!> instead of an FST tag.
     """
+
     UNANALYZABLE = ("?",)
 
     def __init__(self, original: str):
         super().__init__(self.UNANALYZABLE)
+        assert self.prefix
         self.original = original
 
     def __str__(self):
         return f"{self.prefix} <!{self.original}!>"
 
 
-class UnknownRowLabel(RowLabel, UnknownLabelTagMixin):
+class UnknownHeaderRow(UnknownLabelTagMixin, HeaderRow):
+    """
+    A header row whose tag cannot be looked up.
+    """
+
+
+class UnknownRowLabel(UnknownLabelTagMixin, RowLabel):
     """
     A row with a label that cannot be looked up
     """
 
 
-class UnknownColumnLabel(ColumnLabel, UnknownLabelTagMixin):
+class UnknownColumnLabel(UnknownLabelTagMixin, ColumnLabel):
     """
     A column with a label that cannot be looked up
     """

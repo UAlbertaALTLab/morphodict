@@ -161,20 +161,16 @@ class Row(_BaseRow):
         return len(self._cells)
 
 
-class HeaderRow(Row):
+class HeaderRow(_BaseRow):
     """
     A row that acts as a header for the rest of the pane.
     """
 
-    def __init__(self, tags_or_header):
-        super().__init__(())
+    prefix = "#"
 
-        # TODO: this should only handle tags!
-        # TODO: drop support for _original_title
-        if isinstance(tags_or_header, str):
-            self._original_title = tags_or_header
-        else:
-            self._tags = tuple(tags_or_header)
+    def __init__(self, tags):
+        super().__init__()
+        self._tags = tuple(tags)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
@@ -188,11 +184,8 @@ class HeaderRow(Row):
         return 1
 
     def __str__(self):
-        if hasattr(self, "_tags"):
-            tags = "+".join(self._tags)
-            return f"# {tags}"
-        else:
-            return f"# <!{self._original_title}!>"
+        tags = "+".join(self._tags)
+        return f"# {tags}"
 
     def __repr__(self):
         name = type(self).__qualname__
