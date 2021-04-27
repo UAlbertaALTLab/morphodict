@@ -204,6 +204,7 @@ class InflectionCell(Cell):
     def __str__(self):
         return self.analysis
 
+    @staticmethod
     def parse(text: str) -> InflectionCell:
         if "${lemma}" not in text or "+" not in text:
             raise ParseError(f"cell does not look like an inflection: {text!r}")
