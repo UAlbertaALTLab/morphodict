@@ -66,12 +66,16 @@ class ParadigmTemplate:
         """
         Export the template as a string. This string can be by .loads().
         """
-        # TODO: write property test: p == ParadigmTemplate.loads(p.dumps())
-        pane_text = []
-        for pane in self.panes():
-            pane_text.append(str(pane))
 
-        return "\n\n".join(pane_text)
+        pane_text = []
+        num_columns = self.max_num_columns
+        for pane in self.panes():
+            pane_text.append(pane.dumps(require_num_columns=num_columns))
+
+        tabs = "\t" * (num_columns - 1)
+        empty_line = f"\n{tabs}\n"
+
+        return empty_line.join(pane_text)
 
     def __str__(self):
         return self.dumps()
@@ -101,8 +105,11 @@ class Pane:
     def rows(self):
         yield from self._rows
 
+    def dumps(self, require_num_columns: Optional[int] = None) -> str:
+        return "\n".join(row.dumps(require_num_columns) for row in self.rows())
+
     def __str__(self):
-        return "\n".join(str(row) for row in self.rows())
+        return self.dumps()
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Pane):
@@ -127,6 +134,20 @@ class Pane:
 class Row:
     has_content: bool
     num_cells: int
+
+    def dumps(self, require_num_columns: Optional[int] = None) -> str:
+        row_as_string = str(self)
+        if require_num_columns is None:
+            return row_as_string
+
+        if require_num_columns < 1:
+            raise ValueError("must require at least one column")
+
+        total_tabs = require_num_columns - 1
+        tabs_present = row_as_string.count("\t")
+        tabs_left = max(total_tabs - tabs_present, 0)
+
+        return row_as_string + "\t" * tabs_left
 
     @staticmethod
     def parse(text: str) -> Row:

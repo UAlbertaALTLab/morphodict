@@ -46,6 +46,15 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert na_paradigm_template.max_num_columns == 4
 
 
+def test_dump_equal_to_file_on_disk(na_layout_path: Path):
+    """
+    Dumping the file should yield the same file, modulo a trailing newline.
+    """
+    text = na_layout_path.read_text(encoding="UTF-8").rstrip("\n")
+    paradigm = ParadigmTemplate.loads(text)
+    assert paradigm.dumps() == text
+
+
 @pytest.mark.parametrize("cls", [EmptyCell, MissingForm])
 def test_singleton_classes(cls):
     """
