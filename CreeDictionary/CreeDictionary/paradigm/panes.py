@@ -89,7 +89,7 @@ class Pane:
 
     @property
     def num_columns(self) -> int:
-        return len(max(self._rows, key=len))
+        return max(row.num_cells for row in self.rows())
 
     def rows(self):
         yield from self._rows
@@ -119,9 +119,7 @@ class Pane:
 
 class Row:
     has_content: bool
-
-    def __len__(self) -> int:
-        raise NotImplementedError
+    num_cells: int
 
     @staticmethod
     def parse(text: str) -> Row:
@@ -163,7 +161,8 @@ class ContentRow(Row):
         cells_repr = ", ".join(repr(cell) for cell in self.cells())
         return f"{name}([{cells_repr}])"
 
-    def __len__(self):
+    @property
+    def num_cells(self):
         return len(self._cells)
 
 
@@ -174,6 +173,7 @@ class HeaderRow(Row):
 
     prefix = "#"
     has_content = False
+    num_cells = 0
 
     def __init__(self, tags):
         super().__init__()
@@ -183,16 +183,6 @@ class HeaderRow(Row):
         if isinstance(other, HeaderRow):
             return self._tags == other._tags
         return False
-
-    def __len__(self) -> int:
-        """
-        Headers do not contain any cells.
-        """
-        return 0
-
-    def __bool__(self) -> bool:
-        # Hack :/
-        return True
 
     def __str__(self):
         tags = "+".join(self._tags)
