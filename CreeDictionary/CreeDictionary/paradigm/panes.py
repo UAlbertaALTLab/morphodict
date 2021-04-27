@@ -296,7 +296,7 @@ def pairs(seq):
     """
     Returns pairs from the given sequence.
 
-    >>> pairs([1, 2, 3, 4, 5, 6])
+    >>> list(pairs([1, 2, 3, 4, 5, 6]))
     [(1, 2), (3, 4), (5, 6)]
     """
     return zip(seq[::2], seq[1::2])
