@@ -5,6 +5,7 @@ Provides all classes for pane-based paradigms.
 """
 
 import re
+from itertools import zip_longest
 from typing import Iterable, Optional, TextIO
 
 
@@ -117,8 +118,18 @@ class Row:
     def cells(self):
         yield from self._cells
 
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Row):
+            return False
+        return all(a == b for a, b in zip_longest(self.cells(), other.cells()))
+
     def __str__(self):
         return "\t".join(str(cell) for cell in self.cells())
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        cells_repr = ", ".join(repr(cell) for cell in self.cells())
+        return f"{name}([{cells_repr}])"
 
     def __len__(self):
         return len(self._cells)
@@ -201,12 +212,17 @@ class InflectionCell(Cell):
         self.analysis = analysis
         assert "${lemma}" in analysis or "+" in analysis
 
+    def __eq__(self, other) -> bool:
+        if isinstance(other, InflectionCell):
+            return self.analysis == other.analysis
+        return False
+
     def __str__(self):
         return self.analysis
 
     @staticmethod
     def parse(text: str) -> InflectionCell:
-        if "${lemma}" not in text or "+" not in text:
+        if "${lemma}" not in text and "+" not in text:
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionCell(text)
 
@@ -258,10 +274,14 @@ class BaseLabelCell(Cell):
     prefix: str
 
     def __init__(self, tags):
-        self._tags = tags
+        self._tags = tuple(tags)
 
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        return f"{name}({self._tags!r})"
 
     @classmethod
     def parse(cls, text: str):
