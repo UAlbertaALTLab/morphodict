@@ -6,7 +6,15 @@ from pathlib import Path
 
 import pytest
 
-from CreeDictionary.paradigm.panes import ParadigmTemplate, MissingForm, EmptyCell, InflectionCell, ColumnLabel, Row
+from CreeDictionary.paradigm.panes import (
+    ColumnLabel,
+    EmptyCell,
+    InflectionCell,
+    MissingForm,
+    ParadigmTemplate,
+    Row,
+    RowLabel,
+)
 
 
 def test_parse_na_paradigm(na_layout_path: Path):
@@ -43,19 +51,26 @@ def test_singleton_classes(cls):
     assert cls() == cls()
 
 
-@pytest.mark.parametrize("component", [
-    EmptyCell(),
-    MissingForm(),
-    InflectionCell("${lemma}"),
-    InflectionCell("ôma+Ipc"),
-    Row([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
-])
+@pytest.mark.parametrize(
+    "component",
+    [
+        EmptyCell(),
+        MissingForm(),
+        InflectionCell("${lemma}"),
+        InflectionCell("ôma+Ipc"),
+        ColumnLabel(("Sg",)),
+        RowLabel(("1Sg",)),
+        Row([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
+    ],
+)
 def test_str_produces_parsable_result(component):
+    """
+    Parsing the stringified component should result in an equal component.
+    """
     stringified = str(component)
     parsed = type(component).parse(stringified)
     assert component == parsed
     assert stringified == str(parsed)
-
 
 
 @pytest.fixture

@@ -138,7 +138,13 @@ class Row:
     def parse(text: str) -> Row:
         if text.startswith("# "):
             return HeaderRow.parse(text)
-        cell_texts = text.strip().split("\t")
+        cell_texts = text.rstrip("\n").split("\t")
+
+        while cell_texts:
+            if cell_texts[-1].strip() != "":
+                break
+            cell_texts.pop()
+
         return Row(Cell.parse(t) for t in cell_texts)
 
 
@@ -278,6 +284,11 @@ class BaseLabelCell(Cell):
 
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, type(self)):
+            return self._tags == other._tags
+        return False
 
     def __repr__(self):
         name = type(self).__qualname__
