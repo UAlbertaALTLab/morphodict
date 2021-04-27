@@ -116,7 +116,24 @@ class Pane:
         return Pane(Row.parse(line) for line in lines)
 
 
-class Row:
+class _BaseRow:
+    has_content: bool
+
+    @staticmethod
+    def parse(text: str) -> Row:
+        if text.startswith("# "):
+            return HeaderRow.parse(text)
+        cell_texts = text.rstrip("\n").split("\t")
+
+        while cell_texts:
+            if cell_texts[-1].strip() != "":
+                break
+            cell_texts.pop()
+
+        return Row(Cell.parse(t) for t in cell_texts)
+
+
+class Row(_BaseRow):
     """
     A single row from a pane. Rows contain cells.
     """
@@ -142,19 +159,6 @@ class Row:
 
     def __len__(self):
         return len(self._cells)
-
-    @staticmethod
-    def parse(text: str) -> Row:
-        if text.startswith("# "):
-            return HeaderRow.parse(text)
-        cell_texts = text.rstrip("\n").split("\t")
-
-        while cell_texts:
-            if cell_texts[-1].strip() != "":
-                break
-            cell_texts.pop()
-
-        return Row(Cell.parse(t) for t in cell_texts)
 
 
 class HeaderRow(Row):
