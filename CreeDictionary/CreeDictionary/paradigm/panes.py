@@ -264,8 +264,8 @@ class BaseLabelCell(Cell):
         if len(splits) % 2 != 0:
             raise ParseError(f"Uneven number of space separated segments in {text!r}")
         tags = []
-        # TODO: factor out zip magic
-        for prefix, tag in zip(splits[::2], splits[1::2]):
+
+        for prefix, tag in pairs(splits):
             if prefix != cls.prefix:
                 raise ParseError(f"Expected prefix {cls.prefix!r} but saw {prefix!r}")
             tags.append(tag)
@@ -289,3 +289,13 @@ class ColumnLabel(BaseLabelCell):
 
     label_for = "column"
     prefix = "|"
+
+
+def pairs(seq):
+    """
+    Returns pairs from the given sequence.
+
+    >>> pairs([1, 2, 3, 4, 5, 6])
+    [(1, 2), (3, 4), (5, 6)]
+    """
+    return zip(seq[::2], seq[1::2])
