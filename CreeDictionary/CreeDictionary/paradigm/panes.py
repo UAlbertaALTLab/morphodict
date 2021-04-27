@@ -24,15 +24,15 @@ class ParadigmTemplate:
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
 
-    def panes(self):
-        yield from self._panes
-
     @property
     def max_num_columns(self):
         """
         What is the largest amount of columns necessary for this entire paradigm.
         """
         return max(pane.num_columns for pane in self.panes())
+
+    def panes(self):
+        yield from self._panes
 
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmTemplate:
