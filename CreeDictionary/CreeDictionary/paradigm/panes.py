@@ -77,7 +77,7 @@ class Pane:
     A pane contains a number of rows.
     """
 
-    def __init__(self, rows: Iterable[ContentRow]):
+    def __init__(self, rows: Iterable[Row]):
         self._rows = tuple(rows)
 
     @property
@@ -100,6 +100,7 @@ class Pane:
     def __eq__(self, other) -> bool:
         if isinstance(other, Pane):
             return self._rows == other._rows
+        return False
 
     def __repr__(self):
         name = type(self).__qualname__
@@ -116,11 +117,14 @@ class Pane:
         return Pane(ContentRow.parse(line) for line in lines)
 
 
-class _BaseRow:
+class Row:
     has_content: bool
 
+    def __len__(self) -> int:
+        raise NotImplementedError
+
     @staticmethod
-    def parse(text: str) -> _BaseRow:
+    def parse(text: str) -> Row:
         if text.startswith("# "):
             return HeaderRow.parse(text)
         cell_texts = text.rstrip("\n").split("\t")
@@ -133,7 +137,7 @@ class _BaseRow:
         return ContentRow(Cell.parse(t) for t in cell_texts)
 
 
-class ContentRow(_BaseRow):
+class ContentRow(Row):
     """
     A single row from a pane. Rows contain cells.
     """
@@ -161,7 +165,7 @@ class ContentRow(_BaseRow):
         return len(self._cells)
 
 
-class HeaderRow(_BaseRow):
+class HeaderRow(Row):
     """
     A row that acts as a header for the rest of the pane.
     """

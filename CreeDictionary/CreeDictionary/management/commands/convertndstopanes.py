@@ -27,8 +27,8 @@ from CreeDictionary.paradigm.panes import (
     MissingForm,
     Pane,
     ParadigmTemplate,
+    Row,
     RowLabel,
-    _BaseRow,
 )
 from CreeDictionary.relabelling import LABELS
 
@@ -121,7 +121,7 @@ class UnknownLabelTagMixin:
 
     UNANALYZABLE = ("?",)
 
-    def __init__(self, original: str):
+    def __init__(self, original):
         super().__init__(self.UNANALYZABLE)
         assert self.prefix
         self.original = original
