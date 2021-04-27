@@ -11,6 +11,8 @@ class WordformSitemap(Sitemap):
     This way, web crawlers can index ALL THE WORDS!
     """
 
+    protocol = "https"
+
     def items(self):
         # Use lemma_text_idx (is_lemma, text) index.
         return Wordform.objects.filter(is_lemma=True).order_by("is_lemma", "text")
@@ -27,6 +29,8 @@ class StaticViewSitemap(Sitemap):
 
     See: https://docs.djangoproject.com/en/2.2/ref/contrib/sitemaps/#sitemap-for-static-views
     """
+
+    protocol = "https"
 
     def items(self):
         return ["index", "about", "contact-us"]
