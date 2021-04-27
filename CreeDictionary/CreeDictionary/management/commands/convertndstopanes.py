@@ -93,7 +93,7 @@ class Command(BaseCommand):
             for cell in row:
                 new_cell: Cell
                 if cell == "":
-                    new_cell = EmptyCell
+                    new_cell = EmptyCell()
                 elif hasattr(cell, "analysis"):
                     if analysis := cell.analysis:
                         new_cell = InflectionCell(analysis.template)

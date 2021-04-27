@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from CreeDictionary.paradigm.panes import ParadigmTemplate
+from CreeDictionary.paradigm.panes import ParadigmTemplate, MissingForm, EmptyCell
 
 
 def test_parse_na_paradigm(na_layout_path: Path):
@@ -32,6 +32,16 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert count(diminutive_pane.rows()) == 2
     assert possession_pane.header
     assert possession_pane.num_columns == 4
+
+
+@pytest.mark.parametrize("cls", [EmptyCell, MissingForm])
+def test_singleton_classes(cls):
+    """
+    A few classes should act like singletons.
+    """
+    assert cls() is cls()
+    assert cls() == cls()
+
 
 
 @pytest.fixture

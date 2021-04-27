@@ -179,7 +179,7 @@ class Cell:
     @staticmethod
     def parse(text: str) -> Cell:
         if text == "":
-            return EmptyCell
+            return EmptyCell()
         elif text == "--":
             return MissingForm()
         elif text.startswith("_ "):
@@ -221,11 +221,19 @@ class MissingForm(Cell):
 
     is_inflection = True
 
+    def __new__(cls) -> MissingForm:
+        if not hasattr(cls, "_instance"):
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __repr__(self):
+        return "MissingForm()"
+
     def __str__(self):
         return "--"
 
 
-class EmptyCellType(Cell):
+class EmptyCell(Cell):
     """
     A completely empty cell. This is used for spacing in the paradigm. There is no
     semantic content. Compare with MissingForm.
@@ -233,19 +241,16 @@ class EmptyCellType(Cell):
 
     is_empty = True
 
-    def __new__(cls) -> EmptyCellType:
+    def __new__(cls) -> EmptyCell:
         if not hasattr(cls, "_instance"):
             cls._instance = super().__new__(cls)
         return cls._instance
 
+    def __repr__(self):
+        return "EmptyCell()"
+
     def __str__(self):
         return ""
-
-    def __repr__(self):
-        return "EmptyCell"
-
-
-EmptyCell = EmptyCellType()
 
 
 class BaseLabelCell(Cell):
