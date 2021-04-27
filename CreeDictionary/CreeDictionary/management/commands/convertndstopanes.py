@@ -115,6 +115,7 @@ class UnknownLabelTagMixin(BaseLabelCell):
     """
     Mixin to a RowLabel or ColumnLabel to display <!ORIGINAL LABEL!> instead of an FST tag.
     """
+
     UNANALYZABLE = ("?",)
 
     def __init__(self, original: str):

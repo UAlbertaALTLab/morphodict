@@ -44,6 +44,7 @@ class Pane:
 
     A pane contains a number of rows.
     """
+
     def __init__(self, rows: Iterable[Row]):
         self._rows = tuple(rows)
 
@@ -93,6 +94,7 @@ class Cell:
     """
     A single cell from a paradigm.
     """
+
     is_label: bool = False
     is_inflection: bool = False
     is_empty = bool = False
@@ -102,6 +104,7 @@ class InflectionCell(Cell):
     """
     A cell that contains an inflection.
     """
+
     is_inflection = True
 
     def __init__(self, analysis: str):
@@ -119,6 +122,7 @@ class MissingForm(Cell):
     this form cannot exist. This is not the same as an empty cell, which is used as a
     spacer.
     """
+
     is_inflection = True
 
     def __str__(self):
@@ -130,6 +134,7 @@ class EmptyCellType(Cell):
     A completely empty cell. This is used for spacing in the paradigm. There is no
     semantic content. Compare with MissingForm.
     """
+
     is_empty = True
 
     def __new__(cls) -> EmptyCellType:
@@ -163,6 +168,7 @@ class RowLabel(BaseLabelCell):
     """
     Labels for the cells in the current row within the pane.
     """
+
     label_for = "row"
     prefix = "_"
 
@@ -171,5 +177,6 @@ class ColumnLabel(BaseLabelCell):
     """
     Labels for the cells in the current column within the pane.
     """
+
     label_for = "column"
     prefix = "|"
