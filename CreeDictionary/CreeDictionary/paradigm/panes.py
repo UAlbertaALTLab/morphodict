@@ -97,6 +97,15 @@ class Pane:
     def __str__(self):
         return "\n".join(str(row) for row in self.rows())
 
+    def __eq__(self, other) -> bool:
+        if isinstance(other, Pane):
+            return self._rows == other._rows
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        rows = ", ".join(repr(row) for row in self.rows())
+        return f"{name}([{rows}])"
+
     @classmethod
     def parse(cls, text: str) -> Pane:
         lines = text.splitlines()
@@ -163,6 +172,11 @@ class HeaderRow(Row):
         else:
             self._tags = tuple(tags_or_header)
 
+    def __eq__(self, other) -> bool:
+        if isinstance(other, HeaderRow):
+            return self._tags == other._tags
+        return False
+
     def __len__(self) -> int:
         """
         Headers always have exactly one cell.
@@ -175,6 +189,11 @@ class HeaderRow(Row):
             return f"# {tags}"
         else:
             return f"# <!{self._original_title}!>"
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        cells_repr = ", ".join(repr(cell) for cell in self._tags)
+        return f"{name}([{cells_repr}])"
 
     @staticmethod
     def parse(text: str) -> HeaderRow:

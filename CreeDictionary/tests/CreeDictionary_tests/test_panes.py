@@ -9,8 +9,10 @@ import pytest
 from CreeDictionary.paradigm.panes import (
     ColumnLabel,
     EmptyCell,
+    HeaderRow,
     InflectionCell,
     MissingForm,
+    Pane,
     ParadigmTemplate,
     Row,
     RowLabel,
@@ -51,6 +53,16 @@ def test_singleton_classes(cls):
     assert cls() == cls()
 
 
+def sample_pane():
+    return Pane(
+        [
+            HeaderRow(("Der/Dim",)),
+            Row([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Obv"])]),
+            Row([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+")]),
+        ]
+    )
+
+
 @pytest.mark.parametrize(
     "component",
     [
@@ -60,7 +72,10 @@ def test_singleton_classes(cls):
         InflectionCell("ôma+Ipc"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
+        HeaderRow(("Imp",)),
         Row([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
+        Row([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+Pl")]),
+        sample_pane(),
     ],
 )
 def test_str_produces_parsable_result(component):
