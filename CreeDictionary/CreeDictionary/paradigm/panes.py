@@ -40,7 +40,7 @@ class ParadigmTemplate:
         """
         lines = string.splitlines(keepends=False)
 
-        pane_lines = [[]]
+        pane_lines: list[list[str]] = [[]]
         for line in lines:
             if line.strip() == "":
                 # empty line; start a new pane
