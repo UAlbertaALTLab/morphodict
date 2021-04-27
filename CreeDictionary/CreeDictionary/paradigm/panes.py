@@ -106,6 +106,11 @@ class Pane:
         yield from self._rows
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
+        """
+        Returns a string representation that can be parsed again.
+        :param require_num_columns: if given, the pane must have at least this many columns.
+                                    Rows are padded with empty cells at the end.
+        """
         return "\n".join(row.dumps(require_num_columns) for row in self.rows())
 
     def __str__(self):
@@ -136,6 +141,12 @@ class Row:
     num_cells: int
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
+        """
+        Returns a string representation of the row that can be parsed again.
+        :param require_num_columns: if given, the row must have at least this many columns.
+                                    The row is padded with empty cells at the end.
+        """
+
         row_as_string = str(self)
         if require_num_columns is None:
             return row_as_string
@@ -143,6 +154,7 @@ class Row:
         if require_num_columns < 1:
             raise ValueError("must require at least one column")
 
+        # Figure out how many tabs we need to add to the end.
         total_tabs = require_num_columns - 1
         tabs_present = row_as_string.count("\t")
         tabs_left = max(total_tabs - tabs_present, 0)
