@@ -142,6 +142,8 @@ class ContentRow(Row):
     A single row from a pane. Rows contain cells.
     """
 
+    has_content = True
+
     def __init__(self, cells: Iterable[Cell]):
         self._cells = tuple(cells)
 
@@ -171,6 +173,7 @@ class HeaderRow(Row):
     """
 
     prefix = "#"
+    has_content = False
 
     def __init__(self, tags):
         super().__init__()
@@ -183,9 +186,13 @@ class HeaderRow(Row):
 
     def __len__(self) -> int:
         """
-        Headers always have exactly one cell.
+        Headers do not contain any cells.
         """
-        return 1
+        return 0
+
+    def __bool__(self) -> bool:
+        # Hack :/
+        return True
 
     def __str__(self):
         tags = "+".join(self._tags)
@@ -200,7 +207,7 @@ class HeaderRow(Row):
     def parse(text: str) -> HeaderRow:
         if not text.startswith("# "):
             raise ParseError("Not a header row: {text!r}")
-        _prefix, _space, tags = text.partition(" ")
+        _prefix, _space, tags = text.rstrip().partition(" ")
         return HeaderRow(tags.split("+"))
 
 
