@@ -17,7 +17,6 @@ from utils import ParadigmSize
 from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
 from CreeDictionary.paradigm.generation import paradigm_filler
 from CreeDictionary.paradigm.panes import (
-    BaseLabelCell,
     Cell,
     ColumnLabel,
     ContentRow,
@@ -27,7 +26,6 @@ from CreeDictionary.paradigm.panes import (
     MissingForm,
     Pane,
     ParadigmTemplate,
-    Row,
     RowLabel,
 )
 from CreeDictionary.relabelling import LABELS
@@ -73,7 +71,7 @@ class Command(BaseCommand):
         panes = [[]]
 
         # This is the old paradigm "layout" data structure:
-        # layout: list[ContentRow]
+        # layout: list[Row]
         # Row: list[Cell] | EmptyRow | TitleRow
         # Cell: Label | InflectionCell
         for row in layout:
