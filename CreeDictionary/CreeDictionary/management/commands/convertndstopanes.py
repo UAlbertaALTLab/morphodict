@@ -20,13 +20,13 @@ from CreeDictionary.paradigm.panes import (
     BaseLabelCell,
     Cell,
     ColumnLabel,
+    ContentRow,
     EmptyCell,
     HeaderRow,
     InflectionCell,
     MissingForm,
     Pane,
     ParadigmTemplate,
-    Row,
     RowLabel,
     _BaseRow,
 )
@@ -73,7 +73,7 @@ class Command(BaseCommand):
         panes = [[]]
 
         # This is the old paradigm "layout" data structure:
-        # layout: list[Row]
+        # layout: list[ContentRow]
         # Row: list[Cell] | EmptyRow | TitleRow
         # Cell: Label | InflectionCell
         for row in layout:
@@ -109,7 +109,7 @@ class Command(BaseCommand):
                 cells.append(new_cell)
                 first_cell = False
 
-            rows.append(Row(cells))
+            rows.append(ContentRow(cells))
 
         return ParadigmTemplate(Pane(rows) for rows in panes)
 

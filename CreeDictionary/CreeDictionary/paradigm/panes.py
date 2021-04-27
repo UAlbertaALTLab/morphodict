@@ -77,7 +77,7 @@ class Pane:
     A pane contains a number of rows.
     """
 
-    def __init__(self, rows: Iterable[Row]):
+    def __init__(self, rows: Iterable[ContentRow]):
         self._rows = tuple(rows)
 
     @property
@@ -113,14 +113,14 @@ class Pane:
         if len(lines) == 0:
             raise ParseError("Not enough lines in pane")
 
-        return Pane(Row.parse(line) for line in lines)
+        return Pane(ContentRow.parse(line) for line in lines)
 
 
 class _BaseRow:
     has_content: bool
 
     @staticmethod
-    def parse(text: str) -> Row:
+    def parse(text: str) -> _BaseRow:
         if text.startswith("# "):
             return HeaderRow.parse(text)
         cell_texts = text.rstrip("\n").split("\t")
@@ -130,10 +130,10 @@ class _BaseRow:
                 break
             cell_texts.pop()
 
-        return Row(Cell.parse(t) for t in cell_texts)
+        return ContentRow(Cell.parse(t) for t in cell_texts)
 
 
-class Row(_BaseRow):
+class ContentRow(_BaseRow):
     """
     A single row from a pane. Rows contain cells.
     """
@@ -145,7 +145,7 @@ class Row(_BaseRow):
         yield from self._cells
 
     def __eq__(self, other) -> bool:
-        if not isinstance(other, Row):
+        if not isinstance(other, ContentRow):
             return False
         return all(a == b for a, b in zip_longest(self.cells(), other.cells()))
 
