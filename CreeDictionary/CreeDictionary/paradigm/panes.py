@@ -211,7 +211,22 @@ class InflectionCell(Cell):
         return InflectionCell(text)
 
 
-class MissingForm(Cell):
+class SingletonMixin:
+    """
+    Mixin that makes any subclasses a singleton.
+    """
+
+    def __new__(cls):
+        if not hasattr(cls, "_instance"):
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        return f"{name}()"
+
+
+class MissingForm(Cell, SingletonMixin):
     """
     A missing form from the paradigm that should show up in the template as a placeholder.
     Note: a missing form is a valid position in the paradigm, however, we display that
@@ -221,33 +236,17 @@ class MissingForm(Cell):
 
     is_inflection = True
 
-    def __new__(cls) -> MissingForm:
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __repr__(self):
-        return "MissingForm()"
-
     def __str__(self):
         return "--"
 
 
-class EmptyCell(Cell):
+class EmptyCell(Cell, SingletonMixin):
     """
     A completely empty cell. This is used for spacing in the paradigm. There is no
     semantic content. Compare with MissingForm.
     """
 
     is_empty = True
-
-    def __new__(cls) -> EmptyCell:
-        if not hasattr(cls, "_instance"):
-            cls._instance = super().__new__(cls)
-        return cls._instance
-
-    def __repr__(self):
-        return "EmptyCell()"
 
     def __str__(self):
         return ""

@@ -43,7 +43,6 @@ def test_singleton_classes(cls):
     assert cls() == cls()
 
 
-
 @pytest.fixture
 def na_layout_path(shared_datadir: Path) -> Path:
     """
