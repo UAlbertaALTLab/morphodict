@@ -165,12 +165,20 @@ class Row:
     def parse(text: str) -> Row:
         if text.startswith("# "):
             return HeaderRow.parse(text)
-        cell_texts = text.rstrip("\n").split("\t")
 
+        cell_texts = text.rstrip("\n").split("\t")
+        # Remove empty cells from the end.
         while cell_texts:
             if cell_texts[-1].strip() != "":
                 break
             cell_texts.pop()
+
+        if len(cell_texts) == 0:
+            # This would mean the line was empty, but empty lines in a paradigm file
+            # are used as pane separators.
+            # If we got here from ParadigmTemplate.parse(), something terrible has gone
+            # wrong.
+            raise ParseError("Refusing to parse empty row")
 
         return ContentRow(Cell.parse(t) for t in cell_texts)
 
