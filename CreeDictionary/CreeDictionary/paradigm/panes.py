@@ -1,10 +1,17 @@
 from __future__ import annotations
 
-from typing import Iterable
-
 """
 Provides all classes for pane-based paradigms.
 """
+
+import re
+from typing import Iterable, Optional, TextIO
+
+
+class ParseError(Exception):
+    """
+    Raised when there's an issue in parsing paradigm layouts.
+    """
 
 
 class ParadigmTemplate:
@@ -20,8 +27,32 @@ class ParadigmTemplate:
         yield from self._panes
 
     @classmethod
-    def loads(cls, string):
-        raise NotImplementedError
+    def load(cls, layout_file: TextIO) -> ParadigmTemplate:
+        """
+        Load a paradigm template from a file.
+        """
+        return cls.loads(layout_file.read())
+
+    @classmethod
+    def loads(cls, string: str) -> ParadigmTemplate:
+        """
+        Load a ParadigmLayout from a string.
+        """
+        lines = string.splitlines(keepends=False)
+
+        pane_lines = [[]]
+        for line in lines:
+            if line.strip() == "":
+                # empty line; start a new pane
+                pane_lines.append([])
+            else:
+                # add line to current pane
+                pane_lines[-1].append(line)
+
+        pane_strs = ["\n".join(lines) for lines in pane_lines if len(lines) > 0]
+
+        panes = [Pane.parse(p) for p in pane_strs if p.strip()]
+        return ParadigmTemplate(panes)
 
     def dumps(self):
         """
@@ -44,14 +75,35 @@ class Pane:
 
     A pane contains a number of rows.
     """
+
     def __init__(self, rows: Iterable[Row]):
         self._rows = tuple(rows)
+
+    @property
+    def header(self) -> Optional[HeaderRow]:
+        first_row = self._rows[0]
+        if isinstance(first_row, HeaderRow):
+            return first_row
+        return None
+
+    @property
+    def num_columns(self) -> int:
+        return len(max(self._rows, key=len))
 
     def rows(self):
         yield from self._rows
 
     def __str__(self):
         return "\n".join(str(row) for row in self.rows())
+
+    @classmethod
+    def parse(cls, text: str) -> Pane:
+        lines = text.splitlines()
+
+        if len(lines) == 0:
+            raise ParseError("Not enough lines in pane")
+
+        return Pane(Row.parse(line) for line in lines)
 
 
 class Row:
@@ -68,6 +120,16 @@ class Row:
     def __str__(self):
         return "\t".join(str(cell) for cell in self.cells())
 
+    def __len__(self):
+        return len(self._cells)
+
+    @staticmethod
+    def parse(text: str) -> Row:
+        if text.startswith("# "):
+            return HeaderRow.parse(text)
+        cell_texts = text.strip().split("\t")
+        return Row(Cell.parse(t) for t in cell_texts)
+
 
 class HeaderRow(Row):
     """
@@ -75,11 +137,20 @@ class HeaderRow(Row):
     """
 
     def __init__(self, tags_or_header):
-        if isinstance(tags_or_header, tuple):
-            self._tags = tags_or_header
-        else:
-            assert isinstance(tags_or_header, str)
+        super().__init__(())
+
+        # TODO: this should only handle tags!
+        # TODO: drop support for _original_title
+        if isinstance(tags_or_header, str):
             self._original_title = tags_or_header
+        else:
+            self._tags = tuple(tags_or_header)
+
+    def __len__(self) -> int:
+        """
+        Headers always have exactly one cell.
+        """
+        return 1
 
     def __str__(self):
         if hasattr(self, "_tags"):
@@ -88,28 +159,55 @@ class HeaderRow(Row):
         else:
             return f"# <!{self._original_title}!>"
 
+    @staticmethod
+    def parse(text: str) -> HeaderRow:
+        if not text.startswith("# "):
+            raise ParseError("Not a header row: {text!r}")
+        _prefix, _space, tags = text.partition(" ")
+        return HeaderRow(tags.split("+"))
+
 
 class Cell:
     """
     A single cell from a paradigm.
     """
+
     is_label: bool = False
     is_inflection: bool = False
     is_empty = bool = False
+
+    @staticmethod
+    def parse(text: str) -> Cell:
+        if text == "":
+            return EmptyCell
+        elif text == "--":
+            return MissingForm()
+        elif text.startswith("_ "):
+            return RowLabel.parse(text)
+        elif text.startswith("| "):
+            return ColumnLabel.parse(text)
+        else:
+            return InflectionCell.parse(text)
 
 
 class InflectionCell(Cell):
     """
     A cell that contains an inflection.
     """
+
     is_inflection = True
 
     def __init__(self, analysis: str):
         self.analysis = analysis
-        assert "{{lemma}}" in analysis or "+" in analysis
+        assert "${lemma}" in analysis or "+" in analysis
 
     def __str__(self):
         return self.analysis
+
+    def parse(text: str) -> InflectionCell:
+        if "${lemma}" not in text or "+" not in text:
+            raise ParseError(f"cell does not look like an inflection: {text!r}")
+        return InflectionCell(text)
 
 
 class MissingForm(Cell):
@@ -119,6 +217,7 @@ class MissingForm(Cell):
     this form cannot exist. This is not the same as an empty cell, which is used as a
     spacer.
     """
+
     is_inflection = True
 
     def __str__(self):
@@ -130,6 +229,7 @@ class EmptyCellType(Cell):
     A completely empty cell. This is used for spacing in the paradigm. There is no
     semantic content. Compare with MissingForm.
     """
+
     is_empty = True
 
     def __new__(cls) -> EmptyCellType:
@@ -158,11 +258,26 @@ class BaseLabelCell(Cell):
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
 
+    @classmethod
+    def parse(cls, text: str):
+        splits = re.split(r" +", text)
+        if len(splits) % 2 != 0:
+            raise ParseError(f"Uneven number of space separated segments in {text!r}")
+        tags = []
+        # TODO: factor out zip magic
+        for prefix, tag in zip(splits[::2], splits[1::2]):
+            if prefix != cls.prefix:
+                raise ParseError(f"Expected prefix {cls.prefix!r} but saw {prefix!r}")
+            tags.append(tag)
+
+        return cls(tags)
+
 
 class RowLabel(BaseLabelCell):
     """
     Labels for the cells in the current row within the pane.
     """
+
     label_for = "row"
     prefix = "_"
 
@@ -171,5 +286,6 @@ class ColumnLabel(BaseLabelCell):
     """
     Labels for the cells in the current column within the pane.
     """
+
     label_for = "column"
     prefix = "|"
