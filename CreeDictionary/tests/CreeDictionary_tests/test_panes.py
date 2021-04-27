@@ -43,6 +43,8 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert possession_pane.header
     assert possession_pane.num_columns == 4
 
+    assert na_paradigm_template.max_num_columns == 4
+
 
 @pytest.mark.parametrize("cls", [EmptyCell, MissingForm])
 def test_singleton_classes(cls):
