@@ -27,7 +27,7 @@ from CreeDictionary.paradigm.panes import (
     MissingForm,
     Pane,
     ParadigmTemplate,
-    RowLabel
+    RowLabel,
 )
 from CreeDictionary.relabelling import LABELS
 
