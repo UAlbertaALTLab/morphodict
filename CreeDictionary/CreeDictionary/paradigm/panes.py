@@ -1,8 +1,8 @@
-from __future__ import annotations
-
 """
 Provides all classes for pane-based paradigms.
 """
+
+from __future__ import annotations
 
 import re
 from itertools import zip_longest

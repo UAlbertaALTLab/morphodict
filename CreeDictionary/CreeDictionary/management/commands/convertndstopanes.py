@@ -1,10 +1,10 @@
-from __future__ import annotations
-
 """
 Converts all loaded paradigm templates and outputs them in the pane-style template.
 
 Note: this code is **temporary**! (2021-04-23)
 """
+
+from __future__ import annotations
 
 import sys
 from argparse import ArgumentParser
@@ -27,7 +27,7 @@ from CreeDictionary.paradigm.panes import (
     MissingForm,
     Pane,
     ParadigmTemplate,
-    RowLabel,
+    RowLabel
 )
 from CreeDictionary.relabelling import LABELS
 
