@@ -234,7 +234,7 @@ class HeaderRow(Row):
 
     def __str__(self):
         tags = "+".join(self._tags)
-        return f"# {tags}"
+        return f"{self.prefix} {tags}"
 
     def __repr__(self):
         name = type(self).__qualname__

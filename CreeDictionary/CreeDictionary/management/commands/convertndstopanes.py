@@ -10,6 +10,7 @@ import sys
 from argparse import ArgumentParser
 from collections import defaultdict
 from pathlib import Path
+from typing import Protocol, Sequence
 
 from django.core.management import BaseCommand
 from utils import ParadigmSize
@@ -112,16 +113,26 @@ class Command(BaseCommand):
         return ParadigmTemplate(Pane(rows) for rows in panes)
 
 
-class UnknownLabelTagMixin:
+class _ExpectedMixinBase(Protocol):
     """
-    Mixin to a RowLabel or ColumnLabel to display <!ORIGINAL LABEL!> instead of an FST tag.
+    UnknownLabelTagMixin should be mixed into a class that looks like this:
+    """
+
+    prefix: str
+
+    def __init__(self, t: Sequence[str]) -> None:
+        ...
+
+
+class UnknownLabelTagMixin(_ExpectedMixinBase):
+    """
+    Mixin to a Label or a Header to display <!ORIGINAL LABEL!> instead of an FST tag.
     """
 
     UNANALYZABLE = ("?",)
 
-    def __init__(self, original):
+    def __init__(self, original: str):
         super().__init__(self.UNANALYZABLE)
-        assert self.prefix
         self.original = original
 
     def __str__(self):
