@@ -4,7 +4,7 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import Union, NewType, Iterable, Tuple, Optional
+from typing import NewType, Iterable, Tuple, Optional
 
 from typing_extensions import Protocol
 
@@ -87,16 +87,6 @@ class Language(Enum):
     TARGET = "Target"
 
 
-def wordforms_match(w1: Wordform, w2: Wordform) -> bool:
-    """Return whether two wordform objects represent the same wordform
-
-    Either they both have IDs which match, or the text and analysis match.
-    """
-    if w1.id is not None or w2.id is not None:
-        return w1.id == w2.id
-    return w1.text == w2.text and w1.analysis == w2.analysis
-
-
 @dataclass
 class Result:
     """
@@ -146,11 +136,16 @@ class Result:
         features from a different result object for the same wordform into the
         current object.
         """
-        assert wordforms_match(self.wordform, other.wordform)
+        assert self.wordform.key == other.wordform.key
 
-        for field_name, other_value in other._features():
+        for field_name, other_value in other.features().items():
             if other_value is not None:
-                setattr(self, field_name, other_value)
+                self_value = getattr(self, field_name)
+                # combine lists, applying uniq
+                if isinstance(self_value, list):
+                    self_value[:] = list(set(self_value + other_value))
+                else:
+                    setattr(self, field_name, other_value)
 
     wordform: Wordform
     lemma_wordform: Lemma = field(init=False)
@@ -164,7 +159,7 @@ class Result:
     source_language_affix_match: Optional[bool] = None
     target_language_affix_match: Optional[bool] = None
 
-    target_language_keyword_match: Optional[str] = None
+    target_language_keyword_match: list[str] = field(default_factory=list)
     pronoun_as_is_match: Optional[bool] = None
 
     analyzable_inflection_match: Optional[bool] = None
@@ -178,18 +173,18 @@ class Result:
 
     morpheme_ranking: Optional[float] = None
 
-    def _features(self):
+    def features(self):
+        ret = {}
         for field in dataclasses.fields(Result):
             if field.name not in ["wordform", "lemma_wordform"]:
-                yield field.name, getattr(self, field.name)
+                value = getattr(self, field.name)
+                if value is not None:
+                    ret[field.name] = value
+        return ret
 
     def features_json(self):
         return json.dumps(
-            {
-                field_name: value
-                for field_name, value in self._features()
-                if value is not None
-            },
+            self.features(),
             ensure_ascii=False,
             indent=2,
         )
@@ -197,9 +192,8 @@ class Result:
     #: Was anything in the query a source-language match for this result?
     @property
     def did_match_source_language(self) -> bool:
-        return (
-            self.source_language_match is not None
-            or self.source_language_affix_match is not None
+        return bool(
+            self.source_language_match or self.source_language_affix_match is not None
         )
 
     def __str__(self):

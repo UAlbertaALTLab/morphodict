@@ -20,6 +20,8 @@ from collections import defaultdict
 from io import StringIO
 from pathlib import Path
 
+from search_quality import SURVEY_DIR
+
 
 def iter_results(input_file):
     """Yield dicts for rows from a CSV file, whether it has a header or not
@@ -37,7 +39,6 @@ def iter_results(input_file):
 
     first_row = True
     for row_index, row in enumerate(reader):
-        print("got row", row)
         if first_row:
             first_row = False
 
@@ -92,9 +93,34 @@ def combine_results(result_lists):
         """
         return (-points[result], len(result), result)
 
-    print("points are", points)
-
     return sorted(points.keys(), key=by_points_then_length_then_alphabetical)
+
+
+class SurveyCollection:
+    def __init__(self, survey_dir=SURVEY_DIR):
+        self.survey_dir = survey_dir
+        self.queries = defaultdict(list)
+
+        self._load()
+
+    def _load(self):
+        survey_files = self.survey_dir.glob("*.csv")
+
+        for filename in survey_files:
+            with open(filename, "rt", newline="") as f:
+                for row in iter_results(f):
+                    values = row["Values"]
+                    query = row["Query"]
+                    self.queries[query].append(values)
+
+    def combined_results_for(self, query):
+        results = self.queries[query]
+        return combine_results(results)
+
+    def combined_results(self):
+        for query, results in self.queries.items():
+            combined = combine_results(results)
+            yield query, combined
 
 
 def main():
@@ -110,17 +136,6 @@ def main():
     parser.add_argument("--output-file", default=script_dir / "sample.csv")
     args = parser.parse_args()
 
-    survey_files = (Path(__file__).parent / "survey_results").glob("*.csv")
-
-    queries = defaultdict(list)
-
-    for filename in survey_files:
-        with open(filename, "rt", newline="") as f:
-            for row in iter_results(f):
-                values = row["Values"]
-                query = row["Query"]
-                queries[query].append(values)
-
     output_text = StringIO(newline="")
 
     class LfDialect(csv.excel):
@@ -130,11 +145,8 @@ def main():
     csv_out = csv.writer(output_text, dialect=LfDialect)
     csv_out.writerow(["Query", "Nêhiyawêwin 1", "Nêhiyawêwin 2", "Nêhiyawêwin 3"])
 
-    for query, results in queries.items():
-        print(f"{query=}")
-        print(f"{results=}")
-        combined = combine_results(results)
-        print(combined)
+    survey_collection = SurveyCollection()
+    for query, combined in survey_collection.combined_results():
         csv_out.writerow([query] + combined[:3])
 
     if args.write:

@@ -14,3 +14,5 @@ SampleSearchResultsJson = dict[str, SearchResult]
 
 RESULTS_DIR = Path(__file__).parent / "sample_results"
 DEFAULT_SAMPLE_FILE = Path(__file__).parent / "sample.csv"
+
+SURVEY_DIR = Path(__file__).parent / "survey_results"
