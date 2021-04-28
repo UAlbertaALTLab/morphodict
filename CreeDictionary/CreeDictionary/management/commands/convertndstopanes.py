@@ -10,6 +10,7 @@ import sys
 from argparse import ArgumentParser
 from collections import defaultdict
 from pathlib import Path
+from typing import Protocol, Sequence
 
 from django.core.management import BaseCommand
 from utils import ParadigmSize
@@ -17,9 +18,9 @@ from utils import ParadigmSize
 from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
 from CreeDictionary.paradigm.generation import paradigm_filler
 from CreeDictionary.paradigm.panes import (
-    BaseLabelCell,
     Cell,
     ColumnLabel,
+    ContentRow,
     EmptyCell,
     HeaderRow,
     InflectionCell,
@@ -27,7 +28,6 @@ from CreeDictionary.paradigm.panes import (
     Pane,
     ParadigmTemplate,
     RowLabel,
-    Row,
 )
 from CreeDictionary.relabelling import LABELS
 
@@ -84,8 +84,10 @@ class Command(BaseCommand):
             rows = panes[-1]
 
             if isinstance(row, TitleRow):
-                tags = self.label_to_tags.get(row.title)
-                rows.append(HeaderRow(tags or row.title))
+                if tags := self.label_to_tags.get(row.title):
+                    rows.append(HeaderRow(tags))
+                else:
+                    rows.append(UnknownHeaderRow(row.title))
                 continue
 
             cells = []
@@ -93,7 +95,7 @@ class Command(BaseCommand):
             for cell in row:
                 new_cell: Cell
                 if cell == "":
-                    new_cell = EmptyCell
+                    new_cell = EmptyCell()
                 elif hasattr(cell, "analysis"):
                     if analysis := cell.analysis:
                         new_cell = InflectionCell(analysis.template)
@@ -106,14 +108,25 @@ class Command(BaseCommand):
                 cells.append(new_cell)
                 first_cell = False
 
-            rows.append(Row(cells))
+            rows.append(ContentRow(cells))
 
         return ParadigmTemplate(Pane(rows) for rows in panes)
 
 
-class UnknownLabelTagMixin(BaseLabelCell):
+class _ExpectedMixinBase(Protocol):
     """
-    Mixin to a RowLabel or ColumnLabel to display <!ORIGINAL LABEL!> instead of an FST tag.
+    UnknownLabelTagMixin should be mixed into a class that looks like this:
+    """
+
+    prefix: str
+
+    def __init__(self, t: Sequence[str]) -> None:
+        ...
+
+
+class UnknownLabelTagMixin(_ExpectedMixinBase):
+    """
+    Mixin to a Label or a Header to display <!ORIGINAL LABEL!> instead of an FST tag.
     """
 
     UNANALYZABLE = ("?",)
@@ -126,13 +139,19 @@ class UnknownLabelTagMixin(BaseLabelCell):
         return f"{self.prefix} <!{self.original}!>"
 
 
-class UnknownRowLabel(RowLabel, UnknownLabelTagMixin):
+class UnknownHeaderRow(UnknownLabelTagMixin, HeaderRow):
+    """
+    A header row whose tag cannot be looked up.
+    """
+
+
+class UnknownRowLabel(UnknownLabelTagMixin, RowLabel):
     """
     A row with a label that cannot be looked up
     """
 
 
-class UnknownColumnLabel(ColumnLabel, UnknownLabelTagMixin):
+class UnknownColumnLabel(UnknownLabelTagMixin, ColumnLabel):
     """
     A column with a label that cannot be looked up
     """
