@@ -27,7 +27,7 @@ class ParadigmTemplate:
     @property
     def max_num_columns(self):
         """
-        What is the largest amount of columns necessary for this entire paradigm.
+        How many columns are necessary for this entire paradigm?
         """
         return max(pane.num_columns for pane in self.panes())
 
@@ -363,7 +363,7 @@ class BaseLabelCell(Cell):
     def parse(cls, text: str):
         splits = re.split(r" +", text)
         if len(splits) % 2 != 0:
-            raise ParseError(f"Uneven number of space separated segments in {text!r}")
+            raise ParseError(f"Uneven number of space-separated segments in {text!r}")
         tags = []
 
         for prefix, tag in pairs(splits):
