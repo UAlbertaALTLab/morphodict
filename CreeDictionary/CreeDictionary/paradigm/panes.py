@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import re
 import string
+from functools import cached_property
 from itertools import zip_longest
 from typing import Iterable, Optional, TextIO
 
@@ -36,6 +37,15 @@ class ParadigmTemplate:
     def inflection_cells(self) -> Iterable[InflectionCell]:
         for pane in self.panes():
             yield from pane.inflection_cells
+
+    @cached_property
+    def _fst_analysis_template(self) -> string.Template:
+        """
+        A string template that can be given a lemma to generate FST analysis strings
+        for the ENTIRE paradigm.
+        """
+        lines = [inflection.analysis for inflection in self.inflection_cells]
+        return string.Template("\n".join(lines))
 
     def panes(self):
         yield from self._panes
@@ -85,11 +95,10 @@ class ParadigmTemplate:
 
     def generate_fst_analysis_string(self, lemma: str) -> str:
         """
-        Given a lemma, generates a string that can be fed directly to an XFST lookup application.
+        Given a lemma, generates a string that can be fed directly to an XFST lookup
+        application.
         """
-        lines = [inflection.analysis for inflection in self.inflection_cells]
-        template = string.Template("\n".join(lines))
-        return template.substitute(lemma=lemma)
+        return self._fst_analysis_template.substitute(lemma=lemma)
 
     def __str__(self):
         return self.dumps()
