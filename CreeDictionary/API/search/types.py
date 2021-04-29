@@ -173,6 +173,8 @@ class Result:
 
     morpheme_ranking: Optional[float] = None
 
+    cosine_vector_distance: Optional[float] = None
+
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
