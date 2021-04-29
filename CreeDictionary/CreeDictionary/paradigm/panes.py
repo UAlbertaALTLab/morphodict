@@ -5,6 +5,8 @@ Provides all classes for pane-based paradigms.
 from __future__ import annotations
 
 import re
+import string
+from functools import cached_property
 from itertools import zip_longest
 from typing import Iterable, Optional, TextIO
 
@@ -29,9 +31,24 @@ class ParadigmTemplate:
         """
         How many columns are necessary for this entire paradigm?
         """
-        return max(pane.num_columns for pane in self.panes())
+        return max(pane.num_columns for pane in self.panes)
 
-    def panes(self):
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        for pane in self.panes:
+            yield from pane.inflection_cells
+
+    @cached_property
+    def _fst_analysis_template(self) -> string.Template:
+        """
+        A string template that can be given a lemma to generate FST analysis strings
+        for the ENTIRE paradigm.
+        """
+        lines = [inflection.analysis for inflection in self.inflection_cells]
+        return string.Template("\n".join(lines))
+
+    @property
+    def panes(self) -> Iterable[Pane]:
         yield from self._panes
 
     @classmethod
@@ -69,13 +86,20 @@ class ParadigmTemplate:
 
         pane_text = []
         num_columns = self.max_num_columns
-        for pane in self.panes():
+        for pane in self.panes:
             pane_text.append(pane.dumps(require_num_columns=num_columns))
 
         tabs = "\t" * (num_columns - 1)
         empty_line = f"\n{tabs}\n"
 
         return empty_line.join(pane_text)
+
+    def generate_fst_analysis_string(self, lemma: str) -> str:
+        """
+        Given a lemma, generates a string that can be fed directly to an XFST lookup
+        application.
+        """
+        return self._fst_analysis_template.substitute(lemma=lemma)
 
     def __str__(self):
         return self.dumps()
@@ -100,9 +124,15 @@ class Pane:
 
     @property
     def num_columns(self) -> int:
-        return max(row.num_cells for row in self.rows())
+        return max(row.num_cells for row in self.rows)
 
-    def rows(self):
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        for row in self.rows:
+            yield from row.inflection_cells
+
+    @property
+    def rows(self) -> Iterable[Row]:
         yield from self._rows
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
@@ -111,7 +141,7 @@ class Pane:
         :param require_num_columns: if given, the pane must have at least this many columns.
                                     Rows are padded with empty cells at the end.
         """
-        return "\n".join(row.dumps(require_num_columns) for row in self.rows())
+        return "\n".join(row.dumps(require_num_columns) for row in self.rows)
 
     def __str__(self):
         return self.dumps()
@@ -123,7 +153,7 @@ class Pane:
 
     def __repr__(self):
         name = type(self).__qualname__
-        rows = ", ".join(repr(row) for row in self.rows())
+        rows = ", ".join(repr(row) for row in self.rows)
         return f"{name}([{rows}])"
 
     @classmethod
@@ -139,6 +169,11 @@ class Pane:
 class Row:
     has_content: bool
     num_cells: int
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
@@ -193,25 +228,30 @@ class ContentRow(Row):
     def __init__(self, cells: Iterable[Cell]):
         self._cells = tuple(cells)
 
+    @property
     def cells(self):
         yield from self._cells
-
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, ContentRow):
-            return False
-        return all(a == b for a, b in zip_longest(self.cells(), other.cells()))
-
-    def __str__(self):
-        return "\t".join(str(cell) for cell in self.cells())
-
-    def __repr__(self):
-        name = type(self).__qualname__
-        cells_repr = ", ".join(repr(cell) for cell in self.cells())
-        return f"{name}([{cells_repr}])"
 
     @property
     def num_cells(self):
         return len(self._cells)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        return (c for c in self.cells if isinstance(c, InflectionCell))
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, ContentRow):
+            return False
+        return all(a == b for a, b in zip_longest(self.cells, other.cells))
+
+    def __str__(self):
+        return "\t".join(str(cell) for cell in self.cells)
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        cells_repr = ", ".join(repr(cell) for cell in self.cells)
+        return f"{name}([{cells_repr}])"
 
 
 class HeaderRow(Row):
@@ -226,6 +266,11 @@ class HeaderRow(Row):
     def __init__(self, tags):
         super().__init__()
         self._tags = tuple(tags)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        # a header, by definition, has no inflections.
+        return ()
 
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
@@ -268,10 +313,51 @@ class Cell:
             return RowLabel.parse(text)
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
-        else:
+        elif "${lemma}" in text:
             return InflectionCell.parse(text)
+        else:
+            return LiteralCell(text)
 
 
+class LiteralCell(Cell):
+    """
+    A filled-in inflection.
+
+    How these come into being:
+     - in a **dynamic paradigm**, the ParadigmTemplate.generate() is called,
+       converting all InflectionCell instances to LiteralCell instances.
+     - in a **static paradigm**, no generation is needed; all inflections are already
+       LiteralCells  -- they are hard-coded into the template.
+    """
+
+    is_inflection = True
+
+    def __init__(self, inflection: str):
+        self.inflection = inflection
+
+    def __str__(self) -> str:
+        return self.inflection
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, LiteralCell):
+            return self.inflection == other.inflection
+        return False
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        return f"{name}({self.inflection!r})"
+
+    @classmethod
+    def parse(cls, text: str):
+        if text.startswith("#_|"):
+            raise ParseError(f"Refusing to parse a label as a literal: {text}")
+        if "{lemma}" in text:
+            raise ParseError(f"Refusing to parse an inflection as a literal: {text}")
+
+        return cls(text)
+
+
+# TODO: rename to InflectionTemplate?
 class InflectionCell(Cell):
     """
     A cell that contains an inflection.

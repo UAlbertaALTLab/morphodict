@@ -12,6 +12,7 @@ from CreeDictionary.paradigm.panes import (
     EmptyCell,
     HeaderRow,
     InflectionCell,
+    LiteralCell,
     MissingForm,
     Pane,
     ParadigmTemplate,
@@ -33,17 +34,34 @@ def test_parse_na_paradigm(na_layout_path: Path):
     with na_layout_path.open(encoding="UTF-8") as layout_file:
         na_paradigm_template = ParadigmTemplate.load(layout_file)
 
-    assert count(na_paradigm_template.panes()) == 3
-    basic_pane, diminutive_pane, possession_pane = na_paradigm_template.panes()
+    assert count(na_paradigm_template.panes) == 3
+    basic_pane, diminutive_pane, possession_pane = na_paradigm_template.panes
 
     assert basic_pane.header is None
     assert basic_pane.num_columns == 2
     assert diminutive_pane.num_columns == 2
-    assert count(diminutive_pane.rows()) == 2
+    assert count(diminutive_pane.rows) == 2
     assert possession_pane.header
     assert possession_pane.num_columns == 4
 
     assert na_paradigm_template.max_num_columns == 4
+
+
+def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
+    """
+    Test that the static layout for demonstrative pronouns can be parsed.
+    Note: the fixture was (sloppily) written by me, Eddie, and it is probably not
+    representative of the actual demonostrative pronoun paradigm we'll have on the
+    production site... buuuuuuuuut, it's useful as a test fixture!
+    """
+    with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:
+        pronoun_paradigm = ParadigmTemplate.load(layout_file)
+
+    assert count(pronoun_paradigm.panes) == 1
+
+    basic_pane = first(pronoun_paradigm.panes)
+    assert basic_pane.num_columns == 3
+    assert count(basic_pane.rows) == 4
 
 
 def test_dump_equal_to_file_on_disk(na_layout_path: Path):
@@ -80,7 +98,7 @@ def sample_pane():
         EmptyCell(),
         MissingForm(),
         InflectionCell("${lemma}"),
-        InflectionCell("ôma+Ipc"),
+        LiteralCell("ôma"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),
@@ -99,13 +117,74 @@ def test_str_produces_parsable_result(component):
     assert stringified == str(parsed)
 
 
+def test_produces_fst_analysis_string(na_layout: ParadigmTemplate):
+    """
+    It should produce a valid FST analysis string.
+    """
+
+    lemma = "minôs"
+    expected_lines = {
+        # Basic
+        f"{lemma}+N+A+Sg",
+        f"{lemma}+N+A+Pl",
+        f"{lemma}+N+A+Obv",
+        f"{lemma}+N+A+Loc",
+        f"{lemma}+N+A+Distr",
+        # Diminutive
+        f"{lemma}+N+A+Der/Dim+N+A+Sg",
+        # Possession
+        f"{lemma}+N+A+Px1Sg+Sg",
+        f"{lemma}+N+A+Px1Sg+Pl",
+        f"{lemma}+N+A+Px1Sg+Obv",
+        f"{lemma}+N+A+Px2Sg+Sg",
+        f"{lemma}+N+A+Px2Sg+Pl",
+        f"{lemma}+N+A+Px2Sg+Obv",
+        f"{lemma}+N+A+Px3Sg+Obv",
+        f"{lemma}+N+A+Px1Pl+Sg",
+        f"{lemma}+N+A+Px1Pl+Pl",
+        f"{lemma}+N+A+Px1Pl+Obv",
+        f"{lemma}+N+A+Px12Pl+Sg",
+        f"{lemma}+N+A+Px12Pl+Pl",
+        f"{lemma}+N+A+Px12Pl+Obv",
+        f"{lemma}+N+A+Px2Pl+Sg",
+        f"{lemma}+N+A+Px2Pl+Pl",
+        f"{lemma}+N+A+Px2Pl+Obv",
+        f"{lemma}+N+A+Px3Pl+Obv",
+        f"{lemma}+N+A+Px4Sg/Pl+Obv",
+    }
+    raw_analyses = na_layout.generate_fst_analysis_string(lemma)
+    generated_analyses = raw_analyses.splitlines(keepends=False)
+    assert len(expected_lines) == len(generated_analyses)
+    assert expected_lines == set(generated_analyses)
+
+
 @pytest.fixture
 def na_layout_path(shared_datadir: Path) -> Path:
     """
     Return the path to the NA layout in the test fixture dir.
     NOTE: this is **NOT** the NA paradigm used in production!
     """
-    p = shared_datadir / "paradigm-layouts" / "NA.tsv"
+    p = shared_datadir / "paradigm-layouts" / "dynamic" / "NA.tsv"
+    assert p.exists()
+    return p
+
+
+@pytest.fixture
+def na_layout(na_layout_path: Path) -> ParadigmTemplate:
+    """
+    Returns the parsed NA layout.
+    """
+    with na_layout_path.open(encoding="UTF-8") as layout_file:
+        return ParadigmTemplate.load(layout_file)
+
+
+@pytest.fixture
+def pronoun_paradigm_path(shared_datadir: Path) -> Path:
+    """
+    Return the path to the NA layout in the test fixture dir.
+    NOTE: this is **NOT** the NA paradigm used in production!
+    """
+    p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
     assert p.exists()
     return p
 
@@ -115,3 +194,10 @@ def count(it):
     Returns the number of items iterated in the paradigm
     """
     return sum(1 for _ in it)
+
+
+def first(it):
+    """
+    Returns the first element from the iterable.
+    """
+    return next(iter(it))
