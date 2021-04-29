@@ -144,6 +144,13 @@ class Result:
                 # combine lists, applying uniq
                 if isinstance(self_value, list):
                     self_value[:] = list(set(self_value + other_value))
+                elif (
+                    field_name == "cosine_vector_distance"
+                    and self.cosine_vector_distance is not None
+                ):
+                    self.cosine_vector_distance = min(
+                        self.cosine_vector_distance, other.cosine_vector_distance
+                    )
                 else:
                     setattr(self, field_name, other_value)
 
