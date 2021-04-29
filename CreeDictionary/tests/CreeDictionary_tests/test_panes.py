@@ -39,7 +39,7 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert basic_pane.header is None
     assert basic_pane.num_columns == 2
     assert diminutive_pane.num_columns == 2
-    assert count(diminutive_pane.rows()) == 2
+    assert count(diminutive_pane.rows) == 2
     assert possession_pane.header
     assert possession_pane.num_columns == 4
 

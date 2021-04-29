@@ -124,14 +124,15 @@ class Pane:
 
     @property
     def num_columns(self) -> int:
-        return max(row.num_cells for row in self.rows())
+        return max(row.num_cells for row in self.rows)
 
     @property
     def inflection_cells(self) -> Iterable[InflectionCell]:
-        for row in self.rows():
+        for row in self.rows:
             yield from row.inflection_cells
 
-    def rows(self):
+    @property
+    def rows(self) -> Iterable[Row]:
         yield from self._rows
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
@@ -140,7 +141,7 @@ class Pane:
         :param require_num_columns: if given, the pane must have at least this many columns.
                                     Rows are padded with empty cells at the end.
         """
-        return "\n".join(row.dumps(require_num_columns) for row in self.rows())
+        return "\n".join(row.dumps(require_num_columns) for row in self.rows)
 
     def __str__(self):
         return self.dumps()
@@ -152,7 +153,7 @@ class Pane:
 
     def __repr__(self):
         name = type(self).__qualname__
-        rows = ", ".join(repr(row) for row in self.rows())
+        rows = ", ".join(repr(row) for row in self.rows)
         return f"{name}([{rows}])"
 
     @classmethod
