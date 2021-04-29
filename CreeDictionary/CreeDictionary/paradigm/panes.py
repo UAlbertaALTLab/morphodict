@@ -311,6 +311,45 @@ class Cell:
             return InflectionCell.parse(text)
 
 
+class LiteralCell(Cell):
+    """
+    A filled-in inflection.
+
+    How these come into being:
+     - in a **dynamic paradigm**, the ParadigmTemplate.generate() is called,
+       converting all InflectionCell instances to LiteralCell instances.
+     - in a **static paradigm**, no generation is needed; all inflections are already
+       LiteralCells  -- they are hard-coded into the template.
+    """
+
+    is_inflection = True
+
+    def __init__(self, inflection: str):
+        self.inflection = inflection
+
+    def __str__(self) -> str:
+        return self.inflection
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, LiteralCell):
+            return self.inflection == other.inflection
+        return False
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        return f"{name}({self.inflection!r})"
+
+    @classmethod
+    def parse(cls, text: str):
+        if text.startswith("#_|"):
+            raise ParseError(f"Refusing to parse a label as a literal: {text}")
+        if "{lemma}" in text:
+            raise ParseError(f"Refusing to parse an inflection as a literal: {text}")
+
+        return cls(text)
+
+
+# TODO: rename to InflectionTemplate?
 class InflectionCell(Cell):
     """
     A cell that contains an inflection.
