@@ -5,6 +5,7 @@ Provides all classes for pane-based paradigms.
 from __future__ import annotations
 
 import re
+import string
 from itertools import zip_longest
 from typing import Iterable, Optional, TextIO
 
@@ -30,6 +31,11 @@ class ParadigmTemplate:
         How many columns are necessary for this entire paradigm?
         """
         return max(pane.num_columns for pane in self.panes())
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        for pane in self.panes():
+            yield from pane.inflection_cells
 
     def panes(self):
         yield from self._panes
@@ -77,6 +83,14 @@ class ParadigmTemplate:
 
         return empty_line.join(pane_text)
 
+    def generate_fst_analysis_string(self, lemma: str) -> str:
+        """
+        Given a lemma, generates a string that can be fed directly to an XFST lookup application.
+        """
+        lines = [inflection.analysis for inflection in self.inflection_cells]
+        template = string.Template("\n".join(lines))
+        return template.substitute(lemma=lemma)
+
     def __str__(self):
         return self.dumps()
 
@@ -101,6 +115,11 @@ class Pane:
     @property
     def num_columns(self) -> int:
         return max(row.num_cells for row in self.rows())
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        for row in self.rows():
+            yield from row.inflection_cells
 
     def rows(self):
         yield from self._rows
@@ -139,6 +158,10 @@ class Pane:
 class Row:
     has_content: bool
     num_cells: int
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        yield from ()
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
@@ -195,6 +218,10 @@ class ContentRow(Row):
 
     def cells(self):
         yield from self._cells
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        return (c for c in self.cells() if isinstance(c, InflectionCell))
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):

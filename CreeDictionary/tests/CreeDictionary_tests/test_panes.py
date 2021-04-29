@@ -99,6 +99,47 @@ def test_str_produces_parsable_result(component):
     assert stringified == str(parsed)
 
 
+def test_produces_fst_analysis_string(na_layout: ParadigmTemplate):
+    """
+    It should produce a valid FST analysis string.
+    """
+
+    lemma = "minôs"
+    expected_lines = {
+        # Basic
+        f"{lemma}+N+A+Sg",
+        f"{lemma}+N+A+Pl",
+        f"{lemma}+N+A+Obv",
+        f"{lemma}+N+A+Loc",
+        f"{lemma}+N+A+Distr",
+        # Diminutive
+        f"{lemma}+N+A+Der/Dim+N+A+Sg",
+        # Possession
+        f"{lemma}+N+A+Px1Sg+Sg",
+        f"{lemma}+N+A+Px1Sg+Pl",
+        f"{lemma}+N+A+Px1Sg+Obv",
+        f"{lemma}+N+A+Px2Sg+Sg",
+        f"{lemma}+N+A+Px2Sg+Pl",
+        f"{lemma}+N+A+Px2Sg+Obv",
+        f"{lemma}+N+A+Px3Sg+Obv",
+        f"{lemma}+N+A+Px1Pl+Sg",
+        f"{lemma}+N+A+Px1Pl+Pl",
+        f"{lemma}+N+A+Px1Pl+Obv",
+        f"{lemma}+N+A+Px12Pl+Sg",
+        f"{lemma}+N+A+Px12Pl+Pl",
+        f"{lemma}+N+A+Px12Pl+Obv",
+        f"{lemma}+N+A+Px2Pl+Sg",
+        f"{lemma}+N+A+Px2Pl+Pl",
+        f"{lemma}+N+A+Px2Pl+Obv",
+        f"{lemma}+N+A+Px3Pl+Obv",
+        f"{lemma}+N+A+Px4Sg/Pl+Obv",
+    }
+    raw_analyses = na_layout.generate_fst_analysis_string(lemma)
+    generated_analyses = raw_analyses.splitlines(keepends=False)
+    assert len(expected_lines) == len(generated_analyses)
+    assert expected_lines == set(generated_analyses)
+
+
 @pytest.fixture
 def na_layout_path(shared_datadir: Path) -> Path:
     """
@@ -108,6 +149,15 @@ def na_layout_path(shared_datadir: Path) -> Path:
     p = shared_datadir / "paradigm-layouts" / "NA.tsv"
     assert p.exists()
     return p
+
+
+@pytest.fixture
+def na_layout(na_layout_path: Path) -> ParadigmTemplate:
+    """
+    Returns the parsed NA layout.
+    """
+    with na_layout_path.open(encoding="UTF-8") as layout_file:
+        return ParadigmTemplate.load(layout_file)
 
 
 def count(it):
