@@ -147,7 +147,7 @@ def na_layout_path(shared_datadir: Path) -> Path:
     Return the path to the NA layout in the test fixture dir.
     NOTE: this is **NOT** the NA paradigm used in production!
     """
-    p = shared_datadir / "paradigm-layouts" / "NA.tsv"
+    p = shared_datadir / "paradigm-layouts" / "dynamic" / "NA.tsv"
     assert p.exists()
     return p
 
