@@ -307,8 +307,10 @@ class Cell:
             return RowLabel.parse(text)
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
-        else:
+        elif "${lemma}" in text:
             return InflectionCell.parse(text)
+        else:
+            return LiteralCell(text)
 
 
 class LiteralCell(Cell):

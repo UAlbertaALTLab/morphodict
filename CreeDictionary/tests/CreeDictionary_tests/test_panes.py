@@ -47,6 +47,23 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert na_paradigm_template.max_num_columns == 4
 
 
+def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
+    """
+    Test that the static layout for demonstrative pronouns can be parsed.
+    Note: the fixture was (sloppily) written by me, Eddie, and it is probably not
+    representative of the actual demonostrative pronoun paradigm we'll have on the
+    production site... buuuuuuuuut, it's useful as a test fixture!
+    """
+    with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:
+        pronoun_paradigm = ParadigmTemplate.load(layout_file)
+
+    assert count(pronoun_paradigm.panes) == 1
+
+    basic_pane = first(pronoun_paradigm.panes)
+    assert basic_pane.num_columns == 3
+    assert count(basic_pane.rows) == 4
+
+
 def test_dump_equal_to_file_on_disk(na_layout_path: Path):
     """
     Dumping the file should yield the same file, modulo a trailing newline.
@@ -161,8 +178,26 @@ def na_layout(na_layout_path: Path) -> ParadigmTemplate:
         return ParadigmTemplate.load(layout_file)
 
 
+@pytest.fixture
+def pronoun_paradigm_path(shared_datadir: Path) -> Path:
+    """
+    Return the path to the NA layout in the test fixture dir.
+    NOTE: this is **NOT** the NA paradigm used in production!
+    """
+    p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
+    assert p.exists()
+    return p
+
+
 def count(it):
     """
     Returns the number of items iterated in the paradigm
     """
     return sum(1 for _ in it)
+
+
+def first(it):
+    """
+    Returns the first element from the iterable.
+    """
+    return next(iter(it))
