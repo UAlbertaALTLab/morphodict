@@ -227,29 +227,30 @@ class ContentRow(Row):
     def __init__(self, cells: Iterable[Cell]):
         self._cells = tuple(cells)
 
+    @property
     def cells(self):
         yield from self._cells
 
     @property
+    def num_cells(self):
+        return len(self._cells)
+
+    @property
     def inflection_cells(self) -> Iterable[InflectionCell]:
-        return (c for c in self.cells() if isinstance(c, InflectionCell))
+        return (c for c in self.cells if isinstance(c, InflectionCell))
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
             return False
-        return all(a == b for a, b in zip_longest(self.cells(), other.cells()))
+        return all(a == b for a, b in zip_longest(self.cells, other.cells))
 
     def __str__(self):
-        return "\t".join(str(cell) for cell in self.cells())
+        return "\t".join(str(cell) for cell in self.cells)
 
     def __repr__(self):
         name = type(self).__qualname__
-        cells_repr = ", ".join(repr(cell) for cell in self.cells())
+        cells_repr = ", ".join(repr(cell) for cell in self.cells)
         return f"{name}([{cells_repr}])"
-
-    @property
-    def num_cells(self):
-        return len(self._cells)
 
 
 class HeaderRow(Row):
