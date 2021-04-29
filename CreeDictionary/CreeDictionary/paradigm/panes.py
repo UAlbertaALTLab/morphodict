@@ -172,7 +172,8 @@ class Row:
 
     @property
     def inflection_cells(self) -> Iterable[InflectionCell]:
-        yield from ()
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
@@ -265,6 +266,11 @@ class HeaderRow(Row):
     def __init__(self, tags):
         super().__init__()
         self._tags = tuple(tags)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionCell]:
+        # a header, by definition, has no inflections.
+        return ()
 
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
