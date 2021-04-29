@@ -31,11 +31,11 @@ class ParadigmTemplate:
         """
         How many columns are necessary for this entire paradigm?
         """
-        return max(pane.num_columns for pane in self.panes())
+        return max(pane.num_columns for pane in self.panes)
 
     @property
     def inflection_cells(self) -> Iterable[InflectionCell]:
-        for pane in self.panes():
+        for pane in self.panes:
             yield from pane.inflection_cells
 
     @cached_property
@@ -47,7 +47,8 @@ class ParadigmTemplate:
         lines = [inflection.analysis for inflection in self.inflection_cells]
         return string.Template("\n".join(lines))
 
-    def panes(self):
+    @property
+    def panes(self) -> Iterable[Pane]:
         yield from self._panes
 
     @classmethod
@@ -85,7 +86,7 @@ class ParadigmTemplate:
 
         pane_text = []
         num_columns = self.max_num_columns
-        for pane in self.panes():
+        for pane in self.panes:
             pane_text.append(pane.dumps(require_num_columns=num_columns))
 
         tabs = "\t" * (num_columns - 1)

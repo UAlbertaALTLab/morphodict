@@ -33,8 +33,8 @@ def test_parse_na_paradigm(na_layout_path: Path):
     with na_layout_path.open(encoding="UTF-8") as layout_file:
         na_paradigm_template = ParadigmTemplate.load(layout_file)
 
-    assert count(na_paradigm_template.panes()) == 3
-    basic_pane, diminutive_pane, possession_pane = na_paradigm_template.panes()
+    assert count(na_paradigm_template.panes) == 3
+    basic_pane, diminutive_pane, possession_pane = na_paradigm_template.panes
 
     assert basic_pane.header is None
     assert basic_pane.num_columns == 2
