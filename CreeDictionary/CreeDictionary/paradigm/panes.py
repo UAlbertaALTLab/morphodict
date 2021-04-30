@@ -4,16 +4,27 @@ Provides all classes for pane-based paradigms.
 
 from __future__ import annotations
 
+import logging
 import re
 import string
 from functools import cached_property
 from itertools import zip_longest
-from typing import Iterable, Optional, TextIO
+from typing import Iterable, Optional, TextIO, Collection
+
+from more_itertools import first
+
+logger = logging.getLogger(__name__)
 
 
 class ParseError(Exception):
     """
     Raised when there's an issue in parsing paradigm layouts.
+    """
+
+
+class ParadigmGenerationError(Exception):
+    """
+    Raised when there's some issue with generating/filling a paradigm.
     """
 
 
@@ -111,6 +122,39 @@ class ParadigmTemplate(Paradigm):
         application.
         """
         return self._fst_analysis_template.substitute(lemma=lemma)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> Paradigm:
+        """
+        Given a mapping from analysis to a collection of wordforms, returns a
+        paradigm with all its InflectionTemplate cells replaced with WordformCells.
+        """
+        panes = []
+        for pane in self.panes:
+            rows = []
+            for row in pane.rows:
+                if not row.has_content:
+                    rows.append(row)
+                    continue
+                cells = []
+                for cell in row.cells:
+                    if not cell.is_inflection:
+                        cells.append(cell)
+                        continue
+                    if not isinstance(cell, InflectionTemplate):
+                        raise AssertionError(f"I don't know how to fill a {cell}")
+                    if cell_forms := forms.get(cell.analysis):
+                        assert len(cell_forms) >= 1
+                        if len(cell_forms) > 1:
+                            logger.warning("Don't know how to output multiple "
+                                           "forms... yet")
+                        form = first(sorted(cell_forms))
+                        cells.append(WordformCell(form))
+                    else:
+                        raise ParadigmGenerationError("no form(s) provided for "
+                                                      f"analysis: {cell.analysis}")
+                rows.append(ContentRow(cells))
+            panes.append(Pane(rows))
+        return Paradigm(panes)
 
     def __str__(self):
         return self.dumps()
