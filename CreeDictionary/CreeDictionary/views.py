@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Literal
+from typing import Any, Dict, Literal, Union
 
 from API.models import Wordform
 from API.search import presentation, search_with_affixes
@@ -11,7 +11,10 @@ from django.views.decorators.http import require_GET
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
+from CreeDictionary.paradigm.filler import Row
 from CreeDictionary.paradigm.generation import generate_paradigm
+from CreeDictionary.paradigm.manager import default_paradigm_manager
+from CreeDictionary.paradigm.panes import Paradigm
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
@@ -27,7 +30,8 @@ IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 def lemma_details(request, lemma_text: str):
     """
-    Head word detail page. Will render a paradigm, if applicable. Fall back to search page if no lemma is found or multiple lemmas are found
+    Head word detail page. Will render a paradigm, if applicable. Fallback to search
+    page if no head is found or multiple heads are found.
 
     Possible query params:
 
@@ -55,6 +59,14 @@ def lemma_details(request, lemma_text: str):
 
     lemma = lemma.get()
     paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
+
+    # TODO: make this use the ParadigmManager exclusively
+    paradigm: Union[Paradigm, list[list[Row]]]
+    if new_style_paradigm := default_paradigm_manager().paradigm_for(lemma.analysis):
+        paradigm = new_style_paradigm
+    else:
+        paradigm = generate_paradigm(lemma, paradigm_size)
+
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -64,7 +76,7 @@ def lemma_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=generate_paradigm(lemma, paradigm_size),
+        paradigm_tables=paradigm,
     )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
