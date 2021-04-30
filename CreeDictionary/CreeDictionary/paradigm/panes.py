@@ -150,7 +150,7 @@ class ParadigmTemplate(Paradigm):
                         continue
                     if not isinstance(cell, InflectionTemplate):
                         raise AssertionError(f"I don't know how to fill a {cell}")
-                    _fill_cell(cell, cells, forms)
+                    cells.append(cell.fill_one(forms))
                 rows.append(ContentRow(cells))
             panes.append(Pane(rows))
         return Paradigm(panes)
@@ -449,6 +449,23 @@ class InflectionTemplate(Cell):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionTemplate(text)
 
+    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
+        """
+        Return a single WordformCell, given the fillable forms.
+        """
+
+        cell_forms = forms.get(self.analysis)
+        if cell_forms is None:
+            raise ParadigmGenerationError(
+                "no form(s) provided for " f"analysis: {self.analysis}"
+            )
+
+        assert len(cell_forms) >= 1
+        if len(cell_forms) > 1:
+            logger.warning("Don't know how to output multiple forms... yet")
+        form = first(sorted(cell_forms))
+        return WordformCell(form)
+
 
 class SingletonMixin:
     """
@@ -549,19 +566,6 @@ def looks_like_analysis_string(text: str) -> bool:
     Returns true if the cell might be analysis.
     """
     return "${lemma}" in text or "+" in text
-
-
-def _fill_cell(cell, cells, forms):
-    if cell_forms := forms.get(cell.analysis):
-        assert len(cell_forms) >= 1
-        if len(cell_forms) > 1:
-            logger.warning("Don't know how to output multiple " "forms... yet")
-        form = first(sorted(cell_forms))
-        cells.append(WordformCell(form))
-    else:
-        raise ParadigmGenerationError(
-            "no form(s) provided for " f"analysis: {cell.analysis}"
-        )
 
 
 def pairs(seq):
