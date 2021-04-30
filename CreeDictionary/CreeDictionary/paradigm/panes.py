@@ -134,13 +134,7 @@ class ParadigmTemplate(Paradigm):
         Given a mapping from analysis to a collection of wordforms, returns a
         paradigm with all its InflectionTemplate cells replaced with WordformCells.
         """
-        panes = []
-        for pane in self.panes:
-            rows = []
-            for row in pane.rows:
-                rows.append(row.fill(forms))
-            panes.append(Pane(rows))
-        return Paradigm(panes)
+        return Paradigm(pane.fill(forms) for pane in self.panes)
 
     def __str__(self):
         return self.dumps()
@@ -208,6 +202,9 @@ class Pane:
 
     def contains_wordform(self, wordform: str) -> bool:
         return any(row.contains_wordform(wordform) for row in self.rows)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> Pane:
+        return Pane(row.fill(forms) for row in self.rows)
 
 
 class Row:
