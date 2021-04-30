@@ -319,7 +319,7 @@ class Cell:
 
 class LiteralCell(Cell):
     """
-    A filled-in inflection.
+    A cell containing a displayable wordform.
 
     When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
     called, converting all its InflectionCell instances to LiteralCell instances.
