@@ -11,7 +11,10 @@ from CreeDictionary.paradigm.panes import Paradigm, ParadigmTemplate
 
 class ParadigmManager:
     """
-    Mediates access to paradigms layouts/templates.
+    Mediates access to paradigms layouts.
+
+    Loads layouts from the filesystem and can fill the layout with results from a
+    (normative/strict) generator FST.
     """
 
     def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
@@ -50,6 +53,7 @@ class ParadigmManager:
 @cache
 def default_paradigm_manager() -> ParadigmManager:
     """
-    Returns the ParadigmManager instance that loads layouts from the res (resource) directory
+    Returns the ParadigmManager instance that loads layouts and FST from the res
+    (resource) directory.
     """
     return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator)

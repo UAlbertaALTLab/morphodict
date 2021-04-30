@@ -61,8 +61,9 @@ class Paradigm:
 # TODO: rename to ParadigmLayout -- in order to use consistent terminology
 class ParadigmTemplate(Paradigm):
     """
-    Template for a particular word class. The template contains analyses with
-    placeholders that can be filled at runtime to generate a displayable paradigm.
+    Layout for a particular word class. The layout contains placeholders
+    (InflectionTemplate) that can be filled at runtime to generate a paradigm that
+    can be rendered and shown to the user.
     """
 
     @property
@@ -82,7 +83,7 @@ class ParadigmTemplate(Paradigm):
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmTemplate:
         """
-        Load a paradigm template from a file.
+        Load a paradigm layout from a file.
         """
         return cls.loads(layout_file.read())
 
@@ -109,7 +110,7 @@ class ParadigmTemplate(Paradigm):
 
     def dumps(self):
         """
-        Export the template as a string. This string can be by .loads().
+        Export the layout as a string. This string can be by .loads().
         """
 
         pane_text = []
@@ -428,7 +429,9 @@ class WordformCell(Cell):
 
     @classmethod
     def parse(cls, text: str):
-        raise AssertionError("A literal cell can never be parsed from a template")
+        raise AssertionError(
+            "A literal wordform can never be parsed from directly " "from a layout"
+        )
 
 
 class InflectionTemplate(Cell):
@@ -463,12 +466,17 @@ class InflectionTemplate(Cell):
 
         cell_forms = forms.get(self.analysis)
         if cell_forms is None:
+            # TODO: this might actually be okay?
+            # It could just be a missing form (accidental gap/lacuna).
+            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
             raise ParadigmGenerationError(
                 "no form(s) provided for " f"analysis: {self.analysis}"
             )
 
         assert len(cell_forms) >= 1
         if len(cell_forms) > 1:
+            # TODO: create a CompoundRow class that can handle multiple forms per
+            # inflection.
             logger.warning("Don't know how to output multiple forms... yet")
         form = first(sorted(cell_forms))
         return WordformCell(form)
@@ -491,7 +499,10 @@ class SingletonMixin:
 
 class MissingForm(Cell, SingletonMixin):
     """
-    A missing form from the paradigm that should show up in the template as a placeholder.
+    A missing form from the paradigm that should show up in the paradigm as a
+    placeholder. Missing forms can either be hard-coded or the generator may simply
+    not be able to generate a form for a given analysis.
+
     Note: a missing form is a valid position in the paradigm, however, we display that
     this form cannot exist. This is not the same as an empty cell, which is used as a
     spacer.

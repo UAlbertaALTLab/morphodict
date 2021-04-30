@@ -11,7 +11,7 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
     assert paradigm is not None
 
     # I don't know how many panes there will be, but the first should DEFINITELY have
-    # the singular personal pronouns that folks learn in basic nêhiyawêwin.
+    # the singular personal pronouns that folks learn in basic nêhiyawêwin class.
     assert ilen(paradigm.panes) >= 1
     pane = first(paradigm.panes)
     assert pane.contains_wordform("niya")

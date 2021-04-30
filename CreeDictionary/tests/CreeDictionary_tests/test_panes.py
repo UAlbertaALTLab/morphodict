@@ -85,12 +85,15 @@ def test_singleton_classes(cls):
 
 
 def test_wordform_cell():
+    """
+    WordformCell should not act like an InflectionTemplate.
+    """
     wordform = "ôma"
     cell = WordformCell(wordform)
 
     assert cell.contains_wordform(wordform)
 
-    # It cannot be filled — it's already filled.
+    # It cannot be filled in — it's already filled in!
     with pytest.raises(AssertionError):
         cell.fill_one({})
 
