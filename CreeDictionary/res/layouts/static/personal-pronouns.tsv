@@ -1,10 +1,9 @@
-	"Personal pronouns"
-	: "One"
-"I/me/my"	niya+Pron+Pers+1Sg
-"you (one)/your"	kiya+Pron+Pers+2Sg
-"s/he/it/him/her/his/her/its"	wiya+Pron+Pers+3Sg
-	: "Many"
-"we (but not you)/us/our"	niyanân+Pron+Pers+1Pl
-"you and we/us/our"	kiyânaw+Pron+Pers+12Pl
-"you (all)/your"	kiyawâw+Pron+Pers+2Pl
-"they/them/their"	wiyawâw+Pron+Pers+3Pl
+	| Sg
+_ 1Sg	niya+Pron+Pers+1Sg
+_ 2Sg	kiya+Pron+Pers+2Sg
+_ 3Sg	wiya+Pron+Pers+3Sg
+	| Pl
+_ 1Pl	niyanân+Pron+Pers+1Pl
+_ 12Pl	kiyânaw+Pron+Pers+12Pl
+_ 2Pl	kiyawâw+Pron+Pers+2Pl
+_ 3Pl	wiyawâw+Pron+Pers+3Pl
