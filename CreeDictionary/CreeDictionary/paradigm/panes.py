@@ -150,18 +150,7 @@ class ParadigmTemplate(Paradigm):
                         continue
                     if not isinstance(cell, InflectionTemplate):
                         raise AssertionError(f"I don't know how to fill a {cell}")
-                    if cell_forms := forms.get(cell.analysis):
-                        assert len(cell_forms) >= 1
-                        if len(cell_forms) > 1:
-                            logger.warning(
-                                "Don't know how to output multiple " "forms... yet"
-                            )
-                        form = first(sorted(cell_forms))
-                        cells.append(WordformCell(form))
-                    else:
-                        raise ParadigmGenerationError(
-                            "no form(s) provided for " f"analysis: {cell.analysis}"
-                        )
+                    _fill_cell(cell, cells, forms)
                 rows.append(ContentRow(cells))
             panes.append(Pane(rows))
         return Paradigm(panes)
@@ -560,6 +549,19 @@ def looks_like_analysis_string(text: str) -> bool:
     Returns true if the cell might be analysis.
     """
     return "${lemma}" in text or "+" in text
+
+
+def _fill_cell(cell, cells, forms):
+    if cell_forms := forms.get(cell.analysis):
+        assert len(cell_forms) >= 1
+        if len(cell_forms) > 1:
+            logger.warning("Don't know how to output multiple " "forms... yet")
+        form = first(sorted(cell_forms))
+        cells.append(WordformCell(form))
+    else:
+        raise ParadigmGenerationError(
+            "no form(s) provided for " f"analysis: {cell.analysis}"
+        )
 
 
 def pairs(seq):
