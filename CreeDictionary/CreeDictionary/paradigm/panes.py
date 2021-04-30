@@ -138,15 +138,7 @@ class ParadigmTemplate(Paradigm):
         for pane in self.panes:
             rows = []
             for row in pane.rows:
-                if not row.has_content:
-                    rows.append(row)
-                    continue
-                if not isinstance(row, ContentRow):
-                    raise AssertionError("This should be a content row...")
-                cells = []
-                for cell in row.cells:
-                    cells.append(cell.fill_one(forms))
-                rows.append(ContentRow(cells))
+                rows.append(row.fill(forms))
             panes.append(Pane(rows))
         return Paradigm(panes)
 
@@ -251,6 +243,13 @@ class Row:
     def contains_wordform(self, wordform: str) -> bool:
         raise NotImplementedError
 
+    def fill(self, forms: dict[str, Collection[str]]) -> Row:
+        if not self.has_content:
+            # Just labels; can return ourselves verbatim
+            return self
+        # Subclass must override this (i.e., ContentRow)
+        raise NotImplementedError
+
     @staticmethod
     def parse(text: str) -> Row:
         if text.startswith("# "):
@@ -297,6 +296,9 @@ class ContentRow(Row):
 
     def contains_wordform(self, wordform: str) -> bool:
         return any(cell.contains_wordform(wordform) for cell in self.cells)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> ContentRow:
+        return ContentRow(cell.fill_one(forms) for cell in self.cells)
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
