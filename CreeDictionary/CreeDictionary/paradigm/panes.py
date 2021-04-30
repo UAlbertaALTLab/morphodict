@@ -362,7 +362,7 @@ class InflectionCell(Cell):
 
     def __init__(self, analysis: str):
         self.analysis = analysis
-        assert "${lemma}" in analysis or "+" in analysis
+        assert looks_like_analysis_string(analysis)
 
     def __eq__(self, other) -> bool:
         if isinstance(other, InflectionCell):
@@ -374,7 +374,7 @@ class InflectionCell(Cell):
 
     @staticmethod
     def parse(text: str) -> InflectionCell:
-        if "${lemma}" not in text and "+" not in text:
+        if not looks_like_analysis_string(text):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionCell(text)
 
@@ -471,6 +471,13 @@ class ColumnLabel(BaseLabelCell):
 
     label_for = "column"
     prefix = "|"
+
+
+def looks_like_analysis_string(text: str) -> bool:
+    """
+    Returns true if the cell might be analysis.
+    """
+    return "${lemma}" in text or "+" in text
 
 
 def pairs(seq):
