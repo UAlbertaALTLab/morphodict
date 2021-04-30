@@ -8,7 +8,6 @@ import pytest
 from more_itertools import first
 from more_itertools import ilen as count
 
-
 from CreeDictionary.paradigm.panes import (
     ColumnLabel,
     ContentRow,
@@ -83,6 +82,21 @@ def test_singleton_classes(cls):
     """
     assert cls() is cls()
     assert cls() == cls()
+
+
+def test_wordform_cell():
+    wordform = "ôma"
+    cell = WordformCell(wordform)
+
+    assert cell.contains_wordform(wordform)
+
+    # It cannot be filled — it's already filled.
+    with pytest.raises(AssertionError):
+        cell.fill_one({})
+
+    # It should never be parsed from a layout
+    with pytest.raises(AssertionError):
+        WordformCell.parse(wordform)
 
 
 def sample_pane():

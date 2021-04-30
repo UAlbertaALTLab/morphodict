@@ -387,7 +387,7 @@ class Cell:
             return self
         # This should be overridden by subclasses.
         # Namely, InflectionTemplate should override this.
-        raise AssertionError(f"I don't know how to fill {self}")
+        raise NotImplementedError
 
 
 class WordformCell(Cell):
@@ -410,6 +410,9 @@ class WordformCell(Cell):
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        raise AssertionError(f"Cannot fill a cell that already has content: {self}")
 
     def __str__(self) -> str:
         return self.inflection
