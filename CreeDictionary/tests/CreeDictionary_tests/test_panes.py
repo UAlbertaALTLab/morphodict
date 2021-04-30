@@ -5,6 +5,9 @@ Test parsing panes.
 from pathlib import Path
 
 import pytest
+from more_itertools import first
+from more_itertools import ilen as count
+
 
 from CreeDictionary.paradigm.panes import (
     ColumnLabel,
@@ -189,17 +192,3 @@ def pronoun_paradigm_path(shared_datadir: Path) -> Path:
     p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
     assert p.exists()
     return p
-
-
-def count(it):
-    """
-    Returns the number of items iterated in the paradigm
-    """
-    return sum(1 for _ in it)
-
-
-def first(it):
-    """
-    Returns the first element from the iterable.
-    """
-    return next(iter(it))
