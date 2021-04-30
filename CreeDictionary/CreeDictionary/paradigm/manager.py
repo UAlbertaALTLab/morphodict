@@ -1,7 +1,10 @@
-from CreeDictionary.paradigm.panes import ParadigmTemplate, Paradigm
+from pathlib import Path
+from typing import Optional
+
 from shared import expensive
 from utils import shared_res_dir
-from pathlib import Path
+
+from CreeDictionary.paradigm.panes import Paradigm, ParadigmTemplate
 
 
 class ParadigmManager:
@@ -14,7 +17,7 @@ class ParadigmManager:
         self._analysis_to_layout: dict[str, ParadigmTemplate] = {}
         self._load_static_from(shared_res_dir / "layouts" / "static")
 
-    def paradigm_for(self, analysis: str) -> Paradigm:
+    def paradigm_for(self, analysis: str) -> Optional[Paradigm]:
         """
         Given an analysis, returns its paradigm.
         """
@@ -37,6 +40,8 @@ class ParadigmManager:
                 self._analysis_to_layout[inflection.analysis] = layout
 
     def _inflect(self, layout: ParadigmTemplate) -> Paradigm:
-        analyses = layout.generate_fst_analysis_string(lemma="").splitlines(keepends=False)
+        analyses = layout.generate_fst_analysis_string(lemma="").splitlines(
+            keepends=False
+        )
         forms = expensive.strict_generator.bulk_lookup(analyses)
         return layout.fill(forms)

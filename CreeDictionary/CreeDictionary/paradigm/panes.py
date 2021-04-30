@@ -9,7 +9,7 @@ import re
 import string
 from functools import cached_property
 from itertools import zip_longest
-from typing import Iterable, Optional, TextIO, Collection
+from typing import Collection, Iterable, Optional, TextIO
 
 from more_itertools import first
 
@@ -135,6 +135,8 @@ class ParadigmTemplate(Paradigm):
                 if not row.has_content:
                     rows.append(row)
                     continue
+                if not isinstance(row, ContentRow):
+                    raise AssertionError("This should be a content row...")
                 cells = []
                 for cell in row.cells:
                     if not cell.is_inflection:
@@ -145,13 +147,15 @@ class ParadigmTemplate(Paradigm):
                     if cell_forms := forms.get(cell.analysis):
                         assert len(cell_forms) >= 1
                         if len(cell_forms) > 1:
-                            logger.warning("Don't know how to output multiple "
-                                           "forms... yet")
+                            logger.warning(
+                                "Don't know how to output multiple " "forms... yet"
+                            )
                         form = first(sorted(cell_forms))
                         cells.append(WordformCell(form))
                     else:
-                        raise ParadigmGenerationError("no form(s) provided for "
-                                                      f"analysis: {cell.analysis}")
+                        raise ParadigmGenerationError(
+                            "no form(s) provided for " f"analysis: {cell.analysis}"
+                        )
                 rows.append(ContentRow(cells))
             panes.append(Pane(rows))
         return Paradigm(panes)
