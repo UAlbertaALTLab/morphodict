@@ -97,8 +97,8 @@ def sample_pane():
     [
         EmptyCell(),
         MissingForm(),
-        InflectionCell("${lemma}"),
-        LiteralCell("ôma"),
+        InflectionCell("${lemma}+N+A+Sg"),
+        InflectionCell("ôma+Pron+Dem+Prox+I+Sg"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),

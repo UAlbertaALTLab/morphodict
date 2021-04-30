@@ -313,8 +313,6 @@ class Cell:
             return RowLabel.parse(text)
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
-        elif "${lemma}" in text:
-            return InflectionCell.parse(text)
         else:
             return LiteralCell(text)
 
@@ -323,11 +321,13 @@ class LiteralCell(Cell):
     """
     A filled-in inflection.
 
-    How these come into being:
-     - in a **dynamic paradigm**, the ParadigmTemplate.generate() is called,
-       converting all InflectionCell instances to LiteralCell instances.
-     - in a **static paradigm**, no generation is needed; all inflections are already
-       LiteralCells  -- they are hard-coded into the template.
+    When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
+    called, converting all its InflectionCell instances to LiteralCell instances.
+
+    How this differs between **static** and **dynamic** paradigms:
+     - **static** paradigms still have InflectionCell instances; however, an entire
+       static paradigm can be filled once and used every subsequent time.
+     - **dynamic** paradigms must
     """
 
     is_inflection = True
@@ -349,12 +349,7 @@ class LiteralCell(Cell):
 
     @classmethod
     def parse(cls, text: str):
-        if text.startswith("#_|"):
-            raise ParseError(f"Refusing to parse a label as a literal: {text}")
-        if "{lemma}" in text:
-            raise ParseError(f"Refusing to parse an inflection as a literal: {text}")
-
-        return cls(text)
+        raise AssertionError("A literal cell can never be parsed from a template")
 
 
 # TODO: rename to InflectionTemplate?
