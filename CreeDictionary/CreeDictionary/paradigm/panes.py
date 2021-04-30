@@ -314,7 +314,7 @@ class Cell:
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
         else:
-            return InflectionTemplate(text)
+            return InflectionTemplate.parse(text)
 
 
 class WordformCell(Cell):
