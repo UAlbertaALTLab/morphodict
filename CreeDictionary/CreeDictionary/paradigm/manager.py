@@ -31,11 +31,8 @@ class ParadigmManager:
         Loads all .tsv files in the path as "static" paradigms.
         """
 
-        layouts = []
-
         for layout_file in path.glob("*.tsv"):
             layout = ParadigmTemplate.loads(layout_file.read_text(encoding="UTF-8"))
-            layouts.append(layout)
 
             for inflection in layout.inflection_cells:
                 self._analysis_to_layout[inflection.analysis] = layout
