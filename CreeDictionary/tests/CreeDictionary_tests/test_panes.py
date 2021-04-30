@@ -12,11 +12,11 @@ from CreeDictionary.paradigm.panes import (
     EmptyCell,
     HeaderRow,
     InflectionCell,
-    LiteralCell,
     MissingForm,
     Pane,
     ParadigmTemplate,
     RowLabel,
+    WordformCell,
 )
 
 

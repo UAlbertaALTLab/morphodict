@@ -317,12 +317,12 @@ class Cell:
             return InflectionCell(text)
 
 
-class LiteralCell(Cell):
+class WordformCell(Cell):
     """
     A cell containing a displayable wordform.
 
     When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
-    called, converting all its InflectionCell instances to LiteralCell instances.
+    called, converting all its InflectionCell instances to WordformCell instances.
 
     How this differs between **static** and **dynamic** paradigms:
      - **static** paradigms still have InflectionCell instances; however, an entire
@@ -339,7 +339,7 @@ class LiteralCell(Cell):
         return self.inflection
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, LiteralCell):
+        if isinstance(other, WordformCell):
             return self.inflection == other.inflection
         return False
 
