@@ -1,20 +1,19 @@
-	"Demonstrative pronouns"
-	: "like: nâpêw, iskwêwak"
-	: "One"
-"this"	awa+Pron+Dem+Prox+A+Sg
-"that"	awa+Pron+Dem+Med+A+Sg
-"that yonder"	awa+Pron+Dem+Dist+A+Sg
-	"Many"
-"these"	awa+Pron+Dem+Prox+A+Pl
-"those"	awa+Pron+Dem+Med+A+Pl
-"those yonder"	awa+Pron+Dem+Dist+A+Pl
+	| A | Sg
+_ Sg _ Prox	awa+Pron+Dem+Prox+A+Sg
+_ Sg _ Med	awa+Pron+Dem+Med+A+Sg
+_ Sg _ Dist	awa+Pron+Dem+Dist+A+Sg
 	
-	: "like: cimân, wâwa"
-	: "One"
-"this"	ôma+Pron+Dem+Prox+I+Sg
-"that"	ôma+Pron+Dem+Med+I+Sg
-"that yonder"	ôma+Pron+Dem+Dist+I+Sg
-	"Many"
-"these"	ôma+Pron+Dem+Prox+I+Pl
-"those"	ôma+Pron+Dem+Med+I+Pl
-"those yonder"	ôma+Pron+Dem+Dist+I+Pl
+	| A | Pl
+_ Sg _ Prox	awa+Pron+Dem+Prox+A+Pl
+_ Sg _ Med	awa+Pron+Dem+Med+A+Pl
+_ Sg _ Dist	awa+Pron+Dem+Dist+A+Pl
+	
+	| I | Sg
+_ Pl _ Prox	ôma+Pron+Dem+Prox+I+Sg
+_ Pl _ Med	ôma+Pron+Dem+Med+I+Sg
+_ Pl _ Dist	ôma+Pron+Dem+Dist+I+Sg
+	
+	| I | Pl
+_ Pl _ Prox	ôma+Pron+Dem+Prox+I+Pl
+_ Pl _ Med	ôma+Pron+Dem+Med+I+Pl
+_ Pl _ Dist	ôma+Pron+Dem+Dist+I+Pl
