@@ -30,7 +30,7 @@ describe('I want to search for a Cree word and see its inflectional paradigm', (
     })
   }
 
-  it.only('should display the paradigm for personal pronouns', () => {
+  it('should display the paradigm for personal pronouns', () => {
     const head = 'niya'
     const inflections = ['kiya', 'wiya']
 
