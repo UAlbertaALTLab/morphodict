@@ -11,7 +11,7 @@ from CreeDictionary.paradigm.panes import (
     ContentRow,
     EmptyCell,
     HeaderRow,
-    InflectionCell,
+    InflectionTemplate,
     MissingForm,
     Pane,
     ParadigmTemplate,
@@ -87,7 +87,9 @@ def sample_pane():
         [
             HeaderRow(("Der/Dim",)),
             ContentRow([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Obv"])]),
-            ContentRow([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+")]),
+            ContentRow(
+                [RowLabel("1Sg"), MissingForm(), InflectionTemplate("${lemma}+")]
+            ),
         ]
     )
 
@@ -97,13 +99,13 @@ def sample_pane():
     [
         EmptyCell(),
         MissingForm(),
-        InflectionCell("${lemma}+N+A+Sg"),
-        InflectionCell("ôma+Pron+Dem+Prox+I+Sg"),
+        InflectionTemplate("${lemma}+N+A+Sg"),
+        InflectionTemplate("ôma+Pron+Dem+Prox+I+Sg"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),
         ContentRow([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
-        ContentRow([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+Pl")]),
+        ContentRow([RowLabel("1Sg"), MissingForm(), InflectionTemplate("${lemma}+Pl")]),
         sample_pane(),
     ],
 )

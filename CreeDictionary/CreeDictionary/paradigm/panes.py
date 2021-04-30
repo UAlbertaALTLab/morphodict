@@ -34,7 +34,7 @@ class ParadigmTemplate:
         return max(pane.num_columns for pane in self.panes)
 
     @property
-    def inflection_cells(self) -> Iterable[InflectionCell]:
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
         for pane in self.panes:
             yield from pane.inflection_cells
 
@@ -127,7 +127,7 @@ class Pane:
         return max(row.num_cells for row in self.rows)
 
     @property
-    def inflection_cells(self) -> Iterable[InflectionCell]:
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
         for row in self.rows:
             yield from row.inflection_cells
 
@@ -171,7 +171,7 @@ class Row:
     num_cells: int
 
     @property
-    def inflection_cells(self) -> Iterable[InflectionCell]:
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
         # subclasses MUST implement this somehow
         raise NotImplementedError
 
@@ -237,8 +237,8 @@ class ContentRow(Row):
         return len(self._cells)
 
     @property
-    def inflection_cells(self) -> Iterable[InflectionCell]:
-        return (c for c in self.cells if isinstance(c, InflectionCell))
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        return (c for c in self.cells if isinstance(c, InflectionTemplate))
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
@@ -268,7 +268,7 @@ class HeaderRow(Row):
         self._tags = tuple(tags)
 
     @property
-    def inflection_cells(self) -> Iterable[InflectionCell]:
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
         # a header, by definition, has no inflections.
         return ()
 
@@ -314,7 +314,7 @@ class Cell:
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
         else:
-            return InflectionCell(text)
+            return InflectionTemplate(text)
 
 
 class WordformCell(Cell):
@@ -322,10 +322,10 @@ class WordformCell(Cell):
     A cell containing a displayable wordform.
 
     When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
-    called, converting all its InflectionCell instances to WordformCell instances.
+    called, converting all its InflectionTemplate instances to WordformCell instances.
 
     How this differs between **static** and **dynamic** paradigms:
-     - **static** paradigms still have InflectionCell instances; however, an entire
+     - **static** paradigms still have InflectionTemplate instances; however, an entire
        static paradigm can be filled once and be reused every subsequent time.
      - **dynamic** paradigms must be filled for every unique FST lemma.
     """
@@ -352,8 +352,7 @@ class WordformCell(Cell):
         raise AssertionError("A literal cell can never be parsed from a template")
 
 
-# TODO: rename to InflectionTemplate?
-class InflectionCell(Cell):
+class InflectionTemplate(Cell):
     """
     A cell that contains an inflection.
     """
@@ -365,7 +364,7 @@ class InflectionCell(Cell):
         assert looks_like_analysis_string(analysis)
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, InflectionCell):
+        if isinstance(other, InflectionTemplate):
             return self.analysis == other.analysis
         return False
 
@@ -373,10 +372,10 @@ class InflectionCell(Cell):
         return self.analysis
 
     @staticmethod
-    def parse(text: str) -> InflectionCell:
+    def parse(text: str) -> InflectionTemplate:
         if not looks_like_analysis_string(text):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
-        return InflectionCell(text)
+        return InflectionTemplate(text)
 
 
 class SingletonMixin:
