@@ -62,7 +62,11 @@
 
     <section id="paradigm">
       {% if paradigm_tables %}
-        {% include './components/paradigm.html' %}
+        {% if paradigm_tables.uses_pane_based_layout %}
+          {% include './components/paradigm-with-panes.html' with paradigm=paradigm_tables %}
+        {% else %}
+          {% include './components/paradigm.html' %}
+        {% endif %}
       {% endif %}
     </section>
   </article>
