@@ -112,7 +112,7 @@ class Result:
 
     def __post_init__(self):
         if all(
-            getattr(self, field.name) == None
+            getattr(self, field.name) in (None, [])
             for field in dataclasses.fields(Result)
             if field.init and field.name != "wordform"
         ):

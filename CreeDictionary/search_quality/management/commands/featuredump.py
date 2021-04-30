@@ -1,7 +1,7 @@
 import json
 import random
 from argparse import ArgumentParser, BooleanOptionalAction
-from contextlib import closing, contextmanager
+from contextlib import contextmanager
 
 import sys
 from django.core.management import BaseCommand

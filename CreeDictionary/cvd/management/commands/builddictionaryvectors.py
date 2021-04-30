@@ -1,5 +1,7 @@
+import json
 import logging
 from argparse import ArgumentParser
+from contextlib import contextmanager
 from os import fspath
 
 from django.core.management import BaseCommand
@@ -25,6 +27,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--output-file", default=shared_vector_model_dir / "definitions.kv"
         )
+        parser.add_argument("--debug-output-file")
 
     def handle(self, *args, **options):
         definitions = Definition.objects.filter(
@@ -40,16 +43,51 @@ class Command(BaseCommand):
 
         unknown_words = set()
 
-        for d in tqdm(definitions.iterator(), total=count):
-            keys = extract_keyed_words(d.text, news_vectors, unknown_words)
-            if keys:
-                vec_sum = vector_for_keys(news_vectors, keys)
+        with debug_output_file(options["debug_output_file"]) as debug_output:
 
-                definition_vector_keys.append(definition_to_cvd_key(d))
-                definition_vector_vectors.append(vec_sum)
+            for d in tqdm(definitions.iterator(), total=count):
+                keys = extract_keyed_words(d.text, news_vectors, unknown_words)
+                debug_output(
+                    json.dumps(
+                        {
+                            "definition": d.text,
+                            "wordform_text": d.wordform.text,
+                            "extracted_keys": keys,
+                        },
+                        ensure_ascii=False,
+                    )
+                )
+                if keys:
+                    vec_sum = vector_for_keys(news_vectors, keys)
 
-        definition_vectors = KeyedVectors(vector_size=news_vectors.vector_size)
-        definition_vectors.add_vectors(
-            definition_vector_keys, definition_vector_vectors
-        )
-        definition_vectors.save(fspath(options["output_file"]))
+                    definition_vector_keys.append(definition_to_cvd_key(d))
+                    definition_vector_vectors.append(vec_sum)
+
+            definition_vectors = KeyedVectors(vector_size=news_vectors.vector_size)
+            definition_vectors.add_vectors(
+                definition_vector_keys, definition_vector_vectors
+            )
+            definition_vectors.save(fspath(options["output_file"]))
+
+
+@contextmanager
+def debug_output_file(path):
+    """Context manager that returns a print function, or no-op if no path given'"""
+
+    if path:
+        file = open(path, "w")
+        try:
+
+            def log(*args, **kwargs):
+                print(*args, **kwargs, file=file)
+
+            yield log
+        finally:
+            file.close
+
+    else:
+
+        def noop(*args, **kwargs):
+            pass
+
+        yield noop

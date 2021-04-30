@@ -29,13 +29,12 @@ def do_cvd_search(search_run: SearchRun):
     ]
     similarities = [similarity for cvd_key, similarity in closest]
 
-    # Get all wordforms in one big OR query
+    # Get all possible wordforms in one big query. We will select more than we
+    # need, then filter it down later, but this will have to do until we get
+    # better homonym handling.
     wordform_results = Wordform.objects.filter(
-        reduce(
-            operator.or_,
-            (Q(**q) for q in wordform_queries),
-        )
-    ).order_by("text")
+        text__in=set(wf["text"] for wf in wordform_queries)
+    )
 
     # Now match back up
     wordforms_by_text = {

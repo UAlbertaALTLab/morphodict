@@ -42,7 +42,8 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
                 # This is just a disambiguator so we can have multiple definitions
                 # for the same word in a vector file without conflict.
                 d.id,
-            ]
+            ],
+            ensure_ascii=False,
         ),
     )
 
