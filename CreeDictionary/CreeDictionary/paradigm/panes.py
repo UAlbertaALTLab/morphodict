@@ -18,15 +18,20 @@ class ParseError(Exception):
 
 
 class Paradigm:
+    """
+    A paradigm is intended to display a collection of wordforms related to a single
+    lexeme, or a table of related wordforms.
+
+    A paradigm in this project is composed of multiple **panes**. Each pane itself is a
+    table, organized by **rows**, and then each row contains **cells**.
+    """
+
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
 
-
-class ParadigmTemplate(Paradigm):
-    """
-    Template for a particular word class. The template contains analyses with
-    placeholders that can be filled at runtime to generate a displayable paradigm.
-    """
+    @property
+    def panes(self) -> Iterable[Pane]:
+        yield from self._panes
 
     @property
     def max_num_columns(self):
@@ -34,6 +39,14 @@ class ParadigmTemplate(Paradigm):
         How many columns are necessary for this entire paradigm?
         """
         return max(pane.num_columns for pane in self.panes)
+
+
+# TODO: rename to ParadigmLayout -- in order to use consistent terminology
+class ParadigmTemplate(Paradigm):
+    """
+    Template for a particular word class. The template contains analyses with
+    placeholders that can be filled at runtime to generate a displayable paradigm.
+    """
 
     @property
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
@@ -48,10 +61,6 @@ class ParadigmTemplate(Paradigm):
         """
         lines = [inflection.analysis for inflection in self.inflection_cells]
         return string.Template("\n".join(lines))
-
-    @property
-    def panes(self) -> Iterable[Pane]:
-        yield from self._panes
 
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmTemplate:
