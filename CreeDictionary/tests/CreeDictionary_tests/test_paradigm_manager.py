@@ -6,15 +6,23 @@ from more_itertools import first, ilen
 from CreeDictionary.paradigm.manager import ParadigmManager
 
 
-def test_generates_demonstrative_paradigm(paradigm_manager) -> None:
+def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
     paradigm = paradigm_manager.paradigm_for("niya+Pron+Pers+1Sg")
     assert paradigm is not None
-    assert paradigm.contains_wordform("niya")
-    assert paradigm.contains_wordform("kiya")
-    assert paradigm.contains_wordform("wiya")
 
-    assert ilen(paradigm.panes) == 1
+    # I don't know how many panes there will be, but the first should DEFINITELY have
+    # the singular personal pronouns that folks learn in basic nêhiyawêwin.
+    assert ilen(paradigm.panes) >= 1
     pane = first(paradigm.panes)
+    assert pane.contains_wordform("niya")
+    assert pane.contains_wordform("kiya")
+    assert pane.contains_wordform("wiya")
+
+    # The rest of the paradigm should contain the remaining pronouns
+    assert paradigm.contains_wordform("niyanân")
+    assert paradigm.contains_wordform("kiyânaw")
+    assert paradigm.contains_wordform("kiyawâw")
+    assert paradigm.contains_wordform("wiyawâw")
 
 
 @pytest.fixture
