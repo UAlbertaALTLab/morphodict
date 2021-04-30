@@ -2,6 +2,7 @@ from functools import cache
 from pathlib import Path
 from typing import Optional
 
+from hfst_optimized_lookup import TransducerFile
 from shared import expensive
 from utils import shared_res_dir
 
@@ -13,10 +14,11 @@ class ParadigmManager:
     Mediates access to paradigms layouts/templates.
     """
 
-    def __init__(self, layout_directory: Path):
+    def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
         # TODO: technically str == ConcatAnalysis
         self._analysis_to_layout: dict[str, ParadigmTemplate] = {}
         self._load_static_from(layout_directory / "static")
+        self._generator = generation_fst
 
     def paradigm_for(self, analysis: str) -> Optional[Paradigm]:
         """
@@ -41,7 +43,7 @@ class ParadigmManager:
         analyses = layout.generate_fst_analysis_string(lemma="").splitlines(
             keepends=False
         )
-        forms = expensive.strict_generator.bulk_lookup(analyses)
+        forms = self._generator.bulk_lookup(analyses)
         return layout.fill(forms)
 
 
@@ -50,4 +52,4 @@ def default_paradigm_manager() -> ParadigmManager:
     """
     Returns the ParadigmManager instance that loads layouts from the res (resource) directory
     """
-    return ParadigmManager(shared_res_dir / "layouts")
+    return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator)
