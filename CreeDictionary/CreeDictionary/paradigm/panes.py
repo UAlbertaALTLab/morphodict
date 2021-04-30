@@ -51,6 +51,12 @@ class Paradigm:
         """
         return max(pane.num_columns for pane in self.panes)
 
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        True if the wordform is found ANYWHERE in the paradigm.
+        """
+        return any(pane.contains_wordform(wordform) for pane in self.panes)
+
 
 # TODO: rename to ParadigmLayout -- in order to use consistent terminology
 class ParadigmTemplate(Paradigm):
@@ -224,6 +230,9 @@ class Pane:
 
         return Pane(ContentRow.parse(line) for line in lines)
 
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(row.contains_wordform(wordform) for row in self.rows)
+
 
 class Row:
     has_content: bool
@@ -254,6 +263,9 @@ class Row:
         tabs_left = max(total_tabs - tabs_present, 0)
 
         return row_as_string + "\t" * tabs_left
+
+    def contains_wordform(self, wordform: str) -> bool:
+        raise NotImplementedError
 
     @staticmethod
     def parse(text: str) -> Row:
@@ -298,6 +310,9 @@ class ContentRow(Row):
     @property
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
         return (c for c in self.cells if isinstance(c, InflectionTemplate))
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(cell.contains_wordform(wordform) for cell in self.cells)
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
@@ -360,7 +375,7 @@ class Cell:
 
     is_label: bool = False
     is_inflection: bool = False
-    is_empty = bool = False
+    is_empty: bool = False
 
     @staticmethod
     def parse(text: str) -> Cell:
@@ -374,6 +389,12 @@ class Cell:
             return ColumnLabel.parse(text)
         else:
             return InflectionTemplate.parse(text)
+
+    def contains_wordform(self, wordform: str) -> bool:
+        if not self.is_inflection:
+            return False
+        # Must be overridden in subclasses
+        raise NotImplementedError
 
 
 class WordformCell(Cell):
@@ -393,6 +414,9 @@ class WordformCell(Cell):
 
     def __init__(self, inflection: str):
         self.inflection = inflection
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return self.inflection == wordform
 
     def __str__(self) -> str:
         return self.inflection
