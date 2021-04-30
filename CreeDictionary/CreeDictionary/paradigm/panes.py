@@ -314,7 +314,7 @@ class Cell:
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
         else:
-            return LiteralCell(text)
+            return InflectionCell(text)
 
 
 class LiteralCell(Cell):
