@@ -51,7 +51,7 @@ def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     """
     Test that the static layout for demonstrative pronouns can be parsed.
     Note: the fixture was (sloppily) written by me, Eddie, and it is probably not
-    representative of the actual demonostrative pronoun paradigm we'll have on the
+    representative of the actual demonstrative pronoun paradigm we'll have on the
     production site... buuuuuuuuut, it's useful as a test fixture!
     """
     with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:

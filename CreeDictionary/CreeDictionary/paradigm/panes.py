@@ -326,8 +326,8 @@ class WordformCell(Cell):
 
     How this differs between **static** and **dynamic** paradigms:
      - **static** paradigms still have InflectionCell instances; however, an entire
-       static paradigm can be filled once and used every subsequent time.
-     - **dynamic** paradigms must
+       static paradigm can be filled once and be reused every subsequent time.
+     - **dynamic** paradigms must be filled for every unique FST lemma.
     """
 
     is_inflection = True
