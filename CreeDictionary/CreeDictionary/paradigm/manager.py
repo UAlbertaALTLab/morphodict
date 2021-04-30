@@ -1,3 +1,4 @@
+from functools import cache
 from pathlib import Path
 from typing import Optional
 
@@ -12,10 +13,10 @@ class ParadigmManager:
     Mediates access to paradigms layouts/templates.
     """
 
-    def __init__(self):
+    def __init__(self, layout_directory: Path):
         # TODO: technically str == ConcatAnalysis
         self._analysis_to_layout: dict[str, ParadigmTemplate] = {}
-        self._load_static_from(shared_res_dir / "layouts" / "static")
+        self._load_static_from(layout_directory / "static")
 
     def paradigm_for(self, analysis: str) -> Optional[Paradigm]:
         """
@@ -45,3 +46,11 @@ class ParadigmManager:
         )
         forms = expensive.strict_generator.bulk_lookup(analyses)
         return layout.fill(forms)
+
+
+@cache
+def default_paradigm_manager() -> ParadigmManager:
+    """
+    Returns the ParadigmManager instance that loads layouts from the res (resource) directory
+    """
+    return ParadigmManager(shared_res_dir / "layouts")
