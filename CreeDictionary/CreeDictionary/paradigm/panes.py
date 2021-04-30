@@ -17,14 +17,16 @@ class ParseError(Exception):
     """
 
 
-class ParadigmTemplate:
+class Paradigm:
+    def __init__(self, panes: Iterable[Pane]):
+        self._panes = tuple(panes)
+
+
+class ParadigmTemplate(Paradigm):
     """
     Template for a particular word class. The template contains analyses with
     placeholders that can be filled at runtime to generate a displayable paradigm.
     """
-
-    def __init__(self, panes: Iterable[Pane]):
-        self._panes = tuple(panes)
 
     @property
     def max_num_columns(self):
