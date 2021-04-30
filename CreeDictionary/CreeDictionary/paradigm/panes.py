@@ -145,11 +145,6 @@ class ParadigmTemplate(Paradigm):
                     raise AssertionError("This should be a content row...")
                 cells = []
                 for cell in row.cells:
-                    if not cell.is_inflection:
-                        cells.append(cell)
-                        continue
-                    if not isinstance(cell, InflectionTemplate):
-                        raise AssertionError(f"I don't know how to fill a {cell}")
                     cells.append(cell.fill_one(forms))
                 rows.append(ContentRow(cells))
             panes.append(Pane(rows))
@@ -384,6 +379,16 @@ class Cell:
             return False
         # Must be overridden in subclasses
         raise NotImplementedError
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        """
+        Returns exactly ONE cell by filling the paradigm.
+        """
+        if not self.is_inflection:
+            return self
+        # This should be overridden by subclasses.
+        # Namely, InflectionTemplate should override this.
+        raise AssertionError(f"I don't know how to fill {self}")
 
 
 class WordformCell(Cell):
