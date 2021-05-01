@@ -23,8 +23,8 @@
   {% load relabelling %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
-    {# XXX: we should find a better way to contain all the data in the table :/ #}
     {% for pane in paradigm.panes %}
+    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
           <tbody>

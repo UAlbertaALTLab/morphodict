@@ -25,7 +25,7 @@
   {% load morphodict_orth %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
-    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
+    {# XXX: we should find a better way to contain all the data in the table :/ #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
         {% for subtable in paradigm_tables %}
