@@ -1,7 +1,6 @@
 """
 Access to relabelling from templates.
 """
-from typing import Sequence, cast
 
 from django import template
 from utils.types import FSTTag
