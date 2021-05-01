@@ -9,9 +9,9 @@
     Example:
 
         |             | One     | Many      |
-        | Here        | awa     | ana       |
-        | There       | kinipân | ê-nipâyan |
-        | Over Yonder | kinipân | ê-nipâyan |
+        | Here        | ôma     | ôhi       |
+        | There       | anima   | anihi     |
+        | Over Yonder | nêma    | nêhi      |
 
     JavaScript hooks:
      - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
@@ -34,11 +34,8 @@
                 <tr class="paradigm-row">
                   {% for cell in row.cells %}
                     {% if cell.is_label %}
-                      <th scope="row" class="paradigm-label paradigm-label--row">
-                        {{ cell }}
-                      </th>
-                    {% elif cell.is_heading %}
-                      <th scope="col" class="paradigm-label paradigm-label--col">
+                      <th scope="{{ cell.label_for }}"
+                          class="paradigm-label paradigm-label--{{ cell.label_for }}">
                         {{ cell }}
                       </th>
                     {% elif cell.is_empty %}

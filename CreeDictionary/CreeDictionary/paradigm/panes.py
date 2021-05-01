@@ -212,6 +212,7 @@ class Pane:
 
 
 class Row:
+    is_header: bool
     has_content: bool
     num_cells: int
 
@@ -278,6 +279,7 @@ class ContentRow(Row):
     A single row from a pane. Rows contain cells.
     """
 
+    is_header = False
     has_content = True
 
     def __init__(self, cells: Iterable[Cell]):
@@ -321,6 +323,7 @@ class HeaderRow(Row):
     """
 
     prefix = "#"
+    is_header = True
     has_content = False
     num_cells = 0
 
@@ -578,7 +581,7 @@ class ColumnLabel(BaseLabelCell):
     Labels for the cells in the current column within the pane.
     """
 
-    label_for = "column"
+    label_for = "col"
     prefix = "|"
 
 

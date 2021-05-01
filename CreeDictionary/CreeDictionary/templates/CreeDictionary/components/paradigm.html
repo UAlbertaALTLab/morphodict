@@ -19,15 +19,13 @@
        JavaScript can replace the contents with a different paradigm.
      - .js-paradigm-size-button: the button for advancing the paradigm size
        (basic, full, linguistic, etc.)
-     - .js-plus-minus: the + or - sign in the [± show more/less] button
-     - .js-button-text: the text in the [± show more/less] button
 
   {% endcomment %}
 
   {% load morphodict_orth %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
-    {# XXX: we should find a better way to contain all the data in the table :/ #}
+    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
         {% for subtable in paradigm_tables %}
