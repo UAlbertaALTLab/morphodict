@@ -20,6 +20,7 @@
   {% endcomment %}
 
   {% load morphodict_orth %}
+  {% load relabelling %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
     {# XXX: we should find a better way to contain all the data in the table :/ #}
@@ -36,7 +37,7 @@
                     {% if cell.is_label %}
                       <th scope="{{ cell.label_for }}"
                           class="paradigm-label paradigm-label--{{ cell.label_for }}">
-                        {{ cell }}
+                          {% relabel cell.fst_tags %}
                       </th>
                     {% elif cell.is_empty %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>

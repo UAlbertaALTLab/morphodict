@@ -540,6 +540,10 @@ class BaseLabelCell(Cell):
     def __init__(self, tags):
         self._tags = tuple(tags)
 
+    @property
+    def fst_tags(self) -> tuple[str]:
+        return self._tags
+
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
 
