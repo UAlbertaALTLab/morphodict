@@ -47,6 +47,19 @@ describe('I want to search for a Cree word and see its inflectional paradigm', (
     for (let wordform of inflections) {
       ctx = ctx.and('contain', wordform)
     }
+
+    const labels = [
+      { scope: "col", label: /\bone\b/i },
+      { scope: "col", label: /\bmany\b/i },
+      { scope: "row", label: "I" },
+      { scope: "row", label: /\byou\b/i },
+    ]
+
+    for (let {scope, label} of labels) {
+      cy.get("@paradigm")
+          .contains("th", label)
+          .should("have.attr", "scope", scope)
+    }
   })
 
   // TODO: the next test should be here, but it is broken because the
