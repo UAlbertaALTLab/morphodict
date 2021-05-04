@@ -1,7 +1,6 @@
 from argparse import ArgumentParser
-from pathlib import Path
 
-from django.core.management import BaseCommand, call_command
+from django.core.management import BaseCommand
 
 from DatabaseManager.test_db_builder import build_test_xml
 
