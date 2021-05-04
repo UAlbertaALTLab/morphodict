@@ -25,10 +25,6 @@ class Command(BaseCommand):
         )
         import_parser.add_argument("--wipe-first", action="store_true")
 
-        subparsers.add_parser(
-            "build-test-db", help="build test_db.sqlite3 from res/test_db_words.txt"
-        )
-
     def handle(self, *args, **options):
         from DatabaseManager.xml_importer import import_xmls
 
