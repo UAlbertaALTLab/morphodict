@@ -61,8 +61,7 @@ class Paradigm:
         return any(pane.contains_wordform(wordform) for pane in self.panes)
 
 
-# TODO: rename to ParadigmLayout -- in order to use consistent terminology
-class ParadigmTemplate(Paradigm):
+class ParadigmLayout(Paradigm):
     """
     Layout for a particular word class. The layout contains placeholders
     (InflectionTemplate) that can be filled at runtime to generate a paradigm that
@@ -84,14 +83,14 @@ class ParadigmTemplate(Paradigm):
         return string.Template("\n".join(lines))
 
     @classmethod
-    def load(cls, layout_file: TextIO) -> ParadigmTemplate:
+    def load(cls, layout_file: TextIO) -> ParadigmLayout:
         """
         Load a paradigm layout from a file.
         """
         return cls.loads(layout_file.read())
 
     @classmethod
-    def loads(cls, string: str) -> ParadigmTemplate:
+    def loads(cls, string: str) -> ParadigmLayout:
         """
         Load a ParadigmLayout from a string.
         """
@@ -109,7 +108,7 @@ class ParadigmTemplate(Paradigm):
         pane_strs = ["\n".join(lines) for lines in pane_lines if len(lines) > 0]
 
         panes = [Pane.parse(p) for p in pane_strs if p.strip()]
-        return ParadigmTemplate(panes)
+        return ParadigmLayout(panes)
 
     def dumps(self):
         """
@@ -267,7 +266,7 @@ class Row:
         if len(cell_texts) == 0:
             # This would mean the line was empty, but empty lines in a paradigm file
             # are used as pane separators.
-            # If we got here from ParadigmTemplate.parse(), something terrible has gone
+            # If we got here from ParadigmLayout.parse(), something terrible has gone
             # wrong.
             raise ParseError("Refusing to parse empty row")
 
@@ -401,7 +400,7 @@ class WordformCell(Cell):
     """
     A cell containing a displayable wordform.
 
-    When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
+    When a ParadigmLayout is filled with forms, the ParadigmLayout.fill() is
     called, converting all its InflectionTemplate instances to WordformCell instances.
 
     How this differs between **static** and **dynamic** paradigms:

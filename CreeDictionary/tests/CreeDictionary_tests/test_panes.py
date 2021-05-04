@@ -16,7 +16,7 @@ from CreeDictionary.paradigm.panes import (
     InflectionTemplate,
     MissingForm,
     Pane,
-    ParadigmTemplate,
+    ParadigmLayout,
     RowLabel,
     WordformCell,
 )
@@ -34,7 +34,7 @@ def test_parse_na_paradigm(na_layout_path: Path):
     With possession having the most columns.
     """
     with na_layout_path.open(encoding="UTF-8") as layout_file:
-        na_paradigm_template = ParadigmTemplate.load(layout_file)
+        na_paradigm_template = ParadigmLayout.load(layout_file)
 
     assert count(na_paradigm_template.panes) == 3
     basic_pane, diminutive_pane, possession_pane = na_paradigm_template.panes
@@ -57,7 +57,7 @@ def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     production site... buuuuuuuuut, it's useful as a test fixture!
     """
     with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:
-        pronoun_paradigm = ParadigmTemplate.load(layout_file)
+        pronoun_paradigm = ParadigmLayout.load(layout_file)
 
     assert count(pronoun_paradigm.panes) == 1
 
@@ -71,7 +71,7 @@ def test_dump_equal_to_file_on_disk(na_layout_path: Path):
     Dumping the file should yield the same file, modulo a trailing newline.
     """
     text = na_layout_path.read_text(encoding="UTF-8").rstrip("\n")
-    paradigm = ParadigmTemplate.loads(text)
+    paradigm = ParadigmLayout.loads(text)
     assert paradigm.dumps() == text
 
 
@@ -139,7 +139,7 @@ def test_str_produces_parsable_result(component):
     assert stringified == str(parsed)
 
 
-def test_produces_fst_analysis_string(na_layout: ParadigmTemplate):
+def test_produces_fst_analysis_string(na_layout: ParadigmLayout):
     """
     It should produce a valid FST analysis string.
     """
@@ -192,12 +192,12 @@ def na_layout_path(shared_datadir: Path) -> Path:
 
 
 @pytest.fixture
-def na_layout(na_layout_path: Path) -> ParadigmTemplate:
+def na_layout(na_layout_path: Path) -> ParadigmLayout:
     """
     Returns the parsed NA layout.
     """
     with na_layout_path.open(encoding="UTF-8") as layout_file:
-        return ParadigmTemplate.load(layout_file)
+        return ParadigmLayout.load(layout_file)
 
 
 @pytest.fixture

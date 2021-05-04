@@ -6,7 +6,7 @@ from hfst_optimized_lookup import TransducerFile
 from shared import expensive
 from utils import shared_res_dir
 
-from CreeDictionary.paradigm.panes import Paradigm, ParadigmTemplate
+from CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
 
 class ParadigmManager:
@@ -19,7 +19,7 @@ class ParadigmManager:
 
     def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
         # TODO: technically str == ConcatAnalysis
-        self._analysis_to_layout: dict[str, ParadigmTemplate] = {}
+        self._analysis_to_layout: dict[str, ParadigmLayout] = {}
         self._load_static_from(layout_directory / "static")
         self._generator = generation_fst
 
@@ -37,12 +37,12 @@ class ParadigmManager:
         """
 
         for layout_file in path.glob("*.tsv"):
-            layout = ParadigmTemplate.loads(layout_file.read_text(encoding="UTF-8"))
+            layout = ParadigmLayout.loads(layout_file.read_text(encoding="UTF-8"))
 
             for inflection in layout.inflection_cells:
                 self._analysis_to_layout[inflection.analysis] = layout
 
-    def _inflect(self, layout: ParadigmTemplate) -> Paradigm:
+    def _inflect(self, layout: ParadigmLayout) -> Paradigm:
         analyses = layout.generate_fst_analysis_string(lemma="").splitlines(
             keepends=False
         )
