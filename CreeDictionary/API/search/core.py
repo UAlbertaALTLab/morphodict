@@ -1,7 +1,10 @@
+from operator import attrgetter
+
 from django.db.models import prefetch_related_objects
 
 from . import types, presentation, ranking
 from .query import Query
+from .ranking import assign_relevance_score
 from .util import first_non_none_value
 from ..models import WordformKey, Wordform
 
@@ -37,7 +40,14 @@ class SearchRun:
 
     def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
-        results.sort(key=ranking.sort_by_user_query(self))
+
+        if self.query.weightrank:
+            for r in self._results.values():
+                assign_relevance_score(r)
+            results.sort(key=attrgetter("relevance_score"))
+            results.reverse()
+        else:
+            results.sort(key=ranking.sort_by_user_query(self))
         return results
 
     def presentation_results(self) -> list[presentation.PresentationResult]:

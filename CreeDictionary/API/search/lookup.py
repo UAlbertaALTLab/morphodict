@@ -105,7 +105,14 @@ def fetch_results(search_run: core.SearchRun):
                         lemma=lemma_wordform,
                     )
                     search_run.add_result(
-                        Result(synthetic_wordform, pronoun_as_is_match=True)
+                        Result(
+                            synthetic_wordform,
+                            pronoun_as_is_match=True,
+                            query_wordform_edit_distance=get_modified_distance(
+                                search_run.internal_query,
+                                normatized_user_query,
+                            ),
+                        )
                     )
             else:
                 for lemma_wordform in matched_lemma_wordforms.filter(
@@ -118,7 +125,13 @@ def fetch_results(search_run: core.SearchRun):
                         text=normatized_user_query,
                     )
                     search_run.add_result(
-                        Result(synthetic_wordform, analyzable_inflection_match=True)
+                        Result(
+                            synthetic_wordform,
+                            analyzable_inflection_match=True,
+                            query_wordform_edit_distance=get_modified_distance(
+                                search_run.internal_query, normatized_user_query
+                            ),
+                        )
                     )
 
     # we choose to trust CW and show those matches with definition from CW.
@@ -132,41 +145,38 @@ def fetch_results(search_run: core.SearchRun):
             is_lemma=True,
         )
     ):
-        search_run.add_result(Result(cw_as_is_wordform, is_cw_as_is_wordform=True))
+        search_run.add_result(
+            Result(
+                cw_as_is_wordform,
+                is_cw_as_is_wordform=True,
+                query_wordform_edit_distance=get_modified_distance(
+                    search_run.internal_query, cw_as_is_wordform.text
+                ),
+            )
+        )
 
     # as per https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
     # preverbs should be presented
     # exhaustively search preverbs here (since we can't use fst on preverbs.)
-
     for preverb_wf in fetch_preverbs(search_run.internal_query):
-        search_run.add_result(Result(preverb_wf, is_preverb_match=True))
-
-    # Words/phrases with spaces in CW dictionary can not be analyzed by fst and are labeled "as_is".
-    # However we do want to show them. We trust CW dictionary here and filter those lemmas that has any definition
-    # that comes from CW
-
-    # now we get results searched by English
-    # todo: remind user "are you searching in cree/english?"
-    # todo: allow inflected forms to be searched through English. (requires database migration
-    #  since now EnglishKeywords are bound to lemmas)
-    for stemmed_keyword in stem_keywords(search_run.internal_query):
-
-        lemma_ids = EnglishKeyword.objects.filter(text__iexact=stemmed_keyword).values(
-            "lemma__id"
+        search_run.add_result(
+            Result(
+                preverb_wf,
+                is_preverb_match=True,
+                query_wordform_edit_distance=get_modified_distance(
+                    preverb_wf.text, search_run.internal_query
+                ),
+            )
         )
 
-        for wordform in Wordform.objects.filter(id__in=lemma_ids):
+    # now we get results searched by English
+    for stemmed_keyword in stem_keywords(search_run.internal_query):
+        for wordform in Wordform.objects.filter(
+            english_keyword__text__iexact=stemmed_keyword
+        ):
             search_run.add_result(
                 Result(wordform, target_language_keyword_match=[stemmed_keyword])
             )
-
-        # explained above, preverbs should be presented
-        for wordform in Wordform.objects.filter(
-            Q(pos="IPV") | Q(inflectional_category="IPV") | Q(pos="PRON"),
-            id__in=lemma_ids,
-            as_is=True,
-        ):
-            search_run.add_result(Result(wordform, is_preverb_match=True))
 
 
 def filter_cw_wordforms(queryset: Iterable[Wordform]) -> Iterable[Wordform]:
