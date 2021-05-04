@@ -4,9 +4,16 @@ Provides all classes for pane-based paradigms.
 
 from __future__ import annotations
 
+import logging
 import re
+import string
+from functools import cached_property
 from itertools import zip_longest
-from typing import Iterable, Optional, TextIO
+from typing import Collection, Iterable, Optional, TextIO
+
+from more_itertools import first
+
+logger = logging.getLogger(__name__)
 
 
 class ParseError(Exception):
@@ -15,29 +22,71 @@ class ParseError(Exception):
     """
 
 
-class ParadigmTemplate:
+class ParadigmGenerationError(Exception):
     """
-    Template for a particular word class. The template contains analyses with
-    placeholders that can be filled at runtime to generate a displayable paradigm.
+    Raised when there's some issue with generating/filling a paradigm.
     """
+
+
+class Paradigm:
+    """
+    A paradigm is intended to display a collection of wordforms related to a single
+    lexeme, or a table of related wordforms.
+
+    A paradigm in this project is composed of multiple **panes**. Each pane itself is a
+    table, organized by **rows**, and then each row contains **cells**.
+    """
+
+    # TODO: delete this when the old ParadigmFiller classes are deleted.
+    uses_pane_based_layout = True
 
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
+
+    @property
+    def panes(self) -> Iterable[Pane]:
+        yield from self._panes
 
     @property
     def max_num_columns(self):
         """
         How many columns are necessary for this entire paradigm?
         """
-        return max(pane.num_columns for pane in self.panes())
+        return max(pane.num_columns for pane in self.panes)
 
-    def panes(self):
-        yield from self._panes
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        True if the wordform is found ANYWHERE in the paradigm.
+        """
+        return any(pane.contains_wordform(wordform) for pane in self.panes)
+
+
+# TODO: rename to ParadigmLayout -- in order to use consistent terminology
+class ParadigmTemplate(Paradigm):
+    """
+    Layout for a particular word class. The layout contains placeholders
+    (InflectionTemplate) that can be filled at runtime to generate a paradigm that
+    can be rendered and shown to the user.
+    """
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        for pane in self.panes:
+            yield from pane.inflection_cells
+
+    @cached_property
+    def _fst_analysis_template(self) -> string.Template:
+        """
+        A string template that can be given a lemma to generate FST analysis strings
+        for the ENTIRE paradigm.
+        """
+        lines = [inflection.analysis for inflection in self.inflection_cells]
+        return string.Template("\n".join(lines))
 
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmTemplate:
         """
-        Load a paradigm template from a file.
+        Load a paradigm layout from a file.
         """
         return cls.loads(layout_file.read())
 
@@ -64,18 +113,32 @@ class ParadigmTemplate:
 
     def dumps(self):
         """
-        Export the template as a string. This string can be by .loads().
+        Export the layout as a string. This string can be by .loads().
         """
 
         pane_text = []
         num_columns = self.max_num_columns
-        for pane in self.panes():
+        for pane in self.panes:
             pane_text.append(pane.dumps(require_num_columns=num_columns))
 
         tabs = "\t" * (num_columns - 1)
         empty_line = f"\n{tabs}\n"
 
         return empty_line.join(pane_text)
+
+    def generate_fst_analysis_string(self, lemma: str) -> str:
+        """
+        Given a lemma, generates a string that can be fed directly to an XFST lookup
+        application.
+        """
+        return self._fst_analysis_template.substitute(lemma=lemma)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> Paradigm:
+        """
+        Given a mapping from analysis to a collection of wordforms, returns a
+        paradigm with all its InflectionTemplate cells replaced with WordformCells.
+        """
+        return Paradigm(pane.fill(forms) for pane in self.panes)
 
     def __str__(self):
         return self.dumps()
@@ -100,9 +163,15 @@ class Pane:
 
     @property
     def num_columns(self) -> int:
-        return max(row.num_cells for row in self.rows())
+        return max(row.num_cells for row in self.rows)
 
-    def rows(self):
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        for row in self.rows:
+            yield from row.inflection_cells
+
+    @property
+    def rows(self) -> Iterable[Row]:
         yield from self._rows
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
@@ -111,7 +180,7 @@ class Pane:
         :param require_num_columns: if given, the pane must have at least this many columns.
                                     Rows are padded with empty cells at the end.
         """
-        return "\n".join(row.dumps(require_num_columns) for row in self.rows())
+        return "\n".join(row.dumps(require_num_columns) for row in self.rows)
 
     def __str__(self):
         return self.dumps()
@@ -123,7 +192,7 @@ class Pane:
 
     def __repr__(self):
         name = type(self).__qualname__
-        rows = ", ".join(repr(row) for row in self.rows())
+        rows = ", ".join(repr(row) for row in self.rows)
         return f"{name}([{rows}])"
 
     @classmethod
@@ -135,10 +204,22 @@ class Pane:
 
         return Pane(ContentRow.parse(line) for line in lines)
 
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(row.contains_wordform(wordform) for row in self.rows)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> Pane:
+        return Pane(row.fill(forms) for row in self.rows)
+
 
 class Row:
+    is_header: bool
     has_content: bool
     num_cells: int
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
 
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
@@ -160,6 +241,16 @@ class Row:
         tabs_left = max(total_tabs - tabs_present, 0)
 
         return row_as_string + "\t" * tabs_left
+
+    def contains_wordform(self, wordform: str) -> bool:
+        raise NotImplementedError
+
+    def fill(self, forms: dict[str, Collection[str]]) -> Row:
+        if not self.has_content:
+            # Just labels; can return ourselves verbatim
+            return self
+        # Subclass must override this (i.e., ContentRow)
+        raise NotImplementedError
 
     @staticmethod
     def parse(text: str) -> Row:
@@ -188,30 +279,42 @@ class ContentRow(Row):
     A single row from a pane. Rows contain cells.
     """
 
+    is_header = False
     has_content = True
 
     def __init__(self, cells: Iterable[Cell]):
         self._cells = tuple(cells)
 
+    @property
     def cells(self):
         yield from self._cells
-
-    def __eq__(self, other) -> bool:
-        if not isinstance(other, ContentRow):
-            return False
-        return all(a == b for a, b in zip_longest(self.cells(), other.cells()))
-
-    def __str__(self):
-        return "\t".join(str(cell) for cell in self.cells())
-
-    def __repr__(self):
-        name = type(self).__qualname__
-        cells_repr = ", ".join(repr(cell) for cell in self.cells())
-        return f"{name}([{cells_repr}])"
 
     @property
     def num_cells(self):
         return len(self._cells)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        return (c for c in self.cells if isinstance(c, InflectionTemplate))
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(cell.contains_wordform(wordform) for cell in self.cells)
+
+    def fill(self, forms: dict[str, Collection[str]]) -> ContentRow:
+        return ContentRow(cell.fill_one(forms) for cell in self.cells)
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, ContentRow):
+            return False
+        return all(a == b for a, b in zip_longest(self.cells, other.cells))
+
+    def __str__(self):
+        return "\t".join(str(cell) for cell in self.cells)
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        cells_repr = ", ".join(repr(cell) for cell in self.cells)
+        return f"{name}([{cells_repr}])"
 
 
 class HeaderRow(Row):
@@ -220,12 +323,18 @@ class HeaderRow(Row):
     """
 
     prefix = "#"
+    is_header = True
     has_content = False
     num_cells = 0
 
     def __init__(self, tags):
         super().__init__()
         self._tags = tuple(tags)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        # a header, by definition, has no inflections.
+        return ()
 
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
@@ -256,7 +365,7 @@ class Cell:
 
     is_label: bool = False
     is_inflection: bool = False
-    is_empty = bool = False
+    is_empty: bool = False
 
     @staticmethod
     def parse(text: str) -> Cell:
@@ -269,10 +378,69 @@ class Cell:
         elif text.startswith("| "):
             return ColumnLabel.parse(text)
         else:
-            return InflectionCell.parse(text)
+            return InflectionTemplate.parse(text)
+
+    def contains_wordform(self, wordform: str) -> bool:
+        if not self.is_inflection:
+            return False
+        # Must be overridden in subclasses
+        raise NotImplementedError
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        """
+        Returns exactly ONE cell by filling the paradigm.
+        """
+        if not self.is_inflection:
+            return self
+        # This should be overridden by subclasses.
+        # Namely, InflectionTemplate should override this.
+        raise NotImplementedError
 
 
-class InflectionCell(Cell):
+class WordformCell(Cell):
+    """
+    A cell containing a displayable wordform.
+
+    When a ParadigmTemplate is filled with forms, the ParadigmTemplate.fill() is
+    called, converting all its InflectionTemplate instances to WordformCell instances.
+
+    How this differs between **static** and **dynamic** paradigms:
+     - **static** paradigms still have InflectionTemplate instances; however, an entire
+       static paradigm can be filled once and be reused every subsequent time.
+     - **dynamic** paradigms must be filled for every unique FST lemma.
+    """
+
+    is_inflection = True
+
+    def __init__(self, inflection: str):
+        self.inflection = inflection
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return self.inflection == wordform
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        raise AssertionError(f"Cannot fill a cell that already has content: {self}")
+
+    def __str__(self) -> str:
+        return self.inflection
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, WordformCell):
+            return self.inflection == other.inflection
+        return False
+
+    def __repr__(self):
+        name = type(self).__qualname__
+        return f"{name}({self.inflection!r})"
+
+    @classmethod
+    def parse(cls, text: str):
+        raise AssertionError(
+            "A literal wordform can never be parsed from directly " "from a layout"
+        )
+
+
+class InflectionTemplate(Cell):
     """
     A cell that contains an inflection.
     """
@@ -281,10 +449,10 @@ class InflectionCell(Cell):
 
     def __init__(self, analysis: str):
         self.analysis = analysis
-        assert "${lemma}" in analysis or "+" in analysis
+        assert looks_like_analysis_string(analysis)
 
     def __eq__(self, other) -> bool:
-        if isinstance(other, InflectionCell):
+        if isinstance(other, InflectionTemplate):
             return self.analysis == other.analysis
         return False
 
@@ -292,10 +460,32 @@ class InflectionCell(Cell):
         return self.analysis
 
     @staticmethod
-    def parse(text: str) -> InflectionCell:
-        if "${lemma}" not in text and "+" not in text:
+    def parse(text: str) -> InflectionTemplate:
+        if not looks_like_analysis_string(text):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
-        return InflectionCell(text)
+        return InflectionTemplate(text)
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
+        """
+        Return a single WordformCell, given the fillable forms.
+        """
+
+        cell_forms = forms.get(self.analysis)
+        if cell_forms is None:
+            # TODO: this might actually be okay?
+            # It could just be a missing form (accidental gap/lacuna).
+            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
+            raise ParadigmGenerationError(
+                "no form(s) provided for " f"analysis: {self.analysis}"
+            )
+
+        assert len(cell_forms) >= 1
+        if len(cell_forms) > 1:
+            # TODO: create a CompoundRow class that can handle multiple forms per
+            # inflection.
+            logger.warning("Don't know how to output multiple forms... yet")
+        form = first(sorted(cell_forms))
+        return WordformCell(form)
 
 
 class SingletonMixin:
@@ -315,7 +505,10 @@ class SingletonMixin:
 
 class MissingForm(Cell, SingletonMixin):
     """
-    A missing form from the paradigm that should show up in the template as a placeholder.
+    A missing form from the paradigm that should show up in the paradigm as a
+    placeholder. Missing forms can either be hard-coded or the generator may simply
+    not be able to generate a form for a given analysis.
+
     Note: a missing form is a valid position in the paradigm, however, we display that
     this form cannot exist. This is not the same as an empty cell, which is used as a
     spacer.
@@ -346,6 +539,10 @@ class BaseLabelCell(Cell):
 
     def __init__(self, tags):
         self._tags = tuple(tags)
+
+    @property
+    def fst_tags(self) -> tuple[str]:
+        return self._tags
 
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
@@ -388,8 +585,15 @@ class ColumnLabel(BaseLabelCell):
     Labels for the cells in the current column within the pane.
     """
 
-    label_for = "column"
+    label_for = "col"
     prefix = "|"
+
+
+def looks_like_analysis_string(text: str) -> bool:
+    """
+    Returns true if the cell might be analysis.
+    """
+    return "${lemma}" in text or "+" in text
 
 
 def pairs(seq):
