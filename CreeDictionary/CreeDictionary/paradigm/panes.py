@@ -37,6 +37,9 @@ class Paradigm:
     table, organized by **rows**, and then each row contains **cells**.
     """
 
+    # TODO: delete this when the old ParadigmFiller classes are deleted.
+    uses_pane_based_layout = True
+
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
 
@@ -209,6 +212,7 @@ class Pane:
 
 
 class Row:
+    is_header: bool
     has_content: bool
     num_cells: int
 
@@ -275,6 +279,7 @@ class ContentRow(Row):
     A single row from a pane. Rows contain cells.
     """
 
+    is_header = False
     has_content = True
 
     def __init__(self, cells: Iterable[Cell]):
@@ -318,6 +323,7 @@ class HeaderRow(Row):
     """
 
     prefix = "#"
+    is_header = True
     has_content = False
     num_cells = 0
 
@@ -534,6 +540,10 @@ class BaseLabelCell(Cell):
     def __init__(self, tags):
         self._tags = tuple(tags)
 
+    @property
+    def fst_tags(self) -> tuple[str]:
+        return self._tags
+
     def __str__(self):
         return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
 
@@ -575,7 +585,7 @@ class ColumnLabel(BaseLabelCell):
     Labels for the cells in the current column within the pane.
     """
 
-    label_for = "column"
+    label_for = "col"
     prefix = "|"
 
 
