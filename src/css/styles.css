@@ -798,11 +798,16 @@ a.multiple-recordings__action-button {
 
 .paradigm-label {
   text-align: left;
-  font-style: italic;
   font-weight: var(--body-font-weight);
 }
 
+.paradigm-label--row {
+  font-style: italic;
+}
+
 .paradigm-label--col {
+  font-weight: bold;
+
   /* Sometimes the label is too dang wide, so just hide it. */
   overflow-x: hidden;
   text-overflow: ellipsis;
