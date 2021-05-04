@@ -900,14 +900,14 @@ a.multiple-recordings__action-button {
 }
 
 .footer a:link,
-.footer a:visited
-.footer .linklike:link,
-.footer .linklike:visited {
+.footer a:visited,
+.footer .link:link,
+.footer .link:visited {
   color: var(--footer-text-color);
 }
 
 .footer a:hover,
-.footer .linklike:hover {
+.footer .link:hover {
   color: var(--footer-link-hover-color);
 }
 
