@@ -14,7 +14,7 @@ def test_relabel_tag():
     plain_english = "someone"
 
     context = Context({"label": RowLabel(unspecified_actor)})
-    template = Template("{% load relabelling %}" "{% relabel label.fst_tags %}")
+    template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
 
     rendered = template.render(context)
     assert plain_english in rendered.lower()
