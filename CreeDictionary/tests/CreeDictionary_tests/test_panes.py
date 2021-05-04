@@ -5,18 +5,20 @@ Test parsing panes.
 from pathlib import Path
 
 import pytest
+from more_itertools import first
+from more_itertools import ilen as count
 
 from CreeDictionary.paradigm.panes import (
     ColumnLabel,
     ContentRow,
     EmptyCell,
     HeaderRow,
-    InflectionCell,
-    LiteralCell,
+    InflectionTemplate,
     MissingForm,
     Pane,
     ParadigmTemplate,
     RowLabel,
+    WordformCell,
 )
 
 
@@ -51,7 +53,7 @@ def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     """
     Test that the static layout for demonstrative pronouns can be parsed.
     Note: the fixture was (sloppily) written by me, Eddie, and it is probably not
-    representative of the actual demonostrative pronoun paradigm we'll have on the
+    representative of the actual demonstrative pronoun paradigm we'll have on the
     production site... buuuuuuuuut, it's useful as a test fixture!
     """
     with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:
@@ -82,12 +84,32 @@ def test_singleton_classes(cls):
     assert cls() == cls()
 
 
+def test_wordform_cell():
+    """
+    WordformCell should not act like an InflectionTemplate.
+    """
+    wordform = "ôma"
+    cell = WordformCell(wordform)
+
+    assert cell.contains_wordform(wordform)
+
+    # It cannot be filled in — it's already filled in!
+    with pytest.raises(AssertionError):
+        cell.fill_one({})
+
+    # It should never be parsed from a layout
+    with pytest.raises(AssertionError):
+        WordformCell.parse(wordform)
+
+
 def sample_pane():
     return Pane(
         [
             HeaderRow(("Der/Dim",)),
             ContentRow([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Obv"])]),
-            ContentRow([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+")]),
+            ContentRow(
+                [RowLabel("1Sg"), MissingForm(), InflectionTemplate("${lemma}+")]
+            ),
         ]
     )
 
@@ -97,13 +119,13 @@ def sample_pane():
     [
         EmptyCell(),
         MissingForm(),
-        InflectionCell("${lemma}"),
-        LiteralCell("ôma"),
+        InflectionTemplate("${lemma}+N+A+Sg"),
+        InflectionTemplate("ôma+Pron+Dem+Prox+I+Sg"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),
         ContentRow([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
-        ContentRow([RowLabel("1Sg"), MissingForm(), InflectionCell("${lemma}+Pl")]),
+        ContentRow([RowLabel("1Sg"), MissingForm(), InflectionTemplate("${lemma}+Pl")]),
         sample_pane(),
     ],
 )
@@ -187,17 +209,3 @@ def pronoun_paradigm_path(shared_datadir: Path) -> Path:
     p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
     assert p.exists()
     return p
-
-
-def count(it):
-    """
-    Returns the number of items iterated in the paradigm
-    """
-    return sum(1 for _ in it)
-
-
-def first(it):
-    """
-    Returns the first element from the iterable.
-    """
-    return next(iter(it))

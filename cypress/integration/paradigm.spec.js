@@ -1,4 +1,4 @@
-describe(' I want to search for a Cree word and see its inflectional paradigm', () => {
+describe('I want to search for a Cree word and see its inflectional paradigm', () => {
   // Test at least one word from each word class:
   const testCases = [
     {pos: 'VTA', lemma: 'mowêw', inflections: ['kimowin', 'kimowitin', 'ê-mowât']},
@@ -30,6 +30,38 @@ describe(' I want to search for a Cree word and see its inflectional paradigm', 
     })
   }
 
+  it('should display the paradigm for personal pronouns', () => {
+    const head = 'niya'
+    const inflections = ['kiya', 'wiya']
+
+    cy.visitSearch(head)
+    cy.get('[data-cy=search-results]')
+      .contains('a', head)
+      .click()
+
+    cy.get('[data-cy=paradigm]')
+      .as('paradigm')
+
+    let ctx = cy.get('@paradigm')
+      .should('contain', head)
+    for (let wordform of inflections) {
+      ctx = ctx.and('contain', wordform)
+    }
+
+    const labels = [
+      { scope: "col", label: /\bone\b/i },
+      { scope: "col", label: /\bmany\b/i },
+      { scope: "row", label: "I" },
+      { scope: "row", label: /\byou\b/i },
+    ]
+
+    for (let {scope, label} of labels) {
+      cy.get("@paradigm")
+          .contains("th", label)
+          .should("have.attr", "scope", scope)
+    }
+  })
+
   // TODO: the next test should be here, but it is broken because the
   // upstream layouts are broken :/
   it.skip('should display titles within the paradigm', () => {
@@ -51,7 +83,7 @@ describe(' I want to search for a Cree word and see its inflectional paradigm', 
 })
 
 
-describe(' I want to know if a form is observed inside a paradigm table', () => {
+describe('I want to know if a form is observed inside a paradigm table', () => {
   // TODO: this test should be re-enabled in linguist mode!
   it.skip('shows inflection frequency as digits in brackets', ()=>{
     cy.visitLemma('nipâw')

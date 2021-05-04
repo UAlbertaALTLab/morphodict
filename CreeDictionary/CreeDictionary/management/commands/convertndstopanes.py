@@ -23,7 +23,7 @@ from CreeDictionary.paradigm.panes import (
     ContentRow,
     EmptyCell,
     HeaderRow,
-    InflectionCell,
+    InflectionTemplate,
     MissingForm,
     Pane,
     ParadigmTemplate,
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                     new_cell = EmptyCell()
                 elif hasattr(cell, "analysis"):
                     if analysis := cell.analysis:
-                        new_cell = InflectionCell(analysis.template)
+                        new_cell = InflectionTemplate(analysis.template)
                     else:
                         new_cell = MissingForm()
                 elif cell.is_label or hasattr(cell, "text"):
