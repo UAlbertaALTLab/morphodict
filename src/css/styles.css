@@ -804,7 +804,8 @@ a.multiple-recordings__action-button {
 
 .paradigm-label--col {
   /* Sometimes the label is too dang wide, so just hide it. */
-  overflow-x: ellipsis;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .paradigm-cell {
