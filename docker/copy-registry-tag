@@ -1,0 +1,97 @@
+#!/usr/bin/env python3
+
+"""
+Use docker registry API to retag an image without pull+push.
+
+    copy-registry-tag --image=$image foo latest
+
+is like doing
+
+    docker pull $image:foo
+    docker tag $image:foo $image:latest
+    docker push $image:latest
+
+Reads token from $GHCR_PERSONAL_ACCESS_TOKEN.
+"""
+
+import base64
+import os
+import sys
+from argparse import ArgumentParser
+
+import requests
+
+
+def main():
+    # The current GHCR registry API, when given a personal access token, seems
+    # to accept any github username, and to return a session token that is
+    # simply the base64-encoded personal access token. We’re trying to stick a
+    # little closer to the spec here that just copying that.
+
+    parser = ArgumentParser(description=__doc__)
+
+    default_user = "UAlbertaALTLab"
+    parser.add_argument(
+        "--github-user", default=default_user, help=f"default: {default_user}"
+    )
+
+    default_image = f"{default_user}/itwewina.altlab.app"
+    parser.add_argument(
+        "--image", default=default_image, help=f"default: {default_image}"
+    )
+
+    parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Print debugging info. WARNING: may print secrets.",
+    )
+
+    parser.add_argument("existing_tag")
+    parser.add_argument("new_tag")
+
+    personal_access_token = os.environ.get("GHCR_PERSONAL_ACCESS_TOKEN", None)
+    if personal_access_token is None:
+        parser.error("$GHCR_PERSONAL_ACCESS_TOKEN not set")
+
+    args = parser.parse_args()
+
+    session_token_response = requests.get(
+        f"https://ghcr.io/token?service=ghcr.io&scope=repository:{args.image}:pull",
+        auth=(args.github_user, personal_access_token),
+    )
+    session_token_response.raise_for_status()
+    session_token = session_token_response.json()["token"]
+    if args.debug:
+        print(f"base64-decoded session token: {base64.b64decode(session_token)}")
+
+    existing_manifest_response = requests.get(
+        f"https://ghcr.io/v2/{args.image}/manifests/{args.existing_tag}",
+        headers={"Authorization": f"Bearer {session_token}"},
+    )
+    existing_manifest_response.raise_for_status()
+
+    existing_manifest = existing_manifest_response.json()
+    if args.debug:
+        print(existing_manifest)
+
+    put_url = f"https://ghcr.io/v2/{args.image}/manifests/{args.new_tag}"
+    if args.dry_run:
+        print(f"Would PUT the following to {put_url}:\n", existing_manifest)
+    else:
+        put_tag_response = requests.put(
+            put_url,
+            headers={
+                "Authorization": f"Bearer {session_token}",
+                "Content-Type": existing_manifest_response.headers["Content-Type"],
+            },
+            data=existing_manifest_response.content,
+        )
+        print(
+            f"{put_tag_response.status_code} {put_tag_response.reason}: {put_tag_response.content}"
+        )
+        put_tag_response.raise_for_status()
+
+
+if __name__ == "__main__":
+    sys.exit(main())
