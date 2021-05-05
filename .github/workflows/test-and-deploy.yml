@@ -192,6 +192,13 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+    - uses: actions/checkout@v2
+    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+    - name: Install requests
+      run: pip install requests
     - name: Update tag
       run: docker/copy-registry-tag ${{ github.sha }} latest
       env:
