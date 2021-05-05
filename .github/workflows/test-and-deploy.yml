@@ -171,6 +171,10 @@ jobs:
       with:
         file: docker/Dockerfile
         push: true
+        # hopefully this will speed up builds and save disk space by
+        # sharing layers with the existing docker image, where possible
+        cache-from: |
+          type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
         tags: |
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
