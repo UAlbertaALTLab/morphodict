@@ -369,6 +369,28 @@ orthographical representation
 
 ???
 
+paradigm layout
+===============
+[paradigm layout]: #paradigm-layout
+
+A formal specification that describes how to arrange (in a table)
+the inflections or derived wordforms of any lexemes belonging to
+a particular [word class]; or, how to arrange related wordforms in
+a table.
+
+Subtypes:
+<dl>
+<dt>dynamic paradigm layout</dt>
+<dd>paradigm layout that has placeholders for the lemma or other
+morphosyntactic information that may be replaced when generating
+a rendered paradigm. These are the types of paradigm layouts used when
+describing an entire word class.</dd>
+<dt>static paradigm layout</dt>
+<dd>paradigm layout in which all forms are explicitly
+specified; there are no placeholders</dd>
+</dl>
+
+
 part of speech
 ==============
 [part of speech]: #part-of-speech
