@@ -18,6 +18,10 @@ from CreeDictionary.relabelling import LABELS
 
 from .schema import SerializedDefinition
 
+# How long a wordform or dictionary head can be (number of Unicode scalar values)
+# TODO: is this too small?
+MAX_WORDFORM_LENGTH = 40
+
 # Don't start evicting cache entries until we've seen over this many unique definitions:
 MAX_SOURCE_ID_CACHE_ENTRIES = 4096
 
@@ -48,7 +52,7 @@ class Wordform(models.Model):
     # auto-increment is also implemented in the overridden save() method below
     id = models.PositiveIntegerField(primary_key=True)
 
-    text = models.CharField(max_length=40)
+    text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
 
     inflectional_category = models.CharField(
         max_length=10,
