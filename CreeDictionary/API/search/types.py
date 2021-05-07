@@ -147,6 +147,9 @@ class Result:
                 elif (
                     field_name == "cosine_vector_distance"
                     and self.cosine_vector_distance is not None
+                    # We already checked that other.cosine_vector_distance is
+                    # not None, but mypy can’t infer that.
+                    and other.cosine_vector_distance is not None
                 ):
                     self.cosine_vector_distance = min(
                         self.cosine_vector_distance, other.cosine_vector_distance

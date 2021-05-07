@@ -5,6 +5,7 @@ from os import fspath
 
 from gensim.models import KeyedVectors
 
+from CreeDictionary import settings
 from utils import shared_res_dir
 
 logger = logging.getLogger(__name__)
@@ -21,9 +22,24 @@ def google_news_vectors():
     return _load_vectors(shared_vector_model_dir / "news_vectors.kv")
 
 
+class DefinitionVectorsNotFoundException(Exception):
+    pass
+
+
+def definition_vectors_path():
+    filename = "definitions.kv"
+    if settings.USE_TEST_DB:
+        filename = "test_db_definitions.kv"
+    return shared_vector_model_dir / filename
+
+
 @cache
 def definition_vectors():
-    return _load_vectors(shared_vector_model_dir / "definitions.kv")
+    try:
+        return _load_vectors(definition_vectors_path())
+
+    except FileNotFoundError:
+        raise DefinitionVectorsNotFoundException
 
 
 # https://stackoverflow.com/a/48027864/14558

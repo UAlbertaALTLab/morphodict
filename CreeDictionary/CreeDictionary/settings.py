@@ -305,7 +305,7 @@ else:
 ######################################## logging ###############################
 
 log_level = env.log_level("LOG_LEVEL", default="INFO")
-query_log_level = env.log_level("QUERY_LOG_LEVEL", default=log_level)
+query_log_level = env.log_level("QUERY_LOG_LEVEL", default="INFO")
 
 # To debug what the *actual* config ends up being, use the logging_tree package
 # See https://stackoverflow.com/a/53058203/14558

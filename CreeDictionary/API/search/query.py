@@ -17,8 +17,8 @@ class CvdSearchType(Enum):
     RETRIEVAL = 1
 
     # Only use cosine vector distance, for both retrieval and ranking. Helpful
-    # for inspecting how CVD performs, but not generally useful because does not
-    # work on source-language queries.
+    # for inspecting how CVD performs, but not generally useful because only
+    # returns results for English-language inputs.
     EXCLUSIVE = 2
 
 
