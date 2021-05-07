@@ -23,7 +23,7 @@ class CvdSearchType(Enum):
 
 
 class Query:
-    BOOL_KEYS = ["verbose", "auto", "weightrank"]
+    BOOL_KEYS = ["verbose", "auto"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
@@ -38,6 +38,9 @@ class Query:
         query_string = to_sro_circumflex(query_string)
 
         self.query_terms = []
+
+        # Default required for weight-ranking
+        self.cvd = CvdSearchType.RETRIEVAL
 
         for token in query_string.split():
             # Whether this token has been used by some interpretation step
@@ -63,9 +66,6 @@ class Query:
             if not consumed:
                 self.query_terms.append(token)
 
-        if self.weightrank:
-            self.cvd = CvdSearchType.RETRIEVAL
-
         self.query_string = " ".join(self.query_terms)
 
         self.is_valid = self.query_string != ""
@@ -76,5 +76,4 @@ class Query:
     is_valid: bool
     verbose: Optional[bool] = None
     auto: Optional[bool] = None
-    weightrank: Optional[bool] = True
     cvd: Optional[CvdSearchType] = None

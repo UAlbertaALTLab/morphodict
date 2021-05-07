@@ -41,13 +41,11 @@ class SearchRun:
     def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
 
-        if self.query.weightrank:
-            for r in self._results.values():
-                assign_relevance_score(r)
-            results.sort(key=attrgetter("relevance_score"))
-            results.reverse()
-        else:
-            results.sort(key=ranking.sort_by_user_query(self))
+        for r in self._results.values():
+            assign_relevance_score(r)
+        results.sort(key=attrgetter("relevance_score"))
+        results.reverse()
+
         return results
 
     def presentation_results(self) -> list[presentation.PresentationResult]:
