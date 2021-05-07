@@ -1,8 +1,6 @@
-import itertools
-import operator
-from functools import reduce
+import logging
 
-from django.db.models import Q
+import itertools
 
 from API.models import Wordform
 from API.search.core import SearchRun
@@ -12,18 +10,33 @@ from cvd import (
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
+    DefinitionVectorsNotFoundException,
 )
 from cvd.definition_keys import cvd_key_to_wordform_query, wordform_query_matches
 
+logger = logging.getLogger(__name__)
+
 
 def do_cvd_search(search_run: SearchRun):
+    """Use cosine vector distance to add results to the search run.
+
+    Keywords from the query string are turned into vectors from Google News,
+    added together, and then compared against pre-computed definition vectors.
+    """
     keys = extract_keyed_words(search_run.query.query_string, google_news_vectors())
     if not keys:
         return
 
     query_vector = vector_for_keys(google_news_vectors(), keys)
 
-    closest = definition_vectors().similar_by_vector(query_vector, 50)
+    try:
+        closest = definition_vectors().similar_by_vector(query_vector, 50)
+    except DefinitionVectorsNotFoundException:
+        logger.error(
+            "Definition vectors not found. Not using cosine vector distance for search. Run `manage.py builddefinitionvectors`."
+        )
+        return
+
     wordform_queries = [
         cvd_key_to_wordform_query(similarity) for similarity, weight in closest
     ]

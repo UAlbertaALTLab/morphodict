@@ -1,0 +1,58 @@
+{% spaceless %}
+
+  {% comment %}
+    The paradigm table.
+
+    Parameters:
+      paradigm_tables: Paradigm (see CreeDictionary.paradigm.panes.Paradigm)
+
+    Example:
+
+        |             | One     | Many      |
+        | Here        | ôma     | ôhi       |
+        | There       | anima   | anihi     |
+        | Over Yonder | nêma    | nêhi      |
+
+    JavaScript hooks:
+     - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
+       JavaScript can replace the contents with a different paradigm.
+
+  {% endcomment %}
+
+  {% load morphodict_orth %}
+  {% load relabelling %}
+
+  <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
+    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
+    <div class="HACK-overflow-x-scroll">
+      <table class="paradigm__table">
+        {% for pane in paradigm.panes %}
+          <tbody>
+            {% for row in pane.rows %}
+              {% if row.is_title %}
+                <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+              {% else %}
+                <tr class="paradigm-row">
+                  {% for cell in row.cells %}
+                    {% if cell.is_label %}
+                      <th scope="{{ cell.label_for }}"
+                          class="paradigm-label paradigm-label--{{ cell.label_for }}">
+                          {% relabel cell.fst_tags %}
+                      </th>
+                    {% elif cell.is_empty %}
+                      <td class="paradigm-cell paradigm-cell--empty"></td>
+                    {% else %}
+                      <td class="paradigm-cell paradigm-cell--unobserved">
+                        {% orth cell.inflection %}
+                      </td>
+                    {% endif %}
+                  {% endfor %}
+                </tr>
+              {% endif %}
+            {% endfor %} {# /rows #}
+          </tbody>
+        {% endfor %} {# /paradigm.panes #}
+      </table>
+    </div>
+  </section>
+{% endspaceless %}

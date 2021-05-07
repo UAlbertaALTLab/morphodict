@@ -798,13 +798,19 @@ a.multiple-recordings__action-button {
 
 .paradigm-label {
   text-align: left;
-  font-style: italic;
   font-weight: var(--body-font-weight);
 }
 
+.paradigm-label--row {
+  font-style: italic;
+}
+
 .paradigm-label--col {
+  font-weight: bold;
+
   /* Sometimes the label is too dang wide, so just hide it. */
-  overflow-x: ellipsis;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
 }
 
 .paradigm-cell {
@@ -900,14 +906,14 @@ a.multiple-recordings__action-button {
 }
 
 .footer a:link,
-.footer a:visited
-.footer .linklike:link,
-.footer .linklike:visited {
+.footer a:visited,
+.footer .link:link,
+.footer .link:visited {
   color: var(--footer-text-color);
 }
 
 .footer a:hover,
-.footer .linklike:hover {
+.footer .link:hover {
   color: var(--footer-link-hover-color);
 }
 

@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 """
 Use secure.py to set OWASP approved headers.
 
@@ -10,15 +7,15 @@ See: https://owasp.org/www-project-secure-headers/
 Based on: https://secure.readthedocs.io/en/latest/frameworks.html#django
 """
 
-from secure import SecureHeaders
+import secure
 
-secure_headers = SecureHeaders()
+secure_headers = secure.Secure()
 
 
 def set_secure_headers(get_response):
     def middleware(request):
         response = get_response(request)
-        secure_headers.django(response)
+        secure_headers.framework.django(response)
         return response
 
     return middleware

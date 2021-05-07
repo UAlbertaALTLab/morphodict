@@ -3,7 +3,7 @@ from django.db.models import prefetch_related_objects
 from . import types, presentation, ranking
 from .query import Query
 from .util import first_non_none_value
-from ..models import WordformKey
+from ..models import WordformKey, Wordform
 
 
 class SearchRun:
@@ -42,24 +42,22 @@ class SearchRun:
 
     def presentation_results(self) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
-        try:
-            prefetch_related_objects(
-                [r.wordform for r in results],
-                "lemma__definitions__citations",
-                "definitions__citations",
-            )
-        except AttributeError:
-            # This happens rarely, but is reproducible with the test suite:
-            # “'RelatedManager' object has no attribute 'citations'.” I think
-            # this is a django bug? It tries to look up a field from Definition
-            # on a DictionarySource object. Passing on the exception just means
-            # that some searches will run more slowly. To revisit when upgrading
-            # to Django 3.
-            pass
+        prefetch_related_objects(
+            [r.wordform for r in results],
+            "lemma__definitions__citations",
+            "definitions__citations",
+        )
         return [presentation.PresentationResult(r, search_run=self) for r in results]
 
     def serialized_presentation_results(self):
-        return [r.serialize() for r in self.presentation_results()]
+        results = self.presentation_results()
+        wordforms = [r.wordform for r in results] + [r.wordform.lemma for r in results]
+
+        Wordform.bulk_homograph_disambiguate(
+            [wf for wf in wordforms if wf.is_lemma and wf.id is not None]
+        )
+
+        return [r.serialize() for r in results]
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"

@@ -14,6 +14,7 @@ from cvd import (
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
+    definition_vectors_path,
 )
 from cvd.definition_keys import definition_to_cvd_key
 
@@ -24,12 +25,12 @@ class Command(BaseCommand):
     help = """Create a vector model from current definitions"""
 
     def add_arguments(self, parser: ArgumentParser):
-        parser.add_argument(
-            "--output-file", default=shared_vector_model_dir / "definitions.kv"
-        )
+        parser.add_argument("--output-file", default=definition_vectors_path())
         parser.add_argument("--debug-output-file")
 
     def handle(self, *args, **options):
+        logger.info("Building definition vectors")
+
         definitions = Definition.objects.filter(
             auto_translation_source_id__isnull=True
         ).prefetch_related("wordform__lemma")
