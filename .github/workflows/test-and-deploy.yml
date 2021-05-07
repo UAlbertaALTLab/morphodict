@@ -166,14 +166,15 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-    - name: Cache Docker layers
-      uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
     - name: Build and push Docker images
       uses: docker/build-push-action@v2
       with:
         file: docker/Dockerfile
         push: true
+        # hopefully this will speed up builds and save disk space by
+        # sharing layers with the existing docker image, where possible
+        cache-from: |
+          type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
         tags: |
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
@@ -195,15 +196,17 @@ jobs:
         registry: ghcr.io
         username: ${{ github.repository_owner }}
         password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-    - name: Cache Docker layers
-      uses: satackey/action-docker-layer-caching@v0.0.11
-      continue-on-error: true
-    - name: Pull existing image
-      run: docker pull ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
-    - name: Tag previously successfully created image as latest
-      run: docker tag ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }} ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    - name: Update the latest tag
-      run : docker push ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+    - uses: actions/checkout@v2
+    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+    - name: Install requests
+      run: pip install requests
+    - name: Update tag
+      run: docker/copy-registry-tag ${{ github.sha }} latest
+      env:
+        GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
     - name: send HTTP request to deploy.altlab.dev webhook
       # Be careful with spacing here.
       #

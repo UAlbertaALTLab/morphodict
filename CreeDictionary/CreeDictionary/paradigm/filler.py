@@ -398,7 +398,12 @@ def import_layouts(layout_file_dir: Path) -> Layouts:
             logger.info("unsupported paradigm size for %s", layout_file)
             continue
 
-        wc = PARADIGM_NAME_TO_WC["-".join(wc_str)]
+        try:
+            wc = PARADIGM_NAME_TO_WC["-".join(wc_str)]
+        except KeyError:
+            logger.info("ignoring unsupported layout wordclass: %s", layout_file)
+            continue
+
         table = parse_layout(layout_file)
 
         if (wc, size) in layout_tables:

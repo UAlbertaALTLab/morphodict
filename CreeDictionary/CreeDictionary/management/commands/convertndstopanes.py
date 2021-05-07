@@ -23,10 +23,10 @@ from CreeDictionary.paradigm.panes import (
     ContentRow,
     EmptyCell,
     HeaderRow,
-    InflectionCell,
+    InflectionTemplate,
     MissingForm,
     Pane,
-    ParadigmTemplate,
+    ParadigmLayout,
     RowLabel,
 )
 from CreeDictionary.relabelling import LABELS
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                     new_cell = EmptyCell()
                 elif hasattr(cell, "analysis"):
                     if analysis := cell.analysis:
-                        new_cell = InflectionCell(analysis.template)
+                        new_cell = InflectionTemplate(analysis.template)
                     else:
                         new_cell = MissingForm()
                 elif cell.is_label or hasattr(cell, "text"):
@@ -110,7 +110,7 @@ class Command(BaseCommand):
 
             rows.append(ContentRow(cells))
 
-        return ParadigmTemplate(Pane(rows) for rows in panes)
+        return ParadigmLayout(Pane(rows) for rows in panes)
 
 
 class _ExpectedMixinBase(Protocol):

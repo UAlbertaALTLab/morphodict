@@ -93,19 +93,25 @@ class Wordform(models.Model):
         tags = [FSTTag(t) for t in fst_tag_str.split("+")]
         return LABELS.emoji.get_longest(tags)
 
-    @cached_property
+    # We do our own caching instead of using @cachedproperty so that we can
+    # disambiguate homographs in bulk when displaying search results
+    _cached_homograph_disambiguator: Optional[str]
+
+    @property
     def homograph_disambiguator(self) -> Optional[str]:
         """
         :return: the least strict field name that guarantees unique match together with the text field.
             could be pos, inflectional_category, analysis, id or None when the text is enough to disambiguate
         """
-        homographs = Wordform.objects.filter(text=self.text)
-        if homographs.count() == 1:
-            return None
-        for field in "pos", "inflectional_category", "analysis":
-            if homographs.filter(**{field: getattr(self, field)}).count() == 1:
-                return field
-        return "id"  # id always guarantees unique match
+        assert self.is_lemma
+
+        if hasattr(self, "_cached_homograph_disambiguator"):
+            return self._cached_homograph_disambiguator
+
+        homographs = Wordform.objects.filter(text=self.text, is_lemma=True)
+        key = self._compute_homograph_key(homographs)
+        self._cached_homograph_disambiguator = key
+        return key
 
     # TODO: rename! it should not have an underscore!
     @property
@@ -228,6 +234,39 @@ class Wordform(models.Model):
             self.lemma_id = self.id
 
         super(Wordform, self).save(*args, **kwargs)
+
+    @classmethod
+    def bulk_homograph_disambiguate(cls, wordform_objects: list[Wordform]):
+        """Precache the homograph key information on the wordform_objects
+
+        The information will be retrieved with a single database query.
+        """
+        wordform_texts = list(set(wf.text for wf in wordform_objects))
+        homographs = Wordform.objects.filter(text__in=wordform_texts, is_lemma=True)
+        by_text = defaultdict(list)
+        for wf in homographs:
+            by_text[wf.text].append(wf)
+        for wf in wordform_objects:
+            wf._cached_homograph_disambiguator = wf._compute_homograph_key(
+                by_text[wf.text]
+            )
+
+    def _compute_homograph_key(self, all_wordforms_with_same_text):
+        if len(all_wordforms_with_same_text) == 1:
+            return None
+        for field in "pos", "inflectional_category", "analysis":
+            if (
+                len(
+                    [
+                        wf
+                        for wf in all_wordforms_with_same_text
+                        if getattr(self, field) == getattr(wf, field)
+                    ]
+                )
+                == 1
+            ):
+                return field
+        return "id"  # id always guarantees unique match
 
 
 class DictionarySource(models.Model):

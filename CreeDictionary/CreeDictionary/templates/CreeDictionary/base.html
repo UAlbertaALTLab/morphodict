@@ -87,7 +87,7 @@
       <ul class="unbullet">
         <li>
           <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
-            <button class="unbutton linklike footer__link" type="submit" name="mode" value="community" data-cy="enable-community-mode">
+            <button class="unbutton link footer__link" type="submit" name="mode" value="community" data-cy="enable-community-mode">
               Community mode
             </button>
             {% csrf_token %}
@@ -95,7 +95,7 @@
         </li>
         <li>
           <form method="POST" action={% url 'cree-dictionary-change-display-mode' %}>
-            <button class="unbutton linklike footer__link" type="submit" name="mode" value="linguistic" data-cy="enable-linguistic-mode">
+            <button class="unbutton link footer__link" type="submit" name="mode" value="linguistic" data-cy="enable-linguistic-mode">
               Linguist mode
             </button>
             {% csrf_token %}
