@@ -57,7 +57,9 @@ def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     production site... buuuuuuuuut, it's useful as a test fixture!
     """
     with pronoun_paradigm_path.open(encoding="UTF-8") as layout_file:
-        pronoun_paradigm = ParadigmLayout.load(layout_file)
+        pronoun_paradigm_layout = ParadigmLayout.load(layout_file)
+
+    pronoun_paradigm = pronoun_paradigm_layout.as_static_paradigm()
 
     assert count(pronoun_paradigm.panes) == 1
 
@@ -120,7 +122,7 @@ def sample_pane():
         EmptyCell(),
         MissingForm(),
         InflectionTemplate("${lemma}+N+A+Sg"),
-        InflectionTemplate("ôma+Pron+Dem+Prox+I+Sg"),
+        WordformCell("ôma+Pron+Dem+Prox+I+Sg"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),
