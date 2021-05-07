@@ -1,3 +1,4 @@
+import logging
 from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
 
@@ -22,6 +23,8 @@ from .utils import url_for_query
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
 IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
+
+logger = logging.getLogger(__name__)
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -62,8 +65,17 @@ def lemma_details(request, lemma_text: str):
 
     # TODO: make this use the ParadigmManager exclusively
     paradigm: Union[Paradigm, list[list[Row]]]
-    if new_style_paradigm := default_paradigm_manager().paradigm_for(lemma.analysis):
-        paradigm = new_style_paradigm
+    if name := lemma.paradigm:
+        new_style_paradigm = default_paradigm_manager().static_paradigm_for(name)
+        if new_style_paradigm:
+            paradigm = new_style_paradigm
+        else:
+            logger.warning(
+                "Could not retrieve static paradigm %r " "associated with wordform %r",
+                name,
+                lemma,
+            )
+            paradigm = []
     else:
         paradigm = generate_paradigm(lemma, paradigm_size)
 
