@@ -25,7 +25,7 @@ def search(*, query: str, include_affixes=True, include_auto_definitions=False):
         search_run.query.cvd, default=CvdSearchType.DEFAULT
     )
 
-    if cvd_search_type != CvdSearchType.OFF:
+    if cvd_search_type == CvdSearchType.EXCLUSIVE:
         do_cvd_search(search_run)
         return search_run
 
