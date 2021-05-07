@@ -16,6 +16,7 @@ from CreeDictionary.paradigm.panes import (
     InflectionTemplate,
     MissingForm,
     Pane,
+    ParadigmIsNotStaticError,
     ParadigmLayout,
     RowLabel,
     WordformCell,
@@ -66,6 +67,16 @@ def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     basic_pane = first(pronoun_paradigm.panes)
     assert basic_pane.num_columns == 3
     assert count(basic_pane.rows) == 4
+
+
+def test_as_static_paradigm_raises_on_dynamic_paradigm():
+    dynamic_layout = ParadigmLayout.loads("_ Prox\t${lemma}+Pron+I+Prox+Sg\n")
+    static_layout = ParadigmLayout.loads("_ Prox\tôma\n")
+
+    assert static_layout.as_static_paradigm()
+
+    with pytest.raises(ParadigmIsNotStaticError):
+        dynamic_layout.as_static_paradigm()
 
 
 def test_dump_equal_to_file_on_disk(na_layout_path: Path):
