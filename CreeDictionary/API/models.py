@@ -72,6 +72,16 @@ class Wordform(models.Model):
         # see xml_importer.py::generate_as_is_analysis
     )
 
+    paradigm = models.CharField(
+        max_length=50,
+        null=True,
+        blank=False,
+        default=None,
+        help_text="If provided, this is the name of a static paradigm that this "
+        "wordform belongs to. This name should match the filename in "
+        "res/layouts/static/ WITHOUT the file extension.",
+    )
+
     is_lemma = models.BooleanField(
         default=False,
         help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
