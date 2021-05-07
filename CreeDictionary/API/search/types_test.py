@@ -11,7 +11,7 @@ def test_result_adding_cvd():
     r = Result(make_wf(), query_wordform_edit_distance=1)
     assert r.cosine_vector_distance is None
 
-    # set CVD if cur is None
+    # if the existing Result has no CVD value, populate it from the new one
     r2 = Result(make_wf(), cosine_vector_distance=0.5)
     r.add_features_from(r2)
     assert r.cosine_vector_distance == 0.5
