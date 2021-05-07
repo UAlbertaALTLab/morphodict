@@ -42,8 +42,11 @@ def definition_vectors():
         raise DefinitionVectorsNotFoundException
 
 
-# https://stackoverflow.com/a/48027864/14558
+# Implementation from https://stackoverflow.com/a/48027864/14558 which cites
+# https://www.peterbe.com/plog/fastest-way-to-uniquify-a-list-in-python-3.6
+# which cites a tweet of Raymond Hettinger
 def uniq(l: list) -> list:
+    """Return unique elements from l"""
     return list(dict.fromkeys(l))
 
 
