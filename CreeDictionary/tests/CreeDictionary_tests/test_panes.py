@@ -95,13 +95,8 @@ def test_wordform_cell():
 
     assert cell.contains_wordform(wordform)
 
-    # It cannot be filled in — it's already filled in!
-    with pytest.raises(AssertionError):
-        cell.fill_one({})
-
-    # It should never be parsed from a layout
-    with pytest.raises(AssertionError):
-        WordformCell.parse(wordform)
+    # Trying to fill a cell returns the same cell back:
+    assert cell == cell.fill_one({})
 
 
 def sample_pane():
@@ -122,7 +117,7 @@ def sample_pane():
         EmptyCell(),
         MissingForm(),
         InflectionTemplate("${lemma}+N+A+Sg"),
-        WordformCell("ôma+Pron+Dem+Prox+I+Sg"),
+        WordformCell("ôma"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
         HeaderRow(("Imp",)),
