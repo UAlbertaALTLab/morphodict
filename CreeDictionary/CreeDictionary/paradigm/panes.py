@@ -145,7 +145,7 @@ class ParadigmLayout(Paradigm):
         return Paradigm(pane.fill(forms) for pane in self.panes)
 
     def as_static_paradigm(self) -> Paradigm:
-        f"""
+        """
         Returns a Paradigm that can be rendered without having to explicitly fill it.
         
         :raises ParadigmIsNotStaticError: when called on a dynamic paradigm
@@ -436,7 +436,7 @@ class WordformCell(Cell):
         return self.inflection == wordform
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
-        # No need to cell that already has contents!
+        # No need to fill a cell that already has contents!
         return self
 
     def __str__(self) -> str:
