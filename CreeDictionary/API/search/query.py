@@ -11,10 +11,10 @@ from API.search.util import to_sro_circumflex
 class CvdSearchType(Enum):
     # Do not use cosine vector distance at all.
     OFF = 0
-    DEFAULT = OFF
 
-    # Add some CVD-based results, but do not use for ranking
+    # Add some CVD-based results
     RETRIEVAL = 1
+    DEFAULT = RETRIEVAL
 
     # Only use cosine vector distance, for both retrieval and ranking. Helpful
     # for inspecting how CVD performs, but not generally useful because only
@@ -38,9 +38,6 @@ class Query:
         query_string = to_sro_circumflex(query_string)
 
         self.query_terms = []
-
-        # Default required for weight-ranking
-        self.cvd = CvdSearchType.RETRIEVAL
 
         for token in query_string.split():
             # Whether this token has been used by some interpretation step

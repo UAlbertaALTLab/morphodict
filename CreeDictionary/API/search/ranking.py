@@ -34,44 +34,11 @@ def assign_relevance_score(result: Result):
     else:
         result.relevance_score = (
             # See weighting.ipynb for the model that produced these coefficients.
-            0.05537813
-            + -0.00056731 * result.wordform_length
-            + 0.03264485 * len(result.target_language_keyword_match)
-            + 0.023535 * _has_value(result.morpheme_ranking)
-            + -0.00099665 * _default_if_none(result.morpheme_ranking, default=0)
-            + -0.11957764
+            0.0559011609
+            + -0.0005685605 * result.wordform_length
+            + 0.0325909057 * len(result.target_language_keyword_match)
+            + 0.022778805 * _has_value(result.morpheme_ranking)
+            + -0.0009984537 * _default_if_none(result.morpheme_ranking, default=1)
+            + -0.1190890019
             * log(1 + _default_if_none(result.cosine_vector_distance, default=1.1))
         )
-
-
-def test_model_evaluation():
-    from pytest import approx
-
-    wf = Wordform(text="f", is_lemma=True)
-    wf.lemma = wf
-
-    result = Result(wf, did_match_target_language=True)
-    assign_relevance_score(result)
-    assert result.relevance_score == approx(-0.033908, abs=1e-6)
-
-    result = Result(wf, cosine_vector_distance=0.7)
-    assign_relevance_score(result)
-    assert result.relevance_score == approx(-0.00864, abs=1e-6)
-
-    result = Result(wf, morpheme_ranking=12.8)
-    assign_relevance_score(result)
-    assert result.relevance_score == approx(-0.023130453155353087, abs=1e-6)
-
-    result = Result(wf, cosine_vector_distance=0.7, morpheme_ranking=12.8)
-    assign_relevance_score(result)
-    assert result.relevance_score == approx(0.002137, abs=1e-6)
-
-    wf.text = "x" * 11
-    result = Result(
-        wf,
-        cosine_vector_distance=0.0,
-        morpheme_ranking=15.39,
-        target_language_keyword_match=["x", "x"],
-    )
-    assign_relevance_score(result)
-    assert result.relevance_score == approx(0.122624, abs=1e-6)
