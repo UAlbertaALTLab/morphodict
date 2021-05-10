@@ -84,7 +84,7 @@ def debug_output_file(path):
 
             yield log
         finally:
-            file.close
+            file.close()
 
     else:
 
