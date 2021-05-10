@@ -20,6 +20,9 @@ toml = "~=0.10"
 mypy = "*"
 pytest-env = "*"
 jupyterlab = "*"
+pandas = "*"
+statsmodels = "*"
+pandas-stubs = "*"
 
 [packages]
 colorama = "~=0.4"
