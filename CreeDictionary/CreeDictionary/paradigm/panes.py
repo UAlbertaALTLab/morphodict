@@ -15,6 +15,7 @@ from more_itertools import first, ilen
 
 logger = logging.getLogger(__name__)
 
+
 class ParseError(Exception):
     """
     Raised when there's an issue in parsing paradigm layouts.
@@ -25,6 +26,7 @@ class ParadigmGenerationError(Exception):
     """
     Raised when there's some issue with generating/filling a paradigm.
     """
+
 
 class ParadigmIsNotStaticError(Exception):
     """
@@ -147,12 +149,13 @@ class ParadigmLayout(Paradigm):
     def as_static_paradigm(self) -> Paradigm:
         """
         Returns a Paradigm that can be rendered without having to explicitly fill it.
-        
+
         :raises ParadigmIsNotStaticError: when called on a dynamic paradigm
         """
         if ilen(self.inflection_cells) > 0:
-            raise ParadigmIsNotStaticError("not a static paradigm; contains "
-                                           "inflection templates")
+            raise ParadigmIsNotStaticError(
+                "not a static paradigm; contains " "inflection templates"
+            )
         return self.fill({})
 
     def __str__(self):
