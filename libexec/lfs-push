@@ -56,6 +56,8 @@ def main():
             "ssh",
             "-t",
             LFS_HOST,
+            # the custom sudo prompt is to make it clear that it’s asking
+            # for the password on the remote host, not the local one
             f"""
                 sudo -p '[sudo] password for %p@{LFS_HOST}: ' mv {LFS_INCOMING}/{args.oid} \
                     {LFS_STORAGE}/{args.repo} \
