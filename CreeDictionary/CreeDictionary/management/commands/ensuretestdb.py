@@ -3,6 +3,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from API.models import Definition, Wordform
+from CreeDictionary.ensure_data import ensure_wordform_paradigms
 from cvd import definition_vectors_path
 from utils import shared_res_dir
 
@@ -21,6 +22,7 @@ class Command(BaseCommand):
         call_command("migrate", verbosity=0)
 
         import_test_dictionary()
+        ensure_wordform_paradigms()
         add_some_auto_translations()
         call_command("ensurecypressadminuser")
 
