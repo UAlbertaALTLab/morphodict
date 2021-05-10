@@ -333,5 +333,10 @@ LOGGING = {
             "propagate": True,
         },
         "django.db.backends": {"level": query_log_level},
+        # gensim is a little too chatty for my tastes in terms of printing
+        # multiple lengthy INFO log messages when models are loaded. That’d be
+        # fine for a server process, but it can get a bit much with management
+        # commands and in notebooks.
+        "gensim": {"level": "WARNING"},
     },
 }

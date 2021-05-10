@@ -10,17 +10,17 @@ from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-from utils import (
-    PartOfSpeech,
-    WordClass,
-    fst_analysis_parser,
-    shared_res_dir,
-)
+from utils import PartOfSpeech, WordClass, fst_analysis_parser, shared_res_dir
 from utils.cree_lev_dist import remove_cree_diacritics
-from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
 
+from CreeDictionary.relabelling import LABELS
+
 from .schema import SerializedDefinition
+
+# How long a wordform or dictionary head can be (number of Unicode scalar values)
+# TODO: is this too small?
+MAX_WORDFORM_LENGTH = 40
 
 # Don't start evicting cache entries until we've seen over this many unique definitions:
 MAX_SOURCE_ID_CACHE_ENTRIES = 4096
@@ -43,8 +43,98 @@ WordformKey = Union[int, tuple[str, str]]
 
 
 class Wordform(models.Model):
-
+    # Queries always do .select_related("lemma"):
     objects = WordformLemmaManager()
+
+    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in PartOfSpeech] + [("", "")]
+
+    # override pk to allow use of bulk_create
+    # auto-increment is also implemented in the overridden save() method below
+    id = models.PositiveIntegerField(primary_key=True)
+
+    text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
+
+    inflectional_category = models.CharField(
+        max_length=10,
+        help_text="Inflectional category directly from source xml file",  # e.g. NI-3
+    )
+
+    pos = models.CharField(
+        max_length=4,
+        choices=RECOGNIZABLE_POS,
+        help_text="Part of speech parsed from source. Can be unspecified",
+    )
+
+    analysis = models.CharField(
+        max_length=50,
+        default="",
+        help_text="fst analysis or the best possible generated if the source is not analyzable",
+        # see xml_importer.py::generate_as_is_analysis
+    )
+
+    paradigm = models.CharField(
+        max_length=50,
+        null=True,
+        blank=False,
+        default=None,
+        help_text="If provided, this is the name of a static paradigm that this "
+        "wordform belongs to. This name should match the filename in "
+        "res/layouts/static/ WITHOUT the file extension.",
+    )
+
+    is_lemma = models.BooleanField(
+        default=False,
+        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
+        " analyzable or it's ambiguous",
+    )
+
+    # if as_is is False. pos field is guaranteed to be not empty
+    # and will be values from `constants.POS` enum class
+
+    # if as_is is True, inflectional_category and pos fields can be under-specified, i.e. they can be empty strings
+    as_is = models.BooleanField(
+        default=False,
+        help_text="The lemma of this wordform is not determined during the importing process."
+        "is_lemma defaults to true and lemma field defaults to self",
+    )
+
+    lemma = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="inflections",
+        help_text="The identified lemma of this wordform. Defaults to self",
+    )
+
+    # some lemmas have stems, they are shown in linguistic analysis
+    # e.g. wâpam- is the stem for wâpamêw
+    stem = models.CharField(
+        max_length=128,
+        blank=True,
+    )
+
+    class Meta:
+        indexes = [
+            # analysis is for faster user query (see search/lookup.py)
+            models.Index(fields=["analysis"]),
+            # text index benefits fast wordform matching (see search/lookup.py)
+            models.Index(fields=["text"]),
+            # When we *just* want to lookup text wordforms that are "lemmas"
+            # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
+            # Used by:
+            #  - affix tree intialization
+            #  - sitemap generation
+            models.Index(fields=["is_lemma", "text"], name="lemma_text_idx"),
+            # pos and inflectional_category are used when generating the preverb cache:
+            models.Index(fields=["inflectional_category"]),
+            models.Index(fields=["pos"]),
+        ]
+
+    def __str__(self):
+        return self.text
+
+    def __repr__(self):
+        cls_name = type(self).__name__
+        return f"<{cls_name}: {self.text} {self.analysis}>"
 
     def get_absolute_url(self, ambiguity: Literal["allow", "avoid"] = "avoid") -> str:
         """
@@ -135,83 +225,6 @@ class Wordform(models.Model):
         if self.id is not None:
             return self.id
         return (self.text, self.analysis)
-
-    # override pk to allow use of bulk_create
-    # auto-increment is also implemented in the overridden save() method below
-    id = models.PositiveIntegerField(primary_key=True)
-
-    text = models.CharField(max_length=40)
-
-    inflectional_category = models.CharField(
-        max_length=10,
-        help_text="Inflectional category directly from source xml file",  # e.g. NI-3
-    )
-    RECOGNIZABLE_POS = [(pos.value,) * 2 for pos in PartOfSpeech] + [("", "")]
-    pos = models.CharField(
-        max_length=4,
-        choices=RECOGNIZABLE_POS,
-        help_text="Part of speech parsed from source. Can be unspecified",
-    )
-
-    analysis = models.CharField(
-        max_length=50,
-        default="",
-        help_text="fst analysis or the best possible generated if the source is not analyzable",
-        # see xml_importer.py::generate_as_is_analysis
-    )
-    is_lemma = models.BooleanField(
-        default=False,
-        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
-        " analyzable or it's ambiguous",
-    )
-
-    # if as_is is False. pos field is guaranteed to be not empty
-    # and will be values from `constants.POS` enum class
-
-    # if as_is is True, inflectional_category and pos fields can be under-specified, i.e. they can be empty strings
-    as_is = models.BooleanField(
-        default=False,
-        help_text="The lemma of this wordform is not determined during the importing process."
-        "is_lemma defaults to true and lemma field defaults to self",
-    )
-
-    lemma = models.ForeignKey(
-        "self",
-        on_delete=models.CASCADE,
-        related_name="inflections",
-        help_text="The identified lemma of this wordform. Defaults to self",
-    )
-
-    # some lemmas have stems, they are shown in linguistic analysis
-    # e.g. wâpam- is the stem for wâpamêw
-    stem = models.CharField(
-        max_length=128,
-        blank=True,
-    )
-
-    class Meta:
-        indexes = [
-            # analysis is for faster user query (see search/lookup.py)
-            models.Index(fields=["analysis"]),
-            # text index benefits fast wordform matching (see search/lookup.py)
-            models.Index(fields=["text"]),
-            # When we *just* want to lookup text wordforms that are "lemmas"
-            # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
-            # Used by:
-            #  - affix tree intialization
-            #  - sitemap generation
-            models.Index(fields=["is_lemma", "text"], name="lemma_text_idx"),
-            # pos and inflectional_category are used when generating the preverb cache:
-            models.Index(fields=["inflectional_category"]),
-            models.Index(fields=["pos"]),
-        ]
-
-    def __str__(self):
-        return self.text
-
-    def __repr__(self):
-        cls_name = type(self).__name__
-        return f"<{cls_name}: {self.text} {self.analysis}>"
 
     @transaction.atomic
     def save(self, *args, **kwargs):

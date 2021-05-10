@@ -9,7 +9,8 @@ from pathlib import Path
 import pandas as pd
 import numpy as np
 
-BASE_DIR = Path(__file__).parent
+SEARCH_QUALITY_DIR = Path(__file__).parent
+BASE_DIR = SEARCH_QUALITY_DIR.parent
 
 
 def dataframe_from_featuredump(filename):
@@ -28,7 +29,7 @@ def dataframe_from_featuredump(filename):
 
 @cache
 def survey():
-    return pd.read_csv(BASE_DIR / "sample.csv")
+    return pd.read_csv(SEARCH_QUALITY_DIR / "sample.csv")
 
 
 @cache

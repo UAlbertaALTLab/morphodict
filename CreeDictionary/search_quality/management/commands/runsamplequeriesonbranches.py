@@ -3,7 +3,7 @@ import logging
 import os
 import shutil
 import subprocess
-from argparse import ArgumentParser, RawDescriptionHelpFormatter, BooleanOptionalAction
+from argparse import ArgumentParser, BooleanOptionalAction, RawDescriptionHelpFormatter
 from pathlib import Path
 from subprocess import check_call
 from time import strftime
@@ -107,7 +107,6 @@ class BranchSpecification:
                 "python",
                 "CreeDictionary/manage.py",
                 "xmlimport",
-                "import",
                 crkeng_xml,
             ]
         )
@@ -189,12 +188,12 @@ def git_blob_style_hash(data: bytes):
 class Command(BaseCommand):
     help = """
         Run sample queries across multiple branches
-    
+
         When the list of search queries we are using for evaluation changes, in
         order to see how older code performed on the newly-selected queries, we
         need to regenerate the search results by running queries against old
         versions of the code. That’s what this script does.
-        
+
         Note that this only needs to be done when query terms are added; changes
         in expected results do not require re-running, as evaluation is
         performed against saved search results in the query-results.json.gz

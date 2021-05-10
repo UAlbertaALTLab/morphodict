@@ -44,7 +44,7 @@ if the container is already running.
 
   - Populate the test dictionary with
 
-        ./docker-django-manage.py xmlimport import \
+        ./docker-django-manage.py xmlimport \
             ../CreeDictionary/res/test_dictionaries/crkeng.xml
 
 ## Deployment on `altlab-itw`

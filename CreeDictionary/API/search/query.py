@@ -21,6 +21,9 @@ class CvdSearchType(Enum):
     # returns results for English-language inputs.
     EXCLUSIVE = 2
 
+    def should_do_search(self):
+        return self != CvdSearchType.OFF
+
 
 class Query:
     BOOL_KEYS = ["verbose", "auto"]

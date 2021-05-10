@@ -35,8 +35,7 @@ def test_extract_words(query, words):
 
 @pytest.mark.django_db
 def test_definition_keys():
-    i = random.randint(0, 50)
-    d = Definition.objects.filter(auto_translation_source__isnull=True)[i]
+    d = random.choice(Definition.objects.filter(auto_translation_source__isnull=True))
     cvd_key = definition_to_cvd_key(d)
     kwargs = cvd_key_to_wordform_query(cvd_key)
     wordforms = Wordform.objects.filter(**kwargs)
