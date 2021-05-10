@@ -326,7 +326,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
 
 
 def paradigm_for(
-    lemma: Wordform, paradigm_size: ParadigmSize
+    wordform: Wordform, paradigm_size: ParadigmSize
 ) -> Union[Paradigm, list[list[Row]]]:
     """
     Returns a paradigm for the given wordform at the desired size.
@@ -335,16 +335,16 @@ def paradigm_for(
     """
     # TODO: make this use the new-style ParadigmManager exclusively
 
-    if name := lemma.paradigm:
+    if name := wordform.paradigm:
         if static_paradigm := default_paradigm_manager().static_paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
             name,
-            lemma,
+            wordform,
         )
         # TODO: better return value for when a paradigm cannot be found
         return []
 
     # try returning an old-style paradigm: may return []
-    return generate_paradigm(lemma, paradigm_size)
+    return generate_paradigm(wordform, paradigm_size)
