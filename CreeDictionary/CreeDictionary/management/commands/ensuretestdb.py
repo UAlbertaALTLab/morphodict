@@ -1,14 +1,11 @@
-import json
-import secrets
-
-from API.models import Definition, Wordform
 from django.conf import settings
-from django.contrib.auth.models import User
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-from utils import shared_res_dir
 
+from API.models import Definition, Wordform
 from CreeDictionary.ensure_data import ensure_wordform_paradigms
+from cvd import definition_vectors_path
+from utils import shared_res_dir
 
 
 class Command(BaseCommand):
@@ -28,6 +25,9 @@ class Command(BaseCommand):
         ensure_wordform_paradigms()
         add_some_auto_translations()
         call_command("ensurecypressadminuser")
+
+        if not definition_vectors_path().exists():
+            call_command("builddefinitionvectors")
 
 
 def import_test_dictionary():
