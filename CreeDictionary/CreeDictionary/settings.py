@@ -333,5 +333,6 @@ LOGGING = {
             "propagate": True,
         },
         "django.db.backends": {"level": query_log_level},
+        "gensim": {"level": "WARNING"},
     },
 }
