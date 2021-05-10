@@ -35,7 +35,6 @@ def import_test_dictionary():
         print("No wordforms found, generating")
         call_command(
             "xmlimport",
-            "import",
             shared_res_dir / "test_dictionaries" / "crkeng.xml",
         )
 
