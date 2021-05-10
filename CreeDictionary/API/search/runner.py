@@ -10,7 +10,9 @@ from API.search.query import CvdSearchType
 from API.search.util import first_non_none_value
 
 
-def search(*, query: str, include_affixes=True, include_auto_definitions=False):
+def search(
+    *, query: str, include_affixes=True, include_auto_definitions=False
+) -> SearchRun:
     """
     Perform an actual search, using the provided options.
 
@@ -37,7 +39,7 @@ def search(*, query: str, include_affixes=True, include_auto_definitions=False):
         do_source_language_affix_search(search_run)
         do_target_language_affix_search(search_run)
 
-    if cvd_search_type != CvdSearchType.OFF:
+    if cvd_search_type.should_do_search():
         do_cvd_search(search_run)
 
     return search_run

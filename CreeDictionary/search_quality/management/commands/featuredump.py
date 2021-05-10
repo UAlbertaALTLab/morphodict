@@ -34,7 +34,7 @@ class Command(BaseCommand):
             help="Shuffle sample before running, useful with --max",
         )
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **options) -> None:
         samples = load_sample_definition(options["csv_file"])
         if options["shuffle"]:
             random.shuffle(samples)
@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
 
 @contextmanager
-def output_file(filename):
+def output_file(filename: str):
     """Context manager that yields an open file, defaulting to sys.stdout"""
     ret = sys.stdout
     should_close = False
