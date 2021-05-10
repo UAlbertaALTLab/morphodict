@@ -3,6 +3,8 @@ from pathlib import Path
 
 from django.core.management import BaseCommand, call_command
 
+from CreeDictionary.ensure_data import ensure_wordform_paradigms
+
 
 class Command(BaseCommand):
     help = """Import a dictionary .xml file into db search tables.
@@ -33,5 +35,9 @@ class Command(BaseCommand):
                 call_command("wipedefinitions", yes_really=True)
 
             import_xmls(Path(options["xml_path"]))
+            # As of 2021-05-10, the XML format does not specify explicit paradigm fields
+            # for, e.g., demonstrative pronouns or personal pronouns, so add them in
+            # here:
+            ensure_wordform_paradigms()
         else:
             raise NotImplementedError
