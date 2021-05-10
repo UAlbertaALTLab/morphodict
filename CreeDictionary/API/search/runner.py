@@ -8,6 +8,7 @@ from API.search.cvd_search import do_cvd_search
 from API.search.lookup import fetch_results
 from API.search.query import CvdSearchType
 from API.search.util import first_non_none_value
+from utils.types import cast_away_optional
 
 
 def search(
@@ -23,8 +24,8 @@ def search(
         query=query, include_auto_definitions=include_auto_definitions
     )
 
-    cvd_search_type = first_non_none_value(
-        search_run.query.cvd, default=CvdSearchType.DEFAULT
+    cvd_search_type = cast_away_optional(
+        first_non_none_value(search_run.query.cvd, default=CvdSearchType.DEFAULT)
     )
 
     if cvd_search_type == CvdSearchType.EXCLUSIVE:
