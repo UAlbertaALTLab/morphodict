@@ -213,7 +213,6 @@ class Result:
             or self.analyzable_inflection_match
             or self.is_cw_as_is_wordform
             or self.is_preverb_match
-            or self.is_preverb_match
             or self.pronoun_as_is_match
         )
 
