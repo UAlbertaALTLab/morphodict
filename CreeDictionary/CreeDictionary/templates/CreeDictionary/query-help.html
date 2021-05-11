@@ -40,11 +40,12 @@
     who are logged in.
   </p>
   <dl>
-    <dt>cvd: retrieval|exclusive</dt>
+    <dt>cvd: <kbd>off</kbd> | <kbd>retrieval</kbd> | <kbd>exclusive</kbd></dt>
     <dd>
-        Use cosine vector distances. The <kbd>retrieval</kbd> setting augments search
-        results using cvd lookups but does not adjust ranking; <kbd>exclusive</kbd>
-        shows only cvd-generated results, for test and debugging purposes.
+      Adjust cosine vector distance settings. The default <kbd>retrieval</kbd>
+      setting augments search results using cvd lookups. <kbd>exclusive</kbd>
+      shows only cvd-generated results, for test and debugging purposes. And
+      <kdb>off</kdb> skips the cosine vector stuff entirely.
     </dd>
 
     <dt>verbose: (boolean)</dt>
@@ -53,5 +54,3 @@
   {% endif %}
 </section>
 {% endblock %}
-
-{# vim: set ft=htmldjango et ts=2 sw=2 sts=2 : #}
