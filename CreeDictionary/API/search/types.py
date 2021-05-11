@@ -10,6 +10,7 @@ from typing_extensions import Protocol
 
 from API.models import Wordform, wordform_cache
 from API.schema import SerializedLinguisticTag
+from API.search import ranking
 from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
 
@@ -125,9 +126,10 @@ class Result:
         if self.did_match_source_language and self.query_wordform_edit_distance is None:
             raise Exception("must include edit distance on source language matches")
 
-        self.morpheme_ranking = wordform_cache.MORPHEME_RANKINGS.get(
-            self.wordform.text, None
-        ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
+        if self.morpheme_ranking is None:
+            self.morpheme_ranking = wordform_cache.MORPHEME_RANKINGS.get(
+                self.wordform.text, None
+            ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
 
     def add_features_from(self, other: Result):
         """Add the features from `other` into this object
@@ -185,6 +187,8 @@ class Result:
 
     cosine_vector_distance: Optional[float] = None
 
+    relevance_score: Optional[float] = None
+
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
@@ -205,8 +209,29 @@ class Result:
     @property
     def did_match_source_language(self) -> bool:
         return bool(
-            self.source_language_match or self.source_language_affix_match is not None
+            self.source_language_match
+            or self.source_language_affix_match is not None
+            or self.analyzable_inflection_match
+            or self.is_cw_as_is_wordform
+            or self.is_preverb_match
+            or self.pronoun_as_is_match
         )
+
+    # This is a separate method instead of a magic cached property because:
+    #  1. When experimenting with ranking methods, completely unrelated code
+    #     might want to set a relevance score.
+    #  2. While we want the relevance score to be cached for sorting, it
+    #     should also be invalidated if the object is mutated. For now code
+    #     that uses Result lists is responsible for calling this method
+    #     explicitly when done adding results.
+    #  3. Dataclasses make doing custom caching a little trickier
+    def assign_default_relevance_score(self):
+        ranking.assign_relevance_score(self)
+
+    def __lt__(self, other: Result):
+        assert self.relevance_score is not None
+        assert other.relevance_score is not None
+        return self.relevance_score > other.relevance_score
 
     def __str__(self):
         return f"Result<wordform={self.wordform}>"

@@ -1,6 +1,6 @@
 from django.db.models import prefetch_related_objects
 
-from . import types, presentation, ranking
+from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
 from ..models import WordformKey, Wordform
@@ -37,7 +37,9 @@ class SearchRun:
 
     def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
-        results.sort(key=ranking.sort_by_user_query(self))
+        for r in results:
+            r.assign_default_relevance_score()
+        results.sort()
         return results
 
     def presentation_results(self) -> list[presentation.PresentationResult]:

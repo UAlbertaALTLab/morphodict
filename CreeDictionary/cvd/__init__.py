@@ -23,7 +23,10 @@ def google_news_vectors():
 
 
 class DefinitionVectorsNotFoundException(Exception):
-    pass
+    def __init__(self):
+        super().__init__(
+            "Definition vectors not found. Not able to use cosine vector distance for search. Run `manage.py builddefinitionvectors`."
+        )
 
 
 def definition_vectors_path():
@@ -40,6 +43,18 @@ def definition_vectors():
 
     except FileNotFoundError:
         raise DefinitionVectorsNotFoundException
+
+
+def preload_models():
+    try:
+        definition_vectors()
+    except DefinitionVectorsNotFoundException:
+        logger.exception("")
+
+    # doing a similarity search compares against every other vector, so by doing
+    # similar_by_key for any key at all, we preload the entire vector model into
+    # memory.
+    google_news_vectors().similar_by_key("hello")
 
 
 # Implementation from https://stackoverflow.com/a/48027864/14558 which cites

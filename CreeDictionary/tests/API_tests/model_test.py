@@ -19,9 +19,13 @@ def test_when_linguistic_breakdown_absent():
     query = "pe-"
     search_results = search(query=query).presentation_results()
 
-    assert len(search_results) == 1
+    # when introducing cosine vector distance, `pe` is in the news vectors, so
+    # we now get additional results for this search.
+    assert len(search_results) >= 1
 
     result = search_results[0]
+    assert result.wordform.text == "pê-"
+    assert result.wordform.analysis == "pê-+Ipv"
     assert (
         result.friendly_linguistic_breakdown_head == []
         and result.friendly_linguistic_breakdown_tail == ["like: pê-"]
@@ -227,7 +231,7 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many Cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = search(query="sleep").presentation_results()
+    results = search(query="sleeps").presentation_results()
     assert results[0].wordform.text == "nipâw"
 
 

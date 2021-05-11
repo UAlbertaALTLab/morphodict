@@ -1,10 +1,9 @@
 import logging
 import os
-from pathlib import Path
 
 from django.apps import AppConfig, apps
 
-from utils import shared_res_dir
+import cvd
 
 logger = logging.getLogger(__name__)
 
@@ -38,6 +37,7 @@ class APIConfig(AppConfig):
         logger.debug("preloading caches")
         affix.cache.preload()
         wordform_cache.preload()
+        cvd.preload_models()
 
         logger.debug("done")
 
