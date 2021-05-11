@@ -32,9 +32,7 @@ def do_cvd_search(search_run: SearchRun):
     try:
         closest = definition_vectors().similar_by_vector(query_vector, 50)
     except DefinitionVectorsNotFoundException:
-        logger.error(
-            "Definition vectors not found. Not using cosine vector distance for search. Run `manage.py builddefinitionvectors`."
-        )
+        logger.exception("")
         return
 
     wordform_queries = [

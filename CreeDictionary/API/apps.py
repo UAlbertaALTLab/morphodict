@@ -37,10 +37,7 @@ class APIConfig(AppConfig):
         logger.debug("preloading caches")
         affix.cache.preload()
         wordform_cache.preload()
-
-        cvd.definition_vectors()
-        # doing a similarity search reads every vector
-        cvd.google_news_vectors().similar_by_key("hello")
+        cvd.preload_models()
 
         logger.debug("done")
 

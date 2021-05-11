@@ -21,13 +21,22 @@ def build_result(
     return result
 
 
+# These tests help ensure we have implemented the same model as what’s in the
+# jupyter notebook. At the time, copying the parameters seemed like the better
+# thing going forward than pickling the model and adding a dependency, in terms
+# of both maintainability and making sure the model is doing exactly what we
+# think it is.
+#
+# They will need to be updated if the model parameters change.
 @pytest.mark.parametrize(
     ("expected", "kwargs"),
     [
+        # Simple tests that use increasingly many parameters.
         (-0.033_454, {"did_match_target_language": True}),
         (-0.008_289, {"cosine_vector_distance": 0.7}),
         (-0.022_457, {"morpheme_ranking": 12.8}),
         (0.002_708, {"cosine_vector_distance": 0.7, "morpheme_ranking": 12.8}),
+        # A real-world relevance score from a sample query.
         (
             0.062_559,
             {
