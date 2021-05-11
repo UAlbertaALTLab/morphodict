@@ -2,8 +2,7 @@ from __future__ import annotations
 
 from math import log
 
-from .types import Result
-from ..models import Wordform
+from . import types
 
 
 def _has_value(value):
@@ -18,7 +17,7 @@ def _default_if_none(value, *, default):
     return default
 
 
-def assign_relevance_score(result: Result):
+def assign_relevance_score(result: types.Result):
     # Until we have some training data for Cree queries, we keep the intent of
     # the old sort order:
     #   - Cree wordforms in the query take precedence over any English hits

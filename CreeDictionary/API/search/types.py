@@ -10,6 +10,7 @@ from typing_extensions import Protocol
 
 from API.models import Wordform, wordform_cache
 from API.schema import SerializedLinguisticTag
+from API.search import ranking
 from CreeDictionary.relabelling import LABELS
 from utils.types import FSTTag
 
@@ -215,6 +216,22 @@ class Result:
             or self.is_preverb_match
             or self.pronoun_as_is_match
         )
+
+    # This is a separate method instead of a magic cached property because:
+    #  1. When experimenting with ranking methods, completely unrelated code
+    #     might want to set a relevance score.
+    #  2. While we want the relevance score to be cached for sorting, it
+    #     should also be invalidated if the object is mutated. For now code
+    #     that uses Result lists is responsible for calling this method
+    #     explicitly when done adding results.
+    #  3. Dataclasses make doing custom caching a little trickier
+    def assign_default_relevance_score(self):
+        ranking.assign_relevance_score(self)
+
+    def __lt__(self, other: Result):
+        assert self.relevance_score is not None
+        assert other.relevance_score is not None
+        return self.relevance_score > other.relevance_score
 
     def __str__(self):
         return f"Result<wordform={self.wordform}>"
