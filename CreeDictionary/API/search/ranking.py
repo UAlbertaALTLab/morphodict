@@ -23,6 +23,9 @@ def assign_relevance_score(result: types.Result):
     #   - Cree wordforms in the query take precedence over any English hits
     #   - Then use edit distance
     #   - Finally, prefer lemmas
+    # The coefficients here are wild guesses that should accomplish that. They
+    # can be replaced with computed values when we have some training data for
+    # Cree-language queries.
     if result.did_match_source_language:
         result.relevance_score = (
             1000
