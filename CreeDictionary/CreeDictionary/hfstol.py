@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 """
 Run finite-state transducer analyzer and generator
 """

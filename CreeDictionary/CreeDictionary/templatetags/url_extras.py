@@ -6,7 +6,6 @@ from urllib.parse import ParseResult, urlparse, urlunparse
 
 from django import template
 from django.templatetags.static import StaticNode
-from django.urls import reverse
 
 register = template.Library()
 

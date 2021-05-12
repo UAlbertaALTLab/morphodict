@@ -6,7 +6,7 @@ from hfst_optimized_lookup import TransducerFile
 from shared import expensive
 from utils import shared_res_dir
 
-from CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from .panes import Paradigm, ParadigmLayout
 
 
 class ParadigmManager:

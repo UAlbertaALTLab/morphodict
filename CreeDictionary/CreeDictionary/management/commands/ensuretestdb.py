@@ -1,11 +1,11 @@
+from API.models import Definition, Wordform
+from cvd import definition_vectors_path
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-
-from API.models import Definition, Wordform
-from CreeDictionary.ensure_data import ensure_wordform_paradigms
-from cvd import definition_vectors_path
 from utils import shared_res_dir
+
+from ...ensure_data import ensure_wordform_paradigms
 
 
 class Command(BaseCommand):

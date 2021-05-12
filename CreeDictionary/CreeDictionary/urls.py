@@ -2,20 +2,16 @@
 Definition of urls for CreeDictionary.
 """
 
-import os
-
 import API.views as api_views
 from django.conf import settings
-from django.conf.urls import url
-from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
-from CreeDictionary import views
-from CreeDictionary.sitemaps import sitemaps
+from . import views
+from .sitemaps import sitemaps
 
 # TODO: use URL namespaces:
 # e.g., cree-dictionary:index instead of cree-dictionary-index

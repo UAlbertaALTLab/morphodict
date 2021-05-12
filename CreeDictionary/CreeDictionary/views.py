@@ -11,13 +11,12 @@ from django.views import View
 from django.views.decorators.http import require_GET
 from utils import ParadigmSize
 
-from CreeDictionary.forms import WordSearchForm
-from CreeDictionary.paradigm.filler import Row
-from CreeDictionary.paradigm.generation import generate_paradigm
-from CreeDictionary.paradigm.manager import default_paradigm_manager
-from CreeDictionary.paradigm.panes import Paradigm
-
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
+from .forms import WordSearchForm
+from .paradigm.filler import Row
+from .paradigm.generation import generate_paradigm
+from .paradigm.manager import default_paradigm_manager
+from .paradigm.panes import Paradigm
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";

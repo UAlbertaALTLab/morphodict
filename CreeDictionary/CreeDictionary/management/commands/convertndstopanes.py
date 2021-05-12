@@ -15,9 +15,9 @@ from typing import Protocol, Sequence
 from django.core.management import BaseCommand
 from utils import ParadigmSize
 
-from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
-from CreeDictionary.paradigm.generation import paradigm_filler
-from CreeDictionary.paradigm.panes import (
+from ...paradigm.filler import EmptyRow, TitleRow
+from ...paradigm.generation import paradigm_filler
+from ...paradigm.panes import (
     Cell,
     ColumnLabel,
     ContentRow,
@@ -29,7 +29,7 @@ from CreeDictionary.paradigm.panes import (
     ParadigmLayout,
     RowLabel,
 )
-from CreeDictionary.relabelling import LABELS
+from ...relabelling import LABELS
 
 
 class Command(BaseCommand):

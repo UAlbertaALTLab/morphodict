@@ -5,7 +5,7 @@ Access to relabelling from templates.
 from django import template
 from utils.types import FSTTag
 
-from CreeDictionary.relabelling import LABELS
+from ..relabelling import LABELS
 
 register = template.Library()
 
