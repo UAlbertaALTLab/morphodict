@@ -1,9 +1,9 @@
 import pytest
-from API.models import Wordform
-from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import find_latest_xml_file
-from tests.DatabaseManager_tests.conftest import migrate_and_import
-from utils import PartOfSpeech, shared_res_dir
+
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
+from CreeDictionary.DatabaseManager.xml_importer import find_latest_xml_file
+from CreeDictionary.tests.DatabaseManager_tests.conftest import migrate_and_import
 
 
 @pytest.mark.django_db

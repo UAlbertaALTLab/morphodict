@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 from more_itertools import first, ilen
 
-from CreeDictionary.paradigm.manager import ParadigmManager
+from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
 
 
 def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
@@ -27,7 +27,7 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
 
 @pytest.fixture
 def paradigm_manager(shared_datadir: Path) -> ParadigmManager:
-    from shared import expensive
+    from CreeDictionary.shared import expensive
 
     layout_dir = shared_datadir / "paradigm-layouts"
     assert layout_dir.is_dir()

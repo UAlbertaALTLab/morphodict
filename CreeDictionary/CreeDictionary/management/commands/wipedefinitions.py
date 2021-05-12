@@ -3,7 +3,12 @@ from argparse import ArgumentParser
 from django.core.management.base import BaseCommand
 from django.db import connection
 
-from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
+from CreeDictionary.API.models import (
+    Definition,
+    DictionarySource,
+    EnglishKeyword,
+    Wordform,
+)
 
 
 class Command(BaseCommand):

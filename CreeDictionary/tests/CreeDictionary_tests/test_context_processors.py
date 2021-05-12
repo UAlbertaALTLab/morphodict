@@ -5,9 +5,9 @@ Test Django template context processors.
 
 import pytest
 from django.http import HttpRequest
-from django.template import Context, RequestContext, Template
+from django.template import RequestContext, Template
 
-from CreeDictionary.display_options import (
+from CreeDictionary.CreeDictionary.display_options import (
     DEFAULT_DISPLAY_MODE,
     DISPLAY_MODE_COOKIE,
     DISPLAY_MODES,
@@ -16,7 +16,9 @@ from CreeDictionary.display_options import (
 
 @pytest.fixture(autouse=True)
 def ensure_context_processors_are_enabled(settings):
-    desired_processor = "CreeDictionary.context_processors.display_options"
+    desired_processor = (
+        "CreeDictionary.CreeDictionary.context_processors.display_options"
+    )
     settings.TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",

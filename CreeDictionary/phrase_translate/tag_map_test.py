@@ -2,7 +2,7 @@ import re
 
 import pytest
 
-from phrase_translate.tag_map import TagMap, UnknownTagError
+from CreeDictionary.phrase_translate.tag_map import TagMap, UnknownTagError
 
 
 @pytest.fixture

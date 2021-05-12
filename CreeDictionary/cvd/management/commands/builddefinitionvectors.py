@@ -8,15 +8,14 @@ from django.core.management import BaseCommand
 from gensim.models import KeyedVectors
 from tqdm import tqdm
 
-from API.models import Definition
-from cvd import (
-    shared_vector_model_dir,
+from CreeDictionary.API.models import Definition
+from CreeDictionary.cvd import (
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     definition_vectors_path,
 )
-from cvd.definition_keys import definition_to_cvd_key
+from CreeDictionary.cvd.definition_keys import definition_to_cvd_key
 
 logger = logging.getLogger(__name__)
 

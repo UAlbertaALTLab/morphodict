@@ -8,11 +8,11 @@ from typing import NewType, Iterable, Tuple, Optional
 
 from typing_extensions import Protocol
 
-from API.models import Wordform, wordform_cache
-from API.schema import SerializedLinguisticTag
-from API.search import ranking
-from CreeDictionary.relabelling import LABELS
-from utils.types import FSTTag
+from CreeDictionary.API.models import Wordform, wordform_cache
+from CreeDictionary.API.schema import SerializedLinguisticTag
+from CreeDictionary.API.search import ranking
+from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.utils.types import FSTTag
 
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)

@@ -3,7 +3,7 @@ from pathlib import Path
 
 from django.core.management import BaseCommand, call_command
 
-from CreeDictionary.ensure_data import ensure_wordform_paradigms
+from CreeDictionary.CreeDictionary.ensure_data import ensure_wordform_paradigms
 
 
 class Command(BaseCommand):
@@ -21,7 +21,7 @@ class Command(BaseCommand):
         parser.add_argument("--wipe-first", action="store_true")
 
     def handle(self, *, xml_path: str, wipe_first=False, **kwargs):
-        from DatabaseManager.xml_importer import import_xmls
+        from CreeDictionary.DatabaseManager.xml_importer import import_xmls
 
         if wipe_first:
             call_command("wipedefinitions", yes_really=True)

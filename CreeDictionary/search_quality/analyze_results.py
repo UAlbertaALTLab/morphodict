@@ -8,11 +8,9 @@ from __future__ import annotations
 import gzip
 from json import load
 from os import PathLike
-from typing import cast, TypedDict, Optional, Sequence
+from typing import cast, TypedDict, Optional
 
-from API.schema import SerializedSearchResult
-from utils.types import FSTTag
-
+from CreeDictionary.API.schema import SerializedSearchResult
 from . import DEFAULT_SAMPLE_FILE, SampleSearchResultsJson
 from .sample import load_sample_definition, SampleDefinition
 

@@ -4,9 +4,9 @@ Handles paradigm generation.
 
 from functools import cache
 
-from utils.fst_analysis_parser import extract_word_class
-from utils.enums import ParadigmSize
-from API.models import Wordform
+from CreeDictionary.utils.fst_analysis_parser import extract_word_class
+from CreeDictionary.utils.enums import ParadigmSize
+from CreeDictionary.API.models import Wordform
 
 from .filler import Layout, ParadigmFiller
 

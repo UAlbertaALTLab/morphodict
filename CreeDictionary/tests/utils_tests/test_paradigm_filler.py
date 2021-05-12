@@ -6,9 +6,9 @@ Note: if the upstream layouts change, so will these tests!
 from string import Template
 
 import pytest
-from utils import ParadigmSize, WordClass
+from CreeDictionary.utils import ParadigmSize, WordClass
 
-from CreeDictionary.paradigm.filler import (
+from CreeDictionary.CreeDictionary.paradigm.filler import (
     EmptyRow,
     Heading,
     InflectionCell,

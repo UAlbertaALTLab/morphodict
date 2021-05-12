@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 from hfst_optimized_lookup import TransducerFile
-from utils import shared_res_dir
+from CreeDictionary.utils import shared_res_dir
 
 _fst_dir = shared_res_dir / "fst"
 

@@ -1,7 +1,6 @@
-from textwrap import dedent
 from typing import NamedTuple, Optional, Tuple
 
-from utils.types import ConcatAnalysis
+from CreeDictionary.utils.types import ConcatAnalysis
 
 
 class Analysis(NamedTuple):

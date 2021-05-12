@@ -13,24 +13,12 @@ skip = [
 minversion = "6.0"
 addopts = "--doctest-modules"
 
-testpaths = [
-    "CreeDictionary"
-]
-
 env = [
     "USE_TEST_DB=true"
 ]
 
 # pytest-django
-DJANGO_SETTINGS_MODULE = "CreeDictionary.settings"
+DJANGO_SETTINGS_MODULE = "CreeDictionary.CreeDictionary.settings"
 
-
-[project_paths]
-# A place to store paths to different components in our project.
-# Here they are all written relative to project root.
-# we have get_project_path function in CreeDictionary.utils.project_path
-# module that resolves to these paths
-# TODO: use `pip install project-paths` (requires Python 3.8+)
-
-# the file we write documentation for directories
-dir_doc_file = "docs/directory-structure.md"
+django_find_project = false
+python_paths = "."

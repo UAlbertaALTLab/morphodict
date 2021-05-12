@@ -1,9 +1,9 @@
 import pytest
 from django.core.management import call_command
 
-from API.models import Wordform
-from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.xml_importer import import_xmls
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
+from CreeDictionary.DatabaseManager.xml_importer import import_xmls
 
 
 @pytest.mark.django_db

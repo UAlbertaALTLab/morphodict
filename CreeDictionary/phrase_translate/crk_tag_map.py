@@ -1,4 +1,4 @@
-from phrase_translate.tag_map import TagMap
+from CreeDictionary.phrase_translate.tag_map import TagMap
 
 ## Motivation
 #

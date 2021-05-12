@@ -6,8 +6,8 @@ Run finite-state transducer analyzer and generator
 
 from typing import Generator, Iterable, List, Tuple
 
-from shared.expensive import relaxed_analyzer, strict_generator
-from utils.data_classes import Analysis
+from CreeDictionary.shared.expensive import relaxed_analyzer, strict_generator
+from CreeDictionary.utils.data_classes import Analysis
 
 
 def analyze(wordform: str) -> Iterable[Analysis]:

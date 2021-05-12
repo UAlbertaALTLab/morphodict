@@ -8,12 +8,12 @@ from typing import Set
 
 from tqdm import tqdm
 
-from DatabaseManager.xml_importer import find_latest_xml_file
-from shared import expensive
-from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
-from utils.crkeng_xml_utils import extract_l_str
-from utils.fst_analysis_parser import partition_analysis
-from utils.profiling import timed
+from CreeDictionary.DatabaseManager.xml_importer import find_latest_xml_file
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
+from CreeDictionary.utils.crkeng_xml_utils import extract_l_str
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.utils.profiling import timed
 
 logger = logging.getLogger(__name__)
 

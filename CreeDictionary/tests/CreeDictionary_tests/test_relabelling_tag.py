@@ -1,6 +1,6 @@
 from django.template import Context, Template
 
-from CreeDictionary.paradigm.panes import RowLabel
+from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
 
 
 def test_relabel_tag():

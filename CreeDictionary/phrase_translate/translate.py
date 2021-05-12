@@ -18,7 +18,7 @@ import foma
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
     # top-level will blow up because Django is not configured yet.
-    from API.models import Wordform
+    from CreeDictionary.API.models import Wordform
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -27,13 +27,13 @@ if package_dir not in sys.path:
     sys.path.append(package_dir)
 
 
-from phrase_translate.crk_tag_map import (
+from CreeDictionary.phrase_translate.crk_tag_map import (
     noun_wordform_to_phrase,
     verb_wordform_to_phrase,
 )
 
-from utils.fst_analysis_parser import partition_analysis
-from utils.shared_res_dir import shared_fst_dir
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)
 
@@ -162,7 +162,9 @@ def main():
             "CRITICAL",
         ],
     )
-    parser.add_argument("--django-settings-module", default="CreeDictionary.settings")
+    parser.add_argument(
+        "--django-settings-module", default="CreeDictionary.CreeDictionary.settings"
+    )
     parser.add_argument("wordform", nargs="*")
     args = parser.parse_args()
 
@@ -170,7 +172,7 @@ def main():
     django.setup()
     logger.setLevel(args.log_level)
 
-    from API.models import Wordform
+    from CreeDictionary.API.models import Wordform
 
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup)

@@ -4,7 +4,7 @@
 from io import StringIO
 
 import pytest
-from CreeDictionary.relabelling import Relabelling
+from CreeDictionary.CreeDictionary.relabelling import Relabelling
 
 labels = Relabelling.from_tsv(
     StringIO(

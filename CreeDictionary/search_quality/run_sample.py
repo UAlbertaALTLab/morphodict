@@ -6,7 +6,7 @@ from typing import Optional
 import time
 from os import PathLike
 
-from API.search import search_with_affixes
+from CreeDictionary.API.search import search_with_affixes
 from . import SampleSearchResultsJson, DEFAULT_SAMPLE_FILE
 from .analyze_results import count_results
 from .sample import load_sample_definition

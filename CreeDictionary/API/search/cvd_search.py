@@ -2,17 +2,20 @@ import logging
 
 import itertools
 
-from API.models import Wordform
-from API.search.core import SearchRun
-from API.search.types import Result
-from cvd import (
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.API.search.core import SearchRun
+from CreeDictionary.API.search.types import Result
+from CreeDictionary.cvd import (
     definition_vectors,
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     DefinitionVectorsNotFoundException,
 )
-from cvd.definition_keys import cvd_key_to_wordform_query, wordform_query_matches
+from CreeDictionary.cvd.definition_keys import (
+    cvd_key_to_wordform_query,
+    wordform_query_matches,
+)
 
 logger = logging.getLogger(__name__)
 

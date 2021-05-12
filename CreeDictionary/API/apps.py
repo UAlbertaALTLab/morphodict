@@ -3,13 +3,13 @@ import os
 
 from django.apps import AppConfig, apps
 
-import cvd
+from CreeDictionary import cvd
 
 logger = logging.getLogger(__name__)
 
 
 class APIConfig(AppConfig):
-    name = "API"
+    name = "CreeDictionary.API"
 
     def ready(self) -> None:
         # This function is called when you restart dev server or touch wsgi.py
@@ -31,8 +31,8 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
-        from API.search import affix
-        from API.models import wordform_cache
+        from CreeDictionary.API.models import wordform_cache
+        from CreeDictionary.API.search import affix
 
         logger.debug("preloading caches")
         affix.cache.preload()

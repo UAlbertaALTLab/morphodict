@@ -3,7 +3,7 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
-from API.models import Wordform
+from CreeDictionary.API.models import Wordform
 from hypothesis import settings
 from hypothesis.strategies import SearchStrategy
 

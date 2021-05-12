@@ -1,14 +1,14 @@
-from API.search.affix import (
+from CreeDictionary.API.search.affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
     query_would_return_too_many_results,
 )
-from API.search.core import SearchRun
-from API.search.cvd_search import do_cvd_search
-from API.search.lookup import fetch_results
-from API.search.query import CvdSearchType
-from API.search.util import first_non_none_value
-from utils.types import cast_away_optional
+from CreeDictionary.API.search.core import SearchRun
+from CreeDictionary.API.search.cvd_search import do_cvd_search
+from CreeDictionary.API.search.lookup import fetch_results
+from CreeDictionary.API.search.query import CvdSearchType
+from CreeDictionary.API.search.util import first_non_none_value
+from CreeDictionary.utils.types import cast_away_optional
 
 
 def search(

@@ -1,6 +1,6 @@
 import time
 
-from utils.profiling import timed
+from CreeDictionary.utils.profiling import timed
 
 
 def test_timed_decorator(capsys):

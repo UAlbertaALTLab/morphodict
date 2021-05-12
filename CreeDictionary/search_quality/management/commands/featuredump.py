@@ -8,7 +8,7 @@ from django.core.management import BaseCommand
 from django.db.models import prefetch_related_objects
 from tqdm import tqdm
 
-from API.search import search
+from CreeDictionary.API.search import search
 from ... import DEFAULT_SAMPLE_FILE
 from ...sample import load_sample_definition
 

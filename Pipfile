@@ -25,6 +25,7 @@ nb_black = "*"
 pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
+pytest-pythonpath = "*"
 
 [packages]
 colorama = "~=0.4"
