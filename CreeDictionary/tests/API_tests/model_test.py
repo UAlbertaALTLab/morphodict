@@ -1,11 +1,10 @@
 import json
 
 import pytest
-from hypothesis import assume, given
-
 from API.models import Wordform
 from API.search import search
 from API.search.util import to_sro_circumflex
+from hypothesis import assume, given
 from tests.conftest import lemmas
 
 
@@ -289,6 +288,21 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     assert (
         top_result_pos < later_result_pos
     ), f"{top_result} did not come before {later_result}"
+
+
+@pytest.mark.django_db
+def test_does_not_crash_on_analyzable_result_without_generated_string():
+    """
+    Ensures searching does not crash when given an analyzable result,
+
+    It used to raise: ValueError: min() arg is an empty sequence
+
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/693
+
+
+    """
+    query = "bod"
+    results = search(query=query).presentation_results()
 
 
 ####################################### Helpers ########################################
