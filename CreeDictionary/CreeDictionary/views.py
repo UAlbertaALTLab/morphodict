@@ -2,6 +2,8 @@ import logging
 from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
 
+from django.contrib.admin.views.decorators import staff_member_required
+
 from API.models import Wordform
 from API.search import presentation, search_with_affixes
 from django.conf import settings
@@ -9,6 +11,13 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFou
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET
+
+from phrase_translate.translate import (
+    eng_noun_entry_to_inflected_phrase_fst,
+    eng_verb_entry_to_inflected_phrase_fst,
+    eng_phrase_to_crk_features_fst,
+)
+from shared import expensive
 from utils import ParadigmSize
 
 from CreeDictionary.forms import WordSearchForm
@@ -215,6 +224,36 @@ def query_help(request):  # pragma: no cover
         "CreeDictionary/query-help.html",
         context,
     )
+
+
+@staff_member_required()
+def fst_tool(request):
+    context = {}
+
+    text = request.GET.get("text", None)
+    if text is not None:
+        context.update({"text": text, "repr_text": repr(text)})
+
+    def decode_foma_results(fst, query):
+        return [r.decode("UTF-8") for r in fst[query]]
+
+    if text is not None:
+        context["analyses"] = {
+            "relaxed_analyzer": expensive.relaxed_analyzer.lookup(text),
+            "strict_analyzer": expensive.strict_analyzer.lookup(text),
+            "strict_generator": expensive.strict_generator.lookup(text),
+            "eng_noun_entry2inflected-phrase": decode_foma_results(
+                eng_noun_entry_to_inflected_phrase_fst(), text
+            ),
+            "eng_verb_entry2inflected-phrase": decode_foma_results(
+                eng_verb_entry_to_inflected_phrase_fst(), text
+            ),
+            "eng_phrase_to_crk_features": decode_foma_results(
+                eng_phrase_to_crk_features_fst(), text
+            ),
+        }
+
+    return render(request, "CreeDictionary/fst-tool.html", context)
 
 
 def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:

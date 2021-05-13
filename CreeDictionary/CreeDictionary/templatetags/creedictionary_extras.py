@@ -1,13 +1,13 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 """
 Template tags related to the Cree Dictionary specifically.
 """
+from urllib.parse import quote
+
+from django import template
+from django.utils.html import format_html, escape
+from django.utils.safestring import mark_safe
 
 from CreeDictionary.utils import url_for_query
-from django import template
-from django.utils.html import format_html
 from morphodict.templatetags.morphodict_orth import orth_tag
 
 register = template.Library()
@@ -52,3 +52,10 @@ def url_for_query_tag(user_query: str) -> str:
         /search?q=w%C3%A2pam%C3%AAw
     """
     return url_for_query(user_query)
+
+
+@register.filter()
+def kbd_text_query_link(text):
+    return mark_safe(
+        f"<a href='?text={escape(quote(text))}'><kbd>{escape(text)}</kbd></a>"
+    )

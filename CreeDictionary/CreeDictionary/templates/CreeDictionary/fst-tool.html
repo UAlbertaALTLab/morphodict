@@ -1,0 +1,36 @@
+{% extends 'CreeDictionary/base.html' %}
+<!-- -->
+{% load creedictionary_extras %}
+<!-- -->
+{% block prose %}
+<section id="query-help" class="prose box box--spaced">
+  <h2 class="prose__section-title">FST tool</h2>
+  <form action='{% url "cree-dictionary-fst-tool" %}' style="display:flex">
+    <input name="text" value="{{ text }}" style="flex-grow: 1" />
+    <input type="submit" name="Analyze" />
+  </form>
+  <p>
+    This page, visible only to admins, lets you look up analyses using the same
+    FSTs that the dictionary code uses.
+  </p>
+  <p>
+    For some samples, try {{ "kika-nîminaw"|kbd_text_query_link }} or
+    {{ "kikaniminaw"|kbd_text_query_link }} or
+    {{"PV/ka+nîminêw+V+TA+Ind+2Sg+3SgO"|kbd_text_query_link}}. For the phrase
+    translation, try {{ "Obv+Dim+ star"|kbd_text_query_link }},
+    {{ "Prt+3Pl+ it sings"|kbd_text_query_link }}, or
+    {{ "they sing"|kbd_text_query_link }}.
+  </p>
+  {% if text is not None %}
+  <h3>Results for <kbd>{{ repr_text }}</kbd></h3>
+  {% for analysis_name, entries in analyses.items %} {% if entries %}
+  <h4>{{ analysis_name }}</h4>
+  <pre>
+{% for e in entries %}{{ e  }}
+{% endfor %}</pre
+  >
+  {% else %}
+  <h5 style="color: gray">{{ analysis_name }} <small>- No results</small></h5>
+  {% endif %} {% endfor %} {% endif %}
+</section>
+{% endblock %}

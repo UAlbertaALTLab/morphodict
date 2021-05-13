@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 
 
 @cache
-def englishNounEntryToInflectedPhraseFst():
+def eng_noun_entry_to_inflected_phrase_fst():
     return foma.FST.load(
         shared_fst_dir
         / "transcriptor-cw-eng-noun-entry2inflected-phrase-w-flags.fomabin"
@@ -47,10 +47,17 @@ def englishNounEntryToInflectedPhraseFst():
 
 
 @cache
-def englishVerbEntryToInflectedPhraseFst():
+def eng_verb_entry_to_inflected_phrase_fst():
     return foma.FST.load(
         shared_fst_dir
         / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags.fomabin"
+    )
+
+
+@cache
+def eng_phrase_to_crk_features_fst():
+    return foma.FST.load(
+        shared_fst_dir / "transcriptor-eng-phrase2crk-features.fomabin"
     )
 
 
@@ -109,14 +116,14 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(englishNounEntryToInflectedPhraseFst(), tagged_phrase)
+        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(englishVerbEntryToInflectedPhraseFst(), tagged_phrase)
+        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
         return phrase.strip()
 
