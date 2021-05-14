@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 import pytest
-from morphodict.templatetags.morphodict_orth import orth
+from CreeDictionary.morphodict.templatetags.morphodict_orth import orth
 
 
 def test_orth_requires_two_arguments():
