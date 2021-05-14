@@ -12,6 +12,7 @@ from DatabaseManager.xml_importer import find_latest_xml_file
 from shared import expensive
 from utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from utils.crkeng_xml_utils import extract_l_str
+from utils.fst_analysis_parser import partition_analysis
 from utils.profiling import timed
 
 logger = logging.getLogger(__name__)
@@ -80,8 +81,9 @@ def build_test_xml():
             relevant_xml_ls.add(xml_l)
             continue
         for xml_l_analysis in word_to_analyses[xml_l]:
+            xml_lemma = partition_analysis(xml_l_analysis)[1]
             for test_word_lemma in test_word_lemmas:
-                if test_word_lemma in xml_l_analysis:
+                if test_word_lemma == xml_lemma:
                     relevant_xml_ls.add(xml_l)
                     break
 

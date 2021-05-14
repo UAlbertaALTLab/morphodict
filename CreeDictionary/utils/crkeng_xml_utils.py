@@ -1,12 +1,9 @@
 import logging
-import xml.etree.ElementTree as ET
 from collections import defaultdict
 from itertools import chain
 from pathlib import Path
 from typing import (
-    DefaultDict,
     Dict,
-    Hashable,
     Iterable,
     Iterator,
     List,
@@ -38,9 +35,19 @@ def write_xml_from_elements(elements: Iterable[ET.Element], target_file: Path):
     """
     text = "<r>"
     for element in elements:
-        text += ET.tostring(element, encoding="unicode")
+        text += ET.tostring(element, encoding="unicode").strip()
     text += "</r>"
-    pretty_text = minidom.parseString(text).toprettyxml()
+    pretty_text = minidom.parseString(text).toprettyxml(indent="  ")
+    pretty_text = (
+        "\n".join(
+            # add blank lines between entries
+            "\n" + line if line.strip() == "<e>" else line
+            for line in pretty_text.split("\n")
+            # remove whitespace-only lines, idea from https://stackoverflow.com/a/32308250/14558
+            if line.strip()
+        )
+        + "\n"
+    )
     target_file.parent.mkdir(exist_ok=True, parents=True)
     target_file.write_text(pretty_text)
 
