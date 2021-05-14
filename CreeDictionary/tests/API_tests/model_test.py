@@ -1,11 +1,11 @@
 import json
+import logging
 
 import pytest
-from hypothesis import assume, given
-
 from API.models import Wordform
 from API.search import search
 from API.search.util import to_sro_circumflex
+from hypothesis import assume, given
 from tests.conftest import lemmas
 
 
@@ -289,6 +289,24 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     assert (
         top_result_pos < later_result_pos
     ), f"{top_result} did not come before {later_result}"
+
+
+@pytest.mark.django_db
+def test_logs_error_on_analyzable_result_without_generated_string(caplog):
+    """
+    Ensures searching does not crash when given an analyzable result with no normative
+    form. An error should be logged instead.
+
+    It used to raise: ValueError: min() arg is an empty sequence
+
+    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/693
+    """
+    with caplog.at_level(logging.ERROR):
+        search(query="bod").presentation_results()
+
+    errors = [log for log in caplog.records if log.levelname == "ERROR"]
+    assert len(errors) >= 1
+    assert any("bod" in log.message for log in errors)
 
 
 ####################################### Helpers ########################################

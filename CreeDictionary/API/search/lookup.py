@@ -68,10 +68,14 @@ def fetch_results(search_run: core.SearchRun):
             # now we generate the standardized form of the user query for display purpose
             normatized_form_for_analysis = list(hfstol.generate(analysis))
             all_standard_forms.extend(normatized_form_for_analysis)
-            if len(all_standard_forms) == 0:
+            if len(normatized_form_for_analysis) == 0:
                 logger.error(
-                    f"can not generate standardized form for analysis {analysis}"
+                    "Cannot generate normative form for analysis: %s (query: %s)",
+                    analysis,
+                    search_run.internal_query,
                 )
+                continue
+
             normatized_user_query = min(
                 normatized_form_for_analysis,
                 key=lambda f: get_modified_distance(f, search_run.internal_query),
