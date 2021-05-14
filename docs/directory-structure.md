@@ -80,7 +80,7 @@ to:
         │   │   │   └── commands/
         │   │   │       └── dictimport.py
         │   │   ├── parser.py
-        │   │   ├── test_parser.py
+        │   │   ├── test_parser.py  # test_* files are mixed in with non-test source code
         │   │   └── testdata/       # Use `testdata` directories for test data
         │   ├── paradigm_filler/
         │   ├── frontend/
@@ -141,12 +141,19 @@ to:
     is that it makes it easier to run pytest/mypy/black across all our
     python code at once.
 
-  - Test files should be named test_blah.py and be in the same directory as
-    the code they are testing.
+  - Python test files should be named `test_blah.py` and go in the same
+    directory as the code they are testing. Do not create separate `test`
+    directories. Tests are easier to find, update, and create when they are
+    right next to the code they are testing, not in some other directory.
 
     There are arguments for and against both the `test_foo.py` and
     `foo_test.py` conventions; we [flipped a coin] and settled on
     `test_foo.py`.
+
+  - That said, the cypress integration tests will live in their separate
+    `cypress` folders. It is likely that there will be some shared tests in
+    `morphodict/cypress` that will be used by every dictionary application,
+    in addition to dictionary-specific tests.
 
 [flipped a coin]: https://docs.python.org/3/library/random.html#random.choice
 
