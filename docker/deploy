@@ -29,7 +29,7 @@ def main():
             "exec",
             "-T",
             "itwewina",
-            "./manage.py",
+            "src/CreeDictionary/manage.py",
             "migrate",
         ]
     )

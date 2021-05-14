@@ -23,8 +23,8 @@ production: db.sqlite3 .env
 	docker-compose up --build --remove-orphans
 
 .PHONY: staging
-staging: .env ../CreeDictionary/test_db.sqlite3
-	ln -f ../CreeDictionary/test_db.sqlite3 ./db.sqlite3
+staging: .env ../src/CreeDictionary/test_db.sqlite3
+	ln -f ../src/CreeDictionary/test_db.sqlite3 ./db.sqlite3
 	docker-compose up --build --remove-orphans
 
 .PHONY: unit-file
@@ -58,6 +58,6 @@ db.sqlite3:
 	-echo '#' Creating an empty .env file
 	touch $@
 
-../CreeDictionary/test_db.sqlite3:
+../src/CreeDictionary/test_db.sqlite3:
 	@echo '# Creating the test database by running the unit tests'
 	cd .. && pipenv run pytest
