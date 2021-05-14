@@ -1,241 +1,205 @@
-Directories
-===========
-
-This is an EXHAUSTIVE list of all directories in this project. If you're
-confused about the purpose of a directory, look here!
-
-All directories in this file are relative to project root.
-
-<!-- Note to documenters: Each directory should start with three hashes! -->
-
-### .github
-
-configuration files that interact with GitHub services
-
-### .github/workflows
-
-workflow (interchangeably, actions) that runs by GitHub Actions service when code pushes to GitHub.
-
-### CreeDictionary
-
-A Django site with _django apps_ inside
-
-### CreeDictionary/API
-
-One of the django apps of our project. It defines click-in-text (our other project) API.
-
-### CreeDictionary/API/migrations
-
-Django Migrations of the API app
-
-Migrations are not used to migrate database on production The only times migrations are needed are when we re-build the
-database and create empty tables with `manage.py migrate`
-
-This includes when we manually build test database, and when our unit tests build test in memory database.
-
-0000_initial.py migration is re-generated based on models.py everytime when the database is rebuilt.
-
-This directory is managed by the rebuild script and does not require manual intervention
-
-### CreeDictionary/CreeDictionary
-
-One of the django apps of our project. It's the main part of our online dictionary.
-
-### CreeDictionary/CreeDictionary/static
-
-static files (A django concept) for the CreeDictionary app. They are usually javascripts and images
-
-### CreeDictionary/CreeDictionary/templates
-
-templates (A django concept, usually for HTML) for the CreeDictionary app.
-
-### CreeDictionary/CreeDictionary/static/CreeDictionary
-
-see below
-
-### CreeDictionary/CreeDictionary/templates/CreeDictionary
-
-You might think there is no stupid reason such verbose-looking directories should exist. But it's Django.
-
-### CreeDictionary/API/templatetags
-
-see below
-
-### CreeDictionary/morphodict/templatetags
-
-see below
-
-### CreeDictionary/CreeDictionary/templatetags
-
-defines custom tags you can use in django templates. A tag looks in the form of {{}} or {{ | }} and is a Django feature
-
-### CreeDictionary/DatabaseManager
-
-A python module with a CLI that manages importation of xml files to our db.sqlite3. Not used at runtime.
-
-See more under the directory's README.md about how to use it
-
-### CreeDictionary/DatabaseManager/logs
-
-DatabaseManager outputs logs when it imports xml dictionaries into the database. Here are logs that record details of
-what happened to the xml entries during the importation.
-
-### CreeDictionary/morphodict
-
-A django app that has our language invariant components of the project. This is currently a WIP.
-
-### CreeDictionary/morphodict/tests
-
-Tests that belong to morphodict. It's separate from most tests as in the future morphodict might be extracted to a
-standalone django app.
-
-### CreeDictionary/res
-
-Data files. See README under the directory to see explanation of its contents.
-
-### CreeDictionary/res/dictionaries
-
-Dictionary files that are not public. This directory's contents are ignored by a local .gitignore
-
-dictionary files are stored in altlab repo at the following place:
-
-`altlab/crk/dicts/crkeng.xml`
-
-They also used to be stored on Sapir server with a timestamp like the following
-
-`crkeng_cw_md_200314.xml`
-
-The last six digits is a timestamp of when this file is built, in the format of yymmdd.
-
-### CreeDictionary/res/fst
-
-Ask your supervisor what an FST is.
-
-### CreeDictionary/res/layouts
-
-Files that determine how paradigm tables in our app look like.
-
-### CreeDictionary/res/lemma_tags
-
-Files here store templates of common lemma analyses for each [word class](./glossary.md#word-class)
-
-i.e.
-
-- NA lemmas usually have tags +N+A+Sg
-- VAI lemmas usually have tags +V+AI+Ind+3Sg
-- ...
-
-See its local README for a detailed explanation of the motivation and usage behind it.
-
-### CreeDictionary/res/test_dictionaries
-
-A subset of our proper dictionaries. This is loaded in our test database for test purposes. Database generation is
-managed by DatabaseManager CLI's.
-
-### CreeDictionary/shared
-
-Expensive initializations / utilities that are shared in multiple places.
-
-### CreeDictionary/tests
-
-Where all tests except morphodict's tests reside.
-
-### CreeDictionary/tests/API_tests
-
-Test for the API django app
-
-### CreeDictionary/tests/CreeDictionary_tests
-
-Test for the CreeDictionary django app
-
-### CreeDictionary/tests/DatabaseManager_tests
-
-Test for the DatabaseManager python module
-
-### CreeDictionary/tests/DatabaseManager_tests/data
-
-Input cases for Database Manager CLI. Minimal examples of test dictionary inputs.
-
-### CreeDictionary/utils
-
-A python module of Utility functions
-
-### CreeDictionary/tests/utils_tests
-
-Tests for the utils module.
-
-### CreeDictionary/tests/utils_tests/data
-
-Test data for the utils module
-
-### CreeDictionary/tests/utils_tests/data/layouts
-
-More test data for the utils module
-
-### cypress
-
-Cypress is our integration testing tool. This is where test scripts and helpers reside.
-
-### cypress/fixtures
-
-Test data for integration tests.
-
-### cypress/fixtures/recording
-
-Test data for integration tests.
-
-### cypress/fixtures/recording/_search
-
-Test data for integration tests.
-
-### cypress/integration
-
-Detailed specification of the tests.
-
-### cypress/support
-
-Our integration test utilities.
-
-### docs
-
-The most important thing in the world
-
-### docs/images
-
-images used in the docs
-
-### libexec
-
-Utility programs that are *usually* dependency free and ran by
-developers or automated scripts. The programs here do not need to be
-distributed with the main app, but are useful for maintenance tasks (often
-run in CI).
-
-Why the name "libexec"? [History](https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html#usrlibexec).
-
-### src
-
-All our javascripts and css. They eventually are compiled to static folders.
-
-### src/css
-
-All our css. They eventually are compiled to static folders.
-
-### src/css/vendor
-
-"vendor" refers to code originally created by outside sources. For example, `normalize.css` is an external script
-that ["makes browsers render all elements more consistently ..."][normalize].
-
-[normalize]: https://necolas.github.io/normalize.css/
-
-### types
-
-Npm package `@altlab/types` with typescript that serve as our API schema.
-
-The typescript file is generated through  CI from python TypedDict's under `CreeDictionary/API/schema.py`
-
-When the source file is changed, be sure to bump the package version. It's OK to forget - 
-our CI will check if the package version is bumped when the produced type file has changed. 
-
-Note this package is separate from the "package" under the project root level,
-the latter being javascript dependencies of our project.
+## Directory structure proposal
+
+This is a proposal for a new physical layout of the source code in this
+repo, meant to replace the somewhat ad-hoc layout of early 2021, in order
+to:
+
+  - Allow generalization to more languages than Plains Cree, and
+
+  - Address some other issues that have arisen with the source code layout.
+
+## The proposal
+
+### High-level decisions / assumptions
+
+  - In the file system, dictionary applications such as itwêwina are named
+    `sssttt`, where `sss` and `ttt` are three-letter [ISO 639-3 language
+    codes][639-3]. Example: `crkeng`.
+
+    The use of a technical abbreviation means that nobody will ever be
+    blocked from starting a dictionary for a new language pair on on
+    naming/branding questions.
+
+  - There will be at most one intelligent dictionary application for each
+    language pair. The code already supports multiple dictionary sources
+    within one application, such as both the *Cree: Words* and Maskwacîs
+    dictionaries for Plains Cree.
+
+  - Each site will be an independently deployed django project, and have an
+    independent database.
+
+    There are advantages and disadvantages to having a single django
+    process serving multiple sites, or having multiple sites share a single
+    database; however, this proposed compartmentalization should allow
+    reduced risk when experimenting with new languages.
+
+  - For now, all the code for all the dictionary applications will reside
+    in this git repo, and not be split into separate git repos.
+
+    That will make it much easier to move code around during development,
+    and to run tests across all dictionary applications when making
+    changes.
+
+    Some day, we hope, when mature and stable, morphodict could go on PyPI
+    as its own framework package with instructions on how to set up new
+    languages without being in this git repo. We are very far from that
+    point right now, but it’s something to keep in mind as a long-term
+    goal.
+
+[639-3]: https://iso639-3.sil.org/code_tables/639/data
+
+### Proposed layout
+
+    $repo
+    ├── .git/
+    ├── package.json                # dependencies for bundlers, JS/CSS frameworks
+    ├── Pipfile
+    ├── arpeng-manage.py            # manage.py scripts are at the top-level for easy access
+    ├── crkeng-manage.py
+    ├── crkfra-manage.py
+    ├── cwdeng-manage.py
+    ├── srseng-manage.py
+    └── src/
+        ├── CreeDictionary/         # existing code, eventually goes away
+        │   ├── __init__.py
+        │   ├── API/                # this name goes away :(
+        │   └── CreeDictionary/     # this goes away too
+        │       ├── __init__.py
+        │       ├── models.py
+        │       ├── views.py
+        │       └── …
+        │
+        ├── morphodict/             # python package for language-independent code
+        │   ├── __init__.py
+        │   ├── cvd/
+        │   ├── dictapp/            # django app with primary database tables
+        │   │   ├── __init__.py
+        │   │   ├── models.py
+        │   │   ├── management/
+        │   │   │   └── commands/
+        │   │   │       └── dictimport.py
+        │   │   ├── parser.py
+        │   │   ├── test_parser.py
+        │   │   └── testdata/       # Use `testdata` directories for test data
+        │   ├── paradigm_filler/
+        │   ├── frontend/
+        │   │   ├── foo.js
+        │   │   ├── foo.css
+        │   ⋮   └── …
+        │
+        ├── crkeng/                 # python package for itwêwina
+        │   ├── __init__.py
+        │   ├── cypress/
+        │   │   └── …
+        │   ├── docker/
+        │   │   └── …
+        │   ├── res/                # Resources go here
+        │   │   ├── altlabels.tsv
+        │   │   ├── dictionaries/
+        │   │   ├── fst/
+        │   │   └── layouts/
+        │   ├── site/               # Django project
+        │   │   ├── __init__.py
+        │   │   ├── settings.py
+        │   │   └── urls.py
+        │   └── frontend/           # Not a python package
+        │       ├── foo.js
+        │       └── foo.css
+        │
+        ├── cwdeng/                 # python package for Woods Cree dictionary
+        │   ├── __init__.py
+        │   ├── cypress/
+        │   │   └── …
+        │   ├── docker/
+        │   │   └── …
+        │   ├── res/
+        │   │   ├── altlabels.tsv
+        │   │   ├── dictionaries/
+        │   │   ├── fst/
+        │   │   └── layouts/
+        │   ├── site/               # Django project
+        │   │   ├── __init__.py
+        │   │   ├── settings.py
+        │   │   └── urls.py
+        │   └── frontend/           # Not a python package
+        │       ├── foo.js
+        │       └── foo.css
+        │
+        ├── arpeng/
+        ├── crkfra/
+        ├── cr_shared               # for code and resources shared between Cree dialects
+        └── srseng/
+
+#### Notes on source layout
+
+  - The `sssttt` directories have parallel directory structures, containing
+    a `site` python package for the django project, many python modules,
+    but also directories for resources and frontend JS/CSS.
+
+  - The hope for the top-level `src` directory containing python packages
+    is that it makes it easier to run pytest/mypy/black across all our
+    python code at once.
+
+  - Test files should be named test_blah.py and be in the same directory as
+    the code they are testing.
+
+    There are arguments for and against both the `test_foo.py` and
+    `foo_test.py` conventions; we [flipped a coin] and settled on
+    `test_foo.py`.
+
+[flipped a coin]: https://docs.python.org/3/library/random.html#random.choice
+
+### Migration procedure
+
+This proposal does not need to be adopted all at once or block other work.
+Instead this proposal exists so that, when code must be moved in order to
+accomplish higher-level goals such as making a dictionary work for a new
+language, there are guidelines in place for where to move the code to. That
+way itwêwina development doesn’t have to be blocked on moving everything
+around, and development on new languages doesn’t have to be blocked as
+often on figuring out where code should move to and what it should be
+called.
+
+This proposal is our best guess at how we can address some of the issues
+we’ve run into in the past, and expect to run into in the future; if
+something in here ends up not being workable, or causes more issues, then
+by all means, update this plan.
+
+The rough idea is:
+
+  - A `crkeng` directory is created for itwêwina following the new structure.
+    It imports all the code from `CreeDictionary`.
+
+  - Work on itwêwina continues in the `CreeDictionary` package as normal,
+    it’s just moved into the `src` directory, and gets run from
+    `./crkeng-manage.py`
+
+  - As we work to get parts of non-Plains Cree dictionaries working, we
+    move code from `CreeDictionary` into either `morphodict` for
+    language-independent stuff, or `sssttt` directories for things
+    specific to certain language pairs.
+
+    As pieces are moved out of `CreeDictionary`, pre-existing work on
+    itwêwina will start to happen in `crkeng` and `morphodict` as well.
+
+We can measure our progress somewhat by watching `CreeDictionary` shrink as
+it moves into `crkeng` and `morphodict`.
+
+PS:
+
+  - In Python code, prefer absolute imports to relative ones for now, as
+    they are more explicit, and will allow us to grep for `CreeDictionary`.
+
+### Open questions
+
+**Where should we put random scripts used for development / maintenance /
+meta stuff?** Things like `lfs-push`, or if we have a script to create a
+new dictionary project, or to run tests across all django applications or
+something.
+
+We currently have a `libexec` directory but that name is not consistent
+with typical UNIX usage of that term as a place for “[Binaries run by other
+programs][libexec].” We can keep using it though until we come up with a
+better name.
+
+[libexec]: https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html#usrlibexec
