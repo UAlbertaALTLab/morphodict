@@ -13,8 +13,9 @@ to:
 ### High-level decisions / assumptions
 
   - In the file system, dictionary applications such as itwêwina are named
-    `sssttt`, where `sss` and `ttt` are three-letter [ISO 639-3 language
-    codes][639-3]. Example: `crkeng`.
+    `sssttt`, where `sss` and `ttt` are each three-letter [ISO 639-3
+    language codes][639-3] for the dictionary [source language and target
+    language](glossary.md), respectively. Example: `crkeng`.
 
     The use of a technical abbreviation means that nobody will ever be
     blocked from starting a dictionary for a new language pair on on
@@ -72,7 +73,7 @@ to:
         ├── morphodict/             # python package for language-independent code
         │   ├── __init__.py
         │   ├── cvd/
-        │   ├── dictapp/            # django app with primary database tables
+        │   ├── lexicon/            # django app with primary database tables
         │   │   ├── __init__.py
         │   │   ├── models.py
         │   │   ├── management/
