@@ -3,6 +3,8 @@ const { join: joinPath } = require('path')
 const ADMIN_LOGIN_URL = '/admin/login/'
 const ADMIN_URL = '/admin/'
 
+const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json')
+
 Cypress.Commands.add('login', () => {
   cy.visit('/admin/login/')
   cy.get('[name=csrfmiddlewaretoken]')
@@ -10,7 +12,7 @@ Cypress.Commands.add('login', () => {
     .should('have.attr', 'value')
     .as('csrfToken')
 
-  cy.readFile(joinPath(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
+  cy.readFile(CYPRESS_USER_JSON)
     .then(({username, password}) => {
       cy.get('@csrfToken').then(function (token) {
         cy.request({
@@ -47,7 +49,7 @@ context('Admin interface', () => {
     // USE_TEST_DB=True, because the `cypress` user only gets created in the
     // test database.
     cy.visit('/admin')
-    cy.readFile(joinPath(__dirname, '..', '..', 'CreeDictionary', '.cypress-user.json'))
+    cy.readFile(CYPRESS_USER_JSON)
       .then(cypressUser => {
         cy.get('#id_username').type(cypressUser.username)
         cy.get('#id_password').type(cypressUser.password)
@@ -75,5 +77,24 @@ context('Admin interface', () => {
         })
     })
   })
-})
 
+  specify('the FST tool should work', function() {
+    cy.login()
+    for (const [query, result] of [
+      ['kikaniminaw', 'PV/ka+nîmiw+V+AI+Ind+12Pl'],
+      ['PV/ka+nîmiw+V+AI+Ind+12Pl', 'kika-nîminaw'],
+      ['Obv+Dim+ star', 'little star over there'],
+      ['Prt+3Pl+ it sings', 'they sang'],
+      ['they sing', 'sing +V+AI+3Pl'],
+    ]) {
+      cy.visit('/admin/fst-tool', {qs: {text: query}})
+      cy.get('pre').contains(result)
+    }
+  })
+
+  it('should not show the FST tool to non-admin users', function() {
+    cy.visit('/admin/fst-tool')
+    cy.location().then(({pathname}) =>
+      expect(pathname).to.contain(ADMIN_LOGIN_URL))
+  })
+})
