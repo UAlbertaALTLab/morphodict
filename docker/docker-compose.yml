@@ -29,6 +29,8 @@ services:
       # Mount vector models from git lfs checkout instead of building into
       # image
       - "../CreeDictionary/res/vector_models/:/app/CreeDictionary/res/vector_models/"
+      # Same for FSTs, as some can be large
+      - "../CreeDictionary/res/fst/:/app/CreeDictionary/res/fst/"
 
       # Use a persistent path for search sample results, so that they
       # remain across deployments and so that additional sample results can
