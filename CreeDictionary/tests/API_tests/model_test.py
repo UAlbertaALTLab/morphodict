@@ -1,4 +1,5 @@
 import json
+import logging
 
 import pytest
 from API.models import Wordform
@@ -291,18 +292,21 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
 
 
 @pytest.mark.django_db
-def test_does_not_crash_on_analyzable_result_without_generated_string():
+def test_logs_error_on_analyzable_result_without_generated_string(caplog):
     """
-    Ensures searching does not crash when given an analyzable result,
+    Ensures searching does not crash when given an analyzable result with no normative
+    form. An error should be logged instead.
 
     It used to raise: ValueError: min() arg is an empty sequence
 
     See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/693
-
-
     """
-    query = "bod"
-    results = search(query=query).presentation_results()
+    with caplog.at_level(logging.ERROR):
+        search(query="bod").presentation_results()
+
+    errors = [log for log in caplog.records if log.levelname == "ERROR"]
+    assert len(errors) >= 1
+    assert any("bod" in log.message for log in errors)
 
 
 ####################################### Helpers ########################################
