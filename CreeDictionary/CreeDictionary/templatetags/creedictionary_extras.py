@@ -56,6 +56,15 @@ def url_for_query_tag(user_query: str) -> str:
 
 @register.filter()
 def kbd_text_query_link(text):
+    """
+    Link to a query URL, styling the query as keyboard input.
+
+    Sample output:
+
+        <a href="?text=foo"><kbd>foo</kbd></a>
+
+    This is used on the fst-tool page.
+    """
     return mark_safe(
         f"<a href='?text={escape(quote(text))}'><kbd>{escape(text)}</kbd></a>"
     )
