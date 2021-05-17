@@ -4,27 +4,27 @@ from typing import Any, Dict, Literal, Union
 
 from django.contrib.admin.views.decorators import staff_member_required
 
-from API.models import Wordform
-from API.search import presentation, search_with_affixes
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.API.search import presentation, search_with_affixes
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET
 
-from phrase_translate.translate import (
+from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_verb_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
 )
-from shared import expensive
-from utils import ParadigmSize
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import ParadigmSize
 
-from CreeDictionary.forms import WordSearchForm
-from CreeDictionary.paradigm.filler import Row
-from CreeDictionary.paradigm.generation import generate_paradigm
-from CreeDictionary.paradigm.manager import default_paradigm_manager
-from CreeDictionary.paradigm.panes import Paradigm
+from CreeDictionary.CreeDictionary.forms import WordSearchForm
+from CreeDictionary.CreeDictionary.paradigm.filler import Row
+from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
+from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
+from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query

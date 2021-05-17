@@ -1,4 +1,4 @@
-from DatabaseManager.cree_inflection_generator import expand_inflections
+from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
 
 
 def test_expand_inflections():

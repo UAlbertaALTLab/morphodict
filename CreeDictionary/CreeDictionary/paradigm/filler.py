@@ -12,8 +12,8 @@ from typing import Iterable, Literal, Optional, Sequence, Union, cast
 
 from attr import attrib, attrs
 from hfst_optimized_lookup import TransducerFile
-from utils import ParadigmSize, WordClass, shared_res_dir
-from utils.types import ConcatAnalysis
+from CreeDictionary.utils import ParadigmSize, WordClass, shared_res_dir
+from CreeDictionary.utils.types import ConcatAnalysis
 
 logger = logging.getLogger(__name__)
 
@@ -53,7 +53,7 @@ class ParadigmFiller:
         self._frequency = import_frequency()
 
         if generator_hfstol_path is None:
-            from shared import expensive
+            from CreeDictionary.shared import expensive
 
             self._generator = expensive.strict_generator
         else:

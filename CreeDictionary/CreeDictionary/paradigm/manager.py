@@ -3,10 +3,10 @@ from pathlib import Path
 from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
-from shared import expensive
-from utils import shared_res_dir
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import shared_res_dir
 
-from CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
 
 class ParadigmManager:

@@ -1,6 +1,6 @@
 import pytest
 
-from phrase_translate.translate import inflect_english_phrase
+from CreeDictionary.phrase_translate.translate import inflect_english_phrase
 
 WAPAMEW_DEFINITION = "s/he sees s.o."
 

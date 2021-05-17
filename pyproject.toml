@@ -13,24 +13,18 @@ skip = [
 minversion = "6.0"
 addopts = "--doctest-modules"
 
-testpaths = [
-    "CreeDictionary"
-]
-
 env = [
     "USE_TEST_DB=true"
 ]
 
 # pytest-django
-DJANGO_SETTINGS_MODULE = "CreeDictionary.settings"
+DJANGO_SETTINGS_MODULE = "CreeDictionary.CreeDictionary.settings"
 
-
-[project_paths]
-# A place to store paths to different components in our project.
-# Here they are all written relative to project root.
-# we have get_project_path function in CreeDictionary.utils.project_path
-# module that resolves to these paths
-# TODO: use `pip install project-paths` (requires Python 3.8+)
-
-# the file we write documentation for directories
-dir_doc_file = "docs/directory-structure.md"
+# The default pytest-django behaviour is to (1) look for a `manage.py`
+# somewhere and (2) add the directory that contains it to `sys.path`.
+#
+# We only want our top-level python directory on `sys.path`, to prevent
+# partial imports (`import bar` when the full package name is `foo.bar`)
+# from working by accident.
+django_find_project = false
+python_paths = "."

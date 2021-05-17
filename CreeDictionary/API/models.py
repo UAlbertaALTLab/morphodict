@@ -10,11 +10,16 @@ from django.db import models, transaction
 from django.db.models import Max, Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-from utils import PartOfSpeech, WordClass, fst_analysis_parser, shared_res_dir
-from utils.cree_lev_dist import remove_cree_diacritics
-from utils.types import FSTTag
+from CreeDictionary.utils import (
+    PartOfSpeech,
+    WordClass,
+    fst_analysis_parser,
+    shared_res_dir,
+)
+from CreeDictionary.utils.cree_lev_dist import remove_cree_diacritics
+from CreeDictionary.utils.types import FSTTag
 
-from CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.relabelling import LABELS
 
 from .schema import SerializedDefinition
 

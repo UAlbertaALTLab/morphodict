@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 from string import printable as ascii_printable
 
 import pytest
-from CreeDictionary.utils import url_for_query
+from CreeDictionary.CreeDictionary.utils import url_for_query
 
 
 @pytest.mark.parametrize("query", ["awa", "wâpamêw", "ᐚᐸᒣᐤ"])

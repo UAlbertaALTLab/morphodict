@@ -12,10 +12,10 @@ from django.core.management import BaseCommand
 from django.db.models import Max, Q, prefetch_related_objects
 from tqdm import tqdm
 
-from API.models import Wordform, Definition, DictionarySource
-from phrase_translate.definition_processing import remove_parentheticals
-from phrase_translate.tag_map import UnknownTagError
-from phrase_translate.translate import (
+from CreeDictionary.API.models import Wordform, Definition, DictionarySource
+from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
+from CreeDictionary.phrase_translate.tag_map import UnknownTagError
+from CreeDictionary.phrase_translate.translate import (
     inflect_english_phrase,
     parse_analysis_and_tags,
     FomaLookupNotFoundException,

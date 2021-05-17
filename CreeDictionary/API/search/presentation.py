@@ -4,11 +4,11 @@ from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast
 
 from django.forms import model_to_dict
 
-from utils import get_modified_distance
+from CreeDictionary.utils import get_modified_distance
 from . import types, core, lookup
-from utils.fst_analysis_parser import partition_analysis
-from CreeDictionary.relabelling import LABELS
-from utils.types import FSTTag, Label, ConcatAnalysis
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from ..models import Wordform
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag

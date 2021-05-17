@@ -20,7 +20,7 @@ from collections import defaultdict
 from io import StringIO
 from pathlib import Path
 
-from search_quality import SURVEY_DIR
+from CreeDictionary.search_quality import SURVEY_DIR
 
 
 def iter_results(input_file):

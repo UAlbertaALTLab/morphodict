@@ -5,7 +5,7 @@ from typing import List, Tuple, Union, Optional, Sequence
 
 from typing_extensions import Literal, TypedDict
 
-from utils.types import FSTTag
+from CreeDictionary.utils.types import FSTTag
 
 
 class SerializedDefinition(TypedDict):

@@ -3,9 +3,9 @@ from textwrap import dedent
 from typing import List, Tuple
 
 import pytest
-from DatabaseManager.xml_entry_lemma_finder import identify_entries
-from utils.crkeng_xml_utils import IndexedXML
-from utils.data_classes import XMLEntry, XMLTranslation
+from CreeDictionary.DatabaseManager.xml_entry_lemma_finder import identify_entries
+from CreeDictionary.utils.crkeng_xml_utils import IndexedXML
+from CreeDictionary.utils.data_classes import XMLEntry, XMLTranslation
 
 
 def _xml_translation_to_str(xml_translation: XMLTranslation) -> str:

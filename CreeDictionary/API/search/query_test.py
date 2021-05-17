@@ -1,4 +1,4 @@
-from API.search.query import Query
+from CreeDictionary.API.search.query import Query
 
 
 def test_basic_query():

@@ -14,16 +14,15 @@ from typing import Dict, Iterable, List, Optional, Set, Tuple, cast, Sequence
 from colorama import Fore, init
 from typing_extensions import Literal
 
-import utils.fst_analysis_parser
-from DatabaseManager.log import DatabaseManagerLogger
-from DatabaseManager.xml_consistency_checker import (
+from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
+from CreeDictionary.DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from shared import expensive
-from utils import WordClass, shared_res_dir
-from utils.crkeng_xml_utils import IndexedXML
-from utils.data_classes import XMLEntry
-from utils.types import ConcatAnalysis, FSTLemma
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import WordClass, shared_res_dir, fst_analysis_parser
+from CreeDictionary.utils.crkeng_xml_utils import IndexedXML
+from CreeDictionary.utils.data_classes import XMLEntry
+from CreeDictionary.utils.types import ConcatAnalysis, FSTLemma
 
 init()  # for windows compatibility
 
@@ -55,9 +54,7 @@ class DefaultLemmaPicker:
         Pick the lemma analysis according to the looks of the usual lemma analyses for each word class.
         """
         for ambiguity in ambiguities:
-            lemma_wc = utils.fst_analysis_parser.extract_lemma_text_and_word_class(
-                ambiguity
-            )
+            lemma_wc = fst_analysis_parser.extract_lemma_text_and_word_class(ambiguity)
             assert lemma_wc is not None
             lemma, word_class = lemma_wc
 
@@ -133,7 +130,7 @@ def identify_entries(
 
     fst_analysis_to_fst_lemma_wc: Dict[ConcatAnalysis, Tuple[FSTLemma, WordClass]] = {}
     for fst_analysis in chain.from_iterable(l_to_analyses.values()):
-        x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
+        x = fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, wc = x
         fst_analysis_to_fst_lemma_wc[fst_analysis] = produced_lemma, wc
@@ -146,7 +143,7 @@ def identify_entries(
     )
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
-        x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
+        x = fst_analysis_parser.extract_lemma_text_and_word_class(fst_analysis)
         assert x is not None
         produced_lemma, wc = x
         fst_analysis_to_fst_lemma_wc[fst_analysis] = produced_lemma, wc
@@ -184,7 +181,7 @@ def identify_entries(
                 fst_lemma_analyses = all_lemma_to_analysis[fst_lemma]
 
                 for fst_lemma_analysis in fst_lemma_analyses:
-                    x = utils.fst_analysis_parser.extract_lemma_text_and_word_class(
+                    x = fst_analysis_parser.extract_lemma_text_and_word_class(
                         fst_lemma_analysis
                     )
                     assert x is not None

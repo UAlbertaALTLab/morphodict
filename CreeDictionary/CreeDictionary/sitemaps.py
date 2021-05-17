@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from API.models import Wordform
+from CreeDictionary.API.models import Wordform
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 

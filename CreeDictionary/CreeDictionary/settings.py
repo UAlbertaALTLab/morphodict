@@ -63,13 +63,13 @@ INSTALLED_APPS = [
     "django_js_reverse",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
-    "API.apps.APIConfig",
-    "CreeDictionary.apps.CreeDictionaryConfig",
-    "cvd",
-    "search_quality",
-    "phrase_translate",
-    "morphodict.apps.MorphodictConfig",
-    "DatabaseManager",
+    "CreeDictionary.API",
+    "CreeDictionary.CreeDictionary.apps.CreeDictionaryConfig",
+    "CreeDictionary.cvd",
+    "CreeDictionary.search_quality",
+    "CreeDictionary.phrase_translate",
+    "CreeDictionary.morphodict.apps.MorphodictConfig",
+    "CreeDictionary.DatabaseManager",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
@@ -84,12 +84,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "securemiddleware.set_secure_headers",
+    "CreeDictionary.securemiddleware.set_secure_headers",
 ]
 
-ROOT_URLCONF = "CreeDictionary.urls"
+ROOT_URLCONF = "CreeDictionary.CreeDictionary.urls"
 
-WSGI_APPLICATION = "CreeDictionary.wsgi.application"
+WSGI_APPLICATION = "CreeDictionary.CreeDictionary.wsgi.application"
 
 TEMPLATES = [
     {
@@ -102,7 +102,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "CreeDictionary.context_processors.display_options",
+                "CreeDictionary.CreeDictionary.context_processors.display_options",
             ]
         },
     }
@@ -261,11 +261,11 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "SRO (êîôâ)"},
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
-            "converter": "CreeDictionary.orthography.to_macrons",
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons",
         },
         "Cans": {
             "name": "Syllabics",
-            "converter": "CreeDictionary.orthography.to_syllabics",
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
         },
     },
 }

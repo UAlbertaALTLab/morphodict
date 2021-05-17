@@ -1,6 +1,6 @@
 from django.db import migrations
 
-from CreeDictionary.ensure_data import (
+from CreeDictionary.CreeDictionary.ensure_data import (
     set_paradigm_for_demonstrative_and_personal_pronouns,
 )
 

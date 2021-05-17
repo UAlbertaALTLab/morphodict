@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 
-import CreeDictionary.hfstol as temp_hfstol
+import CreeDictionary.CreeDictionary.hfstol as temp_hfstol
 
 # TODO: use better imports https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/525
-from utils.data_classes import Analysis
+from CreeDictionary.utils.data_classes import Analysis
 
 
 def test_fst_analysis():

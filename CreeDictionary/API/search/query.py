@@ -4,8 +4,8 @@ from typing import Optional
 
 import marshmallow.fields
 
-from API.search import runner
-from API.search.util import to_sro_circumflex
+from CreeDictionary.API.search import runner
+from CreeDictionary.API.search.util import to_sro_circumflex
 
 
 class CvdSearchType(Enum):

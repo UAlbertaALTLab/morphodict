@@ -4,8 +4,8 @@ import csv
 from enum import IntEnum
 from typing import Iterable, Optional, TextIO, Tuple, TypeVar, Union
 
-from utils import shared_res_dir
-from utils.types import FSTTag, Label
+from CreeDictionary.utils import shared_res_dir
+from CreeDictionary.utils.types import FSTTag, Label
 
 CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
 

@@ -1,6 +1,6 @@
 import pytest
 
-from phrase_translate.definition_processing import remove_parentheticals
+from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
 
 SHOULD_NOT_CHANGE = object()
 

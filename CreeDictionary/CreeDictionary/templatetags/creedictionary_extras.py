@@ -7,8 +7,8 @@ from django import template
 from django.utils.html import format_html, escape
 from django.utils.safestring import mark_safe
 
-from CreeDictionary.utils import url_for_query
-from morphodict.templatetags.morphodict_orth import orth_tag
+from CreeDictionary.CreeDictionary.utils import url_for_query
+from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 
 register = template.Library()
 

@@ -13,11 +13,11 @@ from pathlib import Path
 from typing import Protocol, Sequence
 
 from django.core.management import BaseCommand
-from utils import ParadigmSize
+from CreeDictionary.utils import ParadigmSize
 
-from CreeDictionary.paradigm.filler import EmptyRow, TitleRow
-from CreeDictionary.paradigm.generation import paradigm_filler
-from CreeDictionary.paradigm.panes import (
+from CreeDictionary.CreeDictionary.paradigm.filler import EmptyRow, TitleRow
+from CreeDictionary.CreeDictionary.paradigm.generation import paradigm_filler
+from CreeDictionary.CreeDictionary.paradigm.panes import (
     Cell,
     ColumnLabel,
     ContentRow,
@@ -29,7 +29,7 @@ from CreeDictionary.paradigm.panes import (
     ParadigmLayout,
     RowLabel,
 )
-from CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.relabelling import LABELS
 
 
 class Command(BaseCommand):

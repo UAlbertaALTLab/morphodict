@@ -1,10 +1,7 @@
-import pytest
-
-from search_quality.analyze_results import (
+from CreeDictionary.search_quality.analyze_results import (
     count_and_annotate_dupes,
     DuplicateAnnotatedSearchResult,
 )
-from utils.types import FSTTag
 
 
 def test_count_no_dupes_on_empty_list():

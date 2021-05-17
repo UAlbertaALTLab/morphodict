@@ -1,8 +1,8 @@
 import re
 from typing import List, Optional, Tuple
 
-from utils.enums import WordClass
-from utils.types import FSTLemma, FSTTag
+from CreeDictionary.utils.enums import WordClass
+from CreeDictionary.utils.types import FSTLemma, FSTTag
 
 analysis_pattern = re.compile(
     r"(?P<category>\+N\+A(\+D(?=\+))?|\+N\+I(\+D(?=\+))?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"

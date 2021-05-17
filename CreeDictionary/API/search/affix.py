@@ -17,9 +17,9 @@ from typing import Dict, Iterable, List, NewType, Tuple
 import dawg
 from django.conf import settings
 
-from API.models import Wordform, EnglishKeyword
-from utils import get_modified_distance
-from utils.cree_lev_dist import remove_cree_diacritics
+from CreeDictionary.API.models import Wordform, EnglishKeyword
+from CreeDictionary.utils import get_modified_distance
+from CreeDictionary.utils.cree_lev_dist import remove_cree_diacritics
 from .types import (
     InternalForm,
     Result,

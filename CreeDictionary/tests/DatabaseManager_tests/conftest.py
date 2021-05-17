@@ -6,7 +6,7 @@ from django.db import connection
 from django.test.utils import setup_databases, teardown_databases
 from pytest_django.lazy_django import get_django_version
 
-from DatabaseManager.xml_importer import import_xmls
+from CreeDictionary.DatabaseManager.xml_importer import import_xmls
 
 
 @contextmanager

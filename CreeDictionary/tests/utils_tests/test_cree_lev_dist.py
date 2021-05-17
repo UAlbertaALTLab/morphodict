@@ -4,7 +4,7 @@ import pytest
 from hypothesis import assume, example, given
 from hypothesis.strategies import text
 from Levenshtein import distance
-from utils import get_modified_distance
+from CreeDictionary.utils import get_modified_distance
 
 
 @given(text(alphabet=ascii_letters), text(alphabet=ascii_letters))

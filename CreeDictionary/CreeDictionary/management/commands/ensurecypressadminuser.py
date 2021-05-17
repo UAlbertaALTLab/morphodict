@@ -1,9 +1,12 @@
 import json
+import logging
 import secrets
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.core.management.base import BaseCommand
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -14,6 +17,11 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
+        if not settings.USE_TEST_DB:
+            logger.warning(
+                "USE_TEST_DB is not set. You usually want to run this against the test DB."
+            )
+
         cypress_user, created = User.objects.get_or_create(username="cypress")
 
         user_file_valid = False

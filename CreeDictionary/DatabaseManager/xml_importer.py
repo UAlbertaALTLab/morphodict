@@ -5,21 +5,26 @@ from typing import Dict, List, NamedTuple, Set, Optional
 
 from colorama import init
 
-from API.models import Definition, DictionarySource, EnglishKeyword, Wordform
-from DatabaseManager import xml_entry_lemma_finder
-from DatabaseManager.cree_inflection_generator import expand_inflections
-from DatabaseManager.log import DatabaseManagerLogger
-from DatabaseManager.xml_consistency_checker import (
+from CreeDictionary.API.models import (
+    Definition,
+    DictionarySource,
+    EnglishKeyword,
+    Wordform,
+)
+from CreeDictionary.DatabaseManager import xml_entry_lemma_finder
+from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
+from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
+from CreeDictionary.DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from utils import PartOfSpeech, fst_analysis_parser
-from utils.crkeng_xml_utils import (
+from CreeDictionary.utils import PartOfSpeech, fst_analysis_parser
+from CreeDictionary.utils.crkeng_xml_utils import (
     IndexedXML,
     convert_xml_inflectional_category_to_word_class,
 )
-from utils.data_classes import XMLEntry, XMLTranslation
-from utils.english_keyword_extraction import stem_keywords
-from utils.profiling import timed
+from CreeDictionary.utils.data_classes import XMLEntry, XMLTranslation
+from CreeDictionary.utils.english_keyword_extraction import stem_keywords
+from CreeDictionary.utils.profiling import timed
 
 init()  # for windows compatibility
 

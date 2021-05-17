@@ -1,9 +1,6 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 import pytest
 
-from CreeDictionary.hfstol import analyze, generate
+from CreeDictionary.CreeDictionary.hfstol import analyze, generate
 
 
 @pytest.mark.parametrize(

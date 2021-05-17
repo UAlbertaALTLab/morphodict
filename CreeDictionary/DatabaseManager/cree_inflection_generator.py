@@ -3,10 +3,10 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 """
 from typing import Dict, Iterable, List, Set, Tuple
 
-from DatabaseManager.log import DatabaseManagerLogger
-from shared import expensive
-from utils import fst_analysis_parser
-from CreeDictionary.paradigm.filler import ParadigmFiller
+from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import fst_analysis_parser
+from CreeDictionary.CreeDictionary.paradigm.filler import ParadigmFiller
 
 
 def expand_inflections(

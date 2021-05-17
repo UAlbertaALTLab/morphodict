@@ -2,7 +2,7 @@ from argparse import ArgumentParser
 
 from django.core.management import BaseCommand
 
-from DatabaseManager.test_db_builder import build_test_xml
+from CreeDictionary.DatabaseManager.test_db_builder import build_test_xml
 
 
 class Command(BaseCommand):

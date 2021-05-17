@@ -1,9 +1,9 @@
 import pytest
 from pytest import approx
 
-from API.models import Wordform
-from API.search.ranking import assign_relevance_score
-from API.search.types import Result
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.API.search.ranking import assign_relevance_score
+from CreeDictionary.API.search.types import Result
 
 
 def build_result(

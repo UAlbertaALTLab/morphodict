@@ -2,11 +2,12 @@ import json
 import logging
 
 import pytest
-from API.models import Wordform
-from API.search import search
-from API.search.util import to_sro_circumflex
 from hypothesis import assume, given
-from tests.conftest import lemmas
+
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.API.search import search
+from CreeDictionary.API.search.util import to_sro_circumflex
+from CreeDictionary.tests.conftest import lemmas
 
 
 @pytest.mark.django_db

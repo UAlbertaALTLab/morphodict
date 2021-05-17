@@ -1,12 +1,9 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 """
 Test the integration of itwêwina's settings.py against the morphodict application.
 """
 
 import pytest
-from morphodict.orthography import ORTHOGRAPHY
+from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
 
 
 def test_morphodict_orthography():

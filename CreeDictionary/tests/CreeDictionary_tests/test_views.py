@@ -13,7 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from CreeDictionary.display_options import DISPLAY_MODES
+from CreeDictionary.CreeDictionary.display_options import DISPLAY_MODES
 
 
 class TestLemmaDetailsInternal4xx:

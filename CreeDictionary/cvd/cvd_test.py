@@ -2,9 +2,12 @@ import random
 
 import pytest
 
-from API.models import Definition, Wordform
-from cvd import extract_keyed_words
-from cvd.definition_keys import definition_to_cvd_key, cvd_key_to_wordform_query
+from CreeDictionary.API.models import Definition, Wordform
+from CreeDictionary.cvd import extract_keyed_words
+from CreeDictionary.cvd.definition_keys import (
+    definition_to_cvd_key,
+    cvd_key_to_wordform_query,
+)
 
 FAKE_WORD_SET = {"loose", "leaf", "paper", "news_paper", "you're", "that"}
 

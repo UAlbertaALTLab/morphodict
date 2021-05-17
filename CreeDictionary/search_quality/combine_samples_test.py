@@ -3,7 +3,7 @@ from textwrap import dedent
 
 import pytest
 
-from search_quality.combine_samples import iter_results, combine_results
+from CreeDictionary.search_quality.combine_samples import iter_results, combine_results
 
 
 def test_iter_results_works_with_header():
