@@ -79,7 +79,7 @@ jobs:
       run: git lfs install --local && git lfs fetch && git lfs checkout
     - name: 🧶 Run linters/static-analysis
       run: |
-        pipenv run mypy CreeDictionary
+        pipenv run mypy src
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
