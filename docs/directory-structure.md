@@ -83,10 +83,15 @@ to:
         │   │   ├── test_parser.py  # test_* files are mixed in with non-test source code
         │   │   └── testdata/       # Use `testdata` directories for test data
         │   ├── paradigm_filler/
-        │   ├── frontend/
-        │   │   ├── foo.js
-        │   │   ├── foo.css
-        │   ⋮   └── …
+        │   ├── frontend/           # The existing front-end code moves here from src
+        │   │   ├── dom-utils.js
+        │   │   ├── index.js
+        │   │   ├── orthography.js
+        │   │   ├── …
+        │   │   └── css/
+        │   ⋮       ├── styles.css
+        │           ├── variables.css
+        │           └── …
         │
         ├── crkeng/                 # python package for itwêwina
         │   ├── __init__.py
@@ -103,10 +108,10 @@ to:
         │   │   ├── __init__.py
         │   │   ├── settings.py
         │   │   └── urls.py
-        │   └── frontend/           # Not a python package
-        │       ├── foo.js
-        │       └── foo.css
-        │
+        │   └── frontend/           # Not a python package; language-specific frontend files
+        │       ├── ….js
+        │       └── css/
+        │           └── ….css
         ├── cwdeng/                 # python package for Woods Cree dictionary
         │   ├── __init__.py
         │   ├── cypress/
@@ -122,10 +127,10 @@ to:
         │   │   ├── __init__.py
         │   │   ├── settings.py
         │   │   └── urls.py
-        │   └── frontend/           # Not a python package
-        │       ├── foo.js
-        │       └── foo.css
-        │
+        │   └── frontend/           # Not a python package; language-specific frontend files
+        │       ├── ….js
+        │       └── css/
+        │           └── ….css
         ├── arpeng/
         ├── crkfra/
         ├── cr_shared               # for code and resources shared between Cree dialects
@@ -154,6 +159,13 @@ to:
     `cypress` folders. It is likely that there will be some shared tests in
     `morphodict/cypress` that will be used by every dictionary application,
     in addition to dictionary-specific tests.
+
+  - We’re not specifying a new structure for the frontend JS/CSS code here.
+    For now, we’ll keep doing whatever we’ve been doing, only the files
+    will be stored in directories called `frontend` instead of `src`.
+
+    We’ll start with everything in `src/morphodict/frontend` but
+    language-specific JS/CSS will eventually go in `src/sssttt/frontend`.
 
 [flipped a coin]: https://docs.python.org/3/library/random.html#random.choice
 
