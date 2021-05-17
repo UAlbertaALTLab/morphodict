@@ -20,5 +20,11 @@ env = [
 # pytest-django
 DJANGO_SETTINGS_MODULE = "CreeDictionary.CreeDictionary.settings"
 
+# The default pytest-django behaviour is to (1) look for a `manage.py`
+# somewhere and (2) add the directory that contains it to `sys.path`.
+#
+# We only want our top-level python directory on `sys.path`, to prevent
+# partial imports (`import bar` when the full package name is `foo.bar`)
+# from working by accident.
 django_find_project = false
 python_paths = "."
