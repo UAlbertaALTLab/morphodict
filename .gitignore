@@ -63,12 +63,12 @@ cypress/videos
 /hfst
 
 # Django collectstatic
-/CreeDictionary/static/
+/src/CreeDictionary/static/
 
 # Generated files:
-CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
-CreeDictionary/CreeDictionary/static/CreeDictionary/js/click-in-text-embedded-test.js
-CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
+/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
+/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/click-in-text-embedded-test.js
+/src/CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
 *.css.map
 *.js.map
 docker-compose.override.yml

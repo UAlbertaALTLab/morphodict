@@ -24,15 +24,15 @@ services:
 
       # Mount directory, not file, so that -shm and -wal files will be
       # persisted outside the container if using WAL mode
-      - "/data_local/application-data/itwewina/db/:/app/CreeDictionary/db/"
+      - "/data_local/application-data/itwewina/db/:/app/src/CreeDictionary/db/"
 
       # Mount vector models from git lfs checkout instead of building into
       # image
-      - "../CreeDictionary/res/vector_models/:/app/CreeDictionary/res/vector_models/"
+      - "../src/CreeDictionary/res/vector_models/:/app/src/CreeDictionary/res/vector_models/"
       # Same for FSTs, as some can be large
-      - "../CreeDictionary/res/fst/:/app/CreeDictionary/res/fst/"
+      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
 
       # Use a persistent path for search sample results, so that they
       # remain across deployments and so that additional sample results can
       # be uploaded from other sources for comparison purposes
-      - "/data_local/application-data/itwewina/search-quality/:/app/CreeDictionary/search_quality/sample_results/"
+      - "/data_local/application-data/itwewina/search-quality/:/app/src/CreeDictionary/search_quality/sample_results/"

@@ -22,7 +22,7 @@ os.execv(
         "exec",
         "itwewina",
         "/app/.venv/bin/python",
-        "./manage.py",
+        "./src/CreeDictionary/manage.py",
     ]
     + sys.argv[1:],
 )

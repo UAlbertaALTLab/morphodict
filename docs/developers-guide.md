@@ -103,7 +103,7 @@ This starts both the Django server, and the Rollup watch process.
 Where are the JavaScript files?
 -------------------------------
 
-They're located in `src/`. They're compiled by [Rollup][] to the
+They're located in `frontend/`. They're compiled by [Rollup][] to the
 appropriate static directory. Note that Rollup allows you to `import` or
 `require()` npm modules in to the frontend JavaScript code; use this
 power wisely!
@@ -114,7 +114,7 @@ Rollup also minifies the JavaScript when `DEBUG=False`.
 Where are the CSS files?
 -------------------------------
 
-They're located in `src/css`.  They're compiled by [Rollup][] to the
+They're located in `frontend/css`.  They're compiled by [Rollup][] to the
 appropriate static directory. We're using [PostCSS][] to inline
 any `@import`'d CSS, and to provide a fallback for
 [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*) (a.k.a., CSS Variables).

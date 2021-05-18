@@ -59,7 +59,7 @@ ADD --chown=itwewina . /app/
 # Build the application:
 ENV NODE_ENV=production
 RUN npm run build \
- && /app/.venv/bin/python CreeDictionary/manage.py collectstatic --noinput
+ && /app/.venv/bin/python src/CreeDictionary/manage.py collectstatic --noinput
 
 
 ############################# Application image ##############################
@@ -86,10 +86,11 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 COPY --from=builder --chown=itwewina /app /app
 
 USER itwewina
-WORKDIR /app/CreeDictionary
+WORKDIR /app
 # Activate the Python virtual environment
 ENV VIRTUAL_ENV="/app/.venv"
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+ENV PYTHONPATH="/app/src"
 
 # uWSGI will bind HTTP to this port:
 EXPOSE 8000
@@ -104,4 +105,4 @@ EXPOSE 9191
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
 # uwsgi --http-socket is intended to be used behind, e.g., nginx
-CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "uwsgi.ini"]
+CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "src/CreeDictionary/uwsgi.ini"]
