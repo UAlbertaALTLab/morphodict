@@ -90,8 +90,8 @@ function setupSearchBar() {
 /**
  * clean paradigm details
  */
-function cleanParadigm() {
-  removeElement(document.getElementById('paradigm'))
+function cleanDetails() {
+  removeElement(document.getElementById('definition'))
 }
 
 function showProse() {
@@ -194,7 +194,7 @@ function loadSearchResults(searchInput) {
 
         // Remove loading cards
         indicateLoadedSuccessfully()
-        cleanParadigm()
+        cleanDetails()
         searchResultList.innerHTML = html
         prepareSearchResults(searchResultList)
       })
