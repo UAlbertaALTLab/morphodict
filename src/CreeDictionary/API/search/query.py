@@ -26,7 +26,7 @@ class CvdSearchType(Enum):
 
 
 class Query:
-    BOOL_KEYS = ["verbose", "auto"]
+    BOOL_KEYS = ["verbose", "auto", "eip"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
@@ -77,3 +77,4 @@ class Query:
     verbose: Optional[bool] = None
     auto: Optional[bool] = None
     cvd: Optional[CvdSearchType] = None
+    eip: Optional[bool] = None

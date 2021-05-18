@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.db.models import prefetch_related_objects
 
 from . import types, presentation
@@ -22,9 +24,11 @@ class SearchRun:
             self.query.auto, include_auto_definitions, default=False
         )
         self._results = {}
+        self._verbose_messages = []
 
     include_auto_definition: bool
     _results: dict[WordformKey, types.Result]
+    _verbose_messages: list[Any]
 
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):
@@ -60,6 +64,9 @@ class SearchRun:
         )
 
         return [r.serialize() for r in results]
+
+    def add_verbose_message(self, message):
+        self._verbose_messages.append(message)
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"

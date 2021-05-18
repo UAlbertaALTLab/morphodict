@@ -1,3 +1,4 @@
+import json
 import logging
 from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
@@ -97,12 +98,14 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    search_run = None
 
     if user_query:
-        search_results = search_with_affixes(
+        search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
+        search_results = search_run.serialized_presentation_results()
         did_search = True
     else:
         search_results = []
@@ -121,6 +124,8 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    if search_run:
+        context["verbose_messages"] = json.dumps(search_run._verbose_messages)
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 

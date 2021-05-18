@@ -1,5 +1,8 @@
 {% spaceless %}
 
+{% if verbose_messages %}
+{{ verbose_messages }}
+{% endif %}
 {% for result in search_results %}
 <li class="search-results__result" data-cy="search-results">
   {% include './components/search-result.html' with result=result %}
