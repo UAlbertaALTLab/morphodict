@@ -330,8 +330,8 @@ context('Regressions', () => {
 
   /**
    * Ensure audio is playable after clicking "show more"
-   * 
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/636 
+   *
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/636
    */
 
   it('should show audio button after showing more', () => {
@@ -351,5 +351,17 @@ context('Regressions', () => {
 
     cy.get('[data-cy=play-recording]')
       .should('be.visible')
+  })
+
+  it('should remove the word detail pages when viewing details then going to search', () => {
+    // Visit the details page of one entry:
+    cy.visitLemma('kotiskâwêw')
+    cy.contains('.definition-title', 'kotiskâwêw')
+
+    // Now, start searching for a completely DIFFERENT word
+    cy.search('oskana')
+    // It should not exist
+    cy.contains('.definition-title', 'kotiskâwêw')
+      .should('not.exist')
   })
 })
