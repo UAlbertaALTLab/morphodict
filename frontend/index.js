@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    setupParadigmSizeToggleButton()
+    setupParadigm()
   } else if (route === '/query-help' || route == '/admin/fst-tool') {
     // these pages don’t use any extra JS
   } else {
@@ -142,6 +142,10 @@ function updateQueryParam(key, value) {
   }
 }
 
+
+function setupParadigm() {
+  setupParadigmSizeToggleButton(null)
+}
 
 /**
  * attach handlers to the "show more/less" button. So that it:
