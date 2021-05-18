@@ -20,16 +20,16 @@ let lemmaId, paradigmSize
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css'
-import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
-import * as orthography from './orthography.js'
-import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
+import {createTooltip} from './js/tooltip'
+import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './js/recordings.js'
+import * as orthography from './js/orthography.js'
+import {emptyElement, removeElement, showElement, hideElement} from './js/dom-utils.js'
 import {
   indicateLoading,
   indicateLoadedSuccessfully,
   indicateLoadingFailure,
   hideLoadingIndicator
-} from './loading-bar.js'
+} from './js/loading-bar.js'
 
 
 ///////////////////////////////// Constants //////////////////////////////////
