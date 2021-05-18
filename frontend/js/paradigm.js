@@ -1,9 +1,12 @@
-
+/**
+ * Set up any page that has the #paradigm element with its size controls.
+ */
 export function setupParadigm() {
   setupParadigmSizeToggleButton(null)
 }
 
-const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
+// TODO: the backend should SOLELY maintain this list:
+const ALL_PARADIGM_SIZES = ['BASIC', 'FULL', 'LINGUISTIC']
 
 /**
  * attach handlers to the "show more/less" button. So that it:
@@ -37,14 +40,14 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
       if (r.ok) {
         return r.text()
       } else {
+        // TODO: show error on the loading component
         throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
       }
     }).then(
       text => {
         const newParadigm = document.createRange().createContextualFragment(text)
 
-        // TODO: is this necessary? Shouldn't the component itself know what
-        // text to use?
+        // TODO: the backend should SOLELY maintain this:
         if (mostDetailedParadigmSizeIsSelected()) {
           setParadigmSizeToggleButtonText('-', 'show less')
         } else {
@@ -70,8 +73,9 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
     })
   })
 
+  // TODO: the backend should know this:
   function mostDetailedParadigmSizeIsSelected() {
-    return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
+    return ALL_PARADIGM_SIZES.indexOf(nextParadigmSize) === ALL_PARADIGM_SIZES.length - 1
   }
 }
 
@@ -98,13 +102,13 @@ function displayButtonAsError(toggleButton) {
  * @return {String}
  */
 function getNextParadigmSize(size) {
-  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1) % allParadigmSizes.length]
+  return ALL_PARADIGM_SIZES[(ALL_PARADIGM_SIZES.indexOf(size) + 1) % ALL_PARADIGM_SIZES.length]
 }
 
 ///////////////////////////// Internal functions /////////////////////////////
 
 /**
- * read json data produced by django's `json_script` filter during HTML template generation
+ * Read JSOn data produced by Django's `json_script` filter during HTML template generation
  */
 function readDjangoJsonScript(id) {
   const jsonScriptElement = document.getElementById(id)
@@ -114,8 +118,6 @@ function readDjangoJsonScript(id) {
     return undefined
   }
 }
-
-
 
 /**
  * https://stackoverflow.com/a/11654596
