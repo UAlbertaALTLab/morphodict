@@ -69,10 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
     setupParadigm()
-  } else if (route === '/query-help' || route == '/admin/fst-tool') {
-    // these pages don’t use any extra JS
-  } else {
-    throw new Error(`Could not match route: ${route}`)
   }
 })
 
