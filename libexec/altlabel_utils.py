@@ -10,7 +10,7 @@ from argparse import ArgumentParser
 from pathlib import Path
 
 # Figure out shared_res_dir
-add_to_path = Path(__file__).parent.parent / "CreeDictionary"
+add_to_path = Path(__file__).parent.parent / "src" / "CreeDictionary"
 assert add_to_path.is_dir()
 sys.path.insert(0, str(add_to_path))
 shared_res_dir = __import__("utils").shared_res_dir
