@@ -6,16 +6,6 @@
 
 /* global Urls:readable */
 
-// `lemmaId` is a variable from django's template generation.
-// It's present when the current page is lemma detail / paradigm page
-
-// paradigmSize is also set initially with django's template generation
-// It's present when the current page is lemma detail / paradigm page.
-// And it can changed dynamically by javascript when the script loads different sized paradigms
-
-
-let lemmaId, paradigmSize
-
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
@@ -50,11 +40,6 @@ const SERACH_BAR_DEBOUNCE_TIME = 450
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // read Django's json_script data inside HTML when DOM is ready
-  // this is a way of passing Django's context variables during template generation to Javascript
-  lemmaId = readDjangoJsonScript('lemma-id')
-  paradigmSize = readDjangoJsonScript('paradigm-size')
 
   // XXX: HACK! reloads the site when the back button is pressed.
   window.onpopsate = () => location.reload()
@@ -166,13 +151,20 @@ function updateQueryParam(key, value) {
  *    and shows the smallest paradigm when clicked
  *  - prepare the new "show more/less" button to do these 3
  */
-function setupParadigmSizeToggleButton() {
+function setupParadigmSizeToggleButton(currentParadigmSize) {
   const toggleButton = document.querySelector('.js-paradigm-size-button')
 
   if (!toggleButton) {
     // There's nothing to toggle, hence nothing to setup. Done!
     return
   }
+
+  // `lemmaId` should be embedded by Django into the template.
+  // It's present when the current page is lemma detail/paradigm page
+  const lemmaId = readDjangoJsonScript('lemma-id')
+  // `paradigmSize` is also rendered by a Django template
+  // And it can changed dynamically by JavaScript when the script loads different sized paradigms
+  let paradigmSize = currentParadigmSize || readDjangoJsonScript('paradigm-size')
 
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
 
@@ -203,7 +195,7 @@ function setupParadigmSizeToggleButton() {
         paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
 
         paradigmSize = nextParadigmSize
-        setupParadigmSizeToggleButton()
+        setupParadigmSizeToggleButton(paradigmSize)
 
         function setParadigmSizeToggleButtonText(symbol, text) {
           newParadigm.querySelector('.js-button-text').textContent = text
