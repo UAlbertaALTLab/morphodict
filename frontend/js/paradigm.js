@@ -123,40 +123,15 @@ function readDjangoJsonScript(id) {
 }
 
 /**
- * https://stackoverflow.com/a/11654596
- * get the current url and update a query param
- *
- * @param {String} key
- * @param {String} value
- * @returns {String}
+ * Update the current query parameters.
+ * Derived from: https://stackoverflow.com/a/41542008/6626414
  */
 function updateQueryParam(key, value) {
-  let url = window.location.href
-  let re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi'),
-    hash
+  let search = new URLSearchParams(window.location.search)
+  search.set(key, value)
 
-  if (re.test(url)) {
-    if (typeof value !== 'undefined' && value !== null) {
-      return url.replace(re, '$1' + key + '=' + value + '$2$3')
-    } else {
-      hash = url.split('#')
-      url = hash[0].replace(re, '$1$3').replace(/([&?])$/, '')
-      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
-        url += '#' + hash[1]
-      }
-      return url
-    }
-  } else {
-    if (typeof value !== 'undefined' && value !== null) {
-      const separator = url.indexOf('?') !== -1 ? '&' : '?'
-      hash = url.split('#')
-      url = hash[0] + separator + key + '=' + value
-      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
-        url += '#' + hash[1]
-      }
-      return url
-    } else {
-      return url
-    }
-  }
+  let url = new URL(window.location.href)
+  url.search = search.toString()
+
+  return url.href
 }
