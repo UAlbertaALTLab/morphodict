@@ -54,13 +54,12 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
           setParadigmSizeToggleButtonText('+', 'show more')
         }
 
-        window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
-
         const paradigmContainer = document.getElementById('paradigm')
         paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
 
         paradigmSize = nextParadigmSize
         setupParadigmSizeToggleButton(paradigmSize)
+        updateCurrentURLWithParadigmSize()
 
         function setParadigmSizeToggleButtonText(symbol, text) {
           newParadigm.querySelector('.js-button-text').textContent = text
@@ -76,6 +75,10 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
   // TODO: the backend should know this:
   function mostDetailedParadigmSizeIsSelected() {
     return ALL_PARADIGM_SIZES.indexOf(nextParadigmSize) === ALL_PARADIGM_SIZES.length - 1
+  }
+
+  function updateCurrentURLWithParadigmSize() {
+    window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
   }
 }
 
