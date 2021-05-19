@@ -72,11 +72,11 @@ and use the excerpt in this repository at
 As is the custom with Django app, migrations are used to initialize the
 schema. Apply them with
 
-    ./CreeDictionary/manage.py migrate
+    ./crkeng-manage migrate
 
 Now import the dictionaries into the database:
 
-    ./CreeDictionary/manage.py xmlimport CreeDictionary/res/dictionaries/crkeng.xml
+    ./crkeng-manage xmlimport CreeDictionary/res/dictionaries/crkeng.xml
 
 This typically takes 10-15 minutes on the full dictionary.
 

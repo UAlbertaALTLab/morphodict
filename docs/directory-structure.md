@@ -55,11 +55,11 @@ to:
     ├── .git/
     ├── package.json                # dependencies for bundlers, JS/CSS frameworks
     ├── Pipfile
-    ├── arpeng-manage.py            # manage.py scripts are at the top-level for easy access
-    ├── crkeng-manage.py
-    ├── crkfra-manage.py
-    ├── cwdeng-manage.py
-    ├── srseng-manage.py
+    ├── arpeng-manage               # django-admin scripts are at the top-level for easy access
+    ├── crkeng-manage
+    ├── crkfra-manage
+    ├── cwdeng-manage
+    ├── srseng-manage
     └── src/
         ├── CreeDictionary/         # existing code, eventually goes away
         │   ├── __init__.py
@@ -192,7 +192,7 @@ The rough idea is:
 
   - Work on itwêwina continues in the `CreeDictionary` package as normal,
     it’s just moved into the `src` directory, and gets run from
-    `./crkeng-manage.py`
+    `./crkeng-manage`
 
   - As we work to get parts of non-Plains Cree dictionaries working, we
     move code from `CreeDictionary` into either `morphodict` for

@@ -18,7 +18,7 @@ env = [
 ]
 
 # pytest-django
-DJANGO_SETTINGS_MODULE = "CreeDictionary.CreeDictionary.settings"
+DJANGO_SETTINGS_MODULE = "crkeng.site.settings"
 
 # The default pytest-django behaviour is to (1) look for a `manage.py`
 # somewhere and (2) add the directory that contains it to `sys.path`.

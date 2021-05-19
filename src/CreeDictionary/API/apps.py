@@ -40,12 +40,3 @@ class APIConfig(AppConfig):
         cvd.preload_models()
 
         logger.debug("done")
-
-    @classmethod
-    def active_instance(cls) -> "APIConfig":
-        """
-        Fetch the instance of this Config from the Django app registry.
-
-        This way you can get access to the affix searchers in other modules!
-        """
-        return apps.get_app_config(cls.name)

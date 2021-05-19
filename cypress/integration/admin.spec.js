@@ -3,7 +3,7 @@ const { join: joinPath } = require('path')
 const ADMIN_LOGIN_URL = '/admin/login/'
 const ADMIN_URL = '/admin/'
 
-const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'src', 'CreeDictionary', '.cypress-user.json')
+const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'src', 'crkeng', '.cypress-user.json')
 
 Cypress.Commands.add('login', () => {
   cy.visit('/admin/login/')
