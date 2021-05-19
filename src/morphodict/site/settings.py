@@ -248,7 +248,7 @@ USE_TZ = True
 
 STATIC_URL = env("STATIC_URL", "/static/")
 
-STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "static"))
+STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "collected-static"))
 
 if DEBUG:
     # Use the default static storage backed for debug purposes.
