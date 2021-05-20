@@ -97,6 +97,7 @@ to:
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── apps.py         # contains CrkEngAppConfig
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
@@ -120,6 +121,7 @@ to:
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── apps.py         # contains CwdEngAppConfig
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/

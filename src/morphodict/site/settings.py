@@ -45,7 +45,7 @@ DEBUG = env.bool("DEBUG", default=False)
 
 # Individual sites SHOULD register their own apps by using:
 #
-#     INSTALLED_APPS.insert(0, "{source}{target}.apps.{Source}{Target}AppConfig")
+#     INSTALLED_APPS.insert(0, "{source}{target}.app")
 #
 # Why .insert(0, ...)?
 # Because Django's default template loader will use the template it finds **FIRST**
