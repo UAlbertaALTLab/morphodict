@@ -23,6 +23,7 @@ PRODUCTION_HOST = "itwewina.altlab.app"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
+INSTALLED_APPS.append("crkeng.apps.CrkEngAppConfig")
 ROOT_URLCONF = "crkeng.site.urls"
 
 WSGI_APPLICATION = "crkeng.site.wsgi.application"

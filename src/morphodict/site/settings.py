@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     "CreeDictionary.DatabaseManager",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
+    # Individual sites SHOULD register their own apps by using:
+    #     INSTALLED_APPS.append("{source}{target}.apps.{Source}{Target}AppConfig")
 ]
 
 MIDDLEWARE = [
