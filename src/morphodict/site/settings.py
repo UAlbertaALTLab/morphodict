@@ -43,6 +43,14 @@ DEBUG = env.bool("DEBUG", default=False)
 
 # Application definition
 
+# Individual sites SHOULD register their own apps by using:
+#
+#     INSTALLED_APPS.insert(0, "{source}{target}.apps.{Source}{Target}AppConfig")
+#
+# Why .insert(0, ...)?
+# Because Django's default template loader will use the template it finds **FIRST**
+# in the app list.
+# See: https://docs.djangoproject.com/en/3.2/ref/templates/api/#django.template.loaders.app_directories.Loader
 INSTALLED_APPS = [
     # Django core apps:
     "django.contrib.auth",
@@ -68,8 +76,6 @@ INSTALLED_APPS = [
     "CreeDictionary.DatabaseManager",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
-    # Individual sites SHOULD register their own apps by using:
-    #     INSTALLED_APPS.append("{source}{target}.apps.{Source}{Target}AppConfig")
 ]
 
 MIDDLEWARE = [
