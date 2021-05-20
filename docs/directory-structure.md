@@ -95,6 +95,10 @@ to:
         │
         ├── crkeng/                 # python package for itwêwina
         │   ├── __init__.py
+        │   ├── app/                # Django application (optional)
+        │   │   ├── __init__.py
+        │   │   ├── templates/      # Django templates (overrides other apps)
+        │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
@@ -114,6 +118,10 @@ to:
         │           └── ….css
         ├── cwdeng/                 # python package for Woods Cree dictionary
         │   ├── __init__.py
+        │   ├── app/                # Django application (optional)
+        │   │   ├── __init__.py
+        │   │   ├── templates/      # Django templates (overrides other apps)
+        │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
