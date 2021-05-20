@@ -23,7 +23,7 @@ PRODUCTION_HOST = "itwewina.altlab.app"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-INSTALLED_APPS.insert(0, "crkeng.apps.CrkEngAppConfig")
+INSTALLED_APPS.insert(0, "crkeng.app.CrkEngAppConfig")
 
 ROOT_URLCONF = "crkeng.site.urls"
 
