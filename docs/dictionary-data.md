@@ -1,76 +1,120 @@
 The data which is needed for setting up a dictionary application is as
-follows.
-
-This is an abstract description of what’s needed, separate from details of
-field names or data formats like JSON or XML.
+follows. Note that this is an abstract description of what’s needed,
+separate from details of field names or data formats like JSON or XML.
 
 ## Language level
 
-There are some things we need to describe the language itself, before we
-look at any one particular dictionary entry.
+Some thing are needed to describe the language itself, before dealing with
+any one particular dictionary entry.
 
   - For each inflectional category:
+
     - The category name, e.g., `VAI-1`
-    - A textual description spelling out any abbreviations in the name,
-      e.g., “type-1 animate intransitive verbs”
-    - The specific word class that this inflectional category belongs to
+
+    - A prose description spelling out any abbreviations in the name,
+      e.g., “type-1 animate intransitive verbs.” This is used only by
+      developers / linguists, and not shown to dictionary end-users.
+
+    - The specific word class that the inflectional category belongs to
 
   - For each specific word class:
       - The specific word class name, e.g., `VAI`
+      - A prose description
       - The general word class that the specific word class belongs to,
         e.g., `V`
+
+      - The paradigm layout list. This will be used for generating
+        wordforms. An example entry could be, `${lemma}+N+A+D+PxX+Sg`.
+
+        *Instead of directly specifying a list of expansions, we only
+        support automatically extracting this list from paradigm layout
+        files.* This prevents data redundancy and inconsistency.
+
+        In practice, this list may be empty even if the specific word class
+        should be declinable; see the next bullet point.
+
       - Whether the specific word class *should* be declinable. Some word
         classes are indeclinable because that’s how the language works.
-        Other word classes should be declinable, but won’t actually be
-        declinable in practice by this application for reasons such as:
+        Other word classes, although they should be declinable, won’t
+        actually be declinable in practice by this application for reasons
+        such as:
           - The paradigm layout files haven’t been written
-          - The FST hasn’t been implemented yet for this specific word
-            class
+          - There is no FST yet, or it doesn’t yet handle this specific
+            word class
           - The dictionary entries haven’t been tagged with enough
             specificity to identify the paradigm
 
-        the following info is also needed, but happily comes from the paradigm
-        layout files right now:
+  - For each general word class:
+      - The general word class name, e.g., `V`
+      - A prose description
 
-        paradigm layout list used for generating wordforms
-            note: may be empty because indeclinable,
-            or because we just haven’t created a paradigm and/or FST that can
-            handle it
+Note that it may be useful to have inflectional categories and general and
+specific word classes for ‘unknown’; both generically, and for more refined
+concepts such as ‘verb with unknown inflectional category.’ This helps to
+keep separate the two distinct concepts of (1) word classes whose members
+are not declinable because that’s how the language works, and (2) word
+classes that should be declinable but where the required linguistic data
+together with a compatible computational model implementation is not
+presently at hand.
 
-Note that we will sometimes have inflectional categories for `?` = ‘unknown’
- or `V?` = ‘verb with unknown inflectional category’
+## Dictionary entry level
 
+For each dictionary entry, we will need the following pieces of data:
 
-dictionary level:
+  - The entry head. In most dictionaries this is usually a single word, but
+    could also be a phrase or morpheme.
 
-    for each dictionary entry: 
-    - head (could be word, phrase, or morpheme)
-    - inflectional category
-      IPH indeclinable phrase / IPM indeclinable morpheme
-    - FST lemma, if inflectional class is declinable
-      To be clear: if the head is `kinîminâwâw` with analysis
-      `nîmiw+V+AI+Ind+2Pl`, then the FST lemma is `nîmiw`
-    - list of definitions
+  - The inflectional category. Plains Cree can use inflectional categories
+    such as `IPH` “indeclinable phrase” and `IPM` “indeclinable morpheme”
+    for non-word heads.
 
-    - linguistic stem to display on popup
+  - The FST lemma. This is specified iff the inflectional class is
+    declinable. To be clear: the FST lemma is the thing that gets plugged
+    into a paradigm layout template to generate associated wordforms. For
+    example, if the head is `kinîminâwâw` with FST analysis
+    `nîmiw+V+AI+Ind+2Pl`, then the FST lemma is `nîmiw`.
 
-      (always in Arok’s source except for moprhemes; might be list for phrase)
-      Arok’s \stm fields may not have preverbs or reduplication
+  - A list of definitions for the head. Each definition is typically a
+    string, and a list of citation abbreviations. There is intent to enrich
+    this data model by specifying things such as cross-references, notes,
+    and examples; specifying that is not in this document’s scope at the
+    moment.
 
-      relation to FST is, Arok’s stems are used to create the FST lemmas
-      in the lexc
+  - The homograph key. In order to have stable ways to refer to different
+    homographs in the database and in URLs, whenever two or more heads have
+    the same text, each entry with a head that is a homograph must provide
+    a homograph key that is distinct from every other wordform.
 
-      lexc source code has `<FST lemma>:<enriched FST stem, without trailing -, and maybe with alternate symbols like n2 or n3>`
+    For example, for the Plains Cree homograph `yôtin`, the lexicographer
+    might set the keys for three wordforms to `yôtin1` and `yôtin2` and
+    `yôtin3`; or to `yôtin-na` and `yôtin-ni` and `yôtin-v`; or following
+    any other scheme they desire, so long as the assignments will remain
+    stable.
 
-      e.g., `acitakotêw:acitakot3 VTAt ;`
+    For convenience when the dictionary source has its own stable
+    identifiers, the homograph key may be set on every dictionary entry,
+    and will only be used on entries that are actually homographs.
 
-    https://github.com/giellalt/lang-crk/blob/main/src/fst/stems/verb_stems.lexc#L111-L141
+    Note that homographs may or may not be in the same inflectional
+    category.
 
+  - Optionally, a static paradigm name. Specifying this is only permitted
+    if the specific word class should not be declinable. For example, in
+    Plains Cree, ‘niya’ from the indeclinable inflectional category `PrA`
+    “animate pronouns” has static paradigm `personal-pronouns`.
 
+  - Optionally, the linguistic stem. This is displayed on the website for
+    humans to see, but is not accessed or used for any other purposes by
+    the dictionary code. This is technically optional because not all
+    dictionary sources and language pairs will have this information and/or
+    want to display it.
 
-    - homograph key
-      note that homographs may be in the same inflectional category, may not be
-
-    - static paradigm, only allowed if specific word class is indeclinable
-      e.g., ‘niya’ has paradigm ‘personal pronoun’
-
+    For Plains Cree specifically: This is the `\stm` field in the *Cree:
+    Words* toolbox file and the value ends with a `-`, e.g., `nîmi-`. It
+    should be present there for all words, but absent for morphemes, and
+    might be a list when the head is a phrase. After appropriate processing
+    such as removing the trailing hyphen and ensuring preverbs and
+    reduplication are included and remapping some symbols, it becomes the
+    “FST stem” in the lexc source code as `<FST lemma>:<FST stem>`, e.g.,
+    [`acitakotêw:acitakot3 VTAt
+    ;`](https://github.com/giellalt/lang-crk/blob/8574d2b163d115e6da4419794f21ffe692d76b9b/src/fst/stems/verb_stems.lexc#L123)
