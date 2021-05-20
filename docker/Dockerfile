@@ -59,7 +59,7 @@ ADD --chown=itwewina . /app/
 # Build the application:
 ENV NODE_ENV=production
 RUN npm run build \
- && /app/.venv/bin/python src/CreeDictionary/manage.py collectstatic --noinput
+ && /app/.venv/bin/python ./crkeng-manage collectstatic --noinput
 
 
 ############################# Application image ##############################
@@ -105,4 +105,4 @@ EXPOSE 9191
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
 # uwsgi --http-socket is intended to be used behind, e.g., nginx
-CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "src/CreeDictionary/uwsgi.ini"]
+CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "src/crkeng/site/uwsgi.ini"]

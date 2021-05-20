@@ -13,7 +13,7 @@ The process to update the auto-translated phrases is as follows:
  4. Run the translation script in jsonl-only mode to get a file containing
     all the translations for review:
 
-        pipenv run CreeDictionary/manage.py translatewordforms --jsonl-only translations.jsonl
+        pipenv run ./crkeng-manage translatewordforms --jsonl-only translations.jsonl
 
     You will need to run this against a database that has had the full
     dictionary imported for this to be very useful.
@@ -24,4 +24,4 @@ The process to update the auto-translated phrases is as follows:
     auto-deployed to `itw.altlab.dev`, SSH there and run
 
         cd /opt/docker-compose/itwewina/cree-intelligent-dictionary/docker \
-          && docker-compose exec itwewina ./manage.py translatewordforms
+          && docker-compose exec itwewina ./crkeng-manage translatewordforms

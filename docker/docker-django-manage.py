@@ -21,8 +21,7 @@ os.execv(
         dir.absolute() / "docker-compose.yml",
         "exec",
         "itwewina",
-        "/app/.venv/bin/python",
-        "./src/CreeDictionary/manage.py",
+        "./crkeng-manage",
     ]
     + sys.argv[1:],
 )

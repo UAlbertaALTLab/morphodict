@@ -51,15 +51,11 @@ more-itertools = "~=8.7.0"
 [scripts]
 # unit tests
 test = "pytest --mypy src"
-# run dev server
-dev = "python src/CreeDictionary/manage.py runserver"
-runserver_for_tests = "env USE_TEST_DB=true python src/CreeDictionary/manage.py runserver"
+runserver_for_tests = "env USE_TEST_DB=true ./crkeng-manage runserver"
 # format
 format = "black src"
 # building the test db takes about half a minute
-ensuretestdb = "env USE_TEST_DB=true python src/CreeDictionary/manage.py ensuretestdb"
-# Utitlities
-collect-static = "python src/CreeDictionary/manage.py collectstatic --no-input"
+ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
 
 [requires]
 python_version = "3.9"
