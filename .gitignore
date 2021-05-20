@@ -54,6 +54,8 @@ venv/
 node_modules/
 cypress/screenshots
 cypress/videos
+.cypress-user.json
+
 
 ########################## Project-specific ignores ##########################
 
