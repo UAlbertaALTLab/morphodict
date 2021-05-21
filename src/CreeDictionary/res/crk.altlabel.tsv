@@ -18,7 +18,50 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (ana/aniki) -	
 5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nâha/nêki) -	
 5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nâha/nêki) -	
-					
+0Sg	0	Impersonal / Actor: Existential / Inanimate Singular	it / there (is)	ôma
+0Pl	0p	Actor: Existential / Inanimate Plural	they / there (are)	ôhi
+0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+0SgO	→ 0	Goal: Inanimate Singular		→ it	→ ôma
+0PlO	→ 0p	Goal: Inanimate Plural			→ them (further)	→ nêhi
+
+0Sg+Prs	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is	ôma
+0Pl+Prs	0p	Actor: Existential / Inanimate Plural	they / there are	ôhi
+0Sg+Obv+Prs	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Prs	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Prt	0	Impersonal / Actor: Existential / Inanimate Singular	it / there was	ôma
+0Pl+Prt	0p	Actor: Existential / Inanimate Plural	they / there were	ôhi
+0Sg+Obv+Prt	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Prt	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Fut+Def	0	Impersonal / Actor: Existential / Inanimate Singular	it / there will be	ôma
+0Pl+Fut+Def	0p	Actor: Existential / Inanimate Plural	they / there will be	ôhi
+0Sg+Obv+Fut+Def	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Fut+Def	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Fut+Int	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is going to be	ôma
+0Pl+Fut+Int	0p	Actor: Existential / Inanimate Plural	they / there is going to be	ôhi
+0Sg+Obv+Fut+Int	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Fut+Int	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Fut+Cond	0	Impersonal / Actor: Existential / Inanimate Singular	it / when there is	ôma
+0Pl+Fut+Cond	0p	Actor: Existential / Inanimate Plural	they / when there is	ôhi
+0Sg+Obv+Fut+Cond	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Fut+Cond	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Inf+PV/ka	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma
+0Pl+Inf+Pv/ka	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi
+0Sg+Obv+Inf+PV/ka	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Inf+PV/ka	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+0Sg+Inf+PV/ta	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma
+0Pl+Inf+Pv/ta	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi
+0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nêma
+0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi
+
+
+
 1Sg+2SgO			I → you (one)	niya → kiya	-
 1Sg+3SgO			I → him/her	niya → wiya (awa)	-
 1Sg+1PlO			I → we (not you)	niya → niyanân	-
