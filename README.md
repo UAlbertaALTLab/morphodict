@@ -20,6 +20,7 @@ Contributing
  - [Developer's guide](./docs/developers-guide.md)
  - [Production server: Whorf](./docs/production-on-whorf.md)
  - [Continuous Integration](./docs/ci.md)
+ - [Glossary](./docs/glossary.md)
 
 Credits
 -------
