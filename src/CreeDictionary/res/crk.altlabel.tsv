@@ -153,12 +153,12 @@ Cnj		Conjunct	ê-/kâ- word	ê-/kâ- itwêwin -
 Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik -		
 Fut+Cond		Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik -		
 D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit		
-Def		Definite				
+Def		Definite	certainly	cikêmâ		
 Fut+Def	Future Definite	Future definite tense	something will certainly happen	ka-ispayik nîkânihk/cikêmâ		
 Del		Delayed	later	mwêstas		
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
-Der/Com		Derived comitative				
+Der/Com		Derived comitative	with another person	wîci-			
 Der/Dim		Derived diminutive	smaller / younger / lesser	 nawac apisîs		
 Der/X		Derived unspecified actor				
 Dim		Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis		
@@ -178,8 +178,7 @@ IPJ	Interjection	Interjection	like: hay hay	tâpiskôc: hay hay	⚡
 IPN	Prenoun	Prenoun	like: amisko-	tâpiskôc: amisko-	⚡	
 IPP	Particle	Particle	like: akâmi-	tâpiskîc: akâmi- 	⚡️	
 IPV	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️	
-Ipv	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️	
-Imm		Immediate	now	mêkwâc/kîsac		
+	Imm		Immediate	now	mêkwâc/kîsac		
 Imp		Imperative	command/request	nitotamâkêwin		
 Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkêwin piko ka-ispayik		
 Ind		Independent	ni-/ki- word	ni-/ki- itwêwin		
