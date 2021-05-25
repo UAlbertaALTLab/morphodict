@@ -25,7 +25,9 @@ class Command(BaseCommand):
         cypress_user, created = User.objects.get_or_create(username="cypress")
 
         user_file_valid = False
-        user_info_file = settings.BASE_PATH / ".cypress-user.json"
+        user_info_file = (
+            settings.BASE_DIR.parent.parent / "cypress" / ".cypress-user.json"
+        )
 
         password = None
         if user_info_file.exists():

@@ -22,6 +22,7 @@ DatabaseManager.log*
 *.log
 local_settings.py
 db.sqlite3
+test_db.sqlite3
 *.sqlite3.bak
 *.sqlite3-journal
 *.sqlite3-shm
@@ -53,6 +54,8 @@ venv/
 node_modules/
 cypress/screenshots
 cypress/videos
+.cypress-user.json
+
 
 ########################## Project-specific ignores ##########################
 

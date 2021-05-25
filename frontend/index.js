@@ -6,31 +6,22 @@
 
 /* global Urls:readable */
 
-// `lemmaId` is a variable from django's template generation.
-// It's present when the current page is lemma detail / paradigm page
-
-// paradigmSize is also set initially with django's template generation
-// It's present when the current page is lemma detail / paradigm page.
-// And it can changed dynamically by javascript when the script loads different sized paradigms
-
-
-let lemmaId, paradigmSize
-
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
 import './css/styles.css'
-import {createTooltip} from './tooltip'
-import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './recordings.js'
-import * as orthography from './orthography.js'
-import {emptyElement, removeElement, showElement, hideElement} from './dom-utils.js'
+import {createTooltip} from './js/tooltip'
+import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './js/recordings.js'
+import * as orthography from './js/orthography.js'
+import {emptyElement, removeElement, showElement, hideElement} from './js/dom-utils.js'
 import {
   indicateLoading,
   indicateLoadedSuccessfully,
   indicateLoadingFailure,
   hideLoadingIndicator
-} from './loading-bar.js'
-
+} from './js/loading-bar.js'
+import {debounce} from './js/debounce.js'
+import {setupParadigm} from './js/paradigm.js'
 
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -50,11 +41,6 @@ const SERACH_BAR_DEBOUNCE_TIME = 450
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // read Django's json_script data inside HTML when DOM is ready
-  // this is a way of passing Django's context variables during template generation to Javascript
-  lemmaId = readDjangoJsonScript('lemma-id')
-  paradigmSize = readDjangoJsonScript('paradigm-size')
 
   // XXX: HACK! reloads the site when the back button is pressed.
   window.onpopsate = () => location.reload()
@@ -82,187 +68,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
-    setupParadigmSizeToggleButton()
-  } else if (route === '/query-help' || route == '/admin/fst-tool') {
-    // these pages don’t use any extra JS
-  } else {
-    throw new Error(`Could not match route: ${route}`)
+    setupParadigm()
   }
 })
-
-
-///////////////////////////// Internal functions /////////////////////////////
-
-/**
- * read json data produced by django's `json_script` filter during HTML template generation
- */
-function readDjangoJsonScript(id) {
-  const jsonScriptElement = document.getElementById(id)
-  if (jsonScriptElement) {
-    return JSON.parse(jsonScriptElement.textContent)
-  } else {
-    return undefined
-  }
-}
-
-const allParadigmSizes = ['BASIC', 'FULL', 'LINGUISTIC']
-
-
-/**
- * cycles between BASIC, FULL, LINGUISTIC
- *
- * @param {String} size
- * @return {String}
- */
-function getNextParadigmSize(size) {
-  return allParadigmSizes[(allParadigmSizes.indexOf(size) + 1) % allParadigmSizes.length]
-}
-
-/**
- * https://stackoverflow.com/a/11654596
- * get the current url and update a query param
- *
- * @param {String} key
- * @param {String} value
- * @returns {String}
- */
-function updateQueryParam(key, value) {
-  let url = window.location.href
-  let re = new RegExp('([?&])' + key + '=.*?(&|#|$)(.*)', 'gi'),
-    hash
-
-  if (re.test(url)) {
-    if (typeof value !== 'undefined' && value !== null) {
-      return url.replace(re, '$1' + key + '=' + value + '$2$3')
-    } else {
-      hash = url.split('#')
-      url = hash[0].replace(re, '$1$3').replace(/([&?])$/, '')
-      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
-        url += '#' + hash[1]
-      }
-      return url
-    }
-  } else {
-    if (typeof value !== 'undefined' && value !== null) {
-      const separator = url.indexOf('?') !== -1 ? '&' : '?'
-      hash = url.split('#')
-      url = hash[0] + separator + key + '=' + value
-      if (typeof hash[1] !== 'undefined' && hash[1] !== null) {
-        url += '#' + hash[1]
-      }
-      return url
-    } else {
-      return url
-    }
-  }
-}
-
-
-/**
- * attach handlers to the "show more/less" button. So that it:
- *
- *  - loads a more detailed paradigm when clicked or do nothing and report to console if the request for the paradigm errors
- *  - changes its text to "show less" when the paradigm has the largest size
- *    and shows the smallest paradigm when clicked
- *  - prepare the new "show more/less" button to do these 3
- */
-function setupParadigmSizeToggleButton() {
-  const toggleButton = document.querySelector('.js-paradigm-size-button')
-
-  if (!toggleButton) {
-    // There's nothing to toggle, hence nothing to setup. Done!
-    return
-  }
-
-  const nextParadigmSize = getNextParadigmSize(paradigmSize)
-
-  toggleButton.addEventListener('click', () => {
-    displayButtonAsLoading(toggleButton)
-
-    fetch(Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
-      if (r.ok) {
-        return r.text()
-      } else {
-        throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
-      }
-    }).then(
-      text => {
-        const newParadigm = document.createRange().createContextualFragment(text)
-
-        // TODO: is this necessary? Shouldn't the component itself know what
-        // text to use?
-        if (mostDetailedParadigmSizeIsSelected()) {
-          setParadigmSizeToggleButtonText('-', 'show less')
-        } else {
-          setParadigmSizeToggleButtonText('+', 'show more')
-        }
-
-        window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
-
-        const paradigmContainer = document.getElementById('paradigm')
-        paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
-
-        paradigmSize = nextParadigmSize
-        setupParadigmSizeToggleButton()
-
-        function setParadigmSizeToggleButtonText(symbol, text) {
-          newParadigm.querySelector('.js-button-text').textContent = text
-          newParadigm.querySelector('.js-plus-minus').textContent = symbol
-        }
-      }
-    ).catch((err) => {
-      displayButtonAsError(toggleButton)
-      console.error(err)
-    })
-  })
-
-  function mostDetailedParadigmSizeIsSelected() {
-    return allParadigmSizes.indexOf(nextParadigmSize) === allParadigmSizes.length - 1
-  }
-}
-
-/**
- * Make the button look like it's loading.
- */
-function displayButtonAsLoading(toggleButton) {
-  toggleButton.classList.add('paradigm__size-toggle-button--loading')
-}
-
-/**
- * Make the button look like something went wrong.
- */
-function displayButtonAsError(toggleButton) {
-  toggleButton.classList.remove('paradigm__size-toggle-button--loading')
-  // TODO: should have an error state for the toggle button!
-}
-
-/**
- * A debounce function. Documentation: https://davidwalsh.name/javascript-debounce-function
- * @param  {Function} func      The function to debounce
- * @param  {Number}   wait      The time to wait, in milliseconds
- * @param  {Boolean}  immediate Whether to invoke the function immediately
- * @return {Function}
- */
-function debounce(func, wait, immediate) {
-
-  let timeout
-
-  return function debounced(...args) {
-
-    const later = () => {
-      timeout = null
-      if (!immediate) func.apply(this, args)
-    }
-
-    const callNow = immediate && !timeout
-
-    clearTimeout(timeout)
-    timeout = setTimeout(later, wait)
-
-    if (callNow) func.apply(this, args)
-
-  }
-}
 
 const debouncedLoadSearchResults = debounce(() => {
   const searchBar = document.getElementById('search')
@@ -282,8 +90,8 @@ function setupSearchBar() {
 /**
  * clean paradigm details
  */
-function cleanParadigm() {
-  removeElement(document.getElementById('paradigm'))
+function cleanDetails() {
+  removeElement(document.getElementById('definition'))
 }
 
 function showProse() {
@@ -386,7 +194,7 @@ function loadSearchResults(searchInput) {
 
         // Remove loading cards
         indicateLoadedSuccessfully()
-        cleanParadigm()
+        cleanDetails()
         searchResultList.innerHTML = html
         prepareSearchResults(searchResultList)
       })

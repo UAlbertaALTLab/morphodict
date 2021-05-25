@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Cree Intelligent Dictionary",
   "scripts": {
-    "start": "rollup --config --watch & pipenv run dev",
+    "start": "rollup --config --watch & pipenv run runserver_for_tests",
     "debug-server": "env USE_TEST_DB=True pipenv run dev",
     "build": "rollup -c",
     "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",

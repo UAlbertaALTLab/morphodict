@@ -29,7 +29,7 @@ def main():
             "exec",
             "-T",
             "itwewina",
-            "src/CreeDictionary/manage.py",
+            "./crkeng-manage",
             "migrate",
         ]
     )

@@ -12,5 +12,5 @@ def test_default_config_exists():
     """
     A really trivial "test case": just checking that the app can be instantiated.
     """
-    app = AppConfig.create("morphodict.apps.MorphodictConfig")
+    app = AppConfig.create("CreeDictionary.morphodict.apps.MorphodictConfig")
     assert "morphodict" in app.name

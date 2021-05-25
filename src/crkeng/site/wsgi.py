@@ -18,9 +18,7 @@ framework.
 
 """
 
-os.environ.setdefault(
-    "DJANGO_SETTINGS_MODULE", "CreeDictionary.CreeDictionary.settings"
-)
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkeng.site.settings")
 os.environ.setdefault("PERFORM_TIME_CONSUMING_INITIALIZATIONS", "True")
 
 # This application object is used by any WSGI server configured to use this

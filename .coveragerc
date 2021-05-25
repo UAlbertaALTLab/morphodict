@@ -3,10 +3,8 @@
 [run]
 branch = True
 omit =
-  CreeDictionary/CreeDictionary/settings.py
-  CreeDictionary/manage.py
-  CreeDictionary/setup.py
-  CreeDictionary/tests/*
+  src/crkeng/site/settings.py
+  src/CreeDictionary/tests/*
 
 [report]
 exclude_lines =

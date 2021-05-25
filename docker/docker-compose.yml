@@ -24,7 +24,7 @@ services:
 
       # Mount directory, not file, so that -shm and -wal files will be
       # persisted outside the container if using WAL mode
-      - "/data_local/application-data/itwewina/db/:/app/src/CreeDictionary/db/"
+      - "/data_local/application-data/itwewina/db/:/app/src/crkeng/db/"
 
       # Mount vector models from git lfs checkout instead of building into
       # image

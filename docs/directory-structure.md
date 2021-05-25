@@ -55,11 +55,11 @@ to:
     ├── .git/
     ├── package.json                # dependencies for bundlers, JS/CSS frameworks
     ├── Pipfile
-    ├── arpeng-manage.py            # manage.py scripts are at the top-level for easy access
-    ├── crkeng-manage.py
-    ├── crkfra-manage.py
-    ├── cwdeng-manage.py
-    ├── srseng-manage.py
+    ├── arpeng-manage               # django-admin scripts are at the top-level for easy access
+    ├── crkeng-manage
+    ├── crkfra-manage
+    ├── cwdeng-manage
+    ├── srseng-manage
     └── src/
         ├── CreeDictionary/         # existing code, eventually goes away
         │   ├── __init__.py
@@ -95,6 +95,10 @@ to:
         │
         ├── crkeng/                 # python package for itwêwina
         │   ├── __init__.py
+        │   ├── app/                # Django application (optional)
+        │   │   ├── __init__.py
+        │   │   ├── templates/      # Django templates (overrides other apps)
+        │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
@@ -114,6 +118,10 @@ to:
         │           └── ….css
         ├── cwdeng/                 # python package for Woods Cree dictionary
         │   ├── __init__.py
+        │   ├── app/                # Django application (optional)
+        │   │   ├── __init__.py
+        │   │   ├── templates/      # Django templates (overrides other apps)
+        │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
@@ -192,7 +200,7 @@ The rough idea is:
 
   - Work on itwêwina continues in the `CreeDictionary` package as normal,
     it’s just moved into the `src` directory, and gets run from
-    `./crkeng-manage.py`
+    `./crkeng-manage`
 
   - As we work to get parts of non-Plains Cree dictionaries working, we
     move code from `CreeDictionary` into either `morphodict` for
