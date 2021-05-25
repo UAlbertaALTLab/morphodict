@@ -124,7 +124,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
-    if search_run:
+    if search_run and search_run.verbose_messages:
         context["verbose_messages"] = json.dumps(search_run.verbose_messages)
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -135,7 +135,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    )
+    ).serialized_presentation_results()
     return render(
         request,
         "CreeDictionary/search-results.html",
