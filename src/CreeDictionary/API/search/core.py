@@ -68,5 +68,9 @@ class SearchRun:
     def add_verbose_message(self, message):
         self._verbose_messages.append(message)
 
+    @property
+    def verbose_messages(self):
+        return self._verbose_messages
+
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"
