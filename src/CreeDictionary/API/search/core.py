@@ -19,7 +19,6 @@ class SearchRun:
 
     def __init__(self, query: str, include_auto_definitions=None):
         self.query = Query(query)
-        self.internal_query = self.query.query_string
         self.include_auto_definitions = first_non_none_value(
             self.query.auto, include_auto_definitions, default=False
         )
@@ -71,6 +70,10 @@ class SearchRun:
     @property
     def verbose_messages(self):
         return self._verbose_messages
+
+    @property
+    def internal_query(self):
+        return self.query.query_string
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"
