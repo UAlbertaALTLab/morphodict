@@ -1,0 +1,17 @@
+_ Sg	${lemma}+N+I+Sg		
+_ Pl	${lemma}+N+I+Pl		
+_ Loc	${lemma}+N+I+Loc		
+			
+# Dim			
+_ Sg	${lemma}+N+I+Der/Dim+N+I+Sg		
+			
+# Poss			
+	| Sg	| Pl	| Loc
+_ Px1Sg	${lemma}+N+I+Px1Sg+Sg	${lemma}+N+I+Px1Sg+Pl	${lemma}+N+I+Px1Sg+Loc
+_ Px2Sg	${lemma}+N+I+Px2Sg+Sg	${lemma}+N+I+Px2Sg+Pl	${lemma}+N+I+Px2Sg+Loc
+_ Px3Sg	${lemma}+N+I+Px3Sg+Sg	${lemma}+N+I+Px3Sg+Pl	${lemma}+N+I+Px3Sg+Loc
+_ Px1Pl	${lemma}+N+I+Px1Pl+Sg	${lemma}+N+I+Px1Pl+Pl	${lemma}+N+I+Px1Pl+Loc
+_ Px12Pl	${lemma}+N+I+Px12Pl+Sg	${lemma}+N+I+Px12Pl+Pl	${lemma}+N+I+Px12Pl+Loc
+_ Px2Pl	${lemma}+N+I+Px2Pl+Sg	${lemma}+N+I+Px2Pl+Pl	${lemma}+N+I+Px2Pl+Loc
+_ Px3Pl	${lemma}+N+I+Px3Pl+Sg	${lemma}+N+I+Px3Pl+Pl	${lemma}+N+I+Px3Pl+Loc
+_ Px4Sg/Pl	${lemma}+N+I+Px4Sg/Pl+Sg	${lemma}+N+I+Px4Sg/Pl+Pl	${lemma}+N+I+Px4Sg/Pl+Loc
