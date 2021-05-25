@@ -43,6 +43,14 @@ DEBUG = env.bool("DEBUG", default=False)
 
 # Application definition
 
+# Individual sites SHOULD register their own apps by using:
+#
+#     INSTALLED_APPS.insert(0, "{source}{target}.app")
+#
+# Why .insert(0, ...)?
+# Because Django's default template loader will use the template it finds **FIRST**
+# in the app list.
+# See: https://docs.djangoproject.com/en/3.2/ref/templates/api/#django.template.loaders.app_directories.Loader
 INSTALLED_APPS = [
     # Django core apps:
     "django.contrib.auth",
