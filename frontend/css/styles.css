@@ -790,7 +790,9 @@ a.multiple-recordings__action-button {
   text-align: left;
 }
 
-.paradigm-title {
+/* TODO: remove name "paradigm-title" when only pane-based layouts are used */
+.paradigm-title,
+.paradigm-header {
   text-align: center;
   font-style: italic;
   font-weight: var(--body-font-weight);

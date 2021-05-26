@@ -29,8 +29,9 @@
         {% for pane in paradigm.panes %}
           <tbody>
             {% for row in pane.rows %}
-              {% if row.is_title %}
-                <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+              {% if row.is_header %}
+                <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                >{% relabel row.fst_tags %}</th>
               {% else %}
                 <tr class="paradigm-row">
                   {% for cell in row.cells %}

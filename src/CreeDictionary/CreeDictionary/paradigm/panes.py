@@ -350,6 +350,10 @@ class HeaderRow(Row):
         # a header, by definition, has no inflections.
         return ()
 
+    @property
+    def fst_tags(self) -> tuple[str, ...]:
+        return self._tags
+
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
             return self._tags == other._tags
