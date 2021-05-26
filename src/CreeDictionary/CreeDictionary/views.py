@@ -372,8 +372,10 @@ def paradigm_for(
     """
     # TODO: make this use the new-style ParadigmManager exclusively
 
+    manager = default_paradigm_manager()
+
     if name := wordform.paradigm:
-        if static_paradigm := default_paradigm_manager().static_paradigm_for(name):
+        if static_paradigm := manager.static_paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
@@ -389,7 +391,7 @@ def paradigm_for(
     #  - paradigm manager must support multiple sizes
     #  - relabelling must work to use linguistic layouts
     if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
-        dynamic_paradigm = default_paradigm_manager().dynamic_paradigm_for(
+        dynamic_paradigm = manager.dynamic_paradigm_for(
             lemma=wordform.text, word_class=word_class.value
         )
         if dynamic_paradigm:
