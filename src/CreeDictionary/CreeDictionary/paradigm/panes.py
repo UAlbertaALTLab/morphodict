@@ -474,9 +474,16 @@ class InflectionTemplate(Cell):
     is_inflection = True
 
     def __init__(self, analysis: str):
-        # TODO: rename to analysis template
-        self.analysis_template = analysis
         assert looks_like_analysis_string(analysis)
+        self._analysis_template = string.Template(analysis)
+
+    @property
+    def analysis_template(self) -> str:
+        """
+        The original analysis string provided as a template for inflection,
+        e.g., ${lemma}+N+Sg
+        """
+        return self._analysis_template.template
 
     def __eq__(self, other) -> bool:
         if isinstance(other, InflectionTemplate):
@@ -497,7 +504,7 @@ class InflectionTemplate(Cell):
         Returns a the analysis template with the substitute replaced
         """
         # TODO: return ConcatAnalysis type?
-        return string.Template(self.analysis_template).substitute(lemma=lemma)
+        return self._analysis_template.substitute(lemma=lemma)
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
         """
