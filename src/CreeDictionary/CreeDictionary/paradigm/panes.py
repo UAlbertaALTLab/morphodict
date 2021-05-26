@@ -139,6 +139,18 @@ class ParadigmLayout(Paradigm):
         """
         return self._fst_analysis_template.substitute(lemma=lemma)
 
+    # TODO: nominal types for dict key/values?
+    #       ConcatenatedAnalysisTemplate maps to ConcatenatedAnalysis?
+    def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
+        """
+        Generates a dictionary mapping analysis templates to analyses subsituted with
+        the given lemma.
+        """
+        return {
+            inflection.analysis_template: inflection.as_analysis(lemma)
+            for inflection in self.inflection_cells
+        }
+
     def fill(self, forms: dict[str, Collection[str]]) -> Paradigm:
         """
         Given a mapping from analysis to a collection of wordforms, returns a
