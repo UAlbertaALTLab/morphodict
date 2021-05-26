@@ -26,12 +26,17 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
 
 
 def test_generates_na_paradigm(paradigm_manager) -> None:
+    """
+    Generate a paradigm for a lemma+word class; see if it has some expected basic
+    inflections.
+    """
     lemma = "minôs"
     word_class = "NA"
     inflections = ["minôsa", "minôsak", "niminôs", "minôsinâhk"]
 
     paradigm = paradigm_manager.dynamic_paradigm_for(lemma=lemma, word_class=word_class)
     assert paradigm is not None
+
     for form in inflections:
         assert paradigm.contains_wordform(form)
 

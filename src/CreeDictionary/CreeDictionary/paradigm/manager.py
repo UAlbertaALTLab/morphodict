@@ -3,10 +3,10 @@ from pathlib import Path
 from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
-from CreeDictionary.shared import expensive
-from CreeDictionary.utils import shared_res_dir
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import shared_res_dir
 
 
 class ParadigmManager:
@@ -32,7 +32,9 @@ class ParadigmManager:
         """
         return self._name_to_layout.get(name)
 
-    def dynamic_paradigm_for(self, *, lemma: str, word_class: str) -> Optional[Paradigm]:
+    def dynamic_paradigm_for(
+        self, *, lemma: str, word_class: str
+    ) -> Optional[Paradigm]:
         """
         Returns a dynamic paradigm for the given lemma and word class.
         Returns None if no such paradigm can be generated.
@@ -64,9 +66,17 @@ class ParadigmManager:
         analyses = layout.generate_fst_analysis_string(lemma=lemma).splitlines(
             keepends=False
         )
-        # TODO: need to connect minôs+N+A+Sg to ${lemma}+N+A+Sg somehow
-        forms = self._generator.bulk_lookup(analyses)
-        return layout.fill(forms)
+        analysis2template = {
+            inflection.as_analysis(lemma): inflection.analysis_template
+            for inflection in layout.inflection_cells
+        }
+        forms_from_fst = self._generator.bulk_lookup(analyses)
+
+        template2forms = {
+            analysis2template[analysis]: form
+            for analysis, form in forms_from_fst.items()
+        }
+        return layout.fill(template2forms)
 
 
 @cache

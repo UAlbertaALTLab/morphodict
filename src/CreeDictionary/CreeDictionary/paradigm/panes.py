@@ -368,6 +368,12 @@ class HeaderRow(Row):
         cells_repr = ", ".join(repr(cell) for cell in self._tags)
         return f"{name}([{cells_repr}])"
 
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        A header **never** contains a wordform, so this always returns False.
+        """
+        return False
+
     @staticmethod
     def parse(text: str) -> HeaderRow:
         if not text.startswith("# "):
@@ -468,8 +474,14 @@ class InflectionTemplate(Cell):
     is_inflection = True
 
     def __init__(self, analysis: str):
+        # TODO: rename to analysis template
         self.analysis = analysis
         assert looks_like_analysis_string(analysis)
+
+    @property
+    def analysis_template(self):
+        # TODO: rename self.analysis to self.analysis_template to remove this property
+        return self.analysis
 
     def __eq__(self, other) -> bool:
         if isinstance(other, InflectionTemplate):
@@ -485,6 +497,13 @@ class InflectionTemplate(Cell):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionTemplate(text)
 
+    def as_analysis(self, lemma: str) -> str:
+        """
+        Returns a the analysis template with the substitute replaced
+        """
+        # TODO: return ConcatAnalysis type?
+        return string.Template(self.analysis).substitute(lemma=lemma)
+
     def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
         """
         Return a single WordformCell, given the fillable forms.
@@ -499,8 +518,9 @@ class InflectionTemplate(Cell):
                 "no form(s) provided for " f"analysis: {self.analysis}"
             )
 
-        assert len(cell_forms) >= 1
-        if len(cell_forms) > 1:
+        if len(cell_forms) == 0:
+            return MissingForm()
+        elif len(cell_forms) > 1:
             # TODO: create a CompoundRow class that can handle multiple forms per
             # inflection.
             logger.warning("Don't know how to output multiple forms... yet")
@@ -538,6 +558,18 @@ class MissingForm(Cell, SingletonMixin):
 
     def __str__(self):
         return "--"
+
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        A missing form does not contain a wordform, be definition.
+        """
+        return False
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        """
+        A missing form is already "filled".
+        """
+        return self
 
 
 class EmptyCell(Cell, SingletonMixin):
