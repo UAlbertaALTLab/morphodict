@@ -39,6 +39,8 @@
                           class="paradigm-label paradigm-label--{{ cell.label_for }}">
                           {% relabel cell.fst_tags %}
                       </th>
+                    {% elif cell.is_missing %}
+                        <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
                     {% elif cell.is_empty %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}

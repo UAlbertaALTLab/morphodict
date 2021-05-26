@@ -385,6 +385,7 @@ class Cell:
 
     is_label: bool = False
     is_inflection: bool = False
+    is_missing: bool = False
     is_empty: bool = False
 
     @staticmethod
@@ -553,6 +554,7 @@ class MissingForm(Cell, SingletonMixin):
     """
 
     is_inflection = True
+    is_missing = True
 
     def __str__(self):
         return "--"
