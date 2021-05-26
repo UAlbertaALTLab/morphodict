@@ -235,6 +235,11 @@ class Row:
         # subclasses MUST implement this somehow
         raise NotImplementedError
 
+    @property
+    def cells(self) -> Iterable[Cell]:
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
+
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
         Returns a string representation of the row that can be parsed again.

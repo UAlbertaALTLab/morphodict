@@ -76,7 +76,9 @@ def test_parse_vii_layout(vii_layout_path: Path):
     # 1 label column + 1 inflection column
     assert future_infinitive_pane.num_columns == 1 + 1
     label_row = first(row for row in future_infinitive_pane.rows if row.has_content)
-    column_label = first(cell for cell in label_row.cells if cell.is_label)
+    column_label = first(
+        cell for cell in label_row.cells if isinstance(cell, ColumnLabel)
+    )
     assert column_label.fst_tags == ("Inf", "PV/ka")
 
 
