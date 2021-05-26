@@ -614,17 +614,7 @@ class BaseLabelCell(Cell):
 
     @classmethod
     def parse(cls, text: str):
-        splits = re.split(r" +", text)
-        if len(splits) % 2 != 0:
-            raise ParseError(f"Uneven number of space-separated segments in {text!r}")
-        tags = []
-
-        for prefix, tag in pairs(splits):
-            if prefix != cls.prefix:
-                raise ParseError(f"Expected prefix {cls.prefix!r} but saw {prefix!r}")
-            tags.append(tag)
-
-        return cls(tags)
+        return cls(parse_label(text, prefix=cls.prefix))
 
 
 class RowLabel(BaseLabelCell):
@@ -643,6 +633,30 @@ class ColumnLabel(BaseLabelCell):
 
     label_for = "col"
     prefix = "|"
+
+
+def parse_label(text: str, *, prefix: str) -> list[str]:
+    """
+    Parses labels in the common label syntax.
+
+    >>> parse_label("|", "| Ind")
+    ('Ind',)
+    >>> parse_label("#", "| Fut | Def")
+    ('Fut', 'Def')
+    >>> parse_label("_", "_ 1Sg _ 3Sg")
+    ('1Sg', '3Sg')
+    """
+    splits = re.split(r" +", text)
+    if len(splits) % 2 != 0:
+        raise ParseError(f"Uneven number of space-separated segments in {text!r}")
+
+    tags = []
+    for prefix, tag in pairs(splits):
+        if prefix != prefix:
+            raise ParseError(f"Expected prefix {prefix!r} but saw {prefix!r}")
+        tags.append(tag)
+
+    return tags
 
 
 def looks_like_analysis_string(text: str) -> bool:
