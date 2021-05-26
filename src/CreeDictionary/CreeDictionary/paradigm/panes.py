@@ -503,7 +503,7 @@ class InflectionTemplate(Cell):
         # TODO: return ConcatAnalysis type?
         return self._analysis_template.substitute(lemma=lemma)
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
+    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
         """
         Return a single WordformCell, given the fillable forms.
         """

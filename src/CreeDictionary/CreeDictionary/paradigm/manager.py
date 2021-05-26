@@ -77,6 +77,7 @@ class ParadigmManager:
             layout = ParadigmLayout.loads(layout_file.read_text(encoding="UTF-8"))
             yield layout_file, layout
 
+
 @cache
 def default_paradigm_manager() -> ParadigmManager:
     """

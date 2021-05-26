@@ -388,10 +388,13 @@ def paradigm_for(
     #  - "basic" size paradigm layouts to be created
     #  - paradigm manager must support multiple sizes
     #  - relabelling must work to use linguistic layouts
-    if paradigm_size == ParadigmSize.FULL:
-        return default_paradigm_manager().dynamic_paradigm_for(
-            lemma=wordform.text, word_class=wordform.word_class.value
+    if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
+        dynamic_paradigm = default_paradigm_manager().dynamic_paradigm_for(
+            lemma=wordform.text, word_class=word_class.value
         )
+        if dynamic_paradigm:
+            return dynamic_paradigm
+        return []
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
