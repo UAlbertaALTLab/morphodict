@@ -360,8 +360,7 @@ class HeaderRow(Row):
         return False
 
     def __str__(self):
-        tags = "+".join(self._tags)
-        return f"{self.prefix} {tags}"
+        return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
 
     def __repr__(self):
         name = type(self).__qualname__
@@ -374,12 +373,13 @@ class HeaderRow(Row):
         """
         return False
 
-    @staticmethod
-    def parse(text: str) -> HeaderRow:
-        if not text.startswith("# "):
+    @classmethod
+    def parse(cls, text: str) -> HeaderRow:
+        if not text.startswith(cls.prefix):
             raise ParseError("Not a header row: {text!r}")
-        _prefix, _space, tags = text.rstrip().partition(" ")
-        return HeaderRow(tags.split("+"))
+
+        text = text.rstrip()
+        return HeaderRow(parse_label(text, prefix=cls.prefix))
 
 
 class Cell:
@@ -639,21 +639,21 @@ def parse_label(text: str, *, prefix: str) -> list[str]:
     """
     Parses labels in the common label syntax.
 
-    >>> parse_label("|", "| Ind")
-    ('Ind',)
-    >>> parse_label("#", "| Fut | Def")
-    ('Fut', 'Def')
-    >>> parse_label("_", "_ 1Sg _ 3Sg")
-    ('1Sg', '3Sg')
+    >>> parse_label("| Ind", prefix="|")
+    ['Ind']
+    >>> parse_label("# Fut # Def", prefix="#")
+    ['Fut', 'Def']
+    >>> parse_label("_ 1Sg _ 3Sg _ Obv", prefix="_")
+    ['1Sg', '3Sg', 'Obv']
     """
     splits = re.split(r" +", text)
     if len(splits) % 2 != 0:
         raise ParseError(f"Uneven number of space-separated segments in {text!r}")
 
     tags = []
-    for prefix, tag in pairs(splits):
-        if prefix != prefix:
-            raise ParseError(f"Expected prefix {prefix!r} but saw {prefix!r}")
+    for actual_prefix, tag in pairs(splits):
+        if actual_prefix != prefix:
+            raise ParseError(f"Expected prefix {prefix!r} but saw {actual_prefix!r}")
         tags.append(tag)
 
     return tags

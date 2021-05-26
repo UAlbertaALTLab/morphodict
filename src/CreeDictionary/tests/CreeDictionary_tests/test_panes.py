@@ -50,7 +50,6 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert na_paradigm_template.max_num_columns == 4
 
 
-@pytest.mark.xfail
 def test_parse_vii_layout(vii_layout_path: Path):
     """
     Test that we can parse the VII layout (fixture).
@@ -76,8 +75,8 @@ def test_parse_vii_layout(vii_layout_path: Path):
     assert count(future_infinitive_pane.rows) == 1 + 1 + 4
     # 1 label column + 1 inflection column
     assert future_infinitive_pane.num_columns == 1 + 1
-    label_row = first(future_infinitive_pane.row)
-    column_label = first(cell for cell in label_row if cell.is_label)
+    label_row = first(row for row in future_infinitive_pane.rows if row.has_content)
+    column_label = first(cell for cell in label_row.cells if cell.is_label)
     assert column_label.fst_tags == ("Inf", "PV/ka")
 
 
