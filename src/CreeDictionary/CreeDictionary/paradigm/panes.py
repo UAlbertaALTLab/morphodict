@@ -80,15 +80,6 @@ class ParadigmLayout(Paradigm):
         for pane in self.panes:
             yield from pane.inflection_cells
 
-    @cached_property
-    def _fst_analysis_template(self) -> string.Template:
-        """
-        A string template that can be given a lemma to generate FST analysis strings
-        for the ENTIRE paradigm.
-        """
-        lines = [inflection.analysis_template for inflection in self.inflection_cells]
-        return string.Template("\n".join(lines))
-
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmLayout:
         """
@@ -131,13 +122,6 @@ class ParadigmLayout(Paradigm):
         empty_line = f"\n{tabs}\n"
 
         return empty_line.join(pane_text)
-
-    def generate_fst_analysis_string(self, lemma: str) -> str:
-        """
-        Given a lemma, generates a string that can be fed directly to an XFST lookup
-        application.
-        """
-        return self._fst_analysis_template.substitute(lemma=lemma)
 
     # TODO: nominal types for dict key/values?
     #       ConcatenatedAnalysisTemplate maps to ConcatenatedAnalysis?

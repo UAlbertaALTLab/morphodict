@@ -186,11 +186,6 @@ def test_produces_fst_analysis_string(na_layout: ParadigmLayout):
     assert len(expected_lines) == len(template2analysis)
     assert expected_lines == set(template2analysis.values())
 
-    raw_analyses = na_layout.generate_fst_analysis_string(lemma)
-    generated_analyses = raw_analyses.splitlines(keepends=False)
-    assert len(expected_lines) == len(generated_analyses)
-    assert expected_lines == set(generated_analyses)
-
 
 @pytest.fixture
 def na_layout_path(shared_datadir: Path) -> Path:
