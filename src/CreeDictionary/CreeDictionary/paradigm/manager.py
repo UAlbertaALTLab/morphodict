@@ -63,18 +63,11 @@ class ParadigmManager:
             self._wc_to_layout[layout_file.stem] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
-        analyses = layout.generate_fst_analysis_string(lemma=lemma).splitlines(
-            keepends=False
-        )
-        analysis2template = {
-            inflection.as_analysis(lemma): inflection.analysis_template
-            for inflection in layout.inflection_cells
-        }
-        forms_from_fst = self._generator.bulk_lookup(analyses)
-
+        template2analysis = layout.generate_fst_analyses(lemma=lemma)
+        analysis2forms = self._generator.bulk_lookup(list(template2analysis.values()))
         template2forms = {
-            analysis2template[analysis]: form
-            for analysis, form in forms_from_fst.items()
+            template: analysis2forms[analysis]
+            for template, analysis in template2analysis.items()
         }
         return layout.fill(template2forms)
 
