@@ -86,7 +86,7 @@ class ParadigmLayout(Paradigm):
         A string template that can be given a lemma to generate FST analysis strings
         for the ENTIRE paradigm.
         """
-        lines = [inflection.analysis for inflection in self.inflection_cells]
+        lines = [inflection.analysis_template for inflection in self.inflection_cells]
         return string.Template("\n".join(lines))
 
     @classmethod
@@ -475,21 +475,16 @@ class InflectionTemplate(Cell):
 
     def __init__(self, analysis: str):
         # TODO: rename to analysis template
-        self.analysis = analysis
+        self.analysis_template = analysis
         assert looks_like_analysis_string(analysis)
-
-    @property
-    def analysis_template(self):
-        # TODO: rename self.analysis to self.analysis_template to remove this property
-        return self.analysis
 
     def __eq__(self, other) -> bool:
         if isinstance(other, InflectionTemplate):
-            return self.analysis == other.analysis
+            return self.analysis_template == other.analysis_template
         return False
 
     def __str__(self):
-        return self.analysis
+        return self.analysis_template
 
     @staticmethod
     def parse(text: str) -> InflectionTemplate:
@@ -502,20 +497,20 @@ class InflectionTemplate(Cell):
         Returns a the analysis template with the substitute replaced
         """
         # TODO: return ConcatAnalysis type?
-        return string.Template(self.analysis).substitute(lemma=lemma)
+        return string.Template(self.analysis_template).substitute(lemma=lemma)
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
         """
         Return a single WordformCell, given the fillable forms.
         """
 
-        cell_forms = forms.get(self.analysis)
+        cell_forms = forms.get(self.analysis_template)
         if cell_forms is None:
             # TODO: this might actually be okay?
             # It could just be a missing form (accidental gap/lacuna).
             # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
             raise ParadigmGenerationError(
-                "no form(s) provided for " f"analysis: {self.analysis}"
+                "no form(s) provided for " f"analysis: {self.analysis_template}"
             )
 
         if len(cell_forms) == 0:
