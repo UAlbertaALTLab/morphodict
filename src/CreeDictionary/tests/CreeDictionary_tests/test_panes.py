@@ -50,6 +50,37 @@ def test_parse_na_paradigm(na_layout_path: Path):
     assert na_paradigm_template.max_num_columns == 4
 
 
+@pytest.mark.xfail
+def test_parse_vii_layout(vii_layout_path: Path):
+    """
+    Test that we can parse the VII layout (fixture).
+
+    Please see the associated layout file for the reason for the values.
+    """
+    with vii_layout_path.open(encoding="UTF-8") as layout_file:
+        vii_layout = ParadigmLayout.load(layout_file)
+
+    assert count(vii_layout.panes) == 2
+    basic_pane, future_infinitive_pane = vii_layout.panes
+
+    assert basic_pane.header is None
+    # 1 label column + inflection columns
+    assert basic_pane.num_columns == 1 + 2
+    # 1 label row + inflection rows
+    assert count(basic_pane.rows) == 1 + 4
+
+    header = future_infinitive_pane.header
+    assert header is not None
+    assert header.fst_tags == ("Fut", "Inf")
+    # header + 1 label row + 4 inflection rows
+    assert count(future_infinitive_pane.rows) == 1 + 1 + 4
+    # 1 label column + 1 inflection column
+    assert future_infinitive_pane.num_columns == 1 + 1
+    label_row = first(future_infinitive_pane.row)
+    column_label = first(cell for cell in label_row if cell.is_label)
+    assert column_label.fst_tags == ("Inf", "PV/ka")
+
+
 def test_parse_demonstrative_pronoun_paradigm(pronoun_paradigm_path: Path):
     """
     Test that the static layout for demonstrative pronouns can be parsed.
@@ -131,7 +162,7 @@ def sample_pane():
         WordformCell("ôma"),
         ColumnLabel(("Sg",)),
         RowLabel(("1Sg",)),
-        HeaderRow(("Imp",)),
+        HeaderRow(("Fut", "Def")),
         ContentRow([EmptyCell(), ColumnLabel(["Sg"]), ColumnLabel(["Pl"])]),
         ContentRow([RowLabel("1Sg"), MissingForm(), InflectionTemplate("${lemma}+Pl")]),
         sample_pane(),
@@ -214,5 +245,16 @@ def pronoun_paradigm_path(shared_datadir: Path) -> Path:
     NOTE: this is **NOT** the NA paradigm used in production!
     """
     p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
+    assert p.exists()
+    return p
+
+
+@pytest.fixture
+def vii_layout_path(shared_datadir: Path) -> Path:
+    """
+    Return the path to the VII layout in the test fixture dir.
+    NOTE: this is **NOT** the VII paradigm used in production!
+    """
+    p = shared_datadir / "paradigm-layouts" / "dynamic" / "VII.tsv"
     assert p.exists()
     return p
