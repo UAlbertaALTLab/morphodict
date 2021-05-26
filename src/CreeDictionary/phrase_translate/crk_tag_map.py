@@ -17,7 +17,7 @@ from CreeDictionary.phrase_translate.tag_map import TagMap
 #
 ## Use
 #
-# A TagMap is iniialized with a sequence of (wordform_tag, phrase_tag,
+# A TagMap is initialized with a sequence of (wordform_tag, phrase_tag,
 # precedence) tuples
 #
 # wordform_tag can be:
