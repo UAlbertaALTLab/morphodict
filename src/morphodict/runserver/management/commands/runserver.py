@@ -1,3 +1,5 @@
+# type: ignore # mypy thinks the dynamically-returned Runserver class is not
+# valid as a base class.
 """
 This repo contains multiple django sites. To allow developers to more easily run
 several of them at once, we extend the default runserver command to optionally

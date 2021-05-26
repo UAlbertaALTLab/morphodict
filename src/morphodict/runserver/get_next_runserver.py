@@ -24,8 +24,7 @@
 # CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 """
-Subclass the existing 'runserver' command and change the default options
-to disable static file serving, allowing WhiteNoise to handle static files.
+Subclass the existing 'runserver' command.
 
 There is some unpleasant hackery here because we don't know which command class
 to subclass until runtime as it depends on which INSTALLED_APPS we have, so we
@@ -46,6 +45,7 @@ def get_next_runserver_command(module_name):
             return import_module(module_path).Command
         except (ImportError, AttributeError):
             pass
+    raise Exception("No runserver command found.")
 
 
 def _get_lower_priority_apps(module_name):
