@@ -38,7 +38,7 @@ logger = logging.getLogger(__name__)
 # it should be used on the view functions that are well covered by integration tests
 
 
-def lemma_details(request, lemma_text: str):
+def entry_details(request, lemma_text: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
     page if no head is found or multiple heads are found.
