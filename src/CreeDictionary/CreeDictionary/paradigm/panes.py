@@ -123,8 +123,6 @@ class ParadigmLayout(Paradigm):
 
         return empty_line.join(pane_text)
 
-    # TODO: nominal types for dict key/values?
-    #       ConcatenatedAnalysisTemplate maps to ConcatenatedAnalysis?
     def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
         """
         Generates a dictionary mapping analysis templates to analyses subsituted with
@@ -509,7 +507,6 @@ class InflectionTemplate(Cell):
         """
         Returns a the analysis template with the substitute replaced
         """
-        # TODO: return ConcatAnalysis type?
         return self._analysis_template.substitute(lemma=lemma)
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
@@ -517,18 +514,19 @@ class InflectionTemplate(Cell):
         Return a single WordformCell, given the fillable forms.
         """
 
-        cell_forms = forms.get(self.analysis_template)
-        if cell_forms is None:
-            # TODO: this might actually be okay?
-            # It could just be a missing form (accidental gap/lacuna).
-            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
+        try:
+            cell_forms = forms[self.analysis_template]
+        except KeyError:
             raise ParadigmGenerationError(
                 "no form(s) provided for " f"analysis: {self.analysis_template}"
             )
 
         if len(cell_forms) == 0:
+            # It's a missing form (accidental gap/lacuna).
+            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
             return MissingForm()
-        elif len(cell_forms) > 1:
+
+        if len(cell_forms) > 1:
             # TODO: create a CompoundRow class that can handle multiple forms per
             # inflection.
             logger.warning("Don't know how to output multiple forms... yet")

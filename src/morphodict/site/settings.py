@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    "morphodict.runserver",
     # WhiteNoise nostatic HAS to come before Django's staticfiles
     # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     "whitenoise.runserver_nostatic",
