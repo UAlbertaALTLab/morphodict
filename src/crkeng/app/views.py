@@ -4,12 +4,7 @@ from django.http import HttpResponse
 from django.views import View
 
 PARADIGM_LABEL_COOKIE = "paradigmlabel"
-DEFAULT_PARADIGM_LABEL = "english"
-PARADIGM_LABEL_OPTIONS = {
-    "english",
-    "linguistic",
-    "nehiyawewin"
-}
+PARADIGM_LABEL_OPTIONS = {"english", "linguistic", "nehiyawewin"}
 
 
 class ChangeParadigmLabelPreference(View):
