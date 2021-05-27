@@ -1,0 +1,12 @@
+	| Ind	| Cnj
+_ 0Sg _ Prs	${lemma}+V+II+Ind+3Sg	PV/e+${lemma}+V+II+Cnj+3Sg
+_ 0Pl _ Prs	${lemma}+V+II+Ind+3Pl	PV/e+${lemma}+V+II+Cnj+3Pl
+_ 0Sg _ Obv _ Prs	${lemma}+V+II+Ind+4Sg	PV/e+${lemma}+V+II+Cnj+4Sg
+_ 0Pl _ Obv _ Prs	${lemma}+V+II+Ind+4Pl	PV/e+${lemma}+V+II+Cnj+4Pl
+		
+# Fut # Inf		
+	| Inf | PV/ka	
+_ 0Sg _ Inf	PV/ka+${lemma}+V+II+Cnj+3Sg	
+_ 0Pl _ Inf	PV/ka+${lemma}+V+II+Cnj+3Pl	
+_ 0Sg _ Obv _ Inf	PV/ka+${lemma}+V+II+Cnj+4Sg	
+_ 0Pl _ Pl _ Inf	PV/ka+${lemma}+V+II+Cnj+4Pl	
