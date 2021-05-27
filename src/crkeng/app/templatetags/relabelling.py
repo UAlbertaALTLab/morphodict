@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 register = template.Library()
 
 
-@register.simple_tag
-def relabel(tags: tuple[FSTTag]):
+@register.simple_tag(takes_context=True)
+def relabel(context, tags: tuple[FSTTag]):
     """
     Gets the best matching label for the given object.
     """
