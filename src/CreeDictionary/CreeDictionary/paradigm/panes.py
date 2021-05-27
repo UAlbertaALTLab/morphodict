@@ -123,8 +123,6 @@ class ParadigmLayout(Paradigm):
 
         return empty_line.join(pane_text)
 
-    # TODO: nominal types for dict key/values?
-    #       ConcatenatedAnalysisTemplate maps to ConcatenatedAnalysis?
     def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
         """
         Generates a dictionary mapping analysis templates to analyses subsituted with
@@ -500,7 +498,6 @@ class InflectionTemplate(Cell):
         """
         Returns a the analysis template with the substitute replaced
         """
-        # TODO: return ConcatAnalysis type?
         return self._analysis_template.substitute(lemma=lemma)
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
