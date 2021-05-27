@@ -56,4 +56,4 @@ is run on `itw.altlab.dev`.
 Migrations are run, and (in most cases), the new code is deployed!
 
 [ghcr]: https://github.com/orgs/UAlbertaALTLab/packages/container/package/itwewina.altlab.app
-[docker-compose]: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/master/docker/docker-compose.yml
+[docker-compose]: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/main/docker/docker-compose.yml
