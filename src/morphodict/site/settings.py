@@ -77,6 +77,8 @@ INSTALLED_APPS = [
     "CreeDictionary.DatabaseManager",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
+    # Enables {% load svg_sprites %}
+    "django_svg_sprites",
 ]
 
 MIDDLEWARE = [

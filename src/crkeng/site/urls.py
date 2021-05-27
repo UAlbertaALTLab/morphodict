@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
+from django.views.generic import TemplateView
 from django_js_reverse.views import urls_js
 
 import CreeDictionary.API.views as api_views
@@ -75,6 +76,7 @@ urlpatterns = [
     ################################# Special URLS #################################
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
+    path("test-svg-sprites", TemplateView.as_view(template_name="svg-sprite-test.html"))
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):
