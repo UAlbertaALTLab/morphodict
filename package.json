@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
   "devDependencies": {
-    "cypress": "^6.2.0",
     "@cypress/skip-test": "^2.5.1",
+    "cypress": "^6.2.0",
+    "prettier": "^2.3.0",
     "stop-only": "^3.1.0",
     "wait-on": "^3.3.0"
   },

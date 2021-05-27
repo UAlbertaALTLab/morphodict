@@ -1,0 +1,25 @@
+{% extends "morphodict/base.html" %}
+{% load static %}
+<!-- -->
+{% block headincludes %}
+{% include 'crkeng/metatags.html' %}
+<link
+  rel="icon"
+  type="image/png"
+  href="{% static 'CreeDictionary/images/itwewina-32.png' %}"
+/>
+<link
+  rel="alternate icon"
+  type="image/svg+xml"
+  href="{% static 'CreeDictionary/images/itwewina.svg' %}"
+/>
+<link
+  rel="mask-icon"
+  href="{% static 'CreeDictionary/images/itwewina-safari-pinned-tab.svg' %}"
+  color="#FAEBD7"
+/>
+<link
+  rel="apple-touch-icon"
+  href="{% static 'CreeDictionary/images/itwewina-192.png' %}"
+/>
+{% endblock %}

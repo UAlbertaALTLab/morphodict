@@ -66,6 +66,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django_js_reverse",
+    # **New** Morphodict
+    "morphodict.lexicon",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "CreeDictionary.API.apps.APIConfig",
