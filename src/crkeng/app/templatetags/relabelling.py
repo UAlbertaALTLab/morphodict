@@ -5,6 +5,7 @@ Access to relabelling from templates.
 import logging
 
 from django import template
+from django.template import Context
 
 from CreeDictionary.CreeDictionary.relabelling import LABELS
 from CreeDictionary.utils.types import FSTTag
@@ -24,20 +25,12 @@ label_setting_to_relabeller = {
 
 
 @register.simple_tag(takes_context=True)
-def relabel(context, tags: tuple[FSTTag]):
+def relabel(context: Context, tags: tuple[FSTTag]):
     """
     Gets the best matching label for the given object.
     """
 
-    if hasattr(context, "request"):
-        # we can get the paradigm label from the cookie!
-        label_setting = context.request.COOKIES.get(
-            PARADIGM_LABEL_COOKIE, DEFAULT_PARADIGM_LABEL
-        )
-    else:
-        # Cannot get the request context? We can't detect the current cookie :/
-        label_setting = DEFAULT_PARADIGM_LABEL
-
+    label_setting = label_setting_from_context(context)
     relabeller = label_setting_to_relabeller[label_setting]
 
     # TODO: take in request context; relabel according to current label preference
@@ -46,3 +39,18 @@ def relabel(context, tags: tuple[FSTTag]):
 
     logger.warning("Could not find relabelling for tags: %r", tags)
     return "+".join(tags)
+
+
+def label_setting_from_context(context: Context):
+    """
+    Returns the most appropriate paradigm label preference.
+    :param context: a simple template Context or a RequestContext
+    """
+    if hasattr(context, "request"):
+        # We can get the paradigm label from the cookie!
+        return context.request.COOKIES.get(
+            PARADIGM_LABEL_COOKIE, DEFAULT_PARADIGM_LABEL
+        )
+
+    # Cannot get the request context? We can't detect the current cookie :/
+    return DEFAULT_PARADIGM_LABEL
