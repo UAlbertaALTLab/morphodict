@@ -182,10 +182,9 @@ def test_produces_fst_analysis_string(na_layout: ParadigmLayout):
         f"{lemma}+N+A+Px3Pl+Obv",
         f"{lemma}+N+A+Px4Sg/Pl+Obv",
     }
-    raw_analyses = na_layout.generate_fst_analysis_string(lemma)
-    generated_analyses = raw_analyses.splitlines(keepends=False)
-    assert len(expected_lines) == len(generated_analyses)
-    assert expected_lines == set(generated_analyses)
+    template2analysis = na_layout.generate_fst_analyses(lemma)
+    assert len(expected_lines) == len(template2analysis)
+    assert expected_lines == set(template2analysis.values())
 
 
 @pytest.fixture

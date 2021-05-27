@@ -2,29 +2,27 @@ import logging
 from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
 
-from django.contrib.admin.views.decorators import staff_member_required
-
-from CreeDictionary.API.models import Wordform
-from CreeDictionary.API.search import presentation, search_with_affixes
 from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
 from django.views import View
 from django.views.decorators.http import require_GET
 
-from CreeDictionary.phrase_translate.translate import (
-    eng_noun_entry_to_inflected_phrase_fst,
-    eng_verb_entry_to_inflected_phrase_fst,
-    eng_phrase_to_crk_features_fst,
-)
-from CreeDictionary.shared import expensive
-from CreeDictionary.utils import ParadigmSize
-
+from CreeDictionary.API.models import Wordform
+from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
 from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
 from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
+from CreeDictionary.phrase_translate.translate import (
+    eng_noun_entry_to_inflected_phrase_fst,
+    eng_phrase_to_crk_features_fst,
+    eng_verb_entry_to_inflected_phrase_fst,
+)
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import ParadigmSize
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
@@ -374,8 +372,10 @@ def paradigm_for(
     """
     # TODO: make this use the new-style ParadigmManager exclusively
 
+    manager = default_paradigm_manager()
+
     if name := wordform.paradigm:
-        if static_paradigm := default_paradigm_manager().static_paradigm_for(name):
+        if static_paradigm := manager.static_paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
@@ -383,6 +383,19 @@ def paradigm_for(
             wordform,
         )
         # TODO: better return value for when a paradigm cannot be found
+        return []
+
+    # TODO: use new-style paradigms for other sizes in addition to FULL
+    # Requires:
+    #  - "basic" size paradigm layouts to be created
+    #  - paradigm manager must support multiple sizes
+    #  - relabelling must work to use linguistic layouts
+    if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
+        dynamic_paradigm = manager.dynamic_paradigm_for(
+            lemma=wordform.text, word_class=word_class.value
+        )
+        if dynamic_paradigm:
+            return dynamic_paradigm
         return []
 
     # try returning an old-style paradigm: may return []
