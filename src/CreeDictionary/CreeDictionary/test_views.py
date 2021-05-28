@@ -14,10 +14,7 @@ from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
 from CreeDictionary.CreeDictionary.display_options import DISPLAY_MODES
-from CreeDictionary.CreeDictionary.views import (
-    PARADIGM_LABEL_COOKIE,
-    PARADIGM_LABEL_OPTIONS,
-)
+from crkeng.app.preferences import PARADIGM_LABEL_COOKIE, PARADIGM_LABEL_OPTIONS
 
 
 class TestLemmaDetailsInternal4xx:

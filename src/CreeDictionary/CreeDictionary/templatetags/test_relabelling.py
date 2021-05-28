@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 
 from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
-from CreeDictionary.CreeDictionary.views import PARADIGM_LABEL_COOKIE
+from crkeng.app.preferences import PARADIGM_LABEL_COOKIE
 
 
 def test_relabel_tag():

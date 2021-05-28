@@ -21,13 +21,10 @@ from CreeDictionary.phrase_translate.translate import (
 )
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
-from morphodict.preference import ChangePreferenceView, Preference
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.preference import ChangePreferenceView
 
-from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
-
-PARADIGM_LABEL_COOKIE = "paradigmlabel"
-PARADIGM_LABEL_OPTIONS = {"english", "linguistic", "nehiyawewin"}
 
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
@@ -38,18 +35,6 @@ logger = logging.getLogger(__name__)
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on the view functions that are well covered by integration tests
-
-
-class DisplayMode(Preference):
-    cookie_name = DISPLAY_MODE_COOKIE
-    choices = list(DISPLAY_MODES)
-    default = "community"
-
-
-class ParadigmLabel(Preference):
-    cookie_name = PARADIGM_LABEL_COOKIE
-    choices = list(PARADIGM_LABEL_OPTIONS)
-    default = "english"
 
 
 def lemma_details(request, lemma_text: str):
