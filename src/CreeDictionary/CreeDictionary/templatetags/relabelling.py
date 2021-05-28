@@ -9,7 +9,7 @@ from django.template import Context
 
 from CreeDictionary.CreeDictionary.relabelling import LABELS
 from CreeDictionary.utils.types import FSTTag
-from crkeng.app.preferences import PARADIGM_LABEL_COOKIE
+from crkeng.app.preferences import ParadigmLabel
 
 logger = logging.getLogger(__name__)
 register = template.Library()
@@ -49,8 +49,8 @@ def label_setting_from_context(context: Context):
     if hasattr(context, "request"):
         # We can get the paradigm label from the cookie!
         return context.request.COOKIES.get(
-            PARADIGM_LABEL_COOKIE, DEFAULT_PARADIGM_LABEL
+            ParadigmLabel.cookie_name, ParadigmLabel.default
         )
 
     # Cannot get the request context? We can't detect the current cookie :/
-    return DEFAULT_PARADIGM_LABEL
+    return ParadigmLabel.default

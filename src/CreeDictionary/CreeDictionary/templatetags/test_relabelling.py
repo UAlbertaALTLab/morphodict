@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 
 from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
-from crkeng.app.preferences import PARADIGM_LABEL_COOKIE
+from crkeng.app.preferences import ParadigmLabel
 
 
 def test_relabel_tag():
@@ -33,7 +33,7 @@ def test_relabel_tag_uses_cookie():
     nehiyawewin = "awiya"
 
     request = HttpRequest()
-    request.COOKIES[PARADIGM_LABEL_COOKIE] = "nehiyawewin"
+    request.COOKIES[ParadigmLabel.cookie_name] = "nehiyawewin"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
     template = Template("{% load relabelling %} {% relabel label.fst_tags %}")

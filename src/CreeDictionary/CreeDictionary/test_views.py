@@ -14,7 +14,7 @@ from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
 from CreeDictionary.CreeDictionary.display_options import DISPLAY_MODES
-from crkeng.app.preferences import PARADIGM_LABEL_COOKIE, PARADIGM_LABEL_OPTIONS
+from crkeng.app.preferences import ParadigmLabel
 
 
 class TestLemmaDetailsInternal4xx:
@@ -138,7 +138,7 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
         assert res.status_code in (HTTPStatus.OK, HTTPStatus.NO_CONTENT)
 
 
-@pytest.mark.parametrize("option", PARADIGM_LABEL_OPTIONS)
+@pytest.mark.parametrize("option", ParadigmLabel.choices)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_paradigm_label_preference(option, whence, client: Client):
     """
@@ -152,11 +152,11 @@ def test_change_paradigm_label_preference(option, whence, client: Client):
         # (spelling is not the IETF's strong suit)
         headers["HTTP_REFERER"] = whence
 
-    res = client.post(url, {PARADIGM_LABEL_COOKIE: option}, **headers)
+    res = client.post(url, {ParadigmLabel.cookie_name: option}, **headers)
 
     # morsel is Python's official term for a chunk of a cookie
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
-    assert (morsel := res.cookies.get(PARADIGM_LABEL_COOKIE)) is not None
+    assert (morsel := res.cookies.get(ParadigmLabel.cookie_name)) is not None
     assert morsel.value == option
 
     if whence:
