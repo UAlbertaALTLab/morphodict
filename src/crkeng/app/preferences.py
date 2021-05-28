@@ -22,6 +22,17 @@ class DisplayMode(Preference):
 
 
 class ParadigmLabel(Preference):
+    """
+    What style labels should be used in the paradigm?
+    """
+
     cookie_name = "paradigmlabel"
-    choices = ["english", "linguistic", "nehiyawewin"]
+    choices = [
+        # Plain English labels; e.g., I → You (one), Something is happening now
+        "english",
+        # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
+        "linguistic",
+        # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
+        "nehiyawewin",
+    ]
     default = "english"
