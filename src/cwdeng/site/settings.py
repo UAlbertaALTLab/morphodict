@@ -1,5 +1,5 @@
 """
-Django settings for crkeng.
+Django settings for cwdeng.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/3.2/topics/settings/
@@ -19,22 +19,22 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "itwewina.altlab.app"
+PRODUCTION_HOST = "cwdeng.altlab.dev"
+
+DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-INSTALLED_APPS.insert(0, "crkeng.app")
+ROOT_URLCONF = "cwdeng.site.urls"
 
-ROOT_URLCONF = "crkeng.site.urls"
-
-WSGI_APPLICATION = "crkeng.site.wsgi.application"
+INSTALLED_APPS += ["cwdeng.dictimport"]
 
 # Morphodict configuration
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
 
-MORPHODICT_SOURCE_LANGUAGE = "crk"
+MORPHODICT_SOURCE_LANGUAGE = "cwd"
 MORPHODICT_TARGET_LANGUAGE = "eng"
 
 # What orthographies -- writing systems -- are available
