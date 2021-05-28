@@ -58,6 +58,7 @@ class ChangePreferenceView(View):
         return self.preference.choices
 
     def post(self, request) -> HttpResponse:
+        # TODO: let preferences share ONE cookie
         value = request.POST.get(self.cookie_name)
 
         # Tried to set to an unknown display mode
@@ -73,5 +74,9 @@ class ChangePreferenceView(View):
             # (also, this probably should never happen?)
             response = HttpResponse(status=HTTPStatus.NO_CONTENT)
 
+        # NOTE: we're using the Django defaults for the cookie.
+        # When left to default, the cookie should last "only as long as the client’s
+        # browser session", though... I'm not sure how long that generally is :/
+        # See: https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse.set_cookie
         response.set_cookie(self.cookie_name, value)
         return response
