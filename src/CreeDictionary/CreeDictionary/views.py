@@ -23,6 +23,7 @@ from CreeDictionary.phrase_translate.translate import (
 )
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
+from morphodict.preference import Preference
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
@@ -39,12 +40,6 @@ logger = logging.getLogger(__name__)
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on the view functions that are well covered by integration tests
-
-
-class Preference:
-    cookie_name: str
-    choices: list[str]
-    default: str
 
 
 class DisplayMode(Preference):
