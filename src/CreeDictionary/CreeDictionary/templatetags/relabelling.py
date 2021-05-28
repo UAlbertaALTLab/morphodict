@@ -33,7 +33,6 @@ def relabel(context: Context, tags: tuple[FSTTag]):
     label_setting = label_setting_from_context(context)
     relabeller = label_setting_to_relabeller[label_setting]
 
-    # TODO: take in request context; relabel according to current label preference
     if label := relabeller.get_longest(tags):
         return label
 
