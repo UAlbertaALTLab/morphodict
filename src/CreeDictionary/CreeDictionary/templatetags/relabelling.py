@@ -8,8 +8,8 @@ from django import template
 from django.template import Context
 
 from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.views import PARADIGM_LABEL_COOKIE
 from CreeDictionary.utils.types import FSTTag
-from crkeng.app.views import PARADIGM_LABEL_COOKIE
 
 logger = logging.getLogger(__name__)
 register = template.Library()
