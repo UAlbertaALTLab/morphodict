@@ -1,12 +1,10 @@
 import logging
-from http import HTTPStatus
-from typing import Any, Dict, Literal, Type, Union
+from typing import Any, Dict, Literal, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
-from django.views import View
 from django.views.decorators.http import require_GET
 
 from CreeDictionary.API.models import Wordform
@@ -23,7 +21,7 @@ from CreeDictionary.phrase_translate.translate import (
 )
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
-from morphodict.preference import Preference
+from morphodict.preference import ChangePreferenceView, Preference
 
 from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
@@ -306,53 +304,6 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
-
-
-class ChangePreferenceView(View):
-    """
-    Sets the cookie for a preference.
-
-    Uses cookie name, and options from the preferem
-
-        > POST /change-preference HTTP/1.1
-        > Referer: /search?q=miciw
-        > Cookie: preference=old-value
-        >
-        > preference=new-value
-
-        < HTTP/1.1 302 See Other
-        < Set-Cookie: mode=linguistic
-        < Location: /search?q=miciw
-    """
-
-    preference: Type[Preference]
-
-    @property
-    def cookie_name(self):
-        return self.preference.cookie_name
-
-    @property
-    def choices(self):
-        return self.preference.choices
-
-    def post(self, request) -> HttpResponse:
-        value = request.POST.get(self.cookie_name)
-
-        # Tried to set to an unknown display mode
-        if value not in self.preference.choices:
-            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
-
-        if who_asked_us := request.headers.get("Referer"):
-            # Force the browser to refresh the page that issued this request.
-            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
-            response.headers["Location"] = who_asked_us
-        else:
-            # We don't know where to redirect, so send no content.
-            # (also, this probably should never happen?)
-            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
-
-        response.set_cookie(self.cookie_name, value)
-        return response
 
 
 class ChangeDisplayMode(ChangePreferenceView):
