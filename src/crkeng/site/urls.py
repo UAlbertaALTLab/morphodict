@@ -50,6 +50,12 @@ urlpatterns = [
         views.ChangeDisplayMode.as_view(),
         name="cree-dictionary-change-display-mode",
     ),
+    # POST to this URL to change the display mode:
+    path(
+        "_change_paradigm_label",
+        views.ChangeParadigmLabelPreference.as_view(),
+        name="cree-dictionary-change-paradigm-label",
+    ),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
