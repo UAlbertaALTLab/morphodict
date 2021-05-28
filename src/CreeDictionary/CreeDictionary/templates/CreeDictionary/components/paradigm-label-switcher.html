@@ -1,0 +1,45 @@
+{% spaceless %}
+
+  {% comment %}
+    paradigm label switcher
+
+    TODO: describe what this is
+
+  {% endcomment %}
+
+  <div class="menu-bar menu-bar--align-end">
+    <details class="menu-bar__item dropdown dropdown--align-end">
+      <summary class="dropdown__label">Show plain English labels</summary>
+      <div class="menu dropdown__menu">
+        <ul class="unbullet">
+          <li>
+            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
+              <button type="submit" class="unbutton fill-width"
+                      name="paradigmlabel" value="english">
+                <span class="menu-choice__label">Plain English labels</span>
+              {% csrf_token %}
+              </button>
+            </form>
+      <!-- -->
+          <li>
+            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
+              <button type="submit" class="unbutton fill-width"
+                      name="paradigmlabel" value="nehiyawewin">
+                <span class="menu-choice__label">nêhiyawêwin labels</span>
+              {% csrf_token %}
+              </button>
+            </form>
+      <!-- -->
+          <li>
+            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
+              <button type="submit" class="unbutton fill-width"
+                      name="paradigmlabel" value="linguistic">
+                <span class="menu-choice__label">Linguistic labels</span>
+              </button>
+              {% csrf_token %}
+            </form>
+        </ul>
+      </div>
+    </details>
+  </div>
+{% endspaceless %}

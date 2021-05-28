@@ -1224,6 +1224,60 @@ a.menu-choice__label:active {
   background-color: var(--menu-selected-bg-color);
 }
 
+/********************************* MENU BAR *********************************/
+
+/**
+ * BLOCK: menu-bar
+ *
+ * Display a whole bunch of options in horizontal menu bar.
+ */
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+}
+
+/**
+ * ELEMENT
+ *
+ * One option in the menu bar.
+ */
+.menu-bar__item {
+  width: max-content;
+  flex: 0 auto;
+}
+
+/**
+ * MODIFIER align-end
+ *
+ * Have all the elements on the end of block.
+ * For left-to-right scripts (e.g., English, Cree), this means the elements
+ * will be right aligned.
+ */
+.menu-bar--align-end {
+  justify-content: flex-end;
+}
+
+/******************************** DROP DOWN *********************************/
+.dropdown {
+  position: relative;
+}
+
+.dropdown--align-end:dir(ltr) .dropdown__menu {
+  right: 0;
+}
+
+.dropdown--align-end:dir(rtl) .dropdown__menu {
+  left: 0;
+}
+
+.dropdown__label {
+  cursor: pointer;
+}
+
+.dropdown__menu {
+  position: absolute;
+}
+
 /*********************************** BOX ************************************/
 
 /**
