@@ -13,8 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from CreeDictionary.CreeDictionary.display_options import DISPLAY_MODES
-from crkeng.app.preferences import ParadigmLabel
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
 
 
 class TestLemmaDetailsInternal4xx:
@@ -110,7 +109,7 @@ def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: st
         assertInHTML(wordform, body)
 
 
-@pytest.mark.parametrize("mode", DISPLAY_MODES)
+@pytest.mark.parametrize("mode", DisplayMode.choices)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     """
