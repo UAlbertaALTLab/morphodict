@@ -7,8 +7,6 @@ from CreeDictionary.CreeDictionary.display_options import (
 )
 from morphodict.preference import Preference
 
-PARADIGM_LABEL_OPTIONS = {"english", "linguistic", "nehiyawewin"}
-
 
 class DisplayMode(Preference):
     cookie_name = DISPLAY_MODE_COOKIE
@@ -18,5 +16,5 @@ class DisplayMode(Preference):
 
 class ParadigmLabel(Preference):
     cookie_name = "paradigmlabel"
-    choices = list(PARADIGM_LABEL_OPTIONS)
+    choices = ["english", "linguistic", "nehiyawewin"]
     default = "english"
