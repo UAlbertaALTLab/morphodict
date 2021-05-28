@@ -1,6 +1,6 @@
 import logging
 from http import HTTPStatus
-from typing import Any, Dict, Literal, Union
+from typing import Any, Dict, Literal, Type, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -30,7 +30,6 @@ from .utils import url_for_query
 PARADIGM_LABEL_COOKIE = "paradigmlabel"
 PARADIGM_LABEL_OPTIONS = {"english", "linguistic", "nehiyawewin"}
 
-
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
 IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
@@ -40,6 +39,24 @@ logger = logging.getLogger(__name__)
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on the view functions that are well covered by integration tests
+
+
+class Preference:
+    cookie_name: str
+    choices: list[str]
+    default: str
+
+
+class DisplayMode(Preference):
+    cookie_name = DISPLAY_MODE_COOKIE
+    choices = list(DISPLAY_MODES)
+    default = "community"
+
+
+class ParadigmLabel(Preference):
+    cookie_name = PARADIGM_LABEL_COOKIE
+    choices = list(PARADIGM_LABEL_OPTIONS)
+    default = "english"
 
 
 def lemma_details(request, lemma_text: str):
@@ -296,26 +313,38 @@ def google_site_verification(request):
     )
 
 
-class ChangeDisplayMode(View):
+class ChangePreferenceView(View):
     """
-    Sets the mode= cookie, which affects how search results are rendered.
+    Sets the cookie for a preference.
 
-        > POST /change-mode HTTP/1.1
+    Uses cookie name, and options from the preferem
+
+        > POST /change-preference HTTP/1.1
         > Referer: /search?q=miciw
-        > Cookie: mode=community
+        > Cookie: preference=old-value
         >
-        > mode=linguistic
+        > preference=new-value
 
         < HTTP/1.1 302 See Other
         < Set-Cookie: mode=linguistic
         < Location: /search?q=miciw
     """
 
+    preference: Type[Preference]
+
+    @property
+    def cookie_name(self):
+        return self.preference.cookie_name
+
+    @property
+    def choices(self):
+        return self.preference.choices
+
     def post(self, request) -> HttpResponse:
-        mode = request.POST.get(DISPLAY_MODE_COOKIE)
+        value = request.POST.get(self.cookie_name)
 
         # Tried to set to an unknown display mode
-        if mode not in DISPLAY_MODES:
+        if value not in self.preference.choices:
             return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
         if who_asked_us := request.headers.get("Referer"):
@@ -327,45 +356,25 @@ class ChangeDisplayMode(View):
             # (also, this probably should never happen?)
             response = HttpResponse(status=HTTPStatus.NO_CONTENT)
 
-        response.set_cookie(DISPLAY_MODE_COOKIE, mode)
+        response.set_cookie(self.cookie_name, value)
         return response
 
 
-class ChangeParadigmLabelPreference(View):
+class ChangeDisplayMode(ChangePreferenceView):
+    """
+    Sets the mode= cookie, which affects how search results are rendered.
+    """
+
+    preference = DisplayMode
+
+
+class ChangeParadigmLabelPreference(ChangePreferenceView):
     """
     Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
     PARADIGMS!
-
-        > POST /change-paradigm-label HTTP/1.1
-        > Referer: /word/minôs
-        > Cookie: paradigmlabel=english
-        >
-        > paradigmlabel=nehiyawewin
-
-        < HTTP/1.1 302 See Other
-        < Set-Cookie: paradigmlabel=nehiyawewin
-        < Location: /word/minôs
-
     """
 
-    def post(self, request) -> HttpResponse:
-        label = request.POST.get(PARADIGM_LABEL_COOKIE)
-
-        # Tried to set to an unknown display mode
-        if label not in PARADIGM_LABEL_OPTIONS:
-            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
-
-        if who_asked_us := request.headers.get("Referer"):
-            # Force the browser to refresh the page that issued this request.
-            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
-            response.headers["Location"] = who_asked_us
-        else:
-            # We don't know where to redirect, so send no content.
-            # (also, this probably should never happen?)
-            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
-
-        response.set_cookie(PARADIGM_LABEL_COOKIE, label)
-        return response
+    preference = ParadigmLabel
 
 
 ## Helper functions
