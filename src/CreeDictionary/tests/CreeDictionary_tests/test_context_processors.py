@@ -7,7 +7,6 @@ import pytest
 from django.http import HttpRequest
 from django.template import RequestContext, Template
 
-from CreeDictionary.CreeDictionary.display_options import DEFAULT_DISPLAY_MODE
 from crkeng.app.preferences import DisplayMode
 
 
@@ -31,7 +30,7 @@ def test_render_with_display_mode_unset() -> None:
     context = RequestContext(request, {})
 
     template = Template("{{ display_options.mode }}")
-    assert template.render(context) == DEFAULT_DISPLAY_MODE
+    assert template.render(context) == DisplayMode.default
 
 
 @pytest.mark.parametrize("mode", DisplayMode.choices)
