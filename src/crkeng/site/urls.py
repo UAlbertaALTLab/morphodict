@@ -24,7 +24,7 @@ urlpatterns = [
     # "word" is a user-friendly alternative for the linguistic term "lemma"
     path(
         "word/<str:lemma_text>/",
-        views.lemma_details,
+        views.entry_details,
         name="cree-dictionary-index-with-lemma",
     ),
     path("about", views.about, name="cree-dictionary-about"),
