@@ -176,13 +176,21 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
+    paradigm = paradigm_for(lemma, paradigm_size)
+    if isinstance(paradigm, Paradigm):
+        template_name = "CreeDictionary/components/paradigm-with-panes.html"
+    else:
+        template_name = "CreeDictionary/components/paradigm.html"
+
     return render(
         request,
-        "CreeDictionary/components/paradigm.html",
+        template_name,
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
+            # TODO: use the name "paradigm" in both templates
+            "paradigm": paradigm,
+            "paradigm_tables": paradigm,
         },
     )
 
