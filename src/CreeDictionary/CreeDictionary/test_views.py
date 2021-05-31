@@ -13,6 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
+from CreeDictionary.API.models import Wordform
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll
@@ -109,6 +110,44 @@ def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: st
     assertInHTML(lexeme, body)
     for wordform in example_forms:
         assertInHTML(wordform, body)
+
+
+# transaction=True is required so that Django does not close the database
+# after the first HTTP response has been returned by the client.
+@pytest.mark.django_db(transaction=True)
+def test_paradigm_from_full_page_and_api(client: Client):
+    """
+    The paradigm returned from the full details page and the API endpoint should
+    contain the exact same information.
+    """
+    lemma_text = "wâpamêw"
+    paradigm_size = "FULL"
+
+    wordform = Wordform.objects.get(text=lemma_text)
+    assert wordform.lemma == wordform, "this test requires a lemma"
+
+    # Get standalone page:
+    response = client.get(
+        reverse("cree-dictionary-index-with-lemma", args=[lemma_text]),
+        {"paradigm-size": paradigm_size},
+    )
+    assert response.status_code == HTTPStatus.OK
+    standalone_html = response.content.decode("UTF-8")
+    assert lemma_text in standalone_html
+
+    # Get fragment from API request:
+    response = client.get(
+        reverse("cree-dictionary-paradigm-detail"),
+        {
+            "lemma-id": wordform.id,
+            "paradigm-size": paradigm_size,
+        },
+    )
+    assert response.status_code == HTTPStatus.OK
+    html_fragment = response.content.decode("UTF-8")
+    assert lemma_text in html_fragment
+
+    assertInHTML(html_fragment, standalone_html)
 
 
 @pytest.mark.parametrize("mode", DisplayMode.choices)
