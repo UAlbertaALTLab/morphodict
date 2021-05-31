@@ -38,6 +38,12 @@ class SearchRun:
         else:
             self._results[key] = result
 
+    def remove_result(self, result: types.Result):
+        del self._results[result.wordform.key]
+
+    def unsorted_results(self) -> list[types.Result]:
+        return self._results.values()
+
     def sorted_results(self) -> list[types.Result]:
         results = list(self._results.values())
         for r in results:

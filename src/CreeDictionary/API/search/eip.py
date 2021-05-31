@@ -3,12 +3,15 @@ from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features
 import re
 
 # e.g., " swim +V+AI+Prt+3Pl"
-TAG_RE = re.compile(r"""
+TAG_RE = re.compile(
+    r"""
                         \s*             # leading blank space(s) from flag diacritics
                         (?P<query>.*)
                         \s
                         (?P<tags>\+[^\ ]+)
-                    """, re.VERBOSE)
+                    """,
+    re.VERBOSE,
+)
 
 
 class PhraseAnalyzedQuery:
@@ -17,7 +20,9 @@ class PhraseAnalyzedQuery:
         self.has_tags = False
         self.filtered_query = None
         self.tags = None
-        phrase_analysis = [r.decode('UTF-8') for r in eng_phrase_to_crk_features_fst()[query]]
+        phrase_analysis = [
+            r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
+        ]
 
         if len(phrase_analysis) != 1:
             return
@@ -30,7 +35,6 @@ class PhraseAnalyzedQuery:
         if not match:
             return
 
-        self.filtered_query = match['query']
+        self.filtered_query = match["query"]
         self.has_tags = True
-        self.tags = ['+' + t for t in match['tags'].split('+') if t]
-
+        self.tags = ["+" + t for t in match["tags"].split("+") if t]

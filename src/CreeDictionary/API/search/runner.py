@@ -1,3 +1,5 @@
+from dataclasses import dataclass
+
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.affix import (
     do_source_language_affix_search,
@@ -21,7 +23,7 @@ crkeng_tag_dict = {
     "+Cond": ("+Fut", "+Cond"),  # Future conditional
     "+Imm": ("+Imp", "+Imm"),  # Immediate imperative
     "+Del": ("+Imp", "+Del"),  # Delayed imperative
-    "+Fut": ("PV/wi+", "+Ind"), # Future
+    "+Fut": ("PV/wi+", "+Ind"),  # Future
     # "+Fut": "PV/wi+",  # Also accept PV/wi without indicative as future
     # Note that these crk features as disjoint, but both are needed for the eng feature
     "+Def": ("PV/ka+", "+Ind"),
@@ -55,11 +57,13 @@ def search(
                 else:
                     new_tags.append(tag)
 
-        search_run.add_verbose_message(dict(
-            filtered_query=analyzed_query.filtered_query,
-            tags=analyzed_query.tags,
-            new_tags=new_tags
-        ))
+        search_run.add_verbose_message(
+            dict(
+                filtered_query=analyzed_query.filtered_query,
+                tags=analyzed_query.tags,
+                new_tags=new_tags,
+            )
+        )
 
     cvd_search_type = cast_away_optional(
         first_non_none_value(search_run.query.cvd, default=CvdSearchType.DEFAULT)
@@ -83,52 +87,64 @@ def search(
     inflected_results = generate_inflected_results(new_tags, search_run)
     print(inflected_results)
 
+    # FIXME: get all wordforms in a single query?
     for result in inflected_results:
-        # todo: test
+        exactly_matched_wordform = Wordform.objects.filter(
+            text=result.inflected_text, lemma=result.original_result.wordform
+        ).first()
 
-        exactly_matched_wordforms = Wordform.objects.filter(
-            text=result[0]
-        )
-
-        if exactly_matched_wordforms.exists():
-            for wf in exactly_matched_wordforms:
-                search_run.add_result(
-                    Result(
-                        wf,
-                        source_language_match=wf,
-                        query_wordform_edit_distance=get_modified_distance(
-                            wf.text, search_run.internal_query
-                        ),
-                    )
+        if exactly_matched_wordform:
+            search_run.remove_result(result.original_result)
+            search_run.add_result(
+                result.original_result.create_related_result(
+                    exactly_matched_wordform, is_eip_result=True
                 )
+            )
 
     return search_run
 
 
-def generate_inflected_results(tags, search_run):
+@dataclass
+class EipResult:
+    inflected_text: str
+    original_result: Result
+
+
+def generate_inflected_results(tags, search_run) -> list[EipResult]:
     """
     Of the results, sort out the verbs, then inflect them
     using the new set of tags.
     Return the inflected verbs.
     """
 
-    verbs = []
-    for r in search_run.sorted_results():
-        if r["lemma_wordform"]["pos"] == "V":
-            verbs.append(r["wordform_text"])
+    words = []
+    for r in search_run.unsorted_results():
+        if "+V" in tags and r.is_lemma and r.lemma_wordform.pos == "V":
+            words.append(r)
+        if "+N" in tags and r.is_lemma and r.lemma_wordform.pos == "N":
+            words.append(r)
 
-    prefix_tags = ''.join(t for t in tags if t.startswith('+'))
-
-    affix_tags = ""
-    for tag in tags:
-        if tag.startswith('+'):
-            affix_tags += tag
+    tags_starting_with_plus = []
+    tags_ending_with_plus = []
+    for t in tags:
+        (
+            tags_starting_with_plus if t.startswith("+") else tags_ending_with_plus
+        ).append(t)
 
     results = []
-    for verb in verbs:
-        text = prefix_tags + verb + affix_tags
-        result = expensive.strict_generator.lookup(text)
-        if result:
-            results.append(result)
+    for word in words:
+        text = (
+            "".join(tags_ending_with_plus)
+            + word.lemma_wordform.text
+            + "".join(tags_starting_with_plus)
+        )
+        generated_wordforms = expensive.strict_generator.lookup(text)
+        for w in generated_wordforms:
+            results.append(
+                EipResult(
+                    original_result=word,
+                    inflected_text=w,
+                )
+            )
 
     return results

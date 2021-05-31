@@ -10,9 +10,7 @@ def search_with_affixes(query: str, include_auto_definitions=False):
      - affixes of the definition keyword text
     """
 
-    return search(
-        query=query, include_auto_definitions=include_auto_definitions
-    )
+    return search(query=query, include_auto_definitions=include_auto_definitions)
 
 
 def simple_search(query: str, include_auto_definitions=False):
