@@ -53,7 +53,7 @@ Software developer. 2019–2020 software development intern.
 Computational Modeling
 ----------------------
 
-Please refer to the [authors of the Plains Cree FSTs](https://github.com/UAlbertaALTLab/plains-cree-fsts/blob/master/AUTHORS).
+Please refer to the [authors of the Plains Cree FSTs](https://github.com/giellalt/lang-crk/blob/main/AUTHORS).
 
 
 Original Development Team

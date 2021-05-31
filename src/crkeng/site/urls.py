@@ -24,7 +24,7 @@ urlpatterns = [
     # "word" is a user-friendly alternative for the linguistic term "lemma"
     path(
         "word/<str:lemma_text>/",
-        views.lemma_details,
+        views.entry_details,
         name="cree-dictionary-index-with-lemma",
     ),
     path("about", views.about, name="cree-dictionary-about"),
@@ -49,6 +49,12 @@ urlpatterns = [
         "_change_display_mode",
         views.ChangeDisplayMode.as_view(),
         name="cree-dictionary-change-display-mode",
+    ),
+    # POST to this URL to change the display mode:
+    path(
+        "_change_paradigm_label",
+        views.ChangeParadigmLabelPreference.as_view(),
+        name="cree-dictionary-change-paradigm-label",
     ),
     ################################ Click in text #################################
     # cree word translation for click-in-text

@@ -80,15 +80,6 @@ class ParadigmLayout(Paradigm):
         for pane in self.panes:
             yield from pane.inflection_cells
 
-    @cached_property
-    def _fst_analysis_template(self) -> string.Template:
-        """
-        A string template that can be given a lemma to generate FST analysis strings
-        for the ENTIRE paradigm.
-        """
-        lines = [inflection.analysis for inflection in self.inflection_cells]
-        return string.Template("\n".join(lines))
-
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmLayout:
         """
@@ -132,12 +123,15 @@ class ParadigmLayout(Paradigm):
 
         return empty_line.join(pane_text)
 
-    def generate_fst_analysis_string(self, lemma: str) -> str:
+    def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
         """
-        Given a lemma, generates a string that can be fed directly to an XFST lookup
-        application.
+        Generates a dictionary mapping analysis templates to analyses subsituted with
+        the given lemma.
         """
-        return self._fst_analysis_template.substitute(lemma=lemma)
+        return {
+            inflection.analysis_template: inflection.as_analysis(lemma)
+            for inflection in self.inflection_cells
+        }
 
     def fill(self, forms: dict[str, Collection[str]]) -> Paradigm:
         """
@@ -236,6 +230,11 @@ class Row:
 
     @property
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
+
+    @property
+    def cells(self) -> Iterable[Cell]:
         # subclasses MUST implement this somehow
         raise NotImplementedError
 
@@ -354,26 +353,36 @@ class HeaderRow(Row):
         # a header, by definition, has no inflections.
         return ()
 
+    @property
+    def fst_tags(self) -> tuple[str, ...]:
+        return self._tags
+
     def __eq__(self, other) -> bool:
         if isinstance(other, HeaderRow):
             return self._tags == other._tags
         return False
 
     def __str__(self):
-        tags = "+".join(self._tags)
-        return f"{self.prefix} {tags}"
+        return " ".join(f"{self.prefix} {tag}" for tag in self._tags)
 
     def __repr__(self):
         name = type(self).__qualname__
         cells_repr = ", ".join(repr(cell) for cell in self._tags)
         return f"{name}([{cells_repr}])"
 
-    @staticmethod
-    def parse(text: str) -> HeaderRow:
-        if not text.startswith("# "):
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        A header **never** contains a wordform, so this always returns False.
+        """
+        return False
+
+    @classmethod
+    def parse(cls, text: str) -> HeaderRow:
+        if not text.startswith(cls.prefix):
             raise ParseError("Not a header row: {text!r}")
-        _prefix, _space, tags = text.rstrip().partition(" ")
-        return HeaderRow(tags.split("+"))
+
+        text = text.rstrip()
+        return HeaderRow(parse_label(text, prefix=cls.prefix))
 
 
 class Cell:
@@ -383,6 +392,7 @@ class Cell:
 
     is_label: bool = False
     is_inflection: bool = False
+    is_missing: bool = False
     is_empty: bool = False
 
     @staticmethod
@@ -468,16 +478,24 @@ class InflectionTemplate(Cell):
     is_inflection = True
 
     def __init__(self, analysis: str):
-        self.analysis = analysis
         assert looks_like_analysis_string(analysis)
+        self._analysis_template = string.Template(analysis)
+
+    @property
+    def analysis_template(self) -> str:
+        """
+        The original analysis string provided as a template for inflection,
+        e.g., ${lemma}+N+Sg
+        """
+        return self._analysis_template.template
 
     def __eq__(self, other) -> bool:
         if isinstance(other, InflectionTemplate):
-            return self.analysis == other.analysis
+            return self.analysis_template == other.analysis_template
         return False
 
     def __str__(self):
-        return self.analysis
+        return self.analysis_template
 
     @staticmethod
     def parse(text: str) -> InflectionTemplate:
@@ -485,21 +503,29 @@ class InflectionTemplate(Cell):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionTemplate(text)
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell:
+    def as_analysis(self, lemma: str) -> str:
+        """
+        Returns a the analysis template with the substitute replaced
+        """
+        return self._analysis_template.substitute(lemma=lemma)
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
         """
         Return a single WordformCell, given the fillable forms.
         """
 
-        cell_forms = forms.get(self.analysis)
-        if cell_forms is None:
-            # TODO: this might actually be okay?
-            # It could just be a missing form (accidental gap/lacuna).
-            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
+        try:
+            cell_forms = forms[self.analysis_template]
+        except KeyError:
             raise ParadigmGenerationError(
-                "no form(s) provided for " f"analysis: {self.analysis}"
+                "no form(s) provided for " f"analysis: {self.analysis_template}"
             )
 
-        assert len(cell_forms) >= 1
+        if len(cell_forms) == 0:
+            # It's a missing form (accidental gap/lacuna).
+            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
+            return MissingForm()
+
         if len(cell_forms) > 1:
             # TODO: create a CompoundRow class that can handle multiple forms per
             # inflection.
@@ -535,9 +561,22 @@ class MissingForm(Cell, SingletonMixin):
     """
 
     is_inflection = True
+    is_missing = True
 
     def __str__(self):
         return "--"
+
+    def contains_wordform(self, wordform: str) -> bool:
+        """
+        A missing form does not contain a wordform, be definition.
+        """
+        return False
+
+    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+        """
+        A missing form is already "filled".
+        """
+        return self
 
 
 class EmptyCell(Cell, SingletonMixin):
@@ -578,17 +617,7 @@ class BaseLabelCell(Cell):
 
     @classmethod
     def parse(cls, text: str):
-        splits = re.split(r" +", text)
-        if len(splits) % 2 != 0:
-            raise ParseError(f"Uneven number of space-separated segments in {text!r}")
-        tags = []
-
-        for prefix, tag in pairs(splits):
-            if prefix != cls.prefix:
-                raise ParseError(f"Expected prefix {cls.prefix!r} but saw {prefix!r}")
-            tags.append(tag)
-
-        return cls(tags)
+        return cls(parse_label(text, prefix=cls.prefix))
 
 
 class RowLabel(BaseLabelCell):
@@ -607,6 +636,30 @@ class ColumnLabel(BaseLabelCell):
 
     label_for = "col"
     prefix = "|"
+
+
+def parse_label(text: str, *, prefix: str) -> list[str]:
+    """
+    Parses labels in the common label syntax.
+
+    >>> parse_label("| Ind", prefix="|")
+    ['Ind']
+    >>> parse_label("# Fut # Def", prefix="#")
+    ['Fut', 'Def']
+    >>> parse_label("_ 1Sg _ 3Sg _ Obv", prefix="_")
+    ['1Sg', '3Sg', 'Obv']
+    """
+    splits = re.split(r" +", text)
+    if len(splits) % 2 != 0:
+        raise ParseError(f"Uneven number of space-separated segments in {text!r}")
+
+    tags = []
+    for actual_prefix, tag in pairs(splits):
+        if actual_prefix != prefix:
+            raise ParseError(f"Expected prefix {prefix!r} but saw {actual_prefix!r}")
+        tags.append(tag)
+
+    return tags
 
 
 def looks_like_analysis_string(text: str) -> bool:

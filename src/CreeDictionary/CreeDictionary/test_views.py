@@ -13,7 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from CreeDictionary.CreeDictionary.display_options import DISPLAY_MODES
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
 
 
 class TestLemmaDetailsInternal4xx:
@@ -109,7 +109,7 @@ def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: st
         assertInHTML(wordform, body)
 
 
-@pytest.mark.parametrize("mode", DISPLAY_MODES)
+@pytest.mark.parametrize("mode", DisplayMode.choices)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     """
@@ -129,6 +129,34 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
     assert (morsel := res.cookies.get("mode")) is not None
     assert morsel.value == mode
+
+    if whence:
+        assert res.status_code == HTTPStatus.SEE_OTHER
+        assert res.headers.get("Location") == whence
+    else:
+        assert res.status_code in (HTTPStatus.OK, HTTPStatus.NO_CONTENT)
+
+
+@pytest.mark.parametrize("option", ParadigmLabel.choices)
+@pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
+def test_change_paradigm_label_preference(option, whence, client: Client):
+    """
+    Changing the display mode should set some cookies and MAYBE do a redirect.
+    """
+
+    url = reverse("cree-dictionary-change-paradigm-label")
+    headers = {}
+    if whence:
+        # referer (sic) is the correct spelling in HTTP
+        # (spelling is not the IETF's strong suit)
+        headers["HTTP_REFERER"] = whence
+
+    res = client.post(url, {ParadigmLabel.cookie_name: option}, **headers)
+
+    # morsel is Python's official term for a chunk of a cookie
+    # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
+    assert (morsel := res.cookies.get(ParadigmLabel.cookie_name)) is not None
+    assert morsel.value == option
 
     if whence:
         assert res.status_code == HTTPStatus.SEE_OTHER
