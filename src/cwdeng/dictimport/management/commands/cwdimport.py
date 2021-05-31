@@ -37,7 +37,7 @@ class Command(BaseCommand):
         source = ET.Element("source")
         source.set("id", "LLR")
         title = ET.Element("title")
-        title.text = "Lac La Longe"
+        title.text = "Lac La Ronge"
         source.append(title)
         root.append(source)
 
