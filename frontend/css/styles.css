@@ -1135,30 +1135,6 @@ a.multiple-recordings__action-button {
   z-index: 100;
 }
 
-/**
- * Creates an area behind the menu pop-up that, when clicked/touched, will
- * inadvertently toggle the menu away.
- */
-.toggle-box[open] > .toggle-box__toggle::before {
-  content: " ";
-
-  /* Position */
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-
-  /* Display & Box model */
-  display: block;
-  z-index: 80;
-
-  /* Color */
-  background: transparent;
-
-  /* Other */
-  cursor: default;
-}
 
 
 /*********************************** MENU ***********************************/

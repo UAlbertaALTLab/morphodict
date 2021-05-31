@@ -8,11 +8,11 @@
   {% endcomment %}
 
   <div class="menu-bar menu-bar--align-end">
-    <details class="menu-bar__item dropdown dropdown--align-end">
+    <details class="menu-bar__item dropdown dropdown--align-end close-on-click-away">
       <summary class="dropdown__label">Show plain English labels</summary>
       <div class="menu dropdown__menu">
         <ul class="unbullet">
-          <li>
+          <li class="menu-choice menu-choice--selected">
             <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
               <button type="submit" class="unbutton fill-width"
                       name="paradigmlabel" value="english">
@@ -21,7 +21,7 @@
               </button>
             </form>
       <!-- -->
-          <li>
+          <li class="menu-choice">
             <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
               <button type="submit" class="unbutton fill-width"
                       name="paradigmlabel" value="nehiyawewin">
@@ -30,7 +30,7 @@
               </button>
             </form>
       <!-- -->
-          <li>
+          <li class="menu-choice">
             <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
               <button type="submit" class="unbutton fill-width"
                       name="paradigmlabel" value="linguistic">
