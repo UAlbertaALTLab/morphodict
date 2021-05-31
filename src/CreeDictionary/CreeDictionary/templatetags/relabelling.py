@@ -14,7 +14,7 @@ from crkeng.app.preferences import ParadigmLabel
 logger = logging.getLogger(__name__)
 register = template.Library()
 
-# If a paradigm label prefernece is not set, use this one!
+# If a paradigm label preference is not set, use this one!
 DEFAULT_PARADIGM_LABEL = "english"
 
 label_setting_to_relabeller = {
