@@ -121,8 +121,10 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
-    if search_run and search_run.verbose_messages:
-        context["verbose_messages"] = json.dumps(search_run.verbose_messages)
+    if search_run and search_run.verbose_messages and search_run.query.verbose:
+        context["verbose_messages"] = json.dumps(
+            search_run.verbose_messages, indent=2, ensure_ascii=False
+        )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
 

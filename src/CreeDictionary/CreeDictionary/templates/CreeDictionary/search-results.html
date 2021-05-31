@@ -1,7 +1,10 @@
 {% spaceless %}
 
 {% if verbose_messages %}
-{{ verbose_messages }}
+<li class="search-results__result box">
+<h3>Messages from search run</h3>
+<pre>{{ verbose_messages }}</pre>
+</li>
 {% endif %}
 {% for result in search_results %}
 <li class="search-results__result" data-cy="search-results">
