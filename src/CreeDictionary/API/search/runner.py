@@ -1,3 +1,4 @@
+from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
@@ -8,9 +9,11 @@ from CreeDictionary.API.search.cvd_search import do_cvd_search
 from CreeDictionary.API.search.eip import PhraseAnalyzedQuery
 from CreeDictionary.API.search.lookup import fetch_results
 from CreeDictionary.API.search.query import CvdSearchType
+from CreeDictionary.API.search.types import Result
 from CreeDictionary.API.search.util import first_non_none_value
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
 from CreeDictionary.shared import expensive
+from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.types import cast_away_optional
 
 crkeng_tag_dict = {
@@ -100,5 +103,23 @@ def search(
             results.append(result)
     print(results)
 
-    search_run.add_verbose_message(dict(results=results))
+    for r in results:
+        # todo: test
+
+        exactly_matched_wordforms = Wordform.objects.filter(
+            text=r[0]
+        )
+
+        if exactly_matched_wordforms.exists():
+            for wf in exactly_matched_wordforms:
+                search_run.add_result(
+                    Result(
+                        wf,
+                        source_language_match=wf,
+                        query_wordform_edit_distance=get_modified_distance(
+                            wf.text, search_run.internal_query
+                        ),
+                    )
+                )
+
     return search_run
