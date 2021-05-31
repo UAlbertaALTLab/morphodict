@@ -11,8 +11,20 @@ from django.views import View
 
 
 class Preference:
+    """
+    A user preference, usually for the display of content on the website.
+    """
+
     cookie_name: str
-    choices: list[str]
+
+    # A mapping of all possible choices for this preference,
+    # to user-readable labels.
+    # {
+    #     "internalname": "user-readable label"
+    # }
+    choices: dict[str, str]
+
+    # Which one of the choices is the default
     default: str
 
 

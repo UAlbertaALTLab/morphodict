@@ -12,12 +12,12 @@ class DisplayMode(Preference):
     """
 
     cookie_name = "mode"
-    choices = [
+    choices = {
         # Community-mode: uses emoji and hides inflectional class
-        "community",
+        "community": "Community mode",
         # Linguist-mode: always displays inflectional class (e.g., VTA-1, NA-3, IPJ, etc.)
-        "linguistic",
-    ]
+        "linguistic": "Linguistic mode",
+    }
     default = "community"
 
 
@@ -27,12 +27,12 @@ class ParadigmLabel(Preference):
     """
 
     cookie_name = "paradigmlabel"
-    choices = [
+    choices = {
         # Plain English labels; e.g., I → You (one), Something is happening now
-        "english",
+        "english": "plain English labels",
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
-        "linguistic",
+        "linguistic": "linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
-        "nehiyawewin",
-    ]
+        "nehiyawewin": "nêhiyawêwin labels",
+    }
     default = "english"
