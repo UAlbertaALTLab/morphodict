@@ -22,7 +22,7 @@ jobs:
     outputs:
       should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
 
-    if: github.ref == 'refs/heads/main'
+    if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main'
     steps:
     - uses: actions/checkout@v2
       with:

@@ -63,6 +63,12 @@ def do_cvd_search(search_run: SearchRun):
         # are close together.
         distance = 1 - similarity
 
-        for wf in wordforms_by_text[wordform_query["text"]]:
-            if wordform_query_matches(wordform_query, wf):
-                search_run.add_result(Result(wf, cosine_vector_distance=distance))
+        wordforms_for_query = wordforms_by_text.get(wordform_query["text"], None)
+        if wordforms_for_query is None:
+            logger.warning(
+                f"Wordform {wordform_query['text']} not found in CVD; mismatch between definition vector model file and definitions in database?"
+            )
+        else:
+            for wf in wordforms_for_query:
+                if wordform_query_matches(wordform_query, wf):
+                    search_run.add_result(Result(wf, cosine_vector_distance=distance))
