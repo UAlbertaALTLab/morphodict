@@ -47,11 +47,9 @@ MORPHODICT_TARGET_LANGUAGE = "eng"
 # Morphodict assumes that the `text` of all Wordform are written in the default
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
-    # All entries in Wordform should be written in SRO (êîôâ)
-    "default": "Latn",
+    # All entries in Wordform should be written in SRO (ēīōā)
+    "default": "Latn-x-macron",
     "available": {
-        # 'Latn' is Okimāsis/Wolvegrey's SRO
-        "Latn": {"name": "SRO (êîôâ)"},
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons",
