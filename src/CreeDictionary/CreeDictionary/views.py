@@ -1,12 +1,10 @@
 import logging
-from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
-from django.views import View
 from django.views.decorators.http import require_GET
 
 from CreeDictionary.API.models import Wordform
@@ -23,8 +21,9 @@ from CreeDictionary.phrase_translate.translate import (
 )
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.preference import ChangePreferenceView
 
-from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -292,39 +291,21 @@ def google_site_verification(request):
     )
 
 
-class ChangeDisplayMode(View):
+class ChangeDisplayMode(ChangePreferenceView):
     """
     Sets the mode= cookie, which affects how search results are rendered.
-
-        > POST /change-mode HTTP/1.1
-        > Referer: /search?q=miciw
-        > Cookie: mode=community
-        >
-        > mode=linguistic
-
-        < HTTP/1.1 302 See Other
-        < Set-Cookie: mode=linguistic
-        < Location: /search?q=miciw
     """
 
-    def post(self, request) -> HttpResponse:
-        mode = request.POST.get(DISPLAY_MODE_COOKIE)
+    preference = DisplayMode
 
-        # Tried to set to an unknown display mode
-        if mode not in DISPLAY_MODES:
-            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
-        if who_asked_us := request.headers.get("Referer"):
-            # Force the browser to refresh the page that issued this request.
-            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
-            response.headers["Location"] = who_asked_us
-        else:
-            # We don't know where to redirect, so send no content.
-            # (also, this probably should never happen?)
-            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+class ChangeParadigmLabelPreference(ChangePreferenceView):
+    """
+    Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
+    PARADIGMS!
+    """
 
-        response.set_cookie(DISPLAY_MODE_COOKIE, mode)
-        return response
+    preference = ParadigmLabel
 
 
 ## Helper functions
