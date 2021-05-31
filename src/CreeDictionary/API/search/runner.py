@@ -43,9 +43,9 @@ def search(
         query=query, include_auto_definitions=include_auto_definitions
     )
 
+    new_tags = []
     if search_run.query.eip:
         analyzed_query = PhraseAnalyzedQuery(search_run.query.query_string)
-        new_tags = []
         if analyzed_query.has_tags:
             search_run.query.replace_query(analyzed_query.filtered_query)
             for tag in analyzed_query.tags:
@@ -80,34 +80,14 @@ def search(
     if cvd_search_type.should_do_search():
         do_cvd_search(search_run)
 
-    verbs = []
-    for r in search_run.serialized_presentation_results():
-        if r["lemma_wordform"]["pos"] == "V":
-            verbs.append(r["wordform_text"])
+    inflected_results = generate_inflected_results(new_tags, search_run)
+    print(inflected_results)
 
-    prefix_tags = ""
-    for tag in new_tags:
-        if not tag.startswith('+'):
-            prefix_tags += tag
-
-    affix_tags = ""
-    for tag in new_tags:
-        if tag.startswith('+'):
-            affix_tags += tag
-
-    results = []
-    for verb in verbs:
-        text = prefix_tags + verb + affix_tags
-        result = expensive.strict_generator.lookup(text)
-        if result:
-            results.append(result)
-    print(results)
-
-    for r in results:
+    for result in inflected_results:
         # todo: test
 
         exactly_matched_wordforms = Wordform.objects.filter(
-            text=r[0]
+            text=result[0]
         )
 
         if exactly_matched_wordforms.exists():
@@ -123,3 +103,32 @@ def search(
                 )
 
     return search_run
+
+
+def generate_inflected_results(tags, search_run):
+    """
+    Of the results, sort out the verbs, then inflect them
+    using the new set of tags.
+    Return the inflected verbs.
+    """
+
+    verbs = []
+    for r in search_run.sorted_results():
+        if r["lemma_wordform"]["pos"] == "V":
+            verbs.append(r["wordform_text"])
+
+    prefix_tags = ''.join(t for t in tags if t.startswith('+'))
+
+    affix_tags = ""
+    for tag in tags:
+        if tag.startswith('+'):
+            affix_tags += tag
+
+    results = []
+    for verb in verbs:
+        text = prefix_tags + verb + affix_tags
+        result = expensive.strict_generator.lookup(text)
+        if result:
+            results.append(result)
+
+    return results
