@@ -15,6 +15,12 @@ from pytest_django.asserts import assertInHTML
 
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 
+# The test wants an ID that never exists. Never say never; I have no idea if we'll
+# have over two billion wordforms, however, we'll most likely run into problems once
+# we exceed certain storage requirements. For example, the maximum for a signed,
+# 32-bit int is a possible boundary condition that may cause issues elsewhere:
+ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
+
 
 class TestLemmaDetailsInternal4xx:
     @pytest.mark.django_db
@@ -25,11 +31,7 @@ class TestLemmaDetailsInternal4xx:
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
             ["123", "LINUST", HttpResponseBadRequest.status_code],
-            [
-                "99999999",
-                "FULL",
-                HttpResponseNotFound.status_code,
-            ],  # we'll never have as many as 99999999 entries in the database so it's a non-existent id
+            [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
     def test_paradigm_details_internal_400_404(
