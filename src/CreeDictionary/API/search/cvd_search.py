@@ -66,7 +66,7 @@ def do_cvd_search(search_run: SearchRun):
         wordforms_for_query = wordforms_by_text.get(wordform_query["text"], None)
         if wordforms_for_query is None:
             logger.warning(
-                f"Wordform {wordform_query['text']} not found in CVD; mismatch between definition vector model file and defintions in database?"
+                f"Wordform {wordform_query['text']} not found in CVD; mismatch between definition vector model file and definitions in database?"
             )
         else:
             for wf in wordforms_for_query:

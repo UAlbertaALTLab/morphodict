@@ -25,8 +25,6 @@ DEFAULT_RUNSERVER_PORT = 8009
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-ROOT_URLCONF = "srseng.site.urls"
-
 INSTALLED_APPS.insert(0, "srseng.app")
 
 INSTALLED_APPS += ["srseng.dictimport"]

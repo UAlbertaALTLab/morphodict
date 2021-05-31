@@ -93,6 +93,8 @@ MIDDLEWARE = [
     "morphodict.site.securemiddleware.set_secure_headers",
 ]
 
+ROOT_URLCONF = "CreeDictionary.CreeDictionary.urls"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",

@@ -25,8 +25,6 @@ DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-ROOT_URLCONF = "cwdeng.site.urls"
-
 INSTALLED_APPS += ["cwdeng.dictimport"]
 
 # Morphodict configuration

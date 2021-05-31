@@ -29,8 +29,6 @@ INSTALLED_APPS.insert(0, "arpeng.app")
 
 INSTALLED_APPS += ["arpeng.dictimport"]
 
-ROOT_URLCONF = "arpeng.site.urls"
-
 # Morphodict configuration
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.

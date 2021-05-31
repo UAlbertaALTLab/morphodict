@@ -25,8 +25,6 @@ ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 INSTALLED_APPS.insert(0, "crkeng.app")
 
-ROOT_URLCONF = "crkeng.site.urls"
-
 WSGI_APPLICATION = "crkeng.site.wsgi.application"
 
 # Morphodict configuration
