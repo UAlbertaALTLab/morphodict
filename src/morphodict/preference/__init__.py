@@ -5,11 +5,28 @@ Allows for generic site-wide preferences stored in cookies.
 """
 from __future__ import annotations
 
-from typing import Type
+from functools import cache
+from typing import Type, Protocol
 
 from django.http import HttpRequest
 from django.template import Context
 from django.utils.text import camel_case_to_spaces
+
+
+@cache
+def _registry():
+    """
+    Contains all Preference blueprints
+    """
+    return {}
+
+
+class PreferenceDeclaration(Protocol):
+    """
+    What is required for a preference.
+    """
+    choices: dict[str, str]
+    default: str
 
 
 class PreferenceConfigurationError(Exception):
@@ -26,13 +43,26 @@ def _is_direct_subclass_of_base_preference(cls: type) -> bool:
     return cls.mro() == [cls, *BasePreference.mro()]
 
 
+def register_preference(declaration, name=None):
+    """
+    Add a preference to the currently running site.
+    """
+    if name is None:
+        name = synthesize_name_from_class_name(declaration)
+    _registry()[name] = declaration
+
+
+def synthesize_name_from_class_name(cls: type):
+    return camel_case_to_spaces(cls.__name__).replace(" ", "_")
+
+
 class BasePreference:
     """
     Keeps track of all Preference subclasses.
     """
 
     _has_seen_direct_subclass = False
-    _subclasses: dict[str, Type[Preference]] = {}
+    _subclasses: dict[str, Type[Preference]] = _registry()
 
     def __init_subclass__(cls, **kwargs):
         if _is_direct_subclass_of_base_preference(cls):
@@ -41,8 +71,7 @@ class BasePreference:
             BasePreference._has_seen_direct_subclass = True
             assert len(BasePreference._subclasses) == 0
         else:
-            name = camel_case_to_spaces(cls.__name__).replace(" ", "_")
-            BasePreference._subclasses[name] = cls
+            register_preference(cls)
 
         super().__init_subclass__(**kwargs)
 
@@ -86,8 +115,9 @@ class Preference(BasePreference):
         return request.COOKIES.get(cls.cookie_name, cls.default)
 
 
+
 def all_preferences():
     """
     Return the current preferences registered in this app.
     """
-    return BasePreference._subclasses.items()
+    return _registry().items()
