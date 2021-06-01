@@ -12,32 +12,16 @@
       <summary class="dropdown__label">Show plain English labels</summary>
       <div class="menu dropdown__menu">
         <ul class="unbullet">
-          <li class="menu-choice menu-choice--selected">
-            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
-              <button type="submit" class="unbutton fill-width"
-                      name="paradigmlabel" value="english">
-                <span class="menu-choice__label">Plain English labels</span>
-              {% csrf_token %}
-              </button>
-            </form>
-      <!-- -->
+          {% for value, label in preferences.paradigm_label.choices_with_labels %}
           <li class="menu-choice">
             <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
               <button type="submit" class="unbutton fill-width"
-                      name="paradigmlabel" value="nehiyawewin">
-                <span class="menu-choice__label">nêhiyawêwin labels</span>
+                      name="paradigmlabel" value="{{ value }}">
+                <span class="menu-choice__label">{{ label|capfirst }}</span>
               {% csrf_token %}
               </button>
             </form>
-      <!-- -->
-          <li class="menu-choice">
-            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
-              <button type="submit" class="unbutton fill-width"
-                      name="paradigmlabel" value="linguistic">
-                <span class="menu-choice__label">Linguistic labels</span>
-              </button>
-              {% csrf_token %}
-            </form>
+           {% endfor %}
         </ul>
       </div>
     </details>
