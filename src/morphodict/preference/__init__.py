@@ -3,10 +3,13 @@ Preferences framework.
 
 Allows for generic site-wide preferences stored in cookies.
 """
+from __future__ import annotations
+
 from http import HTTPStatus
 from typing import Type
 
 from django.http import HttpResponse
+from django.utils.text import camel_case_to_spaces
 from django.views import View
 
 
@@ -26,6 +29,22 @@ class Preference:
 
     # Which one of the choices is the default
     default: str
+
+    ### Internal ###
+
+    _subclasses: dict[str, Type[Preference]] = {}
+
+    def __init_subclass__(cls, **kwargs):
+        name = camel_case_to_spaces(cls.__name__).replace(" ", "_")
+        Preference._subclasses[name] = cls
+        super().__init_subclass__(**kwargs)
+
+
+def all_preferences():
+    """
+    Return the current preferences registered in this app.
+    """
+    return Preference._subclasses.items()
 
 
 class ChangePreferenceView(View):
