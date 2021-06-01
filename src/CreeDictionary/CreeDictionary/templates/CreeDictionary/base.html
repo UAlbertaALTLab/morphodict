@@ -30,6 +30,11 @@
 
 </head>
 <body class="app">
+{% if debug and LANGUAGE_PAIR != "crkeng" %}
+<div style="background-color: purple">
+    <span style="color: white; font-weight: bold;">Language pair: {{ LANGUAGE_PAIR }}</span>
+</div>
+{% endif %}
 <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
 {% csrf_token %}
 {% include './svg-sprites.html' %}
