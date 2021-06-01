@@ -1,9 +1,20 @@
 {% spaceless %}
 
   {% comment %}
-    paradigm label switcher
+    The paradigm label switcher.
 
-    TODO: describe what this is
+    Parameters:
+      <none>
+
+    Example:
+      [ Show plain English labels ↓ ]
+      | Plain English labels        |
+      | Linguistic labels           |
+      | nêhiyawêwin labels          |
+      `-----------------------------'
+
+    Assumptions:
+      - `preferences` can be used to access the `paradigm_label` preference
 
   {% endcomment %}
 
@@ -13,7 +24,7 @@
       <div class="menu dropdown__menu">
         <ul class="unbullet">
           {% for value, label in preferences.paradigm_label.choices_with_labels %}
-          <li class="menu-choice {% if value == preferences.paradigm_label.current_choice %} menu-choice--selected{% endif %}">
+          <li class="menu-choice{% if value == preferences.paradigm_label.current_choice %} menu-choice--selected{% endif %}">
             <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
               <button type="submit" class="unbutton fill-width"
                       name="paradigmlabel" value="{{ value }}">
