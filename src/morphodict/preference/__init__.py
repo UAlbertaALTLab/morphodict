@@ -5,8 +5,9 @@ Allows for generic site-wide preferences stored in cookies.
 """
 from __future__ import annotations
 
+from dataclasses import dataclass
 from functools import cache
-from typing import Protocol, Type
+from typing import Protocol
 
 from django.http import HttpRequest
 from django.template import Context
@@ -37,13 +38,6 @@ class PreferenceConfigurationError(Exception):
     """
 
 
-def _is_direct_subclass_of_base_preference(cls: type) -> bool:
-    """
-    Returns True when this is a DIRECT subclass of BasePreference.
-    """
-    return cls.mro() == [cls, *BasePreference.mro()]
-
-
 def register_preference(declaration: PreferenceDeclaration, name=None):
     """
     Add a preference to the currently running site.
@@ -51,7 +45,10 @@ def register_preference(declaration: PreferenceDeclaration, name=None):
     if name is None:
         if not isinstance(declaration, type):
             raise NotImplementedError
-        name = synthesize_name_from_class_name(declaration)
+        if hasattr(declaration, "name"):
+            name = declaration.name
+        else:
+            name = synthesize_name_from_class_name(declaration)
 
     # Validate the preference
     choices = declaration.choices
@@ -61,39 +58,31 @@ def register_preference(declaration: PreferenceDeclaration, name=None):
             f"Default does not exist in preference's choices: " f"{default=} {choices=}"
         )
 
-    _registry()[name] = declaration
+    if hasattr(declaration, "cookie_name"):
+        cookie_name = declaration.cookie_name
+    else:
+        cookie_name = name
+
+    pref = Preference(name=name, choices=choices, default=default,
+                       cookie_name=cookie_name)
+
+    _registry()[name] = pref
+
+    return  pref
 
 
 def synthesize_name_from_class_name(cls: type):
     return camel_case_to_spaces(cls.__name__).replace(" ", "_")
 
 
-class BasePreference:
-    """
-    Keeps track of all Preference subclasses.
-    """
-
-    _has_seen_direct_subclass = False
-    _subclasses: dict[str, Type[Preference]] = _registry()
-
-    def __init_subclass__(cls, **kwargs):
-        if _is_direct_subclass_of_base_preference(cls):
-            # cls is the Preference class
-            assert not BasePreference._has_seen_direct_subclass
-            BasePreference._has_seen_direct_subclass = True
-            assert len(BasePreference._subclasses) == 0
-        else:
-            register_preference(cls)
-
-        super().__init_subclass__(**kwargs)
-
-
-class Preference(BasePreference):
+@dataclass
+class Preference:
     """
     A user preference, usually for the display of content on the website.
     """
 
-    cookie_name: str
+    # Name used internally
+    name: str
 
     # A mapping of all possible choices for this preference,
     # to user-readable labels.
@@ -105,16 +94,17 @@ class Preference(BasePreference):
     # Which one of the choices is the default
     default: str
 
-    @classmethod
-    def current_value_from_template_context(cls, context: Context) -> str:
-        if hasattr(context, "request"):
-            return cls.current_value_from_request(context.request)
-        else:
-            return cls.default
+    # Name used for the cookie
+    cookie_name: str
 
-    @classmethod
-    def current_value_from_request(cls, request: HttpRequest) -> str:
-        return request.COOKIES.get(cls.cookie_name, cls.default)
+    def current_value_from_template_context(self, context: Context) -> str:
+        if hasattr(context, "request"):
+            return self.current_value_from_request(context.request)
+        else:
+            return self.default
+
+    def current_value_from_request(self, request: HttpRequest) -> str:
+        return request.COOKIES.get(self.cookie_name, self.default)
 
 
 def all_preferences():

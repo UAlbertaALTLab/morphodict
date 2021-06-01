@@ -3,7 +3,7 @@ from django.http import HttpRequest
 from django.template import RequestContext, Template
 from pytest_django.asserts import assertHTMLEqual
 
-from morphodict.preference import Preference
+from morphodict.preference import register_preference
 
 
 @pytest.fixture(autouse=True)
@@ -20,7 +20,8 @@ def ensure_context_processors_are_enabled(settings):
 
 
 def test_can_access_choice_and_labels_in_template():
-    class CheesePizza(Preference):
+    @register_preference
+    class CheesePizza:
         choices = {
             "mozza": "mozzarella",
             "ricotta": "Ricotta",
@@ -56,7 +57,8 @@ def test_can_access_choice_and_labels_in_template():
     "choice,label", [(None, "cats"), ("cat", "cats"), ("dog", "dogs")]
 )
 def test_choice_and_label_from_request_context(choice, label):
-    class Pets(Preference):
+    @register_preference
+    class Pets:
         cookie_name = "pet"
         choices = {"cat": "cats", "dog": "dogs"}
         default = "cat"  # Debatable

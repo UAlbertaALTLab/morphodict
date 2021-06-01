@@ -2,10 +2,11 @@
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
 
-from morphodict.preference import Preference
+from morphodict.preference import register_preference
 
 
-class DisplayMode(Preference):
+@register_preference
+class DisplayMode:
     """
     As of 2021-04-14, "mode" is a coarse mechanism for affecting the display; there are
     plans for more fine-grained control over the display of, e.g., search results.
@@ -21,7 +22,8 @@ class DisplayMode(Preference):
     default = "community"
 
 
-class ParadigmLabel(Preference):
+@register_preference
+class ParadigmLabel:
     """
     What style labels should be used in the paradigm?
     """
