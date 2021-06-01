@@ -20,8 +20,8 @@
 
   <div class="menu-bar menu-bar--align-end">
     <details class="menu-bar__item dropdown dropdown--align-end close-on-click-away">
-      <summary class="dropdown__label">Show {{ preferences.paradigm_label.current_label }}</summary>
-      <div class="menu dropdown__menu">
+      <summary class="dropdown__label" data-cy="open-paradigm-label-switcher">Show {{ preferences.paradigm_label.current_label }}</summary>
+      <div class="menu dropdown__menu" data-cy="paradigm-label-options">
         <ul class="unbullet">
           {% for value, label in preferences.paradigm_label.choices_with_labels %}
           <li class="menu-choice{% if value == preferences.paradigm_label.current_choice %} menu-choice--selected{% endif %}">
