@@ -6,7 +6,7 @@ Allows for generic site-wide preferences stored in cookies.
 from __future__ import annotations
 
 from functools import cache
-from typing import Type, Protocol
+from typing import Protocol, Type
 
 from django.http import HttpRequest
 from django.template import Context
@@ -25,6 +25,7 @@ class PreferenceDeclaration(Protocol):
     """
     What is required for a preference.
     """
+
     choices: dict[str, str]
     default: str
 
@@ -43,12 +44,23 @@ def _is_direct_subclass_of_base_preference(cls: type) -> bool:
     return cls.mro() == [cls, *BasePreference.mro()]
 
 
-def register_preference(declaration, name=None):
+def register_preference(declaration: PreferenceDeclaration, name=None):
     """
     Add a preference to the currently running site.
     """
     if name is None:
+        if not isinstance(declaration, type):
+            raise NotImplementedError
         name = synthesize_name_from_class_name(declaration)
+
+    # Validate the preference
+    choices = declaration.choices
+    default = declaration.default
+    if default not in choices:
+        raise PreferenceConfigurationError(
+            f"Default does not exist in preference's choices: " f"{default=} {choices=}"
+        )
+
     _registry()[name] = declaration
 
 
@@ -93,16 +105,6 @@ class Preference(BasePreference):
     # Which one of the choices is the default
     default: str
 
-    def __init_subclass__(cls, **kwargs):
-        choices = cls.choices
-        default = cls.default
-        if default not in choices:
-            raise PreferenceConfigurationError(
-                f"Default does not exist in preference's choices: "
-                f"{default=} {choices=}"
-            )
-        super().__init_subclass__(**kwargs)
-
     @classmethod
     def current_value_from_template_context(cls, context: Context) -> str:
         if hasattr(context, "request"):
@@ -113,7 +115,6 @@ class Preference(BasePreference):
     @classmethod
     def current_value_from_request(cls, request: HttpRequest) -> str:
         return request.COOKIES.get(cls.cookie_name, cls.default)
-
 
 
 def all_preferences():
