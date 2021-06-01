@@ -22,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
-from morphodict.preference import ChangePreferenceView
+from morphodict.preference.views import ChangePreferenceView
 
 from .utils import url_for_query
 
