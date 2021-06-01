@@ -8,7 +8,8 @@ from __future__ import annotations
 from http import HTTPStatus
 from typing import Type
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpRequest
+from django.template import Context
 from django.utils.text import camel_case_to_spaces
 from django.views import View
 
@@ -40,6 +41,17 @@ class BasePreference:
             BasePreference._subclasses[name] = cls
 
         super().__init_subclass__(**kwargs)
+
+    @classmethod
+    def current_value_from_template_context(cls: Type[Preference], context: Context) -> str:
+        if hasattr(context, "request"):
+            return cls.current_value_from_request(context.request)
+        else:
+            return cls.default
+
+    @classmethod
+    def current_value_from_request(cls: Type[Preference], request: HttpRequest) -> str:
+        return request.COOKIES.get(cls.cookie_name, cls.default)
 
 
 class Preference(BasePreference):
