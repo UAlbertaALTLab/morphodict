@@ -81,7 +81,7 @@ def entry_details(request, lemma_text: str):
         paradigm_size=paradigm_size,
         paradigm=paradigm,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def index(request):  # pragma: no cover
@@ -118,7 +118,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def search_results(request, query_string: str):  # pragma: no cover

@@ -112,7 +112,7 @@ def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: st
         assertInHTML(wordform, body)
 
 
-@pytest.mark.skip(reason="Django does not like this test case :(")
+@pytest.mark.django_db
 def test_paradigm_from_full_page_and_api(client: Client):
     """
     The paradigm returned from the full details page and the API endpoint should
