@@ -21,21 +21,27 @@ class PreferenceConfigurationError(Exception):
     """
 
 
+def _is_direct_subclass_of_base_preference(cls: type) -> bool:
+    """
+    Returns True when this is a DIRECT subclass of BasePreference.
+    """
+    return cls.mro() == [cls, *BasePreference.mro()]
+
+
 class BasePreference:
     """
     Keeps track of all Preference subclasses.
     """
 
-    # This is just here so that we can detect when Preference has been subclassed
-    # from BasePreference.
-    _base_subclass = None
+    _has_seen_direct_subclass = False
     _subclasses: dict[str, Type[Preference]] = {}
 
     def __init_subclass__(cls, **kwargs):
-        if BasePreference._base_subclass is None:
-            BasePreference._base_subclass = cls
+        if _is_direct_subclass_of_base_preference(cls):
+            # cls is the Preference class
+            assert not BasePreference._has_seen_direct_subclass
+            BasePreference._has_seen_direct_subclass = True
             assert len(BasePreference._subclasses) == 0
-            assert cls.mro()[:2] == [cls, BasePreference]
         else:
             name = camel_case_to_spaces(cls.__name__).replace(" ", "_")
             BasePreference._subclasses[name] = cls
