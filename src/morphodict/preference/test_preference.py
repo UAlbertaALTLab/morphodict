@@ -1,12 +1,13 @@
 import pytest
 
-from morphodict.preference import Preference, all_preferences
+from morphodict.preference import Preference, all_preferences, \
+    PreferenceConfigurationError
 
 
 def test_create_preference_with_incorrect_default():
     num_prefs_before = len(all_preferences())
 
-    with pytest.raises(Exception):
+    with pytest.raises(PreferenceConfigurationError):
         class PreferenceWithBadDefault(Preference):
             choices = {
                 "coffee": "Coffee",

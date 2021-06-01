@@ -13,6 +13,13 @@ from django.utils.text import camel_case_to_spaces
 from django.views import View
 
 
+class PreferenceConfigurationError(Exception):
+    """
+    Raised when a preference is malconfigured.
+    Client code should probably NOT catch this.
+    """
+
+
 class BasePreference:
     """
     Keeps track of all Preference subclasses.
@@ -56,8 +63,11 @@ class Preference(BasePreference):
         choices = cls.choices
         default = cls.default
         if default not in choices:
-            raise Exception(f"Could not find default in choices: {default=} {choices=}")
-        super().__init_subclass__(cls, **kwargs)
+            raise PreferenceConfigurationError(
+                f"Default does not exist in preference's choices: " 
+                f"{default=} {choices=}"
+            )
+        super().__init_subclass__(**kwargs)
 
 
 def all_preferences():
