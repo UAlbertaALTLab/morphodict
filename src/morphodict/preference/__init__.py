@@ -52,6 +52,13 @@ class Preference(BasePreference):
     # Which one of the choices is the default
     default: str
 
+    def __init_subclass__(cls, **kwargs):
+        choices = cls.choices
+        default = cls.default
+        if default not in choices:
+            raise Exception(f"Could not find default in choices: {default=} {choices=}")
+        super().__init_subclass__(cls, **kwargs)
+
 
 def all_preferences():
     """
