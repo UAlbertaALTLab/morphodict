@@ -1,34 +1,33 @@
 from __future__ import annotations
+
 from typing import Type
 
 from django.http import HttpRequest
 
-from morphodict.preference import all_preferences, Preference
+from morphodict.preference import Preference, all_preferences
 
 
 def preferences(request):
     """
-    Add this to the settings.py CONTEXT_PROCESSORS to be able to access preferences
-    in templates.
+    If this context processor is enabled, every `RequestContext` will contain this
+    variable:
 
-    Usage:
+     - `preferences`, which allows you to access all preferences
 
-        # settings.py
-        CONTEXT_PROCESSORS = [
-            "morphodict.preference.context_processors.preferences"
-        ]
+    In the following examples, replace <preference> with the name of the desired
+    preference in snake_case.
 
-        # app/preferences.py
-        from morphodict.preference import Preference
+    Iterate over every choice with its label:
 
-        class MyPreference(Preference):
-            choices = ...
-            default = ...
+        {% for choice, label in preferences.<preference>.choices_with_labels }}
 
-        # my-template.py
-        {% for choice, label in preferences.my_preference.choices_with_labels %}
-            <option value="{{ choice }}">{{ label }}</option>
-        {% endfor %}
+    Get the request's current choice (internal value) for a preference:
+
+        {{ preferences.<preference>.current_choice }}
+
+    Get the request's current choice (user-facing) label for a preference:
+
+        {{ preference.<preference>.current_label }}
     """
     return {"preferences": _PreferenceContextProcessor(request)}
 
@@ -52,18 +51,31 @@ class _PreferenceInfo:
     """
     Exposes certain info about a Preference to the template context.
     """
+
     def __init__(self, preference: Type[Preference], request: HttpRequest):
         self._preference = preference
         self._request = request
 
     @property
     def choices_with_labels(self):
+        """
+        Returns an iterable of (choice, label) pairs for the current preference.
+        The pairs are returned in declaration order in the original Preference subclass.
+        """
         return self._preference.choices.items()
 
     @property
     def current_choice(self) -> str:
+        """
+        Returns the current choice (internal value) for a preference, given the
+        current request.
+        """
         return self._preference.current_value_from_request(self._request)
 
     @property
     def current_label(self) -> str:
+        """
+        Returns the current label (user-facing) for a preference, given the
+        current request.
+        """
         return self._preference.choices[self.current_choice]
