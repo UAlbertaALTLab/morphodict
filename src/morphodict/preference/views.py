@@ -1,5 +1,4 @@
 from http import HTTPStatus
-from typing import Type
 
 from django.http import HttpResponse
 from django.views import View
@@ -38,7 +37,7 @@ class ChangePreferenceView(View):
     See also: https://docs.djangoproject.com/en/3.2/topics/class-based-views/
     """
 
-    preference: Type[Preference]
+    preference: Preference
 
     @property
     def cookie_name(self):

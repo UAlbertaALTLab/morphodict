@@ -7,72 +7,18 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cache
-from typing import Protocol
+from typing import Protocol, runtime_checkable
 
 from django.http import HttpRequest
 from django.template import Context
 from django.utils.text import camel_case_to_spaces
 
 
-@cache
-def _registry():
-    """
-    Contains all Preference blueprints
-    """
-    return {}
-
-
-class PreferenceDeclaration(Protocol):
-    """
-    What is required for a preference.
-    """
-
-    choices: dict[str, str]
-    default: str
-
-
 class PreferenceConfigurationError(Exception):
     """
-    Raised when a preference is malconfigured.
+    Raised when a preference is not configured properly.
     Client code should probably NOT catch this.
     """
-
-
-def register_preference(declaration: PreferenceDeclaration, name=None):
-    """
-    Add a preference to the currently running site.
-    """
-    if name is None:
-        if not isinstance(declaration, type):
-            raise NotImplementedError
-        if hasattr(declaration, "name"):
-            name = declaration.name
-        else:
-            name = synthesize_name_from_class_name(declaration)
-
-    # Validate the preference
-    choices = declaration.choices
-    default = declaration.default
-    if default not in choices:
-        raise PreferenceConfigurationError(
-            f"Default does not exist in preference's choices: " f"{default=} {choices=}"
-        )
-
-    if hasattr(declaration, "cookie_name"):
-        cookie_name = declaration.cookie_name
-    else:
-        cookie_name = name
-
-    pref = Preference(name=name, choices=choices, default=default,
-                       cookie_name=cookie_name)
-
-    _registry()[name] = pref
-
-    return  pref
-
-
-def synthesize_name_from_class_name(cls: type):
-    return camel_case_to_spaces(cls.__name__).replace(" ", "_")
 
 
 @dataclass
@@ -81,7 +27,7 @@ class Preference:
     A user preference, usually for the display of content on the website.
     """
 
-    # Name used internally
+    # internal name
     name: str
 
     # A mapping of all possible choices for this preference,
@@ -109,6 +55,70 @@ class Preference:
 
 def all_preferences():
     """
-    Return the current preferences registered in this app.
+    Return all preferences registered in this site.
     """
     return _registry().items()
+
+
+def register_preference(declaration) -> Preference:
+    """
+    Keep track of a preference in the currently running site.
+
+    Usage:
+
+        @register_preference
+        class MyPreference:
+            choices = ...
+            default = ...
+
+            name = "my_preference"  # optional; inferred from class name
+            cookie_name = "mypref"  # optional: inferred from name
+    """
+
+    if isinstance(declaration, type):
+        name = _snake_case_name_from_class(declaration)
+    else:
+        raise NotImplementedError
+
+    # Validate the preference
+    try:
+        choices = dict(declaration.choices)  # type: ignore
+    except AttributeError:
+        raise PreferenceConfigurationError(
+            "declaration must declare a dictionary of choices"
+        )
+
+    try:
+        default = declaration.default  # type: ignore
+    except AttributeError:
+        raise PreferenceConfigurationError("Preference MUST declare a default")
+
+    if default not in choices:
+        raise PreferenceConfigurationError(
+            f"Default does not exist in preference's choices: " f"{default=} {choices=}"
+        )
+
+    try:
+        cookie_name = declaration.cookie_name  # type: ignore
+    except AttributeError:
+        cookie_name = name
+
+    pref = Preference(
+        name=name, choices=choices, default=default, cookie_name=cookie_name
+    )
+
+    _registry()[name] = pref
+
+    return pref
+
+
+@cache
+def _registry() -> dict[str, Preference]:
+    """
+    Contains all Preference blueprints
+    """
+    return {}
+
+
+def _snake_case_name_from_class(cls: type):
+    return camel_case_to_spaces(cls.__name__).replace(" ", "_")

@@ -52,7 +52,7 @@ class _PreferenceInfo:
     Exposes certain info about a Preference to the template context.
     """
 
-    def __init__(self, preference: Type[Preference], request: HttpRequest):
+    def __init__(self, preference: Preference, request: HttpRequest):
         self._preference = preference
         self._request = request
 

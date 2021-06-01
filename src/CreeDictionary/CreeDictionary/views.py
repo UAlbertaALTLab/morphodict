@@ -296,7 +296,7 @@ class ChangeDisplayMode(ChangePreferenceView):
     Sets the mode= cookie, which affects how search results are rendered.
     """
 
-    preference = DisplayMode
+    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
 
 
 class ChangeParadigmLabelPreference(ChangePreferenceView):
@@ -305,7 +305,7 @@ class ChangeParadigmLabelPreference(ChangePreferenceView):
     PARADIGMS!
     """
 
-    preference = ParadigmLabel
+    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions
