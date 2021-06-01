@@ -7,7 +7,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cache
-from typing import Protocol, runtime_checkable
 
 from django.http import HttpRequest
 from django.template import Context
@@ -27,7 +26,7 @@ class Preference:
     A user preference, usually for the display of content on the website.
     """
 
-    # internal name
+    # camel case named, used within the code
     name: str
 
     # A mapping of all possible choices for this preference,
@@ -68,8 +67,8 @@ def register_preference(declaration) -> Preference:
 
         @register_preference
         class MyPreference:
-            choices = ...
-            default = ...
+            choices = {"pref1": "Preference 1", "pref2", "Preference two"}
+            default = "pref1"
 
             name = "my_preference"  # optional; inferred from class name
             cookie_name = "mypref"  # optional: inferred from name
@@ -115,7 +114,7 @@ def register_preference(declaration) -> Preference:
 @cache
 def _registry() -> dict[str, Preference]:
     """
-    Contains all Preference blueprints
+    Contains all registered preferences.
     """
     return {}
 

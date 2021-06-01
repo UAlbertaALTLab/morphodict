@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Type
-
 from django.http import HttpRequest
 
 from morphodict.preference import Preference, all_preferences
