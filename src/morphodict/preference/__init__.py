@@ -13,7 +13,29 @@ from django.utils.text import camel_case_to_spaces
 from django.views import View
 
 
-class Preference:
+class BasePreference:
+    """
+    Keeps track of all Preference subclasses.
+    """
+
+    # This is just here so that we can detect when Preference has been subclassed
+    # from BasePreference.
+    _base_subclass = None
+    _subclasses: dict[str, Type[Preference]] = {}
+
+    def __init_subclass__(cls, **kwargs):
+        if BasePreference._base_subclass is None:
+            BasePreference._base_subclass = cls
+            assert len(BasePreference._subclasses) == 0
+            assert cls.mro()[:2] == [cls, BasePreference]
+        else:
+            name = camel_case_to_spaces(cls.__name__).replace(" ", "_")
+            BasePreference._subclasses[name] = cls
+
+        super().__init_subclass__(**kwargs)
+
+
+class Preference(BasePreference):
     """
     A user preference, usually for the display of content on the website.
     """
@@ -30,21 +52,12 @@ class Preference:
     # Which one of the choices is the default
     default: str
 
-    ### Internal ###
-
-    _subclasses: dict[str, Type[Preference]] = {}
-
-    def __init_subclass__(cls, **kwargs):
-        name = camel_case_to_spaces(cls.__name__).replace(" ", "_")
-        Preference._subclasses[name] = cls
-        super().__init_subclass__(**kwargs)
-
 
 def all_preferences():
     """
     Return the current preferences registered in this app.
     """
-    return Preference._subclasses.items()
+    return BasePreference._subclasses.items()
 
 
 class ChangePreferenceView(View):
