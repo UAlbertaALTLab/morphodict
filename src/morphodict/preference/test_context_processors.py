@@ -50,3 +50,28 @@ def test_can_access_choice_and_labels_in_template():
         <option value="none">No Cheese</option>
     """,
     )
+
+
+@pytest.mark.parametrize(
+    "choice,label", [(None, "cats"), ("cat", "cats"), ("dog", "dogs")]
+)
+def test_choice_and_label_from_request_context(choice, label):
+    class Pets(Preference):
+        cookie_name = "pet"
+        choices = {"cat": "cats", "dog": "dogs"}
+        default = "cat"  # Debatable
+
+    assert choice is None or choice in Pets.choices
+
+    request = HttpRequest()
+    if choice is not None:
+        request.COOKIES[Pets.cookie_name] = choice
+    context_that_likes_dogs = RequestContext(request, {})
+    template = Template(
+        """
+        I like {{ preferences.pets.current_label }}.
+    """
+    )
+    rendered = template.render(context_that_likes_dogs)
+
+    assert rendered.strip() == f"I like {label}."
