@@ -8,7 +8,7 @@ from __future__ import annotations
 from http import HTTPStatus
 from typing import Type
 
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest, HttpResponse
 from django.template import Context
 from django.utils.text import camel_case_to_spaces
 from django.views import View
@@ -42,17 +42,6 @@ class BasePreference:
 
         super().__init_subclass__(**kwargs)
 
-    @classmethod
-    def current_value_from_template_context(cls: Type[Preference], context: Context) -> str:
-        if hasattr(context, "request"):
-            return cls.current_value_from_request(context.request)
-        else:
-            return cls.default
-
-    @classmethod
-    def current_value_from_request(cls: Type[Preference], request: HttpRequest) -> str:
-        return request.COOKIES.get(cls.cookie_name, cls.default)
-
 
 class Preference(BasePreference):
     """
@@ -76,10 +65,21 @@ class Preference(BasePreference):
         default = cls.default
         if default not in choices:
             raise PreferenceConfigurationError(
-                f"Default does not exist in preference's choices: " 
+                f"Default does not exist in preference's choices: "
                 f"{default=} {choices=}"
             )
         super().__init_subclass__(**kwargs)
+
+    @classmethod
+    def current_value_from_template_context(cls, context: Context) -> str:
+        if hasattr(context, "request"):
+            return cls.current_value_from_request(context.request)
+        else:
+            return cls.default
+
+    @classmethod
+    def current_value_from_request(cls, request: HttpRequest) -> str:
+        return request.COOKIES.get(cls.cookie_name, cls.default)
 
 
 def all_preferences():
