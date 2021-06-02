@@ -63,8 +63,10 @@
     <section id="paradigm">
       {% if paradigm %}
         {% if user.is_authenticated %}
-          {# As of 2021-06-02, this feature is not ready for the general
-             public, so make it only visible to logged-in users #}
+          {% comment %}
+            As of 2021-06-02, this feature is not ready for the general
+            public, so make it only visible to logged-in users.
+          {% endcomment %}
           {% include './components/paradigm-label-switcher.html' %}
         {% endif %}
         {% if paradigm.uses_pane_based_layout %}
