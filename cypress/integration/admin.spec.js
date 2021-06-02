@@ -10,7 +10,7 @@ context('Admin interface', () => {
     // USE_TEST_DB=True, because the `cypress` user only gets created in the
     // test database.
     cy.visit('/admin')
-    cy.readCypressUserJSON()
+    cy.readCypressUserCredentials()
       .then(cypressUser => {
         cy.get('#id_username').type(cypressUser.username)
         cy.get('#id_password').type(cypressUser.password)

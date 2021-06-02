@@ -1,7 +1,7 @@
 const { join: joinPath } = require('path')
 
 // Why does this path traverse OUTSIDE of the cypress/ directory only to traverse back into it?
-const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'cypress', '.cypress-user.json')
+const CYPRESS_USER_JSON = joinPath(__dirname, '..', '.cypress-user.json')
 
 /**
  * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
@@ -81,14 +81,14 @@ Cypress.Commands.add('visitLemma', {prevSubject: false}, (lemmaText, queryParams
  *
  * Promises an object with {username, password} properties, i.e.,
  *
- *    cy.readCypressUserJSON()
+ *    cy.readCypressUserCredentials()
  *      .then(({username, password}) => {
  *        // use username and password
  *      })
  *
  */
-Cypress.Commands.add('readCypressUserJSON', () => {
-  cy.readFile(CYPRESS_USER_JSON)
+Cypress.Commands.add('readCypressUserCredentials', () => {
+  return cy.readFile(CYPRESS_USER_JSON)
 })
 
 
@@ -103,7 +103,7 @@ Cypress.Commands.add('login', () => {
     .should('have.attr', 'value')
     .as('csrfToken')
 
-  cy.readCypressUserJSON()
+  cy.readCypressUserCredentials()
     .then(({username, password}) => {
       cy.get('@csrfToken').then(function (token) {
         cy.request({
