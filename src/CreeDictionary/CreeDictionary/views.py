@@ -79,7 +79,7 @@ def entry_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=paradigm,
+        paradigm=paradigm,
     )
     return HttpResponse(render(request, "CreeDictionary/index.html", context))
 
@@ -188,9 +188,7 @@ def paradigm_internal(request):
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            # TODO: use the name "paradigm" in both templates
             "paradigm": paradigm,
-            "paradigm_tables": paradigm,
         },
     )
 

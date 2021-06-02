@@ -4,7 +4,7 @@
     The paradigm table, including the button at the bottom.
 
     Parameters:
-      paradigm_tables: List[List[Row]] (see paradigm.py)
+      paradigm: List[List[Row]] (see CreeDictionary/paradigm/filler.py)
       paradigm_size: utils.enums.ParadigmSize (TODO: use str value directly)
 
     Example:
@@ -30,7 +30,7 @@
     {# XXX: we should find a better way to contain all the data in the table :/ #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
-        {% for subtable in paradigm_tables %}
+        {% for subtable in paradigm %}
           <tbody>
             {% for row in subtable %}
               {% if row.is_title %}
