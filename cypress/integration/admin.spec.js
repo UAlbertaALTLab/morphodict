@@ -1,13 +1,5 @@
-const { join: joinPath } = require('path')
-
 const ADMIN_LOGIN_URL = '/admin/login/'
 const ADMIN_URL = '/admin/'
-
-const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'cypress', '.cypress-user.json')
-
-Cypress.Commands.add('readCypressUserJSON', () => {
-  cy.readFile(CYPRESS_USER_JSON)
-})
 
 Cypress.Commands.add('login', () => {
   cy.visit('/admin/login/')

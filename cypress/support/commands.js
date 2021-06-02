@@ -1,3 +1,8 @@
+const { join: joinPath } = require('path')
+
+// Why does this path traverse OUTSIDE of the cypress/ directory only to traverse back into it?
+const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'cypress', '.cypress-user.json')
+
 /**
  * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
  * /path/components/ in visit(). This way paths with non-ASCII stuff is
@@ -69,6 +74,21 @@ Cypress.Commands.add('visitLemma', {prevSubject: false}, (lemmaText, queryParams
       expect(loc.pathname, 'lemmaText and queryParams should be enough to disambiguate the lemma').to.eq(`/word/${encodeURIComponent(lemmaText)}/`)
     }
   )
+})
+
+/**
+ * Reads the .cypress-user.json file. This file should contains log-in credentials for an admin user.
+ *
+ * Promises an object with {username, password} properties, i.e.,
+ *
+ *    cy.readCypressUserJSON()
+ *      .then(({username, password}) => {
+ *        // use username and password
+ *      })
+ *
+ */
+Cypress.Commands.add('readCypressUserJSON', () => {
+  cy.readFile(CYPRESS_USER_JSON)
 })
 
 /**
