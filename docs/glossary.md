@@ -24,7 +24,7 @@ This is a glossary of terminology as used in the intelligent dictionary app.
 
   <dt id=base-form>base form</dt>
 
-  <dt id=bound>bound form</dt>
+  <dt id=bound>bound morpheme</dt>
 
   <dt id=citation-form>citation form</dt>
   <dd>
@@ -38,7 +38,7 @@ This is a glossary of terminology as used in the intelligent dictionary app.
   <dt id=entry>(dictionary) entry</dt>
   <!-- article, record -->
 
-  <dt id=free>free form</dt>
+  <dt id=free>free morpheme</dt>
 
   <dt id=functional-category>functional category</dt>
 
@@ -85,6 +85,10 @@ This is a glossary of terminology as used in the intelligent dictionary app.
       <li><b>English example:</b> The lemma for the wordforms <i>am</i>, <i>are</i>, <i>is</i>, <i>was</i>, <i>were</i> is conventionally <i>be</i>.</li>
       <li><b>Plains Cree example:</b> The lemma for the wordforms <i>nimîcin</i> <q>I eat</q>, <i>kimîcin</i> <q>you eat</q>, and <i>mîciw</i> <q>s/he eats</q> is <i>mîciw</i> <q>s/he eats</q>.</li>
     </ul>
+    <section>
+      <h2 style='font-size: 1em;'>References</h2>
+      <blockquote cite='Svensén. 2009. A handbook of lexicography: The theory and practice of dictionary-making'>The lemma functions as a representative of a linguistic sign; in a dictionary it represents the lexical item described in the individual dictionary entry. (Svensén <a href=#Svensen2009>2009</a>: 93)</blockquote>
+    </section>
     <p><b>see also:</b> <a href=#head>head</a></p>
   </dd>
 
