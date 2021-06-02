@@ -5,5 +5,9 @@
   "projectId": "8r2xra",
   "defaultCommandTimeout": 10000,
   "supportFile": "cypress/support/commands.js",
-  "pluginsFile": false
+  "pluginsFile": false,
+  "env": {
+    "admin_url": "/admin/",
+    "admin_login_url": "/admin/login/"
+  }
 }

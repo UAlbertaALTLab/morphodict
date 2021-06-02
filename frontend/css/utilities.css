@@ -59,6 +59,33 @@
   width: 100%;
 }
 
+/**
+ * .close-on-click-away
+ *
+ * Creates an area behind <details> pop-up that, when clicked/touched, will
+ * inadvertently toggle the menu away.
+ */
+
+.close-on-click-away[open] > summary::before {
+  content: " ";
+
+  /* Position: fills FULL AREA of the screen */
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  /* Display & Box model */
+  display: block;
+
+  /* Color */
+  background: transparent;
+
+  /* Other */
+  cursor: default;
+}
+
 
 /**
  * Don't use this class.

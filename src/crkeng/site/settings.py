@@ -23,7 +23,7 @@ PRODUCTION_HOST = "itwewina.altlab.app"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-ROOT_URLCONF = "crkeng.site.urls"
+INSTALLED_APPS.insert(0, "crkeng.app")
 
 WSGI_APPLICATION = "crkeng.site.wsgi.application"
 
@@ -31,6 +31,9 @@ WSGI_APPLICATION = "crkeng.site.wsgi.application"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
+
+MORPHODICT_SOURCE_LANGUAGE = "crk"
+MORPHODICT_TARGET_LANGUAGE = "eng"
 
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:

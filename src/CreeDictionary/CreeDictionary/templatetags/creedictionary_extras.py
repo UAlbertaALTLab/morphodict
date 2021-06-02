@@ -4,7 +4,7 @@ Template tags related to the Cree Dictionary specifically.
 from urllib.parse import quote
 
 from django import template
-from django.utils.html import format_html, escape
+from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
 from CreeDictionary.CreeDictionary.utils import url_for_query

@@ -1,0 +1,43 @@
+"""
+Django settings for {{ sssttt }}.
+
+For more information on this file, see
+https://docs.djangoproject.com/en/3.2/topics/settings/
+
+For the full list of settings and their values, see
+https://docs.djangoproject.com/en/3.2/ref/settings/
+"""
+
+from pathlib import Path
+
+from morphodict.site import base_dir_setup
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+base_dir_setup.set_base_dir(BASE_DIR)
+
+from morphodict.site.settings import *
+
+# Where this application should be deployed:
+PRODUCTION_HOST = "{{ sssttt }}.altlab.dev"
+
+ALLOWED_HOSTS.append(PRODUCTION_HOST)
+
+DEFAULT_RUNSERVER_PORT = {{ port }}
+
+INSTALLED_APPS.insert(0, "{{ sssttt }}.app")
+
+# Morphodict configuration
+
+# The ISO 639-1 code is used in the lang="" attributes in HTML.
+MORPHODICT_ISO_639_1_CODE = "{{ sss }}"
+
+MORPHODICT_SOURCE_LANGUAGE = "{{ sss }}"
+MORPHODICT_TARGET_LANGUAGE = "{{ ttt }}"
+
+MORPHODICT_ORTHOGRAPHY = {
+    "default": "Latn",
+    "available": {
+        "Latn": {"name": "Latin"},
+    },
+}

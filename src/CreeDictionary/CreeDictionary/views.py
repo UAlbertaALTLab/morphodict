@@ -1,32 +1,29 @@
 import logging
-from http import HTTPStatus
 from typing import Any, Dict, Literal, Union
 
+from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
+from django.shortcuts import redirect, render
+from django.views.decorators.http import require_GET
 
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
-from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
-from django.shortcuts import redirect, render
-from django.views import View
-from django.views.decorators.http import require_GET
-
-from CreeDictionary.phrase_translate.translate import (
-    eng_noun_entry_to_inflected_phrase_fst,
-    eng_verb_entry_to_inflected_phrase_fst,
-    eng_phrase_to_crk_features_fst,
-)
-from CreeDictionary.shared import expensive
-from CreeDictionary.utils import ParadigmSize
-
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
 from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
 from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
+from CreeDictionary.phrase_translate.translate import (
+    eng_noun_entry_to_inflected_phrase_fst,
+    eng_phrase_to_crk_features_fst,
+    eng_verb_entry_to_inflected_phrase_fst,
+)
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import ParadigmSize
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.preference.views import ChangePreferenceView
 
-from .display_options import DISPLAY_MODE_COOKIE, DISPLAY_MODES
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -40,7 +37,7 @@ logger = logging.getLogger(__name__)
 # it should be used on the view functions that are well covered by integration tests
 
 
-def lemma_details(request, lemma_text: str):
+def entry_details(request, lemma_text: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
     page if no head is found or multiple heads are found.
@@ -82,9 +79,9 @@ def lemma_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=paradigm,
+        paradigm=paradigm,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def index(request):  # pragma: no cover
@@ -121,7 +118,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def search_results(request, query_string: str):  # pragma: no cover
@@ -179,13 +176,19 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
+    paradigm = paradigm_for(lemma, paradigm_size)
+    if isinstance(paradigm, Paradigm):
+        template_name = "CreeDictionary/components/paradigm-with-panes.html"
+    else:
+        template_name = "CreeDictionary/components/paradigm.html"
+
     return render(
         request,
-        "CreeDictionary/components/paradigm.html",
+        template_name,
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
+            "paradigm": paradigm,
         },
     )
 
@@ -294,39 +297,21 @@ def google_site_verification(request):
     )
 
 
-class ChangeDisplayMode(View):
+class ChangeDisplayMode(ChangePreferenceView):
     """
     Sets the mode= cookie, which affects how search results are rendered.
-
-        > POST /change-mode HTTP/1.1
-        > Referer: /search?q=miciw
-        > Cookie: mode=community
-        >
-        > mode=linguistic
-
-        < HTTP/1.1 302 See Other
-        < Set-Cookie: mode=linguistic
-        < Location: /search?q=miciw
     """
 
-    def post(self, request) -> HttpResponse:
-        mode = request.POST.get(DISPLAY_MODE_COOKIE)
+    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
 
-        # Tried to set to an unknown display mode
-        if mode not in DISPLAY_MODES:
-            return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
-        if who_asked_us := request.headers.get("Referer"):
-            # Force the browser to refresh the page that issued this request.
-            response = HttpResponse(status=HTTPStatus.SEE_OTHER)
-            response.headers["Location"] = who_asked_us
-        else:
-            # We don't know where to redirect, so send no content.
-            # (also, this probably should never happen?)
-            response = HttpResponse(status=HTTPStatus.NO_CONTENT)
+class ChangeParadigmLabelPreference(ChangePreferenceView):
+    """
+    Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
+    PARADIGMS!
+    """
 
-        response.set_cookie(DISPLAY_MODE_COOKIE, mode)
-        return response
+    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions
@@ -374,8 +359,10 @@ def paradigm_for(
     """
     # TODO: make this use the new-style ParadigmManager exclusively
 
+    manager = default_paradigm_manager()
+
     if name := wordform.paradigm:
-        if static_paradigm := default_paradigm_manager().static_paradigm_for(name):
+        if static_paradigm := manager.static_paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
@@ -383,6 +370,19 @@ def paradigm_for(
             wordform,
         )
         # TODO: better return value for when a paradigm cannot be found
+        return []
+
+    # TODO: use new-style paradigms for other sizes in addition to FULL
+    # Requires:
+    #  - "basic" size paradigm layouts to be created
+    #  - paradigm manager must support multiple sizes
+    #  - relabelling must work to use linguistic layouts
+    if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
+        dynamic_paradigm = manager.dynamic_paradigm_for(
+            lemma=wordform.text, word_class=word_class.value
+        )
+        if dynamic_paradigm:
+            return dynamic_paradigm
         return []
 
     # try returning an old-style paradigm: may return []
