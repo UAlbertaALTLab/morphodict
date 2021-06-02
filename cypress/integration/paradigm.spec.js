@@ -147,11 +147,18 @@ describe('paradigms can be toggled by the show more/less button', () => {
 })
 
 // Can lift skip off this once admin can be tested.
-describe.skip('Paradigm labels', () => {
+describe('Paradigm labels', () => {
   let lemma = 'nipâw'
   let englishLabel = 'they'
   let nehiyawewinLabel = 'wiyanaw'
   let linguisticLabel = '3s'
+
+  beforeEach(() => {
+    // As of 2021-06-02: paradigm label switching is only available to
+    // logged-in users. If you are reading this, and paradigm label switching
+    // is enabled for all users, please delete this entire beforeEach() block.
+    cy.login()
+  })
 
   it('should appear in plain English by default', () => {
     cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})

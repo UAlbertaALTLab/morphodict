@@ -1,47 +1,8 @@
-const { join: joinPath } = require('path')
-
-const ADMIN_LOGIN_URL = '/admin/login/'
-const ADMIN_URL = '/admin/'
-
-const CYPRESS_USER_JSON = joinPath(__dirname, '..', '..', 'cypress', '.cypress-user.json')
-
-Cypress.Commands.add('login', () => {
-  cy.visit('/admin/login/')
-  cy.get('[name=csrfmiddlewaretoken]')
-    .should('exist')
-    .should('have.attr', 'value')
-    .as('csrfToken')
-
-  cy.readFile(CYPRESS_USER_JSON)
-    .then(({username, password}) => {
-      cy.get('@csrfToken').then(function (token) {
-        cy.request({
-          method: 'POST',
-          url: ADMIN_LOGIN_URL,
-          form: true,
-          body: {
-            username,
-            password,
-            next: '/admin'
-          },
-          headers: {
-            'X-CSRFTOKEN': token,
-          },
-          followRedirect: false
-        }).then(response => {
-          expect(response.status).to.eql(302)
-          expect(response.headers).to.have.property('location')
-          expect(response.headers.location).to.not.contain('login')
-        })
-      })
-    })
-})
-
 context('Admin interface', () => {
   it('should redirect anonymous users to the login page', function() {
     cy.visit('/admin')
     cy.location().then(({pathname}) =>
-      expect(pathname).to.contain(ADMIN_LOGIN_URL))
+      expect(pathname).to.contain(Cypress.env('admin_login_url')))
   })
 
   it('should allow login', function() {
@@ -49,13 +10,13 @@ context('Admin interface', () => {
     // USE_TEST_DB=True, because the `cypress` user only gets created in the
     // test database.
     cy.visit('/admin')
-    cy.readFile(CYPRESS_USER_JSON)
+    cy.readCypressUserJSON()
       .then(cypressUser => {
         cy.get('#id_username').type(cypressUser.username)
         cy.get('#id_password').type(cypressUser.password)
         cy.get('.submit-row > input').click()
       })
-    cy.location('pathname').should('eq', ADMIN_URL)
+    cy.location('pathname').should('eq', Cypress.env('admin_url'))
   })
 
   it('should show auto-translations to logged-in users', function() {
@@ -95,6 +56,6 @@ context('Admin interface', () => {
   it('should not show the FST tool to non-admin users', function() {
     cy.visit('/admin/fst-tool')
     cy.location().then(({pathname}) =>
-      expect(pathname).to.contain(ADMIN_LOGIN_URL))
+      expect(pathname).to.contain(Cypress.env('admin_login_url')))
   })
 })
