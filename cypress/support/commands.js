@@ -81,13 +81,13 @@ Cypress.Commands.add('visitLemma', {prevSubject: false}, (lemmaText, queryParams
  *
  * Promises an object with {username, password} properties, i.e.,
  *
- *    cy.readCypressUserJSON()
+ *    cy.readCypressUserCredentials()
  *      .then(({username, password}) => {
  *        // use username and password
  *      })
  *
  */
-Cypress.Commands.add('readCypressUserJSON', () => {
+Cypress.Commands.add('readCypressUserCredentials', () => {
   return cy.readFile(CYPRESS_USER_JSON)
 })
 
@@ -103,7 +103,7 @@ Cypress.Commands.add('login', () => {
     .should('have.attr', 'value')
     .as('csrfToken')
 
-  cy.readCypressUserJSON()
+  cy.readCypressUserCredentials()
     .then(({username, password}) => {
       cy.get('@csrfToken').then(function (token) {
         cy.request({
