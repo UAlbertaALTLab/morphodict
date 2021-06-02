@@ -1,29 +1,3 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This is will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
-
 /**
  * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
  * /path/components/ in visit(). This way paths with non-ASCII stuff is
@@ -115,7 +89,7 @@ function findColHeader(tdElement){
   3. the cell does not have column header nor a title row
    */
 
-  
+
   let idx = tdElement.cellIndex
   let upperRow = tdElement.parentElement.previousElementSibling
   while (upperRow != null) {
@@ -204,7 +178,7 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
 
       for (const thElement of $thCollection) {
         // const startTH = Cypress.dom.unwrap($th)[0]
-  
+
         // iterate over all tds in the row
 
         let colLabelMatched = false
@@ -224,7 +198,7 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
 
           if (titleLabel){
             const titleRowTH = findTitleRow(tdElement)
-            
+
             if (titleRowTH && titleRowTH.innerText === titleLabel){
               titleLabelMatched = true
             }
