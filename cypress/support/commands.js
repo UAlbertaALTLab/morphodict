@@ -91,6 +91,44 @@ Cypress.Commands.add('readCypressUserJSON', () => {
   cy.readFile(CYPRESS_USER_JSON)
 })
 
+
+/**
+ * Logs in as the user with credentials in .cypress-user.json. This user should have admin
+ * privileges.
+ */
+Cypress.Commands.add('login', () => {
+  cy.visit(Cypress.env('admin_login_url'))
+  cy.get('[name=csrfmiddlewaretoken]')
+    .should('exist')
+    .should('have.attr', 'value')
+    .as('csrfToken')
+
+  cy.readCypressUserJSON()
+    .then(({username, password}) => {
+      cy.get('@csrfToken').then(function (token) {
+        cy.request({
+          method: 'POST',
+          url: Cypress.env('admin_login_url'),
+          form: true,
+          body: {
+            username,
+            password,
+            next: Cypress.env('admin_url')
+          },
+          headers: {
+            'X-CSRFTOKEN': token,
+          },
+          followRedirect: false
+        }).then(response => {
+          expect(response.status).to.eql(302)
+          expect(response.headers).to.have.property('location')
+          expect(response.headers.location).to.not.contain('login')
+        })
+      })
+    })
+})
+
+
 /**
  * This function returns the column header visually to the top of a td element
  * (a column header is a th element with scope=col)

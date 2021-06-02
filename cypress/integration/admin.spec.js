@@ -1,35 +1,3 @@
-Cypress.Commands.add('login', () => {
-  cy.visit('/admin/login/')
-  cy.get('[name=csrfmiddlewaretoken]')
-    .should('exist')
-    .should('have.attr', 'value')
-    .as('csrfToken')
-
-  cy.readCypressUserJSON()
-    .then(({username, password}) => {
-      cy.get('@csrfToken').then(function (token) {
-        cy.request({
-          method: 'POST',
-          url: Cypress.env('admin_login_url'),
-          form: true,
-          body: {
-            username,
-            password,
-            next: Cypress.env('admin_url')
-          },
-          headers: {
-            'X-CSRFTOKEN': token,
-          },
-          followRedirect: false
-        }).then(response => {
-          expect(response.status).to.eql(302)
-          expect(response.headers).to.have.property('location')
-          expect(response.headers.location).to.not.contain('login')
-        })
-      })
-    })
-})
-
 context('Admin interface', () => {
   it('should redirect anonymous users to the login page', function() {
     cy.visit('/admin')
