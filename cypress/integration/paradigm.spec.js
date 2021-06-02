@@ -146,7 +146,6 @@ describe('paradigms can be toggled by the show more/less button', () => {
   })
 })
 
-// Can lift skip off this once admin can be tested.
 describe('Paradigm labels', () => {
   let lemma = 'nipâw'
   let englishLabel = 'they'
