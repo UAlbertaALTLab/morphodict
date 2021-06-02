@@ -1205,7 +1205,7 @@ a.menu-choice__label:active {
 /**
  * BLOCK: menu-bar
  *
- * Display a whole bunch of options in horizontal menu bar.
+ * Display a whole bunch of options in a horizontal menu bar.
  */
 .menu-bar {
   display: flex;

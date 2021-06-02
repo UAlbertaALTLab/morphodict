@@ -68,12 +68,12 @@ def test_choice_and_label_from_request_context(choice, label):
     request = HttpRequest()
     if choice is not None:
         request.COOKIES[Pets.cookie_name] = choice
-    context_that_likes_dogs = RequestContext(request, {})
+    context_that_likes_label = RequestContext(request, {})
     template = Template(
         """
         I like {{ preferences.pets.current_label }}.
     """
     )
-    rendered = template.render(context_that_likes_dogs)
+    rendered = template.render(context_that_likes_label)
 
     assert rendered.strip() == f"I like {label}."
