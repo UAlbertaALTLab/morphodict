@@ -13,7 +13,14 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
+from CreeDictionary.API.models import Wordform
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
+
+# The test wants an ID that never exists. Never say never; I have no idea if we'll
+# have over two billion wordforms, however, we'll most likely run into problems once
+# we exceed certain storage requirements. For example, the maximum for a signed,
+# 32-bit int is a possible boundary condition that may cause issues elsewhere:
+ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
 
 
 class TestLemmaDetailsInternal4xx:
@@ -25,11 +32,7 @@ class TestLemmaDetailsInternal4xx:
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
             ["123", "LINUST", HttpResponseBadRequest.status_code],
-            [
-                "99999999",
-                "FULL",
-                HttpResponseNotFound.status_code,
-            ],  # we'll never have as many as 99999999 entries in the database so it's a non-existent id
+            [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
     def test_paradigm_details_internal_400_404(
@@ -107,6 +110,42 @@ def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: st
     assertInHTML(lexeme, body)
     for wordform in example_forms:
         assertInHTML(wordform, body)
+
+
+@pytest.mark.django_db
+def test_paradigm_from_full_page_and_api(client: Client):
+    """
+    The paradigm returned from the full details page and the API endpoint should
+    contain the exact same information.
+    """
+    lemma_text = "wâpamêw"
+    paradigm_size = "FULL"
+
+    wordform = Wordform.objects.get(text=lemma_text)
+    assert wordform.lemma == wordform, "this test requires a lemma"
+
+    # Get standalone page:
+    response = client.get(
+        reverse("cree-dictionary-index-with-lemma", args=[lemma_text]),
+        {"paradigm-size": paradigm_size},
+    )
+    assert response.status_code == HTTPStatus.OK
+    standalone_html = response.content.decode("UTF-8")
+    assert lemma_text in standalone_html
+
+    # Get fragment from API request:
+    response = client.get(
+        reverse("cree-dictionary-paradigm-detail"),
+        {
+            "lemma-id": wordform.id,
+            "paradigm-size": paradigm_size,
+        },
+    )
+    assert response.status_code == HTTPStatus.OK
+    html_fragment = response.content.decode("UTF-8")
+    assert lemma_text in html_fragment
+
+    assertInHTML(html_fragment, standalone_html)
 
 
 @pytest.mark.parametrize("mode", DisplayMode.choices)

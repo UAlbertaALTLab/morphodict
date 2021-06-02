@@ -79,9 +79,9 @@ def entry_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=paradigm,
+        paradigm=paradigm,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def index(request):  # pragma: no cover
@@ -118,7 +118,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def search_results(request, query_string: str):  # pragma: no cover
@@ -176,13 +176,19 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
+    paradigm = paradigm_for(lemma, paradigm_size)
+    if isinstance(paradigm, Paradigm):
+        template_name = "CreeDictionary/components/paradigm-with-panes.html"
+    else:
+        template_name = "CreeDictionary/components/paradigm.html"
+
     return render(
         request,
-        "CreeDictionary/components/paradigm.html",
+        template_name,
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
+            "paradigm": paradigm,
         },
     )
 
