@@ -6,7 +6,7 @@ Run finite-state transducer analyzer and generator
 
 from typing import Generator, Iterable, List, Tuple
 
-from CreeDictionary.shared.expensive import relaxed_analyzer, strict_generator
+from morphodict.analysis import strict_generator, relaxed_analyzer
 from CreeDictionary.utils.data_classes import Analysis
 
 

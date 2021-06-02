@@ -8,8 +8,8 @@ from typing import Set
 
 from tqdm import tqdm
 
+import morphodict.analysis
 from CreeDictionary.DatabaseManager.xml_importer import find_latest_xml_file
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import crkeng_xml_utils, fst_analysis_parser, shared_res_dir
 from CreeDictionary.utils.crkeng_xml_utils import extract_l_str
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
@@ -58,7 +58,9 @@ def build_test_xml():
     test_words = get_test_words()
 
     print(f"Analyzing xml l elements and test words")
-    word_to_analyses = expensive.relaxed_analyzer().bulk_lookup(xml_ls | test_words)
+    word_to_analyses = morphodict.analysis.relaxed_analyzer().bulk_lookup(
+        xml_ls | test_words
+    )
     print("Analysis done")
 
     test_word_lemmas: Set[str] = set()

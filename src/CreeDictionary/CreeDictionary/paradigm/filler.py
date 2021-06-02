@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import morphodict.analysis
+
 """
 Fill a paradigm table with the inflections of a lemma.
 """
@@ -53,9 +55,7 @@ class ParadigmFiller:
         self._frequency = import_frequency()
 
         if generator_hfstol_path is None:
-            from CreeDictionary.shared import expensive
-
-            self._generator = expensive.strict_generator()
+            self._generator = morphodict.analysis.strict_generator()
         else:
             self._generator = TransducerFile(generator_hfstol_path)
 

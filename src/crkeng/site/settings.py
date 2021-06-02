@@ -29,6 +29,10 @@ WSGI_APPLICATION = "crkeng.site.wsgi.application"
 
 # Morphodict configuration
 
+STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
+STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
+
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
 

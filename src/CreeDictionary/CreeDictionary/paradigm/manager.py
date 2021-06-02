@@ -4,8 +4,8 @@ from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
 
+import morphodict.analysis
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import shared_res_dir
 
 
@@ -84,4 +84,6 @@ def default_paradigm_manager() -> ParadigmManager:
     Returns the ParadigmManager instance that loads layouts and FST from the res
     (resource) directory.
     """
-    return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator())
+    return ParadigmManager(
+        shared_res_dir / "layouts", morphodict.analysis.strict_generator()
+    )

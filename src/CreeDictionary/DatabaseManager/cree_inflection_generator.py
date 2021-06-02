@@ -3,8 +3,8 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 """
 from typing import Dict, Iterable, List, Set, Tuple
 
+import morphodict.analysis
 from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import fst_analysis_parser
 from CreeDictionary.CreeDictionary.paradigm.filler import ParadigmFiller
 
@@ -41,8 +41,8 @@ def expand_inflections(
     logger.info("Generating inflections ...")
 
     # optimized for efficiency by calling hfstol once and for all
-    generated_analyses_to_inflections = expensive.strict_generator().bulk_lookup(
-        analysis_queue
+    generated_analyses_to_inflections = (
+        morphodict.analysis.strict_generator().bulk_lookup(analysis_queue)
     )
 
     logger.info("Done generating inflections")

@@ -3,6 +3,7 @@ from pathlib import Path
 import pytest
 from more_itertools import first, ilen
 
+import morphodict.analysis
 from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
 
 
@@ -43,10 +44,8 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
 
 @pytest.fixture
 def paradigm_manager(shared_datadir: Path) -> ParadigmManager:
-    from CreeDictionary.shared import expensive
-
     layout_dir = shared_datadir / "paradigm-layouts"
     assert layout_dir.is_dir()
     assert (layout_dir / "static").is_dir()
     assert (layout_dir / "dynamic").is_dir()
-    return ParadigmManager(layout_dir, expensive.strict_generator())
+    return ParadigmManager(layout_dir, morphodict.analysis.strict_generator())

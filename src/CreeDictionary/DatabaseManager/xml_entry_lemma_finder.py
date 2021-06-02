@@ -14,11 +14,11 @@ from typing import Dict, Iterable, List, Optional, Set, Tuple, cast, Sequence
 from colorama import Fore, init
 from typing_extensions import Literal
 
+import morphodict.analysis
 from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
 from CreeDictionary.DatabaseManager.xml_consistency_checker import (
     does_inflectional_category_match_xml_entry,
 )
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import WordClass, shared_res_dir, fst_analysis_parser
 from CreeDictionary.utils.crkeng_xml_utils import IndexedXML
 from CreeDictionary.utils.data_classes import XMLEntry
@@ -123,7 +123,7 @@ def identify_entries(
     ls = get_all_ls()
     l_to_analyses = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        expensive.strict_analyzer().bulk_lookup(ls),
+        morphodict.analysis.strict_analyzer().bulk_lookup(ls),
     )
 
     produced_extra_lemmas: List[FSTLemma] = []
@@ -139,7 +139,7 @@ def identify_entries(
 
     produced_extra_lemma_to_analysis = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        expensive.strict_analyzer().bulk_lookup(produced_extra_lemmas),
+        morphodict.analysis.strict_analyzer().bulk_lookup(produced_extra_lemmas),
     )
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):
