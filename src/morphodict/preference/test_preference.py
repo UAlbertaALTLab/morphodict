@@ -2,7 +2,8 @@ import pytest
 
 from morphodict.preference import (
     PreferenceConfigurationError,
-    all_preferences, register_preference,
+    all_preferences,
+    register_preference,
 )
 
 
