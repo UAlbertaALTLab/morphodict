@@ -22,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
-from morphodict.preference import ChangePreferenceView
+from morphodict.preference.views import ChangePreferenceView
 
 from .utils import url_for_query
 
@@ -302,7 +302,7 @@ class ChangeDisplayMode(ChangePreferenceView):
     Sets the mode= cookie, which affects how search results are rendered.
     """
 
-    preference = DisplayMode
+    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
 
 
 class ChangeParadigmLabelPreference(ChangePreferenceView):
@@ -311,7 +311,7 @@ class ChangeParadigmLabelPreference(ChangePreferenceView):
     PARADIGMS!
     """
 
-    preference = ParadigmLabel
+    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions

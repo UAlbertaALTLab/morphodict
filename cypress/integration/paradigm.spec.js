@@ -119,9 +119,7 @@ describe('paradigms are visitable from link', () => {
     // DIMINUTIVE is an exclusive linguistic term for FULL paradigms
     cy.get('[data-cy=paradigm]').contains('DIMINUTIVE')
   })
-}
-)
-
+})
 
 describe('paradigms can be toggled by the show more/less button', () => {
   it('shows basic, full, linguistic, and basic paradigm in sequence', () => {
@@ -146,5 +144,45 @@ describe('paradigms can be toggled by the show more/less button', () => {
     cy.get('[data-cy=paradigm]').contains('Something is happening now')
 
   })
-}
-)
+})
+
+// Can lift skip off this once admin can be tested.
+describe.skip('Paradigm labels', () => {
+  let lemma = 'nipâw'
+  let englishLabel = 'they'
+  let nehiyawewinLabel = 'wiyanaw'
+  let linguisticLabel = '3s'
+
+  it('should appear in plain English by default', () => {
+    cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
+
+    cy.get('[data-cy=paradigm]')
+      .contains('th[scope=row]', englishLabel)
+  })
+
+  it('should appear in nêhiyawêwin (Plains Cree)', () => {
+    cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
+
+    cy.get('[data-cy=open-paradigm-label-switcher]')
+      .click()
+    cy.get('[data-cy=paradigm-label-options]')
+      .contains(/nêhiyawêwin/i)
+      .click()
+
+    cy.get('[data-cy=paradigm]')
+      .contains('th[scope=row]', nehiyawewinLabel)
+  })
+
+  it('should appear using lingustic terminology', () => {
+    cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
+
+    cy.get('[data-cy=open-paradigm-label-switcher]')
+      .click()
+    cy.get('[data-cy=paradigm-label-options]')
+      .contains(/linguistic/i)
+      .click()
+
+    cy.get('[data-cy=paradigm]')
+      .contains('th[scope=row]', linguisticLabel)
+  })
+})

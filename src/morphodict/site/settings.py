@@ -108,6 +108,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "CreeDictionary.CreeDictionary.context_processors.display_options",
                 "morphodict.lexicon.context_processors.language_pair",
+                "morphodict.preference.context_processors.preferences",
             ]
         },
     }
