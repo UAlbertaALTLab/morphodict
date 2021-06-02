@@ -11,11 +11,11 @@ from CreeDictionary.utils.data_classes import Analysis
 
 
 def analyze(wordform: str) -> Iterable[Analysis]:
-    return parse_analyses(relaxed_analyzer.lookup(wordform))
+    return parse_analyses(relaxed_analyzer().lookup(wordform))
 
 
 def generate(analysis: str) -> Iterable[str]:
-    return strict_generator.lookup(analysis)
+    return strict_generator().lookup(analysis)
 
 
 def parse_analyses(raw_analyses: Iterable[str]) -> Generator[Analysis, None, None]:

@@ -123,7 +123,7 @@ def identify_entries(
     ls = get_all_ls()
     l_to_analyses = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        expensive.strict_analyzer.bulk_lookup(ls),
+        expensive.strict_analyzer().bulk_lookup(ls),
     )
 
     produced_extra_lemmas: List[FSTLemma] = []
@@ -139,7 +139,7 @@ def identify_entries(
 
     produced_extra_lemma_to_analysis = cast(
         Dict[FSTLemma, Set[ConcatAnalysis]],
-        expensive.strict_analyzer.bulk_lookup(produced_extra_lemmas),
+        expensive.strict_analyzer().bulk_lookup(produced_extra_lemmas),
     )
 
     for fst_analysis in chain.from_iterable(produced_extra_lemma_to_analysis.values()):

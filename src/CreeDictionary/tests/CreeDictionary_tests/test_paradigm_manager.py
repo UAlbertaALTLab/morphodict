@@ -49,4 +49,4 @@ def paradigm_manager(shared_datadir: Path) -> ParadigmManager:
     assert layout_dir.is_dir()
     assert (layout_dir / "static").is_dir()
     assert (layout_dir / "dynamic").is_dir()
-    return ParadigmManager(layout_dir, expensive.strict_generator)
+    return ParadigmManager(layout_dir, expensive.strict_generator())

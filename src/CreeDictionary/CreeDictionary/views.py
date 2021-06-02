@@ -242,9 +242,9 @@ def fst_tool(request):
 
     if text is not None:
         context["analyses"] = {
-            "relaxed_analyzer": expensive.relaxed_analyzer.lookup(text),
-            "strict_analyzer": expensive.strict_analyzer.lookup(text),
-            "strict_generator": expensive.strict_generator.lookup(text),
+            "relaxed_analyzer": expensive.relaxed_analyzer().lookup(text),
+            "strict_analyzer": expensive.strict_analyzer().lookup(text),
+            "strict_generator": expensive.strict_generator().lookup(text),
             "eng_noun_entry2inflected-phrase": decode_foma_results(
                 eng_noun_entry_to_inflected_phrase_fst(), text
             ),

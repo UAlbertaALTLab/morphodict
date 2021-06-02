@@ -84,4 +84,4 @@ def default_paradigm_manager() -> ParadigmManager:
     Returns the ParadigmManager instance that loads layouts and FST from the res
     (resource) directory.
     """
-    return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator)
+    return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator())

@@ -41,7 +41,7 @@ def expand_inflections(
     logger.info("Generating inflections ...")
 
     # optimized for efficiency by calling hfstol once and for all
-    generated_analyses_to_inflections = expensive.strict_generator.bulk_lookup(
+    generated_analyses_to_inflections = expensive.strict_generator().bulk_lookup(
         analysis_queue
     )
 
