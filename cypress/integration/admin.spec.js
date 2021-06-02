@@ -1,6 +1,3 @@
-const ADMIN_LOGIN_URL = '/admin/login/'
-const ADMIN_URL = '/admin/'
-
 Cypress.Commands.add('login', () => {
   cy.visit('/admin/login/')
   cy.get('[name=csrfmiddlewaretoken]')
@@ -13,12 +10,12 @@ Cypress.Commands.add('login', () => {
       cy.get('@csrfToken').then(function (token) {
         cy.request({
           method: 'POST',
-          url: ADMIN_LOGIN_URL,
+          url: Cypress.env('admin_login_url'),
           form: true,
           body: {
             username,
             password,
-            next: '/admin'
+            next: Cypress.env('admin_url')
           },
           headers: {
             'X-CSRFTOKEN': token,
@@ -37,7 +34,7 @@ context('Admin interface', () => {
   it('should redirect anonymous users to the login page', function() {
     cy.visit('/admin')
     cy.location().then(({pathname}) =>
-      expect(pathname).to.contain(ADMIN_LOGIN_URL))
+      expect(pathname).to.contain(Cypress.env('admin_login_url')))
   })
 
   it('should allow login', function() {
@@ -51,7 +48,7 @@ context('Admin interface', () => {
         cy.get('#id_password').type(cypressUser.password)
         cy.get('.submit-row > input').click()
       })
-    cy.location('pathname').should('eq', ADMIN_URL)
+    cy.location('pathname').should('eq', Cypress.env('admin_url'))
   })
 
   it('should show auto-translations to logged-in users', function() {
@@ -91,6 +88,6 @@ context('Admin interface', () => {
   it('should not show the FST tool to non-admin users', function() {
     cy.visit('/admin/fst-tool')
     cy.location().then(({pathname}) =>
-      expect(pathname).to.contain(ADMIN_LOGIN_URL))
+      expect(pathname).to.contain(Cypress.env('admin_login_url')))
   })
 })
