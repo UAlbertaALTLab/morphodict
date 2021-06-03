@@ -161,7 +161,8 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
             )
 
         # noun tags are specific to each word
-        tags_starting_with_plus.remove(noun_tags)
+        if noun_tags in tags_starting_with_plus:
+            tags_starting_with_plus.remove(noun_tags)
 
     return results
 
