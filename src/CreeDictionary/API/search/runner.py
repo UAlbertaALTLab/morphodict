@@ -125,7 +125,6 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
         if "+N" in tags and r.is_lemma and r.lemma_wordform.pos == "N":
             words.append(r)
 
-    print(tags)
     tags_starting_with_plus = []
     tags_ending_with_plus = []
     for t in tags:
@@ -140,6 +139,10 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
             noun_tags = get_noun_tags(word.wordform.inflectional_category)
             if '+N' in tags_starting_with_plus:
                 tags_starting_with_plus.remove('+N')
+            if "+Der/Dim" in tags_starting_with_plus:
+                # noun tags need to be repeated in this case
+                index = tags_starting_with_plus.index("+Der/Dim")
+                tags_starting_with_plus.insert(index+1, noun_tags)
 
         text = (
             "".join(tags_ending_with_plus)
@@ -148,7 +151,6 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
             + "".join(tags_starting_with_plus)
         )
 
-        print(text)
         generated_wordforms = expensive.strict_generator.lookup(text)
         for w in generated_wordforms:
             results.append(
@@ -158,11 +160,13 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
                 )
             )
 
+        # noun tags are specific to each word
+        tags_starting_with_plus.remove(noun_tags)
+
     return results
 
 
 def get_noun_tags(inflectional_category):
-    print(inflectional_category)
     noun_tags = ""
     for c in inflectional_category:
         if c == '-':
