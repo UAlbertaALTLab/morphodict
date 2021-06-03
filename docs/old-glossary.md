@@ -1,20 +1,3 @@
-analysis
-===================
-[analysis]: #analysis
-[analyses]: #analysis
-[linguistic analysis]: #analysis
-[linguistic breakdown]: #analysis
-
-_also, **linguistic analysis** or **linguistic breakdown**_.
-
-An **ordered** set of the [lemma][] and [morphosyntactic features][]
-that can describe an [inflected wordform][wordform].
-
-It _minimally_ consists of:
-
- - at least one [lemma][]
- - at least one feature, stating the wordform's [word class][]
-
 ### Example
 
 One possible linguistic analysis of the [wordform][] "sabía" in
