@@ -29,6 +29,7 @@ crkeng_tag_dict = {
     "+Def": ("PV/ka+", "+Ind"),
     "+Inf": ("PV/ka+", "+Cnj"),
     # "+Inf": ("PV/ta+", "+Cnj")  # future definite
+    "+Dim": ("+Der/Dim",),
 }
 
 
@@ -124,6 +125,7 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
         if "+N" in tags and r.is_lemma and r.lemma_wordform.pos == "N":
             words.append(r)
 
+    print(tags)
     tags_starting_with_plus = []
     tags_ending_with_plus = []
     for t in tags:
@@ -133,11 +135,20 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
 
     results = []
     for word in words:
+        noun_tags = ""
+        if 'N' in word.wordform.inflectional_category:
+            noun_tags = get_noun_tags(word.wordform.inflectional_category)
+            if '+N' in tags_starting_with_plus:
+                tags_starting_with_plus.remove('+N')
+
         text = (
             "".join(tags_ending_with_plus)
             + word.lemma_wordform.text
+            + noun_tags
             + "".join(tags_starting_with_plus)
         )
+
+        print(text)
         generated_wordforms = expensive.strict_generator.lookup(text)
         for w in generated_wordforms:
             results.append(
@@ -148,3 +159,14 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
             )
 
     return results
+
+
+def get_noun_tags(inflectional_category):
+    print(inflectional_category)
+    noun_tags = ""
+    for c in inflectional_category:
+        if c == '-':
+            return noun_tags
+        noun_tags += '+' + c
+
+    return noun_tags
