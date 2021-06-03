@@ -60,8 +60,8 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nêma			
 0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi			
 							
-Inf+PV/ka			ka- word	ka- itwêwin			
-Inf+PV/ta			ta- word	ta- itwêwin			
+Inf+PV/ka	Infinitive (ka-)	Infinitive/Future (with ka-)	ka- word	ka- itwêwin			
+Inf+PV/ta	Infinitive (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin			
 							
 							
 							
@@ -152,26 +152,26 @@ AI		Animate Intransitive	like: mîcisow, nipâw	tâpiskôc: mîcisow, nipâw
 Arab		Arabic	like: 0, 1, 2, ...	tâpiskôc: 0, 1, 2, ...			
 CC		Co-ordinating Conjunction	like: êkwa	tâpiskôc: êkwa			
 CS		Subordinate Conjunction	like: mâka	tâpiskôc: mâka			
-Cnj		Conjunct	ê-/kâ- word	ê-/kâ- itwêwin			
+Cnj	Conjunct	Conjunct	ê-/kâ- word	ê-/kâ- itwêwin			
 Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik			
-Fut+Cond		Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik			
+Fut+Cond	Future Conditional	Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik			
 D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit			
 Def		Definite	certainly	cikêmâ			
 Fut+Def	Future Definite	Future definite tense	something will certainly happen	ka-ispayik nîkânihk/cikêmâ			
-Del		Delayed	later	mwêstas			
+Del	Delayed	Delayed	later	mwêstas			
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs			
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma			
 Der/Com		Derived comitative	with another person	wîci-			
 Der/Dim		Derived diminutive	smaller / younger / lesser	 nawac apisîs			
 Der/X		Derived unspecified actor					
-Dim		Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis			
+Dim	Diminutive	Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis			
 Dist		Distal	like: nâha, nêma	tâpiskôc: nâha, nêma			
-Distr		Distributive	among	âkine			
+Distr	Distributive	Distributive	among	âkine			
 Err/Orth		(Sub-standard form)					
 Foc		Focus					
 Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk			
 I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi			
-IC		Initial change	Initial change	like: wiyâpamât	tâpiskôc: wiyâpamât		
+IC	Initial change	Initial change	Initial change	like: wiyâpamât	tâpiskôc: wiyâpamât		
 II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw			
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk			
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡		
@@ -182,15 +182,15 @@ IPN	Prenoun	Prenoun	like: amisko-	tâpiskôc: amisko-	⚡
 IPP	Particle	Particle	like: akâmi-	tâpiskîc: akâmi- 	⚡️		
 IPV	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️		
 Ipv	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️		
-Imm		Immediate	now	mêkwâc/kîsac			
-Imp		Imperative	command/request	nitotamâkêwin			
+Imm	Immediate	Immediate	now	mêkwâc/kîsac			
+Imp	Imperative	Imperative	command/request	nitotamâkêwin			
 Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkêwin piko ka-ispayik			
-Ind		Independent	ni-/ki- word	ni-/ki- itwêwin			
+Ind	Independent	Independent	ni-/ki- word	ni-/ki- itwêwin			
 Inf	Infinitive	Infinitive form	for something to happen	ka-ispaiyk / ta-ispayik			
-Int		Intentional	be going to	akâwâtamowin			
+Int	Intentional	Intentional	be going to	akâwâtamowin			
 Fut+Int	Future Intentional	Future intentional tense	something is going to happen	ê-wî-ihkik nîkânihk			
 Interj		Interjection	Shouting word	têpwêwin-itwêwin			
-Loc		Locative	in/on/to	pîhci-, tahkoht, ohci			
+Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci			
 Med		Medial	like: ana, anima	tâpiskôc: ana, anima			
 							
 N		Noun	Naming word	wîhyowin-itwêwin			
@@ -223,11 +223,11 @@ NI-3	NI-3	Consonant-/w/ inanimate noun stem	like: pahkêkin(w), askêkin(w)	tâp
 NI-4	NI-4	Single-syllable inanimate noun stem	like: wâwi, osk-âyi	tâpiskôc: wâwi, osk-âyi			
 NI-5	NI-5	Single-syllable-/w/ inanimate noun stem	like: ôsi, mihko	tâpiskôc: ôsi, mihko			
 NI-?	NI-?						
-Neg		Negation	not	nâmoya			
-Num		Numeral	Number	akihtâson			
-Obv		Obviative	further	anima/anihi (awasimê)			
-Poss	Possession	Ownership	whose / Whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)			
-Pers		Person	Person	iyiniw			
+Neg	Negation	Negation	not	nâmoya			
+Num	Numeral	Numeral	Number	akihtâson			
+Obv	Obviative	Obviative	further	anima/anihi (awasimê)			
+Poss	Possession	Ownership	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)			
+Pers	Person	Person	Person	iyiniw			
 PV		Preverb					
 PV/acici	Preverb: acici-		head down; upside down				
 PV/ahcahkowi	Preverb: ahcahkowi-		spiritual				
@@ -471,7 +471,7 @@ PV/yahki	Preverb: yahki-		act of pushing forward; increasing, increasingly, addi
 PV/yikate	Preverb: yîkatê-		aside				
 PV/yipe	Preverb: yîpê-		on a slant, on a slope, on the side, sideways				
 PV/yoski	Preverb: yôski-		soft, softly				
-Pl		Plural	many	mihcêt			
+Pl	Plural	Plural	many	mihcêt			
 PlO	→ Pl	Goal: Plural	→ many	→ mihcêt			
 							
 PrA		Pronoun: Animate	like: awa	tâpiskôc: awa	➡️🧑🏽		
@@ -500,7 +500,7 @@ RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw
 Rel		Relative					
 Rom		Roman	like: I, V, X	tâpiskôc: I, V, X			
 							
-Sg		Singular	one	pêyak			
+Sg	Singular	Singular	one	pêyak			
 							
 							
 							
@@ -514,7 +514,7 @@ V+AI	Animate intransitive verb	Verb - animate intransitive	Action word - like: m
 V+TI	Transitive inanimate verb	Verb - transitive inanimate	Action word - like: nâtam, mîciw	ispayin-itwêwin - tâpiskôc: nâtam, mîciw	🧑🏽➡️💧		
 V+TA	Transitive animate verb	Verb - transitive animate	Action word - like: wîcihêw, itêw	ispayin-itwêwin - tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽		
 							
-Voc	Vocative		call/address	kitowin			
+Voc	Vocative	Vocative	call/address	kitowin			
 							
 VAI-1	VAI-1	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw			
 VAI-v	VAI-v	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw			
@@ -533,5 +533,5 @@ VTI-1	VTI-1	transitive inanimate verb – class 1: regular	like: nâtam	tâpisk�
 VTI-2	VTI-2	transitive inanimate verb – class 2: stem-final -â	like: kisihtâw	tâpiskôc: kisihtâw			
 VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîciw			
 							
-X	Actor: Unspecified	Actor: someone	someone	awiya			
-XO	Goal: Unspecified	Goal: someone	→ someone	→ awiya			
+X	X	Actor: Unspecified	Actor: someone	someone	awiya			
+XO	→ X	Goal: Unspecified	Goal: someone	→ someone	→ awiya			
