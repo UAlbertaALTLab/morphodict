@@ -1,6 +1,6 @@
 FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI			
 SELECTION-LABEL	short linguistic labels	long linguistic labels	plain English labels	nêhiyawêwin labels				
-SHOW-LABEL	True	True	True	True	False				
+SHOW-LABEL	True	True	True	True	False			
 12Pl	1p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiyânaw				
 1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	niyanân				
 1PlO	→ 1p (excl)	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kiyânaw				
