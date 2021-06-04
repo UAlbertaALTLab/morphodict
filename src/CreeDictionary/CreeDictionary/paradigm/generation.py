@@ -4,9 +4,12 @@ Handles paradigm generation.
 
 from functools import cache
 
-from CreeDictionary.utils.fst_analysis_parser import extract_word_class
-from CreeDictionary.utils.enums import ParadigmSize
 from CreeDictionary.API.models import Wordform
+from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
+from CreeDictionary.shared import expensive
+from CreeDictionary.utils import shared_res_dir
+from CreeDictionary.utils.enums import ParadigmSize
+from CreeDictionary.utils.fst_analysis_parser import extract_word_class
 
 from .filler import Layout, ParadigmFiller
 
@@ -33,3 +36,12 @@ def paradigm_filler() -> ParadigmFiller:
     Returns a cached instance of the default paradigm filler.
     """
     return ParadigmFiller.default_filler()
+
+
+@cache
+def default_paradigm_manager() -> ParadigmManager:
+    """
+    Returns the ParadigmManager instance that loads layouts and FST from the res
+    (resource) directory.
+    """
+    return ParadigmManager(shared_res_dir / "layouts", expensive.strict_generator)

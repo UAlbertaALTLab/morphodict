@@ -11,9 +11,10 @@ from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
-from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
-from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
-from morphodict.paradigm.panes import Paradigm
+from CreeDictionary.CreeDictionary.paradigm.generation import (
+    default_paradigm_manager,
+    generate_paradigm,
+)
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
@@ -22,6 +23,7 @@ from CreeDictionary.phrase_translate.translate import (
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.paradigm.panes import Paradigm
 from morphodict.preference.views import ChangePreferenceView
 
 from .utils import url_for_query
