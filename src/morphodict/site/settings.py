@@ -200,7 +200,7 @@ if USE_TEST_DB:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.fspath(BASE_DIR / "test_db.sqlite3"),
+            "NAME": os.fspath(BASE_DIR / "db" / "test_db.sqlite3"),
         }
     }
 else:

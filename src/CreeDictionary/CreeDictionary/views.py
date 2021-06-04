@@ -232,6 +232,8 @@ def query_help(request):  # pragma: no cover
 def fst_tool(request):
     context = {}
 
+    context["fst_tool_samples"] = settings.FST_TOOL_SAMPLES
+
     text = request.GET.get("text", None)
     if text is not None:
         context.update({"text": text, "repr_text": repr(text)})

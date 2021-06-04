@@ -1,3 +1,0 @@
-crk-strict-analyzer-for-dictionary.hfstol filter=lfs diff=lfs merge=lfs -text
-crk-strict-generator.hfstol filter=lfs diff=lfs merge=lfs -text
-crk-relaxed-analyzer-for-dictionary.hfstol filter=lfs diff=lfs merge=lfs -text

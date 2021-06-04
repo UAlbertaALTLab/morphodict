@@ -27,6 +27,8 @@ INSTALLED_APPS.insert(0, "crkeng.app")
 
 WSGI_APPLICATION = "crkeng.site.wsgi.application"
 
+FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2Sg+3SgO"]
+
 # Morphodict configuration
 
 STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"

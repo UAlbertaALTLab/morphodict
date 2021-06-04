@@ -29,7 +29,17 @@ INSTALLED_APPS.insert(0, "arpeng.app")
 
 INSTALLED_APPS += ["arpeng.dictimport"]
 
+FST_TOOL_SAMPLES = [
+    "nonoohowun",
+    "[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]noohow[2SG-SUBJ][1SG-OBJ]",
+]
+
 # Morphodict configuration
+
+STRICT_ANALYZER_FST_FILENAME = "arapahoverbs-analyzer.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "arapahoverbs-generator.hfstol"
+# There is no relaxed analyzer yet
+RELAXED_ANALYZER_FST_FILENAME = STRICT_ANALYZER_FST_FILENAME
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"

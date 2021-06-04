@@ -14,12 +14,16 @@
     FSTs that the dictionary code uses.
   </p>
   <p>
-    For some samples, try {{ "kika-nîminaw"|kbd_text_query_link }} or
-    {{ "kikaniminaw"|kbd_text_query_link }} or
-    {{"PV/ka+nîminêw+V+TA+Ind+2Sg+3SgO"|kbd_text_query_link}}. For the phrase
-    translation, try {{ "Obv+Dim+ star"|kbd_text_query_link }},
-    {{ "Prt+3Pl+ it sings"|kbd_text_query_link }}, or
-    {{ "they sing"|kbd_text_query_link }}.
+    For some samples, try {% for sample in fst_tool_samples %}
+    <!-- -->
+    {{ sample|kbd_text_query_link }}{% if not forloop.last %}, or {% endif %}<!--
+-->{% endfor %}.
+  </p>
+  <p>
+    For the phrase translation FSTs, try
+    <span>{{ "Obv+Dim+ star"|kbd_text_query_link }}</span>,
+    <span>{{ "Prt+3Pl+ it sings"|kbd_text_query_link }}</span>, or
+    <span>{{ "they sing"|kbd_text_query_link }}</span>.
   </p>
   {% if text is not None %}
   <h3>Results for <kbd>{{ repr_text }}</kbd></h3>
