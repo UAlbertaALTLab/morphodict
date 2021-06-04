@@ -6,7 +6,7 @@ _ Distr	${lemma}+N+A+Distr
 # Der/Dim			
 _ Sg	${lemma}+N+A+Der/Dim+N+A+Sg		
 			
-# Px			
+# Poss			
 	| Sg	| Pl	| Obv
 _ Px1Sg	${lemma}+N+A+Px1Sg+Sg	${lemma}+N+A+Px1Sg+Pl	${lemma}+N+A+Px1Sg+Obv
 _ Px2Sg	${lemma}+N+A+Px2Sg+Sg	${lemma}+N+A+Px2Sg+Pl	${lemma}+N+A+Px2Sg+Obv

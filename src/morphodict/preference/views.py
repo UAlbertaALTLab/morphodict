@@ -1,19 +1,9 @@
-"""
-Preferences framework.
-
-Allows for generic site-wide preferences stored in cookies.
-"""
 from http import HTTPStatus
-from typing import Type
 
 from django.http import HttpResponse
 from django.views import View
 
-
-class Preference:
-    cookie_name: str
-    choices: list[str]
-    default: str
+from morphodict.preference import Preference
 
 
 class ChangePreferenceView(View):
@@ -47,7 +37,7 @@ class ChangePreferenceView(View):
     See also: https://docs.djangoproject.com/en/3.2/topics/class-based-views/
     """
 
-    preference: Type[Preference]
+    preference: Preference
 
     @property
     def cookie_name(self):
