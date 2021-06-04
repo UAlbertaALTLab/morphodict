@@ -7,7 +7,6 @@ from __future__ import annotations
 import logging
 import re
 import string
-from functools import cached_property
 from itertools import zip_longest
 from typing import Collection, Iterable, Optional, TextIO
 
@@ -88,11 +87,11 @@ class ParadigmLayout(Paradigm):
         return cls.loads(layout_file.read())
 
     @classmethod
-    def loads(cls, string: str) -> ParadigmLayout:
+    def loads(cls, text: str) -> ParadigmLayout:
         """
         Load a ParadigmLayout from a string.
         """
-        lines = string.splitlines(keepends=False)
+        lines = text.splitlines(keepends=False)
 
         pane_lines: list[list[str]] = [[]]
         for line in lines:
