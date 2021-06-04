@@ -41,10 +41,8 @@ DEBUG=true
 USE_TEST_DB=true
 ```
 
-These are environment variables that affect whether Django is in debug
-mode and whether Django should use `./CreeDictionary/test_db.sqlite3`
-instead of the full `db.sqlite3` which must be built from
-non-redistributable files.
+These are environment variables that affect whether Django is in debug mode
+and whether Django should use a smaller test database.
 
 The environment variables go into effect when using `pipenv shell`, or by
 running a program with `pipenv run`. However, `pytest` is configured to
@@ -56,6 +54,14 @@ Run `pipenv shell` so that all of the Python dependencies work:
 
     pipenv shell
 
+### Run the bootstrap script
+
+Running
+
+    ./scripts/dev-bootstrap
+
+creates the test databases for all supported languages.
+
 ### Full database
 
 > Note: if you have `USE_TEST_DB=true`, you can skip this
@@ -66,8 +72,10 @@ These files are copyright protected and not allowed on GitHub. Ask
 coworkers about the ‘altlab’ repo.
 
 If you do not have access to the full `crkeng.xml`, set `USE_TEST_DB=false`
-and use the excerpt in this repository at
-`CreeDictionary/res/test_dictionaries/crkeng.xml`.
+to automatically use the excerpt in this repository at
+`test_dictionaries/crkeng.xml`. That excerpt can be automatically updated
+from the full database file and `test_db_words.txt` by the `buildtestdbxml`
+management command.
 
 As is the custom with Django app, migrations are used to initialize the
 schema. Apply them with
@@ -87,18 +95,40 @@ command:
 
     npm run build
 
-(note: this is always run via `npm start`)
+(note: using foreman automatically runs the underlying command in watch
+mode)
 
 
 Running the development server
 ------------------------------
 
-    npm start
+Install foreman with `gem install --user foreman`.
 
-This starts both the Django server, and the Rollup watch process.
+Then run `foreman start` to run the Django servers for all languages, as
+well as the Rollup watch process.
 
- - Homepage: <http://127.0.0.1:8000/>
+Then you can access the dictionary applications at various port numbers:
 
+ - itwêwina: <http://127.0.0.1:8000/>
+ - arpeng: <http://127.0.0.1:8007/>
+ - cwdeng: <http://127.0.0.1:8005/>
+ - srseng: <http://127.0.0.1:8009/>
+
+Because [cookies are not port-specific for historical insecurity
+reasons](https://stackoverflow.com/questions/1612177/are-http-cookies-port-specific),
+you can only be logged in to one development site at a time. If that
+becomes problematic, give each development site a unique hostname by adding
+the following to `/etc/hosts`. Then you can access the sites with cookie
+isolation at <http://crkeng-local:8000/>, <http://cwdeng-local:8005/>,
+<http://arpeng-local:8007/>, and so on.
+
+    127.0.0.1 arpeng-local
+    127.0.0.1 cwdeng-local
+    127.0.0.1 crkeng-local
+    127.0.0.1 srseng-local
+
+If you only want to run one dictionary, you can locally comment out lines
+in the Procfile.
 
 Where are the JavaScript files?
 -------------------------------
