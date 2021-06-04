@@ -4,7 +4,7 @@ from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
 
-from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from morphodict.paradigm.panes import Paradigm, ParadigmLayout
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import shared_res_dir
 

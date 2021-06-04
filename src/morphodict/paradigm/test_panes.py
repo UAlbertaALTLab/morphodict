@@ -8,7 +8,7 @@ import pytest
 from more_itertools import first
 from more_itertools import ilen as count
 
-from CreeDictionary.CreeDictionary.paradigm.panes import (
+from morphodict.paradigm.panes import (
     ColumnLabel,
     ContentRow,
     EmptyCell,

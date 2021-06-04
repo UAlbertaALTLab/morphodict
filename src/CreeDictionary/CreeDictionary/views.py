@@ -13,7 +13,7 @@ from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
 from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
 from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
-from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
+from morphodict.paradigm.panes import Paradigm
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
