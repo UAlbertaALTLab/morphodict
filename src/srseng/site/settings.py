@@ -29,7 +29,13 @@ INSTALLED_APPS.insert(0, "srseng.app")
 
 INSTALLED_APPS += ["srseng.dictimport"]
 
+FST_TOOL_SAMPLES = ["istsiy", "itsiy+V+I+Ipfv+SbjSg1"]
+
 # Morphodict configuration
+
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "srs"

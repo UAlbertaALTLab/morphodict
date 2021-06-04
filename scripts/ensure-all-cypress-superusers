@@ -1,0 +1,35 @@
+#!/usr/bin/env python3
+
+"""
+For dev work, it can be useful to have a username/password that works for
+logging into any local dev instance. We already had code to ensure cypress users
+exist with matching passwords, so for now, leverage that.
+"""
+
+import os
+from argparse import ArgumentParser
+from pathlib import Path
+from subprocess import check_call
+
+parser = ArgumentParser()
+parser.parse_args()
+
+top_dir = Path(__file__).parent.parent
+manage_scripts = top_dir.glob("*-manage")
+
+for script in manage_scripts:
+    lang_pair = script.name.split("-")[0]
+    for use_test_db in [True, False]:
+        print(f"{script.name} USE_TEST_DB={use_test_db}")
+
+        if (
+            use_test_db
+            and not (top_dir / "src" / lang_pair / "db" / "test_db.sqlite3").exists()
+        ):
+            print(f"  skipping, no test db")
+            continue
+
+        env = dict(os.environ)
+        env["USE_TEST_DB"] = str(use_test_db)
+
+        check_call([script, "ensurecypressadminuser", "--superuser"], env=env)

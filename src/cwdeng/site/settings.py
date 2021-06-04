@@ -27,7 +27,19 @@ ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 INSTALLED_APPS += ["cwdeng.dictimport"]
 
+FST_TOOL_SAMPLES = [
+    "kika-nîminaw",
+    "kikaniminaw",
+    "PV/ka+nîminîw+V+TA+Ind+2Sg+3SgO",
+    "asiskîwithâkanihkîw",
+    "asiskîwithâkanihkîw+V+AI+Ind+3Sg",
+]
+
 # Morphodict configuration
+
+RELAXED_ANALYZER_FST_FILENAME = "analyzer-gt-desc.hfstol"
+STRICT_ANALYZER_FST_FILENAME = RELAXED_ANALYZER_FST_FILENAME
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"

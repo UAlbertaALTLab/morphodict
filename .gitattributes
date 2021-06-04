@@ -9,6 +9,10 @@
 # Treat the ide files as binaries
 .idea/**    binary
 
+###############################################################################
+
+# Use git LFS for FSTs
+*.hfstol filter=lfs diff=lfs merge=lfs -text
 
 ###############################################################################
 # Set default behavior for command prompt diff.
