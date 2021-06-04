@@ -9,7 +9,6 @@ is better than nothing.
 # In theory there could be a detailed integration test to run this command to
 # create a new site, and then run some smoke tests against it.
 
-import shutil
 from argparse import ArgumentParser
 from pathlib import Path
 
@@ -29,10 +28,8 @@ class Command(BaseCommand):
         parser.add_argument("source_language")
         parser.add_argument("target_language")
 
-    def handle(self, *args, **options):
-        sss = options["source_language"]
-        ttt = options["target_language"]
-        sssttt = sss + ttt
+    def handle(self, source_language, target_language, port, **options):
+        sssttt = source_language + target_language
         new_site_dir = settings.BASE_DIR.parent / sssttt
 
         make_python_dir(new_site_dir)
@@ -43,15 +40,16 @@ class Command(BaseCommand):
         db_dir.mkdir(exist_ok=True)
         (db_dir / ".keep").touch()
 
-        shutil.copy(
-            settings.BASE_DIR / "site" / "urls.py", new_site_dir / "site" / "urls.py"
-        )
-
         def create_file_from_template(file_path, template_path, mode=None):
             template_text = (Path(__file__).parent / template_path).read_text()
             t = Template(template_text)
             ctx = Context(
-                {"sss": sss, "ttt": ttt, "sssttt": sssttt, "port": options["port"]}
+                {
+                    "sss": source_language,
+                    "ttt": target_language,
+                    "sssttt": sssttt,
+                    "port": port,
+                }
             )
             rendered = t.render(ctx)
             file_path.write_text(rendered)
@@ -67,3 +65,6 @@ class Command(BaseCommand):
             "manage.py.template",
             mode=0o755,
         )
+
+        fst_dir = new_site_dir / "resources" / "fst"
+        fst_dir.mkdir(exist_ok=True, parents=True)

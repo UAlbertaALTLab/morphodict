@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFou
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
+import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
@@ -20,12 +21,10 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.paradigm.panes import Paradigm
 from morphodict.preference.views import ChangePreferenceView
-
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -235,6 +234,8 @@ def query_help(request):  # pragma: no cover
 def fst_tool(request):
     context = {}
 
+    context["fst_tool_samples"] = settings.FST_TOOL_SAMPLES
+
     text = request.GET.get("text", None)
     if text is not None:
         context.update({"text": text, "repr_text": repr(text)})
@@ -244,9 +245,9 @@ def fst_tool(request):
 
     if text is not None:
         context["analyses"] = {
-            "relaxed_analyzer": expensive.relaxed_analyzer.lookup(text),
-            "strict_analyzer": expensive.strict_analyzer.lookup(text),
-            "strict_generator": expensive.strict_generator.lookup(text),
+            "relaxed_analyzer": morphodict.analysis.relaxed_analyzer().lookup(text),
+            "strict_analyzer": morphodict.analysis.strict_analyzer().lookup(text),
+            "strict_generator": morphodict.analysis.strict_generator().lookup(text),
             "eng_noun_entry2inflected-phrase": decode_foma_results(
                 eng_noun_entry_to_inflected_phrase_fst(), text
             ),
