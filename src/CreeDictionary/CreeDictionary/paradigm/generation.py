@@ -5,13 +5,12 @@ Handles paradigm generation.
 from functools import cache
 
 from CreeDictionary.API.models import Wordform
-from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
+from CreeDictionary.CreeDictionary.paradigm.filler import Layout, ParadigmFiller
 from CreeDictionary.shared import expensive
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.enums import ParadigmSize
 from CreeDictionary.utils.fst_analysis_parser import extract_word_class
-
-from .filler import Layout, ParadigmFiller
+from morphodict.paradigm.manager import ParadigmManager
 
 
 def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:

@@ -4,7 +4,7 @@ import pytest
 from hfst_optimized_lookup import TransducerFile
 from more_itertools import first, ilen
 
-from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
+from morphodict.paradigm.manager import ParadigmManager
 
 
 def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
