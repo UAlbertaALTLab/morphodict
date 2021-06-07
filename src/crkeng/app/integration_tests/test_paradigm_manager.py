@@ -1,4 +1,6 @@
-from pathlib import Path
+"""
+Integration tests for the itwêwina's paradigm generation.
+"""
 
 import pytest
 from more_itertools import first, ilen
