@@ -30,6 +30,7 @@ services:
       # image
       - "../src/CreeDictionary/res/vector_models/:/app/src/CreeDictionary/res/vector_models/"
       # Same for FSTs, as some can be large
+      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
       - "../src/crkeng/resources/fst/:/app/src/crkeng/resources/fst/"
 
       # Use a persistent path for search sample results, so that they
