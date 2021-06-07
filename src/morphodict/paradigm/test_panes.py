@@ -243,7 +243,7 @@ def na_layout(na_layout_path: Path) -> ParadigmLayout:
 def pronoun_paradigm_path(testdata_dir: Path) -> Path:
     """
     Return the path to the NA layout in the test fixture dir.
-    NOTE: this is **NOT** the NA paradigm used in production!
+    NOTE: this is **NOT** the pronoun paradigm used in production!
     """
     p = testdata_dir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
     assert p.exists()
