@@ -15,6 +15,7 @@ class _EipResult:
     """Tiny class to connect inflected text to original search result"""
 
     inflected_text: str
+    analysis: str
     original_result: Result
 
 
@@ -59,19 +60,47 @@ class EipSearch:
     def inflect_search_results(self):
         inflected_results = self._generate_inflected_results()
 
-        # FIXME: get all wordforms in a single query?
-        for result in inflected_results:
-            exactly_matched_wordform = Wordform.objects.filter(
-                text=result.inflected_text, lemma=result.original_result.wordform
-            ).first()
+        # aggregating queries for performance
+        possible_wordforms = Wordform.objects.filter(
+            text__in=[r.inflected_text for r in inflected_results]
+        )
+        wordform_lookup = {}
+        for wf in possible_wordforms:
+            wordform_lookup[(wf.text, wf.lemma_id)] = wf
 
-            if exactly_matched_wordform:
-                self.search_run.remove_result(result.original_result)
-                self.search_run.add_result(
-                    result.original_result.create_related_result(
-                        exactly_matched_wordform, is_eip_result=True
-                    )
+        for result in inflected_results:
+            wordform = wordform_lookup.get(
+                (result.inflected_text, result.original_result.lemma_wordform.id)
+            )
+            if wordform is None:
+                # inflected form not found in DB, so create a synthetic one.
+                # This is unlikely to occur for Plains Cree, as it would require
+                # the EIP search to produce a valid analysis not covered by any
+                # paradigm file.
+                #
+                # Note: would not have auto-translations since those are
+                # currently only available for wordforms that were previously
+                # saved in the DB.
+                lemma = result.original_result.lemma_wordform
+
+                wordform = (
+                    Wordform(
+                        text=result.inflected_text,
+                        lemma=lemma,
+                        inflectional_category=lemma.inflectional_category,
+                        pos=lemma.pos,
+                        stem=lemma.stem,
+                        analysis=result.analysis,
+                    ),
                 )
+
+            self.search_run.remove_result(result.original_result)
+            self.search_run.add_result(
+                result.original_result.create_related_result(
+                    wordform,
+                    is_eip_result=True,
+                )
+            )
 
     def _generate_inflected_results(self) -> list[_EipResult]:
         """
@@ -121,10 +150,7 @@ class EipSearch:
             generated_wordforms = expensive.strict_generator.lookup(text)
             for w in generated_wordforms:
                 results.append(
-                    _EipResult(
-                        original_result=word,
-                        inflected_text=w,
-                    )
+                    _EipResult(original_result=word, inflected_text=w, analysis=text)
                 )
         return results
 
