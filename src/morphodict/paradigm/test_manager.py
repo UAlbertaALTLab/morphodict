@@ -43,13 +43,13 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
 
 
 @pytest.fixture
-def paradigm_manager(shared_datadir: Path) -> ParadigmManager:
-    layout_dir = shared_datadir / "paradigm-layouts"
+def paradigm_manager(testdata_dir: Path) -> ParadigmManager:
+    layout_dir = testdata_dir / "paradigm-layouts"
     assert layout_dir.is_dir()
     assert (layout_dir / "static").is_dir()
     assert (layout_dir / "dynamic").is_dir()
 
-    fst_dir = shared_datadir / "fst"
+    fst_dir = testdata_dir / "fst"
     generator_path = fst_dir / "crk-strict-generator.hfstol"
     assert generator_path.exists()
     strict_generator = TransducerFile(generator_path)

@@ -220,12 +220,12 @@ def test_produces_fst_analysis_string(na_layout: ParadigmLayout):
 
 
 @pytest.fixture
-def na_layout_path(shared_datadir: Path) -> Path:
+def na_layout_path(testdata_dir: Path) -> Path:
     """
     Return the path to the NA layout in the test fixture dir.
     NOTE: this is **NOT** the NA paradigm used in production!
     """
-    p = shared_datadir / "paradigm-layouts" / "dynamic" / "NA.tsv"
+    p = testdata_dir / "paradigm-layouts" / "dynamic" / "NA.tsv"
     assert p.exists()
     return p
 
@@ -240,22 +240,22 @@ def na_layout(na_layout_path: Path) -> ParadigmLayout:
 
 
 @pytest.fixture
-def pronoun_paradigm_path(shared_datadir: Path) -> Path:
+def pronoun_paradigm_path(testdata_dir: Path) -> Path:
     """
     Return the path to the NA layout in the test fixture dir.
     NOTE: this is **NOT** the NA paradigm used in production!
     """
-    p = shared_datadir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
+    p = testdata_dir / "paradigm-layouts" / "static" / "demonstrative-pronouns.tsv"
     assert p.exists()
     return p
 
 
 @pytest.fixture
-def vii_layout_path(shared_datadir: Path) -> Path:
+def vii_layout_path(testdata_dir: Path) -> Path:
     """
     Return the path to the VII layout in the test fixture dir.
     NOTE: this is **NOT** the VII paradigm used in production!
     """
-    p = shared_datadir / "paradigm-layouts" / "dynamic" / "VII.tsv"
+    p = testdata_dir / "paradigm-layouts" / "dynamic" / "VII.tsv"
     assert p.exists()
     return p
