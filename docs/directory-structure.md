@@ -97,6 +97,8 @@ to:
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── integration_tests/
+        │   │   │   └── …           # tests that use resources/ of current language pair
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
@@ -126,6 +128,8 @@ to:
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── integration_tests/
+        │   │   │   └── …           # tests that use resources/ of current language pair
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
