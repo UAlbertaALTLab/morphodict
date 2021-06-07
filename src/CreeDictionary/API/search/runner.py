@@ -13,9 +13,7 @@ from CreeDictionary.API.search.lookup import fetch_results
 from CreeDictionary.API.search.query import CvdSearchType
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.API.search.util import first_non_none_value
-from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
 from CreeDictionary.shared import expensive
-from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.types import cast_away_optional
 
 crkeng_tag_dict = {
@@ -125,24 +123,27 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
         if "+N" in tags and r.is_lemma and r.lemma_wordform.pos == "N":
             words.append(r)
 
-    tags_starting_with_plus = []
+    orig_tags_starting_with_plus = []
     tags_ending_with_plus = []
     for t in tags:
         (
-            tags_starting_with_plus if t.startswith("+") else tags_ending_with_plus
+            orig_tags_starting_with_plus if t.startswith("+") else tags_ending_with_plus
         ).append(t)
 
     results = []
     for word in words:
+        # This is sometimes mutated
+        tags_starting_with_plus = orig_tags_starting_with_plus[:]
+
         noun_tags = ""
-        if 'N' in word.wordform.inflectional_category:
+        if "N" in word.wordform.inflectional_category:
             noun_tags = get_noun_tags(word.wordform.inflectional_category)
-            if '+N' in tags_starting_with_plus:
-                tags_starting_with_plus.remove('+N')
+            if "+N" in tags_starting_with_plus:
+                tags_starting_with_plus.remove("+N")
             if "+Der/Dim" in tags_starting_with_plus:
                 # noun tags need to be repeated in this case
                 index = tags_starting_with_plus.index("+Der/Dim")
-                tags_starting_with_plus.insert(index+1, noun_tags)
+                tags_starting_with_plus.insert(index + 1, noun_tags)
 
         text = (
             "".join(tags_ending_with_plus)
@@ -159,19 +160,14 @@ def generate_inflected_results(tags, search_run) -> list[EipResult]:
                     inflected_text=w,
                 )
             )
-
-        # noun tags are specific to each word
-        if noun_tags in tags_starting_with_plus:
-            tags_starting_with_plus.remove(noun_tags)
-
     return results
 
 
 def get_noun_tags(inflectional_category):
     noun_tags = ""
     for c in inflectional_category:
-        if c == '-':
+        if c == "-":
             return noun_tags
-        noun_tags += '+' + c
+        noun_tags += "+" + c
 
     return noun_tags
