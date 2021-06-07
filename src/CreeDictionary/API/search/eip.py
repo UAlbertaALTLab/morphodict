@@ -87,8 +87,8 @@ class EipSearch:
             if "+N" in self.new_tags and r.is_lemma and r.lemma_wordform.pos == "N":
                 words.append(r)
 
-        orig_tags_starting_with_plus = []
-        tags_ending_with_plus = []
+        orig_tags_starting_with_plus: list[str] = []
+        tags_ending_with_plus: list[str] = []
         for t in self.new_tags:
             (
                 orig_tags_starting_with_plus
@@ -159,14 +159,14 @@ class PhraseAnalyzedQuery:
         self.has_tags = False
         self.filtered_query = None
         self.tags = None
-        phrase_analysis = [
+        phrase_analyses: list[str] = [
             r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
         ]
 
-        if len(phrase_analysis) != 1:
+        if len(phrase_analyses) != 1:
             return
 
-        phrase_analysis = phrase_analysis[0]
+        phrase_analysis = phrase_analyses[0]
         if "+?" in phrase_analysis:
             return
 

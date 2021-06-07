@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Iterable
 
 from django.db.models import prefetch_related_objects
 
@@ -41,7 +41,7 @@ class SearchRun:
     def remove_result(self, result: types.Result):
         del self._results[result.wordform.key]
 
-    def unsorted_results(self) -> list[types.Result]:
+    def unsorted_results(self) -> Iterable[types.Result]:
         return self._results.values()
 
     def sorted_results(self) -> list[types.Result]:
