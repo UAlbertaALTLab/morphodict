@@ -85,9 +85,7 @@ jobs:
         DEBUG: "True"
       run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
     - name: 📤 Upload Codecov coverage report
-      uses: codecov/codecov-action@v1
-      with:
-        fail_ci_if_error: true
+      uses: codecov/codecov-action@v1.5.0
 
   # Runs Cypress acceptance tests
   integration-test:
