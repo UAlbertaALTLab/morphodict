@@ -101,8 +101,8 @@ X+1PlO	X → 1p (excl)	Actor: Unspecified → Goal: 1st Person Plural (Exclusive
 X+12PlO	X → 1p (incl)	Actor: Unspecified → Goal: 1st Person Plural (Inclusive)	someone → you and us	awiya → kiyânaw		
 X+2PlO	X → 2p	Actor: Unspecified → Goal: 2nd Person Plural	someone → you (all)	awiya → kiyâwaw		
 X+3PlO	X → 3p	Actor: Unspecified → Goal: 3rd Person Plural	someone → them	wiya → wiyanaw (ôki)		
-X+4Sg/PlO	3s → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	someone → him/her/them	awiya → wiya/wiyawâw (ana/aniki)		
-X+5Sg/PlO	3s → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	someone → him/her/them (further)	awiya → wiya/wiyawâw (nâha/nêki)		
+X+4Sg/PlO	X → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	someone → him/her/them	awiya → wiya/wiyawâw (ana/aniki)		
+X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	someone → him/her/them (further)	awiya → wiya/wiyawâw (nâha/nêki)		
 						
 1Pl+1SgO	1p (excl) → 1s	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Singular	we (but not you) → me	niyanân → niya		
 1Pl+2SgO	1p (excl) → 2s	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Singular	we (but not you) → you (one)	niyanân → kiya		
