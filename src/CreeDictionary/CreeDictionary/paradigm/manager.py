@@ -1,9 +1,15 @@
+from __future__ import annotations
+
+from collections import defaultdict
 from pathlib import Path
 from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+
+# I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
+ONLY_SIZE = "<only-size>"
 
 
 class ParadigmManager:
@@ -14,10 +20,14 @@ class ParadigmManager:
     (normative/strict) generator FST.
     """
 
+    # Mappings of paradigm name => sizes available => the layout/paradigm
+    _name_to_paradigm: dict[str, dict[str, Paradigm]]
+    _wc_to_layout: dict[str, dict[str, ParadigmLayout]]
+
     def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
         self._generator = generation_fst
-        self._name_to_paradigm: dict[str, Paradigm] = {}
-        self._wc_to_layout: dict[str, ParadigmLayout] = {}
+        self._name_to_paradigm = defaultdict(dict)
+        self._wc_to_layout = defaultdict(dict)
 
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
@@ -27,7 +37,9 @@ class ParadigmManager:
         Returns a static paradigm with the given name.
         Returns None if there is no paradigm with such a name.
         """
-        return self._name_to_paradigm.get(name)
+        if size_options := self._name_to_paradigm.get(name):
+            return size_options[ONLY_SIZE]
+        return None
 
     def dynamic_paradigm_for(
         self, *, lemma: str, word_class: str
@@ -36,25 +48,29 @@ class ParadigmManager:
         Returns a dynamic paradigm for the given lemma and word class.
         Returns None if no such paradigm can be generated.
         """
-        if layout := self._wc_to_layout.get(word_class):
-            return self._inflect(layout, lemma)
+        size_options = self._wc_to_layout.get(word_class)
+        if size_options is None:
+            # No matching name means no paradigm:
+            return None
 
-        # No matching word class means no paradigm:
-        return None
+        layout = size_options[ONLY_SIZE]
+        return self._inflect(layout, lemma)
 
     def _load_static_from(self, path: Path):
         """
         Loads all .tsv files in the path as static paradigms.
         """
         for filename, layout in self._load_all_layouts_in_directory(path):
-            self._name_to_paradigm[filename.stem] = layout.as_static_paradigm()
+            self._name_to_paradigm[filename.stem][
+                ONLY_SIZE
+            ] = layout.as_static_paradigm()
 
     def _load_dynamic_from(self, path: Path):
         """
         Loads all .tsv files as dynamic layouts.
         """
         for filename, layout in self._load_all_layouts_in_directory(path):
-            self._wc_to_layout[filename.stem] = layout
+            self._wc_to_layout[filename.stem][ONLY_SIZE] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
         """
