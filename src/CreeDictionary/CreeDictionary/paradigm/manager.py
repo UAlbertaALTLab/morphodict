@@ -16,7 +16,7 @@ class ParadigmManager:
 
     def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
         self._generator = generation_fst
-        self._name_to_layout: dict[str, Paradigm] = {}
+        self._name_to_paradigm: dict[str, Paradigm] = {}
         self._wc_to_layout: dict[str, ParadigmLayout] = {}
 
         self._load_static_from(layout_directory / "static")
@@ -27,7 +27,7 @@ class ParadigmManager:
         Returns a static paradigm with the given name.
         Returns None if there is no paradigm with such a name.
         """
-        return self._name_to_layout.get(name)
+        return self._name_to_paradigm.get(name)
 
     def dynamic_paradigm_for(
         self, *, lemma: str, word_class: str
@@ -47,7 +47,7 @@ class ParadigmManager:
         Loads all .tsv files in the path as static paradigms.
         """
         for filename, layout in self._load_all_layouts_in_directory(path):
-            self._name_to_layout[filename.stem] = layout.as_static_paradigm()
+            self._name_to_paradigm[filename.stem] = layout.as_static_paradigm()
 
     def _load_dynamic_from(self, path: Path):
         """
