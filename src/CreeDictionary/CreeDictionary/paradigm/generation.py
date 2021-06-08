@@ -4,11 +4,13 @@ Handles paradigm generation.
 
 from functools import cache
 
-from CreeDictionary.utils.fst_analysis_parser import extract_word_class
-from CreeDictionary.utils.enums import ParadigmSize
+import morphodict.analysis
 from CreeDictionary.API.models import Wordform
-
-from .filler import Layout, ParadigmFiller
+from CreeDictionary.CreeDictionary.paradigm.filler import Layout, ParadigmFiller
+from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
+from CreeDictionary.utils import shared_res_dir
+from CreeDictionary.utils.enums import ParadigmSize
+from CreeDictionary.utils.fst_analysis_parser import extract_word_class
 
 
 def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:
@@ -33,3 +35,14 @@ def paradigm_filler() -> ParadigmFiller:
     Returns a cached instance of the default paradigm filler.
     """
     return ParadigmFiller.default_filler()
+
+
+@cache
+def default_paradigm_manager() -> ParadigmManager:
+    """
+    Returns the ParadigmManager instance that loads layouts and FST from the res
+    (resource) directory for the crk/eng language pair (itwêwina).
+    """
+    return ParadigmManager(
+        shared_res_dir / "layouts", morphodict.analysis.strict_generator()
+    )
