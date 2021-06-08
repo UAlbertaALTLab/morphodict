@@ -1,12 +1,9 @@
-from functools import cache
 from pathlib import Path
 from typing import Optional
 
 from hfst_optimized_lookup import TransducerFile
 
-import morphodict.analysis
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
-from CreeDictionary.utils import shared_res_dir
 
 
 class ParadigmManager:
@@ -76,14 +73,3 @@ class ParadigmManager:
         for layout_file in path.glob("*.tsv"):
             layout = ParadigmLayout.loads(layout_file.read_text(encoding="UTF-8"))
             yield layout_file, layout
-
-
-@cache
-def default_paradigm_manager() -> ParadigmManager:
-    """
-    Returns the ParadigmManager instance that loads layouts and FST from the res
-    (resource) directory.
-    """
-    return ParadigmManager(
-        shared_res_dir / "layouts", morphodict.analysis.strict_generator()
-    )
