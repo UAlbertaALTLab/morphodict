@@ -116,16 +116,18 @@ Then you can access the dictionary applications at various port numbers:
 
 Because [cookies are not port-specific for historical insecurity
 reasons](https://stackoverflow.com/questions/1612177/are-http-cookies-port-specific),
-you can only be logged in to one development site at a time. If that
-becomes problematic, give each development site a unique hostname by adding
-the following to `/etc/hosts`. Then you can access the sites with cookie
-isolation at <http://crkeng-local:8000/>, <http://cwdeng-local:8005/>,
-<http://arpeng-local:8007/>, and so on.
+you can only be logged in to one `127.0.0.1` development site at a time. If
+that becomes problematic, give each development site a unique hostname by
+adding the following to `/etc/hosts`:
 
     127.0.0.1 arpeng-local
     127.0.0.1 cwdeng-local
     127.0.0.1 crkeng-local
     127.0.0.1 srseng-local
+
+Then you can access the sites with cookie isolation at
+<http://crkeng-local:8000/>, <http://cwdeng-local:8005/>,
+<http://arpeng-local:8007/>, and so on.
 
 If you only want to run one dictionary, you can locally comment out lines
 in the Procfile.
