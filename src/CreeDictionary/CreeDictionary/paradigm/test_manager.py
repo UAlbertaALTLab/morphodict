@@ -13,7 +13,6 @@ def test_one_size(paradigm_manager: ParadigmManager):
     paradigm = paradigm_manager.paradigm_for(
         "has-only-one-size", lemma="everything bagel"
     )
-    assert paradigm is not None
 
     all_forms = [
         "everything bagel",
@@ -32,12 +31,12 @@ def test_multiple_sizes(paradigm_manager: ParadigmManager):
 
 def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager):
     lemma = "caramel macchiato"
+
     # For those not familiar with a certain Seattle-based coffee chain:
     # "tall" is the smallest size
     # "grande" is the medium size
     # "venti" is the largest size
     # Pedantic note: There's also "short" and "trenti", but let's not.
-
     tall = paradigm_manager.paradigm_for("has-multiple-sizes", lemma=lemma, size="tall")
     grande = paradigm_manager.paradigm_for(
         "has-multiple-sizes", lemma=lemma, size="grande"
@@ -69,14 +68,18 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
 @pytest.fixture
 def paradigm_manager():
     testdata = Path(__file__).parent / "testdata"
-    assert testdata.exists()
+    assert testdata.is_dir()
     transducer = IdentityTransducer()
+
     return ParadigmManager(testdata / "layouts", transducer)
 
 
 class IdentityTransducer:
     """
-    For each lookup, returns the query unchanged (.lookup() is the identity function).
+    For each lookup, returns the query unchanged -- .lookup() is the identity function.
+
+    Note: ${lemma} is substituted BEFORE calling .bulk_lookup(), so the "analysis" will
+    just be whatever is in the paradigm cell, with all the substitutions finished.
     """
 
     def bulk_lookup(self, analyses: Iterable[str]) -> dict[str, set[str]]:
