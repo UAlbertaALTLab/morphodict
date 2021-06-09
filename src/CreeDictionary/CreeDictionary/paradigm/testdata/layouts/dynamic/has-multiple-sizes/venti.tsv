@@ -1,0 +1,6 @@
+	| Regular	| Decaf
+_ 2Pct	${lemma}	${lemma}
+_ NonFat	${lemma}	${lemma}
+_ Soy	${lemma}	${lemma}
+_ Oat	${lemma}	${lemma}
+_ Almond	${lemma}	${lemma}

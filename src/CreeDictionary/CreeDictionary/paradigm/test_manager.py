@@ -3,17 +3,18 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager, ONLY_SIZE
+from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager
 
 
 def test_one_size(paradigm_manager: ParadigmManager):
     assert set(paradigm_manager.sizes_of("has-only-one-size")) == {ONLY_SIZE}
 
 
-@pytest.mark.xfail
 def test_multiple_sizes(paradigm_manager: ParadigmManager):
     assert set(paradigm_manager.sizes_of("has-multiple-sizes")) == {
-        "tall", "grande", "venti"
+        "tall",
+        "grande",
+        "venti",
     }
 
 

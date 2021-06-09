@@ -1,0 +1,4 @@
+	| Col | 1	| Col | 2
+_ Row _ 1	[Px1Sg]${lemma}[Noun][Sg]	[Px1Sg]${lemma}[Noun][Pl]
+_ Row _ 2	[Px2Sg]${lemma}[Noun][Sg]	[Px2Sg]${lemma}[Noun][Pl]
+_ Row _ 3	[Px3Sg]${lemma}[Noun][Sg]	[Px3Sg]${lemma}[Noun][Pl]
