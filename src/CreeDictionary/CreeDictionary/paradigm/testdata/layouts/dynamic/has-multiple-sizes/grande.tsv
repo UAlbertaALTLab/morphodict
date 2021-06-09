@@ -1,4 +1,4 @@
-	| Regular	| Decaf
-_ 2Pct	${lemma}	${lemma}
-_ NonFat	${lemma}	${lemma}
-_ Soy	${lemma}	${lemma}
+_ 2Pct	grande ${lemma}
+
+# Iced	
+_ 2Pct	iced grande ${lemma}

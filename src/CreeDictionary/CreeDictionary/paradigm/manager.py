@@ -33,6 +33,23 @@ class ParadigmManager:
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
 
+    def paradigm_for(self, paradigm_name: str, lemma: Optional[str] = None) -> Paradigm:
+        """
+        Returns a paradigm for the given paradigm name. If a lemma is given, this is
+        substituted into the dynamic paradigm.
+        """
+        if lemma is not None:
+            paradigm = self.dynamic_paradigm_for(lemma=lemma, word_class=paradigm_name)
+        else:
+            paradigm = self.static_paradigm_for(paradigm_name)
+
+        if paradigm is None:
+            raise NotImplementedError(
+                "not sure what should happen if a paradigm cannot be found"
+            )
+
+        return paradigm
+
     def static_paradigm_for(self, name: str) -> Optional[Paradigm]:
         """
         Returns a static paradigm with the given name.

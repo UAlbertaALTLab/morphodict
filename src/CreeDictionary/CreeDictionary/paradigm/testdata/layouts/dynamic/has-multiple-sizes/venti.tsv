@@ -1,6 +1,7 @@
-	| Regular	| Decaf
-_ 2Pct	${lemma}	${lemma}
-_ NonFat	${lemma}	${lemma}
-_ Soy	${lemma}	${lemma}
-_ Oat	${lemma}	${lemma}
-_ Almond	${lemma}	${lemma}
+	| Whip	| NoWhip
+_ 2Pct	venti ${lemma}	venti ${lemma}, no whip
+_ Almond	venti almond ${lemma}	venti ${lemma}, no whip
+
+# Iced
+_ 2Pct	iced venti ${lemma}	iced venti ${lemma}, no whip
+_ Almond	iced venti almond ${lemma}	iced venti ${lemma}, no whip
