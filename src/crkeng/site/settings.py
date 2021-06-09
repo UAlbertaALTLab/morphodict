@@ -25,14 +25,21 @@ ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 INSTALLED_APPS.insert(0, "crkeng.app")
 
-ROOT_URLCONF = "crkeng.site.urls"
-
 WSGI_APPLICATION = "crkeng.site.wsgi.application"
+
+FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2Sg+3SgO"]
 
 # Morphodict configuration
 
+STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
+STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
+
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
+
+MORPHODICT_SOURCE_LANGUAGE = "crk"
+MORPHODICT_TARGET_LANGUAGE = "eng"
 
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:

@@ -8,22 +8,24 @@ from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFou
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
+import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
-from CreeDictionary.CreeDictionary.paradigm.generation import generate_paradigm
-from CreeDictionary.CreeDictionary.paradigm.manager import default_paradigm_manager
+from CreeDictionary.CreeDictionary.paradigm.generation import (
+    default_paradigm_manager,
+    generate_paradigm,
+)
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.shared import expensive
 from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
-from morphodict.preference import ChangePreferenceView
+from morphodict.preference.views import ChangePreferenceView
 
 from .utils import url_for_query
 
@@ -80,9 +82,9 @@ def entry_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
-        paradigm_tables=paradigm,
+        paradigm=paradigm,
     )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def index(request):  # pragma: no cover
@@ -183,13 +185,19 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
+    paradigm = paradigm_for(lemma, paradigm_size)
+    if isinstance(paradigm, Paradigm):
+        template_name = "CreeDictionary/components/paradigm-with-panes.html"
+    else:
+        template_name = "CreeDictionary/components/paradigm.html"
+
     return render(
         request,
-        "CreeDictionary/components/paradigm.html",
+        template_name,
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
-            "paradigm_tables": generate_paradigm(lemma, paradigm_size),
+            "paradigm": paradigm,
         },
     )
 
@@ -234,6 +242,8 @@ def query_help(request):  # pragma: no cover
 def fst_tool(request):
     context = {}
 
+    context["fst_tool_samples"] = settings.FST_TOOL_SAMPLES
+
     text = request.GET.get("text", None)
     if text is not None:
         context.update({"text": text, "repr_text": repr(text)})
@@ -243,9 +253,9 @@ def fst_tool(request):
 
     if text is not None:
         context["analyses"] = {
-            "relaxed_analyzer": expensive.relaxed_analyzer.lookup(text),
-            "strict_analyzer": expensive.strict_analyzer.lookup(text),
-            "strict_generator": expensive.strict_generator.lookup(text),
+            "relaxed_analyzer": morphodict.analysis.relaxed_analyzer().lookup(text),
+            "strict_analyzer": morphodict.analysis.strict_analyzer().lookup(text),
+            "strict_generator": morphodict.analysis.strict_generator().lookup(text),
             "eng_noun_entry2inflected-phrase": decode_foma_results(
                 eng_noun_entry_to_inflected_phrase_fst(), text
             ),
@@ -303,7 +313,7 @@ class ChangeDisplayMode(ChangePreferenceView):
     Sets the mode= cookie, which affects how search results are rendered.
     """
 
-    preference = DisplayMode
+    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
 
 
 class ChangeParadigmLabelPreference(ChangePreferenceView):
@@ -312,7 +322,7 @@ class ChangeParadigmLabelPreference(ChangePreferenceView):
     PARADIGMS!
     """
 
-    preference = ParadigmLabel
+    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions

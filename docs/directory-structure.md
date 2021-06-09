@@ -97,13 +97,15 @@ to:
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── integration_tests/
+        │   │   │   └── …           # tests that use resources/ of current language pair
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
         │   │   └── …
-        │   ├── res/                # Resources go here
+        │   ├── resources/          # Resources go here
         │   │   ├── altlabels.tsv
         │   │   ├── dictionaries/
         │   │   ├── fst/
@@ -111,22 +113,30 @@ to:
         │   ├── site/               # Django project
         │   │   ├── __init__.py
         │   │   ├── settings.py
+        │   │   ├── static/         # Logos and other static assets
         │   │   └── urls.py
-        │   └── frontend/           # Not a python package; language-specific frontend files
-        │       ├── ….js
-        │       └── css/
-        │           └── ….css
+        │   ├── frontend/           # Not a python package; language-specific frontend files
+        │   │   ├── ….js
+        │   │   └── css/
+        │   │       └── ….css
+        │   ├── generated/          # For files generated from other files; not checked in
+        │   │   ├── collected_static/
+        │   │   ├── built_js/
+        │   │   ├── vector_models/
+        │   │   └── …
         ├── cwdeng/                 # python package for Woods Cree dictionary
         │   ├── __init__.py
         │   ├── app/                # Django application (optional)
         │   │   ├── __init__.py
+        │   │   ├── integration_tests/
+        │   │   │   └── …           # tests that use resources/ of current language pair
         │   │   ├── templates/      # Django templates (overrides other apps)
         │   │   └── static/         # Static assets (Django staticfiles app)
         │   ├── cypress/
         │   │   └── …
         │   ├── docker/
         │   │   └── …
-        │   ├── res/
+        │   ├── resources/
         │   │   ├── altlabels.tsv
         │   │   ├── dictionaries/
         │   │   ├── fst/
@@ -134,11 +144,14 @@ to:
         │   ├── site/               # Django project
         │   │   ├── __init__.py
         │   │   ├── settings.py
+        │   │   ├── static/         # Logos and other static assets
         │   │   └── urls.py
-        │   └── frontend/           # Not a python package; language-specific frontend files
-        │       ├── ….js
-        │       └── css/
-        │           └── ….css
+        │   ├── frontend/           # Not a python package; language-specific frontend files
+        │   │   ├── ….js
+        │   │   └── css/
+        │   │       └── ….css
+        │   └── generated/          # For files generated from other files; not checked in
+        │       └── …
         ├── arpeng/
         ├── crkfra/
         ├── cr_shared               # for code and resources shared between Cree dialects

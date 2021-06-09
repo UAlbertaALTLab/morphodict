@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
     "CreeDictionary.DatabaseManager",
+    "morphodict.lexicon",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
@@ -92,6 +93,8 @@ MIDDLEWARE = [
     "morphodict.site.securemiddleware.set_secure_headers",
 ]
 
+ROOT_URLCONF = "CreeDictionary.CreeDictionary.urls"
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -104,6 +107,8 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "CreeDictionary.CreeDictionary.context_processors.display_options",
+                "morphodict.lexicon.context_processors.language_pair",
+                "morphodict.preference.context_processors.preferences",
             ]
         },
     }
@@ -152,6 +157,8 @@ if DEBUG and ENABLE_DJANGO_DEBUG_TOOLBAR:
         "SHOW_COLLAPSED": True,  # collapse the toolbar by default
     }
 
+if DEBUG:
+    # This is also used by django.template.context_processors.debug
     INTERNAL_IPS = ["127.0.0.1"]
 
 # Used for verification with https://search.google.com/search-console
@@ -194,7 +201,7 @@ if USE_TEST_DB:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.fspath(BASE_DIR / "test_db.sqlite3"),
+            "NAME": os.fspath(BASE_DIR / "db" / "test_db.sqlite3"),
         }
     }
 else:

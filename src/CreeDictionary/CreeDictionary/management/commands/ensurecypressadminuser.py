@@ -1,6 +1,7 @@
 import json
 import logging
 import secrets
+from argparse import ArgumentParser, BooleanOptionalAction
 
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -16,7 +17,18 @@ class Command(BaseCommand):
     saved in a JSON file to be read by cypress tests.
     """
 
-    def handle(self, *args, **options):
+    def add_arguments(self, parser: ArgumentParser):
+        parser.add_argument(
+            "--superuser",
+            action="store_true",
+            help="""
+                Make the user a superuser. Handy for development. Note: omitting
+                this option will not remove the superuser bit if the cypress
+                user is already a superuser.
+            """,
+        )
+
+    def handle(self, superuser=False, **options):
         if not settings.USE_TEST_DB:
             logger.warning(
                 "USE_TEST_DB is not set. You usually want to run this against the test DB."
@@ -39,7 +51,12 @@ class Command(BaseCommand):
             if password and cypress_user.check_password(password):
                 user_file_valid = True
 
-        if created or not user_file_valid:
+        if (
+            created
+            or not user_file_valid
+            or superuser
+            and not cypress_user.is_superuser
+        ):
             if not password:
                 password = secrets.token_hex(20)
             user_info_file.write_text(
@@ -50,4 +67,5 @@ class Command(BaseCommand):
             # Our only login page is the admin login page, which only accepts logins
             # from staff users.
             cypress_user.is_staff = True
+            cypress_user.is_superuser = superuser
             cypress_user.save()
