@@ -80,7 +80,7 @@ class ParadigmManager:
             logger.info("No static paradigms found in %s", path)
             return
 
-        for paradigm_name, size, layout in self._load_all_layouts_in_directory(path):
+        for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
             self._name_to_paradigm[paradigm_name][size] = layout.as_static_paradigm()
 
     def _load_dynamic_from(self, path: Path):
@@ -91,7 +91,7 @@ class ParadigmManager:
             logger.info("No dynamic paradigms found in %s", path)
             return
 
-        for paradigm_name, size, layout in self._load_all_layouts_in_directory(path):
+        for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
             self._wc_to_layout[paradigm_name][size] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
@@ -106,29 +106,33 @@ class ParadigmManager:
         }
         return layout.fill(template2forms)
 
-    @staticmethod
-    def _load_all_layouts_in_directory(path: Path):
-        assert path.is_dir()
 
-        for filename in path.iterdir():
-            if filename.is_dir():
-                yield from _load_all_sizes_for_paradigm(filename)
-            elif filename.match("*.tsv"):
-                layout = _load_layout_file(filename)
-                yield filename.stem, ONLY_SIZE, layout
+def _load_all_layouts_in_directory(path: Path):
+    """
+    Yields (paradigm, size, layout) tuples from the given directory. Immediate
+    subdirectories are assumed to be paradigms with multiple size options.
+    """
+    assert path.is_dir()
+
+    for filename in path.iterdir():
+        if filename.is_dir():
+            yield from _load_all_sizes_for_paradigm(filename)
+        elif filename.match("*.tsv"):
+            yield filename.stem, ONLY_SIZE, _load_layout_file(filename)
 
 
 def _load_all_sizes_for_paradigm(directory: Path):
     """
-    Yields (paradigm, size, layout) tuples from the given directory.
+    Yields (paradigm, size, layout) tuples for ONE paradigm name. The paradigm name
+    is inferred from the directory name.
     """
     paradigm_name = directory.name
     assert directory.is_dir()
 
     for layout_file in directory.glob("*.tsv"):
-        layout = _load_layout_file(layout_file)
         size = layout_file.stem
-        yield paradigm_name, size, layout
+        assert size != ONLY_SIZE, f"size name cannot clash with sentinel value: {size}"
+        yield paradigm_name, size, _load_layout_file(layout_file)
 
 
 def _load_layout_file(layout_file: Path):
