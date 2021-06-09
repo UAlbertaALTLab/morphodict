@@ -73,8 +73,8 @@ class ParadigmManager:
         """
         Loads all .tsv files in the path as static paradigms.
         """
-        for filename, layout in self._load_all_layouts_in_directory(path):
-            self._name_to_paradigm[filename.stem][
+        for paradigm_name, layout in self._load_all_layouts_in_directory(path):
+            self._name_to_paradigm[paradigm_name][
                 ONLY_SIZE
             ] = layout.as_static_paradigm()
 
@@ -82,8 +82,8 @@ class ParadigmManager:
         """
         Loads all .tsv files as dynamic layouts.
         """
-        for filename, layout in self._load_all_layouts_in_directory(path):
-            self._wc_to_layout[filename.stem][ONLY_SIZE] = layout
+        for paradigm_name, layout in self._load_all_layouts_in_directory(path):
+            self._wc_to_layout[paradigm_name][ONLY_SIZE] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
         """
@@ -101,7 +101,7 @@ class ParadigmManager:
     def _load_all_layouts_in_directory(path: Path):
         for layout_file in path.glob("*.tsv"):
             layout = ParadigmLayout.loads(layout_file.read_text(encoding="UTF-8"))
-            yield layout_file, layout
+            yield layout_file.stem, layout
 
 
 class Transducer(Protocol):
