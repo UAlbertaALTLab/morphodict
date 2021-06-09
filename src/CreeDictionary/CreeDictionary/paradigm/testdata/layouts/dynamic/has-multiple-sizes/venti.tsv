@@ -1,7 +1,7 @@
 	| Whip	| NoWhip
-_ 2Pct	venti ${lemma}	venti ${lemma}, no whip
-_ Almond	venti almond ${lemma}	venti ${lemma}, no whip
+_ 2Pct	${lemma}	${lemma}, no whip
+_ Almond	almond ${lemma}	${lemma}, no whip
 
 # Iced
-_ 2Pct	iced venti ${lemma}	iced venti ${lemma}, no whip
-_ Almond	iced venti almond ${lemma}	iced venti ${lemma}, no whip
+_ 2Pct	iced ${lemma}	iced ${lemma}, no whip
+_ Almond	iced almond ${lemma}	iced almond ${lemma}, no whip

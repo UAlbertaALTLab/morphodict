@@ -30,6 +30,51 @@ def test_multiple_sizes(paradigm_manager: ParadigmManager):
     assert set(paradigm_manager.sizes_of("has-multiple-sizes")) == expected_sizes
 
 
+def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager):
+    lemma = "caramel macchiato"
+    # For those not familiar with a certain Seattle-based coffee chain:
+    # "tall" is the smallest size
+    # "grande" is the medium size
+    # "venti" is the largest size
+    # Pedantic note: There's also "short" and "trenti", but let's not.
+
+    tall = paradigm_manager.paradigm_for(
+        "has-multiple-sizes",
+        lemma=lemma,
+        size="tall"
+    )
+    venti = paradigm_manager.paradigm_for(
+        "has-multiple-sizes",
+        lemma=lemma,
+        size="grande"
+    )
+    grande = paradigm_manager.paradigm_for(
+        "has-multiple-sizes",
+        lemma=lemma,
+        size="venti"
+    )
+
+    present_in_all_sizes = [lemma]
+    exclusively_in_grande_and_up = [f"iced {lemma}"]
+    exclusively_in_venti = [f"iced almond {lemma}, no whip"]
+
+    for form in present_in_all_sizes:
+        for size in (tall, grande, venti):
+            assert size.contains_wordform(form)
+
+    for form in exclusively_in_grande_and_up:
+        assert not tall.contains_wordform(form)
+        for size in (grande, venti):
+            assert size.contains_wordform(form)
+
+    for form in exclusively_in_venti:
+        for size in (tall, grande):
+            assert not size.contains_wordform(form)
+
+        assert venti.contains_wordform(form)
+
+
+
 @pytest.fixture
 def paradigm_manager():
     testdata = Path(__file__).parent / "testdata"
