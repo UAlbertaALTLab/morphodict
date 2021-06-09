@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Iterable, Optional, Protocol
+from typing import Any, Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -53,6 +53,21 @@ class ParadigmManager:
 
         layout = size_options[ONLY_SIZE]
         return self._inflect(layout, lemma)
+
+    def sizes_of(self, paradigm_name: str) -> Collection[str]:
+        """
+        Returns the size options of the given paradigm.
+        """
+        collection: dict[str, dict[str, Any]]
+
+        if paradigm_name in self._name_to_paradigm:
+            collection = self._name_to_paradigm
+        elif paradigm_name in self._wc_to_layout:
+            collection = self._wc_to_layout
+        else:
+            raise KeyError(f"Paradigm does not exist: {paradigm_name}")
+
+        return collection[paradigm_name].keys()
 
     def _load_static_from(self, path: Path):
         """
