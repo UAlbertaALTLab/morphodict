@@ -8,7 +8,7 @@ import logging
 import re
 import string
 from itertools import zip_longest
-from typing import Collection, Iterable, Optional, TextIO
+from typing import Collection, Iterable, Mapping, Optional, TextIO
 
 from more_itertools import first, ilen
 
@@ -132,7 +132,7 @@ class ParadigmLayout(Paradigm):
             for inflection in self.inflection_cells
         }
 
-    def fill(self, forms: dict[str, Collection[str]]) -> Paradigm:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> Paradigm:
         """
         Given a mapping from analysis to a collection of wordforms, returns a
         paradigm with all its InflectionTemplate cells replaced with WordformCells.
@@ -218,7 +218,7 @@ class Pane:
     def contains_wordform(self, wordform: str) -> bool:
         return any(row.contains_wordform(wordform) for row in self.rows)
 
-    def fill(self, forms: dict[str, Collection[str]]) -> Pane:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> Pane:
         return Pane(row.fill(forms) for row in self.rows)
 
 
@@ -261,7 +261,7 @@ class Row:
     def contains_wordform(self, wordform: str) -> bool:
         raise NotImplementedError
 
-    def fill(self, forms: dict[str, Collection[str]]) -> Row:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> Row:
         if not self.has_content:
             # Just labels; can return ourselves verbatim
             return self
@@ -316,7 +316,7 @@ class ContentRow(Row):
     def contains_wordform(self, wordform: str) -> bool:
         return any(cell.contains_wordform(wordform) for cell in self.cells)
 
-    def fill(self, forms: dict[str, Collection[str]]) -> ContentRow:
+    def fill(self, forms) -> ContentRow:
         return ContentRow(cell.fill_one(forms) for cell in self.cells)
 
     def __eq__(self, other) -> bool:

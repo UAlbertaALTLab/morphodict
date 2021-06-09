@@ -2,9 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
-from typing import Optional
-
-from hfst_optimized_lookup import TransducerFile
+from typing import Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -24,7 +22,7 @@ class ParadigmManager:
     _name_to_paradigm: dict[str, dict[str, Paradigm]]
     _wc_to_layout: dict[str, dict[str, ParadigmLayout]]
 
-    def __init__(self, layout_directory: Path, generation_fst: TransducerFile):
+    def __init__(self, layout_directory: Path, generation_fst: Transducer):
         self._generator = generation_fst
         self._name_to_paradigm = defaultdict(dict)
         self._wc_to_layout = defaultdict(dict)
@@ -89,3 +87,15 @@ class ParadigmManager:
         for layout_file in path.glob("*.tsv"):
             layout = ParadigmLayout.loads(layout_file.read_text(encoding="UTF-8"))
             yield layout_file, layout
+
+
+class Transducer(Protocol):
+    """
+    Interface for something that can lookup forms in bulk.
+
+    This is basically the subset of the hfst_optimized_lookup.TransducerFile API that
+    the paradigm manager actually uses.
+    """
+
+    def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]:
+        ...
