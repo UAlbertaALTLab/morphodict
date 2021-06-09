@@ -33,15 +33,19 @@ class ParadigmManager:
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
 
-    def paradigm_for(self, paradigm_name: str, lemma: Optional[str] = None) -> Paradigm:
+    def paradigm_for(
+        self, paradigm_name: str, lemma: Optional[str] = None, size: str = ONLY_SIZE
+    ) -> Paradigm:
         """
         Returns a paradigm for the given paradigm name. If a lemma is given, this is
         substituted into the dynamic paradigm.
         """
         if lemma is not None:
-            paradigm = self.dynamic_paradigm_for(lemma=lemma, word_class=paradigm_name)
+            paradigm = self.dynamic_paradigm_for(
+                lemma=lemma, word_class=paradigm_name, size=size
+            )
         else:
-            paradigm = self.static_paradigm_for(paradigm_name)
+            paradigm = self.static_paradigm_for(paradigm_name, size=size)
 
         if paradigm is None:
             raise NotImplementedError(
@@ -50,17 +54,19 @@ class ParadigmManager:
 
         return paradigm
 
-    def static_paradigm_for(self, name: str) -> Optional[Paradigm]:
+    def static_paradigm_for(
+        self, name: str, size: str = ONLY_SIZE
+    ) -> Optional[Paradigm]:
         """
         Returns a static paradigm with the given name.
         Returns None if there is no paradigm with such a name.
         """
         if size_options := self._name_to_paradigm.get(name):
-            return size_options[ONLY_SIZE]
+            return size_options[size]
         return None
 
     def dynamic_paradigm_for(
-        self, *, lemma: str, word_class: str
+        self, *, lemma: str, word_class: str, size: str = ONLY_SIZE
     ) -> Optional[Paradigm]:
         """
         Returns a dynamic paradigm for the given lemma and word class.
@@ -71,7 +77,7 @@ class ParadigmManager:
             # No matching name means no paradigm:
             return None
 
-        layout = size_options[ONLY_SIZE]
+        layout = size_options[size]
         return self._inflect(layout, lemma)
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:

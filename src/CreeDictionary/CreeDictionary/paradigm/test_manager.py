@@ -38,20 +38,12 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
     # "venti" is the largest size
     # Pedantic note: There's also "short" and "trenti", but let's not.
 
-    tall = paradigm_manager.paradigm_for(
-        "has-multiple-sizes",
-        lemma=lemma,
-        size="tall"
+    tall = paradigm_manager.paradigm_for("has-multiple-sizes", lemma=lemma, size="tall")
+    grande = paradigm_manager.paradigm_for(
+        "has-multiple-sizes", lemma=lemma, size="grande"
     )
     venti = paradigm_manager.paradigm_for(
-        "has-multiple-sizes",
-        lemma=lemma,
-        size="grande"
-    )
-    grande = paradigm_manager.paradigm_for(
-        "has-multiple-sizes",
-        lemma=lemma,
-        size="venti"
+        "has-multiple-sizes", lemma=lemma, size="venti"
     )
 
     present_in_all_sizes = [lemma]
@@ -72,7 +64,6 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
             assert not size.contains_wordform(form)
 
         assert venti.contains_wordform(form)
-
 
 
 @pytest.fixture
