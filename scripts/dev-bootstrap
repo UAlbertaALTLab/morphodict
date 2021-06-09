@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# This script started out in Python but that was too heavyweight at the
+# time. In its current form it could also be a small Makefile. If much
+# functionality gets added to it, it should probably go back to being
+# Python.
+
 set -eu
 
 function run() {
