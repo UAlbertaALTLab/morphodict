@@ -387,18 +387,8 @@ def paradigm_for(
             ParadigmSize.BASIC: "basic",
             ParadigmSize.LINGUISTIC: "full",
         }[paradigm_size]
-        paradigm_name = {
-            WordClass.VII: "VII",
-            WordClass.VTI: "VTI",
-            WordClass.VAI: "VAI",
-            WordClass.VTA: "VTA",
-            WordClass.NA: "NA",
-            WordClass.NI: "NI",
-            # uses Arok's scheme: Noun Dependent {Animate/Inanimate}
-            WordClass.NAD: "NDA",
-            WordClass.NID: "NDI",
-        }.get(word_class)
 
+        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
         if paradigm_name is None:
             return []
 
@@ -413,3 +403,21 @@ def paradigm_for(
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
+
+
+def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
+    """
+    Returns the paradigm name in crkeng's layouts directory, or None if a paradigm
+    name cannot be determined from the legacy WordClass alone.
+    """
+    return {
+        WordClass.VII: "VII",
+        WordClass.VTI: "VTI",
+        WordClass.VAI: "VAI",
+        WordClass.VTA: "VTA",
+        WordClass.NA: "NA",
+        WordClass.NI: "NI",
+        # uses Arok's scheme: Noun Dependent {Animate/Inanimate}
+        WordClass.NAD: "NDA",
+        WordClass.NID: "NDI",
+    }.get(word_class)
