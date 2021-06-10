@@ -127,7 +127,7 @@ def index(request):  # pragma: no cover
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
-    return HttpResponse(render(request, "CreeDictionary/index.html", context))
+    return render(request, "CreeDictionary/index.html", context)
 
 
 def search_results(request, query_string: str):  # pragma: no cover
