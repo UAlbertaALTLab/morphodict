@@ -1,6 +1,12 @@
 Paradigm layouts
 ================
 
+> ⚠️ **NOTE** ⚠️ 
+>
+> This describes the legacy, NDS-style paradigm layout format for
+> itwêwina (crkeng). For documentation on the current format, please see
+> [this document instead](./paradigm-layouts.md).
+
 In `CreeDictionary/res/layouts` you will find files like these:
 
     .
