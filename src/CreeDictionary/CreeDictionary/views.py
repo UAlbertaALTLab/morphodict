@@ -397,7 +397,11 @@ def paradigm_for(
             # uses Arok's scheme: Noun Dependent {Animate/Inanimate}
             WordClass.NAD: "NDA",
             WordClass.NID: "NDI",
-        }[word_class]
+        }.get(word_class)
+
+        if paradigm_name is None:
+            return []
+
         try:
             paradigm = manager.paradigm_for(
                 paradigm_name, lemma=wordform.text, size=size
