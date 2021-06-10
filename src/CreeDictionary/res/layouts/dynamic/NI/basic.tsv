@@ -1,0 +1,12 @@
+_ Sg	${lemma}+N+I+Sg
+_ Pl	${lemma}+N+I+Pl
+_ Loc	${lemma}+N+I+Loc
+	
+# Dim	
+_ Sg	${lemma}+N+I+Der/Dim+N+I+Sg
+	
+# Poss	
+	| Sg
+_ Px1Sg	${lemma}+N+I+Px1Sg+Sg
+_ Px2Sg	${lemma}+N+I+Px2Sg+Sg
+_ Px3Sg	${lemma}+N+I+Px3Sg+Sg
