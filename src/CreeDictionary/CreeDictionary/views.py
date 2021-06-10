@@ -389,13 +389,9 @@ def paradigm_for(
             return []
 
         try:
-            paradigm = manager.paradigm_for(
-                paradigm_name, lemma=wordform.text, size=size
-            )
+            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
         except KeyError:
             return []
-        else:
-            return paradigm
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
