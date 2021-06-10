@@ -382,11 +382,7 @@ def paradigm_for(
     #  - paradigm manager must support multiple sizes
     #  - relabelling must work to use linguistic layouts
     if word_class := wordform.word_class:
-        size = {
-            ParadigmSize.FULL: "full",
-            ParadigmSize.BASIC: "basic",
-            ParadigmSize.LINGUISTIC: "full",
-        }[paradigm_size]
+        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
 
         paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
         if paradigm_name is None:
@@ -403,6 +399,21 @@ def paradigm_for(
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
+
+
+def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
+    """
+    Returns the crkeng layout size, which is currently:
+     - basic
+     - full
+    """
+    return {
+        ParadigmSize.FULL: "full",
+        ParadigmSize.BASIC: "basic",
+        # The linguistic "size" does not, as of yet exist, however its contents is
+        # exactly the same as the full layout.
+        ParadigmSize.LINGUISTIC: "full",
+    }[paradigm_size]
 
 
 def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
