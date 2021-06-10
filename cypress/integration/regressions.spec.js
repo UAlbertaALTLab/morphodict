@@ -155,10 +155,10 @@ context('Regressions', () => {
       .click()
 
     // N.B.: This test will fail if the word changes. ¯\_(ツ)_/¯
-    cy.contains('th', 's/he → him/her/them (further)') // 3Sg -> 4 (lemma)
-    cy.contains('th', 's/he → me')                  // 3Sg -> 1Sg
-    cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
-    cy.contains('th', 's/he/they (further) → him/her') // 4 -> 3
+    cy.contains('th', 's/he → him/her/them') // 3Sg -> 3' (lemma)
+    cy.contains('th', 's/he → me')           // 3Sg -> 1Sg
+    cy.contains('th', 's/he → you')          // 3Sg -> 2Sg
+    cy.contains('th', 's/he/they → him/her') // 3' -> 3
   })
 
   /**
