@@ -37,10 +37,10 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
     """
     lemma = "minôs"
     word_class = "NA"
-    inflections = ["minôsa", "minôsak", "niminôs", "minôsinâhk"]
+    inflections = ["minôsa", "minôsak", "niminôs"]
 
-    paradigm = paradigm_manager.dynamic_paradigm_for(lemma=lemma, word_class=word_class)
-    assert paradigm is not None
+    default_size = first(paradigm_manager.sizes_of(word_class))
+    paradigm = paradigm_manager.paradigm_for(word_class, lemma=lemma, size=default_size)
 
     for form in inflections:
         assert paradigm.contains_wordform(form)

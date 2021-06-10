@@ -383,7 +383,7 @@ def paradigm_for(
     #  - relabelling must work to use linguistic layouts
     if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
         dynamic_paradigm = manager.dynamic_paradigm_for(
-            lemma=wordform.text, word_class=word_class.value
+            lemma=wordform.text, word_class=word_class.value, size="full"
         )
         if dynamic_paradigm:
             return dynamic_paradigm
