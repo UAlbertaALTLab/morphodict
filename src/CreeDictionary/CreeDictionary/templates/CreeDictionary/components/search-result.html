@@ -64,7 +64,7 @@
       </li>
       {% endfor %}
     </ol>
-
+    {{ result.features_json() }}
     {% include "CreeDictionary/components/preverb-breakdown.html" %}
 
     {# Show the matched lemma (when this is NOT a lemma). #}

@@ -228,6 +228,9 @@ class Result:
     def assign_default_relevance_score(self):
         ranking.assign_relevance_score(self)
 
+    def add_feature(self, feature, value):
+        self
+
     def __lt__(self, other: Result):
         assert self.relevance_score is not None
         assert other.relevance_score is not None
