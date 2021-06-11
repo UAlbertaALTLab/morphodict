@@ -406,7 +406,7 @@ def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
     return {
         ParadigmSize.FULL: "full",
         ParadigmSize.BASIC: "basic",
-        # The linguistic "size" does not, as of yet exist, however its contents is
+        # The linguistic "size" does not, as of yet exist, however its content is
         # exactly the same as the full layout.
         ParadigmSize.LINGUISTIC: "full",
     }[paradigm_size]

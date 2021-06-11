@@ -92,7 +92,7 @@ describe('I want to know if a form is observed inside a paradigm table', () => {
 })
 
 describe('I want to see a clear indicator that a form does not exist', () => {
-  it('shows cells that does not exist as a em dash', () => {
+  it('shows cells that do not exist as an em dash', () => {
     const EM_DASH = '—'
 
     // minôs does NOT have a diminutive
