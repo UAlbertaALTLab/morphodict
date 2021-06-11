@@ -405,4 +405,4 @@ def observed_wordforms() -> set[str]:
     As of 2021-06-11, for itwêwina, this information is derived from the
     corpus_frequency.txt file that is checked-in to the repo.
     """
-    return {wordform for wordform, _analysis, freq in import_tuples() if freq > 1}
+    return {wordform for wordform, _analysis, freq in import_tuples() if freq > 0}
