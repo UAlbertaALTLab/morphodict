@@ -7,8 +7,10 @@
 {% block prose %}
 <article class="prose box"{% if should_hide_prose %} style="display:none"{% endif %}>
   <h2 class="prose__heading no-italics">{% orth 'tânisi!' %}</h2>
+
   <p>{% orth 'itwêwina' %} is a Plains Cree Dictionary.</p>
   {% with long_word='ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk' %}
+
   <p>Type any Cree word to find its English translation. You can search for
       short Cree words
       (e.g., <a href="{% url_for_query 'atim' %}">{% orth 'atim' %}</a>) or very long Cree words
@@ -19,6 +21,7 @@
       or using syllabics (e.g.,
       <a href="{% url_for_query 'ᐊᒋᒧᓯᐢ' %}"><span lang="cr">ᐊᒋᒧᓯᐢ</span></a>).</p>
   {% endwith %}
+
   <p><a href="{% url_for_query 'itwêwina' %}">{% orth 'itwêwina' %}</a>
       was made by the
       <a href="https://altlab.artsrn.ualberta.ca/">Alberta Language Technology Lab (ALTLab)</a>,
@@ -27,8 +30,13 @@
       <a href="https://www.maskwacised.ca/">Maskwacîs Education Schools Commission (MESC)</a>.
       The dictionary entries are courtesy of
       <a href="https://www.fnuniv.ca/academic/faculty/dr-arok-wolvengrey/">Dr.  Arok Wolvengrey</a>
-      and MESC.</p> The spoken Cree word recordings are courtesy of
+      and MESC.
+  </p>
+
+  <p>
+    The spoken Cree word recordings are courtesy of
       <a href="https://www.altlab.dev/maskwacis/Speakers/speakers.html">speakers in Maskwacîs</a>. 
+  </p>
 </article>
 {% endblock %}
 
