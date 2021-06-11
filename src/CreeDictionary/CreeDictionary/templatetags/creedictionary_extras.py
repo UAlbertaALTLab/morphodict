@@ -68,3 +68,25 @@ def kbd_text_query_link(text):
     return mark_safe(
         f"<a href='?text={escape(quote(text))}'><kbd>{escape(text)}</kbd></a>"
     )
+
+
+@register.simple_tag(takes_context=True)
+def observed_or_unobserved(context, wordform: str):
+    """
+    Outputs the appropriate name depending on whether the word has been observed or not.
+    This is intended to make the paradigm template a bit neater.
+
+    REQUIRES observed_wordforms BE A SET IN THE TEMPLATE CONTEXT!
+
+    Intended usage:
+
+        <td "wordform wordform--{% observed_or_unobserved inflection.text %}">
+    """
+    try:
+        observed_wordforms = context["observed_wordforms"]
+    except KeyError:
+        raise AssertionError("Did not find `observed_wordforms` set in the context")
+
+    if wordform in observed_wordforms:
+        return "observed"
+    return "unobserved"

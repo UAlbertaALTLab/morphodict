@@ -177,3 +177,38 @@ def test_url_for_query_tag():
     rendered = template.render(context)
     assert "search" in rendered
     assert "wapamew" in rendered
+
+
+@pytest.mark.parametrize(
+    "observed,classname",
+    [
+        (True, "wordform--observed"),
+        (False, "wordform--unobserved"),
+    ],
+)
+def test_observed_or_unobserved(observed: bool, classname: str):
+    wordform = "ê-wâpamikot"
+    database = set()
+    if observed:
+        database.add(wordform)
+
+    context = Context({"wordform": wordform, "observed_wordforms": database})
+    template = Template(
+        "{% load creedictionary_extras %}"
+        "<span class='wordform--{% observed_or_unobserved wordform %}'>"
+    )
+
+    assert classname in template.render(context)
+
+
+def test_observed_or_unobserved_raises_on_missing_database():
+    """
+    The template must throw an error when the required context variable is missing.
+    """
+    context = Context({"wordform": "anything"})
+    template = Template(
+        "{% load creedictionary_extras %}" "{% observed_or_unobserved wordform %}'>"
+    )
+
+    with pytest.raises(AssertionError):
+        template.render(context)
