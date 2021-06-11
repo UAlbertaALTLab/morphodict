@@ -1,5 +1,4 @@
 import logging
-from functools import cache
 from typing import Any, Dict, Literal, Union
 
 from django.conf import settings
@@ -27,7 +26,7 @@ from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
-from .paradigm.crkeng_corpus_frequency import import_tuples
+from .paradigm.crkeng_corpus_frequency import observed_wordforms
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -395,14 +394,3 @@ def paradigm_for(
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
-
-
-@cache
-def observed_wordforms() -> set[str]:
-    """
-    Return a set of wordforms that have been observed in some corpus.
-
-    As of 2021-06-11, for itwêwina, this information is derived from the
-    corpus_frequency.txt file that is checked-in to the repo.
-    """
-    return {wordform for wordform, _analysis, freq in import_tuples() if freq > 0}

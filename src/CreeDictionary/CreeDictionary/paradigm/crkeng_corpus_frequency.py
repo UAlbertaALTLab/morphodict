@@ -1,4 +1,5 @@
 import logging
+from functools import cache
 
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.types import ConcatAnalysis
@@ -37,8 +38,17 @@ def import_tuples() -> list[tuple[str, ConcatAnalysis, int]]:
             continue
 
         for analysis in analyses:
-            result.append(
-                (wordform, ConcatAnalysis(analysis), int(freq))
-            )
+            result.append((wordform, ConcatAnalysis(analysis), int(freq)))
 
     return result
+
+
+@cache
+def observed_wordforms() -> set[str]:
+    """
+    Return a set of wordforms that have been observed in some corpus.
+
+    As of 2021-06-11, for itwêwina, this information is derived from the
+    corpus_frequency.txt file that is checked-in to the repo.
+    """
+    return {wordform for wordform, _analysis, freq in import_tuples() if freq > 0}
