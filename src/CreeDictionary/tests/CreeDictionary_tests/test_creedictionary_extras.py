@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 import pytest
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
@@ -180,35 +177,17 @@ def test_url_for_query_tag():
 
 
 @pytest.mark.parametrize(
-    "observed,classname",
+    "wordform,classname",
     [
-        (True, "wordform--observed"),
-        (False, "wordform--unobserved"),
+        ("ôma", "wordform--observed"),
+        ("Fhqwhgads", "wordform--unobserved"),
     ],
 )
-def test_observed_or_unobserved(observed: bool, classname: str):
-    wordform = "ê-wâpamikot"
-    database = set()
-    if observed:
-        database.add(wordform)
-
-    context = Context({"wordform": wordform, "observed_wordforms": database})
+def test_observed_or_unobserved(wordform: str, classname: str):
+    context = Context({"wordform": wordform})
     template = Template(
         "{% load creedictionary_extras %}"
         "<span class='wordform--{% observed_or_unobserved wordform %}'>"
     )
 
     assert classname in template.render(context)
-
-
-def test_observed_or_unobserved_raises_on_missing_database():
-    """
-    The template must throw an error when the required context variable is missing.
-    """
-    context = Context({"wordform": "anything"})
-    template = Template(
-        "{% load creedictionary_extras %}" "{% observed_or_unobserved wordform %}'>"
-    )
-
-    with pytest.raises(AssertionError):
-        template.render(context)

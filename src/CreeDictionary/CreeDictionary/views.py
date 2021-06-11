@@ -26,7 +26,6 @@ from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
-from .paradigm.crkeng_corpus_frequency import observed_wordforms
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -83,7 +82,6 @@ def entry_details(request, lemma_text: str):
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=paradigm_size,
         paradigm=paradigm,
-        observed_wordforms=observed_wordforms(),
     )
     return render(request, "CreeDictionary/index.html", context)
 
@@ -193,7 +191,6 @@ def paradigm_internal(request):
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
             "paradigm": paradigm,
-            "observed_wordforms": observed_wordforms(),
         },
     )
 
