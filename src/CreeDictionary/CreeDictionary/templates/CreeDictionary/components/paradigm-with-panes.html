@@ -20,6 +20,7 @@
   {% endcomment %}
 
   {% load morphodict_orth %}
+  {% load creedictionary_extras %}
   {% load relabelling %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
@@ -45,7 +46,7 @@
                     {% elif cell.is_empty %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
-                      <td class="paradigm-cell paradigm-cell--unobserved">
+                      <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
                         {% orth cell.inflection %}
                       </td>
                     {% endif %}

@@ -7,6 +7,9 @@ from django import template
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
+from CreeDictionary.CreeDictionary.paradigm.crkeng_corpus_frequency import (
+    observed_wordforms,
+)
 from CreeDictionary.CreeDictionary.utils import url_for_query
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 
@@ -68,3 +71,18 @@ def kbd_text_query_link(text):
     return mark_safe(
         f"<a href='?text={escape(quote(text))}'><kbd>{escape(text)}</kbd></a>"
     )
+
+
+@register.simple_tag()
+def observed_or_unobserved(wordform: str):
+    """
+    Outputs the appropriate name depending on whether the word has been observed or not.
+    This is intended to make the paradigm template a bit neater.
+
+    Intended usage:
+
+        <td "wordform wordform--{% observed_or_unobserved inflection.text %}">
+    """
+    if wordform in observed_wordforms():
+        return "observed"
+    return "unobserved"
