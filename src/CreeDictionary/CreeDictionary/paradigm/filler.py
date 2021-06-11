@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import morphodict.analysis
+from CreeDictionary.CreeDictionary.paradigm.crkeng_corpus_frequency import (
+    import_frequency,
+)
 
 """
 Fill a paradigm table with the inflections of a lemma.
@@ -14,6 +17,7 @@ from typing import Iterable, Literal, Optional, Sequence, Union, cast
 
 from attr import attrib, attrs
 from hfst_optimized_lookup import TransducerFile
+
 from CreeDictionary.utils import ParadigmSize, WordClass, shared_res_dir
 from CreeDictionary.utils.types import ConcatAnalysis
 
@@ -29,9 +33,6 @@ PARADIGM_NAME_TO_WC = {
     "verb-ta": WordClass.VTA,
     "verb-ti": WordClass.VTI,
 }
-
-CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
-
 
 ##################################### Simple types #####################################
 
@@ -349,30 +350,6 @@ Layout = list[Row]
 
 
 ################################## Internal functions ##################################
-
-
-def import_frequency() -> dict[ConcatAnalysis, int]:
-    # TODO: store this in the database, rather than as a source file
-    # TODO: make a management command that updates wordform frequencies
-
-    res: dict[ConcatAnalysis, int] = {}
-    lines = CORPUS_FREQUENCY_FILE.read_text(encoding="UTF-8").splitlines()
-    for line in lines:
-        line = line.strip()
-        if not line:
-            # Skip empty lines
-            continue
-
-        try:
-            freq, _, *analyses = line.split()
-        except ValueError:
-            # not enough value to unpack, which means the line has less than 3 values
-            logger.warning(f'line "{line}" is broken in {CORPUS_FREQUENCY_FILE}')
-        else:
-            for analysis in analyses:
-                res[ConcatAnalysis(analysis)] = int(freq)
-
-    return res
 
 
 def import_layouts(layout_file_dir: Path) -> Layouts:
