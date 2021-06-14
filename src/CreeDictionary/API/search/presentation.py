@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from dataclasses import dataclass
 from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast
 
 from django.forms import model_to_dict
@@ -73,7 +74,7 @@ class PresentationResult:
                 include_auto_definitions=self._search_run.include_auto_definitions,
             ),
             "lexical_information": self.lexical_info,
-            "preverbs": [serialize_wordform(pv['entry']) for pv in self.preverbs],
+            "preverbs": [pv['entry'] for pv in self.preverbs],
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
@@ -187,8 +188,19 @@ def get_preverbs_from_head_breakdown(
                     )
 
         if preverb_result is not None:
-            results.append({"entry": preverb_result, "type": "Preverb", "index": i})
+            results.append({"entry": serialize_wordform(preverb_result),
+                            "type": "Preverb",
+                            "index": i,
+                            "original_tag": tag})
     return results
+
+
+@dataclass
+class _ReduplicationResult:
+    """Tiny class to mimic the format of preverbs"""
+
+    text: str
+    definitions: list
 
 
 def get_reduplication_from_head_breakdown(result_analysis) -> List[str]:
@@ -205,10 +217,15 @@ def get_reduplication_from_head_breakdown(result_analysis) -> List[str]:
                 reduplication_string = letter + "âh"
 
         if reduplication_string:
+            entry = _ReduplicationResult(
+                text=reduplication_string,
+                definitions=[{"text": "Strong reduplication" if tag == "RdplS" else "Weak Reduplication"}]
+            )
             reduplication.append({
-                "entry": reduplication_string,
+                "entry": entry,
                 "type": "Reduplication",
-                "index": i
+                "index": i,
+                "original_tag": tag
             })
 
     return reduplication
