@@ -9,7 +9,9 @@ from CreeDictionary.CreeDictionary.paradigm.panes import (
     EmptyCell,
     MissingForm,
     Pane,
-    WordformCell, RowLabel, SuppressOutputCell,
+    RowLabel,
+    SuppressOutputCell,
+    WordformCell,
 )
 
 
@@ -30,7 +32,8 @@ def test_compound_rows():
     ), "expected as many subrows as there are forms"
 
     first_row_cells = tuple(first(filled_row.subrows).cells)
-    assert first(row.cells) == first_row_cells[0], "expected the label to be the same"
+    assert first(row.cells).fst_tags == first_row_cells[0].fst_tags
+    assert first_row_cells[0].row_span == len(multiple_forms)
 
     first_form = first_row_cells[-1]
     assert isinstance(first_form, WordformCell)

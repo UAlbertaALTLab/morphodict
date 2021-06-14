@@ -348,7 +348,8 @@ class ContentRow(Row):
         # Create compound rows
         rows = []
         for row_num in range(num_rows_needed):
-            cells = [wordform_if_exists_or_no_output(col, row_num) for col in columns]
+            cells = [cell_if_exists_or_no_output(col, row_num) for col in columns]
+            cells = [adjust_row_span(cell, num_rows_needed) for cell in cells]
             rows.append(ContentRow(cells))
         return CompoundRow(rows)
 
@@ -775,7 +776,7 @@ def n_empty_lists(n: int) -> list[list[Cell]]:
     return [[] for _ in range(n)]
 
 
-def wordform_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
+def cell_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
     """
     Extracts the content cell from the column if it exists, else returns an EmptyCell if
     nothing is found.
@@ -784,3 +785,13 @@ def wordform_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
         return col[row_num]
     except IndexError:
         return SuppressOutputCell()
+
+
+def adjust_row_span(cell: Cell, span: int) -> Cell:
+    """
+    Fixes RowLabels such that they span the amount given. Only affects RowLabels.
+    Other cells are returned as is.
+    """
+    if isinstance(cell, RowLabel):
+        return cell.with_row_span(span)
+    return cell
