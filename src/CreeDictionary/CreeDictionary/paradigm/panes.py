@@ -8,7 +8,7 @@ import logging
 import re
 import string
 from itertools import zip_longest
-from typing import Collection, Iterable, Mapping, Optional, TextIO
+from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO
 
 from more_itertools import ilen, one
 
@@ -333,16 +333,10 @@ class ContentRow(Row):
             # A row with all columns having a single cell:
             return ContentRow(one(cells) for cells in columns)
 
-        # Create compond rows
+        # Create compound rows
         rows = []
         for row_num in range(num_rows_needed):
-            cells = []
-            for col in columns:
-                try:
-                    cell = col[row_num]
-                except IndexError:
-                    cell = EmptyCell()
-                cells.append(cell)
+            cells = [form_or_empty_cell(col, row_num) for col in columns]
             rows.append(ContentRow(cells))
         return CompoundRow(rows)
 
@@ -571,7 +565,9 @@ class InflectionTemplate(Cell):
         self, forms: Mapping[str, Collection[str]]
     ) -> tuple[WordformCell | MissingForm, ...]:
         """
-        Return a single WordformCell, given the fillable forms.
+        Return one or more cells with the forms given.
+        :raises ParadigmGenerationError: when the analysis is missing from the given
+            forms mapping.
         """
 
         try:
@@ -739,3 +735,14 @@ def n_empty_lists(n: int) -> list[list[Cell]]:
     Returns the given number of distinct, empty lists.
     """
     return [[] for _ in range(n)]
+
+
+def form_or_empty_cell(col: Sequence[Cell], row_num: int):
+    """
+    Extracts the content cell from the column if it exists, else returns an EmptyCell if
+    nothing is found.
+    """
+    try:
+        return col[row_num]
+    except IndexError:
+        return EmptyCell()
