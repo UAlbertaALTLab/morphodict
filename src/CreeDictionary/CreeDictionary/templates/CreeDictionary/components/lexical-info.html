@@ -1,14 +1,18 @@
 {% spaceless %}
   {% comment %}
-    ## .preverb-breakdown ##
+    Displays preverbs and reduplication in order
+    of occurrence in search query.
 
     Parameters:
       result: SerializedSearchResult
 
     Example:
 
+      Preverb: ê- [i]
       Reduplication: ma [i]
+      Preverb: miyo- [i]
       Reduplication: mâh [i]
+      Preverb: mâmawi- [i]
       Reduplication: na [i]
 
   {% endcomment %}
@@ -17,7 +21,7 @@
   {% load morphodict_orth %}
   {% load static %}
 
-  {# show reduplication breakdown #}
+  {# show preverb and reduplication breakdown #}
   <ol class="preverb-breakdown">
     {% for item in result.lexical_information %}
       <li>
