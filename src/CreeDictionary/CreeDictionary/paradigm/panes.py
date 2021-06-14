@@ -348,7 +348,7 @@ class ContentRow(Row):
         # Create compound rows
         rows = []
         for row_num in range(num_rows_needed):
-            cells = [form_or_empty_cell(col, row_num) for col in columns]
+            cells = [wordform_if_exists_or_no_output(col, row_num) for col in columns]
             rows.append(ContentRow(cells))
         return CompoundRow(rows)
 
@@ -462,6 +462,7 @@ class Cell:
     is_inflection: bool = False
     is_missing: bool = False
     is_empty: bool = False
+    should_suppress_output: bool = False
 
     @staticmethod
     def parse(text: str) -> Cell:
@@ -658,6 +659,16 @@ class EmptyCell(Cell, SingletonMixin):
         return ""
 
 
+class SuppressOutputCell(Cell, SingletonMixin):
+    """
+    Indicates that this should not be rendered at all in the paradigm.
+    Note: even an EmptyCell is "output", in that a <tr> should be created for it in HTML.
+    A SuppressOutputCell should not get even get a <tr>.
+    """
+
+    should_suppress_output = True
+
+
 class BaseLabelCell(Cell):
     is_label = True
     label_for: str
@@ -694,6 +705,17 @@ class RowLabel(BaseLabelCell):
 
     label_for = "row"
     prefix = "_"
+
+    def __init__(self, tags, row_span: int = 1):
+        super().__init__(tags)
+        self.row_span = row_span
+
+    def with_row_span(self, span: int) -> RowLabel:
+        """
+        Create a brand new row label with its row span. This is intended so that an
+        existing label can be used to span multiple rows.
+        """
+        return RowLabel(self.fst_tags, span)
 
 
 class ColumnLabel(BaseLabelCell):
@@ -753,7 +775,7 @@ def n_empty_lists(n: int) -> list[list[Cell]]:
     return [[] for _ in range(n)]
 
 
-def form_or_empty_cell(col: Sequence[Cell], row_num: int):
+def wordform_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
     """
     Extracts the content cell from the column if it exists, else returns an EmptyCell if
     nothing is found.
@@ -761,4 +783,4 @@ def form_or_empty_cell(col: Sequence[Cell], row_num: int):
     try:
         return col[row_num]
     except IndexError:
-        return EmptyCell()
+        return SuppressOutputCell()

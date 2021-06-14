@@ -9,7 +9,7 @@ from CreeDictionary.CreeDictionary.paradigm.panes import (
     EmptyCell,
     MissingForm,
     Pane,
-    WordformCell,
+    WordformCell, RowLabel, SuppressOutputCell,
 )
 
 
@@ -37,7 +37,7 @@ def test_compound_rows():
     assert first_form.inflection == multiple_forms[0]
 
     last_row_cells = tuple(last(filled_row.subrows).cells)
-    assert isinstance(last_row_cells[0], EmptyCell)
+    assert isinstance(last_row_cells[0], SuppressOutputCell)
 
     last_form = last_row_cells[-1]
     assert isinstance(last_form, WordformCell)
@@ -53,7 +53,17 @@ def test_pane_iterate_tr_rows():
     assert ilen(filled_pane.tr_rows) == len(multiple_forms)
 
 
-@pytest.mark.parametrize("cell", [MissingForm(), EmptyCell()])
+def test_row_label_with_row_span():
+    label = RowLabel(("Ebb", "Flow"))
+    assert label.row_span == 1
+
+    n = 3  # or any small integer above 1
+    new_label = label.with_row_span(n)
+    assert new_label.fst_tags == label.fst_tags
+    assert new_label.row_span == n
+
+
+@pytest.mark.parametrize("cell", [MissingForm(), EmptyCell(), SuppressOutputCell()])
 def test_filling_singleton_cells(cell):
     """
     Filling certain cells should only return the cell itself.
