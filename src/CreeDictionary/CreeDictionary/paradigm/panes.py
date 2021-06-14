@@ -323,7 +323,7 @@ class ContentRow(Row):
         """
 
         # fill each COLUMN, then figure out if we need to make a compond row
-        columns: tuple[list[Cell], ...] = tuple([] for n in range(self.num_cells))
+        columns = n_empty_lists(self.num_cells)
         for index, cell in enumerate(self.cells):
             columns[index].extend(cell.fill(forms))
 
@@ -732,3 +732,10 @@ def pairs(seq):
     [(1, 2), (3, 4), (5, 6)]
     """
     return zip(seq[::2], seq[1::2])
+
+
+def n_empty_lists(n: int) -> list[list[Cell]]:
+    """
+    Returns the given number of distinct, empty lists.
+    """
+    return [[] for _ in range(n)]
