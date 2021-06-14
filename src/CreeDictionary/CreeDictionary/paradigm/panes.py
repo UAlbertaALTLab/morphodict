@@ -10,7 +10,7 @@ import string
 from itertools import zip_longest
 from typing import Collection, Iterable, Mapping, Optional, TextIO
 
-from more_itertools import first, ilen
+from more_itertools import first, ilen, one
 
 logger = logging.getLogger(__name__)
 
@@ -316,8 +316,35 @@ class ContentRow(Row):
     def contains_wordform(self, wordform: str) -> bool:
         return any(cell.contains_wordform(wordform) for cell in self.cells)
 
-    def fill(self, forms) -> ContentRow:
-        return ContentRow(cell.fill_one(forms) for cell in self.cells)
+    def fill(self, forms: Mapping[str, Collection[str]]) -> ContentRow | CompoundRow:
+        """
+        Fills the column and may return a ContentRow or a CompoundRow (a composition
+        of ContentRows.
+        """
+
+        # fill each COLUMN, then figure out if we need to make a compond row
+        columns: tuple[list[Cell], ...] = tuple([] for n in range(self.num_cells))
+        for index, cell in enumerate(self.cells):
+            columns[index].extend(cell.fill(forms))
+
+        num_rows_needed = max(len(c) for c in columns)
+        assert num_rows_needed > 0
+        if num_rows_needed == 1:
+            # A row with all columns having a single cell:
+            return ContentRow(one(cells) for cells in columns)
+
+        # Create compond rows
+        rows = []
+        for row_num in range(num_rows_needed):
+            cells = []
+            for col in columns:
+                try:
+                    cell = col[row_num]
+                except IndexError:
+                    cell = EmptyCell()
+                cells.append(cell)
+            rows.append(ContentRow(cells))
+        return CompoundRow(rows)
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
@@ -384,6 +411,38 @@ class HeaderRow(Row):
         return HeaderRow(parse_label(text, prefix=cls.prefix))
 
 
+class CompoundRow(Row):
+    """
+    Contains multiple filled content rows.
+    """
+
+    is_header = False
+    has_content = True
+
+    def __init__(self, rows: Iterable[ContentRow]):
+        self._rows = tuple(rows)
+
+    @property
+    def cells(self) -> Iterable[Cell]:
+        for row in self._rows:
+            yield from row.cells
+
+    @property
+    def num_cells(self):
+        return max(row.num_cells for row in self._rows)
+
+    @property
+    def subrows(self) -> Iterable[ContentRow]:
+        return iter(self._rows)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        raise AssertionError("cannot return inflection cells in filled row")
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(row.contains_wordform(wordform) for row in self._rows)
+
+
 class Cell:
     """
     A single cell from a paradigm.
@@ -413,6 +472,16 @@ class Cell:
         if not self.is_inflection:
             return False
         # Must be overridden in subclasses
+        raise NotImplementedError
+
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
+        """
+        Returns one or more cells by filling the paradigm with the provided forms.
+        """
+        if not self.is_inflection:
+            return (self,)
+        # This should be overridden by subclasses.
+        # Namely, InflectionTemplate should override this.
         raise NotImplementedError
 
     def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
@@ -447,9 +516,9 @@ class WordformCell(Cell):
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         # No need to fill a cell that already has contents!
-        return self
+        return (self,)
 
     def __str__(self) -> str:
         return self.inflection
@@ -508,7 +577,9 @@ class InflectionTemplate(Cell):
         """
         return self._analysis_template.substitute(lemma=lemma)
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
+    def fill(
+        self, forms: Mapping[str, Collection[str]]
+    ) -> tuple[WordformCell | MissingForm, ...]:
         """
         Return a single WordformCell, given the fillable forms.
         """
@@ -523,14 +594,9 @@ class InflectionTemplate(Cell):
         if len(cell_forms) == 0:
             # It's a missing form (accidental gap/lacuna).
             # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
-            return MissingForm()
+            return (MissingForm(),)
 
-        if len(cell_forms) > 1:
-            # TODO: create a CompoundRow class that can handle multiple forms per
-            # inflection.
-            logger.warning("Don't know how to output multiple forms... yet")
-        form = first(sorted(cell_forms))
-        return WordformCell(form)
+        return tuple(WordformCell(form) for form in cell_forms)
 
 
 class SingletonMixin:
