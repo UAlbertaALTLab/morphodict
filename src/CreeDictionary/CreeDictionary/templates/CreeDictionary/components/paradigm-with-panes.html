@@ -29,7 +29,7 @@
       <table class="paradigm__table">
         {% for pane in paradigm.panes %}
           <tbody>
-            {% for row in pane.rows %}
+            {% for row in pane.tr_rows %}
               {% if row.is_header %}
                 <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
                 >{% relabel row.fst_tags %}</th>

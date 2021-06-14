@@ -185,6 +185,18 @@ class Pane:
     def rows(self) -> Iterable[Row]:
         yield from self._rows
 
+    @property
+    def tr_rows(self) -> Iterable[Row]:
+        """
+        Yields rows needed in the HTML model. All rows of a compound row are yielded
+        individually.
+        """
+        for row in self._rows:
+            if isinstance(row, CompoundRow):
+                yield from row.subrows
+            else:
+                yield row
+
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
         Returns a string representation that can be parsed again.
