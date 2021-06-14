@@ -148,17 +148,20 @@ context('Regressions', () => {
       })
   })
 
-  it('should show 3>1,2 rather than 3\', 3 in the VTA layout', function () {
+  /**
+   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/277
+   */
+  it('should show 3Sg→1Sg,2Sg rather than 4Sg/Pl→3Sg in the basic VTA layout', function () {
     // Go to a VTA word:
     cy.visitSearch('wâpamêw')
     cy.contains('a', 'wâpamêw')
       .click()
 
-    // N.B.: This test will fail if the word changes. ¯\_(ツ)_/¯
-    cy.contains('th', 's/he → him/her/them (further)') // 3Sg -> 4 (lemma)
-    cy.contains('th', 's/he → me')                  // 3Sg -> 1Sg
-    cy.contains('th', 's/he → you (one)')           // 3Sg -> 2Sg
-    cy.contains('th', 's/he/they (further) → him/her') // 4 -> 3
+    // N.B.: This test will fail if the labels change. ¯\_(ツ)_/¯
+    cy.contains('th', 's/he → him/her/them') // 3Sg → 4Sg/PlO (lemma)
+    cy.contains('th', 's/he → me')           // 3Sg → 1Sg
+    cy.contains('th', 's/he → you')          // 3Sg → 2Sg
+    cy.contains('th', 's/he/they → him/her') // 4Sg/Pl → 3Sg
   })
 
   /**
