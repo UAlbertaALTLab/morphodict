@@ -322,7 +322,7 @@ class ContentRow(Row):
         of ContentRows.
         """
 
-        # fill each COLUMN, then figure out if we need to make a compond row
+        # Fill each **column**, then figure out if we need to make a compound row
         columns = n_empty_lists(self.num_cells)
         for index, cell in enumerate(self.cells):
             columns[index].extend(cell.fill(forms))
@@ -424,6 +424,10 @@ class CompoundRow(Row):
     @property
     def num_cells(self):
         return max(row.num_cells for row in self._rows)
+
+    @property
+    def num_subrows(self) -> int:
+        return len(self._rows)
 
     @property
     def subrows(self) -> Iterable[ContentRow]:

@@ -25,7 +25,7 @@ def test_compound_rows():
     for form in multiple_forms:
         assert filled_row.contains_wordform(form)
 
-    assert ilen(filled_row.subrows) == len(
+    assert filled_row.num_subrows == ilen(filled_row.subrows) == len(
         multiple_forms
     ), "expected as many subrows as there are forms"
 
