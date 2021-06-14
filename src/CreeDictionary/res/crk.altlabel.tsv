@@ -177,7 +177,7 @@ Der/Com	Comitative	Derived comitative	with another person	wîci-
 Der/Dim	Diminutive	Derived diminutive	smaller / younger / lesser	 nawac apisîs		
 Der/X		Derived unspecified actor				
 Dim	Diminutive	Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis		
-Dist		Distal	like: nâha, nêma	tâpiskôc: nâha, nêma		
+Dist	Distal	Distal	Over yonder	nêta		
 Distr	Distributive	Distributive	among	âkine		
 Err/Orth		(Sub-standard form)				
 Foc		Focus				
@@ -203,7 +203,7 @@ Int	Intentional	Intentional	be going to	akâwâtamowin
 Fut+Int	Future Intentional	Future intentional tense	something is going to happen	ê-wî-ihkik nîkânihk		
 Interj		Interjection	Shouting word	têpwêwin-itwêwin		
 Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci		
-Med		Medial	like: ana, anima	tâpiskôc: ana, anima		
+Med	Medial	Medial	There	anita		
 						
 N		Noun	Naming word	wîhyowin-itwêwin		
 N+A	Animate noun	Noun - animate	Naming word - like: asikan, iyiniw, maskwa	wîhyowin-itwêwin - tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
@@ -491,7 +491,7 @@ PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧
 						
 Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	
 Prop		Proper	how something/someone is called	isiyihkâsowin		
-Prox		Proximate	like: awa, ôma	tâpiskôc: awa, ôma		
+Prox	Proximal	Proximate	Here	ôtâ		
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
 Prt	Past	Past tense	something happened earlier	ê-ispayik kwayâc		
 Px12Pl	Possessor: 1p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw		
@@ -547,3 +547,8 @@ VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîci
 						
 X	X	Actor: Unspecified	someone	awiya		
 XO	→ X	Goal: Unspecified	→ someone	→ awiya		
+						
+A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pêyak (awa)		
+A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcêt (awa)		
+I+Sg+Title	I+Sg	Singular, Innimate	One (ôma word)	pêyak (ôma)		
+I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcêt (ôma)		

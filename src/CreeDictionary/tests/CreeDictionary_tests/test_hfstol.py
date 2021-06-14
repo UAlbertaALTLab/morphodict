@@ -14,9 +14,10 @@ from CreeDictionary.CreeDictionary.hfstol import analyze, generate
     ],
 )
 def test_analyze_wordform(wordform, lemma, suffix):
-    analysis, *_more_analyses = analyze(wordform)
-    assert analysis.lemma == lemma
-    assert suffix in analysis.raw_suffixes
+    assert any(
+        analysis.lemma == lemma and suffix in analysis.raw_suffixes
+        for analysis in analyze(wordform)
+    )
 
 
 @pytest.mark.parametrize(

@@ -11,7 +11,7 @@ _ Px3Pl	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px3Pl+Loc
 _ Px4Sg/Pl	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
 			
 # Dim			
-	| Poss	
+	| Poss		
 _ PxX	${lemma}+N+I+D+Der/Dim+N+I+D+PxX+Sg		
 _ Px1Sg	${lemma}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg		
 _ Px3Sg	${lemma}+N+I+D+Der/Dim+N+I+D+Px3Sg+Sg		
