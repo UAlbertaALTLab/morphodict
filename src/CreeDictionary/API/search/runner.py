@@ -35,19 +35,6 @@ def search(
         return search_run
 
     fetch_results(search_run)
-    analyzed_tags = relaxed_analyzer().lookup_symbols(search_run.internal_query)[0]
-    print(analyzed_tags)
-    for (i, tag) in enumerate(analyzed_tags):
-        if tag in ["RdplW+", "RdplS+"]:
-            redupe = ""
-            word = analyzed_tags[i + 1]
-            letter = word.split('/')[-1][0]
-            if tag == "RdplW+":
-                redupe = letter + "a"
-            else:
-                redupe = letter + "âh"
-            print(redupe)
-
 
     if include_affixes and not query_would_return_too_many_results(
         search_run.internal_query

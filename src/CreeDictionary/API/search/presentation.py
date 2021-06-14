@@ -49,6 +49,9 @@ class PresentationResult:
         ) = safe_partition_analysis(result.wordform.analysis)
 
         self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
+        self.reduplication = get_reduplication_from_head_breakdown(result.wordform.analysis)
+        self.lexical_info = self.preverbs + self.reduplication
+        self.lexical_info = sorted(self.lexical_info, key=lambda x: x['index'])
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             self.linguistic_breakdown_head
@@ -69,7 +72,8 @@ class PresentationResult:
                 # only place where a non-lemma search result appears.
                 include_auto_definitions=self._search_run.include_auto_definitions,
             ),
-            "preverbs": [serialize_wordform(pv) for pv in self.preverbs],
+            "lexical_information": self.lexical_info,
+            "preverbs": [serialize_wordform(pv['entry']) for pv in self.preverbs],
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
@@ -148,10 +152,10 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def get_preverbs_from_head_breakdown(
     head_breakdown: List[FSTTag],
-) -> Tuple[Preverb, ...]:
+) -> List[Any]:
     results = []
 
-    for tag in head_breakdown:
+    for (i, tag) in enumerate(head_breakdown):
         preverb_result: Optional[Preverb] = None
         if tag.startswith("PV/"):
             # use altlabel.tsv to figure out the preverb
@@ -183,5 +187,28 @@ def get_preverbs_from_head_breakdown(
                     )
 
         if preverb_result is not None:
-            results.append(preverb_result)
-    return tuple(results)
+            results.append({"entry": preverb_result, "type": "Preverb", "index": i})
+    return results
+
+
+def get_reduplication_from_head_breakdown(result_analysis) -> List[str]:
+    result_analysis_tags = result_analysis.split('+')
+    reduplication = []
+    for (i, tag) in enumerate(result_analysis_tags):
+        reduplication_string = ""
+        if tag in ["RdplW", "RdplS"]:
+            word = result_analysis_tags[i + 1]
+            letter = word.split('/')[-1][0]
+            if tag == "RdplW":
+                reduplication_string = letter + "a"
+            else:
+                reduplication_string = letter + "âh"
+
+        if reduplication_string:
+            reduplication.append({
+                "entry": reduplication_string,
+                "type": "Reduplication",
+                "index": i
+            })
+
+    return reduplication
