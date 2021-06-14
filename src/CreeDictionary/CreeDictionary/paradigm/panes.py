@@ -10,7 +10,7 @@ import string
 from itertools import zip_longest
 from typing import Collection, Iterable, Mapping, Optional, TextIO
 
-from more_itertools import first, ilen, one
+from more_itertools import ilen, one
 
 logger = logging.getLogger(__name__)
 
@@ -484,16 +484,6 @@ class Cell:
         # Namely, InflectionTemplate should override this.
         raise NotImplementedError
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
-        """
-        Returns exactly ONE cell by filling the paradigm.
-        """
-        if not self.is_inflection:
-            return self
-        # This should be overridden by subclasses.
-        # Namely, InflectionTemplate should override this.
-        raise NotImplementedError
-
 
 class WordformCell(Cell):
     """
@@ -637,11 +627,11 @@ class MissingForm(Cell, SingletonMixin):
         """
         return False
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         """
-        A missing form is already "filled".
+        A missing form is already "filled" -- return one entry
         """
-        return self
+        return (self,)
 
 
 class EmptyCell(Cell, SingletonMixin):

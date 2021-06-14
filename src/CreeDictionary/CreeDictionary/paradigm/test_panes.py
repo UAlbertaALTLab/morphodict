@@ -1,11 +1,13 @@
 """
 Unit tests for the paradigm pane module.
 """
+import pytest
 from more_itertools import first, ilen, last, one
 
 from CreeDictionary.CreeDictionary.paradigm.panes import (
     CompoundRow,
     EmptyCell,
+    MissingForm,
     Pane,
     WordformCell,
 )
@@ -40,3 +42,11 @@ def test_compound_rows():
     last_form = last_row_cells[-1]
     assert isinstance(last_form, WordformCell)
     assert last_form.inflection == multiple_forms[-1]
+
+
+@pytest.mark.parametrize("cell", [MissingForm(), EmptyCell()])
+def test_filling_singleton_cells(cell):
+    """
+    Filling certain cells should only return the cell itself.
+    """
+    assert cell == one(cell.fill({}))
