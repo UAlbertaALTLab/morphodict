@@ -210,7 +210,21 @@ def test_search_words_with_preverbs():
     search_result = results.pop()
 
     assert len(search_result.preverbs) == 1
-    assert search_result.preverbs[0].text == "nitawi-"
+    assert search_result.preverbs[0]["entry"]["text"] == "nitawi-"
+
+
+@pytest.mark.django_db
+def test_search_words_with_reduplication():
+    """
+    reduplication should be extracted and present in SearchResult instances
+    """
+    results = search(query="nanipâw").presentation_results()
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.lexical_info) == 1
+    print(search_result.lexical_info)
+    assert search_result.lexical_info[0]["entry"].text == "na"
 
 
 @pytest.mark.django_db
