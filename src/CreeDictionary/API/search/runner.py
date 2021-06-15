@@ -10,8 +10,6 @@ from CreeDictionary.API.search.query import CvdSearchType
 from CreeDictionary.API.search.util import first_non_none_value
 from CreeDictionary.utils.types import cast_away_optional
 
-from morphodict.analysis import relaxed_analyzer
-
 
 def search(
     *, query: str, include_affixes=True, include_auto_definitions=False

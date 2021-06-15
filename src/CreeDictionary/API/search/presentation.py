@@ -219,9 +219,9 @@ def get_reduplication_from_head_breakdown(result_analysis) -> List[Dict[str, Any
             word = result_analysis_tags[i + 1]
             letter = word.split("/")[-1][0]
             if tag == "RdplW":
-                reduplication_string = letter + "a"
+                reduplication_string = letter + "a-"
             else:
-                reduplication_string = letter + "âh"
+                reduplication_string = letter + "âh-"
 
         if reduplication_string:
             entry = _ReduplicationResult(

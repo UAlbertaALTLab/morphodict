@@ -223,8 +223,7 @@ def test_search_words_with_reduplication():
     search_result = results.pop()
 
     assert len(search_result.lexical_info) == 1
-    print(search_result.lexical_info)
-    assert search_result.lexical_info[0]["entry"].text == "na"
+    assert search_result.lexical_info[0]["entry"].text == "na-"
 
 
 @pytest.mark.django_db
