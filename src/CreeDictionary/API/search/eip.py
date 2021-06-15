@@ -1,13 +1,20 @@
 # EIP: English Inflected Phrase search
+import logging
+import re
 from dataclasses import dataclass
 
 from CreeDictionary.API.models import Wordform
-from CreeDictionary.API.search.eip_crk import get_noun_tags, crkeng_tag_dict
+from CreeDictionary.API.search.eip_crk import (
+    get_noun_tags,
+    verb_tag_map,
+    noun_tag_map,
+)
 from CreeDictionary.API.search.types import Result
+from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
-import re
+from morphodict.analysis import strict_generator
 
-from CreeDictionary.shared import expensive
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -30,6 +37,7 @@ class EipSearch:
 
     def __init__(self, search_run):
         self.search_run = search_run
+        self.query_analyzed_ok = False
 
     def analyze_query(self):
         """Analyze this search’s search_run query, possibly updating it.
@@ -40,15 +48,28 @@ class EipSearch:
         include content words, e.g., “they crawled” → “crawls”.
         """
         self.new_tags = []
-        analyzed_query = PhraseAnalyzedQuery(self.search_run.query.query_string)
+        analyzed_query = PhraseAnalyzedQuery(
+            self.search_run.query.query_string,
+            add_verbose_message=self.search_run.add_verbose_message,
+        )
         if analyzed_query.has_tags:
-            self.search_run.query.replace_query(analyzed_query.filtered_query)
-            for tag in analyzed_query.tags:
-                if tag in crkeng_tag_dict:
-                    for i in crkeng_tag_dict[tag]:
-                        self.new_tags.append(i)
-                else:
-                    self.new_tags.append(tag)
+            if "+N" in analyzed_query.tags:
+                tag_map = noun_tag_map
+            elif "+V" in analyzed_query.tags:
+                tag_map = verb_tag_map
+            else:
+                return
+
+            try:
+                self.new_tags = tag_map.map_tags(analyzed_query.tags)
+            except UnknownTagError as e:
+                logger.error(f"Unable to map tags for {analyzed_query}", exc_info=True)
+                self.search_run.add_verbose_message(dict(eip_analysis_error=repr(e)))
+                return
+
+        self.search_run.query.replace_query(analyzed_query.filtered_query)
+        self.query_analyzed_ok = True
+
         self.search_run.add_verbose_message(
             dict(
                 filtered_query=analyzed_query.filtered_query,
@@ -58,6 +79,9 @@ class EipSearch:
         )
 
     def inflect_search_results(self):
+        if not self.query_analyzed_ok:
+            return
+
         inflected_results = self._generate_inflected_results()
 
         # aggregating queries for performance
@@ -83,18 +107,20 @@ class EipSearch:
                 # saved in the DB.
                 lemma = result.original_result.lemma_wordform
 
-                wordform = (
-                    Wordform(
-                        text=result.inflected_text,
-                        lemma=lemma,
-                        inflectional_category=lemma.inflectional_category,
-                        pos=lemma.pos,
-                        stem=lemma.stem,
-                        analysis=result.analysis,
-                    ),
+                wordform = Wordform(
+                    text=result.inflected_text,
+                    lemma=lemma,
+                    inflectional_category=lemma.inflectional_category,
+                    pos=lemma.pos,
+                    stem=lemma.stem,
+                    analysis=result.analysis,
                 )
 
-            self.search_run.remove_result(result.original_result)
+            # if there are multiple inflections for the same original result, we
+            # may already have removed it
+            if self.search_run.has_result(result.original_result):
+                self.search_run.remove_result(result.original_result)
+
             self.search_run.add_result(
                 result.original_result.create_related_result(
                     wordform,
@@ -147,7 +173,7 @@ class EipSearch:
                 + "".join(tags_starting_with_plus)
             )
 
-            generated_wordforms = expensive.strict_generator.lookup(text)
+            generated_wordforms = strict_generator().lookup(text)
             for w in generated_wordforms:
                 results.append(
                     _EipResult(original_result=word, inflected_text=w, analysis=text)
@@ -180,7 +206,7 @@ class PhraseAnalyzedQuery:
     False
     """
 
-    def __init__(self, query: str):
+    def __init__(self, query: str, add_verbose_message=None):
         self.query = query
         self.has_tags = False
         self.filtered_query = None
@@ -188,6 +214,9 @@ class PhraseAnalyzedQuery:
         phrase_analyses: list[str] = [
             r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
         ]
+
+        if add_verbose_message:
+            add_verbose_message({"phrase_analyses": phrase_analyses})
 
         if len(phrase_analyses) != 1:
             return
@@ -203,3 +232,6 @@ class PhraseAnalyzedQuery:
         self.filtered_query = match["query"]
         self.has_tags = True
         self.tags = ["+" + t for t in match["tags"].split("+") if t]
+
+    def __repr__(self):
+        return f"<PhraseAnalyzedQuery {self.__dict__!r}>"

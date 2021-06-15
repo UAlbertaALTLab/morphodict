@@ -2,13 +2,48 @@ class UnknownTagError(KeyError):
     """Raised when TagMap encounters an unknown tag"""
 
 
-# https://stackoverflow.com/a/52709319/14558
-def is_subsequence(outer_list, target_subsequence):
-    it = iter(outer_list)
-    return all(x in it for x in target_subsequence)
-
-
-# See the description of what a tag map is in crk_tag_map.py
+## Motivation
+#
+# TagMap handles mappings between different but related sets of tags
+# used by complementary FSTs.
+#
+# For example, one generic wordform analysis for ‘acâhkosa’ is
+# `acâhkosa+N+A+Der/Dim+N+A+Obv`. But the phrase-generation FST takes as input
+# tags and definition in the form `Obv+Dim+ star`, and outputs the inflected
+# phrase `little star over there`. `Obv` has the same tag name but is now a
+# start tag, not an end tag, and `Der/Dim` needs to be translated to just `Dim`.
+# As well, the phrase-generation FST has stricter ordering requirements on the
+# input tags.
+#
+## Use
+#
+# A TagMap is initialized with a sequence of (wordform_tag, phrase_tag,
+# precedence) tuples
+#
+# wordform_tag can be:
+#   - A literal tag, e.g., "N+", which will be matched exactly
+#   - A tuple of tags, e.g., ("PV/e+, "+Ind") which will be matched as a
+#     subsequence
+#   - DEFAULT if the phrase_tag should be used if no other mapping applies at
+#     this precedence level
+#
+# phrase_tag can be:
+#   - None if the wordform_tag is not used in the phrase transcription
+#   - COPY_TAG_NAME if the characters of the wordform_tag match the
+#     phrase_tag, for example: ("+Sg", COPY_TAG_NAME, x) means the same
+#     thing as ("+Sg", "Sg+", x), but with less potential for copy-paste
+#     mistakes.
+#
+# All multi-mappings are applied before single maps, and consume their tags. For
+# example, a match on (("+A, "+B"), "foo", 1) will take the tags "+A" and "+B"
+# out of consideration before the rules ("+A", COPY, 1) or ("+B", COPY, 1) are
+# considered.
+#
+# The precedence number is used to sort tags before sending them to the phrase
+# FST. For example, if you want Pl/Sg before Px, you could give Pl and Sg
+# precedence number 1 and the possessives number 2. This precedence number is
+# associated with the output tag; it is an error to give a different precedence
+# value to multiple definitions that output the same tag.
 class TagMap:
     DEFAULT = object()
     COPY_TAG_NAME = object()
@@ -85,4 +120,20 @@ class TagMap:
         # into precedence order
         tags_for_phrase.sort(key=self._precedences.__getitem__)
 
-        return tags_for_phrase
+        return _flatten_tuples(tags_for_phrase)
+
+
+# https://stackoverflow.com/a/52709319/14558
+def is_subsequence(outer_list, target_subsequence):
+    it = iter(outer_list)
+    return all(x in it for x in target_subsequence)
+
+
+def _flatten_tuples(l):
+    ret = []
+    for x in l:
+        if isinstance(x, tuple):
+            ret.extend(x)
+        else:
+            ret.append(x)
+    return ret
