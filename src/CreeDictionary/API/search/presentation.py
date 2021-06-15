@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict
+from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict, Literal
 
 from django.forms import model_to_dict
 
@@ -15,12 +15,28 @@ from ..models import Wordform
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
 
 
+@dataclass
+class _ReduplicationResult:
+    """Tiny class to mimic the format of preverbs"""
+
+    text: str
+    definitions: list
+
+
+@dataclass
+class _LexicalEntry:
+    entry: _ReduplicationResult or SerializedWordform
+    type: Literal["Preverb", "Reduplication", "InitialChange"]
+    index: int
+    original_tag: FSTTag
+
+
 class SerializedPresentationResult(TypedDict):
     lemma_wordform: SerializedWordform
     wordform_text: str
     is_lemma: bool
     definitions: Iterable[SerializedDefinition]
-    lexical_information: List[Dict[str, Any]]
+    lexical_information: List[_LexicalEntry]
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
@@ -55,7 +71,7 @@ class PresentationResult:
             result.wordform.analysis
         )
         self.lexical_info = self.preverbs + self.reduplication
-        self.lexical_info = sorted(self.lexical_info, key=lambda x: x["index"])
+        self.lexical_info = sorted(self.lexical_info, key=lambda x: x.index)
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             self.linguistic_breakdown_head
@@ -77,7 +93,7 @@ class PresentationResult:
                 include_auto_definitions=self._search_run.include_auto_definitions,
             ),
             "lexical_information": self.lexical_info,
-            "preverbs": [pv["entry"] for pv in self.preverbs],
+            "preverbs": [pv.entry for pv in self.preverbs],
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
@@ -156,7 +172,7 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def get_preverbs_from_head_breakdown(
     head_breakdown: List[FSTTag],
-) -> List[Any]:
+) -> List[_LexicalEntry]:
     results = []
 
     for (i, tag) in enumerate(head_breakdown):
@@ -191,26 +207,17 @@ def get_preverbs_from_head_breakdown(
                     )
 
         if preverb_result is not None:
-            results.append(
-                {
-                    "entry": serialize_wordform(preverb_result),
-                    "type": "Preverb",
-                    "index": i,
-                    "original_tag": tag,
-                }
+            result = _LexicalEntry(
+                entry=serialize_wordform(preverb_result),
+                type="Preverb",
+                index=i,
+                original_tag=tag
             )
+            results.append(result)
     return results
 
 
-@dataclass
-class _ReduplicationResult:
-    """Tiny class to mimic the format of preverbs"""
-
-    text: str
-    definitions: list
-
-
-def get_reduplication_from_head_breakdown(result_analysis) -> List[Dict[str, Any]]:
+def get_reduplication_from_head_breakdown(result_analysis) -> List[_LexicalEntry]:
     result_analysis_tags = result_analysis.split("+")
     reduplication = []
     for (i, tag) in enumerate(result_analysis_tags):
@@ -234,13 +241,12 @@ def get_reduplication_from_head_breakdown(result_analysis) -> List[Dict[str, Any
                     }
                 ],
             )
-            reduplication.append(
-                {
-                    "entry": entry,
-                    "type": "Reduplication",
-                    "index": i,
-                    "original_tag": tag,
-                }
+            result = _LexicalEntry(
+                entry=entry,
+                type="Reduplication",
+                index=i,
+                original_tag=tag
             )
+            reduplication.append(result)
 
     return reduplication
