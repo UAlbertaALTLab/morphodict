@@ -55,11 +55,11 @@ def default_paradigm_manager() -> ParadigmManager:
     layout_dir = shared_res_dir / "layouts"
     generator = morphodict.analysis.strict_generator()
 
-    if hasattr(settings, "MORPHODICT_PARADIGM_SIZE_ORDER"):
+    if hasattr(settings, "MORPHODICT_PARADIGM_SIZES"):
         return ParadigmManagerWithExplicitSizes(
             layout_dir,
             generator,
-            ordered_sizes=settings.MORPHODICT_PARADIGM_SIZE_ORDER,
+            ordered_sizes=settings.MORPHODICT_PARADIGM_SIZES,
         )
     else:
         return ParadigmManager(layout_dir, generator)
