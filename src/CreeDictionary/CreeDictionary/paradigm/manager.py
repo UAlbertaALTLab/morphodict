@@ -3,13 +3,9 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Collection, Iterable, Optional, Protocol
+from typing import Any, Collection, Iterable, Optional, Protocol, Callable
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
-from CreeDictionary.CreeDictionary.paradigm.sort_utils import (
-    KeyFunction,
-    position_in_list,
-)
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
 ONLY_SIZE = "<only-size>"
@@ -196,3 +192,15 @@ class Transducer(Protocol):
 
     def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]:
         ...
+
+
+def position_in_list(reference: list[str]) -> Callable[[str], int]:
+    """
+    Returns a key function that will sort an element by its position in the given list.
+    """
+    map_element_to_index = {element: index for index, element in enumerate(reference)}
+
+    def key_function(element: str):
+        return map_element_to_index[element]
+
+    return key_function
