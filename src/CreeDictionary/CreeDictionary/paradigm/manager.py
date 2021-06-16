@@ -137,6 +137,24 @@ class ParadigmManager:
         return layout.fill(template2forms)
 
 
+class ParadigmManagerWithExplicitSizes(ParadigmManager):
+    """
+    A ParadigmManager but its sizes are always sorted according the to given sort key.
+    """
+
+    def __init__(
+        self,
+        layout_directory: Path,
+        generation_fst: Transducer,
+        sort_sizes_by: KeyFunction = identity,
+    ):
+        super().__init__(layout_directory, generation_fst, sort_sizes_by)
+        self._size_sort_key = sort_sizes_by
+
+    def sizes_of(self, paradigm_name: str) -> Collection[str]:
+        return sorted(super().sizes_of(paradigm_name), key=self._size_sort_key)
+
+
 def _load_all_layouts_in_directory(path: Path):
     """
     Yields (paradigm, size, layout) tuples from the given directory. Immediate

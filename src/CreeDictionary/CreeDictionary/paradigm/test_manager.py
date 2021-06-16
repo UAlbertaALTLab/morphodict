@@ -6,7 +6,7 @@ from typing import Iterable
 import pytest
 
 from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager, \
-    Transducer
+    Transducer, ParadigmManagerWithExplicitSizes
 from CreeDictionary.CreeDictionary.paradigm.sort_utils import position_in_list
 
 
@@ -37,7 +37,7 @@ def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
     expected_sizes = {"tall", "grande", "venti"}
 
     wacky_ordering = distinct_permutation(expected_sizes)
-    manager = ParadigmManager(
+    manager = ParadigmManagerWithExplicitSizes(
         coffee_layout_dir,
         identity_transducer,
         sort_sizes_by=position_in_list(wacky_ordering)

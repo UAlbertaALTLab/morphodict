@@ -9,7 +9,8 @@ from django.conf import settings
 import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.CreeDictionary.paradigm.filler import Layout, ParadigmFiller
-from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager
+from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager, \
+    ParadigmManagerWithExplicitSizes
 from CreeDictionary.CreeDictionary.paradigm.sort_utils import identity, position_in_list
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.enums import ParadigmSize
@@ -55,7 +56,7 @@ def default_paradigm_manager() -> ParadigmManager:
     else:
         sorter = identity
 
-    return ParadigmManager(
+    return ParadigmManagerWithExplicitSizes(
         shared_res_dir / "layouts",
         morphodict.analysis.strict_generator(),
         sort_sizes_by=sorter,
