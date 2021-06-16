@@ -6,7 +6,8 @@ Python is at its worst, and dynamic typing shines.
 """
 
 from __future__ import annotations
-from typing import Callable, TypeVar, Any, Protocol
+
+from typing import Any, Callable, Protocol, TypeVar
 
 # Required to annotate functions that take a T and return a T.
 _T = TypeVar("_T")
@@ -23,6 +24,7 @@ class _SupportsLessThan(Protocol):
     Note: You probably want the bounded version (SupportsLessThan), so that Any can be
     substituted with a more narrow type.
     """
+
     def __lt__(self, _other: Any) -> bool:
         ...
 
@@ -45,11 +47,9 @@ def position_in_list(reference: list[str]) -> KeyFunction:
     """
     Returns a key function that will sort an element by its position in the given list.
     """
-    map_element_to_index = {
-        element: index for index, element in enumerate(reference)
-    }
+    map_element_to_index = {element: index for index, element in enumerate(reference)}
 
-    def key_function(element: str) -> SupportsLessThan:
+    def key_function(element: str):
         return map_element_to_index[element]
 
     return key_function
