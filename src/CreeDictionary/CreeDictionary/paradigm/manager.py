@@ -159,6 +159,29 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         """
         return self._size_to_order[element]
 
+    def all_sizes_fully_specified(self):
+        """
+        Returns True when all size options for all paradigms are specified in the
+        explicit order given in the constructor.
+        """
+        valid_sizes = {ONLY_SIZE} | self._size_to_order.keys()
+        all_paradigms = self._name_to_paradigm.keys() | self._wc_to_layout.keys()
+
+        for paradigm in all_paradigms:
+            # use super() to avoid any ordering stuff.
+            sizes_available = super().sizes_of(paradigm)
+            for size in sizes_available:
+                if size not in valid_sizes:
+                    logger.error(
+                        "Paradigm %r has a layout in size %r, however that "
+                        "size has not been declared",
+                        paradigm,
+                        size,
+                    )
+                    return False
+
+        return True
+
 
 def _load_all_layouts_in_directory(path: Path):
     """
