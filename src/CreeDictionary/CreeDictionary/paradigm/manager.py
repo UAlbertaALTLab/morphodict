@@ -132,7 +132,8 @@ class ParadigmManager:
 
 class ParadigmManagerWithExplicitSizes(ParadigmManager):
     """
-    A ParadigmManager but its sizes are always sorted according the to given sort key.
+    A ParadigmManager but its sizes are always returned, sorted according the explicit
+    order specified.
     """
 
     def __init__(
@@ -143,20 +144,20 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         ordered_sizes: list[str],
     ):
         super().__init__(layout_directory, generation_fst)
-        self._map_element_to_index = {
+        self._size_to_order = {
             element: index for index, element in enumerate(ordered_sizes)
         }
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         unsorted_results = super().sizes_of(paradigm_name)
-        return sorted(unsorted_results, key=self._size_sort_key)
+        return sorted(unsorted_results, key=self._sort_by_explict_order)
 
-    def _size_sort_key(self, element: str):
+    def _sort_by_explict_order(self, element: str) -> int:
         """
         Orders elements according to the given ordered sizes.
         Can be used as a key function for sort() or sorted().
         """
-        return self._map_element_to_index[element]
+        return self._size_to_order[element]
 
 
 def _load_all_layouts_in_directory(path: Path):
