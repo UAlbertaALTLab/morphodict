@@ -29,15 +29,17 @@
       <table class="paradigm__table">
         {% for pane in paradigm.panes %}
           <tbody>
-            {% for row in pane.rows %}
+            {% for row in pane.tr_rows %}
               {% if row.is_header %}
                 <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
                 >{% relabel row.fst_tags %}</th>
               {% else %}
                 <tr class="paradigm-row">
                   {% for cell in row.cells %}
-                    {% if cell.is_label %}
-                      <th scope="{{ cell.label_for }}"
+                    {% if cell.should_suppress_output %}
+                        {% comment %} Produce NO output! {% endcomment %}
+                    {% elif cell.is_label %}
+                      <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
                           class="paradigm-label paradigm-label--{{ cell.label_for }}">
                           {% relabel cell.fst_tags %}
                       </th>

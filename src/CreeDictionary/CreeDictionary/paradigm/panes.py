@@ -8,9 +8,9 @@ import logging
 import re
 import string
 from itertools import zip_longest
-from typing import Collection, Iterable, Mapping, Optional, TextIO
+from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO
 
-from more_itertools import first, ilen
+from more_itertools import ilen, one
 
 logger = logging.getLogger(__name__)
 
@@ -185,6 +185,18 @@ class Pane:
     def rows(self) -> Iterable[Row]:
         yield from self._rows
 
+    @property
+    def tr_rows(self) -> Iterable[Row]:
+        """
+        Yields rows needed in the HTML model. All rows of a compound row are yielded
+        individually.
+        """
+        for row in self._rows:
+            if isinstance(row, CompoundRow):
+                yield from row.subrows
+            else:
+                yield row
+
     def dumps(self, require_num_columns: Optional[int] = None) -> str:
         """
         Returns a string representation that can be parsed again.
@@ -316,8 +328,30 @@ class ContentRow(Row):
     def contains_wordform(self, wordform: str) -> bool:
         return any(cell.contains_wordform(wordform) for cell in self.cells)
 
-    def fill(self, forms) -> ContentRow:
-        return ContentRow(cell.fill_one(forms) for cell in self.cells)
+    def fill(self, forms: Mapping[str, Collection[str]]) -> ContentRow | CompoundRow:
+        """
+        Fills the column and may return a ContentRow or a CompoundRow (a composition
+        of ContentRows.
+        """
+
+        # Fill each **column**, then figure out if we need to make a compound row
+        columns = n_empty_lists(self.num_cells)
+        for index, cell in enumerate(self.cells):
+            columns[index].extend(cell.fill(forms))
+
+        num_rows_needed = max(len(c) for c in columns)
+        assert num_rows_needed > 0
+        if num_rows_needed == 1:
+            # A row with all columns having a single cell:
+            return ContentRow(one(cells) for cells in columns)
+
+        # Create compound rows
+        rows = []
+        for row_num in range(num_rows_needed):
+            cells = [cell_if_exists_or_no_output(col, row_num) for col in columns]
+            cells = [adjust_row_span(cell, num_rows_needed) for cell in cells]
+            rows.append(ContentRow(cells))
+        return CompoundRow(rows)
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, ContentRow):
@@ -384,6 +418,42 @@ class HeaderRow(Row):
         return HeaderRow(parse_label(text, prefix=cls.prefix))
 
 
+class CompoundRow(Row):
+    """
+    Contains multiple filled content rows.
+    """
+
+    is_header = False
+    has_content = True
+
+    def __init__(self, rows: Iterable[ContentRow]):
+        self._rows = tuple(rows)
+
+    @property
+    def cells(self) -> Iterable[Cell]:
+        for row in self._rows:
+            yield from row.cells
+
+    @property
+    def num_cells(self):
+        return max(row.num_cells for row in self._rows)
+
+    @property
+    def num_subrows(self) -> int:
+        return len(self._rows)
+
+    @property
+    def subrows(self) -> Iterable[ContentRow]:
+        return iter(self._rows)
+
+    @property
+    def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        raise AssertionError("cannot return inflection cells in filled row")
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return any(row.contains_wordform(wordform) for row in self._rows)
+
+
 class Cell:
     """
     A single cell from a paradigm.
@@ -393,6 +463,7 @@ class Cell:
     is_inflection: bool = False
     is_missing: bool = False
     is_empty: bool = False
+    should_suppress_output: bool = False
 
     @staticmethod
     def parse(text: str) -> Cell:
@@ -415,12 +486,12 @@ class Cell:
         # Must be overridden in subclasses
         raise NotImplementedError
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         """
-        Returns exactly ONE cell by filling the paradigm.
+        Returns one or more cells by filling the paradigm with the provided forms.
         """
         if not self.is_inflection:
-            return self
+            return (self,)
         # This should be overridden by subclasses.
         # Namely, InflectionTemplate should override this.
         raise NotImplementedError
@@ -447,9 +518,9 @@ class WordformCell(Cell):
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         # No need to fill a cell that already has contents!
-        return self
+        return (self,)
 
     def __str__(self) -> str:
         return self.inflection
@@ -508,9 +579,13 @@ class InflectionTemplate(Cell):
         """
         return self._analysis_template.substitute(lemma=lemma)
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> WordformCell | MissingForm:
+    def fill(
+        self, forms: Mapping[str, Collection[str]]
+    ) -> tuple[WordformCell | MissingForm, ...]:
         """
-        Return a single WordformCell, given the fillable forms.
+        Return one or more cells with the forms given.
+        :raises ParadigmGenerationError: when the analysis is missing from the given
+            forms mapping.
         """
 
         try:
@@ -523,14 +598,9 @@ class InflectionTemplate(Cell):
         if len(cell_forms) == 0:
             # It's a missing form (accidental gap/lacuna).
             # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
-            return MissingForm()
+            return (MissingForm(),)
 
-        if len(cell_forms) > 1:
-            # TODO: create a CompoundRow class that can handle multiple forms per
-            # inflection.
-            logger.warning("Don't know how to output multiple forms... yet")
-        form = first(sorted(cell_forms))
-        return WordformCell(form)
+        return tuple(WordformCell(form) for form in cell_forms)
 
 
 class SingletonMixin:
@@ -571,11 +641,11 @@ class MissingForm(Cell, SingletonMixin):
         """
         return False
 
-    def fill_one(self, forms: dict[str, Collection[str]]) -> Cell:
+    def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         """
-        A missing form is already "filled".
+        A missing form is already "filled" -- return one entry
         """
-        return self
+        return (self,)
 
 
 class EmptyCell(Cell, SingletonMixin):
@@ -588,6 +658,16 @@ class EmptyCell(Cell, SingletonMixin):
 
     def __str__(self):
         return ""
+
+
+class SuppressOutputCell(Cell, SingletonMixin):
+    """
+    Indicates that this should not be rendered at all in the paradigm.
+    Note: even an EmptyCell is "output", in that a <tr> should be created for it in HTML.
+    A SuppressOutputCell should not get even get a <tr>.
+    """
+
+    should_suppress_output = True
 
 
 class BaseLabelCell(Cell):
@@ -626,6 +706,17 @@ class RowLabel(BaseLabelCell):
 
     label_for = "row"
     prefix = "_"
+
+    def __init__(self, tags, row_span: int = 1):
+        super().__init__(tags)
+        self.row_span = row_span
+
+    def with_row_span(self, span: int) -> RowLabel:
+        """
+        Create a brand new row label with its row span. This is intended so that an
+        existing label can be used to span multiple rows.
+        """
+        return RowLabel(self.fst_tags, span)
 
 
 class ColumnLabel(BaseLabelCell):
@@ -676,3 +767,31 @@ def pairs(seq):
     [(1, 2), (3, 4), (5, 6)]
     """
     return zip(seq[::2], seq[1::2])
+
+
+def n_empty_lists(n: int) -> list[list[Cell]]:
+    """
+    Returns the given number of distinct, empty lists.
+    """
+    return [[] for _ in range(n)]
+
+
+def cell_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
+    """
+    Extracts the content cell from the column if it exists, else returns an EmptyCell if
+    nothing is found.
+    """
+    try:
+        return col[row_num]
+    except IndexError:
+        return SuppressOutputCell()
+
+
+def adjust_row_span(cell: Cell, span: int) -> Cell:
+    """
+    Fixes RowLabels such that they span the amount given. Only affects RowLabels.
+    Other cells are returned as is.
+    """
+    if isinstance(cell, RowLabel):
+        return cell.with_row_span(span)
+    return cell
