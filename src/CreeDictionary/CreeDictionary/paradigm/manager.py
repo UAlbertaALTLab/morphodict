@@ -6,6 +6,7 @@ from pathlib import Path
 from typing import Any, Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from CreeDictionary.CreeDictionary.paradigm.sort_utils import KeyFunction, identity
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
 ONLY_SIZE = "<only-size>"
@@ -25,10 +26,12 @@ class ParadigmManager:
     _name_to_paradigm: dict[str, dict[str, Paradigm]]
     _wc_to_layout: dict[str, dict[str, ParadigmLayout]]
 
-    def __init__(self, layout_directory: Path, generation_fst: Transducer):
+    def __init__(self, layout_directory: Path, generation_fst: Transducer,
+                 sort_sizes_by: KeyFunction = identity):
         self._generator = generation_fst
         self._name_to_paradigm = defaultdict(dict)
         self._wc_to_layout = defaultdict(dict)
+        self._sort_sizes_by = sort_sizes_by
 
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
@@ -84,7 +87,7 @@ class ParadigmManager:
         """
         Returns the size options of the given paradigm.
         """
-        collection: dict[str, dict[str, Any]]
+        collection: dict[str, dict[str, Paradigm | ParadigmLayout]]
 
         if paradigm_name in self._name_to_paradigm:
             collection = self._name_to_paradigm
@@ -94,6 +97,9 @@ class ParadigmManager:
             raise KeyError(f"Paradigm does not exist: {paradigm_name}")
 
         return collection[paradigm_name].keys()
+
+    def _sort_sizes(self, sizes: Collection[str]) -> Collection[str]:
+        return sizes
 
     def _load_static_from(self, path: Path):
         """

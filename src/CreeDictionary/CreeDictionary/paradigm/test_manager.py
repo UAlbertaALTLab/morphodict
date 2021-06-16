@@ -7,6 +7,7 @@ import pytest
 
 from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager, \
     Transducer
+from CreeDictionary.CreeDictionary.paradigm.sort_utils import position_in_list
 
 
 def test_one_size(paradigm_manager: ParadigmManager):
@@ -31,11 +32,19 @@ def test_multiple_sizes(paradigm_manager: ParadigmManager):
     assert set(paradigm_manager.sizes_of("has-multiple-sizes")) == expected_sizes
 
 
-@pytest.mark.skip
-def test_sizes_are_sorted():
-    expected_sizes = ["tall", "grande", "venti"]
-    random.shuffle(expected_sizes)
+def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
+    paradigm_name = "has-multiple-sizes"
+    expected_sizes = {"tall", "grande", "venti"}
 
+    wacky_ordering = distinct_permutation(expected_sizes)
+    manager = ParadigmManager(
+        coffee_layout_dir,
+        identity_transducer,
+        sort_sizes_by=position_in_list(wacky_ordering)
+    )
+
+    actual_sizes = list(manager.sizes_of(paradigm_name))
+    assert actual_sizes == wacky_ordering
 
 
 def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager):
@@ -75,8 +84,18 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
 
 
 @pytest.fixture
-def paradigm_manager(testdata: Path, identity_transducer):
-    return ParadigmManager(testdata / "layouts", identity_transducer)
+def paradigm_manager(coffee_layout_dir: Path, identity_transducer):
+    return ParadigmManager(coffee_layout_dir, identity_transducer)
+
+
+@pytest.fixture
+def coffee_layout_dir(testdata: Path) -> Path:
+    """
+    Returns the layout directory containing:
+     - has-multiple-sizes -- coffee-inspired sizes
+     - has-only-one-size
+    """
+    return testdata / "layouts"
 
 
 @pytest.fixture
@@ -108,3 +127,18 @@ class IdentityTransducer:
     @staticmethod
     def lookup(analysis: str) -> str:
         return analysis
+
+
+def distinct_permutation(sequence):
+    """
+    Returns a permutation of the given sequence that is guaranteed to not be the same
+    order as the given input.
+    """
+    assert len(sequence) > 1, "there is no distinct permutation for this input"
+    original = list(sequence)
+    result = original.copy()
+
+    while result != original:
+        random.shuffle(result)
+    return result
+
