@@ -5,7 +5,8 @@ from typing import Iterable
 
 import pytest
 
-from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager
+from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager, \
+    Transducer
 
 
 def test_one_size(paradigm_manager: ParadigmManager):
@@ -74,17 +75,20 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
 
 
 @pytest.fixture
-def paradigm_manager(testdata: Path):
-    transducer = IdentityTransducer()
-
-    return ParadigmManager(testdata / "layouts", transducer)
+def paradigm_manager(testdata: Path, identity_transducer):
+    return ParadigmManager(testdata / "layouts", identity_transducer)
 
 
 @pytest.fixture
 def testdata() -> Path:
-    testdata = Path(__file__).parent / "testdata"
-    assert testdata.is_dir()
-    return testdata
+    testdata_path = Path(__file__).parent / "testdata"
+    assert testdata_path.is_dir()
+    return testdata_path
+
+
+@pytest.fixture
+def identity_transducer() -> Transducer:
+    return IdentityTransducer()
 
 
 class IdentityTransducer:
