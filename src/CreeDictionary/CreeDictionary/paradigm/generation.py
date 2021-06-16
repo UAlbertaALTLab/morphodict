@@ -9,9 +9,10 @@ from django.conf import settings
 import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.CreeDictionary.paradigm.filler import Layout, ParadigmFiller
-from CreeDictionary.CreeDictionary.paradigm.manager import ParadigmManager, \
-    ParadigmManagerWithExplicitSizes
-from CreeDictionary.CreeDictionary.paradigm.sort_utils import identity, position_in_list
+from CreeDictionary.CreeDictionary.paradigm.manager import (
+    ParadigmManager,
+    ParadigmManagerWithExplicitSizes,
+)
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.enums import ParadigmSize
 from CreeDictionary.utils.fst_analysis_parser import extract_word_class
@@ -51,14 +52,14 @@ def default_paradigm_manager() -> ParadigmManager:
       - MORPHODICT_PARADIGM_SIZE_ORDER
     """
 
+    layout_dir = shared_res_dir / "layouts"
+    generator = morphodict.analysis.strict_generator()
+
     if hasattr(settings, "MORPHODICT_PARADIGM_SIZE_ORDER"):
         return ParadigmManagerWithExplicitSizes(
-            shared_res_dir / "layouts",
-            morphodict.analysis.strict_generator(),
+            layout_dir,
+            generator,
             ordered_sizes=settings.MORPHODICT_PARADIGM_SIZE_ORDER,
         )
     else:
-        return ParadigmManagerWithExplicitSizes(
-            shared_res_dir / "layouts",
-            morphodict.analysis.strict_generator(),
-        )
+        return ParadigmManager(layout_dir, generator)
