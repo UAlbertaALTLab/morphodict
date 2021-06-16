@@ -1,3 +1,4 @@
+import random
 import re
 from pathlib import Path
 from typing import Iterable
@@ -27,6 +28,13 @@ def test_one_size(paradigm_manager: ParadigmManager):
 def test_multiple_sizes(paradigm_manager: ParadigmManager):
     expected_sizes = {"tall", "grande", "venti"}
     assert set(paradigm_manager.sizes_of("has-multiple-sizes")) == expected_sizes
+
+
+@pytest.mark.skip
+def test_sizes_are_sorted():
+    expected_sizes = ["tall", "grande", "venti"]
+    random.shuffle(expected_sizes)
+
 
 
 def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager):
@@ -66,12 +74,17 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
 
 
 @pytest.fixture
-def paradigm_manager():
-    testdata = Path(__file__).parent / "testdata"
-    assert testdata.is_dir()
+def paradigm_manager(testdata: Path):
     transducer = IdentityTransducer()
 
     return ParadigmManager(testdata / "layouts", transducer)
+
+
+@pytest.fixture
+def testdata() -> Path:
+    testdata = Path(__file__).parent / "testdata"
+    assert testdata.is_dir()
+    return testdata
 
 
 class IdentityTransducer:
