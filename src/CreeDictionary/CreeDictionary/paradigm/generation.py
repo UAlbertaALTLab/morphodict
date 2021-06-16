@@ -52,12 +52,13 @@ def default_paradigm_manager() -> ParadigmManager:
     """
 
     if hasattr(settings, "MORPHODICT_PARADIGM_SIZE_ORDER"):
-        sorter = position_in_list(settings.MORPHODICT_PARADIGM_SIZE_ORDER)
+        return ParadigmManagerWithExplicitSizes(
+            shared_res_dir / "layouts",
+            morphodict.analysis.strict_generator(),
+            ordered_sizes=settings.MORPHODICT_PARADIGM_SIZE_ORDER,
+        )
     else:
-        sorter = identity
-
-    return ParadigmManagerWithExplicitSizes(
-        shared_res_dir / "layouts",
-        morphodict.analysis.strict_generator(),
-        sort_sizes_by=sorter,
-    )
+        return ParadigmManagerWithExplicitSizes(
+            shared_res_dir / "layouts",
+            morphodict.analysis.strict_generator(),
+        )

@@ -40,7 +40,7 @@ def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
     manager = ParadigmManagerWithExplicitSizes(
         coffee_layout_dir,
         identity_transducer,
-        sort_sizes_by=position_in_list(wacky_ordering)
+        ordered_sizes=wacky_ordering
     )
 
     actual_sizes = list(manager.sizes_of(paradigm_name))
