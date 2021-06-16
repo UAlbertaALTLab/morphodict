@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Collection, Iterable, Optional, Protocol, Callable
+from typing import Any, Callable, Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -143,11 +143,20 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         ordered_sizes: list[str],
     ):
         super().__init__(layout_directory, generation_fst)
-        self._size_sort_key = position_in_list(ordered_sizes)
+        self._map_element_to_index = {
+            element: index for index, element in enumerate(ordered_sizes)
+        }
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         unsorted_results = super().sizes_of(paradigm_name)
         return sorted(unsorted_results, key=self._size_sort_key)
+
+    def _size_sort_key(self, element: str):
+        """
+        Orders elements according to the given ordered sizes.
+        Can be used as a key function for sort() or sorted().
+        """
+        return self._map_element_to_index[element]
 
 
 def _load_all_layouts_in_directory(path: Path):
@@ -192,15 +201,3 @@ class Transducer(Protocol):
 
     def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]:
         ...
-
-
-def position_in_list(reference: list[str]) -> Callable[[str], int]:
-    """
-    Returns a key function that will sort an element by its position in the given list.
-    """
-    map_element_to_index = {element: index for index, element in enumerate(reference)}
-
-    def key_function(element: str):
-        return map_element_to_index[element]
-
-    return key_function
