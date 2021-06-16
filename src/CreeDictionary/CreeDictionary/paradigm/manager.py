@@ -30,12 +30,10 @@ class ParadigmManager:
         self,
         layout_directory: Path,
         generation_fst: Transducer,
-        sort_sizes_by: KeyFunction = identity,
     ):
         self._generator = generation_fst
         self._name_to_paradigm = defaultdict(dict)
         self._wc_to_layout = defaultdict(dict)
-        self._size_sort_key = sort_sizes_by
 
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
@@ -100,7 +98,7 @@ class ParadigmManager:
         else:
             raise KeyError(f"Paradigm does not exist: {paradigm_name}")
 
-        return sorted(collection[paradigm_name].keys(), key=self._size_sort_key)
+        return collection[paradigm_name].keys()
 
     def _load_static_from(self, path: Path):
         """
@@ -148,11 +146,12 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         generation_fst: Transducer,
         sort_sizes_by: KeyFunction = identity,
     ):
-        super().__init__(layout_directory, generation_fst, sort_sizes_by)
+        super().__init__(layout_directory, generation_fst)
         self._size_sort_key = sort_sizes_by
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
-        return sorted(super().sizes_of(paradigm_name), key=self._size_sort_key)
+        unsorted_results = super().sizes_of(paradigm_name)
+        return sorted(unsorted_results, key=self._size_sort_key)
 
 
 def _load_all_layouts_in_directory(path: Path):
