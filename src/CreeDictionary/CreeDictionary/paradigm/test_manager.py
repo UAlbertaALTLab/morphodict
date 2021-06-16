@@ -5,9 +5,12 @@ from typing import Iterable
 
 import pytest
 
-from CreeDictionary.CreeDictionary.paradigm.manager import ONLY_SIZE, ParadigmManager, \
-    Transducer, ParadigmManagerWithExplicitSizes
-from CreeDictionary.CreeDictionary.paradigm.sort_utils import position_in_list
+from CreeDictionary.CreeDictionary.paradigm.manager import (
+    ONLY_SIZE,
+    ParadigmManager,
+    ParadigmManagerWithExplicitSizes,
+    Transducer,
+)
 
 
 def test_one_size(paradigm_manager: ParadigmManager):
@@ -38,9 +41,7 @@ def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
 
     wacky_ordering = distinct_permutation(expected_sizes)
     manager = ParadigmManagerWithExplicitSizes(
-        coffee_layout_dir,
-        identity_transducer,
-        ordered_sizes=wacky_ordering
+        coffee_layout_dir, identity_transducer, ordered_sizes=wacky_ordering
     )
 
     actual_sizes = list(manager.sizes_of(paradigm_name))
@@ -141,4 +142,3 @@ def distinct_permutation(sequence):
     while result != original:
         random.shuffle(result)
     return result
-

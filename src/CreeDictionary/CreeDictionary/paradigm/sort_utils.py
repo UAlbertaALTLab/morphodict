@@ -36,13 +36,6 @@ SupportsLessThan = TypeVar("SupportsLessThan", bound=_SupportsLessThan)
 KeyFunction = Callable[[_T], SupportsLessThan]
 
 
-def identity(x: _T) -> _T:
-    """
-    Returns its first argument verbatim.
-    """
-    return x
-
-
 def position_in_list(reference: list[str]) -> KeyFunction:
     """
     Returns a key function that will sort an element by its position in the given list.

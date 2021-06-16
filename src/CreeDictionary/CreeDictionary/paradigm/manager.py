@@ -6,8 +6,10 @@ from pathlib import Path
 from typing import Any, Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
-from CreeDictionary.CreeDictionary.paradigm.sort_utils import KeyFunction, identity, \
-    position_in_list
+from CreeDictionary.CreeDictionary.paradigm.sort_utils import (
+    KeyFunction,
+    position_in_list,
+)
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
 ONLY_SIZE = "<only-size>"
@@ -141,7 +143,8 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         self,
         layout_directory: Path,
         generation_fst: Transducer,
-        *, ordered_sizes: list[str]
+        *,
+        ordered_sizes: list[str],
     ):
         super().__init__(layout_directory, generation_fst)
         self._size_sort_key = position_in_list(ordered_sizes)
