@@ -69,11 +69,7 @@
           {% endcomment %}
           {% include './components/paradigm-label-switcher.html' %}
         {% endif %}
-        {% if paradigm.uses_pane_based_layout %}
-          {% include './components/paradigm-with-panes.html' %}
-        {% else %}
-          {% include './components/paradigm.html' %}
-        {% endif %}
+        {% include './components/paradigm-with-panes.html' %}
       {% endif %}
     </section>
   </article>

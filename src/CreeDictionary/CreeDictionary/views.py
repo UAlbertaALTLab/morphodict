@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Literal, Union
+from typing import Any, Dict, Literal, Union, Optional
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -179,10 +179,7 @@ def paradigm_internal(request):
     # end guards
 
     paradigm = paradigm_for(lemma, paradigm_size)
-    if isinstance(paradigm, Paradigm):
-        template_name = "CreeDictionary/components/paradigm-with-panes.html"
-    else:
-        template_name = "CreeDictionary/components/paradigm.html"
+    template_name = "CreeDictionary/components/paradigm-with-panes.html"
 
     return render(
         request,
@@ -355,7 +352,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
 
 def paradigm_for(
     wordform: Wordform, paradigm_size: ParadigmSize
-) -> Union[Paradigm, list[list[Row]]]:
+) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
@@ -373,8 +370,7 @@ def paradigm_for(
             name,
             wordform,
         )
-        # TODO: better return value for when a paradigm cannot be found
-        return []
+        return None
 
     # TODO: use new-style paradigms for other sizes in addition to FULL
     # Requires:
@@ -386,15 +382,14 @@ def paradigm_for(
 
         paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
         if paradigm_name is None:
-            return []
+            return None
 
         try:
             return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
         except KeyError:
-            return []
+            return None
 
-    # try returning an old-style paradigm: may return []
-    return generate_paradigm(wordform, paradigm_size)
+    return None
 
 
 def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
