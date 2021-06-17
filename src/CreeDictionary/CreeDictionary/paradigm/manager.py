@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 from collections import defaultdict
 from pathlib import Path
-from typing import Any, Collection, Iterable, Optional, Protocol
+from typing import Any, Callable, Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -128,6 +128,59 @@ class ParadigmManager:
             for template, analysis in template2analysis.items()
         }
         return layout.fill(template2forms)
+
+
+class ParadigmManagerWithExplicitSizes(ParadigmManager):
+    """
+    A ParadigmManager but its sizes are always returned, sorted according the explicit
+    order specified.
+    """
+
+    def __init__(
+        self,
+        layout_directory: Path,
+        generation_fst: Transducer,
+        *,
+        ordered_sizes: list[str],
+    ):
+        super().__init__(layout_directory, generation_fst)
+        self._size_to_order = {
+            element: index for index, element in enumerate(ordered_sizes)
+        }
+
+    def sizes_of(self, paradigm_name: str) -> Collection[str]:
+        unsorted_results = super().sizes_of(paradigm_name)
+        return sorted(unsorted_results, key=self._sort_by_explict_order)
+
+    def _sort_by_explict_order(self, element: str) -> int:
+        """
+        Orders elements according to the given ordered sizes.
+        Can be used as a key function for sort() or sorted().
+        """
+        return self._size_to_order[element]
+
+    def all_sizes_fully_specified(self):
+        """
+        Returns True when all size options for all paradigms are specified in the
+        explicit order given in the constructor.
+        """
+        valid_sizes = {ONLY_SIZE} | self._size_to_order.keys()
+        all_paradigms = self._name_to_paradigm.keys() | self._wc_to_layout.keys()
+
+        for paradigm in all_paradigms:
+            # use super() to avoid any ordering stuff.
+            sizes_available = super().sizes_of(paradigm)
+            for size in sizes_available:
+                if size not in valid_sizes:
+                    logger.error(
+                        "Paradigm %r has a layout in size %r, however that "
+                        "size has not been declared",
+                        paradigm,
+                        size,
+                    )
+                    return False
+
+        return True
 
 
 def _load_all_layouts_in_directory(path: Path):
