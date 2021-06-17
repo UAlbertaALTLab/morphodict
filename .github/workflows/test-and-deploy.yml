@@ -6,13 +6,6 @@ env:
   ACTIONS_PYTHON_VERSION: 3.9
   # Version required to run npm build:
   ACTIONS_NODE_VERSION: 12
-  # Version running on Sapir:
-  ACTIONS_OS_VERSION: ubuntu-16.04
-  # N.B.: Currently available versions (2021-01-04) are:
-  #   - ubuntu-16.04
-  #   - ubuntu-18.04 (@ubuntu-latest)
-  #   - ubuntu-20.04 (soon-to-be @ubuntu-latest)
-  # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
@@ -35,7 +28,7 @@ jobs:
 
   # Run Pytest unit tests
   unit-test:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
@@ -89,7 +82,7 @@ jobs:
 
   # Runs Cypress acceptance tests
   integration-test:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
