@@ -5,10 +5,11 @@ from typing import Dict, Iterable, List, Set, Tuple
 
 import morphodict.analysis
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
-from CreeDictionary.CreeDictionary.views import \
-    convert_crkeng_word_class_to_paradigm_name
+from CreeDictionary.CreeDictionary.views import (
+    convert_crkeng_word_class_to_paradigm_name,
+)
 from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
-from CreeDictionary.utils import fst_analysis_parser
+from CreeDictionary.utils import WordClass, fst_analysis_parser
 
 
 def expand_inflections(
@@ -25,14 +26,16 @@ def expand_inflections(
     analyses = list(analyses)
     to_generated: Dict[str, List[str]] = {}
     # We'll generate all of the forms for analyses enqueued here in one fell swoop.
-    analysis_queue = []
+    analysis_queue: list[str] = []
 
     for analysis in analyses:
-        lemma, word_class = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
+        lemma, word_class = lemma_and_wordclass_from_analysis(analysis)
 
         if word_class.has_inflections():
             paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
-            generated_analyses = paradigm_manager.all_analyses(paradigm_name, lemma)
+            generated_analyses = list(
+                paradigm_manager.all_analyses(paradigm_name, lemma)
+            )
         else:
             generated_analyses = [analysis]
 
@@ -60,3 +63,9 @@ def expand_inflections(
             )
         expanded[analysis] = pooled_generated_words
     return expanded
+
+
+def lemma_and_wordclass_from_analysis(analysis: str) -> tuple[str, WordClass]:
+    result = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
+    assert result is not None, "expand_inflections should all have valid analyses!"
+    return result

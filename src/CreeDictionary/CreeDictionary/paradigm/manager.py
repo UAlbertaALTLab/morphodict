@@ -103,7 +103,7 @@ class ParadigmManager:
             {"mîcisow+V+AI+Ind+Prs+1Sg", ...}
         """
 
-        analyses = set()
+        analyses: set[str] = set()
         for layout in self._wc_to_layout[paradigm_name].values():
             analyses.update(layout.generate_fst_analyses(lemma).values())
 
