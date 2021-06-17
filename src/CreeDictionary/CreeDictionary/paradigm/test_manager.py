@@ -164,6 +164,6 @@ def distinct_permutation(sequence):
     original = list(sequence)
     result = original.copy()
 
-    while result != original:
+    while result == original:
         random.shuffle(result)
     return result
