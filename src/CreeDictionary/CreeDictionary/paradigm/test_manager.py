@@ -39,9 +39,10 @@ def test_multiple_sizes(paradigm_manager: ParadigmManager):
 
 def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
     paradigm_name = "has-multiple-sizes"
-    expected_sizes = {"tall", "grande", "venti"}
+    expected_sizes = ["tall", "grande", "venti"]
 
     wacky_ordering = distinct_permutation(expected_sizes)
+    assert expected_sizes != wacky_ordering
     manager = ParadigmManagerWithExplicitSizes(
         coffee_layout_dir, identity_transducer, ordered_sizes=wacky_ordering
     )
