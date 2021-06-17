@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Literal, Union, Optional
+from typing import Any, Dict, Literal, Optional, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -11,9 +11,7 @@ import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
-from CreeDictionary.CreeDictionary.paradigm.generation import (
-    default_paradigm_manager,
-)
+from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
@@ -177,11 +175,9 @@ def paradigm_internal(request):
     # end guards
 
     paradigm = paradigm_for(lemma, paradigm_size)
-    template_name = "CreeDictionary/components/paradigm-with-panes.html"
-
     return render(
         request,
-        template_name,
+        "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
@@ -348,9 +344,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(
-    wordform: Wordform, paradigm_size: ParadigmSize
-) -> Optional[Paradigm]:
+def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
