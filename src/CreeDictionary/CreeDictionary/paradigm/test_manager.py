@@ -50,7 +50,7 @@ def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
     assert actual_sizes == wacky_ordering
 
 
-def test_verify_sizes(caplog, coffee_layout_dir: Path, identity_transducer):
+def test_all_sizes_fully_specified(caplog, coffee_layout_dir, identity_transducer):
     expected_sizes = ["tall", "grande", "venti"]
 
     valid_manager = ParadigmManagerWithExplicitSizes(
