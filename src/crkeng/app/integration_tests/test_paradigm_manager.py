@@ -30,6 +30,27 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
     assert paradigm.contains_wordform("wiyawâw")
 
 
+@pytest.mark.parametrize(
+    ("name", "lemma", "examples"),
+    [
+        ("VTA", "wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin", "ê-wâpamât"]),
+        ("VAI", "nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
+        ("VTI", "mîcisow", ["mîcisow", "nimîcison", "kimîcison", "ê-mîcisoyit"]),
+        ("VII", "nîpin", ["nîpin", "nîpin", "ê-nîpihk"]),
+        ("NAD", "nôhkom", ["nôhkom", "kôhkom", "ohkoma"]),
+        ("NID", "mîpit", ["mîpit", "nîpit", "kîpit", "wîpit"]),
+        ("NA", "minôs", ["minôs", "minôsak", "minôsa"]),
+        ("NI", "nipiy", ["nipiy", "nipîhk", "ninipiy", "kinipiy"]),
+    ],
+)
+def test_paradigm(paradigm_manager, name, lemma, examples: list[str]):
+    default_size = first(paradigm_manager.sizes_of(name))
+    paradigm = paradigm_manager.paradigm_for(name, lemma=lemma, size=default_size)
+
+    for form in examples:
+        assert paradigm.contains_wordform(form)
+
+
 def test_generates_na_paradigm(paradigm_manager) -> None:
     """
     Generate a paradigm for a lemma+word class; see if it has some expected basic

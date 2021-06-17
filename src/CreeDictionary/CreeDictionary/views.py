@@ -11,10 +11,8 @@ import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
-from CreeDictionary.CreeDictionary.paradigm.filler import Row
 from CreeDictionary.CreeDictionary.paradigm.generation import (
     default_paradigm_manager,
-    generate_paradigm,
 )
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
 from CreeDictionary.phrase_translate.translate import (
