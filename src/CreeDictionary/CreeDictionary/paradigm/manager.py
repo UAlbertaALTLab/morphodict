@@ -95,6 +95,20 @@ class ParadigmManager:
 
         return collection[paradigm_name].keys()
 
+    def all_analyses(self, paradigm_name: str, lemma: str) -> set[str]:
+        """
+        Returns all analysis strings for a given paradigm and lemma in all layout sizes.
+
+        For example, in Cree, you want all analyses for mîcisow (VAI):
+            {"mîcisow+V+AI+Ind+Prs+1Sg", ...}
+        """
+
+        analyses = set()
+        for layout in self._wc_to_layout[paradigm_name].values():
+            analyses.update(layout.generate_fst_analyses(lemma).values())
+
+        return analyses
+
     def _load_static_from(self, path: Path):
         """
         Loads all .tsv files in the path as static paradigms.

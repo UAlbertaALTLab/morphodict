@@ -4,9 +4,11 @@ EXPAND lemma with inflections from xml according to an fst and paradigm/layout f
 from typing import Dict, Iterable, List, Set, Tuple
 
 import morphodict.analysis
+from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
+from CreeDictionary.CreeDictionary.views import \
+    convert_crkeng_word_class_to_paradigm_name
 from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
 from CreeDictionary.utils import fst_analysis_parser
-from CreeDictionary.CreeDictionary.paradigm.filler import ParadigmFiller
 
 
 def expand_inflections(
@@ -18,7 +20,7 @@ def expand_inflections(
     """
     logger = DatabaseManagerLogger(__name__, verbose)
 
-    paradigm_filler = ParadigmFiller.default_filler()
+    paradigm_manager = default_paradigm_manager()
 
     analyses = list(analyses)
     to_generated: Dict[str, List[str]] = {}
@@ -26,12 +28,11 @@ def expand_inflections(
     analysis_queue = []
 
     for analysis in analyses:
-        lemma_category = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
-        assert lemma_category is not None
-        lemma, category = lemma_category
+        lemma, word_class = fst_analysis_parser.extract_lemma_text_and_word_class(analysis)
 
-        if category.has_inflections():
-            generated_analyses = list(paradigm_filler.expand_analyses(lemma, category))
+        if word_class.has_inflections():
+            paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
+            generated_analyses = paradigm_manager.all_analyses(paradigm_name, lemma)
         else:
             generated_analyses = [analysis]
 
@@ -40,7 +41,6 @@ def expand_inflections(
 
     logger.info("Generating inflections ...")
 
-    # optimized for efficiency by calling hfstol once and for all
     generated_analyses_to_inflections = (
         morphodict.analysis.strict_generator().bulk_lookup(analysis_queue)
     )

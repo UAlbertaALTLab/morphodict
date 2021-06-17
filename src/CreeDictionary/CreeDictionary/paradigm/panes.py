@@ -124,7 +124,7 @@ class ParadigmLayout(Paradigm):
 
     def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
         """
-        Generates a dictionary mapping analysis templates to analyses subsituted with
+        Generates a dictionary mapping analysis templates to analyses substituted with
         the given lemma.
         """
         return {
