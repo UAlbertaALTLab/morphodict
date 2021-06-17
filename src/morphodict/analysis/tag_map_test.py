@@ -2,7 +2,7 @@ import re
 
 import pytest
 
-from CreeDictionary.phrase_translate.tag_map import TagMap, UnknownTagError
+from morphodict.analysis.tag_map import TagMap, UnknownTagError
 
 
 @pytest.fixture
@@ -81,3 +81,28 @@ def test_can_supply_multiple_defaults():
         match=re.escape("multiple defaults supplied for precedence 1: +A, +B"),
     ):
         TagMap((TagMap.DEFAULT, "+A", 1), (TagMap.DEFAULT, "+B", 1))
+
+
+## Test features used by EIP
+
+
+@pytest.fixture
+def tag_map_with_both_plusses_on_left_side():
+    return TagMap(("+A", "+B", 1), ("+C", "+X", 2))
+
+
+def test_tag_map_with_both_plusses_on_left_side(tag_map_with_both_plusses_on_left_side):
+    assert tag_map_with_both_plusses_on_left_side.map_tags(["+C", "+A"]) == ["+B", "+X"]
+
+
+@pytest.fixture
+def tag_map_multiple_tags():
+    return TagMap(("+A", ("+B", "+C"), 1), ("+X", "+Y", 2))
+
+
+def test_map_multiple_tag_target(tag_map_multiple_tags):
+    assert tag_map_multiple_tags.map_tags(["+X", "+A"]) == [
+        "+B",
+        "+C",
+        "+Y",
+    ]

@@ -38,6 +38,9 @@ class SearchRun:
         else:
             self._results[key] = result
 
+    def has_result(self, result: types.Result):
+        return result.wordform.key in self._results
+
     def remove_result(self, result: types.Result):
         del self._results[result.wordform.key]
 
