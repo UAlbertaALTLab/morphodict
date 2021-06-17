@@ -1,9 +1,11 @@
+import logging
 import random
 import re
 from pathlib import Path
 from typing import Iterable
 
 import pytest
+from more_itertools import first
 
 from CreeDictionary.CreeDictionary.paradigm.manager import (
     ONLY_SIZE,
@@ -46,6 +48,29 @@ def test_sizes_are_sorted(coffee_layout_dir: Path, identity_transducer):
 
     actual_sizes = list(manager.sizes_of(paradigm_name))
     assert actual_sizes == wacky_ordering
+
+
+def test_verify_sizes(caplog, coffee_layout_dir: Path, identity_transducer):
+    expected_sizes = ["tall", "grande", "venti"]
+
+    valid_manager = ParadigmManagerWithExplicitSizes(
+        coffee_layout_dir, identity_transducer, ordered_sizes=expected_sizes
+    )
+    assert valid_manager.all_sizes_fully_specified()
+
+    # Make an invalid size specification by removing any size from the valid list
+    missing_a_size = expected_sizes.copy()
+    unexpected_size = missing_a_size.pop()
+
+    invalid_manager = ParadigmManagerWithExplicitSizes(
+        coffee_layout_dir, identity_transducer, ordered_sizes=missing_a_size
+    )
+
+    with caplog.at_level(logging.ERROR):
+        assert invalid_manager.all_sizes_fully_specified() is False
+
+    matching_log = first(rec for rec in caplog.records if "size" in rec.message)
+    assert unexpected_size in matching_log.message
 
 
 def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager):
