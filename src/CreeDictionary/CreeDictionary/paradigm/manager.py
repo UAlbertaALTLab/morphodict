@@ -28,8 +28,8 @@ class ParadigmManager:
         self._generator = generation_fst
         self._name_to_layout = defaultdict(dict)
 
-        self._load_static_from(layout_directory / "static")
-        self._load_dynamic_from(layout_directory / "dynamic")
+        self._load_layouts_from(layout_directory / "static")
+        self._load_layouts_from(layout_directory / "dynamic")
 
     def paradigm_for(
         self, paradigm_name: str, lemma: Optional[str] = None, size: str = ONLY_SIZE
@@ -91,23 +91,14 @@ class ParadigmManager:
 
         return collection[paradigm_name].keys()
 
-    def _load_static_from(self, path: Path):
+    def _load_layouts_from(self, path: Path):
         """
-        Loads all .tsv files in the path as static paradigms.
+        Loads all .tsv files in the path as paradigm layouts.
+
+        Does nothing if the directory does not exist.
         """
         if not path.exists():
-            logger.info("No static paradigms found in %s", path)
-            return
-
-        for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
-            self._name_to_layout[paradigm_name][size] = layout
-
-    def _load_dynamic_from(self, path: Path):
-        """
-        Loads all .tsv files as dynamic layouts.
-        """
-        if not path.exists():
-            logger.info("No dynamic paradigms found in %s", path)
+            logger.debug("No layouts found in %s", path)
             return
 
         for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
