@@ -82,14 +82,18 @@ class ParadigmManager:
         """
         Returns the size options of the given paradigm.
         """
-        collection: dict[str, dict[str, Any]]
+        return self._sizes_or_error_of(paradigm_name).keys()
 
-        if paradigm_name in self._name_to_layout:
-            collection = self._name_to_layout
-        else:
-            raise KeyError(f"Paradigm does not exist: {paradigm_name}")
-
-        return collection[paradigm_name].keys()
+    def _sizes_or_error_of(self, paradigm_name) -> dict[str, ParadigmLayout]:
+        """
+        Returns the sizes the given paradigm name. Errors if the paradigm cannot be
+        found.
+        """
+        try:
+            return self._name_to_layout[paradigm_name]
+        except KeyError:
+            # XXX: kinda weird; probably want our own error for this:
+            raise KeyError(f"Paradigm does not exist: {paradigm_name}") from None
 
     def _load_layouts_from(self, path: Path):
         """
