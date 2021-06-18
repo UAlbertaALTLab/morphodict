@@ -23,12 +23,9 @@ class ParadigmManager:
 
     # Mappings of paradigm name => sizes available => the layout/paradigm
     _name_to_layout: dict[str, dict[str, ParadigmLayout]]
-    # TODO: delete
-    _wc_to_layout: dict[str, dict[str, ParadigmLayout]]
 
     def __init__(self, layout_directory: Path, generation_fst: Transducer):
         self._generator = generation_fst
-        self._wc_to_layout = defaultdict(dict)
         self._name_to_layout = defaultdict(dict)
 
         self._load_static_from(layout_directory / "static")
@@ -73,7 +70,7 @@ class ParadigmManager:
         Returns a dynamic paradigm for the given lemma and word class.
         Returns None if no such paradigm can be generated.
         """
-        size_options = self._wc_to_layout.get(word_class)
+        size_options = self._name_to_layout.get(word_class)
         if size_options is None:
             # No matching name means no paradigm:
             return None
@@ -89,8 +86,6 @@ class ParadigmManager:
 
         if paradigm_name in self._name_to_layout:
             collection = self._name_to_layout
-        elif paradigm_name in self._wc_to_layout:
-            collection = self._wc_to_layout
         else:
             raise KeyError(f"Paradigm does not exist: {paradigm_name}")
 
@@ -116,7 +111,7 @@ class ParadigmManager:
             return
 
         for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
-            self._wc_to_layout[paradigm_name][size] = layout
+            self._name_to_layout[paradigm_name][size] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
         """
@@ -166,7 +161,7 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         explicit order given in the constructor.
         """
         valid_sizes = {ONLY_SIZE} | self._size_to_order.keys()
-        all_paradigms = self._name_to_layout.keys() | self._wc_to_layout.keys()
+        all_paradigms = self._name_to_layout.keys()
 
         for paradigm in all_paradigms:
             # use super() to avoid any ordering stuff.
