@@ -43,45 +43,19 @@ class ParadigmManager:
         Returns a paradigm for the given paradigm name. If a lemma is given, this is
         substituted into the dynamic paradigm.
         """
+
         if lemma is not None:
-            paradigm = self.dynamic_paradigm_for(
-                lemma=lemma, word_class=paradigm_name, size=size
-            )
+            size_options = self._name_to_layout.get(paradigm_name)
+            if size_options is None:
+                # No matching name means no paradigm:
+                raise ParadigmDoesNotExistError(paradigm_name)
+
+            layout = size_options[size]
+            return self._inflect(layout, lemma)
         else:
-            paradigm = self.static_paradigm_for(paradigm_name, size=size)
-
-        if paradigm is None:
-            raise NotImplementedError(
-                "not sure what should happen if a paradigm cannot be found"
-            )
-
-        return paradigm
-
-    def static_paradigm_for(
-        self, name: str, size: str = ONLY_SIZE
-    ) -> Optional[Paradigm]:
-        """
-        Returns a static paradigm with the given name.
-        Returns None if there is no paradigm with such a name.
-        """
-        if size_options := self._name_to_layout.get(name):
-            return size_options[size].as_static_paradigm()
-        return None
-
-    def dynamic_paradigm_for(
-        self, *, lemma: str, word_class: str, size: str = ONLY_SIZE
-    ) -> Optional[Paradigm]:
-        """
-        Returns a dynamic paradigm for the given lemma and word class.
-        Returns None if no such paradigm can be generated.
-        """
-        size_options = self._name_to_layout.get(word_class)
-        if size_options is None:
-            # No matching name means no paradigm:
-            return None
-
-        layout = size_options[size]
-        return self._inflect(layout, lemma)
+            if size_options := self._name_to_layout.get(paradigm_name):
+                return size_options[size].as_static_paradigm()
+            raise NotImplementedError("cannot find paradigm?")
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         """
