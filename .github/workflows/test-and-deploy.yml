@@ -10,7 +10,7 @@ env:
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
   should-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     outputs:
       should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
@@ -82,7 +82,7 @@ jobs:
 
   # Runs Cypress acceptance tests
   integration-test:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -143,7 +143,7 @@ jobs:
         npm run test:ci
 
   build-docker-image:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -175,7 +175,7 @@ jobs:
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   trigger-deployment:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     needs:
     - should-deploy
