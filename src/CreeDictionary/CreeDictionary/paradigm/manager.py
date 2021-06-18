@@ -43,19 +43,13 @@ class ParadigmManager:
         Returns a paradigm for the given paradigm name. If a lemma is given, this is
         substituted into the dynamic paradigm.
         """
+        layout_sizes = self._sizes_or_error_of(paradigm_name)
+        layout = layout_sizes[size]
 
         if lemma is not None:
-            size_options = self._name_to_layout.get(paradigm_name)
-            if size_options is None:
-                # No matching name means no paradigm:
-                raise ParadigmDoesNotExistError(paradigm_name)
-
-            layout = size_options[size]
             return self._inflect(layout, lemma)
         else:
-            if size_options := self._name_to_layout.get(paradigm_name):
-                return size_options[size].as_static_paradigm()
-            raise NotImplementedError("cannot find paradigm?")
+            return layout.as_static_paradigm()
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         """
