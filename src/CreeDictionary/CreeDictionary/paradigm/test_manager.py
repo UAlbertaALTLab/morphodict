@@ -110,12 +110,22 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
         assert venti.contains_wordform(form)
 
 
-def test_paradigm_does_not_exist_error(paradigm_manager: ParadigmManager):
+def test_sizes_of_raises_does_not_exist_error(paradigm_manager: ParadigmManager):
     bad_paradigm_name = create_arbitrary_string()
     with pytest.raises(ParadigmDoesNotExistError) as error:
         paradigm_manager.sizes_of(bad_paradigm_name)
 
     assert bad_paradigm_name in str(error)
+
+
+def test_paradigm_for_raises_does_not_exist_error(paradigm_manager: ParadigmManager):
+    bad_paradigm_name = create_arbitrary_string()
+
+    with pytest.raises(ParadigmDoesNotExistError) as error:
+        paradigm_manager.paradigm_for(bad_paradigm_name, lemma=create_arbitrary_string())
+
+    assert bad_paradigm_name in str(error)
+
 
 @pytest.fixture
 def paradigm_manager(coffee_layout_dir: Path, identity_transducer):
