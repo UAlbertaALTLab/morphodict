@@ -13,6 +13,12 @@ ONLY_SIZE = "<only-size>"
 logger = logging.getLogger(__name__)
 
 
+class ParadigmDoesNotExistError(Exception):
+    """
+    Raised when a paradigm is requested, but does not exist.
+    """
+
+
 class ParadigmManager:
     """
     Mediates access to paradigms layouts.
@@ -21,7 +27,7 @@ class ParadigmManager:
     (normative/strict) generator FST.
     """
 
-    # Mappings of paradigm name => sizes available => the layout/paradigm
+    # Mappings of paradigm name => sizes available => the layout
     _name_to_layout: dict[str, dict[str, ParadigmLayout]]
 
     def __init__(self, layout_directory: Path, generation_fst: Transducer):
@@ -89,11 +95,12 @@ class ParadigmManager:
         Returns the sizes the given paradigm name. Errors if the paradigm cannot be
         found.
         """
-        try:
-            return self._name_to_layout[paradigm_name]
-        except KeyError:
-            # XXX: kinda weird; probably want our own error for this:
-            raise KeyError(f"Paradigm does not exist: {paradigm_name}") from None
+        # _name_to_layout is a defaultdict() so indexing it will ALWAYS return a
+        # dictionary.
+        if sizes_options := self._name_to_layout.get(paradigm_name, False):
+            return sizes_options
+        else:
+            raise ParadigmDoesNotExistError(paradigm_name)
 
     def _load_layouts_from(self, path: Path):
         """
