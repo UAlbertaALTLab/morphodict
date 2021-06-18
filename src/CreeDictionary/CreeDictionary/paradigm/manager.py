@@ -1,9 +1,8 @@
 from __future__ import annotations
 
 import logging
-from collections import defaultdict
 from pathlib import Path
-from typing import Any, Callable, Collection, Iterable, Optional, Protocol
+from typing import Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -32,7 +31,7 @@ class ParadigmManager:
 
     def __init__(self, layout_directory: Path, generation_fst: Transducer):
         self._generator = generation_fst
-        self._name_to_layout = defaultdict(dict)
+        self._name_to_layout = {}
 
         self._load_layouts_from(layout_directory / "static")
         self._load_layouts_from(layout_directory / "dynamic")
@@ -95,11 +94,9 @@ class ParadigmManager:
         Returns the sizes the given paradigm name. Errors if the paradigm cannot be
         found.
         """
-        # _name_to_layout is a defaultdict() so indexing it will ALWAYS return a
-        # dictionary.
-        if sizes_options := self._name_to_layout.get(paradigm_name, False):
-            return sizes_options
-        else:
+        try:
+            return self._name_to_layout[paradigm_name]
+        except KeyError:
             raise ParadigmDoesNotExistError(paradigm_name)
 
     def _load_layouts_from(self, path: Path):
@@ -113,7 +110,9 @@ class ParadigmManager:
             return
 
         for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
-            self._name_to_layout[paradigm_name][size] = layout
+            # .setdefault() creates a new, empty dict if the paradigm name does not
+            # exist yet:
+            self._name_to_layout.setdefault(paradigm_name, {})[size] = layout
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
         """
