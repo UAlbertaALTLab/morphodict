@@ -42,8 +42,10 @@ class ParadigmManager:
         """
         Returns a paradigm for the given paradigm name. If a lemma is given, this is
         substituted into the dynamic paradigm.
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
-        layout_sizes = self._sizes_or_error_of(paradigm_name)
+        layout_sizes = self._layout_sizes_or_raise(paradigm_name)
         layout = layout_sizes[size]
 
         if lemma is not None:
@@ -54,13 +56,16 @@ class ParadigmManager:
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         """
         Returns the size options of the given paradigm.
-        """
-        return self._sizes_or_error_of(paradigm_name).keys()
 
-    def _sizes_or_error_of(self, paradigm_name) -> dict[str, ParadigmLayout]:
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
-        Returns the sizes the given paradigm name. Errors if the paradigm cannot be
-        found.
+        return self._layout_sizes_or_raise(paradigm_name).keys()
+
+    def _layout_sizes_or_raise(self, paradigm_name) -> dict[str, ParadigmLayout]:
+        """
+        Returns the sizes the given paradigm name.
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
         try:
             return self._name_to_layout[paradigm_name]

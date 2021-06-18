@@ -9,9 +9,10 @@ from more_itertools import first
 
 from CreeDictionary.CreeDictionary.paradigm.manager import (
     ONLY_SIZE,
+    ParadigmDoesNotExistError,
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
-    Transducer, ParadigmDoesNotExistError,
+    Transducer,
 )
 
 
@@ -122,7 +123,9 @@ def test_paradigm_for_raises_does_not_exist_error(paradigm_manager: ParadigmMana
     bad_paradigm_name = create_arbitrary_string()
 
     with pytest.raises(ParadigmDoesNotExistError) as error:
-        paradigm_manager.paradigm_for(bad_paradigm_name, lemma=create_arbitrary_string())
+        paradigm_manager.paradigm_for(
+            bad_paradigm_name, lemma=create_arbitrary_string()
+        )
 
     assert bad_paradigm_name in str(error)
 
