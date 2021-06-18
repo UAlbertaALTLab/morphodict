@@ -22,13 +22,14 @@ class ParadigmManager:
     """
 
     # Mappings of paradigm name => sizes available => the layout/paradigm
-    _name_to_paradigm: dict[str, dict[str, Paradigm]]
+    _name_to_layout: dict[str, dict[str, ParadigmLayout]]
+    # TODO: delete
     _wc_to_layout: dict[str, dict[str, ParadigmLayout]]
 
     def __init__(self, layout_directory: Path, generation_fst: Transducer):
         self._generator = generation_fst
-        self._name_to_paradigm = defaultdict(dict)
         self._wc_to_layout = defaultdict(dict)
+        self._name_to_layout = defaultdict(dict)
 
         self._load_static_from(layout_directory / "static")
         self._load_dynamic_from(layout_directory / "dynamic")
@@ -61,8 +62,8 @@ class ParadigmManager:
         Returns a static paradigm with the given name.
         Returns None if there is no paradigm with such a name.
         """
-        if size_options := self._name_to_paradigm.get(name):
-            return size_options[size]
+        if size_options := self._name_to_layout.get(name):
+            return size_options[size].as_static_paradigm()
         return None
 
     def dynamic_paradigm_for(
@@ -86,8 +87,8 @@ class ParadigmManager:
         """
         collection: dict[str, dict[str, Any]]
 
-        if paradigm_name in self._name_to_paradigm:
-            collection = self._name_to_paradigm
+        if paradigm_name in self._name_to_layout:
+            collection = self._name_to_layout
         elif paradigm_name in self._wc_to_layout:
             collection = self._wc_to_layout
         else:
@@ -104,7 +105,7 @@ class ParadigmManager:
             return
 
         for paradigm_name, size, layout in _load_all_layouts_in_directory(path):
-            self._name_to_paradigm[paradigm_name][size] = layout.as_static_paradigm()
+            self._name_to_layout[paradigm_name][size] = layout
 
     def _load_dynamic_from(self, path: Path):
         """
@@ -165,7 +166,7 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         explicit order given in the constructor.
         """
         valid_sizes = {ONLY_SIZE} | self._size_to_order.keys()
-        all_paradigms = self._name_to_paradigm.keys() | self._wc_to_layout.keys()
+        all_paradigms = self._name_to_layout.keys() | self._wc_to_layout.keys()
 
         for paradigm in all_paradigms:
             # use super() to avoid any ordering stuff.
