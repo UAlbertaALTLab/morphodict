@@ -355,7 +355,7 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Pa
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if static_paradigm := manager.static_paradigm_for(name):
+        if static_paradigm := manager.paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
