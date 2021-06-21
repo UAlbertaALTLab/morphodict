@@ -169,9 +169,20 @@ class Export:
             if paradigm == "IPC":
                 paradigm = None
 
+            analysis = unsmush_analysis(wf.analysis)
+            # In importjson, headwords are only indexed for source-language
+            # search if analysis is None, on the presumption that anything with
+            # an analysis can be recognized by the relaxed analyzer FST.
+            #
+            # The XML import process makes up analyses for ‘as-is’ entries,
+            # making unanalyzable entries unsearchable. Leave these analyses
+            # out.
+            if wf.as_is:
+                analysis = None
+
             entry = {
                 "head": wf.text,
-                "analysis": unsmush_analysis(wf.analysis),
+                "analysis": analysis,
                 "paradigm": paradigm,
                 "senses": [
                     {
