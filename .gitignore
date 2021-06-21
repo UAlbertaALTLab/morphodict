@@ -59,11 +59,13 @@ cypress/videos
 
 ########################## Project-specific ignores ##########################
 
-# should not commited in source control https://docs.pipenv.org/en/latest/advanced/#automatic-loading-of-env
+# should not be committed
+# https://docs.pipenv.org/en/latest/advanced/#automatic-loading-of-env
 .env
 
-# Dictionary Files
-/hfst
+# Real dictionaries, as opposed to the test subset ones; not to be
+# committed to this repo as are not usually redistributable.
+*_dictionary.importjson
 
 # Django collectstatic
 /src/CreeDictionary/static/

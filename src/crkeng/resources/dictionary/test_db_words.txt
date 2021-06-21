@@ -1,10 +1,4 @@
-# Test database is build in a very inclusive manner. Any relevant word to this list will gets imported.
-# however it's more ensuring to include all your test words if you got multiple
-# e.g. include both "ayiwinisa" "ayiwinis" if you want to ensure both words are present in the test database
-
-# when not sure about the importing process of a certain word, you can look for the word in DatabaseManager/log/
-
-# You can write spell relaxed version here too, like "acimew" instead of "âcimêw"
+# Headwords listed in this file will be used to build the test database.
 
 # VTA examples
 wâpamêw
@@ -60,24 +54,22 @@ nisto
 
 # preverb examples
 ati-
-nitaw
 kâh-
 kîmôci-
 nitawi-
-poni-
+pôni-
 pê-
 
 # reduplication stem examples
-sa
-poni
-pe
+sa-
+pê-
 
 # regression testing
 atâhk
 acâhkos
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+ayiwin
 ayiwinisa
-ayiwinis
 minôs
 minôsis
 
@@ -90,9 +82,10 @@ acâhkosa kâ-otakohpit
 
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
 # Cree word forms not getting some or all analyses
-maskos
-nimaskom
-niskak
+maskwa
+niska
+sikâk
+nîsiwak
 
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/218
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/223
@@ -108,7 +101,6 @@ pipon
 # some inflected forms not showing up
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
 kîsikâw
-ê-kîsikâk
 
 # Some paradigms of homographic entries do not show up
 nôhtêpayiw
@@ -116,7 +108,7 @@ ayâw
 
 # some entries do not show up
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
-maskwak
+maskwa
 
 # prefix search fails with added vowel length
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/429
