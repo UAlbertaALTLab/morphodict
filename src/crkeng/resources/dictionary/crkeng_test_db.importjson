@@ -856,6 +856,33 @@
     "slug": "nipiy"
   },
   {
+    "head": "âcimowin",
+    "analysis": [[], "âcimowin", ["+N", "+I", "+Sg"]],
+    "paradigm": "NI",
+    "senses": [
+      {
+        "definition": "A story. A news forecast.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "story, true story, account, report; news; what is being told",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NI-1",
+      "inflectional_category_plain_english": "like: cîmân, astotin",
+      "inflectional_category_linguistic": "Regular inanimate noun stem",
+      "pos": "N",
+      "stem": "âcimowin-",
+      "smushedAnalysis": "âcimowin+N+I+Sg",
+      "wordclass": "NI",
+      "wordclass_emoji": "💧"
+    },
+    "slug": "âcimowin"
+  },
+  {
     "head": "awîna",
     "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
     "paradigm": "PRON",
