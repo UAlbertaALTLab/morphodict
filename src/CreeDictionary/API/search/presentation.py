@@ -10,7 +10,7 @@ from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.CreeDictionary.relabelling import LABELS
 from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
-from ..models import Wordform
+from morphodict.lexicon.models import Wordform, wordform_cache
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
 
 
@@ -43,18 +43,20 @@ class PresentationResult:
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
 
+        analysis = result.wordform.analysis or [[], None, []]
         (
             self.linguistic_breakdown_head,
+            _,
             self.linguistic_breakdown_tail,
-        ) = safe_partition_analysis(result.wordform.analysis)
+        ) = analysis
 
         self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
-            self.linguistic_breakdown_head
+            list(t.strip("+") for t in self.linguistic_breakdown_head)
         )
         self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
-            self.linguistic_breakdown_tail
+            list(t.strip("+") for t in self.linguistic_breakdown_tail)
         )
 
     def serialize(self) -> SerializedPresentationResult:
@@ -88,7 +90,9 @@ class PresentationResult:
         We chunk based on the English relabelleings!
         """
         return tuple(
-            linguistic_tag_from_fst_tags(fst_tags)
+            linguistic_tag_from_fst_tags(
+                tuple(cast(FSTTag, t.strip("+")) for t in fst_tags)
+            )
             for fst_tags in LABELS.english.chunk(self.linguistic_breakdown_tail)
         )
 
@@ -106,15 +110,9 @@ def serialize_wordform(wordform) -> SerializedWordform:
     result["definitions"] = serialize_definitions(wordform.definitions.all())
     result["lemma_url"] = wordform.get_absolute_url()
 
-    # Displayed in the word class/inflection help:
-    result["inflectional_category_plain_english"] = LABELS.english.get(
-        wordform.inflectional_category
-    )
-    result["inflectional_category_linguistic"] = LABELS.linguistic_long.get(
-        wordform.inflectional_category
-    )
-    result["wordclass_emoji"] = wordform.get_emoji_for_cree_wordclass()
-    result["wordclass"] = wordform.wordclass_text
+    for key in wordform.linguist_info:
+        if key not in result:
+            result[key] = wordform.linguist_info[key]
 
     return result
 
@@ -157,11 +155,13 @@ def get_preverbs_from_head_breakdown(
             # use altlabel.tsv to figure out the preverb
 
             # ling_short looks like: "Preverb: âpihci-"
-            ling_short = LABELS.linguistic_short.get(tag)
+            ling_short = LABELS.linguistic_short.get(cast(FSTTag, tag.rstrip("+")))
             if ling_short is not None and ling_short != "":
                 # convert to "âpihci" by dropping prefix and last character
-                normative_preverb_text = ling_short[len("Preverb: ") : -1]
-                preverb_results = lookup.fetch_preverbs(normative_preverb_text)
+                normative_preverb_text = ling_short[len("Preverb: ") :]
+                preverb_results = Wordform.objects.filter(
+                    text=normative_preverb_text, raw_analysis__isnull=True
+                )
 
                 # find the one that looks the most similar
                 if preverb_results:

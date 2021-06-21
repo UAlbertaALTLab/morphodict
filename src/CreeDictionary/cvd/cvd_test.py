@@ -2,7 +2,7 @@ import random
 
 import pytest
 
-from CreeDictionary.API.models import Definition, Wordform
+from morphodict.lexicon.models import Wordform, Definition
 from CreeDictionary.cvd import extract_keyed_words
 from CreeDictionary.cvd.definition_keys import (
     definition_to_cvd_key,

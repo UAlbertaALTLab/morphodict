@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
 import morphodict.analysis
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
@@ -39,7 +39,7 @@ logger = logging.getLogger(__name__)
 # it should be used on the view functions that are well covered by integration tests
 
 
-def entry_details(request, lemma_text: str):
+def entry_details(request, slug: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
     page if no head is found or multiple heads are found.
@@ -57,16 +57,14 @@ def entry_details(request, lemma_text: str):
         - paradigm-size (default is BASIC) to specify the size of the paradigm
 
     :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
-    :param lemma_text: the exact form of the lemma (no spell relaxation)
+    :param slug: the stable unique ID of the lemma
     """
 
-    lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True)
-    if additional_filters := disambiguating_filter_from_query_params(request.GET):
-        lemma = lemma.filter(**additional_filters)
+    lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemma.count() != 1:
         # The result is either empty or ambiguous; either way, do a search!
-        return redirect(url_for_query(lemma_text or ""))
+        return redirect(url_for_query(slug or ""))
 
     lemma = lemma.get()
     paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
@@ -366,32 +364,9 @@ def paradigm_for(
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if static_paradigm := manager.static_paradigm_for(name):
-            return static_paradigm
-        logger.warning(
-            "Could not retrieve static paradigm %r " "associated with wordform %r",
-            name,
-            wordform,
-        )
-        # TODO: better return value for when a paradigm cannot be found
-        return []
-
-    # TODO: use new-style paradigms for other sizes in addition to FULL
-    # Requires:
-    #  - "basic" size paradigm layouts to be created
-    #  - paradigm manager must support multiple sizes
-    #  - relabelling must work to use linguistic layouts
-    if word_class := wordform.word_class:
         size = convert_crkeng_paradigm_size_to_size(paradigm_size)
 
-        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
-        if paradigm_name is None:
-            return []
-
-        try:
-            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
-        except KeyError:
-            return []
+        return manager.paradigm_for(name, lemma=wordform.analysis.lemma, size=size)
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)

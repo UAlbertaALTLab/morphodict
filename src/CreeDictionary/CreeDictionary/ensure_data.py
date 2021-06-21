@@ -45,7 +45,7 @@ def ensure_wordform_paradigms():
     """
     Ensures that at least one Wordform object has a paradigm.
     """
-    from CreeDictionary.API.models import Wordform
+    from morphodict.lexicon.models import Wordform
 
     if Wordform.objects.exclude(paradigm=None).exists():
         # Has paradigms; don't bother updating

@@ -1,7 +1,7 @@
 import pytest
 from django.core.management import call_command
 
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
 from CreeDictionary.DatabaseManager.xml_importer import import_xmls
 

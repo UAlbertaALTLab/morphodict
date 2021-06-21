@@ -8,7 +8,7 @@ from django.core.management import BaseCommand
 from gensim.models import KeyedVectors
 from tqdm import tqdm
 
-from CreeDictionary.API.models import Definition
+from morphodict.lexicon.models import Definition
 from CreeDictionary.cvd import (
     google_news_vectors,
     extract_keyed_words,

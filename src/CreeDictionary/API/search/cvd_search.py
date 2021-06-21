@@ -1,8 +1,9 @@
 import logging
 
 import itertools
+from typing import TypeVar, Optional
 
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.cvd import (
@@ -18,6 +19,12 @@ from CreeDictionary.cvd.definition_keys import (
 )
 
 logger = logging.getLogger(__name__)
+
+T = TypeVar("T")
+
+
+def exclude_none_values(l: list[Optional[T]]) -> list[T]:
+    return [e for e in l if e is not None]
 
 
 def do_cvd_search(search_run: SearchRun):
@@ -38,9 +45,9 @@ def do_cvd_search(search_run: SearchRun):
         logger.exception("")
         return
 
-    wordform_queries = [
-        cvd_key_to_wordform_query(similarity) for similarity, weight in closest
-    ]
+    wordform_queries = exclude_none_values(
+        [cvd_key_to_wordform_query(similarity) for similarity, weight in closest]
+    )
     similarities = [similarity for cvd_key, similarity in closest]
 
     # Get all possible wordforms in one big query. We will select more than we

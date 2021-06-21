@@ -1,7 +1,7 @@
 import pytest
 from pytest import approx
 
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.API.search.ranking import assign_relevance_score
 from CreeDictionary.API.search.types import Result
 

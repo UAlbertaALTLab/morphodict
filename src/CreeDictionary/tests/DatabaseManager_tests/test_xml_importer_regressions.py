@@ -1,5 +1,5 @@
 import pytest
-from CreeDictionary.API.models import EnglishKeyword, Wordform
+from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 from CreeDictionary.tests.DatabaseManager_tests.conftest import migrate_and_import
 
 

@@ -3,11 +3,11 @@ from argparse import ArgumentParser
 from django.core.management.base import BaseCommand
 from django.db import connection
 
-from CreeDictionary.API.models import (
+from morphodict.lexicon.models import (
+    Wordform,
+    TargetLanguageKeyword,
     Definition,
     DictionarySource,
-    EnglishKeyword,
-    Wordform,
 )
 
 
@@ -28,13 +28,13 @@ class Command(BaseCommand):
         # doing it by hand at the SQLite prompt, but if maintaining the
         # order becomes a burden, we could use Django’s meta-model API to
         # topologically sort the dependencies between models.
-        for model in [
-            EnglishKeyword,
+        for model in {
+            TargetLanguageKeyword,
             Definition.citations.through,
             Definition,
             Wordform,
             DictionarySource,
-        ]:
+        }:
             self.stdout.write(f"{model.__name__}: {model.objects.count():,}")
 
             if options["yes_really"]:

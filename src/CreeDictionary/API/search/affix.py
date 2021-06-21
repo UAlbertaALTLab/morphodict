@@ -17,9 +17,10 @@ from typing import Dict, Iterable, List, NewType, Tuple
 import dawg
 from django.conf import settings
 
-from CreeDictionary.API.models import Wordform, EnglishKeyword
+from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.cree_lev_dist import remove_cree_diacritics
+from morphodict.lexicon.util import strip_accents_for_search_lookups
 from .types import (
     InternalForm,
     Result,
@@ -81,9 +82,7 @@ class AffixSearcher:
         search.  You SHOULD throw out diacritics, choose a Unicode Normalization form,
         and choose a single letter case here!
         """
-        # TODO: make this work for not just Cree!
-        # TODO: allow users to override this method
-        return SimplifiedForm(remove_cree_diacritics(query.lower()))
+        return SimplifiedForm(strip_accents_for_search_lookups(query.lower()))
 
 
 def _reverse(text: SimplifiedForm) -> SimplifiedForm:
@@ -138,7 +137,9 @@ def fetch_target_language_keywords_with_ids():
     Return pairs of indexed English keywords with their corresponding Wordform IDs.
     """
     # Slurp up all the results to prevent walking the database multiple times
-    return tuple(EnglishKeyword.objects.all().values_list("text", "lemma__id"))
+    return tuple(
+        TargetLanguageKeyword.objects.all().values_list("text", "wordform__id")
+    )
 
 
 def fetch_source_language_lemmas_with_ids():

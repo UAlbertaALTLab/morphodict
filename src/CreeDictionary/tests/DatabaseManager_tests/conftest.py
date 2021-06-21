@@ -8,6 +8,8 @@ from pytest_django.lazy_django import get_django_version
 
 from CreeDictionary.DatabaseManager.xml_importer import import_xmls
 
+pytestmark = pytest.mark.skipif(True)
+
 
 @contextmanager
 def no_migration():

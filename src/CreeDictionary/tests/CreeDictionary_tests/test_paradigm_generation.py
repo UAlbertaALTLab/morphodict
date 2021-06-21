@@ -1,5 +1,5 @@
 import pytest
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.CreeDictionary.paradigm.filler import (
     EmptyRowType,
     TitleRow,

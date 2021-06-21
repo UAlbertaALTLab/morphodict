@@ -18,7 +18,7 @@ import foma
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
     # top-level will blow up because Django is not configured yet.
-    from CreeDictionary.API.models import Wordform
+    from morphodict.lexicon.models import Wordform
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -170,7 +170,7 @@ def main():
     django.setup()
     logger.setLevel(args.log_level)
 
-    from CreeDictionary.API.models import Wordform
+    from morphodict.lexicon.models import Wordform
 
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup)

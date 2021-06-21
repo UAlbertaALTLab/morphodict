@@ -7,15 +7,14 @@ from functools import cache
 from django.conf import settings
 
 import morphodict.analysis
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.CreeDictionary.paradigm.filler import Layout, ParadigmFiller
 from CreeDictionary.CreeDictionary.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )
 from CreeDictionary.utils import shared_res_dir
-from CreeDictionary.utils.enums import ParadigmSize
-from CreeDictionary.utils.fst_analysis_parser import extract_word_class
+from CreeDictionary.utils.enums import ParadigmSize, WordClass
+from morphodict.lexicon.models import Wordform
 
 
 def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:
@@ -25,10 +24,16 @@ def generate_paradigm(lemma: Wordform, size: ParadigmSize) -> list[Layout]:
     :return: A list of filled paradigm tables.
     """
     # TODO: is there a better way to determine if this lemma inflects?
-    word_class = extract_word_class(lemma.analysis)
+    paradigm = lemma.paradigm
 
-    if word_class is None:
+    if paradigm is None:
         # Cannot determine how the the lemma inflects; no paradigm :/
+        return []
+    try:
+        word_class = WordClass[paradigm]
+    except KeyError:
+        return []
+    if word_class is None:
         return []
 
     return paradigm_filler().fill_paradigm(lemma.text, word_class, size)

@@ -1,6 +1,7 @@
 import pytest
 
-from CreeDictionary.API.models import Wordform
+
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
 from CreeDictionary.DatabaseManager.xml_importer import find_latest_xml_file
 from CreeDictionary.tests.DatabaseManager_tests.conftest import migrate_and_import

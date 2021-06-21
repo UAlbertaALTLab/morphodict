@@ -3,7 +3,7 @@ from django.db.models import prefetch_related_objects
 from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
-from ..models import WordformKey, Wordform
+from morphodict.lexicon.models import Wordform, wordform_cache, WordformKey
 
 
 class SearchRun:
@@ -53,11 +53,11 @@ class SearchRun:
 
     def serialized_presentation_results(self):
         results = self.presentation_results()
-        wordforms = [r.wordform for r in results] + [r.wordform.lemma for r in results]
+        # wordforms = [r.wordform for r in results] + [r.wordform.lemma for r in results]
 
-        Wordform.bulk_homograph_disambiguate(
-            [wf for wf in wordforms if wf.is_lemma and wf.id is not None]
-        )
+        # Wordform.bulk_homograph_disambiguate(
+        #     [wf for wf in wordforms if wf.is_lemma and wf.id is not None]
+        # )
 
         return [r.serialize() for r in results]
 
