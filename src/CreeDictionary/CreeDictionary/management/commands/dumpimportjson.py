@@ -12,6 +12,9 @@ from django.core.management.base import BaseCommand
 
 from CreeDictionary.API.models import Wordform, Definition
 from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.views import (
+    convert_crkeng_word_class_to_paradigm_name,
+)
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE
 from morphodict.lexicon.test_db import get_test_words, TEST_DB_IMPORTJSON
@@ -165,7 +168,9 @@ class Export:
         for wf in Wordform.objects.filter(is_lemma=True).prefetch_related(
             "definitions__citations"
         ):
-            paradigm = wf.paradigm or wf.wordclass_text
+            paradigm = wf.paradigm or convert_crkeng_word_class_to_paradigm_name(
+                wf.word_class
+            )
             if paradigm == "IPC":
                 paradigm = None
 

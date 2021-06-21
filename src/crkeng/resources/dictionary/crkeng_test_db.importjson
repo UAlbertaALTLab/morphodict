@@ -47,6 +47,30 @@
     "slug": "ôma-pri"
   },
   {
+    "head": "nîso-",
+    "analysis": null,
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "two",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": true,
+      "inflectional_category": "IPV",
+      "inflectional_category_plain_english": "like: pê-",
+      "inflectional_category_linguistic": "Preverb",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "nîso-+Ipv",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "definesFstTag": "PV/nîso+",
+    "slug": "nîso-"
+  },
+  {
     "head": "nitawi-",
     "analysis": null,
     "paradigm": null,
@@ -885,7 +909,7 @@
   {
     "head": "awîna",
     "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
-    "paradigm": "PRON",
+    "paradigm": null,
     "senses": [
       {
         "definition": "who, whose",
@@ -1008,7 +1032,7 @@
   {
     "head": "mîpit",
     "analysis": [[], "mîpit", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "tooth",
@@ -1431,7 +1455,7 @@
   {
     "head": "nôhkom",
     "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NAD",
+    "paradigm": "NDA",
     "senses": [
       {
         "definition": "My grandmother.",
@@ -1705,7 +1729,7 @@
   {
     "head": "nipawâkan",
     "analysis": [[], "nipawâkan", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NAD",
+    "paradigm": "NDA",
     "senses": [
       {
         "definition": "my dream spirit",
@@ -2000,7 +2024,7 @@
   {
     "head": "nitôskwan",
     "analysis": [[], "nitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "my elbow",
@@ -2023,7 +2047,7 @@
   {
     "head": "mitôskwan",
     "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "elbow",
@@ -2069,7 +2093,7 @@
   {
     "head": "mitôskwan",
     "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "elbow",
