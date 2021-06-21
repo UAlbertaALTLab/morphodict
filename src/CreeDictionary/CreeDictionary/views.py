@@ -1,6 +1,7 @@
 import logging
 from typing import Any, Dict, Literal, Union
 
+from CreeDictionary.API.models import Wordform
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -8,7 +9,6 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
 import morphodict.analysis
-from morphodict.lexicon.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.filler import Row
@@ -25,7 +25,6 @@ from CreeDictionary.phrase_translate.translate import (
 from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
-
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -364,9 +363,32 @@ def paradigm_for(
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
+        if static_paradigm := manager.paradigm_for(name):
+            return static_paradigm
+        logger.warning(
+            "Could not retrieve static paradigm %r " "associated with wordform %r",
+            name,
+            wordform,
+        )
+        # TODO: better return value for when a paradigm cannot be found
+        return []
+
+    # TODO: use new-style paradigms for other sizes in addition to FULL
+    # Requires:
+    #  - "basic" size paradigm layouts to be created
+    #  - paradigm manager must support multiple sizes
+    #  - relabelling must work to use linguistic layouts
+    if word_class := wordform.word_class:
         size = convert_crkeng_paradigm_size_to_size(paradigm_size)
 
-        return manager.paradigm_for(name, lemma=wordform.analysis.lemma, size=size)
+        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
+        if paradigm_name is None:
+            return []
+
+        try:
+            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
+        except KeyError:
+            return []
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)

@@ -22,7 +22,7 @@ def test_paradigm_sizes_are_ordered(paradigm_manager):
 
 
 def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
-    paradigm = paradigm_manager.static_paradigm_for("personal-pronouns")
+    paradigm = paradigm_manager.paradigm_for("personal-pronouns")
     assert paradigm is not None
 
     # I don't know how many panes there will be, but the first should DEFINITELY have
