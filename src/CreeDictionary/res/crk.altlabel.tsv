@@ -14,12 +14,12 @@ SHOW-LABEL	True	True	True	True	False
 3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ wiyanaw (ôki) 		
 3Sg	3s	Actor: 3rd Person Singular	s/he	wiya (awa) 		
 3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wiya (awa) 		
-4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (aniki) 		
-4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (ana) 		
-4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (ana/aniki) 		
-4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (ana/aniki) 		
-5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nâha/nêki) 		
-5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nâha/nêki) 		
+4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (anihi) 		
+4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (anihi) 		
+4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (anihi) 		
+4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (anihi) 		
+5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nêhi) 		
+5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nêhi) 		
 0Sg	0	Impersonal / Actor: Existential / Inanimate Singular	it / there (is)	ôma		
 0Pl	0p	Actor: Existential / Inanimate Plural	they / there (are)	ôhi		
 0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
@@ -73,8 +73,8 @@ Inf+PV/ta	Conjunct (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin
 1Sg+12PlO	1s → 1p (incl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Inclusive)	I → you and us	niya → kiyânaw		
 1Sg+2PlO	1s → 2p	Actor: 1st Person Singular → Goal: 2nd Person Plural	I → you (all)	niya → kiyâwaw		
 1Sg+3PlO	1s → 3p	Actor: 1st Person Singular → Goal: 3rd Person Plural	I → them	niya → wiyanaw (ôki)		
-1Sg+4Sg/PlO	1s → 4	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	I → him/her/them	niya → wiya/wiyawâw (ana/aniki)		
-1Sg+5Sg/PlO	1s → 5	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	I → him/her/them (further)	niya → wiya/wiyawâw (nâha/nêki)		
+1Sg+4Sg/PlO	1s → 4	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	I → him/her/them	niya → wiya/wiyawâw (anihi)		
+1Sg+5Sg/PlO	1s → 5	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	I → him/her/them (further)	niya → wiya/wiyawâw (nêhi)		
 						
 2Sg+1SgO	2s → 1s	Actor: 2nd Person Singular → Goal: 1st Person Singular	you (one) → me	kiya → niya		
 2Sg+3SgO	2s → 3s	Actor: 2nd Person Singular → Goal: 3rd Person Singular	you (one) → him/her	kiya → wiya (awa)		
@@ -82,8 +82,8 @@ Inf+PV/ta	Conjunct (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin
 2Sg+12PlO	2s → 1p (incl)	Actor: 2nd Person Singular → Goal: 1st Person Plural (Inclusive)	you (one) → you and us	kiya → kiyânaw		
 2Sg+2PlO	2s → 2p	Actor: 2nd Person Singular → Goal: 2nd Person Plural	you (one) → you (all)	kiya → kiyâwaw		
 2Sg+3PlO	2s → 3p	Actor: 2nd Person Singular → Goal: 3rd Person Plural	you (one) → them	kiya → wiyanaw (ôki)		
-2Sg+4Sg/PlO	2s → 4	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	you (one) → him/her/them	kiya → wiya/wiyawâw (ana/aniki)		
-2Sg+5Sg/PlO	2s → 5	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	you (one) → him/her/them (further)	kiya → wiya/wiyawâw (nâha/nêki)		
+2Sg+4Sg/PlO	2s → 4	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	you (one) → him/her/them	kiya → wiya/wiyawâw (anihi)		
+2Sg+5Sg/PlO	2s → 5	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	you (one) → him/her/them (further)	kiya → wiya/wiyawâw (nêhi)		
 						
 3Sg+1SgO	3s → 1s	Actor: 3rd Person Singular → Goal: 1st Person Singular	s/he → me	wiya → niya		
 3Sg+2SgO	3s → 2s	Actor: 3rd Person Singular → Goal: 2nd Person Singular	s/he → you (one)	wiya → kiya		
@@ -91,18 +91,18 @@ Inf+PV/ta	Conjunct (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin
 3Sg+12PlO	3s → 1p (incl)	Actor: 3rd Person Singular → Goal: 1st Person Plural (Inclusive)	s/he → you and us	wiya → kiyânaw		
 3Sg+2PlO	3s → 2p	Actor: 3rd Person Singular → Goal: 2nd Person Plural	s/he → you (all)	wiya → kiyâwaw		
 3Sg+3PlO	3s → 3p	Actor: 3rd Person Singular → Goal: 3rd Person Plural	s/he → them	wiya → wiyanaw (ôki)		
-3Sg+4Sg/PlO	3s → 4	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	s/he → him/her/them	wiya → wiya/wiyawâw (ana/aniki)		
-3Sg+5Sg/PlO	3s → 5	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	s/he → him/her/them (further)	wiya → wiya/wiyawâw (nâha/nêki)		
+3Sg+4Sg/PlO	3s → 4	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	s/he → him/her/them	wiya → wiya/wiyawâw (anihi)		
+3Sg+5Sg/PlO	3s → 5	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	s/he → him/her/them (further)	wiya → wiya/wiyawâw (nêhi)		
 						
-X+1SgO	X → 1s	Actor: Unspecified → Goal: 1st Person Singular	someone → me	awiya → niya		
-X+2SgO	X → 2s	Actor: Unspecified → Goal: 2nd Person Singular	someone → you (one)	awiya → kiya		
-X+3SgO	X → 3s	Actor: Unspecified → Goal: 3rd Person Singular	someone → him/her	awiya → wiya		
-X+1PlO	X → 1p (excl)	Actor: Unspecified → Goal: 1st Person Plural (Exclusive)	someone → us (but not you)	awiya → niyanân		
-X+12PlO	X → 1p (incl)	Actor: Unspecified → Goal: 1st Person Plural (Inclusive)	someone → you and us	awiya → kiyânaw		
-X+2PlO	X → 2p	Actor: Unspecified → Goal: 2nd Person Plural	someone → you (all)	awiya → kiyâwaw		
-X+3PlO	X → 3p	Actor: Unspecified → Goal: 3rd Person Plural	someone → them	wiya → wiyanaw (ôki)		
-X+4Sg/PlO	X → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	someone → him/her/them	awiya → wiya/wiyawâw (ana/aniki)		
-X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	someone → him/her/them (further)	awiya → wiya/wiyawâw (nâha/nêki)		
+X+1SgO	X → 1s	Actor: Unspecified → Goal: 1st Person Singular	someone → me	(awiya) → niya		
+X+2SgO	X → 2s	Actor: Unspecified → Goal: 2nd Person Singular	someone → you (one)	(awiya) → kiya		
+X+3SgO	X → 3s	Actor: Unspecified → Goal: 3rd Person Singular	someone → him/her	(awiya) → wiya		
+X+1PlO	X → 1p (excl)	Actor: Unspecified → Goal: 1st Person Plural (Exclusive)	someone → us (but not you)	(awiya) → niyanân		
+X+12PlO	X → 1p (incl)	Actor: Unspecified → Goal: 1st Person Plural (Inclusive)	someone → you and us	(awiya) → kiyânaw		
+X+2PlO	X → 2p	Actor: Unspecified → Goal: 2nd Person Plural	someone → you (all)	(awiya) → kiyâwaw		
+X+3PlO	X → 3p	Actor: Unspecified → Goal: 3rd Person Plural	someone → them	(awiya) → wiyanaw (ôki)		
+X+4Sg/PlO	X → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	someone → him/her/them	(awiya) → wiya/wiyawâw (anihi)		
+X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	someone → him/her/them (further)	(awiya) → wiya/wiyawâw (nêhi)		
 						
 1Pl+1SgO	1p (excl) → 1s	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Singular	we (but not you) → me	niyanân → niya		
 1Pl+2SgO	1p (excl) → 2s	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Singular	we (but not you) → you (one)	niyanân → kiya		
@@ -110,8 +110,8 @@ X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Furth
 1Pl+12PlO	1p (excl) → 1p (incl)	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Plural (Inclusive)	we (but not you) → you and us	niyanân → kiyânaw		
 1Pl+2PlO	1p (excl) → 2p	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Plural	we (but not you) → you (all)	niyanân → kiyâwaw		
 1Pl+3PlO	1p (excl) → 3p	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Plural	we (but not you) → them	niyanân → wiyanaw (ôki)		
-1Pl+4Sg/PlO	1p (excl) → 4	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Obviative)	we (but not you) → him/her/them	niyanân → wiya/wiyawâw (ana/aniki)		
-1Pl+5Sg/PlO	1p (excl) → 5	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	we (but not you) → him/her/them (further)	niyanân → wiya/wiyawâw (nâha/nêki)		
+1Pl+4Sg/PlO	1p (excl) → 4	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Obviative)	we (but not you) → him/her/them	niyanân → wiya/wiyawâw (anihi)		
+1Pl+5Sg/PlO	1p (excl) → 5	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	we (but not you) → him/her/them (further)	niyanân → wiya/wiyawâw (nêhi)		
 						
 12Pl+1SgO	1p (incl) → 1s	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Singular	you and we → me	kiyânaw → niya		
 12Pl+2SgO	1p (incl) → 2s	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Singular	you and we → you (one)	kiyânaw → kiya		
@@ -119,8 +119,8 @@ X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Furth
 12Pl+1PlO	1p (incl) → 1p (excl)	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Plural (Exclusive)	you and we → you and us	kiyânaw → niyanân		
 12Pl+2PlO	1p (incl) → 2p	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Plural	you and we → you (all)	kiyânaw → kiyâwaw		
 12Pl+3PlO	1p (incl) → 3p	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Plural	you and we → them	kiyânaw → wiyanaw (ôki)		
-12Pl+4Sg/PlO	1p (incl) → 4	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Obviative)	you and we → him/her/them	kiyânaw → wiya/wiyawâw (ana/aniki)		
-12Pl+5Sg/PlO	1p (incl) → 5	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	you and we → him/her/them (further)	kiyânaw → wiya/wiyawâw (nâha/nêki)		
+12Pl+4Sg/PlO	1p (incl) → 4	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Obviative)	you and we → him/her/them	kiyânaw → wiya/wiyawâw (anihi)		
+12Pl+5Sg/PlO	1p (incl) → 5	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	you and we → him/her/them (further)	kiyânaw → wiya/wiyawâw (nêhi)		
 						
 2Pl+1SgO	2p → 1s	Actor: 2nd Person Plural → Goal: 1st Person Singular	you (all) → me	kiyâwaw → niya		
 2Pl+2SgO	2p → 2s	Actor: 2nd Person Plural → Goal: 2nd Person Singular	you (all) → you (one)	kiyâwaw → kiya		
@@ -128,8 +128,8 @@ X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Furth
 2Pl+1PlO	2p → 1p (excl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Exclusive)	you (all) → us (but not you)	kiyâwaw → niyanân		
 2Pl+12PlO	2p → 1p (incl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Inclusive)	you (all) → you and us	kiyâwaw → kiyânaw		
 2Pl+3PlO	2p → 3p	Actor: 2nd Person Plural → Goal: 3rd Person Plural	you (all) → them	kiyâwaw → wiyanaw (ôki)		
-2Pl+4Sg/PlO	2p → 4	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	you (all) → him/her/them	kiyâwaw → wiya/wiyawâw (ana/aniki)		
-2Pl+5Sg/PlO	2p → 5	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	you (all) → him/her/them (further)	kiyâwaw → wiya/wiyawâw (nâha/nêki)		
+2Pl+4Sg/PlO	2p → 4	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	you (all) → him/her/them	kiyâwaw → wiya/wiyawâw (anihi)		
+2Pl+5Sg/PlO	2p → 5	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	you (all) → him/her/them (further)	kiyâwaw → wiya/wiyawâw (nêhi)		
 						
 3Pl+1SgO	3p → 1s	Actor: 3rd Person Plural → Goal: 1st Person Singular	they → me	wiyâwaw → niya		
 3Pl+2SgO	3p → 2s	Actor: 3rd Person Plural → Goal: 2nd Person Singular	they → you (one)	wiyâwaw → kiya		
@@ -137,26 +137,26 @@ X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Furth
 3Pl+1PlO	3p → 1p (excl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Exclusive)	they → us (but not you)	wiyâwaw → niyanân		
 3Pl+12PlO	3p → 1p (incl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Inclusive)	they → you and us	wiyâwaw → kiyânaw		
 3Pl+2PlO	3p → 2p	Actor: 3rd Person Plural → Goal: 2nd Person Plural	they → you (all)	wiyâwaw → kiyâwaw		
-3Pl+4Sg/PlO	3p → 4	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	they → him/her/them	wiyâwaw → wiya/wiyawâw (ana/aniki)		
-3Pl+5Sg/PlO	3p → 5	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	they → him/her/them (further)	wiyâwaw → wiya/wiyawâw (nâha/nêki)		
+3Pl+4Sg/PlO	3p → 4	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	they → him/her/them	wiyâwaw → wiya/wiyawâw (anihi)		
+3Pl+5Sg/PlO	3p → 5	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	they → him/her/them (further)	wiyâwaw → wiya/wiyawâw (nêhi)		
 						
-4Sg/Pl+1SgO	4 → 1s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Singular	s/he/they → me	wiya/wiyawâw (ana/aniki) → niya		
-4Sg/Pl+2SgO	4 → 2s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Singular	s/he/they → you (one)	wiya/wiyawâw (ana/aniki) → kiya		
-4Sg/Pl+3SgO	4 → 3s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Singular	s/he/they → him/her	wiya/wiyawâw (ana/aniki) → wiya		
-4Sg/Pl+1PlO	4 → 1p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Exclusive)	s/he/they → us (but not you)	wiya/wiyawâw (ana/aniki) → niyanân		
-4Sg/Pl+12PlO	4 → 1p (incl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Inclusive)	s/he/they → you and us	wiya/wiyawâw (ana/aniki) → kiyânaw		
-4Sg/Pl+2PlO	4 → 2p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Plural	s/he/they → you (all)	wiya/wiyawâw (ana/aniki) → kiyâwaw		
-4Sg/Pl+3PlO	4 → 3p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Plural	s/he/they → him/her/them	wiya/wiyawâw (ana/aniki) → wiyawâw		
-4Sg/Pl+5Sg/PlO	4 → 5	Actor: 3rd Person Singular/Plural (Obviative) → 5	s/he/they → him/her/them (further)	wiya/wiyawâw (ana/aniki) → wiya/wiyawâw (nâha/nêki)		
+4Sg/Pl+1SgO	4 → 1s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Singular	s/he/they → me	wiya/wiyawâw (anihi) → niya		
+4Sg/Pl+2SgO	4 → 2s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Singular	s/he/they → you (one)	wiya/wiyawâw (anihi) → kiya		
+4Sg/Pl+3SgO	4 → 3s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Singular	s/he/they → him/her	wiya/wiyawâw (anihi) → wiya		
+4Sg/Pl+1PlO	4 → 1p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Exclusive)	s/he/they → us (but not you)	wiya/wiyawâw (anihi) → niyanân		
+4Sg/Pl+12PlO	4 → 1p (incl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Inclusive)	s/he/they → you and us	wiya/wiyawâw (anihi) → kiyânaw		
+4Sg/Pl+2PlO	4 → 2p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Plural	s/he/they → you (all)	wiya/wiyawâw (anihi) → kiyâwaw		
+4Sg/Pl+3PlO	4 → 3p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Plural	s/he/they → him/her/them	wiya/wiyawâw (anihi) → wiyawâw		
+4Sg/Pl+5Sg/PlO	4 → 5	Actor: 3rd Person Singular/Plural (Obviative) → 5	s/he/they → him/her/them (further)	wiya/wiyawâw (ana/aniki) → wiya/wiyawâw (nêhi)		
 						
-5Sg/Pl+1SgO	5 → 1s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Singular	s/he/they (further) → me	wiya/wiyawâw (ana/aniki) → niya		
-5Sg/Pl+2SgO	5 → 2s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Singular	s/he/they (further) → you (one)	wiya/wiyawâw (ana/aniki) → kiya		
-5Sg/Pl+3SgO	5 → 3s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular	s/he/they (further) → him/her	wiya/wiyawâw (ana/aniki) → wiya		
-5Sg/Pl+1PlO	5 → 1p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Exclusive)	s/he/they (further) → us (but not you)	wiya/wiyawâw (ana/aniki) → niyanân		
-5Sg/Pl+12PlO	5 → 1p (incl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Inclusive)	s/he/they (further) → you and us	wiya/wiyawâw (ana/aniki) → kiyânaw		
-5Sg/Pl+2PlO	5 → 2p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Plural	s/he/they (further) → you (all)	wiya/wiyawâw (ana/aniki) → kiyâwaw		
-5Sg/Pl+3PlO	5 → 3p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Plural	s/he/they (further) → him/her/them	wiya/wiyawâw (ana/aniki) → wiyawâw		
-5Sg/Pl+4Sg/PlO	5 → 4	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular/Plural (Obviative)	s/he/they (further) → him/her/them	wiya/wiyawâw (nâha/nêki) → wiya/wiyawâw (ana/aniki)		
+5Sg/Pl+1SgO	5 → 1s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Singular	s/he/they (further) → me	wiya/wiyawâw (nêhi) → niya		
+5Sg/Pl+2SgO	5 → 2s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Singular	s/he/they (further) → you (one)	wiya/wiyawâw (nêhi) → kiya		
+5Sg/Pl+3SgO	5 → 3s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular	s/he/they (further) → him/her	wiya/wiyawâw (nêhi) → wiya		
+5Sg/Pl+1PlO	5 → 1p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Exclusive)	s/he/they (further) → us (but not you)	wiya/wiyawâw (nêhi) → niyanân		
+5Sg/Pl+12PlO	5 → 1p (incl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Inclusive)	s/he/they (further) → you and us	wiya/wiyawâw (nêhi) → kiyânaw		
+5Sg/Pl+2PlO	5 → 2p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Plural	s/he/they (further) → you (all)	wiya/wiyawâw (nêhi) → kiyâwaw		
+5Sg/Pl+3PlO	5 → 3p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Plural	s/he/they (further) → him/her/them	wiya/wiyawâw (nêhi) → wiyawâw		
+5Sg/Pl+4Sg/PlO	5 → 4	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular/Plural (Obviative)	s/he/they (further) → him/her/them	wiya/wiyawâw (nêhi) → wiya/wiyawâw (anihi)		
 						
 A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa		
 AI		Animate Intransitive	like: mîcisow, nipâw	tâpiskôc: mîcisow, nipâw		
@@ -177,7 +177,7 @@ Der/Com	Comitative	Derived comitative	with another person	wîci-
 Der/Dim	Diminutive	Derived diminutive	smaller / younger / lesser	 nawac apisîs		
 Der/X		Derived unspecified actor				
 Dim	Diminutive	Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis		
-Dist		Distal	like: nâha, nêma	tâpiskôc: nâha, nêma		
+Dist	Distal	Distal	Over yonder	nêta		
 Distr	Distributive	Distributive	among	âkine		
 Err/Orth		(Sub-standard form)				
 Foc		Focus				
@@ -203,7 +203,7 @@ Int	Intentional	Intentional	be going to	akâwâtamowin
 Fut+Int	Future Intentional	Future intentional tense	something is going to happen	ê-wî-ihkik nîkânihk		
 Interj		Interjection	Shouting word	têpwêwin-itwêwin		
 Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci		
-Med		Medial	like: ana, anima	tâpiskôc: ana, anima		
+Med	Medial	Medial	There	anita		
 						
 N		Noun	Naming word	wîhyowin-itwêwin		
 N+A	Animate noun	Noun - animate	Naming word - like: asikan, iyiniw, maskwa	wîhyowin-itwêwin - tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
@@ -491,7 +491,7 @@ PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧
 						
 Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	
 Prop		Proper	how something/someone is called	isiyihkâsowin		
-Prox		Proximate	like: awa, ôma	tâpiskôc: awa, ôma		
+Prox	Proximal	Proximate	Here	ôtâ		
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
 Prt	Past	Past tense	something happened earlier	ê-ispayik kwayâc		
 Px12Pl	Possessor: 1p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw		
@@ -502,10 +502,10 @@ Px2Pl	Possessor: 2p	Possessor: 2nd Person Plural	your (all)	kiyawâw
 Px2Sg	Possessor: 2s	Possessor: 2nd Person Singular	your (one)	kiya		
 Px3Pl	Possessor: 3p	Possessor: 3rd Person Plural	their	wiyawâw		
 Px3Sg	Possessor: 3s	Possessor: 3rd Person Singular	his/her	wiya (awa)		
-Px4Pl	Possessor: 4p	Possessor: 3rd Person Plural (Obviative)	his/her (further)	wiya (ana)		
-Px4Sg	Possessor: 4s	Possessor: 3rd Person Singular (Obviative)	their (further)	wiyawâw (aniki)		
-Px4Sg/Pl	Possessor: 4	Possessor: 3rd Person Singular/Plural (Obviative)	his/her/their	wiya/wiyawâw (ana/aniki)		
-PxX	Possessor: X	Possessor: Unspecified	someone's	awiya		
+Px4Pl	Possessor: 4p	Possessor: 3rd Person Plural (Obviative)	his/her (further)	wiya (anihi)		
+Px4Sg	Possessor: 4s	Possessor: 3rd Person Singular (Obviative)	their (further)	wiyawâw (anihi)		
+Px4Sg/Pl	Possessor: 4	Possessor: 3rd Person Singular/Plural (Obviative)	his/her/their	wiya/wiyawâw (anihi)		
+PxX	Possessor: X	Possessor: Unspecified	someone's	(awiya)		
 						
 RdplS		Reduplication: Strong/Heavy	Intense	tâpiskôc: nâh-nipâw		
 RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw		
@@ -545,5 +545,10 @@ VTI-1	VTI-1	transitive inanimate verb – class 1: regular	like: nâtam	tâpisk�
 VTI-2	VTI-2	transitive inanimate verb – class 2: stem-final -â	like: kisihtâw	tâpiskôc: kisihtâw		
 VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîciw		
 						
-X	X	Actor: Unspecified	someone	awiya		
-XO	→ X	Goal: Unspecified	→ someone	→ awiya		
+X	X	Actor: Unspecified	someone	(awiya)		
+XO	→ X	Goal: Unspecified	→ someone	→ (awiya)		
+						
+A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pêyak (awa)		
+A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcêt (awa)		
+I+Sg+Title	I+Sg	Singular, Innimate	One (ôma word)	pêyak (ôma)		
+I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcêt (ôma)		

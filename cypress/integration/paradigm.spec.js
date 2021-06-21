@@ -82,7 +82,6 @@ describe('I want to search for a Cree word and see its inflectional paradigm', (
   })
 })
 
-
 describe('I want to know if a form is observed inside a paradigm table', () => {
   // TODO: this test should be re-enabled in linguist mode!
   it.skip('shows inflection frequency as digits in brackets', ()=>{
@@ -91,11 +90,14 @@ describe('I want to know if a form is observed inside a paradigm table', () => {
   })
 })
 
-describe(' I want to see a clear indicator that a form does not exist', () => {
+describe('I want to see a clear indicator that a form does not exist', () => {
+  it('shows cells that do not exist as an em dash', () => {
+    const EM_DASH = '—'
 
-  it('shows cells that does not exist as a em dash', ()=>{
+    // minôs does NOT have a diminutive
     cy.visitLemma('minôs')
-    cy.getParadigmCell('One', {colLabel: 'Smaller/Lesser/Younger'}).contains('—')
+    cy.get('[data-cy=paradigm]')
+      .contains('td', EM_DASH)
   })
 })
 
@@ -104,8 +106,8 @@ describe('paradigms are visitable from link', () => {
   const lemmaText = 'niska'
   it('shows basic paradigm', () => {
     cy.visitLemma(lemmaText, {'analysis': 'niska+N+A+Sg'})
-    // Smaller/Lesser/Younger is an exclusive user friendly tag for BASIC paradigms
-    cy.get('[data-cy=paradigm]').contains('Smaller/Lesser/Younger')
+    // "Smaller" should be in the plain English labeling
+    cy.get('[data-cy=paradigm]').contains(/\bSmaller\b/i)
   })
 
   it('shows full paradigm', () => {
@@ -113,36 +115,40 @@ describe('paradigms are visitable from link', () => {
     // his/her/their is an exclusive user friendly tag for FULL paradigms
     cy.get('[data-cy=paradigm]').contains('his/her/their')
   })
-
-  it('shows linguistic paradigm', () => {
-    cy.visitLemma(lemmaText, {'analysis': 'niska+N+A+Sg', 'paradigm-size': 'LINGUISTIC'})
-    // DIMINUTIVE is an exclusive linguistic term for FULL paradigms
-    cy.get('[data-cy=paradigm]').contains('DIMINUTIVE')
-  })
 })
 
 describe('paradigms can be toggled by the show more/less button', () => {
   it('shows basic, full, linguistic, and basic paradigm in sequence', () => {
     cy.visitLemma('nipâw')
-    // "Something is happening now" is an exclusive user friendly tag for BASIC paradigms
-    cy.get('[data-cy=paradigm]').contains('Something is happening now')
 
-    cy.get('[data-cy=paradigm-toggle-button]').click()
-    // s/he/they is an exclusive user friendly tag for FULL paradigms
-    cy.get('[data-cy=paradigm]').contains('s/he/they')
-    // somehow I have to add these cy.wait for the test to pass, javascript a bit slow?
-    // If there is not enough wait, you'll get error "cy.click() failed because this element is detached from the DOM"
-    cy.wait(500)
-    cy.get('[data-cy=paradigm-toggle-button]').click()
-    // 2p is an exclusive linguistic term for LINGUISTIC paradigms
-    cy.wait(500)
-    cy.get('[data-cy=paradigm]').contains('2p')
+    const basicForm = 'ninipân' // Basic, first person singular form
+    const fullForm = 'ê-kî-nipâyêk' // past, conjuct, second person plural form -- not basic!
 
-    cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.wait(500)
-    // now are we back to basic?
-    cy.get('[data-cy=paradigm]').contains('Something is happening now')
+    // Initially, we should be on the **basic** size
+    paradigm().contains('td', basicForm)
+    paradigm().contains('td', fullForm).should('not.exist')
 
+    // Switch to the full size
+    cy.get('[data-cy=paradigm-toggle-button]').click()
+    cy.location().should('match', /\bfull\b/i)
+
+    paradigm().contains('td', basicForm)
+    paradigm().contains('td', fullForm)
+
+    // Switch to the "linguistic" size:
+    cy.get('[data-cy=paradigm-toggle-button]').click()
+    cy.location().should('match', /\blinguistic\b/i)
+
+    paradigm().contains('td', basicForm)
+    paradigm().contains('td', fullForm)
+
+    // Switch once more to get back to the basic paradigm
+    cy.get('[data-cy=paradigm-toggle-button]').click()
+    cy.location().should('match', /\bbasic\b/i)
+
+    function paradigm() {
+      return cy.get('[data-cy=paradigm]')
+    }
   })
 })
 
@@ -205,5 +211,32 @@ describe('Paradigm labels', () => {
 
     cy.get('[data-cy=paradigm]')
       .contains('th[scope=row]', linguisticLabel)
+  })
+})
+
+describe('I want to see multiple variants of the same inflection on multiple rows', () => {
+  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/507
+  it('should display two rows for nipâw+V+AI+Ind+12Pl', () => {
+    const forms = ['kinipânaw', 'kinipânânaw']
+    let rowA = null
+    let rowB = null
+    cy.visitLemma('nipâw')
+
+    // get the first row
+    cy.get('[data-cy=paradigm]')
+      .contains('tr', forms[0])
+      .then($form => { rowA = $form.get(0) })
+
+    // get the second row
+    cy.get('[data-cy=paradigm]')
+      .contains('tr', forms[1])
+      .then($form => { rowB = $form.get(0) })
+      .then(() => {
+        expect(rowA).not.to.be.null
+        expect(rowB).not.to.be.null
+
+        // they should not be the same row!
+        expect(rowA).not.to.equal(rowB)
+      })
   })
 })

@@ -23,7 +23,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.utils import ParadigmSize
+from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
@@ -373,7 +373,7 @@ def paradigm_for(
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if static_paradigm := manager.static_paradigm_for(name):
+        if static_paradigm := manager.paradigm_for(name):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
@@ -388,13 +388,50 @@ def paradigm_for(
     #  - "basic" size paradigm layouts to be created
     #  - paradigm manager must support multiple sizes
     #  - relabelling must work to use linguistic layouts
-    if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
-        dynamic_paradigm = manager.dynamic_paradigm_for(
-            lemma=wordform.text, word_class=word_class.value
-        )
-        if dynamic_paradigm:
-            return dynamic_paradigm
-        return []
+    if word_class := wordform.word_class:
+        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
+
+        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
+        if paradigm_name is None:
+            return []
+
+        try:
+            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
+        except KeyError:
+            return []
 
     # try returning an old-style paradigm: may return []
     return generate_paradigm(wordform, paradigm_size)
+
+
+def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
+    """
+    Returns the crkeng layout size, which is currently:
+     - basic
+     - full
+    """
+    return {
+        ParadigmSize.FULL: "full",
+        ParadigmSize.BASIC: "basic",
+        # The linguistic "size" does not, as of yet exist, however its content is
+        # exactly the same as the full layout.
+        ParadigmSize.LINGUISTIC: "full",
+    }[paradigm_size]
+
+
+def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
+    """
+    Returns the paradigm name in crkeng's layouts directory, or None if a paradigm
+    name cannot be determined from the legacy WordClass alone.
+    """
+    return {
+        WordClass.VII: "VII",
+        WordClass.VTI: "VTI",
+        WordClass.VAI: "VAI",
+        WordClass.VTA: "VTA",
+        WordClass.NA: "NA",
+        WordClass.NI: "NI",
+        # uses Arok's scheme: Noun Dependent {Animate/Inanimate}
+        WordClass.NAD: "NDA",
+        WordClass.NID: "NDI",
+    }.get(word_class)

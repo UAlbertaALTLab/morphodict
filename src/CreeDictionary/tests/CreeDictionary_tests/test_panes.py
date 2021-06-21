@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 from more_itertools import first
 from more_itertools import ilen as count
+from more_itertools import one
 
 from CreeDictionary.CreeDictionary.paradigm.panes import (
     ColumnLabel,
@@ -139,7 +140,7 @@ def test_wordform_cell():
     assert cell.contains_wordform(wordform)
 
     # Trying to fill a cell returns the same cell back:
-    assert cell == cell.fill_one({})
+    assert cell == one(cell.fill({}))
 
 
 def sample_pane():

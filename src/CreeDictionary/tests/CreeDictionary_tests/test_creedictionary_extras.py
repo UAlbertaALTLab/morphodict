@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 import pytest
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
@@ -177,3 +174,20 @@ def test_url_for_query_tag():
     rendered = template.render(context)
     assert "search" in rendered
     assert "wapamew" in rendered
+
+
+@pytest.mark.parametrize(
+    "wordform,classname",
+    [
+        ("ôma", "wordform--observed"),
+        ("Fhqwhgads", "wordform--unobserved"),
+    ],
+)
+def test_observed_or_unobserved(wordform: str, classname: str):
+    context = Context({"wordform": wordform})
+    template = Template(
+        "{% load creedictionary_extras %}"
+        "<span class='wordform--{% observed_or_unobserved wordform %}'>"
+    )
+
+    assert classname in template.render(context)
