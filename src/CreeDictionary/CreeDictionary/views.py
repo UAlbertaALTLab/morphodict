@@ -1,7 +1,6 @@
 import logging
 from typing import Any, Dict, Literal, Union
 
-from CreeDictionary.API.models import Wordform
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -24,6 +23,7 @@ from CreeDictionary.phrase_translate.translate import (
 )
 from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.lexicon.models import Wordform
 from morphodict.preference.views import ChangePreferenceView
 from .utils import url_for_query
 
@@ -363,7 +363,7 @@ def paradigm_for(
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if static_paradigm := manager.paradigm_for(name):
+        if static_paradigm := manager.paradigm_for(name, wordform.lemma.text):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",

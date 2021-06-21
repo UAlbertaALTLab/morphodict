@@ -181,13 +181,10 @@ class Result:
     target_language_affix_match: Optional[bool] = None
 
     target_language_keyword_match: list[str] = field(default_factory=list)
-    pronoun_as_is_match: Optional[bool] = None
 
     analyzable_inflection_match: Optional[bool] = None
 
     source_language_keyword_match: list[str] = field(default_factory=list)
-
-    is_cw_as_is_wordform: Optional[bool] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
@@ -221,9 +218,7 @@ class Result:
             self.source_language_match
             or self.source_language_affix_match is not None
             or self.analyzable_inflection_match
-            or self.is_cw_as_is_wordform
             or self.source_language_keyword_match
-            or self.pronoun_as_is_match
         )
 
     # This is a separate method instead of a magic cached property because:

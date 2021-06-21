@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Collection, Iterable, Optional, Protocol
+from typing import Collection, Iterable, Optional, Protocol, Sequence
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -37,7 +37,10 @@ class ParadigmManager:
         self._load_layouts_from(layout_directory / "dynamic")
 
     def paradigm_for(
-        self, paradigm_name: str, lemma: Optional[str] = None, size: str = ONLY_SIZE
+        self,
+        paradigm_name: str,
+        lemma: Optional[str] = None,
+        size: Optional[str] = None,
     ) -> Paradigm:
         """
         Returns a paradigm for the given paradigm name. If a lemma is given, this is
@@ -46,6 +49,8 @@ class ParadigmManager:
         :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
         layout_sizes = self._layout_sizes_or_raise(paradigm_name)
+        if size is None:
+            size = self.default_size(paradigm_name)
         layout = layout_sizes[size]
 
         if lemma is not None:
@@ -61,9 +66,13 @@ class ParadigmManager:
         """
         return self._layout_sizes_or_raise(paradigm_name).keys()
 
+    def default_size(self, paradigm_name: str):
+        sizes = list(self.sizes_of(paradigm_name))
+        return sizes[0]
+
     def _layout_sizes_or_raise(self, paradigm_name) -> dict[str, ParadigmLayout]:
         """
-        Returns the sizes the given paradigm name.
+        Returns the sizes of the paradigm with the given name.
 
         :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
@@ -120,6 +129,8 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         unsorted_results = super().sizes_of(paradigm_name)
+        if len(unsorted_results) <= 1:
+            return unsorted_results
         return sorted(unsorted_results, key=self._sort_by_explict_order)
 
     def _sort_by_explict_order(self, element: str) -> int:

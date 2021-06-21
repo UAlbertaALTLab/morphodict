@@ -158,7 +158,7 @@ class WordformInline(admin.TabularInline):
 @admin.register(Wordform)
 class WordformAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
-    search_fields = ("text", "analysis", "stem")
+    search_fields = ("text",)
     list_filter = ("is_lemma",)
 
     inlines = [

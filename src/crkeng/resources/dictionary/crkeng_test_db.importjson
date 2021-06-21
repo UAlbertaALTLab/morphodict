@@ -1,5 +1,29 @@
 [
   {
+    "head": "pôni-",
+    "analysis": [[], "pôni-", ["+Ipv"]],
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "stop, terminate, cease; after",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": true,
+      "inflectional_category": "IPV",
+      "inflectional_category_plain_english": "like: pê-",
+      "inflectional_category_linguistic": "Preverb",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "pôni-+Ipv",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "definesFstTag": "PV/pôni+",
+    "slug": "pôni-"
+  },
+  {
     "head": "ôma",
     "analysis": [[], "ôma", ["+Pron"]],
     "paradigm": "demonstrative-pronouns",
@@ -140,6 +164,30 @@
       "wordclass_emoji": null
     },
     "slug": "oskana_kâ-asastêki"
+  },
+  {
+    "head": "sa-",
+    "analysis": [[], "sa-", ["+Ipv"]],
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "[grammatical preverb: ongoing, continuing]",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": true,
+      "inflectional_category": "IPV",
+      "inflectional_category_plain_english": "like: pê-",
+      "inflectional_category_linguistic": "Preverb",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "sa-+Ipv",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "definesFstTag": "PV/sa+",
+    "slug": "sa-"
   },
   {
     "head": "acâhkosa kâ-otakohpit",
@@ -316,6 +364,29 @@
     "slug": "êkwa"
   },
   {
+    "head": "sikâk",
+    "analysis": [[], "sikâk", ["+N", "+A", "+Sg"]],
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "skunk",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NA-3",
+      "inflectional_category_plain_english": "like: masinahikanāhtik(w), askihk(w)",
+      "inflectional_category_linguistic": "Consonant-/w/ animate noun stem",
+      "pos": "N",
+      "stem": "sikâkw-",
+      "smushedAnalysis": "sikâk+N+A+Sg",
+      "wordclass": "NA",
+      "wordclass_emoji": "🧑🏽"
+    },
+    "slug": "sikâk"
+  },
+  {
     "head": "kotiskâwêw",
     "analysis": [[], "kotiskâwêw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "paradigm": "VAI",
@@ -360,6 +431,33 @@
       "wordclass_emoji": "⚡️"
     },
     "slug": "ôma-ipc"
+  },
+  {
+    "head": "maskwa",
+    "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "A bear.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "bear, black bear",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NA-4w",
+      "inflectional_category_plain_english": "like: wâhkwa, ihkwa",
+      "inflectional_category_linguistic": "Single-syllable-/w/ animate noun stem",
+      "pos": "N",
+      "stem": "maskw-",
+      "smushedAnalysis": "maskwa+N+A+Sg",
+      "wordclass": "NA",
+      "wordclass_emoji": "🧑🏽"
+    },
+    "slug": "maskwa"
   },
   {
     "head": "nôhtêpayiw",
@@ -545,6 +643,29 @@
       "wordclass_emoji": "🧑🏽➡️🧑🏽"
     },
     "slug": "wâpamêw"
+  },
+  {
+    "head": "nîsiwak",
+    "analysis": [[], "nîsiwak", ["+V", "+AI", "+Ind", "+3Pl"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "they are two in number; both",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI-1",
+      "inflectional_category_plain_english": "like: nipâw",
+      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
+      "pos": "V",
+      "stem": "nîsi-",
+      "smushedAnalysis": "nîsiwak+V+AI+Ind+3Pl",
+      "wordclass": "VAI",
+      "wordclass_emoji": "🧑🏽➡️"
+    },
+    "slug": "nîsiwak"
   },
   {
     "head": "awâsisîwiw",
@@ -1058,6 +1179,29 @@
     "slug": "kîsikâw-vii-1v"
   },
   {
+    "head": "ayiwin",
+    "analysis": [[], "ayiwin", ["+N", "+I", "+Sg"]],
+    "paradigm": "NI",
+    "senses": [
+      {
+        "definition": "article of clothing; [plural:] clothing, apparel",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NI-1",
+      "inflectional_category_plain_english": "like: cîmân, astotin",
+      "inflectional_category_linguistic": "Regular inanimate noun stem",
+      "pos": "N",
+      "stem": "ayiwin-",
+      "smushedAnalysis": "ayiwin+N+I+Sg",
+      "wordclass": "NI",
+      "wordclass_emoji": "💧"
+    },
+    "slug": "ayiwin"
+  },
+  {
     "head": "nipâw",
     "analysis": [[], "nipâw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "paradigm": "VAI",
@@ -1416,6 +1560,29 @@
     "slug": "ayiwinisa"
   },
   {
+    "head": "niska",
+    "analysis": [[], "niska", ["+N", "+A", "+Sg"]],
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "goose",
+        "sources": ["CW", "MD"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NA-4",
+      "inflectional_category_plain_english": "like: niska, êsa",
+      "inflectional_category_linguistic": "Single-syllable animate noun stem",
+      "pos": "N",
+      "stem": "nisk-",
+      "smushedAnalysis": "niska+N+A+Sg",
+      "wordclass": "NA",
+      "wordclass_emoji": "🧑🏽"
+    },
+    "slug": "niska"
+  },
+  {
     "head": "tânisi",
     "analysis": [[], "tânisi", ["+Ipc"]],
     "paradigm": null,
@@ -1674,6 +1841,21 @@
     "formOf": "atâhk"
   },
   {
+    "head": "maskwa",
+    "analysis": [[], "maskwa", ["+N", "+A", "+Obv"]],
+    "senses": [
+      {
+        "definition": "A bear.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "bear, black bear",
+        "sources": ["CW"]
+      }
+    ],
+    "formOf": "maskwa"
+  },
+  {
     "head": "misâskwatôminihk",
     "analysis": [[], "misâskwatômina", ["+N", "+I", "+Loc"]],
     "senses": [
@@ -1755,6 +1937,17 @@
     "formOf": "mitôskwan-ndi-1"
   },
   {
+    "head": "niska",
+    "analysis": [[], "niska", ["+N", "+A", "+Obv"]],
+    "senses": [
+      {
+        "definition": "goose",
+        "sources": ["CW", "MD"]
+      }
+    ],
+    "formOf": "niska"
+  },
+  {
     "head": "misâskwatômina",
     "analysis": [[], "misâskwatômina", ["+N", "+I", "+Pl"]],
     "paradigm": "NI",
@@ -1776,29 +1969,6 @@
       "wordclass_emoji": "💧"
     },
     "slug": "misâskwatômina-inm"
-  },
-  {
-    "head": "ayiwin",
-    "analysis": [[], "ayiwin", ["+N", "+I", "+Sg"]],
-    "paradigm": "NI",
-    "senses": [
-      {
-        "definition": "article of clothing; [plural:] clothing, apparel",
-        "sources": ["CW"]
-      }
-    ],
-    "linguistInfo": {
-      "as_is": false,
-      "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
-      "pos": "N",
-      "stem": "ayiwin-",
-      "smushedAnalysis": "ayiwin+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
-    },
-    "slug": "ayiwin"
   },
   {
     "head": "nitôskwan",

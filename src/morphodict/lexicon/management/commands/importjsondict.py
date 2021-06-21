@@ -76,19 +76,9 @@ class Command(BaseCommand):
                 variants = set()
 
                 for piece in wf.text.split():
-
-                    for diacritic_variant in [
-                        piece,
-                        strip_accents_for_search_lookups(piece),
-                    ]:
-                        variants.update(
-                            [
-                                diacritic_variant,
-                                diacritic_variant.lstrip("-"),
-                                diacritic_variant.rstrip("-"),
-                                diacritic_variant.strip("-"),
-                            ]
-                        )
+                    indexed_form = strip_accents_for_search_lookups(piece)
+                    indexed_form = indexed_form.strip("-")
+                    variants.add(indexed_form)
 
                 for v in variants:
                     SourceLanguageKeyword.objects.create(text=v, wordform=wf)

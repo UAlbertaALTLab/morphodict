@@ -85,7 +85,7 @@ def fetch_results(search_run: core.SearchRun):
             search_run.add_result(
                 Result(
                     synthetic_wordform,
-                    pronoun_as_is_match=True,
+                    analyzable_inflection_match=True,
                     query_wordform_edit_distance=get_modified_distance(
                         search_run.internal_query,
                         normatized_user_query,
