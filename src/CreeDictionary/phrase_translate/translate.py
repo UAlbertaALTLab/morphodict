@@ -32,7 +32,6 @@ from CreeDictionary.phrase_translate.crk_tag_map import (
     verb_wordform_to_phrase,
 )
 
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)

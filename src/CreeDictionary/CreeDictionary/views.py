@@ -1,11 +1,13 @@
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict, Literal
+from typing import Any, Dict, Literal, Optional
 
 from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
 from django.shortcuts import redirect, render
+from django.views.decorators.http import require_GET
 
 import morphodict.analysis
 from CreeDictionary.API.search import presentation, search_with_affixes
@@ -17,7 +19,10 @@ from CreeDictionary.phrase_translate.translate import (
     eng_verb_entry_to_inflected_phrase_fst,
 )
 from CreeDictionary.utils import ParadigmSize, WordClass
+from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.lexicon.models import Wordform
+from morphodict.preference.views import ChangePreferenceView
+from .paradigm.panes import Paradigm
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -60,32 +65,28 @@ def entry_details(request, slug: str):
 
     lemma = lemma.get()
 
-    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
-    paradigm = paradigm_for(lemma, paradigm_size)
+    paradigm_context = {}
 
+    paradigm = lemma.paradigm
+    if paradigm is not None:
+        paradigm_manager = default_paradigm_manager()
+        sizes = list(paradigm_manager.sizes_of(paradigm))
+        default_size = sizes[0]
 
-    # paradigm_context = {}
-    #
-    # paradigm = lemma.paradigm
-    # if paradigm is not None:
-    #     paradigm_manager = default_paradigm_manager()
-    #     sizes = list(paradigm_manager.sizes_of(paradigm))
-    #     default_size = sizes[0]
-    #
-    #     if len(sizes) <= 1:
-    #         size = default_size
-    #     else:
-    #         size = request.GET.get("paradigm-size")
-    #         if size:
-    #             size = size.lower()
-    #         if size not in sizes:
-    #             size = default_size
-    #
-    #     paradigm = paradigm_for(lemma, size)
-    #     # TODO: pass {"paradigm_sizes": sizes} to frontend
-    #     paradigm_context.update(paradigm=paradigm, paradigm_size=size)
-    #
-    # context = create_context_for_index_template(
+        if len(sizes) <= 1:
+            size = default_size
+        else:
+            size = request.GET.get("paradigm-size")
+            if size:
+                size = size.lower()
+            if size not in sizes:
+                size = default_size
+
+        paradigm = paradigm_for(lemma, size)
+        # TODO: pass {"paradigm_sizes": sizes} to frontend
+        paradigm_context.update(paradigm=paradigm, paradigm_size=size)
+
+    context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
         lemma_id=lemma.id,
@@ -359,7 +360,9 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize | str) -> Optional[Paradigm]:
+def paradigm_for(
+    wordform: Wordform, paradigm_size: ParadigmSize | str
+) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
