@@ -2,6 +2,27 @@ class UnknownTagError(KeyError):
     """Raised when TagMap encounters an unknown tag"""
 
 
+class MultiTagCopyError(Exception):
+    """
+    Raised when multiple tags are present but not expected
+    """
+    pass
+
+
+class MultiplePrecedenceError(Exception):
+    """
+    Raised when a single tag has multiple precedences declared
+    """
+    pass
+
+
+class ConflictingPrecedenceError(Exception):
+    """
+    Raised when multiple tags have the same precedence
+    """
+    pass
+
+
 class TagMap:
     """Map between different sets of tags used by related FSTs
 
@@ -66,13 +87,13 @@ class TagMap:
         for input_tag_spec, output_tag_spec, prec in tag_definitions:
             if isinstance(input_tag_spec, tuple):
                 if output_tag_spec == TagMap.COPY_TAG_NAME:
-                    raise Exception(
+                    raise MultiTagCopyError(
                         f"Error: cannot use copy with multi-tags: {input_tag_spec}"
                     )
                 self._multi_mappings.append((input_tag_spec, output_tag_spec, prec))
             elif input_tag_spec == TagMap.DEFAULT:
                 if prec in self._defaults_by_precedence:
-                    raise Exception(
+                    raise MultiplePrecedenceError(
                         f"Error: multiple defaults supplied for precedence {prec}: {self._defaults_by_precedence[prec]}, {output_tag_spec}"
                     )
                 self._defaults_by_precedence[prec] = output_tag_spec
@@ -87,7 +108,7 @@ class TagMap:
             if output_tag_spec is not None:
                 if output_tag_spec in self._precedences:
                     if prec != self._precedences[output_tag_spec]:
-                        raise Exception(
+                        raise ConflictingPrecedenceError(
                             f"Error: conflicting precedences specified for {output_tag_spec!r}: {self._precedences[output_tag_spec]} and {prec}"
                         )
                 else:
