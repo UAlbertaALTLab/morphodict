@@ -15,6 +15,8 @@ from typing import Iterable
 import django
 import foma
 
+from morphodict.analysis import RichAnalysis
+
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
     # top-level will blow up because Django is not configured yet.
@@ -92,6 +94,8 @@ def foma_lookup(fst, thing_to_lookup):
 
 
 def inflect_english_phrase(analysis, lemma_definition):
+    if isinstance(analysis, tuple):
+        analysis = RichAnalysis(analysis)
     cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
 
     if "+N" in cree_wordform_tag_list:
