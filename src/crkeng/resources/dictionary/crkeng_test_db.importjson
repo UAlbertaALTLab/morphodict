@@ -1,7 +1,7 @@
 [
   {
     "head": "pôni-",
-    "analysis": [[], "pôni-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -25,7 +25,7 @@
   },
   {
     "head": "ôma",
-    "analysis": [[], "ôma", ["+Pron"]],
+    "analysis": null,
     "paradigm": "demonstrative-pronouns",
     "senses": [
       {
@@ -47,8 +47,32 @@
     "slug": "ôma-pri"
   },
   {
+    "head": "nîso-",
+    "analysis": null,
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "two",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": true,
+      "inflectional_category": "IPV",
+      "inflectional_category_plain_english": "like: pê-",
+      "inflectional_category_linguistic": "Preverb",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "nîso-+Ipv",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "definesFstTag": "PV/nîso+",
+    "slug": "nîso-"
+  },
+  {
     "head": "nitawi-",
-    "analysis": [[], "nitawi-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -72,7 +96,7 @@
   },
   {
     "head": "kîmôci-",
-    "analysis": [[], "kîmôci-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -96,7 +120,7 @@
   },
   {
     "head": "kâh-",
-    "analysis": [[], "kâh-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -120,7 +144,7 @@
   },
   {
     "head": "ati-",
-    "analysis": [[], "ati-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -144,7 +168,7 @@
   },
   {
     "head": "oskana kâ-asastêki",
-    "analysis": [[], "oskana kâ-asastêki", ["+N"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -167,7 +191,7 @@
   },
   {
     "head": "sa-",
-    "analysis": [[], "sa-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -191,7 +215,7 @@
   },
   {
     "head": "acâhkosa kâ-otakohpit",
-    "analysis": [[], "acâhkosa kâ-otakohpit", ["+N"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -214,7 +238,7 @@
   },
   {
     "head": "pê-",
-    "analysis": [[], "pê-", ["+Ipv"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -238,7 +262,7 @@
   },
   {
     "head": "acâhkos kâ-osôsit",
-    "analysis": [[], "acâhkos kâ-osôsit", ["+N"]],
+    "analysis": null,
     "paradigm": null,
     "senses": [
       {
@@ -856,9 +880,36 @@
     "slug": "nipiy"
   },
   {
+    "head": "âcimowin",
+    "analysis": [[], "âcimowin", ["+N", "+I", "+Sg"]],
+    "paradigm": "NI",
+    "senses": [
+      {
+        "definition": "A story. A news forecast.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "story, true story, account, report; news; what is being told",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NI-1",
+      "inflectional_category_plain_english": "like: cîmân, astotin",
+      "inflectional_category_linguistic": "Regular inanimate noun stem",
+      "pos": "N",
+      "stem": "âcimowin-",
+      "smushedAnalysis": "âcimowin+N+I+Sg",
+      "wordclass": "NI",
+      "wordclass_emoji": "💧"
+    },
+    "slug": "âcimowin"
+  },
+  {
     "head": "awîna",
     "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
-    "paradigm": "PRON",
+    "paradigm": null,
     "senses": [
       {
         "definition": "who, whose",
@@ -981,7 +1032,7 @@
   {
     "head": "mîpit",
     "analysis": [[], "mîpit", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "tooth",
@@ -1404,7 +1455,7 @@
   {
     "head": "nôhkom",
     "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NAD",
+    "paradigm": "NDA",
     "senses": [
       {
         "definition": "My grandmother.",
@@ -1678,7 +1729,7 @@
   {
     "head": "nipawâkan",
     "analysis": [[], "nipawâkan", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NAD",
+    "paradigm": "NDA",
     "senses": [
       {
         "definition": "my dream spirit",
@@ -1973,7 +2024,7 @@
   {
     "head": "nitôskwan",
     "analysis": [[], "nitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "my elbow",
@@ -1996,7 +2047,7 @@
   {
     "head": "mitôskwan",
     "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "elbow",
@@ -2042,7 +2093,7 @@
   {
     "head": "mitôskwan",
     "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "paradigm": "NID",
+    "paradigm": "NDI",
     "senses": [
       {
         "definition": "elbow",

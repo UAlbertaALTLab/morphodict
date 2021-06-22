@@ -110,7 +110,7 @@ def serialize_wordform(wordform) -> SerializedWordform:
     result["definitions"] = serialize_definitions(wordform.definitions.all())
     result["lemma_url"] = wordform.get_absolute_url()
 
-    for key in wordform.linguist_info:
+    for key in wordform.linguist_info or []:
         if key not in result:
             result[key] = wordform.linguist_info[key]
 

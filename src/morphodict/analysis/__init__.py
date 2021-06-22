@@ -1,8 +1,7 @@
-import logging
 from functools import cache
 
-from hfst_optimized_lookup import TransducerFile, Analysis
 from django.conf import settings
+from hfst_optimized_lookup import TransducerFile, Analysis
 
 FST_DIR = settings.BASE_DIR / "resources" / "fst"
 

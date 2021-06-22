@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import logging
 from typing import Any, Dict, Literal, Union
 
@@ -66,8 +68,27 @@ def entry_details(request, slug: str):
         return redirect(url_for_query(slug or ""))
 
     lemma = lemma.get()
-    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
-    paradigm = paradigm_for(lemma, paradigm_size)
+
+    paradigm_context = {}
+
+    paradigm = lemma.paradigm
+    if paradigm is not None:
+        paradigm_manager = default_paradigm_manager()
+        sizes = list(paradigm_manager.sizes_of(paradigm))
+        default_size = sizes[0]
+
+        if len(sizes) <= 1:
+            size = default_size
+        else:
+            size = request.GET.get("paradigm-size")
+            if size:
+                size = size.lower()
+            if size not in sizes:
+                size = default_size
+
+        paradigm = paradigm_for(lemma, size)
+        # TODO: pass {"paradigm_sizes": sizes} to frontend
+        paradigm_context.update(paradigm=paradigm, paradigm_size=size)
 
     context = create_context_for_index_template(
         "word-detail",
@@ -77,8 +98,7 @@ def entry_details(request, slug: str):
         lemma=lemma,
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
-        paradigm_size=paradigm_size,
-        paradigm=paradigm,
+        **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
 
@@ -274,7 +294,6 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
     elif mode == "word-detail":
         context = {"should_hide_prose": True, "displaying_paradigm": True}
         assert "lemma_id" in kwargs, "word detail page requires lemma_id"
-        assert "paradigm_size" in kwargs, "word detail page requires paradigm_size"
     else:
         raise AssertionError("should never happen")
     # Note: there will NEVER be a case where should_hide_prose=False
@@ -351,7 +370,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
 
 
 def paradigm_for(
-    wordform: Wordform, paradigm_size: ParadigmSize
+    wordform: Wordform, paradigm_size: ParadigmSize | str
 ) -> Union[Paradigm, list[list[Row]]]:
     """
     Returns a paradigm for the given wordform at the desired size.
@@ -362,8 +381,13 @@ def paradigm_for(
 
     manager = default_paradigm_manager()
 
+    if isinstance(paradigm_size, ParadigmSize):
+        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
+    else:
+        size = paradigm_size
+
     if name := wordform.paradigm:
-        if static_paradigm := manager.paradigm_for(name, wordform.lemma.text):
+        if static_paradigm := manager.paradigm_for(name, wordform.lemma.text, size):
             return static_paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
@@ -379,8 +403,6 @@ def paradigm_for(
     #  - paradigm manager must support multiple sizes
     #  - relabelling must work to use linguistic layouts
     if word_class := wordform.word_class:
-        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
-
         paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
         if paradigm_name is None:
             return []
@@ -391,10 +413,12 @@ def paradigm_for(
             return []
 
     # try returning an old-style paradigm: may return []
-    return generate_paradigm(wordform, paradigm_size)
+    if isinstance(paradigm_size, ParadigmSize):
+        return generate_paradigm(wordform, paradigm_size)
+    return []
 
 
-def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
+def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize) -> str:
     """
     Returns the crkeng layout size, which is currently:
      - basic

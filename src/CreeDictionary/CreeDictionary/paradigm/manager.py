@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import logging
+import re
+from functools import cache
 from pathlib import Path
 from typing import Collection, Iterable, Optional, Protocol, Sequence
 
@@ -31,7 +33,7 @@ class ParadigmManager:
 
     def __init__(self, layout_directory: Path, generation_fst: Transducer):
         self._generator = generation_fst
-        self._name_to_layout = {}
+        self._name_to_layout: dict[str, ParadigmLayout] = {}
 
         self._load_layouts_from(layout_directory / "static")
         self._load_layouts_from(layout_directory / "dynamic")
@@ -95,6 +97,37 @@ class ParadigmManager:
             # .setdefault() creates a new, empty dict if the paradigm name does not
             # exist yet:
             self._name_to_layout.setdefault(paradigm_name, {})[size] = layout
+
+    _LITERAL_LEMMA = re.compile(r"\$\{lemma\}")
+
+    @cache
+    def all_analysis_template_tags(self, paradigm_name) -> Collection[tuple]:
+        """Return the set of all analysis templates in layouts of paradigm_name
+
+        If a paradigm has two sizes, one with template `${lemma}+A` and the
+        other with both `${lemma}+A` and `X+${lemma}+B`, then this function will
+        return {((), ("+A",)), (("X+",), ("+B",)}.
+
+        Note that these analyses are meant to be inputs to a generator FST for
+        building a paradigm table, not the results of analyzing some input
+        string.
+        """
+        ret = {}
+        for layout in self._name_to_layout[paradigm_name].values():
+            # The trick here is that we can look for a literal `${lemma}`
+            # instead of having to parse arbitrary FST analyses.
+            for template in layout.generate_fst_analyses("${lemma}"):
+                prefix, suffix = self._LITERAL_LEMMA.split(template)
+
+                prefix_tags = prefix.split("+")
+                assert prefix_tags[-1] == "", f"Prefix ${prefix!r} did not end with +"
+                suffix_tags = suffix.split("+")
+                assert suffix_tags[0] == "", f"Suffix ${suffix!r} did not end with +"
+                ret[template] = (
+                    tuple(t + "+" for t in prefix_tags[:-1]),
+                    tuple("+" + t for t in suffix_tags[1:]),
+                )
+        return ret.values()
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
         """

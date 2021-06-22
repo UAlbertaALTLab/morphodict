@@ -93,6 +93,7 @@ class Wordform(models.Model):
 
     linguist_info = models.JSONField(
         blank=True,
+        null=True,
         help_text="""
             Various pieces of information about wordforms/lemmas that are of
             interest to linguists, and are available for display in templates,

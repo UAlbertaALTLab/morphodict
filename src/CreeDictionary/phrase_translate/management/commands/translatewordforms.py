@@ -17,7 +17,6 @@ from CreeDictionary.phrase_translate.definition_processing import remove_parenth
 from CreeDictionary.phrase_translate.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import (
     inflect_english_phrase,
-    parse_analysis_and_tags,
     FomaLookupNotFoundException,
     FomaLookupMultipleFoundException,
 )
@@ -142,11 +141,10 @@ class Command(BaseCommand):
                 continue
 
             for definition in definitions.get(wordform.lemma_id, []):
-                tags = parse_analysis_and_tags(wordform.analysis)
                 try:
                     input_text = remove_parentheticals(definition.text)
 
-                    phrase = inflect_english_phrase(tags, input_text)
+                    phrase = inflect_english_phrase(wordform.analysis, input_text)
                 except UnknownTagError:
                     raise Exception(
                         f"Unknown tag for {wordform.text} {wordform.analysis}"

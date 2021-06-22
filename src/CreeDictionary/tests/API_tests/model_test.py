@@ -28,7 +28,10 @@ def test_when_linguistic_breakdown_absent():
     assert result.wordform.text == "pê-"
     assert result.wordform.analysis is None
     assert result.friendly_linguistic_breakdown_head == []
-    assert result.friendly_linguistic_breakdown_tail == ["like: pê-"]
+    assert (
+        result.serialize()["lemma_wordform"]["inflectional_category_plain_english"]
+        == "like: pê-"
+    )
 
 
 @pytest.mark.django_db

@@ -7,7 +7,9 @@ from django.core.management import BaseCommand, call_command
 from django.db import transaction
 from tqdm import tqdm
 
+from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.utils.english_keyword_extraction import stem_keywords
+from morphodict.analysis import RichAnalysis, strict_generator
 from morphodict.lexicon.models import (
     Wordform,
     Definition,
@@ -15,7 +17,7 @@ from morphodict.lexicon.models import (
     TargetLanguageKeyword,
     SourceLanguageKeyword,
 )
-from morphodict.lexicon.util import strip_accents_for_search_lookups
+from morphodict.lexicon.util import to_source_language_keyword
 
 logger = logging.getLogger(__name__)
 
@@ -44,6 +46,8 @@ class Command(BaseCommand):
             if not DictionarySource.objects.filter(abbrv=abbrv):
                 DictionarySource.objects.create(abbrv=abbrv)
 
+        paradigm_manager = default_paradigm_manager()
+
         existing_slugs = {
             v[0]
             for v in Wordform.objects.filter(slug__isnull=False).values_list("slug")
@@ -71,17 +75,35 @@ class Command(BaseCommand):
             wf.lemma = wf
             wf.save()
 
+            # Instantiate wordforms
+            if wf.analysis and wf.paradigm:
+                for (
+                    prefix_tags,
+                    suffix_tags,
+                ) in paradigm_manager.all_analysis_template_tags(wf.paradigm):
+                    analysis = RichAnalysis((prefix_tags, wf.text, suffix_tags))
+                    for generated in strict_generator().lookup(analysis.smushed()):
+                        # Skip re-instantiating lemma
+                        if analysis == wf.analysis:
+                            continue
+
+                        Wordform.objects.create(
+                            # For now, leaving paradigm and linguist_info empty;
+                            # code can get that info from the lemma instead.
+                            text=generated,
+                            raw_analysis=analysis.tuple,
+                            lemma=wf,
+                            is_lemma=False,
+                        )
+
             # Unanalyzed forms: phrases, Cree preverbs, &c.
             if wf.raw_analysis is None:
-                variants = set()
+                keywords = set(
+                    to_source_language_keyword(piece) for piece in wf.text.split()
+                )
 
-                for piece in wf.text.split():
-                    indexed_form = strip_accents_for_search_lookups(piece)
-                    indexed_form = indexed_form.strip("-")
-                    variants.add(indexed_form)
-
-                for v in variants:
-                    SourceLanguageKeyword.objects.create(text=v, wordform=wf)
+                for kw in keywords:
+                    SourceLanguageKeyword.objects.create(text=kw, wordform=wf)
 
             keywords = set()
 

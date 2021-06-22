@@ -5,6 +5,7 @@ from django.core.management.base import BaseCommand
 from CreeDictionary.cvd import definition_vectors_path
 from CreeDictionary.utils import shared_res_dir
 from morphodict.lexicon.models import Wordform, Definition
+from morphodict.lexicon.test_db import TEST_DB_IMPORTJSON
 
 
 class Command(BaseCommand):
@@ -22,24 +23,10 @@ class Command(BaseCommand):
 
         call_command(
             "importjsondict",
-            settings.BASE_DIR / "resources" / "dictionary" / "crkeng-testdb.importjson",
+            TEST_DB_IMPORTJSON,
         )
-        add_some_auto_translations()
+        call_command("translatewordforms")
         call_command("ensurecypressadminuser")
 
         if not definition_vectors_path().exists():
             call_command("builddefinitionvectors")
-
-
-def import_test_dictionary():
-    if Wordform.objects.count() == 0:
-        print("No wordforms found, generating")
-        call_command(
-            "xmlimport",
-            shared_res_dir / "test_dictionaries" / "crkeng.xml",
-        )
-
-
-def add_some_auto_translations():
-    if not Definition.objects.filter(auto_translation_source__isnull=False).exists():
-        call_command("translatewordforms", wordforms=["acâhkosa"])

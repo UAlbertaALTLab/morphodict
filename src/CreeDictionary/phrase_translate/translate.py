@@ -92,26 +92,8 @@ def foma_lookup(fst, thing_to_lookup):
     return l[0].decode("UTF-8")
 
 
-def parse_analysis_and_tags(analysis):
-    """Extract tags into a list in the form required by inflect_english_phrase
-
-    >>> parse_analysis_and_tags('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
-    ['PV/e+', 'PV/ki+', '+V', '+TA', '+Cnj', '+1Pl', '+2SgO']
-    """
-    head_tags, lemma, tail_tags = partition_analysis(analysis)
-    return [t + "+" for t in head_tags] + ["+" + t for t in tail_tags]
-
-
-def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition):
-    if isinstance(cree_wordform_tag_list_or_analysis, list):
-        cree_wordform_tag_list = cree_wordform_tag_list_or_analysis
-    else:
-        preverb_tags, lemma_, tags = partition_analysis(
-            cree_wordform_tag_list_or_analysis
-        )
-        preverb_tags = [x + "+" for x in preverb_tags]
-        tags = ["+" + x for x in tags]
-        cree_wordform_tag_list = preverb_tags + tags
+def inflect_english_phrase(analysis, lemma_definition):
+    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
 
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
@@ -130,8 +112,7 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
 
 def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
     for wordform in wordforms:
-        wordform_tags = parse_analysis_and_tags(wordform.analysis)
-        print(f"wordform: {wordform.text} {wordform_tags}")
+        print(f"wordform: {wordform.text} {wordform.analysis}")
 
         lemma = wordform.lemma
         print(f"  lemma: {lemma.analysis}")
@@ -142,7 +123,7 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
                 continue
 
             print(f"    definition: {d} →")
-            phrase = inflect_english_phrase(wordform_tags, d.text)
+            phrase = inflect_english_phrase(wordform.analysis, d.text)
             if phrase is None:
                 phrase = "(not supported)"
             print(f"      {phrase}")

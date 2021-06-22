@@ -13,7 +13,7 @@ from morphodict.analysis import (
     rich_analyze_relaxed,
 )
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
-from morphodict.lexicon.util import strip_accents_for_search_lookups
+from morphodict.lexicon.util import to_source_language_keyword
 from . import core
 from .types import Result
 
@@ -27,7 +27,7 @@ def fetch_results(search_run: core.SearchRun):
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
-    fst_analyses = rich_analyze_relaxed(search_run.internal_query)
+    fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
 
     db_matches = list(
         Wordform.objects.filter(raw_analysis__in=[a.tuple for a in fst_analyses])
@@ -45,8 +45,7 @@ def fetch_results(search_run: core.SearchRun):
         )
 
         # An exact match here means we’re done with this analysis.
-        assert wf.analysis in fst_analyses, "wordform analysis not in search set"
-        fst_analyses.remove(wf.analysis)
+        fst_analyses.discard(wf.analysis)
 
     # fst_analyses has now been thinned by calls to `fst_analyses.remove()`
     # above; remaining items are analyses which are not in the database,
@@ -120,12 +119,15 @@ def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:
         return possible_lemmas
 
     max_tag_intersection_count = max(
-        analysis.tag_intersection_count(lwf.analysis) for lwf in possible_lemmas
+        analysis.tag_intersection_count(lwf.analysis)
+        for lwf in possible_lemmas
+        if lwf.analysis
     )
     return [
         lwf
         for lwf in possible_lemmas
-        if analysis.tag_intersection_count(lwf.analysis) == max_tag_intersection_count
+        if lwf.analysis
+        and analysis.tag_intersection_count(lwf.analysis) == max_tag_intersection_count
     ]
 
 
@@ -141,8 +143,7 @@ def fetch_results_from_target_language_keywords(search_run):
 
 def fetch_results_from_source_language_keywords(search_run):
     res = SourceLanguageKeyword.objects.filter(
-        Q(text=search_run.internal_query)
-        | Q(text=strip_accents_for_search_lookups(search_run.internal_query).lower())
+        Q(text=to_source_language_keyword(search_run.internal_query))
     )
     for kw in res:
         search_run.add_result(
