@@ -162,7 +162,9 @@ class Command(BaseCommand):
                     continue
 
                 if not phrase:
-                    logger.debug(f"no translation for {wordform.text} {tags}")
+                    logger.debug(
+                        f"no translation for {wordform.text} {wordform.analysis}"
+                    )
                     self.translation_stats.no_translation_count += 1
                     continue
 

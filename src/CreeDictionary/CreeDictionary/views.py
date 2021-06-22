@@ -65,7 +65,7 @@ def entry_details(request, slug: str):
 
     lemma = lemma.get()
 
-    paradigm_context = {}
+    paradigm_context: dict[str, Any] = {}
 
     paradigm = lemma.paradigm
     if paradigm is not None:
