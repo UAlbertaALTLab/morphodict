@@ -68,6 +68,23 @@ class ParadigmManager:
         """
         return self._layout_sizes_or_raise(paradigm_name).keys()
 
+    def all_analyses(self, paradigm_name: str, lemma: str) -> set[str]:
+        """
+        Returns all analysis strings for a given paradigm and lemma in all layout sizes.
+
+        For example, in Plains Cree, you want all analyses for mîcisow (VAI):
+
+            {"mîcisow+V+AI+Ind+Prs+1Sg", "mîcisow+V+AI+Ind+Prs+2Sg", ...}
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
+        """
+
+        analyses: set[str] = set()
+        for layout in self._layout_sizes_or_raise(paradigm_name).values():
+            analyses.update(layout.generate_fst_analyses(lemma).values())
+
+        return analyses
+
     def default_size(self, paradigm_name: str):
         sizes = list(self.sizes_of(paradigm_name))
         return sizes[0]

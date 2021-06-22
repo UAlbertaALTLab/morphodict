@@ -3,8 +3,6 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from CreeDictionary.cvd import definition_vectors_path
-from CreeDictionary.utils import shared_res_dir
-from morphodict.lexicon.models import Wordform, Definition
 from morphodict.lexicon.test_db import TEST_DB_IMPORTJSON
 
 
