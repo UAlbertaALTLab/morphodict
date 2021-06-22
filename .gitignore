@@ -64,7 +64,7 @@ cypress/videos
 .env
 
 # Real dictionaries, as opposed to the test subset ones; not to be
-# committed to this repo as are not usually redistributable.
+# committed to this repo as they are not usually redistributable.
 *_dictionary.importjson
 
 # Django collectstatic

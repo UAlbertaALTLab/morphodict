@@ -5,8 +5,10 @@ import os
 import re
 from argparse import ArgumentParser
 from collections import defaultdict
+from dataclasses import dataclass
 from pathlib import Path
 from subprocess import check_call
+from typing import Optional
 
 from django.core.management.base import BaseCommand
 
@@ -77,6 +79,104 @@ def unsmush_analysis(analysis):
     return (prefix_tags, lemma, suffix_tags)
 
 
+def my_group_by(iterable, keyfunc):
+    """Because itertools.groupby is tricky to use
+
+    The stdlib method requires sorting in advance, and returns iterators not
+    lists, and those iterators get consumed as you try to use them, throwing
+    everything off if you try to look at something more than once.
+    """
+    ret = defaultdict(list)
+    for k in iterable:
+        ret[keyfunc(k)].append(k)
+    return dict(ret)
+
+
+def slug_disambiguator(input_classes):
+    """Return a unique list of short strings to disambiguate items.
+
+    See the unit tests for examples.
+    """
+
+    @dataclass
+    class InputItem:
+        index: int
+        value: str
+        disambiguator: Optional[str] = None
+
+        @property
+        def assigned(self):
+            return self.disambiguator is not None
+
+    class _SlugDisambiguator:
+        def __init__(self, inputs):
+            # We need a list of objects, not a dict, because the input list may
+            # have duplicates.
+            self._inputs = [
+                InputItem(index=n, value=input) for n, input in enumerate(inputs)
+            ]
+            self._unique_keys = set()
+
+        def unassigned_items(self):
+            return [i for i in self._inputs if not i.assigned]
+
+        def is_done(self):
+            return len(self.unassigned_items()) == 0
+
+        def disambiguate(self):
+            """Try to assign unique keys using methods of increasing specificity."""
+            for method in [
+                lambda: self.using_prefix(1),
+                lambda: self.using_prefix(2),
+                lambda: self.using_prefix(3),
+                lambda: self.using_prefix(4),
+                self.using_enumeration,
+            ]:
+                method()
+                if self.is_done():
+                    return
+            raise Exception(f"Unable to disambiguate {self._inputs!r}")
+
+        def using_prefix(self, length):
+            """If using a prefix of a certain length uniquely identifies any
+            items, use that prefix as the item key.
+
+            e.g., for inputs "NA", "NI", "VTI" and prefix length 1, this will
+            assign "V" to "VTI" and leave the others alone.
+            """
+
+            def substr(item):
+                return item.value[0:length]
+
+            groups = my_group_by(self.unassigned_items(), substr).items()
+            for k, v in groups:
+                if len(v) == 1:
+                    self.assign(v[0], k)
+
+        def using_enumeration(self):
+            """Fallback: just assign numbers"""
+            for i, k in enumerate(self.unassigned_items()):
+                self.assign(k, str(i + 1))
+
+        def assign(self, input, key):
+            """Set the item key, making sure it’s not already been used."""
+            if key in self._unique_keys:
+                raise Exception(f"attempt to re-use key {key!r}")
+            self._unique_keys.add(key)
+            input.disambiguator = key
+
+        def results(self):
+            assert self.is_done()
+            return self._inputs
+
+    if len(input_classes) == 1:
+        return [""]
+
+    disambiguator = _SlugDisambiguator(input_classes)
+    disambiguator.disambiguate()
+    return ["@" + x.disambiguator for x in disambiguator.results()]
+
+
 class Export:
     def __init__(self):
         self._entries = []
@@ -104,30 +204,15 @@ class Export:
         for e in self._entries:
             entries_by_slug[str2slug(e["head"])].append(e)
 
-        for slug, entries in entries_by_slug.items():
-            if len(entries) == 1:
-                entries[0]["slug"] = slug
-                self._use_slug(slug)
-            else:
-
-                def ic_slug(entry):
-                    return (
-                        slug
-                        + "-"
-                        + entry["linguistInfo"]["inflectional_category"].lower()
-                    )
-
-                by_ic = map(ic_slug, entries)
-                if len(set(by_ic)) == len(entries):
-                    for e in entries:
-                        entry_slug = ic_slug(e)
-                        e["slug"] = entry_slug
-                        self._use_slug(entry_slug)
-                else:
-                    for i, e in enumerate(entries):
-                        entry_slug = ic_slug(e) + str(i + 1)
-                        e["slug"] = entry_slug
-                        self._use_slug(entry_slug)
+        for slug_base, entries in entries_by_slug.items():
+            entry_categories = [
+                e["linguistInfo"]["inflectional_category"].lower() for e in entries
+            ]
+            disambiguators = slug_disambiguator(entry_categories)
+            for entry, slug in zip(entries, disambiguators):
+                entry_slug = slug_base + slug
+                entry["slug"] = entry_slug
+                self._use_slug(entry_slug)
 
     def as_json(self):
         return json.dumps(self._entries, ensure_ascii=False, indent=2) + "\n"
