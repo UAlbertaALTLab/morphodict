@@ -256,9 +256,11 @@ context('Searching', () => {
     })
 
     it('should show auto-translations with auto:y', function() {
-      cy.visitSearch('auto:y acâhkosa')
+      // NB: need to make sure this wordform is added **explicitly** in the
+      // `ensuretestdb` management commands:
+      cy.visitSearch('auto:y niminôsak')
       cy
-        .get('[data-cy=search-result]').contains('little star over there')
+        .get('[data-cy=search-result]').contains('my cats')
         .get('.cite-dict').contains('auto')
     })
   })

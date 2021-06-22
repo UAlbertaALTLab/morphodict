@@ -1,6 +1,6 @@
 import json
 import logging
-from typing import Any, Dict, Literal, Union
+from typing import Any, Dict, Literal, Optional, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -12,11 +12,7 @@ import morphodict.analysis
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
-from CreeDictionary.CreeDictionary.paradigm.filler import Row
-from CreeDictionary.CreeDictionary.paradigm.generation import (
-    default_paradigm_manager,
-    generate_paradigm,
-)
+from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
@@ -186,14 +182,9 @@ def paradigm_internal(request):
     # end guards
 
     paradigm = paradigm_for(lemma, paradigm_size)
-    if isinstance(paradigm, Paradigm):
-        template_name = "CreeDictionary/components/paradigm-with-panes.html"
-    else:
-        template_name = "CreeDictionary/components/paradigm.html"
-
     return render(
         request,
-        template_name,
+        "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size.value,
@@ -360,9 +351,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(
-    wordform: Wordform, paradigm_size: ParadigmSize
-) -> Union[Paradigm, list[list[Row]]]:
+def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
@@ -380,8 +369,7 @@ def paradigm_for(
             name,
             wordform,
         )
-        # TODO: better return value for when a paradigm cannot be found
-        return []
+        return None
 
     # TODO: use new-style paradigms for other sizes in addition to FULL
     # Requires:
@@ -393,15 +381,14 @@ def paradigm_for(
 
         paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
         if paradigm_name is None:
-            return []
+            return None
 
         try:
             return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
         except KeyError:
-            return []
+            return None
 
-    # try returning an old-style paradigm: may return []
-    return generate_paradigm(wordform, paradigm_size)
+    return None
 
 
 def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):

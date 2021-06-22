@@ -43,9 +43,6 @@ class Paradigm:
     table, organized by **rows**, and then each row contains **cells**.
     """
 
-    # TODO: delete this when the old ParadigmFiller classes are deleted.
-    uses_pane_based_layout = True
-
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
 
@@ -124,7 +121,7 @@ class ParadigmLayout(Paradigm):
 
     def generate_fst_analyses(self, lemma: str) -> dict[str, str]:
         """
-        Generates a dictionary mapping analysis templates to analyses subsituted with
+        Generates a dictionary mapping analysis templates to analyses substituted with
         the given lemma.
         """
         return {
