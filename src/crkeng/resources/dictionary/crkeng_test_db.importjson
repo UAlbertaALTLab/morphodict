@@ -284,6 +284,52 @@
     "slug": "acâhkos_kâ-osôsit"
   },
   {
+    "head": "nîso-kîsikâw",
+    "analysis": [[], "nîso-kîsikâw", ["+V", "+II", "+Ind", "+3Sg"]],
+    "paradigm": "VII",
+    "senses": [
+      {
+        "definition": "it is Tuesday; literally: (it is) the second day",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VII-1v",
+      "inflectional_category_plain_english": "like: kîsikâw",
+      "inflectional_category_linguistic": "vowel-final impersonal inanimate intransive verb",
+      "pos": "V",
+      "stem": "nîso-kîsikâ-",
+      "smushedAnalysis": "nîso-kîsikâw+V+II+Ind+3Sg",
+      "wordclass": "VII",
+      "wordclass_emoji": "💧➡️"
+    },
+    "slug": "nîso-kîsikâw-vii-1v"
+  },
+  {
+    "head": "nîso-kîsikâw",
+    "analysis": [[], "nîso-kîsikâw", ["+Ipc"]],
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "two days",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "IPC",
+      "inflectional_category_plain_english": "like: anohc",
+      "inflectional_category_linguistic": "Particle",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "nîso-kîsikâw+Ipc",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "slug": "nîso-kîsikâw-ipc"
+  },
+  {
     "head": "mîcisow",
     "analysis": [[], "mîcisow", ["+V", "+AI", "+Ind", "+3Sg"]],
     "paradigm": "VAI",
@@ -332,6 +378,33 @@
       "wordclass_emoji": "⚡️"
     },
     "slug": "ispîhk"
+  },
+  {
+    "head": "âcimow",
+    "analysis": [[], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "He told a story.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "s/he tells, s/he tells a story; s/he tells news, s/he gives an account, s/he narrates; s/he tells his/her own story",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI",
+      "inflectional_category_plain_english": null,
+      "inflectional_category_linguistic": null,
+      "pos": "V",
+      "stem": "pimi-âcimo-",
+      "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
+      "wordclass": "VAI",
+      "wordclass_emoji": "🧑🏽➡️"
+    },
+    "slug": "âcimow-vai"
   },
   {
     "head": "atâhk",
@@ -713,6 +786,33 @@
       "wordclass_emoji": "🧑🏽➡️"
     },
     "slug": "awâsisîwiw"
+  },
+  {
+    "head": "nipâwin",
+    "analysis": [[], "nipâwin", ["+N", "+I", "+Sg"]],
+    "paradigm": "NI",
+    "senses": [
+      {
+        "definition": "Sleep.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "sleeping, sleep",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NI-1",
+      "inflectional_category_plain_english": "like: cîmân, astotin",
+      "inflectional_category_linguistic": "Regular inanimate noun stem",
+      "pos": "N",
+      "stem": "nipâwin-",
+      "smushedAnalysis": "nipâwin+N+I+Sg",
+      "wordclass": "NI",
+      "wordclass_emoji": "💧"
+    },
+    "slug": "nipâwin"
   },
   {
     "head": "niya",
@@ -1611,6 +1711,33 @@
     "slug": "ayiwinisa"
   },
   {
+    "head": "âcimow",
+    "analysis": [[], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "He told a story.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "s/he tells, s/he tells a story; s/he tells news, s/he gives an account, s/he narrates; s/he tells his/her own story",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI-1",
+      "inflectional_category_plain_english": "like: nipâw",
+      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
+      "pos": "V",
+      "stem": "âcimo-",
+      "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
+      "wordclass": "VAI",
+      "wordclass_emoji": "🧑🏽➡️"
+    },
+    "slug": "âcimow-vai-1"
+  },
+  {
     "head": "niska",
     "analysis": [[], "niska", ["+N", "+A", "+Sg"]],
     "paradigm": "NA",
@@ -1852,6 +1979,29 @@
       "wordclass_emoji": "💧"
     },
     "slug": "amiskwaciy-wâskahikan"
+  },
+  {
+    "head": "mâci-nipâw",
+    "analysis": [[], "mâci-nipâw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "s/he starts sleeping",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI-1",
+      "inflectional_category_plain_english": "like: nipâw",
+      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
+      "pos": "V",
+      "stem": "mâci-nipâ-",
+      "smushedAnalysis": "mâci-nipâw+V+AI+Ind+3Sg",
+      "wordclass": "VAI",
+      "wordclass_emoji": "🧑🏽➡️"
+    },
+    "slug": "mâci-nipâw"
   },
   {
     "head": "kiskinwahamâkosiw",

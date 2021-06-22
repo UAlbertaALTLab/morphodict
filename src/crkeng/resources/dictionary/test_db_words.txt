@@ -76,7 +76,8 @@ minôsis
 
 âcimowin
 
-nipâw
+nipâwin
+mâci-nipâw
 amisk
 amiskwaciy-wâskahikan
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
@@ -103,6 +104,8 @@ pipon
 
 # some inflected forms not showing up
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+# prefix search fails with added vowel length
+# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/429
 kîsikâw
 
 # Some paradigms of homographic entries do not show up
@@ -112,11 +115,6 @@ ayâw
 # some entries do not show up
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
 maskwa
-
-# prefix search fails with added vowel length
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/429
-# note: kîsikâw exists above, no harm to add it again here
-kîsikâw
 
 # inflected form with definition
 # https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445
@@ -130,7 +128,10 @@ otôskwanihk
 oskana kâ-asastêki
 misâskwatôminihk
 
+# Assorted other wordforms used in tests
+âcimow
 êkwatik
 katawatêyimêw
 asawâpamêw
 atamiskawêw
+nîso-kîsikâw
