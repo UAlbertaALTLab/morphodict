@@ -66,12 +66,10 @@ class PresentationResult:
             self.linguistic_breakdown_tail,
         ) = safe_partition_analysis(result.wordform.analysis)
 
-        self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
-        self.reduplication = get_reduplication_from_head_breakdown(
-            result.wordform.analysis
-        )
-        self.lexical_info = self.preverbs + self.reduplication
-        self.lexical_info = sorted(self.lexical_info, key=lambda x: x.index)
+        self.lexical_info = get_lexical_information(result.wordform.analysis)
+
+        self.preverbs = [entry for entry in self.lexical_info if entry.type == "Preverb"]
+        self.reduplication = [entry for entry in self.lexical_info if entry.type == "Reduplication"]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             self.linguistic_breakdown_head
@@ -170,21 +168,30 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     return LABELS.english.get_full_relabelling(fst_tags)
 
 
-def get_preverbs_from_head_breakdown(
-    head_breakdown: List[FSTTag],
-) -> List[_LexicalEntry]:
-    results = []
+def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
+    result_analysis_tags = result_analysis.split("+")
 
-    for (i, tag) in enumerate(head_breakdown):
+    lexical_information: List[_LexicalEntry] = []
+
+    for (i, tag) in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
-        if tag.startswith("PV/"):
+        reduplication_string: Optional[str] = None
+        type = ""
+        entry: Optional[_ReduplicationResult or Wordform] = None
+
+        tag = FSTTag(tag)
+
+        if tag in ["RdplW", "RdplS"]:
+            reduplication_string = generate_reduplication_string(result_analysis_tags, tag, i)
+
+        elif tag.startswith("PV/"):
             # use altlabel.tsv to figure out the preverb
 
             # ling_short looks like: "Preverb: âpihci-"
             ling_short = LABELS.linguistic_short.get(tag)
             if ling_short is not None and ling_short != "":
                 # convert to "âpihci" by dropping prefix and last character
-                normative_preverb_text = ling_short[len("Preverb: ") : -1]
+                normative_preverb_text = ling_short[len("Preverb: "): -1]
                 preverb_results = lookup.fetch_preverbs(normative_preverb_text)
 
                 # find the one that looks the most similar
@@ -206,31 +213,7 @@ def get_preverbs_from_head_breakdown(
                         text=normative_preverb_text, is_lemma=True
                     )
 
-        if preverb_result is not None:
-            result = _LexicalEntry(
-                entry=serialize_wordform(preverb_result),
-                type="Preverb",
-                index=i,
-                original_tag=tag
-            )
-            results.append(result)
-    return results
-
-
-def get_reduplication_from_head_breakdown(result_analysis) -> List[_LexicalEntry]:
-    result_analysis_tags = result_analysis.split("+")
-    reduplication = []
-    for (i, tag) in enumerate(result_analysis_tags):
-        reduplication_string = ""
-        if tag in ["RdplW", "RdplS"]:
-            word = result_analysis_tags[i + 1]
-            letter = word.split("/")[-1][0]
-            if tag == "RdplW":
-                reduplication_string = letter + "a-"
-            else:
-                reduplication_string = letter + "âh-"
-
-        if reduplication_string:
+        if reduplication_string is not None:
             entry = _ReduplicationResult(
                 text=reduplication_string,
                 definitions=[
@@ -241,12 +224,32 @@ def get_reduplication_from_head_breakdown(result_analysis) -> List[_LexicalEntry
                     }
                 ],
             )
+            type = "Reduplication"
+
+        if preverb_result is not None:
+            entry = serialize_wordform(preverb_result)
+            type = "Preverb"
+
+        if entry:
             result = _LexicalEntry(
                 entry=entry,
-                type="Reduplication",
+                type=type,
                 index=i,
                 original_tag=tag
             )
-            reduplication.append(result)
+            lexical_information.append(result)
 
-    return reduplication
+    # The list should be sorted, but I'd rather guarantee it is
+    return sorted(lexical_information, key=lambda x: x.index)
+
+def generate_reduplication_string(result_analysis_tags: List[str], tag: str, i: int) -> str:
+    consonants = "chkmnpstwy"
+    word = result_analysis_tags[i + 1]
+    letter = word.split("/")[-1][0]
+    reduplication_string = ""
+    if tag == "RdplW":
+        reduplication_string = letter + "a-" if letter.lower() in consonants else "ay-"
+    else:
+        reduplication_string = letter + "âh-" if letter.lower() in consonants else "âh-"
+
+    return reduplication_string
