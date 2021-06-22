@@ -44,7 +44,6 @@ class Command(BaseCommand):
         unknown_words = set()
 
         with debug_output_file(options["debug_output_file"]) as debug_output:
-
             for d in tqdm(definitions.iterator(), total=count):
                 keys = extract_keyed_words(d.text, news_vectors, unknown_words)
                 debug_output(

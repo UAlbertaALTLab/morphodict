@@ -15,16 +15,15 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
+        from morphodict.lexicon.models import Wordform
+
         assert settings.USE_TEST_DB
 
         call_command("migrate", verbosity=0)
 
-        call_command(
-            "importjsondict",
-            TEST_DB_IMPORTJSON,
-        )
-        call_command("translatewordforms")
+        if not Wordform.objects.exists() or not definition_vectors_path().exists():
+            call_command(
+                "importjsondict",
+                TEST_DB_IMPORTJSON,
+            )
         call_command("ensurecypressadminuser")
-
-        if not definition_vectors_path().exists():
-            call_command("builddefinitionvectors")
