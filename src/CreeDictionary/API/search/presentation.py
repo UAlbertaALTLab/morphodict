@@ -90,10 +90,10 @@ class PresentationResult:
         We chunk based on the English relabelleings!
         """
         return tuple(
-            linguistic_tag_from_fst_tags(
-                tuple(cast(FSTTag, t.strip("+")) for t in fst_tags)
+            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
+            for fst_tags in LABELS.english.chunk(
+                t.strip("+") for t in self.linguistic_breakdown_tail
             )
-            for fst_tags in LABELS.english.chunk(self.linguistic_breakdown_tail)
         )
 
     def __str__(self):
