@@ -41,4 +41,4 @@ def import_test_dictionary():
 
 def add_some_auto_translations():
     if not Definition.objects.filter(auto_translation_source__isnull=False).exists():
-        call_command("translatewordforms", wordforms=["acâhkosa"])
+        call_command("translatewordforms", wordforms=["niminôsak"])

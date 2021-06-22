@@ -1,86 +1,63 @@
 {% spaceless %}
 
   {% comment %}
-    The paradigm table, including the button at the bottom.
+    The paradigm table.
 
     Parameters:
-      paradigm: List[List[Row]] (see CreeDictionary/paradigm/filler.py)
-      paradigm_size: utils.enums.ParadigmSize (TODO: use str value directly)
+      paradigm_tables: Paradigm (see CreeDictionary.paradigm.panes.Paradigm)
 
     Example:
 
-        | something is happening now |
-        | I    | ninipân | ê-nipâyân |
-        | You  | kinipân | ê-nipâyan |
-        | [       + show more      ] |
+        |             | One     | Many      |
+        | Here        | ôma     | ôhi       |
+        | There       | anima   | anihi     |
+        | Over Yonder | nêma    | nêhi      |
 
     JavaScript hooks:
      - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
        JavaScript can replace the contents with a different paradigm.
-     - .js-paradigm-size-button: the button for advancing the paradigm size
-       (basic, full, linguistic, etc.)
-     - .js-plus-minus: the + or - sign in the [± show more/less] button
-     - .js-button-text: the text in the [± show more/less] button
 
   {% endcomment %}
 
   {% load morphodict_orth %}
+  {% load creedictionary_extras %}
+  {% load relabelling %}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
-    {# XXX: we should find a better way to contain all the data in the table :/ #}
+    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
     <div class="HACK-overflow-x-scroll">
       <table class="paradigm__table">
-        {% for subtable in paradigm %}
+        {% for pane in paradigm.panes %}
           <tbody>
-            {% for row in subtable %}
-              {% if row.is_title %}
-                <th class="paradigm-title" colspan="{{ row.span }}">{{ row.title }}</th>
+            {% for row in pane.tr_rows %}
+              {% if row.is_header %}
+                <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                >{% relabel row.fst_tags %}</th>
               {% else %}
                 <tr class="paradigm-row">
-                  {% for cell in row %}
-                    {% if cell.is_label %}
-                      <th scope="row" class="paradigm-label paradigm-label--row">
-                        {{ cell }}
+                  {% for cell in row.cells %}
+                    {% if cell.should_suppress_output %}
+                        {% comment %} Produce NO output! {% endcomment %}
+                    {% elif cell.is_label %}
+                      <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
+                          class="paradigm-label paradigm-label--{{ cell.label_for }}">
+                          {% relabel cell.fst_tags %}
                       </th>
-                    {% elif cell.is_heading %}
-                      <th scope="col" class="paradigm-label paradigm-label--col">
-                        {{ cell }}
-                      </th>
-                    {% elif cell == "" %}
+                    {% elif cell.is_missing %}
+                        <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
+                    {% elif cell.is_empty %}
                       <td class="paradigm-cell paradigm-cell--empty"></td>
                     {% else %}
-                      {# it's an InflectionCell #}
-                      {# TODO: split this over multiple rows #}
-                      {% if cell.inflection == "" %}
-                        {# use em dash to denote that the form doesn't exist #}
-                        <td class="paradigm-cell paradigm-cell--lacuna">
-                          —
-                        </td>
-                      {% elif cell.frequency > 0 %}
-                        {# observed form #}
-                      <td class="paradigm-cell paradigm-cell--observed">
+                      <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
                         {% orth cell.inflection %}
                       </td>
-                      {% else %}
-                        {# unobserved form #}
-                        {% if not cell.has_analysis %}
-                          <td class="paradigm-cell paradigm-cell--no-analysis">
-
-                          </td>
-                        {% else %}
-                          <td class="paradigm-cell paradigm-cell--unobserved">
-                            {% orth cell.inflection %}
-                          </td>
-                        {% endif %}
-
-                      {% endif %}
                     {% endif %}
                   {% endfor %}
                 </tr>
               {% endif %}
             {% endfor %} {# /rows #}
           </tbody>
-        {% endfor %} {# /subtables #}
+        {% endfor %} {# /paradigm.panes #}
       </table>
     </div>
 

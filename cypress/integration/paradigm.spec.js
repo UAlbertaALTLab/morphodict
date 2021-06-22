@@ -82,7 +82,6 @@ describe('I want to search for a Cree word and see its inflectional paradigm', (
   })
 })
 
-
 describe('I want to know if a form is observed inside a paradigm table', () => {
   // TODO: this test should be re-enabled in linguist mode!
   it.skip('shows inflection frequency as digits in brackets', ()=>{
@@ -212,5 +211,32 @@ describe('Paradigm labels', () => {
 
     cy.get('[data-cy=paradigm]')
       .contains('th[scope=row]', linguisticLabel)
+  })
+})
+
+describe('I want to see multiple variants of the same inflection on multiple rows', () => {
+  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/507
+  it('should display two rows for nipâw+V+AI+Ind+12Pl', () => {
+    const forms = ['kinipânaw', 'kinipânânaw']
+    let rowA = null
+    let rowB = null
+    cy.visitLemma('nipâw')
+
+    // get the first row
+    cy.get('[data-cy=paradigm]')
+      .contains('tr', forms[0])
+      .then($form => { rowA = $form.get(0) })
+
+    // get the second row
+    cy.get('[data-cy=paradigm]')
+      .contains('tr', forms[1])
+      .then($form => { rowB = $form.get(0) })
+      .then(() => {
+        expect(rowA).not.to.be.null
+        expect(rowB).not.to.be.null
+
+        // they should not be the same row!
+        expect(rowA).not.to.equal(rowB)
+      })
   })
 })
