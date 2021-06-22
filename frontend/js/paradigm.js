@@ -5,8 +5,7 @@ export function setupParadigm() {
   setupParadigmSizeToggleButton(null)
 }
 
-// TODO: the backend should SOLELY maintain this list:
-const ALL_PARADIGM_SIZES = ['BASIC', 'FULL', 'LINGUISTIC']
+let paradigmSizes
 
 /**
  * attach handlers to the "show more/less" button. So that it:
@@ -30,6 +29,12 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
   // `paradigmSize` is also rendered by a Django template
   // And it can changed dynamically by JavaScript when the script loads different sized paradigms
   let paradigmSize = currentParadigmSize || readDjangoJsonScript('paradigm-size')
+  paradigmSizes = readDjangoJsonScript('paradigm-sizes') || []
+
+  if (paradigmSizes.length <= 1) {
+    toggleButton.remove()
+    return
+  }
 
   const nextParadigmSize = getNextParadigmSize(paradigmSize)
 
@@ -74,7 +79,7 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
 
   // TODO: the backend should know this:
   function mostDetailedParadigmSizeIsSelected() {
-    return ALL_PARADIGM_SIZES.indexOf(nextParadigmSize) === ALL_PARADIGM_SIZES.length - 1
+    return paradigmSizes.indexOf(nextParadigmSize) === paradigmSizes.length - 1
   }
 
   function updateCurrentURLWithParadigmSize() {
@@ -104,8 +109,13 @@ function displayButtonAsError(toggleButton) {
  * @param {String} size
  * @return {String}
  */
-function getNextParadigmSize(size) {
-  return ALL_PARADIGM_SIZES[(ALL_PARADIGM_SIZES.indexOf(size) + 1) % ALL_PARADIGM_SIZES.length]
+function getNextParadigmSize(sizeName) {
+  const index = paradigmSizes.indexOf(sizeName)
+  if (index >= 0) {
+    return paradigmSizes[(index + 1) % paradigmSizes.length]
+  }
+  // Use default.
+  return paradigmSizes[0]
 }
 
 ///////////////////////////// Internal functions /////////////////////////////

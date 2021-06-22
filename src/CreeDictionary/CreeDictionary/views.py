@@ -83,8 +83,9 @@ def entry_details(request, slug: str):
                 size = default_size
 
         paradigm = paradigm_for(lemma, size)
-        # TODO: pass {"paradigm_sizes": sizes} to frontend
-        paradigm_context.update(paradigm=paradigm, paradigm_size=size)
+        paradigm_context.update(
+            paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
+        )
 
     context = create_context_for_index_template(
         "word-detail",

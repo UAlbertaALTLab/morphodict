@@ -130,21 +130,14 @@ describe('paradigms can be toggled by the show more/less button', () => {
 
     // Switch to the full size
     cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.location().should('match', /\bfull\b/i)
-
-    paradigm().contains('td', basicForm)
-    paradigm().contains('td', fullForm)
-
-    // Switch to the "linguistic" size:
-    cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.location().should('match', /\blinguistic\b/i)
+    cy.location('search').should('match', /\bfull\b/i)
 
     paradigm().contains('td', basicForm)
     paradigm().contains('td', fullForm)
 
     // Switch once more to get back to the basic paradigm
     cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.location().should('match', /\bbasic\b/i)
+    cy.location('search').should('match', /\bbasic\b/i)
 
     function paradigm() {
       return cy.get('[data-cy=paradigm]')
