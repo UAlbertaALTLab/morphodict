@@ -3,8 +3,8 @@ Paradigm layouts
 
 This document describes `morphodict`'s **paradigm layout** package.
 
-In the context of this document, a _paradigm_ is a table of related
-wordforms. The exact nature of how the wordforms are related to one
+In the context of this document, a _paradigm_ is a **table of related
+wordforms**. The exact nature of how the wordforms are related to one
 another is not specified here — rather, that is for language experts to
 specify.
 
@@ -14,15 +14,29 @@ transducer** (FST) for inflection. This enables **dynamic paradigm
 layouts** (layouts with placeholders) to be used for a large number of
 lexemes with the same _linguistic paradigm_.
 
+
+Components of the paradigm system
+---------------------------------
+
+ - **paradigm layout files** (`.tsv` files) — specifies how to layout
+   wordforms in one or more _panes_
+ - the **layouts** directory structure — how to organize paradigm layout
+   files on the filesystem
+ - the **Paradigm Manager** — mediates access to all parsed paradigm
+   layouts from the **layouts** directory, tying them to a transducer to
+   produce inflections 
+ - the **relabelling system**, which substitutes **one or more tags**
+   with user-facing labels
+
+
 Paradigm layout files
 ---------------------
 
-**Paradigm layouts files** describe how to arrange wordforms in a table
-format.
+**Paradigm layouts files** describe how to arrange wordforms and labels
+in a table format.
 
 Layouts are tab-separated values (TSV) files, where each cell specifies
-its role in the presented paradigm. The TSV file **must** be in the
-**UTF-8** character encoding scheme.
+its role in the presented paradigm.
 
 Paradigm layouts are:
 
@@ -35,64 +49,128 @@ Paradigm layouts are:
 
 ### Syntax
 
-Cells are separated by one U+0009 CHARACTER TABULATION character
-(horizontal tab character).
 
-Each row in the TSV file _should_ contain the same number of tab
-characters. This is to facilitate display and editing of the TSV files
-in tools that expect an equal amount of tabs per row (e.g., the GitHub
-previewer, [VisiData][vd], common spreadsheet software,
-[PyCharm][pycharm-tsv]).
+A **paradigm layout file** is a A tab-separated values (TSV) file. A TSV
+file is a series of *rows*. Each **row** is separated by a U+000A line
+feed character. Note that this U+000A line feed is not considered to be
+a part of the row in this specification.
 
-Each panes is separated by one "blank" lines. A "blank" means any line
-that only consists of whitespace (including the tab character).
+The TSV file **SHOULD** have one trailing U+000A line feed character
+after the last row.
+
+The TSV file **MUST** be encoded in the **UTF-8** character encoding
+scheme.
+
+Each row is a series of _cells_. Cells are separated from each other by
+one U+0009 CHARACTER TABULATION character (horizontal tab character).
+Let `C` be the number of cells in a row. Let `T` be the number of tab
+separators in a row. `C` is equal to `T + 1`.
+
+Each row in the TSV file **SHOULD** contain the same number of tab
+characters (each row has the same `T` tab separators). This includes
+blank rows (see below).
+
+> This is to facilitate display and editing of the TSV files in tools
+> that expect an equal amount of tabs per row (e.g., the GitHub
+> previewer, [VisiData][vd], common spreadsheet software,
+> [PyCharm][pycharm-tsv]).
+
+A paradigm layout file describes one or more _panes_, or a grouping of
+rows. Each pane is separated by one blank row. A _blank row_ is
+line that only consists of whitespace (including the tab character).
+This is equivalent to a row that consists of `C` **empty** cells (see
+below). A blank row **SHOULD** consist only of zero or more tab
+separators.
 
 A row can either be a:
 
- - **content row**: a row with **cells**
  - **header row**: its first cell must be a **header label**, followed
    by whitespace.
+ - **content row**: a row with any other kind of cells
 
-A **label** is a single cell with one or more FST-style tags. Each tag
+A **label** is a single cell with one or more _tags_. Each tag
 in the label begins with a **prefix**, a **space character**, and then
 the tag proper. Each tag within a label is separated by a single space.
 
 These are the different prefixes:
 
- - `#`: header labels: describes an entire pane
+ - `#`: header labels: label that describes the entire pane it appears in
  - `_`: row labels: describes the row in the current pane
  - `|`: column labels: describes the column in the current pane
 
 For example, `# Past # Indicative` is a **header** label that has two
-**tags**: `Past` and `Indicative`. A separate **relabelling** system is
+**tags**: `Past` and `Indicative`. The **relabelling** system is
 intended to interpret the tags to display a user-facing string.
 
-A cell can be a **label** (as described above), **empty** (consisting
-of zero or more whitespace characters, a **missing** cell, consisting
-exactly of the string `--` or a **wordform** cell.
+A **cell** can be a **label** (as described above), an **empty** cell
+(consisting of zero or more whitespace characters, a **missing** cell,
+consisting exactly of the string `--` or a **wordform** cell. A parser
+**MUST** attempt interpreting the cell as a **label cell**, an **empty
+cell**, a **missing cell** before it may interpret the cell as
+a **wordform cell**.
 
-A wordform cell **may** contain a `${lemma}` placeholder. In which case,
-the paradigm layout is a dynamic layout, and the layout cells must be
-_filled_ before the layout is ready for presentation. Regardless if the
-wordform cell contains a `${lemma}` placeholder, there are few
-limitations in what can go in a wordform cell. As of now,
-a wordform cell is assumed to consist of either the literal wordform's
-text or an _FST analysis_ string.
+A wordform cell is either a static wordform cell or a dynamic wordform
+cell. A _dynamic_ wordform cell contains exactly one `${lemma}`
+placeholder. The placeholder must be **filled** by an external system,
+and the cell may be substituted with a generated wordform. A _static_
+wordform cell does not contain a placeholder, and can be displayed to
+users verbatim, without any substitution.
+A paradigm layout is a _dynamic layout_ when it contains one or more
+_dynamic wordform cells_. A paradigm layout is a _static layout_ when
+it contains zero _dynamic_ wordform cells_. A _dynamic layout_ **MUST**
+be _filled_ before the layout is ready for presentation.
 
-### Example
-
-Here is a paradigm layout file with two **panes**, each with
-a **header**, and each row with row labels and each column with column
-labels:
-
-Source: <https://docs.google.com/document/d/1nWQQvHgjGnXzOswm_TsnLx75Yp0-qzamTSm-7_INEsw/edit#>
-
+Aside from the presence or absence of the `${lemma}` placeholder, the
+exact syntax of a wordform cell is defined by the implementation.
 
 ### Partial Grammar
 
+Here is a partial W3C EBNF grammar of the layout file specification
+
+```ebnf
+Layout ::= (Row NL)+
+
+Row ::= BlankRow | HeaderRow | ContentRow
+
+HeaderRow ::= HeaderLabel (TAB EmptyCell)*
+ContentRow ::= ContentCell (TAB ContentCell)*
+
+ContentCell ::= RowLabel
+              | ColumnLabel
+              | MissingForm
+              | EmptyCell
+              | WordformCell
+BlankRow ::= EmptyCell (TAB EmptyCell)*
+
+HeaderLabel ::= ('#' SP Tag)+
+RowLabel ::= ('_' SP Tag)+
+ColumnLabel ::= ('|' SP Tag)+
+MissingForm ::= '-' '-'
+EmptyCell ::= SP*
+
+TAB ::= #x9
+NL  ::= #x0A
+SP  ::= #x20
+```
 
 ### Example
 
+Here is a **static paradigm layout file** with one **pane**. Each
+**row** has row labels, with two **tags** each. Each column has
+a **column label**, with some having one tag, and some having two tags.
+There are a few **missing cells** under the `All` column.
+
+Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>
+
+```tsv
+| Class	| Ind	| Comb | Suffix	| Gen | Suffix	| All
+_ 1 _ Sg	mimi	-mi	_angu	--
+_ 2 _ Sg	wewe	-we	-ako	--
+_ 3 _ Sg	yeye	-ye	-ake	--
+_ 1 _ Pl	sisi	-si	-etu	sisi
+_ 2 _ Pl	nyinyi/ninyi	-nyi	-enu	nyote
+_ 3 _ Pl	wao	-o	-ao	wote
+```
 
 
 [vd]: https://www.visidata.org/
