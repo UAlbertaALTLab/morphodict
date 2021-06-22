@@ -27,7 +27,8 @@ class SearchRun:
 
     include_auto_definition: bool
     _results: dict[WordformKey, types.Result]
-    _verbose_messages: list[Any]
+    VerboseMessage = dict[str, str]
+    _verbose_messages: list[VerboseMessage]
 
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):

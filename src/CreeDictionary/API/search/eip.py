@@ -1,4 +1,6 @@
-# EIP: English Inflected Phrase search
+"""
+EIP: English Inflected Phrase search
+"""
 import logging
 import re
 from dataclasses import dataclass
@@ -30,7 +32,7 @@ class EipSearch:
     """An English Inflected Phrase search.
 
     There are two phases:
-     1. analyzing the original query to determine if is a phrase search
+     1. analyzing the original query to determine if it is a phrase search.
      2. using tags extracted from phase #1 to inflect search results obtained by
         other methods.
     """
@@ -49,7 +51,7 @@ class EipSearch:
         """
         self.new_tags = []
         analyzed_query = PhraseAnalyzedQuery(
-            self.search_run.query.query_string,
+            self.search_run.internal_query,
             add_verbose_message=self.search_run.add_verbose_message,
         )
         if analyzed_query.has_tags:
@@ -130,9 +132,9 @@ class EipSearch:
 
     def _generate_inflected_results(self) -> list[_EipResult]:
         """
-        Of the results, sort out the verbs, then inflect them
+        From the results, sort out the inflectable wordforms, then inflect them
         using the new set of tags.
-        Return the inflected verbs.
+        Return the inflected wordforms.
         """
 
         words = []
@@ -145,11 +147,10 @@ class EipSearch:
         orig_tags_starting_with_plus: list[str] = []
         tags_ending_with_plus: list[str] = []
         for t in self.new_tags:
-            (
-                orig_tags_starting_with_plus
-                if t.startswith("+")
-                else tags_ending_with_plus
-            ).append(t)
+            if t.startswith("+"):
+                orig_tags_starting_with_plus.append(t)
+            else:
+                tags_ending_with_plus.append(t)
 
         results = []
         for word in words:

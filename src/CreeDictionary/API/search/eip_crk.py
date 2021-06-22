@@ -1,8 +1,10 @@
-# Cree-specific data for English Inflected Phrase search
+"""
+Cree-specific data for English Inflected Phrase search
+"""
 from morphodict.analysis.tag_map import TagMap
 
 
-def get_noun_tags(inflectional_category):
+def get_noun_tags(inflectional_category: str):
     """Turn a wordform’s inflectional class into tags needed for FST generator.
 
     >>> get_noun_tags("NA")
@@ -29,7 +31,7 @@ def get_noun_tags(inflectional_category):
 # So we list everything.
 noun_passthrough_tags = {
     0: [
-        # inflectional class
+        # word class
         "+N",
         "+A",
         "+I",
@@ -59,7 +61,7 @@ noun_passthrough_tags = {
 
 verb_passthrough_tags = {
     0: [
-        # inflectional class
+        # word class
         "+V",
         "+TA",
         "+AI",
@@ -111,12 +113,12 @@ verb_tag_map = TagMap(
     ("+Imm", ("+Imp", "+Imm"), 1),  # Immediate imperative
     ("+Del", ("+Imp", "+Del"), 1),  # Delayed imperative
     ("+Fut", ("PV/wi+", "+Ind"), 1),  # Future
-    # ("+Fut", "PV/wi+", 1)  # Also accept PV/wi without indicative as future
+    # TODO: also handle ("+Fut", "PV/wi+", 1)  # Also accept PV/wi without independent as future?
     # Note that these crk features as disjoint, but both are needed for the eng feature
     ("+Def", ("PV/ka+", "+Ind"), 1),
     ("+Inf", ("PV/ka+", "+Cnj"), 1),
     (TagMap.DEFAULT, "+Ind", 1),
-    # "+Inf": ("PV/ta+", "+Cnj")  # future definite
+    # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
     *passthrough_tags_to_tuples(verb_passthrough_tags)
 )
 
@@ -131,10 +133,10 @@ crkeng_tag_dict = {
     "+Imm": ("+Imp", "+Imm"),  # Immediate imperative
     "+Del": ("+Imp", "+Del"),  # Delayed imperative
     "+Fut": ("PV/wi+", "+Ind"),  # Future
-    # "+Fut": "PV/wi+",  # Also accept PV/wi without indicative as future
+    # TODO: also handle "+Fut": "PV/wi+",  # Also accept PV/wi without independent as future?
     # Note that these crk features as disjoint, but both are needed for the eng feature
     "+Def": ("PV/ka+", "+Ind"),
     "+Inf": ("PV/ka+", "+Cnj"),
-    # "+Inf": ("PV/ta+", "+Cnj")  # future definite
+    # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
     "+Dim": ("+Der/Dim",),
 }
