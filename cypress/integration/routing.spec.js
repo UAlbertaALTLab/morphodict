@@ -24,37 +24,9 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
         expect(loc.search).to.eq(`?q=${encodeURIComponent(fakeWord)}`)
       }
     )
-
-    // wrong constraint pos=N is supplied, nipâw should have pos V
-    cy.visit('/word/nipâw', {qs:{'pos':'N'}})
-    cy.get('[data-cy=paradigm]')
-      .should('not.exist')
-
-    // test if the redirection happens
-    cy.location().should(
-      (loc)=>{
-        expect(loc.pathname).to.eq('/search')
-        expect(loc.search).to.eq(`?q=${encodeURIComponent('nipâw')}`)
-      }
-    )
   })
 
-  it('should redirect to search page if the lemma_text in /word/lemma_text matches multiple results', function () {
-    // pipon is a verb as well as a noun
-    cy.visit('/word/pipon/')
-    cy.get('[data-cy=paradigm]')
-      .should('not.exist')
-
-    // test if the redirection happens
-    cy.location().should(
-      (loc)=>{
-        expect(loc.pathname).to.eq('/search')
-        expect(loc.search).to.eq('?q=pipon')
-      }
-    )
-  })
-
-  it('should add relevant constraints as query params in href for ambiguous lemmas on the search page', function () {
+  it('should have separate result links for ambiguous lemmas on the search page', function () {
     // pipon is a verb as well as a noun
     cy.visitSearch('pipon')
 
@@ -63,6 +35,6 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // both results should be present
     cy.get('[data-cy=definition-title] a').each(($e)=>{
       lemmaUrls.push($e.attr('href'))
-    }).then(()=>expect(lemmaUrls).to.include('/word/pipon/?pos=N').and.to.include('/word/pipon/?pos=V'))
+    }).then(()=>expect(lemmaUrls).to.include('/word/pipon-ni-1/').and.to.include('/word/pipon-vii-1n/'))
   })
 })
