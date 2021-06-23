@@ -68,7 +68,14 @@ def entry_details(request, lemma_text: str):
         return redirect(url_for_query(lemma_text or ""))
 
     lemma = lemma.get()
-    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
+
+    # XXX: ugly code! Delete ASAP!
+    t1 = request.GET.get("paradigm-size")
+    if not t1:
+        paradigm_size = ParadigmSize.BASIC
+    else:
+        paradigm_size = ParadigmSize(t1.upper())
+
     paradigm = paradigm_for(lemma, paradigm_size)
 
     context = create_context_for_index_template(
@@ -428,9 +435,3 @@ class ParadigmSize(Enum):
     FULL = "FULL"
     # TODO: "Linguistic" isn't a size...
     LINGUISTIC = "LINGUISTIC"
-
-    @classmethod
-    def from_string(cls, value: Optional[str]) -> ParadigmSize:
-        if not value:
-            return cls.BASIC
-        return cls(value.upper())
