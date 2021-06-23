@@ -76,7 +76,7 @@ def entry_details(request, lemma_text: str):
     else:
         paradigm_size = ParadigmSize(t1.upper())
 
-    paradigm = paradigm_for(lemma, paradigm_size)
+    paradigm = paradigm_for(lemma, paradigm_size, size=t1)
 
     context = create_context_for_index_template(
         "word-detail",
@@ -158,9 +158,10 @@ def paradigm_internal(request):
     :raise 405 Method Not Allowed: when method other than GET is used
     """
     lemma_id = request.GET.get("lemma-id")
-    paradigm_size = request.GET.get("paradigm-size")
+    raw_paradigm_size = request.GET.get("paradigm-size")
+
     # guards
-    if lemma_id is None or paradigm_size is None:
+    if lemma_id is None or raw_paradigm_size is None:
         return HttpResponseBadRequest("query params missing")
     try:
         lemma_id = int(lemma_id)
@@ -172,7 +173,7 @@ def paradigm_internal(request):
                 "lemma-id is negative and should be non-negative"
             )
     try:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
+        paradigm_size = ParadigmSize(raw_paradigm_size.upper())
     except ValueError:
         return HttpResponseBadRequest(
             f"paradigm-size is not one {[x.value for x in ParadigmSize]}"
@@ -184,7 +185,7 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    paradigm = paradigm_for(lemma, paradigm_size)
+    paradigm = paradigm_for(lemma, paradigm_size, size=raw_paradigm_size)
     return render(
         request,
         "CreeDictionary/components/paradigm.html",
@@ -354,7 +355,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Paradigm]:
+def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize, *, size: Optional[str]) -> Optional[ Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
