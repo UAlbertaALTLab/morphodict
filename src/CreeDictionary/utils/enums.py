@@ -1,20 +1,6 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
-
-
-class ParadigmSize(Enum):
-    BASIC = "BASIC"
-    FULL = "FULL"
-    # TODO: "Linguistic" isn't a size...
-    LINGUISTIC = "LINGUISTIC"
-
-    @classmethod
-    def from_string(cls, value: Optional[str]) -> ParadigmSize:
-        if not value:
-            return cls.BASIC
-        return cls(value.upper())
 
 
 class PartOfSpeech(Enum):

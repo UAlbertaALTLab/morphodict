@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 import logging
+from enum import Enum
 from typing import Any, Dict, Literal, Optional
 
 from django.conf import settings
@@ -18,7 +21,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.utils import ParadigmSize, WordClass
+from CreeDictionary.utils import WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
@@ -418,3 +421,16 @@ def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
         WordClass.NAD: "NDA",
         WordClass.NID: "NDI",
     }.get(word_class)
+
+
+class ParadigmSize(Enum):
+    BASIC = "BASIC"
+    FULL = "FULL"
+    # TODO: "Linguistic" isn't a size...
+    LINGUISTIC = "LINGUISTIC"
+
+    @classmethod
+    def from_string(cls, value: Optional[str]) -> ParadigmSize:
+        if not value:
+            return cls.BASIC
+        return cls(value.upper())
