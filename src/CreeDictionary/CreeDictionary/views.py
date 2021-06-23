@@ -76,7 +76,7 @@ def entry_details(request, lemma_text: str):
     else:
         paradigm_size = ParadigmSize(t1.upper())
 
-    paradigm = paradigm_for(lemma, paradigm_size, size=t1)
+    paradigm = paradigm_for(lemma, size=t1)
 
     context = create_context_for_index_template(
         "word-detail",
@@ -185,7 +185,7 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    paradigm = paradigm_for(lemma, paradigm_size, size=raw_paradigm_size)
+    paradigm = paradigm_for(lemma, size=raw_paradigm_size)
     return render(
         request,
         "CreeDictionary/components/paradigm.html",
@@ -355,7 +355,7 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize, *, size: Optional[str]) -> Optional[ Paradigm]:
+def paradigm_for(wordform: Wordform, *, size: Optional[str]) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
@@ -372,13 +372,14 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize, *, size: Optio
 
     raw_size = size
     if raw_size is None:
-        size = manager.default_size_of(paradigm_name)
+        valid_size = manager.default_size_of(paradigm_name)
     else:
-        size = {
-            actual_size.lower(): actual_size for actual_size in manager.sizes_of(paradigm_name)
+        valid_size = {
+            actual_size.lower(): actual_size
+            for actual_size in manager.sizes_of(paradigm_name)
         }.get(raw_size.lower(), manager.default_size_of(paradigm_name))
 
-    return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
+    return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=valid_size)
 
 
 def determine_crkeng_paradigm_name(wordform: Wordform) -> Optional[str]:
