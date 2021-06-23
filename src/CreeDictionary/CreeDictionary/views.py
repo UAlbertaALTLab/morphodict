@@ -86,7 +86,6 @@ def entry_details(request, lemma_text: str):
     return render(request, "CreeDictionary/index.html", context)
 
 
-
 def index(request):  # pragma: no cover
     """
     homepage with optional initial search results to display
@@ -356,7 +355,6 @@ def paradigm_for(wordform: Wordform, *, size: Optional[str]) -> Optional[Paradig
 
     If a paradigm cannot be found, an empty list is returned
     """
-    # TODO: make this use the new-style ParadigmManager exclusively
 
     manager = default_paradigm_manager()
 
@@ -365,14 +363,10 @@ def paradigm_for(wordform: Wordform, *, size: Optional[str]) -> Optional[Paradig
         # No paradigm can be associated with this entry.
         return None
 
-    raw_size = size
-    if raw_size is None:
+    if size is None:
         valid_size = manager.default_size_of(paradigm_name)
     else:
-        valid_size = {
-            actual_size.lower(): actual_size
-            for actual_size in manager.sizes_of(paradigm_name)
-        }.get(raw_size.lower(), manager.default_size_of(paradigm_name))
+        valid_size = manager.coerce_to_valid_size_for(paradigm_name, size)
 
     return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=valid_size)
 
@@ -419,6 +413,7 @@ class _LegacyParadigmSize(Enum):
 
     Currently in the process of being phased-out.
     """
+
     BASIC = "BASIC"
     FULL = "FULL"
     # TODO: "Linguistic" isn't a size...
@@ -431,4 +426,3 @@ def _to_legacy_paradigm_size(raw_paradigm_size: Optional[str]) -> _LegacyParadig
     else:
         legacy_paradigm_size = _LegacyParadigmSize(raw_paradigm_size.upper())
     return legacy_paradigm_size
-

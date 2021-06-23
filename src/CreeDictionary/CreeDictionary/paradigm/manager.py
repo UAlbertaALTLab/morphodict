@@ -86,6 +86,26 @@ class ParadigmManager:
         else:
             return first(options)
 
+    def coerce_to_valid_size_for(self, paradigm_name: str, size: str) -> str:
+        """
+        Returns a valid size for the given paradigm, based upon the size given.
+        A **case-insensitive** comparison is done to match a size.
+        Returns the default size if no match can be made.
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
+        """
+
+        case_insensitive_lookup = {
+            actual_size.lower(): actual_size
+            for actual_size in self.sizes_of(paradigm_name)
+        }
+
+        if matched_size := case_insensitive_lookup.get(size.lower()):
+            return matched_size
+
+        # No match? Just return the default size.
+        return self.default_size_of(paradigm_name)
+
     def all_analyses(self, paradigm_name: str, lemma: str) -> set[str]:
         """
         Returns all analysis strings for a given paradigm and lemma in all layout sizes.
