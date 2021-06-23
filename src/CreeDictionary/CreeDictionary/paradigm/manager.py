@@ -4,6 +4,8 @@ import logging
 from pathlib import Path
 from typing import Collection, Iterable, Optional, Protocol
 
+from more_itertools import first
+
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
@@ -60,6 +62,29 @@ class ParadigmManager:
         :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
         """
         return self._layout_sizes_or_raise(paradigm_name).keys()
+
+    def has_multiple_sizes_for(self, paradigm_name: str) -> bool:
+        """
+        Returns true if the given paradigm comes in more than one size.
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
+        """
+        return len(self.sizes_of(paradigm_name)) > 1
+
+    def default_size_of(self, paradigm_name: str) -> str:
+        """
+        Returns the default size of the paradigm. For paradigms with multiple sizes,
+        this is the first (See ParadigmManagerWithExplicitSizes if you want more
+        control over this).
+
+        :raises ParadigmDoesNotExistError: when the paradigm name cannot be found.
+        """
+        options = self.sizes_of(paradigm_name)
+        if len(options) == 1:
+            assert ONLY_SIZE in options
+            return ONLY_SIZE
+        else:
+            return first(options)
 
     def all_analyses(self, paradigm_name: str, lemma: str) -> set[str]:
         """

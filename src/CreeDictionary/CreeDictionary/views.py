@@ -1,5 +1,5 @@
 import logging
-from typing import Any, Dict, Literal, Optional, Union
+from typing import Any, Dict, Literal, Optional
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -22,7 +22,6 @@ from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
-from .paradigm.manager import ONLY_SIZE
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -360,11 +359,12 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Pa
         # No paradigm can be associated with this entry.
         return None
 
-    size_options = manager.sizes_of(paradigm_name)
-    if len(size_options) > 1:
+    if manager.has_multiple_sizes_for(paradigm_name):
+        # This **should** ALWAYS give a valid size; otherwise, there's a bug either
+        # in the paradigm sizes or in the (legacy) ParadigmSize enum.
         size = convert_crkeng_paradigm_size_to_size(paradigm_size)
     else:
-        size = ONLY_SIZE
+        size = manager.default_size_of(paradigm_name)
 
     return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
 
