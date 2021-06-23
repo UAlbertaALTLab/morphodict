@@ -69,14 +69,8 @@ def entry_details(request, lemma_text: str):
 
     lemma = lemma.get()
 
-    # XXX: ugly code! Delete ASAP!
-    t1 = request.GET.get("paradigm-size")
-    if not t1:
-        paradigm_size = ParadigmSize.BASIC
-    else:
-        paradigm_size = ParadigmSize(t1.upper())
-
-    paradigm = paradigm_for(lemma, size=t1)
+    raw_paradigm_size = request.GET.get("paradigm-size")
+    paradigm = paradigm_for(lemma, size=raw_paradigm_size)
 
     context = create_context_for_index_template(
         "word-detail",
@@ -86,10 +80,11 @@ def entry_details(request, lemma_text: str):
         lemma=lemma,
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
-        paradigm_size=paradigm_size,
+        paradigm_size=_to_legacy_paradigm_size(raw_paradigm_size),
         paradigm=paradigm,
     )
     return render(request, "CreeDictionary/index.html", context)
+
 
 
 def index(request):  # pragma: no cover
@@ -173,10 +168,10 @@ def paradigm_internal(request):
                 "lemma-id is negative and should be non-negative"
             )
     try:
-        paradigm_size = ParadigmSize(raw_paradigm_size.upper())
+        legacy_paradigm_size = _LegacyParadigmSize(raw_paradigm_size.upper())
     except ValueError:
         return HttpResponseBadRequest(
-            f"paradigm-size is not one {[x.value for x in ParadigmSize]}"
+            f"paradigm-size is not one {[x.value for x in _LegacyParadigmSize]}"
         )
 
     try:
@@ -191,7 +186,7 @@ def paradigm_internal(request):
         "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
-            "paradigm_size": paradigm_size.value,
+            "paradigm_size": legacy_paradigm_size.value,
             "paradigm": paradigm,
         },
     )
@@ -418,8 +413,22 @@ def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
     }.get(word_class)
 
 
-class ParadigmSize(Enum):
+class _LegacyParadigmSize(Enum):
+    """
+    Paradigm size enum for crkeng (itwêwina Plains Cree/English dictionary).
+
+    Currently in the process of being phased-out.
+    """
     BASIC = "BASIC"
     FULL = "FULL"
     # TODO: "Linguistic" isn't a size...
     LINGUISTIC = "LINGUISTIC"
+
+
+def _to_legacy_paradigm_size(raw_paradigm_size: Optional[str]) -> _LegacyParadigmSize:
+    if not raw_paradigm_size:
+        legacy_paradigm_size = _LegacyParadigmSize.BASIC
+    else:
+        legacy_paradigm_size = _LegacyParadigmSize(raw_paradigm_size.upper())
+    return legacy_paradigm_size
+
