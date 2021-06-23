@@ -22,6 +22,7 @@ from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
 
+from .paradigm.manager import ONLY_SIZE
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -354,33 +355,35 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Pa
 
     manager = default_paradigm_manager()
 
-    if name := wordform.paradigm:
-        if static_paradigm := manager.paradigm_for(name):
-            return static_paradigm
-        logger.warning(
-            "Could not retrieve static paradigm %r " "associated with wordform %r",
-            name,
-            wordform,
-        )
+    paradigm_name = determine_crkeng_paradigm_name(wordform)
+    if paradigm_name is None:
+        # No paradigm can be associated with this entry.
         return None
 
-    # TODO: use new-style paradigms for other sizes in addition to FULL
-    # Requires:
-    #  - "basic" size paradigm layouts to be created
-    #  - paradigm manager must support multiple sizes
-    #  - relabelling must work to use linguistic layouts
-    if word_class := wordform.word_class:
+    size_options = manager.sizes_of(paradigm_name)
+    if len(size_options) > 1:
         size = convert_crkeng_paradigm_size_to_size(paradigm_size)
+    else:
+        size = ONLY_SIZE
 
-        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
-        if paradigm_name is None:
-            return None
+    return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
 
-        try:
-            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
-        except KeyError:
-            return None
 
+def determine_crkeng_paradigm_name(wordform: Wordform) -> Optional[str]:
+    """
+    Returns the name of the paradigm for a crkeng wordform.
+
+    This tries the explicit paradigm name, but then tries to guess the paradigm from
+    the wordclass.
+    """
+    if explicit_name := wordform.paradigm:
+        # No need to guess the paradigm -- the Wordform tells us what it is!
+        return explicit_name
+
+    if word_class := wordform.word_class:
+        return convert_crkeng_word_class_to_paradigm_name(word_class)
+
+    # Cannot guess the paradigm (neither word class nor explicit paradigm name given)
     return None
 
 

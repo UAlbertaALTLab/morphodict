@@ -134,9 +134,12 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
         self._size_to_order = {
             element: index for index, element in enumerate(ordered_sizes)
         }
+        # Place the ONLY_SIZE before all other options.
+        self._size_to_order[ONLY_SIZE] = -1
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         unsorted_results = super().sizes_of(paradigm_name)
+
         return sorted(unsorted_results, key=self._sort_by_explict_order)
 
     def _sort_by_explict_order(self, element: str) -> int:
