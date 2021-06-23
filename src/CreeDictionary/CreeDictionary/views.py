@@ -370,12 +370,13 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize, *, size: Optio
         # No paradigm can be associated with this entry.
         return None
 
-    if manager.has_multiple_sizes_for(paradigm_name):
-        # This **should** ALWAYS give a valid size; otherwise, there's a bug either
-        # in the paradigm sizes or in the (legacy) ParadigmSize enum.
-        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
-    else:
+    raw_size = size
+    if raw_size is None:
         size = manager.default_size_of(paradigm_name)
+    else:
+        size = {
+            actual_size.lower(): actual_size for actual_size in manager.sizes_of(paradigm_name)
+        }.get(raw_size.lower(), manager.default_size_of(paradigm_name))
 
     return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
 
