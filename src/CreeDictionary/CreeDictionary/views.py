@@ -400,21 +400,6 @@ def determine_crkeng_paradigm_name(wordform: Wordform) -> Optional[str]:
     return None
 
 
-def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize):
-    """
-    Returns the crkeng layout size, which is currently:
-     - basic
-     - full
-    """
-    return {
-        ParadigmSize.FULL: "full",
-        ParadigmSize.BASIC: "basic",
-        # The linguistic "size" does not, as of yet exist, however its content is
-        # exactly the same as the full layout.
-        ParadigmSize.LINGUISTIC: "full",
-    }[paradigm_size]
-
-
 def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
     """
     Returns the paradigm name in crkeng's layouts directory, or None if a paradigm
