@@ -224,7 +224,7 @@ class PhraseAnalyzedQuery:
         if "+?" in phrase_analysis:
             return
 
-        if not match := PHRASE_ANALYSIS_OUTPUT_RE.fullmatch(phrase_analysis):
+        if not (match := PHRASE_ANALYSIS_OUTPUT_RE.fullmatch(phrase_analysis)):
             return
 
         self.filtered_query = match["query"]
