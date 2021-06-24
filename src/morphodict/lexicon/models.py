@@ -6,6 +6,7 @@ from typing import Dict, Literal, Union, Any
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
+from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 
@@ -103,27 +104,12 @@ class Wordform(models.Model):
 
     class Meta:
         indexes = [
-            # analysis is for faster user query (see search/lookup.py)
-            models.Index(fields=["raw_analysis"]),
-            # text index benefits fast wordform matching (see search/lookup.py)
-            models.Index(fields=["text"]),
+            models.Index(fields=["text", "raw_analysis"]),
             # When we *just* want to lookup text wordforms that are "lemmas"
-            # (Note: Eddie thinks "head words" may also be lumped in as "lemmas")
             # Used by:
             #  - affix tree intialization
             #  - sitemap generation
             models.Index(fields=["is_lemma", "text"]),
-            # pos and inflectional_category are used when generating the preverb cache:
-            # models.Index(fields=["inflectional_category"]),
-            # models.Index(fields=["pos"]),
-        ]
-
-        constraints: list[Any] = [
-            # models.UniqueConstraint(
-            #     fields=("text", "analysis"),
-            #     name="text_analysis_unique",
-            #     condition=Q(analysis__isnull=False),
-            # )
         ]
 
     def __str__(self):

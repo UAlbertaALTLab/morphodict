@@ -36,8 +36,6 @@ class AffixSearcher:
     Enables prefix and suffix searches given a list of words and their wordform IDs.
     """
 
-    # TODO: "int" should be Wordform PK type
-
     def __init__(self, words: Iterable[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
 
@@ -134,7 +132,7 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
 
 def fetch_target_language_keywords_with_ids():
     """
-    Return pairs of indexed English keywords with their corresponding Wordform IDs.
+    Return tuple of (text, Wordform ID) pairs for all target-language keywords
     """
     # Slurp up all the results to prevent walking the database multiple times
     return tuple(
@@ -144,7 +142,7 @@ def fetch_target_language_keywords_with_ids():
 
 def fetch_source_language_lemmas_with_ids():
     """
-    Return pairs of Cree lemmas with their corresponding Wordform IDs.
+    Return tuple of (text, id) pairs for all lemma Wordforms
     """
     # Slurp up all the results to prevent walking the database multiple times
     return tuple(Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
