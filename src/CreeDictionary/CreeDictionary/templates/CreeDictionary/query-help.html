@@ -32,8 +32,6 @@
   <dl>
     <dt>auto: (boolean)</dt>
     <dd>Show auto-translated definitions</dd>
-    <dt>eip: (boolean)</dt>
-    <dd>Show English inflected phrase results (phrase search)</dd>
   </dl>
   {% if user.is_authenticated %}
   <h3>Developer queries</h3>
@@ -42,6 +40,13 @@
     who are logged in.
   </p>
   <dl>
+    <dt>espt: (boolean)</dt>
+    <dd>Show English Simple Phrase Translation results. For example,
+      <a href="{% url_for_query 'my many little books espt:1' %}"
+       >my many little books</a> or
+      <a href="{% url_for_query 'they crawled espt:1' %}"
+       >they crawled</a>.
+    </dd>
     <dt>cvd: <kbd>off</kbd> | <kbd>retrieval</kbd> | <kbd>exclusive</kbd></dt>
     <dd>
       Adjust cosine vector distance settings. The default <kbd>retrieval</kbd>

@@ -2,7 +2,7 @@ import pytest
 
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun
-from CreeDictionary.API.search.eip import EipSearch
+from CreeDictionary.API.search.espt import EsptSearch
 from CreeDictionary.API.search.types import Result
 
 
@@ -47,13 +47,13 @@ from CreeDictionary.API.search.types import Result
         ],
     ],
 )
-def test_eip_search(db, search, params):
+def test_espt_search(db, search, params):
     search_run = SearchRun(search)
-    eip_search = EipSearch(search_run)
-    eip_search.analyze_query()
+    espt_search = EsptSearch(search_run)
+    espt_search.analyze_query()
     assert search_run.query.query_terms == params["expected_query_terms"]
     assert search_run.query.query_string == " ".join(params["expected_query_terms"])
-    assert eip_search.new_tags == params["expected_new_tags"]
+    assert espt_search.new_tags == params["expected_new_tags"]
 
     lemma1 = Wordform.objects.get(text=params["lemma"], is_lemma=True)
 
@@ -64,7 +64,7 @@ def test_eip_search(db, search, params):
         )
     )
 
-    eip_search.inflect_search_results()
+    espt_search.inflect_search_results()
 
     assert (
         list(search_run.unsorted_results())[0].wordform.text

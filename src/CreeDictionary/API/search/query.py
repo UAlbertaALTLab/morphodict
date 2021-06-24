@@ -38,7 +38,7 @@ def treat_query(query_string):
 
 
 class Query:
-    BOOL_KEYS = ["verbose", "auto", "eip"]
+    BOOL_KEYS = ["verbose", "auto", "espt"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
@@ -92,4 +92,4 @@ class Query:
     verbose: Optional[bool] = None
     auto: Optional[bool] = None
     cvd: Optional[CvdSearchType] = None
-    eip: Optional[bool] = None
+    espt: Optional[bool] = None

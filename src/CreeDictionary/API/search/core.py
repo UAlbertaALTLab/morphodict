@@ -74,8 +74,11 @@ class SearchRun:
 
         return [r.serialize() for r in results]
 
-    def add_verbose_message(self, message):
-        self._verbose_messages.append(message)
+    def add_verbose_message(self, message=None, **messages):
+        assert message is not None or messages
+        if message is not None:
+            self._verbose_messages.append(message)
+        self._verbose_messages.append(messages)
 
     @property
     def verbose_messages(self):

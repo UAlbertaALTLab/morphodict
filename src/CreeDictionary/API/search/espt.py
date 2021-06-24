@@ -1,12 +1,12 @@
 """
-EIP: English Inflected Phrase search
+ESPT: English simple phrase translation
 """
 import logging
 import re
 from dataclasses import dataclass
 
 from CreeDictionary.API.models import Wordform
-from CreeDictionary.API.search.eip_crk import (
+from CreeDictionary.API.search.espt_crk import (
     get_noun_tags,
     verb_tag_map,
     noun_tag_map,
@@ -28,8 +28,8 @@ class _EipResult:
     original_result: Result
 
 
-class EipSearch:
-    """An English Inflected Phrase search.
+class EsptSearch:
+    """An English simple phrase translation search.
 
     There are two phases:
      1. analyzing the original query to determine if it is a phrase search.
@@ -66,18 +66,16 @@ class EipSearch:
                 self.new_tags = tag_map.map_tags(analyzed_query.tags)
             except UnknownTagError as e:
                 logger.error(f"Unable to map tags for {analyzed_query}", exc_info=True)
-                self.search_run.add_verbose_message(dict(eip_analysis_error=repr(e)))
+                self.search_run.add_verbose_message(espt_analysis_error=repr(e))
                 return
 
         self.search_run.query.replace_query(analyzed_query.filtered_query)
         self.query_analyzed_ok = True
 
         self.search_run.add_verbose_message(
-            dict(
-                filtered_query=analyzed_query.filtered_query,
-                tags=analyzed_query.tags,
-                new_tags=self.new_tags,
-            )
+            filtered_query=analyzed_query.filtered_query,
+            tags=analyzed_query.tags,
+            new_tags=self.new_tags,
         )
 
     def inflect_search_results(self):
@@ -126,7 +124,7 @@ class EipSearch:
             self.search_run.add_result(
                 result.original_result.create_related_result(
                     wordform,
-                    is_eip_result=True,
+                    is_espt_result=True,
                 )
             )
 
@@ -217,7 +215,7 @@ class PhraseAnalyzedQuery:
         ]
 
         if add_verbose_message:
-            add_verbose_message({"phrase_analyses": phrase_analyses})
+            add_verbose_message(phrase_analyses=phrase_analyses)
 
         if len(phrase_analyses) != 1:
             return

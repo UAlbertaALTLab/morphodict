@@ -1,6 +1,6 @@
 import pytest
 
-from CreeDictionary.API.search.eip import PhraseAnalyzedQuery
+from CreeDictionary.API.search.espt import PhraseAnalyzedQuery
 
 
 @pytest.mark.parametrize(

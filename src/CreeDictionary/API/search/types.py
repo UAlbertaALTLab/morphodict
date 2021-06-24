@@ -198,7 +198,7 @@ class Result:
 
     is_cw_as_is_wordform: Optional[bool] = None
 
-    is_eip_result: Optional[bool] = None
+    is_espt_result: Optional[bool] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None

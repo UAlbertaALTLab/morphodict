@@ -1,26 +1,29 @@
-class UnknownTagError(KeyError):
-    """Raised when TagMap encounters an unknown tag"""
+class InvalidTagMapError(Exception):
+    """
+    Raised during TagMap.__init__ if the provided tag definitions are invalid.
+    """
 
 
-class MultiTagCopyError(Exception):
+class MultiTagCopyError(InvalidTagMapError):
     """
     Raised when multiple tags are present but not expected
     """
-    pass
 
 
-class MultiplePrecedenceError(Exception):
+class MultiplePrecedenceError(InvalidTagMapError):
     """
     Raised when a single tag has multiple precedences declared
     """
-    pass
 
 
-class ConflictingPrecedenceError(Exception):
+class ConflictingPrecedenceError(InvalidTagMapError):
     """
     Raised when multiple tags have the same precedence
     """
-    pass
+
+
+class UnknownTagError(KeyError):
+    """Raised when TagMap encounters an unknown tag during processing"""
 
 
 class TagMap:
@@ -33,11 +36,11 @@ class TagMap:
 
     For example, one generic wordform analysis for ‘acâhkosa’ is
     `acâhkosa+N+A+Der/Dim+N+A+Obv`. There’s a phrase-generation FST that
-    takes as input tags and definition in the form `Obv+Dim+ star`, and
-    outputs the inflected phrase `little star over there`. `Obv` has the
-    same tag name but is now a start tag, not an end tag, and `Der/Dim`
-    needs to be translated to just `Dim`. As well, the phrase-generation
-    FST has stricter ordering requirements on the input tags.
+    takes as input tags and definition in the form `Obv+Dim+ star`, and outputs
+    the translated simple phrase `little star over there`. `Obv` has the same
+    tag name but is now a start tag, not an end tag, and `Der/Dim` needs to be
+    translated to just `Dim`. As well, the phrase-generation FST has stricter
+    ordering requirements on the input tags.
 
     This class can handle all of that.
 
