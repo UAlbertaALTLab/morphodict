@@ -33,8 +33,7 @@ class ParadigmManager:
         self._generator = generation_fst
         self._name_to_layout = {}
 
-        self._load_layouts_from(layout_directory / "static")
-        self._load_layouts_from(layout_directory / "dynamic")
+        self._load_layouts_from(layout_directory)
 
     def paradigm_for(
         self, paradigm_name: str, lemma: Optional[str] = None, size: str = ONLY_SIZE
