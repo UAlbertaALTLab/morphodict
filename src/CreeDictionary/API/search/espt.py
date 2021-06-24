@@ -69,8 +69,8 @@ class EsptSearch:
                 self.search_run.add_verbose_message(espt_analysis_error=repr(e))
                 return
 
-        self.search_run.query.replace_query(analyzed_query.filtered_query)
-        self.query_analyzed_ok = True
+            self.search_run.query.replace_query(analyzed_query.filtered_query)
+            self.query_analyzed_ok = True
 
         self.search_run.add_verbose_message(
             filtered_query=analyzed_query.filtered_query,

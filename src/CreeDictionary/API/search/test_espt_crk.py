@@ -2,8 +2,24 @@ import pytest
 
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun
-from CreeDictionary.API.search.espt import EsptSearch
+from CreeDictionary.API.search.espt import EsptSearch, PhraseAnalyzedQuery
 from CreeDictionary.API.search.types import Result
+
+
+@pytest.mark.parametrize(
+    ("query", "has_tags", "tags", "filtered_query"),
+    [
+        ("atim", False, None, None),
+        ("they swam", True, ["+V", "+AI", "+Prt", "+3Pl"], "swim"),
+        ("dog +Px1Sg+Sg", False, None, None),
+    ],
+)
+def test_search_with_tags(query, has_tags, tags, filtered_query):
+    result = PhraseAnalyzedQuery(query)
+    assert result.has_tags == has_tags
+    if has_tags:
+        assert result.tags == tags
+        assert result.filtered_query == filtered_query
 
 
 @pytest.mark.parametrize(
@@ -43,6 +59,16 @@ from CreeDictionary.API.search.types import Result
                 "expected_new_tags": ["+V", "+AI", "+Ind", "+3Pl"],
                 "lemma": "wâpiw",
                 "expected_inflection": "wâpiwak",
+            },
+        ],
+        [
+            "bear",
+            {
+                # Don’t try to inflect results for searches not analyzable as phrases
+                "expected_query_terms": ["bear"],
+                "expected_new_tags": [],
+                "lemma": "maskwa",
+                "expected_inflection": "maskwa",
             },
         ],
     ],
