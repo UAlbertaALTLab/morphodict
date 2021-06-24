@@ -176,8 +176,8 @@ def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
     for (i, tag) in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
-        type = ""
-        entry: Optional[_ReduplicationResult or Wordform] = None
+        _type = ""
+        entry = None
 
         tag = FSTTag(tag)
 
@@ -224,16 +224,16 @@ def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
                     }
                 ],
             )
-            type = "Reduplication"
+            _type = Literal["Reduplication"]
 
         if preverb_result is not None:
             entry = serialize_wordform(preverb_result)
-            type = "Preverb"
+            _type = Literal["Preverb"]
 
-        if entry:
+        if entry and _type != "":
             result = _LexicalEntry(
                 entry=entry,
-                type=type,
+                type=_type,
                 index=i,
                 original_tag=tag
             )
