@@ -22,7 +22,7 @@ def test_paradigm_sizes_are_ordered(paradigm_manager):
 
 
 def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
-    paradigm = paradigm_manager.static_paradigm_for("personal-pronouns")
+    paradigm = paradigm_manager.paradigm_for("personal-pronouns")
     assert paradigm is not None
 
     # I don't know how many panes there will be, but the first should DEFINITELY have
@@ -38,6 +38,28 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
     assert paradigm.contains_wordform("kiyânaw")
     assert paradigm.contains_wordform("kiyawâw")
     assert paradigm.contains_wordform("wiyawâw")
+
+
+@pytest.mark.parametrize(
+    ("name", "lemma", "examples"),
+    [
+        ("VTA", "wâpamêw", ["wâpamêw", "niwâpamâw", "kiwâpamitin", "ê-wâpamât"]),
+        ("VAI", "nipâw", ["nipâw", "ninipân", "kinipân", "ninipânân"]),
+        ("VTI", "mîciw", ["mîciw", "nimîcin", "kimîcin", "kimîcinânaw", "ê-mîcit"]),
+        ("VAI", "mîcisow", ["mîcisow", "nimîcison", "kimîcison", "ê-mîcisoyit"]),
+        ("VII", "nîpin", ["nîpin", "nîpin", "ê-nîpihk"]),
+        ("NDA", "nôhkom", ["nôhkom", "kôhkom", "ohkoma"]),
+        ("NDI", "mîpit", ["mîpit", "nîpit", "kîpit", "wîpit"]),
+        ("NA", "minôs", ["minôs", "minôsak", "minôsa"]),
+        ("NI", "nipiy", ["nipiy", "nipîhk", "ninipiy", "kinipiy"]),
+    ],
+)
+def test_paradigm(paradigm_manager, name, lemma, examples: list[str]):
+    default_size = first(paradigm_manager.sizes_of(name))
+    paradigm = paradigm_manager.paradigm_for(name, lemma=lemma, size=default_size)
+
+    for form in examples:
+        assert paradigm.contains_wordform(form)
 
 
 def test_generates_na_paradigm(paradigm_manager) -> None:

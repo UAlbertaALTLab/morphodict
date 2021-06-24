@@ -19,23 +19,30 @@ context('Admin interface', () => {
     cy.location('pathname').should('eq', Cypress.env('admin_url'))
   })
 
-  it('should show auto-translations to logged-in users', function() {
-    cy.login()
-    cy.visitSearch('acâhkosa')
-    cy
-      .get('[data-cy=search-result]').contains('little star over there')
-      .get('.cite-dict').contains('auto')
-  })
+  context('auto-translations', function() {
+    // NB: need to make sure this wordform is added **explicitly** in the
+    // `ensuretestdb` management commands:
+    let searchTerm = 'niminôsak'
+    let autoTranslation = 'my cats'
 
-  it('should not show auto-translations to anonymous users', function() {
-    cy.visitSearch('acâhkosa')
-    cy.get('[data-cy=search-result]').each(r => {
-      // Every result should have a dictionary citation
-      cy.wrap(r).get('.cite-dict').should('have.length.at.least', 1)
-        .each(citation => {
-          // But none of those should be ‘auto’
-          cy.wrap(citation).should('not.contain', 'auto')
-        })
+    it('should show auto-translations to logged-in users', function() {
+      cy.login()
+      cy.visitSearch(searchTerm)
+      cy
+        .get('[data-cy=search-result]').contains(autoTranslation)
+        .get('.cite-dict').contains('auto')
+    })
+
+    it('should not show auto-translations to anonymous users', function() {
+      cy.visitSearch(searchTerm)
+      cy.get('[data-cy=search-result]').each(r => {
+        // Every result should have a dictionary citation
+        cy.wrap(r).get('.cite-dict').should('have.length.at.least', 1)
+          .each(citation => {
+            // But none of those should be ‘auto’
+            cy.wrap(citation).should('not.contain', 'auto')
+          })
+      })
     })
   })
 
