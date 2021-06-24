@@ -53,12 +53,6 @@ class SearchRun:
 
     def serialized_presentation_results(self):
         results = self.presentation_results()
-        # wordforms = [r.wordform for r in results] + [r.wordform.lemma for r in results]
-
-        # Wordform.bulk_homograph_disambiguate(
-        #     [wf for wf in wordforms if wf.is_lemma and wf.id is not None]
-        # )
-
         return [r.serialize() for r in results]
 
     def __repr__(self):

@@ -173,57 +173,8 @@ class DictionarySource(models.Model):
     #     or MD for "Maskwacîs Dictionary"
     abbrv = models.CharField(max_length=8, primary_key=True)
 
-    # Bibliographic information:
-    title = models.CharField(
-        max_length=256,
-        null=False,
-        blank=False,
-        help_text="What is the primary title of the dictionary source?",
-    )
-    author = models.CharField(
-        max_length=512,
-        blank=True,
-        help_text="Separate multiple authors with commas. See also: editor",
-    )
-    editor = models.CharField(
-        max_length=512,
-        blank=True,
-        help_text=(
-            "Who edited or compiled this volume? "
-            "Separate multiple editors with commas."
-        ),
-    )
-    year = models.IntegerField(
-        null=True, blank=True, help_text="What year was this dictionary published?"
-    )
-    publisher = models.CharField(
-        max_length=128, blank=True, help_text="What was the publisher?"
-    )
-    city = models.CharField(
-        max_length=64, blank=True, help_text="What is the city of the publisher?"
-    )
-
     def __str__(self):
-        """
-        Will print a short citation like:
-
-            [CW] “Cree : Words” (Ed. Arok Wolvengrey)
-        """
-        # These should ALWAYS be present
-        abbrv = self.abbrv
-        title = self.title
-
-        # Both of these are optional:
-        author = self.author
-        editor = self.editor
-
-        author_or_editor = ""
-        if author:
-            author_or_editor += f" by {author}"
-        if editor:
-            author_or_editor += f" (Ed. {editor})"
-
-        return f"[{abbrv}]: “{title}”{author_or_editor}"
+        return self.abbrv
 
 
 class Definition(models.Model):

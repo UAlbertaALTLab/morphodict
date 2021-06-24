@@ -47,19 +47,12 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
     )
 
 
-def cvd_key_to_wordform_query(s: CvdKey) -> Optional[WordformQuery]:
+def cvd_key_to_wordform_query(s: CvdKey) -> WordformQuery:
     """Return kwargs for Wordform.objects.filter() to retrieve wordform
 
     While unambiguous, likely too slow for querying.
     """
-    key_list = json.loads(s)
-    if len(key_list) != 4:
-        logger.error(
-            "Unable to parse cvd key; the format may have changed, run builddefinitionvectors?"
-        )
-        return None
-
-    slug, text, raw_analysis, _ = key_list
+    slug, text, raw_analysis, _ = json.loads(s)
     return {
         "text": text,
         "lemma__slug": slug,

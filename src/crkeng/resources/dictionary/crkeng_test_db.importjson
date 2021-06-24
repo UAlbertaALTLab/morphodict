@@ -44,7 +44,7 @@
       "wordclass": "PRON",
       "wordclass_emoji": "➡️"
     },
-    "slug": "ôma-pri"
+    "slug": "ôma@p"
   },
   {
     "head": "nîso-",
@@ -116,7 +116,7 @@
       "wordclass_emoji": "⚡️"
     },
     "definesFstTag": "PV/kîmôci+",
-    "slug": "kîmôci--ipv"
+    "slug": "kîmôci-@ipv"
   },
   {
     "head": "kâh-",
@@ -304,7 +304,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "nîso-kîsikâw-vii-1v"
+    "slug": "nîso-kîsikâw@v"
   },
   {
     "head": "nîso-kîsikâw",
@@ -327,7 +327,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "nîso-kîsikâw-ipc"
+    "slug": "nîso-kîsikâw@i"
   },
   {
     "head": "mîcisow",
@@ -404,7 +404,7 @@
       "wordclass": "VAI",
       "wordclass_emoji": "🧑🏽➡️"
     },
-    "slug": "âcimow-vai"
+    "slug": "âcimow@vai"
   },
   {
     "head": "atâhk",
@@ -527,7 +527,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "ôma-ipc"
+    "slug": "ôma@i"
   },
   {
     "head": "maskwa",
@@ -581,7 +581,7 @@
       "wordclass": "VAI",
       "wordclass_emoji": "🧑🏽➡️"
     },
-    "slug": "nôhtêpayiw-vai-1"
+    "slug": "nôhtêpayiw@va"
   },
   {
     "head": "nôhtêpayiw",
@@ -608,7 +608,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "nôhtêpayiw-vii-2v"
+    "slug": "nôhtêpayiw@vi"
   },
   {
     "head": "mowêw",
@@ -685,7 +685,7 @@
       "wordclass": "PRON",
       "wordclass_emoji": "➡️"
     },
-    "slug": "awa-pra"
+    "slug": "awa@p"
   },
   {
     "head": "awa",
@@ -708,7 +708,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "awa-ipc"
+    "slug": "awa@i"
   },
   {
     "head": "wâpamêw",
@@ -904,7 +904,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "âyiman-ni-1"
+    "slug": "âyiman@n"
   },
   {
     "head": "âyiman",
@@ -927,7 +927,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "âyiman-vii-2n"
+    "slug": "âyiman@v"
   },
   {
     "head": "minôsis",
@@ -1073,7 +1073,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "ayâw-vii-2v"
+    "slug": "ayâw@vi"
   },
   {
     "head": "ayâw",
@@ -1100,7 +1100,7 @@
       "wordclass": "VTI",
       "wordclass_emoji": "🧑🏽➡️💧"
     },
-    "slug": "ayâw-vti-2"
+    "slug": "ayâw@vt"
   },
   {
     "head": "ayâw",
@@ -1127,7 +1127,7 @@
       "wordclass": "VAI",
       "wordclass_emoji": "🧑🏽➡️"
     },
-    "slug": "ayâw-vai-1"
+    "slug": "ayâw@va"
   },
   {
     "head": "mîpit",
@@ -1227,7 +1227,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "tipiskâw-vii-1v"
+    "slug": "tipiskâw@v"
   },
   {
     "head": "tipiskâw",
@@ -1250,7 +1250,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "tipiskâw-ni-2"
+    "slug": "tipiskâw@n"
   },
   {
     "head": "wâpiw",
@@ -1300,7 +1300,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "kîsikâw-ni-2"
+    "slug": "kîsikâw@n"
   },
   {
     "head": "kîsikâw",
@@ -1327,7 +1327,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "kîsikâw-vii-1v"
+    "slug": "kîsikâw@v"
   },
   {
     "head": "ayiwin",
@@ -1400,7 +1400,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "pipon-ni-1"
+    "slug": "pipon@n"
   },
   {
     "head": "pipon",
@@ -1427,7 +1427,7 @@
       "wordclass": "VII",
       "wordclass_emoji": "💧➡️"
     },
-    "slug": "pipon-vii-1n"
+    "slug": "pipon@v"
   },
   {
     "head": "pêyak",
@@ -1527,7 +1527,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "kîmôci--ipc"
+    "slug": "kîmôci-@ipc"
   },
   {
     "head": "niyanân",
@@ -1681,7 +1681,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "âyiman-inm"
+    "slug": "âyiman@i"
   },
   {
     "head": "ayiwinisa",
@@ -1735,7 +1735,7 @@
       "wordclass": "VAI",
       "wordclass_emoji": "🧑🏽➡️"
     },
-    "slug": "âcimow-vai-1"
+    "slug": "âcimow@vai-"
   },
   {
     "head": "niska",
@@ -1793,7 +1793,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "tânisi-ipc"
+    "slug": "tânisi@ipc"
   },
   {
     "head": "tânisi",
@@ -1828,7 +1828,7 @@
       "wordclass": "IPC",
       "wordclass_emoji": "⚡️"
     },
-    "slug": "tânisi-ipj"
+    "slug": "tânisi@ipj"
   },
   {
     "head": "êkwatik",
@@ -2065,7 +2065,7 @@
         "sources": ["CW"]
       }
     ],
-    "formOf": "misâskwatômina-inm"
+    "formOf": "misâskwatômina@i"
   },
   {
     "head": "nîminâniwan",
@@ -2113,7 +2113,7 @@
         "sources": ["CW"]
       }
     ],
-    "formOf": "mitôskwan-inm"
+    "formOf": "mitôskwan@i"
   },
   {
     "head": "misâskwatôminihk",
@@ -2124,7 +2124,7 @@
         "sources": ["CW"]
       }
     ],
-    "formOf": "misâskwatômina-ni-1"
+    "formOf": "misâskwatômina@n"
   },
   {
     "head": "otôskwanihk",
@@ -2135,7 +2135,7 @@
         "sources": ["CW"]
       }
     ],
-    "formOf": "mitôskwan-ndi-1"
+    "formOf": "mitôskwan@n"
   },
   {
     "head": "niska",
@@ -2169,7 +2169,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "misâskwatômina-inm"
+    "slug": "misâskwatômina@i"
   },
   {
     "head": "nitôskwan",
@@ -2215,7 +2215,7 @@
       "wordclass": "NID",
       "wordclass_emoji": "👤💧"
     },
-    "slug": "mitôskwan-inm"
+    "slug": "mitôskwan@i"
   },
   {
     "head": "misâskwatômina",
@@ -2238,7 +2238,7 @@
       "wordclass": "NI",
       "wordclass_emoji": "💧"
     },
-    "slug": "misâskwatômina-ni-1"
+    "slug": "misâskwatômina@n"
   },
   {
     "head": "mitôskwan",
@@ -2261,6 +2261,6 @@
       "wordclass": "NID",
       "wordclass_emoji": "👤💧"
     },
-    "slug": "mitôskwan-ndi-1"
+    "slug": "mitôskwan@n"
   }
 ]

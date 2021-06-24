@@ -61,7 +61,7 @@ def entry_details(request, slug: str):
 
     if lemma.count() != 1:
         # The result is either empty or ambiguous; either way, do a search!
-        return redirect(url_for_query(slug or ""))
+        return redirect(url_for_query(slug.split("@")[0] or ""))
 
     lemma = lemma.get()
 
@@ -334,33 +334,6 @@ def should_include_auto_definitions(request):
     return request.user.is_authenticated
 
 
-def disambiguating_filter_from_query_params(query_params: dict[str, str]):
-    """
-    Sometimes wordforms may have the same text (a.k.a., be homographs/homophones),
-    thus need to be disambiguate further before displaying a paradigm.
-
-    This computes the intersection between the provided query parameters and the valid
-    disambiguating filters used for homograph disambiguation.
-    """
-    keys_present = query_params.keys() & {
-        # e.g., VTA-1, VTI-3
-        # Since inflectional category, by definition, indicates the paradigm of the
-        # associated head word, this is the preferred disambiguator. It **should** work
-        # most of the time.
-        "inflectional_category",
-        # e.g., N or V.
-        # This is the "general word class"  a.k.a., not enough information to know
-        # what paradigm to use. This disambiguator is discouraged.
-        "pos",
-        # e.g., câhkinêw+V+TA+Ind+5Sg/Pl+4Sg/PlO
-        # I'm honestly not sure why this was chosen as a disambiguator ¯\_(ツ)_/¯
-        "analysis",
-        # Last resort: ephemeral database ID. This is NOT STABLE across database imports!
-        "id",
-    }
-    return {key: query_params[key] for key in keys_present}
-
-
 def paradigm_for(
     wordform: Wordform, paradigm_size: ParadigmSize | str
 ) -> Optional[Paradigm]:
@@ -388,21 +361,6 @@ def paradigm_for(
         )
         return None
 
-    # TODO: use new-style paradigms for other sizes in addition to FULL
-    # Requires:
-    #  - "basic" size paradigm layouts to be created
-    #  - paradigm manager must support multiple sizes
-    #  - relabelling must work to use linguistic layouts
-    if word_class := wordform.word_class:
-        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
-        if paradigm_name is None:
-            return None
-
-        try:
-            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
-        except KeyError:
-            return None
-
     return None
 
 
@@ -419,21 +377,3 @@ def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize) -> str:
         # exactly the same as the full layout.
         ParadigmSize.LINGUISTIC: "full",
     }[paradigm_size]
-
-
-def convert_crkeng_word_class_to_paradigm_name(word_class: WordClass):
-    """
-    Returns the paradigm name in crkeng's layouts directory, or None if a paradigm
-    name cannot be determined from the legacy WordClass alone.
-    """
-    return {
-        WordClass.VII: "VII",
-        WordClass.VTI: "VTI",
-        WordClass.VAI: "VAI",
-        WordClass.VTA: "VTA",
-        WordClass.NA: "NA",
-        WordClass.NI: "NI",
-        # uses Arok's scheme: Noun Dependent {Animate/Inanimate}
-        WordClass.NAD: "NDA",
-        WordClass.NID: "NDI",
-    }.get(word_class)
