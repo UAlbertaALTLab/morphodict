@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Collection, Iterable, Optional, Protocol
 
@@ -53,6 +54,21 @@ class ParadigmManager:
             return self._inflect(layout, lemma)
         else:
             return layout.as_static_paradigm()
+
+    def paradigm_and_context_for(
+        self, paradigm_name: str, lemma: Optional[str] = None, size: str = ONLY_SIZE
+    ) -> ParadigmAndContext:
+        """
+        Same as .paradigm_for() but returns extra context information for the
+        paradigm, useful for rendering in a template.
+        """
+        paradigm = self.paradigm_for(paradigm_name, lemma=lemma, size=size)
+        return ParadigmAndContext(
+            paradigm,
+            name=paradigm_name,
+            size=size,
+            sizes_available=list(self.sizes_of(paradigm_name)),
+        )
 
     def sizes_of(self, paradigm_name: str) -> Collection[str]:
         """
@@ -215,6 +231,32 @@ class ParadigmManagerWithExplicitSizes(ParadigmManager):
                     return False
 
         return True
+
+
+@dataclass
+class ParadigmAndContext:
+    """
+    Bundles a generated paradigm with context that's useful in the HTML template.
+    """
+
+    paradigm: Paradigm
+    # Paradigm name:
+    name: str
+    # The size given
+    size: str
+    # A list of all sizes available
+    sizes_available: list[str]
+
+    @property
+    def next_size(self) -> str:
+        """
+        The next size to toggle to.
+        """
+
+        sizes = self.sizes_available
+        position = self.sizes_available.index(self.size)
+
+        return sizes[position + 1 % len(sizes)]
 
 
 def _load_all_layouts_in_directory(path: Path):

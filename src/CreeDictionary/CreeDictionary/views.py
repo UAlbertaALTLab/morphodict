@@ -24,6 +24,7 @@ from CreeDictionary.phrase_translate.translate import (
 from CreeDictionary.utils import WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.preference.views import ChangePreferenceView
+from .paradigm.manager import ParadigmAndContext
 
 from .utils import url_for_query
 
@@ -70,7 +71,7 @@ def entry_details(request, lemma_text: str):
     lemma = lemma.get()
 
     raw_paradigm_size = request.GET.get("paradigm-size")
-    paradigm = paradigm_for(lemma, size=raw_paradigm_size)
+    paradigm_context = paradigm_for(lemma, size=raw_paradigm_size)
 
     context = create_context_for_index_template(
         "word-detail",
@@ -81,7 +82,8 @@ def entry_details(request, lemma_text: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
         paradigm_size=_to_legacy_paradigm_size(raw_paradigm_size),
-        paradigm=paradigm,
+        paradigm=paradigm_context.paradigm if paradigm_context else None,
+        paradigm_context=paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
 
@@ -179,14 +181,15 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    paradigm = paradigm_for(lemma, size=raw_paradigm_size)
+    context = paradigm_for(lemma, size=raw_paradigm_size)
     return render(
         request,
         "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": legacy_paradigm_size.value,
-            "paradigm": paradigm,
+            "paradigm": context.paradigm if context else None,
+            "paradigm_context": context.paradigm if context else None,
         },
     )
 
@@ -349,7 +352,9 @@ def disambiguating_filter_from_query_params(query_params: dict[str, str]):
     return {key: query_params[key] for key in keys_present}
 
 
-def paradigm_for(wordform: Wordform, *, size: Optional[str]) -> Optional[Paradigm]:
+def paradigm_for(
+    wordform: Wordform, *, size: Optional[str]
+) -> Optional[ParadigmAndContext]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
@@ -368,7 +373,9 @@ def paradigm_for(wordform: Wordform, *, size: Optional[str]) -> Optional[Paradig
     else:
         valid_size = manager.coerce_to_valid_size_for(paradigm_name, size)
 
-    return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=valid_size)
+    return manager.paradigm_and_context_for(
+        paradigm_name, lemma=wordform.text, size=valid_size
+    )
 
 
 def determine_crkeng_paradigm_name(wordform: Wordform) -> Optional[str]:
