@@ -118,7 +118,7 @@ describe('paradigms are visitable from link', () => {
 })
 
 describe('paradigms can be toggled by the show more/less button', () => {
-  it('shows basic, full, linguistic, and basic paradigm in sequence', () => {
+  it('shows basic, then full, then basic paradigm in sequence', () => {
     cy.visitLemma('nipâw')
 
     const basicForm = 'ninipân' // Basic, first person singular form
@@ -131,13 +131,6 @@ describe('paradigms can be toggled by the show more/less button', () => {
     // Switch to the full size
     cy.get('[data-cy=paradigm-toggle-button]').click()
     cy.location().should('match', /\bfull\b/i)
-
-    paradigm().contains('td', basicForm)
-    paradigm().contains('td', fullForm)
-
-    // Switch to the "linguistic" size:
-    cy.get('[data-cy=paradigm-toggle-button]').click()
-    cy.location().should('match', /\blinguistic\b/i)
 
     paradigm().contains('td', basicForm)
     paradigm().contains('td', fullForm)

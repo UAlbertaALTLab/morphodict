@@ -6,7 +6,7 @@ export function setupParadigm() {
 }
 
 // TODO: the backend should SOLELY maintain this list:
-const ALL_PARADIGM_SIZES = ['BASIC', 'FULL', 'LINGUISTIC']
+const ALL_PARADIGM_SIZES = ['BASIC', 'FULL']
 
 /**
  * attach handlers to the "show more/less" button. So that it:
