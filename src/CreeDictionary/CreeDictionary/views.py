@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import Any, Dict, Literal, Optional, Union
 
@@ -92,12 +93,14 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    search_run = None
 
     if user_query:
-        search_results = search_with_affixes(
+        search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
+        search_results = search_run.serialized_presentation_results()
         did_search = True
     else:
         search_results = []
@@ -116,6 +119,10 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    if search_run and search_run.verbose_messages and search_run.query.verbose:
+        context["verbose_messages"] = json.dumps(
+            search_run.verbose_messages, indent=2, ensure_ascii=False
+        )
     return render(request, "CreeDictionary/index.html", context)
 
 
@@ -125,7 +132,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    )
+    ).serialized_presentation_results()
     return render(
         request,
         "CreeDictionary/search-results.html",

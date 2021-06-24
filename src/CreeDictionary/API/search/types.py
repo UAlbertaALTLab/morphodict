@@ -139,7 +139,9 @@ class Result:
         current object.
         """
         assert self.wordform.key == other.wordform.key
+        self._copy_features_from(other)
 
+    def _copy_features_from(self, other: Result):
         for field_name, other_value in other.features().items():
             if other_value is not None:
                 self_value = getattr(self, field_name)
@@ -158,6 +160,22 @@ class Result:
                     )
                 else:
                     setattr(self, field_name, other_value)
+
+    def create_related_result(self, new_wordform, **kwargs):
+        """Create a new Result for new_wordform, with features copied over."""
+
+        # Note: we can’t use dataclasses.replace because it does shallow copies
+        # and we have list members.
+
+        # TODO: write tests for this
+
+        new_result = Result(new_wordform, **kwargs)
+        new_result._copy_features_from(self)
+        # That copy may have overwritten some features supplied in kwargs
+        for k, v in kwargs.items():
+            setattr(new_result, k, v)
+        new_result.__post_init__()
+        return new_result
 
     wordform: Wordform
     lemma_wordform: Lemma = field(init=False)
@@ -179,6 +197,8 @@ class Result:
     is_preverb_match: Optional[bool] = None
 
     is_cw_as_is_wordform: Optional[bool] = None
+
+    is_espt_result: Optional[bool] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
