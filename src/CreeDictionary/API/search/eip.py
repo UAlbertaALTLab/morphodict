@@ -226,8 +226,7 @@ class PhraseAnalyzedQuery:
         if "+?" in phrase_analysis:
             return
 
-        match = PHRASE_ANALYSIS_OUTPUT_RE.fullmatch(phrase_analysis)
-        if not match:
+        if not match := PHRASE_ANALYSIS_OUTPUT_RE.fullmatch(phrase_analysis):
             return
 
         self.filtered_query = match["query"]

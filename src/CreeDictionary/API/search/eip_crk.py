@@ -68,7 +68,8 @@ verb_passthrough_tags = {
         "+II",
         "+TI",
     ],
-    2: [  # V: Person - subject
+    2: [
+        # V: Person - subject
         "+1Sg",
         "+2Sg",
         "+3Sg",
