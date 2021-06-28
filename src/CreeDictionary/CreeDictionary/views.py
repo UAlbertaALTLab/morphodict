@@ -1,5 +1,6 @@
+import json
 import logging
-from typing import Any, Dict, Literal, Optional
+from typing import Any, Dict, Literal, Optional, Union
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -92,12 +93,14 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    search_run = None
 
     if user_query:
-        search_results = search_with_affixes(
+        search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
+        search_results = search_run.serialized_presentation_results()
         did_search = True
     else:
         search_results = []
@@ -116,6 +119,10 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    if search_run and search_run.verbose_messages and search_run.query.verbose:
+        context["verbose_messages"] = json.dumps(
+            search_run.verbose_messages, indent=2, ensure_ascii=False
+        )
     return render(request, "CreeDictionary/index.html", context)
 
 
@@ -125,7 +132,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    )
+    ).serialized_presentation_results()
     return render(
         request,
         "CreeDictionary/search-results.html",
@@ -354,36 +361,33 @@ def paradigm_for(wordform: Wordform, paradigm_size: ParadigmSize) -> Optional[Pa
 
     manager = default_paradigm_manager()
 
-    paradigm_name = determine_crkeng_paradigm_name(wordform)
-    if paradigm_name is None:
-        # No paradigm can be associated with this entry.
+    if name := wordform.paradigm:
+        if static_paradigm := manager.paradigm_for(name):
+            return static_paradigm
+        logger.warning(
+            "Could not retrieve static paradigm %r " "associated with wordform %r",
+            name,
+            wordform,
+        )
         return None
 
-    if manager.has_multiple_sizes_for(paradigm_name):
-        # This **should** ALWAYS give a valid size; otherwise, there's a bug either
-        # in the paradigm sizes or in the (legacy) ParadigmSize enum.
-        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
-    else:
-        size = manager.default_size_of(paradigm_name)
-
-    return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
-
-
-def determine_crkeng_paradigm_name(wordform: Wordform) -> Optional[str]:
-    """
-    Returns the name of the paradigm for a crkeng wordform.
-
-    This tries the explicit paradigm name, but then tries to guess the paradigm from
-    the wordclass.
-    """
-    if explicit_name := wordform.paradigm:
-        # No need to guess the paradigm -- the Wordform tells us what it is!
-        return explicit_name
-
+    # TODO: use new-style paradigms for other sizes in addition to FULL
+    # Requires:
+    #  - "basic" size paradigm layouts to be created
+    #  - paradigm manager must support multiple sizes
+    #  - relabelling must work to use linguistic layouts
     if word_class := wordform.word_class:
-        return convert_crkeng_word_class_to_paradigm_name(word_class)
+        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
 
-    # Cannot guess the paradigm (neither word class nor explicit paradigm name given)
+        paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
+        if paradigm_name is None:
+            return None
+
+        try:
+            return manager.paradigm_for(paradigm_name, lemma=wordform.text, size=size)
+        except KeyError:
+            return None
+
     return None
 
 
