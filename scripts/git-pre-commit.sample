@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+CMD=()
+
+if [ -z "${PIPENV_ACTIVE}" ]; then
+    CMD+=(pipenv run)
+fi
+
+CMD+=(black --check --force-exclude=.git .)
+
+set -xv
+exec "${CMD[@]}"
