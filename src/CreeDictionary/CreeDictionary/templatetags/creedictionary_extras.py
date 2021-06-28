@@ -4,6 +4,7 @@ Template tags related to the Cree Dictionary specifically.
 from urllib.parse import quote
 
 from django import template
+from django.urls import reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
@@ -55,6 +56,18 @@ def url_for_query_tag(user_query: str) -> str:
         /search?q=w%C3%A2pam%C3%AAw
     """
     return url_for_query(user_query)
+
+
+@register.simple_tag(takes_context=True)
+def definition_link(context, wordform: str) -> str:
+    """
+    Links to the definition of the wordform. Outputs wordform with current orthography.
+    """
+    return format_html(
+        '<a href="{}">{}</a>',
+        reverse("cree-dictionary-index-with-lemma", kwargs=dict(lemma_text=wordform)),
+        orth_tag(context, wordform),
+    )
 
 
 @register.filter()

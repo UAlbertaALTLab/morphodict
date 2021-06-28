@@ -1,0 +1,33 @@
+{% extends 'CreeDictionary/base.html' %}
+
+{% load creedictionary_extras %}
+{% load morphodict_orth %}
+
+{% block prose %}
+  <section id="legend" class="prose box box--spaced">
+    <h2 class="proce__section-title">Legend of abbreviations</h2>
+
+    <dl>
+      <dt>s/he</dt>
+      <dd><strong>s</strong>he, <strong>h</strong>e, or (singular)
+        th<strong>e</strong>y. Used in definitions to stand for the
+        <strong>animate actor</strong>. The equivalent to the Cree pronoun
+        {% definition_link "wiya" %}.</dd>
+
+      <dt>s.t.</dt>
+      <dd><strong>s</strong>ome<strong>t</strong>hing. Used in definitions to
+        stand for the <strong>inanimate goal</strong>.</dd>
+
+      <dt>s.o.</dt>
+      <dd><strong>s</strong>ome<strong>o</strong>ne, but can also mean
+        “something animate” like {% definition_link "pahkwêsikan" %} or
+        {% definition_link "asikan" %}.  Used in definitions to stand for the
+        <strong>animate goal</strong>. </dd>
+
+      <dt>it</dt>
+      <dd>Used in definitions to stand for the <strong>inanimate
+          actor</strong> or <strong>expletive subject</strong> (the “it” in
+        “it's raining”).</dd>
+    </dl>
+  </section>
+{% endblock %}
