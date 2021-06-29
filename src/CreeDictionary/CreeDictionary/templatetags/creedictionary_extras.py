@@ -1,11 +1,11 @@
 """
 Template tags related to the Cree Dictionary specifically.
 """
-from typing import Any
 from urllib.parse import quote
 from weakref import WeakKeyDictionary
 
 from django import template
+from django.http import HttpRequest
 from django.urls import reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
@@ -107,7 +107,7 @@ PER_REQUEST_ID_COUNTER = WeakKeyDictionary()  # type: WeakKeyDictionary
 
 
 @register.filter
-def unique_id(context: Any) -> str:
+def unique_id(request: HttpRequest) -> str:
     """
     Returns a new unique string that can be used as an id="" attribute in HTML.
 
@@ -119,17 +119,14 @@ def unique_id(context: Any) -> str:
         <input id="input:{{ new_id }}">
     {% endwith %}
 
-    >>> class Request:
-    ...     pass
-    ...
-    >>> context = Request()
-    >>> tooltip1 = unique_id(context)
-    >>> tooltip2 = unique_id(context)
+    >>> req = HttpRequest()
+    >>> tooltip1 = unique_id(req)
+    >>> tooltip2 = unique_id(req)
     >>> tooltip1 == tooltip2
     False
     """
 
-    generated_id = PER_REQUEST_ID_COUNTER.setdefault(context, 0)
-    PER_REQUEST_ID_COUNTER[context] += 1
+    generated_id = PER_REQUEST_ID_COUNTER.setdefault(request, 0)
+    PER_REQUEST_ID_COUNTER[request] += 1
 
     return str(generated_id)
