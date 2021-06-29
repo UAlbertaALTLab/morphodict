@@ -51,9 +51,7 @@
       <ol class="meanings">
         {% for def in wordform.definitions %}
           <li class="meanings__meaning">{{ def.text }}
-            {% for source in def.source_ids %}
-              <cite class="cite-dict">{{ source }}</cite>
-            {% endfor %}
+            {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
           </li>
         {% endfor %}
       </ol>

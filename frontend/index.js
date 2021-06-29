@@ -69,6 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
     setupParadigm()
+    prepareTooltips(getDefinition())
   }
 })
 
@@ -136,14 +137,13 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
 }
 
 /**
- * Attach relevant handlers to the tooltip icons of search results.
+ * Attach relevant handlers to the tooltip icons.
  *
- * @param {Element} searchResultsList
+ * @param {Element} root
  */
-function prepareTooltips(searchResultsList) {
+function prepareTooltips(root) {
   // attach handlers for tooltip icon at preverb breakdown
-  let tooltips = searchResultsList
-    .querySelectorAll('[data-has-tooltip]')
+  let tooltips = root.querySelectorAll('[data-has-tooltip]')
   for (let icon of tooltips) {
     let tooltip = icon.nextElementSibling
     if (!tooltip.classList.contains('tooltip')) {
@@ -277,6 +277,17 @@ function makeRouteRelativeToSlash(route) {
 function getEntryHead() {
   let dataElement = document.getElementById('data:head')
   return dataElement.value
+}
+
+/**
+ * @returns {Element} the one and only definition element on the details page
+ */
+function getDefinition() {
+  let el = document.getElementById('definition')
+  if (el == null) {
+    throw new Error('Could not find #definition element')
+  }
+  return el
 }
 
 /**
