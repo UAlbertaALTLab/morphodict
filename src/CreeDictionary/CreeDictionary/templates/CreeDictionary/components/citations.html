@@ -1,7 +1,28 @@
+{% spaceless %}
+
+{% load creedictionary_extras %}
+
 {% for source in dictionary_sources %}
-  <cite class="cite-dict">{{ source }}</cite>
-  <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
-    <div class="tooltip__arrow" data-popper-arrow></div>
-  </div>
+  {% with id=request|unique_id %}
+    <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }}</cite>
+
+    <div id="tooltip:{{ id }}" class="tooltip citation" role="tooltip">
+      {% if source == "CW" %}
+        <span class="citation__author">Wolvengrey, Arok, editor</span>.
+        <span class="citation__title">Cree: Words</span>.
+        <span class="citation__city">Regina</span>,
+        <span class="citation__publisher">University of Regina Press</span>,
+        <span class="citation__year">2001</span>.
+      {% elif source == "MD" %}
+        <span class="citation__title">Maskwacîs Dictionary</span>.
+        <span class="citation__city">Maskwacîs</span>,
+        <span class="citation__publisher">Maskwachees Cultural College</span>,
+        <span class="citation__year">1998</span>.
+      {% else %}
+        UNKNOWN SOURCE ID: {{ source }}. Please complain to a developer about it :/
+      {% endif %}
+      <div class="tooltip__arrow" data-popper-arrow></div>
+    </div>
+  {% endwith %}
 {% endfor %}
+{% endspaceless %}

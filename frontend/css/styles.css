@@ -1402,6 +1402,10 @@ a.menu-choice__label:active {
   color: var(--cite-text-popup-color);
 }
 
+.citation__title {
+  font-style: italic;
+}
+
 /**
  * BLOCK
  *
