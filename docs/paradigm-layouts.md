@@ -103,11 +103,11 @@ For example, `# Past # Indicative` is a **header** label that has two
 intended to interpret the tags to display a user-facing string.
 
 A **cell** can be a **label** (as described above), an **empty** cell
-(consisting of zero or more whitespace characters, a **missing** cell,
-consisting exactly of the string `--` or a **wordform** cell. A parser
-**MUST** attempt interpreting the cell as a **label cell**, an **empty
-cell**, a **missing cell** before it may interpret the cell as
-a **wordform cell**.
+(consisting of zero or more whitespace characters, a **missing** form
+cell, consisting exactly of the string `--` or a **wordform** cell.
+A parser **MUST** attempt interpreting the cell as a **label cell**, an
+**empty cell**, or a **missing form** before it may interpret the cell
+as a **wordform cell**.
 
 A wordform cell is either a static wordform cell or a dynamic wordform
 cell. A _dynamic_ wordform cell contains exactly one `${lemma}`
@@ -117,7 +117,7 @@ wordform cell does not contain a placeholder, and can be displayed to
 users verbatim, without any substitution.
 A paradigm layout is a _dynamic layout_ when it contains one or more
 _dynamic wordform cells_. A paradigm layout is a _static layout_ when
-it contains zero _dynamic_ wordform cells_. A _dynamic layout_ **MUST**
+it contains zero _dynamic_ wordform cells. A _dynamic layout_ **MUST**
 be _filled_ before the layout is ready for presentation.
 
 Aside from the presence or absence of the `${lemma}` placeholder, the
@@ -125,7 +125,8 @@ exact syntax of a wordform cell is defined by the implementation.
 
 ### Partial Grammar
 
-Here is a partial W3C EBNF grammar of the layout file specification
+Here is a partial W3C EBNF grammar of the layout file specification.
+The syntax of `WordformCell` and `Tag` are implementation-dependent.
 
 ```ebnf
 Layout ::= (Row NL)+
@@ -158,7 +159,7 @@ SP  ::= #x20
 Here is a **static paradigm layout file** with one **pane**. Each
 **row** has row labels, with two **tags** each. Each column has
 a **column label**, with some having one tag, and some having two tags.
-There are a few **missing cells** under the `All` column.
+There are a three **missing forms** under the `All` column.
 
 Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>
 
@@ -168,7 +169,7 @@ _ 1 _ Sg	mimi	-mi	_angu	--
 _ 2 _ Sg	wewe	-we	-ako	--
 _ 3 _ Sg	yeye	-ye	-ake	--
 _ 1 _ Pl	sisi	-si	-etu	sisi
-_ 2 _ Pl	nyinyi/ninyi	-nyi	-enu	nyote
+_ 2 _ Pl	nyinyi	-nyi	-enu	nyote
 _ 3 _ Pl	wao	-o	-ao	wote
 ```
 
@@ -185,28 +186,18 @@ template:
 
 ```
 layouts
-├── dynamic
-│   ├── {paradigm-name}
-│   │   ├── {size-1}.tsv
-│   │   ├── {size-2}.tsv
-│   │   └── {size-3}.tsv
-│   ├── {paradigm-name}
-│   └── {paradigm-name}
-└── static
-    ├── {paradigm-name}
-    │   ├── {size-1}.tsv
-    │   ├── {size-2}.tsv
-    │   └── {size-3}.tsv
-    ├── {paradigm-name}.tsv
-    └── {paradigm-name}.tsv
+├── {paradigm-name}
+│   ├── {size-1}.tsv
+│   ├── {size-2}.tsv
+│   └── {size-3}.tsv
+├── {paradigm-name}.tsv
+└── {paradigm-name}.tsv
 ```
 
-Layout files can either be _dynamic_ or _static_, and must be placed in
-the respective directory hierarchy. Files directly within the `dynamic`
-or `static` directories, can be:
+Files directly within the `layouts` directory, can be:
 
  * a `.tsv` layout file, whose filename stem (part before the `.tsv`) is
-   the _paradigm name_ that this layout corresponds to;
+   the _paradigm name_ that this layout corresponds to; or
  * a subdirectory, whose filename is the _paradigm name_ this directory
    corresponds to. Within this subdirectory are `.tsv` layout files that
    indicate the different _size options_ available for this _paradigm
@@ -214,7 +205,7 @@ or `static` directories, can be:
 
 > **Note**: the exact location for the root `layouts` file depends on
 > the dictionary, however, this _should_ be with in the dictionary's
-> resources directory. As of 2021-06-10, this means
+> resources directory. As of 2021-06-30, this means
 > `src/CreeDictionary/res/layouts` for the `crkeng` dictionary.
 
 
