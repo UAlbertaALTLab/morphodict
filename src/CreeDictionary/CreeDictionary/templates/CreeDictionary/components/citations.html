@@ -1,25 +1,46 @@
 {% spaceless %}
 
-{% load creedictionary_extras %}
+  {% comment %}
+    Citations for a definition.
 
-{% for source in dictionary_sources %}
-  {% with id=request|unique_id %}
-    <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }}</cite>
+    Parameters:
+      - dictionary_sources: list[str] — a list of dictionary source IDs (abbreviations)
 
-    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip" data-cy="citation-tooltip">
-      {% if source == "CW" %}
-        Wolvengrey, Arok, editor.
-        <span class="source-title">Cree: Words</span>.
-        Regina, University of Regina Press, 2001.
-      {% elif source == "MD" %}
-        <span class="source-title">Maskwacîs Dictionary</span>.
-        Maskwacîs, Maskwachees Cultural College, 1998.
-      {% else %}
-        UNKNOWN SOURCE ID: {{ source }}. Please contact us if you see this message
-        (use the link in the footer).
-      {% endif %}
-      <div class="tooltip__arrow" data-popper-arrow></div>
-    </div>
-  {% endwith %}
-{% endfor %}
+    Outputs a list of citations with bibliographic information in the tooltip.
+    Currently this bibliographic citation is **hardcoded into this template**
+    for crkeng (itwêwina: the Plains Cree Dictionary). The references are in
+    MLA format; however, I decided to hardcode them because there are
+    exactly TWO sources and they both have subtly different MLA citation
+    format 😖
+
+    Example:
+
+       [CW] [MD]
+        ^
+      [ Wolvengrey, Arok, editor. /Cree: Words/. 2001. ]
+  {% endcomment %}
+
+  {% load creedictionary_extras %}
+
+  {% for source in dictionary_sources %}
+    {% with id=request|unique_id %}
+      <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }}</cite>
+
+      <div id="tooltip:{{ id }}" class="tooltip" role="tooltip" data-cy="citation-tooltip">
+        {% if source == "CW" %}
+          Wolvengrey, Arok, editor.
+          <span class="source-title">Cree: Words</span>.
+          Regina, University of Regina Press, 2001.
+        {% elif source == "MD" %}
+          <span class="source-title">Maskwacîs Dictionary</span>.
+          Maskwacîs, Maskwachees Cultural College, 1998.
+        {% else %}
+          UNKNOWN SOURCE ID: {{ source }}. If you're reading this, please
+          contact us using the link in the footer, near the bottom of the
+          page.
+        {% endif %}
+        <div class="tooltip__arrow" data-popper-arrow />
+      </div>
+    {% endwith %}
+  {% endfor %}
 {% endspaceless %}
