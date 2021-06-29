@@ -6,20 +6,17 @@
   {% with id=request|unique_id %}
     <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }}</cite>
 
-    <div id="tooltip:{{ id }}" class="tooltip citation" role="tooltip">
+    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
       {% if source == "CW" %}
-        <span class="citation__author">Wolvengrey, Arok, editor</span>.
-        <span class="citation__title">Cree: Words</span>.
-        <span class="citation__city">Regina</span>,
-        <span class="citation__publisher">University of Regina Press</span>,
-        <span class="citation__year">2001</span>.
+        Wolvengrey, Arok, editor.
+        <span class="source-title">Cree: Words</span>.
+        Regina, University of Regina Press, 2001.
       {% elif source == "MD" %}
-        <span class="citation__title">Maskwacîs Dictionary</span>.
-        <span class="citation__city">Maskwacîs</span>,
-        <span class="citation__publisher">Maskwachees Cultural College</span>,
-        <span class="citation__year">1998</span>.
+        <span class="source-title">Maskwacîs Dictionary</span>.
+        Maskwacîs, Maskwachees Cultural College, 1998.
       {% else %}
-        UNKNOWN SOURCE ID: {{ source }}. Please complain to a developer about it :/
+        UNKNOWN SOURCE ID: {{ source }}. Please contact us if you see this message
+        (use the link in the footer).
       {% endif %}
       <div class="tooltip__arrow" data-popper-arrow></div>
     </div>
