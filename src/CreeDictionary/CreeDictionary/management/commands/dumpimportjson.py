@@ -95,7 +95,18 @@ def my_group_by(iterable, keyfunc):
 def slug_disambiguator(input_classes):
     """Return a unique list of short strings to disambiguate items.
 
-    See the unit tests for examples.
+    If there is only one input class, then no disambiguator is needed:
+
+    >>> slug_disambiguator(["NAI-1"])
+    ['']
+
+    But if there are multiple input classes, e.g., for nêwokâtêw, then
+    return a unique disambiguator for each input:
+
+    >>> slug_disambiguator(["VAI-1", "NA-2", "VII-2v"])
+    ['@vai', '@n', '@vii']
+
+    See the unit tests for more examples.
     """
 
     @dataclass
@@ -125,11 +136,20 @@ def slug_disambiguator(input_classes):
 
         def disambiguate(self):
             """Try to assign unique keys using methods of increasing specificity."""
+
+            def general_word_class(linguistic_category):
+                return linguistic_category[0]
+
+            def specific_word_class(linguistic_category):
+                return linguistic_category.split("-")[0].lower()
+
+            def inflectional_category(linguistic_category):
+                return linguistic_category
+
             for method in [
-                lambda: self.using_prefix(1),
-                lambda: self.using_prefix(2),
-                lambda: self.using_prefix(3),
-                lambda: self.using_prefix(4),
+                self._using_grouper(general_word_class),
+                self._using_grouper(specific_word_class),
+                self._using_grouper(inflectional_category),
                 self.using_enumeration,
             ]:
                 method()
@@ -137,26 +157,22 @@ def slug_disambiguator(input_classes):
                     return
             raise Exception(f"Unable to disambiguate {self._inputs!r}")
 
-        def using_prefix(self, length):
-            """If using a prefix of a certain length uniquely identifies any
-            items, use that prefix as the item key.
+        def _using_grouper(self, grouper):
+            def keyfunc(item):
+                return grouper(item.value).lower()
 
-            e.g., for inputs "NA", "NI", "VTI" and prefix length 1, this will
-            assign "V" to "VTI" and leave the others alone.
-            """
+            def f():
+                groups = my_group_by(self.unassigned_items(), keyfunc).items()
+                for k, v in groups:
+                    if len(v) == 1:
+                        self.assign(v[0], k)
 
-            def substr(item):
-                return item.value[0:length]
-
-            groups = my_group_by(self.unassigned_items(), substr).items()
-            for k, v in groups:
-                if len(v) == 1:
-                    self.assign(v[0], k)
+            return f
 
         def using_enumeration(self):
-            """Fallback: just assign numbers"""
+            """Fallback: just add numbers"""
             for i, k in enumerate(self.unassigned_items()):
-                self.assign(k, str(i + 1))
+                self.assign(k, f"{k.value.lower()}.{i + 1}")
 
         def assign(self, input, key):
             """Set the item key, making sure it’s not already been used."""
