@@ -177,6 +177,30 @@ def test_url_for_query_tag():
 
 
 @pytest.mark.parametrize(
+    ("orthography", "wordform"),
+    [
+        ("Latn", "wâpamêw"),
+        ("Latn-x-macron", "wāpamēw"),
+        ("Cans", "ᐚᐸᒣᐤ"),
+    ],
+)
+def test_definition_link(orthography: str, wordform: str):
+    """
+    Test that it's in a link and the orthography is correct.
+    """
+    request = HttpRequest()
+    request.COOKIES["orth"] = orthography
+    context = RequestContext(request, {})
+    template = Template(
+        "{% load creedictionary_extras %}" '{% definition_link "wâpamêw" %}'
+    )
+    rendered = template.render(context)
+    assert rendered.startswith("<a")
+    assert rendered.endswith("</a>")
+    assertInHTML(wordform, rendered)
+
+
+@pytest.mark.parametrize(
     "wordform,classname",
     [
         ("ôma", "wordform--observed"),

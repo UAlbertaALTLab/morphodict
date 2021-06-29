@@ -39,6 +39,17 @@ def test_query_auto():
     assert q.query_string == "fish"
 
 
-def test_query_valididty():
+def test_query_validity():
     q = Query("verbose:true")
     assert q.is_valid == False
+
+
+def test_replace_query():
+    q = Query("foo bar verbose:true")
+    assert q.verbose == True
+    assert q.query_terms == ["foo", "bar"]
+
+    q.replace_query("bar baz")
+    assert q.verbose == True
+    assert q.query_terms == ["bar", "baz"]
+    assert q.query_string == "bar baz"

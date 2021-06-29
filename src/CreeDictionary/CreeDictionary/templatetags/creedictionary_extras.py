@@ -2,8 +2,11 @@
 Template tags related to the Cree Dictionary specifically.
 """
 from urllib.parse import quote
+from weakref import WeakKeyDictionary
 
 from django import template
+from django.http import HttpRequest
+from django.urls import reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
@@ -57,6 +60,18 @@ def url_for_query_tag(user_query: str) -> str:
     return url_for_query(user_query)
 
 
+@register.simple_tag(takes_context=True)
+def definition_link(context, wordform: str) -> str:
+    """
+    Links to the definition of the wordform. Outputs wordform with current orthography.
+    """
+    return format_html(
+        '<a href="{}">{}</a>',
+        reverse("cree-dictionary-index-with-lemma", kwargs=dict(lemma_text=wordform)),
+        orth_tag(context, wordform),
+    )
+
+
 @register.filter()
 def kbd_text_query_link(text):
     """
@@ -86,3 +101,32 @@ def observed_or_unobserved(wordform: str):
     if wordform in observed_wordforms():
         return "observed"
     return "unobserved"
+
+
+PER_REQUEST_ID_COUNTER = WeakKeyDictionary()  # type: WeakKeyDictionary
+
+
+@register.filter
+def unique_id(request: HttpRequest) -> str:
+    """
+    Returns a new unique string that can be used as an id="" attribute in HTML.
+
+    Usage:
+
+    {% with new_id=request|unique_id %}
+        <label for="input:{{ new_id }}"> I am labelling a far-away input </label>
+            ...
+        <input id="input:{{ new_id }}">
+    {% endwith %}
+
+    >>> req = HttpRequest()
+    >>> tooltip1 = unique_id(req)
+    >>> tooltip2 = unique_id(req)
+    >>> tooltip1 == tooltip2
+    False
+    """
+
+    generated_id = PER_REQUEST_ID_COUNTER.setdefault(request, 0)
+    PER_REQUEST_ID_COUNTER[request] += 1
+
+    return str(generated_id)

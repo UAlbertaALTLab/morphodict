@@ -14,7 +14,7 @@ from tqdm import tqdm
 
 from morphodict.lexicon.models import Wordform, Definition, DictionarySource
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
-from CreeDictionary.phrase_translate.tag_map import UnknownTagError
+from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import (
     inflect_english_phrase,
     FomaLookupNotFoundException,

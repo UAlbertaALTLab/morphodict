@@ -1466,3 +1466,15 @@ a[target=_blank]:not([rel~=noopener]) {
   cursor: not-allowed;
   pointer-events: none;
 }
+
+/**
+ * Non-BEM style. Since the markup in the .legend block will be written by
+ * hand, there's not guarentee classes will be used, so apply this CSS
+ * liberally.
+ */
+.legend q {
+  font-style: italic;
+}
+.legend q > dfn {
+  font-weight: var(--strong-font-weight);
+}

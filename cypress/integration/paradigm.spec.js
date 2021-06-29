@@ -151,28 +151,6 @@ describe('Paradigm labels', () => {
   let nehiyawewinLabel = 'wiyanaw'
   let linguisticLabel = '3s'
 
-  beforeEach(() => {
-    // As of 2021-06-02: paradigm label switching is only available to
-    // logged-in users.
-    cy.login()
-  })
-
-  it('should only be available for logged-in users', () => {
-    // Undo the beforeEach() that logs in:
-    // (I wanted to make deleting this code as easy as possible)
-    cy.visit(Cypress.env('admin_url')).get('[href*="logout"]').click()
-
-    // Visit the same page, logged-out:
-    cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
-    cy.log(`If the next assertion **fails**,
-      that should mean the **paradigm label switcher is publicly available**.
-      If so, please **DELETE THIS TEST CASE AND the \`beforeEach()\`**
-      immediately above this test.
-    `)
-    cy.get('[data-cy=open-paradigm-label-switcher]')
-      .should('not.exist')
-  })
-
   it('should appear in plain English by default', () => {
     cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
 

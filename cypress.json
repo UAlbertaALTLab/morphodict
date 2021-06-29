@@ -8,6 +8,7 @@
   "pluginsFile": false,
   "env": {
     "admin_url": "/admin/",
-    "admin_login_url": "/admin/login/"
+    "admin_login_url": "/admin/login/",
+    "legend_url": "/legend"
   }
 }
