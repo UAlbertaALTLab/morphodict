@@ -1,5 +1,8 @@
-# This file contains code for dealing with the test database, not for testing
-# the database.
+"""
+This file contains code for dealing with the test database, not for testing the
+database.
+"""
+
 from morphodict import morphodict_language_pair
 from morphodict.lexicon import DICTIONARY_RESOURCE_DIR
 
