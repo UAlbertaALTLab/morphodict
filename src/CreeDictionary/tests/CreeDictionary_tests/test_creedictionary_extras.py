@@ -184,7 +184,7 @@ def test_url_for_query_tag():
         ("Cans", "ᐚᐸᒣᐤ"),
     ],
 )
-def test_definition_link(orthography: str, wordform: str):
+def test_definition_link(db, orthography: str, wordform: str):
     """
     Test that it's in a link and the orthography is correct.
     """

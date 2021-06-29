@@ -305,7 +305,6 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
     elif mode == "word-detail":
         context = {"should_hide_prose": True, "displaying_paradigm": True}
         assert "lemma_id" in kwargs, "word detail page requires lemma_id"
-        assert "paradigm_size" in kwargs, "word detail page requires paradigm_size"
     else:
         raise AssertionError("should never happen")
     # Note: there will NEVER be a case where should_hide_prose=False

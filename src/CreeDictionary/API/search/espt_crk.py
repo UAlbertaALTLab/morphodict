@@ -3,24 +3,8 @@ Cree-specific data for English Inflected Phrase search
 """
 from morphodict.analysis.tag_map import TagMap
 
-
-def get_noun_tags(inflectional_category: str):
-    """Turn a wordform’s inflectional class into tags needed for FST generator.
-
-    >>> get_noun_tags("NA")
-    '+N+A'
-    >>> get_noun_tags("NA-3")
-    '+N+A'
-    >>> get_noun_tags("ND")
-    '+N+D'
-    """
-    noun_tags = ""
-    for c in inflectional_category:
-        if c == "-":
-            return noun_tags
-        noun_tags += "+" + c
-
-    return noun_tags
+# tags needed for FST generator
+crk_noun_tags = ["+N", "+A", "+I", "+D"]
 
 
 # TagMaps can’t automatically pass through unknown tags because they wouldn’t

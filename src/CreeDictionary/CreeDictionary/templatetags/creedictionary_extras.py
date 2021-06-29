@@ -15,6 +15,7 @@ from CreeDictionary.CreeDictionary.paradigm.crkeng_corpus_frequency import (
 )
 from CreeDictionary.CreeDictionary.utils import url_for_query
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
+from morphodict.lexicon.models import Wordform
 
 register = template.Library()
 
@@ -61,14 +62,15 @@ def url_for_query_tag(user_query: str) -> str:
 
 
 @register.simple_tag(takes_context=True)
-def definition_link(context, wordform: str) -> str:
+def definition_link(context, slug: str) -> str:
     """
     Links to the definition of the wordform. Outputs wordform with current orthography.
     """
+    wordform = Wordform.objects.get(slug=slug)
     return format_html(
         '<a href="{}">{}</a>',
-        reverse("cree-dictionary-index-with-lemma", kwargs=dict(lemma_text=wordform)),
-        orth_tag(context, wordform),
+        reverse("cree-dictionary-index-with-lemma", kwargs=dict(slug=slug)),
+        orth_tag(context, wordform.text),
     )
 
 
