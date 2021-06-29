@@ -20,7 +20,6 @@ describe('Source citations', function () {
         searchResult()
           .contains('cite', sourceAbbreviation)
           .first()
-          .as('citation')
           .click()
 
         tooltip()
@@ -43,7 +42,6 @@ describe('Source citations', function () {
         cy.get('[data-cy=meanings]')
           .contains('cite', sourceAbbreviation)
           .first()
-          .as('citation')
           .click()
 
         tooltip()
