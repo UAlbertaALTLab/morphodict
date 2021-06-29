@@ -32,19 +32,32 @@ describe('Source citations', function () {
     function searchResult() {
       return cy.get('[data-cy=search-result]').first()
     }
-
-    function tooltip() {
-      return cy.get('[data-cy=citation-tooltip]')
-    }
   })
 
   context('Details page', () => {
-    it('should ...', () => {
+    it('should cite on the details page with a tooltip', () => {
       cy.visitLemma(LEMMA_WITH_MD_AND_CW_CITATIONS)
+      for (let sourceAbbreviation of SOURCES) {
+        clearFocus()
+
+        cy.get('[data-cy=meanings]')
+          .contains('cite', sourceAbbreviation)
+          .first()
+          .as('citation')
+          .click()
+
+        tooltip()
+          .should('be.visible')
+          .contains(CRITICAL_INFORMATION[sourceAbbreviation])
+      }
     })
   })
 
   function clearFocus() {
     cy.get('[data-cy=search]').click().blur()
+  }
+
+  function tooltip() {
+    return cy.get('[data-cy=citation-tooltip]')
   }
 })
