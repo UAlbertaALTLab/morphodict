@@ -1507,6 +1507,33 @@
     "slug": "nisto"
   },
   {
+    "head": "pimitâcimow",
+    "analysis": [[], "pimitâcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "He crawls.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "s/he crawls about, s/he crawls around, s/he creeps",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI-1",
+      "inflectional_category_plain_english": "like: nipâw",
+      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
+      "pos": "V",
+      "stem": "pimitâcimo-",
+      "smushedAnalysis": "pimitâcimow+V+AI+Ind+3Sg",
+      "wordclass": "VAI",
+      "wordclass_emoji": "🧑🏽➡️"
+    },
+    "slug": "pimitâcimow"
+  },
+  {
     "head": "kîmôci-",
     "analysis": [[], "kîmôci-", ["+Ipc"]],
     "paradigm": null,
