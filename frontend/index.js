@@ -37,6 +37,10 @@ const NO_BREAK_SPACE = '\u00A0'
  */
 const SERACH_BAR_DEBOUNCE_TIME = 450
 
+/**
+ * How much time to wait on a search page before we consider it "navigated"
+ */
+const SEARCH_LINGER_TIME_LIMIT = 2000 // milliseconds
 
 //////////////////////////////// On page load ////////////////////////////////
 
@@ -84,25 +88,22 @@ const debouncedLoadSearchResults = debounce((history) => {
 
 function setupSearchBar() {
   const searchBar = document.getElementById('search')
+  const history = new TimedHistory()
 
   searchBar.addEventListener('input', () => {
     indicateLoading()
-    debouncedLoadSearchResults(new ManagedHistory)
+    debouncedLoadSearchResults(history)
   })
 }
 
 /**
  * Alternate API for window.history that supports timeouts
  */
-class ManagedHistory {
+class TimedHistory {
   constructor() {
     this._history = window.history
     this._timer = null
-    this._exceeded = null
-  }
-
-  get _beforeTimeLimit() {
-    return true
+    this._shouldPushState = false
   }
 
   /**
@@ -110,11 +111,14 @@ class ManagedHistory {
    * to exceed the timelimit.
    */
   replaceOrPush(url) {
-    if (this._beforeTimeLimit) {
-      this._history.replaceState(null, document.title, url)
-    } else {
+    if (this._shouldPushState) {
+      debugger
       this._history.pushState(null, document.title, url)
+    } else {
+      this._history.replaceState(null, document.title, url)
     }
+
+    this._resetTimer()
   }
 
   /**
@@ -122,6 +126,26 @@ class ManagedHistory {
    */
   replace(url) {
     this._history.replaceState(null, document.title, url)
+    this._clearTimer()
+  }
+
+  _resetTimer() {
+    this._clearTimer()
+
+    this._shouldPushState = false
+    this._timer = setTimeout(() => {
+      this._shouldPushState = true
+      this._timer = null
+    }, SEARCH_LINGER_TIME_LIMIT)
+  }
+
+  _clearTimer() {
+    if (this._timer === null) {
+      return
+    }
+
+    clearTimeout(this._timer)
+    this._timer = null
   }
 }
 
@@ -192,7 +216,7 @@ function prepareTooltips() {
  * use AJAX to load search results in place
  *
  * @param {HTMLInputElement} searchInput
- * @param {ManagedHistory} history
+ * @param {TimedHistory} history
  */
 function loadSearchResults(searchInput, history) {
   let userQuery = searchInput.value
