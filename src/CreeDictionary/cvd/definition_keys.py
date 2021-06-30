@@ -20,10 +20,11 @@ logger = logging.getLogger(__name__)
 CvdKey = str
 
 
-class WordformQuery(TypedDict):
+class WordformQuery(TypedDict, total=False):
     text: str
     lemma__slug: str
-    raw_analysis: str
+    raw_analysis: Optional[str]
+    raw_analysis__isnull: Optional[bool]
 
 
 def definition_to_cvd_key(d: Definition) -> CvdKey:
@@ -53,16 +54,23 @@ def cvd_key_to_wordform_query(s: CvdKey) -> WordformQuery:
     While unambiguous, likely too slow for querying.
     """
     slug, text, raw_analysis, _ = json.loads(s)
-    return {
+    ret: WordformQuery = {
         "text": text,
         "lemma__slug": slug,
-        "raw_analysis": raw_analysis,
     }
+    if raw_analysis:
+        ret["raw_analysis"] = raw_analysis
+    else:
+        ret["raw_analysis__isnull"] = True
+    return ret
 
 
 def wordform_query_matches(query: WordformQuery, wordform: Wordform):
     return (
         wordform.text == query["text"]
-        and wordform.raw_analysis == query["raw_analysis"]
+        and (
+            ("raw_analysis" in query and wordform.raw_analysis == query["raw_analysis"])
+            or ("raw_analysis__isnull" in query and wordform.raw_analysis is None)
+        )
         and wordform.lemma.slug == query["lemma__slug"]
     )
