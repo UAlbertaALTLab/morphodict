@@ -39,5 +39,49 @@ context('Searching', () => {
         expect(loc.search).to.eq(originalSearch)
       })
     })
+
+    it('should add a history entry if I linger on the results for a while', function() {
+      const originalQuery = 'bear'
+      const originalResult = 'maskwa'
+
+      const secondQuery = 'cat'
+      const secondResult = 'minôs'
+
+      const waitForDebounce = 500 // milliseconds
+      const linger = 5000 // milliseconds
+
+      let originalHistoryLength
+
+      cy.visit('/')
+
+      cy.clock({functionNames: ['setTimeout', 'clearTimeout']})
+
+      // Issue an arbitrary query and wait for its results
+      cy.get('[data-cy=search]')
+        .type(originalQuery)
+      cy.tick(waitForDebounce)
+      cy.contains('[data-cy=search-result]', originalResult)
+      cy.wrap(window.history)
+        .then(history => originalHistoryLength = history.length)
+
+      cy.tick(linger)
+
+      // Type the second query
+      cy.get('[data-cy=search]')
+        .clear()
+        .type(secondQuery)
+      cy.tick(waitForDebounce)
+      cy.contains('[data-cy=search-result]', secondResult)
+
+      cy.wrap(window.history)
+        .should(history => {
+          expect(history.length).to.be.greaterThan(originalHistoryLength)
+        })
+
+      cy.go('back')
+      cy.contains('[data-cy=search-result]', originalResult)
+      cy.get('[data-cy=search]')
+        .should('contain', originalQuery)
+    })
   })
 })
