@@ -28,13 +28,13 @@ class Command(BaseCommand):
         # doing it by hand at the SQLite prompt, but if maintaining the
         # order becomes a burden, we could use Django’s meta-model API to
         # topologically sort the dependencies between models.
-        for model in {
+        for model in [
             TargetLanguageKeyword,
             Definition.citations.through,
             Definition,
             Wordform,
             DictionarySource,
-        }:
+        ]:
             self.stdout.write(f"{model.__name__}: {model.objects.count():,}")
 
             if options["yes_really"]:
