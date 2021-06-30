@@ -37,6 +37,15 @@ Cypress.Commands.overwrite('visit', (originalVisit, url, options = {}) => {
 })
 
 /**
+ * Get the global `window.history` object of the currently active page.
+ *
+ * See also: https://docs.cypress.io/api/commands/location
+ */
+Cypress.Commands.add('history', {prevSubject: false}, () => {
+  return cy.wrap(window.history)
+})
+
+/**
  * Visit the search page for the given search query.
  */
 Cypress.Commands.add('visitSearch', {prevSubject: false}, (searchQuery) => {

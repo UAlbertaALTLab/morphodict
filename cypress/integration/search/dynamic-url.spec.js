@@ -61,7 +61,7 @@ context('Searching', () => {
         .type(originalQuery)
       cy.tick(waitForDebounce)
       cy.contains('[data-cy=search-result]', originalResult)
-      cy.wrap(window.history)
+      cy.history()
         .then(history => originalHistoryLength = history.length)
 
       cy.tick(linger)
@@ -73,7 +73,7 @@ context('Searching', () => {
       cy.tick(waitForDebounce)
       cy.contains('[data-cy=search-result]', secondResult)
 
-      cy.wrap(window.history)
+      cy.history()
         .should(history => {
           expect(history.length).to.be.greaterThan(originalHistoryLength)
         })
