@@ -77,7 +77,6 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
     })
   })
 
-  // TODO: the backend should know this:
   function mostDetailedParadigmSizeIsSelected() {
     return paradigmSizes.indexOf(nextParadigmSize) === paradigmSizes.length - 1
   }

@@ -407,6 +407,56 @@
     "slug": "âcimow@vai"
   },
   {
+    "head": "wiya",
+    "analysis": [[], "wiya", ["+Pron", "+Pers", "+3Sg"]],
+    "paradigm": "personal-pronouns",
+    "senses": [
+      {
+        "definition": "he, she, it; him, her, it; his, hers, its",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "PrA",
+      "inflectional_category_plain_english": "like: awa",
+      "inflectional_category_linguistic": "Pronoun: Animate",
+      "pos": "PRON",
+      "stem": "",
+      "smushedAnalysis": "wiya+Pron+Pers+3Sg",
+      "wordclass": "PRON",
+      "wordclass_emoji": "➡️"
+    },
+    "slug": "wiya@p"
+  },
+  {
+    "head": "wiya",
+    "analysis": [[], "wiya", ["+Ipc"]],
+    "paradigm": null,
+    "senses": [
+      {
+        "definition": "this, that; as for, by contrast",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "for, because",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "IPC",
+      "inflectional_category_plain_english": "like: anohc",
+      "inflectional_category_linguistic": "Particle",
+      "pos": "IPC",
+      "stem": "",
+      "smushedAnalysis": "wiya+Ipc",
+      "wordclass": "IPC",
+      "wordclass_emoji": "⚡️"
+    },
+    "slug": "wiya@i"
+  },
+  {
     "head": "atâhk",
     "analysis": [[], "atâhk", ["+N", "+A", "+Sg"]],
     "paradigm": "NA",
@@ -659,6 +709,33 @@
       "wordclass_emoji": "🧑🏽"
     },
     "slug": "acâhkos"
+  },
+  {
+    "head": "asikan",
+    "analysis": [[], "asikan", ["+N", "+A", "+Sg"]],
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "Sock.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "sock, stocking",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NA-1",
+      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
+      "inflectional_category_linguistic": "Regular animate noun stem",
+      "pos": "N",
+      "stem": "asikan-",
+      "smushedAnalysis": "asikan+N+A+Sg",
+      "wordclass": "NA",
+      "wordclass_emoji": "🧑🏽"
+    },
+    "slug": "asikan"
   },
   {
     "head": "awa",
@@ -1763,6 +1840,33 @@
       "wordclass_emoji": "🧑🏽➡️"
     },
     "slug": "âcimow@vai-1"
+  },
+  {
+    "head": "pahkwêsikan",
+    "analysis": [[], "pahkwêsikan", ["+N", "+A", "+Sg"]],
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "Bannock.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "bannock, bread; flour",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "NA-1",
+      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
+      "inflectional_category_linguistic": "Regular animate noun stem",
+      "pos": "N",
+      "stem": "pahkwêsikan-",
+      "smushedAnalysis": "pahkwêsikan+N+A+Sg",
+      "wordclass": "NA",
+      "wordclass_emoji": "🧑🏽"
+    },
+    "slug": "pahkwêsikan"
   },
   {
     "head": "niska",
