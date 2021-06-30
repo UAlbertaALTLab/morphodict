@@ -167,7 +167,7 @@ function loadSearchResults(searchInput) {
   function issueSearch() {
     let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
-    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
+    window.history.replaceState(null, '', urlForQuery(userQuery))
     hideProse()
 
     fetch(searchURL)
@@ -199,7 +199,7 @@ function loadSearchResults(searchInput) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
+    window.history.replaceState(null, '', Urls['cree-dictionary-index']())
 
     showProse()
 
