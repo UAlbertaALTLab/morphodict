@@ -74,10 +74,10 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 // todo: inline this :/
-const debouncedLoadSearchResults = debounce((historyManager) => {
+const debouncedLoadSearchResults = debounce((history) => {
   const searchBar = document.getElementById('search')
 
-  loadSearchResults(searchBar, historyManager)
+  loadSearchResults(searchBar, history)
 }, SERACH_BAR_DEBOUNCE_TIME)
 
 
@@ -87,20 +87,40 @@ function setupSearchBar() {
 
   searchBar.addEventListener('input', () => {
     indicateLoading()
-    debouncedLoadSearchResults(new HistoryManager)
+    debouncedLoadSearchResults(new ManagedHistory)
   })
 }
 
-class HistoryManager {
+/**
+ * Alternate API for window.history that supports timeouts
+ */
+class ManagedHistory {
   constructor() {
     this._history = window.history
+    this._timer = null
+    this._exceeded = null
   }
 
-  setUrlForSearch(url) {
-    this._history.replaceState(null, document.title, url)
+  get _beforeTimeLimit() {
+    return true
   }
 
-  setUrl(url) {
+  /**
+   * Replaces the current history entry ONLY IF not enough time has ellapsed
+   * to exceed the timelimit.
+   */
+  replaceOrPush(url) {
+    if (this._beforeTimeLimit) {
+      this._history.replaceState(null, document.title, url)
+    } else {
+      this._history.pushState(null, document.title, url)
+    }
+  }
+
+  /**
+   * Replaces the current history entry, regardless of timelimit.
+   */
+  replace(url) {
     this._history.replaceState(null, document.title, url)
   }
 }
@@ -172,9 +192,9 @@ function prepareTooltips() {
  * use AJAX to load search results in place
  *
  * @param {HTMLInputElement} searchInput
- * @param {HistoryManager} historyManager
+ * @param {ManagedHistory} history
  */
-function loadSearchResults(searchInput, historyManager) {
+function loadSearchResults(searchInput, history) {
   let userQuery = searchInput.value
   let searchResultList = getSearchResultList()
 
@@ -188,7 +208,7 @@ function loadSearchResults(searchInput, historyManager) {
   function issueSearch() {
     let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
-    historyManager.setUrlForSearch(urlForQuery(userQuery))
+    history.replaceOrPush(urlForQuery(userQuery))
     hideProse()
 
     fetch(searchURL)
@@ -220,7 +240,7 @@ function loadSearchResults(searchInput, historyManager) {
   }
 
   function goToHomePage() {
-    historyManager.setUrl(Urls['cree-dictionary-index']())
+    history.replace(Urls['cree-dictionary-index']())
 
     showProse()
 
