@@ -73,15 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-const debouncedLoadSearchResults = debounce(() => {
-  const searchBar = document.getElementById('search')
-  loadSearchResults(searchBar)
-}, SERACH_BAR_DEBOUNCE_TIME)
-
-
-
 function setupSearchBar() {
   const searchBar = document.getElementById('search')
+  const debouncedLoadSearchResults = debounce(() => {
+    loadSearchResults(searchBar)
+  }, SERACH_BAR_DEBOUNCE_TIME)
+
   searchBar.addEventListener('input', () => {
     indicateLoading()
     debouncedLoadSearchResults()
