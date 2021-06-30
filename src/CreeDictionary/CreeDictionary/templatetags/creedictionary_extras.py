@@ -65,6 +65,8 @@ def url_for_query_tag(user_query: str) -> str:
 def definition_link(context, slug: str) -> str:
     """
     Links to the definition of the wordform. Outputs wordform with current orthography.
+
+    Warning: currently incurs a database query for every such link.
     """
     wordform = Wordform.objects.get(slug=slug)
     return format_html(

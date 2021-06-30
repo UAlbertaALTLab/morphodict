@@ -37,7 +37,6 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
                 d.wordform.lemma.slug,
                 # These next two should fields should identify non-lemma wordforms
                 d.wordform.text,
-                # FIXME: use smushed for faster lookups?
                 d.wordform.raw_analysis,
                 # This is just a disambiguator so we can have multiple definitions
                 # for the same word in a vector file without conflict.
@@ -51,7 +50,8 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
 def cvd_key_to_wordform_query(s: CvdKey) -> WordformQuery:
     """Return kwargs for Wordform.objects.filter() to retrieve wordform
 
-    While unambiguous, likely too slow for querying.
+    While unambiguous, requires care to use for bulk queries. See
+    do_cvd_search() for an example use.
     """
     slug, text, raw_analysis, _ = json.loads(s)
     ret: WordformQuery = {
