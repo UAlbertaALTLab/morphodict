@@ -73,19 +73,36 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-const debouncedLoadSearchResults = debounce(() => {
+// todo: inline this :/
+const debouncedLoadSearchResults = debounce((historyManager) => {
   const searchBar = document.getElementById('search')
-  loadSearchResults(searchBar)
+
+  loadSearchResults(searchBar, historyManager)
 }, SERACH_BAR_DEBOUNCE_TIME)
 
 
 
 function setupSearchBar() {
   const searchBar = document.getElementById('search')
+
   searchBar.addEventListener('input', () => {
     indicateLoading()
-    debouncedLoadSearchResults()
+    debouncedLoadSearchResults(new HistoryManager)
   })
+}
+
+class HistoryManager {
+  constructor() {
+    this._history = window.history
+  }
+
+  setUrlForSearch(url) {
+    this._history.replaceState(null, document.title, url)
+  }
+
+  setUrl(url) {
+    this._history.replaceState(null, document.title, url)
+  }
 }
 
 /**
@@ -155,8 +172,9 @@ function prepareTooltips() {
  * use AJAX to load search results in place
  *
  * @param {HTMLInputElement} searchInput
+ * @param {HistoryManager} historyManager
  */
-function loadSearchResults(searchInput) {
+function loadSearchResults(searchInput, historyManager) {
   let userQuery = searchInput.value
   let searchResultList = getSearchResultList()
 
@@ -170,7 +188,7 @@ function loadSearchResults(searchInput) {
   function issueSearch() {
     let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
-    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
+    historyManager.setUrlForSearch(urlForQuery(userQuery))
     hideProse()
 
     fetch(searchURL)
@@ -202,7 +220,7 @@ function loadSearchResults(searchInput) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
+    historyManager.setUrl(Urls['cree-dictionary-index']())
 
     showProse()
 

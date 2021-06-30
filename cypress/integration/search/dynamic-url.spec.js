@@ -40,7 +40,7 @@ context('Searching', () => {
       })
     })
 
-    it('should add a history entry if I linger on the results for a while', function() {
+    it.skip('should add a history entry if I linger on the results for a while', function() {
       const originalQuery = 'bear'
       const originalResult = 'maskwa'
 
