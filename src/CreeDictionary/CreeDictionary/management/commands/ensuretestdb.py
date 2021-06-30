@@ -21,9 +21,12 @@ class Command(BaseCommand):
 
         call_command("migrate", verbosity=0)
 
-        if not Wordform.objects.exists() or not definition_vectors_path().exists():
-            call_command(
-                "importjsondict",
-                TEST_DB_IMPORTJSON,
-            )
+        if (
+            not Wordform.objects.exists()
+            or not definition_vectors_path().exists()
+            # Rebuild test DB if test dictionary has changed
+            or TEST_DB_IMPORTJSON.stat().st_mtime
+            > settings.TEST_DB_FILE.stat().st_mtime
+        ):
+            call_command("importjsondict", TEST_DB_IMPORTJSON, purge=True)
         call_command("ensurecypressadminuser")
