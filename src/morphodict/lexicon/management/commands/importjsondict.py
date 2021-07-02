@@ -85,9 +85,9 @@ class Command(BaseCommand):
                 text=entry["head"],
                 raw_analysis=entry.get("analysis", None),
                 paradigm=entry.get("paradigm", None),
-                slug=entry["slug"],
+                slug=validate_slug_format(entry["slug"]),
                 is_lemma=True,
-                linguist_info=entry["linguistInfo"],
+                linguist_info=entry.get("linguistInfo", {}),
             )
             wf.lemma = wf
             wf.save()
@@ -139,7 +139,11 @@ class Command(BaseCommand):
                     breakdown,
                 )
         call_command("builddefinitionvectors")
-        call_command("translatewordforms")
+
+        # This defaults to off because in order to work it requires that there
+        # be correct tag mappings for all analyzable forms.
+        if getattr(settings, "MORPHODICT_SUPPORTS_AUTO_DEFINITIONS", False):
+            call_command("translatewordforms")
 
     def create_definitions(self, wordform, senses):
         keywords = set()
@@ -172,3 +176,19 @@ class Command(BaseCommand):
 
         for kw in keywords:
             SourceLanguageKeyword.objects.create(text=kw, wordform=wordform)
+
+
+def validate_slug_format(proposed_slug):
+    """Raise an error if the proposed slug is invalid
+
+    For example, if contains a slash."""
+
+    # a regex would run faster, but getting the quoting right for a literal
+    # backslash probably isn’t worth it
+    FORBIDDEN_SLUG_CHARS = "/\\ "
+    if any(c in FORBIDDEN_SLUG_CHARS for c in proposed_slug):
+        raise Exception(
+            f"{proposed_slug=!r} contains one of the forbidden slug chars {FORBIDDEN_SLUG_CHARS!r}"
+        )
+
+    return proposed_slug
