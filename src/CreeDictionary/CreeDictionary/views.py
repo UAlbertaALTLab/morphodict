@@ -40,21 +40,8 @@ logger = logging.getLogger(__name__)
 def entry_details(request, slug: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
-    page if no head is found or multiple heads are found.
+    page if no slug is not found.
 
-    Possible query params:
-
-      To disambiguate the head word (see: Wordform.homograph_disambiguator):
-        - pos
-        - inflectional_category
-        - analysis
-        - id
-
-      To affect the paradigm size:
-
-        - paradigm-size (default is BASIC) to specify the size of the paradigm
-
-    :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param slug: the stable unique ID of the lemma
     """
 
