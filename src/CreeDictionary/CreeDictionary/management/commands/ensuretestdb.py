@@ -21,12 +21,16 @@ class Command(BaseCommand):
 
         call_command("migrate", verbosity=0)
 
+        def importjson_newer_than_db():
+            return (
+                TEST_DB_IMPORTJSON.stat().st_mtime
+                > settings.TEST_DB_FILE.stat().st_mtime
+            )
+
         if (
             not Wordform.objects.exists()
             or not definition_vectors_path().exists()
-            # Rebuild test DB if test dictionary has changed
-            or TEST_DB_IMPORTJSON.stat().st_mtime
-            > settings.TEST_DB_FILE.stat().st_mtime
+            or importjson_newer_than_db()
         ):
             call_command("importjsondict", TEST_DB_IMPORTJSON, purge=True)
         call_command("ensurecypressadminuser")
