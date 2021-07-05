@@ -3,6 +3,7 @@ Access to relabelling from templates.
 """
 
 import logging
+from typing import Sequence
 
 from django import template
 from django.template import Context
@@ -25,12 +26,19 @@ label_setting_to_relabeller = {
 
 
 @register.simple_tag(takes_context=True)
-def relabel(context: Context, tags: tuple[FSTTag]):
+def relabel(context: Context, tags, labels=None):
     """
     Gets the best matching label for the given object.
     """
 
-    label_setting = label_setting_from_context(context)
+    if labels is None:
+        label_setting = label_setting_from_context(context)
+    else:
+        label_setting = labels
+
+    if isinstance(tags, str):
+        tags = (tags,)
+
     relabeller = label_setting_to_relabeller[label_setting]
 
     if label := relabeller.get_longest(tags):
