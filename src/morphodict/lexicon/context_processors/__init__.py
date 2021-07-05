@@ -1,8 +1,5 @@
-from django.conf import settings
+from morphodict import morphodict_language_pair
 
 
 def language_pair(request):
-    return {
-        "LANGUAGE_PAIR": getattr(settings, "MORPHODICT_SOURCE_LANGUAGE", "???")
-        + getattr(settings, "MORPHODICT_TARGET_LANGUAGE", "???")
-    }
+    return {"LANGUAGE_PAIR": morphodict_language_pair()}

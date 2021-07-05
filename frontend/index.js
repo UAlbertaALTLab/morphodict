@@ -41,10 +41,6 @@ const SERACH_BAR_DEBOUNCE_TIME = 450
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // XXX: HACK! reloads the site when the back button is pressed.
-  window.onpopsate = () => location.reload()
-
   let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
 
@@ -69,18 +65,16 @@ document.addEventListener('DOMContentLoaded', () => {
     setSubtitle(getEntryHead())
     setupAudioOnPageLoad()
     setupParadigm()
+    prepareTooltips()
   }
 })
 
-const debouncedLoadSearchResults = debounce(() => {
-  const searchBar = document.getElementById('search')
-  loadSearchResults(searchBar)
-}, SERACH_BAR_DEBOUNCE_TIME)
-
-
-
 function setupSearchBar() {
   const searchBar = document.getElementById('search')
+  const debouncedLoadSearchResults = debounce(() => {
+    loadSearchResults(searchBar)
+  }, SERACH_BAR_DEBOUNCE_TIME)
+
   searchBar.addEventListener('input', () => {
     indicateLoading()
     debouncedLoadSearchResults()
@@ -110,7 +104,7 @@ function hideProse() {
  * @param {Element} searchResultsList
  */
 function prepareSearchResults(searchResultsList) {
-  prepareTooltips(searchResultsList)
+  prepareTooltips()
   loadRecordingsForAllSearchResults(searchResultsList)
 }
 
@@ -136,14 +130,11 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
 }
 
 /**
- * Attach relevant handlers to the tooltip icons of search results.
- *
- * @param {Element} searchResultsList
+ * Attach relevant handlers to **ALL** tooltip icons on the page.
  */
-function prepareTooltips(searchResultsList) {
-  // attach handlers for tooltip icon at preverb breakdown
-  let tooltips = searchResultsList
-    .querySelectorAll('[data-has-tooltip]')
+function prepareTooltips() {
+  let tooltips = document.querySelectorAll('[data-has-tooltip]')
+
   for (let icon of tooltips) {
     let tooltip = icon.nextElementSibling
     if (!tooltip.classList.contains('tooltip')) {
@@ -172,7 +163,7 @@ function loadSearchResults(searchInput) {
   function issueSearch() {
     let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
-    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
+    window.history.replaceState(null, '', urlForQuery(userQuery))
     hideProse()
 
     fetch(searchURL)
@@ -204,7 +195,7 @@ function loadSearchResults(searchInput) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
+    window.history.replaceState(null, '', Urls['cree-dictionary-index']())
 
     showProse()
 

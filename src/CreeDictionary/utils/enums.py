@@ -118,13 +118,3 @@ class WordClass(Enum):
             assert self.value.startswith("N")
             return self.value[1:]
         return self.value
-
-    def to_layout_table_name(self, paradigm_size: ParadigmSize):
-        """
-        >>> WordClass.VAI.to_layout_table_name(ParadigmSize.BASIC)
-        'vai-basic'
-        >>> WordClass.NID.to_layout_table_name(ParadigmSize.LINGUISTIC)
-        'nid-linguistic'
-        """
-
-        return self.value.lower() + "-" + paradigm_size.value.lower()

@@ -18,22 +18,6 @@ from CreeDictionary.utils.profiling import timed
 logger = logging.getLogger(__name__)
 
 
-def get_test_words() -> Set[str]:
-    """
-    get manually specified test words from res/test_db_words.txt
-
-    >>> assert "wâpamêw" in get_test_words()
-    """
-    lines = (shared_res_dir / "test_db_words.txt").read_text().splitlines()
-    words = set()
-    for line in lines:
-        line = line.strip()
-        if line and line[0] != "#":
-            words.add(line)
-
-    return words
-
-
 @timed()
 def build_test_xml():
     """

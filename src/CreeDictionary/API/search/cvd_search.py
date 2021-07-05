@@ -1,6 +1,5 @@
-import logging
-
 import itertools
+import logging
 
 from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun

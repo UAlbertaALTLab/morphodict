@@ -6,9 +6,6 @@
   <source id="MD">
     <title>Maskwacîs Cree Dictionary</title>
   </source>
-  <source id="AE">
-    <title>Alberta Elders' Cree Dictionary</title>
-  </source>
 
   <e>
     <lg>
@@ -3303,7 +3300,7 @@
     </lg>
     <mg>
       <tg xml:lang="eng">
-        <t pos="V" sources="MD AE">He sees it.</t>
+        <t pos="V" sources="MD">He sees it.</t>
       </tg>
     </mg>
     <mg>
@@ -3321,17 +3318,12 @@
     </lg>
     <mg>
       <tg xml:lang="eng">
-        <t pos="V" sources="MD AE">He sees him.</t>
+        <t pos="V" sources="MD">He sees him.</t>
       </tg>
     </mg>
     <mg>
       <tg xml:lang="eng">
         <t pos="V" sources="CW">s/he sees s.o., s/he witnesses s.o.</t>
-      </tg>
-    </mg>
-    <mg>
-      <tg xml:lang="eng">
-        <t pos="V" sources="AE">S/he sees him/her.</t>
       </tg>
     </mg>
   </e>
