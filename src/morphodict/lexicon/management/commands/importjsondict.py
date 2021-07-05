@@ -150,11 +150,7 @@ class Command(BaseCommand):
                 text=sense["definition"],
             )
             for source in sense["sources"]:
-                try:
-                    d.citations.add(source)
-                except:
-                    breakpoint()
-                    raise
+                d.citations.add(source)
 
             keywords.update(stem_keywords(sense["definition"]))
 
