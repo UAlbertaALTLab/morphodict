@@ -15,10 +15,12 @@ from typing import Iterable
 import django
 import foma
 
+from morphodict.analysis import RichAnalysis
+
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
     # top-level will blow up because Django is not configured yet.
-    from CreeDictionary.API.models import Wordform
+    from morphodict.lexicon.models import Wordform
 
 # Allow this script to be run directly from command line without pyproject.toml
 # https://stackoverflow.com/questions/14132789/relative-imports-for-the-billionth-time
@@ -32,7 +34,6 @@ from CreeDictionary.phrase_translate.crk_tag_map import (
     verb_wordform_to_phrase,
 )
 
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)
@@ -92,26 +93,10 @@ def foma_lookup(fst, thing_to_lookup):
     return l[0].decode("UTF-8")
 
 
-def parse_analysis_and_tags(analysis):
-    """Extract tags into a list in the form required by inflect_english_phrase
-
-    >>> parse_analysis_and_tags('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
-    ['PV/e+', 'PV/ki+', '+V', '+TA', '+Cnj', '+1Pl', '+2SgO']
-    """
-    head_tags, lemma, tail_tags = partition_analysis(analysis)
-    return [t + "+" for t in head_tags] + ["+" + t for t in tail_tags]
-
-
-def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition):
-    if isinstance(cree_wordform_tag_list_or_analysis, list):
-        cree_wordform_tag_list = cree_wordform_tag_list_or_analysis
-    else:
-        preverb_tags, lemma_, tags = partition_analysis(
-            cree_wordform_tag_list_or_analysis
-        )
-        preverb_tags = [x + "+" for x in preverb_tags]
-        tags = ["+" + x for x in tags]
-        cree_wordform_tag_list = preverb_tags + tags
+def inflect_english_phrase(analysis, lemma_definition):
+    if isinstance(analysis, tuple):
+        analysis = RichAnalysis(analysis)
+    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
 
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
@@ -130,8 +115,7 @@ def inflect_english_phrase(cree_wordform_tag_list_or_analysis, lemma_definition)
 
 def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
     for wordform in wordforms:
-        wordform_tags = parse_analysis_and_tags(wordform.analysis)
-        print(f"wordform: {wordform.text} {wordform_tags}")
+        print(f"wordform: {wordform.text} {wordform.analysis}")
 
         lemma = wordform.lemma
         print(f"  lemma: {lemma.analysis}")
@@ -142,7 +126,7 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
                 continue
 
             print(f"    definition: {d} →")
-            phrase = inflect_english_phrase(wordform_tags, d.text)
+            phrase = inflect_english_phrase(wordform.analysis, d.text)
             if phrase is None:
                 phrase = "(not supported)"
             print(f"      {phrase}")
@@ -170,7 +154,7 @@ def main():
     django.setup()
     logger.setLevel(args.log_level)
 
-    from CreeDictionary.API.models import Wordform
+    from morphodict.lexicon.models import Wordform
 
     def do_lookup(to_lookup: str):
         wordforms = Wordform.objects.filter(text=to_lookup)

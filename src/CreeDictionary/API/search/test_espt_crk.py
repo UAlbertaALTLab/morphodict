@@ -1,9 +1,9 @@
 import pytest
 
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.espt import EsptSearch, PhraseAnalyzedQuery
 from CreeDictionary.API.search.types import Result
+from morphodict.lexicon.models import Wordform
 
 
 @pytest.mark.parametrize(
@@ -96,3 +96,19 @@ def test_espt_search(db, search, params):
         list(search_run.unsorted_results())[0].wordform.text
         == params["expected_inflection"]
     )
+
+
+def test_espt_search_doesnt_crash_when_no_analysis(db):
+    search_run = SearchRun("my little bears")
+    espt_search = EsptSearch(search_run)
+    espt_search.analyze_query()
+
+    wordform = Wordform(text="pê-")
+    wordform.lemma = wordform
+    wordform.is_lemma = True
+    search_run.add_result(
+        Result(wordform=wordform, target_language_keyword_match=["bear"])
+    )
+
+    # This will crash if the espt code doesn’t handle results without an analysis
+    espt_search.inflect_search_results()

@@ -5,9 +5,6 @@ from typing import Dict, Iterable, List, Set, Tuple
 
 import morphodict.analysis
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
-from CreeDictionary.CreeDictionary.views import (
-    convert_crkeng_word_class_to_paradigm_name,
-)
 from CreeDictionary.DatabaseManager.log import DatabaseManagerLogger
 from CreeDictionary.utils import WordClass, fst_analysis_parser
 
@@ -32,10 +29,7 @@ def expand_inflections(
         lemma, word_class = lemma_and_wordclass_from_analysis(analysis)
 
         if word_class.has_inflections():
-            paradigm_name = convert_crkeng_word_class_to_paradigm_name(word_class)
-            generated_analyses = list(
-                paradigm_manager.all_analyses(paradigm_name, lemma)
-            )
+            raise Exception("convert_crkeng_word_class_to_paradigm_name is gone")
         else:
             generated_analyses = [analysis]
 

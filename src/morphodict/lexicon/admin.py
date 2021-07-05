@@ -2,7 +2,13 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from .models import Definition, DictionarySource, EnglishKeyword, Wordform
+from morphodict.lexicon.models import (
+    Definition,
+    DictionarySource,
+    TargetLanguageKeyword,
+    Wordform,
+    SourceLanguageKeyword,
+)
 
 
 # https://stackoverflow.com/a/1720961/14558
@@ -81,8 +87,24 @@ class DefinitionAdmin(CustomModelAdmin):
     add_short_description(wordform_as_link, "Wordform")
 
 
-@admin.register(EnglishKeyword)
-class EnglishKeywordAdmin(CustomModelAdmin):
+@admin.register(TargetLanguageKeyword)
+class TargetLanguageKeywordAdmin(CustomModelAdmin):
+    list_display = ("lemma_as_link",)
+    search_fields = ("text",)
+
+    def lemma_as_link(self, obj: Wordform):
+        return format_html(
+            "<a href='{url}'>{id} {name}</a>",
+            url=admin_url_for(obj.lemma),
+            id=obj.lemma_id,
+            name=str(obj.lemma),
+        )
+
+    add_short_description(lemma_as_link, "Lemma")
+
+
+@admin.register(SourceLanguageKeyword)
+class SourceLanguageKeywordAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
     search_fields = ("text",)
 
@@ -108,8 +130,14 @@ class DefinitionInline(admin.TabularInline):
     view_on_site = False
 
 
-class EnglishKeywordInline(admin.TabularInline):
-    model = EnglishKeyword
+class TargetLanguageKeywordInline(admin.TabularInline):
+    model = TargetLanguageKeyword
+    show_change_link = True
+    view_on_site = False
+
+
+class SourceLanguageKeywordInline(admin.TabularInline):
+    model = SourceLanguageKeyword
     show_change_link = True
     view_on_site = False
 
@@ -130,10 +158,15 @@ class WordformInline(admin.TabularInline):
 @admin.register(Wordform)
 class WordformAdmin(CustomModelAdmin):
     list_display = ("lemma_as_link",)
-    search_fields = ("text", "analysis", "stem")
-    list_filter = ("is_lemma", "as_is")
+    search_fields = ("text",)
+    list_filter = ("is_lemma",)
 
-    inlines = [DefinitionInline, EnglishKeywordInline, WordformInline]
+    inlines = [
+        DefinitionInline,
+        WordformInline,
+        SourceLanguageKeywordInline,
+        TargetLanguageKeywordInline,
+    ]
 
     def view_on_site(self, obj):
         if obj.is_lemma:

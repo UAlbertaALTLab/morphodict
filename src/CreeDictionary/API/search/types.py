@@ -4,15 +4,15 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import NewType, Iterable, Tuple, Optional
+from typing import NewType, Iterable, Tuple, Optional, cast
 
 from typing_extensions import Protocol
 
-from CreeDictionary.API.models import Wordform, wordform_cache
+from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.API.search import ranking
 from CreeDictionary.CreeDictionary.relabelling import LABELS
-from CreeDictionary.utils.types import FSTTag
+from CreeDictionary.utils.types import FSTTag, Label
 
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
@@ -56,7 +56,7 @@ class SimpleLinguisticTag(LinguisticTag):
 
     @property
     def in_plain_english(self) -> str:
-        return LABELS.english.get(self.value) or "???"
+        return cast(str, LABELS.english.get(self.value, cast(Label, self.value)))
 
 
 class CompoundLinguisticTag(LinguisticTag):
@@ -158,6 +158,15 @@ class Result:
                     self.cosine_vector_distance = min(
                         self.cosine_vector_distance, other.cosine_vector_distance
                     )
+                elif field_name == "query_wordform_edit_distance":
+                    self.query_wordform_edit_distance = min(
+                        v
+                        for v in (
+                            self.query_wordform_edit_distance,
+                            other.query_wordform_edit_distance,
+                        )
+                        if v is not None
+                    )
                 else:
                     setattr(self, field_name, other_value)
 
@@ -190,13 +199,10 @@ class Result:
     target_language_affix_match: Optional[bool] = None
 
     target_language_keyword_match: list[str] = field(default_factory=list)
-    pronoun_as_is_match: Optional[bool] = None
 
     analyzable_inflection_match: Optional[bool] = None
 
-    is_preverb_match: Optional[bool] = None
-
-    is_cw_as_is_wordform: Optional[bool] = None
+    source_language_keyword_match: list[str] = field(default_factory=list)
 
     is_espt_result: Optional[bool] = None
 
@@ -232,9 +238,7 @@ class Result:
             self.source_language_match
             or self.source_language_affix_match is not None
             or self.analyzable_inflection_match
-            or self.is_cw_as_is_wordform
-            or self.is_preverb_match
-            or self.pronoun_as_is_match
+            or self.source_language_keyword_match
         )
 
     # This is a separate method instead of a magic cached property because:

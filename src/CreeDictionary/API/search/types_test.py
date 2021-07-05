@@ -1,4 +1,4 @@
-from CreeDictionary.API.models import Wordform
+from morphodict.lexicon.models import Wordform
 from CreeDictionary.API.search.types import Result
 
 

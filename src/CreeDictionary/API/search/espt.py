@@ -5,16 +5,16 @@ import logging
 import re
 from dataclasses import dataclass
 
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.espt_crk import (
-    get_noun_tags,
     verb_tag_map,
     noun_tag_map,
+    crk_noun_tags,
 )
 from CreeDictionary.API.search.types import Result
 from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
-from morphodict.analysis import strict_generator
+from morphodict.analysis import strict_generator, RichAnalysis
+from morphodict.lexicon.models import Wordform
 
 logger = logging.getLogger(__name__)
 
@@ -24,7 +24,7 @@ class _EipResult:
     """Tiny class to connect inflected text to original search result"""
 
     inflected_text: str
-    analysis: str
+    analysis: RichAnalysis
     original_result: Result
 
 
@@ -97,10 +97,9 @@ class EsptSearch:
                 (result.inflected_text, result.original_result.lemma_wordform.id)
             )
             if wordform is None:
-                # inflected form not found in DB, so create a synthetic one.
-                # This is unlikely to occur for Plains Cree, as it would require
-                # the EIP search to produce a valid analysis not covered by any
-                # paradigm file.
+                # inflected form not found in DB, so create a synthetic one. Can
+                # happen for Plains Cree, when the EIP search produces a valid
+                # analysis not covered by any paradigm file.
                 #
                 # Note: would not have auto-translations since those are
                 # currently only available for wordforms that were previously
@@ -110,10 +109,7 @@ class EsptSearch:
                 wordform = Wordform(
                     text=result.inflected_text,
                     lemma=lemma,
-                    inflectional_category=lemma.inflectional_category,
-                    pos=lemma.pos,
-                    stem=lemma.stem,
-                    analysis=result.analysis,
+                    raw_analysis=result.analysis.tuple,
                 )
 
             # if there are multiple inflections for the same original result, we
@@ -137,9 +133,16 @@ class EsptSearch:
 
         words = []
         for r in self.search_run.unsorted_results():
-            if "+V" in self.new_tags and r.is_lemma and r.lemma_wordform.pos == "V":
+            if not r.is_lemma:
+                continue
+            analysis = r.wordform.analysis
+            if not analysis:
+                continue
+            analysis_tags = analysis.tag_set()
+
+            if "+V" in self.new_tags and r.is_lemma and "+V" in analysis_tags:
                 words.append(r)
-            if "+N" in self.new_tags and r.is_lemma and r.lemma_wordform.pos == "N":
+            if "+N" in self.new_tags and r.is_lemma and "+N" in analysis_tags:
                 words.append(r)
 
         orig_tags_starting_with_plus: list[str] = []
@@ -155,27 +158,34 @@ class EsptSearch:
             # This is sometimes mutated
             tags_starting_with_plus = orig_tags_starting_with_plus[:]
 
-            noun_tags = ""
-            if "N" in word.wordform.inflectional_category:
-                noun_tags = get_noun_tags(word.wordform.inflectional_category)
+            noun_tags = []
+            if "+N" in word.wordform.analysis.tag_set():
+                noun_tags = [
+                    tag
+                    for tag in word.wordform.analysis.suffix_tags
+                    if tag in crk_noun_tags
+                ]
                 if "+N" in tags_starting_with_plus:
                     tags_starting_with_plus.remove("+N")
                 if "+Der/Dim" in tags_starting_with_plus:
                     # noun tags need to be repeated in this case
-                    index = tags_starting_with_plus.index("+Der/Dim")
-                    tags_starting_with_plus.insert(index + 1, noun_tags)
+                    insert_index = tags_starting_with_plus.index("+Der/Dim") + 1
+                    tags_starting_with_plus[insert_index:insert_index] = noun_tags
 
-            text = (
-                "".join(tags_ending_with_plus)
-                + word.lemma_wordform.text
-                + noun_tags
-                + "".join(tags_starting_with_plus)
+            analysis = RichAnalysis(
+                (
+                    tags_ending_with_plus,
+                    word.wordform.text,
+                    noun_tags + tags_starting_with_plus,
+                )
             )
 
-            generated_wordforms = strict_generator().lookup(text)
+            generated_wordforms = analysis.generate()
             for w in generated_wordforms:
                 results.append(
-                    _EipResult(original_result=word, inflected_text=w, analysis=text)
+                    _EipResult(
+                        original_result=word, inflected_text=w, analysis=analysis
+                    )
                 )
         return results
 

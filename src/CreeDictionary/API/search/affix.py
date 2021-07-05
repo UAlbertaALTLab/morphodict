@@ -17,9 +17,10 @@ from typing import Dict, Iterable, List, NewType, Tuple
 import dawg
 from django.conf import settings
 
-from CreeDictionary.API.models import Wordform, EnglishKeyword
+from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.cree_lev_dist import remove_cree_diacritics
+from morphodict.lexicon.util import to_source_language_keyword
 from .types import (
     InternalForm,
     Result,
@@ -34,8 +35,6 @@ class AffixSearcher:
     """
     Enables prefix and suffix searches given a list of words and their wordform IDs.
     """
-
-    # TODO: "int" should be Wordform PK type
 
     def __init__(self, words: Iterable[Tuple[str, int]]):
         self.text_to_ids: Dict[str, List[int]] = defaultdict(list)
@@ -81,9 +80,7 @@ class AffixSearcher:
         search.  You SHOULD throw out diacritics, choose a Unicode Normalization form,
         and choose a single letter case here!
         """
-        # TODO: make this work for not just Cree!
-        # TODO: allow users to override this method
-        return SimplifiedForm(remove_cree_diacritics(query.lower()))
+        return SimplifiedForm(to_source_language_keyword(query.lower()))
 
 
 def _reverse(text: SimplifiedForm) -> SimplifiedForm:
@@ -135,15 +132,17 @@ def query_would_return_too_many_results(query: InternalForm) -> bool:
 
 def fetch_target_language_keywords_with_ids():
     """
-    Return pairs of indexed English keywords with their corresponding Wordform IDs.
+    Return tuple of (text, Wordform ID) pairs for all target-language keywords
     """
     # Slurp up all the results to prevent walking the database multiple times
-    return tuple(EnglishKeyword.objects.all().values_list("text", "lemma__id"))
+    return tuple(
+        TargetLanguageKeyword.objects.all().values_list("text", "wordform__id")
+    )
 
 
 def fetch_source_language_lemmas_with_ids():
     """
-    Return pairs of Cree lemmas with their corresponding Wordform IDs.
+    Return tuple of (text, id) pairs for all lemma Wordforms
     """
     # Slurp up all the results to prevent walking the database multiple times
     return tuple(Wordform.objects.filter(is_lemma=True).values_list("text", "id"))
