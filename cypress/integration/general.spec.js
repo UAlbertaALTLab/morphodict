@@ -20,25 +20,9 @@ context('General', function () {
     })
   })
 
-  describe('Changing the language', function () {
-    it('should be accessible from a menu', function () {
-      this.skip('language selector not implemented')
-
-      cy.get('[data-cy=language-selector]')
-        .type('{enter}')
-
-      cy.get('[data-cy=language-choices]')
-        .should('be.visible')
-        .contains('nêhiyawêwin')
-        .click()
-
-      // TODO: assert we're in Cree!
-    })
-  })
-
   describe('I want see all written Cree in Western Cree Syllabics', function () {
     it('should be accessible from the language selector', function () {
-      cy.get('[data-cy=language-selector]')
+      cy.get('[data-cy=settings-menu]')
         // this should be `.type('{enter}')` but that mysteriously fails when
         // running cypress against firefox on Ubuntu, even though pressing enter
         // in the browser *does* work. Workaround is to click() instead.
