@@ -24,11 +24,11 @@
           <p class="option__description">
             Examples:
             {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
-            <i>{% relabel '1Sg' labels=value %}</i>,
-            <i>{% relabel '2Sg' labels=value %}</i>,
-            <i>{% relabel '3Sg' labels=value %}</i>;
-            <i>{% relabel 'Prs' labels=value %}</i>,
-            <i>{% relabel 'Prt' labels=value %}</i>
+            <i>{% relabel_one '1Sg' labels=value %}</i>,
+            <i>{% relabel_one '2Sg' labels=value %}</i>,
+            <i>{% relabel_one '3Sg' labels=value %}</i>;
+            <i>{% relabel_one 'Prs' labels=value %}</i>,
+            <i>{% relabel_one 'Prt' labels=value %}</i>
           </p>
         </li>
         {% endfor %}

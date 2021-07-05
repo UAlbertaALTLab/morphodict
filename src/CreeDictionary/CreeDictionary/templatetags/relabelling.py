@@ -26,7 +26,7 @@ label_setting_to_relabeller = {
 
 
 @register.simple_tag(takes_context=True)
-def relabel(context: Context, tags, labels=None):
+def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     """
     Gets the best matching label for the given object.
     """
@@ -36,9 +36,6 @@ def relabel(context: Context, tags, labels=None):
     else:
         label_setting = labels
 
-    if isinstance(tags, str):
-        tags = (tags,)
-
     relabeller = label_setting_to_relabeller[label_setting]
 
     if label := relabeller.get_longest(tags):
@@ -46,6 +43,15 @@ def relabel(context: Context, tags, labels=None):
 
     logger.warning("Could not find relabelling for tags: %r", tags)
     return "+".join(tags)
+
+
+@register.simple_tag(takes_context=True)
+def relabel_one(context: Context, tag: FSTTag, **kwargs):
+    """
+    Relabels exactly one tag (a string). I use this instead of widening the type on
+    relabel() because polymorphic arguments make me nervous 😬
+    """
+    return relabel(context, (tag,), **kwargs)
 
 
 def label_setting_from_context(context: Context):
