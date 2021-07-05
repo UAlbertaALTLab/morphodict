@@ -5,6 +5,7 @@
 @import "./variables.css";
 @import "./_tooltip.css";
 @import "./utilities.css";
+@import "./settings-page.css";
 
 /**
  * Preliminary styles for the application.

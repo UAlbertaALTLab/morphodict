@@ -1,0 +1,42 @@
+/**
+ * BLOCK option
+ *
+ * A single option for a setting.
+ */
+.option {
+  margin-inline: 1em;
+}
+
+.option__label {
+  position: relative;
+
+  font-weight: var(--strong-font-weight);
+
+  cursor: pointer;
+}
+
+.option__control {
+  width: 2rem;
+}
+
+.option__description {
+  margin-block-start: 0.5em;
+  margin-inline-start: 2rem;
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+.option__label, .option__description {
+  display: block;
+}
+
+.action-bar {
+  display: flex;
+  flex-direction: row;
+
+  margin-block-start: 2rem;
+
+  justify-content: flex-end;
+}

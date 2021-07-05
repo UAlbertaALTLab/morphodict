@@ -7,48 +7,52 @@
 
   <section>
     <h3 id="paradigm-labels">Paradigm labels</h3>
+
+    <p> These are the labels that appear on the <strong>paradigm
+        table</strong> to label things like person, tense, plurals, etc.</p>
     
     <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
-      <ul>
-        <li>
-          <label>
-            <input type="radio" name="paradigmlabel" value="english"
+      <ul class="unbullet">
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" name="paradigmlabel" value="english" class="option__control"
                 {% if "english" == preferences.paradigm_label.current_choice %}checked{% endif %}
-            >
-            Plain English labels
+            >Plain English labels
           </label>
-          <span> 
+          <p class="option__description"> 
             Examples: I, you, he/she/them, something is happening now
-          </span>
+          </p>
         </li>
 
-        <li>
-          <label>
-            <input type="radio" name="paradigmlabel" value="linguistic"
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" name="paradigmlabel" value="linguistic" class="option__control"
                    {% if "linguistic" == preferences.paradigm_label.current_choice %}checked{% endif %}
-            >
-            Linguistic labels
+            >Linguistic labels
           </label>
-          <span> 
+
+          <p class="option__description"> 
             Examples: 1Sg, 2Sg, 3Sg, Present tense
-          </span>
+          </p>
         </li>
 
-        <li>
-          <label>
-            <input type="radio" name="paradigmlabel" value="nehiyawewin"
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" name="paradigmlabel" value="nehiyawewin" class="option__control"
                    {% if "nehiyawewin" == preferences.paradigm_label.current_choice %}checked{% endif %}
-            >
-            {% orth 'nêhiyawêwin' %} labels
+            >{% orth 'nêhiyawêwin' %} labels
           </label>
-          <span> 
+          <p class="option__description"> 
             Examples: {% orth 'niya' %}, {% orth 'kiya' %}, {% orth 'wiya' %}, {% orth 'mêkwâc' %}
-          </span>
+          </p>
         </li>
 
+      </ul>
+
+      <div class="action-bar">
         {% csrf_token %}
         <button type="submit"> Save settings </button>
-      </ul>
+      </div>
     </form>
   </section>
 </section>
