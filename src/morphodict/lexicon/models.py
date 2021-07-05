@@ -61,9 +61,9 @@ class Wordform(models.Model):
         null=True,
         blank=False,
         default=None,
-        help_text="If provided, this is the name of a static paradigm that this "
-        "wordform belongs to. This name should match the filename in "
-        "res/layouts/static/ WITHOUT the file extension.",
+        help_text="If provided, this is the name of a paradigm that this "
+        "wordform belongs to. This name must match the filename or directory in "
+        "res/layouts/ (without the file extension).",
     )
 
     is_lemma = models.BooleanField(
