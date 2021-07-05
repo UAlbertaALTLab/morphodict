@@ -1,0 +1,55 @@
+{% extends 'CreeDictionary/base.html' %}
+{% load morphodict_orth %}
+
+{% block prose %}
+<section id="settings" class="box">
+  <h2>Settings</h2>
+
+  <section>
+    <h3 id="paradigm-labels">Paradigm labels</h3>
+    
+    <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="paradigmlabel" value="english"
+                {% if "english" == preferences.paradigm_label.current_choice %}checked{% endif %}
+            >
+            Plain English labels
+          </label>
+          <span> 
+            Examples: I, you, he/she/them, something is happening now
+          </span>
+        </li>
+
+        <li>
+          <label>
+            <input type="radio" name="paradigmlabel" value="linguistic"
+                   {% if "linguistic" == preferences.paradigm_label.current_choice %}checked{% endif %}
+            >
+            Linguistic labels
+          </label>
+          <span> 
+            Examples: 1Sg, 2Sg, 3Sg, Present tense
+          </span>
+        </li>
+
+        <li>
+          <label>
+            <input type="radio" name="paradigmlabel" value="nehiyawewin"
+                   {% if "nehiyawewin" == preferences.paradigm_label.current_choice %}checked{% endif %}
+            >
+            {% orth 'nêhiyawêwin' %} labels
+          </label>
+          <span> 
+            Examples: {% orth 'niya' %}, {% orth 'kiya' %}, {% orth 'wiya' %}, {% orth 'mêkwâc' %}
+          </span>
+        </li>
+
+        {% csrf_token %}
+        <button type="submit"> Save settings </button>
+      </ul>
+    </form>
+  </section>
+</section>
+{% endblock %}
