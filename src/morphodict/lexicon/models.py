@@ -61,24 +61,26 @@ class Wordform(models.Model):
         null=True,
         blank=False,
         default=None,
-        help_text="If provided, this is the name of a paradigm that this "
-        "wordform belongs to. This name must match the filename or directory in "
-        "res/layouts/ (without the file extension).",
+        help_text="""
+            If provided, this is the name of a paradigm that this wordform belongs
+            to. This name must match the filename or directory in res/layouts/
+            (without the file extension).
+        """,
     )
 
     is_lemma = models.BooleanField(
-        default=False,
-        help_text="The wordform is chosen as lemma. This field defaults to true if according to fst the wordform is not"
-        " analyzable or it's ambiguous",
+        default=False, help_text="Whether this wordform is a lemma"
     )
 
     lemma = models.ForeignKey(
         "self",
         on_delete=models.CASCADE,
         related_name="inflections",
-        help_text="The identified lemma of this wordform. Defaults to self",
-        # This will never actually be null, but only the import creates wordforms, so this should be ok
-        # self-referential blah blah blah
+        help_text="The lemma of this wordform",
+        # This field should never be null, but since the field is
+        # self-referential, we have to allow it to be declared nullable so that
+        # the import process can first save an initial wordform object without a
+        # lemma, and then save the auto-generated ID into the lemma field.
         null=True,
     )
 
@@ -88,7 +90,9 @@ class Wordform(models.Model):
         null=True,
         help_text="""
             A stable unique identifier for a lemma. Used in public-facing URLs,
-            and for import reconciliation.
+            and for import reconciliation. It is recommended to use the wordform
+            text, optionally followed by ‘@’ and some sort of homograph
+            disambiguation string.
         """,
     )
 
