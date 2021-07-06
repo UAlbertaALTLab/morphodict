@@ -1,13 +1,12 @@
 from __future__ import annotations
 
-import json
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict, Literal
 
 from django.forms import model_to_dict
 
 from CreeDictionary.utils import get_modified_distance
-from . import types, core, lookup
+from CreeDictionary.API.search import types, core, lookup
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.CreeDictionary.relabelling import LABELS
 from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
@@ -24,10 +23,11 @@ class _ReduplicationResult:
     definitions: list
 
 
+LexicalEntryType =  Literal["Preverb", "Reduplication", "InitialChange"]
 @dataclass
 class _LexicalEntry:
-    entry: _ReduplicationResult or SerializedWordform
-    type: Literal["Preverb", "Reduplication", "InitialChange"]
+    entry: _ReduplicationResult | SerializedWordform
+    type: LexicalEntryType
     index: int
     original_tag: FSTTag
 
@@ -37,7 +37,7 @@ class SerializedPresentationResult(TypedDict):
     wordform_text: str
     is_lemma: bool
     definitions: Iterable[SerializedDefinition]
-    lexical_information: List[_LexicalEntry]
+    lexical_information: List[Dict]
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
@@ -69,8 +69,8 @@ class PresentationResult:
 
         self.lexical_info = get_lexical_information(result.wordform.analysis)
 
-        self.preverbs = [entry for entry in self.lexical_info if entry["type"] == "Preverb"]
-        self.reduplication = [entry for entry in self.lexical_info if entry["type"] == "Reduplication"]
+        self.preverbs = [lexical_entry["entry"] for lexical_entry in self.lexical_info if lexical_entry["type"] == "Preverb"]
+        self.reduplication = [lexical_entry["entry"] for lexical_entry in self.lexical_info if lexical_entry["type"] == "Reduplication"]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             self.linguistic_breakdown_head
@@ -192,16 +192,16 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     return LABELS.english.get_full_relabelling(fst_tags)
 
 
-def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
+def get_lexical_information(result_analysis: str) -> List[Dict]:
     result_analysis_tags = result_analysis.split("+")
 
-    lexical_information: List[_LexicalEntry] = []
+    lexical_information: List[Dict] = []
 
     for (i, tag) in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
-        _type = ""
-        entry = None
+        _type: Optional[LexicalEntryType] = None
+        entry: Optional[_ReduplicationResult | SerializedWordform] = None
 
         tag = FSTTag(tag)
 
@@ -254,7 +254,7 @@ def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
             entry = serialize_wordform(preverb_result)
             _type = "Preverb"
 
-        if entry and _type != "":
+        if entry and _type:
             result = _LexicalEntry(
                 entry=entry,
                 type=_type,
