@@ -6,4 +6,5 @@ collect_ignore = [
     "arpeng/site/settings.py",
     "cwdeng/site/settings.py",
     "srseng/site/settings.py",
+    "CreeDictionary/tests/DatabaseManager_tests",
 ]

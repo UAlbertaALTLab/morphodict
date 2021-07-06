@@ -25,8 +25,8 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
       }
     )
 
-    // wrong constraint pos=N is supplied, nipâw should have pos V
-    cy.visit('/word/nipâw', {qs:{'pos':'N'}})
+    // wrong slug disambiguator n is supplied, nipâw is a verb
+    cy.visit('/word/nipâw@n')
     cy.get('[data-cy=paradigm]')
       .should('not.exist')
 
@@ -63,6 +63,6 @@ describe('urls for lemma detail page should be handled correctly', ()=>{
     // both results should be present
     cy.get('[data-cy=definition-title] a').each(($e)=>{
       lemmaUrls.push($e.attr('href'))
-    }).then(()=>expect(lemmaUrls).to.include('/word/pipon/?pos=N').and.to.include('/word/pipon/?pos=V'))
+    }).then(()=>expect(lemmaUrls).to.include('/word/pipon@n/').and.to.include('/word/pipon@v/'))
   })
 })

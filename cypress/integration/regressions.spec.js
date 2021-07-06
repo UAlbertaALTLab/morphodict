@@ -350,7 +350,7 @@ context('Regressions', () => {
       .click()
 
     cy.location('search')
-      .should('include', 'paradigm-size=FULL')
+      .should('match', /paradigm-size=FULL/i)
 
     cy.get('[data-cy=play-recording]')
       .should('be.visible')

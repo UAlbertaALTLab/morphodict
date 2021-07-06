@@ -25,7 +25,8 @@
       This makes 'lemma-id' and 'paradigm-size' avaialble to JavaScript.
     {% endcomment %}
     {{ lemma_id|json_script:"lemma-id" }}
-    {{ paradigm_size.value|json_script:"paradigm-size" }}
+    {{ paradigm_size|json_script:"paradigm-size" }}
+    {{ paradigm_sizes|json_script:"paradigm-sizes" }}
   {% endif %}
 
 </head>

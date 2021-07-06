@@ -1,11 +1,8 @@
 """
 We build definition vectors so that we can find relevant definitions, and then
-later display the associated wordforms. Unfortunately we don’t currently have
-any stable ID fields that we can use to refer to the wordform that the
-definition came from. If we used the auto-generated wordform id pk, that would
-become invalid whenever the dictionary was updated.
+later display the associated wordforms.
 
-To deal with that, this file has functions to turn definitions into string keys that:
+This file has functions to turn definitions into string keys that:
  1. Are unique per definition, so we can save multiple definitions per wordform
     into a KeyedVector
  2. Also refer unambiguously to a single wordform.
@@ -13,18 +10,21 @@ To deal with that, this file has functions to turn definitions into string keys 
 
 
 import json
-from typing import TypedDict, cast
+import logging
+from typing import TypedDict, cast, Optional
 
-from CreeDictionary.API.models import Definition, Wordform
+from morphodict.lexicon.models import Wordform, Definition
+
+logger = logging.getLogger(__name__)
 
 CvdKey = str
 
 
-class WordformQuery(TypedDict):
+class WordformQuery(TypedDict, total=False):
     text: str
-    inflectional_category: str
-    analysis: str
-    stem: str
+    lemma__slug: str
+    raw_analysis: Optional[str]
+    raw_analysis__isnull: Optional[bool]
 
 
 def definition_to_cvd_key(d: Definition) -> CvdKey:
@@ -33,12 +33,11 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
         CvdKey,
         json.dumps(
             [
-                # Unfortunately, with our current setup, we need to specify all four
-                # of these for the result to be unique.
+                # Every lemma has a stable unique identifier
+                d.wordform.lemma.slug,
+                # These next two should fields should identify non-lemma wordforms
                 d.wordform.text,
-                d.wordform.inflectional_category,
-                d.wordform.analysis,
-                d.wordform.stem,
+                d.wordform.raw_analysis,
                 # This is just a disambiguator so we can have multiple definitions
                 # for the same word in a vector file without conflict.
                 d.id,
@@ -51,21 +50,27 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
 def cvd_key_to_wordform_query(s: CvdKey) -> WordformQuery:
     """Return kwargs for Wordform.objects.filter() to retrieve wordform
 
-    While unambiguous, likely too slow for general use.
+    While unambiguous, requires care to use for bulk queries. See
+    do_cvd_search() for an example use.
     """
-    text, inflectional_category, analysis, stem, _ = json.loads(s)
-    return {
+    slug, text, raw_analysis, _ = json.loads(s)
+    ret: WordformQuery = {
         "text": text,
-        "inflectional_category": inflectional_category,
-        "analysis": analysis,
-        "stem": stem,
+        "lemma__slug": slug,
     }
+    if raw_analysis:
+        ret["raw_analysis"] = raw_analysis
+    else:
+        ret["raw_analysis__isnull"] = True
+    return ret
 
 
 def wordform_query_matches(query: WordformQuery, wordform: Wordform):
     return (
         wordform.text == query["text"]
-        and wordform.inflectional_category == query["inflectional_category"]
-        and wordform.analysis == query["analysis"]
-        and wordform.stem == query["stem"]
+        and (
+            ("raw_analysis" in query and wordform.raw_analysis == query["raw_analysis"])
+            or ("raw_analysis__isnull" in query and wordform.raw_analysis is None)
+        )
+        and wordform.lemma.slug == query["lemma__slug"]
     )

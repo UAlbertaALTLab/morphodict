@@ -1,7 +1,6 @@
 import itertools
 import logging
 
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.cvd import (
@@ -15,6 +14,7 @@ from CreeDictionary.cvd.definition_keys import (
     cvd_key_to_wordform_query,
     wordform_query_matches,
 )
+from morphodict.lexicon.models import Wordform
 
 logger = logging.getLogger(__name__)
 

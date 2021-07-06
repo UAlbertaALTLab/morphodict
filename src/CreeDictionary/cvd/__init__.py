@@ -6,11 +6,18 @@ from os import fspath
 from gensim.models import KeyedVectors
 
 from django.conf import settings
+
 from CreeDictionary.utils import shared_res_dir
 
 logger = logging.getLogger(__name__)
 
 shared_vector_model_dir = shared_res_dir / "vector_models"
+
+
+# Bump this value when changing the format used to store the keys, so that
+# loading keyedvector files from one format doesn’t crash code expecting
+# another.
+CVD_KEY_FORMAT = 2
 
 
 def _load_vectors(path):
@@ -30,9 +37,9 @@ class DefinitionVectorsNotFoundException(Exception):
 
 
 def definition_vectors_path():
-    filename = "definitions.kv"
+    filename = f"definitions_v{CVD_KEY_FORMAT}.kv"
     if settings.USE_TEST_DB:
-        filename = "test_db_definitions.kv"
+        filename = f"test_db_definitions_v{CVD_KEY_FORMAT}.kv"
     return shared_vector_model_dir / filename
 
 

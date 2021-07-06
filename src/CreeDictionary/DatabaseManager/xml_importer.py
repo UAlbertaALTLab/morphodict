@@ -5,11 +5,11 @@ from typing import Dict, List, NamedTuple, Set, Optional
 
 from colorama import init
 
-from CreeDictionary.API.models import (
+from morphodict.lexicon.models import (
+    Wordform,
     Definition,
     DictionarySource,
-    EnglishKeyword,
-    Wordform,
+    TargetLanguageKeyword,
 )
 from CreeDictionary.DatabaseManager import xml_entry_lemma_finder
 from CreeDictionary.DatabaseManager.cree_inflection_generator import expand_inflections
@@ -172,7 +172,7 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
 
     def generate_english_keywords(
         wordform: Wordform, translation: XMLTranslation
-    ) -> List[EnglishKeyword]:
+    ) -> List[TargetLanguageKeyword]:
         """
         MUTATES keyword_counter!!!!!!!!!
 
@@ -181,7 +181,7 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
         nonlocal keyword_counter
 
         keywords = [
-            EnglishKeyword(id=unique_id, text=english_keyword, lemma=wordform)
+            TargetLanguageKeyword(id=unique_id, text=english_keyword, lemma=wordform)
             for unique_id, english_keyword in enumerate(
                 stem_keywords(translation.text), start=keyword_counter
             )
@@ -191,7 +191,7 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
 
     db_inflections: List[Wordform] = []
     db_definitions: List[Definition] = []
-    db_keywords: List[EnglishKeyword] = []
+    db_keywords: List[TargetLanguageKeyword] = []
     citations: Dict[int, Set[str]] = {}
 
     # now we import as is entries to the database, the entries that we fail to provide an lemma analysis.
@@ -365,7 +365,7 @@ def import_xmls(crkeng_file_path: Path, verbose=True):
     logger.info("Done inserting.")
 
     logger.info("Inserting English keywords to database...")
-    EnglishKeyword.objects.bulk_create(db_keywords)
+    TargetLanguageKeyword.objects.bulk_create(db_keywords)
     logger.info("Done inserting.")
 
     # Convert the sources (stored as a string) to citations
