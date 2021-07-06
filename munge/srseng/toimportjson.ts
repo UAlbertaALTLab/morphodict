@@ -25,15 +25,11 @@ const relaxedAnalyzer = new Transducer(
 // TODO: the FST should recognize these forms directly, even if only in relaxed
 // mode.
 function headwordToFstLemma(headword: string) {
-  return (
-    headword
-      .replace(/[ā]/g, "a")
-      .replace(/[ī]/g, "i")
-      .replace(/[ū]/g, "u")
-      .replace(/[ō]/g, "o")
-      // I'm not even sure these are equivalent; the FST yaml tests have both
-      .replace(/[ʔ]/g, "'")
-  );
+  return headword
+    .replace(/[ā]/g, "a")
+    .replace(/[ī]/g, "i")
+    .replace(/[ū]/g, "u")
+    .replace(/[ō]/g, "o");
 }
 
 async function main() {
@@ -55,11 +51,11 @@ async function main() {
   const options = program.opts();
 
   const inputTsv = await loadTsvFile(options.inputTsv);
-  const dictionary = new Dictionary();
+  const dictionary = new Dictionary(["+V", "+T", "+I", "+D"]);
   let previousHead = "";
 
   for (const row of inputTsv) {
-    let head = row["Bruce - Tsuut'ina text"];
+    let head = row["Bruce - Tsuut'ina text"].normalize("NFC");
     if (!head && !previousHead) {
       continue;
     }
@@ -82,10 +78,8 @@ async function main() {
     if (analyses.length > 1) {
       console.log(`Multiple analyses for ${head}; ${JSON.stringify(analyses)}`);
     } else if (analyses.length === 1) {
-      let [_prefixTags, lemma, suffixTags] = analyses[0];
+      let [_prefixTags, _lemma, suffixTags] = analyses[0];
       entry.analysis = analyses[0];
-      // TODO: some day, head words and FST lemmas will be distinct
-      entry.head = lemma;
 
       if (suffixTags.includes("+V") && suffixTags.includes("+I")) {
         entry.paradigm = "VI";

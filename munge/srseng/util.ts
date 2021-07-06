@@ -50,3 +50,123 @@ export async function loadTsvFile(path: string) {
   }
   return ret;
 }
+
+type DefaultValueProvider<K, V> = (key: K) => V;
+
+/**
+ * A subclass of Map that automatically sets a default value when get(key) is
+ * given a key not already present.
+ */
+export class DefaultMap<K, V> extends Map<K, V> {
+  private readonly defaultValueProvider: DefaultValueProvider<K, V>;
+
+  constructor(defaultValueProvider: DefaultValueProvider<K, V>) {
+    super();
+    this.defaultValueProvider = defaultValueProvider;
+  }
+
+  get(key: K): V {
+    if (!super.has(key)) {
+      const v = this.defaultValueProvider(key);
+      super.set(key, v);
+      return v;
+    }
+    return super.get(key)!;
+  }
+}
+
+// finds non-combining character followed by combining character
+const combiningRegExp = /(?<char>\P{Mark})(?<combiner>\p{Mark}+)/gu;
+
+/**
+ * Return a version of the string without diacritics or other ornamentation;
+ * useful for search indexing, fuzzy matching, edit distance computations, and
+ * so on.
+ */
+function toBaseCharacters(s: string) {
+  // remove combining characters
+  s = s.normalize("NFD").replace(combiningRegExp, "$1");
+  s = [...s]
+    .map((c) => {
+      switch (c) {
+        // Characters without combining decompositions. You could partly
+        // automate building a table of these by looking for unicode characters
+        // named “LATIN (SMALL|CAPITAL) LETTER X WITH ___”
+        //
+        // But as long as you’re including all the characters actually occurring
+        // in your source data, you’ll be fine.
+        case "ł":
+          return "l";
+        case "Ł":
+          return "L";
+        case "ɫ":
+          return "l";
+        case "Ɫ":
+          return "l";
+        default:
+          return c;
+      }
+    })
+    .join("");
+  return s;
+}
+
+/**
+ * Return a measure of how close two strings are to each another.
+ *
+ * Algorithm is similar to edit distance.
+ */
+export function stringDistance(a: string, b: string) {
+  const m = a.length;
+  const n = b.length;
+  const dist = Array(m + 1);
+  for (let i = 0; i <= m; i++) {
+    dist[i] = Array(n + 1);
+  }
+
+  for (let i = 0; i <= m; i++) {
+    for (let j = 0; j <= n; j++) {
+      if (i === 0) {
+        // Edit distance between empty string and string of length j is j
+        dist[i][j] = j;
+      } else if (j === 0) {
+        dist[i][j] = i;
+      } else {
+        let c = a.charAt(i - 1);
+        let d = b.charAt(j - 1);
+
+        let thisDist;
+
+        if (c == d) {
+          // exact match
+          thisDist = 0;
+          dist[i][j] = thisDist + dist[i - 1][j - 1];
+        } else if (
+          // close match
+          toBaseCharacters(c).toLowerCase() ===
+          toBaseCharacters(d).toLowerCase()
+        ) {
+          thisDist = 0.5;
+          dist[i][j] = thisDist + dist[i - 1][j - 1];
+        } else if (
+          i >= 2 &&
+          j >= 2 &&
+          c === b.charAt(j - 2) &&
+          d === a.charAt(i - 2)
+        ) {
+          // twiddle
+          thisDist = 1;
+          dist[i][j] = thisDist + dist[i - 2][j - 2];
+        } else {
+          // no match; take the lowest edit distance possible by skipping a char
+          // in one or both input strings
+          thisDist = 1;
+          dist[i][j] =
+            thisDist +
+            Math.min(dist[i - 1][j], dist[i][j - 1], dist[i - 1][j - 1]);
+        }
+      }
+    }
+  }
+  return dist[m][n];
+}

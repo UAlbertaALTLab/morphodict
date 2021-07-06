@@ -1,0 +1,29 @@
+	| Non_past	| Each_and_every_one
+
+_ 1Sg	${lemma}+V+I+Ipfv+SbjSg1
+_ 2Sg	${lemma}+V+I+Ipfv+SbjSg2
+_ 3Sg	${lemma}+V+I+Ipfv+SbjSg3
+_ 1Pl	${lemma}+V+I+Ipfv+SbjPl1	${lemma}+V+I+Ipfv+SbjPl1+Distr
+_ 2Pl	${lemma}+V+I+Ipfv+SbjPl2	${lemma}+V+I+Ipfv+SbjPl2+Distr
+_ 3Pl	${lemma}+V+I+Ipfv+SbjPl3	${lemma}+V+I+Ipfv+SbjPl3+Distr
+_ 4Sg	${lemma}+V+I+Ipfv+SbjSg4	${lemma}+V+I+Ipfv+SbjSg4+Distr
+
+| Past
+
+_ 1Sg	${lemma}+V+I+Pfv+SbjSg1
+_ 2Sg	${lemma}+V+I+Pfv+SbjSg2
+_ 3Sg	${lemma}+V+I+Pfv+SbjSg3
+_ 1Pl	${lemma}+V+I+Pfv+SbjPl1
+_ 2Pl	${lemma}+V+I+Pfv+SbjPl2
+_ 3Pl	${lemma}+V+I+Pfv+SbjPl3
+_ 4Sg	${lemma}+V+I+Pfv+SbjSg4
+
+| Again_and_again
+
+_ 1Sg	${lemma}+V+I+Ipfv+Rep+SbjSg1
+_ 2Sg	${lemma}+V+I+Ipfv+Rep+SbjSg2
+_ 3Sg	${lemma}+V+I+Ipfv+Rep+SbjSg3
+_ 1Pl	${lemma}+V+I+Ipfv+Rep+SbjPl1
+_ 2Pl	${lemma}+V+I+Ipfv+Rep+SbjPl2
+_ 3Pl	${lemma}+V+I+Ipfv+Rep+SbjPl3
+_ 4Sg	${lemma}+V+I+Ipfv+Rep+SbjSg4

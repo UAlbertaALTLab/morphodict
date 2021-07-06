@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@types/chai": "^4.2.19",
+    "@types/lodash": "^4.14.170",
+    "@types/mocha": "^8.2.2",
     "commander": "^8.0.0",
     "execifmain": "^0.0.2",
     "hfstol": "/home/andrew/Library/Caches/yarn-add-tarball/hfstol-v0.0.3-dev0.e37a3a56c5454f4cf70b3325b712f640c3f67437.tgz",
