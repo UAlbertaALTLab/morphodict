@@ -8,9 +8,9 @@
 }
 
 /**
- * ELEMENT title
+ * ELEMENT note
  *
- * The title that describes the setting.
+ * The note that provides a little description about what the setting affects.
  */
 .setting__note {
   margin-block-start: var(--small-pad);
