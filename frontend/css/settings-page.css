@@ -1,4 +1,27 @@
 /**
+ * ELEMENT title
+ *
+ * The title that describes the setting.
+ */
+.setting__title {
+  margin-block-end: .25em;
+}
+
+/**
+ * ELEMENT title
+ *
+ * The title that describes the setting.
+ */
+.setting__note {
+  margin-block-start: .25rem;
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+
+/**
  * BLOCK option
  *
  * A single option for a setting.
