@@ -54,7 +54,7 @@ class ParadigmManager:
             size = self.default_size(paradigm_name)
 
         if size not in layout_sizes:
-            raise ParadigmDoesNotExistError()
+            raise ParadigmDoesNotExistError(f"size {size!r} for {paradigm_name}")
         layout = layout_sizes[size]
 
         if lemma is not None:
