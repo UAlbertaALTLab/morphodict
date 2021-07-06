@@ -38,7 +38,7 @@ class TestLemmaDetailsInternal4xx:
         ],
     )
     def test_paradigm_details_internal_400_404(
-        self, lemma_id: Optional[str], paradigm_size: Optional[str], expected_code: int
+        self, lemma_id: str, paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
 
