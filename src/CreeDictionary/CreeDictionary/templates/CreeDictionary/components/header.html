@@ -14,11 +14,39 @@
   </header>
 
   <nav class="top-bar__nav">
-    <details class="language-selector toggle-box toggle-box--with-menu close-on-click-away">
-      <summary id="language-selector__button" class="toggle-box__toggle" data-cy="language-selector"
-               aria-haspopup="menu" tabindex="0">Show Cree words in… </summary>
-      <div class="menu toggle-box__menu" aria-labelledby="language-selector__button">
-        {% include './language-selector__orthography.html' %}
+    <details class="toggle-box toggle-box--with-menu close-on-click-away">
+      <summary id="settings-menu__button" class="toggle-box__toggle" data-cy="settings-menu"
+               aria-haspopup="menu" tabindex="0">Settings</summary>
+
+      <div class="menu toggle-box__menu" aria-labelledby="settings-menu__button">
+        <div class="menu__category">
+          <h3 class="menu__header">Show Cree words in…</h3>
+          <ul class="menu__choices" data-cy="orthography-choices">
+            <li class="menu-choice menu-choice--selected">
+              <button data-orth-switch value="Latn" class="unbutton fill-width">
+                <span class="menu-choice__label"> SRO (êîôâ) </span>
+              </button>
+            </li>
+            <li class="menu-choice">
+              <button data-orth-switch value="Latn-x-macron" class="unbutton fill-width">
+                <span class="menu-choice__label"> SRO (ēīōā) </span>
+              </button>
+            </li>
+            <li class="menu-choice">
+              <button data-orth-switch value="Cans" class="unbutton fill-width">
+                <span class="menu-choice__label"> Syllabics </span>
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <hr class="menu__separator">
+
+        <div class="menu__category">
+          <a href="{% url 'cree-dictionary-settings' %}" class="menu-choice" data-cy="settings-link">
+            <span class="menu-choice__label fill-width"> View all settings</span>
+          </a>
+        </div>
       </div>
     </details>
   </nav>

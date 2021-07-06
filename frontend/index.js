@@ -22,6 +22,7 @@ import {
 } from './js/loading-bar.js'
 import {debounce} from './js/debounce.js'
 import {setupParadigm} from './js/paradigm.js'
+import * as settings from './js/settings-page.js'
 
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   orthography.registerEventListener(csrfToken)
 
   setupSearchBar()
+  settings.setupAutoSubmitForEntirePage()
 
   let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
