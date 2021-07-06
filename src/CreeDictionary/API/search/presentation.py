@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict, Literal
 
@@ -68,8 +69,8 @@ class PresentationResult:
 
         self.lexical_info = get_lexical_information(result.wordform.analysis)
 
-        self.preverbs = [entry for entry in self.lexical_info if entry.type == "Preverb"]
-        self.reduplication = [entry for entry in self.lexical_info if entry.type == "Reduplication"]
+        self.preverbs = [entry for entry in self.lexical_info if entry["type"] == "Preverb"]
+        self.reduplication = [entry for entry in self.lexical_info if entry["type"] == "Reduplication"]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             self.linguistic_breakdown_head
@@ -91,13 +92,14 @@ class PresentationResult:
                 include_auto_definitions=self._search_run.include_auto_definitions,
             ),
             "lexical_information": self.lexical_info,
-            "preverbs": [pv.entry for pv in self.preverbs],
+            "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
+
         return ret
 
     @property
@@ -148,6 +150,28 @@ def serialize_definitions(definitions, include_auto_definitions=False):
         if include_auto_definitions or "auto" not in serialized["source_ids"]:
             ret.append(serialized)
     return ret
+
+
+def serialize_reduplication_result(reduplication_result):
+    return {
+        "text": reduplication_result.text,
+        "definitions": reduplication_result.definitions
+    }
+
+
+def serialize_lexical_entry(lexical_entry):
+    entry = None
+    if lexical_entry.type == "Reduplication":
+        entry = serialize_reduplication_result(lexical_entry.entry)
+    elif lexical_entry.type == "Preverb":
+        entry = lexical_entry.entry
+
+    return {
+        "entry": entry,
+        "type": lexical_entry.type,
+        "index": lexical_entry.index,
+        "original_tag": lexical_entry.original_tag
+    }
 
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
@@ -224,11 +248,11 @@ def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
                     }
                 ],
             )
-            _type = Literal["Reduplication"]
+            _type = "Reduplication"
 
         if preverb_result is not None:
             entry = serialize_wordform(preverb_result)
-            _type = Literal["Preverb"]
+            _type = "Preverb"
 
         if entry and _type != "":
             result = _LexicalEntry(
@@ -237,10 +261,10 @@ def get_lexical_information(result_analysis: str) -> List[_LexicalEntry]:
                 index=i,
                 original_tag=tag
             )
-            lexical_information.append(result)
+            lexical_information.append(serialize_lexical_entry(result))
 
     # The list should be sorted, but I'd rather guarantee it is
-    return sorted(lexical_information, key=lambda x: x.index)
+    return lexical_information
 
 def generate_reduplication_string(result_analysis_tags: List[str], tag: str, i: int) -> str:
     consonants = "chkmnpstwy"
