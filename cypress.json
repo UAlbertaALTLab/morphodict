@@ -9,6 +9,7 @@
   "env": {
     "admin_url": "/admin/",
     "admin_login_url": "/admin/login/",
-    "legend_url": "/legend"
+    "legend_url": "/legend",
+    "settings_url": "/settings"
   }
 }
