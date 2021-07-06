@@ -18,7 +18,6 @@ pip-delete-this-directory.txt
 /coverage.xml
 
 # Django stuff
-DatabaseManager.log*
 *.log
 local_settings.py
 db.sqlite3

@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 
 import pytest
 from CreeDictionary.utils import WordClass
-from CreeDictionary.utils.crkeng_xml_utils import extract_l_str
 from CreeDictionary.utils.fst_analysis_parser import extract_lemma, extract_word_class
 
 
@@ -46,23 +45,3 @@ def test_hfstol_analysis_lemma_extraction(analysis, real_lemma):
 def test_hfstol_analysis_category_extraction(analysis, category):
     actual = extract_word_class(analysis)
     assert actual == category
-
-
-def test_l_text_extraction(shared_datadir):
-    elements = (
-        ET.parse(str(shared_datadir / "crkeng-missing-l-0.xml"))
-        .getroot()
-        .findall(".//e")
-    )
-    for element in elements:
-        with pytest.raises(ValueError):
-            extract_l_str(element)
-
-    elements = (
-        ET.parse(str(shared_datadir / "crkeng-nice-0.xml")).getroot().findall(".//e")
-    )
-    results = []
-    for element in elements:
-        results.append(extract_l_str(element))
-
-    assert results == ["yôwamêw", "yôtinipahtâw"]
