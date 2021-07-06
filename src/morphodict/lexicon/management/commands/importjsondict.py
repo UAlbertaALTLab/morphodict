@@ -1,6 +1,10 @@
 import json
 import logging
-from argparse import ArgumentParser, BooleanOptionalAction
+from argparse import (
+    ArgumentParser,
+    BooleanOptionalAction,
+    ArgumentDefaultsHelpFormatter,
+)
 from pathlib import Path
 
 from django.conf import settings
@@ -11,6 +15,7 @@ from tqdm import tqdm
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.utils.english_keyword_extraction import stem_keywords
 from morphodict.analysis import RichAnalysis, strict_generator
+from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE
 from morphodict.lexicon.models import (
     Wordform,
     Definition,
@@ -24,12 +29,20 @@ logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
+    help = """Update the test database from an importjson file
+
+    This command loads the dictionary data in an importjson file into the
+    morphodict database. When run against an already-populated database, it
+    synchronizes the database to match the contents of the importjson file.
+    """
+
     def add_arguments(self, parser: ArgumentParser):
+        parser.formatter_class = ArgumentDefaultsHelpFormatter
+
         parser.add_argument(
             "--purge",
             action=BooleanOptionalAction,
-            # TODO: change default to False once working with full DBs
-            default=True,
+            default=False,
             help="""
                 Delete all existing entries that are not found in this import
                 file. Used for importing a full dictionary file when keys may
@@ -46,7 +59,13 @@ class Command(BaseCommand):
                 other processes can’t access it. Good for development use.
             """,
         )
-        parser.add_argument("json_file")
+
+        parser.add_argument(
+            "json_file",
+            help=f"The importjson file to import",
+            nargs="?",
+            default=DEFAULT_IMPORTJSON_FILE,
+        )
 
     def handle(self, json_file, purge, atomic, **options):
         if atomic:
