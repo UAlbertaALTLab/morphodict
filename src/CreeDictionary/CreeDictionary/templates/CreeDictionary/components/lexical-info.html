@@ -25,7 +25,12 @@
   <ol class="preverb-breakdown">
     {% for item in result.lexical_information %}
       <li>
-        <span>{{ item.type }}: {{ item.entry.text}}</span>
+          <span>{{ item.type }}:
+              {% if item.entry.lemma_url %}
+                  <a href="{{ item.entry.lemma_url }}">{{ item.entry.text}}</a>
+              {% else %}
+                  {{ item.entry.text}}
+              {% endif %}</span>
 
         {% if item.entry.id %} {# we know the preverb in the database #}
           <div tabindex="0" class="preverb-breakdown__tooltip-icon" data-has-tooltip data-cy="information-mark">

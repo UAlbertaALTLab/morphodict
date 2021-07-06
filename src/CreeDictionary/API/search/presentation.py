@@ -10,6 +10,7 @@ from CreeDictionary.API.search import types, core, lookup
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.CreeDictionary.relabelling import LABELS
 from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
+from morphodict.analysis import RichAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.lexicon.models import Wordform, wordform_cache
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
@@ -23,7 +24,9 @@ class _ReduplicationResult:
     definitions: list
 
 
-LexicalEntryType =  Literal["Preverb", "Reduplication", "InitialChange"]
+LexicalEntryType = Literal["Preverb", "Reduplication", "InitialChange"]
+
+
 @dataclass
 class _LexicalEntry:
     entry: _ReduplicationResult | SerializedWordform
@@ -62,17 +65,24 @@ class PresentationResult:
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
 
-        analysis = result.wordform.analysis or [[], None, []]
         (
             self.linguistic_breakdown_head,
             _,
             self.linguistic_breakdown_tail,
-        ) = analysis
+        ) = result.wordform.analysis or [[], None, []]
 
         self.lexical_info = get_lexical_information(result.wordform.analysis)
 
-        self.preverbs = [lexical_entry["entry"] for lexical_entry in self.lexical_info if lexical_entry["type"] == "Preverb"]
-        self.reduplication = [lexical_entry["entry"] for lexical_entry in self.lexical_info if lexical_entry["type"] == "Reduplication"]
+        self.preverbs = [
+            lexical_entry["entry"]
+            for lexical_entry in self.lexical_info
+            if lexical_entry["type"] == "Preverb"
+        ]
+        self.reduplication = [
+            lexical_entry["entry"]
+            for lexical_entry in self.lexical_info
+            if lexical_entry["type"] == "Reduplication"
+        ]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             list(t.strip("+") for t in self.linguistic_breakdown_head)
@@ -153,7 +163,7 @@ def serialize_definitions(definitions, include_auto_definitions=False):
 def serialize_reduplication_result(reduplication_result):
     return {
         "text": reduplication_result.text,
-        "definitions": reduplication_result.definitions
+        "definitions": reduplication_result.definitions,
     }
 
 
@@ -168,7 +178,7 @@ def serialize_lexical_entry(lexical_entry):
         "entry": entry,
         "type": lexical_entry.type,
         "index": lexical_entry.index,
-        "original_tag": lexical_entry.original_tag
+        "original_tag": lexical_entry.original_tag,
     }
 
 
@@ -190,8 +200,12 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     return LABELS.english.get_full_relabelling(fst_tags)
 
 
-def get_lexical_information(result_analysis: str) -> List[Dict]:
-    result_analysis_tags = result_analysis.split("+")
+def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
+    if not result_analysis:
+        return []
+
+    result_analysis_tags = result_analysis.prefix_tags
+    first_letters = extract_first_letters(result_analysis)
 
     lexical_information: List[Dict] = []
 
@@ -201,17 +215,17 @@ def get_lexical_information(result_analysis: str) -> List[Dict]:
         _type: Optional[LexicalEntryType] = None
         entry: Optional[_ReduplicationResult | SerializedWordform] = None
 
-        tag = FSTTag(tag)
-
-        if tag in ["RdplW", "RdplS"]:
-            reduplication_string = generate_reduplication_string(result_analysis_tags, tag, i)
+        if tag in ["RdplW+", "RdplS+"]:
+            reduplication_string = generate_reduplication_string(
+                tag, first_letters[i + 1]
+            )
 
         elif tag.startswith("PV/"):
             # use altlabel.tsv to figure out the preverb
 
             # ling_short looks like: "Preverb: âpihci-"
             ling_short = LABELS.linguistic_short.get(cast(FSTTag, tag.rstrip("+")))
-            if ling_short is not None and ling_short != "":
+            if ling_short:
                 # convert to "âpihci" by dropping prefix and last character
                 normative_preverb_text = ling_short[len("Preverb: ") :]
                 preverb_results = Wordform.objects.filter(
@@ -243,7 +257,7 @@ def get_lexical_information(result_analysis: str) -> List[Dict]:
                 definitions=[
                     {
                         "text": "Strong reduplication"
-                        if tag == "RdplS"
+                        if tag == "RdplS+"
                         else "Weak Reduplication"
                     }
                 ],
@@ -255,25 +269,29 @@ def get_lexical_information(result_analysis: str) -> List[Dict]:
             _type = "Preverb"
 
         if entry and _type:
-            result = _LexicalEntry(
-                entry=entry,
-                type=_type,
-                index=i,
-                original_tag=tag
-            )
+            result = _LexicalEntry(entry=entry, type=_type, index=i, original_tag=tag)
             lexical_information.append(serialize_lexical_entry(result))
 
-    # The list should be sorted, but I'd rather guarantee it is
     return lexical_information
 
-def generate_reduplication_string(result_analysis_tags: List[str], tag: str, i: int) -> str:
+
+def extract_first_letters(analysis: RichAnalysis) -> List[str]:
+    # TODO: doctests here pls
+    tags = analysis.prefix_tags + (analysis.lemma,)
+
+    def first_letter(x):
+        pieces = x.split("/")
+        return pieces[-1][0]
+
+    return [first_letter(t) for t in tags]
+
+
+def generate_reduplication_string(tag: str, letter: str) -> str:
     consonants = "chkmnpstwy"
-    word = result_analysis_tags[i + 1]
-    letter = word.split("/")[-1][0]
     reduplication_string = ""
-    if tag == "RdplW":
+    if tag == "RdplW+":
         reduplication_string = letter + "a-" if letter.lower() in consonants else "ay-"
-    else:
+    elif tag == "RdplS+":
         reduplication_string = letter + "âh-" if letter.lower() in consonants else "âh-"
 
     return reduplication_string
