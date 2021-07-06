@@ -40,7 +40,6 @@
   --link-color:             #1685DE; /* Regular links */
   --link-hover-color:       #95211E; /* Hover over a link. */
   --link-visited-color:     #941686; /* Visited link */
-  --menu-caption-color:     #626262; /* Color of text for menu captions. */
   --menu-selected-color:    var(--box-bg-color);
   --menu-selected-bg-color: #0072C8;
   --menu-hover-bg-color:    #DEE4F9; /* A dark background to contrast highlighted menu items. */
