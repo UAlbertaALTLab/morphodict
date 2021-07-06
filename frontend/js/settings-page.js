@@ -1,5 +1,7 @@
 /**
- * Sets up all <form data-save-preference> elements on the page to be submitted upon change.
+ * Sets up all <form data-save-preference> elements on the page to be submitted upon
+ * change. This means there is no need for a submit <button> in the form as
+ * changes are persisted when they're made.
  *
  * Assumes at least the HTML that looks like this:
  *
@@ -8,20 +10,24 @@
  *  <input name="setting" value="value2">
  *  <input name="setting" value="value3">
  * </form>
+ *
+ * A <button type="submit"> is removed from the form, if it exists.
  */
-export function setupAll() {
+export function setupAutoSubmitForEntirePage() {
   let forms = document.querySelectorAll('form[data-save-preference]')
   for (const form of forms) {
-    setupSavePreference(form)
+    setupFormAutoSubmit(form)
   }
 }
 
 /**
+ * Enables save preference on change.
+ *
  * @param {HTMLFormElement} the form that has all of the information.
  */
-function setupSavePreference(form) {
-  const submitButton = form.querySelector('button[type=submit]')
+function setupFormAutoSubmit(form) {
   const endpoint = form.action
+  const submitButton = form.querySelector('button[type=submit]')
 
   form.addEventListener('change', () => void changePreference())
 
@@ -29,7 +35,7 @@ function setupSavePreference(form) {
     submitButton.remove()
   }
 
-  /////////////////////////////// utilities ////////////////////////////////
+  /////////////////////////////// Utilities ////////////////////////////////
 
   async function changePreference() {
     let response = await fetch(endpoint, {

@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
   orthography.registerEventListener(csrfToken)
 
   setupSearchBar()
-  settings.setupAll()
+  settings.setupAutoSubmitForEntirePage()
 
   let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
