@@ -13,6 +13,7 @@
   --gap:                      .5rem;
   --search-focus-outline-size:  4px; /* How far the focus colour should expand. */
   --footer-link-gap:           2rem; /* How far link sections in the footer should be. */
+  --option-control-width:      2rem; /* How wide an option control (like ☑️  or 🔘) should be. */
 
   /* Responsive sizes */
   /* Diane went to great effort to figure out these exact pixel values ¯\_(ツ)_/¯ */

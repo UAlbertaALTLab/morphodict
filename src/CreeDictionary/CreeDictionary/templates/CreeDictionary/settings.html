@@ -19,8 +19,9 @@
         <li class="option">
           <label class="option__label">
             <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"
-                {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}
-            >{{ label|capfirst }}</label>
+                {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>
+            <span class="option__label-text">{{ label|capfirst }}</span>
+          </label>
           <p class="option__description">
             Examples:
             {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}

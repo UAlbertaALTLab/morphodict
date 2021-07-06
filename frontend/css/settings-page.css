@@ -4,7 +4,7 @@
  * The title that describes the setting.
  */
 .setting__title {
-  margin-block-end: .25em;
+  margin-block-end: var(--small-pad);
 }
 
 /**
@@ -13,7 +13,7 @@
  * The title that describes the setting.
  */
 .setting__note {
-  margin-block-start: .25rem;
+  margin-block-start: var(--small-pad);
 
   font-size: smaller;
 
@@ -31,7 +31,8 @@
 }
 
 .option__label {
-  position: relative;
+  display: flex;
+  flex-flow: row no-wrap;
 
   font-weight: var(--strong-font-weight);
 
@@ -39,20 +40,25 @@
 }
 
 .option__control {
-  width: 2rem;
+  flex: 0 auto;
+  width: var(--option-control-width);
+
+  align-self: center;
+}
+
+.option__label-text {
+  flex: 1;
 }
 
 .option__description {
+  display: block;
+
   margin-block-start: 0.5em;
-  margin-inline-start: 2rem;
+  margin-inline-start: var(--option-control-width);
 
   font-size: smaller;
 
   color: var(--deemphasized-text-color);
-}
-
-.option__label, .option__description {
-  display: block;
 }
 
 .action-bar {
