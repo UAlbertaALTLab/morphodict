@@ -4,7 +4,7 @@ import logging
 import re
 from functools import cache
 from pathlib import Path
-from typing import Collection, Iterable, Optional, Protocol, Sequence
+from typing import Collection, Iterable, Optional, Protocol
 
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
@@ -52,6 +52,9 @@ class ParadigmManager:
         layout_sizes = self._layout_sizes_or_raise(paradigm_name)
         if size is None:
             size = self.default_size(paradigm_name)
+
+        if size not in layout_sizes:
+            raise ParadigmDoesNotExistError()
         layout = layout_sizes[size]
 
         if lemma is not None:

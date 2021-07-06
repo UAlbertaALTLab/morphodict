@@ -1,4 +1,5 @@
 import logging
+import re
 from http import HTTPStatus
 from typing import Dict, Optional
 
@@ -21,6 +22,8 @@ from morphodict.lexicon.models import Wordform
 # 32-bit int is a possible boundary condition that may cause issues elsewhere:
 ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
 
+RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
+
 
 class TestLemmaDetailsInternal4xx:
     @pytest.mark.django_db
@@ -30,7 +33,7 @@ class TestLemmaDetailsInternal4xx:
             ["-10", "FULL", HttpResponseBadRequest.status_code],
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
-            ["123", "LINUST", HttpResponseBadRequest.status_code],
+            ["maskwa", "LINUST", HttpResponseBadRequest.status_code],
             [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
@@ -38,6 +41,9 @@ class TestLemmaDetailsInternal4xx:
         self, lemma_id: Optional[str], paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
+
+        if not RE_NUMERIC.fullmatch(lemma_id):
+            lemma_id = str(Wordform.objects.get(slug=lemma_id).id)
 
         get_data: Dict[str, str] = {}
         if lemma_id is not None:
@@ -122,7 +128,7 @@ def test_paradigm_from_full_page_and_api(client: Client):
     contain the exact same information.
     """
     lemma_text = "wâpamêw"
-    paradigm_size = "FULL"
+    paradigm_size = "full"
 
     wordform = Wordform.objects.get(text=lemma_text)
     assert wordform.lemma == wordform, "this test requires a lemma"
