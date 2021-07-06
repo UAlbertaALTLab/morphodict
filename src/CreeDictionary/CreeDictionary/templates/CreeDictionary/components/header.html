@@ -21,10 +21,10 @@
       <div class="menu toggle-box__menu" aria-labelledby="settings-menu__button">
         {% include './language-selector__orthography.html' %}
 
-        <hr>
+        <hr class="menu__separator">
 
         <div class="menu__category">
-          <a href="{% url 'cree-dictionary-settings' %}" class="menu-choice">
+          <a href="{% url 'cree-dictionary-settings' %}" class="menu-choice" data-cy="settings-link">
             <span class="menu-choice__label fill-width"> View all settings</span>
           </a>
         </div>
