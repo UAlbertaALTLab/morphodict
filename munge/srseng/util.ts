@@ -146,7 +146,7 @@ export function stringDistance(a: string, b: string) {
           toBaseCharacters(c).toLowerCase() ===
           toBaseCharacters(d).toLowerCase()
         ) {
-          thisDist = 0.5;
+          thisDist = 0.2;
           dist[i][j] = thisDist + dist[i - 1][j - 1];
         } else if (
           i >= 2 &&

@@ -1,5 +1,5 @@
 import assert from "assert";
-import { minBy } from "lodash";
+import { minBy, sortBy } from "lodash";
 import { DefaultMap, makePrettierJson, stringDistance } from "./util";
 
 export type Analysis = [string[], string, string[]];
@@ -180,6 +180,13 @@ export class Dictionary {
     }
 
     const entry = new DictionaryEntry();
+
+    if (/^\p{Combining_Mark}/u.test(text.normalize())) {
+      console.log(
+        `Warning: ${JSON.stringify(text)} begins with a combining character`
+      );
+    }
+
     entry.head = text;
     this._entries.push(entry);
     this._byText.set(text, entry);
@@ -190,7 +197,7 @@ export class Dictionary {
     this.assignSlugs();
     this.determineLemmas();
 
-    const entriesToExport: (DictionaryEntry | ExportableWordform)[] = [];
+    let entriesToExport: (DictionaryEntry | ExportableWordform)[] = [];
     for (const e of this._entries) {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
@@ -212,6 +219,27 @@ export class Dictionary {
         }
       }
     }
+
+    function entryKeyBySlugThenText(entry) {
+      let slug, form;
+
+      const isLemma = "slug" in entry;
+      if (isLemma) {
+        slug = entry.slug;
+        form = "";
+      } else {
+        slug = entry.formOf;
+        form = entry.head;
+      }
+
+      slug = slug.normalize("NFD");
+      form = form.normalize("NFD");
+
+      return [slug, form];
+    }
+
+    entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText);
+
     return makePrettierJson(entriesToExport);
   }
 }

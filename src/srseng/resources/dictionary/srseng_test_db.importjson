@@ -1,0 +1,179 @@
+[
+  {
+    "head": "ìstsáh",
+    "senses": [
+      {
+        "definition": "I saw them",
+        "sources": ["OS"]
+      }
+    ],
+    "analysis": [[], "ìstsáh", ["+V", "+T", "+Pfv", "+SbjSg1", "+DObjPl3"]],
+    "paradigm": "VT",
+    "slug": "gīmīyīsʔí"
+  },
+  {
+    "head": "itsiy",
+    "senses": [
+      {
+        "definition": "he/she/it is crying",
+        "sources": ["OS"]
+      }
+    ],
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
+    "paradigm": "VI",
+    "slug": "ītsīy"
+  },
+  {
+    "head": "āstsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl2"]],
+    "senses": [
+      {
+        "definition": "youᵖˡ∙ are crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "dàts'ītsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg4", "+Distr"]],
+    "senses": [
+      {
+        "definition": "some people each and every one are crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "gītsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl3"]],
+    "senses": [
+      {
+        "definition": "they are crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "gīyítsày",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl3"]],
+    "senses": [
+      {
+        "definition": "they cried, were cryinġ",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "īsāàtsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl1"]],
+    "senses": [
+      {
+        "definition": "we are crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "īstsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg1"]],
+    "senses": [
+      {
+        "definition": "I am crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "náchīsh",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]],
+    "senses": [
+      {
+        "definition": "he/she/it cries again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "nītsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg2"]],
+    "senses": [
+      {
+        "definition": "youˢᵍ∙ are crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "ts'ītsīy",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg4"]],
+    "senses": [
+      {
+        "definition": "someone is crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "yāàtsày",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl1"]],
+    "senses": [
+      {
+        "definition": "we cried, were crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "yāstsày",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl2"]],
+    "senses": [
+      {
+        "definition": "youᵖᴵ∙ cried, were crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "yīstsày",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjSg1"]],
+    "senses": [
+      {
+        "definition": "I cried, was crying",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "yīstsíl",
+    "analysis": [[], "itsiy", ["+V", "+I", "+Prog", "+SbjSg1"]],
+    "senses": [
+      {
+        "definition": "I hammered it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "ītsīy"
+  },
+  {
+    "head": "nīnāghá",
+    "senses": [
+      {
+        "definition": "bear",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "nīnāghá"
+  }
+]
