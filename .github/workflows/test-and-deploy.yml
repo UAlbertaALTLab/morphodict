@@ -76,7 +76,7 @@ jobs:
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
-      run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
+      run: pipenv run test -v --cov=src --cov-report=xml
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1.5.0
 
