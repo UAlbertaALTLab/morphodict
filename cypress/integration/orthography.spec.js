@@ -10,7 +10,7 @@ describe('Orthography selection', function () {
         .as('greeting')
 
       // Switch to syllabics
-      cy.get('[data-cy=language-selector]')
+      cy.get('[data-cy=settings-menu]')
         .click()
         .parent('details')
         .as('menu')
@@ -29,7 +29,7 @@ describe('Orthography selection', function () {
         .should('not.be.visible')
 
       // It should say so on the button
-      cy.get('[data-cy=language-selector]')
+      cy.get('[data-cy=settings-menu]')
         .click()
 
       // Opening the menu, we should find that syllabics is highligted, and
@@ -66,7 +66,7 @@ describe('Orthography selection', function () {
         .as('greeting')
 
       // Switch to syllabics
-      cy.get('[data-cy=language-selector]')
+      cy.get('[data-cy=settings-menu]')
         .click()
         .parent('details')
         .as('menu')

@@ -3,7 +3,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from CreeDictionary.cvd import definition_vectors_path
-from morphodict.lexicon.test_db import TEST_DB_IMPORTJSON
+from morphodict.lexicon import DEFAULT_TEST_IMPORTJSON_FILE
 
 
 class Command(BaseCommand):
@@ -21,12 +21,16 @@ class Command(BaseCommand):
 
         call_command("migrate", verbosity=0)
 
+        def importjson_newer_than_db():
+            return (
+                DEFAULT_TEST_IMPORTJSON_FILE.stat().st_mtime
+                > settings.TEST_DB_FILE.stat().st_mtime
+            )
+
         if (
             not Wordform.objects.exists()
             or not definition_vectors_path().exists()
-            # Rebuild test DB if test dictionary has changed
-            or TEST_DB_IMPORTJSON.stat().st_mtime
-            > settings.TEST_DB_FILE.stat().st_mtime
+            or importjson_newer_than_db()
         ):
-            call_command("importjsondict", TEST_DB_IMPORTJSON, purge=True)
+            call_command("importjsondict", purge=True)
         call_command("ensurecypressadminuser")

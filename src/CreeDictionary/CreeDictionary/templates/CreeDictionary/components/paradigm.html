@@ -31,8 +31,10 @@
           <tbody>
             {% for row in pane.tr_rows %}
               {% if row.is_header %}
-                <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
-                >{% relabel row.fst_tags %}</th>
+                <tr>
+                  <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                  >{% relabel row.fst_tags %}</th>
+                </tr>
               {% else %}
                 <tr class="paradigm-row">
                   {% for cell in row.cells %}

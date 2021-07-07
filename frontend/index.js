@@ -22,6 +22,7 @@ import {
 } from './js/loading-bar.js'
 import {debounce} from './js/debounce.js'
 import {setupParadigm} from './js/paradigm.js'
+import * as settings from './js/settings-page.js'
 
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -41,14 +42,11 @@ const SERACH_BAR_DEBOUNCE_TIME = 450
 //////////////////////////////// On page load ////////////////////////////////
 
 document.addEventListener('DOMContentLoaded', () => {
-
-  // XXX: HACK! reloads the site when the back button is pressed.
-  window.onpopsate = () => location.reload()
-
   let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
   orthography.registerEventListener(csrfToken)
 
   setupSearchBar()
+  settings.setupAutoSubmitForEntirePage()
 
   let route = makeRouteRelativeToSlash(window.location.pathname)
   // Tiny router.
@@ -73,15 +71,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })
 
-const debouncedLoadSearchResults = debounce(() => {
-  const searchBar = document.getElementById('search')
-  loadSearchResults(searchBar)
-}, SERACH_BAR_DEBOUNCE_TIME)
-
-
-
 function setupSearchBar() {
   const searchBar = document.getElementById('search')
+  const debouncedLoadSearchResults = debounce(() => {
+    loadSearchResults(searchBar)
+  }, SERACH_BAR_DEBOUNCE_TIME)
+
   searchBar.addEventListener('input', () => {
     indicateLoading()
     debouncedLoadSearchResults()
@@ -170,7 +165,7 @@ function loadSearchResults(searchInput) {
   function issueSearch() {
     let searchURL = Urls['cree-dictionary-search-results'](userQuery)
 
-    window.history.replaceState(userQuery, document.title, urlForQuery(userQuery))
+    window.history.replaceState(null, '', urlForQuery(userQuery))
     hideProse()
 
     fetch(searchURL)
@@ -202,7 +197,7 @@ function loadSearchResults(searchInput) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(userQuery, document.title, Urls['cree-dictionary-index']())
+    window.history.replaceState(null, '', Urls['cree-dictionary-index']())
 
     showProse()
 

@@ -19,10 +19,10 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.utils import ParadigmSize, WordClass
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.lexicon.models import Wordform
 from morphodict.preference.views import ChangePreferenceView
+from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm
 from .utils import url_for_query
 
@@ -40,21 +40,8 @@ logger = logging.getLogger(__name__)
 def entry_details(request, slug: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
-    page if no head is found or multiple heads are found.
+    page if no slug is not found.
 
-    Possible query params:
-
-      To disambiguate the head word (see: Wordform.homograph_disambiguator):
-        - pos
-        - inflectional_category
-        - analysis
-        - id
-
-      To affect the paradigm size:
-
-        - paradigm-size (default is BASIC) to specify the size of the paradigm
-
-    :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
     :param slug: the stable unique ID of the lemma
     """
 
@@ -186,29 +173,34 @@ def paradigm_internal(request):
             return HttpResponseBadRequest(
                 "lemma-id is negative and should be non-negative"
             )
-    try:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
-    except ValueError:
-        return HttpResponseBadRequest(
-            f"paradigm-size is not one {[x.value for x in ParadigmSize]}"
-        )
 
     try:
-        lemma = Wordform.objects.get(id=lemma_id)
+        lemma = Wordform.objects.get(id=lemma_id, is_lemma=True)
     except Wordform.DoesNotExist:
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    paradigm = paradigm_for(lemma, paradigm_size)
+    print(lemma)
+
+    try:
+        paradigm = paradigm_for(lemma, paradigm_size)
+    except ParadigmDoesNotExistError:
+        return HttpResponseBadRequest("paradigm does not exist")
     return render(
         request,
         "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
-            "paradigm_size": paradigm_size.value,
+            "paradigm_size": paradigm_size,
             "paradigm": paradigm,
         },
     )
+
+
+def settings_page(request):
+    # TODO: clean up template so that this weird hack is no longer needed.
+    context = create_context_for_index_template("info-page")
+    return render(request, "CreeDictionary/settings.html", context)
 
 
 def about(request):  # pragma: no cover
@@ -353,46 +345,22 @@ def should_include_auto_definitions(request):
     return request.user.is_authenticated
 
 
-def paradigm_for(
-    wordform: Wordform, paradigm_size: ParadigmSize | str
-) -> Optional[Paradigm]:
+def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
-    If a paradigm cannot be found, an empty list is returned
+    If a paradigm cannot be found, None is returned
     """
-    # TODO: make this use the new-style ParadigmManager exclusively
 
     manager = default_paradigm_manager()
 
-    if isinstance(paradigm_size, ParadigmSize):
-        size = convert_crkeng_paradigm_size_to_size(paradigm_size)
-    else:
-        size = paradigm_size
-
     if name := wordform.paradigm:
-        if static_paradigm := manager.paradigm_for(name, wordform.lemma.text, size):
-            return static_paradigm
+        if paradigm := manager.paradigm_for(name, wordform.lemma.text, paradigm_size):
+            return paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
             name,
             wordform,
         )
-        return None
 
     return None
-
-
-def convert_crkeng_paradigm_size_to_size(paradigm_size: ParadigmSize) -> str:
-    """
-    Returns the crkeng layout size, which is currently:
-     - basic
-     - full
-    """
-    return {
-        ParadigmSize.FULL: "full",
-        ParadigmSize.BASIC: "basic",
-        # The linguistic "size" does not, as of yet exist, however its content is
-        # exactly the same as the full layout.
-        ParadigmSize.LINGUISTIC: "full",
-    }[paradigm_size]

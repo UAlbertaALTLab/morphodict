@@ -1,6 +1,3 @@
-import string
-import unicodedata
-
 VOWELS = {"a", "e", "i", "o"}
 
 
