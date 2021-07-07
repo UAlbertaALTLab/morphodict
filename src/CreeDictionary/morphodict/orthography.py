@@ -10,6 +10,8 @@ from django.http import HttpRequest
 
 
 class Orthography:
+    COOKIE_NAME = "orth"
+
     class _Converter:
         def __getitem__(self, code: str) -> Callable[[str], str]:
             path = settings.MORPHODICT_ORTHOGRAPHY["available"][code].get(
@@ -43,7 +45,7 @@ class Orthography:
         Return the requested orthography code from the HTTP request. If the request
         does not specify an orthography, the default code is returned.
         """
-        return request.COOKIES.get("orth", self.default)
+        return request.COOKIES.get(self.COOKIE_NAME, self.default)
 
 
 ORTHOGRAPHY = Orthography()
