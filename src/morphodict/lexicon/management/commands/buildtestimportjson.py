@@ -120,6 +120,8 @@ class TestDictionary:
             elif "formOf" in entry:
                 assert "slug" not in entry
                 self._by_slug[entry["formOf"]].append(entry)
+            else:
+                raise AssertionError("Entry must contain either formOf or slug")
 
     def _add_entry(self, entry):
         """Add an entry from the full dictionary to the test one."""
