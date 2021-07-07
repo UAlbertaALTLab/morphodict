@@ -107,10 +107,10 @@ class TestDictionary:
         # Track which words we haven’t yet seen
         self._unused_words = set(self._test_words)
 
-        self._groupBySlug()
+        self._group_by_slug()
         self._extract()
 
-    def _groupBySlug(self):
+    def _group_by_slug(self):
         """Create _by_slug dict mapping slugs to list of lemma and all wordforms"""
         self._by_slug = defaultdict(list)
         for entry in self._full_dictionary:
