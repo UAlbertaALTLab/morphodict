@@ -1,0 +1,8 @@
+{% spaceless %}
+{% load morphodict_orth %}
+{% if result.morphemes %}
+  {{ result.morphemes|join:"·" }}
+{% else %}
+  {% orth result.lemma_wordform.text %}
+{% endif %}
+{% endspaceless %}

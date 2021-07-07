@@ -23,6 +23,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
     relevant_tags: Iterable[SerializedLinguisticTag]
+    morphemes: Optional[Iterable[str]]
 
 
 class PresentationResult:
@@ -50,6 +51,11 @@ class PresentationResult:
             self.linguistic_breakdown_tail,
         ) = analysis
 
+        if rich_analysis := result.wordform.analysis:
+            self.morphemes = rich_analysis.generate_with_morphemes()
+        else:
+            self.morphemes = None
+
         self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
@@ -75,6 +81,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
+            "morphemes": self.morphemes,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
