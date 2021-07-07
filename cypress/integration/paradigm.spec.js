@@ -149,6 +149,7 @@ describe('Paradigm labels', () => {
   let lemma = 'nipâw'
   let englishLabel = 'they'
   let nehiyawewinLabel = 'wiyanaw'
+  let syllabicsLabel = 'ᐏᔭᓇᐤ'
   let linguisticLabel = '3s'
 
   it('should appear in plain English by default', () => {
@@ -169,6 +170,27 @@ describe('Paradigm labels', () => {
 
     cy.get('[data-cy=paradigm]')
       .contains('th[scope=row]', nehiyawewinLabel)
+  })
+
+  it('should appear in syllabics', () => {
+    cy.visitLemma(lemma, { 'paradigm-size': 'FULL'})
+
+    cy.get('[data-cy=open-paradigm-label-switcher]')
+      .click()
+    cy.get('[data-cy=paradigm-label-options]')
+      .contains(/nêhiyawêwin/i)
+      .click()
+
+    cy.get('[data-cy=settings-menu]')
+      .click()
+      .parent('details')
+      .as('menu')
+    cy.get('@menu')
+      .contains('Syllabics')
+      .click()
+
+    cy.get('[data-cy=paradigm]')
+      .contains('th[scope=row]', syllabicsLabel)
   })
 
   it('should appear using lingustic terminology', () => {
