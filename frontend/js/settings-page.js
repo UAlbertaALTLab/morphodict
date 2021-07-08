@@ -14,9 +14,9 @@
  * A <button type="submit"> is removed from the form, if it exists.
  */
 export function setupAutoSubmitForEntirePage() {
-  let forms = document.querySelectorAll('form[data-save-preference]')
+  let forms = document.querySelectorAll("form[data-save-preference]");
   for (const form of forms) {
-    setupFormAutoSubmit(form)
+    setupFormAutoSubmit(form);
   }
 }
 
@@ -26,23 +26,23 @@ export function setupAutoSubmitForEntirePage() {
  * @param {HTMLFormElement} the form that has all of the information.
  */
 function setupFormAutoSubmit(form) {
-  const endpoint = form.action
-  const submitButton = form.querySelector('button[type=submit]')
+  const endpoint = form.action;
+  const submitButton = form.querySelector("button[type=submit]");
 
-  form.addEventListener('change', () => void changePreference())
+  form.addEventListener("change", () => void changePreference());
 
   if (submitButton) {
-    submitButton.remove()
+    submitButton.remove();
   }
 
   /////////////////////////////// Utilities ////////////////////////////////
 
   async function changePreference() {
     let response = await fetch(endpoint, {
-      method: 'POST',
-      body: new FormData(form)
-    })
+      method: "POST",
+      body: new FormData(form),
+    });
 
-    return response.ok ? Promise.resolve() : Promise.reject()
+    return response.ok ? Promise.resolve() : Promise.reject();
   }
 }
