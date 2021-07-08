@@ -44,15 +44,15 @@ export default class SimpleTemplate {
     /**
      * @property {Element} a clone of the template
      */
-    this.element = element.content.firstElementChild.cloneNode(true)
+    this.element = element.content.firstElementChild.cloneNode(true);
     /**
      * @property {object} Dynamic object generated from <slot name> elements.
      */
-    this.slot = {}
+    this.slot = {};
 
     // Create getters and setters for each slot
-    for (let slot of this.element.querySelectorAll('slot[name]')) {
-      createGettersAndSetters(this.slot, slot)
+    for (let slot of this.element.querySelectorAll("slot[name]")) {
+      createGettersAndSetters(this.slot, slot);
     }
   }
 
@@ -63,17 +63,17 @@ export default class SimpleTemplate {
    * @returns {SimpleTemplate} a brand new SimpleTemplate
    */
   static fromId(id) {
-    let element = document.getElementById(id)
+    let element = document.getElementById(id);
     if (element == null)
-      throw new Error(`Could not find element with id="${id}"`)
-    return new SimpleTemplate(element)
+      throw new Error(`Could not find element with id="${id}"`);
+    return new SimpleTemplate(element);
   }
 }
 
 function createGettersAndSetters(obj, slot) {
   return Object.defineProperty(obj, slot.name, {
     get: () => slot.innerText,
-    set: (newValue) => slot.innerText = newValue,
+    set: (newValue) => (slot.innerText = newValue),
     enumerable: true,
-  })
+  });
 }

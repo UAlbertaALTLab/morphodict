@@ -20,12 +20,15 @@ FAKE_WORD_SET = {"loose", "leaf", "paper", "news_paper", "you're", "that"}
             ["paper"],
         ),
         ("  PAPER!", ["paper"]),
+        # Square brackets come from parenthetical parts of Arok's definitions,
+        # so we want to ignore them when extracting keys to do the cosine vector search.
         (" paper, (loose!) [yes]", ["paper", "loose"]),
         (
             "loose-leaf paper",
             ["loose", "leaf", "paper"],
         ),
         ("news-paper", ["news_paper"]),
+        # not in FAKE_WORD_SET:
         ("cheese", []),
         ("Cheese-Paper", ["paper"]),
         ("that's", ["that"]),

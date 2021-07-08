@@ -3,13 +3,13 @@
  * Orthography switching.
  */
 
-const AVAILABLE_ORTHOGRAPHIES = new Set(['Cans', 'Latn', 'Latn-x-macron'])
+const AVAILABLE_ORTHOGRAPHIES = new Set(["Cans", "Latn", "Latn-x-macron"]);
 
 /**
  * This **must** be set in order to update the orthography cookie on the
  * server-side.
  */
-let djangoCSRFToken = null
+let djangoCSRFToken = null;
 
 /**
  * Listen to ALL clicks on the page, and change orthography for elements that
@@ -19,8 +19,8 @@ export function registerEventListener(csrfToken) {
   // Try to handle a click on ANYTHING.
   // This way, if new elements appear on the page dynamically, we never
   // need to register new event listeners: this one will work for all of them.
-  document.body.addEventListener('click', handleClickSwitchOrthography)
-  djangoCSRFToken = csrfToken
+  document.body.addEventListener("click", handleClickSwitchOrthography);
+  djangoCSRFToken = csrfToken;
 }
 
 /**
@@ -28,15 +28,15 @@ export function registerEventListener(csrfToken) {
  */
 export function changeOrth(which) {
   if (!AVAILABLE_ORTHOGRAPHIES.has(which)) {
-    throw new Error(`tried to switch to unknown orthography: ${which}`)
+    throw new Error(`tried to switch to unknown orthography: ${which}`);
   }
 
-  let elements = document.querySelectorAll('[data-orth]')
-  let attr = `data-orth-${which}`
+  let elements = document.querySelectorAll("[data-orth]");
+  let attr = `data-orth-${which}`;
   for (let el of elements) {
-    let newText = el.getAttribute(attr)
+    let newText = el.getAttribute(attr);
     if (newText) {
-      el.innerText = newText
+      el.innerText = newText;
     }
   }
 }
@@ -45,21 +45,21 @@ export function changeOrth(which) {
  * Switches orthography and updates the UI.
  */
 function handleClickSwitchOrthography(evt) {
-  let target = findClosestOrthographySwitch(evt.target)
+  let target = findClosestOrthographySwitch(evt.target);
   // Determine that this is a orthography changing button.
   if (!target) {
-    return
+    return;
   }
 
   // target is a <button data-orth-swith="ORTHOGRAPHY">
-  let orth = target.value
-  changeOrth(orth)
-  updateUI(target)
-  updateCookies(orth)
+  let orth = target.value;
+  changeOrth(orth);
+  updateUI(target);
+  updateCookies(orth);
 }
 
 function findClosestOrthographySwitch(el) {
-  return el.closest('[data-orth-switch]')
+  return el.closest("[data-orth-switch]");
 }
 
 /**
@@ -80,23 +80,23 @@ function findClosestOrthographySwitch(el) {
  */
 function updateUI(button) {
   // Climb up the DOM tree to find the <details> and its <summary> that contains the title.
-  let detailsElement = button.closest('details')
+  let detailsElement = button.closest("details");
   if (!detailsElement) {
     // there absolutely should be a <de
-    throw new Error('Could not find relevant <details> element!')
+    throw new Error("Could not find relevant <details> element!");
   }
 
-  closeMenu()
+  closeMenu();
 
   // Clear the selected class from all options
-  for (let el of detailsElement.querySelectorAll('[data-orth-switch]')) {
-    let li = el.closest('.menu-choice')
-    li.classList.remove('menu-choice--selected')
+  for (let el of detailsElement.querySelectorAll("[data-orth-switch]")) {
+    let li = el.closest(".menu-choice");
+    li.classList.remove("menu-choice--selected");
   }
-  button.closest('.menu-choice').classList.add('menu-choice--selected')
+  button.closest(".menu-choice").classList.add("menu-choice--selected");
 
   function closeMenu() {
-    detailsElement.open = false
+    detailsElement.open = false;
   }
 }
 
@@ -106,17 +106,17 @@ function updateUI(button) {
  */
 function updateCookies(orth) {
   if (djangoCSRFToken == null) {
-    throw new Error('djangoCSRFToken is unset!')
+    throw new Error("djangoCSRFToken is unset!");
   }
 
-  let changeOrthURL = window.Urls['morphodict:change-orthography']()
+  let changeOrthURL = window.Urls["morphodict:change-orthography"]();
   fetch(changeOrthURL, {
-    method: 'POST',
+    method: "POST",
     body: new URLSearchParams({
-      orth: orth
+      orth: orth,
     }),
     headers: new Headers({
-      'X-CSRFToken': djangoCSRFToken
+      "X-CSRFToken": djangoCSRFToken,
     }),
-  })
+  });
 }

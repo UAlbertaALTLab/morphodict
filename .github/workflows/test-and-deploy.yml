@@ -5,7 +5,7 @@ env:
   # Version required to run itwêwina:
   ACTIONS_PYTHON_VERSION: 3.9
   # Version required to run npm build:
-  ACTIONS_NODE_VERSION: 12
+  ACTIONS_NODE_VERSION: 14
 
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
@@ -91,9 +91,10 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
+        cache: npm
     - name: 🖥 Install system dependencies
       run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
