@@ -71,7 +71,7 @@ verb_passthrough_tags = {
         "+2SgO",
         "+3SgO",
         "+1PlO",
-        "21PlO+",
+        "+21PlO",
         "+2PlO",
         "+3PlO",
         "+4Pl",
@@ -92,6 +92,8 @@ def passthrough_tags_to_tuples(passthrough_tags):
 
 
 verb_tag_map = TagMap(
+    # Person
+    ("+0Sg", "+3Sg", 3),
     # Tense
     ("+Prt", ("PV/ki+", "+Ind"), 1),  # Preterite aka simple past
     ("+Cond", ("+Fut", "+Cond"), 1),  # Future conditional
