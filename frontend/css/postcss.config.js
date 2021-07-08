@@ -2,10 +2,10 @@
  * PostCSS config.
  */
 
-const postcssImport = require('postcss-import')
+const postcssImport = require("postcss-import");
 
 module.exports = {
-  map: {inline: true},
+  map: { inline: true },
 
   plugins: [
     /**
@@ -13,5 +13,5 @@ module.exports = {
      */
     postcssImport(),
     // NOTE: minification is handled by Rollup!
-  ]
-}
+  ],
+};

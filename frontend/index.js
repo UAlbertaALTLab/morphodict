@@ -1,27 +1,34 @@
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
 
-
 // Process CSS with PostCSS automatically. See rollup.config.js for more
 // details.
-import './css/styles.css'
-import {createTooltip} from './js/tooltip'
-import {fetchFirstRecordingURL, retrieveListOfSpeakers} from './js/recordings.js'
-import * as orthography from './js/orthography.js'
-import {emptyElement, removeElement, showElement, hideElement} from './js/dom-utils.js'
+import "./css/styles.css";
+import { createTooltip } from "./js/tooltip";
+import {
+  fetchFirstRecordingURL,
+  retrieveListOfSpeakers,
+} from "./js/recordings.js";
+import * as orthography from "./js/orthography.js";
+import {
+  emptyElement,
+  removeElement,
+  showElement,
+  hideElement,
+} from "./js/dom-utils.js";
 import {
   indicateLoading,
   indicateLoadedSuccessfully,
   indicateLoadingFailure,
-  hideLoadingIndicator
-} from './js/loading-bar.js'
-import {debounce} from './js/debounce.js'
-import {setupParadigm} from './js/paradigm.js'
-import * as settings from './js/settings-page.js'
+  hideLoadingIndicator,
+} from "./js/loading-bar.js";
+import { debounce } from "./js/debounce.js";
+import { setupParadigm } from "./js/paradigm.js";
+import * as settings from "./js/settings-page.js";
 
 ///////////////////////////////// Constants //////////////////////////////////
 
-const NO_BREAK_SPACE = '\u00A0'
+const NO_BREAK_SPACE = "\u00A0";
 
 /**
  * Milliseconds, we only send search requests after this long of time of inactivity has passed.
@@ -31,66 +38,65 @@ const NO_BREAK_SPACE = '\u00A0'
  * https://madoshakalaka.github.io/2020/08/31/how-hard-should-you-debounce-on-a-responsive-search-bar.html
  * @type {number}
  */
-const SERACH_BAR_DEBOUNCE_TIME = 450
-
+const SERACH_BAR_DEBOUNCE_TIME = 450;
 
 //////////////////////////////// On page load ////////////////////////////////
 
-document.addEventListener('DOMContentLoaded', () => {
-  let csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value
-  orthography.registerEventListener(csrfToken)
+document.addEventListener("DOMContentLoaded", () => {
+  let csrfToken = document.querySelector("[name=csrfmiddlewaretoken]").value;
+  orthography.registerEventListener(csrfToken);
 
-  setupSearchBar()
-  settings.setupAutoSubmitForEntirePage()
+  setupSearchBar();
+  settings.setupAutoSubmitForEntirePage();
 
-  let route = makeRouteRelativeToSlash(window.location.pathname)
+  let route = makeRouteRelativeToSlash(window.location.pathname);
   // Tiny router.
-  if (route === '/') {
+  if (route === "/") {
     // Homepage
-    setSubtitle(null)
-  } else if (route === '/about') {
+    setSubtitle(null);
+  } else if (route === "/about") {
     // About page
-    setSubtitle('About')
-  } else if (route === '/contact-us') {
+    setSubtitle("About");
+  } else if (route === "/contact-us") {
     // Contact page
-    setSubtitle('Contact us')
-  } else if (route === '/search') {
+    setSubtitle("Contact us");
+  } else if (route === "/search") {
     // Search page
-    prepareSearchResults(getSearchResultList())
+    prepareSearchResults(getSearchResultList());
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
-    setSubtitle(getEntryHead())
-    setupAudioOnPageLoad()
-    setupParadigm()
-    prepareTooltips()
+    setSubtitle(getEntryHead());
+    setupAudioOnPageLoad();
+    setupParadigm();
+    prepareTooltips();
   }
-})
+});
 
 function setupSearchBar() {
-  const searchBar = document.getElementById('search')
+  const searchBar = document.getElementById("search");
   const debouncedLoadSearchResults = debounce(() => {
-    loadSearchResults(searchBar)
-  }, SERACH_BAR_DEBOUNCE_TIME)
+    loadSearchResults(searchBar);
+  }, SERACH_BAR_DEBOUNCE_TIME);
 
-  searchBar.addEventListener('input', () => {
-    indicateLoading()
-    debouncedLoadSearchResults()
-  })
+  searchBar.addEventListener("input", () => {
+    indicateLoading();
+    debouncedLoadSearchResults();
+  });
 }
 
 /**
  * clean paradigm details
  */
 function cleanDetails() {
-  removeElement(document.getElementById('definition'))
+  removeElement(document.getElementById("definition"));
 }
 
 function showProse() {
-  showElement(document.getElementById('prose'))
+  showElement(document.getElementById("prose"));
 }
 
 function hideProse() {
-  hideElement(document.getElementById('prose'))
+  hideElement(document.getElementById("prose"));
 }
 
 /**
@@ -101,8 +107,8 @@ function hideProse() {
  * @param {Element} searchResultsList
  */
 function prepareSearchResults(searchResultsList) {
-  prepareTooltips()
-  loadRecordingsForAllSearchResults(searchResultsList)
+  prepareTooltips();
+  loadRecordingsForAllSearchResults(searchResultsList);
 }
 
 /**
@@ -112,17 +118,18 @@ function prepareSearchResults(searchResultsList) {
  * @param {Element} searchResultsList
  */
 function loadRecordingsForAllSearchResults(searchResultsList) {
-  for (let result of searchResultsList.querySelectorAll('[data-wordform]')) {
-    let wordform = result.dataset.wordform
-    let container = result // do this reassignment because of the lexical scoping :(
+  for (let result of searchResultsList.querySelectorAll("[data-wordform]")) {
+    let wordform = result.dataset.wordform;
+    let container = result; // do this reassignment because of the lexical scoping :(
 
     // TODO: instead of making a request for each search result,
     // TODO: use a "bulk query" option that uses one request to load all
     // TODO: this requires code in the recording-validation-interface
     fetchFirstRecordingURL(wordform)
       .then((recordingURL) => createAudioButton(recordingURL, container))
-      .catch(() => {/* ignore :/ */
-      })
+      .catch(() => {
+        /* ignore :/ */
+      });
   }
 }
 
@@ -130,14 +137,14 @@ function loadRecordingsForAllSearchResults(searchResultsList) {
  * Attach relevant handlers to **ALL** tooltip icons on the page.
  */
 function prepareTooltips() {
-  let tooltips = document.querySelectorAll('[data-has-tooltip]')
+  let tooltips = document.querySelectorAll("[data-has-tooltip]");
 
   for (let icon of tooltips) {
-    let tooltip = icon.nextElementSibling
-    if (!tooltip.classList.contains('tooltip')) {
-      throw new Error('Expected tooltip to be direct sibling of icon')
+    let tooltip = icon.nextElementSibling;
+    if (!tooltip.classList.contains("tooltip")) {
+      throw new Error("Expected tooltip to be direct sibling of icon");
     }
-    createTooltip(icon, tooltip)
+    createTooltip(icon, tooltip);
   }
 }
 
@@ -147,57 +154,57 @@ function prepareTooltips() {
  * @param {HTMLInputElement} searchInput
  */
 function loadSearchResults(searchInput) {
-  let userQuery = searchInput.value
-  let searchResultList = getSearchResultList()
+  let userQuery = searchInput.value;
+  let searchResultList = getSearchResultList();
 
-  if (userQuery !== '') {
-    changeTitleBySearchQuery(userQuery)
-    issueSearch()
+  if (userQuery !== "") {
+    changeTitleBySearchQuery(userQuery);
+    issueSearch();
   } else {
-    goToHomePage()
+    goToHomePage();
   }
 
   function issueSearch() {
-    let searchURL = Urls['cree-dictionary-search-results'](userQuery)
+    let searchURL = Urls["cree-dictionary-search-results"](userQuery);
 
-    window.history.replaceState(null, '', urlForQuery(userQuery))
-    hideProse()
+    window.history.replaceState(null, "", urlForQuery(userQuery));
+    hideProse();
 
     fetch(searchURL)
-      .then(response => {
+      .then((response) => {
         if (response.ok) {
-          return response.text()
+          return response.text();
         }
-        return Promise.reject()
+        return Promise.reject();
       })
       .then((html) => {
         // user input may have changed during the request
-        const inputNow = searchInput.value
+        const inputNow = searchInput.value;
 
         if (inputNow !== userQuery) {
           // input has changed, so ignore this request to prevent flashing
           // out-of-date search results
-          return
+          return;
         }
 
         // Remove loading cards
-        indicateLoadedSuccessfully()
-        cleanDetails()
-        searchResultList.innerHTML = html
-        prepareSearchResults(searchResultList)
+        indicateLoadedSuccessfully();
+        cleanDetails();
+        searchResultList.innerHTML = html;
+        prepareSearchResults(searchResultList);
       })
       .catch(() => {
-        indicateLoadingFailure()
-      })
+        indicateLoadingFailure();
+      });
   }
 
   function goToHomePage() {
-    window.history.replaceState(null, '', Urls['cree-dictionary-index']())
+    window.history.replaceState(null, "", Urls["cree-dictionary-index"]());
 
-    showProse()
+    showProse();
 
-    hideLoadingIndicator()
-    emptyElement(searchResultList)
+    hideLoadingIndicator();
+    emptyElement(searchResultList);
   }
 
   /**
@@ -206,8 +213,8 @@ function loadSearchResults(searchInput) {
    * The URL is constructed by using the <form>'s action="" attribute.
    */
   function urlForQuery(userQuery) {
-    let form = searchInput.closest('form')
-    return form.action + `?q=${encodeURIComponent(userQuery)}`
+    let form = searchInput.closest("form");
+    return form.action + `?q=${encodeURIComponent(userQuery)}`;
   }
 }
 
@@ -217,36 +224,36 @@ function loadSearchResults(searchInput) {
  * @param inputVal {string}
  */
 function changeTitleBySearchQuery(inputVal) {
-  setSubtitle(inputVal ? '🔎 ' + inputVal : null)
+  setSubtitle(inputVal ? "🔎 " + inputVal : null);
 }
 
 function setSubtitle(subtitle) {
-  let defaultTitle = 'itwêwina: the online Cree dictionary'
-  document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle
+  let defaultTitle = "itwêwina: the online Cree dictionary";
+  document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle;
 }
 
 /**
  * Sets up the (rudimentary) audio link on page load.
  */
 function setupAudioOnPageLoad() {
-  let title = document.getElementById('head')
+  let title = document.getElementById("head");
   if (!title) {
     // Could not find a head on the page.
-    return
+    return;
   }
 
   // TODO: setup baseURL from <link rel=""> or something.
-  let wordform = getEntryHead()
+  let wordform = getEntryHead();
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
       // TODO: it shouldn't be placed be **inside** the title <h1>...
-      let button = createAudioButton(recordingURL, title)
-      button.addEventListener('click', retrieveListOfSpeakers)
+      let button = createAudioButton(recordingURL, title);
+      button.addEventListener("click", retrieveListOfSpeakers);
     })
     .catch(() => {
       // TODO: display an error message?
-    })
+    });
 }
 
 /**
@@ -255,38 +262,38 @@ function setupAudioOnPageLoad() {
  * On Sapir (as of 2020-03-09), the root path is '/cree-dictionary/'.
  */
 function makeRouteRelativeToSlash(route) {
-  let baseURL = Urls['cree-dictionary-index']()
-  return route.replace(baseURL, '/')
+  let baseURL = Urls["cree-dictionary-index"]();
+  return route.replace(baseURL, "/");
 }
 
 /**
  * Returns the head of the current dictionary entry on a /word/* page.
  */
 function getEntryHead() {
-  let dataElement = document.getElementById('data:head')
-  return dataElement.value
+  let dataElement = document.getElementById("data:head");
+  return dataElement.value;
 }
 
 /**
  * Creates the 🔊 button and places it beside the desired element.
  */
 function createAudioButton(recordingURL, element) {
-  let recording = new Audio(recordingURL)
-  recording.preload = 'none'
+  let recording = new Audio(recordingURL);
+  recording.preload = "none";
 
-  let template = document.getElementById('template:play-button')
+  let template = document.getElementById("template:play-button");
 
-  let fragment = template.content.cloneNode(true)
-  let button = fragment.querySelector('button')
-  button.addEventListener('click', () => recording.play())
+  let fragment = template.content.cloneNode(true);
+  let button = fragment.querySelector("button");
+  button.addEventListener("click", () => recording.play());
 
   // Place "&nbsp;<button>...</button>"
   // at the end of the element
-  let nbsp = document.createTextNode(NO_BREAK_SPACE)
-  element.appendChild(nbsp)
-  element.appendChild(button)
+  let nbsp = document.createTextNode(NO_BREAK_SPACE);
+  element.appendChild(nbsp);
+  element.appendChild(button);
 
-  return button
+  return button;
 }
 
 ////////////////////// Fetch information from the page ///////////////////////
@@ -295,5 +302,5 @@ function createAudioButton(recordingURL, element) {
  * @returns {(Element|null)}
  */
 function getSearchResultList() {
-  return document.getElementById('search-result-list')
+  return document.getElementById("search-result-list");
 }

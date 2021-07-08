@@ -67,7 +67,7 @@ jobs:
     - name: Install dependencies
       run: npm ci
     - name: Reformat JavaScript
-      run: npx eslint --fix frontend/ cypress/
+      run: npm run reformat
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
