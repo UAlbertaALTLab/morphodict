@@ -1,10 +1,5 @@
-// the /* global blah blah */ line below works with eslint so that eslint knows these variables are from the html
-
 // "Urls" is a magic variable that allows use to reverse urls in javascript
 // See https://github.com/ierror/django-js-reverse
-
-
-/* global Urls:readable */
 
 
 // Process CSS with PostCSS automatically. See rollup.config.js for more

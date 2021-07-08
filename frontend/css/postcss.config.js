@@ -15,4 +15,3 @@ module.exports = {
     // NOTE: minification is handled by Rollup!
   ]
 }
-/* eslint-env node */
