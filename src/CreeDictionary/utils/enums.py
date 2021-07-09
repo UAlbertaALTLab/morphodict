@@ -68,11 +68,3 @@ class WordClass(Enum):
         Can we make a paradigm out of it?
         """
         return self.is_noun() or self.is_verb()
-
-    def to_fst_output_style(self):
-        if self.value[0] == "N":
-            return "+" + "+".join(list(self.value.upper()))
-        elif self.value[0] == "V":
-            return "+" + "+".join(["V", self.value[1:].upper()])
-        else:
-            return "+" + self.value.title()
