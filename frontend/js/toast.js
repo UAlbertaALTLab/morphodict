@@ -1,7 +1,9 @@
 /**
  * How long the toast should stay on the screen by default.
  */
-const TOAST_DURATION = 1000;
+const TOAST_DURATION = 3000;
+
+let _toast = null;
 
 /**
  * Initialize the global toast element.
@@ -9,7 +11,7 @@ const TOAST_DURATION = 1000;
  * @param {HTMLDialogElement} element
  */
 export function setGlobalElement(el) {
-  return (_toast = new Toast(el));
+  _toast = new Toast(el);
 }
 
 /**
@@ -25,6 +27,8 @@ export function showSuccess(message) {
 export function showFailure(message) {
   return globalToastOrThrow().showFailure(message);
 }
+
+const ALL_EXPECTED_MODIFIERS = ["toast--success", "toast--failure"];
 
 /**
  * Toast component.
@@ -49,24 +53,30 @@ class Toast {
     this._classList.add("toast--hidden");
   }
 
-  get _classList() {
-    return this._el.classList;
-  }
-
-  get _textNode() {
-    return this._el.querySelector(".toast__message");
-  }
-
+  /**
+   * Show a message that something succeeded.
+   */
   showSuccess(message) {
     this._setMessage(message);
     this._setCSSModifier("toast--success");
     this._show();
   }
 
+  /**
+   * Show a message that something failed.
+   */
   showFailure(message) {
     this._setMessage(message);
     this._setCSSModifier("toast--failure");
     this._show();
+  }
+
+  get _classList() {
+    return this._el.classList;
+  }
+
+  get _textNode() {
+    return this._el.querySelector(".toast__message");
   }
 
   _setMessage(message) {
@@ -81,13 +91,13 @@ class Toast {
     this._el.setAttribute("aria-live", "off");
   }
 
-  _setCSSModifier(newClass) {
-    this._classList.remove("toast--success", "toast--failure");
-    this._classList.add(newClass);
+  _setCSSModifier(modifier) {
+    this._classList.remove(...ALL_EXPECTED_MODIFIERS);
+    this._classList.add(modifier);
   }
 
   _show() {
-    if (this._timer) {
+    if (this._timer != null) {
       clearTimeout(this._timer);
     }
 
@@ -98,17 +108,17 @@ class Toast {
 
   _hide() {
     this._classList.add("toast--hidden");
+    this._timer = null;
 
     const closeDialog = () => {
       this._el.close();
       this._clearMessage();
     };
 
+    /* Wait until the CSS animation is finished to actually close the dialog. */
     this._el.addEventListener("transitionend", closeDialog, { once: true });
   }
 }
-
-let _toast = null;
 
 function globalToastOrThrow() {
   if (_toast === null) {
