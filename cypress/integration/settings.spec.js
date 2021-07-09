@@ -26,9 +26,42 @@ context("The settings page", () => {
           checkedValue = input.value;
         });
 
+      cy.get("[data-cy=toast]")
+        .should("be.visible")
+        .and("have.class", "toast--success");
+
       cy.getCookie(PREFERENCE_COOKIE).then((cookie) => {
         expect(cookie.value).to.equal(checkedValue);
       });
+    });
+
+    it("should show an error message if the save did not succeed", () => {
+      cy.visit(Cypress.env("settings_url"));
+
+      cy.get(`input[name=${PREFERENCE_COOKIE}]`)
+        .parents("form")
+        .then((jqueryForm) => {
+          hijackFormSubmissionToAlwaysFail(jqueryForm).as("form-submission");
+
+          cy.get(`input[name=${PREFERENCE_COOKIE}]`).last().check();
+          cy.wait("@form-submission");
+
+          cy.get("[data-cy=toast]")
+            .should("be.visible")
+            .and("have.class", "toast--failure");
+        });
+
+      function hijackFormSubmissionToAlwaysFail(jqueryForm) {
+        return cy.intercept(
+          {
+            method: jqueryForm.attr("method"),
+            url: jqueryForm.attr("action"),
+          },
+          {
+            statusCode: 400,
+          }
+        );
+      }
     });
   });
 });
