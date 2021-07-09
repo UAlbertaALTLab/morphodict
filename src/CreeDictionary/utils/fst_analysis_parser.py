@@ -1,7 +1,6 @@
 import re
 from typing import List, Optional, Tuple
 
-from CreeDictionary.utils.enums import WordClass
 from CreeDictionary.utils.types import FSTLemma, FSTTag
 
 analysis_pattern = re.compile(
