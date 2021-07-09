@@ -25,6 +25,10 @@
   background-color: #178A4D;
 }
 
+.toast--failure {
+  background-color: #C42411;
+}
+
 .toast--hidden {
   opacity: 0;
   transform: translateY(calc(var(--position-away-from-screen) + 4em));

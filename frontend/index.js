@@ -25,6 +25,7 @@ import {
 import { debounce } from "./js/debounce.js";
 import { setupParadigm } from "./js/paradigm.js";
 import * as settings from "./js/settings-page.js";
+import * as toast from "./js/toast.js";
 
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupSearchBar();
   settings.setupAutoSubmitForEntirePage();
+  toast.setGlobalElement(document.querySelector("#toast"));
 
   let route = makeRouteRelativeToSlash(window.location.pathname);
   // Tiny router.

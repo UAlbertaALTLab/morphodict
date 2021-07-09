@@ -1,3 +1,5 @@
+import * as toast from "./toast.js";
+
 /**
  * Sets up all <form data-save-preference> elements on the page to be submitted upon
  * change. This means there is no need for a submit <button> in the form as
@@ -29,7 +31,16 @@ function setupFormAutoSubmit(form) {
   const endpoint = form.action;
   const submitButton = form.querySelector("button[type=submit]");
 
-  form.addEventListener("change", () => void changePreference());
+  form.addEventListener("change", async () => {
+    try {
+      await changePreference();
+    } catch (_anyError) {
+      toast.showFailure("😕  Could not save preference");
+      return;
+    }
+
+    toast.showSuccess("✅ Saved!");
+  });
 
   if (submitButton) {
     submitButton.remove();
