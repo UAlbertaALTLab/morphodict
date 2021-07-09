@@ -70,17 +70,6 @@ class WordClass(Enum):
         return self.is_noun() or self.is_verb()
 
     def to_fst_output_style(self):
-        """
-        >>> WordClass.VAI.to_fst_output_style()
-        '+V+AI'
-        >>> WordClass.NID.to_fst_output_style()
-        '+N+I+D'
-        >>> WordClass.IPC.to_fst_output_style()
-        '+Ipc'
-        >>> WordClass.Pron.to_fst_output_style()
-        '+Pron'
-        """
-
         if self.value[0] == "N":
             return "+" + "+".join(list(self.value.upper()))
         elif self.value[0] == "V":
