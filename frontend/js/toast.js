@@ -50,7 +50,7 @@ class Toast {
     this._timer = null;
 
     this._el.close();
-    this._classList.add("toast--hidden");
+    this._classList.add("toast--off-screen");
   }
 
   /**
@@ -103,11 +103,11 @@ class Toast {
 
     this._timer = setTimeout(() => void this._hide(), TOAST_DURATION);
     this._el.show();
-    this._classList.remove("toast--hidden");
+    this._classList.remove("toast--off-screen");
   }
 
   _hide() {
-    this._classList.add("toast--hidden");
+    this._classList.add("toast--off-screen");
     this._timer = null;
 
     const closeDialog = () => {

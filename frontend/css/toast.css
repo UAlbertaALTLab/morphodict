@@ -1,39 +1,68 @@
 /**
+ * BLOCK toast
  *
+ * A minimally intrusive notifaction pop-up that indicates some state change.
+ *
+ * Expected to be a <dialog> element.
  */
 .toast {
+  --toast-height: 4em;
   --position-away-from-screen: 2rem;
 
   position: fixed;
-  left: 2rem;
-  right: 2rem;
+
+  left: var(--position-away-from-screen);
+  right: var(--position-away-from-screen);;
   bottom: var(--position-away-from-screen);
   width: calc(100vw - 2 * var(--position-away-from-screen));
+  max-height: var(--toast-height);
   margin: 0;
 
   border: 0;
   border-radius: 4px;
 
-  box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
   color: white;
   background-color: black;
+  box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
 
-  transition: all 200ms ease-in-out;
+  transition-property: opacity transform;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in-out;
 }
 
+/**
+ * MODIFIER off-screen
+ *
+ * Places the toast off-screen.
+ */
+.toast--off-screen {
+  opacity: 0;
+  transform: translateY(calc(var(--position-away-from-screen) + var(--toast-height)));
+}
+
+/**
+ * MODIFIER success
+ *
+ * The message indicates that something succeeded.
+ */
 .toast--success {
   background-color: #178A4D;
 }
 
+/**
+ * MODIFIER failure
+ *
+ * The message indicates that something failed.
+ */
 .toast--failure {
   background-color: #C42411;
 }
 
-.toast--hidden {
-  opacity: 0;
-  transform: translateY(calc(var(--position-away-from-screen) + 4em));
-}
-
+/**
+ * ELEMENT message
+ *
+ * The actual text shown as part of the toast.
+ */
 .toast__message {
   margin-block: 0;
   text-align: start;
