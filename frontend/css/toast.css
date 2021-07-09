@@ -12,11 +12,12 @@
   position: fixed;
 
   left: var(--position-away-from-screen);
-  right: var(--position-away-from-screen);;
+  right: var(--position-away-from-screen);
   bottom: var(--position-away-from-screen);
   width: calc(100vw - 2 * var(--position-away-from-screen));
   max-height: var(--toast-height);
   margin: 0;
+  padding: 1rem;
 
   border: 0;
   border-radius: 4px;
@@ -25,7 +26,7 @@
   background-color: black;
   box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
 
-  transition-property: opacity transform;
+  transition-property: opacity, transform;
   transition-duration: 200ms;
   transition-timing-function: ease-in-out;
 }

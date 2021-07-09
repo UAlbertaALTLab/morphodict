@@ -42,14 +42,14 @@ const ALL_EXPECTED_MODIFIERS = ["toast--success", "toast--failure"];
 class Toast {
   constructor(element) {
     /* == null matches **both** null and undefined. */
-    if (element == null || !(element instanceof HTMLDialogElement)) {
+    if (element == null) {
       throw new TypeError("must provide a valid <dialog> element");
     }
 
     this._el = element;
     this._timer = null;
 
-    this._el.close();
+    this._closeDialog();
     this._classList.add("toast--off-screen");
     /* Makes screen readers speak the message, only after they're done
      * speaking what they are currently reading: */
@@ -96,12 +96,12 @@ class Toast {
   }
 
   _show() {
-    if (this._timer != null) {
+    if (this._timer !== null) {
       clearTimeout(this._timer);
     }
 
     this._timer = setTimeout(() => void this._hide(), TOAST_DURATION);
-    this._el.show();
+    this._showDialog();
     this._classList.remove("toast--off-screen");
   }
 
@@ -110,12 +110,28 @@ class Toast {
     this._timer = null;
 
     const closeDialog = () => {
-      this._el.close();
+      this._closeDialog();
       this._clearMessage();
     };
 
     /* Wait until the CSS animation is finished to actually close the dialog. */
     this._el.addEventListener("transitionend", closeDialog, { once: true });
+  }
+
+  _showDialog() {
+    if (isHTMLDialogElement(this._el)) {
+      this._el.show();
+    } else {
+      this._el.setAttribute("open", "");
+    }
+  }
+
+  _closeDialog() {
+    if (isHTMLDialogElement(this._el)) {
+      this._el.close();
+    } else {
+      this._el.removeAttribute("open");
+    }
   }
 }
 
@@ -126,4 +142,13 @@ function globalToastOrThrow() {
     );
   }
   return _toast;
+}
+
+function isHTMLDialogElement(el) {
+  if ("HTMLDialogElement" in window) {
+    return el instanceof HTMLDialogElement;
+  }
+
+  // This browser does not support the <dialog> element API
+  return false;
 }
