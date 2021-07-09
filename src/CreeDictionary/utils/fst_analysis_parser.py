@@ -77,22 +77,3 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
         cursor += 1
 
     return FSTLemma(analysis[cursor:end])
-
-
-def extract_word_class(analysis: str) -> Optional[WordClass]:
-    """
-    :param analysis: in the form of 'a+VAI+b+c'
-    :return: None if extraction fails
-    """
-    res = re.search(analysis_pattern, analysis)
-    if res is not None:
-        group = res.group("category")
-
-        if group:
-            if group.startswith("+Num"):  # special case
-                group = group[4:]
-            return WordClass(group.replace("+", "").upper())
-        else:
-            return None
-    else:
-        return None
