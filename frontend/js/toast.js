@@ -51,6 +51,9 @@ class Toast {
 
     this._el.close();
     this._classList.add("toast--off-screen");
+    /* Makes screen readers speak the message, only after they're done
+     * speaking what they are currently reading: */
+    this._el.setAttribute("aria-live", "polite");
   }
 
   /**
@@ -81,14 +84,10 @@ class Toast {
 
   _setMessage(message) {
     this._textNode.textContent = message;
-    /* Makes screen readers speak the message, only after they're done
-     * speaking what they are currently reading: */
-    this._el.setAttribute("aria-live", "polite");
   }
 
   _clearMessage() {
     this._textNode.textContent = "";
-    this._el.setAttribute("aria-live", "off");
   }
 
   _setCSSModifier(modifier) {
