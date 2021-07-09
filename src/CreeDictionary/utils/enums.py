@@ -89,14 +89,6 @@ class WordClass(Enum):
             return "+" + self.value.title()
 
     def without_pos(self) -> str:
-        """
-        >>> WordClass.VAI.without_pos()
-        'AI'
-        >>> WordClass.NID.without_pos()
-        'ID'
-        >>> WordClass.IPC.without_pos()
-        'IPC'
-        """
         if self.is_verb():
             assert self.value.startswith("V")
             return self.value[1:]
