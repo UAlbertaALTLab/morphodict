@@ -2,22 +2,27 @@
  *
  */
 .toast {
-    --position-away-from-screen: 2rem;
+  --position-away-from-screen: 2rem;
 
-    position: fixed;
-    left: 2rem;
-    bottom: var(--position-away-from-screen);
-    margin: 0;
+  position: fixed;
+  left: 2rem;
+  right: 2rem;
+  bottom: var(--position-away-from-screen);
+  width: calc(100vw - 2 * var(--position-away-from-screen));
+  margin: 0;
 
-    border: #CCC solid 1px;
-    border-radius: 4px;
+  border: 0;
+  border-radius: 4px;
 
-    font-size: 1.5em;
+  box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
+  color: white;
+  background-color: black;
 
-    box-shadow: 1px 1px 16px rgba(0, 0, 0, 0.8);
-    background-color: rgba(255, 255, 255, 95%);
+  transition: all 200ms ease-in-out;
+}
 
-    transition: all 200ms ease-in-out;
+.toast--success {
+  background-color: #178A4D;
 }
 
 .toast--hidden {
@@ -27,8 +32,5 @@
 
 .toast__message {
   margin-block: 0;
-}
-
-.toast--success .toast__message {
-  color: #17B003;
+  text-align: start;
 }
