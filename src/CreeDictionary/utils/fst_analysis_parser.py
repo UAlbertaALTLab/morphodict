@@ -79,40 +79,6 @@ def extract_lemma(analysis: str) -> Optional[FSTLemma]:
     return FSTLemma(analysis[cursor:end])
 
 
-def extract_lemma_text_and_word_class(
-    analysis: str,
-) -> Optional[Tuple[FSTLemma, WordClass]]:
-    """
-    less overhead than calling `extract_lemma` and `extract_wc` separately
-    """
-    res = re.search(analysis_pattern, analysis)
-    if res is not None:
-
-        group = res.group("category")
-        if group:
-            end = res.span("category")[0]
-            # print(res.groups())
-            cursor = end - 1
-
-            while cursor > 0 and analysis[cursor] != "+":
-                cursor -= 1
-            if analysis[cursor] == "+":
-                cursor += 1
-
-            lemma = analysis[cursor:end]
-
-            if group.startswith("+Num"):  # special case
-                group = group[4:]
-            inflection_category = WordClass(group.replace("+", "").upper())
-
-            return FSTLemma(lemma), inflection_category
-
-        else:
-            return None
-    else:
-        return None
-
-
 def extract_word_class(analysis: str) -> Optional[WordClass]:
     """
     :param analysis: in the form of 'a+VAI+b+c'
