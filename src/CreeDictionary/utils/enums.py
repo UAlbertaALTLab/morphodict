@@ -87,12 +87,3 @@ class WordClass(Enum):
             return "+" + "+".join(["V", self.value[1:].upper()])
         else:
             return "+" + self.value.title()
-
-    def without_pos(self) -> str:
-        if self.is_verb():
-            assert self.value.startswith("V")
-            return self.value[1:]
-        if self.is_noun():
-            assert self.value.startswith("N")
-            return self.value[1:]
-        return self.value
