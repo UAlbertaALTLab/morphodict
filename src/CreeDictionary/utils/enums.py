@@ -61,10 +61,3 @@ class WordClass(Enum):
 
     def is_noun(self):
         return self.value[0] == "N"
-
-    def has_inflections(self):
-        """
-        Does this word class have multiple inflections?
-        Can we make a paradigm out of it?
-        """
-        return self.is_noun() or self.is_verb()
