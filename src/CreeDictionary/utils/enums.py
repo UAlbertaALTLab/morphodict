@@ -40,24 +40,3 @@ class WordClass(Enum):
 
     # TODO: should these both be "Pron"? That *is* what the FST generates!
     Pron = "PRON"  # Pronoun
-
-    @property
-    def pos(self) -> PartOfSpeech:
-        if self.is_verb():
-            return PartOfSpeech.V
-        elif self.is_noun():
-            return PartOfSpeech.N
-        elif self is WordClass.IPC:
-            return PartOfSpeech.IPC
-        elif self is WordClass.Pron:
-            return PartOfSpeech.PRON
-        elif self is WordClass.IPV:
-            return PartOfSpeech.IPV
-        else:
-            raise ValueError
-
-    def is_verb(self):
-        return self.value[0] == "V"
-
-    def is_noun(self):
-        return self.value[0] == "N"
