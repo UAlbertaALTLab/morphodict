@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupSearchBar();
   settings.setupAutoSubmitForEntirePage();
-  toast.setGlobalElement(document.querySelector("#toast"));
+  toast.setGlobalElement(document.getElementById("toast"));
 
   let route = makeRouteRelativeToSlash(window.location.pathname);
   // Tiny router.

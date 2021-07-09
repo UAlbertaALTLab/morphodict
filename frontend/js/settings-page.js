@@ -34,7 +34,7 @@ function setupFormAutoSubmit(form) {
   form.addEventListener("change", async () => {
     try {
       await changePreference();
-    } catch (_anyError) {
+    } catch {
       toast.showFailure("😕  Could not save preference");
       return;
     }
