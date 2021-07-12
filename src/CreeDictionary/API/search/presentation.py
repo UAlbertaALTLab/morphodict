@@ -24,12 +24,20 @@ class _ReduplicationResult:
     definitions: list
 
 
-LexicalEntryType = Literal["Preverb", "Reduplication", "InitialChange"]
+@dataclass
+class _InitialChangeResult:
+    """Tiny class to mimic the format of preverbs"""
+
+    text: str
+    definitions: list
+
+
+LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
 
 
 @dataclass
 class _LexicalEntry:
-    entry: _ReduplicationResult | SerializedWordform
+    entry: _ReduplicationResult | SerializedWordform | _InitialChangeResult
     type: LexicalEntryType
     index: int
     original_tag: FSTTag
@@ -213,11 +221,19 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
         _type: Optional[LexicalEntryType] = None
-        entry: Optional[_ReduplicationResult | SerializedWordform] = None
+        entry: Optional[_ReduplicationResult | SerializedWordform | _InitialChangeResult] = None
 
         if tag in ["RdplW+", "RdplS+"]:
             reduplication_string = generate_reduplication_string(
                 tag, first_letters[i + 1]
+            )
+
+        elif tag == "IC+":
+            change_types = get_initial_change_types()
+            _type = "Initial Change"
+            entry = _InitialChangeResult(
+                text=" ",
+                definitions=change_types
             )
 
         elif tag.startswith("PV/"):
@@ -295,3 +311,7 @@ def generate_reduplication_string(tag: str, letter: str) -> str:
         reduplication_string = letter + "âh-" if letter.lower() in consonants else "âh-"
 
     return reduplication_string
+
+
+def get_initial_change_types() -> List[dict(str, str)]:
+    return [{ "text": ["a -> ê", "i -> ê", "o -> wê", "ê -> iyê", "â -> iyâ", "î -> â / iyî", "ô -> iyô"] }]

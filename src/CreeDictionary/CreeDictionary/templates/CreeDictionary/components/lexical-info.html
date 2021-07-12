@@ -25,7 +25,10 @@
   <ol class="preverb-breakdown">
     {% for item in result.lexical_information %}
       <li>
-          <span>{{ item.type }}:
+          <span>{{ item.type }}
+            {% if item.type == "Initial Change" %}
+            {% else %} :
+            {% endif %}
               {% if item.entry.lemma_url %}
                   <a href="{{ item.entry.lemma_url }}">{{ item.entry.text}}</a>
               {% else %}
