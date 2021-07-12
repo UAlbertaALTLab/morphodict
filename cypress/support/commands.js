@@ -1,7 +1,7 @@
-const { join: joinPath } = require('path')
+const { join: joinPath } = require("path");
 
 // Why does this path traverse OUTSIDE of the cypress/ directory only to traverse back into it?
-const CYPRESS_USER_JSON = joinPath(__dirname, '..', '.cypress-user.json')
+const CYPRESS_USER_JSON = joinPath(__dirname, "..", ".cypress-user.json");
 
 /**
  * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
@@ -12,41 +12,42 @@ const CYPRESS_USER_JSON = joinPath(__dirname, '..', '.cypress-user.json')
  *
  *  escapeComponents: Boolean [default: true]  -- whether to escape URL components at all.
  */
-Cypress.Commands.overwrite('visit', (originalVisit, url, options = {}) => {
+Cypress.Commands.overwrite("visit", (originalVisit, url, options = {}) => {
   // Escape components by default:
   if (options.escapeComponents === undefined) {
-    options.escapeComponents = true
+    options.escapeComponents = true;
   }
 
-  let newURL
+  let newURL;
   if (options.escapeComponents) {
-    newURL = url.split('/').map(encodeURIComponent).join('/')
+    newURL = url.split("/").map(encodeURIComponent).join("/");
   } else {
-    newURL = url
+    newURL = url;
   }
-  delete options.escapeComponents
+  delete options.escapeComponents;
 
   if (newURL !== url) {
     Cypress.log({
-      name: 'visit',
-      message: `‼️  Rewriting ${url} -> ${newURL}`
-    })
+      name: "visit",
+      message: `‼️  Rewriting ${url} -> ${newURL}`,
+    });
   }
 
-  return originalVisit(newURL, options)
-})
+  return originalVisit(newURL, options);
+});
 
 /**
  * Visit the search page for the given search query.
  */
-Cypress.Commands.add('visitSearch', {prevSubject: false}, (searchQuery) => {
+Cypress.Commands.add("visitSearch", { prevSubject: false }, (searchQuery) => {
   Cypress.log({
-    name: 'visitSearch',
-    message: `visiting search page for: ${searchQuery}`
-  })
-  return cy.visit(`/search?q=${encodeURIComponent(searchQuery)}`, {escapeComponents: false})
-})
-
+    name: "visitSearch",
+    message: `visiting search page for: ${searchQuery}`,
+  });
+  return cy.visit(`/search?q=${encodeURIComponent(searchQuery)}`, {
+    escapeComponents: false,
+  });
+});
 
 /**
  * Visit the lemma details page (mostly paradigms) for a lemma
@@ -61,20 +62,33 @@ Cypress.Commands.add('visitSearch', {prevSubject: false}, (searchQuery) => {
  * pro-tip: When you need to use constraints,
  * just search for the lemma in the app and hover over the lemma link to see the constraints you need.
  */
-Cypress.Commands.add('visitLemma', {prevSubject: false}, (lemmaText, queryParams) => {
-  Cypress.log({
-    name: 'visitLemma',
-    message: `visiting lemma detail page for: ${lemmaText}`
-  })
-  queryParams = queryParams || {}
-  cy.visit(`/word/${encodeURIComponent(lemmaText)}/?${Object.entries(queryParams).map(([paramName, paramValue]) => paramName + '=' + encodeURIComponent(paramValue)).join('&')}`, {escapeComponents: false})
-  // test if a redirection happens
-  cy.location().should(
-    (loc) => {
-      expect(loc.pathname, 'lemmaText and queryParams should be enough to disambiguate the lemma').to.eq(`/word/${encodeURIComponent(lemmaText)}/`)
-    }
-  )
-})
+Cypress.Commands.add(
+  "visitLemma",
+  { prevSubject: false },
+  (lemmaText, queryParams) => {
+    Cypress.log({
+      name: "visitLemma",
+      message: `visiting lemma detail page for: ${lemmaText}`,
+    });
+    queryParams = queryParams || {};
+    cy.visit(
+      `/word/${encodeURIComponent(lemmaText)}/?${Object.entries(queryParams)
+        .map(
+          ([paramName, paramValue]) =>
+            paramName + "=" + encodeURIComponent(paramValue)
+        )
+        .join("&")}`,
+      { escapeComponents: false }
+    );
+    // test if a redirection happens
+    cy.location().should((loc) => {
+      expect(
+        loc.pathname,
+        "lemmaText and queryParams should be enough to disambiguate the lemma"
+      ).to.eq(`/word/${encodeURIComponent(lemmaText)}/`);
+    });
+  }
+);
 
 /**
  * Reads the .cypress-user.json file. This file should contains log-in credentials for an admin user.
@@ -87,47 +101,44 @@ Cypress.Commands.add('visitLemma', {prevSubject: false}, (lemmaText, queryParams
  *      })
  *
  */
-Cypress.Commands.add('readCypressUserCredentials', () => {
-  return cy.readFile(CYPRESS_USER_JSON)
-})
-
+Cypress.Commands.add("readCypressUserCredentials", () => {
+  return cy.readFile(CYPRESS_USER_JSON);
+});
 
 /**
  * Logs in as the user with credentials in .cypress-user.json. This user should have admin
  * privileges.
  */
-Cypress.Commands.add('login', () => {
-  cy.visit(Cypress.env('admin_login_url'))
-  cy.get('[name=csrfmiddlewaretoken]')
-    .should('exist')
-    .should('have.attr', 'value')
-    .as('csrfToken')
+Cypress.Commands.add("login", () => {
+  cy.visit(Cypress.env("admin_login_url"));
+  cy.get("[name=csrfmiddlewaretoken]")
+    .should("exist")
+    .should("have.attr", "value")
+    .as("csrfToken");
 
-  cy.readCypressUserCredentials()
-    .then(({username, password}) => {
-      cy.get('@csrfToken').then(function (token) {
-        cy.request({
-          method: 'POST',
-          url: Cypress.env('admin_login_url'),
-          form: true,
-          body: {
-            username,
-            password,
-            next: Cypress.env('admin_url')
-          },
-          headers: {
-            'X-CSRFTOKEN': token,
-          },
-          followRedirect: false
-        }).then(response => {
-          expect(response.status).to.eql(302)
-          expect(response.headers).to.have.property('location')
-          expect(response.headers.location).to.not.contain('login')
-        })
-      })
-    })
-})
-
+  cy.readCypressUserCredentials().then(({ username, password }) => {
+    cy.get("@csrfToken").then(function (token) {
+      cy.request({
+        method: "POST",
+        url: Cypress.env("admin_login_url"),
+        form: true,
+        body: {
+          username,
+          password,
+          next: Cypress.env("admin_url"),
+        },
+        headers: {
+          "X-CSRFTOKEN": token,
+        },
+        followRedirect: false,
+      }).then((response) => {
+        expect(response.status).to.eql(302);
+        expect(response.headers).to.have.property("location");
+        expect(response.headers.location).to.not.contain("login");
+      });
+    });
+  });
+});
 
 /**
  * This function returns the column header visually to the top of a td element
@@ -138,8 +149,7 @@ Cypress.Commands.add('login', () => {
  * @param tdElement {HTMLTableDataCellElement}
  * @returns {?HTMLTableHeaderCellElement}
  */
-function findColHeader(tdElement){
-
+function findColHeader(tdElement) {
   /*
   There are 3 possible cases
   1. the cell is in a pane without column headers but just a "title row"
@@ -147,29 +157,26 @@ function findColHeader(tdElement){
   3. the cell does not have column header nor a title row
    */
 
-
-  let idx = tdElement.cellIndex
-  let upperRow = tdElement.parentElement.previousElementSibling
+  let idx = tdElement.cellIndex;
+  let upperRow = tdElement.parentElement.previousElementSibling;
   while (upperRow != null) {
-
     /* CASE 1: we meet a title row already, this cell does not have a column header */
-    if (upperRow.cells[0].colSpan > 1){
-      return null
+    if (upperRow.cells[0].colSpan > 1) {
+      return null;
     }
 
-    const upperCell = upperRow.cells[idx]
+    const upperCell = upperRow.cells[idx];
 
     /* CASE 2: success */
-    if (upperCell.getAttribute('scope') === 'col'){
-      return upperCell
+    if (upperCell.getAttribute("scope") === "col") {
+      return upperCell;
     }
 
-    upperRow = tdElement.parentElement.previousElementSibling
+    upperRow = tdElement.parentElement.previousElementSibling;
   }
 
   /* CASE 3 */
-  return null
-
+  return null;
 }
 
 /**
@@ -181,27 +188,20 @@ function findColHeader(tdElement){
  * @param tdElement {HTMLTableDataCellElement}
  * @returns {?HTMLTableHeaderCellElement}
  */
-function findTitleRow(tdElement){
-
+function findTitleRow(tdElement) {
   /* The cell may or may not have a title row */
 
-
-  let upperRow = tdElement.parentElement.previousElementSibling
+  let upperRow = tdElement.parentElement.previousElementSibling;
   while (upperRow != null) {
-
-    if (upperRow.cells[0].colSpan > 1){
-      return upperRow.cells[0]
+    if (upperRow.cells[0].colSpan > 1) {
+      return upperRow.cells[0];
     }
 
-    upperRow = tdElement.parentElement.previousElementSibling
-
+    upperRow = tdElement.parentElement.previousElementSibling;
   }
 
-  return null
-
+  return null;
 }
-
-
 
 /**
  * On a paradigm page, locate and grab the content of a cell with laser precision
@@ -221,64 +221,61 @@ function findTitleRow(tdElement){
  * the command will finally return a cypress-wrapped <td> element, so you can do things like
  * cy.getParadigmCell(...).contains('minôs')
  */
-Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLabel, titleLabel}) => {
+Cypress.Commands.add(
+  "getParadigmCell",
+  { prevSubject: false },
+  (rowLabel, { colLabel, titleLabel }) => {
+    // example code to traverse HTMLTable in different directions
+    // https://jsfiddle.net/rh5aoxsL/
 
-  // example code to traverse HTMLTable in different directions
-  // https://jsfiddle.net/rh5aoxsL/
+    // do not do cy.get('th[scope="row"]').contains(rowLabel).then(
+    // because contains only yield the first element matched, but we want to to match multiples
 
+    return cy
+      .get(`th[scope="row"]:contains(${rowLabel})`)
+      .then(($thCollection) => {
+        for (const thElement of $thCollection) {
+          // const startTH = Cypress.dom.unwrap($th)[0]
 
-  // do not do cy.get('th[scope="row"]').contains(rowLabel).then(
-  // because contains only yield the first element matched, but we want to to match multiples
+          // iterate over all tds in the row
 
+          let colLabelMatched = false;
+          let titleLabelMatched = false;
 
-  return cy.get(`th[scope="row"]:contains(${rowLabel})`).then(
-    $thCollection => {
+          let tdElement = thElement.nextElementSibling;
+          expect(tdElement.tagName === "TD");
 
-      for (const thElement of $thCollection) {
-        // const startTH = Cypress.dom.unwrap($th)[0]
-
-        // iterate over all tds in the row
-
-        let colLabelMatched = false
-        let titleLabelMatched = false
-
-        let tdElement = thElement.nextElementSibling
-        expect(tdElement.tagName === 'TD')
-
-        while (tdElement != null) {
-
-          if (colLabel) {
-            const colHeaderTH = findColHeader(tdElement)
-            if (colHeaderTH && colHeaderTH.innerText === colLabel){
-              colLabelMatched = true
+          while (tdElement != null) {
+            if (colLabel) {
+              const colHeaderTH = findColHeader(tdElement);
+              if (colHeaderTH && colHeaderTH.innerText === colLabel) {
+                colLabelMatched = true;
+              }
             }
-          }
 
-          if (titleLabel){
-            const titleRowTH = findTitleRow(tdElement)
+            if (titleLabel) {
+              const titleRowTH = findTitleRow(tdElement);
 
-            if (titleRowTH && titleRowTH.innerText === titleLabel){
-              titleLabelMatched = true
+              if (titleRowTH && titleRowTH.innerText === titleLabel) {
+                titleLabelMatched = true;
+              }
             }
-          }
 
-          if ((typeof colLabel === 'undefined' || colLabelMatched) && (typeof titleLabel === 'undefined' || titleLabelMatched)){
-            return Cypress.dom.wrap(tdElement)
-          }
+            if (
+              (typeof colLabel === "undefined" || colLabelMatched) &&
+              (typeof titleLabel === "undefined" || titleLabelMatched)
+            ) {
+              return Cypress.dom.wrap(tdElement);
+            }
 
-          tdElement = tdElement.nextElementSibling
+            tdElement = tdElement.nextElementSibling;
+          }
         }
-      }
 
-      /* failed to find the cell */
-
-
-    }
-  )
-
-})
-
-
+        /* failed to find the cell */
+      });
+  }
+);
 
 /**
  * this command will type on the search bar with the given query
@@ -292,29 +289,32 @@ Cypress.Commands.add('getParadigmCell', {prevSubject: false}, (rowLabel, {colLab
  * The site should be refreshed so no wait is needed, waitTime will default to 0
  *
  */
-Cypress.Commands.add('search', {prevSubject: false}, (query, options) => {
+Cypress.Commands.add("search", { prevSubject: false }, (query, options) => {
+  options = options || { pressEnter: false, waitTime: 500 };
 
-  options = options || {pressEnter: false, waitTime: 500}
-
-  if (options.pressEnter === true){
-    options.waitTime = 0
+  if (options.pressEnter === true) {
+    options.waitTime = 0;
   }
 
-  cy.get('[data-cy=search]')
-    .type(query + (options.pressEnter ? '{enter}' : '')).wait(options.waitTime)
-})
+  cy.get("[data-cy=search]")
+    .type(query + (options.pressEnter ? "{enter}" : ""))
+    .wait(options.waitTime);
+});
 
 /**
  * this command clears the search bar
  */
-Cypress.Commands.add('clearSearchBar', {prevSubject: false}, () => {
-  cy.get('[data-cy=search]').clear()
-})
+Cypress.Commands.add("clearSearchBar", { prevSubject: false }, () => {
+  cy.get("[data-cy=search]").clear();
+});
 
 /**
  * this command clears the search bar
  */
-Cypress.Commands.add('searchResultsContain', {prevSubject: false}, (expectedString) => {
-  return cy.get('[data-cy=search-results]')
-    .should('contain', expectedString)
-})
+Cypress.Commands.add(
+  "searchResultsContain",
+  { prevSubject: false },
+  (expectedString) => {
+    return cy.get("[data-cy=search-results]").should("contain", expectedString);
+  }
+);

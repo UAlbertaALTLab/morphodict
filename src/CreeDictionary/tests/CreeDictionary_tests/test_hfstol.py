@@ -1,46 +1,50 @@
 import pytest
 
-from CreeDictionary.CreeDictionary.hfstol import analyze, generate
+from morphodict.analysis import (
+    relaxed_analyzer,
+    rich_analyze_relaxed,
+    strict_generator,
+)
 
 
 @pytest.mark.parametrize(
     "wordform,lemma,suffix",
     [
-        ("wâpamêw", "wâpamêw", "TA"),
-        ("niskak", "niska", "A"),
-        ("maskwak", "maskwa", "Pl"),
-        ("maskos", "maskwa", "Der/Dim"),
-        ("nimaskom", "maskwa", "Px1Sg"),
+        ("wâpamêw", "wâpamêw", "+TA"),
+        ("niskak", "niska", "+A"),
+        ("maskwak", "maskwa", "+Pl"),
+        ("maskos", "maskwa", "+Der/Dim"),
+        ("nimaskom", "maskwa", "+Px1Sg"),
     ],
 )
 def test_analyze_wordform(wordform, lemma, suffix):
     assert any(
-        analysis.lemma == lemma and suffix in analysis.raw_suffixes
-        for analysis in analyze(wordform)
+        analysis.lemma == lemma and suffix in analysis.suffix_tags
+        for analysis in rich_analyze_relaxed(wordform)
     )
 
 
 @pytest.mark.parametrize(
     "wordform,lemma,prefix",
     [
-        ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/e"),
-        ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci"),
-        ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "RdplS"),
-        ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi"),
-        ("nêpat", "nipâw", "IC"),
+        ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/e+"),
+        ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci+"),
+        ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "RdplS+"),
+        ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi+"),
+        ("nêpat", "nipâw", "IC+"),
     ],
 )
 def test_analyze_with_prefix(wordform, lemma, prefix):
-    analysis, *_more_analyses = analyze(wordform)
+    analysis, *_more_analyses = rich_analyze_relaxed(wordform)
     assert analysis.lemma == lemma
-    assert prefix in analysis.raw_prefixes
-    assert "AI" in analysis.raw_suffixes
-    assert "Cnj" in analysis.raw_suffixes
+    assert prefix in analysis.prefix_tags
+    assert "+AI" in analysis.suffix_tags
+    assert "+Cnj" in analysis.suffix_tags
 
 
 def test_analyze_nonword():
     # "pîpîpôpô" is not a real word
-    assert list(analyze("pîpîpôpô")) == []
+    assert list(relaxed_analyzer().lookup("pîpîpôpô")) == []
 
 
 @pytest.mark.parametrize(
@@ -55,11 +59,11 @@ def test_generate(analysis, wordform):
     """
     Simple test of generating wordforms.
     """
-    assert wordform in list(generate(analysis))
+    assert wordform in list(strict_generator().lookup(analysis))
 
 
 def test_generate_non_word():
-    assert [] == list(generate("pîpîpôpô+Ipc"))
+    assert [] == list(strict_generator().lookup("pîpîpôpô+Ipc"))
 
 
 def test_analyses_do_not_contain_err_orth():
@@ -70,8 +74,8 @@ def test_analyses_do_not_contain_err_orth():
     # old FSTs produce +Err/Orth if when the hyphen is missing between ê- and *wâpamât
     non_standard_form = "êwâpamât"
     assert all(
-        "+Err/Orth" not in analysis.raw_suffixes
-        for analysis in analyze(non_standard_form)
+        "+Err/Orth" not in analysis.suffix_tags
+        for analysis in rich_analyze_relaxed(non_standard_form)
     )
 
 
@@ -82,6 +86,6 @@ def test_analyses_do_not_contain_err_frag():
     """
     possible_fragment = "kâ"
     assert all(
-        "+Err/Frag" not in analysis.raw_suffixes
-        for analysis in analyze(possible_fragment)
+        "+Err/Frag" not in analysis.suffix_tags
+        for analysis in rich_analyze_relaxed(possible_fragment)
     )

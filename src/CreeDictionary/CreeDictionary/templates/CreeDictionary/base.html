@@ -50,6 +50,11 @@
       </svg>
     </button>
   </template>
+
+  {# The toast or little message that pops-up to notifiy you of small state changes. #}
+   <dialog id="toast" class="toast" data-cy="toast">
+    <p class="toast__message"></p>
+  </dialog>
 {% endspaceless %}
 
 {% comment %}
@@ -90,6 +95,10 @@
     </ul>
 
     <div class="footer__links footer__advanced-links">
+      <ul class="footer__links">
+        <li><a href="{% url 'cree-dictionary-settings' %}" class="footer-links__link">Settings</a></li>
+      </ul>
+
       <h2 class="footer__option-header"> View search results in: </h2>
       <ul class="unbullet">
         <li>

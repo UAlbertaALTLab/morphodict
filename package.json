@@ -7,7 +7,8 @@
     "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
     "stop-only": "stop-only --folder cypress/integration",
     "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",
-    "test:ci": "pipenv run ensuretestdb && (pipenv run runserver_for_tests & trap 'kill %1' 0 1 2 3 15; $(npm bin)/wait-on -t 30000 tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS)"
+    "test:ci": "pipenv run ensuretestdb && (pipenv run runserver_for_tests & trap 'kill %1' 0 1 2 3 15; $(npm bin)/wait-on -t 30000 tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS)",
+    "reformat": "prettier --write '{frontend,cypress}/**/*.js'"
   },
   "repository": {
     "type": "git",
@@ -29,13 +30,12 @@
     "@altlab/click-in-text": "^0.1.2",
     "@popperjs/core": "^2.6.0",
     "acorn": "^7.4.1",
-    "cssnano": "^4.1.10",
+    "cssnano": "^5.0.6",
     "dotenv": "^8.2.0",
-    "eslint": "^6.8.0",
-    "node-sass": "^4.14.1",
     "postcss-cli": "^7.1.2",
     "postcss-import": "^12.0.1",
     "postcss-loader": "^3.0.0",
+    "prettier": "^2.3.2",
     "rollup": "^1.32.1",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",

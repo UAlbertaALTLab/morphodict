@@ -3,11 +3,13 @@ Access to relabelling from templates.
 """
 
 import logging
+from typing import Sequence
 
 from django import template
 from django.template import Context
 
 from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from CreeDictionary.utils.types import FSTTag
 from crkeng.app.preferences import ParadigmLabel
 
@@ -25,19 +27,34 @@ label_setting_to_relabeller = {
 
 
 @register.simple_tag(takes_context=True)
-def relabel(context: Context, tags: tuple[FSTTag]):
+def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     """
     Gets the best matching label for the given object.
     """
 
-    label_setting = label_setting_from_context(context)
+    if labels is None:
+        label_setting = label_setting_from_context(context)
+    else:
+        label_setting = labels
+
     relabeller = label_setting_to_relabeller[label_setting]
 
     if label := relabeller.get_longest(tags):
+        if label_setting == "nehiyawewin":
+            return orth_tag(context, label)
         return label
 
     logger.warning("Could not find relabelling for tags: %r", tags)
     return "+".join(tags)
+
+
+@register.simple_tag(takes_context=True)
+def relabel_one(context: Context, tag: FSTTag, **kwargs):
+    """
+    Relabels exactly one tag (a string). I use this instead of widening the type on
+    relabel() because polymorphic arguments make me nervous 😬
+    """
+    return relabel(context, (tag,), **kwargs)
 
 
 def label_setting_from_context(context: Context):

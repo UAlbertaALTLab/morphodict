@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 """
 Test things involving the 'orth' cookie.
 """
@@ -9,6 +6,8 @@ from http import HTTPStatus
 
 import pytest
 from django.urls import reverse
+
+from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
 
 
 @pytest.mark.parametrize("orth", ["Cans", "Latn", "Latn-x-macron"])
@@ -20,17 +19,17 @@ def test_can_set_orth_cookie(orth, client, change_orth_url):
     index_url = reverse("cree-dictionary-index")
     response = client.get(index_url)
     assert response.status_code == 200
-    assert "orth" not in response.cookies
+    assert ORTHOGRAPHY.COOKIE_NAME not in response.cookies
 
     # Change the orthography!
     response = client.post(change_orth_url, {"orth": orth})
     assert response.status_code in (200, 204)
-    assert "orth" in response.cookies
-    assert response.cookies["orth"].value == orth
+    assert ORTHOGRAPHY.COOKIE_NAME in response.cookies
+    assert response.cookies[ORTHOGRAPHY.COOKIE_NAME].value == orth
 
     # The client should now set the orthography in its cookies.
-    assert "orth" in client.cookies
-    assert client.cookies["orth"].value == orth
+    assert ORTHOGRAPHY.COOKIE_NAME in client.cookies
+    assert client.cookies[ORTHOGRAPHY.COOKIE_NAME].value == orth
 
 
 @pytest.mark.parametrize("method", ["get", "head"])

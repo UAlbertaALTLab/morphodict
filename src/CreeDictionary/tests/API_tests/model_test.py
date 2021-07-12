@@ -323,6 +323,24 @@ def test_logs_error_on_analyzable_result_without_generated_string(caplog):
     assert any("bod" in log.message for log in errors)
 
 
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    "query",
+    [
+        # typo in pîmi-:
+        "ê-pim-nêhiyawêyahk",
+        # non-word with plausible Cree phonotactics:
+        "pêp-kôniw",  # (see: https://www.youtube.com/watch?v=3fG8rNHUspU)
+    ],
+)
+def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
+    """
+    Some searches should not even **TOUCH** CVD, yielding zero results.
+    """
+    results = search(query=query).presentation_results()
+    assert len(results) == 0
+
+
 ####################################### Helpers ########################################
 
 

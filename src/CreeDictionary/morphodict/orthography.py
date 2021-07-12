@@ -6,9 +6,12 @@ from importlib import import_module
 from typing import Callable, Set
 
 from django.conf import settings
+from django.http import HttpRequest
 
 
 class Orthography:
+    COOKIE_NAME = "orth"
+
     class _Converter:
         def __getitem__(self, code: str) -> Callable[[str], str]:
             path = settings.MORPHODICT_ORTHOGRAPHY["available"][code].get(
@@ -36,6 +39,13 @@ class Orthography:
         Get the plain English name of the given orthography code.
         """
         return settings.MORPHODICT_ORTHOGRAPHY["available"][code]["name"]
+
+    def from_request(self, request: HttpRequest) -> str:
+        """
+        Return the requested orthography code from the HTTP request. If the request
+        does not specify an orthography, the default code is returned.
+        """
+        return request.COOKIES.get(self.COOKIE_NAME, self.default)
 
 
 ORTHOGRAPHY = Orthography()

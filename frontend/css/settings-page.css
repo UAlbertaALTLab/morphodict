@@ -1,0 +1,71 @@
+/**
+ * ELEMENT title
+ *
+ * The title that describes the setting.
+ */
+.setting__title {
+  margin-block-end: var(--small-pad);
+}
+
+/**
+ * ELEMENT note
+ *
+ * The note that provides a little description about what the setting affects.
+ */
+.setting__note {
+  margin-block-start: var(--small-pad);
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+
+/**
+ * BLOCK option
+ *
+ * A single option for a setting.
+ */
+.option {
+  margin-inline: 1em;
+}
+
+.option__label {
+  display: flex;
+  flex-flow: row no-wrap;
+
+  font-weight: var(--strong-font-weight);
+
+  cursor: pointer;
+}
+
+.option__control {
+  flex: 0 auto;
+  width: var(--option-control-width);
+
+  align-self: center;
+}
+
+.option__label-text {
+  flex: 1;
+}
+
+.option__description {
+  display: block;
+
+  margin-block-start: 0.5em;
+  margin-inline-start: var(--option-control-width);
+
+  font-size: smaller;
+
+  color: var(--deemphasized-text-color);
+}
+
+.action-bar {
+  display: flex;
+  flex-direction: row;
+
+  margin-block-start: 2rem;
+
+  justify-content: flex-end;
+}
