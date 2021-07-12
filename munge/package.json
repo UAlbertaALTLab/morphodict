@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "@types/chai": "^4.2.19",
-    "@types/lodash": "^4.14.170",
-    "@types/mocha": "^8.2.2",
     "commander": "^8.0.0",
     "execifmain": "^0.0.2",
     "hfstol": "^0.0.3",
@@ -10,6 +7,9 @@
     "sucrase": "^3.19.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.19",
+    "@types/lodash": "^4.14.170",
+    "@types/mocha": "^8.2.2",
     "@types/node": "^15.14.0",
     "@types/prettier": "^2.3.1",
     "chai": "^4.3.4",
