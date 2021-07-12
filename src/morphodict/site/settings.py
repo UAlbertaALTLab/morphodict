@@ -327,3 +327,7 @@ LOGGING = {
 
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
+
+# This defaults to False, because in order to work it requires that there
+# be correct tag mappings for all analyzable forms.
+MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False

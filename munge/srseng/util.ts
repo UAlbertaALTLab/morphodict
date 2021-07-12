@@ -41,7 +41,7 @@ export function zip<T>(array1: T[], array2: T[]): [T, T][] {
  * one {$header: value, …} object for each row.
  */
 export async function loadTsvFile(path: string) {
-  const contents = (await readFile(path)).toString();
+  const contents = await readFile(path, "utf-8");
   const lines = contents.split("\n");
   const header = lines.shift()!.split("\t");
   const ret = [];
@@ -114,7 +114,7 @@ function toBaseCharacters(s: string) {
 /**
  * Return a measure of how close two strings are to each another.
  *
- * Algorithm is similar to edit distance.
+ * Algorithm is similar to edit distance; see CLRS “Introduction to Algorithms” second edition, Problem 15-3.
  */
 export function stringDistance(a: string, b: string) {
   const m = a.length;
@@ -154,7 +154,7 @@ export function stringDistance(a: string, b: string) {
           c === b.charAt(j - 2) &&
           d === a.charAt(i - 2)
         ) {
-          // twiddle
+          // twiddle aka transposition
           thisDist = 1;
           dist[i][j] = thisDist + dist[i - 2][j - 2];
         } else {

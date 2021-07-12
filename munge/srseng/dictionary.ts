@@ -31,7 +31,7 @@ class DictionaryEntry {
     this.senses.push({ definition, sources: ["OS"] });
   }
 
-  fstLemma() {
+  get fstLemma() {
     assert(this.analysis);
     return this.analysis[1];
   }
@@ -73,27 +73,25 @@ export class Dictionary {
         continue;
       }
 
-      if (e.slug) {
-        assert(used.has(e.slug));
-        used.add(e.slug);
-      } else {
-        let saferHeadWord = e.head!.replace(/[/\\ ]+/g, "_");
+      // Current algorithm do assign slugs doesn’t support importing entries
+      // with existing slugs.
+      assert(!("slug" in e));
+      let saferHeadWord = e.head!.replace(/[/\\ ]+/g, "_");
 
-        let newSlug;
-        if (!used.has(saferHeadWord)) {
-          newSlug = saferHeadWord;
-        } else {
-          for (let i = 1; ; i++) {
-            let proposed = `${saferHeadWord}@${i}`;
-            if (!used.has(proposed)) {
-              newSlug = proposed;
-              break;
-            }
+      let newSlug;
+      if (!used.has(saferHeadWord)) {
+        newSlug = saferHeadWord;
+      } else {
+        for (let i = 1; ; i++) {
+          let proposed = `${saferHeadWord}@${i}`;
+          if (!used.has(proposed)) {
+            newSlug = proposed;
+            break;
           }
         }
-        used.add(newSlug!);
-        e.slug = newSlug;
       }
+      used.add(newSlug!);
+      e.slug = newSlug;
     }
   }
 
@@ -120,7 +118,7 @@ export class Dictionary {
         if (!e.analysis) {
           continue;
         }
-        const fstLemma = e.fstLemma();
+        const fstLemma = e.fstLemma;
         const lexicalTags = this._extractLexicalTags(e.analysis);
         const key = JSON.stringify({ fstLemma, lexicalTags });
         byFstLemmaAndLexicalTags.get(key).push(e);
@@ -181,6 +179,8 @@ export class Dictionary {
 
     const entry = new DictionaryEntry();
 
+    // This happens for a couple of entries in the Tsuut’ina “Vocabulary”
+    // spreadsheet input.
     if (/^\p{Combining_Mark}/u.test(text.normalize())) {
       console.log(
         `Warning: ${JSON.stringify(text)} begins with a combining character`
@@ -193,7 +193,11 @@ export class Dictionary {
     return entry;
   }
 
-  toJson() {
+  /**
+   * Assign slugs, determine lemmas, and return a prettified JSON string for the
+   * dictionary as a whole.
+   */
+  assemble() {
     this.assignSlugs();
     this.determineLemmas();
 
@@ -230,6 +234,8 @@ export class Dictionary {
   }
 }
 
+// If you change how this sort works, you should change the matching
+// entry_sort_key function written in Python as well.
 function entryKeyBySlugThenText(entry: DictionaryEntry | ExportableWordform) {
   let slug: string;
   let form: string;

@@ -110,10 +110,7 @@ async function main() {
       head = previousHead;
     }
 
-    let definition = row["Bruce - English text"];
-    if (!definition) {
-      definition = row["Bruce - Notes on entry"];
-    }
+    const definition = row["Bruce - English text"];
 
     if (!definition) {
       console.log(`Warning: no definition for row with head ${head}`);
@@ -158,12 +155,14 @@ async function main() {
       } else if (suffixTags.includes("+V") && suffixTags.includes("+D")) {
         entry.paradigm = "VD";
       }
+      // otherwise we don’t know what the paradigm is, so don’t set anything
+      // here.
     }
 
     previousHead = head;
   }
 
-  await writeFile(options.outputFile, dictionary.toJson());
+  await writeFile(options.outputFile, dictionary.assemble());
 }
 
 execIfMain(main);

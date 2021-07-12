@@ -169,9 +169,7 @@ class Command(BaseCommand):
                 )
         call_command("builddefinitionvectors")
 
-        # This defaults to off because in order to work it requires that there
-        # be correct tag mappings for all analyzable forms.
-        if getattr(settings, "MORPHODICT_SUPPORTS_AUTO_DEFINITIONS", False):
+        if settings.MORPHODICT_SUPPORTS_AUTO_DEFINITIONS:
             call_command("translatewordforms")
 
     def create_definitions(self, wordform, senses):
