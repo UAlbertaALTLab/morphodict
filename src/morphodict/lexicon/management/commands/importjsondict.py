@@ -135,12 +135,22 @@ class Command(BaseCommand):
             if wf.raw_analysis is None:
                 self.index_unanalyzed_form(wf)
 
+            if "senses" not in entry:
+                raise Exception(
+                    f"Invalid importjson: no senses for lemma text={wf.text} slug={wf.slug}"
+                )
+
             self.create_definitions(wf, entry["senses"])
 
             seen_slugs.add(wf.slug)
 
         for entry in form_definitions:
-            lemma = Wordform.objects.get(slug=entry["formOf"])
+            try:
+                lemma = Wordform.objects.get(slug=entry["formOf"])
+            except Wordform.DoesNotExist:
+                raise Exception(
+                    f"Encountered wordform with formOf for unknown slug={entry['formOf']!r}"
+                )
 
             wf, created = Wordform.objects.get_or_create(
                 lemma=lemma, text=entry["head"], raw_analysis=entry["analysis"]

@@ -1,10 +1,13 @@
 # headwords
 
-# see, +V+I
-ìstsáh
+# run, +V+I
+dītł'á
 
-# cry, +V+T
-īstsīy
+# look at, +V+T
+násʔín
+
+# feeding him/her/it, +V+D
+ōghàschút
 
 # bear, noun, no paradigm
 nīnāghá

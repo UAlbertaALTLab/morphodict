@@ -2,8 +2,6 @@
 Handles paradigm generation.
 """
 
-from functools import cache
-
 from django.conf import settings
 
 import morphodict.analysis
@@ -12,9 +10,10 @@ from CreeDictionary.CreeDictionary.paradigm.manager import (
     ParadigmManagerWithExplicitSizes,
 )
 from CreeDictionary.utils import shared_res_dir
+from morphodict.site.util import cache_unless
 
 
-@cache
+@cache_unless(settings.DEBUG_PARADIGM_TABLES)
 def default_paradigm_manager() -> ParadigmManager:
     """
     Returns the ParadigmManager instance that loads layouts and FST from the res

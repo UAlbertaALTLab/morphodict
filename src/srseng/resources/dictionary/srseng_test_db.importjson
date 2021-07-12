@@ -1,170 +1,626 @@
 [
   {
-    "head": "ìstsáh",
+    "head": "dītł'á",
     "senses": [
       {
-        "definition": "I saw them",
+        "definition": "he/she/it will run",
         "sources": ["OS"]
       }
     ],
-    "analysis": [[], "ìstsáh", ["+V", "+T", "+Pfv", "+SbjSg1", "+DObjPl3"]],
-    "paradigm": "VT",
-    "slug": "gīmīyīsʔí"
-  },
-  {
-    "head": "itsiy",
-    "senses": [
-      {
-        "definition": "he/she/it is crying",
-        "sources": ["OS"]
-      }
-    ],
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "paradigm": "VI",
-    "slug": "ītsīy"
+    "slug": "dītł'á"
   },
   {
-    "head": "āstsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl2"]],
+    "head": "dàdāàtł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl1", "+Distr"]],
     "senses": [
       {
-        "definition": "youᵖˡ∙ are crying",
+        "definition": "we each and every one will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "dàts'ītsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg4", "+Distr"]],
+    "head": "dàdāstł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl2", "+Distr"]],
     "senses": [
       {
-        "definition": "some people each and every one are crying",
+        "definition": "youᵖᴵ∙ each and every one will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "gītsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl3"]],
+    "head": "dàgátł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl3", "+Distr"]],
     "senses": [
       {
-        "definition": "they are crying",
+        "definition": "they 2 each and every one are running",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "gīyítsày",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl3"]],
+    "head": "dàgīdītł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl3", "+Distr"]],
     "senses": [
       {
-        "definition": "they cried, were cryinġ",
+        "definition": "they each and every one will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "īsāàtsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjPl1"]],
+    "head": "dàyāàtł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl1", "+Distr"]],
     "senses": [
       {
-        "definition": "we are crying",
+        "definition": "we 2 each and every one are running",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "īstsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg1"]],
+    "head": "dàyāstł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl2", "+Distr"]],
     "senses": [
       {
-        "definition": "I am crying",
+        "definition": "youᵖˡ∙ 2 each and every one are running",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "náchīsh",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]],
+    "head": "dāàtł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl1"]],
     "senses": [
       {
-        "definition": "he/she/it cries again and again",
+        "definition": "we will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "nītsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg2"]],
+    "head": "dāstł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl2"]],
     "senses": [
       {
-        "definition": "youˢᵍ∙ are crying",
+        "definition": "youᵖˡ∙ will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "ts'ītsīy",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg4"]],
+    "head": "dítł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjSg2"]],
     "senses": [
       {
-        "definition": "someone is crying",
+        "definition": "youˢᵍ∙ will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "yāàtsày",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl1"]],
+    "head": "dīstł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjSg1"]],
     "senses": [
       {
-        "definition": "we cried, were crying",
+        "definition": "I will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "yāstsày",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjPl2"]],
+    "head": "gátł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl3"]],
     "senses": [
       {
-        "definition": "youᵖᴵ∙ cried, were crying",
+        "definition": "they 2 are running",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "yīstsày",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Pfv", "+SbjSg1"]],
+    "head": "gīdītł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjPl3"]],
     "senses": [
       {
-        "definition": "I cried, was crying",
+        "definition": "they will run",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
   },
   {
-    "head": "yīstsíl",
-    "analysis": [[], "itsiy", ["+V", "+I", "+Prog", "+SbjSg1"]],
+    "head": "nádīstł'ásh",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg1"]],
     "senses": [
       {
-        "definition": "I hammered it",
+        "definition": "I run again and again",
         "sources": ["OS"]
       }
     ],
-    "formOf": "ītsīy"
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "ts'átł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjSg4"]],
+    "senses": [
+      {
+        "definition": "someone is running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "ts'īdītł'á",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Ipfv", "+SbjSg4"]],
+    "senses": [
+      {
+        "definition": "someone will run",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "yāàtł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl1"]],
+    "senses": [
+      {
+        "definition": "we 2 are running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "yāstł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjPl2"]],
+    "senses": [
+      {
+        "definition": "you 2 are running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "yítł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjSg2"]],
+    "senses": [
+      {
+        "definition": "youˢᵍ∙ running",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "youˢᵍ∙ are running",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "you are running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "yīstł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjSg1"]],
+    "senses": [
+      {
+        "definition": "I am running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "yītł'áł",
+    "analysis": [[], "dītł'á", ["+V", "+I", "+Prog", "+SbjSg3"]],
+    "senses": [
+      {
+        "definition": "he/she/it is running",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "he/she/it runs",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "he/she/it is running right along",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "youˢᵍ∙ are running",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "dītł'á"
+  },
+  {
+    "head": "ōghàschút",
+    "senses": [
+      {
+        "definition": "I am feeding him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Ipfv", "+SbjPl2", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "paradigm": "VD",
+    "slug": "mōghàschút"
+  },
+  {
+    "head": "gīyōghàschút",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Ipfv", "+SbjPl3", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "they will feed him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "mōghànáschūsh",
+    "analysis": [
+      [],
+      "ōghàschút",
+      [
+        "+V",
+        "+D",
+        "+Ipfv",
+        "+Rep",
+        "+SbjPl2",
+        "+DObjPl3",
+        "+DObjGiven",
+        "+IObjSg3"
+      ]
+    ],
+    "senses": [
+      {
+        "definition": "I feed him/her/it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "mōghànāàchùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjPl1", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "we fed him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "mōghànīschùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjSg1", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "I fed him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "mōghàyāàchúł",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Prog", "+SbjPl1", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "we are feeding it to him",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "mōghàyāschúł",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Prog", "+SbjPl2", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "youᵖᴵ∙ are feeding him/her/it to him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "nōghànāàchùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjPl1", "+DObjPl3", "+DObjGiven", "+IObjSg2"]
+    ],
+    "senses": [
+      {
+        "definition": "we fed him/her/it to youˢᵍ∙",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "nōghànīschùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjSg1", "+DObjPl3", "+DObjGiven", "+IObjSg2"]
+    ],
+    "senses": [
+      {
+        "definition": "I fed him/her/it to youˢᵍ∙",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "sōghànāschùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjPl2", "+DObjPl3", "+DObjGiven", "+IObjSg1"]
+    ],
+    "senses": [
+      {
+        "definition": "youᵖᴵ∙ fed me",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "youᵖˡ∙ fed him/her/it to youˢᵍ∙",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "sōghàschút",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjPl3", "+DObjGiven", "+IObjSg1"]
+    ],
+    "senses": [
+      {
+        "definition": "he/she/it is feeding me",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "yōghàníschùt",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Pfv", "+SbjSg3", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "he/she/it fed him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "yōghàschút",
+    "analysis": [
+      [],
+      "ōghàschút",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjPl3", "+DObjGiven", "+IObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "he/she/it is feeding him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "mōghàschút"
+  },
+  {
+    "head": "násʔín",
+    "senses": [
+      {
+        "definition": "I am looking at it",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "youˢᵍ∙ are looking at it",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "I am looking at him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3", "+DObjGiven"]
+    ],
+    "paradigm": "VT",
+    "slug": "násʔín"
+  },
+  {
+    "head": "gīyīnásʔín",
+    "analysis": [[], "násʔín", ["+V", "+T", "+Ipfv", "+SbjPl3", "+DObjSg3"]],
+    "senses": [
+      {
+        "definition": "they are looking at it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "īdīnásʔín",
+    "analysis": [[], "násʔín", ["+V", "+T", "+Ipfv", "+SbjPl2", "+DObjRefl"]],
+    "senses": [
+      {
+        "definition": "I am looking/gazing at something didi, used above, is an emotive morpheme that conveys pity on the speaker used by those people who are afflicted with a physical defect or older members of the tribe. The meaning of the rest of the verb phrase does not change.",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "nádàgīyīnáʔìsh",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjPl3", "+DObjSg3", "+Distr"]
+    ],
+    "senses": [
+      {
+        "definition": "some people each and every one look at it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "nágīyīnáʔìsh",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjPl3", "+DObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "they look at it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "náts'īnáʔìsh",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg4", "+DObjPl3", "+DObjGiven"]
+    ],
+    "senses": [
+      {
+        "definition": "someone looks at it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "náyīnáʔìsh",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "senses": [
+      {
+        "definition": "he/she/it looks at it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "nínásʔìsh",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjPl2", "+DObjPl3", "+DObjGiven"]
+    ],
+    "senses": [
+      {
+        "definition": "I look at it again and again",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "youᵖˡ∙ look at it again and again",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "nīnásʔín",
+    "analysis": [[], "násʔín", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg2"]],
+    "senses": [
+      {
+        "definition": "I will watch you",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "ts'īnásʔín",
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg4", "+DObjPl3", "+DObjGiven"]
+    ],
+    "senses": [
+      {
+        "definition": "someone is looking at it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
+  },
+  {
+    "head": "yīnásʔín",
+    "analysis": [[], "násʔín", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
+    "senses": [
+      {
+        "definition": "he/she/it is looking at it",
+        "sources": ["OS"]
+      }
+    ],
+    "formOf": "násʔín"
   },
   {
     "head": "nīnāghá",

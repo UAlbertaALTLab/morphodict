@@ -201,45 +201,52 @@ export class Dictionary {
     for (const e of this._entries) {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
+        continue;
+      }
+
+      if (e instanceof Wordform) {
+        const { head, analysis, senses } = e;
+        assert(head);
+        assert(analysis);
+        const formOf = e.formOf!.slug;
+        assert(formOf);
+        entriesToExport.push({
+          head,
+          analysis,
+          senses: senses ?? [],
+          formOf,
+        });
       } else {
-        if (e instanceof Wordform) {
-          const { head, analysis, senses } = e;
-          assert(head);
-          assert(analysis);
-          const formOf = e.formOf!.slug;
-          assert(formOf);
-          entriesToExport.push({
-            head,
-            analysis,
-            senses,
-            formOf,
-          });
-        } else {
-          entriesToExport.push(e);
-        }
+        entriesToExport.push(e);
       }
     }
 
-    function entryKeyBySlugThenText(entry) {
-      let slug, form;
-
-      const isLemma = "slug" in entry;
-      if (isLemma) {
-        slug = entry.slug;
-        form = "";
-      } else {
-        slug = entry.formOf;
-        form = entry.head;
-      }
-
-      slug = slug.normalize("NFD");
-      form = form.normalize("NFD");
-
-      return [slug, form];
-    }
-
-    entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText);
+    entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText) as (
+      | DictionaryEntry
+      | ExportableWordform
+    )[];
 
     return makePrettierJson(entriesToExport);
   }
+}
+
+function entryKeyBySlugThenText(entry: DictionaryEntry | ExportableWordform) {
+  let slug: string;
+  let form: string;
+
+  if ("slug" in entry) {
+    assert(entry.slug);
+    slug = entry.slug;
+    form = "";
+  } else if ("formOf" in entry) {
+    slug = entry.formOf;
+    form = entry.head;
+  } else {
+    assert(false);
+  }
+
+  slug = slug!.normalize("NFD");
+  form = form!.normalize("NFD");
+
+  return [slug, form];
 }

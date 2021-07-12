@@ -127,6 +127,10 @@ CI = env.bool("CI", default=False)
 # Use existing test database (required for running unit tests and integration tests!)
 USE_TEST_DB = env.bool("USE_TEST_DB", default=False)
 
+# If set, reload paradigm layout files from disk on every request. Handy for
+# seeing the results when you’re editing layout files.
+DEBUG_PARADIGM_TABLES = env.bool("DEBUG_PARADIGM_TABLES", default=False)
+
 # The Django debug toolbar is a great help when... you know... debugging Django,
 # but it has a few issues:
 #  - the middleware SIGNIFICANTLY increases request times
