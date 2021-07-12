@@ -53,3 +53,5 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "Latin"},
     },
 }
+
+MORPHODICT_TAG_STYLE = "Bracket"

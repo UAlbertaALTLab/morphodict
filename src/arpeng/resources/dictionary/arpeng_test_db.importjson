@@ -1,0 +1,34 @@
+[
+  {
+    "head": "cíh'ohú-",
+    "senses": [
+      {
+        "definition": "fly to speaker",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "cíh'ohú-"
+  },
+  {
+    "head": "nííhooyoo'",
+    "senses": [
+      {
+        "definition": "egg yolk",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "banana",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "bile",
+        "sources": ["OS"]
+      },
+      {
+        "definition": "Stinging Nettle (root)",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "nííhooyoo'"
+  }
+]
