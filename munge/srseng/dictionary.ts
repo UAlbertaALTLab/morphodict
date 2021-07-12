@@ -31,7 +31,7 @@ class DictionaryEntry {
     this.senses.push({ definition, sources: ["OS"] });
   }
 
-  fstLemma() {
+  get fstLemma() {
     assert(this.analysis);
     return this.analysis[1];
   }
