@@ -11,4 +11,4 @@ class Migration(migrations.Migration):
         ("CreeDictionary", "0002_change_example_site_to_cree_dictionary_site"),
     ]
 
-    operations = []
+    operations: list[migrations.RunPython] = []

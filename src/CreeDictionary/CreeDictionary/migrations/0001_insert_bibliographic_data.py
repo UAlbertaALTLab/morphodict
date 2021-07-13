@@ -9,4 +9,4 @@ class Migration(migrations.Migration):
         ("API", "0001_initial"),
     ]
 
-    operations = []
+    operations: list[migrations.RunPython] = []
