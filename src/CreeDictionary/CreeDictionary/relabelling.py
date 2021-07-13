@@ -2,10 +2,14 @@ from __future__ import annotations
 
 import csv
 from enum import IntEnum
-from typing import Iterable, Optional, TextIO, Tuple, TypeVar, Union
+from threading import Lock
+from typing import Iterable, Optional, TextIO, Tuple
+
+from django.conf import settings
 
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.types import FSTTag, Label
+from morphodict.site.util import cache_unless
 
 CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
 
@@ -190,9 +194,29 @@ def _label_from_column_or_none(column_no: _LabelFriendliness, row) -> Optional[L
     return Label(cleaned_label)
 
 
+_label_cache = {"mtime": None, "labels": None}
+# In case this code is run from a multi-threaded context, e.g., a production web
+# server; normal @cache does internally do a bit of locking.
+_label_cache_mutex = Lock()
+
+
+@cache_unless(settings.DEBUG_PARADIGM_TABLES)
 def read_labels() -> Relabelling:
-    with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
-        return Relabelling.from_tsv(tsv_file)
+    """
+    Construct Relabelling object from file data and return it.
 
+    In production, this is read once on startup and never re-read. if debugging
+    with DEBUG_PARADIGM_TABLES, it is cached based on file modification time.
+    """
 
-LABELS: Relabelling = read_labels()
+    with _label_cache_mutex:
+        mtime = CRK_ALTERNATE_LABELS_FILE.stat().st_mtime
+        previous_mtime = _label_cache["mtime"]
+
+        if previous_mtime is not None and mtime == previous_mtime:
+            return _label_cache["labels"]
+
+        with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
+            _label_cache["mtime"] = mtime
+            ret = _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
+            return ret
