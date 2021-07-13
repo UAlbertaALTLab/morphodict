@@ -120,13 +120,14 @@ function prepareSearchResults(searchResultsList) {
  * @param {Element} searchResultsList
  */
 async function loadRecordingsForAllSearchResults(searchResultsList) {
-  for (let result of searchResultsList.querySelectorAll("[data-wordform]")) {
-    let wordform = result.dataset.wordform;
-    let container = result; // do this reassignment because of the lexical scoping :(
+  let elementWithWordform = [];
 
-    // TODO: instead of making a request for each search result,
-    // TODO: use a "bulk query" option that uses one request to load all
-    // TODO: this requires code in the recording-validation-interface
+  for (let element of searchResultsList.querySelectorAll("[data-wordform]")) {
+    let wordform = element.dataset.wordform;
+    elementWithWordform.push([element, wordform]);
+  }
+
+  for (let [element, wordform] of elementWithWordform) {
     let recordingURL;
     try {
       recordingURL = await fetchFirstRecordingURL(wordform);
@@ -134,7 +135,8 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
       /* ignore failures :/ */
       continue;
     }
-    createAudioButton(recordingURL, container);
+
+    createAudioButton(recordingURL, element);
   }
 }
 
