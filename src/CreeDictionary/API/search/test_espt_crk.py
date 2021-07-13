@@ -30,7 +30,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["crawls"],
                 "expected_new_tags": ["+V", "+AI", "PV/ki+", "+Ind", "+3Pl"],
-                "lemma": "pimitâcimow",
+                "slug": "pimitâcimow",
                 "expected_inflection": "kî-pimitâcimowak",
             },
         ],
@@ -39,7 +39,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["see"],
                 "expected_new_tags": ["+V", "+TA", "PV/ki+", "+Ind", "+3Pl", "+1SgO"],
-                "lemma": "wâpamêw",
+                "slug": "wâpamêw",
                 "expected_inflection": "nikî-wâpamikwak",
             },
         ],
@@ -48,7 +48,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["bear"],
                 "expected_new_tags": ["+N", "+Der/Dim", "+Px1Sg", "+Pl"],
-                "lemma": "maskwa",
+                "slug": "maskwa",
                 "expected_inflection": "nimaskomisak",
             },
         ],
@@ -57,8 +57,26 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["see"],
                 "expected_new_tags": ["+V", "+AI", "+Ind", "+3Pl"],
-                "lemma": "wâpiw",
+                "slug": "wâpiw",
                 "expected_inflection": "wâpiwak",
+            },
+        ],
+        [
+            "you ate it",
+            {
+                "expected_query_terms": ["eat"],
+                "expected_new_tags": ["+V", "+TI", "PV/ki+", "+Ind", "+2Sg"],
+                "slug": "mîciw",
+                "expected_inflection": "kikî-mîcin",
+            },
+        ],
+        [
+            "it will fall short",
+            {
+                "expected_query_terms": ["fall", "short"],
+                "expected_new_tags": ["+V", "+II", "PV/ka+", "+Ind", "+3Sg"],
+                "slug": "nôhtêpayiw@vii",
+                "expected_inflection": "ka-nôhtêpayiw",
             },
         ],
         [
@@ -67,7 +85,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
                 # Don’t try to inflect results for searches not analyzable as phrases
                 "expected_query_terms": ["bear"],
                 "expected_new_tags": [],
-                "lemma": "maskwa",
+                "slug": "maskwa",
                 "expected_inflection": "maskwa",
             },
         ],
@@ -81,7 +99,7 @@ def test_espt_search(db, search, params):
     assert search_run.query.query_string == " ".join(params["expected_query_terms"])
     assert espt_search.new_tags == params["expected_new_tags"]
 
-    lemma1 = Wordform.objects.get(text=params["lemma"], is_lemma=True)
+    lemma1 = Wordform.objects.get(slug=params["slug"], is_lemma=True)
 
     search_run.add_result(
         Result(
