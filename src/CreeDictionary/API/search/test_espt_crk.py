@@ -71,6 +71,15 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             },
         ],
         [
+            "it will fall short",
+            {
+                "expected_query_terms": ["fall", "short"],
+                "expected_new_tags": ["+V", "+II", "PV/ka+", "+Ind", "+3Sg"],
+                "slug": "nôhtêpayiw@vii",
+                "expected_inflection": "ka-nôhtêpayiw",
+            },
+        ],
+        [
             "bear",
             {
                 # Don’t try to inflect results for searches not analyzable as phrases
