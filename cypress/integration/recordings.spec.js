@@ -4,8 +4,13 @@
 context("Recordings", function () {
   describe("On the search page", () => {
     it("should display for words", () => {
+      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+        fixture: "recording/bulk_search/wâpamêw.json",
+      }).as("bulk-search");
+
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch("wâpamêw");
+      cy.wait("@bulk-search");
 
       // Play the recording:
       cy.contains(".definition-title", "wâpamêw")

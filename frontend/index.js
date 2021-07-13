@@ -139,98 +139,12 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
   let url = new URL(endpoint);
   url.search = searchParams;
 
-  let data;
-  if (0) {
-    let resp = await fetch(url);
-    if (!resp.ok) {
-      // Fail silently ¯\_(ツ)_/¯
-      return;
-    }
-    data = await response.json();
-  } else {
-    data = {
-      matched_recordings: [
-        {
-          wordform: "wâpamêw",
-          speaker: "HAR",
-          speaker_name: "Harley Simon",
-          anonymous: false,
-          gender: "M",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/da213e0ac776a153030a87c1c47bc7e0d24a91233d9a1fa1e32d4b04cb383b65_fdqRrHt.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/HAR.html",
-        },
-        {
-          wordform: "wâpamêw",
-          speaker: "HAR",
-          speaker_name: "Harley Simon",
-          anonymous: false,
-          gender: "M",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/8efae63b40e1bc44c37515ec56121bc734e2cb11d90c59d71f6d847dc6f82ac3_bM2P2A6.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/HAR.html",
-        },
-        {
-          wordform: "wâpamêw",
-          speaker: "HAR",
-          speaker_name: "Harley Simon",
-          anonymous: false,
-          gender: "M",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/79d38cc7e67e73a50cb91f8d93fe96212c906d18b404f6d91412f6f7508c56c4_8csquYb.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/HAR.html",
-        },
-        {
-          wordform: "asawâpamêw",
-          speaker: "ANN",
-          speaker_name: "Annette Lee",
-          anonymous: false,
-          gender: "F",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/329a115f1ddef1c8a7a4003136e198c49878f96add1895f7a383cf45a331a153_uMOIs5J.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/ANN.html",
-        },
-        {
-          wordform: "asawâpamêw",
-          speaker: "ANN",
-          speaker_name: "Annette Lee",
-          anonymous: false,
-          gender: "F",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/0307dedb9a095057765dfb3336d50ea5ebf91283ed0aa5aad70b76068c3ac25f_wv6NXWw.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/ANN.html",
-        },
-        {
-          wordform: "asawâpamêw",
-          speaker: "BET",
-          speaker_name: "Betty Simon",
-          anonymous: false,
-          gender: "F",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/3b6d20696f22ca8fc568d27019b6c2993d2e419b2d4b4dfcddc91e5be9b9eb42_2dBElHQ.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/BET.html",
-        },
-        {
-          wordform: "asawâpamêw",
-          speaker: "BET",
-          speaker_name: "Betty Simon",
-          anonymous: false,
-          gender: "F",
-          dialect: "Maskwacîs",
-          recording_url:
-            "http://speech-db.altlab.app/media/audio/11169a4cd2588ca469ff553fce232460aa7e65f22586d9e4daf80d3f2f31c73f_bSvEpkh.m4a",
-          speaker_bio_url: "https://www.altlab.dev/maskwacis/Speakers/BET.html",
-        },
-      ],
-      not_found: [],
-    };
+  let response = await fetch(url);
+  if (!response.ok) {
+    // Fail silently ¯\_(ツ)_/¯
+    return;
   }
+  let data = await response.json();
 
   for (let recording of data.matched_recordings) {
     let wordform = recording.wordform;
