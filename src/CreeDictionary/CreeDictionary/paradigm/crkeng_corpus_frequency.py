@@ -9,15 +9,6 @@ CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
 logger = logging.getLogger(__name__)
 
 
-def import_frequency() -> dict[ConcatAnalysis, int]:
-    """
-    Corpus frequency is stored in a bespoke file format. This parses that file and
-    returns a dictionary mapping the ANALYSIS to the amount of times it has appeard
-    in the corpus.
-    """
-    return {analysis: frequency for _, analysis, frequency in import_tuples()}
-
-
 def import_tuples() -> list[tuple[str, ConcatAnalysis, int]]:
     # TODO: store this in the database, rather than as a source file
     # TODO: make a management command that updates wordform frequencies

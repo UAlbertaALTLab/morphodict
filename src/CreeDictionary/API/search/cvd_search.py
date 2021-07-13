@@ -29,6 +29,7 @@ def do_cvd_search(search_run: SearchRun):
     if not keys:
         return
 
+    search_run.add_verbose_message(cvd_extracted_keys=keys)
     query_vector = vector_for_keys(google_news_vectors(), keys)
 
     try:

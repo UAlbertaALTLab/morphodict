@@ -9,6 +9,7 @@ from django import template
 from django.template import Context
 
 from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from CreeDictionary.utils.types import FSTTag
 from crkeng.app.preferences import ParadigmLabel
 
@@ -39,6 +40,8 @@ def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     relabeller = label_setting_to_relabeller[label_setting]
 
     if label := relabeller.get_longest(tags):
+        if label_setting == "nehiyawewin":
+            return orth_tag(context, label)
         return label
 
     logger.warning("Could not find relabelling for tags: %r", tags)

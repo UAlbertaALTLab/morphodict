@@ -4,7 +4,6 @@ Ensure the database -- especially the test database -- has certain requisite dat
 
 import logging
 
-
 logger = logging.getLogger(__name__)
 
 
@@ -39,23 +38,6 @@ WORDFORM_TO_PARADIGM = [
     ("anihi", "PRON", "demonstrative-pronouns"),
     ("nêhi", "PRON", "demonstrative-pronouns"),
 ]
-
-
-def ensure_wordform_paradigms():
-    """
-    Ensures that at least one Wordform object has a paradigm.
-    """
-    from morphodict.lexicon.models import Wordform
-
-    if Wordform.objects.exclude(paradigm=None).exists():
-        # Has paradigms; don't bother updating
-        logger.info("there's at least one wordform with a paradigm; skipping update")
-        return
-
-    to_update = set_paradigm_for_demonstrative_and_personal_pronouns(
-        Wordform.objects.all()
-    )
-    Wordform.objects.bulk_update(to_update, ["paradigm"])
 
 
 def set_paradigm_for_demonstrative_and_personal_pronouns(query_set):

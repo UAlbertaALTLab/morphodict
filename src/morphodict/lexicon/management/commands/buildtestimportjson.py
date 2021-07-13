@@ -72,6 +72,8 @@ class Command(BaseCommand):
         )
 
 
+# If you change how this sort works, you should change the matching
+# entryKeyBySlugThenText function written in JavaScript as well.
 def entry_sort_key(entry):
     """
     - Sort lemmas by slug

@@ -32,6 +32,7 @@ COMBINING_MACRON = "̄"
         ),
         ("ý", "y"),
         ("Gūnáhà", "gunaha"),
+        ("ììdììtɫō", "iidiitlo"),
         # Note that the lowercase has a different character for the final sigma
         ("ΣΟΦΌΝ ΤῸ ΣΑΦΈΣ", "σοφον το σαφες"),
         ("hello", "hello"),

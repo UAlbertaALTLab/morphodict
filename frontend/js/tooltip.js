@@ -1,10 +1,10 @@
 // adapted from poppers.js tutorial https://popper.js.org/docs/v2/tutorial/
-import {createPopper} from '@popperjs/core/dist/esm/popper'
+import { createPopper } from "@popperjs/core/dist/esm/popper";
 
-const showEvents = ['mouseenter', 'focus']
-const hideEvents = ['mouseleave', 'blur']
+const showEvents = ["mouseenter", "focus"];
+const hideEvents = ["mouseleave", "blur"];
 
-let popperInstance = null
+let popperInstance = null;
 
 /**
  * @param {Element} icon
@@ -14,19 +14,19 @@ function create(icon, popup) {
   popperInstance = createPopper(icon, popup, {
     modifiers: [
       {
-        name: 'offset',
+        name: "offset",
         options: {
           offset: [0, 8],
         },
       },
     ],
-  })
+  });
 }
 
 function destroy() {
   if (popperInstance) {
-    popperInstance.destroy()
-    popperInstance = null
+    popperInstance.destroy();
+    popperInstance = null;
   }
 }
 
@@ -39,15 +39,15 @@ function destroy() {
 export function createTooltip(icon, popup) {
   for (let event of showEvents) {
     icon.addEventListener(event, () => {
-      popup.setAttribute('data-show', '')
-      create(icon, popup)
-    })
+      popup.setAttribute("data-show", "");
+      create(icon, popup);
+    });
   }
 
   for (let event of hideEvents) {
     icon.addEventListener(event, () => {
-      popup.removeAttribute('data-show')
-      destroy()
-    })
+      popup.removeAttribute("data-show");
+      destroy();
+    });
   }
 }
