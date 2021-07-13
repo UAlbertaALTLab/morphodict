@@ -1,34 +1,37 @@
 [
   {
-    "head": "cíh'ohú-",
-    "senses": [
-      {
-        "definition": "fly to speaker",
-        "sources": ["OS"]
-      }
-    ],
-    "slug": "cíh'ohú-"
-  },
-  {
-    "head": "nííhooyoo'",
+    "head": "nihooyoo",
     "senses": [
       {
         "definition": "egg yolk",
-        "sources": ["OS"]
+        "sources": ["ALD"]
       },
       {
         "definition": "banana",
-        "sources": ["OS"]
+        "sources": ["ALD"]
       },
       {
         "definition": "bile",
-        "sources": ["OS"]
+        "sources": ["ALD"]
       },
       {
         "definition": "Stinging Nettle (root)",
-        "sources": ["OS"]
+        "sources": ["ALD"]
       }
     ],
+    "analysis": [
+      [
+        "[VERB]",
+        "[II]",
+        "[INANIMATE-SUBJECT]",
+        "[AFFIRMATIVE]",
+        "[PRESENT]",
+        "[IC]"
+      ],
+      "nihooyoo",
+      ["[3SG-SUBJ]"]
+    ],
+    "paradigm": "II",
     "slug": "nííhooyoo'"
   }
 ]
