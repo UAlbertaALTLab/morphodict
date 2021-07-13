@@ -127,6 +127,8 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     elementWithWordform.push([element, wordform]);
   }
 
+  let wordform2recordingURL = new Map();
+
   for (let [element, wordform] of elementWithWordform) {
     let recordingURL;
     try {
@@ -135,8 +137,14 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
       /* ignore failures :/ */
       continue;
     }
+    wordform2recordingURL.set(wordform, recordingURL);
+  }
 
-    createAudioButton(recordingURL, element);
+  for (let [element, wordform] of elementWithWordform) {
+    let recordingURL = wordform2recordingURL.get(wordform);
+    if (recordingURL) {
+      createAudioButton(recordingURL, element);
+    }
   }
 }
 
