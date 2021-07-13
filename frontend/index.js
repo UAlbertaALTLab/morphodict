@@ -129,21 +129,47 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     requestedWordforms.add(wordform);
   }
 
+  let wordform2recordingURL;
+  try {
+    wordform2recordingURL = await fetchRecordingURLForEachWordform(
+      requestedWordforms
+    );
+  } catch {
+    // fail silently ¯\_(ツ)_/¯
+    return;
+  }
+
+  for (let [element, wordform] of elementWithWordform) {
+    let recordingURL = wordform2recordingURL.get(wordform);
+    if (recordingURL) {
+      createAudioButton(recordingURL, element);
+    }
+  }
+}
+
+/**
+ * Fetches recordings URLs for each wordform given.
+ *
+ * @param {Iterable<str>} iterable of wordforms to search
+ * @return {Map<str, str>} maps wordforms to a valid recording URL.
+ */
+async function fetchRecordingURLForEachWordform(requestedWordforms) {
   let wordform2recordingURL = new Map();
 
+  const endpoint = "https://speech-db.altlab.app/api/bulk_search";
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
     searchParams.append("q", wordform);
   }
-  const endpoint = "https://speech-db.altlab.app/api/bulk_search";
+
   let url = new URL(endpoint);
   url.search = searchParams;
 
   let response = await fetch(url);
   if (!response.ok) {
-    // Fail silently ¯\_(ツ)_/¯
-    return;
+    throw new Error("No recordings");
   }
+
   let data = await response.json();
 
   for (let recording of data.matched_recordings) {
@@ -157,12 +183,7 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     wordform2recordingURL.set(wordform, recording.recording_url);
   }
 
-  for (let [element, wordform] of elementWithWordform) {
-    let recordingURL = wordform2recordingURL.get(wordform);
-    if (recordingURL) {
-      createAudioButton(recordingURL, element);
-    }
-  }
+  return wordform2recordingURL;
 }
 
 /**
