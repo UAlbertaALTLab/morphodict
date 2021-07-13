@@ -1,0 +1,15 @@
+	| Column
+
+_ V+D+Ipfv+Rep+SbjPl2+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Ipfv+Rep+SbjPl2+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Ipfv+SbjPl2+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Ipfv+SbjPl2+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Ipfv+SbjPl3+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Ipfv+SbjPl3+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Ipfv+SbjSg3+DObjPl3+DObjGiven+IObjSg1	${lemma}+V+D+Ipfv+SbjSg3+DObjPl3+DObjGiven+IObjSg1
+_ V+D+Ipfv+SbjSg3+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Ipfv+SbjSg3+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Pfv+SbjPl1+DObjPl3+DObjGiven+IObjSg2	${lemma}+V+D+Pfv+SbjPl1+DObjPl3+DObjGiven+IObjSg2
+_ V+D+Pfv+SbjPl1+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Pfv+SbjPl1+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Pfv+SbjPl2+DObjPl3+DObjGiven+IObjSg1	${lemma}+V+D+Pfv+SbjPl2+DObjPl3+DObjGiven+IObjSg1
+_ V+D+Pfv+SbjSg1+DObjPl3+DObjGiven+IObjSg2	${lemma}+V+D+Pfv+SbjSg1+DObjPl3+DObjGiven+IObjSg2
+_ V+D+Pfv+SbjSg1+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Pfv+SbjSg1+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Pfv+SbjSg3+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Pfv+SbjSg3+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Prog+SbjPl1+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Prog+SbjPl1+DObjPl3+DObjGiven+IObjSg3
+_ V+D+Prog+SbjPl2+DObjPl3+DObjGiven+IObjSg3	${lemma}+V+D+Prog+SbjPl2+DObjPl3+DObjGiven+IObjSg3

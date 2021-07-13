@@ -104,9 +104,9 @@ class Command(BaseCommand):
                 text=entry["head"],
                 raw_analysis=entry.get("analysis", None),
                 paradigm=entry.get("paradigm", None),
-                slug=entry["slug"],
+                slug=validate_slug_format(entry["slug"]),
                 is_lemma=True,
-                linguist_info=entry["linguistInfo"],
+                linguist_info=entry.get("linguistInfo", {}),
             )
             wf.lemma = wf
             wf.save()
@@ -135,12 +135,22 @@ class Command(BaseCommand):
             if wf.raw_analysis is None:
                 self.index_unanalyzed_form(wf)
 
+            if "senses" not in entry:
+                raise Exception(
+                    f"Invalid importjson: no senses for lemma text={wf.text} slug={wf.slug}"
+                )
+
             self.create_definitions(wf, entry["senses"])
 
             seen_slugs.add(wf.slug)
 
         for entry in form_definitions:
-            lemma = Wordform.objects.get(slug=entry["formOf"])
+            try:
+                lemma = Wordform.objects.get(slug=entry["formOf"])
+            except Wordform.DoesNotExist:
+                raise Exception(
+                    f"Encountered wordform with formOf for unknown slug={entry['formOf']!r}"
+                )
 
             wf, created = Wordform.objects.get_or_create(
                 lemma=lemma, text=entry["head"], raw_analysis=entry["analysis"]
@@ -158,7 +168,9 @@ class Command(BaseCommand):
                     breakdown,
                 )
         call_command("builddefinitionvectors")
-        call_command("translatewordforms")
+
+        if settings.MORPHODICT_SUPPORTS_AUTO_DEFINITIONS:
+            call_command("translatewordforms")
 
     def create_definitions(self, wordform, senses):
         keywords = set()
@@ -187,3 +199,19 @@ class Command(BaseCommand):
 
         for kw in keywords:
             SourceLanguageKeyword.objects.create(text=kw, wordform=wordform)
+
+
+def validate_slug_format(proposed_slug):
+    """Raise an error if the proposed slug is invalid
+
+    For example, if contains a slash."""
+
+    # a regex would run faster, but getting the quoting right for a literal
+    # backslash probably isn’t worth it
+    FORBIDDEN_SLUG_CHARS = "/\\ "
+    if any(c in FORBIDDEN_SLUG_CHARS for c in proposed_slug):
+        raise Exception(
+            f"{proposed_slug=!r} contains one of the forbidden slug chars {FORBIDDEN_SLUG_CHARS!r}"
+        )
+
+    return proposed_slug
