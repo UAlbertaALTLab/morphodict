@@ -69,10 +69,27 @@ class SearchRun:
         return [r.serialize() for r in results]
 
     def add_verbose_message(self, message=None, **messages):
-        assert message is not None or messages
+        """
+        Add any arbitrary JSON-serializable data to be displayed to the user at the
+        top of the search page, if a search is run with verbose:1.
+
+        Protip! Use keyword arguments as syntactic sugar for adding a dictionary, e.g.,
+
+            search_run.add_verbose_message(foo="bar")
+
+        Will appear as:
+
+        [
+            {"foo": "bar"}
+        ]
+        """
+        if message is None and not messages:
+            raise TypeError("must provide a message or messages")
+
         if message is not None:
             self._verbose_messages.append(message)
-        self._verbose_messages.append(messages)
+        if messages:
+            self._verbose_messages.append(messages)
 
     @property
     def verbose_messages(self):

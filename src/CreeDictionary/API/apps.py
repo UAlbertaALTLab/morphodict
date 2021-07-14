@@ -1,7 +1,7 @@
 import logging
 import os
 
-from django.apps import AppConfig, apps
+from django.apps import AppConfig
 
 from CreeDictionary import cvd
 

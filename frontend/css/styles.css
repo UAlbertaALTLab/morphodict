@@ -6,6 +6,7 @@
 @import "./_tooltip.css";
 @import "./utilities.css";
 @import "./settings-page.css";
+@import "./toast.css";
 
 /**
  * Preliminary styles for the application.
