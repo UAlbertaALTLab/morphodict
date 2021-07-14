@@ -114,15 +114,17 @@ def serialize_wordform(wordform) -> SerializedWordform:
         if inflectional_category := wordform.linguist_info.get(
             "inflectional_category", None
         ):
-
-            result["inflectional_category_plain_english"] = read_labels().english.get(
-                inflectional_category
+            result.update(
+                {
+                    "inflectional_category_plain_english": read_labels().english.get(
+                        inflectional_category
+                    ),
+                    "inflectional_category_linguistic": read_labels().linguistic_long.get(
+                        inflectional_category
+                    ),
+                }
             )
-            result[
-                "inflectional_category_linguistic"
-            ] = read_labels().linguistic_long.get(inflectional_category)
         if wordclass := wordform.linguist_info.get("wordclass"):
-            result["wordclass"] = wordclass
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(wordclass)
 
     for key in wordform.linguist_info or []:

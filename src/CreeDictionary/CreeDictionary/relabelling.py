@@ -6,9 +6,10 @@ from threading import Lock
 from typing import Iterable, Optional, TextIO, Tuple
 
 from django.conf import settings
+from mypy.build import TypedDict
 
 from CreeDictionary.utils import shared_res_dir
-from CreeDictionary.utils.types import FSTTag, Label
+from CreeDictionary.utils.types import FSTTag, Label, cast_away_optional
 from morphodict.site.util import cache_unless
 
 CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
@@ -194,7 +195,12 @@ def _label_from_column_or_none(column_no: _LabelFriendliness, row) -> Optional[L
     return Label(cleaned_label)
 
 
-_label_cache = {"mtime": None, "labels": None}
+class LabelCache(TypedDict):
+    mtime: Optional[float]
+    labels: Optional[Relabelling]
+
+
+_label_cache: LabelCache = {"mtime": None, "labels": None}
 # In case this code is run from a multi-threaded context, e.g., a production web
 # server; normal @cache does internally do a bit of locking.
 _label_cache_mutex = Lock()
@@ -214,9 +220,9 @@ def read_labels() -> Relabelling:
         previous_mtime = _label_cache["mtime"]
 
         if previous_mtime is not None and mtime == previous_mtime:
-            return _label_cache["labels"]
+            return cast_away_optional(_label_cache["labels"])
 
         with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
             _label_cache["mtime"] = mtime
-            ret = _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
-            return ret
+            _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
+            return cast_away_optional(_label_cache["labels"])

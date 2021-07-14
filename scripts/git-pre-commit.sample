@@ -2,13 +2,18 @@
 
 set -e
 
-CMD=()
+function run_with_pipenv() {
+    CMD=()
 
-if [ -z "${PIPENV_ACTIVE}" ]; then
-    CMD+=(pipenv run)
-fi
+    if [ -z "${PIPENV_ACTIVE}" ]; then
+        CMD+=(pipenv run)
+    fi
 
-CMD+=(black --check --force-exclude=.git .)
+    CMD+=("${@}")
 
-set -xv
-exec "${CMD[@]}"
+    "${CMD[@]}"
+}
+
+
+run_with_pipenv black --check --force-exclude=.git .
+run_with_pipenv python -m mypy.dmypy run src
