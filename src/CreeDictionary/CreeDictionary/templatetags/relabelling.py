@@ -20,13 +20,13 @@ register = template.Library()
 DEFAULT_PARADIGM_LABEL = "english"
 
 
-def label_setting_to_relabeller():
+def label_setting_to_relabeller(label_setting: str):
     labels = read_labels()
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
         "nehiyawewin": labels.cree,
-    }
+    }[label_setting]
 
 
 @register.simple_tag(takes_context=True)
@@ -40,7 +40,7 @@ def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     else:
         label_setting = labels
 
-    relabeller = label_setting_to_relabeller()[label_setting]
+    relabeller = label_setting_to_relabeller(label_setting)
 
     if label := relabeller.get_longest(tags):
         if label_setting == "nehiyawewin":
