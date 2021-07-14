@@ -11,7 +11,7 @@ from typing_extensions import Protocol
 from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.API.search import ranking
-from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils.types import FSTTag, Label
 
 Preverb = Wordform
@@ -56,7 +56,7 @@ class SimpleLinguisticTag(LinguisticTag):
 
     @property
     def in_plain_english(self) -> str:
-        return cast(str, LABELS.english.get(self.value, cast(Label, self.value)))
+        return cast(str, read_labels().english.get(self.value, cast(Label, self.value)))
 
 
 class CompoundLinguisticTag(LinguisticTag):
@@ -69,7 +69,7 @@ class CompoundLinguisticTag(LinguisticTag):
 
     @property
     def in_plain_english(self):
-        return LABELS.english.get_longest(self._fst_tags)
+        return read_labels().english.get_longest(self._fst_tags)
 
 
 def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
