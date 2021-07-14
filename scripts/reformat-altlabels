@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+
+"""
+Pragmatical utilities thar parses and edits crk.altlabel.tsv
+"""
+
+import csv
+import os
+import sys
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+from pathlib import Path
+
+# Figure out shared_res_dir
+top_dir = Path(__file__).parent.parent
+add_to_path = top_dir / "src" / "CreeDictionary"
+assert add_to_path.is_dir()
+sys.path.insert(0, str(add_to_path))
+shared_res_dir = __import__("utils").shared_res_dir
+
+
+if __name__ == "__main__":
+    default_files = [
+        os.path.relpath(p, os.getcwd())
+        for p in [
+            shared_res_dir / "crk.altlabel.tsv",
+            *(top_dir.glob("src/*/resources/altlabel.tsv")),
+        ]
+    ]
+
+    parser = ArgumentParser()
+    parser.formatter_class = ArgumentDefaultsHelpFormatter
+    parser.add_argument(
+        "altlabel_files",
+        nargs="*",
+        help="The file to reformat",
+        default=default_files,
+    )
+    args = parser.parse_args()
+
+    for altlabel_file in args.altlabel_files:
+        rows = []  # type: ignore
+        with open(altlabel_file, newline="", encoding="UTF-8") as file:
+            rows.extend(csv.reader(file, delimiter="\t"))
+        max_length = len(max(rows, key=len))
+
+        new_rows = [r + ["" for _ in range(max_length - len(r))] for r in rows]
+        assert all(len(row) == max_length for row in new_rows)
+
+        with open(altlabel_file, "w", newline="", encoding="UTF-8") as file:
+            writer = csv.writer(file, delimiter="\t", lineterminator="\n")
+            writer.writerows(new_rows)
+
+        print(f"New {altlabel_file} written with {max_length} columns on each row")
