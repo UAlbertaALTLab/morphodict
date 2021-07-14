@@ -25,22 +25,8 @@ export async function fetchFirstRecordingURL(wordform) {
  * @return {Map<str, str>} maps wordforms to a valid recording URL.
  */
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
-  let wordform2recordingURL = new Map();
-
-  let data = await fetchRecordingUsingBulkSearch(requestedWordforms);
-
-  for (let recording of data.matched_recordings) {
-    let wordform = recording.wordform;
-
-    if (wordform2recordingURL.has(wordform)) {
-      // Already have the first recording for this.
-      continue;
-    }
-
-    wordform2recordingURL.set(wordform, recording.recording_url);
-  }
-
-  return wordform2recordingURL;
+  let response = await fetchRecordingUsingBulkSearch(requestedWordforms);
+  return mapWordformsToBestRecordingURL(response);
 }
 
 /**
@@ -116,12 +102,12 @@ export function retrieveListOfSpeakers() {
  * @return {BulkSearchResponse} see API documentation: TODO
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
-  // Construct the URL:
-  let url = new URL(BULK_API_URL);
+  // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
     searchParams.append("q", wordform);
   }
+  let url = new URL(BULK_API_URL);
   url.search = searchParams;
 
   let response = await fetch(url);
@@ -130,4 +116,26 @@ async function fetchRecordingUsingBulkSearch(requestedWordforms) {
   }
 
   return response.json();
+}
+
+/**
+ * Given a BulkSearchResponse, returns a Map of wordforms to exactly one
+ * recording URL.
+ *
+ * @param {BulkSearchResponse} the entire response returned from the bulk
+ *                             search API.
+ */
+function mapWordformsToBestRecordingURL(response) {
+  let wordform2recordingURL = new Map();
+
+  for (let result of response["matched_recordings"]) {
+    let wordform = result["wordform"];
+
+    if (!wordform2recordingURL.has(wordform)) {
+      // Assume the first result returned is the best recording:
+      wordform2recordingURL.set(wordform, result["recording_url"]);
+    }
+  }
+
+  return wordform2recordingURL;
 }
