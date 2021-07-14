@@ -7,6 +7,7 @@ import "./css/styles.css";
 import { createTooltip } from "./js/tooltip";
 import {
   fetchFirstRecordingURL,
+  fetchRecordingURLForEachWordform,
   retrieveListOfSpeakers,
 } from "./js/recordings.js";
 import * as orthography from "./js/orthography.js";
@@ -145,45 +146,6 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
       createAudioButton(recordingURL, element);
     }
   }
-}
-
-/**
- * Fetches recordings URLs for each wordform given.
- *
- * @param {Iterable<str>} iterable of wordforms to search
- * @return {Map<str, str>} maps wordforms to a valid recording URL.
- */
-async function fetchRecordingURLForEachWordform(requestedWordforms) {
-  let wordform2recordingURL = new Map();
-
-  const endpoint = "https://speech-db.altlab.app/api/bulk_search";
-  let searchParams = new URLSearchParams();
-  for (let wordform of requestedWordforms) {
-    searchParams.append("q", wordform);
-  }
-
-  let url = new URL(endpoint);
-  url.search = searchParams;
-
-  let response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("No recordings");
-  }
-
-  let data = await response.json();
-
-  for (let recording of data.matched_recordings) {
-    let wordform = recording.wordform;
-
-    if (wordform2recordingURL.has(wordform)) {
-      // Already have the first recording for this.
-      continue;
-    }
-
-    wordform2recordingURL.set(wordform, recording.recording_url);
-  }
-
-  return wordform2recordingURL;
 }
 
 /**

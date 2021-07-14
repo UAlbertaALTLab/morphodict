@@ -18,6 +18,45 @@ export async function fetchFirstRecordingURL(wordform) {
 }
 
 /**
+ * Fetches recordings URLs for each wordform given.
+ *
+ * @param {Iterable<str>} iterable of wordforms to search
+ * @return {Map<str, str>} maps wordforms to a valid recording URL.
+ */
+export async function fetchRecordingURLForEachWordform(requestedWordforms) {
+  let wordform2recordingURL = new Map();
+
+  const endpoint = "https://speech-db.altlab.app/api/bulk_search";
+  let searchParams = new URLSearchParams();
+  for (let wordform of requestedWordforms) {
+    searchParams.append("q", wordform);
+  }
+
+  let url = new URL(endpoint);
+  url.search = searchParams;
+
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("No recordings");
+  }
+
+  let data = await response.json();
+
+  for (let recording of data.matched_recordings) {
+    let wordform = recording.wordform;
+
+    if (wordform2recordingURL.has(wordform)) {
+      // Already have the first recording for this.
+      continue;
+    }
+
+    wordform2recordingURL.set(wordform, recording.recording_url);
+  }
+
+  return wordform2recordingURL;
+}
+
+/**
  * Render a list of speakers (in the form of a select) for the user to interact with and hear the wordform pronounced in different ways.
  */
 export function retrieveListOfSpeakers() {
