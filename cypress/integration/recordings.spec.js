@@ -46,11 +46,8 @@ context("Recordings", function () {
       cy.visitLemma("wâpamêw");
       cy.wait("@recordingsResults");
 
-      // then hover/focus on the speaker icon
-      cy.get("[data-cy=play-recording]")
-        .focus()
-        // click the icon
-        .click();
+      // Play the recording to get the full list of speakers.
+      cy.get("[data-cy=play-recording]").click();
 
       // the names of the speakers should appear on the page in a dropdown list (select tag)
       cy.get("[data-cy=multiple-recordings]").find("select");
@@ -59,12 +56,10 @@ context("Recordings", function () {
     it("should play an individual speaker's pronounciation of the word when the speaker's name is clicked", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
+      cy.wait("@recordingsResults");
 
-      // then hover/focus on the speaker icon
-      cy.get("[data-cy=play-recording]")
-        .focus()
-        // click the icon
-        .click();
+      // Play the recording to get the full list of speakers.
+      cy.get("[data-cy=play-recording]").click();
 
       // the names of the speakers should appear on the page via the select tag
       cy.get("[data-cy=multiple-recordings]").find("button");
@@ -76,22 +71,15 @@ context("Recordings", function () {
     it("should open a link to the speaker's webpage in a new tab", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
+      cy.wait("@recordingsResults");
 
-      // select the word and move to its paradigm,
-      cy.get("[data-cy=definition-title]").first().click();
+      // Play the recording to get the full list of speakers.
+      cy.get("[data-cy=play-recording]").click();
 
-      // then hover/focus on the speaker icon
-      cy.get("[data-cy=play-recording]")
-        .focus()
-        // click the icon
-        .click();
-
-      // the name of the speaker should appear as a link: clicking the link should open a new tab
-      cy.get("[data-cy=learn-about-speaker]").should(
-        "have.attr",
-        "target",
-        "_blank"
-      );
+      // the name of the speaker should appear as a link:
+      cy.get("a[data-cy=learn-about-speaker]")
+        // clicking the link should open a new tab
+        .should("have.attr", "target", "_blank");
     });
   });
 });
