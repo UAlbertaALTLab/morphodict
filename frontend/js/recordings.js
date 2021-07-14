@@ -27,20 +27,7 @@ export async function fetchFirstRecordingURL(wordform) {
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
   let wordform2recordingURL = new Map();
 
-  let searchParams = new URLSearchParams();
-  for (let wordform of requestedWordforms) {
-    searchParams.append("q", wordform);
-  }
-
-  let url = new URL(BULK_API_URL);
-  url.search = searchParams;
-
-  let response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("No recordings");
-  }
-
-  let data = await response.json();
+  let data = await fetchRecordingUsingBulkSearch(requestedWordforms);
 
   for (let recording of data.matched_recordings) {
     let wordform = recording.wordform;
@@ -120,4 +107,27 @@ export function retrieveListOfSpeakers() {
       recordingsLink.href = speakerBioLink;
     });
   }
+}
+
+/**
+ * Uses speech-db's bulk API to search for recordsings.
+ *
+ * @param {Iterable<str>}  one or more wordforms to search for.
+ * @return {BulkSearchResponse} see API documentation: TODO
+ */
+async function fetchRecordingUsingBulkSearch(requestedWordforms) {
+  // Construct the URL:
+  let url = new URL(BULK_API_URL);
+  let searchParams = new URLSearchParams();
+  for (let wordform of requestedWordforms) {
+    searchParams.append("q", wordform);
+  }
+  url.search = searchParams;
+
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Could not fetch recordings");
+  }
+
+  return response.json();
 }
