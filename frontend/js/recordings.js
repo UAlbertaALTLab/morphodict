@@ -5,14 +5,6 @@ import SimpleTemplate from "./simple-template.js";
 const BASE_URL = "https://speech-db.altlab.app";
 const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
 
-export function fetchRecordings(wordform) {
-  return fetch(`${BASE_URL}/recording/_search/${wordform}`).then(function (
-    response
-  ) {
-    return response.json();
-  });
-}
-
 /**
  * Fetches the recording URL for one wordform.
  *
