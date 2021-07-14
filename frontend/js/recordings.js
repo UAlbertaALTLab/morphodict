@@ -3,6 +3,7 @@ import SimpleTemplate from "./simple-template.js";
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
+const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
 
 export function fetchRecordings(wordform) {
   return fetch(`${BASE_URL}/recording/_search/${wordform}`).then(function (
@@ -26,13 +27,12 @@ export async function fetchFirstRecordingURL(wordform) {
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
   let wordform2recordingURL = new Map();
 
-  const endpoint = "https://speech-db.altlab.app/api/bulk_search";
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
     searchParams.append("q", wordform);
   }
 
-  let url = new URL(endpoint);
+  let url = new URL(BULK_API_URL);
   url.search = searchParams;
 
   let response = await fetch(url);
