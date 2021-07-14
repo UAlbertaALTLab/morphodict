@@ -13,9 +13,16 @@ export function fetchRecordings(wordform) {
   });
 }
 
+/**
+ * Fetches the recording URL for one wordform.
+ *
+ * @param {string} a wordform. The spelling must match *exactly* with the
+ *                 speech-db's transcription.
+ * @return {string?} the recording URL, if it exists, else undefined.
+ */
 export async function fetchFirstRecordingURL(wordform) {
-  let results = await fetchRecordings(wordform);
-  return results[0]["recording_url"];
+  let response = await fetchRecordingUsingBulkSearch([wordform]);
+  return mapWordformsToBestRecordingURL(response).get(wordform);
 }
 
 /**

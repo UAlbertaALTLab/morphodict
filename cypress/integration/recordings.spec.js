@@ -6,11 +6,11 @@ context("Recordings", function () {
     it("should display for words", () => {
       cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
         fixture: "recording/bulk_search/wâpamêw.json",
-      }).as("bulk-search");
+      }).as("bulkSearch");
 
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch("wâpamêw");
-      cy.wait("@bulk-search");
+      cy.wait("@bulkSearch");
 
       // Play the recording:
       cy.contains(".definition-title", "wâpamêw")
@@ -20,23 +20,20 @@ context("Recordings", function () {
   });
 
   describe("On the definition page", () => {
+    beforeEach(() => {
+      // Intercept calls to our API
+      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+        fixture: "recording/bulk_search/wâpamêw.json",
+      }).as("recordingsResults");
+    });
+
     it("should play a recording via a 🔊 icon", function () {
-      cy.fixture("recording/_search/wâpamêw", "utf-8").as("recordingsResults");
-
       // Get to the definition/paradigm page for "wâpamêw"
-      cy.visitSearch("wâpamêw");
-      cy.contains("a", "wâpamêw").click();
-      cy.url().should("contain", "/word/");
-
-      // TODO: we should stub a network request,
-      // but Cypress can't deal with fetch() requests :/
-      // It has to use a polyfill, but for various reasons,
-      // that's annoying and brittle
-      //  (e.g., if the URL changes, the polyfill needs
-      //   to be re-enabled).
+      cy.visitLemma("wâpamêw");
+      cy.wait("@recordingsResults");
 
       // And we should be able to click it.
-      cy.get("button[data-cy=play-recording]").click();
+      cy.get("[data-cy=play-recording]").click();
 
       // Note: figuring out if the audio actually played is... involved,
       // and error-prone, so it is not tested.
@@ -46,10 +43,8 @@ context("Recordings", function () {
 
     it("should display the lemma's multiple speakers when the speaker icon is clicked", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
-      cy.visitSearch("wâpamêw");
-
-      // select the word and move to its paradigm,
-      cy.get("[data-cy=definition-title]").first().click();
+      cy.visitLemma("wâpamêw");
+      cy.wait("@recordingsResults");
 
       // then hover/focus on the speaker icon
       cy.get("[data-cy=play-recording]")
@@ -63,10 +58,7 @@ context("Recordings", function () {
 
     it("should play an individual speaker's pronounciation of the word when the speaker's name is clicked", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
-      cy.visitSearch("wâpamêw");
-
-      // select the word and move to its paradigm,
-      cy.get("[data-cy=definition-title]").first().click();
+      cy.visitLemma("wâpamêw");
 
       // then hover/focus on the speaker icon
       cy.get("[data-cy=play-recording]")
@@ -83,7 +75,7 @@ context("Recordings", function () {
 
     it("should open a link to the speaker's webpage in a new tab", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
-      cy.visitSearch("wâpamêw");
+      cy.visitLemma("wâpamêw");
 
       // select the word and move to its paradigm,
       cy.get("[data-cy=definition-title]").first().click();
