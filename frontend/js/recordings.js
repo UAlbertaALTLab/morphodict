@@ -31,7 +31,7 @@ export async function fetchRecordingURLForEachWordform(requestedWordforms) {
 /**
  * Render a list of speakers (in the form of a select) for the user to interact with and hear the wordform pronounced in different ways.
  */
-export function retrieveListOfSpeakers() {
+export async function retrieveListOfSpeakers() {
   // get the value of the wordform from the page
   let wordform = document.getElementById("data:head").value;
   let derivedURL = `${BASE_URL}/recording/_search/${wordform}`;
@@ -47,19 +47,15 @@ export function retrieveListOfSpeakers() {
     '[data-action="learn-about-speaker"]'
   );
 
-  // Request the JSON for all recordings of this wordform
-  fetch(derivedURL)
-    .then((request) => request.json())
-    .then((returnedData) => {
-      // Unhide the explainer text
-      let recordingsHeading = document.querySelector(
-        ".definition__recordings--not-loaded"
-      );
-      recordingsHeading.classList.remove("definition__recordings--not-loaded");
+  // Get all recordings for this wordform
+  let response = await fetchRecordingUsingBulkSearch([wordform]);
 
-      // display our list of speakers
-      displaySpeakerList(returnedData);
-    });
+  displaySpeakerList(
+    response["matched_recordings"].filter(
+      (result) => result.wordform === wordform
+    )
+  );
+  showRecordingsExplainerText();
 
   ////////////////////////////////// helpers /////////////////////////////////
 
@@ -92,6 +88,17 @@ export function retrieveListOfSpeakers() {
       recordingsLink.href = speakerBioLink;
     });
   }
+}
+
+function showRecordingsExplainerText() {
+  let recordingsHeading = document.querySelector(
+    ".definition__recordings--not-loaded"
+  );
+  if (!recordingsHeading) {
+    return;
+  }
+
+  recordingsHeading.classList.remove("definition__recordings--not-loaded");
 }
 
 /**
