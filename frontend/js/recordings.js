@@ -29,12 +29,13 @@ export async function fetchRecordingURLForEachWordform(requestedWordforms) {
 }
 
 /**
- * Render a list of speakers (in the form of a select) for the user to interact with and hear the wordform pronounced in different ways.
+ * Render a list of speakers (in the form of a select) for the user to
+ * interact with and hear the wordform pronounced in different ways.
  */
 export async function retrieveListOfSpeakers() {
-  // get the value of the wordform from the page
+  // There SHOULD be a <data id="data:head" value="..."> element on the page
+  // that will tell us the current wordform: get it!
   let wordform = document.getElementById("data:head").value;
-  let derivedURL = `${BASE_URL}/recording/_search/${wordform}`;
 
   // select for our elements for playback and link-generation
   let recordingsDropdown = document.querySelector(
