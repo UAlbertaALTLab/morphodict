@@ -56,6 +56,15 @@ class Wordform(models.Model):
 
     raw_analysis = models.JSONField(null=True, encoder=DiacriticPreservingJsonEncoder)
 
+    fst_lemma = models.CharField(
+        max_length=MAX_WORDFORM_LENGTH,
+        null=True,
+        help_text="""
+            The form to use for generating wordforms of this lemma using the
+            generator FST. Should only be set for lemmas.
+         """,
+    )
+
     paradigm = models.CharField(
         max_length=MAX_WORDFORM_LENGTH,
         null=True,

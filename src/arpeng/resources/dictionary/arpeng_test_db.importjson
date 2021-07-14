@@ -1,37 +1,14 @@
 [
   {
-    "head": "nihooyoo",
+    "head": "níhooyóó-",
     "senses": [
       {
-        "definition": "egg yolk",
-        "sources": ["ALD"]
-      },
-      {
-        "definition": "banana",
-        "sources": ["ALD"]
-      },
-      {
-        "definition": "bile",
-        "sources": ["ALD"]
-      },
-      {
-        "definition": "Stinging Nettle (root)",
+        "definition": "yellow",
         "sources": ["ALD"]
       }
     ],
-    "analysis": [
-      [
-        "[VERB]",
-        "[II]",
-        "[INANIMATE-SUBJECT]",
-        "[AFFIRMATIVE]",
-        "[PRESENT]",
-        "[IC]"
-      ],
-      "nihooyoo",
-      ["[3SG-SUBJ]"]
-    ],
     "paradigm": "II",
-    "slug": "nííhooyoo'"
+    "fstLemma": "nihooyoo",
+    "slug": "níhooyóó-"
   }
 ]
