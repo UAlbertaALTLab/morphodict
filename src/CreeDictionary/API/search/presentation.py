@@ -171,14 +171,13 @@ def get_emoji_for_cree_wordclass(word_class: Optional[str]) -> Optional[str]:
 
     def to_fst_output_style(value):
         if value[0] == "N":
-            return "+" + "+".join(list(value.upper()))
+            return list(value.upper())
         elif value[0] == "V":
-            return "+" + "+".join(["V", value[1:].upper()])
+            return ["V", value[1:].upper()]
         else:
-            return "+" + value.title()
+            return [value.title()]
 
-    fst_tag_str = to_fst_output_style(word_class).strip("+")
-    tags = [FSTTag(t) for t in fst_tag_str.split("+")]
+    tags = to_fst_output_style(word_class)
     return read_labels().emoji.get_longest(tags)
 
 
