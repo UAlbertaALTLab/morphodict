@@ -77,3 +77,4 @@ cypress/videos
 *.js.map
 docker-compose.override.yml
 import-inconsistencies.jsonl
+_build
