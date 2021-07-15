@@ -5,6 +5,8 @@
 @import "./variables.css";
 @import "./_tooltip.css";
 @import "./utilities.css";
+@import "./settings-page.css";
+@import "./toast.css";
 
 /**
  * Preliminary styles for the application.
@@ -1156,12 +1158,11 @@ a.multiple-recordings__action-button {
   border-radius: var(--border-radius);
 }
 
-.menu__caption {
-  color: var(--menu-caption-color);
-  padding: 9px;
-  margin: 0;
+.menu__header {
+  padding: .5rem;
+  margin: .5rem 0 0;
 
-  font-size: 12px;
+  font-size: 100%;
   font-weight: var(--strong-font-weight);
 }
 
@@ -1198,6 +1199,15 @@ a.menu-choice__label:active {
 
   color: var(--menu-selected-color);
   background-color: var(--menu-selected-bg-color);
+}
+
+.menu__separator {
+  height: 1px;
+  margin: .5rem .5em;
+  border: 0;
+
+  /* A horizontal gradient that is darkest in the middle: */
+  background-image: linear-gradient(to right, rgb(0 0 0 / 0), var(--soft-hr-color), rgb(0 0 0 /0));
 }
 
 /********************************* MENU BAR *********************************/
@@ -1465,4 +1475,16 @@ a[target=_blank]:not([rel~=noopener]) {
 
   cursor: not-allowed;
   pointer-events: none;
+}
+
+/**
+ * Non-BEM style. Since the markup in the .legend block will be written by
+ * hand, there's not guarentee classes will be used, so apply this CSS
+ * liberally.
+ */
+.legend q {
+  font-style: italic;
+}
+.legend q > dfn {
+  font-weight: var(--strong-font-weight);
 }

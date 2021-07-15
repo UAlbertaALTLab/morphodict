@@ -1,5 +1,8 @@
+from __future__ import annotations
+
+import json
 import logging
-from typing import Any, Dict, Literal, Union
+from typing import Any, Dict, Literal, Optional
 
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
@@ -8,24 +11,19 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
 import morphodict.analysis
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
-from CreeDictionary.CreeDictionary.paradigm.filler import Row
-from CreeDictionary.CreeDictionary.paradigm.generation import (
-    default_paradigm_manager,
-    generate_paradigm,
-)
-from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm
+from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from CreeDictionary.utils import ParadigmSize
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.lexicon.models import Wordform
 from morphodict.preference.views import ChangePreferenceView
-
+from .paradigm.manager import ParadigmDoesNotExistError
+from .paradigm.panes import Paradigm
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -39,38 +37,43 @@ logger = logging.getLogger(__name__)
 # it should be used on the view functions that are well covered by integration tests
 
 
-def entry_details(request, lemma_text: str):
+def entry_details(request, slug: str):
     """
     Head word detail page. Will render a paradigm, if applicable. Fallback to search
-    page if no head is found or multiple heads are found.
+    page if no slug is not found.
 
-    Possible query params:
-
-      To disambiguate the head word (see: Wordform.homograph_disambiguator):
-        - pos
-        - inflectional_category
-        - analysis
-        - id
-
-      To affect the paradigm size:
-
-        - paradigm-size (default is BASIC) to specify the size of the paradigm
-
-    :param request: accepts query params `pos` `inflectional_category` `analysis` `id` to further specify query_string
-    :param lemma_text: the exact form of the lemma (no spell relaxation)
+    :param slug: the stable unique ID of the lemma
     """
 
-    lemma = Wordform.objects.filter(text=lemma_text, is_lemma=True)
-    if additional_filters := disambiguating_filter_from_query_params(request.GET):
-        lemma = lemma.filter(**additional_filters)
+    lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemma.count() != 1:
         # The result is either empty or ambiguous; either way, do a search!
-        return redirect(url_for_query(lemma_text or ""))
+        return redirect(url_for_query(slug.split("@")[0] or ""))
 
     lemma = lemma.get()
-    paradigm_size = ParadigmSize.from_string(request.GET.get("paradigm-size"))
-    paradigm = paradigm_for(lemma, paradigm_size)
+
+    paradigm_context: dict[str, Any] = {}
+
+    paradigm = lemma.paradigm
+    if paradigm is not None:
+        paradigm_manager = default_paradigm_manager()
+        sizes = list(paradigm_manager.sizes_of(paradigm))
+        default_size = sizes[0]
+
+        if len(sizes) <= 1:
+            size = default_size
+        else:
+            size = request.GET.get("paradigm-size")
+            if size:
+                size = size.lower()
+            if size not in sizes:
+                size = default_size
+
+        paradigm = paradigm_for(lemma, size)
+        paradigm_context.update(
+            paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
+        )
 
     context = create_context_for_index_template(
         "word-detail",
@@ -80,8 +83,7 @@ def entry_details(request, lemma_text: str):
         lemma=lemma,
         # ...this parameter
         wordform=presentation.serialize_wordform(lemma),
-        paradigm_size=paradigm_size,
-        paradigm=paradigm,
+        **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
 
@@ -96,12 +98,14 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    search_run = None
 
     if user_query:
-        search_results = search_with_affixes(
+        search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
+        search_results = search_run.serialized_presentation_results()
         did_search = True
     else:
         search_results = []
@@ -120,6 +124,10 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    if search_run and search_run.verbose_messages and search_run.query.verbose:
+        context["verbose_messages"] = json.dumps(
+            search_run.verbose_messages, indent=2, ensure_ascii=False
+        )
     return render(request, "CreeDictionary/index.html", context)
 
 
@@ -129,7 +137,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    )
+    ).serialized_presentation_results()
     return render(
         request,
         "CreeDictionary/search-results.html",
@@ -165,34 +173,34 @@ def paradigm_internal(request):
             return HttpResponseBadRequest(
                 "lemma-id is negative and should be non-negative"
             )
-    try:
-        paradigm_size = ParadigmSize(paradigm_size.upper())
-    except ValueError:
-        return HttpResponseBadRequest(
-            f"paradigm-size is not one {[x.value for x in ParadigmSize]}"
-        )
 
     try:
-        lemma = Wordform.objects.get(id=lemma_id)
+        lemma = Wordform.objects.get(id=lemma_id, is_lemma=True)
     except Wordform.DoesNotExist:
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    paradigm = paradigm_for(lemma, paradigm_size)
-    if isinstance(paradigm, Paradigm):
-        template_name = "CreeDictionary/components/paradigm-with-panes.html"
-    else:
-        template_name = "CreeDictionary/components/paradigm.html"
+    print(lemma)
 
+    try:
+        paradigm = paradigm_for(lemma, paradigm_size)
+    except ParadigmDoesNotExistError:
+        return HttpResponseBadRequest("paradigm does not exist")
     return render(
         request,
-        template_name,
+        "CreeDictionary/components/paradigm.html",
         {
             "lemma": lemma,
-            "paradigm_size": paradigm_size.value,
+            "paradigm_size": paradigm_size,
             "paradigm": paradigm,
         },
     )
+
+
+def settings_page(request):
+    # TODO: clean up template so that this weird hack is no longer needed.
+    context = create_context_for_index_template("info-page")
+    return render(request, "CreeDictionary/settings.html", context)
 
 
 def about(request):  # pragma: no cover
@@ -215,6 +223,18 @@ def contact_us(request):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/contact-us.html",
+        context,
+    )
+
+
+def legend(request):  # pragma: no cover
+    """
+    Legend of abbreviations page.
+    """
+    context = create_context_for_index_template("info-page")
+    return render(
+        request,
+        "CreeDictionary/legend.html",
         context,
     )
 
@@ -277,7 +297,6 @@ def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str
     elif mode == "word-detail":
         context = {"should_hide_prose": True, "displaying_paradigm": True}
         assert "lemma_id" in kwargs, "word detail page requires lemma_id"
-        assert "paradigm_size" in kwargs, "word detail page requires paradigm_size"
     else:
         raise AssertionError("should never happen")
     # Note: there will NEVER be a case where should_hide_prose=False
@@ -326,68 +345,22 @@ def should_include_auto_definitions(request):
     return request.user.is_authenticated
 
 
-def disambiguating_filter_from_query_params(query_params: dict[str, str]):
-    """
-    Sometimes wordforms may have the same text (a.k.a., be homographs/homophones),
-    thus need to be disambiguate further before displaying a paradigm.
-
-    This computes the intersection between the provided query parameters and the valid
-    disambiguating filters used for homograph disambiguation.
-    """
-    keys_present = query_params.keys() & {
-        # e.g., VTA-1, VTI-3
-        # Since inflectional category, by definition, indicates the paradigm of the
-        # associated head word, this is the preferred disambiguator. It **should** work
-        # most of the time.
-        "inflectional_category",
-        # e.g., N or V.
-        # This is the "general word class"  a.k.a., not enough information to know
-        # what paradigm to use. This disambiguator is discouraged.
-        "pos",
-        # e.g., câhkinêw+V+TA+Ind+5Sg/Pl+4Sg/PlO
-        # I'm honestly not sure why this was chosen as a disambiguator ¯\_(ツ)_/¯
-        "analysis",
-        # Last resort: ephemeral database ID. This is NOT STABLE across database imports!
-        "id",
-    }
-    return {key: query_params[key] for key in keys_present}
-
-
-def paradigm_for(
-    wordform: Wordform, paradigm_size: ParadigmSize
-) -> Union[Paradigm, list[list[Row]]]:
+def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
 
-    If a paradigm cannot be found, an empty list is returned
+    If a paradigm cannot be found, None is returned
     """
-    # TODO: make this use the new-style ParadigmManager exclusively
 
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if static_paradigm := manager.static_paradigm_for(name):
-            return static_paradigm
+        if paradigm := manager.paradigm_for(name, wordform.lemma.text, paradigm_size):
+            return paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
             name,
             wordform,
         )
-        # TODO: better return value for when a paradigm cannot be found
-        return []
 
-    # TODO: use new-style paradigms for other sizes in addition to FULL
-    # Requires:
-    #  - "basic" size paradigm layouts to be created
-    #  - paradigm manager must support multiple sizes
-    #  - relabelling must work to use linguistic layouts
-    if paradigm_size == ParadigmSize.FULL and (word_class := wordform.word_class):
-        dynamic_paradigm = manager.dynamic_paradigm_for(
-            lemma=wordform.text, word_class=word_class.value
-        )
-        if dynamic_paradigm:
-            return dynamic_paradigm
-        return []
-
-    # try returning an old-style paradigm: may return []
-    return generate_paradigm(wordform, paradigm_size)
+    return None

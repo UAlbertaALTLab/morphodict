@@ -2,11 +2,10 @@
  * Set up any page that has the #paradigm element with its size controls.
  */
 export function setupParadigm() {
-  setupParadigmSizeToggleButton(null)
+  setupParadigmSizeToggleButton(null);
 }
 
-// TODO: the backend should SOLELY maintain this list:
-const ALL_PARADIGM_SIZES = ['BASIC', 'FULL', 'LINGUISTIC']
+let paradigmSizes;
 
 /**
  * attach handlers to the "show more/less" button. So that it:
@@ -17,68 +16,88 @@ const ALL_PARADIGM_SIZES = ['BASIC', 'FULL', 'LINGUISTIC']
  *  - prepare the new "show more/less" button to do these 3
  */
 function setupParadigmSizeToggleButton(currentParadigmSize) {
-  const toggleButton = document.querySelector('.js-paradigm-size-button')
+  const toggleButton = document.querySelector(".js-paradigm-size-button");
 
   if (!toggleButton) {
     // There's nothing to toggle, hence nothing to setup. Done!
-    return
+    return;
   }
 
   // `lemmaId` should be embedded by Django into the template.
   // It's present when the current page is lemma detail/paradigm page
-  const lemmaId = readDjangoJsonScript('lemma-id')
+  const lemmaId = readDjangoJsonScript("lemma-id");
   // `paradigmSize` is also rendered by a Django template
   // And it can changed dynamically by JavaScript when the script loads different sized paradigms
-  let paradigmSize = currentParadigmSize || readDjangoJsonScript('paradigm-size')
+  let paradigmSize =
+    currentParadigmSize || readDjangoJsonScript("paradigm-size");
+  paradigmSizes = readDjangoJsonScript("paradigm-sizes") || [];
 
-  const nextParadigmSize = getNextParadigmSize(paradigmSize)
+  if (paradigmSizes.length <= 1) {
+    toggleButton.remove();
+    return;
+  }
 
-  toggleButton.addEventListener('click', () => {
-    displayButtonAsLoading(toggleButton)
+  const nextParadigmSize = getNextParadigmSize(paradigmSize);
 
-    fetch(window.Urls['cree-dictionary-paradigm-detail']() + `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`).then(r => {
-      if (r.ok) {
-        return r.text()
-      } else {
-        // TODO: show error on the loading component
-        throw new Error(`${r.status} ${r.statusText} when loading paradigm: ${r.text()}`)
-      }
-    }).then(
-      text => {
-        const newParadigm = document.createRange().createContextualFragment(text)
+  toggleButton.addEventListener("click", () => {
+    displayButtonAsLoading(toggleButton);
+
+    fetch(
+      window.Urls["cree-dictionary-paradigm-detail"]() +
+        `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`
+    )
+      .then((r) => {
+        if (r.ok) {
+          return r.text();
+        } else {
+          // TODO: show error on the loading component
+          throw new Error(
+            `${r.status} ${r.statusText} when loading paradigm: ${r.text()}`
+          );
+        }
+      })
+      .then((text) => {
+        const newParadigm = document
+          .createRange()
+          .createContextualFragment(text);
 
         // TODO: the backend should SOLELY maintain this:
         if (mostDetailedParadigmSizeIsSelected()) {
-          setParadigmSizeToggleButtonText('-', 'show less')
+          setParadigmSizeToggleButtonText("-", "show less");
         } else {
-          setParadigmSizeToggleButtonText('+', 'show more')
+          setParadigmSizeToggleButtonText("+", "show more");
         }
 
-        const paradigmContainer = document.getElementById('paradigm')
-        paradigmContainer.querySelector('.js-replaceable-paradigm').replaceWith(newParadigm)
+        const paradigmContainer = document.getElementById("paradigm");
+        paradigmContainer
+          .querySelector(".js-replaceable-paradigm")
+          .replaceWith(newParadigm);
 
-        paradigmSize = nextParadigmSize
-        setupParadigmSizeToggleButton(paradigmSize)
-        updateCurrentURLWithParadigmSize()
+        paradigmSize = nextParadigmSize;
+        setupParadigmSizeToggleButton(paradigmSize);
+        updateCurrentURLWithParadigmSize();
 
         function setParadigmSizeToggleButtonText(symbol, text) {
-          newParadigm.querySelector('.js-button-text').textContent = text
-          newParadigm.querySelector('.js-plus-minus').textContent = symbol
+          newParadigm.querySelector(".js-button-text").textContent = text;
+          newParadigm.querySelector(".js-plus-minus").textContent = symbol;
         }
-      }
-    ).catch((err) => {
-      displayButtonAsError(toggleButton)
-      console.error(err)
-    })
-  })
+      })
+      .catch((err) => {
+        displayButtonAsError(toggleButton);
+        console.error(err);
+      });
+  });
 
-  // TODO: the backend should know this:
   function mostDetailedParadigmSizeIsSelected() {
-    return ALL_PARADIGM_SIZES.indexOf(nextParadigmSize) === ALL_PARADIGM_SIZES.length - 1
+    return paradigmSizes.indexOf(nextParadigmSize) === paradigmSizes.length - 1;
   }
 
   function updateCurrentURLWithParadigmSize() {
-    window.history.replaceState({}, document.title, updateQueryParam('paradigm-size', nextParadigmSize))
+    window.history.replaceState(
+      {},
+      document.title,
+      updateQueryParam("paradigm-size", nextParadigmSize)
+    );
   }
 }
 
@@ -86,17 +105,16 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
  * Make the button look like it's loading.
  */
 function displayButtonAsLoading(toggleButton) {
-  toggleButton.classList.add('paradigm__size-toggle-button--loading')
+  toggleButton.classList.add("paradigm__size-toggle-button--loading");
 }
 
 /**
  * Make the button look like something went wrong.
  */
 function displayButtonAsError(toggleButton) {
-  toggleButton.classList.remove('paradigm__size-toggle-button--loading')
+  toggleButton.classList.remove("paradigm__size-toggle-button--loading");
   // TODO: should have an error state for the toggle button!
 }
-
 
 /**
  * cycles between BASIC, FULL, LINGUISTIC
@@ -104,8 +122,13 @@ function displayButtonAsError(toggleButton) {
  * @param {String} size
  * @return {String}
  */
-function getNextParadigmSize(size) {
-  return ALL_PARADIGM_SIZES[(ALL_PARADIGM_SIZES.indexOf(size) + 1) % ALL_PARADIGM_SIZES.length]
+function getNextParadigmSize(sizeName) {
+  const index = paradigmSizes.indexOf(sizeName);
+  if (index >= 0) {
+    return paradigmSizes[(index + 1) % paradigmSizes.length];
+  }
+  // Use default.
+  return paradigmSizes[0];
 }
 
 ///////////////////////////// Internal functions /////////////////////////////
@@ -114,11 +137,11 @@ function getNextParadigmSize(size) {
  * Read JSOn data produced by Django's `json_script` filter during HTML template generation
  */
 function readDjangoJsonScript(id) {
-  const jsonScriptElement = document.getElementById(id)
+  const jsonScriptElement = document.getElementById(id);
   if (jsonScriptElement) {
-    return JSON.parse(jsonScriptElement.textContent)
+    return JSON.parse(jsonScriptElement.textContent);
   } else {
-    return undefined
+    return undefined;
   }
 }
 
@@ -127,11 +150,11 @@ function readDjangoJsonScript(id) {
  * Derived from: https://stackoverflow.com/a/41542008/6626414
  */
 function updateQueryParam(key, value) {
-  let search = new URLSearchParams(window.location.search)
-  search.set(key, value)
+  let search = new URLSearchParams(window.location.search);
+  search.set(key, value);
 
-  let url = new URL(window.location.href)
-  url.search = search.toString()
+  let url = new URL(window.location.href);
+  url.search = search.toString();
 
-  return url.href
+  return url.href;
 }

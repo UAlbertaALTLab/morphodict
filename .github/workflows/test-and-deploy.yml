@@ -5,19 +5,12 @@ env:
   # Version required to run itwêwina:
   ACTIONS_PYTHON_VERSION: 3.9
   # Version required to run npm build:
-  ACTIONS_NODE_VERSION: 12
-  # Version running on Sapir:
-  ACTIONS_OS_VERSION: ubuntu-16.04
-  # N.B.: Currently available versions (2021-01-04) are:
-  #   - ubuntu-16.04
-  #   - ubuntu-18.04 (@ubuntu-latest)
-  #   - ubuntu-20.04 (soon-to-be @ubuntu-latest)
-  # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+  ACTIONS_NODE_VERSION: 14
 
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
   should-deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     outputs:
       should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
@@ -35,7 +28,7 @@ jobs:
 
   # Run Pytest unit tests
   unit-test:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v2
@@ -83,13 +76,13 @@ jobs:
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
-      run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
+      run: pipenv run test -v --cov=src --cov-report=xml
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1.5.0
 
   # Runs Cypress acceptance tests
   integration-test:
-    runs-on: ubuntu-16.04
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -98,9 +91,10 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
+        cache: npm
     - name: 🖥 Install system dependencies
       run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
@@ -150,7 +144,7 @@ jobs:
         npm run test:ci
 
   build-docker-image:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -182,7 +176,7 @@ jobs:
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   trigger-deployment:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     needs:
     - should-deploy

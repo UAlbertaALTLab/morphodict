@@ -9,15 +9,14 @@ from dataclasses import dataclass, asdict
 from typing import Iterable
 
 from django.core.management import BaseCommand
-from django.db.models import Max, Q, prefetch_related_objects
+from django.db.models import Max, Q
 from tqdm import tqdm
 
-from CreeDictionary.API.models import Wordform, Definition, DictionarySource
+from morphodict.lexicon.models import Wordform, Definition, DictionarySource
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
-from CreeDictionary.phrase_translate.tag_map import UnknownTagError
+from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import (
     inflect_english_phrase,
-    parse_analysis_and_tags,
     FomaLookupNotFoundException,
     FomaLookupMultipleFoundException,
 )
@@ -33,31 +32,34 @@ class InsertBuffer:
     calling `save()` one final time when done.
     """
 
-    def __init__(self, manager, count=500):
+    def __init__(self, manager, count=500, assign_id=False):
+        """
+        If assign_id is True, this class will assign IDs to objects added to it,
+        so that they can immediately be used in foreign key references.
+
+        A future Django release should remove the need for this method. Django
+        bulk_create can currently return database-generated IDs on Oracle and
+        Postgres; INSERT … RETURNING support was only added to the SQLite
+        database itself in 3.35.0 released 2021-03-12, so Django does not
+        support it yet.
+        """
         self._queryset = manager
         self._count = count
         self._buffer = []
+        self._assign_id = assign_id
 
-        # This bit is cargo-culted from elsewhere in this project, where it is
-        # indicated that auto-increment IDs do not work with bulk_create,
-        # requiring the use of
-        #
-        #     id = models.PositiveIntegerField(primary_key=True)
-        #
-        # This is a claim I have not verified. Maybe that’s only to make it more
-        # convenient to bulk-create objects that reference each other as foreign
-        # keys?
-        max_id = manager.aggregate(Max("id"))["id__max"]
-        if max_id is None:
-            max_id = 0
-        self._next_id = max_id + 1
+        if self._assign_id:
+            max_id = manager.aggregate(Max("id"))["id__max"]
+            if max_id is None:
+                max_id = 0
+            self._next_id = max_id + 1
 
     def add(self, obj):
-        if obj.id is None:
+        if self._assign_id and obj.id is None:
             obj.id = self._next_id
             self._next_id += 1
-        self._buffer.append(obj)
 
+        self._buffer.append(obj)
         if len(self._buffer) >= self._count:
             self.save()
 
@@ -142,11 +144,10 @@ class Command(BaseCommand):
                 continue
 
             for definition in definitions.get(wordform.lemma_id, []):
-                tags = parse_analysis_and_tags(wordform.analysis)
                 try:
                     input_text = remove_parentheticals(definition.text)
 
-                    phrase = inflect_english_phrase(tags, input_text)
+                    phrase = inflect_english_phrase(wordform.analysis, input_text)
                 except UnknownTagError:
                     raise Exception(
                         f"Unknown tag for {wordform.text} {wordform.analysis}"
@@ -161,7 +162,9 @@ class Command(BaseCommand):
                     continue
 
                 if not phrase:
-                    logger.debug(f"no translation for {wordform.text} {tags}")
+                    logger.debug(
+                        f"no translation for {wordform.text} {wordform.analysis}"
+                    )
                     self.translation_stats.no_translation_count += 1
                     continue
 
@@ -193,7 +196,7 @@ class Command(BaseCommand):
 
         (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
 
-        definition_buffer = InsertBuffer(manager=Definition.objects)
+        definition_buffer = InsertBuffer(manager=Definition.objects, assign_id=True)
         citation_buffer = InsertBuffer(manager=Definition.citations.through.objects)
 
         for _, definitions in self.generate_translations():

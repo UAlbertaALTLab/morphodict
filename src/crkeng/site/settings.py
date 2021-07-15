@@ -35,6 +35,8 @@ STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
 STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
 
+MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = True
+
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "cr"
 
@@ -66,3 +68,14 @@ MORPHODICT_ORTHOGRAPHY = {
         },
     },
 }
+
+# The order in which paradigm sizes will be presented to the user.
+# The first size in this list is the "default".
+# Make sure to exhaustively specify all size options available!
+MORPHODICT_PARADIGM_SIZES = [
+    # The most user-friendly size should be first:
+    "basic",
+    # Then, a more complete paradigm layout:
+    "full",
+    # Variants for linguists go here:
+]

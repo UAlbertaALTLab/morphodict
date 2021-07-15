@@ -54,13 +54,11 @@
       {% endif %}
     </header>
 
-    {# Theses are the definitions for the inflection (non-lemma), could be empty  #}
+    {# These are the definitions for the inflection (non-lemma), could be empty  #}
     <ol class="meanings meanings--search-result">
       {% for def in result.definitions %}
       <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-        {% for source in def.source_ids %}
-        <cite class="cite-dict">{{ source }}</cite>
-        {% endfor %}
+        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
       </li>
       {% endfor %}
     </ol>
@@ -92,9 +90,7 @@
       <ol class="meanings meanings--search-result">
         {% for def in result.lemma_wordform.definitions %}
         <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-          {% for source in def.source_ids %}
-          <cite class="cite-dict">{{ source }}</cite>
-          {% endfor %}
+          {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
         </li>
         {% endfor %}
       </ol>

@@ -29,7 +29,7 @@ def orth_tag(context, original_text: str) -> str:
               data-orth-cans="ᐚᐸᒣᐤ">wâpamêw</span>
     """
     # Determine the currently requested orthography:
-    request_orth = context.request.COOKIES.get("orth", ORTHOGRAPHY.default)
+    request_orth = ORTHOGRAPHY.from_request(context.request)
     return orth(original_text, orthography=request_orth)
 
 
@@ -75,5 +75,5 @@ def current_orthography_name(context):
     The orthography is determined by the orth= cookie in the HTTP request.
     """
     # Determine the currently requested orthography:
-    request_orth = context.request.COOKIES.get("orth", ORTHOGRAPHY.default)
+    request_orth = ORTHOGRAPHY.from_request(context.request)
     return ORTHOGRAPHY.name_of(request_orth)

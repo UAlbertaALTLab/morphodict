@@ -4,15 +4,15 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import NewType, Iterable, Tuple, Optional
+from typing import NewType, Iterable, Tuple, Optional, cast
 
 from typing_extensions import Protocol
 
-from CreeDictionary.API.models import Wordform, wordform_cache
+from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.API.search import ranking
-from CreeDictionary.CreeDictionary.relabelling import LABELS
-from CreeDictionary.utils.types import FSTTag
+from CreeDictionary.CreeDictionary.relabelling import read_labels
+from CreeDictionary.utils.types import FSTTag, Label
 
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
@@ -56,7 +56,7 @@ class SimpleLinguisticTag(LinguisticTag):
 
     @property
     def in_plain_english(self) -> str:
-        return LABELS.english.get(self.value) or "???"
+        return cast(str, read_labels().english.get(self.value, cast(Label, self.value)))
 
 
 class CompoundLinguisticTag(LinguisticTag):
@@ -69,7 +69,7 @@ class CompoundLinguisticTag(LinguisticTag):
 
     @property
     def in_plain_english(self):
-        return LABELS.english.get_longest(self._fst_tags)
+        return read_labels().english.get_longest(self._fst_tags)
 
 
 def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
@@ -139,7 +139,9 @@ class Result:
         current object.
         """
         assert self.wordform.key == other.wordform.key
+        self._copy_features_from(other)
 
+    def _copy_features_from(self, other: Result):
         for field_name, other_value in other.features().items():
             if other_value is not None:
                 self_value = getattr(self, field_name)
@@ -156,8 +158,33 @@ class Result:
                     self.cosine_vector_distance = min(
                         self.cosine_vector_distance, other.cosine_vector_distance
                     )
+                elif field_name == "query_wordform_edit_distance":
+                    self.query_wordform_edit_distance = min(
+                        v
+                        for v in (
+                            self.query_wordform_edit_distance,
+                            other.query_wordform_edit_distance,
+                        )
+                        if v is not None
+                    )
                 else:
                     setattr(self, field_name, other_value)
+
+    def create_related_result(self, new_wordform, **kwargs):
+        """Create a new Result for new_wordform, with features copied over."""
+
+        # Note: we can’t use dataclasses.replace because it does shallow copies
+        # and we have list members.
+
+        # TODO: write tests for this
+
+        new_result = Result(new_wordform, **kwargs)
+        new_result._copy_features_from(self)
+        # That copy may have overwritten some features supplied in kwargs
+        for k, v in kwargs.items():
+            setattr(new_result, k, v)
+        new_result.__post_init__()
+        return new_result
 
     wordform: Wordform
     lemma_wordform: Lemma = field(init=False)
@@ -172,13 +199,12 @@ class Result:
     target_language_affix_match: Optional[bool] = None
 
     target_language_keyword_match: list[str] = field(default_factory=list)
-    pronoun_as_is_match: Optional[bool] = None
 
     analyzable_inflection_match: Optional[bool] = None
 
-    is_preverb_match: Optional[bool] = None
+    source_language_keyword_match: list[str] = field(default_factory=list)
 
-    is_cw_as_is_wordform: Optional[bool] = None
+    is_espt_result: Optional[bool] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
@@ -212,9 +238,7 @@ class Result:
             self.source_language_match
             or self.source_language_affix_match is not None
             or self.analyzable_inflection_match
-            or self.is_cw_as_is_wordform
-            or self.is_preverb_match
-            or self.pronoun_as_is_match
+            or self.source_language_keyword_match
         )
 
     # This is a separate method instead of a magic cached property because:

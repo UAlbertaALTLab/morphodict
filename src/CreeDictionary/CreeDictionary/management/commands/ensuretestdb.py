@@ -2,10 +2,8 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
-from CreeDictionary.API.models import Definition, Wordform
-from CreeDictionary.CreeDictionary.ensure_data import ensure_wordform_paradigms
 from CreeDictionary.cvd import definition_vectors_path
-from CreeDictionary.utils import shared_res_dir
+from morphodict.lexicon import DEFAULT_TEST_IMPORTJSON_FILE
 
 
 class Command(BaseCommand):
@@ -17,28 +15,22 @@ class Command(BaseCommand):
     """
 
     def handle(self, *args, **options):
+        from morphodict.lexicon.models import Wordform
+
         assert settings.USE_TEST_DB
 
         call_command("migrate", verbosity=0)
 
-        import_test_dictionary()
-        ensure_wordform_paradigms()
-        add_some_auto_translations()
+        def importjson_newer_than_db():
+            return (
+                DEFAULT_TEST_IMPORTJSON_FILE.stat().st_mtime
+                > settings.TEST_DB_FILE.stat().st_mtime
+            )
+
+        if (
+            not Wordform.objects.exists()
+            or not definition_vectors_path().exists()
+            or importjson_newer_than_db()
+        ):
+            call_command("importjsondict", purge=True)
         call_command("ensurecypressadminuser")
-
-        if not definition_vectors_path().exists():
-            call_command("builddefinitionvectors")
-
-
-def import_test_dictionary():
-    if Wordform.objects.count() == 0:
-        print("No wordforms found, generating")
-        call_command(
-            "xmlimport",
-            shared_res_dir / "test_dictionaries" / "crkeng.xml",
-        )
-
-
-def add_some_auto_translations():
-    if not Definition.objects.filter(auto_translation_source__isnull=False).exists():
-        call_command("translatewordforms", wordforms=["acâhkosa"])

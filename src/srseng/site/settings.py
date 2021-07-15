@@ -27,7 +27,7 @@ ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 INSTALLED_APPS.insert(0, "srseng.app")
 
-INSTALLED_APPS += ["srseng.dictimport"]
+INSTALLED_APPS += []
 
 FST_TOOL_SAMPLES = ["istsiy", "itsiy+V+I+Ipfv+SbjSg1"]
 

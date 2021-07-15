@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 import pytest
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
@@ -177,3 +174,44 @@ def test_url_for_query_tag():
     rendered = template.render(context)
     assert "search" in rendered
     assert "wapamew" in rendered
+
+
+@pytest.mark.parametrize(
+    ("orthography", "wordform"),
+    [
+        ("Latn", "wâpamêw"),
+        ("Latn-x-macron", "wāpamēw"),
+        ("Cans", "ᐚᐸᒣᐤ"),
+    ],
+)
+def test_definition_link(db, orthography: str, wordform: str):
+    """
+    Test that it's in a link and the orthography is correct.
+    """
+    request = HttpRequest()
+    request.COOKIES["orth"] = orthography
+    context = RequestContext(request, {})
+    template = Template(
+        "{% load creedictionary_extras %}" '{% definition_link "wâpamêw" %}'
+    )
+    rendered = template.render(context)
+    assert rendered.startswith("<a")
+    assert rendered.endswith("</a>")
+    assertInHTML(wordform, rendered)
+
+
+@pytest.mark.parametrize(
+    "wordform,classname",
+    [
+        ("ôma", "wordform--observed"),
+        ("Fhqwhgads", "wordform--unobserved"),
+    ],
+)
+def test_observed_or_unobserved(wordform: str, classname: str):
+    context = Context({"wordform": wordform})
+    template = Template(
+        "{% load creedictionary_extras %}"
+        "<span class='wordform--{% observed_or_unobserved wordform %}'>"
+    )
+
+    assert classname in template.render(context)

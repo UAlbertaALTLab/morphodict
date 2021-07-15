@@ -1,7 +1,7 @@
 import logging
+import re
 from http import HTTPStatus
 from typing import Dict, Optional
-from urllib.parse import urlencode
 
 import pytest
 from django.http import (
@@ -13,14 +13,16 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from CreeDictionary.API.models import Wordform
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from morphodict.lexicon.models import Wordform
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll
 # have over two billion wordforms, however, we'll most likely run into problems once
 # we exceed certain storage requirements. For example, the maximum for a signed,
 # 32-bit int is a possible boundary condition that may cause issues elsewhere:
 ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
+
+RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 
 
 class TestLemmaDetailsInternal4xx:
@@ -31,14 +33,17 @@ class TestLemmaDetailsInternal4xx:
             ["-10", "FULL", HttpResponseBadRequest.status_code],
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
-            ["123", "LINUST", HttpResponseBadRequest.status_code],
+            ["maskwa", "LINUST", HttpResponseBadRequest.status_code],
             [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
     def test_paradigm_details_internal_400_404(
-        self, lemma_id: Optional[str], paradigm_size: Optional[str], expected_code: int
+        self, lemma_id: str, paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
+
+        if not RE_NUMERIC.fullmatch(lemma_id):
+            lemma_id = str(Wordform.objects.get(slug=lemma_id).id)
 
         get_data: Dict[str, str] = {}
         if lemma_id is not None:
@@ -88,20 +93,24 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
 
 @pytest.mark.django_db
 @pytest.mark.parametrize(
-    "lexeme,query,example_forms",
+    ("lexeme", "slug_disambiguator", "example_forms"),
     [
-        ("niya", {}, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
-        ("awa", {"pos": "PRON"}, ["ôma", "awa", "ana"]),
-        ("minôs", {}, ["minôs", "minôsa", "niminôs"]),
+        ("niya", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
+        ("awa", "awa@p", ["ôma", "awa", "ana"]),
+        ("minôs", None, ["minôs", "minôsa", "niminôs"]),
     ],
 )
-def test_retrieve_paradigm(client: Client, lexeme: str, query, example_forms: str):
+def test_retrieve_paradigm(
+    client: Client, lexeme: str, slug_disambiguator, example_forms: str
+):
     """
     Test going to the lexeme details page with a paradigm.
     """
-    url = reverse("cree-dictionary-index-with-lemma", args=[lexeme])
-    if query:
-        url += "?" + urlencode(query)
+    query_args = {}
+    if slug_disambiguator:
+        query_args["slug"] = slug_disambiguator
+    wf = Wordform.objects.get(text=lexeme, **query_args)
+    url = reverse("cree-dictionary-index-with-lemma", args=[wf.slug])
     response = client.get(url)
 
     assert response.status_code == 200
@@ -119,7 +128,7 @@ def test_paradigm_from_full_page_and_api(client: Client):
     contain the exact same information.
     """
     lemma_text = "wâpamêw"
-    paradigm_size = "FULL"
+    paradigm_size = "full"
 
     wordform = Wordform.objects.get(text=lemma_text)
     assert wordform.lemma == wordform, "this test requires a lemma"

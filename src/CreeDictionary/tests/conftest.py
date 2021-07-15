@@ -3,9 +3,10 @@ from os.path import dirname
 from pathlib import Path
 
 import pytest
-from CreeDictionary.API.models import Wordform
 from hypothesis import settings
 from hypothesis.strategies import SearchStrategy
+
+from morphodict.lexicon.models import Wordform
 
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
@@ -50,4 +51,4 @@ def lemmas():
     """
     Strategy to return lemmas from the database.
     """
-    return WordformStrategy(is_lemma=True, as_is=False)
+    return WordformStrategy(is_lemma=True)

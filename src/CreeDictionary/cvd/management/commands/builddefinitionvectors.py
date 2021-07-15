@@ -8,7 +8,7 @@ from django.core.management import BaseCommand
 from gensim.models import KeyedVectors
 from tqdm import tqdm
 
-from CreeDictionary.API.models import Definition
+from morphodict.lexicon.models import Definition
 from CreeDictionary.cvd import (
     google_news_vectors,
     extract_keyed_words,
@@ -44,7 +44,6 @@ class Command(BaseCommand):
         unknown_words = set()
 
         with debug_output_file(options["debug_output_file"]) as debug_output:
-
             for d in tqdm(definitions.iterator(), total=count):
                 keys = extract_keyed_words(d.text, news_vectors, unknown_words)
                 debug_output(

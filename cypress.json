@@ -3,11 +3,13 @@
   "viewportHeight": 568,
   "viewportWidth": 320,
   "projectId": "8r2xra",
-  "defaultCommandTimeout": 10000,
+  "defaultCommandTimeout": 1000,
   "supportFile": "cypress/support/commands.js",
   "pluginsFile": false,
   "env": {
     "admin_url": "/admin/",
-    "admin_login_url": "/admin/login/"
+    "admin_login_url": "/admin/login/",
+    "legend_url": "/legend",
+    "settings_url": "/settings"
   }
 }

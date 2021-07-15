@@ -3,11 +3,11 @@ from argparse import ArgumentParser
 from django.core.management.base import BaseCommand
 from django.db import connection
 
-from CreeDictionary.API.models import (
+from morphodict.lexicon.models import (
+    Wordform,
+    TargetLanguageKeyword,
     Definition,
     DictionarySource,
-    EnglishKeyword,
-    Wordform,
 )
 
 
@@ -29,7 +29,7 @@ class Command(BaseCommand):
         # order becomes a burden, we could use Django’s meta-model API to
         # topologically sort the dependencies between models.
         for model in [
-            EnglishKeyword,
+            TargetLanguageKeyword,
             Definition.citations.through,
             Definition,
             Wordform,

@@ -14,7 +14,6 @@
   {% endcomment %}
 
   {% load static %}
-  {% load inflection_extras %}
   {% load morphodict_orth %}
 
   <article id="definition" class="definition">
@@ -48,13 +47,11 @@
       </a>
     </section>
 
-    <section class="definition__meanings">
+    <section class="definition__meanings" data-cy="meanings">
       <ol class="meanings">
         {% for def in wordform.definitions %}
           <li class="meanings__meaning">{{ def.text }}
-            {% for source in def.source_ids %}
-              <cite class="cite-dict">{{ source }}</cite>
-            {% endfor %}
+            {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
           </li>
         {% endfor %}
       </ol>
@@ -62,18 +59,8 @@
 
     <section id="paradigm">
       {% if paradigm %}
-        {% if user.is_authenticated %}
-          {% comment %}
-            As of 2021-06-02, this feature is not ready for the general
-            public, so make it only visible to logged-in users.
-          {% endcomment %}
-          {% include './components/paradigm-label-switcher.html' %}
-        {% endif %}
-        {% if paradigm.uses_pane_based_layout %}
-          {% include './components/paradigm-with-panes.html' %}
-        {% else %}
-          {% include './components/paradigm.html' %}
-        {% endif %}
+        {% include './components/paradigm-label-switcher.html' %}
+        {% include './components/paradigm.html' %}
       {% endif %}
     </section>
   </article>

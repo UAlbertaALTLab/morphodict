@@ -25,7 +25,8 @@
       This makes 'lemma-id' and 'paradigm-size' avaialble to JavaScript.
     {% endcomment %}
     {{ lemma_id|json_script:"lemma-id" }}
-    {{ paradigm_size.value|json_script:"paradigm-size" }}
+    {{ paradigm_size|json_script:"paradigm-size" }}
+    {{ paradigm_sizes|json_script:"paradigm-sizes" }}
   {% endif %}
 
 </head>
@@ -49,6 +50,11 @@
       </svg>
     </button>
   </template>
+
+  {# The toast or little message that pops-up to notifiy you of small state changes. #}
+   <dialog id="toast" class="toast" data-cy="toast">
+    <p class="toast__message"></p>
+  </dialog>
 {% endspaceless %}
 
 {% comment %}
@@ -83,11 +89,16 @@
     <ul class="footer__links footer__basic-links ">
       <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
              rel="noopener">Help</a></li>
+      <li><a href="{% url 'cree-dictionary-legend' %}" class="footer-links__link">Legend of abbreviations</a></li>
       <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
       <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
     </ul>
 
     <div class="footer__links footer__advanced-links">
+      <ul class="footer__links">
+        <li><a href="{% url 'cree-dictionary-settings' %}" class="footer-links__link">Settings</a></li>
+      </ul>
+
       <h2 class="footer__option-header"> View search results in: </h2>
       <ul class="unbullet">
         <li>

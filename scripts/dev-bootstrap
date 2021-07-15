@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# This script started out in Python but that was too heavyweight at the
+# time. In its current form it could also be a small Makefile. If much
+# functionality gets added to it, it should probably go back to being
+# Python.
+
+set -eu
+
+function run() {
+    echo "${@}"
+    "${@}"
+}
+
+for LANG_PAIR in \
+    arpeng \
+    crkeng \
+    cwdeng \
+    srseng \
+; do
+    for USE_TEST_DB in True False; do
+        export USE_TEST_DB
+
+        run ./${LANG_PAIR}-manage migrate
+        run ./${LANG_PAIR}-manage ensurecypressadminuser --superuser
+    done
+done
+
+# This is currently the only language pair with a test database
+USE_TEST_DB=True ./crkeng-manage ensuretestdb

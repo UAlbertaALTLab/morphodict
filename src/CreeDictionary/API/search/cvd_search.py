@@ -1,8 +1,6 @@
+import itertools
 import logging
 
-import itertools
-
-from CreeDictionary.API.models import Wordform
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.cvd import (
@@ -16,6 +14,7 @@ from CreeDictionary.cvd.definition_keys import (
     cvd_key_to_wordform_query,
     wordform_query_matches,
 )
+from morphodict.lexicon.models import Wordform
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +29,7 @@ def do_cvd_search(search_run: SearchRun):
     if not keys:
         return
 
+    search_run.add_verbose_message(cvd_extracted_keys=keys)
     query_vector = vector_for_keys(google_news_vectors(), keys)
 
     try:

@@ -25,20 +25,26 @@ class CvdSearchType(Enum):
         return self != CvdSearchType.OFF
 
 
+def treat_query(query_string):
+    # Whitespace won't affect results, but the FST can't deal with it:
+    query_string = query_string.strip()
+    # All internal text should be in NFC form --
+    # that is, all characters that can be composed are composed.
+    query_string = unicodedata.normalize("NFC", query_string)
+
+    query_string = query_string.lower()
+    query_string = query_string.replace("7", "ʔ")
+    query_string = to_sro_circumflex(query_string)
+    return query_string
+
+
 class Query:
-    BOOL_KEYS = ["verbose", "auto"]
+    BOOL_KEYS = ["verbose", "auto", "espt"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
 
-        # Whitespace won't affect results, but the FST can't deal with it:
-        query_string = query_string.strip()
-        # All internal text should be in NFC form --
-        # that is, all characters that can be composed are composed.
-        query_string = unicodedata.normalize("NFC", query_string)
-
-        query_string = query_string.lower()
-        query_string = to_sro_circumflex(query_string)
+        query_string = treat_query(query_string)
 
         self.query_terms = []
 
@@ -66,9 +72,19 @@ class Query:
             if not consumed:
                 self.query_terms.append(token)
 
-        self.query_string = " ".join(self.query_terms)
-
         self.is_valid = self.query_string != ""
+
+    @property
+    def query_string(self):
+        return " ".join(self.query_terms)
+
+    def replace_query(self, new_query):
+        """
+        Inflected phrase search discards functional words like "they" using this method
+        Does not affect flags
+        """
+        query_string = treat_query(new_query)
+        self.query_terms = query_string.split()
 
     def __repr__(self) -> str:
         return f"<Query {self.raw_query_string!r}>"
@@ -77,3 +93,4 @@ class Query:
     verbose: Optional[bool] = None
     auto: Optional[bool] = None
     cvd: Optional[CvdSearchType] = None
+    espt: Optional[bool] = None

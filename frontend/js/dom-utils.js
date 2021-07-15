@@ -15,7 +15,7 @@ export function emptyElement(element) {
   // Uses the fastest method tested here:
   // https://jsperf.com/innerhtml-vs-removechild/15
   while (element.lastChild) {
-    element.removeChild(element.lastChild)
+    element.removeChild(element.lastChild);
   }
 }
 
@@ -25,11 +25,10 @@ export function emptyElement(element) {
  * @param {(Element|null)} element
  */
 export function removeElement(element) {
-  if (!element)
-    return
+  if (!element) return;
 
-  let parent = element.parentNode
-  parent.removeChild(element)
+  let parent = element.parentNode;
+  parent.removeChild(element);
 }
 
 /**
@@ -39,10 +38,9 @@ export function removeElement(element) {
  * @param {(Element|null)} element
  */
 export function showElement(element) {
-  if (!element)
-    return
+  if (!element) return;
 
-  element.style.display = ''
+  element.style.display = "";
 }
 
 /**
@@ -51,8 +49,7 @@ export function showElement(element) {
  * @param {(Element|null)} element
  */
 export function hideElement(element) {
-  if (!element)
-    return
+  if (!element) return;
 
-  element.style.display = 'none'
+  element.style.display = "none";
 }

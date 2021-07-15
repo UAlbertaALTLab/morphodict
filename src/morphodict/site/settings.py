@@ -74,7 +74,6 @@ INSTALLED_APPS = [
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
-    "CreeDictionary.DatabaseManager",
     "morphodict.lexicon",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
@@ -127,6 +126,10 @@ CI = env.bool("CI", default=False)
 
 # Use existing test database (required for running unit tests and integration tests!)
 USE_TEST_DB = env.bool("USE_TEST_DB", default=False)
+
+# If set, reload paradigm layout files from disk on every request. Handy for
+# seeing the results when you’re editing layout files.
+DEBUG_PARADIGM_TABLES = env.bool("DEBUG_PARADIGM_TABLES", default=False)
 
 # The Django debug toolbar is a great help when... you know... debugging Django,
 # but it has a few issues:
@@ -198,10 +201,12 @@ def defaultDatabasePath():
 
 
 if USE_TEST_DB:
+    TEST_DB_FILE = BASE_DIR / "db" / "test_db.sqlite3"
+
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.fspath(BASE_DIR / "db" / "test_db.sqlite3"),
+            "NAME": os.fspath(TEST_DB_FILE),
         }
     }
 else:
@@ -322,3 +327,7 @@ LOGGING = {
 
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
+
+# This defaults to False, because in order to work it requires that there
+# be correct tag mappings for all analyzable forms.
+MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False

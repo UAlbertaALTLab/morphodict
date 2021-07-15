@@ -23,13 +23,15 @@ urlpatterns = [
     path("search", views.index, name="cree-dictionary-search"),
     # "word" is a user-friendly alternative for the linguistic term "lemma"
     path(
-        "word/<str:lemma_text>/",
+        "word/<str:slug>/",
         views.entry_details,
         name="cree-dictionary-index-with-lemma",
     ),
     path("about", views.about, name="cree-dictionary-about"),
     path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
     path("query-help", views.query_help, name="cree-dictionary-query-help"),
+    path("legend", views.legend, name="cree-dictionary-legend"),
+    path("settings", views.settings_page, name="cree-dictionary-settings"),
     path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
     ################################# Internal API #################################
     # internal use to render boxes of search results
