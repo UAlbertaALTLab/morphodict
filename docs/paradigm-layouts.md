@@ -24,7 +24,7 @@ Components of the paradigm system
    files on the filesystem
  - the **Paradigm Manager** — mediates access to all parsed paradigm
    layouts from the **layouts** directory, tying them to a transducer to
-   produce inflections 
+   produce inflections
  - the **relabelling system**, which substitutes **one or more tags**
    with user-facing labels
 
@@ -50,7 +50,7 @@ Paradigm layouts are:
 ### Syntax
 
 
-A **paradigm layout file** is a A tab-separated values (TSV) file. A TSV
+A **paradigm layout file** is a tab-separated values (TSV) file. A TSV
 file is a series of *rows*. Each **row** is separated by a U+000A line
 feed character. Note that this U+000A line feed is not considered to be
 a part of the row in this specification.
@@ -149,7 +149,7 @@ ColumnLabel ::= ('|' SP Tag)+
 MissingForm ::= '-' '-'
 EmptyCell ::= SP*
 
-TAB ::= #x9
+TAB ::= #x09
 NL  ::= #x0A
 SP  ::= #x20
 ```
@@ -208,33 +208,16 @@ Files directly within the `layouts` directory, can be:
 > resources directory. As of 2021-06-30, this means
 > `src/CreeDictionary/res/layouts` for the `crkeng` dictionary.
 
+How to configure paradigm sizes
+-------------------------------
 
-Glossary
---------
+The order of the paradigm sizes are configured in Django's `settings.py`
+with the `MORPHODICT_PARADIGM_SIZES` key. List **all** named paradigm
+sizes in the order you wish for them to appear in this setting. For
+example, if you have the sizes "basic", and "full", and want them to
+appear in the order, make sure in your site's `settings.py` you have the
+following:
 
-### Dynamic vs. Static
-
-A **dynamic paradigm layout** is one in which there are *placeholders*
-for the `${lemma}`. At runtime, the placeholders are filled with
-a provided lemma such that the placeholders can be substituted with
-concrete wordforms, to be presented to users.
-
-Dynamic paradigm layouts are useful for linguistic paradigms that are
-_productive_ (i.e., used for systematically for a large number of
-lexemes).
-
-A **static paradigm layout** is one in which there are no placeholders.
-All cells have their wordforms **explicitly** filled out. No
-substitution is needed at runtime, so their contents will be presented
-**as-is**.
-
-Static paradigm layouts are useful for
-
-### Paradigm Name
-
-Which **linguistic paradigm** a wordform or entire lexeme belongs to.
-This data should be provided by curated linguistic data during the
-import process, although, historically, the paradigm name has been
-assumed to be the specific word class of a lexeme. Because what exactly
-determines a "paradigm" differs from language-to-language, a wordform's
-`paradigm` name should be determined _before_ import time.
+```python
+MORPHODICT_PARADIGM_SIZES = ["basic", "full"]
+```
