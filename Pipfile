@@ -26,6 +26,8 @@ pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
 pytest-pythonpath = "*"
+sphinx = "*"
+myst-parser = "*"
 
 [packages]
 colorama = "~=0.4"
