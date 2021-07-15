@@ -10,9 +10,10 @@ Welcome to morphodict's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   glossary
+   paradigm-layouts
    ci
    developers-guide
+   glossary
 
 Indices and tables
 ==================
