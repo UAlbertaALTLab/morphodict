@@ -1,8 +1,50 @@
-FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
-[AFFIRMATIVE]	AFFIRM	Affirmative			
-[NON_AFFIRMATIVE]	NON-AFFIRM	Non-affirmative			
-[3SG-SUBJ]	S	Third-person singular subject			
-[3PL-SUBJ]	PL	Third-person plural subject			
-[NEG]	NEG	Negative			
-[NON_AFFIRMATIVE][INTERROGATIVE]	NON-AFFIRM INTERR	Non-affirmative interrogative			
-					
+FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI	
+[AFFIRMATIVE]		Affirmative	Affirmative			
+[NON_AFFIRMATIVE]		Non-affirmative	Non-affirmative			
+[NON_AFFIRMATIVE][NEG]		Non-affirmative negative	not			
+[NON_AFFIRMATIVE][INTERROGATIVE]		Non-affirmative Interrogative	question			
+[INTERROGATIVE]	Interrogative	Interrogative	question			
+[INDICATIVE]	Indicative	Indicative	statement			
+[NEG]	Neg		Negation	not			
+[IMPERATIVE]	Imper	Imperative	command/request		
+						
+[1PL-SUBJ]	1p	Subject: 1st Person Plural	we			
+[1PL-EXCL-SUBJ]	1p (excl)	Subject: 1st Person Plural (Exclusive)	we (but not you)			
+[1PL-INCL-SUBJ]	1p (incl)	Subject: 1st Person Plural (Inclusive)	you and we			
+[2SG-SUBJ]	2s	Subject: 2nd Person Singular	you (one)			
+[2PL-SUBJ]	2p	Subject: 2nd Person Plural	you (all)			
+[3SG-SUBJ]	3s	Subject: 3rd Person Singular	s/he			
+[3PL-SUBJ]	3p	Subject: 3rd Person Plural	they			
+[4SG-SUBJ]	4s	Subject: 4th Person Singular (Obviative)	s/he (further)			
+[4PL-SUBJ]	4p	Subject: 4th Person Plural (Obviative)	s/he (further)			
+[INANIMATE-SUBJECT]		Subject: Inanimate	it			
+[1SG-OBJ]	→ 1s	Object: 1st Person Singular	→ me			
+[1PL-OBJ]	→ 1s	Object: 1st Person Plural	→ us			
+[1PL-EXCL-OBJ]	→ 1p (excl)	Object: 1st Person Plural (Exclusive)	→ you (but not us)			
+[1PL-INCL-OBJ]	→ 1p (incl)	Object: 1st Person Plural (Inclusive)	→ you and we			
+[2SG-OBJ]	→ 2s	Object: 2nd Person Singular	→ you (one)			
+[2PL-OBJ]	→ 2p	Object: 2nd Person Plural	→ you (all)			
+[3SG-OBJ]	→ 3s	Object: 3rd Person Singular	→ her/him			
+[3PL-OBJ]	→ 3p	Object: 3rd Person Plural	→ they			
+[4SG-OBJ]	→ 4s	3rd Person Singular (Obviative)	→ him/her			
+[4PL-OBJ]	→ 4p	3rd Person Plural (Obviative)	→ them			
+						
+[PRESENT]	Present	Present tense	something is happening now			
+[PAST]	Past	Past tense	something happened before this			
+[FUTURE]	Future	Future tense	something is happening later on			
+[INF]	Infinitive	Infinitive form	for something to happen			
+[PROGRESSIVE]	Progresssive	Progressive				
+[PERFECTIVE]	Perfective	Perfective				
+[IMPERFECTIVE]	Imperfective	Imperfective				
+[SIMPLE]	Simple	Simple tense				
+[IC]	IC	Initial change	Initial change	Initial change			
+[II]	II	Inanimate Intransitive				
+[AI]	AI	Animate Intransitive				
+[IA]	IA					
+[TA]	TA	Animate Transitive				
+[TI]	TI	Inanimate Transitive				
+						
+[CONJUNCT]		Conjunct				
+[SUBJUNCTIVE]	Subjunct	Subjunctive	would/could			
+[ITERATIVE]	Iter	Iterative	repeatedly			
+[PROHIBITIVE]	Prohib	Prohibitive	not allowed			
