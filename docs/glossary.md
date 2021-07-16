@@ -7,6 +7,7 @@ to describing certain languages.
 
 ## Terms
 
+<!-- https://myst-parser.readthedocs.io/en/latest/syntax/syntax.html#syntax-directives -->
 ```{contents}
 ---
 depth: 1
