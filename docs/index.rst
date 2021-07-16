@@ -39,8 +39,6 @@ throughout the codebase, as well as in comments and docstrings throughout.
    :maxdepth: 2
    :caption: Contents:
 
-   # TOOD: add conceptual
-
    linguistic-data
 
    developers
