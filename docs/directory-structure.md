@@ -1,4 +1,4 @@
-## Directory structure proposal
+# Directory structure
 
 This is a proposal for a new physical layout of the source code in this
 repo, meant to replace the somewhat ad-hoc layout of early 2021, in order
@@ -7,8 +7,6 @@ to:
   - Allow generalization to more languages than Plains Cree, and
 
   - Address some other issues that have arisen with the source code layout.
-
-## The proposal
 
 ### High-level decisions / assumptions
 
@@ -49,7 +47,7 @@ to:
 
 [639-3]: https://iso639-3.sil.org/code_tables/639/data
 
-### Proposed layout
+### Layout
 
     $repo
     ├── .git/
