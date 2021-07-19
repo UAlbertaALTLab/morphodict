@@ -21,7 +21,7 @@ Components of the paradigm system
  - **paradigm layout files** (`.tsv` files) — specifies how to layout
    wordforms in one or more _panes_
  - the **layouts** directory structure — how to organize paradigm layout
-   files on the filesystem. Subdirectories indicate that the paradigm
+   files on the filesystem. Subdirectories here indicate that a paradigm
    has multiple _sizes_
  - the **Paradigm Manager** — mediates access to all parsed paradigm
    layouts from the **layouts** directory, keeping track of the
@@ -145,7 +145,7 @@ exact syntax of a wordform cell is defined by the implementation.
 
 ### Partial Grammar
 
-Here is a partial [W3C Extended Backus-Naur Form(EBNF)][EBNF] grammar of
+Here is a partial [W3C Extended Backus-Naur Form (EBNF)][EBNF] grammar of
 the layout file specification. The syntax of `WordformCell` and `Tag`
 are implementation-dependent.
 
@@ -175,8 +175,8 @@ NL  ::= #x0A
 SP  ::= #x20
 ```
 
-> This variant of EBNF was chosen to in order to be visualized with the
-> following tool: https://www.bottlecaps.de/rr/ui
+> The variant of EBNF chosen can be visualized using following tool:
+> https://www.bottlecaps.de/rr/ui
 
 [EBNF]: https://www.w3.org/TR/2010/REC-xquery-20101214/#EBNFNotation
 
