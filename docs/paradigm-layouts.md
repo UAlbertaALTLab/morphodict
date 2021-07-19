@@ -21,10 +21,12 @@ Components of the paradigm system
  - **paradigm layout files** (`.tsv` files) — specifies how to layout
    wordforms in one or more _panes_
  - the **layouts** directory structure — how to organize paradigm layout
-   files on the filesystem
+   files on the filesystem. Subdirectories indicate that the paradigm
+   has multiple _sizes_
  - the **Paradigm Manager** — mediates access to all parsed paradigm
-   layouts from the **layouts** directory, tying them to a transducer to
-   produce inflections
+   layouts from the **layouts** directory, keeping track of the
+   different _sizes_ of layout for each paradigm, as well as tying
+   dynamic layouts to a transducer to produce inflections
  - the **relabelling system**, which substitutes **one or more tags**
    with user-facing labels
 
@@ -46,6 +48,24 @@ Paradigm layouts are:
  - each **content row** consists of a series of **cells**
  - a cell can either be a **row label**, a **column label**, or
    a **wordform cell**.
+
+For example, this is a paradigm layout file for Swahili personal
+pronouns (Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>):
+
+```tsv
+| Class	| Ind	| Comb | Suffix	| Gen | Suffix	| All
+_ 1 _ Sg	mimi	-mi	_angu	--
+_ 2 _ Sg	wewe	-we	-ako	--
+_ 3 _ Sg	yeye	-ye	-ake	--
+_ 1 _ Pl	sisi	-si	-etu	sisi
+_ 2 _ Pl	nyinyi	-nyi	-enu	nyote
+_ 3 _ Pl	wao	-o	-ao	wote
+```
+
+This example is a **static paradigm layout file** with one **pane**.
+All but the first **row** have row labels, with two **tags** each. Each
+column has a **column label**, with some having one tag, and some having
+two tags. There are a three **missing forms** under the `All` column.
 
 ### Syntax
 
@@ -125,8 +145,9 @@ exact syntax of a wordform cell is defined by the implementation.
 
 ### Partial Grammar
 
-Here is a partial W3C EBNF grammar of the layout file specification.
-The syntax of `WordformCell` and `Tag` are implementation-dependent.
+Here is a partial [W3C Extended Backus-Naur Form(EBNF)][EBNF] grammar of
+the layout file specification. The syntax of `WordformCell` and `Tag`
+are implementation-dependent.
 
 ```ebnf
 Layout ::= (Row NL)+
@@ -154,25 +175,10 @@ NL  ::= #x0A
 SP  ::= #x20
 ```
 
-### Example
+> This variant of EBNF was chosen to in order to be visualized with the
+> following tool: https://www.bottlecaps.de/rr/ui
 
-Here is a **static paradigm layout file** with one **pane**. Each
-**row** has row labels, with two **tags** each. Each column has
-a **column label**, with some having one tag, and some having two tags.
-There are a three **missing forms** under the `All` column.
-
-Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>
-
-```tsv
-| Class	| Ind	| Comb | Suffix	| Gen | Suffix	| All
-_ 1 _ Sg	mimi	-mi	_angu	--
-_ 2 _ Sg	wewe	-we	-ako	--
-_ 3 _ Sg	yeye	-ye	-ake	--
-_ 1 _ Pl	sisi	-si	-etu	sisi
-_ 2 _ Pl	nyinyi	-nyi	-enu	nyote
-_ 3 _ Pl	wao	-o	-ao	wote
-```
-
+[EBNF]: https://www.w3.org/TR/2010/REC-xquery-20101214/#EBNFNotation
 
 [vd]: https://www.visidata.org/
 [pycharm-tsv]: https://www.jetbrains.com/help/pycharm/editing-csv-and-tsv-files.html
