@@ -82,4 +82,27 @@ context("Recordings", function () {
         .should("have.attr", "target", "_blank");
     });
   });
+
+  describe("When there are no recordings available", () => {
+    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/918
+    it("should not show a play button", () => {
+      const lemma = "kotiskâwêw";
+
+      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+        // A valid response, but the lemma is simply not found:
+        statusCode: 200,
+        body: {
+          matched_recordings: [],
+          not_found: [lemma],
+        },
+      }).as("recordingsResultsNotFound");
+
+      cy.visitLemma(lemma);
+      cy.wait("@recordingsResultsNotFound");
+      // Wait just a smidge for any asynchronous stuff to resolve:
+      cy.wait(5);
+
+      cy.get("[data-cy=play-recording]").should("not.exist");
+    });
+  });
 });

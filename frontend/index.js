@@ -262,6 +262,11 @@ function setupAudioOnPageLoad() {
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
+      if (recordingURL === undefined) {
+        // The API could not find a recording for this wordform ¯\_(ツ)_/¯
+        return;
+      }
+
       // TODO: it shouldn't be placed be **inside** the title <h1>...
       let button = createAudioButton(recordingURL, title);
       button.addEventListener("click", retrieveListOfSpeakers);
