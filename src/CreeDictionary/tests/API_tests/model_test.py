@@ -230,6 +230,20 @@ def test_search_words_with_reduplication():
 
 
 @pytest.mark.django_db
+def test_search_words_with_inital_change():
+    """
+    reduplication should be extracted and present in SearchResult instances
+    """
+    results = search(query="nêpat").presentation_results()
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.lexical_info) == 1
+    assert search_result.lexical_info[0]["entry"]["text"] == " "
+    assert search_result.lexical_info[0]["type"] == "Initial Change"
+
+
+@pytest.mark.django_db
 def test_search_text_with_ambiguous_word_classes():
     """
     Results of all word classes should be searched when the query is ambiguous
