@@ -214,6 +214,7 @@ def test_search_words_with_preverbs():
 
     assert len(search_result.preverbs) == 1
     assert search_result.preverbs[0]["text"] == "nitawi-"
+    assert search_result.lexical_info[0]["type"] == "Preverb"
 
 
 @pytest.mark.django_db
@@ -227,6 +228,7 @@ def test_search_words_with_reduplication():
 
     assert len(search_result.lexical_info) == 1
     assert search_result.lexical_info[0]["entry"]["text"] == "na-"
+    assert search_result.lexical_info[0]["type"] == "Reduplication"
 
 
 @pytest.mark.django_db
