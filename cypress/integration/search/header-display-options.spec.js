@@ -51,6 +51,7 @@ context("Searching", () => {
     });
 
     it("should display in Linguistic English", () => {
+      cy.visit("/");
       cy.get("[data-cy=enable-linguistic-mode]").click();
 
       cy.visitSearch("nimaskomak");
