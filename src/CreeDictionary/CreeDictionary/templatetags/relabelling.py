@@ -63,12 +63,10 @@ def relabel_one(context: Context, tag: FSTTag, **kwargs):
 @register.simple_tag(takes_context=True)
 def relabel_based_on_display_mode(context: Context, tag: FSTTag, **kwargs):
     """
-    Relabels exactly one tag (a string). I use this instead of widening the type on
-    relabel() because polymorphic arguments make me nervous 😬
+    Consult the DisplayMode preference instead of ParadigmLabels when relabelling.
     """
-    return relabel(
-        context, (tag,), labels=label_setting_from_display_mode(context), **kwargs
-    )
+    label_setting = label_setting_from_display_mode(context)
+    return relabel(context, (tag,), labels=label_setting, **kwargs)
 
 
 def label_setting_from_context(context: Context):
