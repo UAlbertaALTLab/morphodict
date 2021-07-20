@@ -23,12 +23,10 @@
 
   {# show preverb and reduplication breakdown #}
   <ol class="preverb-breakdown">
-    {% for item in result.lexical_information %}
+    {% for item in result.lexical_info %}
       <li>
           <span>{{ item.type }}
-            {% if item.type == "Initial Change" %}
-            {% else %}:
-            {% endif %}
+            {% if item.type != "Initial Change" %}: {% endif %}
               {% if item.entry.id %}
                   <a href="{{ item.entry.lemma_url }}">{{ item.entry.text}}</a>
               {% else %}
