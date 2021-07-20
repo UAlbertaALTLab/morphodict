@@ -54,7 +54,7 @@ class SerializedPresentationResult(TypedDict):
     wordform_text: str
     is_lemma: bool
     definitions: Iterable[SerializedDefinition]
-    lexical_information: List[Dict]
+    lexical_info: List[Dict]
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
@@ -85,7 +85,7 @@ class PresentationResult:
             self.linguistic_breakdown_tail,
         ) = result.wordform.analysis or [[], None, []]
 
-        self.lexical_info = get_lexical_information(result.wordform.analysis)
+        self.lexical_info = get_lexical_info(result.wordform.analysis)
 
         self.preverbs = [
             lexical_entry["entry"]
@@ -117,7 +117,7 @@ class PresentationResult:
                 # only place where a non-lemma search result appears.
                 include_auto_definitions=self._search_run.include_auto_definitions,
             ),
-            "lexical_information": self.lexical_info,
+            "lexical_info": self.lexical_info,
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
@@ -237,14 +237,14 @@ def get_emoji_for_cree_wordclass(word_class: Optional[str]) -> Optional[str]:
     return read_labels().emoji.get_longest(tags)
 
 
-def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
+def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
     if not result_analysis:
         return []
 
     result_analysis_tags = result_analysis.prefix_tags
     first_letters = extract_first_letters(result_analysis)
 
-    lexical_information: List[Dict] = []
+    lexical_info: List[Dict] = []
 
     for (i, tag) in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
@@ -317,9 +317,9 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
 
         if entry and _type:
             result = _LexicalEntry(entry=entry, type=_type, original_tag=tag)
-            lexical_information.append(serialize_lexical_entry(result))
+            lexical_info.append(serialize_lexical_entry(result))
 
-    return lexical_information
+    return lexical_info
 
 
 def extract_first_letters(analysis: RichAnalysis) -> List[str]:
