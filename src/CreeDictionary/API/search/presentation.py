@@ -15,9 +15,15 @@ from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.lexicon.models import Wordform, wordform_cache
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
 
+class AbstractResult:
+    def serialize(self):
+        return {
+            "text": self.text,
+            "definitions": self.definitions,
+        }
 
 @dataclass
-class _ReduplicationResult:
+class _ReduplicationResult(AbstractResult):
     """Tiny class to mimic the format of preverbs"""
 
     text: str
@@ -25,11 +31,12 @@ class _ReduplicationResult:
 
 
 @dataclass
-class _InitialChangeResult:
+class _InitialChangeResult(AbstractResult):
     """Tiny class to mimic the format of preverbs"""
 
     text: str
     definitions: list
+
 
 
 LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
@@ -39,7 +46,6 @@ LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
 class _LexicalEntry:
     entry: _ReduplicationResult | SerializedWordform | _InitialChangeResult
     type: LexicalEntryType
-    index: int
     original_tag: FSTTag
 
 
@@ -185,24 +191,10 @@ def serialize_definitions(definitions, include_auto_definitions=False):
     return ret
 
 
-def serialize_reduplication_result(reduplication_result):
-    return {
-        "text": reduplication_result.text,
-        "definitions": reduplication_result.definitions,
-    }
-
-
 def serialize_lexical_entry(lexical_entry):
-    entry = None
-    if lexical_entry.type == "Reduplication":
-        entry = serialize_reduplication_result(lexical_entry.entry)
-    elif lexical_entry.type == "Preverb":
-        entry = lexical_entry.entry
-
     return {
-        "entry": entry,
+        "entry": lexical_entry.entry,
         "type": lexical_entry.type,
-        "index": lexical_entry.index,
         "original_tag": lexical_entry.original_tag,
     }
 
@@ -271,7 +263,7 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
             entry = _InitialChangeResult(
                 text=" ",
                 definitions=change_types
-            )
+            ).serialize()
 
         elif tag.startswith("PV/"):
             # use altlabel.tsv to figure out the preverb
@@ -316,7 +308,7 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
                         else "Weak Reduplication"
                     }
                 ],
-            )
+            ).serialize()
             _type = "Reduplication"
 
         if preverb_result is not None:
@@ -324,7 +316,7 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
             _type = "Preverb"
 
         if entry and _type:
-            result = _LexicalEntry(entry=entry, type=_type, index=i, original_tag=tag)
+            result = _LexicalEntry(entry=entry, type=_type, original_tag=tag)
             lexical_information.append(serialize_lexical_entry(result))
 
     return lexical_information
@@ -353,4 +345,4 @@ def generate_reduplication_string(tag: str, letter: str) -> str:
 
 
 def get_initial_change_types() -> List[dict(str, str)]:
-    return [{ "text": ["a -> ê", "i -> ê", "o -> wê", "ê -> iyê", "â -> iyâ", "î -> â / iyî", "ô -> iyô"] }]
+    return [{ "text": '\n'.join(["a -> ê", "i -> ê", "o -> wê", "ê -> iyê", "â -> iyâ", "î -> â / iyî", "ô -> iyô"]) }]
