@@ -19,6 +19,7 @@
   {% endcomment %}
 
   {% load morphodict_orth %}
+  {% load relabelling %}
   {% load static %}
 
     {% if result.friendly_linguistic_breakdown_head or result.friendly_linguistic_breakdown_tail %}
@@ -36,7 +37,7 @@
 
           <ol class="linguistic-breakdown__list">
             {% for tag in result.relevant_tags %}
-              <li><data value="{{ tag.value }}">{{ tag.in_plain_english }}</data></li>
+              <li><data value="{{ tag.value }}">{% relabel_based_on_display_mode tag.value %}</data></li>
             {% endfor %}
           </ol>
         </div>
