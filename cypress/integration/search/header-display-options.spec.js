@@ -49,6 +49,28 @@ context("Searching", () => {
           expect(popupText).to.contain("many");
         });
     });
+
+    it("should display in Linguistic English", () => {
+      cy.get("[data-cy=enable-linguistic-mode]").click();
+
+      cy.visitSearch("nimaskomak");
+
+      // Open the linguistic breakdown popup
+      cy.get("[data-cy=search-result]:first")
+        .find("[data-cy=information-mark]:first")
+        .click();
+
+      cy.get("[data-cy=linguistic-breakdown]:first")
+        .should("be.visible")
+        .then(($popup) => {
+          let popupText = $popup.text().toLowerCase().replace(/\s+/, " ");
+
+          expect(popupText).to.contain("noun");
+          expect(popupText).to.contain("animate");
+          expect(popupText).to.contain("1st person plural");
+          expect(popupText).to.contain("plural");
+        });
+    });
   });
 
   function setDefaultDisplayMode() {
