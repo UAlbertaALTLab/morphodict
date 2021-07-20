@@ -191,7 +191,7 @@ def serialize_definitions(definitions, include_auto_definitions=False):
     return ret
 
 
-def serialize_lexical_entry(lexical_entry):
+def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
     return {
         "entry": lexical_entry.entry,
         "type": lexical_entry.type,
