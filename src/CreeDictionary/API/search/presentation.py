@@ -344,5 +344,5 @@ def generate_reduplication_string(tag: str, letter: str) -> str:
     return reduplication_string
 
 
-def get_initial_change_types() -> List[dict(str, str)]:
+def get_initial_change_types() -> List[dict[str, str]]:
     return [{ "text": '\n'.join(["a → ê", "i → ê", "o → wê", "ê → iyê", "â → iyâ", "î → â / iyî", "ô → iyô"]) }]
