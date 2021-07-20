@@ -12,13 +12,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-1",
-      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
-      "inflectional_category_linguistic": "Regular animate noun stem",
       "pos": "N",
       "stem": "acâhkos-",
       "smushedAnalysis": "acâhkos+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "acâhkos"
   },
@@ -35,13 +32,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "",
       "smushedAnalysis": "acâhkos kâ-osôsit+N",
-      "wordclass": null,
-      "wordclass_emoji": null
+      "wordclass": null
     },
     "slug": "acâhkos_kâ-osôsit"
   },
@@ -58,13 +52,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "",
       "smushedAnalysis": "acâhkosa kâ-otakohpit+N",
-      "wordclass": null,
-      "wordclass_emoji": null
+      "wordclass": null
     },
     "slug": "acâhkosa_kâ-otakohpit"
   },
@@ -81,13 +72,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-3",
-      "inflectional_category_plain_english": "like: masinahikanāhtik(w), askihk(w)",
-      "inflectional_category_linguistic": "Consonant-/w/ animate noun stem",
       "pos": "N",
       "stem": "amiskw-",
       "smushedAnalysis": "amisk+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "amisk"
   },
@@ -104,13 +92,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "amiskwaciy-wâskahikan-",
       "smushedAnalysis": "amiskwaciy-wâskahikan+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "amiskwaciy-wâskahikan"
   },
@@ -127,13 +112,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "anohc+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "anohc"
   },
@@ -154,13 +136,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-1",
-      "inflectional_category_plain_english": "like: wîcihêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 1: regular",
       "pos": "V",
       "stem": "asawâpam-",
       "smushedAnalysis": "asawâpamêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "asawâpamêw"
   },
@@ -181,13 +160,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-1",
-      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
-      "inflectional_category_linguistic": "Regular animate noun stem",
       "pos": "N",
       "stem": "asikan-",
       "smushedAnalysis": "asikan+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "asikan"
   },
@@ -208,13 +184,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-2",
-      "inflectional_category_plain_english": "like: nitonawêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 2",
       "pos": "V",
       "stem": "atamiskaw-",
       "smushedAnalysis": "atamiskawêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "atamiskawêw"
   },
@@ -235,13 +208,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-3",
-      "inflectional_category_plain_english": "like: masinahikanāhtik(w), askihk(w)",
-      "inflectional_category_linguistic": "Consonant-/w/ animate noun stem",
       "pos": "N",
       "stem": "atâhkw-",
       "smushedAnalysis": "atâhk+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "atâhk"
   },
@@ -269,13 +239,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "ati-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/ati+",
     "slug": "ati-"
@@ -293,13 +260,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "awa+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "awa@i"
   },
@@ -320,13 +284,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "PrA",
-      "inflectional_category_plain_english": "like: awa",
-      "inflectional_category_linguistic": "Pronoun: Animate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "awa+Pron+Dem+Prox+A+Sg",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "awa@p"
   },
@@ -343,13 +304,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "awâsisîwi-",
       "smushedAnalysis": "awâsisîwiw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "awâsisîwiw"
   },
@@ -361,13 +319,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPJ",
-      "inflectional_category_plain_english": "like: hay hay",
-      "inflectional_category_linguistic": "Interjection",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "awîna+Ipc+Interj",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "awîna@i"
   },
@@ -384,13 +339,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "PrA",
-      "inflectional_category_plain_english": "like: awa",
-      "inflectional_category_linguistic": "Pronoun: Animate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "awîna+Pron+Interr+Sg",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "awîna@p"
   },
@@ -411,13 +363,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "ayâ-",
       "smushedAnalysis": "ayâw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "ayâw@vai"
   },
@@ -434,13 +383,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-2v",
-      "inflectional_category_plain_english": "like: mihkwâw",
-      "inflectional_category_linguistic": "vowel-final pluralizable  inanimate Intransive verb",
       "pos": "V",
       "stem": "ayâ-",
       "smushedAnalysis": "ayâw+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "ayâw@vii"
   },
@@ -461,13 +407,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTI-2",
-      "inflectional_category_plain_english": "like: kisihtâw",
-      "inflectional_category_linguistic": "transitive inanimate verb – class 2: stem-final -â",
       "pos": "V",
       "stem": "ayâ-",
       "smushedAnalysis": "ayâw+V+TI+Ind+3Sg",
-      "wordclass": "VTI",
-      "wordclass_emoji": "🧑🏽➡️💧"
+      "wordclass": "VTI"
     },
     "slug": "ayâw@vti"
   },
@@ -484,13 +427,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "ayiwin-",
       "smushedAnalysis": "ayiwin+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "ayiwin"
   },
@@ -526,13 +466,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "ayiwinis-",
       "smushedAnalysis": "ayiwinisa+N+I+Pl",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "ayiwinisa"
   },
@@ -553,13 +490,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-1",
-      "inflectional_category_plain_english": "like: wîcihêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 1: regular",
       "pos": "V",
       "stem": "âcim-",
       "smushedAnalysis": "âcimêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "âcimêw"
   },
@@ -580,13 +514,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI",
-      "inflectional_category_plain_english": null,
-      "inflectional_category_linguistic": null,
       "pos": "V",
       "stem": "pimi-âcimo-",
       "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "âcimow@vai"
   },
@@ -607,13 +538,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "âcimo-",
       "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "âcimow@vai-1"
   },
@@ -634,13 +562,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "âcimowin-",
       "smushedAnalysis": "âcimowin+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "âcimowin"
   },
@@ -668,13 +593,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "âyiman- [VII-n]",
       "smushedAnalysis": "âyiman+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "âyiman@i"
   },
@@ -691,13 +613,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "âyiman-",
       "smushedAnalysis": "âyiman+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "âyiman@n"
   },
@@ -714,13 +633,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-2n",
-      "inflectional_category_plain_english": "like: miywâsin",
-      "inflectional_category_linguistic": "n-final pluralizable inanimate intransive verb",
       "pos": "V",
       "stem": "âyiman-",
       "smushedAnalysis": "âyiman+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "âyiman@v"
   },
@@ -741,13 +657,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "êkwa+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "êkwa"
   },
@@ -764,13 +677,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPJ",
-      "inflectional_category_plain_english": "like: hay hay",
-      "inflectional_category_linguistic": "Interjection",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "êkwatik+Ipc+Interj",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "êkwatik"
   },
@@ -787,13 +697,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "ispîhk+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "ispîhk"
   },
@@ -814,13 +721,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-1",
-      "inflectional_category_plain_english": "like: wîcihêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 1: regular",
       "pos": "V",
       "stem": "katawatêyim-",
       "smushedAnalysis": "katawatêyimêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "katawatêyimêw"
   },
@@ -837,13 +741,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "kâh-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/kâh+",
     "slug": "kâh-"
@@ -865,13 +766,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "kiskinwahamâkosi-",
       "smushedAnalysis": "kiskinwahamâkosiw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "kiskinwahamâkosiw"
   },
@@ -888,13 +786,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "kîmôci-+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "kîmôci-@ipc"
   },
@@ -911,13 +806,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "kîmôci-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/kîmôci+",
     "slug": "kîmôci-@ipv"
@@ -935,13 +827,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-2",
-      "inflectional_category_plain_english": "like: mîkisasâkay, oskasâkay",
-      "inflectional_category_linguistic": "Vowel-glide inanimate noun stem",
       "pos": "N",
       "stem": "kîsikâw-",
       "smushedAnalysis": "kîsikâw+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "kîsikâw@n"
   },
@@ -962,13 +851,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-1v",
-      "inflectional_category_plain_english": "like: kîsikâw",
-      "inflectional_category_linguistic": "vowel-final impersonal inanimate intransive verb",
       "pos": "V",
       "stem": "kîsikâ-",
       "smushedAnalysis": "kîsikâw+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "kîsikâw@v"
   },
@@ -985,13 +871,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "kotiskâwê-",
       "smushedAnalysis": "kotiskâwêw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "kotiskâwêw"
   },
@@ -1012,13 +895,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-4w",
-      "inflectional_category_plain_english": "like: wâhkwa, ihkwa",
-      "inflectional_category_linguistic": "Single-syllable-/w/ animate noun stem",
       "pos": "N",
       "stem": "maskw-",
       "smushedAnalysis": "maskwa+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "maskwa"
   },
@@ -1050,13 +930,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "mâci-nipâ-",
       "smushedAnalysis": "mâci-nipâw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "mâci-nipâw"
   },
@@ -1073,13 +950,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-1",
-      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
-      "inflectional_category_linguistic": "Regular animate noun stem",
       "pos": "N",
       "stem": "minôs-",
       "smushedAnalysis": "minôs+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "minôs"
   },
@@ -1100,13 +974,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-1",
-      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
-      "inflectional_category_linguistic": "Regular animate noun stem",
       "pos": "N",
       "stem": "minôsis-",
       "smushedAnalysis": "minôsis+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "minôsis"
   },
@@ -1123,13 +994,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "misâskwatômin-",
       "smushedAnalysis": "misâskwatômina+N+I+Pl",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "misâskwatômina@i"
   },
@@ -1157,13 +1025,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "misâskwatômin-",
       "smushedAnalysis": "misâskwatômina+N+I+Pl",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "misâskwatômina@n"
   },
@@ -1191,13 +1056,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "-tôskwan-",
       "smushedAnalysis": "mitôskwan+N+I+D+PxX+Sg",
-      "wordclass": "NID",
-      "wordclass_emoji": "👤💧"
+      "wordclass": "NID"
     },
     "slug": "mitôskwan@i"
   },
@@ -1266,13 +1128,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NDI-1",
-      "inflectional_category_plain_english": "like: mitêh (-têh-), mîpit (-îpit-)",
-      "inflectional_category_linguistic": "Regular inanimate dependent noun stem",
       "pos": "N",
       "stem": "-tôskwan-",
       "smushedAnalysis": "mitôskwan+N+I+D+PxX+Sg",
-      "wordclass": "NID",
-      "wordclass_emoji": "👤💧"
+      "wordclass": "NID"
     },
     "slug": "mitôskwan@n"
   },
@@ -1345,13 +1204,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "mîciso-",
       "smushedAnalysis": "mîcisow+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "mîcisow"
   },
@@ -1372,13 +1228,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTI-3",
-      "inflectional_category_plain_english": "like: mîciw",
-      "inflectional_category_linguistic": "transitive inanimate verb – class 3",
       "pos": "V",
       "stem": "mîci-",
       "smushedAnalysis": "mîciw+V+TI+Ind+3Sg",
-      "wordclass": "VTI",
-      "wordclass_emoji": "🧑🏽➡️💧"
+      "wordclass": "VTI"
     },
     "slug": "mîciw"
   },
@@ -1395,13 +1248,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NDI-1",
-      "inflectional_category_plain_english": "like: mitêh (-têh-), mîpit (-îpit-)",
-      "inflectional_category_linguistic": "Regular inanimate dependent noun stem",
       "pos": "N",
       "stem": "-îpit-",
       "smushedAnalysis": "mîpit+N+I+D+PxX+Sg",
-      "wordclass": "NID",
-      "wordclass_emoji": "👤💧"
+      "wordclass": "NID"
     },
     "slug": "mîpit"
   },
@@ -1437,13 +1287,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-1",
-      "inflectional_category_plain_english": "like: wîcihêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 1: regular",
       "pos": "V",
       "stem": "mow-",
       "smushedAnalysis": "mowêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "mowêw"
   },
@@ -1460,13 +1307,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NDA-1",
-      "inflectional_category_plain_english": "like: mitâs (-tâs-), mohpan (-ohpan-)",
-      "inflectional_category_linguistic": "Regular animate dependent noun stem",
       "pos": "N",
       "stem": "-pawâkan-",
       "smushedAnalysis": "nipawâkan+N+A+D+Px1Sg+Sg",
-      "wordclass": "NAD",
-      "wordclass_emoji": "👤🧑🏽"
+      "wordclass": "NAD"
     },
     "slug": "nipawâkan"
   },
@@ -1487,13 +1331,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "nipâ-",
       "smushedAnalysis": "nipâw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "nipâw"
   },
@@ -1514,13 +1355,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "nipâwin-",
       "smushedAnalysis": "nipâwin+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "nipâwin"
   },
@@ -1537,13 +1375,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-2",
-      "inflectional_category_plain_english": "like: mîkisasâkay, oskasâkay",
-      "inflectional_category_linguistic": "Vowel-glide inanimate noun stem",
       "pos": "N",
       "stem": "nipiy-",
       "smushedAnalysis": "nipiy+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "nipiy"
   },
@@ -1571,13 +1406,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-4",
-      "inflectional_category_plain_english": "like: niska, êsa",
-      "inflectional_category_linguistic": "Single-syllable animate noun stem",
       "pos": "N",
       "stem": "nisk-",
       "smushedAnalysis": "niska+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "niska"
   },
@@ -1605,13 +1437,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "nisto+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "nisto"
   },
@@ -1628,13 +1457,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "nitawi-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/nitawi+",
     "slug": "nitawi-"
@@ -1652,13 +1478,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NDI-1",
-      "inflectional_category_plain_english": "like: mitêh (-têh-), mîpit (-îpit-)",
-      "inflectional_category_linguistic": "Regular inanimate dependent noun stem",
       "pos": "N",
       "stem": "-tôskwan-",
       "smushedAnalysis": "nitôskwan+N+I+D+Px1Sg+Sg",
-      "wordclass": "NID",
-      "wordclass_emoji": "👤💧"
+      "wordclass": "NID"
     },
     "slug": "nitôskwan"
   },
@@ -1701,13 +1524,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "PrA",
-      "inflectional_category_plain_english": "like: awa",
-      "inflectional_category_linguistic": "Pronoun: Animate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "niya+Pron+Pers+1Sg",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "niya"
   },
@@ -1724,13 +1544,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "PrA",
-      "inflectional_category_plain_english": "like: awa",
-      "inflectional_category_linguistic": "Pronoun: Animate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "niyanân+Pron+Pers+1Pl",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "niyanân"
   },
@@ -1747,13 +1564,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "nîmi-",
       "smushedAnalysis": "nîmiw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "nîmiw"
   },
@@ -1785,13 +1599,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-1n",
-      "inflectional_category_plain_english": "like: kimiwan",
-      "inflectional_category_linguistic": "n-final impersonal inanimate intransive verb",
       "pos": "V",
       "stem": "nîpin-",
       "smushedAnalysis": "nîpin+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "nîpin"
   },
@@ -1808,13 +1619,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "nîsi-",
       "smushedAnalysis": "nîsiwak+V+AI+Ind+3Pl",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "nîsiwak"
   },
@@ -1831,13 +1639,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "nîso-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/nîso+",
     "slug": "nîso-"
@@ -1855,13 +1660,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "nîso-kîsikâw+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "nîso-kîsikâw@i"
   },
@@ -1878,13 +1680,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-1v",
-      "inflectional_category_plain_english": "like: kîsikâw",
-      "inflectional_category_linguistic": "vowel-final impersonal inanimate intransive verb",
       "pos": "V",
       "stem": "nîso-kîsikâ-",
       "smushedAnalysis": "nîso-kîsikâw+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "nîso-kîsikâw@v"
   },
@@ -1905,13 +1704,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NDA-1",
-      "inflectional_category_plain_english": "like: mitâs (-tâs-), mohpan (-ohpan-)",
-      "inflectional_category_linguistic": "Regular animate dependent noun stem",
       "pos": "N",
       "stem": "-ohkom-",
       "smushedAnalysis": "nôhkom+N+A+D+Px1Sg+Sg",
-      "wordclass": "NAD",
-      "wordclass_emoji": "👤🧑🏽"
+      "wordclass": "NAD"
     },
     "slug": "nôhkom"
   },
@@ -1947,13 +1743,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "nôhtêpayi-",
       "smushedAnalysis": "nôhtêpayiw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "nôhtêpayiw@vai"
   },
@@ -1974,13 +1767,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-2v",
-      "inflectional_category_plain_english": "like: mihkwâw",
-      "inflectional_category_linguistic": "vowel-final pluralizable  inanimate Intransive verb",
       "pos": "V",
       "stem": "nôhtêpayi-",
       "smushedAnalysis": "nôhtêpayiw+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "nôhtêpayiw@vii"
   },
@@ -2001,13 +1791,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "ohci+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "ohci"
   },
@@ -2024,13 +1811,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "INM",
-      "inflectional_category_plain_english": "like: otôskwanihk",
-      "inflectional_category_linguistic": "Name",
       "pos": "N",
       "stem": "oskan- [NI-1] + asastê- [VII-v]",
       "smushedAnalysis": "oskana kâ-asastêki+N",
-      "wordclass": null,
-      "wordclass_emoji": null
+      "wordclass": null
     },
     "slug": "oskana_kâ-asastêki"
   },
@@ -2047,13 +1831,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "ôma+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "ôma@i"
   },
@@ -2070,13 +1851,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "PrI",
-      "inflectional_category_plain_english": "like: ôma",
-      "inflectional_category_linguistic": "Pronoun: Inanimate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "ôma+Pron",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "ôma@p"
   },
@@ -2097,13 +1875,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-1",
-      "inflectional_category_plain_english": "like: pahkwêsikan, asikan",
-      "inflectional_category_linguistic": "Regular animate noun stem",
       "pos": "N",
       "stem": "pahkwêsikan-",
       "smushedAnalysis": "pahkwêsikan+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "pahkwêsikan"
   },
@@ -2135,13 +1910,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "pê-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/pê+",
     "slug": "pê-"
@@ -2163,13 +1935,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "pêyak+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "pêyak"
   },
@@ -2190,13 +1959,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "pimitâcimo-",
       "smushedAnalysis": "pimitâcimow+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "pimitâcimow"
   },
@@ -2213,13 +1979,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-1",
-      "inflectional_category_plain_english": "like: cîmân, astotin",
-      "inflectional_category_linguistic": "Regular inanimate noun stem",
       "pos": "N",
       "stem": "pipon-",
       "smushedAnalysis": "pipon+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "pipon@n"
   },
@@ -2240,13 +2003,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-1n",
-      "inflectional_category_plain_english": "like: kimiwan",
-      "inflectional_category_linguistic": "n-final impersonal inanimate intransive verb",
       "pos": "V",
       "stem": "pipon-",
       "smushedAnalysis": "pipon+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "pipon@v"
   },
@@ -2263,13 +2023,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "pôni-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/pôni+",
     "slug": "pôni-"
@@ -2287,13 +2044,10 @@
     "linguistInfo": {
       "as_is": true,
       "inflectional_category": "IPV",
-      "inflectional_category_plain_english": "like: pê-",
-      "inflectional_category_linguistic": "Preverb",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "sa-+Ipv",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "definesFstTag": "PV/sa+",
     "slug": "sa-"
@@ -2311,13 +2065,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NA-3",
-      "inflectional_category_plain_english": "like: masinahikanāhtik(w), askihk(w)",
-      "inflectional_category_linguistic": "Consonant-/w/ animate noun stem",
       "pos": "N",
       "stem": "sikâkw-",
       "smushedAnalysis": "sikâk+N+A+Sg",
-      "wordclass": "NA",
-      "wordclass_emoji": "🧑🏽"
+      "wordclass": "NA"
     },
     "slug": "sikâk"
   },
@@ -2357,13 +2108,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "tânisi+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "tânisi@ipc"
   },
@@ -2392,13 +2140,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPJ",
-      "inflectional_category_plain_english": "like: hay hay",
-      "inflectional_category_linguistic": "Interjection",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "tânisi+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "tânisi@ipj"
   },
@@ -2415,13 +2160,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "NI-2",
-      "inflectional_category_plain_english": "like: mîkisasâkay, oskasâkay",
-      "inflectional_category_linguistic": "Vowel-glide inanimate noun stem",
       "pos": "N",
       "stem": "tipiskâw-",
       "smushedAnalysis": "tipiskâw+N+I+Sg",
-      "wordclass": "NI",
-      "wordclass_emoji": "💧"
+      "wordclass": "NI"
     },
     "slug": "tipiskâw@n"
   },
@@ -2442,13 +2184,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VII-1v",
-      "inflectional_category_plain_english": "like: kîsikâw",
-      "inflectional_category_linguistic": "vowel-final impersonal inanimate intransive verb",
       "pos": "V",
       "stem": "tipiskâ-",
       "smushedAnalysis": "tipiskâw+V+II+Ind+3Sg",
-      "wordclass": "VII",
-      "wordclass_emoji": "💧➡️"
+      "wordclass": "VII"
     },
     "slug": "tipiskâw@v"
   },
@@ -2469,13 +2208,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTI-1",
-      "inflectional_category_plain_english": "like: nâtam",
-      "inflectional_category_linguistic": "transitive inanimate verb – class 1: regular",
       "pos": "V",
       "stem": "wâpaht-",
       "smushedAnalysis": "wâpahtam+V+TI+Ind+3Sg",
-      "wordclass": "VTI",
-      "wordclass_emoji": "🧑🏽➡️💧"
+      "wordclass": "VTI"
     },
     "slug": "wâpahtam"
   },
@@ -2496,13 +2232,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VTA-1",
-      "inflectional_category_plain_english": "like: wîcihêw",
-      "inflectional_category_linguistic": "transitive animate verb – class 1: regular",
       "pos": "V",
       "stem": "wâpam-",
       "smushedAnalysis": "wâpamêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "wordclass": "VTA",
-      "wordclass_emoji": "🧑🏽➡️🧑🏽"
+      "wordclass": "VTA"
     },
     "slug": "wâpamêw"
   },
@@ -2523,13 +2256,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "VAI-1",
-      "inflectional_category_plain_english": "like: nipâw",
-      "inflectional_category_linguistic": "vowel-final animate intransitive verb",
       "pos": "V",
       "stem": "wâpi-",
       "smushedAnalysis": "wâpiw+V+AI+Ind+3Sg",
-      "wordclass": "VAI",
-      "wordclass_emoji": "🧑🏽➡️"
+      "wordclass": "VAI"
     },
     "slug": "wâpiw"
   },
@@ -2550,13 +2280,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "IPC",
-      "inflectional_category_plain_english": "like: anohc",
-      "inflectional_category_linguistic": "Particle",
       "pos": "IPC",
       "stem": "",
       "smushedAnalysis": "wiya+Ipc",
-      "wordclass": "IPC",
-      "wordclass_emoji": "⚡️"
+      "wordclass": "IPC"
     },
     "slug": "wiya@i"
   },
@@ -2573,13 +2300,10 @@
     "linguistInfo": {
       "as_is": false,
       "inflectional_category": "PrA",
-      "inflectional_category_plain_english": "like: awa",
-      "inflectional_category_linguistic": "Pronoun: Animate",
       "pos": "PRON",
       "stem": "",
       "smushedAnalysis": "wiya+Pron+Pers+3Sg",
-      "wordclass": "PRON",
-      "wordclass_emoji": "➡️"
+      "wordclass": "PRON"
     },
     "slug": "wiya@p"
   }

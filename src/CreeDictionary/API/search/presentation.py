@@ -8,7 +8,7 @@ from django.forms import model_to_dict
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.API.search import types, core, lookup
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
-from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
 from morphodict.analysis import RichAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
@@ -133,7 +133,7 @@ class PresentationResult:
         """
         return tuple(
             linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
-            for fst_tags in LABELS.english.chunk(
+            for fst_tags in read_labels().english.chunk(
                 t.strip("+") for t in self.linguistic_breakdown_tail
             )
         )
@@ -151,6 +151,23 @@ def serialize_wordform(wordform) -> SerializedWordform:
     result = model_to_dict(wordform)
     result["definitions"] = serialize_definitions(wordform.definitions.all())
     result["lemma_url"] = wordform.get_absolute_url()
+
+    if wordform.linguist_info:
+        if inflectional_category := wordform.linguist_info.get(
+            "inflectional_category", None
+        ):
+            result.update(
+                {
+                    "inflectional_category_plain_english": read_labels().english.get(
+                        inflectional_category
+                    ),
+                    "inflectional_category_linguistic": read_labels().linguistic_long.get(
+                        inflectional_category
+                    ),
+                }
+            )
+        if wordclass := wordform.linguist_info.get("wordclass"):
+            result["wordclass_emoji"] = get_emoji_for_cree_wordclass(wordclass)
 
     for key in wordform.linguist_info or []:
         if key not in result:
@@ -205,7 +222,27 @@ def safe_partition_analysis(analysis: ConcatAnalysis):
 
 def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     """replace fst-tags to cute ones"""
-    return LABELS.english.get_full_relabelling(fst_tags)
+    return read_labels().english.get_full_relabelling(fst_tags)
+
+
+def get_emoji_for_cree_wordclass(word_class: Optional[str]) -> Optional[str]:
+    """
+    Attempts to get an emoji description of the full wordclass.
+    e.g., "👤👵🏽" for "nôhkom"
+    """
+    if word_class is None:
+        return None
+
+    def to_fst_output_style(value):
+        if value[0] == "N":
+            return list(value.upper())
+        elif value[0] == "V":
+            return ["V", value[1:].upper()]
+        else:
+            return [value.title()]
+
+    tags = to_fst_output_style(word_class)
+    return read_labels().emoji.get_longest(tags)
 
 
 def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
@@ -240,7 +277,9 @@ def get_lexical_information(result_analysis: RichAnalysis) -> List[Dict]:
             # use altlabel.tsv to figure out the preverb
 
             # ling_short looks like: "Preverb: âpihci-"
-            ling_short = LABELS.linguistic_short.get(cast(FSTTag, tag.rstrip("+")))
+            ling_short = read_labels().linguistic_short.get(
+                cast(FSTTag, tag.rstrip("+"))
+            )
             if ling_short:
                 # convert to "âpihci" by dropping prefix and last character
                 normative_preverb_text = ling_short[len("Preverb: ") :]

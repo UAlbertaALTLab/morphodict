@@ -3,27 +3,39 @@ import SimpleTemplate from "./simple-template.js";
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
+const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
 
-export function fetchRecordings(wordform) {
-  return fetch(`${BASE_URL}/recording/_search/${wordform}`).then(function (
-    response
-  ) {
-    return response.json();
-  });
-}
-
+/**
+ * Fetches the recording URL for one wordform.
+ *
+ * @param {string} a wordform. The spelling must match *exactly* with the
+ *                 speech-db's transcription.
+ * @return {string?} the recording URL, if it exists, else undefined.
+ */
 export async function fetchFirstRecordingURL(wordform) {
-  let results = await fetchRecordings(wordform);
-  return results[0]["recording_url"];
+  let response = await fetchRecordingUsingBulkSearch([wordform]);
+  return mapWordformsToBestRecordingURL(response).get(wordform);
 }
 
 /**
- * Render a list of speakers (in the form of a select) for the user to interact with and hear the wordform pronounced in different ways.
+ * Fetches recordings URLs for each wordform given.
+ *
+ * @param {Iterable<str>} iterable of wordforms to search
+ * @return {Map<str, str>} maps wordforms to a valid recording URL.
  */
-export function retrieveListOfSpeakers() {
-  // get the value of the wordform from the page
+export async function fetchRecordingURLForEachWordform(requestedWordforms) {
+  let response = await fetchRecordingUsingBulkSearch(requestedWordforms);
+  return mapWordformsToBestRecordingURL(response);
+}
+
+/**
+ * Render a list of speakers (in the form of a select) for the user to
+ * interact with and hear the wordform pronounced in different ways.
+ */
+export async function retrieveListOfSpeakers() {
+  // There SHOULD be a <data id="data:head" value="..."> element on the page
+  // that will tell us the current wordform: get it!
   let wordform = document.getElementById("data:head").value;
-  let derivedURL = `${BASE_URL}/recording/_search/${wordform}`;
 
   // select for our elements for playback and link-generation
   let recordingsDropdown = document.querySelector(
@@ -36,19 +48,15 @@ export function retrieveListOfSpeakers() {
     '[data-action="learn-about-speaker"]'
   );
 
-  // Request the JSON for all recordings of this wordform
-  fetch(derivedURL)
-    .then((request) => request.json())
-    .then((returnedData) => {
-      // Unhide the explainer text
-      let recordingsHeading = document.querySelector(
-        ".definition__recordings--not-loaded"
-      );
-      recordingsHeading.classList.remove("definition__recordings--not-loaded");
+  // Get all recordings for this wordform
+  let response = await fetchRecordingUsingBulkSearch([wordform]);
 
-      // display our list of speakers
-      displaySpeakerList(returnedData);
-    });
+  displaySpeakerList(
+    response["matched_recordings"].filter(
+      (result) => result.wordform === wordform
+    )
+  );
+  showRecordingsExplainerText();
 
   ////////////////////////////////// helpers /////////////////////////////////
 
@@ -81,4 +89,60 @@ export function retrieveListOfSpeakers() {
       recordingsLink.href = speakerBioLink;
     });
   }
+}
+
+function showRecordingsExplainerText() {
+  let recordingsHeading = document.querySelector(
+    ".definition__recordings--not-loaded"
+  );
+  if (!recordingsHeading) {
+    return;
+  }
+
+  recordingsHeading.classList.remove("definition__recordings--not-loaded");
+}
+
+/**
+ * Uses speech-db's bulk API to search for recordsings.
+ *
+ * @param {Iterable<str>}  one or more wordforms to search for.
+ * @return {BulkSearchResponse} see API documentation: TODO
+ */
+async function fetchRecordingUsingBulkSearch(requestedWordforms) {
+  // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
+  let searchParams = new URLSearchParams();
+  for (let wordform of requestedWordforms) {
+    searchParams.append("q", wordform);
+  }
+  let url = new URL(BULK_API_URL);
+  url.search = searchParams;
+
+  let response = await fetch(url);
+  if (!response.ok) {
+    throw new Error("Could not fetch recordings");
+  }
+
+  return response.json();
+}
+
+/**
+ * Given a BulkSearchResponse, returns a Map of wordforms to exactly one
+ * recording URL.
+ *
+ * @param {BulkSearchResponse} the entire response returned from the bulk
+ *                             search API.
+ */
+function mapWordformsToBestRecordingURL(response) {
+  let wordform2recordingURL = new Map();
+
+  for (let result of response["matched_recordings"]) {
+    let wordform = result["wordform"];
+
+    if (!wordform2recordingURL.has(wordform)) {
+      // Assume the first result returned is the best recording:
+      wordform2recordingURL.set(wordform, result["recording_url"]);
+    }
+  }
+
+  return wordform2recordingURL;
 }
