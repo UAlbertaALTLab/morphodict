@@ -191,7 +191,7 @@ def serialize_definitions(definitions, include_auto_definitions=False):
     return ret
 
 
-def serialize_lexical_entry(lexical_entry):
+def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
     return {
         "entry": lexical_entry.entry,
         "type": lexical_entry.type,
@@ -323,7 +323,23 @@ def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
 
 
 def extract_first_letters(analysis: RichAnalysis) -> List[str]:
-    # TODO: doctests here pls
+    """
+    Returns the first letter of Plains Cree FST preverb tags, as well as the.
+
+    For example, "ê-kâh-kîmôci-kotiskâwêyahk", you have the following analysis:
+
+    >>> a = RichAnalysis((("PV/e+", "RdplS+", "PV/nitawi+"), "kotiskâwêw", ("+V", "+AI", "+Cnj", "+12Pl")))
+
+    Then extracting the first letters of the preverbs and lemma:
+
+    >>> extract_first_letters(a)
+    ['e', 'R', 'n', 'k']
+
+    Note: the Plains Cree FST preverb tags (PV/*) do not contain long vowel diacrictics;
+    that is "ê-" is represented as "PV/e". Luckily, this doesn't matter, since the
+    reduplication for any vowel is always either "ay-" or "âh-"!
+
+    """
     tags = analysis.prefix_tags + (analysis.lemma,)
 
     def first_letter(x):
