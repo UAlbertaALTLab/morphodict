@@ -15,12 +15,14 @@ from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.lexicon.models import Wordform, wordform_cache
 from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
 
+
 class AbstractResult:
     def serialize(self):
         return {
             "text": self.text,
             "definitions": self.definitions,
         }
+
 
 @dataclass
 class _ReduplicationResult(AbstractResult):
@@ -36,7 +38,6 @@ class _InitialChangeResult(AbstractResult):
 
     text: str
     definitions: list
-
 
 
 LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
@@ -250,7 +251,9 @@ def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
         _type: Optional[LexicalEntryType] = None
-        entry: Optional[_ReduplicationResult | SerializedWordform | _InitialChangeResult] = None
+        entry: Optional[
+            _ReduplicationResult | SerializedWordform | _InitialChangeResult
+        ] = None
 
         if tag in ["RdplW+", "RdplS+"]:
             reduplication_string = generate_reduplication_string(
@@ -260,10 +263,7 @@ def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
         elif tag == "IC+":
             change_types = get_initial_change_types()
             _type = "Initial Change"
-            entry = _InitialChangeResult(
-                text=" ",
-                definitions=change_types
-            ).serialize()
+            entry = _InitialChangeResult(text=" ", definitions=change_types).serialize()
 
         elif tag.startswith("PV/"):
             # use altlabel.tsv to figure out the preverb
@@ -361,4 +361,18 @@ def generate_reduplication_string(tag: str, letter: str) -> str:
 
 
 def get_initial_change_types() -> List[dict[str, str]]:
-    return [{ "text": '\n'.join(["a → ê", "i → ê", "o → wê", "ê → iyê", "â → iyâ", "î → â / iyî", "ô → iyô"]) }]
+    return [
+        {
+            "text": "\n".join(
+                [
+                    "a → ê",
+                    "i → ê",
+                    "o → wê",
+                    "ê → iyê",
+                    "â → iyâ",
+                    "î → â / iyî",
+                    "ô → iyô",
+                ]
+            )
+        }
+    ]
