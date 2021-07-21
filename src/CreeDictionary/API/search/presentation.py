@@ -10,6 +10,7 @@ from CreeDictionary.API.search import types, core, lookup
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
+from crkeng.app.preferences import DisplayMode
 from morphodict.analysis import RichAnalysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.lexicon.models import Wordform, wordform_cache
@@ -60,6 +61,17 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
     relevant_tags: Iterable[SerializedLinguisticTag]
+    # Maps a display modes to relabellings
+    relabelled_fst_analysis: dict[str, list[SerializedRelabelling]]
+
+
+class SerializedRelabelling(TypedDict):
+    """
+    TODO:
+    """
+
+    tags: list[FSTTag]
+    label: str
 
 
 class PresentationResult:
@@ -123,6 +135,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
+            "relabelled_fst_analysis": self.relabelled_fst_analysis,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
@@ -142,6 +155,26 @@ class PresentationResult:
             linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
             for fst_tags in self._chunk_plain_english_fst_labels()
         )
+
+    @property
+    def relabelled_fst_analysis(self) -> dict[str, list[SerializedRelabelling]]:
+        all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
+        result = {}
+
+        for mode in DisplayMode.choices:
+            relabeller = {
+                "community": read_labels().english,
+                "linguistic": read_labels().linguistic_long,
+            }[mode]
+            labels = []
+            for tags in relabeller.chunk(all_tags):
+                label = relabeller.get_longest(tags)
+                assert label is not None
+                labels.append(serialize_relabelling(tags, label))
+
+            result[mode] = labels
+
+        return result
 
     def _chunk_plain_english_fst_labels(self) -> Iterable[tuple[FSTTag, ...]]:
         """
@@ -205,6 +238,10 @@ def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
         "type": lexical_entry.type,
         "original_tag": lexical_entry.original_tag,
     }
+
+
+def serialize_relabelling(tags: Iterable[FSTTag], label) -> SerializedRelabelling:
+    return {"tags": list(tags), "label": str(label)}
 
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
