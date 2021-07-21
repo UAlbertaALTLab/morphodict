@@ -22,6 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
 from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.lexicon.models import Wordform
 from morphodict.preference.views import ChangePreferenceView
+
 from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm
 from .utils import url_for_query
@@ -139,7 +140,10 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    ).serialized_presentation_results()
+    ).serialized_presentation_results(
+        # mypy cannot infer this property, but it exists!
+        display_mode=DisplayMode.current_value_from_request(request)  # type: ignore
+    )
     return render(
         request,
         "CreeDictionary/search-results.html",
