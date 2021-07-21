@@ -140,9 +140,16 @@ class PresentationResult:
         """
         return tuple(
             linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
-            for fst_tags in read_labels().english.chunk(
-                t.strip("+") for t in self.linguistic_breakdown_tail
-            )
+            for fst_tags in self._chunk_plain_english_fst_labels()
+        )
+
+    def _chunk_plain_english_fst_labels(self) -> Iterable[tuple[FSTTag, ...]]:
+        """
+        Chunks FST tags according to the plain English relabellings.
+        :return:
+        """
+        return read_labels().english.chunk(
+            t.strip("+") for t in self.linguistic_breakdown_tail
         )
 
     def __str__(self):
