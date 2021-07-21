@@ -61,7 +61,6 @@ class SerializedPresentationResult(TypedDict):
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
-    relevant_tags: Iterable[SerializedLinguisticTag]
     # Maps a display modes to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
 
@@ -142,7 +141,6 @@ class PresentationResult:
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
-            "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
         }
         if self._search_run.query.verbose:
@@ -151,21 +149,10 @@ class PresentationResult:
         return ret
 
     @property
-    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
-        """
-        Tags and features to display in the linguistic breakdown pop-up.
-        This omits preverbs and other features displayed elsewhere
-
-        In itwêwina, these tags are derived from the suffix features exclusively.
-        We chunk based on the English relabelleings!
-        """
-        return tuple(
-            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
-            for fst_tags in self._chunk_plain_english_fst_labels()
-        )
-
-    @property
     def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
+        """
+        TODO
+        """
         all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
         relabeller = {
             "community": read_labels().english,
