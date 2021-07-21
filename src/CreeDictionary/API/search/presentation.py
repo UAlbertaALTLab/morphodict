@@ -1,20 +1,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict, Literal
+from typing import Any, Dict, Iterable, List, Literal, Optional, Tuple, TypedDict, cast
 
 from django.forms import model_to_dict
 
-from CreeDictionary.utils import get_modified_distance
-from CreeDictionary.API.search import types, core, lookup
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.API.search import core, lookup, types
 from CreeDictionary.CreeDictionary.relabelling import read_labels
-from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
+from CreeDictionary.utils import get_modified_distance
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import DisplayMode
 from morphodict.analysis import RichAnalysis
-from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.lexicon.models import Wordform, wordform_cache
-from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
+
+from ..schema import SerializedDefinition, SerializedLinguisticTag, SerializedWordform
+from .types import LinguisticTag, Preverb, linguistic_tag_from_fst_tags
 
 
 class AbstractResult:
@@ -174,7 +175,11 @@ class PresentationResult:
         results = []
         for tags in relabeller.chunk(all_tags):
             label = relabeller.get_longest(tags)
-            assert label is not None
+
+            if label is None:
+                # Skip unlablled chunks
+                continue
+
             results.append(serialize_relabelling(tags, label))
 
         return results
