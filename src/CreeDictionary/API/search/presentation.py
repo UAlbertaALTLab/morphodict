@@ -303,9 +303,9 @@ def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
                 text=reduplication_string,
                 definitions=[
                     {
-                        "text": "Strong reduplication"
+                        "text": "Strong reduplication: intermittent, repeatedly, iteratively; again and again; here and there"
                         if tag == "RdplS+"
-                        else "Weak Reduplication"
+                        else "Weak Reduplication: ongoing, continuing"
                     }
                 ],
             ).serialize()
