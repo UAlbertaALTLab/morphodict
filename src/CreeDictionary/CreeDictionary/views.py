@@ -105,7 +105,9 @@ def index(request):  # pragma: no cover
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
-        search_results = search_run.serialized_presentation_results()
+        search_results = search_run.serialized_presentation_results(
+            display_mode=DisplayMode.current_value_from_request(request)
+        )
         did_search = True
     else:
         search_results = []

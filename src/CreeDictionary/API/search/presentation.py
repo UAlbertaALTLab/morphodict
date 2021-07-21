@@ -62,7 +62,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_tail: Iterable[Label]
     relevant_tags: Iterable[SerializedLinguisticTag]
     # Maps a display modes to relabellings
-    relabelled_fst_analysis: dict[str, list[SerializedRelabelling]]
+    relabelled_fst_analysis: list[SerializedRelabelling]
 
 
 class SerializedRelabelling(TypedDict):
@@ -83,9 +83,16 @@ class PresentationResult:
     presentation things like labels.
     """
 
-    def __init__(self, result: types.Result, *, search_run: core.SearchRun):
+    def __init__(
+        self,
+        result: types.Result,
+        *,
+        search_run: core.SearchRun,
+        display_mode="community",
+    ):
         self._result = result
         self._search_run = search_run
+        self._display_mode = display_mode
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
@@ -157,24 +164,20 @@ class PresentationResult:
         )
 
     @property
-    def relabelled_fst_analysis(self) -> dict[str, list[SerializedRelabelling]]:
+    def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
         all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
-        result = {}
+        relabeller = {
+            "community": read_labels().english,
+            "linguistic": read_labels().linguistic_long,
+        }[self._display_mode]
 
-        for mode in DisplayMode.choices:
-            relabeller = {
-                "community": read_labels().english,
-                "linguistic": read_labels().linguistic_long,
-            }[mode]
-            labels = []
-            for tags in relabeller.chunk(all_tags):
-                label = relabeller.get_longest(tags)
-                assert label is not None
-                labels.append(serialize_relabelling(tags, label))
+        results = []
+        for tags in relabeller.chunk(all_tags):
+            label = relabeller.get_longest(tags)
+            assert label is not None
+            results.append(serialize_relabelling(tags, label))
 
-            result[mode] = labels
-
-        return result
+        return results
 
     def _chunk_plain_english_fst_labels(self) -> Iterable[tuple[FSTTag, ...]]:
         """
