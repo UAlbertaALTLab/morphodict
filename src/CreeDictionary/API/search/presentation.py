@@ -67,7 +67,13 @@ class SerializedPresentationResult(TypedDict):
 
 class SerializedRelabelling(TypedDict):
     """
-    TODO:
+    A relabelled "chunk". This might be one or more tags from the FST analysis.
+
+    Examples:
+         - {"tags": ["+N", "+A"], label": "animate noun"}
+         - {"tags": ["+Sg"], label": "singular"}
+         - {"tags": ["+V", "+T", "+A"], label": "animate transitive verb"}
+         - {"tags": ["+Obv"], label": "obviative"}
     """
 
     tags: list[FSTTag]
@@ -92,7 +98,10 @@ class PresentationResult:
     ):
         self._result = result
         self._search_run = search_run
-        self._display_mode = display_mode
+        self._relabeller = {
+            "community": read_labels().english,
+            "linguistic": read_labels().linguistic_long,
+        }.get(display_mode, DisplayMode.default)
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
@@ -151,20 +160,21 @@ class PresentationResult:
     @property
     def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
         """
-        TODO
+        Returns a list of relabellings for the suffix tags from the FST analysis.
+        The relabellings are returned according to the current display mode.
+
+        Note: the chunks that get relablled may change **depending on the display
+        mode**! That is, relabellings in one display mode might produce different
+        relabelled chunks in a different display mode!
         """
         all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
-        relabeller = {
-            "community": read_labels().english,
-            "linguistic": read_labels().linguistic_long,
-        }[self._display_mode]
 
         results = []
-        for tags in relabeller.chunk(all_tags):
-            label = relabeller.get_longest(tags)
+        for tags in self._relabeller.chunk(all_tags):
+            label = self._relabeller.get_longest(tags)
 
             if label is None:
-                # Skip unlablled chunks
+                # Skip unlabelled chunks
                 continue
 
             results.append(serialize_relabelling(tags, label))
