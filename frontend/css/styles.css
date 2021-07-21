@@ -710,6 +710,10 @@ a.multiple-recordings__action-button {
   margin: 0;
 }
 
+.preverb-breakdown__preverb-definition-text {
+  white-space: pre-line;
+}
+
 /********************************* PARADIGM *********************************/
 
 .paradigm {
@@ -1410,6 +1414,7 @@ a.menu-choice__label:active {
 .cite-dict--popup{
   /* Color */
   color: var(--cite-text-popup-color);
+  margin-left: 0.5rem;
 }
 
 /**
