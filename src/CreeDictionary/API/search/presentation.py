@@ -1,21 +1,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Literal, Optional, Tuple, TypedDict, cast
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
 from django.forms import model_to_dict
 
-from CreeDictionary.API.search import core, lookup, types
+from CreeDictionary.API.search import core, types
 from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import DisplayMode
 from morphodict.analysis import RichAnalysis
-from morphodict.lexicon.models import Wordform, wordform_cache
+from morphodict.lexicon.models import Wordform
 
-from ..schema import SerializedDefinition, SerializedLinguisticTag, SerializedWordform
-from .types import LinguisticTag, Preverb, linguistic_tag_from_fst_tags
+from ..schema import SerializedDefinition, SerializedWordform
+from .types import Preverb
 
 
 class AbstractResult:
