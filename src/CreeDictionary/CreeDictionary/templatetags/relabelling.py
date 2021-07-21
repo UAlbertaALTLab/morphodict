@@ -60,15 +60,6 @@ def relabel_one(context: Context, tag: FSTTag, **kwargs):
     return relabel(context, (tag,), **kwargs)
 
 
-@register.simple_tag(takes_context=True)
-def relabel_based_on_display_mode(context: Context, tag: FSTTag, **kwargs):
-    """
-    Consult the DisplayMode preference instead of ParadigmLabels when relabelling.
-    """
-    label_setting = label_setting_from_display_mode(context)
-    return relabel(context, (tag,), labels=label_setting, **kwargs)
-
-
 def label_setting_from_context(context: Context):
     """
     Returns the most appropriate paradigm label preference.
@@ -82,16 +73,3 @@ def label_setting_from_context(context: Context):
 
     # Cannot get the request context? We can't detect the current cookie :/
     return ParadigmLabel.default
-
-
-def label_setting_from_display_mode(context: Context):
-    """
-    Maps from the DisplayMode preference to the appropriate relabelling (see crkeng.preferences).
-    """
-    mode = context["preferences"].display_mode.current_choice
-    if mode == "linguistic":
-        return "linguistic"
-    elif mode == "community":
-        return "english"
-    else:
-        raise NotImplementedError(f"I don't know what to do for display mode: {mode}")
