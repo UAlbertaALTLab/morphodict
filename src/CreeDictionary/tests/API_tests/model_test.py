@@ -213,7 +213,36 @@ def test_search_words_with_preverbs():
     search_result = results.pop()
 
     assert len(search_result.preverbs) == 1
-    assert search_result.preverbs[0].text == "nitawi-"
+    assert search_result.preverbs[0]["text"] == "nitawi-"
+    assert search_result.lexical_info[0]["type"] == "Preverb"
+
+
+@pytest.mark.django_db
+def test_search_words_with_reduplication():
+    """
+    reduplication should be extracted and present in SearchResult instances
+    """
+    results = search(query="nanipâw").presentation_results()
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.lexical_info) == 1
+    assert search_result.lexical_info[0]["entry"]["text"] == "na-"
+    assert search_result.lexical_info[0]["type"] == "Reduplication"
+
+
+@pytest.mark.django_db
+def test_search_words_with_inital_change():
+    """
+    reduplication should be extracted and present in SearchResult instances
+    """
+    results = search(query="nêpat").presentation_results()
+    assert len(results) == 1
+    search_result = results.pop()
+
+    assert len(search_result.lexical_info) == 1
+    assert search_result.lexical_info[0]["entry"]["text"] == " "
+    assert search_result.lexical_info[0]["type"] == "Initial Change"
 
 
 @pytest.mark.django_db
