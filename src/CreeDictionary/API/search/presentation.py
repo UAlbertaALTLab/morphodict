@@ -100,10 +100,10 @@ class PresentationResult:
         ]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
-            list(t.strip("+") for t in self.linguistic_breakdown_head)
+            to_list_of_fst_tags(self.linguistic_breakdown_head)
         )
         self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
-            list(t.strip("+") for t in self.linguistic_breakdown_tail)
+            to_list_of_fst_tags(self.linguistic_breakdown_tail)
         )
 
     def serialize(self) -> SerializedPresentationResult:
@@ -149,7 +149,7 @@ class PresentationResult:
         :return:
         """
         return read_labels().english.chunk(
-            t.strip("+") for t in self.linguistic_breakdown_tail
+            to_list_of_fst_tags(self.linguistic_breakdown_tail)
         )
 
     def __str__(self):
@@ -383,3 +383,11 @@ def get_initial_change_types() -> List[dict[str, str]]:
             )
         }
     ]
+
+
+def to_list_of_fst_tags(raw_tags: Iterable[str]) -> list[FSTTag]:
+    """
+    Converts a series of tags (possibly from RichAnalysis or from a splitting a
+    smushed analysis) to a list of FSTTag. FSTTag instances can be used in relabellings.
+    """
+    return [FSTTag(t.strip("+")) for t in raw_tags]
