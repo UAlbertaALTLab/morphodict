@@ -68,9 +68,7 @@ context("Searching", () => {
 
           expect(popupText).to.contain("noun");
           expect(popupText).to.contain("animate");
-          // I would assert for "1st person plural" but that's not what's
-          // currently in the crk.altlabel.tsv file ¯\_(ツ)_/¯
-          expect(popupText).to.contain("1s");
+          expect(popupText).to.contain("1st person");
           expect(popupText).to.contain("plural");
         });
     });

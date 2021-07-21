@@ -167,9 +167,10 @@ class PresentationResult:
         mode**! That is, relabellings in one display mode might produce different
         relabelled chunks in a different display mode!
         """
-        all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
 
-        results = []
+        all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
+        results: list[SerializedRelabelling] = []
+
         for tags in self._relabeller.chunk(all_tags):
             label = self._relabeller.get_longest(tags)
 
@@ -177,18 +178,9 @@ class PresentationResult:
                 # Skip unlabelled chunks
                 continue
 
-            results.append(serialize_relabelling(tags, label))
+            results.append({"tags": list(tags), "label": str(label)})
 
         return results
-
-    def _chunk_plain_english_fst_labels(self) -> Iterable[tuple[FSTTag, ...]]:
-        """
-        Chunks FST tags according to the plain English relabellings.
-        :return:
-        """
-        return read_labels().english.chunk(
-            to_list_of_fst_tags(self.linguistic_breakdown_tail)
-        )
 
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
@@ -243,10 +235,6 @@ def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
         "type": lexical_entry.type,
         "original_tag": lexical_entry.original_tag,
     }
-
-
-def serialize_relabelling(tags: Iterable[FSTTag], label) -> SerializedRelabelling:
-    return {"tags": list(tags), "label": str(label)}
 
 
 def safe_partition_analysis(analysis: ConcatAnalysis):
