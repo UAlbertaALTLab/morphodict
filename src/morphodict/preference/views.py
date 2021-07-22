@@ -1,9 +1,33 @@
 from http import HTTPStatus
 
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpResponse, HttpRequest, Http404
 from django.views import View
+from django.views.decorators.http import require_POST
 
-from morphodict.preference import Preference
+from morphodict.preference import Preference, registry
+
+
+@require_POST
+def change_preference(request: HttpRequest, preference_name: str):
+    """
+    A view that sets the cookie for the preference named in the URL path:
+
+        > POST /change-preference/mode HTTP/1.1
+        > Referer: /search?q=miciw
+        > Cookie: mode=old-value
+        >
+        > mode=new-value
+
+        < HTTP/1.1 302 See Other
+        < Set-Cookie: mode=new-value
+        < Location: /search?q=miciw
+    """
+    try:
+        preference = registry()[preference_name]
+    except KeyError:
+        raise Http404(f"Preference does not exist: {preference_name}")
+
+    return _change_preference_cookie(request, preference)
 
 
 class ChangePreferenceView(View):
