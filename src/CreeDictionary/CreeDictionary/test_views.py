@@ -164,7 +164,7 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("cree-dictionary-change-display-mode")
+    url = reverse("preferences:change", args=[DisplayMode.name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP

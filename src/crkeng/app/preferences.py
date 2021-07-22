@@ -6,7 +6,7 @@ from morphodict.preference import register_preference, Preference
 
 
 @register_preference
-class DisplayMode:
+class DisplayMode(Preference):
     """
     As of 2021-04-14, "mode" is a coarse mechanism for affecting the display; there are
     plans for more fine-grained control over the display of, e.g., search results.
