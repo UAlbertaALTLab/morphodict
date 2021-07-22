@@ -58,6 +58,10 @@ urlpatterns = [
         views.ChangeParadigmLabelPreference.as_view(),
         name="cree-dictionary-change-paradigm-label",
     ),
+    # See morphodict.preference.urls for available views for interacting with prefs
+    path(
+        "_preference/", include("morphodict.preference.urls", namespace="preferences")
+    ),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
