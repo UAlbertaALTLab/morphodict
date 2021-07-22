@@ -2,7 +2,7 @@
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
 
-from morphodict.preference import register_preference
+from morphodict.preference import register_preference, Preference
 
 
 @register_preference
@@ -23,7 +23,7 @@ class DisplayMode:
 
 
 @register_preference
-class ParadigmLabel:
+class ParadigmLabel(Preference):
     """
     What style labels should be used in the paradigm?
     """

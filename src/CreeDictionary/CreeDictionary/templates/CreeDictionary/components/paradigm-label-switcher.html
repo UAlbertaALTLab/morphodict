@@ -25,7 +25,7 @@
         <ul class="unbullet">
           {% for value, label in preferences.paradigm_label.choices_with_labels %}
           <li class="menu-choice{% if value == preferences.paradigm_label.current_choice %} menu-choice--selected{% endif %}">
-            <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}">
+            <form method="POST" action="{% url "preferences:change" "paradigm_label" %}">
               <button type="submit" class="unbutton fill-width"
                       name="paradigmlabel" value="{{ value }}">
                 <span class="menu-choice__label">{{ label|capfirst }}</span>

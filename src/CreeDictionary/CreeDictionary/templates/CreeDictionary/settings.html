@@ -13,7 +13,7 @@
     <p class="setting__note"> These are the labels that appear on the <strong>paradigm
         table</strong> to label features like person, tense, plurals, etc.</p>
 
-    <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}" data-save-preference="paradigmlabel">
+    <form method="POST" action="{% url "preferences:change" "paradigm_label" %}" data-save-preference="paradigmlabel">
       <ul class="unbullet">
       {% for value, label in preferences.paradigm_label.choices_with_labels %}
         <li class="option">

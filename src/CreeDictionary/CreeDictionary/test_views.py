@@ -192,7 +192,7 @@ def test_change_paradigm_label_preference(option, whence, client: Client):
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("cree-dictionary-change-paradigm-label")
+    url = reverse("preferences:change", args=[ParadigmLabel.name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP
