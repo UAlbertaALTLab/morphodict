@@ -47,10 +47,8 @@ urlpatterns = [
         name="cree-dictionary-paradigm-detail",
     ),
     # See morphodict.preference.urls for all available views
-    # Hint: You will probably use preferences:change the most!
-    path(
-        "_preference/", include("morphodict.preference.urls", namespace="preferences")
-    ),
+    # Hint: You will probably use preference:change the most!
+    path("_preference/", include("morphodict.preference.urls", namespace="preference")),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(
