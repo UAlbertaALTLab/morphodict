@@ -1,7 +1,6 @@
 from http import HTTPStatus
 
 from django.http import HttpResponse, HttpRequest, Http404
-from django.views import View
 from django.views.decorators.http import require_POST
 
 from morphodict.preference import Preference, registry
@@ -11,6 +10,8 @@ from morphodict.preference import Preference, registry
 def change_preference(request: HttpRequest, name: str):
     """
     A view that sets the cookie for the preference named in the URL path:
+
+    Uses the cookie name, and choices from the given preference.
 
         > POST /change-preference/mode HTTP/1.1
         > Referer: /search?q=miciw
@@ -28,44 +29,6 @@ def change_preference(request: HttpRequest, name: str):
         raise Http404(f"Preference does not exist: {name}")
 
     return _change_preference_cookie(request, preference)
-
-
-class ChangePreferenceView(View):
-    """
-    A generic view (class-based view) that sets the cookie for a preference.
-
-    Usage:
-
-        # views.py
-        class ChangeMyPreference(ChangePreferenceView):
-            preference = MyPreferenceSubclass
-
-        # urls.py
-        urlpatterns = [
-            ...,
-            path("change-my-preference, ChangeMyPreference.as_view()),
-        ]
-
-    Uses cookie name, and options from the given preference.
-
-        > POST /change-preference HTTP/1.1
-        > Referer: /search?q=miciw
-        > Cookie: preference=old-value
-        >
-        > preference=new-value
-
-        < HTTP/1.1 302 See Other
-        < Set-Cookie: mode=linguistic
-        < Location: /search?q=miciw
-
-    See also: https://docs.djangoproject.com/en/3.2/topics/class-based-views/
-    """
-
-    preference: Preference
-
-    def post(self, request) -> HttpResponse:
-        preference = self.preference
-        return _change_preference_cookie(request, preference)
 
 
 def _change_preference_cookie(request: HttpRequest, preference: Preference):
