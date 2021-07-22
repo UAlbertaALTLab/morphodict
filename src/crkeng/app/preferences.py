@@ -38,3 +38,31 @@ class ParadigmLabel(Preference):
         "nehiyawewin": "nêhiyawêwin labels",
     }
     default = "english"
+
+
+@register_preference
+class AnimateEmoji:
+    """
+    Which emoji to use to substitute all animate emoji (awa words).
+    """
+
+    cookie_name = "awaemoji"
+
+    default = "iyiniw"  # backwards-compatible
+    choices = {
+        "iyiniw": "🧑🏽",  # iyiniw (NA)/tastawiyiniw (NA)
+        "granny": "👵🏽",  # kôhkom/*kokum (NDA)
+        "grandpa": "👴🏽",  # môsom/*moshum (NDA)
+        # Required by requester of this feature:
+        "wolf": "🐺",  # mahihkan (NA)
+        # Required for community partner
+        "bear": "🐻",  # maskwa (NA)
+        # Counter-intuitive awa word:
+        "bread": "🍞",  # pahkwêsikan (NA)
+        # Significant awa word:
+        "star": "🌟",  # atâhk/acâhkos (NA)
+        # I don't want to add too many options to start with, but more can always be
+        # added in the future like:
+        # - 🦬 paskwâwi-mostsos
+        # - 🦫 amisk
+    }
