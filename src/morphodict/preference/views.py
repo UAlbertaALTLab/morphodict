@@ -39,14 +39,6 @@ class ChangePreferenceView(View):
 
     preference: Preference
 
-    @property
-    def cookie_name(self):
-        return self.preference.cookie_name
-
-    @property
-    def choices(self):
-        return self.preference.choices
-
     def post(self, request) -> HttpResponse:
         preference = self.preference
 
