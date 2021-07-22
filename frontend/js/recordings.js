@@ -1,4 +1,5 @@
 import SimpleTemplate from "./simple-template.js";
+import chunk from "lodash.chunk";
 
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
@@ -109,8 +110,14 @@ function showRecordingsExplainerText() {
  * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
-  // TODO: chunk results
-  let chunks = [requestedWordforms];
+  // We chose 50 as the chunk size somewhat arbitrarily; however:
+  // 90 is too much; it can cause uwsgi to reject to server requests:
+  // https://github.com/UAlbertaALTLab/recording-validation-interface/issues/239
+  //
+  // 50 is a large enough number of wordforms to search at once.
+  const MAX_WORDFORMS_PER_REQUEST = 50;
+
+  let chunks = chunk(Array.from(requestedWordforms), MAX_WORDFORMS_PER_REQUEST);
 
   let allMatchedRecordings = [];
   let allNotFound = [];
