@@ -106,9 +106,34 @@ function showRecordingsExplainerText() {
  * Uses speech-db's bulk API to search for recordsings.
  *
  * @param {Iterable<str>}  one or more wordforms to search for.
- * @return {BulkSearchResponse} see API documentation: TODO
+ * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
+  // TODO: chunk results
+  let chunks = [requestedWordforms];
+
+  let allMatchedRecordings = [];
+  let allNotFound = [];
+
+  for (let chunk of chunks) {
+    let response = await _fetchRecordingUsingBulkSearch(requestedWordforms);
+
+    response["matched_recordings"].forEach((rec) =>
+      allMatchedRecordings.push(rec)
+    );
+    response["not_found"].forEach((rec) => allNotFound.push(rec));
+  }
+
+  return {
+    matched_recordings: allMatchedRecordings,
+    not_found: allNotFound,
+  };
+}
+
+/**
+ * ACTUALLY does one HTTP request to the speech-db.
+ */
+async function _fetchRecordingUsingBulkSearch(requestedWordforms) {
   // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
