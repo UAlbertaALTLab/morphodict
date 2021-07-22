@@ -8,7 +8,7 @@ from morphodict.preference import Preference, registry
 
 
 @require_POST
-def change_preference(request: HttpRequest, preference_name: str):
+def change_preference(request: HttpRequest, name: str):
     """
     A view that sets the cookie for the preference named in the URL path:
 
@@ -23,9 +23,9 @@ def change_preference(request: HttpRequest, preference_name: str):
         < Location: /search?q=miciw
     """
     try:
-        preference = registry()[preference_name]
+        preference = registry()[name]
     except KeyError:
-        raise Http404(f"Preference does not exist: {preference_name}")
+        raise Http404(f"Preference does not exist: {name}")
 
     return _change_preference_cookie(request, preference)
 
