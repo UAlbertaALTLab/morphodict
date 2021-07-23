@@ -8,13 +8,16 @@ type DefinitionList = {
   sources: string[];
 }[];
 
-class DictionaryEntry {
+type DefaultLinguistInfo = never;
+
+class DictionaryEntry<L> {
   head?: string;
   analysis?: Analysis;
   paradigm?: string;
   senses?: DefinitionList;
   slug?: string;
   fstLemma?: string;
+  linguistInfo?: L;
 
   addDefinition(definition: string, sources: string[]) {
     if (!definition.trim()) {
@@ -34,25 +37,25 @@ class DictionaryEntry {
   }
 }
 
-class Wordform {
+class Wordform<L> {
   head?: string;
   analysis?: Analysis;
   senses?: DefinitionList;
-  formOf?: DictionaryEntry;
+  formOf?: DictionaryEntry<L>;
 }
 
-type ExportableWordform = Required<Omit<Wordform, "formOf">> & {
+type ExportableWordform<L> = Required<Omit<Wordform<L>, "formOf">> & {
   formOf: string;
 };
 
-export class Dictionary {
+export class Dictionary<L = DefaultLinguistInfo> {
   /**
    * FST tags which distinguish the lexeme, e.g., +N and +V, as opposed to tags
    * that distinguish the wordform within a lexeme, e.g., +Sg and +Pl.
    */
   readonly lexicalTags: Set<string>;
-  _entries: (DictionaryEntry | Wordform)[];
-  _byText: Map<string, DictionaryEntry>;
+  _entries: (DictionaryEntry<L> | Wordform<L>)[];
+  _byText: Map<string, DictionaryEntry<L>>;
 
   constructor(lexicalTags: string[]) {
     this.lexicalTags = new Set(lexicalTags);
@@ -98,7 +101,7 @@ export class Dictionary {
    */
   determineLemmas() {
     // Save locations for replacing with Wordform objects
-    const entryIndices = new Map<DictionaryEntry, number>();
+    const entryIndices = new Map<DictionaryEntry<L>, number>();
     for (let i = 0; i < this._entries.length; i++) {
       const e = this._entries[i];
       if (e instanceof DictionaryEntry) {
@@ -107,9 +110,10 @@ export class Dictionary {
     }
 
     // Group by lemma and lexical tags
-    const byFstLemmaAndLexicalTags = new DefaultMap<string, DictionaryEntry[]>(
-      () => Array()
-    );
+    const byFstLemmaAndLexicalTags = new DefaultMap<
+      string,
+      DictionaryEntry<L>[]
+    >(() => Array());
     for (const e of this._entries) {
       if (e instanceof DictionaryEntry) {
         if (!e.analysis) {
@@ -134,7 +138,7 @@ export class Dictionary {
         if (e === lemmaEntry) {
           continue;
         }
-        const wordform = new Wordform();
+        const wordform = new Wordform<L>();
         wordform.head = e.head;
         wordform.analysis = e.analysis;
         wordform.senses = e.senses;
@@ -170,7 +174,7 @@ export class Dictionary {
       return existing;
     }
 
-    const entry = new DictionaryEntry();
+    const entry = new DictionaryEntry<L>();
 
     // This happens for a couple of entries in the Tsuut’ina “Vocabulary”
     // spreadsheet input.
@@ -194,7 +198,7 @@ export class Dictionary {
     this.assignSlugs();
     this.determineLemmas();
 
-    let entriesToExport: (DictionaryEntry | ExportableWordform)[] = [];
+    let entriesToExport: (DictionaryEntry<L> | ExportableWordform<L>)[] = [];
     for (const e of this._entries) {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
@@ -219,8 +223,8 @@ export class Dictionary {
     }
 
     entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText) as (
-      | DictionaryEntry
-      | ExportableWordform
+      | DictionaryEntry<L>
+      | ExportableWordform<L>
     )[];
 
     return makePrettierJson(entriesToExport);
@@ -229,7 +233,9 @@ export class Dictionary {
 
 // If you change how this sort works, you should change the matching
 // entry_sort_key function written in Python as well.
-function entryKeyBySlugThenText(entry: DictionaryEntry | ExportableWordform) {
+function entryKeyBySlugThenText<T>(
+  entry: DictionaryEntry<T> | ExportableWordform<T>
+) {
   let slug: string;
   let form: string;
 

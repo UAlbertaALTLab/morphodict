@@ -52,6 +52,25 @@ class PresentationResult:
 
         self.preverbs = get_preverbs_from_head_breakdown(self.linguistic_breakdown_head)
 
+        # HACK: if arapaho tags, move head tags to tail
+        # better fix would be, lang-specific function that takes in full
+        # analysis and does elaboration
+        self.linguistic_breakdown_head = list(self.linguistic_breakdown_head)
+        self.linguistic_breakdown_tail = list(self.linguistic_breakdown_tail)
+
+        new_head = []
+        new_tail_prefix = []
+        for i, tag in enumerate(self.linguistic_breakdown_head[:]):
+            if tag.startswith("["):
+                new_tail_prefix.append(tag)
+            else:
+                new_head.append(tag)
+        self.linguistic_breakdown_head = new_head
+        self.linguistic_breakdown_tail = (
+            new_tail_prefix + self.linguistic_breakdown_tail
+        )
+        # End HACK
+
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             list(t.strip("+") for t in self.linguistic_breakdown_head)
         )
