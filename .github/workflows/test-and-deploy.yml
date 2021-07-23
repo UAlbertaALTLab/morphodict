@@ -187,9 +187,9 @@ jobs:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
 
     - name: 📥 Install Node dependencies
-      run: cd munge && npm install
-    - name: Run node tests
       run: cd munge && npm ci
+    - name: Run node tests
+      run: cd munge && npm run test:ci
 
   trigger-deployment:
     runs-on: ubuntu-latest
