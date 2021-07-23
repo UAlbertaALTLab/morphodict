@@ -5,13 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#A20010">
-  {% block metatags %}
-  {% include 'CreeDictionary/components/metatags.html' %}
+  {% block headincludes %}
   {% endblock %}
-  <link rel="icon" type="image/png" href="{% static 'CreeDictionary/images/itwewina-32.png' %}">
-  <link rel="alternate icon" type="image/svg+xml" href="{% static 'CreeDictionary/images/itwewina.svg' %}">
-  <link rel="mask-icon" href="{% static 'CreeDictionary/images/itwewina-safari-pinned-tab.svg' %}" color="#FAEBD7">
-  <link rel="apple-touch-icon" href="{% static 'CreeDictionary/images/itwewina-192.png' %}">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
@@ -38,8 +33,8 @@
 {% endif %}
 <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
 {% csrf_token %}
-{% include './svg-sprites.html' %}
-{% include './components/header.html' %}
+{% include 'CreeDictionary/svg-sprites.html' %}
+{% include 'CreeDictionary/components/header.html' %}
 
 {% spaceless %}
   {# The 🔊 button template. Gets inflated by JavaScript. #}
