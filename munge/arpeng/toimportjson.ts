@@ -12,6 +12,15 @@ const RESOURCE_DIR = resourceDir("arpeng");
 const DICTIONARY_DIR = joinPath(RESOURCE_DIR, "dictionary");
 const FST_DIR = joinPath(RESOURCE_DIR, "fst");
 
+type ArapahoLexiconEntry = {
+  base_form: string;
+  status: string;
+  pos: string;
+  lex: string;
+  senses: [{ definition: string }];
+};
+type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
+
 async function main() {
   const program = new Command();
   program
@@ -42,11 +51,11 @@ async function main() {
 
   const lexicalDatabase = JSON.parse(
     await readFile(options.inputLexicon, "utf-8")
-  );
+  ) as AraphoLexicon;
 
   const dictionary = new Dictionary([]);
 
-  for (const [key, obj] of Object.entries(lexicalDatabase)) {
+  for (const [_key, obj] of Object.entries(lexicalDatabase)) {
     if (obj.status === "deleted") {
       continue;
     }
@@ -126,7 +135,7 @@ async function main() {
           (lemma) =>
             `[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]${lemma}[1SG-SUBJ][2SG-OBJ]`,
         ],
-      ]) {
+      ] as [string, string, (lemma: string) => string][]) {
         if (obj.pos.startsWith(pos)) {
           const lemma = obj.lex.replace(/-$/, "");
           const generated = normativeGenerator.lookup(template(lemma));
