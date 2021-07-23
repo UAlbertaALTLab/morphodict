@@ -3,6 +3,7 @@
     "commander": "^8.0.0",
     "execifmain": "^0.0.2",
     "hfstol": "^0.0.3",
+    "lodash": "^4.17.21",
     "prettier": "^2.3.2",
     "sucrase": "^3.19.0"
   },
