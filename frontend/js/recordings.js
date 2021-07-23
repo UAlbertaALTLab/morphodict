@@ -109,14 +109,13 @@ function showRecordingsExplainerText() {
  * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
-  // TODO: chunk results
-  let chunks = [requestedWordforms];
+  let batches = chunk(requestedWordforms);
 
   let allMatchedRecordings = [];
   let allNotFound = [];
 
-  for (let chunk of chunks) {
-    let response = await _fetchRecordingUsingBulkSearch(requestedWordforms);
+  for (let batch of batches) {
+    let response = await _fetchRecordingUsingBulkSearch(batch);
 
     response["matched_recordings"].forEach((rec) =>
       allMatchedRecordings.push(rec)
@@ -170,4 +169,28 @@ function mapWordformsToBestRecordingURL(response) {
   }
 
   return wordform2recordingURL;
+}
+
+/**
+ * Chunks the iterable into subarrays of a maximum size.
+
+ * @param {Iterable<T>}  one or more wordforms to search for.
+ * @return {Array<Array<T>}}
+ */
+function chunk(collection) {
+  const MAX_BATCH_SIZE = 50;
+
+  let chunks = [[]];
+  for (let item of collection) {
+    let currentChunk = chunks[chunks.length - 1];
+
+    if (currentChunk.length >= MAX_BATCH_SIZE) {
+      currentChunk = [];
+      chunks.push(currentChunk);
+    }
+
+    currentChunk.push(item);
+  }
+
+  return chunks;
 }
