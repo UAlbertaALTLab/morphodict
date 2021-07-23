@@ -331,3 +331,12 @@ AFFIX_SEARCH_THRESHOLD = 4
 # This defaults to False, because in order to work it requires that there
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
+
+# Feature currently in development: use fst_lemma database field instead of
+# lemma text when generating wordforms
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
+
+# The style of tag used by the analyzer+generator FSTs. Must be "Plus" or
+# "Bracket". "Plus" is the ALTLab/Giella-style nipâw+V+AI+Ind+3Sg; "Bracket" is
+# a different style, with tags like `[VERB][TA]`.
+MORPHODICT_TAG_STYLE = "Plus"

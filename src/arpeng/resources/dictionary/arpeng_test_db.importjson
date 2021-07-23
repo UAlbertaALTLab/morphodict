@@ -1,0 +1,45 @@
+[
+  {
+    "head": "níhooyóó-",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "paradigm": "II",
+    "fstLemma": "nihooyoo",
+    "slug": "níhooyóó-"
+  },
+  {
+    "head": "níhoonéíhi-",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "paradigm": "AI",
+    "fstLemma": "nihooneihi",
+    "slug": "níhoonéíhi-"
+  },
+  {
+    "head": "nóóhow-",
+    "senses": [
+      {
+        "definition": "see",
+        "sources": ["ALD"]
+      }
+    ],
+    "paradigm": "TA",
+    "fstLemma": "noohow",
+    "slug": "nóóhow-"
+  },
+  {
+    "head": "noohóot-",
+    "senses": [{ "definition": "see s.t.", "sources": ["ALD"] }],
+    "paradigm": "TI",
+    "fstLemma": "noohoot",
+    "slug": "noohóot-"
+  }
+]

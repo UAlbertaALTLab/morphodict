@@ -36,10 +36,9 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
-STRICT_ANALYZER_FST_FILENAME = "arapahoverbs-analyzer.hfstol"
-STRICT_GENERATOR_FST_FILENAME = "arapahoverbs-generator.hfstol"
-# There is no relaxed analyzer yet
-RELAXED_ANALYZER_FST_FILENAME = STRICT_ANALYZER_FST_FILENAME
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"
@@ -53,3 +52,7 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "Latin"},
     },
 }
+
+MORPHODICT_TAG_STYLE = "Bracket"
+
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True

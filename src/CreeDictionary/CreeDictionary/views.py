@@ -355,7 +355,12 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if paradigm := manager.paradigm_for(name, wordform.lemma.text, paradigm_size):
+        fst_lemma = wordform.lemma.text
+
+        if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
+            fst_lemma = wordform.lemma.fst_lemma
+
+        if paradigm := manager.paradigm_for(name, fst_lemma, paradigm_size):
             return paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
