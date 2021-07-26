@@ -76,7 +76,6 @@ INSTALLED_APPS = [
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
-    "morphodict.lexicon",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
