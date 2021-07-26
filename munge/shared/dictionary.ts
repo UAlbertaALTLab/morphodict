@@ -55,42 +55,46 @@ export class Dictionary<L = DefaultLinguistInfo> {
    */
   readonly lexicalTags: Set<string>;
   _entries: (DictionaryEntry<L> | Wordform<L>)[];
-  _byText: Map<string, DictionaryEntry<L>>;
+  _byText: Map<string, DictionaryEntry<L>[]>;
+  _bySlug: Map<string, DictionaryEntry<L>>;
 
   constructor(lexicalTags: string[]) {
     this.lexicalTags = new Set(lexicalTags);
     this._entries = [];
     this._byText = new Map();
+    this._bySlug = new Map();
   }
 
   // This is a quick-and-dirty version; the git history has a slug_disambiguator
   // function with a fairly general-purpose algorithm that could be ported to
   // js.
   assignSlugs() {
-    const used = new Set<string>();
     for (const e of this._entries) {
       if (!(e instanceof DictionaryEntry)) {
         continue;
       }
 
-      // Current algorithm do assign slugs doesn’t support importing entries
+      // Current algorithm to assign slugs doesn’t support importing entries
       // with existing slugs.
-      assert(!("slug" in e));
+      if (e.slug) {
+        continue;
+      }
+
       let saferHeadWord = e.head!.replace(/[/\\ ]+/g, "_");
 
       let newSlug;
-      if (!used.has(saferHeadWord)) {
+      if (!this._bySlug.has(saferHeadWord)) {
         newSlug = saferHeadWord;
       } else {
         for (let i = 1; ; i++) {
           let proposed = `${saferHeadWord}@${i}`;
-          if (!used.has(proposed)) {
+          if (!this._bySlug.has(proposed)) {
             newSlug = proposed;
             break;
           }
         }
       }
-      used.add(newSlug!);
+      this._bySlug.set(newSlug!, e);
       e.slug = newSlug;
     }
   }
@@ -166,12 +170,24 @@ export class Dictionary<L = DefaultLinguistInfo> {
     return [...new Set(ret)].sort();
   }
 
-  getOrCreate(text: string) {
+  getOrCreate({ text, slug }: { text: string; slug?: string }) {
     assert(text);
 
-    let existing = this._byText.get(text);
-    if (existing) {
-      return existing;
+    if (slug) {
+      const existing = this._bySlug.get(slug);
+      if (existing) {
+        assert(existing.head === text);
+        return existing;
+      }
+    } else {
+      const candidates = this._byText.get(text);
+      // Passing different slugs may have created multiple entries with the same
+      // text. In that case it’s an error to call getOrCreate and pass only text
+      // and not a slug.
+      assert(!candidates || candidates.length <= 1);
+      if (candidates?.length === 1) {
+        return candidates[0];
+      }
     }
 
     const entry = new DictionaryEntry<L>();
@@ -185,8 +201,20 @@ export class Dictionary<L = DefaultLinguistInfo> {
     }
 
     entry.head = text;
+    let currentByTextList = this._byText.get(text);
+    if (currentByTextList) {
+      currentByTextList.push(entry);
+    } else {
+      this._byText.set(text, [entry]);
+    }
+
+    if (slug) {
+      entry.slug = slug;
+      this._bySlug.set(slug, entry);
+    }
+
     this._entries.push(entry);
-    this._byText.set(text, entry);
+
     return entry;
   }
 
@@ -194,7 +222,7 @@ export class Dictionary<L = DefaultLinguistInfo> {
    * Assign slugs, determine lemmas, and return a prettified JSON string for the
    * dictionary as a whole.
    */
-  assemble() {
+  assemble({ pretty } = { pretty: true }) {
     this.assignSlugs();
     this.determineLemmas();
 
@@ -203,6 +231,9 @@ export class Dictionary<L = DefaultLinguistInfo> {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
         continue;
+      }
+      if (e.head === "sa-") {
+        debugger;
       }
 
       if (e instanceof Wordform) {
@@ -227,7 +258,11 @@ export class Dictionary<L = DefaultLinguistInfo> {
       | ExportableWordform<L>
     )[];
 
-    return makePrettierJson(entriesToExport);
+    if (pretty) {
+      return makePrettierJson(entriesToExport);
+    } else {
+      return JSON.stringify(entriesToExport, null, 2);
+    }
   }
 }
 

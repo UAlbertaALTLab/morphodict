@@ -116,7 +116,7 @@ async function main() {
       console.log(`Warning: no definition for row with head ${head}`);
     }
 
-    const entry = dictionary.getOrCreate(head);
+    const entry = dictionary.getOrCreate({ text: head });
     entry.addDefinition(definition, ["OS"]);
 
     const analyses = analyzer.lookup_lemma_with_affixes(head);
