@@ -1,22 +1,20 @@
-"use strict";
-
 /**
  * Shared crkeng + cwdeng toimportjson script.
  *
  * Turns ndjson to importjson.
  */
 
+import { readFile } from "fs/promises";
+import { join as joinPath } from "path";
 import { Command } from "commander";
+import { execIfMain } from "execifmain";
+import { intersection, isEqual, min, uniqBy } from "lodash";
+import { Transducer } from "hfstol";
 import { resourceDir } from "../shared/util";
-import { Analysis, Dictionary } from "../shared/dictionary";
+import { Analysis } from "../shared/dictionary";
+import { CrkImport, CwdImport } from "./import";
 
-const { Transducer } = require("hfstol");
-const { execIfMain } = require("execifmain");
-const { readFile, writeFile } = require("fs/promises");
-const { join: joinPath } = require("path");
-const { intersection, min, isEqual, uniqBy } = require("lodash");
-
-type NdjsonEntry = {
+export type NdjsonEntry = {
   dataSources: {
     [SourceAbbreviation: string]: {
       senses: { definition: string }[];
@@ -29,11 +27,11 @@ type NdjsonEntry = {
   key: string;
 };
 
-type CreeLinguistInfo = {
+export type CreeLinguistInfo = {
   pos?: string;
+  inflectional_category?: string;
   stem?: string;
-  smushedAnalysis?: string;
-  protoCree?: string;
+  proto_cree?: string;
 };
 
 const CRK_RESOURCE_DIR = resourceDir("crkeng");
@@ -43,18 +41,18 @@ const CRK_FST_DIR = joinPath(CRK_RESOURCE_DIR, "fst");
 const CWD_RESOURCE_DIR = resourceDir("cwdeng");
 const CWD_DICTIONARY_DIR = joinPath(CWD_RESOURCE_DIR, "dictionary");
 
-const personalPronouns = new Set([
+export const PERSONAL_PRONOUNS = new Set([
   // Personal pronouns
-  "niya",
-  "kiya",
-  "wiya",
-  "niyanân",
-  "kiyânaw",
-  "kiyawâw",
-  "wiyawâw",
+  "niýa",
+  "kiýa",
+  "wiýa",
+  "niýanân",
+  "kiýânaw",
+  "kiýawâw",
+  "wiýawâw",
 ]);
 
-const demonstrativePronouns = new Set([
+export const DEMONSTRATIVE_PRONOUNS = new Set([
   // Animate demonstratives
   "awa",
   "ana",
@@ -77,17 +75,34 @@ const demonstrativePronouns = new Set([
 
 // If we’ve whittled choices down to just the analyses listed, take the first
 // one in the list.
-const tieBreakers = [
+const TIE_BREAKERS = [
   ["maskwa+N+A+Sg", "maskwa+N+A+Obv"],
   ["niska+N+A+Sg", "niska+N+A+Obv"],
   ["môswa+N+A+Sg", "môswa+N+A+Obv"],
+];
+
+// A list of tags which indicate different lexemes, e.g., nêwokâtêw+N vs
+// nêwokâtêw+V+II, as opposed to tags like +Sg/+Pl that indicate different
+// wordforms in the same lexeme.
+//
+// Used by the Dictionary class to link up wordforms into lexemes.
+export const CREE_LEXICAL_TAGS = [
+  "+A",
+  "+AI",
+  "+D",
+  "+I",
+  "+II",
+  "+N",
+  "+TA",
+  "+TI",
+  "+V",
 ];
 
 function getTieBreaker(analyses: Analysis[]) {
   // FIXME: on all but tiny input dictionaries, tieBreakers should be turned
   // into a map by lemma.
   const smushed = analyses.map((a) => smushAnalysis(a));
-  for (const tb of tieBreakers) {
+  for (const tb of TIE_BREAKERS) {
     if (isEqual(tb, smushed)) {
       for (const a of analyses) {
         if (smushAnalysis(a) === tb[0]) {
@@ -99,85 +114,34 @@ function getTieBreaker(analyses: Analysis[]) {
   return null;
 }
 
-let analyzer: typeof Transducer;
+let analyzer: Transducer;
 
-/**
- * If the FST analysis matches, return {analysis, paradigm}. Otherwise return null.
- */
-function matchAnalysis(
-  analysis: Analysis,
-  { head, pos }: { head: string; pos: unknown }
-): { analysis: Analysis; paradigm: string | null } | null {
-  if (!pos || !(typeof pos === "string")) {
-    return null;
-  }
-
-  const [_prefixTags, _lemma, suffixTags] = analysis;
-
-  if (pos.startsWith("I")) {
-    if (suffixTags.includes("+Ipc")) {
-      return { analysis, paradigm: null };
-    }
-  }
-
-  if (
-    pos === "PrA" &&
-    personalPronouns.has(head) &&
-    suffixTags.includes("+Pron") &&
-    suffixTags.includes("+Pers")
-  ) {
-    return { analysis, paradigm: "personal-pronouns" };
-  }
-
-  if (
-    (pos === "PrA" || pos === "PrI") &&
-    demonstrativePronouns.has(head) &&
-    suffixTags.includes("+Pron") &&
-    suffixTags.includes("+Dem")
-  ) {
-    return { analysis, paradigm: "demonstrative-pronouns" };
-  }
-
-  if ((pos === "PrA" || pos === "PrI") && suffixTags.includes("+Pron")) {
-    return { analysis, paradigm: null };
-  }
-
-  const specificWordClass = pos.split("-")[0];
-
-  for (let [paradigmName, paradigmSpecificWordClass, paradigmTags] of [
-    ["NA", "NA", ["+N", "+A"]],
-    ["NI", "NI", ["+N", "+I"]],
-    ["NDA", "NDA", ["+N", "+A", "+D"]],
-    ["NDI", "NDI", ["+N", "+I", "+D"]],
-    ["VTA", "VTA", ["+V", "+TA"]],
-    ["VTI", "VTI", ["+V", "+TI"]],
-    ["VAI", "VAI", ["+V", "+AI"]],
-    ["VII", "VII", ["+V", "+II"]],
-  ] as [string, string, string[]][]) {
-    if (
-      specificWordClass === paradigmSpecificWordClass &&
-      intersection(paradigmTags, suffixTags).length === paradigmTags.length
-    ) {
-      return { analysis, paradigm: paradigmName };
-    }
-  }
-  return null;
-}
-
-function smushAnalysis(lemma_with_affixes: Analysis) {
+export function smushAnalysis(lemma_with_affixes: Analysis) {
   const [prefixTags, lemma, suffixTags] = lemma_with_affixes;
   return [prefixTags.join(""), lemma, suffixTags.join("")].join("");
 }
 
 /**
+ * Attempt to infer the correct FST analysis of the provided head, given the pos.
+ *
+ * matchAnalysis() does the work of figuring out if an FST analysis could
+ * potentially apply to the given headword. If there are multiple viable
+ * candidates, this method tries to pick the best one.
+ *
+ * Currently it will pick the matching analysis with the lowest tag count if
+ * there is one, otherwise it requires a manual entry in TIE_BREAKERS
+ * above.
+ *
  * `key` is only used for error/warning messages.
  */
-function inferAnalysis({
+export function inferAnalysis({
   head,
+  protoHead,
   pos,
   key,
 }: {
   head: string;
+  protoHead: string;
   pos?: string;
   key?: string;
 }): { analysis?: Analysis; paradigm?: string; ok: boolean } {
@@ -191,7 +155,7 @@ function inferAnalysis({
   // Does FST analysis match POS from toolbox file?
   let matches = [];
   for (const a of analyses) {
-    const match = matchAnalysis(a, { head, pos });
+    const match = matchAnalysis(a, { head, pos, protoHead });
     if (match) {
       matches.push(match);
     }
@@ -246,17 +210,81 @@ function inferAnalysis({
   return { analysis, paradigm: paradigm ?? undefined, ok };
 }
 
-function protoToWoods(s: string) {
-  let ret = s;
-  ret = ret.replace(/ý/g, "th");
-  ret = ret.replace(/ê/g, "î");
-  return ret;
-}
+/**
+ * If the FST analysis matches, return {analysis, paradigm}. Otherwise return null.
+ *
+ * For example, a +V+II analysis will match to an entry with pos = VII, but
+ * not to one with pos = VAI.
+ */
+export function matchAnalysis(
+  analysis: Analysis,
+  { head, pos, protoHead }: { head: string; pos: unknown; protoHead: string }
+): { analysis: Analysis; paradigm: string | null } | null {
+  if (!pos || !(typeof pos === "string")) {
+    return null;
+  }
 
-function protoToPlains(s: string) {
-  let ret = s;
-  ret = ret.replace(/ý/g, "y");
-  return ret;
+  const [_prefixTags, _lemma, suffixTags] = analysis;
+
+  if (pos.startsWith("I")) {
+    if (suffixTags.includes("+Ipc")) {
+      return { analysis, paradigm: null };
+    }
+  }
+
+  if (
+    pos === "PrA" &&
+    PERSONAL_PRONOUNS.has(protoHead) &&
+    suffixTags.includes("+Pron") &&
+    suffixTags.includes("+Pers")
+  ) {
+    return { analysis, paradigm: "personal-pronouns" };
+  }
+
+  if (
+    pos === "PrA" &&
+    DEMONSTRATIVE_PRONOUNS.has(protoHead) &&
+    suffixTags.includes("+Pron") &&
+    suffixTags.includes("+Dem") &&
+    suffixTags.includes("+A")
+  ) {
+    return { analysis, paradigm: "demonstrative-pronouns" };
+  }
+
+  if (
+    pos === "PrI" &&
+    DEMONSTRATIVE_PRONOUNS.has(protoHead) &&
+    suffixTags.includes("+Pron") &&
+    suffixTags.includes("+Dem") &&
+    suffixTags.includes("+I")
+  ) {
+    return { analysis, paradigm: "demonstrative-pronouns" };
+  }
+
+  if ((pos === "PrA" || pos === "PrI") && suffixTags.includes("+Pron")) {
+    return { analysis, paradigm: null };
+  }
+
+  const specificWordClass = pos.split("-")[0];
+
+  for (let [paradigmName, paradigmSpecificWordClass, paradigmTags] of [
+    ["NA", "NA", ["+N", "+A"]],
+    ["NI", "NI", ["+N", "+I"]],
+    ["NDA", "NDA", ["+N", "+A", "+D"]],
+    ["NDI", "NDI", ["+N", "+I", "+D"]],
+    ["VTA", "VTA", ["+V", "+TA"]],
+    ["VTI", "VTI", ["+V", "+TI"]],
+    ["VAI", "VAI", ["+V", "+AI"]],
+    ["VII", "VII", ["+V", "+II"]],
+  ] as [string, string, string[]][]) {
+    if (
+      specificWordClass === paradigmSpecificWordClass &&
+      intersection(paradigmTags, suffixTags).length === paradigmTags.length
+    ) {
+      return { analysis, paradigm: paradigmName };
+    }
+  }
+  return null;
 }
 
 async function main() {
@@ -294,24 +322,12 @@ async function main() {
     `${CRK_FST_DIR}/crk-strict-analyzer-for-dictionary.hfstol`
   );
 
-  // const transliterator = argv.woods ? protoToWoods : protoToPlains;
-
   const lexicalDatabase = await readFile(options.inputNdjson, "utf8");
 
-  const CREE_LEXICAL_TAGS = [
-    "+A",
-    "+AI",
-    "+D",
-    "+I",
-    "+II",
-    "+N",
-    "+TA",
-    "+TI",
-    "+V",
+  const imports = [
+    new CrkImport(options.outputCrkengFile),
+    new CwdImport(options.outputCwdengFile),
   ];
-
-  const crkDictionary = new Dictionary<CreeLinguistInfo>(CREE_LEXICAL_TAGS);
-  const cwdDictionary = new Dictionary<CreeLinguistInfo>(CREE_LEXICAL_TAGS);
 
   for (const piece of lexicalDatabase.split("\n")) {
     if (!piece.trim()) {
@@ -319,101 +335,13 @@ async function main() {
     }
 
     const obj = JSON.parse(piece) as NdjsonEntry;
-
-    const protoHead = obj.lemma.sro ?? obj.lemma.plains;
-
-    for (const lang of ["crk", "cwd"] as const) {
-      // For now, assume crk and cwd have same FSTs modulo orthography
-      const crkHead = protoToPlains(protoHead);
-
-      const head = lang === "crk" ? crkHead : protoToWoods(protoHead);
-
-      if (!head) {
-        continue;
-      }
-
-      // Skip MD-only entries for Woods Cree
-      if (lang === "cwd" && isEqual(Object.keys(obj.dataSources), ["MD"])) {
-        continue;
-      }
-
-      const entry = (lang === "crk"
-        ? crkDictionary
-        : cwdDictionary
-      ).getOrCreate({ slug: obj.key, text: head });
-
-      const pos = obj.dataSources?.CW?.pos;
-
-      const isProbablyMorpheme =
-        head.startsWith("-") || (head.endsWith("-") && pos !== "IPV");
-      const shouldTryAssigningParadigm = !isProbablyMorpheme;
-
-      const linguistInfo: CreeLinguistInfo = { pos };
-
-      if (shouldTryAssigningParadigm) {
-        let analysis;
-        let paradigm;
-        let ok = false;
-        if (pos === "IPV") {
-          ok = true;
-        } else if (head.includes(" ")) {
-          ok = true;
-        } else {
-          ({ analysis, paradigm, ok } = inferAnalysis({
-            head: crkHead,
-            pos,
-            key: obj.key,
-          }));
-        }
-
-        if (ok) {
-          entry.analysis = analysis;
-          entry.paradigm = paradigm;
-
-          if (analysis) {
-            linguistInfo.smushedAnalysis = smushAnalysis(analysis);
-          }
-        }
-      }
-
-      const stem = obj.dataSources?.CW?.stm;
-      if (stem) {
-        linguistInfo.stem = stem;
-      }
-      if (protoHead !== head) {
-        linguistInfo.protoCree = protoHead;
-      }
-      entry.linguistInfo = linguistInfo;
-
-      for (const sourceAbbrevation in obj.dataSources) {
-        // No Maskwacîs entries for the Woods Cree dictionary.
-        if (lang === "cwd" && sourceAbbrevation === "MD") {
-          continue;
-        }
-        for (const sense of obj.dataSources[sourceAbbrevation].senses) {
-          entry.addDefinition(sense.definition, [sourceAbbrevation]);
-        }
-      }
-
-      // Until there is frontend support for notes, use notes as the definition
-      // when there are no other definitions.
-      if (
-        (!entry.senses || entry.senses.length === 0) &&
-        obj.dataSources.CW.notes
-      ) {
-        for (const note of obj.dataSources.CW.notes) {
-          entry.addDefinition(`[${note.text}]`, ["CW"]);
-        }
-      }
+    for (const imp of imports) {
+      imp.processEntry(obj);
     }
   }
 
-  for (const [dict, file] of [
-    [crkDictionary, options.outputCrkengFile],
-    [cwdDictionary, options.outputCwdengFile],
-  ] as const) {
-    await writeFile(file, dict.assemble({ pretty: options.prettier }));
-    console.log(`Wrote ${file}`);
+  for (const imp of imports) {
+    await imp.save({ pretty: options.prettier });
   }
 }
 

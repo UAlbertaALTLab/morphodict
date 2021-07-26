@@ -1,6 +1,7 @@
 import assert from "assert";
 import { readFile } from "fs/promises";
 import { resolve as resolvePath } from "path";
+import jsonStableStringify from "json-stable-stringify";
 import prettier from "prettier";
 
 /**
@@ -12,7 +13,7 @@ import prettier from "prettier";
 export function makePrettierJson(data: unknown) {
   // Assume strings already contain JSON; otherwise, stringify
   if (typeof data !== "string") {
-    data = JSON.stringify(data);
+    data = jsonStableStringify(data, { space: 2 });
   }
   assert(typeof data === "string");
   return prettier.format(data, {

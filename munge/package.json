@@ -1,8 +1,10 @@
 {
   "dependencies": {
+    "@types/json-stable-stringify": "^1.0.33",
     "commander": "^8.0.0",
     "execifmain": "^0.0.2",
     "hfstol": "^0.0.3",
+    "json-stable-stringify": "^1.0.1",
     "lodash": "^4.17.21",
     "prettier": "^2.3.2",
     "sucrase": "^3.19.0"

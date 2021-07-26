@@ -1,5 +1,6 @@
 import assert from "assert";
 import { minBy, sortBy, union } from "lodash";
+import jsonStableStringify from "json-stable-stringify";
 import { DefaultMap, makePrettierJson, stringDistance } from "./util";
 
 export type Analysis = [string[], string, string[]];
@@ -232,9 +233,6 @@ export class Dictionary<L = DefaultLinguistInfo> {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
         continue;
       }
-      if (e.head === "sa-") {
-        debugger;
-      }
 
       if (e instanceof Wordform) {
         const { head, analysis, senses } = e;
@@ -261,7 +259,7 @@ export class Dictionary<L = DefaultLinguistInfo> {
     if (pretty) {
       return makePrettierJson(entriesToExport);
     } else {
-      return JSON.stringify(entriesToExport, null, 2);
+      return jsonStableStringify(entriesToExport, { space: 2 });
     }
   }
 }
