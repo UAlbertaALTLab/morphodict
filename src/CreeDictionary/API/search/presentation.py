@@ -163,9 +163,9 @@ class PresentationResult:
         Returns a list of relabellings for the suffix tags from the FST analysis.
         The relabellings are returned according to the current display mode.
 
-        Note: the chunks that get relablled may change **depending on the display
-        mode**! That is, relabellings in one display mode might produce different
-        relabelled chunks in a different display mode!
+        Note: how the tags get chunked may change **depending on the display mode**!
+        That is, relabellings in one display mode might produce different relabelled
+        chunks in a different display mode! It is not safe to create parallel arrays.
         """
 
         all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
@@ -417,7 +417,7 @@ def get_initial_change_types() -> List[dict[str, str]]:
 
 def to_list_of_fst_tags(raw_tags: Iterable[str]) -> list[FSTTag]:
     """
-    Converts a series of tags (possibly from RichAnalysis or from a splitting a
-    smushed analysis) to a list of FSTTag. FSTTag instances can be used in relabellings.
+    Converts a series of tags (possibly from RichAnalysis or from splitting a smushed
+    analysis) to a list of FSTTag. FSTTag instances can be used to looup relabellings!
     """
     return [FSTTag(t.strip("+")) for t in raw_tags]
