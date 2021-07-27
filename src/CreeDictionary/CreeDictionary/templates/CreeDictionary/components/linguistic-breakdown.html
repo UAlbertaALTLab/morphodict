@@ -35,8 +35,8 @@
           {% endif %}
 
           <ol class="linguistic-breakdown__list">
-            {% for tag in result.relevant_tags %}
-              <li><data value="{{ tag.value }}">{{ tag.in_plain_english }}</data></li>
+            {% for chunk in result.relabelled_fst_analysis %}
+              <li><data value="{{ chunk.tags }}"> {{ chunk.label }}</data></li>
             {% endfor %}
           </ol>
         </div>

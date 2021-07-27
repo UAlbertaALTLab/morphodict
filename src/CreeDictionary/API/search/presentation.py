@@ -1,19 +1,21 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, TypedDict, Iterable, Any, cast, Dict, Literal
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
 from django.forms import model_to_dict
 
-from CreeDictionary.utils import get_modified_distance
-from CreeDictionary.API.search import types, core, lookup
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.API.search import core, types
 from CreeDictionary.CreeDictionary.relabelling import read_labels
-from CreeDictionary.utils.types import FSTTag, Label, ConcatAnalysis
+from CreeDictionary.utils import get_modified_distance
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
+from crkeng.app.preferences import DisplayMode
 from morphodict.analysis import RichAnalysis
-from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
-from morphodict.lexicon.models import Wordform, wordform_cache
-from ..schema import SerializedWordform, SerializedDefinition, SerializedLinguisticTag
+from morphodict.lexicon.models import Wordform
+
+from ..schema import SerializedDefinition, SerializedWordform
+from .types import Preverb
 
 
 class AbstractResult:
@@ -59,7 +61,23 @@ class SerializedPresentationResult(TypedDict):
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
-    relevant_tags: Iterable[SerializedLinguisticTag]
+    # Maps a display mode to relabellings
+    relabelled_fst_analysis: list[SerializedRelabelling]
+
+
+class SerializedRelabelling(TypedDict):
+    """
+    A relabelled "chunk". This might be one or more tags from the FST analysis.
+
+    Examples:
+         - {"tags": ["+N", "+A"], label": "animate noun"}
+         - {"tags": ["+Sg"], label": "singular"}
+         - {"tags": ["+V", "+T", "+A"], label": "animate transitive verb"}
+         - {"tags": ["+Obv"], label": "obviative"}
+    """
+
+    tags: list[FSTTag]
+    label: str
 
 
 class PresentationResult:
@@ -71,9 +89,19 @@ class PresentationResult:
     presentation things like labels.
     """
 
-    def __init__(self, result: types.Result, *, search_run: core.SearchRun):
+    def __init__(
+        self,
+        result: types.Result,
+        *,
+        search_run: core.SearchRun,
+        display_mode="community",
+    ):
         self._result = result
         self._search_run = search_run
+        self._relabeller = {
+            "community": read_labels().english,
+            "linguistic": read_labels().linguistic_long,
+        }.get(display_mode, DisplayMode.default)
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
@@ -100,10 +128,10 @@ class PresentationResult:
         ]
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
-            list(t.strip("+") for t in self.linguistic_breakdown_head)
+            to_list_of_fst_tags(self.linguistic_breakdown_head)
         )
         self.friendly_linguistic_breakdown_tail = replace_user_friendly_tags(
-            list(t.strip("+") for t in self.linguistic_breakdown_tail)
+            to_list_of_fst_tags(self.linguistic_breakdown_tail)
         )
 
     def serialize(self) -> SerializedPresentationResult:
@@ -122,7 +150,7 @@ class PresentationResult:
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
-            "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
+            "relabelled_fst_analysis": self.relabelled_fst_analysis,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
@@ -130,20 +158,29 @@ class PresentationResult:
         return ret
 
     @property
-    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+    def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
         """
-        Tags and features to display in the linguistic breakdown pop-up.
-        This omits preverbs and other features displayed elsewhere
+        Returns a list of relabellings for the suffix tags from the FST analysis.
+        The relabellings are returned according to the current display mode.
 
-        In itwêwina, these tags are derived from the suffix features exclusively.
-        We chunk based on the English relabelleings!
+        Note: how the tags get chunked may change **depending on the display mode**!
+        That is, relabellings in one display mode might produce different relabelled
+        chunks in a different display mode! It is not safe to create parallel arrays.
         """
-        return tuple(
-            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
-            for fst_tags in read_labels().english.chunk(
-                t.strip("+") for t in self.linguistic_breakdown_tail
-            )
-        )
+
+        all_tags = to_list_of_fst_tags(self.linguistic_breakdown_tail)
+        results: list[SerializedRelabelling] = []
+
+        for tags in self._relabeller.chunk(all_tags):
+            label = self._relabeller.get_longest(tags)
+
+            if label is None:
+                # Skip unlabelled chunks
+                continue
+
+            results.append({"tags": list(tags), "label": str(label)})
+
+        return results
 
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
@@ -376,3 +413,11 @@ def get_initial_change_types() -> List[dict[str, str]]:
             )
         }
     ]
+
+
+def to_list_of_fst_tags(raw_tags: Iterable[str]) -> list[FSTTag]:
+    """
+    Converts a series of tags (possibly from RichAnalysis or from splitting a smushed
+    analysis) to a list of FSTTag. FSTTag instances can be used to looup relabellings!
+    """
+    return [FSTTag(t.strip("+")) for t in raw_tags]
