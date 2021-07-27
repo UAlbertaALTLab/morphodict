@@ -56,7 +56,7 @@ def all_preferences():
     """
     Return all preferences registered in this site.
     """
-    return _registry().items()
+    return registry().items()
 
 
 def register_preference(declaration) -> Preference:
@@ -106,13 +106,13 @@ def register_preference(declaration) -> Preference:
         name=name, choices=choices, default=default, cookie_name=cookie_name
     )
 
-    _registry()[name] = pref
+    registry()[name] = pref
 
     return pref
 
 
 @cache
-def _registry() -> dict[str, Preference]:
+def registry() -> dict[str, Preference]:
     """
     Contains all registered preferences.
     """

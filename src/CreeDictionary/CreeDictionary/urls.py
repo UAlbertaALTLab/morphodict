@@ -46,18 +46,9 @@ urlpatterns = [
         views.paradigm_internal,
         name="cree-dictionary-paradigm-detail",
     ),
-    # POST to this URL to change the display mode:
-    path(
-        "_change_display_mode",
-        views.ChangeDisplayMode.as_view(),
-        name="cree-dictionary-change-display-mode",
-    ),
-    # POST to this URL to change the display mode:
-    path(
-        "_change_paradigm_label",
-        views.ChangeParadigmLabelPreference.as_view(),
-        name="cree-dictionary-change-paradigm-label",
-    ),
+    # See morphodict.preference.urls for all available views
+    # Hint: You will probably use preference:change the most!
+    path("_preference/", include("morphodict.preference.urls", namespace="preference")),
     ################################ Click in text #################################
     # cree word translation for click-in-text
     path(

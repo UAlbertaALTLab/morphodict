@@ -19,9 +19,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, ParadigmLabel
 from morphodict.lexicon.models import Wordform
-from morphodict.preference.views import ChangePreferenceView
 from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm
 from .utils import url_for_query
@@ -318,23 +316,6 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
-
-
-class ChangeDisplayMode(ChangePreferenceView):
-    """
-    Sets the mode= cookie, which affects how search results are rendered.
-    """
-
-    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
-
-
-class ChangeParadigmLabelPreference(ChangePreferenceView):
-    """
-    Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
-    PARADIGMS!
-    """
-
-    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions
