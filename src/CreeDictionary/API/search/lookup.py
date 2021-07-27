@@ -118,10 +118,14 @@ def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:
     if len(possible_lemmas) < 2:
         return possible_lemmas
 
+    lemmas_with_analyses = [wf for wf in possible_lemmas if wf.analysis]
+
+    if len(lemmas_with_analyses) == 0:
+        # Cannot figure out the intersection if we have no analyses!
+        return possible_lemmas
+
     max_tag_intersection_count = max(
-        analysis.tag_intersection_count(lwf.analysis)
-        for lwf in possible_lemmas
-        if lwf.analysis
+        analysis.tag_intersection_count(lwf.analysis) for lwf in lemmas_with_analyses
     )
     return [
         lwf
