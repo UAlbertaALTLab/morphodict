@@ -209,4 +209,4 @@ async function main() {
   console.log(`Wrote ${options.outputFile}`);
 }
 
-execIfMain(main);
+execIfMain(main, module);

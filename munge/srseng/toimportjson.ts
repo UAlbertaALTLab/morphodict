@@ -165,4 +165,4 @@ async function main() {
   await writeFile(options.outputFile, dictionary.assemble());
 }
 
-execIfMain(main);
+execIfMain(main, module);

@@ -345,4 +345,4 @@ async function main() {
   }
 }
 
-execIfMain(main);
+execIfMain(main, module);
