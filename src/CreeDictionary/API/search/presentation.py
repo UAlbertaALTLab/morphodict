@@ -61,7 +61,7 @@ class SerializedPresentationResult(TypedDict):
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
-    # Maps a display modes to relabellings
+    # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
 
 
