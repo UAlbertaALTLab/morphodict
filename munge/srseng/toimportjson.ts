@@ -4,8 +4,8 @@ import { difference, flatten, intersection, isEqual, min } from "lodash";
 import { execIfMain } from "execifmain";
 import { Command } from "commander";
 import { Transducer } from "hfstol";
-import { loadTsvFile } from "./util";
-import { Analysis, Dictionary } from "./dictionary";
+import { loadTsvFile } from "../shared/util";
+import { Analysis, Dictionary } from "../shared/dictionary";
 
 const RESOURCE_DIR = resolvePath(
   __dirname,
@@ -117,7 +117,7 @@ async function main() {
     }
 
     const entry = dictionary.getOrCreate(head);
-    entry.addDefinition(definition);
+    entry.addDefinition(definition, ["OS"]);
 
     const analyses = analyzer.lookup_lemma_with_affixes(head);
 

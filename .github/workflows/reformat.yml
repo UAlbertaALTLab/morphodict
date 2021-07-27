@@ -24,7 +24,7 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Reformat
-      run: ./libexec/altlabel_utils.py format
+      run: ./scripts/reformat-altlabels
     - name: Git Auto Commit
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:

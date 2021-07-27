@@ -1,0 +1,54 @@
+[
+  {
+    "head": "níhoonéíhi-",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "analysis": [
+      ["[VERB]", "[AI]", "[ANIMATE-SUBJECT]", "[IMPERATIVE]"],
+      "nihooneihi",
+      ["[2SG-SUBJ]"]
+    ],
+    "paradigm": "AI",
+    "slug": "níhoonéíhi-"
+  },
+  {
+    "head": "níhooyóó-",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "nihooyoo",
+    "paradigm": "II",
+    "slug": "níhooyóó-"
+  },
+  {
+    "head": "noohóot-",
+    "senses": [
+      {
+        "definition": "see s.t.",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "noohoot",
+    "paradigm": "TI",
+    "slug": "noohóot-"
+  },
+  {
+    "head": "nóóhow-",
+    "senses": [
+      {
+        "definition": "see",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "noohow",
+    "paradigm": "TA",
+    "slug": "nóóhow-"
+  }
+]

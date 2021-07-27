@@ -100,9 +100,16 @@ class Command(BaseCommand):
                 # Cascade should take care of all related objects.
                 existing.delete()
 
+            fst_lemma = None
+            if "fstLemma" in entry:
+                fst_lemma = entry["fstLemma"]
+            elif (analysis := entry.get("analysis")) is not None:
+                fst_lemma = analysis[1]
+
             wf = Wordform.objects.create(
                 text=entry["head"],
                 raw_analysis=entry.get("analysis", None),
+                fst_lemma=fst_lemma,
                 paradigm=entry.get("paradigm", None),
                 slug=validate_slug_format(entry["slug"]),
                 is_lemma=True,
@@ -111,13 +118,24 @@ class Command(BaseCommand):
             wf.lemma = wf
             wf.save()
 
+            should_instantiate_this_wordform = (
+                (wf.analysis and wf.paradigm)
+                if not settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT
+                else (wf.fst_lemma and wf.paradigm)
+            )
+
             # Instantiate wordforms
-            if wf.analysis and wf.paradigm:
+            if should_instantiate_this_wordform:
+                lemma_text = (
+                    wf.text
+                    if not settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT
+                    else wf.fst_lemma
+                )
                 for (
                     prefix_tags,
                     suffix_tags,
                 ) in paradigm_manager.all_analysis_template_tags(wf.paradigm):
-                    analysis = RichAnalysis((prefix_tags, wf.text, suffix_tags))
+                    analysis = RichAnalysis((prefix_tags, lemma_text, suffix_tags))
                     for generated in strict_generator().lookup(analysis.smushed()):
                         # Skip re-instantiating lemma
                         if analysis == wf.analysis:
@@ -132,6 +150,13 @@ class Command(BaseCommand):
                             is_lemma=False,
                         )
 
+            slug_base = wf.slug.split("@")[0]
+            if wf.text != slug_base:
+                SourceLanguageKeyword.objects.get_or_create(wordform=wf, text=slug_base)
+            if wf.fst_lemma and wf.text != wf.fst_lemma:
+                SourceLanguageKeyword.objects.get_or_create(
+                    wordform=wf, text=wf.fst_lemma
+                )
             if wf.raw_analysis is None:
                 self.index_unanalyzed_form(wf)
 
@@ -186,7 +211,7 @@ class Command(BaseCommand):
             keywords.update(stem_keywords(sense["definition"]))
 
         for kw in keywords:
-            TargetLanguageKeyword.objects.create(text=kw, wordform=wordform)
+            TargetLanguageKeyword.objects.get_or_create(text=kw, wordform=wordform)
 
     def index_unanalyzed_form(self, wordform):
         """Index unanalyzed forms such as phrases, Cree preverbs
@@ -198,7 +223,7 @@ class Command(BaseCommand):
         )
 
         for kw in keywords:
-            SourceLanguageKeyword.objects.create(text=kw, wordform=wordform)
+            SourceLanguageKeyword.objects.get_or_create(text=kw, wordform=wordform)
 
 
 def validate_slug_format(proposed_slug):
