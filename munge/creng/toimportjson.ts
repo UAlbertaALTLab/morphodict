@@ -19,18 +19,18 @@ export type NdjsonEntry = {
     [SourceAbbreviation: string]: {
       senses: { definition: string }[];
       pos?: string;
-      stm?: string;
+      stems?: string[];
       notes?: { noteType: string; text: string }[];
     };
   };
-  lemma: { plains: string; sro?: string; md?: string };
-  key: string;
+  lemma: { proto?: string; sro?: string };
 };
 
 export type CreeLinguistInfo = {
-  pos?: string;
+  pos?: string | null;
   inflectional_category?: string;
-  stem?: string;
+  wordclass?: string | null;
+  stems?: string[];
   proto_cree?: string;
 };
 
@@ -131,19 +131,15 @@ export function smushAnalysis(lemma_with_affixes: Analysis) {
  * Currently it will pick the matching analysis with the lowest tag count if
  * there is one, otherwise it requires a manual entry in TIE_BREAKERS
  * above.
- *
- * `key` is only used for error/warning messages.
  */
 export function inferAnalysis({
   head,
   protoHead,
   pos,
-  key,
 }: {
   head: string;
   protoHead: string;
   pos?: string;
-  key?: string;
 }): { analysis?: Analysis; paradigm?: string; ok: boolean } {
   let ok = false;
 
@@ -199,11 +195,11 @@ export function inferAnalysis({
         throw Error("tie breaker exists but was not applied");
       }
     } else {
-      console.log(`${matches.length} matches for ${key}`);
+      console.log(`${matches.length} matches for ${head}`);
       ok = false;
     }
   } else {
-    console.log(`${matches.length} matches for ${key}`);
+    console.log(`${matches.length} matches for ${head}`);
     ok = false;
   }
 

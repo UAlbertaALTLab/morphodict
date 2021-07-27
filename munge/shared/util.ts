@@ -29,7 +29,7 @@ export function makePrettierJson(data: unknown) {
  *
  * zip([k1, k2, k3], [v1, v2, v3]) ⇒ [[k1, v1], [k2, v2], [k3, v3]]
  */
-export function zip<T>(array1: T[], array2: T[]): [T, T][] {
+export function zip<T1, T2>(array1: T1[], array2: T2[]): [T1, T2][] {
   assert(array1.length === array2.length);
   const ret = Array(array1.length);
   for (let i = 0; i < array1.length; i++) {

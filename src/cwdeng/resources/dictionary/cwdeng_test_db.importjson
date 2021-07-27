@@ -5,7 +5,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "stem": "acâhkos-"
+      "stems": ["acâhkos-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -21,7 +21,7 @@
     "linguistInfo": {
       "inflectional_category": "INM < NA-1 + VAI-1",
       "pos": "IPC",
-      "stem": "acâhkos- osôsi-"
+      "stems": ["acâhkos-", "osôsi-"]
     },
     "senses": [
       {
@@ -36,7 +36,7 @@
     "linguistInfo": {
       "inflectional_category": "INM < NA-1 + VAI-1",
       "pos": "IPC",
-      "stem": "acâhkos- otakohpi-"
+      "stems": ["acâhkos-", "otakohpi-"]
     },
     "senses": [
       {
@@ -56,7 +56,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "stem": "amiskw-"
+      "stems": ["amiskw-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -73,7 +73,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "amiskwaciy-wâskahikan-"
+      "stems": ["amiskwaciy-wâskahikan-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -93,7 +93,8 @@
     "head": "anohc",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -110,7 +111,7 @@
       "inflectional_category": "VTA-1",
       "pos": "V",
       "proto_cree": "asawâpamêw",
-      "stem": "asawâpam-"
+      "stems": ["asawâpam-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -127,7 +128,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "stem": "asikan-"
+      "stems": ["asikan-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -145,7 +146,7 @@
       "inflectional_category": "VAI-1",
       "pos": "V",
       "proto_cree": "asiskîwiýâkanihkêw",
-      "stem": "asiskîwiýâkanihkê-"
+      "stems": ["asiskîwiýâkanihkê-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -163,7 +164,7 @@
       "inflectional_category": "VTA-2",
       "pos": "V",
       "proto_cree": "atamiskawêw",
-      "stem": "atamiskaw-"
+      "stems": ["atamiskaw-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -196,7 +197,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "stem": "atâhkw-"
+      "stems": ["atâhkw-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -211,7 +212,8 @@
     "head": "ati-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -234,7 +236,8 @@
     "head": "awa",
     "linguistInfo": {
       "inflectional_category": "PrA",
-      "pos": "PRON"
+      "pos": "PRON",
+      "stems": [null]
     },
     "paradigm": "demonstrative-pronouns",
     "senses": [
@@ -243,14 +246,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "awa1"
+    "slug": "awa"
   },
   {
     "analysis": [[], "awa", ["+Ipc"]],
     "head": "awa",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -258,7 +262,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "awa2"
+    "slug": "awa@1"
   },
   {
     "analysis": [[], "awâsisîwiw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -266,7 +270,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "awâsisîwi-"
+      "stems": ["awâsisîwi-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -278,11 +282,12 @@
     "slug": "awâsisîwiw"
   },
   {
-    "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
     "head": "awîna",
     "linguistInfo": {
       "inflectional_category": "PrA",
-      "pos": "PRON"
+      "pos": "PRON",
+      "proto_cree": "awêna",
+      "stems": [null]
     },
     "senses": [
       {
@@ -293,12 +298,44 @@
     "slug": "awîna"
   },
   {
+    "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
+    "head": "awîna",
+    "linguistInfo": {
+      "inflectional_category": "PrA",
+      "pos": "PRON",
+      "stems": [null]
+    },
+    "senses": [
+      {
+        "definition": "who, whose",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "awîna@1"
+  },
+  {
+    "analysis": [[], "awîna", ["+Ipc", "+Interj"]],
+    "head": "awîna",
+    "linguistInfo": {
+      "inflectional_category": "IPJ",
+      "pos": "IPC",
+      "stems": [null]
+    },
+    "senses": [
+      {
+        "definition": "what was that!",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "awîna@2"
+  },
+  {
     "analysis": [[], "ayâw", ["+V", "+II", "+Ind", "+3Sg"]],
     "head": "ayâw",
     "linguistInfo": {
       "inflectional_category": "VII-2v",
       "pos": "V",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -307,7 +344,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "ayâw1"
+    "slug": "ayâw"
   },
   {
     "analysis": [[], "ayâw", ["+V", "+TI", "+Ind", "+3Sg"]],
@@ -315,7 +352,7 @@
     "linguistInfo": {
       "inflectional_category": "VTI-2",
       "pos": "V",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"]
     },
     "paradigm": "VTI",
     "senses": [
@@ -328,11 +365,11 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "ayâw2"
+    "slug": "ayâw@1"
   },
   {
     "analysis": [["PV/sesawi+"], "ayâw", ["+V", "+TI", "+Ind", "+3Sg"]],
-    "formOf": "ayâw2",
+    "formOf": "ayâw@1",
     "head": "sîsâwi-ayâw",
     "senses": [
       {
@@ -347,7 +384,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -364,11 +401,11 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "ayâw3"
+    "slug": "ayâw@2"
   },
   {
     "analysis": [["PV/mohco+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "formOf": "ayâw3",
+    "formOf": "ayâw@2",
     "head": "môhco-ayâw",
     "senses": [
       {
@@ -383,7 +420,7 @@
   },
   {
     "analysis": [["PV/nipahi+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "formOf": "ayâw3",
+    "formOf": "ayâw@2",
     "head": "nipahi-ayâw",
     "senses": [
       {
@@ -394,7 +431,7 @@
   },
   {
     "analysis": [["PV/papami+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "formOf": "ayâw3",
+    "formOf": "ayâw@2",
     "head": "papâmi-ayâw",
     "senses": [
       {
@@ -417,7 +454,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "ayiwin-"
+      "stems": ["ayiwin-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -438,7 +475,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "ayiwinis-"
+      "stems": ["ayiwinis-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -472,7 +509,7 @@
       "inflectional_category": "VTA-1",
       "pos": "V",
       "proto_cree": "âcimêw",
-      "stem": "âcim-"
+      "stems": ["âcim-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -493,7 +530,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "âcimo-"
+      "stems": ["âcimo-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -529,7 +566,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "âcimowin-"
+      "stems": ["âcimowin-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -555,7 +592,7 @@
       "inflectional_category": "NI-1",
       "pos": "N",
       "proto_cree": "âýiman",
-      "stem": "âýiman-"
+      "stems": ["âýiman-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -564,7 +601,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "âthiman1"
+    "slug": "âthiman"
   },
   {
     "analysis": [[], "âyiman", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -573,7 +610,7 @@
       "inflectional_category": "VII-2n",
       "pos": "V",
       "proto_cree": "âýiman",
-      "stem": "âýiman-"
+      "stems": ["âýiman-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -582,14 +619,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "âthiman2"
+    "slug": "âthiman@1"
   },
   {
     "analysis": [[], "ispîhk", ["+Ipc"]],
     "head": "ispîhk",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -613,7 +651,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "proto_cree": "êkwa"
+      "proto_cree": "êkwa",
+      "stems": [null]
     },
     "senses": [
       {
@@ -641,7 +680,8 @@
     "linguistInfo": {
       "inflectional_category": "IPJ",
       "pos": "IPC",
-      "proto_cree": "êkwatik"
+      "proto_cree": "êkwatik",
+      "stems": [null]
     },
     "senses": [
       {
@@ -662,7 +702,7 @@
       "inflectional_category": "VTA-1",
       "pos": "V",
       "proto_cree": "katawatêýimêw",
-      "stem": "katawatêýim-"
+      "stems": ["katawatêýim-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -677,7 +717,8 @@
     "head": "kâh-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -693,13 +734,14 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kâh-1"
+    "slug": "kâh-"
   },
   {
     "head": "kâh-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -719,7 +761,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kâh-2"
+    "slug": "kâh-@1"
   },
   {
     "analysis": [[], "kiskinwahamâkosiw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -727,7 +769,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "kiskinwahamâkosi-"
+      "stems": ["kiskinwahamâkosi-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -750,7 +792,8 @@
     "head": "kîmôci-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -762,13 +805,14 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kîmôci-1"
+    "slug": "kîmôci-"
   },
   {
     "head": "kîmôci-",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -780,7 +824,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kîmôci-2"
+    "slug": "kîmôci-@1"
   },
   {
     "analysis": [[], "kîsikâw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -788,7 +832,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "stem": "kîsikâ-"
+      "stems": ["kîsikâ-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -797,7 +841,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kîsikâw1"
+    "slug": "kîsikâw"
   },
   {
     "analysis": [[], "kîsikâw", ["+N", "+I", "+Sg"]],
@@ -805,7 +849,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "stem": "kîsikâw-"
+      "stems": ["kîsikâw-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -818,7 +862,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kîsikâw2"
+    "slug": "kîsikâw@1"
   },
   {
     "analysis": [[], "kotiskâwêw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -827,7 +871,7 @@
       "inflectional_category": "VAI-1",
       "pos": "V",
       "proto_cree": "kotiskâwêw",
-      "stem": "kotiskâwê-"
+      "stems": ["kotiskâwê-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -848,20 +892,29 @@
     "linguistInfo": {
       "inflectional_category": "NA-4w",
       "pos": "N",
-      "stem": "maskw-"
+      "stems": ["maskw-"]
     },
     "paradigm": "NA",
     "senses": [
       {
         "definition": "bear, black bear",
         "sources": ["CW"]
-      },
+      }
+    ],
+    "slug": "maskwa"
+  },
+  {
+    "head": "maskwa",
+    "linguistInfo": {
+      "stems": ["maskw-"]
+    },
+    "senses": [
       {
         "definition": "Ursus Major constellation",
         "sources": ["CW"]
       }
     ],
-    "slug": "maskwa"
+    "slug": "maskwa@1"
   },
   {
     "analysis": [[], "mâci-nipâw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -869,7 +922,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "mâci-nipâ-"
+      "stems": ["mâci-nipâ-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -886,7 +939,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "stem": "minôs-"
+      "stems": ["minôs-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -903,7 +956,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "stem": "minôsis-"
+      "stems": ["minôsis-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -920,7 +973,7 @@
     "linguistInfo": {
       "inflectional_category": "INM < NI-1",
       "pos": "IPC",
-      "stem": "misâskwatômin-"
+      "stems": ["misâskwatômin-"]
     },
     "senses": [
       {
@@ -936,7 +989,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "mîciso-"
+      "stems": ["mîciso-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -961,7 +1014,7 @@
     "linguistInfo": {
       "inflectional_category": "VTI-3",
       "pos": "V",
-      "stem": "mîci-"
+      "stems": ["mîci-"]
     },
     "paradigm": "VTI",
     "senses": [
@@ -989,7 +1042,7 @@
     "linguistInfo": {
       "inflectional_category": "NDI-1",
       "pos": "N",
-      "stem": "-îpit-"
+      "stems": ["-îpit-"]
     },
     "paradigm": "NDI",
     "senses": [
@@ -1007,7 +1060,7 @@
       "inflectional_category": "VTA-1",
       "pos": "V",
       "proto_cree": "mowêw",
-      "stem": "mow-"
+      "stems": ["mow-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -1024,7 +1077,7 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "stem": "-pawâkan-"
+      "stems": ["-pawâkan-"]
     },
     "paradigm": "NDA",
     "senses": [
@@ -1041,7 +1094,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "nipâ-"
+      "stems": ["nipâ-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -1058,7 +1111,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "nipâwin-"
+      "stems": ["nipâwin-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -1075,7 +1128,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "stem": "nipiy-"
+      "stems": ["nipiy-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -1092,7 +1145,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-4",
       "pos": "N",
-      "stem": "nisk-"
+      "stems": ["nisk-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -1108,7 +1161,8 @@
     "head": "nisto",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1122,7 +1176,8 @@
     "head": "nitawi-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1142,7 +1197,8 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "proto_cree": "niýa"
+      "proto_cree": "niýa",
+      "stems": [null]
     },
     "paradigm": "personal-pronouns",
     "senses": [
@@ -1159,7 +1215,8 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "proto_cree": "niýanân"
+      "proto_cree": "niýanân",
+      "stems": [null]
     },
     "paradigm": "personal-pronouns",
     "senses": [
@@ -1176,7 +1233,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "nîmi-"
+      "stems": ["nîmi-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -1204,7 +1261,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-1n",
       "pos": "V",
-      "stem": "nîpin-"
+      "stems": ["nîpin-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -1221,7 +1278,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "nîsi-"
+      "stems": ["nîsi-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -1240,7 +1297,8 @@
     "head": "nîso-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1256,7 +1314,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "stem": "nîso-kîsikâ-"
+      "stems": ["nîso-kîsikâ-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -1265,14 +1323,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nîso-kîsikâw1"
+    "slug": "nîso-kîsikâw"
   },
   {
     "analysis": [[], "nîso-kîsikâw", ["+Ipc"]],
     "head": "nîso-kîsikâw",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1280,7 +1339,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nîso-kîsikâw2"
+    "slug": "nîso-kîsikâw@1"
   },
   {
     "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
@@ -1288,7 +1347,7 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "stem": "-ohkom-"
+      "stems": ["-ohkom-"]
     },
     "paradigm": "NDA",
     "senses": [
@@ -1315,13 +1374,24 @@
     ]
   },
   {
+    "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Voc", "+Sg"]],
+    "formOf": "nôhkom",
+    "head": "nôhkô",
+    "senses": [
+      {
+        "definition": "grandmother!",
+        "sources": ["CW"]
+      }
+    ]
+  },
+  {
     "analysis": [[], "nôhtêpayiw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "nôhtîpathiw",
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
       "proto_cree": "nôhtêpaýiw",
-      "stem": "nôhtêpaýi-"
+      "stems": ["nôhtêpaýi-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -1338,7 +1408,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nôhtîpathiw1"
+    "slug": "nôhtîpathiw"
   },
   {
     "analysis": [[], "nôhtêpayiw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -1347,7 +1417,7 @@
       "inflectional_category": "VII-2v",
       "pos": "V",
       "proto_cree": "nôhtêpaýiw",
-      "stem": "nôhtêpaýi-"
+      "stems": ["nôhtêpaýi-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -1356,14 +1426,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nôhtîpathiw2"
+    "slug": "nôhtîpathiw@1"
   },
   {
     "analysis": [[], "ohci", ["+Ipc"]],
     "head": "ohci",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1399,7 +1470,7 @@
       "inflectional_category": "INM < NDI-1 + VII-2v",
       "pos": "IPC",
       "proto_cree": "oskana kâ-asastêki",
-      "stem": "oskan- asastê-"
+      "stems": ["oskan-", "asastê-"]
     },
     "senses": [
       {
@@ -1419,7 +1490,7 @@
     "linguistInfo": {
       "inflectional_category": "INM < NDI-1",
       "pos": "IPC",
-      "stem": "-tôskwan-"
+      "stems": ["-tôskwan-"]
     },
     "senses": [
       {
@@ -1434,7 +1505,8 @@
     "head": "ôma",
     "linguistInfo": {
       "inflectional_category": "PrI",
-      "pos": "PRON"
+      "pos": "PRON",
+      "stems": [null]
     },
     "paradigm": "demonstrative-pronouns",
     "senses": [
@@ -1443,14 +1515,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "ôma1"
+    "slug": "ôma"
   },
   {
     "analysis": [[], "ôma", ["+Ipc"]],
     "head": "ôma",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1474,7 +1547,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "ôma2"
+    "slug": "ôma@1"
   },
   {
     "analysis": [[], "pahkwêsikan", ["+N", "+A", "+Sg"]],
@@ -1483,7 +1556,7 @@
       "inflectional_category": "NA-1",
       "pos": "N",
       "proto_cree": "pahkwêsikan",
-      "stem": "pahkwêsikan-"
+      "stems": ["pahkwêsikan-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -1504,7 +1577,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "pimitâcimo-"
+      "stems": ["pimitâcimo-"]
     },
     "paradigm": "VAI",
     "senses": [
@@ -1521,7 +1594,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "stem": "pipon-"
+      "stems": ["pipon-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -1530,7 +1603,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "pipon1"
+    "slug": "pipon"
   },
   {
     "analysis": [[], "pipon", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -1538,7 +1611,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-1n",
       "pos": "V",
-      "stem": "pipon-"
+      "stems": ["pipon-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -1551,14 +1624,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "pipon2"
+    "slug": "pipon@1"
   },
   {
     "head": "pî-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "proto_cree": "pê-"
+      "proto_cree": "pê-",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1586,7 +1660,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "proto_cree": "pêyak"
+      "proto_cree": "pêyak",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1612,7 +1687,8 @@
     "head": "pôni-",
     "linguistInfo": {
       "inflectional_category": "IPV",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1632,7 +1708,7 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "stem": "sikâkw-"
+      "stems": ["sikâkw-"]
     },
     "paradigm": "NA",
     "senses": [
@@ -1648,7 +1724,8 @@
     "head": "tânisi",
     "linguistInfo": {
       "inflectional_category": "IPC",
-      "pos": "IPC"
+      "pos": "IPC",
+      "stems": [null]
     },
     "senses": [
       {
@@ -1656,11 +1733,11 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "tânisi1"
+    "slug": "tânisi"
   },
   {
     "analysis": [[], "tânisi", ["+Ipc"]],
-    "formOf": "tânisi1",
+    "formOf": "tânisi",
     "head": "tânisi",
     "senses": [
       {
@@ -1675,7 +1752,7 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "stem": "tipiskâw-"
+      "stems": ["tipiskâw-"]
     },
     "paradigm": "NI",
     "senses": [
@@ -1688,7 +1765,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "tipiskâw1"
+    "slug": "tipiskâw"
   },
   {
     "analysis": [[], "tipiskâw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -1696,7 +1773,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "stem": "tipiskâ-"
+      "stems": ["tipiskâ-"]
     },
     "paradigm": "VII",
     "senses": [
@@ -1709,7 +1786,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "tipiskâw2"
+    "slug": "tipiskâw@1"
   },
   {
     "analysis": [[], "wâpahtam", ["+V", "+TI", "+Ind", "+3Sg"]],
@@ -1717,7 +1794,7 @@
     "linguistInfo": {
       "inflectional_category": "VTI-1",
       "pos": "V",
-      "stem": "wâpaht-"
+      "stems": ["wâpaht-"]
     },
     "paradigm": "VTI",
     "senses": [
@@ -1739,7 +1816,7 @@
       "inflectional_category": "VTA-1",
       "pos": "V",
       "proto_cree": "wâpamêw",
-      "stem": "wâpam-"
+      "stems": ["wâpam-"]
     },
     "paradigm": "VTA",
     "senses": [
@@ -1756,20 +1833,29 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "wâpi-"
+      "stems": ["wâpi-"]
     },
     "paradigm": "VAI",
     "senses": [
       {
         "definition": "s/he sees, s/he has vision",
         "sources": ["CW"]
-      },
+      }
+    ],
+    "slug": "wâpiw"
+  },
+  {
+    "head": "wâpiw",
+    "linguistInfo": {
+      "stems": ["wâpi-"]
+    },
+    "senses": [
       {
         "definition": "s/he is blind",
         "sources": ["CW"]
       }
     ],
-    "slug": "wâpiw"
+    "slug": "wâpiw@1"
   },
   {
     "analysis": [[], "wiya", ["+Pron", "+Pers", "+3Sg"]],
@@ -1777,7 +1863,8 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "proto_cree": "wiýa"
+      "proto_cree": "wiýa",
+      "stems": [null]
     },
     "paradigm": "personal-pronouns",
     "senses": [
@@ -1794,11 +1881,11 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "witha1"
+    "slug": "witha"
   },
   {
     "analysis": [[], "wiya", ["+Ipc"]],
-    "formOf": "witha1",
+    "formOf": "witha",
     "head": "witha",
     "senses": [
       {
@@ -1809,7 +1896,7 @@
   },
   {
     "analysis": [[], "wiya", ["+Ipc"]],
-    "formOf": "witha1",
+    "formOf": "witha",
     "head": "witha",
     "senses": [
       {

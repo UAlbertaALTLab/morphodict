@@ -13,6 +13,8 @@ noun_wordform_to_phrase = TagMap(
     ("+Obv", COPY_TAG_NAME, 1),
     ("+Loc", COPY_TAG_NAME, 1),
     ("+Distr", COPY_TAG_NAME, 1),
+    ## XXX FIXME I have no idea what +Voc is but it causes problems so drop it
+    ("+Voc", None, 0),
     # Diminutive
     ("+Dim", COPY_TAG_NAME, 2),
     ("+Der/Dim", "Dim+", 2),

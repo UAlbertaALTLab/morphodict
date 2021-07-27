@@ -1,6 +1,10 @@
 import { expect } from "chai";
 import { disambiguateSlugs } from "./slug-disambiguator";
 
+function stringify(strings: string[]) {
+  return strings.map((s) => JSON.stringify(s)).join(", ");
+}
+
 describe("disambiguateSlugs", function () {
   for (const [inputs, expectedOutputs] of [
     [["XYZ"], [""]],
@@ -44,9 +48,18 @@ describe("disambiguateSlugs", function () {
       ["VTI", "NA-1", "NA-2"],
       ["@v", "@na-1", "@na-2"],
     ],
+    // we may not have anything to disambiguate the item by
+    [
+      ["", "", ""],
+      ["@1", "@2", "@3"],
+    ],
+    [
+      ["NA-1", ""],
+      ["@n", "@1"],
+    ],
   ] as [string[], string[]][]) {
-    it(`returns ${expectedOutputs.join(", ")} for ${inputs.join(
-      ", "
+    it(`returns ${stringify(expectedOutputs)} for ${stringify(
+      inputs
     )}`, function () {
       expect(disambiguateSlugs(inputs)).to.eql(expectedOutputs);
     });

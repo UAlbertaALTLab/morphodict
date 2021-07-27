@@ -57,7 +57,7 @@ class SlugDisambiguator {
   private usingKeyGroups(keyFunc: (s: string) => string) {
     const groups = groupBy(this.unassignedItems(), (i) => keyFunc(i.value));
     for (const [key, items] of Object.entries(groups)) {
-      if (items.length === 1) {
+      if (key && items.length === 1) {
         this.assign(items[0], key);
       }
     }
@@ -65,12 +65,15 @@ class SlugDisambiguator {
 
   private usingEnumeration() {
     for (const [ix, item] of this.unassignedItems().entries()) {
-      this.assign(item, `${item.value}.${ix + 1}`);
+      this.assign(item, item.value ? `${item.value}.${ix + 1}` : `${ix + 1}`);
     }
   }
 
   disambiguate() {
     function generalWordClass(inflectionalCategory: string) {
+      if (!inflectionalCategory) {
+        return "";
+      }
       return inflectionalCategory[0];
     }
 

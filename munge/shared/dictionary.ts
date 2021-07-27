@@ -1,7 +1,8 @@
 import assert from "assert";
-import { minBy, sortBy, union } from "lodash";
+import { groupBy, minBy, sortBy, union } from "lodash";
 import jsonStableStringify from "json-stable-stringify";
-import { DefaultMap, makePrettierJson, stringDistance } from "./util";
+import { DefaultMap, makePrettierJson, stringDistance, zip } from "./util";
+import { disambiguateSlugs } from "./slug-disambiguator";
 
 export type Analysis = [string[], string, string[]];
 type DefinitionList = {
@@ -66,43 +67,34 @@ export class Dictionary<L = DefaultLinguistInfo> {
     this._bySlug = new Map();
   }
 
-  // This is a quick-and-dirty version; the git history has a slug_disambiguator
-  // function with a fairly general-purpose algorithm that could be ported to
-  // js.
-  assignSlugs() {
-    for (const e of this._entries) {
-      if (!(e instanceof DictionaryEntry)) {
-        continue;
-      }
+  assignSlugs(keyfunc = (entry: DictionaryEntry<L>) => "") {
+    function saferHeadWordForSlug(head: string) {
+      return head.replace(/[/\\ ]+/g, "_");
+    }
 
-      // Current algorithm to assign slugs doesn’t support importing entries
-      // with existing slugs.
-      if (e.slug) {
-        continue;
-      }
+    const wordsNeedingSlugs = groupBy(
+      this._entries.filter(
+        (e) => e instanceof DictionaryEntry && !e.slug
+      ) as DictionaryEntry<L>[],
+      (e) => saferHeadWordForSlug(e.head!)
+    );
 
-      let saferHeadWord = e.head!.replace(/[/\\ ]+/g, "_");
-
-      let newSlug;
-      if (!this._bySlug.has(saferHeadWord)) {
-        newSlug = saferHeadWord;
-      } else {
-        for (let i = 1; ; i++) {
-          let proposed = `${saferHeadWord}@${i}`;
-          if (!this._bySlug.has(proposed)) {
-            newSlug = proposed;
-            break;
-          }
+    for (const [baseSlug, entries] of Object.entries(wordsNeedingSlugs)) {
+      const disambiguators = disambiguateSlugs(entries.map((e) => keyfunc(e)));
+      for (const [entry, disambiguator] of zip(entries, disambiguators)) {
+        let slug = `${baseSlug}${disambiguator}`;
+        if (this._bySlug.has(slug)) {
+          throw new Error(`Attempted to reuse slug ${slug}`);
         }
+        entry.slug = slug;
+        this._bySlug.set(slug, entry);
       }
-      this._bySlug.set(newSlug!, e);
-      e.slug = newSlug;
     }
   }
 
   /**
-   * Group entries by FST lemma, elect one entry to be the lemma, and demote the
-   * rest to wordforms.
+   * Group entries by FST lemma, select one entry to be the lemma, and demote
+   * the rest to wordforms.
    */
   determineLemmas() {
     // Save locations for replacing with Wordform objects
@@ -191,6 +183,21 @@ export class Dictionary<L = DefaultLinguistInfo> {
       }
     }
 
+    const entry = this.create(text);
+    if (slug) {
+      entry.slug = slug;
+      this._bySlug.set(slug, entry);
+    }
+
+    return entry;
+  }
+
+  /**
+   * Create a new entry. Useful for creating homographs.
+   */
+  create(text: string) {
+    assert(text);
+
     const entry = new DictionaryEntry<L>();
 
     // This happens for a couple of entries in the Tsuut’ina “Vocabulary”
@@ -207,11 +214,6 @@ export class Dictionary<L = DefaultLinguistInfo> {
       currentByTextList.push(entry);
     } else {
       this._byText.set(text, [entry]);
-    }
-
-    if (slug) {
-      entry.slug = slug;
-      this._bySlug.set(slug, entry);
     }
 
     this._entries.push(entry);

@@ -5,28 +5,30 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "smushedAnalysis": "acâhkos+N+A+Sg",
-      "stem": "acâhkos-"
+      "stems": ["acâhkos-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "star",
-        "sources": ["CW", "MD"]
+        "definition": "star, little star",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "A star.",
+        "sources": ["MD"]
       }
     ],
     "slug": "acâhkos"
   },
   {
-    "analysis": null,
     "head": "acâhkos kâ-osôsit",
     "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "acâhkos kâ-osôsit+N",
-      "stem": ""
+      "inflectional_category": "INM < NA-1 + VAI-1",
+      "pos": "IPC",
+      "stems": ["acâhkos-", "osôsi-"],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "comet, tailed star",
@@ -36,18 +38,20 @@
     "slug": "acâhkos_kâ-osôsit"
   },
   {
-    "analysis": null,
     "head": "acâhkosa kâ-otakohpit",
     "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "acâhkosa kâ-otakohpit+N",
-      "stem": ""
+      "inflectional_category": "INM < NA-1 + VAI-1",
+      "pos": "IPC",
+      "stems": ["acâhkos-", "otakohpi-"],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "Starblanket; literally: One who has Stars as a Blanket; name of Cree chief, signatory to Treaty 4",
+        "definition": "Starblanket",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "Cree chief, signatory to Treaty 4",
         "sources": ["CW"]
       }
     ],
@@ -59,14 +63,18 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "smushedAnalysis": "amisk+N+A+Sg",
-      "stem": "amiskw-"
+      "stems": ["amiskw-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
         "definition": "beaver",
-        "sources": ["CW", "MD"]
+        "sources": ["CW"]
+      },
+      {
+        "definition": "A beaver.",
+        "sources": ["MD"]
       }
     ],
     "slug": "amisk"
@@ -77,13 +85,17 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "amiskwaciy-wâskahikan+N+I+Sg",
-      "stem": "amiskwaciy-wâskahikan-"
+      "stems": ["amiskwaciy-wâskahikan-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "Edmonton, AB; Fort Edmonton; literally: Beaver Hills House",
+        "definition": "Edmonton, AB",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "Fort Edmonton",
         "sources": ["CW"]
       }
     ],
@@ -95,14 +107,25 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "anohc+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "now, today",
         "sources": ["CW"]
+      },
+      {
+        "definition": "Today,",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "Presently.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "Now.",
+        "sources": ["MD"]
       }
     ],
     "slug": "anohc"
@@ -113,18 +136,18 @@
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "smushedAnalysis": "asawâpamêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "asawâpam-"
+      "stems": ["asawâpam-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
       {
-        "definition": "He is on the look-out for him.",
-        "sources": ["MD"]
+        "definition": "s/he looks out for s.o., s/he watches for s.o., s/he waits and watches for s.o., s/he lies in watch for s.o.",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he looks out for s.o., s/he waits and watches for s.o., s/he lies in watch for s.o.",
-        "sources": ["CW"]
+        "definition": "He is on the look-out for him.",
+        "sources": ["MD"]
       }
     ],
     "slug": "asawâpamêw"
@@ -135,18 +158,18 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "smushedAnalysis": "asikan+N+A+Sg",
-      "stem": "asikan-"
+      "stems": ["asikan-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "Sock.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "sock, stocking",
         "sources": ["CW"]
+      },
+      {
+        "definition": "Sock.",
+        "sources": ["MD"]
       }
     ],
     "slug": "asikan"
@@ -157,18 +180,34 @@
     "linguistInfo": {
       "inflectional_category": "VTA-2",
       "pos": "V",
-      "smushedAnalysis": "atamiskawêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "atamiskaw-"
+      "stems": ["atamiskaw-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
       {
-        "definition": "He shook hands with him or them.",
-        "sources": ["MD"]
+        "definition": "s/he greets s.o., s/he sends greetings to s.o.",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he greets s.o., s/he sends greetings to s.o.; s/he says hello to s.o.; s/he shakes hands with s.o.; s/he hugs s.o. in greeting, s/he kisses s.o. in greeting; s/he bids s.o. farewell",
+        "definition": "s/he says hello to s.o.",
         "sources": ["CW"]
+      },
+      {
+        "definition": "s/he shakes hands with s.o.",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he hugs s.o. in greeting, s/he kisses s.o. in greeting",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he bids s.o. farewell",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "He shook hands with him or them.",
+        "sources": ["MD"]
       }
     ],
     "slug": "atamiskawêw"
@@ -179,47 +218,41 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "smushedAnalysis": "atâhk+N+A+Sg",
-      "stem": "atâhkw-"
+      "stems": ["atâhkw-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "A big bright star.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "star",
         "sources": ["CW"]
+      },
+      {
+        "definition": "A big bright star.",
+        "sources": ["MD"]
       }
     ],
     "slug": "atâhk"
   },
   {
-    "analysis": [[], "atâhk", ["+N", "+A", "+Der/Dim", "+N", "+A", "+Sg"]],
-    "formOf": "atâhk",
-    "head": "acâhkos",
-    "senses": [
-      {
-        "definition": "star",
-        "sources": ["CW", "MD"]
-      }
-    ]
-  },
-  {
-    "analysis": null,
-    "definesFstTag": "PV/ati+",
     "head": "ati-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "ati-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "begin to, beginning; progressively, proceed to, going on, progressing; on the way",
+        "definition": "start to, begin to, beginning",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "progressively, proceed to, going on, progressing",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "on the way",
         "sources": ["CW"]
       }
     ],
@@ -231,13 +264,12 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "awa+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "it is (this) [focus marker]",
+        "definition": "it is (this)",
         "sources": ["CW"]
       }
     ],
@@ -249,18 +281,18 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "smushedAnalysis": "awa+Pron+Dem+Prox+A+Sg",
-      "stem": ""
+      "stems": [],
+      "wordclass": "PRON"
     },
     "paradigm": "demonstrative-pronouns",
     "senses": [
       {
-        "definition": "This one.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "this, this one",
         "sources": ["CW"]
+      },
+      {
+        "definition": "This one.",
+        "sources": ["MD"]
       }
     ],
     "slug": "awa@p"
@@ -271,8 +303,8 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "awâsisîwiw+V+AI+Ind+3Sg",
-      "stem": "awâsisîwi-"
+      "stems": ["awâsisîwi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
@@ -289,27 +321,34 @@
     "linguistInfo": {
       "inflectional_category": "IPJ",
       "pos": "IPC",
-      "smushedAnalysis": "awîna+Ipc+Interj",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
-    "senses": [],
+    "senses": [
+      {
+        "definition": "what was that!",
+        "sources": ["CW"]
+      }
+    ],
     "slug": "awîna@i"
   },
   {
-    "analysis": [[], "awîna", ["+Pron", "+Interr", "+Sg"]],
+    "analysis": [[], "awîna", ["+Pron", "+Interr", "+A", "+Sg"]],
     "head": "awîna",
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "smushedAnalysis": "awîna+Pron+Interr+Sg",
-      "stem": ""
+      "stems": [],
+      "wordclass": "PRON"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "who, whose",
-        "sources": ["CW", "MD"]
+        "sources": ["CW"]
+      },
+      {
+        "definition": "Who?",
+        "sources": ["MD"]
       }
     ],
     "slug": "awîna@p"
@@ -320,21 +359,70 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "ayâw+V+AI+Ind+3Sg",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He is here/there. (Animate) E.g. 'êkota kî-ayâw.' He was there.",
-        "sources": ["MD"]
+        "definition": "s/he is, s/he is there, s/he is located there",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he is, s/he is there; s/he lives there, s/he stays there",
+        "definition": "s/he lives there, s/he stays there",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he exists",
         "sources": ["CW"]
       }
     ],
     "slug": "ayâw@vai"
+  },
+  {
+    "analysis": [["PV/mohco+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "formOf": "ayâw@vai",
+    "head": "môhco-ayâw",
+    "senses": [
+      {
+        "definition": "s/he is foolish, s/he is stupid, s/he is silly",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he is crazy, s/he is mad",
+        "sources": ["CW"]
+      }
+    ]
+  },
+  {
+    "analysis": [["PV/nipahi+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "formOf": "ayâw@vai",
+    "head": "nipahi-ayâw",
+    "senses": [
+      {
+        "definition": "s/he feels dead tired, s/he feels lifeless",
+        "sources": ["CW"]
+      }
+    ]
+  },
+  {
+    "analysis": [["PV/papami+"], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "formOf": "ayâw@vai",
+    "head": "papâmi-ayâw",
+    "senses": [
+      {
+        "definition": "s/he stays here and there",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he bums around",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he is unstable",
+        "sources": ["CW"]
+      }
+    ]
   },
   {
     "analysis": [[], "ayâw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -342,13 +430,13 @@
     "linguistInfo": {
       "inflectional_category": "VII-2v",
       "pos": "V",
-      "smushedAnalysis": "ayâw+V+II+Ind+3Sg",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
-        "definition": "it is, it is there",
+        "definition": "it is, it is there, it exists",
         "sources": ["CW"]
       }
     ],
@@ -360,21 +448,32 @@
     "linguistInfo": {
       "inflectional_category": "VTI-2",
       "pos": "V",
-      "smushedAnalysis": "ayâw+V+TI+Ind+3Sg",
-      "stem": "ayâ-"
+      "stems": ["ayâ-"],
+      "wordclass": "VTI"
     },
     "paradigm": "VTI",
     "senses": [
       {
-        "definition": "He owns: he has.",
-        "sources": ["MD"]
+        "definition": "s/he has s.t., s/he owns s.t.",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he has s.t., s/he owns s.t.",
+        "definition": "s/he has s.t. on",
         "sources": ["CW"]
       }
     ],
     "slug": "ayâw@vti"
+  },
+  {
+    "analysis": [["PV/sesawi+"], "ayâw", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "formOf": "ayâw@vti",
+    "head": "sêsâwi-ayâw",
+    "senses": [
+      {
+        "definition": "s/he rests s.t.",
+        "sources": ["CW"]
+      }
+    ]
   },
   {
     "analysis": [[], "ayiwin", ["+N", "+I", "+Sg"]],
@@ -382,32 +481,21 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "ayiwin+N+I+Sg",
-      "stem": "ayiwin-"
+      "stems": ["ayiwin-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "article of clothing; [plural:] clothing, apparel",
+        "definition": "article of clothing",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "clothing, apparel",
         "sources": ["CW"]
       }
     ],
     "slug": "ayiwin"
-  },
-  {
-    "analysis": [[], "ayiwin", ["+N", "+I", "+Der/Dim", "+N", "+I", "+Pl"]],
-    "formOf": "ayiwin",
-    "head": "ayiwinisa",
-    "senses": [
-      {
-        "definition": "Clothes.",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "clothes; clothing, apparel; [singular:] article of clothing",
-        "sources": ["CW"]
-      }
-    ]
   },
   {
     "analysis": [[], "ayiwinisa", ["+N", "+I", "+Pl"]],
@@ -415,18 +503,34 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "ayiwinisa+N+I+Pl",
-      "stem": "ayiwinis-"
+      "stems": ["ayiwinis-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "Clothes.",
-        "sources": ["MD"]
+        "definition": "clothes",
+        "sources": ["CW"]
       },
       {
-        "definition": "clothes; clothing, apparel; [singular:] article of clothing",
+        "definition": "clothing, apparel, garb",
         "sources": ["CW"]
+      },
+      {
+        "definition": "rags",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "article of clothing",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "piece of material, piece of cloth",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "Clothes.",
+        "sources": ["MD"]
       }
     ],
     "slug": "ayiwinisa"
@@ -437,18 +541,22 @@
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "smushedAnalysis": "âcimêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "âcim-"
+      "stems": ["âcim-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
       {
-        "definition": "He is telling a story about him.",
-        "sources": ["MD"]
+        "definition": "s/he tells about s.o., s/he talks about s.o., s/he narrates about s.o.",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he tells about s.o., s/he talks about s.o.; s/he narrates about s.o.",
+        "definition": "s/he tells s.o., s/he tells things to s.o.",
         "sources": ["CW"]
+      },
+      {
+        "definition": "He is telling a story about him.",
+        "sources": ["MD"]
       }
     ],
     "slug": "âcimêw"
@@ -457,45 +565,42 @@
     "analysis": [[], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "âcimow",
     "linguistInfo": {
-      "inflectional_category": "VAI",
-      "pos": "V",
-      "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
-      "stem": "pimi-âcimo-"
-    },
-    "paradigm": "VAI",
-    "senses": [
-      {
-        "definition": "He told a story.",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "s/he tells, s/he tells a story; s/he tells news, s/he gives an account, s/he narrates; s/he tells his/her own story",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "âcimow@vai"
-  },
-  {
-    "analysis": [[], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "head": "âcimow",
-    "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "âcimow+V+AI+Ind+3Sg",
-      "stem": "âcimo-"
+      "stems": ["âcimo-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He told a story.",
-        "sources": ["MD"]
+        "definition": "s/he tells, s/he tells a story",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he tells, s/he tells a story; s/he tells news, s/he gives an account, s/he narrates; s/he tells his/her own story",
+        "definition": "s/he tells news, s/he gives an account, s/he narrates",
         "sources": ["CW"]
+      },
+      {
+        "definition": "s/he tells his/her own story",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "He told a story.",
+        "sources": ["MD"]
       }
     ],
-    "slug": "âcimow@vai-1"
+    "slug": "âcimow"
+  },
+  {
+    "analysis": [["PV/pimi+"], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "formOf": "âcimow",
+    "head": "pimi-âcimow",
+    "senses": [
+      {
+        "definition": "s/he tells stories along the way, s/he goes along telling stories",
+        "sources": ["CW"]
+      }
+    ]
   },
   {
     "analysis": [[], "âcimowin", ["+N", "+I", "+Sg"]],
@@ -503,50 +608,33 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "âcimowin+N+I+Sg",
-      "stem": "âcimowin-"
+      "stems": ["âcimowin-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "A story. A news forecast.",
+        "definition": "story, true story, account, report",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "news",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "what is being told",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "A story.",
         "sources": ["MD"]
       },
       {
-        "definition": "story, true story, account, report; news; what is being told",
-        "sources": ["CW"]
+        "definition": "A news forecast.",
+        "sources": ["MD"]
       }
     ],
     "slug": "âcimowin"
-  },
-  {
-    "analysis": [[], "âcimowin", ["+N", "+I", "+Der/Dim", "+N", "+I", "+Sg"]],
-    "formOf": "âcimowin",
-    "head": "âcimowinis",
-    "senses": [
-      {
-        "definition": "story",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "âyiman", ["+N", "+I", "+Sg"]],
-    "head": "âyiman",
-    "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "âyiman+N+I+Sg",
-      "stem": "âyiman- [VII-n]"
-    },
-    "paradigm": "NI",
-    "senses": [
-      {
-        "definition": "difficult thing",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "âyiman@i"
   },
   {
     "analysis": [[], "âyiman", ["+N", "+I", "+Sg"]],
@@ -554,8 +642,9 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "âyiman+N+I+Sg",
-      "stem": "âyiman-"
+      "proto_cree": "âýiman",
+      "stems": ["âýiman-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
@@ -572,14 +661,19 @@
     "linguistInfo": {
       "inflectional_category": "VII-2n",
       "pos": "V",
-      "smushedAnalysis": "âyiman+V+II+Ind+3Sg",
-      "stem": "âyiman-"
+      "proto_cree": "âýiman",
+      "stems": ["âýiman-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
         "definition": "it is difficult",
         "sources": ["CW"]
+      },
+      {
+        "definition": "It is difficult, hard.",
+        "sources": ["MD"]
       }
     ],
     "slug": "âyiman@v"
@@ -590,18 +684,29 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "êkwa+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
+      {
+        "definition": "and, also",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "then",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "now",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "let's go",
+        "sources": ["CW"]
+      },
       {
         "definition": "And also.",
         "sources": ["MD"]
-      },
-      {
-        "definition": "and, also; then; now",
-        "sources": ["CW"]
       }
     ],
     "slug": "êkwa"
@@ -612,10 +717,9 @@
     "linguistInfo": {
       "inflectional_category": "IPJ",
       "pos": "IPC",
-      "smushedAnalysis": "êkwatik+Ipc+Interj",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "o.k. now, let's go",
@@ -630,13 +734,20 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "ispîhk+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
+        "definition": "then, at such a time",
+        "sources": ["CW"]
+      },
+      {
         "definition": "when",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "until",
         "sources": ["CW"]
       }
     ],
@@ -652,8 +763,9 @@
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "smushedAnalysis": "katawatêyimêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "katawatêyim-"
+      "proto_cree": "katawatêýimêw",
+      "stems": ["katawatêýim-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
@@ -665,23 +777,56 @@
     "slug": "katawatêyimêw"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/kâh+",
     "head": "kâh-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "kâh-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "would, ought to; likely to",
+        "definition": "would, ought to",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "could",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "likely to",
         "sources": ["CW"]
       }
     ],
-    "slug": "kâh-"
+    "slug": "kâh-@ipv.1"
+  },
+  {
+    "head": "kâh-",
+    "linguistInfo": {
+      "inflectional_category": "IPV",
+      "pos": "IPC",
+      "stems": [],
+      "wordclass": "IPC"
+    },
+    "senses": [
+      {
+        "definition": "[grammatical preverb: intermittent, repeatedly]",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "[again and again]",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "[here and there]",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "[augmentative]",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "kâh-@ipv.2"
   },
   {
     "analysis": [[], "kiskinwahamâkosiw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -689,54 +834,73 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "kiskinwahamâkosiw+V+AI+Ind+3Sg",
-      "stem": "kiskinwahamâkosi-"
+      "stems": ["kiskinwahamâkosi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He is being taught. He's learning. He is going to school.",
+        "definition": "s/he learns",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he is a student, s/he attends school",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he is taught",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "He is being taught.",
         "sources": ["MD"]
       },
       {
-        "definition": "s/he learns; s/he is a student, s/he attends school; s/he is taught",
-        "sources": ["CW"]
+        "definition": "He is learning.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "He is going to school.",
+        "sources": ["MD"]
       }
     ],
     "slug": "kiskinwahamâkosiw"
   },
   {
-    "analysis": [[], "kîmôci-", ["+Ipc"]],
     "head": "kîmôci-",
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "kîmôci-+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "secret, in secret, stealthy, by stealth; private, in private",
+        "definition": "secret, in secret, stealthy, by stealth",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "private, in private",
         "sources": ["CW"]
       }
     ],
     "slug": "kîmôci-@ipc"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/kîmôci+",
     "head": "kîmôci-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "kîmôci-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "secretly, by stealth",
+        "definition": "secretly, in secret, stealthily, by stealth",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "privately, in private",
         "sources": ["CW"]
       }
     ],
@@ -748,14 +912,18 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "smushedAnalysis": "kîsikâw+N+I+Sg",
-      "stem": "kîsikâw-"
+      "stems": ["kîsikâw-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "day",
-        "sources": ["CW", "MD"]
+        "definition": "day, daylight",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "day sky",
+        "sources": ["CW"]
       }
     ],
     "slug": "kîsikâw@n"
@@ -766,15 +934,11 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "smushedAnalysis": "kîsikâw+V+II+Ind+3Sg",
-      "stem": "kîsikâ-"
+      "stems": ["kîsikâ-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
-      {
-        "definition": "It is day.",
-        "sources": ["MD"]
-      },
       {
         "definition": "it is day, it is daylight",
         "sources": ["CW"]
@@ -788,17 +952,34 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "kotiskâwêw+V+AI+Ind+3Sg",
-      "stem": "kotiskâwê-"
+      "stems": ["kotiskâwê-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "s/he races, s/he is in a race; it gallops",
+        "definition": "s/he races, s/he is in a race",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "it gallops",
         "sources": ["CW"]
       }
     ],
     "slug": "kotiskâwêw"
+  },
+  {
+    "head": "maskwa",
+    "linguistInfo": {
+      "stems": ["maskw-"]
+    },
+    "senses": [
+      {
+        "definition": "Ursus Major constellation",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "maskwa@1"
   },
   {
     "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
@@ -806,36 +987,21 @@
     "linguistInfo": {
       "inflectional_category": "NA-4w",
       "pos": "N",
-      "smushedAnalysis": "maskwa+N+A+Sg",
-      "stem": "maskw-"
+      "stems": ["maskw-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "A bear.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "bear, black bear",
         "sources": ["CW"]
+      },
+      {
+        "definition": "A bear.",
+        "sources": ["MD"]
       }
     ],
-    "slug": "maskwa"
-  },
-  {
-    "analysis": [[], "maskwa", ["+N", "+A", "+Obv"]],
-    "formOf": "maskwa",
-    "head": "maskwa",
-    "senses": [
-      {
-        "definition": "A bear.",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "bear, black bear",
-        "sources": ["CW"]
-      }
-    ]
+    "slug": "maskwa@n"
   },
   {
     "analysis": [[], "mâci-nipâw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -843,8 +1009,8 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "mâci-nipâw+V+AI+Ind+3Sg",
-      "stem": "mâci-nipâ-"
+      "stems": ["mâci-nipâ-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
@@ -861,8 +1027,8 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "smushedAnalysis": "minôs+N+A+Sg",
-      "stem": "minôs-"
+      "stems": ["minôs-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
@@ -879,219 +1045,38 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "smushedAnalysis": "minôsis+N+A+Sg",
-      "stem": "minôsis-"
+      "stems": ["minôsis-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "A kitten.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "kitten, little cat",
         "sources": ["CW"]
+      },
+      {
+        "definition": "A kitten.",
+        "sources": ["MD"]
       }
     ],
     "slug": "minôsis"
   },
   {
-    "analysis": [[], "misâskwatômina", ["+N", "+I", "+Pl"]],
-    "head": "misâskwatômina",
-    "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "misâskwatômina+N+I+Pl",
-      "stem": "misâskwatômin-"
-    },
-    "paradigm": "NI",
-    "senses": [
-      {
-        "definition": "saskatoon berries",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "misâskwatômina@i"
-  },
-  {
-    "analysis": [[], "misâskwatômina", ["+N", "+I", "+Loc"]],
-    "formOf": "misâskwatômina@i",
+    "analysis": [[], "misâskwatôminihk", ["+Ipc", "+Prop"]],
     "head": "misâskwatôminihk",
-    "senses": [
-      {
-        "definition": "Saskatoon, SK; literally: at the Saskatoon berry",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "misâskwatômina", ["+N", "+I", "+Pl"]],
-    "head": "misâskwatômina",
     "linguistInfo": {
-      "inflectional_category": "NI-1",
-      "pos": "N",
-      "smushedAnalysis": "misâskwatômina+N+I+Pl",
-      "stem": "misâskwatômin-"
+      "inflectional_category": "INM < NI-1",
+      "pos": "IPC",
+      "stems": ["misâskwatômin-"],
+      "wordclass": "IPC"
     },
-    "paradigm": "NI",
     "senses": [
       {
-        "definition": "saskatoon berries",
+        "definition": "Saskatoon, SK",
         "sources": ["CW"]
       }
     ],
-    "slug": "misâskwatômina@n"
-  },
-  {
-    "analysis": [[], "misâskwatômina", ["+N", "+I", "+Loc"]],
-    "formOf": "misâskwatômina@n",
-    "head": "misâskwatôminihk",
-    "senses": [
-      {
-        "definition": "Saskatoon, SK; literally: at the Saskatoon berry",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "head": "mitôskwan",
-    "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "mitôskwan+N+I+D+PxX+Sg",
-      "stem": "-tôskwan-"
-    },
-    "paradigm": "NDI",
-    "senses": [
-      {
-        "definition": "elbow",
-        "sources": ["CW", "MD"]
-      }
-    ],
-    "slug": "mitôskwan@i"
-  },
-  {
-    "analysis": [
-      [],
-      "mitôskwan",
-      ["+N", "+I", "+D", "+Der/Dim", "+N", "+I", "+D", "+PxX", "+Sg"]
-    ],
-    "formOf": "mitôskwan@i",
-    "head": "micôskwanis",
-    "senses": [
-      {
-        "definition": "little elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [
-      [],
-      "mitôskwan",
-      ["+N", "+I", "+D", "+Der/Dim", "+N", "+I", "+D", "+Px1Sg", "+Sg"]
-    ],
-    "formOf": "mitôskwan@i",
-    "head": "nicôskwanis",
-    "senses": [
-      {
-        "definition": "my little elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "formOf": "mitôskwan@i",
-    "head": "nitôskwan",
-    "senses": [
-      {
-        "definition": "my elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+Px3Sg", "+Loc"]],
-    "formOf": "mitôskwan@i",
-    "head": "otôskwanihk",
-    "senses": [
-      {
-        "definition": "Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+PxX", "+Sg"]],
-    "head": "mitôskwan",
-    "linguistInfo": {
-      "inflectional_category": "NDI-1",
-      "pos": "N",
-      "smushedAnalysis": "mitôskwan+N+I+D+PxX+Sg",
-      "stem": "-tôskwan-"
-    },
-    "paradigm": "NDI",
-    "senses": [
-      {
-        "definition": "elbow",
-        "sources": ["CW", "MD"]
-      }
-    ],
-    "slug": "mitôskwan@n"
-  },
-  {
-    "analysis": [
-      [],
-      "mitôskwan",
-      ["+N", "+I", "+D", "+Der/Dim", "+N", "+I", "+D", "+PxX", "+Sg"]
-    ],
-    "formOf": "mitôskwan@n",
-    "head": "micôskwanis",
-    "senses": [
-      {
-        "definition": "little elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [
-      [],
-      "mitôskwan",
-      ["+N", "+I", "+D", "+Der/Dim", "+N", "+I", "+D", "+Px1Sg", "+Sg"]
-    ],
-    "formOf": "mitôskwan@n",
-    "head": "nicôskwanis",
-    "senses": [
-      {
-        "definition": "my little elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "formOf": "mitôskwan@n",
-    "head": "nitôskwan",
-    "senses": [
-      {
-        "definition": "my elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "mitôskwan", ["+N", "+I", "+D", "+Px3Sg", "+Loc"]],
-    "formOf": "mitôskwan@n",
-    "head": "otôskwanihk",
-    "senses": [
-      {
-        "definition": "Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River",
-        "sources": ["CW"]
-      }
-    ]
+    "slug": "misâskwatôminihk"
   },
   {
     "analysis": [[], "mîcisow", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -1099,17 +1084,21 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "mîcisow+V+AI+Ind+3Sg",
-      "stem": "mîciso-"
+      "stems": ["mîciso-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He eats.",
-        "sources": ["MD"]
+        "definition": "s/he eats, s/he has a meal",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he eats, s/he has a meal",
+        "definition": "it feeds (e.g. bird)",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "it chews its cud (e.g. ruminant)",
         "sources": ["CW"]
       }
     ],
@@ -1121,21 +1110,32 @@
     "linguistInfo": {
       "inflectional_category": "VTI-3",
       "pos": "V",
-      "smushedAnalysis": "mîciw+V+TI+Ind+3Sg",
-      "stem": "mîci-"
+      "stems": ["mîci-"],
+      "wordclass": "VTI"
     },
     "paradigm": "VTI",
     "senses": [
       {
-        "definition": "He eats it.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "s/he eats s.t.",
         "sources": ["CW"]
+      },
+      {
+        "definition": "He eats it.",
+        "sources": ["MD"]
       }
     ],
     "slug": "mîciw"
+  },
+  {
+    "analysis": [["PV/misi+"], "mîciw", ["+V", "+TI", "+Ind", "+3Sg"]],
+    "formOf": "mîciw",
+    "head": "misi-mîciw",
+    "senses": [
+      {
+        "definition": "s/he eats a lot of s.t., s/he eats much of s.t.",
+        "sources": ["CW"]
+      }
+    ]
   },
   {
     "analysis": [[], "mîpit", ["+N", "+I", "+D", "+PxX", "+Sg"]],
@@ -1143,32 +1143,21 @@
     "linguistInfo": {
       "inflectional_category": "NDI-1",
       "pos": "N",
-      "smushedAnalysis": "mîpit+N+I+D+PxX+Sg",
-      "stem": "-îpit-"
+      "stems": ["-îpit-"],
+      "wordclass": "NID"
     },
     "paradigm": "NDI",
     "senses": [
       {
         "definition": "tooth",
-        "sources": ["CW", "MD"]
+        "sources": ["CW"]
+      },
+      {
+        "definition": "The tooth.",
+        "sources": ["MD"]
       }
     ],
     "slug": "mîpit"
-  },
-  {
-    "analysis": [[], "mîpit", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "formOf": "mîpit",
-    "head": "nîpit",
-    "senses": [
-      {
-        "definition": "My tooth.",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "my tooth",
-        "sources": ["CW"]
-      }
-    ]
   },
   {
     "analysis": [[], "mowêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
@@ -1176,18 +1165,18 @@
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "smushedAnalysis": "mowêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "mow-"
+      "stems": ["mow-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
       {
-        "definition": "He eats him.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "s/he eats s.o. (e.g. bread)",
         "sources": ["CW"]
+      },
+      {
+        "definition": "He eats him.",
+        "sources": ["MD"]
       }
     ],
     "slug": "mowêw"
@@ -1198,8 +1187,8 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "smushedAnalysis": "nipawâkan+N+A+D+Px1Sg+Sg",
-      "stem": "-pawâkan-"
+      "stems": ["-pawâkan-"],
+      "wordclass": "NAD"
     },
     "paradigm": "NDA",
     "senses": [
@@ -1216,18 +1205,18 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "nipâw+V+AI+Ind+3Sg",
-      "stem": "nipâ-"
+      "stems": ["nipâ-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He sleeps.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "s/he sleeps, s/he is asleep",
         "sources": ["CW"]
+      },
+      {
+        "definition": "He sleeps.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nipâw"
@@ -1238,18 +1227,18 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "nipâwin+N+I+Sg",
-      "stem": "nipâwin-"
+      "stems": ["nipâwin-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "Sleep.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "sleeping, sleep",
         "sources": ["CW"]
+      },
+      {
+        "definition": "Sleep.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nipâwin"
@@ -1260,28 +1249,21 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "smushedAnalysis": "nipiy+N+I+Sg",
-      "stem": "nipiy-"
+      "stems": ["nipiy-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
         "definition": "water",
-        "sources": ["CW", "MD"]
+        "sources": ["CW"]
+      },
+      {
+        "definition": "A leaf.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nipiy"
-  },
-  {
-    "analysis": [[], "nipiy", ["+N", "+I", "+Der/Dim", "+N", "+I", "+Sg"]],
-    "formOf": "nipiy",
-    "head": "nipîs",
-    "senses": [
-      {
-        "definition": "small amount of water",
-        "sources": ["CW"]
-      }
-    ]
   },
   {
     "analysis": [[], "niska", ["+N", "+A", "+Sg"]],
@@ -1289,28 +1271,21 @@
     "linguistInfo": {
       "inflectional_category": "NA-4",
       "pos": "N",
-      "smushedAnalysis": "niska+N+A+Sg",
-      "stem": "nisk-"
+      "stems": ["nisk-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
         "definition": "goose",
-        "sources": ["CW", "MD"]
+        "sources": ["CW"]
+      },
+      {
+        "definition": "A goose.",
+        "sources": ["MD"]
       }
     ],
     "slug": "niska"
-  },
-  {
-    "analysis": [[], "niska", ["+N", "+A", "+Obv"]],
-    "formOf": "niska",
-    "head": "niska",
-    "senses": [
-      {
-        "definition": "goose",
-        "sources": ["CW", "MD"]
-      }
-    ]
   },
   {
     "analysis": [[], "nisto", ["+Ipc"]],
@@ -1318,80 +1293,40 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "nisto+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "three",
-        "sources": ["CW", "MD"]
+        "definition": "three, 3",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "Three.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nisto"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/nitawi+",
     "head": "nitawi-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "nitawi-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "go and, go to; engaged in",
+        "definition": "go and, go to",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "engaged in",
         "sources": ["CW"]
       }
     ],
     "slug": "nitawi-"
-  },
-  {
-    "analysis": [[], "nitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
-    "head": "nitôskwan",
-    "linguistInfo": {
-      "inflectional_category": "NDI-1",
-      "pos": "N",
-      "smushedAnalysis": "nitôskwan+N+I+D+Px1Sg+Sg",
-      "stem": "-tôskwan-"
-    },
-    "paradigm": "NDI",
-    "senses": [
-      {
-        "definition": "my elbow",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "nitôskwan"
-  },
-  {
-    "analysis": [
-      [],
-      "nitôskwan",
-      ["+N", "+I", "+D", "+Der/Dim", "+N", "+I", "+D", "+Px1Sg", "+Sg"]
-    ],
-    "formOf": "nitôskwan",
-    "head": "nicôskwanis",
-    "senses": [
-      {
-        "definition": "my little elbow",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "nitôskwan", ["+N", "+I", "+D", "+Px3Sg", "+Loc"]],
-    "formOf": "nitôskwan",
-    "head": "otôskwanihk",
-    "senses": [
-      {
-        "definition": "Calgary, AB; literally: at the elbow; at his/her elbow in reference to the Bow River",
-        "sources": ["CW"]
-      }
-    ]
   },
   {
     "analysis": [[], "niya", ["+Pron", "+Pers", "+1Sg"]],
@@ -1399,14 +1334,27 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "smushedAnalysis": "niya+Pron+Pers+1Sg",
-      "stem": ""
+      "proto_cree": "niýa",
+      "stems": [],
+      "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
     "senses": [
       {
         "definition": "I, me, mine",
         "sources": ["CW"]
+      },
+      {
+        "definition": "I,",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "Me.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "Mine.",
+        "sources": ["MD"]
       }
     ],
     "slug": "niya"
@@ -1417,8 +1365,9 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "smushedAnalysis": "niyanân+Pron+Pers+1Pl",
-      "stem": ""
+      "proto_cree": "niýanân",
+      "stems": [],
+      "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
     "senses": [
@@ -1435,8 +1384,8 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "nîmiw+V+AI+Ind+3Sg",
-      "stem": "nîmi-"
+      "stems": ["nîmi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
@@ -1453,7 +1402,7 @@
     "head": "nîminâniwan",
     "senses": [
       {
-        "definition": "it is a dance, a time of dancing",
+        "definition": "there is a dance, it is a time of dancing",
         "sources": ["CW"]
       }
     ]
@@ -1464,18 +1413,18 @@
     "linguistInfo": {
       "inflectional_category": "VII-1n",
       "pos": "V",
-      "smushedAnalysis": "nîpin+V+II+Ind+3Sg",
-      "stem": "nîpin-"
+      "stems": ["nîpin-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
-        "definition": "Summertime.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "it is summer",
         "sources": ["CW"]
+      },
+      {
+        "definition": "Summertime.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nîpin"
@@ -1486,32 +1435,33 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "nîsiwak+V+AI+Ind+3Pl",
-      "stem": "nîsi-"
+      "stems": ["nîsi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "they are two in number; both",
+        "definition": "they are two in number, they are two together",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "both",
         "sources": ["CW"]
       }
     ],
     "slug": "nîsiwak"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/nîso+",
     "head": "nîso-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "nîso-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "two",
+        "definition": "two, as two, two together",
         "sources": ["CW"]
       }
     ],
@@ -1523,13 +1473,12 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "nîso-kîsikâw+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "two days",
+        "definition": "two days, for two days",
         "sources": ["CW"]
       }
     ],
@@ -1541,13 +1490,13 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "smushedAnalysis": "nîso-kîsikâw+V+II+Ind+3Sg",
-      "stem": "nîso-kîsikâ-"
+      "stems": ["nîso-kîsikâ-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
-        "definition": "it is Tuesday; literally: (it is) the second day",
+        "definition": "it is Tuesday",
         "sources": ["CW"]
       }
     ],
@@ -1559,33 +1508,44 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "smushedAnalysis": "nôhkom+N+A+D+Px1Sg+Sg",
-      "stem": "-ohkom-"
+      "stems": ["-ohkom-"],
+      "wordclass": "NAD"
     },
     "paradigm": "NDA",
     "senses": [
       {
-        "definition": "My grandmother.",
-        "sources": ["MD"]
+        "definition": "my grandmother",
+        "sources": ["CW"]
       },
       {
-        "definition": "my grandmother; [reference extended to all related females of grandmother's generation]; my respected female elder",
+        "definition": "my respected female elder",
         "sources": ["CW"]
+      },
+      {
+        "definition": "My grandmother.",
+        "sources": ["MD"]
       }
     ],
     "slug": "nôhkom"
   },
   {
-    "analysis": [
-      [],
-      "nôhkom",
-      ["+N", "+A", "+D", "+Der/Dim", "+N", "+A", "+D", "+Px1Sg", "+Sg"]
-    ],
+    "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Px12Pl", "+Sg"]],
     "formOf": "nôhkom",
-    "head": "nôhkomis",
+    "head": "kôhkominaw",
     "senses": [
       {
-        "definition": "my uncle, my parallel uncle; my father's brother, my mother's sister's husband",
+        "definition": "Our Grandmother, The Moon",
+        "sources": ["CW"]
+      }
+    ]
+  },
+  {
+    "analysis": [[], "nôhkom", ["+N", "+A", "+D", "+Voc", "+Sg"]],
+    "formOf": "nôhkom",
+    "head": "nôhkô",
+    "senses": [
+      {
+        "definition": "grandmother!",
         "sources": ["CW"]
       }
     ]
@@ -1596,17 +1556,22 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "nôhtêpayiw+V+AI+Ind+3Sg",
-      "stem": "nôhtêpayi-"
+      "proto_cree": "nôhtêpaýiw",
+      "stems": ["nôhtêpaýi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He ran short of it. He is short of it.",
-        "sources": ["MD"]
+        "definition": "s/he lacks (s.t.)",
+        "sources": ["CW"]
       },
       {
-        "definition": "s/he lacks (s.t.); s/he falls short, s/he runs short (of s.t.); s/he is in want",
+        "definition": "s/he falls short, s/he runs short (of s.t.)",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "s/he is in want, s/he runs short of supplies",
         "sources": ["CW"]
       }
     ],
@@ -1618,15 +1583,12 @@
     "linguistInfo": {
       "inflectional_category": "VII-2v",
       "pos": "V",
-      "smushedAnalysis": "nôhtêpayiw+V+II+Ind+3Sg",
-      "stem": "nôhtêpayi-"
+      "proto_cree": "nôhtêpaýiw",
+      "stems": ["nôhtêpaýi-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
-      {
-        "definition": "He ran short of it. He is short of it.",
-        "sources": ["MD"]
-      },
       {
         "definition": "it is insufficient, it falls short",
         "sources": ["CW"]
@@ -1640,39 +1602,85 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "ohci+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "From, out of, for.",
+        "definition": "from there, thence, out of",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "with, by means of",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "because of, for that reason",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "for",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "from then",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "about",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "From,",
         "sources": ["MD"]
       },
       {
-        "definition": "from there, thence, out of; with, by means of; because of; for; from then; about",
-        "sources": ["CW"]
+        "definition": "Out of,",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "For.",
+        "sources": ["MD"]
       }
     ],
     "slug": "ohci"
   },
   {
-    "analysis": null,
     "head": "oskana kâ-asastêki",
     "linguistInfo": {
-      "inflectional_category": "INM",
-      "pos": "N",
-      "smushedAnalysis": "oskana kâ-asastêki+N",
-      "stem": "oskan- [NI-1] + asastê- [VII-v]"
+      "inflectional_category": "INM < NDI-1 + VII-2v",
+      "pos": "IPC",
+      "stems": ["oskan-", "asastê-"],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "Regina, SK; Pile-o'-Bones; literally: where the bones are piled",
+        "definition": "Regina, SK",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "\"Pile-o'-Bones\"",
         "sources": ["CW"]
       }
     ],
     "slug": "oskana_kâ-asastêki"
+  },
+  {
+    "analysis": [[], "otôskwanihk", ["+Ipc", "+Prop"]],
+    "head": "otôskwanihk",
+    "linguistInfo": {
+      "inflectional_category": "INM < NDI-1",
+      "pos": "IPC",
+      "stems": ["-tôskwan-"],
+      "wordclass": "IPC"
+    },
+    "senses": [
+      {
+        "definition": "Calgary, AB",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "otôskwanihk"
   },
   {
     "analysis": [[], "ôma", ["+Ipc"]],
@@ -1680,32 +1688,51 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "ôma+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "it is this; the fact that; then; when; as it is, actually [focus marker]",
+        "definition": "it is this",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "the fact that",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "then",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "when",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "as it is, actually",
         "sources": ["CW"]
       }
     ],
     "slug": "ôma@i"
   },
   {
-    "analysis": null,
+    "analysis": [[], "ôma", ["+Pron", "+Dem", "+Prox", "+I", "+Sg"]],
     "head": "ôma",
     "linguistInfo": {
       "inflectional_category": "PrI",
       "pos": "PRON",
-      "smushedAnalysis": "ôma+Pron",
-      "stem": ""
+      "stems": [],
+      "wordclass": "PRON"
     },
     "paradigm": "demonstrative-pronouns",
     "senses": [
       {
         "definition": "this",
         "sources": ["CW"]
+      },
+      {
+        "definition": "This one.",
+        "sources": ["MD"]
       }
     ],
     "slug": "ôma@p"
@@ -1716,51 +1743,49 @@
     "linguistInfo": {
       "inflectional_category": "NA-1",
       "pos": "N",
-      "smushedAnalysis": "pahkwêsikan+N+A+Sg",
-      "stem": "pahkwêsikan-"
+      "stems": ["pahkwêsikan-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
       {
-        "definition": "Bannock.",
-        "sources": ["MD"]
+        "definition": "bannock, bread",
+        "sources": ["CW"]
       },
       {
-        "definition": "bannock, bread; flour",
+        "definition": "flour",
         "sources": ["CW"]
+      },
+      {
+        "definition": "Bannock.",
+        "sources": ["MD"]
       }
     ],
     "slug": "pahkwêsikan"
   },
   {
-    "analysis": [
-      [],
-      "pahkwêsikan",
-      ["+N", "+A", "+Der/Dim", "+N", "+A", "+Sg"]
-    ],
-    "formOf": "pahkwêsikan",
-    "head": "pahkwêsikanis",
-    "senses": [
-      {
-        "definition": "cookie; small bannock, bit of bread; bit of flour",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
-    "analysis": null,
-    "definesFstTag": "PV/pê+",
     "head": "pê-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "pê-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "come and; towards, approaching; hither; thence, from there on down; [towards focus]",
+        "definition": "come and, come to",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "towards, approaching",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "hither",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "thence, from there on down",
         "sources": ["CW"]
       }
     ],
@@ -1772,18 +1797,29 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "pêyak+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
+      {
+        "definition": "one, 1",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "alone, single, a single one",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "the only one",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "a certain one",
+        "sources": ["CW"]
+      },
       {
         "definition": "One.",
         "sources": ["MD"]
-      },
-      {
-        "definition": "one; alone, single; the only one",
-        "sources": ["CW"]
       }
     ],
     "slug": "pêyak"
@@ -1794,18 +1830,18 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "pimitâcimow+V+AI+Ind+3Sg",
-      "stem": "pimitâcimo-"
+      "stems": ["pimitâcimo-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
-        "definition": "He crawls.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "s/he crawls about, s/he crawls around, s/he creeps",
         "sources": ["CW"]
+      },
+      {
+        "definition": "He crawls.",
+        "sources": ["MD"]
       }
     ],
     "slug": "pimitâcimow"
@@ -1816,14 +1852,18 @@
     "linguistInfo": {
       "inflectional_category": "NI-1",
       "pos": "N",
-      "smushedAnalysis": "pipon+N+I+Sg",
-      "stem": "pipon-"
+      "stems": ["pipon-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
         "definition": "year, winter",
         "sources": ["CW"]
+      },
+      {
+        "definition": "It is winter.",
+        "sources": ["MD"]
       }
     ],
     "slug": "pipon@n"
@@ -1834,52 +1874,50 @@
     "linguistInfo": {
       "inflectional_category": "VII-1n",
       "pos": "V",
-      "smushedAnalysis": "pipon+V+II+Ind+3Sg",
-      "stem": "pipon-"
+      "stems": ["pipon-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
-        "definition": "It is winter.",
-        "sources": ["MD"]
+        "definition": "it is winter",
+        "sources": ["CW"]
       },
       {
-        "definition": "it is winter; is one year",
+        "definition": "is one year",
         "sources": ["CW"]
       }
     ],
     "slug": "pipon@v"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/pôni+",
     "head": "pôni-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "pôni-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "stop, terminate, cease; after",
+        "definition": "stop, terminate, cease",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "after",
         "sources": ["CW"]
       }
     ],
     "slug": "pôni-"
   },
   {
-    "analysis": null,
-    "definesFstTag": "PV/sa+",
     "head": "sa-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "smushedAnalysis": "sa-+Ipv",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "[grammatical preverb: ongoing, continuing]",
@@ -1894,8 +1932,8 @@
     "linguistInfo": {
       "inflectional_category": "NA-3",
       "pos": "N",
-      "smushedAnalysis": "sikâk+N+A+Sg",
-      "stem": "sikâkw-"
+      "stems": ["sikâkw-"],
+      "wordclass": "NA"
     },
     "paradigm": "NA",
     "senses": [
@@ -1907,41 +1945,17 @@
     "slug": "sikâk"
   },
   {
-    "analysis": [[], "sikâk", ["+N", "+A", "+Der/Dim", "+N", "+A", "+Sg"]],
-    "formOf": "sikâk",
-    "head": "sikâkos",
-    "senses": [
-      {
-        "definition": "small, young skunk",
-        "sources": ["CW"]
-      }
-    ]
-  },
-  {
     "analysis": [[], "tânisi", ["+Ipc"]],
     "head": "tânisi",
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "smushedAnalysis": "tânisi+Ipc",
-      "stem": ""
+      "stems": [],
+      "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
-        "definition": "hello, how are you",
-        "sources": ["CW"]
-      },
-      {
-        "definition": "How are you?",
-        "sources": ["MD"]
-      },
-      {
         "definition": "how, in what way",
-        "sources": ["CW"]
-      },
-      {
-        "definition": "hello, how are you",
         "sources": ["CW"]
       }
     ],
@@ -1949,33 +1963,14 @@
   },
   {
     "analysis": [[], "tânisi", ["+Ipc"]],
+    "formOf": "tânisi@ipc",
     "head": "tânisi",
-    "linguistInfo": {
-      "inflectional_category": "IPJ",
-      "pos": "IPC",
-      "smushedAnalysis": "tânisi+Ipc",
-      "stem": ""
-    },
-    "paradigm": null,
     "senses": [
       {
         "definition": "hello, how are you",
         "sources": ["CW"]
-      },
-      {
-        "definition": "How are you?",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "how, in what way",
-        "sources": ["CW"]
-      },
-      {
-        "definition": "hello, how are you",
-        "sources": ["CW"]
       }
-    ],
-    "slug": "tânisi@ipj"
+    ]
   },
   {
     "analysis": [[], "tipiskâw", ["+N", "+I", "+Sg"]],
@@ -1983,13 +1978,17 @@
     "linguistInfo": {
       "inflectional_category": "NI-2",
       "pos": "N",
-      "smushedAnalysis": "tipiskâw+N+I+Sg",
-      "stem": "tipiskâw-"
+      "stems": ["tipiskâw-"],
+      "wordclass": "NI"
     },
     "paradigm": "NI",
     "senses": [
       {
-        "definition": "night; night sky",
+        "definition": "night",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "night sky",
         "sources": ["CW"]
       }
     ],
@@ -2001,17 +2000,17 @@
     "linguistInfo": {
       "inflectional_category": "VII-1v",
       "pos": "V",
-      "smushedAnalysis": "tipiskâw+V+II+Ind+3Sg",
-      "stem": "tipiskâ-"
+      "stems": ["tipiskâ-"],
+      "wordclass": "VII"
     },
     "paradigm": "VII",
     "senses": [
       {
-        "definition": "Night time. V - It is night.",
-        "sources": ["MD"]
+        "definition": "it is night, it is night time",
+        "sources": ["CW"]
       },
       {
-        "definition": "it is night, it is night time; it is dark",
+        "definition": "it is dark",
         "sources": ["CW"]
       }
     ],
@@ -2023,18 +2022,22 @@
     "linguistInfo": {
       "inflectional_category": "VTI-1",
       "pos": "V",
-      "smushedAnalysis": "wâpahtam+V+TI+Ind+3Sg",
-      "stem": "wâpaht-"
+      "stems": ["wâpaht-"],
+      "wordclass": "VTI"
     },
     "paradigm": "VTI",
     "senses": [
       {
-        "definition": "He sees it.",
-        "sources": ["MD"]
-      },
-      {
         "definition": "s/he sees s.t., s/he witnesses s.t.",
         "sources": ["CW"]
+      },
+      {
+        "definition": "s/he has a vision",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "He sees it.",
+        "sources": ["MD"]
       }
     ],
     "slug": "wâpahtam"
@@ -2045,15 +2048,11 @@
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "smushedAnalysis": "wâpamêw+V+TA+Ind+3Sg+4Sg/PlO",
-      "stem": "wâpam-"
+      "stems": ["wâpam-"],
+      "wordclass": "VTA"
     },
     "paradigm": "VTA",
     "senses": [
-      {
-        "definition": "He sees him.",
-        "sources": ["MD"]
-      },
       {
         "definition": "s/he sees s.o., s/he witnesses s.o.",
         "sources": ["CW"]
@@ -2062,48 +2061,35 @@
     "slug": "wâpamêw"
   },
   {
+    "head": "wâpiw",
+    "linguistInfo": {
+      "stems": ["wâpi-"]
+    },
+    "senses": [
+      {
+        "definition": "s/he is blind",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "wâpiw@1"
+  },
+  {
     "analysis": [[], "wâpiw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "wâpiw",
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "smushedAnalysis": "wâpiw+V+AI+Ind+3Sg",
-      "stem": "wâpi-"
+      "stems": ["wâpi-"],
+      "wordclass": "VAI"
     },
     "paradigm": "VAI",
     "senses": [
       {
         "definition": "s/he sees, s/he has vision",
         "sources": ["CW"]
-      },
-      {
-        "definition": "[generally in negative phrases:] s/he is blind",
-        "sources": ["CW"]
       }
     ],
-    "slug": "wâpiw"
-  },
-  {
-    "analysis": [[], "wiya", ["+Ipc"]],
-    "head": "wiya",
-    "linguistInfo": {
-      "inflectional_category": "IPC",
-      "pos": "IPC",
-      "smushedAnalysis": "wiya+Ipc",
-      "stem": ""
-    },
-    "paradigm": null,
-    "senses": [
-      {
-        "definition": "this, that; as for, by contrast",
-        "sources": ["CW"]
-      },
-      {
-        "definition": "for, because",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "wiya@i"
+    "slug": "wâpiw@v"
   },
   {
     "analysis": [[], "wiya", ["+Pron", "+Pers", "+3Sg"]],
@@ -2111,16 +2097,59 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "smushedAnalysis": "wiya+Pron+Pers+3Sg",
-      "stem": ""
+      "proto_cree": "wiýa",
+      "stems": [],
+      "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
     "senses": [
       {
-        "definition": "he, she, it; him, her, it; his, hers, its",
+        "definition": "he, she, it",
         "sources": ["CW"]
+      },
+      {
+        "definition": "him, her, it",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "his, hers, its",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "He or she.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "Him or her.",
+        "sources": ["MD"]
       }
     ],
     "slug": "wiya@p"
+  },
+  {
+    "analysis": [[], "wiya", ["+Ipc"]],
+    "formOf": "wiya@p",
+    "head": "wiya",
+    "senses": [
+      {
+        "definition": "for, because",
+        "sources": ["CW"]
+      }
+    ]
+  },
+  {
+    "analysis": [[], "wiya", ["+Ipc"]],
+    "formOf": "wiya@p",
+    "head": "wiya",
+    "senses": [
+      {
+        "definition": "this, that",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "as for, by contrast",
+        "sources": ["CW"]
+      }
+    ]
   }
 ]

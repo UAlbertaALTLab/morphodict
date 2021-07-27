@@ -11,6 +11,7 @@ import {
 } from "./toimportjson";
 
 import { isEqual } from "lodash";
+import assert from "assert";
 
 function protoToWoods(s: string) {
   let ret = s;
@@ -44,7 +45,32 @@ function posFromInflectionalCategory(inflectionalCategory: string) {
   if (inflectionalCategory.toUpperCase().startsWith("PR")) {
     return "PRON";
   }
-  return "";
+  return null;
+}
+
+function wordClassFromInflectionalCategory(inflectionalCategory: string) {
+  for (let { prefix, wordClassOverride } of [
+    // If the inflectional category starts with the given prefix, use that
+    // prefix as the word class, unless wordClassOverride is given, in which
+    // case use that instead.
+    //
+    // This list is examiend in sequential order.
+    { prefix: "NDI", wordClassOverride: "NID" },
+    { prefix: "NDA", wordClassOverride: "NAD" },
+    { prefix: "NI" },
+    { prefix: "NA" },
+    { prefix: "PR", wordClassOverride: "PRON" },
+    { prefix: "VAI" },
+    { prefix: "VII" },
+    { prefix: "VTA" },
+    { prefix: "VTI" },
+    { prefix: "I", wordClassOverride: "IPC" },
+  ]) {
+    if (inflectionalCategory.toUpperCase().startsWith(prefix)) {
+      return wordClassOverride ?? prefix;
+    }
+  }
+  return null;
 }
 
 abstract class Import {
@@ -62,7 +88,8 @@ abstract class Import {
   }
 
   processEntry(obj: NdjsonEntry) {
-    const protoHead = obj.lemma.sro ?? obj.lemma.plains;
+    const protoHead = obj.lemma.proto ?? obj.lemma.sro;
+    assert(protoHead);
 
     // For now, assume crk and cwd have same FSTs modulo orthography
     const crkHead = protoToPlains(protoHead);
@@ -77,13 +104,7 @@ abstract class Import {
       return;
     }
 
-    // XXX: a few stem/morpheme(?) entries with keys like `/kotap-/`?
-    let slug = obj.key.replace(/\//g, "_");
-    slug = this.protoCreeToInternalOrthography(slug);
-    const entry = this._dictionary.getOrCreate({
-      slug: slug,
-      text: head,
-    });
+    const entry = this._dictionary.create(head);
 
     const pos = obj.dataSources?.CW?.pos?.toString();
 
@@ -104,7 +125,6 @@ abstract class Import {
           head: crkHead,
           pos,
           protoHead,
-          key: obj.key,
         }));
       }
 
@@ -126,10 +146,11 @@ abstract class Import {
       // pos in the toolbox/ndjson has a different meaning from in the python
       // code
       linguistInfo.pos = posFromInflectionalCategory(pos);
+      linguistInfo.wordclass = wordClassFromInflectionalCategory(pos);
     }
-    const stem = obj.dataSources?.CW?.stm;
-    if (stem) {
-      linguistInfo.stem = stem;
+    const stems = obj.dataSources?.CW?.stems;
+    if (stems) {
+      linguistInfo.stems = stems;
     }
     if (protoHead !== head) {
       linguistInfo.proto_cree = protoHead;
@@ -174,6 +195,9 @@ abstract class Import {
       );
     }
 
+    this._dictionary.assignSlugs(
+      (e) => e.linguistInfo?.inflectional_category ?? ""
+    );
     await writeFile(this._outputFileName, this._dictionary.assemble(options));
     console.log(`Wrote ${this._outputFileName}`);
   }
