@@ -204,10 +204,10 @@ Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci
 Med	Medial	Medial	There	anita	
 					
 N		Noun	Naming word	wîhyowin-itwêwin	
-N+A	Animate noun	Noun - animate	Naming word - like: asikan, iyiniw, maskwa	wîhyowin-itwêwin - tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽
-N+I	Inanimate noun	Noun - inanimate	Naming word - like: cîmân, wâwi	wîhyowin-itwêwin - tâpiskôc: cîmân, wâwi	💧
-N+A+D	Dependent animate noun	Noun - dependent animate	Naming word - like: nôhkom	wîhyowin-itwêwin - tâpiskôc: nôhkom	👤🧑🏽
-N+I+D	Dependent inanimate noun	Noun - dependent animate	Naming word - like: mîpit	wîhyowin-itwêwin - tâpiskôc: mîpit	👤💧
+N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhyowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽
+N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhyowin-itwêwin — tâpiskôc: cîmân, wâwi	💧
+N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhyowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽
+N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhyowin-itwêwin — tâpiskôc: mîpit	👤💧
 					
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan	
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy	
@@ -519,10 +519,10 @@ TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw	
 					
 V	Verb		Action word	ispayin-itwêwin	
-V+II	Inanimate intransitive verb	Verb - inanimate intransitive	Action word - like: miywâsin, mihkwâw	ispayin-itwêwin - tâpiskôc: miywâsin, mihkwâw	💧➡️
-V+AI	Animate intransitive verb	Verb - animate intransitive	Action word - like: mîcisow, nipâw	ispayin-itwêwin - tâpiskôc: mîcisow, nipâw	🧑🏽➡️
-V+TI	Transitive inanimate verb	Verb - transitive inanimate	Action word - like: nâtam, mîciw	ispayin-itwêwin - tâpiskôc: nâtam, mîciw	🧑🏽➡️💧
-V+TA	Transitive animate verb	Verb - transitive animate	Action word - like: wîcihêw, itêw	ispayin-itwêwin - tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽
+V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: miywâsin, mihkwâw	ispayin-itwêwin — tâpiskôc: miywâsin, mihkwâw	💧➡️
+V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️
+V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧
+V+TA	Transitive animate verb	Verb — transitive animate	Action word — like: wîcihêw, itêw	ispayin-itwêwin — tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽
 					
 Voc	Vocative	Vocative	call/address	kitowin	
 					

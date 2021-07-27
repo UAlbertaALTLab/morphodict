@@ -157,6 +157,7 @@ class Wordform(models.Model):
          it's the least strict url that guarantees unique match in the database
         """
         assert self.is_lemma, "There is no page for non-lemmas"
+        # FIXME: will return '/word/None' if no slug
         return reverse("cree-dictionary-index-with-lemma", kwargs={"slug": self.slug})
 
 

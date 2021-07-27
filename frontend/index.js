@@ -7,6 +7,7 @@ import "./css/styles.css";
 import { createTooltip } from "./js/tooltip";
 import {
   fetchFirstRecordingURL,
+  fetchRecordingURLForEachWordform,
   retrieveListOfSpeakers,
 } from "./js/recordings.js";
 import * as orthography from "./js/orthography.js";
@@ -119,19 +120,31 @@ function prepareSearchResults(searchResultsList) {
  *
  * @param {Element} searchResultsList
  */
-function loadRecordingsForAllSearchResults(searchResultsList) {
-  for (let result of searchResultsList.querySelectorAll("[data-wordform]")) {
-    let wordform = result.dataset.wordform;
-    let container = result; // do this reassignment because of the lexical scoping :(
+async function loadRecordingsForAllSearchResults(searchResultsList) {
+  let elementWithWordform = [];
+  let requestedWordforms = new Set();
 
-    // TODO: instead of making a request for each search result,
-    // TODO: use a "bulk query" option that uses one request to load all
-    // TODO: this requires code in the recording-validation-interface
-    fetchFirstRecordingURL(wordform)
-      .then((recordingURL) => createAudioButton(recordingURL, container))
-      .catch(() => {
-        /* ignore :/ */
-      });
+  for (let element of searchResultsList.querySelectorAll("[data-wordform]")) {
+    let wordform = element.dataset.wordform;
+    elementWithWordform.push([element, wordform]);
+    requestedWordforms.add(wordform);
+  }
+
+  let wordform2recordingURL;
+  try {
+    wordform2recordingURL = await fetchRecordingURLForEachWordform(
+      requestedWordforms
+    );
+  } catch {
+    // fail silently ¯\_(ツ)_/¯
+    return;
+  }
+
+  for (let [element, wordform] of elementWithWordform) {
+    let recordingURL = wordform2recordingURL.get(wordform);
+    if (recordingURL) {
+      createAudioButton(recordingURL, element);
+    }
   }
 }
 
@@ -249,6 +262,11 @@ function setupAudioOnPageLoad() {
 
   fetchFirstRecordingURL(wordform)
     .then((recordingURL) => {
+      if (recordingURL === undefined) {
+        // The API could not find a recording for this wordform ¯\_(ツ)_/¯
+        return;
+      }
+
       // TODO: it shouldn't be placed be **inside** the title <h1>...
       let button = createAudioButton(recordingURL, title);
       button.addEventListener("click", retrieveListOfSpeakers);

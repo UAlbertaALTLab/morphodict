@@ -1,0 +1,65 @@
+{
+  "matched_recordings": [
+    {
+      "wordform": "minôs",
+      "speaker": "HAR",
+      "speaker_name": "Harley Simon",
+      "anonymous": false,
+      "gender": "M",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/29444265281262d0d7e40e05b52c1c84cfda609bed83e6fa7cc07952045a2f61_rrXqDVo.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+    },
+    {
+      "wordform": "minôs",
+      "speaker": "JER",
+      "speaker_name": "Jerry Roasting",
+      "anonymous": false,
+      "gender": "M",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/3211a1ea8ef14917e7343d16d7103bd9056abc854fb3c581c21f61894f88d87a_RAzptgc.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/JER.html"
+    },
+    {
+      "wordform": "minôs",
+      "speaker": "BET",
+      "speaker_name": "Betty Simon",
+      "anonymous": false,
+      "gender": "F",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/8d759c5eb8476be96e81869ae3053e73fe9ef397ad9d4eeab8a7a898375347e9_n7tQ5S1.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/BET.html"
+    },
+    {
+      "wordform": "minôs",
+      "speaker": "HAR",
+      "speaker_name": "Harley Simon",
+      "anonymous": false,
+      "gender": "M",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/e52c1c6e111b76f2ee6dec712253802b79f77ae8544bc12be96792080eae54ac.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+    },
+    {
+      "wordform": "minôs",
+      "speaker": "HAR",
+      "speaker_name": "Harley Simon",
+      "anonymous": false,
+      "gender": "M",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/c36ce1048a08771b5bc55b53d916b0edc722a26a01519d8a7fca484b73504f02.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+    },
+    {
+      "wordform": "minôs",
+      "speaker": "MAR",
+      "speaker_name": "Mary-Jean Littlechild",
+      "anonymous": false,
+      "gender": "F",
+      "dialect": "Maskwacîs",
+      "recording_url": "http://speech-db.altlab.app/media/audio/476af1c51da6b3ae48a9e652a18f2ba88a9d4cf84fae5c0e1a1d18f901c75984.m4a",
+      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/MAR.html"
+    }
+  ],
+  "not_found": []
+}

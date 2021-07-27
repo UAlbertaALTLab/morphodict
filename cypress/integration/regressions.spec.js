@@ -306,9 +306,12 @@ context("Regressions", () => {
    */
 
   it("should show audio button after showing more", () => {
-    cy.visitSearch("minôs");
+    cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+      fixture: "recording/bulk_search/minôs.json",
+    }).as("bulkSearch");
 
-    cy.contains("[data-cy=lemma-link]", "minôs").click();
+    cy.visitLemma("minôs");
+    cy.wait("@bulkSearch");
 
     cy.get("[data-cy=play-recording]").should("be.visible");
 

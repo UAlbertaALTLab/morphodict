@@ -3,10 +3,9 @@ from __future__ import annotations
 import csv
 from enum import IntEnum
 from threading import Lock
-from typing import Iterable, Optional, TextIO, Tuple
+from typing import Iterable, Optional, TextIO, Tuple, TypedDict
 
 from django.conf import settings
-from mypy.build import TypedDict
 
 from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.types import FSTTag, Label, cast_away_optional
