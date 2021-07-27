@@ -1,5 +1,5 @@
 import assert from "assert";
-import { minBy, sortBy } from "lodash";
+import { minBy, sortBy, union } from "lodash";
 import { DefaultMap, makePrettierJson, stringDistance } from "./util";
 
 export type Analysis = [string[], string, string[]];
@@ -14,8 +14,9 @@ class DictionaryEntry {
   paradigm?: string;
   senses?: DefinitionList;
   slug?: string;
+  fstLemma?: string;
 
-  addDefinition(definition: string) {
+  addDefinition(definition: string, sources: string[]) {
     if (!definition.trim()) {
       return;
     }
@@ -25,15 +26,11 @@ class DictionaryEntry {
     }
     for (const k of this.senses) {
       if (k.definition === definition) {
+        k.sources = union(k.sources, sources);
         return;
       }
     }
-    this.senses.push({ definition, sources: ["OS"] });
-  }
-
-  get fstLemma() {
-    assert(this.analysis);
-    return this.analysis[1];
+    this.senses.push({ definition, sources: sources.slice() });
   }
 }
 
@@ -118,7 +115,7 @@ export class Dictionary {
         if (!e.analysis) {
           continue;
         }
-        const fstLemma = e.fstLemma;
+        const fstLemma = e.fstLemma ?? e.analysis[1];
         const lexicalTags = this._extractLexicalTags(e.analysis);
         const key = JSON.stringify({ fstLemma, lexicalTags });
         byFstLemmaAndLexicalTags.get(key).push(e);
@@ -132,10 +129,6 @@ export class Dictionary {
         stringDistance(fstLemma, e.head!)
       );
       assert(lemmaEntry);
-
-      // FIXME: don’t overwrite the lemma headword; requires dictionary code to
-      // first support having headword ≠ FST lemma
-      lemmaEntry.head = fstLemma;
 
       for (const e of entries) {
         if (e === lemmaEntry) {
