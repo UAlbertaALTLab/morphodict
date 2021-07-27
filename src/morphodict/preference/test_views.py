@@ -23,7 +23,7 @@ def test_post_preference(rf: RequestFactory, pet_preference: Preference):
 
 def test_bad_choice(rf: RequestFactory, pet_preference: Preference):
     """
-    Tests the happy path for setting a preference.
+    Test that setting an unknown choice should fail.
     """
     name = pet_preference.cookie_name
     choice = arbitrary_string()
@@ -39,6 +39,9 @@ def test_bad_choice(rf: RequestFactory, pet_preference: Preference):
 
 
 def test_preference_unknown(rf: RequestFactory):
+    """
+    Test that accessing an unknown preference 404s.
+    """
     unknown_name = arbitrary_string()
     choice = arbitrary_string()
 
