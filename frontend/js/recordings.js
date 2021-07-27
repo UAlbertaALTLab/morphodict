@@ -180,15 +180,23 @@ function mapWordformsToBestRecordingURL(response) {
 function chunk(collection) {
   const MAX_BATCH_SIZE = 50;
 
+  // Chunk items iteratively, sort of like packing moving boxes, adding items
+  // to one box at at time until the box gets full, and then moving on to a
+  // new, empty box:
   let chunks = [[]];
   for (let item of collection) {
+    // invariant: the array of all chunks has at least one chunk
     let currentChunk = chunks[chunks.length - 1];
 
     if (currentChunk.length >= MAX_BATCH_SIZE) {
+      // The current chunk is full!
+      // We can't add anymore items so start a new chunk.
       currentChunk = [];
       chunks.push(currentChunk);
     }
 
+    // invariant: currentChunk.length < batch size:
+    // ∴ it's safe to add an item to the current chunk
     currentChunk.push(item);
   }
 
