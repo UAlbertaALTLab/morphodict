@@ -45,14 +45,16 @@
   <section>
     <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns (awa words)</h3>
 
-    <p class="setting__note">The emoji that will represent all</p>
+    <p class="setting__note">The emoji that will represent all animate words wors</p>
 
-    <form method="POST" action=" {% url "cree-dictionary-change-preference" %}" data-save-preference="awaemoji">
+    <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
+          data-save-preference="animate_emoji">
       <ul class="unbullet">
         {% for value, label in preferences.animate_emoji.choices_with_labels %}
         <li class="option">
           <label class="option__label">
-            <input type="radio" name="awaemoji" value="{{ value }}" class="option__control"
+            <input type="radio" class="option__control"
+                   name="animate_emoji" value="{{ value }}"
                {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
             <span class="option__label-text">{{ label|capfirst }}</span>
           </label>

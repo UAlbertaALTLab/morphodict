@@ -41,14 +41,16 @@ class ParadigmLabel(Preference):
 
 
 @register_preference
-class AnimateEmoji:
+class AnimateEmoji(Preference):
     """
     Which emoji to use to substitute all animate emoji (awa words).
     """
 
-    cookie_name = "awaemoji"
+    # Ensure the internal name and the cookie name (external name) are the same!
+    name = "animate_emoji"
+    cookie_name = name
 
-    default = "iyiniw"  # backwards-compatible
+    default = "iyiniw"  # the original itwêwina animate emoji
     choices = {
         "iyiniw": "🧑🏽",  # iyiniw (NA)/tastawiyiniw (NA)
         "granny": "👵🏽",  # kôhkom/*kokum (NDA)
