@@ -3,15 +3,17 @@ import re
 from functools import cache
 from os import fspath
 
+from django.conf import settings
 from gensim.models import KeyedVectors
 
-from django.conf import settings
-
-from CreeDictionary.utils import shared_res_dir
+from morphodict.lexicon import MORPHODICT_LEXICON_RESOURCE_DIR
 
 logger = logging.getLogger(__name__)
 
-shared_vector_model_dir = shared_res_dir / "vector_models"
+shared_vector_model_dir = MORPHODICT_LEXICON_RESOURCE_DIR / "vector_models"
+
+
+language_specific_vector_model_dir = settings.BASE_DIR / "resources" / "vector_models"
 
 
 # Bump this value when changing the format used to store the keys, so that
@@ -40,7 +42,7 @@ def definition_vectors_path():
     filename = f"definitions_v{CVD_KEY_FORMAT}.kv"
     if settings.USE_TEST_DB:
         filename = f"test_db_definitions_v{CVD_KEY_FORMAT}.kv"
-    return shared_vector_model_dir / filename
+    return language_specific_vector_model_dir / filename
 
 
 @cache
