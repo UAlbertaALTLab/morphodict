@@ -14,6 +14,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import secrets
+from typing import Optional
 
 from environs import Env
 
@@ -362,7 +363,7 @@ MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # An optional, shorter name for the language. Currently only used in the search
 # bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
-MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = None
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
 
 
 # The marketing / brand / public-facing name of the dictionary
