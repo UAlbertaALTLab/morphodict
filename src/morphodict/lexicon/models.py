@@ -14,14 +14,11 @@ from CreeDictionary.utils import (
     shared_res_dir,
 )
 from morphodict.analysis import RichAnalysis
-from morphodict.lexicon.checks import register_checks
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
 MAX_WORDFORM_LENGTH = 60
 
 logger = logging.getLogger(__name__)
-
-register_checks()
 
 
 class WordformLemmaManager(models.Manager):

@@ -1,3 +1,5 @@
+print("starting load of crkeng settings.py")
+
 """
 Django settings for crkeng.
 
@@ -35,6 +37,8 @@ STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
 STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
 
+MORPHODICT_DICTIONARY_NAME = "itwêwina"
+
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = True
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
@@ -42,6 +46,11 @@ MORPHODICT_ISO_639_1_CODE = "cr"
 
 MORPHODICT_SOURCE_LANGUAGE = "crk"
 MORPHODICT_TARGET_LANGUAGE = "eng"
+
+MORPHODICT_PREVIEW_WARNING = False
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Plains Cree"
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:

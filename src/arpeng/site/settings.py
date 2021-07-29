@@ -36,6 +36,8 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
+MORPHODICT_DICTIONARY_NAME = "arpeng"
+
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
@@ -56,3 +58,5 @@ MORPHODICT_ORTHOGRAPHY = {
 MORPHODICT_TAG_STYLE = "Bracket"
 
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Arapaho"

@@ -18,8 +18,10 @@ import secrets
 from environs import Env
 
 from . import base_dir_setup
+from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL
 from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
+
 
 BASE_DIR = base_dir_setup.get_base_dir()
 
@@ -107,7 +109,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "CreeDictionary.CreeDictionary.context_processors.display_options",
-                "morphodict.lexicon.context_processors.language_pair",
+                "morphodict.lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
         },
@@ -344,9 +346,24 @@ MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
 # lemma text when generating wordforms
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
 
+# Show a big banner at the top warning that the dictionary is a work in
+# progress. Set this to false once it’s gone through a reasonable amount of
+# testing.
+MORPHODICT_PREVIEW_WARNING = True
+
 # The style of tag used by the analyzer+generator FSTs. Must be "Plus" or
 # "Bracket". "Plus" is the ALTLab/Giella-style nipâw+V+AI+Ind+3Sg; "Bracket" is
 # a different style, with tags like `[VERB][TA]`.
 MORPHODICT_TAG_STYLE = "Plus"
 
-# MORPHODICT_
+# The name of the source language, written in the target language. Used in
+# default templates to describe what language the dictionary is for.
+MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+
+# An optional, shorter name for the language. Currently only used in the search
+# bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = None
+
+
+# The marketing / brand / public-facing name of the dictionary
+MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL

@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ MORPHODICT_DICTIONARY_NAME }} {{ MORPHODICT_SOURCE_LANGUAGE_NAME }} dictionary</title>
   <meta name="theme-color" content="#A20010">
   {% block headincludes %}
   {% endblock %}
@@ -26,9 +27,9 @@
 
 </head>
 <body class="app">
-{% if debug and LANGUAGE_PAIR != "crkeng" %}
-<div style="background-color: purple">
-    <span style="color: white; font-weight: bold;">Language pair: {{ LANGUAGE_PAIR }}</span>
+{% if MORPHODICT_PREVIEW_WARNING %}
+<div style="background-color: red; text-align: center">
+    <span style="color: white; font-weight: bold;">🚧 <i>Warning</i> ⚠️ This is a preview dictionary, and may have wildly incorrect content 🚧</span>
 </div>
 {% endif %}
 <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
