@@ -26,9 +26,7 @@ context("The settings page", () => {
           checkedValue = input.value;
         });
 
-      cy.get("[data-cy=toast]")
-        .should("be.visible")
-        .and("have.class", "toast--success");
+      waitForSaveConfirmation();
 
       cy.getCookie(PREFERENCE_COOKIE).then((cookie) => {
         expect(cookie.value).to.equal(checkedValue);
@@ -64,4 +62,58 @@ context("The settings page", () => {
       }
     });
   });
+
+  describe("Choosing an animate emoji", () => {
+    const PREFERENCE_COOKIE = "animate_emoji";
+    const NON_DEFAULT_EMOJI = "🐺";
+
+    it("should be accessible from the settings page", () => {
+      cy.getCookie(PREFERENCE_COOKIE).then((cookie) => {
+        expect(cookie).to.be.null;
+      });
+
+      cy.visit(Cypress.env("settings_url"));
+
+      cy.get("[data-cy=animate-emoji-choice]")
+        .contains("label", NON_DEFAULT_EMOJI)
+        .click();
+
+      cy.getCookie(PREFERENCE_COOKIE).then((cookie) => {
+        expect(cookie.value).to.be.exist;
+      });
+    });
+
+    it("should changes the emoji on the search page", () => {
+      const VTA_WORD = "mowêw";
+      const NA_WORD = "minôs";
+
+      cy.visit(Cypress.env("settings_url"));
+
+      cy.get("[data-cy=animate-emoji-choice]")
+        .contains("label", NON_DEFAULT_EMOJI)
+        .click();
+
+      waitForSaveConfirmation();
+
+      // Visit the search page directly
+      cy.visitSearch(VTA_WORD);
+      cy.get("[data-cy=search-result]:first").contains(
+        "[data-cy=word-class]",
+        `${NON_DEFAULT_EMOJI}➡️${NON_DEFAULT_EMOJI}`
+      );
+
+      // On the same page, search for something else entirely
+      cy.clearSearchBar().search(NA_WORD);
+      cy.get("[data-cy=search-result]:first").contains(
+        "[data-cy=word-class]",
+        NON_DEFAULT_EMOJI
+      );
+    });
+  });
+
+  function waitForSaveConfirmation() {
+    cy.get("[data-cy=toast]")
+      .should("be.visible")
+      .and("have.class", "toast--success");
+  }
 });

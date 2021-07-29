@@ -48,7 +48,7 @@
     <p class="setting__note">The emoji that will represent all animate words wors</p>
 
     <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
-          data-save-preference="animate_emoji">
+          data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
       <ul class="unbullet">
         {% for value, label in preferences.animate_emoji.choices_with_labels %}
         <li class="option">
