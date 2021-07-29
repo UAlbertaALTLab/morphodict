@@ -2,7 +2,7 @@ from typing import Any, Iterable
 
 from django.db.models import prefetch_related_objects
 
-from crkeng.app.preferences import DisplayMode
+from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
@@ -57,7 +57,9 @@ class SearchRun:
         return results
 
     def presentation_results(
-        self, display_mode=DisplayMode.default
+        self,
+        display_mode=DisplayMode.default,
+        animate_emoji=AnimateEmoji.default,
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
@@ -67,13 +69,20 @@ class SearchRun:
         )
         return [
             presentation.PresentationResult(
-                r, search_run=self, display_mode=display_mode
+                r,
+                search_run=self,
+                display_mode=display_mode,
+                animate_emoji=animate_emoji,
             )
             for r in results
         ]
 
-    def serialized_presentation_results(self, display_mode=DisplayMode.default):
-        results = self.presentation_results(display_mode=display_mode)
+    def serialized_presentation_results(
+        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default
+    ):
+        results = self.presentation_results(
+            display_mode=display_mode, animate_emoji=animate_emoji
+        )
         return [r.serialize() for r in results]
 
     def add_verbose_message(self, message=None, **messages):
