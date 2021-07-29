@@ -326,6 +326,13 @@ LOGGING = {
 
 # Morphodict config
 
+# We try to document all settings here, in one place, that are
+# language-specific. Sometimes there is a useful default that will apply to most
+# language pairs. If there isn’t, it needs to be configured in the settings file
+# specific to a language pair. In that case, we set the default here to None,
+# mark it required, and then a system check will raise an error on startup if
+# any required settings are not set.
+
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
 
@@ -341,3 +348,5 @@ MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
 # "Bracket". "Plus" is the ALTLab/Giella-style nipâw+V+AI+Ind+3Sg; "Bracket" is
 # a different style, with tags like `[VERB][TA]`.
 MORPHODICT_TAG_STYLE = "Plus"
+
+# MORPHODICT_
