@@ -1,5 +1,3 @@
-print("starting load of crkeng settings.py")
-
 """
 Django settings for crkeng.
 

@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
+from django.conf import settings
 from django.forms import model_to_dict
 
 from CreeDictionary.API.search import core, types
@@ -108,11 +109,32 @@ class PresentationResult:
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
 
-        (
-            self.linguistic_breakdown_head,
-            _,
-            self.linguistic_breakdown_tail,
-        ) = result.wordform.analysis or [[], None, []]
+        if settings.MORPHODICT_TAG_STYLE == "Plus":
+            (
+                self.linguistic_breakdown_head,
+                _,
+                self.linguistic_breakdown_tail,
+            ) = result.wordform.analysis or [[], None, []]
+        elif settings.MORPHODICT_TAG_STYLE == "Bracket":
+            # Arapaho has some head tags that the Plus-style FSTs put at the
+            # tail. For now, move them; later on elaboration could be a
+            # language-specific function.
+            head, _, tail = result.wordform.analysis or [[], None, []]
+
+            new_head = []
+            new_tail_prefix = []
+            for i, tag in enumerate(head):
+                if tag.startswith("["):
+                    new_tail_prefix.append(tag)
+                else:
+                    new_head.append(tag)
+            self.linguistic_breakdown_head = new_head
+            self.linguistic_breakdown_tail = new_tail_prefix + list(tail)
+            print(
+                f"{self.linguistic_breakdown_head=}, {self.linguistic_breakdown_tail=}"
+            )
+        else:
+            raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
         self.lexical_info = get_lexical_info(result.wordform.analysis)
 
@@ -126,25 +148,6 @@ class PresentationResult:
             for lexical_entry in self.lexical_info
             if lexical_entry["type"] == "Reduplication"
         ]
-
-        # HACK: if arapaho tags, move head tags to tail
-        # better fix would be, lang-specific function that takes in full
-        # analysis and does elaboration
-        self.linguistic_breakdown_head = list(self.linguistic_breakdown_head)
-        self.linguistic_breakdown_tail = list(self.linguistic_breakdown_tail)
-
-        new_head = []
-        new_tail_prefix = []
-        for i, tag in enumerate(self.linguistic_breakdown_head[:]):
-            if tag.startswith("["):
-                new_tail_prefix.append(tag)
-            else:
-                new_head.append(tag)
-        self.linguistic_breakdown_head = new_head
-        self.linguistic_breakdown_tail = (
-            new_tail_prefix + self.linguistic_breakdown_tail
-        )
-        # End HACK
 
         self.friendly_linguistic_breakdown_head = replace_user_friendly_tags(
             to_list_of_fst_tags(self.linguistic_breakdown_head)
@@ -194,8 +197,8 @@ class PresentationResult:
             label = self._relabeller.get_longest(tags)
 
             if label is None:
-                # Skip unlabelled chunks
-                continue
+                print(f"Warning: no label for tag chunk {tags!r}")
+                label = " ".join(tags)
 
             results.append({"tags": list(tags), "label": str(label)})
 
