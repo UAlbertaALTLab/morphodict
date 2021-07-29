@@ -67,6 +67,10 @@ context("The settings page", () => {
     const PREFERENCE_COOKIE = "animate_emoji";
     const NON_DEFAULT_EMOJI = "🐺";
 
+    const VTA_WORD = "mowêw";
+    const NA_WORD = "minôs";
+    const VAI_WORD = "nipâw";
+
     it("should be accessible from the settings page", () => {
       cy.getCookie(PREFERENCE_COOKIE).then((cookie) => {
         expect(cookie).to.be.null;
@@ -84,9 +88,6 @@ context("The settings page", () => {
     });
 
     it("should changes the emoji on the search page", () => {
-      const VTA_WORD = "mowêw";
-      const NA_WORD = "minôs";
-
       cy.visit(Cypress.env("settings_url"));
 
       cy.get("[data-cy=animate-emoji-choice]")
@@ -108,6 +109,19 @@ context("The settings page", () => {
         "[data-cy=word-class]",
         NON_DEFAULT_EMOJI
       );
+    });
+
+    it("should changes the emoji on the details page", () => {
+      cy.visit(Cypress.env("settings_url"));
+
+      cy.get("[data-cy=animate-emoji-choice]")
+        .contains("label", NON_DEFAULT_EMOJI)
+        .click();
+
+      waitForSaveConfirmation();
+
+      cy.visitLemma(VAI_WORD);
+      cy.contains("[data-cy=word-class]", `${NON_DEFAULT_EMOJI}➡️`);
     });
   });
 
