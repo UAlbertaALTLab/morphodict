@@ -19,9 +19,9 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 from morphodict.lexicon.models import Wordform
-from morphodict.preference.views import ChangePreferenceView
+
 from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm
 from .utils import url_for_query
@@ -105,7 +105,9 @@ def index(request):  # pragma: no cover
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
-        search_results = search_run.serialized_presentation_results()
+        search_results = search_run.serialized_presentation_results(
+            display_mode=DisplayMode.current_value_from_request(request)
+        )
         did_search = True
     else:
         search_results = []
@@ -137,7 +139,10 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    ).serialized_presentation_results()
+    ).serialized_presentation_results(
+        # mypy cannot infer this property, but it exists!
+        display_mode=DisplayMode.current_value_from_request(request)  # type: ignore
+    )
     return render(
         request,
         "CreeDictionary/search-results.html",
@@ -318,23 +323,6 @@ def google_site_verification(request):
         f"google-site-verification: google{code}.html",
         content_type="text/html; charset=UTF-8",
     )
-
-
-class ChangeDisplayMode(ChangePreferenceView):
-    """
-    Sets the mode= cookie, which affects how search results are rendered.
-    """
-
-    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
-
-
-class ChangeParadigmLabelPreference(ChangePreferenceView):
-    """
-    Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
-    PARADIGMS!
-    """
-
-    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
 
 
 ## Helper functions

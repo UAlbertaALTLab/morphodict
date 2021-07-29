@@ -1,17 +1,5 @@
 [
   {
-    "head": "níhooyóó-",
-    "senses": [
-      {
-        "definition": "yellow",
-        "sources": ["ALD"]
-      }
-    ],
-    "paradigm": "II",
-    "fstLemma": "nihooyoo",
-    "slug": "níhooyóó-"
-  },
-  {
     "head": "níhoonéíhi-",
     "senses": [
       {
@@ -19,9 +7,37 @@
         "sources": ["ALD"]
       }
     ],
+    "analysis": [
+      ["[VERB]", "[AI]", "[ANIMATE-SUBJECT]", "[IMPERATIVE]"],
+      "nihooneihi",
+      ["[2SG-SUBJ]"]
+    ],
     "paradigm": "AI",
-    "fstLemma": "nihooneihi",
     "slug": "níhoonéíhi-"
+  },
+  {
+    "head": "níhooyóó-",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "nihooyoo",
+    "paradigm": "II",
+    "slug": "níhooyóó-"
+  },
+  {
+    "head": "noohóot-",
+    "senses": [
+      {
+        "definition": "see s.t.",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "noohoot",
+    "paradigm": "TI",
+    "slug": "noohóot-"
   },
   {
     "head": "nóóhow-",
@@ -31,15 +47,8 @@
         "sources": ["ALD"]
       }
     ],
-    "paradigm": "TA",
     "fstLemma": "noohow",
+    "paradigm": "TA",
     "slug": "nóóhow-"
-  },
-  {
-    "head": "noohóot-",
-    "senses": [{ "definition": "see s.t.", "sources": ["ALD"] }],
-    "paradigm": "TI",
-    "fstLemma": "noohoot",
-    "slug": "noohóot-"
   }
 ]

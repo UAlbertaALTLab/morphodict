@@ -2,6 +2,7 @@ from typing import Any, Iterable
 
 from django.db.models import prefetch_related_objects
 
+from crkeng.app.preferences import DisplayMode
 from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
@@ -55,17 +56,24 @@ class SearchRun:
         results.sort()
         return results
 
-    def presentation_results(self) -> list[presentation.PresentationResult]:
+    def presentation_results(
+        self, display_mode=DisplayMode.default
+    ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
             [r.wordform for r in results],
             "lemma__definitions__citations",
             "definitions__citations",
         )
-        return [presentation.PresentationResult(r, search_run=self) for r in results]
+        return [
+            presentation.PresentationResult(
+                r, search_run=self, display_mode=display_mode
+            )
+            for r in results
+        ]
 
-    def serialized_presentation_results(self):
-        results = self.presentation_results()
+    def serialized_presentation_results(self, display_mode=DisplayMode.default):
+        results = self.presentation_results(display_mode=display_mode)
         return [r.serialize() for r in results]
 
     def add_verbose_message(self, message=None, **messages):

@@ -1,6 +1,7 @@
-import prettier from "prettier";
 import assert from "assert";
 import { readFile } from "fs/promises";
+import { resolve as resolvePath } from "path";
+import prettier from "prettier";
 
 /**
  * Run the input through the prettier tool.
@@ -169,4 +170,8 @@ export function stringDistance(a: string, b: string) {
     }
   }
   return dist[m][n];
+}
+
+export function resourceDir(languagePair: string) {
+  return resolvePath(__dirname, "..", "..", "src", languagePair, "resources");
 }
