@@ -100,7 +100,7 @@ async function main() {
       }
     }
 
-    const entry = dictionary.getOrCreate(head);
+    const entry = dictionary.getOrCreate({ text: head });
     // The new ??= local assignment operator would need NodeJS 16
     entry.linguistInfo = entry.linguistInfo ?? {};
     if (entry.linguistInfo.pos && entry.linguistInfo.pos !== obj.pos) {

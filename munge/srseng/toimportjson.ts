@@ -1,20 +1,13 @@
-import { join as joinPath, resolve as resolvePath } from "path";
+import { join as joinPath } from "path";
 import { writeFile } from "fs/promises";
 import { difference, flatten, intersection, isEqual, min } from "lodash";
 import { execIfMain } from "execifmain";
 import { Command } from "commander";
 import { Transducer } from "hfstol";
-import { loadTsvFile } from "../shared/util";
+import { loadTsvFile, resourceDir } from "../shared/util";
 import { Analysis, Dictionary } from "../shared/dictionary";
 
-const RESOURCE_DIR = resolvePath(
-  __dirname,
-  "..",
-  "..",
-  "src",
-  "srseng",
-  "resources"
-);
+const RESOURCE_DIR = resourceDir("srseng");
 
 const DICTIONARY_DIR = joinPath(RESOURCE_DIR, "dictionary");
 const FST_DIR = joinPath(RESOURCE_DIR, "fst");
@@ -116,7 +109,7 @@ async function main() {
       console.log(`Warning: no definition for row with head ${head}`);
     }
 
-    const entry = dictionary.getOrCreate(head);
+    const entry = dictionary.getOrCreate({ text: head });
     entry.addDefinition(definition, ["OS"]);
 
     const analyses = analyzer.lookup_lemma_with_affixes(head);

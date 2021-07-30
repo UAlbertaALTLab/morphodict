@@ -59,20 +59,33 @@ type DefaultValueProvider<K, V> = (key: K) => V;
  * given a key not already present.
  */
 export class DefaultMap<K, V> extends Map<K, V> {
-  private readonly defaultValueProvider: DefaultValueProvider<K, V>;
+  // Using `#`syntax to hide function value from console.log()
+  readonly #defaultValueProvider: DefaultValueProvider<K, V>;
 
   constructor(defaultValueProvider: DefaultValueProvider<K, V>) {
     super();
-    this.defaultValueProvider = defaultValueProvider;
+    this.#defaultValueProvider = defaultValueProvider;
   }
 
-  get(key: K): V {
+  getOrCreate(key: K): V {
     if (!super.has(key)) {
-      const v = this.defaultValueProvider(key);
+      const v = this.#defaultValueProvider(key);
       super.set(key, v);
       return v;
     }
     return super.get(key)!;
+  }
+}
+
+export class Counter<K = string> extends DefaultMap<K, number> {
+  constructor() {
+    super(() => 0);
+  }
+
+  increment(key: K, amount = 1): void {
+    const oldValue = this.getOrCreate(key);
+    const newValue = oldValue + amount;
+    this.set(key, newValue);
   }
 }
 

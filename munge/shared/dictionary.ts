@@ -1,5 +1,5 @@
 import assert from "assert";
-import { minBy, sortBy, union } from "lodash";
+import { minBy, remove, sortBy, union } from "lodash";
 import { DefaultMap, makePrettierJson, stringDistance } from "./util";
 
 export type Analysis = [string[], string, string[]];
@@ -10,7 +10,7 @@ type DefinitionList = {
 
 type DefaultLinguistInfo = never;
 
-class DictionaryEntry<L> {
+export class DictionaryEntry<L> {
   head?: string;
   analysis?: Analysis;
   paradigm?: string;
@@ -37,7 +37,7 @@ class DictionaryEntry<L> {
   }
 }
 
-class Wordform<L> {
+export class Wordform<L> {
   head?: string;
   analysis?: Analysis;
   senses?: DefinitionList;
@@ -48,19 +48,63 @@ type ExportableWordform<L> = Required<Omit<Wordform<L>, "formOf">> & {
   formOf: string;
 };
 
+type NonFunctionMembers<T> = {
+  [key in keyof T]: T[key] extends Function ? never : T[key];
+};
+
+/**
+ * A non-class version of DictionaryEntry, to represent the JSON-serialized form.
+ */
+interface ExportableDictionaryEntry<L>
+  extends NonFunctionMembers<DictionaryEntry<L>> {}
+
+export type ImportJsonJsonEntry<L> =
+  | ExportableDictionaryEntry<L>
+  | ExportableWordform<L>;
+
 export class Dictionary<L = DefaultLinguistInfo> {
   /**
    * FST tags which distinguish the lexeme, e.g., +N and +V, as opposed to tags
    * that distinguish the wordform within a lexeme, e.g., +Sg and +Pl.
    */
-  readonly lexicalTags: Set<string>;
+  readonly _lexicalTags: Set<string> | null;
   _entries: (DictionaryEntry<L> | Wordform<L>)[];
-  _byText: Map<string, DictionaryEntry<L>>;
+  /* WARNING: only holds DictionaryEntry object, not Wordforms */
+  _byText: Map<string, DictionaryEntry<L>[]>;
+  _bySlug: Map<string, DictionaryEntry<L>>;
 
-  constructor(lexicalTags: string[]) {
-    this.lexicalTags = new Set(lexicalTags);
+  constructor(lexicalTags?: string[]) {
+    if (lexicalTags) {
+      this._lexicalTags = new Set(lexicalTags);
+    } else {
+      this._lexicalTags = null;
+    }
     this._entries = [];
     this._byText = new Map();
+    this._bySlug = new Map();
+  }
+
+  /**
+   * Create a new Dictionary object from pre-existing importjson-format data.
+   */
+  static fromJson<L>(jsonText: string): Dictionary<L> {
+    const dictionary = new Dictionary<L>();
+
+    const data = JSON.parse(jsonText) as ImportJsonJsonEntry<L>[];
+    const forms = [];
+    for (const d of data) {
+      if ("formOf" in d) {
+        forms.push(d);
+      } else {
+        const entry = dictionary.getOrCreate({ text: d.head!, slug: d.slug });
+        entry.analysis = d.analysis;
+        entry.paradigm = d.paradigm;
+        entry.senses = d.senses;
+        entry.slug = d.slug;
+      }
+    }
+
+    return dictionary;
   }
 
   // This is a quick-and-dirty version; the git history has a slug_disambiguator
@@ -122,7 +166,7 @@ export class Dictionary<L = DefaultLinguistInfo> {
         const fstLemma = e.fstLemma ?? e.analysis[1];
         const lexicalTags = this._extractLexicalTags(e.analysis);
         const key = JSON.stringify({ fstLemma, lexicalTags });
-        byFstLemmaAndLexicalTags.get(key).push(e);
+        byFstLemmaAndLexicalTags.getOrCreate(key).push(e);
       }
     }
 
@@ -166,13 +210,40 @@ export class Dictionary<L = DefaultLinguistInfo> {
     return [...new Set(ret)].sort();
   }
 
-  getOrCreate(text: string) {
+  getOrCreate({ text, slug }: { text: string; slug?: string }) {
     assert(text);
 
-    let existing = this._byText.get(text);
-    if (existing) {
-      return existing;
+    if (slug) {
+      const existing = this._bySlug.get(slug);
+      if (existing) {
+        assert(existing.head === text);
+        return existing;
+      }
+    } else {
+      const candidates = this._byText.get(text);
+      // Passing different slugs may have created multiple entries with the same
+      // text. In that case it’s an error to call getOrCreate and pass only text
+      // and not a slug.
+      assert(!candidates || candidates.length <= 1);
+      if (candidates?.length === 1) {
+        return candidates[0];
+      }
     }
+
+    const entry = this.create(text);
+    if (slug) {
+      entry.slug = slug;
+      this._bySlug.set(slug, entry);
+    }
+
+    return entry;
+  }
+
+  /**
+   * Create a new entry. Useful for creating homographs.
+   */
+  create(text: string) {
+    assert(text);
 
     const entry = new DictionaryEntry<L>();
 
@@ -185,9 +256,41 @@ export class Dictionary<L = DefaultLinguistInfo> {
     }
 
     entry.head = text;
+    let currentByTextList = this._byText.get(text);
+    if (currentByTextList) {
+      currentByTextList.push(entry);
+    } else {
+      this._byText.set(text, [entry]);
+    }
+
     this._entries.push(entry);
-    this._byText.set(text, entry);
+
     return entry;
+  }
+
+  addWordform(form: Wordform<L>) {
+    assert(form instanceof Wordform);
+    this._entries.push(form);
+  }
+
+  /**
+   * Remove an entry, and all linked wordforms, from the dictionary.
+   */
+  remove(entry: DictionaryEntry<L> | Wordform<L>) {
+    remove(this._entries, (e) => e === entry);
+
+    if (entry instanceof DictionaryEntry) {
+      remove(this._byText.get(entry.head!)!, (e) => e === entry);
+      if (entry.slug) {
+        this._bySlug.delete(entry.slug);
+      }
+      const formsToRemove = this._entries.filter(
+        (e) => e instanceof Wordform && e.formOf === entry
+      );
+      for (const f of formsToRemove) {
+        this.remove(f);
+      }
+    }
   }
 
   /**
@@ -195,10 +298,10 @@ export class Dictionary<L = DefaultLinguistInfo> {
    * dictionary as a whole.
    */
   assemble() {
-    this.assignSlugs();
-    this.determineLemmas();
+    // this.assignSlugs();
+    // this.determineLemmas();
 
-    let entriesToExport: (DictionaryEntry<L> | ExportableWordform<L>)[] = [];
+    let entriesToExport: ImportJsonJsonEntry<L>[] = [];
     for (const e of this._entries) {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
@@ -218,24 +321,31 @@ export class Dictionary<L = DefaultLinguistInfo> {
           formOf,
         });
       } else {
-        entriesToExport.push(e);
+        entriesToExport.push(e as ExportableDictionaryEntry<L>);
       }
     }
 
-    entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText) as (
-      | DictionaryEntry<L>
-      | ExportableWordform<L>
-    )[];
-
+    entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText);
     return makePrettierJson(entriesToExport);
+  }
+
+  get lexicalTags() {
+    if (!this._lexicalTags) {
+      throw new Error(
+        "Attempted to use lexical tags on dictionary not configured with any"
+      );
+    }
+    return this._lexicalTags;
+  }
+
+  [Symbol.iterator]() {
+    return this._entries[Symbol.iterator]();
   }
 }
 
 // If you change how this sort works, you should change the matching
 // entry_sort_key function written in Python as well.
-function entryKeyBySlugThenText<T>(
-  entry: DictionaryEntry<T> | ExportableWordform<T>
-) {
+function entryKeyBySlugThenText<T>(entry: ImportJsonJsonEntry<T>) {
   let slug: string;
   let form: string;
 
