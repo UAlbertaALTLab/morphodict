@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Dict, Literal, Union, Any
+from typing import Dict, Literal, Union
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
-from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 
@@ -14,7 +13,6 @@ from CreeDictionary.API.schema import SerializedDefinition
 from CreeDictionary.utils import (
     shared_res_dir,
 )
-
 from morphodict.analysis import RichAnalysis
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.

@@ -37,6 +37,8 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
+MORPHODICT_DICTIONARY_NAME = "itwîwina"
+
 RELAXED_ANALYZER_FST_FILENAME = "analyzer-gt-desc.hfstol"
 STRICT_ANALYZER_FST_FILENAME = RELAXED_ANALYZER_FST_FILENAME
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
@@ -46,6 +48,9 @@ MORPHODICT_ISO_639_1_CODE = "cr"
 
 MORPHODICT_SOURCE_LANGUAGE = "cwd"
 MORPHODICT_TARGET_LANGUAGE = "eng"
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Woods Cree"
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:

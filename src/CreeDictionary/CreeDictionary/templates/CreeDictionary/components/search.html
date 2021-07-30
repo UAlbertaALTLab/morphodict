@@ -8,7 +8,7 @@
       <span class="sr-only">Search</span>
       <input id="search" class="search-bar__input" data-cy="search"
              type="text" required name="q"
-             placeholder="Search in Cree or English"
+             placeholder="Search in {{ MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME|default:MORPHODICT_SOURCE_LANGUAGE_NAME }} or English"
              {% comment %}
              autocorrect="off" is a Safari extension that disables...
              autocorrect! This is necessary since autocorrect often tries to

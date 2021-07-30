@@ -18,8 +18,26 @@ type ArapahoLexiconEntry = {
   pos: string;
   lex: string;
   senses: [{ definition: string }];
+  // Only used to populate linguistInfo:
+  morphology: string;
 };
 type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
+
+type AraphoLinguistInfo = {
+  sourceIds?: string[];
+  pos?: string;
+  morphologies?: string[];
+};
+
+/**
+ * Entries from arapho_lexicon.json to skip. Entries are identified by key, but
+ * only skipped if all of the indicated properties match: that way, if the
+ * source entry is updated to no longer be problematic, it will no longer be
+ * automatically excluded.
+ */
+const ENTRIES_TO_SKIP = new Map<string, Partial<ArapahoLexiconEntry>>([
+  ["L3", { base_form: "'" }],
+]);
 
 async function main() {
   const program = new Command();
@@ -53,9 +71,9 @@ async function main() {
     await readFile(options.inputLexicon, "utf-8")
   ) as AraphoLexicon;
 
-  const dictionary = new Dictionary([]);
+  const dictionary = new Dictionary<AraphoLinguistInfo>([]);
 
-  for (const [_key, obj] of Object.entries(lexicalDatabase)) {
+  for (const [key, obj] of Object.entries(lexicalDatabase)) {
     if (obj.status === "deleted") {
       continue;
     }
@@ -65,7 +83,45 @@ async function main() {
       continue;
     }
 
+    // Skip certain entries listed with matching key, but only if specified
+    // properties still match
+    let exclusion = ENTRIES_TO_SKIP.get(key);
+    if (exclusion) {
+      let shouldExclude = true;
+      let propertyName: keyof ArapahoLexiconEntry;
+      for (propertyName in exclusion) {
+        if (exclusion[propertyName] !== obj[propertyName]) {
+          shouldExclude = false;
+          break;
+        }
+      }
+      if (shouldExclude) {
+        continue;
+      }
+    }
+
     const entry = dictionary.getOrCreate(head);
+    // The new ??= local assignment operator would need NodeJS 16
+    entry.linguistInfo = entry.linguistInfo ?? {};
+    if (entry.linguistInfo.pos && entry.linguistInfo.pos !== obj.pos) {
+      console.log(
+        `Warning: pos mismatch: ${JSON.stringify(entry.linguistInfo)} ${
+          entry.head
+        } ${entry.paradigm} vs ${key} ${head} ${obj.pos}`
+      );
+    }
+    entry.linguistInfo.pos = obj.pos;
+
+    entry.linguistInfo.sourceIds = entry.linguistInfo?.sourceIds ?? [];
+    entry.linguistInfo.sourceIds.push(key);
+
+    entry.linguistInfo.morphologies = entry.linguistInfo?.morphologies ?? [];
+    if (
+      obj.morphology &&
+      !entry.linguistInfo.morphologies.includes(obj.morphology)
+    ) {
+      entry.linguistInfo.morphologies.push(obj.morphology);
+    }
 
     for (const sense of obj.senses) {
       const { definition } = sense;
@@ -153,4 +209,4 @@ async function main() {
   console.log(`Wrote ${options.outputFile}`);
 }
 
-execIfMain(main);
+execIfMain(main, module);

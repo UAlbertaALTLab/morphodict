@@ -1,6 +1,11 @@
 [
   {
     "head": "níhoonéíhi-",
+    "linguistInfo": {
+      "pos": "vai",
+      "sourceIds": ["L16721"],
+      "morphologies": ["nihoon-ehi-"]
+    },
     "senses": [
       {
         "definition": "yellow",
@@ -17,6 +22,11 @@
   },
   {
     "head": "níhooyóó-",
+    "linguistInfo": {
+      "pos": "vii",
+      "sourceIds": ["L16737"],
+      "morphologies": ["nihoon-yoo-"]
+    },
     "senses": [
       {
         "definition": "yellow",
@@ -29,6 +39,11 @@
   },
   {
     "head": "noohóot-",
+    "linguistInfo": {
+      "pos": "vti",
+      "sourceIds": ["L19469"],
+      "morphologies": ["nooh-ôot-"]
+    },
     "senses": [
       {
         "definition": "see s.t.",
@@ -41,6 +56,11 @@
   },
   {
     "head": "nóóhow-",
+    "linguistInfo": {
+      "pos": "vta",
+      "sourceIds": ["L19475"],
+      "morphologies": ["nooh-ow-"]
+    },
     "senses": [
       {
         "definition": "see",

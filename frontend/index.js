@@ -242,8 +242,9 @@ function changeTitleBySearchQuery(inputVal) {
   setSubtitle(inputVal ? "🔎 " + inputVal : null);
 }
 
+let defaultTitle = document.title;
+
 function setSubtitle(subtitle) {
-  let defaultTitle = "itwêwina: the online Cree dictionary";
   document.title = subtitle ? `${subtitle} — ${defaultTitle}` : defaultTitle;
 }
 
