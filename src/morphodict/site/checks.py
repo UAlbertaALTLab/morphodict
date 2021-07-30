@@ -11,8 +11,7 @@ def check_settings(**kwargs):
     errors = []
 
     # borrowed from what django diffsettings command does
-    if not settings.configured:
-        raise
+    assert settings.configured
     for key in dir(settings._wrapped):
         if not key.startswith("MORPHODICT_"):
             continue
