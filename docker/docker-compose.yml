@@ -26,12 +26,17 @@ services:
       # persisted outside the container if using WAL mode
       - "/data_local/application-data/itwewina/db/:/app/src/crkeng/db/"
 
-      # Mount vector models from git lfs checkout instead of building into
-      # image
-      - "../src/CreeDictionary/res/vector_models/:/app/src/CreeDictionary/res/vector_models/"
+      # Mount shared vector models from git lfs checkout instead of
+      # building into image
+      - "../src/morphodict/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+
       # Same for FSTs, as some can be large
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
       - "../src/crkeng/resources/fst/:/app/src/crkeng/resources/fst/"
+
+      # Mount directory for storing app-specific vectors built from
+      # definitions
+      - "/data_local/application-data/itwewina/vector_models:/app/src/crkeng/resources/vector_models/"
 
       # Use a persistent path for search sample results, so that they
       # remain across deployments and so that additional sample results can
