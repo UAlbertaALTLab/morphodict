@@ -1,6 +1,8 @@
 import assert from "assert";
-import { minBy, remove, sortBy, union } from "lodash";
-import { DefaultMap, makePrettierJson, stringDistance } from "./util";
+import {groupBy, minBy, remove, sortBy, union} from "lodash";
+import jsonStableStringify from "json-stable-stringify";
+import {DefaultMap, makePrettierJson, stringDistance, zip} from "./util";
+import {disambiguateSlugs} from "./slug-disambiguator";
 
 export type Analysis = [string[], string, string[]];
 type DefinitionList = {
@@ -82,6 +84,7 @@ export class Dictionary<L = DefaultLinguistInfo> {
     this._entries = [];
     this._byText = new Map();
     this._bySlug = new Map();
+    this._bySlug = new Map();
   }
 
   /**
@@ -107,35 +110,28 @@ export class Dictionary<L = DefaultLinguistInfo> {
     return dictionary;
   }
 
-  // This is a quick-and-dirty version; the git history has a slug_disambiguator
-  // function with a fairly general-purpose algorithm that could be ported to
-  // js.
-  assignSlugs() {
-    const used = new Set<string>();
-    for (const e of this._entries) {
-      if (!(e instanceof DictionaryEntry)) {
-        continue;
-      }
+  assignSlugs(keyfunc = (entry: DictionaryEntry<L>) => "") {
+    function saferHeadWordForSlug(head: string) {
+      return head.replace(/[/\\ ]+/g, "_");
+    }
 
-      // Current algorithm do assign slugs doesn’t support importing entries
-      // with existing slugs.
-      assert(!("slug" in e));
-      let saferHeadWord = e.head!.replace(/[/\\ ]+/g, "_");
+    const wordsNeedingSlugs = groupBy(
+      this._entries.filter(
+        (e) => e instanceof DictionaryEntry && !e.slug
+      ) as DictionaryEntry<L>[],
+      (e) => saferHeadWordForSlug(e.head!)
+    );
 
-      let newSlug;
-      if (!used.has(saferHeadWord)) {
-        newSlug = saferHeadWord;
-      } else {
-        for (let i = 1; ; i++) {
-          let proposed = `${saferHeadWord}@${i}`;
-          if (!used.has(proposed)) {
-            newSlug = proposed;
-            break;
-          }
+    for (const [baseSlug, entries] of Object.entries(wordsNeedingSlugs)) {
+      const disambiguators = disambiguateSlugs(entries.map((e) => keyfunc(e)));
+      for (const [entry, disambiguator] of zip(entries, disambiguators)) {
+        let slug = `${baseSlug}${disambiguator}`;
+        if (this._bySlug.has(slug)) {
+          throw new Error(`Attempted to reuse slug ${slug}`);
         }
+        entry.slug = slug;
+        this._bySlug.set(slug, entry);
       }
-      used.add(newSlug!);
-      e.slug = newSlug;
     }
   }
 
@@ -297,9 +293,9 @@ export class Dictionary<L = DefaultLinguistInfo> {
    * Assign slugs, determine lemmas, and return a prettified JSON string for the
    * dictionary as a whole.
    */
-  assemble() {
-    // this.assignSlugs();
-    // this.determineLemmas();
+  assemble({ pretty } = { pretty: true }) {
+    this.assignSlugs();
+    this.determineLemmas();
 
     let entriesToExport: ImportJsonJsonEntry<L>[] = [];
     for (const e of this._entries) {
@@ -326,7 +322,12 @@ export class Dictionary<L = DefaultLinguistInfo> {
     }
 
     entriesToExport = sortBy(entriesToExport, entryKeyBySlugThenText);
-    return makePrettierJson(entriesToExport);
+
+    if (pretty) {
+      return makePrettierJson(entriesToExport);
+    } else {
+      return jsonStableStringify(entriesToExport, { space: 2 });
+    }
   }
 
   get lexicalTags() {

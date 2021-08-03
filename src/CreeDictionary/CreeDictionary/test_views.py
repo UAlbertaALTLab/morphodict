@@ -33,7 +33,7 @@ class TestLemmaDetailsInternal4xx:
             ["-10", "FULL", HttpResponseBadRequest.status_code],
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
-            ["maskwa", "LINUST", HttpResponseBadRequest.status_code],
+            ["maskwa@n", "LINUST", HttpResponseBadRequest.status_code],
             [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )

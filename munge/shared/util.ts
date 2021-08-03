@@ -1,6 +1,7 @@
 import assert from "assert";
 import { readFile } from "fs/promises";
 import { resolve as resolvePath } from "path";
+import jsonStableStringify from "json-stable-stringify";
 import prettier from "prettier";
 
 /**
@@ -12,7 +13,7 @@ import prettier from "prettier";
 export function makePrettierJson(data: unknown) {
   // Assume strings already contain JSON; otherwise, stringify
   if (typeof data !== "string") {
-    data = JSON.stringify(data);
+    data = jsonStableStringify(data, { space: 2 });
   }
   assert(typeof data === "string");
   return prettier.format(data, {
@@ -28,7 +29,7 @@ export function makePrettierJson(data: unknown) {
  *
  * zip([k1, k2, k3], [v1, v2, v3]) ⇒ [[k1, v1], [k2, v2], [k3, v3]]
  */
-export function zip<T>(array1: T[], array2: T[]): [T, T][] {
+export function zip<T1, T2>(array1: T1[], array2: T2[]): [T1, T2][] {
   assert(array1.length === array2.length);
   const ret = Array(array1.length);
   for (let i = 0; i < array1.length; i++) {
@@ -47,7 +48,9 @@ export async function loadTsvFile(path: string) {
   const header = lines.shift()!.split("\t");
   const ret = [];
   for (const line of lines) {
-    ret.push(Object.fromEntries(zip(header, line.split("\t"))));
+    if (line) {
+      ret.push(Object.fromEntries(zip(header, line.split("\t"))));
+    }
   }
   return ret;
 }
