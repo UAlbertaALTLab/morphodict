@@ -1,0 +1,33 @@
+[
+  {
+    "head": "nîmiw",
+    "analysis": [[], "nîmiw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "s/he dances",
+        "sources": ["CW"]
+      }
+    ],
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "VAI-1",
+      "pos": "V",
+      "stem": "nîmi-",
+      "smushedAnalysis": "nîmiw+V+AI+Ind+3Sg",
+      "wordclass": "VAI"
+    },
+    "slug": "nîmiw"
+  },
+  {
+    "head": "nîminâniwan",
+    "analysis": [[], "nîmiw", ["+V", "+AI", "+Ind", "+X"]],
+    "senses": [
+      {
+        "definition": "it is a dance, a time of dancing",
+        "sources": ["CW"]
+      }
+    ],
+    "formOf": "nîmiw"
+  }
+]
