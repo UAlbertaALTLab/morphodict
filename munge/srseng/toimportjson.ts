@@ -98,6 +98,12 @@ async function main() {
   const options = program.opts();
 
   const inputTsv = await loadTsvFile(options.inputTsv);
+
+  const assembled = munge(inputTsv);
+  await writeFile(options.outputFile, assembled);
+}
+
+export function munge(inputTsv: { [key: string]: string }[]) {
   const dictionary = new Dictionary(["+V", "+T", "+I", "+D"]);
   let previousHead = "";
 
@@ -161,8 +167,7 @@ async function main() {
 
     previousHead = head;
   }
-
-  await writeFile(options.outputFile, dictionary.assemble());
+  return dictionary.assemble();
 }
 
 execIfMain(main, module);

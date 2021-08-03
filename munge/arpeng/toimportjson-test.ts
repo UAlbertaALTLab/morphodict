@@ -7,7 +7,7 @@ type LooseArapahoLexicon = {
   [id: string]: Partial<ArapahoLexiconEntry> & { [key: string]: unknown };
 };
 
-describe("toimportjson", function () {
+describe("arpeng toimportjson", function () {
   it("works on a basic input", function () {
     const munged = munge((({
       L16737: {

@@ -48,7 +48,9 @@ export async function loadTsvFile(path: string) {
   const header = lines.shift()!.split("\t");
   const ret = [];
   for (const line of lines) {
-    ret.push(Object.fromEntries(zip(header, line.split("\t"))));
+    if (line) {
+      ret.push(Object.fromEntries(zip(header, line.split("\t"))));
+    }
   }
   return ret;
 }
