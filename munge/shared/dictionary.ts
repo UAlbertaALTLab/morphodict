@@ -1,8 +1,8 @@
 import assert from "assert";
-import {groupBy, minBy, remove, sortBy, union} from "lodash";
+import { groupBy, minBy, remove, sortBy, union } from "lodash";
 import jsonStableStringify from "json-stable-stringify";
-import {DefaultMap, makePrettierJson, stringDistance, zip} from "./util";
-import {disambiguateSlugs} from "./slug-disambiguator";
+import { DefaultMap, makePrettierJson, stringDistance, zip } from "./util";
+import { disambiguateSlugs } from "./slug-disambiguator";
 
 export type Analysis = [string[], string, string[]];
 type DefinitionList = {
@@ -104,7 +104,19 @@ export class Dictionary<L = DefaultLinguistInfo> {
         entry.paradigm = d.paradigm;
         entry.senses = d.senses;
         entry.slug = d.slug;
+        entry.linguistInfo = d.linguistInfo;
       }
+    }
+
+    for (const form of forms) {
+      const lemma = dictionary._bySlug.get(form.formOf);
+      assert(lemma);
+      const formObj = new Wordform<L>();
+      formObj.senses = form.senses;
+      formObj.head = form.head;
+      formObj.analysis = form.analysis;
+      formObj.formOf = lemma;
+      dictionary.addWordform(formObj);
     }
 
     return dictionary;
@@ -293,9 +305,11 @@ export class Dictionary<L = DefaultLinguistInfo> {
    * Assign slugs, determine lemmas, and return a prettified JSON string for the
    * dictionary as a whole.
    */
-  assemble({ pretty } = { pretty: true }) {
+  assemble({ pretty = true, lemmatize = true } = {}) {
     this.assignSlugs();
-    this.determineLemmas();
+    if (lemmatize) {
+      this.determineLemmas();
+    }
 
     let entriesToExport: ImportJsonJsonEntry<L>[] = [];
     for (const e of this._entries) {

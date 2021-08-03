@@ -6,8 +6,6 @@ _MORPHODICT_REQUIRED_SETTING_SENTINEL = object()
 
 @register()
 def check_settings(**kwargs):
-    print("running check_settings")
-
     errors = []
 
     # borrowed from what django diffsettings command does

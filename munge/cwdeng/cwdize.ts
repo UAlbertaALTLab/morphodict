@@ -1,3 +1,9 @@
+/**
+ * Script to create a cwdeng dictionary from crkeng importjson by:
+ *   - removing MD definitions
+ *   - getting proto head from ndjson and using to transliterate
+ */
+
 import { execIfMain } from "execifmain";
 import { Command } from "commander";
 import { join as joinPath } from "path";
@@ -36,7 +42,7 @@ function protoToWoods(s: string) {
   return ret;
 }
 
-class NdjsonDatabase {
+export class NdjsonDatabase {
   private _entries;
   private _byHead;
 
@@ -77,6 +83,17 @@ export function removeMdOnlyEntries(importjson: Dictionary<CreeLinguistInfo>) {
   }
 }
 
+function cleanupLinguistInfo(linguistInfo: CreeLinguistInfo) {
+  const unsafeLinguistInfo = linguistInfo as { [key: string]: unknown };
+  // Currently, these keys are not used by morphodict, but do exist in the
+  // production importjson. Don’t propagate them.
+  delete unsafeLinguistInfo.as_is;
+  delete unsafeLinguistInfo.inflectional_category_linguistic;
+  delete unsafeLinguistInfo.inflectional_category_plain_english;
+  delete unsafeLinguistInfo.wordclass_emoji;
+  delete unsafeLinguistInfo.smushedAnalysis;
+}
+
 function transliterateHeads(
   importjson: Dictionary<CreeLinguistInfo>,
   ndjson: NdjsonDatabase
@@ -84,8 +101,8 @@ function transliterateHeads(
   const statCounts = new Counter();
 
   for (const entry of importjson) {
-    const head = entry.head!;
-    let proto = head;
+    const origHead = entry.head!;
+    let proto = origHead;
 
     statCounts.increment("entries");
 
@@ -93,10 +110,10 @@ function transliterateHeads(
     // headword contains an ambiguous character. Not so much to save time as to
     // avoid a misleadingly large number of entries for which a unique ndjson
     // entry could not be found.
-    if (/y/.test(head)) {
+    if (/y/.test(origHead)) {
       statCounts.increment("entries with y");
 
-      const matches = ndjson.getMatches(head);
+      const matches = ndjson.getMatches(origHead);
       const matchCount = matches?.length ?? 0;
       statCounts.increment(`${matchCount} matches`);
 
@@ -121,15 +138,56 @@ function transliterateHeads(
       }
     }
 
+    if ("linguistInfo" in entry) {
+      cleanupLinguistInfo(entry.linguistInfo ?? {});
+    }
+
     entry.head = protoToWoods(proto);
-    if (entry instanceof DictionaryEntry && proto !== head) {
-      if (entry.linguistInfo == undefined) {
-        entry.linguistInfo = {};
+
+    if (entry.head !== origHead) {
+      // we’ve adjusted the headword; let’s adjust related fields too
+
+      if (entry instanceof DictionaryEntry) {
+        if (entry.analysis?.[1] === origHead) {
+          entry.analysis![1] = protoToWoods(proto);
+        }
+
+        if (entry.linguistInfo == undefined) {
+          entry.linguistInfo = {};
+        }
+
+        entry.linguistInfo!.proto = proto;
+
+        let [baseSlug, suffix] = entry.slug!.split("@", 2);
+        if (origHead === baseSlug) {
+          entry.slug = protoToWoods(proto) + (suffix ? `@${suffix}` : "");
+        }
       }
-      entry.linguistInfo!.proto = proto;
     }
   }
+
+  // now that all lemmas are adjusted, adjust non-lemma analyses
+  for (const entry of importjson) {
+    if (!("formOf" in entry)) {
+      continue;
+    }
+
+    if (entry.analysis) {
+      entry.analysis[1] = entry.formOf!.analysis![1];
+    }
+  }
+
+  console.log("stats on matching crkeng entries to ndjson proto:");
   console.log(statCounts);
+}
+
+export function munge(
+  importjson: Dictionary<CreeLinguistInfo>,
+  ndjson: NdjsonDatabase
+) {
+  removeMdOnlyEntries(importjson);
+  transliterateHeads(importjson, ndjson);
+  return importjson.assemble({ lemmatize: false });
 }
 
 async function main() {
@@ -162,10 +220,9 @@ async function main() {
     await readFile(options.inputImportjson, "utf8")
   );
 
-  removeMdOnlyEntries(importjson);
-  transliterateHeads(importjson, ndjson);
-
-  await writeFile(options.outputImportjson, importjson.assemble());
+  const assembled = munge(importjson, ndjson);
+  await writeFile(options.outputImportjson, assembled);
+  console.log(`Wrote ${options.outputImportjson}`);
 }
 
 execIfMain(main, module);
