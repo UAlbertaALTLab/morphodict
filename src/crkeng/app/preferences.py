@@ -1,7 +1,7 @@
 """
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
-
+from morphodict.lexicon.models import DictionarySource
 from morphodict.preference import register_preference, Preference
 
 
@@ -38,3 +38,21 @@ class ParadigmLabel(Preference):
         "nehiyawewin": "nêhiyawêwin labels",
     }
     default = "english"
+
+
+@register_preference
+class DictionarySource(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "dictionarysource"
+    dictionary_sources = DictionarySource.objects.all()
+    choices = {
+        "All": "Show entries from all dictionary sources",
+        "CW": "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
+        "MD": "Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
+        "OS": "Starlight, Bruce, Gary Donovan, and Christopher Cox, editors. John Onespot and Edward Sapir: Collected Tsuut’ina Narratives and Linguistic Notes. Revised scholarly edition in preparation; 1922."
+    }
+
+    default = "All"

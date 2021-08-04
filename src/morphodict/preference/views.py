@@ -1,3 +1,4 @@
+import json
 from http import HTTPStatus
 
 from django.http import HttpResponse, HttpRequest, Http404
@@ -47,6 +48,19 @@ def change_preference(request: HttpRequest, name: str):
     # When left to default, the cookie should last "only as long as the client’s
     # browser session", though... I'm not sure how long that generally is :/
     # See: https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse.set_cookie
-    response.set_cookie(preference.cookie_name, value)
+    if preference.cookie_name == "dictionarysource":
+        if "dictionarysource" in request.COOKIES:
+            dictionary_cookies = json.loads(request.COOKIES["dictionarysource"])
+        else:
+            dictionary_cookies = {"include": []}
+        if value in dictionary_cookies["include"]:
+            dictionary_cookies["include"].remove(value)
+        else:
+            dictionary_cookies["include"].append(value)
+        print(dictionary_cookies["include"])
+        dictionary_cookies = json.dumps(dictionary_cookies)
+        response.set_cookie(preference.cookie_name, dictionary_cookies)
+    else:
+        response.set_cookie(preference.cookie_name, value)
 
     return response

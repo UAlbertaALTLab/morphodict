@@ -173,6 +173,13 @@ class DictionarySource(models.Model):
     #     or MD for "Maskwacîs Dictionary"
     abbrv = models.CharField(max_length=8, primary_key=True)
 
+    # bibliography = models.CharField(
+    #     help_text="The citation information for this dictionary source",
+    #     max_length=256,
+    #     null=True,
+    #     blank=True
+    # )
+
     def __str__(self):
         return self.abbrv
 
