@@ -48,7 +48,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["bear"],
                 "expected_new_tags": ["+N", "+Der/Dim", "+Px1Sg", "+Pl"],
-                "slug": "maskwa@n",
+                "slug": "maskwa",
                 "expected_inflection": "nimaskomisak",
             },
         ],
@@ -57,7 +57,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["see"],
                 "expected_new_tags": ["+V", "+AI", "+Ind", "+3Pl"],
-                "slug": "wâpiw@v",
+                "slug": "wâpiw",
                 "expected_inflection": "wâpiwak",
             },
         ],
@@ -85,7 +85,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
                 # Don’t try to inflect results for searches not analyzable as phrases
                 "expected_query_terms": ["bear"],
                 "expected_new_tags": [],
-                "slug": "maskwa@n",
+                "slug": "maskwa",
                 "expected_inflection": "maskwa",
             },
         ],
