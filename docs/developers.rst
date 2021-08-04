@@ -11,7 +11,6 @@ Developer documentation
    ci
    production-on-whorf
    example-cases
-   dict-setup-notes
    directory-structure
 
 
