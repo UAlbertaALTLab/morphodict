@@ -63,7 +63,7 @@ function doTieBreaking(analyses: Analysis[]): Analysis | null {
     ["+SbjSg1"],
   ]) {
     const index = findEqualUniqueIndex(tags, tieBreaker);
-    if (index !== null) {
+    if (index != null) {
       const ret = analyses[index];
       return ret;
     }

@@ -306,16 +306,16 @@ export class Dictionary<L = DefaultLinguistInfo> {
    * dictionary as a whole.
    */
   assemble({ pretty = true, lemmatize = true } = {}) {
-    this.assignSlugs();
     if (lemmatize) {
       this.determineLemmas();
     }
+    this.assignSlugs();
 
     let entriesToExport: ImportJsonJsonEntry<L>[] = [];
     for (const e of this._entries) {
       if (!e.senses || e.senses.length === 0) {
         console.log(`Warning: no definitions for ${JSON.stringify(e)}`);
-        continue;
+        e.senses = [{ definition: "?", sources: ["OS"] }];
       }
 
       if (e instanceof Wordform) {
