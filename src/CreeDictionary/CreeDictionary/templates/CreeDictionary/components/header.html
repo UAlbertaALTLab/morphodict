@@ -20,17 +20,19 @@
 
       <div class="menu toggle-box__menu" aria-labelledby="settings-menu__button">
         <div class="menu__category">
-          <h3 class="menu__header">Show Cree words in…</h3>
-          <ul class="menu__choices" data-cy="orthography-choices">
-            {# one of these should be menu-choice--selected #}
-              {% for orth_choice_id, orth_choice in MORPHODICT_ORTHOGRAPHY.available.items %}
-                  <li class="menu-choice">
-                      <button data-orth-switch value="{{ orth_choice_id }}" class="unbutton fill-width">
-                        <span class="menu-choice__label"> {{ orth_choice.name }} </span>
-                      </button>
-                  </li>
-              {% endfor %}
-          </ul>
+            {% if MORPHODICT_ORTHOGRAPHY.available.items|length > 1 %}
+                <h3 class="menu__header">Show {{ MORPHODICT_SOURCE_LANGUAGE_NAME }} words in…</h3>
+                <ul class="menu__choices" data-cy="orthography-choices">
+                    {# one of these should be menu-choice--selected #}
+                    {% for orth_choice_id, orth_choice in MORPHODICT_ORTHOGRAPHY.available.items %}
+                        <li class="menu-choice">
+                            <button data-orth-switch value="{{ orth_choice_id }}" class="unbutton fill-width">
+                                <span class="menu-choice__label"> {{ orth_choice.name }} </span>
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
         </div>
 
         <hr class="menu__separator">
