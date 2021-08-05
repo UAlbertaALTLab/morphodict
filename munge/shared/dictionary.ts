@@ -84,7 +84,6 @@ export class Dictionary<L = DefaultLinguistInfo> {
     this._entries = [];
     this._byText = new Map();
     this._bySlug = new Map();
-    this._bySlug = new Map();
   }
 
   /**
