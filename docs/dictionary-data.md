@@ -1,7 +1,7 @@
 ## Current dictionary data
 
 In theory, linguists will provide comprehensive and correct dictionary data
-in importjtson format.
+in importjson format.
 
 In practice, at this time, full dictionaries for each language arise as
 follows:
@@ -16,7 +16,7 @@ follows:
 
   - For Woods Cree, the `cwdize` script transliterates the production
     `crkeng_dictionary.importjson` file, using the `database.ndjson` file
-    from the ALTLab repo to get the proto-Cre forms.
+    from the ALTLab repo to get the proto-Cree forms.
 
   - For Arapaho, the [private arp-db
     repo](https://github.com/UAlbertaALTLab/arp-db) has
