@@ -1,0 +1,26 @@
+{{ autogeneration_notice }}
+
+version: "3"
+
+services:
+    {% for app in apps %}
+    {{ app.name }}:
+        restart: always
+        image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+        command: /app/app.sh {{ app.language_pair }}
+        ports:
+          - "{{ app.port }}:8000" # http
+          - "{{ app.uwsgi_stats_port }}:9191" # uWSGI stats
+        volumes:
+          - "./.env:/app/.env"
+
+        # LFS mounts
+        {% for lfs_mount in app.lfs_mounts %}
+          - "../src/{{ lfs_mount }}:/app/src/{{ lfs_mount }}"
+        {% endfor %}
+
+        {% for mount in app.data_mounts %}
+          - "{{ mount.prod_src }}:{{ mount.target }}"
+         {% endfor %}
+
+     {% endfor %}

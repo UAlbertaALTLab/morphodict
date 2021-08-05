@@ -50,8 +50,9 @@ WORKDIR /app/
 
 # Install Python and NodeJS dependencies
 ADD Pipfile Pipfile.lock package.json package-lock.json /app/
+RUN echo maxsockets=4 > ~/.npmrc
 RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
- && npm install --only=production
+ && npm install --loglevel=verbose --only=production
 
 # Add everything else now:
 ADD --chown=itwewina . /app/
@@ -59,8 +60,12 @@ ADD --chown=itwewina . /app/
 # Build the application:
 ENV NODE_ENV=production
 RUN npm run build \
- && /app/.venv/bin/python ./crkeng-manage collectstatic --noinput
-
+ && set -eu \
+ `# the docker image contains assets for all language pairs` \
+ && for LANG_PAIR in crkeng cwdeng srseng arpeng; do \
+        /app/.venv/bin/python ./${LANG_PAIR}-manage collectstatic --noinput & \
+    done; \
+    wait
 
 ############################# Application image ##############################
 
@@ -85,6 +90,8 @@ RUN groupadd --system --gid ${UID_GID} itwewina \
 # Copy over the built application from the builder:
 COPY --from=builder --chown=itwewina /app /app
 
+COPY docker/app.sh /app
+
 USER itwewina
 WORKDIR /app
 # Activate the Python virtual environment
@@ -105,4 +112,4 @@ EXPOSE 9191
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
 # uwsgi --http-socket is intended to be used behind, e.g., nginx
-CMD ["uwsgi", "--http-socket", ":8000", "--stats", ":9191", "src/crkeng/site/uwsgi.ini"]
+CMD ["/app/app.sh"]
