@@ -25,8 +25,6 @@ DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-INSTALLED_APPS += ["cwdeng.dictimport"]
-
 FST_TOOL_SAMPLES = [
     "kika-nîminaw",
     "kikaniminaw",
