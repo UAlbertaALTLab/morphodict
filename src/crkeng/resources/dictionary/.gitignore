@@ -1,0 +1,2 @@
+# The full dictionary should not be checked in
+*.ndjson

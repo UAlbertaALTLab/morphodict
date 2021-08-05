@@ -12,7 +12,7 @@ const RESOURCE_DIR = resourceDir("arpeng");
 const DICTIONARY_DIR = joinPath(RESOURCE_DIR, "dictionary");
 const FST_DIR = joinPath(RESOURCE_DIR, "fst");
 
-type ArapahoLexiconEntry = {
+export type ArapahoLexiconEntry = {
   base_form: string;
   status: string;
   pos: string;
@@ -21,7 +21,7 @@ type ArapahoLexiconEntry = {
   // Only used to populate linguistInfo:
   morphology: string;
 };
-type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
+export type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
 
 type AraphoLinguistInfo = {
   sourceIds?: string[];
@@ -38,6 +38,28 @@ type AraphoLinguistInfo = {
 const ENTRIES_TO_SKIP = new Map<string, Partial<ArapahoLexiconEntry>>([
   ["L3", { base_form: "'" }],
 ]);
+
+// Inspired by python’s functools.cache()
+function cached<T>(instantiator: () => T): () => T {
+  const cache: { value?: T } = {};
+  return () => {
+    if (!("value" in cache)) {
+      cache.value = instantiator();
+    }
+    return cache.value!;
+  };
+}
+
+const normativeAnalyzer = cached(() => {
+  console.log("loading analyser-gt-norm");
+  return new Transducer(joinPath(FST_DIR, "analyser-gt-norm.hfstol"));
+});
+const normativeGenerator = cached(
+  () => new Transducer(joinPath(FST_DIR, "generator-gt-norm.hfstol"))
+);
+const descriptiveAnalyzer = cached(
+  () => new Transducer(joinPath(FST_DIR, "analyser-gt-desc.hfstol"))
+);
 
 async function main() {
   const program = new Command();
@@ -57,20 +79,17 @@ async function main() {
 
   const options = program.opts();
 
-  const normativeAnalyzer = new Transducer(
-    joinPath(FST_DIR, "analyser-gt-norm.hfstol")
-  );
-  const normativeGenerator = new Transducer(
-    joinPath(FST_DIR, "generator-gt-norm.hfstol")
-  );
-  const descriptiveAnalyzer = new Transducer(
-    joinPath(FST_DIR, "analyser-gt-desc.hfstol")
-  );
-
   const lexicalDatabase = JSON.parse(
     await readFile(options.inputLexicon, "utf-8")
   ) as AraphoLexicon;
 
+  const assembled = munge(lexicalDatabase);
+
+  await writeFile(options.outputFile, assembled);
+  console.log(`Wrote ${options.outputFile}`);
+}
+
+export function munge(lexicalDatabase: AraphoLexicon): string {
   const dictionary = new Dictionary<AraphoLinguistInfo>([]);
 
   for (const [key, obj] of Object.entries(lexicalDatabase)) {
@@ -100,7 +119,7 @@ async function main() {
       }
     }
 
-    const entry = dictionary.getOrCreate(head);
+    const entry = dictionary.getOrCreate({ text: head });
     // The new ??= local assignment operator would need NodeJS 16
     entry.linguistInfo = entry.linguistInfo ?? {};
     if (entry.linguistInfo.pos && entry.linguistInfo.pos !== obj.pos) {
@@ -132,13 +151,15 @@ async function main() {
 
     // TODO: could also use obj.pos, e.g., `vii`, to disambiguate when there are
     // multiple analyses
-    const normativeAnalyses = normativeAnalyzer.lookup_lemma_with_affixes(head);
+    const normativeAnalyses = normativeAnalyzer().lookup_lemma_with_affixes(
+      head
+    );
     if (normativeAnalyses.length === 1) {
       entry.analysis = normativeAnalyses[0];
     } else if (normativeAnalyses.length > 1) {
       console.log(`multiple normative analyses for ${head}`);
     } else {
-      const descriptiveAnalyses = descriptiveAnalyzer.lookup_lemma_with_affixes(
+      const descriptiveAnalyses = descriptiveAnalyzer().lookup_lemma_with_affixes(
         head
       );
       if (descriptiveAnalyses.length === 1) {
@@ -194,7 +215,7 @@ async function main() {
       ] as [string, string, (lemma: string) => string][]) {
         if (obj.pos.startsWith(pos)) {
           const lemma = obj.lex.replace(/-$/, "");
-          const generated = normativeGenerator.lookup(template(lemma));
+          const generated = normativeGenerator().lookup(template(lemma));
           if (generated.length !== 0) {
             entry.fstLemma = lemma;
             entry.paradigm = paradigm;
@@ -205,8 +226,7 @@ async function main() {
     }
   }
 
-  await writeFile(options.outputFile, dictionary.assemble());
-  console.log(`Wrote ${options.outputFile}`);
+  return dictionary.assemble();
 }
 
 execIfMain(main, module);
