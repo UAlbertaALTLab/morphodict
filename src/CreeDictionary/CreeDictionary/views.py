@@ -19,7 +19,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode
+from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
@@ -75,6 +75,7 @@ def entry_details(request, slug: str):
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
         )
 
+    animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -82,7 +83,7 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma),
+        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji),
         **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
@@ -106,7 +107,8 @@ def index(request):  # pragma: no cover
             include_auto_definitions=should_include_auto_definitions(request),
         )
         search_results = search_run.serialized_presentation_results(
-            display_mode=DisplayMode.current_value_from_request(request)
+            display_mode=DisplayMode.current_value_from_request(request),
+            animate_emoji=AnimateEmoji.current_value_from_request(request),
         )
         did_search = True
     else:
@@ -141,7 +143,8 @@ def search_results(request, query_string: str):  # pragma: no cover
         query_string, include_auto_definitions=should_include_auto_definitions(request)
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
-        display_mode=DisplayMode.current_value_from_request(request)  # type: ignore
+        display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
+        animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
     )
     return render(
         request,
