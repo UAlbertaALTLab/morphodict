@@ -22,21 +22,14 @@
         <div class="menu__category">
           <h3 class="menu__header">Show Cree words in…</h3>
           <ul class="menu__choices" data-cy="orthography-choices">
-            <li class="menu-choice menu-choice--selected">
-              <button data-orth-switch value="Latn" class="unbutton fill-width">
-                <span class="menu-choice__label"> SRO (êîôâ) </span>
-              </button>
-            </li>
-            <li class="menu-choice">
-              <button data-orth-switch value="Latn-x-macron" class="unbutton fill-width">
-                <span class="menu-choice__label"> SRO (ēīōā) </span>
-              </button>
-            </li>
-            <li class="menu-choice">
-              <button data-orth-switch value="Cans" class="unbutton fill-width">
-                <span class="menu-choice__label"> Syllabics </span>
-              </button>
-            </li>
+            {# one of these should be menu-choice--selected #}
+              {% for orth_choice_id, orth_choice in MORPHODICT_ORTHOGRAPHY.available.items %}
+                  <li class="menu-choice">
+                      <button data-orth-switch value="{{ orth_choice_id }}" class="unbutton fill-width">
+                        <span class="menu-choice__label"> {{ orth_choice.name }} </span>
+                      </button>
+                  </li>
+              {% endfor %}
           </ul>
         </div>
 
