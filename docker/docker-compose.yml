@@ -3,90 +3,79 @@
 version: "3"
 
 services:
-  itwewina:
-    restart: always
-    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh crkeng
-    ports:
-      - "8011:8000" # http
-      - "9191:9191" # uWSGI stats
-    volumes:
-      - "./.env:/app/.env"
+    itwewina:
+        restart: always
+        image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+        command: /app/app.sh crkeng
+        ports:
+          - "8011:8000" # http
+          - "9191:9191" # uWSGI stats
+        volumes:
+          - "./.env:/app/.env"
 
-      # LFS mounts
+          # LFS mounts
+          - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+          - "../src/crkeng/res/fst:/app/src/crkeng/res/fst"
+          - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
 
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+          - "/data_local/application-data/itwewina/vector_models:/app/src/crkeng/resources/vector_models/"
+          - "/data_local/application-data/itwewina/db:/app/src/crkeng/db/"
+          - "/data_local/application-data/itwewina/search_quality:/app/src/crkeng/CreeDictionary/search_quality"
 
-      - "../src/crkeng/res/fst:/app/src/crkeng/res/fst"
+    itwiwina:
+        restart: always
+        image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+        command: /app/app.sh cwdeng
+        ports:
+          - "8012:8000" # http
+          - "9192:9191" # uWSGI stats
+        volumes:
+          - "./.env:/app/.env"
 
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
+          # LFS mounts
+          - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+          - "../src/cwdeng/res/fst:/app/src/cwdeng/res/fst"
+          - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
 
-      - "/data_local/application-data/itwewina/vector_models/:/app/src/crkeng/resources/vector_models/"
+          - "/data_local/application-data/itwiwina/vector_models:/app/src/cwdeng/resources/vector_models/"
+          - "/data_local/application-data/itwiwina/db:/app/src/cwdeng/db/"
+          - "/data_local/application-data/itwiwina/search_quality:/app/src/cwdeng/CreeDictionary/search_quality"
 
-      - "/data_local/application-data/itwewina/db/:/app/src/crkeng/db/"
+    gunaha:
+        restart: always
+        image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+        command: /app/app.sh srseng
+        ports:
+          - "8013:8000" # http
+          - "9193:9191" # uWSGI stats
+        volumes:
+          - "./.env:/app/.env"
 
-  itwiwina:
-    restart: always
-    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh cwdeng
-    ports:
-      - "8012:8000" # http
-      - "9192:9191" # uWSGI stats
-    volumes:
-      - "./.env:/app/.env"
+          # LFS mounts
+          - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+          - "../src/srseng/res/fst:/app/src/srseng/res/fst"
+          - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
 
-      # LFS mounts
+          - "/data_local/application-data/gunaha/vector_models:/app/src/srseng/resources/vector_models/"
+          - "/data_local/application-data/gunaha/db:/app/src/srseng/db/"
+          - "/data_local/application-data/gunaha/search_quality:/app/src/srseng/CreeDictionary/search_quality"
 
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+    arpeng:
+        restart: always
+        image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+        command: /app/app.sh arpeng
+        ports:
+          - "8014:8000" # http
+          - "9194:9191" # uWSGI stats
+        volumes:
+          - "./.env:/app/.env"
 
-      - "../src/cwdeng/res/fst:/app/src/cwdeng/res/fst"
+          # LFS mounts
+          - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
+          - "../src/arpeng/res/fst:/app/src/arpeng/res/fst"
+          - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
 
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
+          - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/resources/vector_models/"
+          - "/data_local/application-data/arpeng/db:/app/src/arpeng/db/"
+          - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/CreeDictionary/search_quality"
 
-      - "/data_local/application-data/itwiwina/vector_models/:/app/src/cwdeng/resources/vector_models/"
-
-      - "/data_local/application-data/itwiwina/db/:/app/src/cwdeng/db/"
-
-  gunaha:
-    restart: always
-    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh srseng
-    ports:
-      - "8013:8000" # http
-      - "9193:9191" # uWSGI stats
-    volumes:
-      - "./.env:/app/.env"
-
-      # LFS mounts
-
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
-
-      - "../src/srseng/res/fst:/app/src/srseng/res/fst"
-
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
-
-      - "/data_local/application-data/gunaha/vector_models/:/app/src/srseng/resources/vector_models/"
-
-      - "/data_local/application-data/gunaha/db/:/app/src/srseng/db/"
-
-  arpeng:
-    restart: always
-    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh arpeng
-    ports:
-      - "8014:8000" # http
-      - "9194:9191" # uWSGI stats
-    volumes:
-      - "./.env:/app/.env"
-
-      # LFS mounts
-
-      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/"
-
-      - "../src/arpeng/res/fst:/app/src/arpeng/res/fst"
-
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/"
-
-      - "/data_local/application-data/arpeng/vector_models/:/app/src/arpeng/resources/vector_models/"
-
-      - "/data_local/application-data/arpeng/db/:/app/src/arpeng/db/"

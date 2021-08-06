@@ -14,7 +14,7 @@ services:
         volumes:
           - "./.env:/app/.env"
 
-        # LFS mounts
+          # LFS mounts
         {% for lfs_mount in app.lfs_mounts %}
           - "../src/{{ lfs_mount }}:/app/src/{{ lfs_mount }}"
         {% endfor %}
