@@ -27,8 +27,6 @@ DEFAULT_RUNSERVER_PORT = 8007
 
 INSTALLED_APPS.insert(0, "arpeng.app")
 
-INSTALLED_APPS += ["arpeng.dictimport"]
-
 FST_TOOL_SAMPLES = [
     "nonoohowun",
     "[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]noohow[2SG-SUBJ][1SG-OBJ]",
