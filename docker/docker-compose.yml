@@ -9,7 +9,7 @@ services:
         command: /app/app.sh crkeng
         ports:
           - "8011:8000" # http
-          - "9191:9191" # uWSGI stats
+          - "9011:9191" # uWSGI stats
         volumes:
           - "./.env:/app/.env"
 
@@ -28,7 +28,7 @@ services:
         command: /app/app.sh cwdeng
         ports:
           - "8012:8000" # http
-          - "9192:9191" # uWSGI stats
+          - "9012:9191" # uWSGI stats
         volumes:
           - "./.env:/app/.env"
 
@@ -47,7 +47,7 @@ services:
         command: /app/app.sh srseng
         ports:
           - "8013:8000" # http
-          - "9193:9191" # uWSGI stats
+          - "9013:9191" # uWSGI stats
         volumes:
           - "./.env:/app/.env"
 
@@ -66,7 +66,7 @@ services:
         command: /app/app.sh arpeng
         ports:
           - "8014:8000" # http
-          - "9194:9191" # uWSGI stats
+          - "9014:9191" # uWSGI stats
         volumes:
           - "./.env:/app/.env"
 

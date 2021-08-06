@@ -29,8 +29,8 @@ RUN tar xf node.tar.gz \
 ENV PATH="/opt/node/bin:${PATH}"
 
 # Create the user/group for the application
-RUN groupadd --system --gid ${UID_GID} itwewina \
- && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
+RUN groupadd --system --gid ${UID_GID} morphodict-run \
+ && useradd --no-log-init --system --gid morphodict-run --uid ${UID_GID} morphodict-run --create-home
 # Install and build dependencies,
 # then remove build-time dependencies to keep the image slim!
 RUN set -ex \
@@ -42,9 +42,9 @@ RUN set -ex \
  && rm -rf /var/cache/apt \
  && pip install pipenv \
  && mkdir /app/ \
- && chown itwewina /app
+ && chown morphodict-run /app
 
-USER itwewina
+USER morphodict-run
 
 WORKDIR /app/
 
@@ -55,7 +55,7 @@ RUN PIPENV_VENV_IN_PROJECT=1 pipenv install --deploy \
  && npm install --loglevel=verbose --only=production
 
 # Add everything else now:
-ADD --chown=itwewina . /app/
+ADD --chown=morphodict-run . /app/
 
 # Build the application:
 ENV NODE_ENV=production
@@ -84,15 +84,15 @@ RUN set -ex \
  && rm -rf /var/cache/apt
 
 # Create a NON-ROOT USER that will run the application code:
-RUN groupadd --system --gid ${UID_GID} itwewina \
- && useradd --no-log-init --system --gid itwewina --uid ${UID_GID} itwewina --create-home
+RUN groupadd --system --gid ${UID_GID} morphodict-run \
+ && useradd --no-log-init --system --gid morphodict-run --uid ${UID_GID} morphodict-run --create-home
 
 # Copy over the built application from the builder:
-COPY --from=builder --chown=itwewina /app /app
+COPY --from=builder --chown=morphodict-run /app /app
 
 COPY docker/app.sh /app
 
-USER itwewina
+USER morphodict-run
 WORKDIR /app
 # Activate the Python virtual environment
 ENV VIRTUAL_ENV="/app/.venv"

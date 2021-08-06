@@ -16,7 +16,7 @@ services:
 
           # LFS mounts
         {% for lfs_mount in app.lfs_mounts %}
-          - "../src/{{ lfs_mount }}:/app/src/{{ lfs_mount }}"
+          - "../src/{{ lfs_mount }}:/app/src/{{ lfs_mount }}:ro"
         {% endfor %}
 
         {% for mount in app.data_mounts %}
