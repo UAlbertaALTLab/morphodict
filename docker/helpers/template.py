@@ -5,11 +5,12 @@ traditional Django app.
 
 from functools import cache
 
-from django.template import Engine, Template, Context
-
 
 @cache
 def get_engine():
+    # This import is nested so that all other commands for the program can run
+    # even if Django is not installed.
+    from django.template import Engine
 
     # Raise an error if a template refers to a nonexistent variable. Inspired by
     # https://stackoverflow.com/a/15312316/14558
@@ -37,6 +38,10 @@ def get_engine():
 
 
 def render_template(template_string, context_dict):
+    # This import is nested so that all other commands for the program can run
+    # even if Django is not installed.
+    from django.template import Template, Context
+
     template = Template(template_string, engine=get_engine())
     context = Context(context_dict, use_l10n=False)
     return template.render(context)

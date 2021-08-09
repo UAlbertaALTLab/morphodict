@@ -28,7 +28,7 @@ class App:
         return [
             DataMount(self, "resources/vector_models/"),
             DataMount(self, "db/"),
-            DataMount(self, "CreeDictionary/search_quality"),
+            DataMount(self, "CreeDictionary/search_quality/"),
         ]
 
     @property
@@ -47,6 +47,15 @@ class DataMount:
         self.dev_src = f"../src/{app.language_pair}/{path}"
 
     @property
+    def is_dir(self):
+        """Is this mount a directory mount?
+
+        Relies on the docker-compose convention that directories can be
+        specified as ending with slashes.
+        """
+        return self._path.endswith("/")
+
+    @property
     def prod_src(self):
         """Where to mount this path from in prod.
 
@@ -60,3 +69,6 @@ class DataMount:
             basename = os.path.basename(self._path)
 
         return f"{self.app.prod_data_dir()}/{basename}"
+
+    def __repr__(self):
+        return f"DataMount<{self.app.name}, {self._path!r}>"

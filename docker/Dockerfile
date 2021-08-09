@@ -75,7 +75,7 @@ LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 # Choose an ID that will be consistent across all machines in the network
 # To avoid overlap with user IDs, use an ID over
 # /etc/login.defs:/UID_MAX/, which defaults to 60,000
-ARG UID_GID=60003
+ARG UID_GID=60007
 ARG TINI_VERSION=v0.19.0
 
 RUN set -ex \

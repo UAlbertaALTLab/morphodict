@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from docker_management.app import App
+from .app import App
 
 DIR = Path(__file__).parent.parent
 

@@ -23,6 +23,7 @@ def main():
     call(["git", "pull"])
     call(["docker-compose", "pull"])
     call(["docker-compose", "up", "-d", "--remove-orphans"])
+    call(["docker-compose", "up", "-d", "--remove-orphans"])
     call(
         [
             "docker-compose",

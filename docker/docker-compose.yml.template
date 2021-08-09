@@ -6,6 +6,9 @@ services:
     {% for app in apps %}
     {{ app.name }}:
         restart: always
+        # Specify hostname to make it clearer which container is active when
+        # using docker to get a shell in the container.
+        hostname: {{ app.name }}-container
         image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
         command: /app/app.sh {{ app.language_pair }}
         ports:

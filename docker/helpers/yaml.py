@@ -1,11 +1,15 @@
 from textwrap import dedent
 
-from docker.docker_management.template import render_template
-from docker_management.settings import APPS, DIR
+from .template import render_template
+from .settings import APPS, DIR
 
 
 def make_yaml(args):
-    """Create docker-compose*.yml files from .template files"""
+    """Create .yml files from .template files.
+
+    Generating them from a single source prevents both tedium and
+    inconsistencies.
+    """
     context = {
         "autogeneration_notice": dedent(
             """\
