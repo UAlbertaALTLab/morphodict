@@ -3,7 +3,7 @@
  * Orthography switching.
  */
 
-const AVAILABLE_ORTHOGRAPHIES = new Set(["Cans", "Latn", "Latn-x-macron"]);
+const AVAILABLE_ORTHOGRAPHIES = new Set(["Cans", "Latn", "Latn-x-macron", "CMRO"]);
 
 /**
  * This **must** be set in order to update the orthography cookie on the

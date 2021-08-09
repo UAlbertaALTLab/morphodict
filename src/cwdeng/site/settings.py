@@ -61,7 +61,8 @@ MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
     # All entries in Wordform should be written in SRO (ēīōā)
-    "default": "Latn-x-macron",
+    # TODO: what is the current one?
+    "default": "CMRO",
     "available": {
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
@@ -71,5 +72,9 @@ MORPHODICT_ORTHOGRAPHY = {
             "name": "Syllabics",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
         },
+        "CMRO": {
+            "name": "CMRO",
+            "converter": "cwdeng.app.orthography.to_cmro"
+        }
     },
 }
