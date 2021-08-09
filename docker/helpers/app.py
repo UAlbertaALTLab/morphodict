@@ -16,7 +16,8 @@ class App:
         instead of being built into the container."""
         return [
             "morphodict/lexicon/resources/vector_models/",
-            f"{self.language_pair}/res/fst",
+            f"{self.language_pair}/resources/fst",
+            f"{self.language_pair}/resources/dictionary/",
             # Holds phrase-translation FSTs
             "CreeDictionary/res/fst/",
         ]
