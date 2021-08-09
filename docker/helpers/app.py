@@ -17,9 +17,11 @@ class App:
         return [
             "morphodict/lexicon/resources/vector_models/",
             f"{self.language_pair}/resources/fst",
-            f"{self.language_pair}/resources/dictionary/",
             # Holds phrase-translation FSTs
             "CreeDictionary/res/fst/",
+            # Not actually an LFS thing, but this is where production dictionary
+            # files get stored so they can be imported.
+            f"{self.language_pair}/resources/dictionary/",
         ]
 
     def prod_data_dir(self):
