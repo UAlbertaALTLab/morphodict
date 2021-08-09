@@ -72,9 +72,6 @@ MORPHODICT_ORTHOGRAPHY = {
             "name": "Syllabics",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
         },
-        "CMRO": {
-            "name": "CMRO",
-            "converter": "cwdeng.app.orthography.to_cmro"
-        }
+        "CMRO": {"name": "CMRO", "converter": "cwdeng.app.orthography.to_cmro"},
     },
 }

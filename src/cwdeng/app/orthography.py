@@ -5,9 +5,12 @@ from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
+
 @cache
 def cmro_transcriptor():
-    return TransducerFile(settings.BASE_DIR / "resources" / "fst" / "default-to-cmro.hfstol")
+    return TransducerFile(
+        settings.BASE_DIR / "resources" / "fst" / "default-to-cmro.hfstol"
+    )
 
 
 def to_cmro(sro_circumflex: str) -> str:
