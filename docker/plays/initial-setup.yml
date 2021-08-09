@@ -1,0 +1,138 @@
+# This is an ansible playbook to set up initial users, groups, and base
+# directories.
+#
+# It only needs to be run:
+#  - When first setting up a new production morphodict host
+#  - When adding a new dictionary
+#  - If it is edited to effect some desired configuration change
+#
+# It’s off in its own little world because it requires sudo to run, and it
+# creates the users and directories that would normally have a checkout
+# containing the setup code. When getting started, you can copy just this
+# file plus vars.yml into any directory, and you’ll be able to run it from
+# there.
+#
+# To install ansible:
+#
+#     pip3 install --user ansible
+#
+# To run this playbook in a mode where it will show what it will do:
+#
+#     ansible-playbook --check --diff initial-setup.yml
+#
+# To actually apply changes:
+#
+#     ansible-playbook --become --ask-become-pass --diff initial-setup.yml
+#
+# If you are repeatedly editing and re-running within short periods of time
+# from the same terminal, you can leave off `--ask-become-pass` after the
+# first run, as your cached sudo credentials will be used.
+---
+- name: privileged_setup
+  hosts: localhost
+
+  vars:
+    - morphodict_uid: 60006
+    - morphodict_gid: 60006
+    - morphodict_home: "/opt/morphodict/home"
+    - morphodict_run_uid: 60007
+    - morphodict_run_gid: 60007
+    - morphodict_run_home: "/opt/morphodict/run-home"
+
+  tasks:
+    - include_vars: "vars.yml"
+
+    - name: morphodict group
+      group:
+        name: morphodict
+        gid: "{{ morphodict_gid }}"
+
+    - name: morphodict-run group
+      group:
+        name: morphodict-run
+        gid: "{{ morphodict_run_gid }}"
+
+    - name: morphodict user
+      user:
+        name: morphodict
+        uid: "{{ morphodict_uid }}"
+        create_home: true
+        home: "{{ morphodict_home }}"
+        group: morphodict
+        groups:
+          - docker
+          - morphodict-run
+
+    - name: morphodict .ssh
+      file:
+        path: "{{ morphodict_home }}/.ssh"
+        owner: morphodict
+        group: morphodict
+        mode: 0755
+        state: directory
+
+    - debug:
+        msg: "hsotname: {{ ansible_hostname }}"
+
+    - name: morphodict .ssh deploy key
+      lineinfile:
+        path: "{{ morphodict_home }}/.ssh/authorized_keys"
+        line: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIABBEJ2SfizT5P8k0DB0FUGsWTlmiIcXhpfscRTgZHqq deploy@altlab-gw
+        regexp: "deploy@altlab-gw"
+        # Only set up key on production host
+        state: "{{ 'present' if ansible_hostname == 'altlab-itw' else 'absent' }}"
+        owner: morphodict
+        group: morphodict
+        create: true
+        mode: 0644
+
+    - name: "home directory {{ morphodict_run_home }} for morphodict-run"
+      file:
+        path: "{{ morphodict_run_home }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: "{{ morphodict_run_home }}/README.md"
+      copy:
+        dest: "{{ morphodict_run_home }}/README.md"
+        content: |
+          This is the home directory for the morphodict-run user. It should
+          not contain any files other than this readme.
+        owner: root
+        group: root
+
+    # Based on https://stackoverflow.com/a/51607074/14558
+    - name: find other files in morphodict-run home directory
+      find:
+        paths: "{{ morphodict_run_home }}"
+        excludes: "README.md"
+        hidden: true
+        recurse: true
+        file_type: any
+      register: morphodict_run_home_files_to_delete
+    - name: delete other files in morphodict-run home directory
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ morphodict_run_home_files_to_delete.files }}"
+
+    - name: morphodict-run user
+      user:
+        name: morphodict-run
+        uid: "{{ morphodict_run_uid }}"
+        home: "{{ morphodict_run_home }}"
+        group: morphodict-run
+        groups: ''
+        shell: /usr/sbin/nologin
+        password_lock: true
+
+    - name: create base app directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: morphodict
+        group: morphodict-run
+        mode: 0755
+      with_items: "{{ morphodict_prod_data_dirs }}"

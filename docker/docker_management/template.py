@@ -1,3 +1,8 @@
+"""
+Convenience functions for using Django’s template system outside of a
+traditional Django app.
+"""
+
 from functools import cache
 
 from django.template import Engine, Template, Context

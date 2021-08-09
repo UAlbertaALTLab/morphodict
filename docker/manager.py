@@ -16,7 +16,8 @@ ultimately gets their location from the same variable.
 """
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-from docker.docker_management.yaml import make_yaml
+from docker_management.yaml import make_yaml
+from docker_management.setup import do_privileged_setup
 
 
 def main():
@@ -24,11 +25,12 @@ def main():
     parser.formatter_class = ArgumentDefaultsHelpFormatter
 
     subparsers = parser.add_subparsers()
-    make_yaml_parser = subparsers.add_parser(
-        "make-yaml", help="Create the various docker-compose*.yml files"
+    subparsers.add_parser("make-yaml", help=make_yaml.__doc__).set_defaults(
+        func=make_yaml
     )
-
-    make_yaml_parser.set_defaults(func=make_yaml)
+    subparsers.add_parser(
+        "privileged_setup", help=do_privileged_setup.__doc__
+    ).set_defaults(func=do_privileged_setup)
 
     args = parser.parse_args()
 

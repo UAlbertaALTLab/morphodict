@@ -2,6 +2,8 @@ import os.path
 
 
 class App:
+    """Object representing a webapp aka django project to be deployed."""
+
     def __init__(self, language_pair, port, uwsgi_stats_port, name=None):
         self.language_pair = language_pair
         if name:
