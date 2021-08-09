@@ -25,8 +25,6 @@ DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-INSTALLED_APPS += ["cwdeng.dictimport"]
-
 FST_TOOL_SAMPLES = [
     "kika-nîminaw",
     "kikaniminaw",
@@ -63,7 +61,8 @@ MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
     # All entries in Wordform should be written in SRO (ēīōā)
-    "default": "Latn-x-macron",
+    # TODO: what is the current one?
+    "default": "CMRO",
     "available": {
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
@@ -73,5 +72,6 @@ MORPHODICT_ORTHOGRAPHY = {
             "name": "Syllabics",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
         },
+        "CMRO": {"name": "CMRO", "converter": "cwdeng.app.orthography.to_cmro"},
     },
 }

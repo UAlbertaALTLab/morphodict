@@ -76,7 +76,7 @@ to:
         │   │   ├── models.py
         │   │   ├── management/
         │   │   │   └── commands/
-        │   │   │       └── dictimport.py
+        │   │   │       └── importjsondict.py
         │   │   ├── parser.py
         │   │   ├── test_parser.py  # test_* files are mixed in with non-test source code
         │   │   └── testdata/       # Use `testdata` directories for test data
