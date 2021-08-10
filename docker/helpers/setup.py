@@ -5,6 +5,8 @@ from shutil import chown
 
 from .settings import APPS, DIR
 
+GROUP_WRITABLE_DIR = 0o775
+GROUP_WRITABLE_FILE = 0o664
 
 def do_setup(args):
     """Create unprivileged files and directories required by deployment.
@@ -13,9 +15,30 @@ def do_setup(args):
     That needs root permissions, and can be done via the ansible script in
     `plays/`.
     """
-    GROUP_WRITABLE_DIR = 0o775
-    GROUP_WRITABLE_FILE = 0o664
+    setup_env_file()
+    setup_dirs()
+    setup_db()
 
+def setup_dirs():
+    for app in APPS:
+        for data_mount in app.data_mounts():
+            if data_mount.is_dir:
+                src = Path(data_mount.prod_src)
+                if not src.is_dir():
+                    src.mkdir(GROUP_WRITABLE_DIR, exist_ok=True)
+                else:
+                    chmod(src, GROUP_WRITABLE_DIR)
+                chown(src, "morphodict", "morphodict-run")
+            else:
+                raise NotImplementedError("no non-dir mount support yet")
+
+            print(data_mount, "ok")
+
+def setup_dirs():
+    for app in APPS:
+        subprocess.check_call(['sqlite3',
+
+def setup_env_file():
     env_file = Path(DIR / ".env")
     if not env_file.is_file():
         raise Exception(
@@ -33,17 +56,3 @@ def do_setup(args):
         env_file.write_text(env_file_contents + "\nCOMPOSE_PROJECT_NAME=morphodict\n")
 
     print(env_file, "ok")
-
-    for app in APPS:
-        for data_mount in app.data_mounts():
-            if data_mount.is_dir:
-                src = Path(data_mount.prod_src)
-                if not src.is_dir():
-                    src.mkdir(GROUP_WRITABLE_DIR, exist_ok=True)
-                else:
-                    chmod(src, GROUP_WRITABLE_DIR)
-                chown(src, "morphodict", "morphodict-run")
-            else:
-                raise NotImplementedError("no non-dir mount support yet")
-
-            print(data_mount, "ok")
