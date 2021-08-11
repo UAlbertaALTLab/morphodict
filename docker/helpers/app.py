@@ -1,4 +1,5 @@
 import os.path
+from pathlib import Path
 
 
 class App:
@@ -26,6 +27,9 @@ class App:
 
     def prod_data_dir(self):
         return f"/data_local/application-data/{self.name}"
+
+    def prod_db_file(self):
+        return Path(self.prod_data_dir()) / "db" / "db.sqlite3"
 
     def data_mounts(self):
         return [

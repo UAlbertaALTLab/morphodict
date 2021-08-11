@@ -1,12 +1,14 @@
 import re
-from os import chmod
+from os import chmod, fspath
 from pathlib import Path
 from shutil import chown
+from subprocess import check_call
 
 from .settings import APPS, DIR
 
 GROUP_WRITABLE_DIR = 0o775
 GROUP_WRITABLE_FILE = 0o664
+
 
 def do_setup(args):
     """Create unprivileged files and directories required by deployment.
@@ -18,6 +20,7 @@ def do_setup(args):
     setup_env_file()
     setup_dirs()
     setup_db()
+
 
 def setup_dirs():
     for app in APPS:
@@ -34,9 +37,22 @@ def setup_dirs():
 
             print(data_mount, "ok")
 
-def setup_dirs():
+
+def setup_db():
     for app in APPS:
-        subprocess.check_call(['sqlite3',
+        db_file = app.prod_db_file()
+
+        check_call(
+            [
+                "sqlite3",
+                fspath(db_file),
+                "PRAGMA journal_mode=WAL",
+            ]
+        )
+        chmod(db_file.parent, GROUP_WRITABLE_DIR)
+        chmod(db_file, GROUP_WRITABLE_FILE)
+        print(f"{db_file} ok")
+
 
 def setup_env_file():
     env_file = Path(DIR / ".env")
