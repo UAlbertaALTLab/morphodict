@@ -1,7 +1,7 @@
 from textwrap import dedent
 
 from .template import render_template
-from .settings import APPS, DIR
+from .settings import APPS, DOCKER_COMPOSE_DIR
 
 
 def make_yaml(args):
@@ -26,11 +26,13 @@ def make_yaml(args):
         "docker-compose.staging-override-sample.yml",
         "plays/vars.yml",
     ]:
-        filled = render_template((DIR / (path + ".template")).read_text(), context)
+        filled = render_template(
+            (DOCKER_COMPOSE_DIR / (path + ".template")).read_text(), context
+        )
 
         filled = clean_up_whitespace_in_template_output(filled)
 
-        out_file = DIR / path
+        out_file = DOCKER_COMPOSE_DIR / path
         out_file.write_text(filled)
 
         print(f"Wrote {out_file}")

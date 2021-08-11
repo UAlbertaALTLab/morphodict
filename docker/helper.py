@@ -17,9 +17,9 @@ Handles things like:
 import argparse
 import subprocess
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-from os import fspath, execvp
+from os import fspath, execvp, chdir
 
-from helpers.settings import DIR, APPS
+from helpers.settings import DOCKER_COMPOSE_DIR, APPS
 from helpers.setup import do_setup
 from helpers.yaml import make_yaml
 
@@ -65,12 +65,13 @@ def shell(args):
 
     The container must already be running via `docker-compose up`.
     """
+    chdir(DOCKER_COMPOSE_DIR)
     execvp(
         "docker-compose",
         [
             "docker-compose",
             "-f",
-            fspath(DIR / "docker-compose.yml"),
+            fspath(DOCKER_COMPOSE_DIR / "docker-compose.yml"),
             "exec",
             args.container,
             "/bin/bash",
@@ -98,13 +99,14 @@ def manage(args):
             [
                 "docker-compose",
                 "-f",
-                fspath(DIR / "docker-compose.yml"),
+                fspath(DOCKER_COMPOSE_DIR / "docker-compose.yml"),
                 "exec",
                 "-T",
                 container,
                 f"/app/{app.language_pair}-manage",
             ]
             + args.manage_args,
+            cwd=DOCKER_COMPOSE_DIR,
         )
 
 

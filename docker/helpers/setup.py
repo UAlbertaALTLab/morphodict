@@ -5,7 +5,7 @@ from pwd import getpwuid
 from shutil import chown
 from subprocess import check_call
 
-from .settings import APPS, DIR
+from .settings import APPS, DOCKER_COMPOSE_DIR
 
 # Note the extra g+s bit. inode(7) says, “for that directory: files
 # created there inherit their group ID from the directory, not from
@@ -72,7 +72,7 @@ def setup_db():
 
 
 def setup_env_file():
-    env_file = Path(DIR / ".env")
+    env_file = Path(DOCKER_COMPOSE_DIR / ".env")
     if not env_file.is_file():
         raise Exception(
             f"There is no file {env_file}. Either touch(1) it if this is a brand-new deploy, or copy the cookie-signing SECRET_KEY from an existing deploy. "

@@ -2,7 +2,8 @@ from pathlib import Path
 
 from .app import App
 
-DIR = Path(__file__).parent.parent
+# The directory containing the docker-compose file
+DOCKER_COMPOSE_DIR = Path(__file__).parent.parent
 
 
 # Port assignments and UIDs are tracked at:
