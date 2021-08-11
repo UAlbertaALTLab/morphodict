@@ -23,7 +23,7 @@ def make_yaml(args):
 
     for path in [
         "docker-compose.yml",
-        "docker-compose.staging-override-sample.yml",
+        "docker-compose.staging-override.yml",
         "plays/vars.yml",
     ]:
         filled = render_template(

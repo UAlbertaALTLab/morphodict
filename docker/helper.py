@@ -19,12 +19,23 @@ import subprocess
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from os import fspath, execvp, chdir
 
+from more_itertools import flatten
+
 from helpers.settings import DOCKER_COMPOSE_DIR, APPS
 from helpers.setup import do_setup
 from helpers.yaml import make_yaml
 
 
 def main():
+    parser = create_argument_parser()
+    args = parser.parse_args()
+
+    if "func" not in args:
+        parser.error("No command specified")
+    args.func(args)
+
+
+def create_argument_parser():
     parser = ArgumentParser(description=__doc__)
     parser.formatter_class = ArgumentDefaultsHelpFormatter
 
@@ -53,11 +64,10 @@ def main():
     )
     manage_subparser.add_argument("manage_args", nargs=argparse.REMAINDER)
 
-    args = parser.parse_args()
+    staging_subparser = add_subparser("staging", staging)
+    staging_subparser.add_argument("compose_args", nargs=argparse.REMAINDER)
 
-    if "func" not in args:
-        parser.error("No command specified")
-    args.func(args)
+    return parser
 
 
 def shell(args):
@@ -106,8 +116,43 @@ def manage(args):
                 f"/app/{app.language_pair}-manage",
             ]
             + args.manage_args,
+            # This could be specified as --project-directory, but then there are
+            # issues with .env file finding, which is used to set
+            # COMPOSE_PROJECT_NAME. The docs suggest these issues were dealt
+            # with in docker-compose v1.28+, but that’s not yet in any released
+            # Ubuntu version.
             cwd=DOCKER_COMPOSE_DIR,
         )
+
+
+def staging(args):
+    """
+    Run `docker-compose` against the staging compose files.
+
+    Also includes a local `docker-compose.override.yml` if it exists.
+
+    Saves typing vs adding all the `-f ...` args by hand.
+    """
+    additional_compose_files = []
+
+    local_override = DOCKER_COMPOSE_DIR / "docker-compose.override.yml"
+    if local_override.exists():
+        additional_compose_files.append(local_override)
+
+    subprocess.check_call(
+        [
+            "docker-compose",
+            "--project-name",
+            "morphodict-staging",
+            "-f",
+            fspath(DOCKER_COMPOSE_DIR / "docker-compose.yml"),
+            "-f",
+            fspath(DOCKER_COMPOSE_DIR / "docker-compose.staging-override.yml"),
+            *flatten(["-f", f] for f in additional_compose_files),
+            *args.compose_args,
+        ],
+        cwd=DOCKER_COMPOSE_DIR,
+    )
 
 
 if __name__ == "__main__":
