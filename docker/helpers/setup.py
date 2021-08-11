@@ -1,6 +1,7 @@
 import re
-from os import chmod, fspath
+from os import chmod, fspath, getuid
 from pathlib import Path
+from pwd import getpwuid
 from shutil import chown
 from subprocess import check_call
 
@@ -14,15 +15,25 @@ GROUP_WRITABLE_FILE = 0o664
 
 
 def do_setup(args):
-    """Create unprivileged files and directories required by deployment.
+    """Ensure required files and directories exist with correct perms.
 
-    This assumes that users and base directories have already been created.
-    That needs root permissions, and can be done via the ansible script in
-    `plays/`.
+    Re-run this as the morphodict user at any time to make sure
+    things are set up correctly.
+
+    It assumes that users and base directories have already been created. That
+    needs root permissions, and can be done via the ansible script in `plays/`.
     """
+    assert (
+        get_username() == "morphodict"
+    ), "This script should be run as the morphodict user."
+
     setup_env_file()
     setup_dirs()
     setup_db()
+
+
+def get_username():
+    return getpwuid(getuid()).pw_name
 
 
 def setup_dirs():
@@ -55,6 +66,7 @@ def setup_db():
             ]
         )
         chmod(db_file.parent, GROUP_WRITABLE_DIR)
+        chown(db_file, "morphodict", "morphodict-run")
         chmod(db_file, GROUP_WRITABLE_FILE)
         print(f"{db_file} ok")
 
@@ -73,7 +85,7 @@ def setup_env_file():
     #
     # docker-compose automatically reads the .env file.
     env_file_contents = env_file.read_text()
-    if not re.match("^COMPOSE_PROJECT_NAME=", env_file_contents, re.MULTILINE):
+    if not re.search("^COMPOSE_PROJECT_NAME=", env_file_contents, re.MULTILINE):
         env_file.write_text(env_file_contents + "\nCOMPOSE_PROJECT_NAME=morphodict\n")
 
     print(env_file, "ok")
