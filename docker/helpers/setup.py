@@ -6,7 +6,10 @@ from subprocess import check_call
 
 from .settings import APPS, DIR
 
-GROUP_WRITABLE_DIR = 0o775
+# Note the extra g+s bit. inode(7) says, “for that directory: files
+# created there inherit their group ID from the directory, not from
+# the effective group ID of the creating process”
+GROUP_WRITABLE_DIR = 0o2775
 GROUP_WRITABLE_FILE = 0o664
 
 
@@ -29,9 +32,11 @@ def setup_dirs():
                 src = Path(data_mount.prod_src)
                 if not src.is_dir():
                     src.mkdir(GROUP_WRITABLE_DIR, exist_ok=True)
-                else:
-                    chmod(src, GROUP_WRITABLE_DIR)
                 chown(src, "morphodict", "morphodict-run")
+                # Ths is subtle: the chmod has to come last, because running
+                # chown clears the g+s bit, even if the user/group are the same
+                # before and after.
+                chmod(src, GROUP_WRITABLE_DIR)
             else:
                 raise NotImplementedError("no non-dir mount support yet")
 

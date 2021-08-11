@@ -131,5 +131,8 @@
         state: directory
         owner: morphodict
         group: morphodict-run
-        mode: 0755
+        # Note the extra g+s bit. inode(7) says, “for that directory: files
+        # created there inherit their group ID from the directory, not from
+        # the effective group ID of the creating process”
+        mode: 02755
       with_items: "{{ morphodict_prod_data_dirs }}"
