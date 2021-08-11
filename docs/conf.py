@@ -21,6 +21,16 @@ project = "morphodict"
 copyright = "2021, University of Alberta ALTLab"
 author = "University of Alberta ALTLab"
 
+# myst_parser hack
+try:
+    import myst_parser_hack
+except ImportError:
+    import os
+    import sys
+    from pathlib import Path
+
+    sys.path.append(os.fspath(Path(__file__).parent))
+    import myst_parser_hack
 
 # -- General configuration ---------------------------------------------------
 
