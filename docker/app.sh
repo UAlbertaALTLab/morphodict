@@ -17,6 +17,7 @@ export DJANGO_SETTINGS_MODULE="${MORPHODICT_LANG_PAIR}.site.settings"
 # that both the morphodict and morphodict-run users can modify them.
 umask 0002
 
+# uwsgi --http-socket is intended to be used behind, e.g., nginx
 exec uwsgi --http-socket :8000 \
     --stats :9191 \
     --wsgi-file src/morphodict/site/wsgi.py \

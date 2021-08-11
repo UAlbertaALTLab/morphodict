@@ -125,5 +125,6 @@ EXPOSE 9191
 # Among other things, tini makes typing Ctrl-C into docker-compose work
 # see: https://github.com/krallin/tini#tini---a-tiny-but-valid-init-for-containers
 ENTRYPOINT ["tini", "--"]
-# uwsgi --http-socket is intended to be used behind, e.g., nginx
+# Startup takes a bit of conditional logic, which we wrap it into a shell script
+# instead of inlining it here.
 CMD ["/app/app.sh"]
