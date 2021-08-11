@@ -3,10 +3,16 @@ Convenience functions for using Django’s template system outside of a
 traditional Django app.
 """
 
-from functools import cache
+# functools.cache was added in 3.9, and the system python may be older.
+try:
+    from functools import cache as cache_if_available
+except ImportError:
+
+    def cache_if_available(func):
+        return func
 
 
-@cache
+@cache_if_available
 def get_engine():
     # This import is nested so that all other commands for the program can run
     # even if Django is not installed.
