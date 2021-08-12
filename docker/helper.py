@@ -15,6 +15,7 @@ Handles things like:
 # that ultimately gets their location from the same variable.
 
 import argparse
+import itertools
 import subprocess
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from os import fspath, execvp, chdir
@@ -131,14 +132,15 @@ def staging(args):
 
     Saves typing vs adding all the `-f ...` args by hand.
     """
-    # local import so other commands work outside pipenv
-    from more_itertools import flatten
-
     additional_compose_files = []
 
     local_override = DOCKER_COMPOSE_DIR / "docker-compose.override.yml"
     if local_override.exists():
         additional_compose_files.append(local_override)
+
+    # not using more_itertools because want this part of the script to work even
+    # without a working pipenv
+    flatten = itertools.chain.from_iterable
 
     subprocess.check_call(
         [
