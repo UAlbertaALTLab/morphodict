@@ -21,7 +21,6 @@ project = "morphodict"
 copyright = "2021, University of Alberta ALTLab"
 author = "University of Alberta ALTLab"
 
-# myst_parser hack
 try:
     import myst_parser_hack
 except ImportError:

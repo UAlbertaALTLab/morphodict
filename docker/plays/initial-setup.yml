@@ -1,46 +1,47 @@
-# This is an ansible playbook to set up initial users, groups, and base
-# directories.
-#
-# It only needs to be run:
-#  - When first setting up a new production morphodict host
-#  - When adding a new dictionary
-#  - If it is edited to effect some desired configuration change
-#
-# It’s off in its own little world because it requires sudo to run, and it
-# creates the users and directories that would normally have a checkout
-# containing the setup code. When getting started, you can copy just this
-# file plus vars.yml into any directory, and you’ll be able to run it from
-# there.
-#
-# To install ansible:
-#
-#     pip3 install --user ansible
-#
-# To run this playbook in a mode where it will show what it will do:
-#
-#     ansible-playbook --check --diff initial-setup.yml
-#
-# To actually apply changes:
-#
-#     ansible-playbook --become --ask-become-pass --diff initial-setup.yml
-#
-# If you are repeatedly editing and re-running within short periods of time
-# from the same terminal, you can leave off `--ask-become-pass` after the
-# first run, as your cached sudo credentials will be used.
+# See “Privileged setup” in ../README.md
 ---
 - name: privileged_setup
   hosts: localhost
 
   vars:
+    - morphodict_base: "/opt/morphodict"
+    - morphodict_base_bind_target: "/data_local/opt_morphodict"
+
     - morphodict_uid: 60006
     - morphodict_gid: 60006
-    - morphodict_home: "/opt/morphodict/home"
+    - morphodict_home: "{{ morphodict_base }}/morphodict/home"
     - morphodict_run_uid: 60007
     - morphodict_run_gid: 60007
-    - morphodict_run_home: "/opt/morphodict/run-home"
+    - morphodict_run_home: "{{ morphodict_base }}/run-home"
 
   tasks:
     - include_vars: "vars.yml"
+
+    # the partitioning scheme on the current production host doesn’t have
+    # enough room in /, so we set up a bind mount to hold the files on
+    # another volume while still appearing to be in /
+
+    - name: "{{ morphodict_base }}"
+      file:
+        path: "{{ morphodict_base }}"
+        state: directory
+        mode: 0755
+
+    - name: "{{ morphodict_base_bind_target }}"
+      file:
+        path: "{{ morphodict_base_bind_target }}"
+        state: directory
+        mode: 0755
+
+    - name: "{{ morphodict_base }} bind mount"
+      mount:
+        name: "{{ morphodict_base }}"
+        src: "{{ morphodict_base_bind_target }}"
+        fstype: "none"
+        opts: "defaults,bind"
+        state: mounted
+
+    # the rest is pretty standard
 
     - name: morphodict group
       group:
