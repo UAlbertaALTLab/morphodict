@@ -103,7 +103,7 @@ def manage(args):
         app = next(app for app in APPS if app.name == container)
 
         if len(containers) > 1:
-            print(f"Running {app.language_pair}-manage")
+            print(f"Running {app.name}-manage")
 
         subprocess.check_call(
             [
@@ -113,7 +113,7 @@ def manage(args):
                 "exec",
                 "-T",
                 container,
-                f"/app/{app.language_pair}-manage",
+                f"/app/{app.name}-manage",
             ]
             + args.manage_args,
             # This could be specified as --project-directory, but then there are

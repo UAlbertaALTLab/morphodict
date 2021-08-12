@@ -10,9 +10,9 @@ DOCKER_COMPOSE_DIR = Path(__file__).parent.parent
 # https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
 
 APP_INFO = {
-    "crkeng": {"name": "itwewina", "port": 8011, "uwsgi_stats_port": 9011},
-    "cwdeng": {"name": "itwiwina", "port": 8012, "uwsgi_stats_port": 9012},
-    "srseng": {"name": "gunaha", "port": 8013, "uwsgi_stats_port": 9013},
+    "crkeng": {"port": 8011, "uwsgi_stats_port": 9011},
+    "cwdeng": {"port": 8012, "uwsgi_stats_port": 9012},
+    "srseng": {"port": 8013, "uwsgi_stats_port": 9013},
     "arpeng": {"port": 8014, "uwsgi_stats_port": 9014},
 }
 

@@ -5,11 +5,11 @@
 version: "3"
 
 services:
-  itwewina:
+  crkeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: itwewina-container
+    hostname: crkeng-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh crkeng
     ports:
@@ -24,14 +24,14 @@ services:
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
       - "../src/crkeng/resources/dictionary/:/app/src/crkeng/resources/dictionary/:ro"
 
-      - "/data_local/application-data/itwewina/vector_models:/app/src/crkeng/resources/vector_models/"
-      - "/data_local/application-data/itwewina/db:/app/src/crkeng/db/"
-      - "/data_local/application-data/itwewina/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
-  itwiwina:
+      - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/resources/vector_models/"
+      - "/data_local/application-data/crkeng/db:/app/src/crkeng/db/"
+      - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
+  cwdeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: itwiwina-container
+    hostname: cwdeng-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh cwdeng
     ports:
@@ -46,14 +46,14 @@ services:
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
       - "../src/cwdeng/resources/dictionary/:/app/src/cwdeng/resources/dictionary/:ro"
 
-      - "/data_local/application-data/itwiwina/vector_models:/app/src/cwdeng/resources/vector_models/"
-      - "/data_local/application-data/itwiwina/db:/app/src/cwdeng/db/"
-      - "/data_local/application-data/itwiwina/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
-  gunaha:
+      - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/resources/vector_models/"
+      - "/data_local/application-data/cwdeng/db:/app/src/cwdeng/db/"
+      - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
+  srseng:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: gunaha-container
+    hostname: srseng-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
     command: /app/app.sh srseng
     ports:
@@ -68,9 +68,9 @@ services:
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
       - "../src/srseng/resources/dictionary/:/app/src/srseng/resources/dictionary/:ro"
 
-      - "/data_local/application-data/gunaha/vector_models:/app/src/srseng/resources/vector_models/"
-      - "/data_local/application-data/gunaha/db:/app/src/srseng/db/"
-      - "/data_local/application-data/gunaha/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/srseng/vector_models:/app/src/srseng/resources/vector_models/"
+      - "/data_local/application-data/srseng/db:/app/src/srseng/db/"
+      - "/data_local/application-data/srseng/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
   arpeng:
     restart: always
     # Specify hostname to make it clearer which container is active when

@@ -7,7 +7,7 @@
 # containing variables defined/derived from settings in python.
 
 morphodict_prod_data_dirs:
-  - "/data_local/application-data/itwewina"
-  - "/data_local/application-data/itwiwina"
-  - "/data_local/application-data/gunaha"
+  - "/data_local/application-data/crkeng"
+  - "/data_local/application-data/cwdeng"
+  - "/data_local/application-data/srseng"
   - "/data_local/application-data/arpeng"

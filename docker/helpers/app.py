@@ -5,10 +5,8 @@ from pathlib import Path
 class App:
     """Object representing a webapp aka django project to be deployed."""
 
-    def __init__(self, language_pair, port, uwsgi_stats_port, name=None):
-        self.language_pair = language_pair
-        if name:
-            self._name = name
+    def __init__(self, name, port, uwsgi_stats_port):
+        self.name = name
         self.port = port
         self.uwsgi_stats_port = uwsgi_stats_port
 
@@ -17,12 +15,12 @@ class App:
         instead of being built into the container."""
         return [
             "morphodict/lexicon/resources/vector_models/",
-            f"{self.language_pair}/resources/fst",
+            f"{self.name}/resources/fst",
             # Holds phrase-translation FSTs
             "CreeDictionary/res/fst/",
             # Not actually an LFS thing, but this is where production dictionary
             # files get stored so they can be imported.
-            f"{self.language_pair}/resources/dictionary/",
+            f"{self.name}/resources/dictionary/",
         ]
 
     def prod_data_dir(self):
@@ -38,20 +36,14 @@ class App:
             DataMount(self, "CreeDictionary/search_quality/"),
         ]
 
-    @property
-    def name(self):
-        if hasattr(self, "_name"):
-            return self._name
-        return self.language_pair
-
 
 class DataMount:
     def __init__(self, app, path):
         self.app = app
         self._path = path
 
-        self.target = f"/app/src/{app.language_pair}/{path}"
-        self.dev_src = f"../src/{app.language_pair}/{path}"
+        self.target = f"/app/src/{app.name}/{path}"
+        self.dev_src = f"../src/{app.name}/{path}"
 
     @property
     def is_dir(self):

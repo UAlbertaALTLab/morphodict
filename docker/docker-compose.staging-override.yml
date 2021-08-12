@@ -14,7 +14,7 @@
 version: "3"
 
 services:
-  itwewina:
+  crkeng:
     # In prod, we *always* want the apps running, including on boot; that’s
     # not necessarily the case on our dev machines.
     restart: "no"
@@ -30,7 +30,7 @@ services:
       - "../src/crkeng/db/:/app/src/crkeng/db/"
       - "../src/crkeng/CreeDictionary/search_quality/:/app/src/crkeng/CreeDictionary/search_quality/"
 
-  itwiwina:
+  cwdeng:
     # In prod, we *always* want the apps running, including on boot; that’s
     # not necessarily the case on our dev machines.
     restart: "no"
@@ -46,7 +46,7 @@ services:
       - "../src/cwdeng/db/:/app/src/cwdeng/db/"
       - "../src/cwdeng/CreeDictionary/search_quality/:/app/src/cwdeng/CreeDictionary/search_quality/"
 
-  gunaha:
+  srseng:
     # In prod, we *always* want the apps running, including on boot; that’s
     # not necessarily the case on our dev machines.
     restart: "no"

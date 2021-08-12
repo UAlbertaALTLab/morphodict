@@ -10,7 +10,7 @@ services:
     # using docker to get a shell in the container.
     hostname: {{ app.name }}-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh {{ app.language_pair }}
+    command: /app/app.sh {{ app.name }}
     ports:
       - "{{ app.port }}:8000" # http
       - "{{ app.uwsgi_stats_port }}:9191" # uWSGI stats
