@@ -19,8 +19,6 @@ import subprocess
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 from os import fspath, execvp, chdir
 
-from more_itertools import flatten
-
 from helpers.settings import DOCKER_COMPOSE_DIR, APPS
 from helpers.setup import do_setup
 from helpers.yaml import make_yaml
@@ -133,6 +131,9 @@ def staging(args):
 
     Saves typing vs adding all the `-f ...` args by hand.
     """
+    # local import so other commands work outside pipenv
+    from more_itertools import flatten
+
     additional_compose_files = []
 
     local_override = DOCKER_COMPOSE_DIR / "docker-compose.override.yml"
