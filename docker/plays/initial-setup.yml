@@ -9,7 +9,7 @@
 
     - morphodict_uid: 60006
     - morphodict_gid: 60006
-    - morphodict_home: "{{ morphodict_base }}/morphodict/home"
+    - morphodict_home: "{{ morphodict_base }}/home"
     - morphodict_run_uid: 60007
     - morphodict_run_gid: 60007
     - morphodict_run_home: "{{ morphodict_base }}/run-home"

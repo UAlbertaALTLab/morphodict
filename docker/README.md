@@ -187,7 +187,9 @@ and directories it created:
 #### Unprivileged setup
 
 Check out the morphodict repo to `~morphodict/morphodict`, if you haven’t
-already done that. Make sure LFS is set up!
+already done that. Make sure LFS is set up! Otherwise you will get
+inscrutable error messages on startup like `_pickle.UnpicklingError:
+invalid load key, 'v'.`
 
     $ sudo -i -u morphodict
     $ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary morphodict
