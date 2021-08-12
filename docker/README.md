@@ -197,7 +197,13 @@ As the `morphodict` user, run `docker/helper.py setup`, and it’ll create
 all the required files and directories, or error out if the privileged
 setup hasn’t been done yet.
 
- 1. Because of how Docker works, the following commands can only work if
+ 1. Run the helper tool to create all the files and directories and set
+    permissions. **If you don’t do this first, docker will create
+    directories where there should be files and confusion will follow.**
+
+        sudo -u morphodict ~morphodict/morphodict/docker/helper.py setup
+
+ 2. Because of how Docker works, the following commands can only work if
     the target container is already running.
 
     So, first run
@@ -207,11 +213,11 @@ setup hasn’t been done yet.
     to start all the containers. The apps won’t work yet, but they will
     after you restart them at the end of this list.
 
- 2. Create the initial schema with:
+ 3. Create the initial schema with:
 
         docker/helper.py all manage migrate
 
- 3. Populate the dictionary for a specific app, e.g., `arpeng`, with
+ 4. Populate the dictionary for a specific app, e.g., `arpeng`, with
 
         docker/helper.py manage arpeng importjsondict
 
@@ -224,7 +230,7 @@ setup hasn’t been done yet.
     path must be inside the container, and be specified relative to the git
     repo root.
 
- 4. The app may not work very well if it the container was started before
+ 5. The app may not work very well if it the container was started before
     the database schema was in place, or if an import has invalidated some
     caches built on startup. You can restart a container with
 
