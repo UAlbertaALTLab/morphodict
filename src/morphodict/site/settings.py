@@ -275,6 +275,13 @@ STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "collected-static"))
 
+STATICFILES_DIRS = [
+    # This is where rollup puts the built versions of frontend files
+    BASE_DIR.parent.parent
+    / "generated"
+    / "frontend"
+]
+
 if DEBUG:
     # Use the default static storage backed for debug purposes.
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"

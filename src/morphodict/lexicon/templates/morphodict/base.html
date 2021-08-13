@@ -8,12 +8,33 @@
   <meta name="theme-color" content="#A20010">
   {% block headincludes %}
   {% endblock %}
+  {% block faviconsetup %}
+  <link
+  rel="icon"
+  type="image/png"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-32.png' %}"
+/>
+<link
+  rel="alternate icon"
+  type="image/svg+xml"
+  href="{% static 'morphodict/css/img/morphodict-default-logo.svg' %}"
+/>
+<link
+  rel="mask-icon"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-safari-pinned-tab.svg' %}"
+  color="#FAEBD7"
+/>
+<link
+  rel="apple-touch-icon"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-192.png' %}"
+/>
+  {% endblock %}
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'CreeDictionary/css/styles.css' %}">
+  <link rel="stylesheet" href="{% static 'morphodict/css/styles.css' %}">
   {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
   <script src="{% url 'js_reverse' %}"></script>
-  <script src={% static 'CreeDictionary/js/index.js' %}></script>
+  <script src={% static 'morphodict/js/index.js' %}></script>
 
   {% if displaying_paradigm %}
     {% comment %}
