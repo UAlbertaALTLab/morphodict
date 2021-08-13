@@ -8,7 +8,7 @@ _ Px1Pl	${lemma}+N+I+D+Px1Pl+Sg	${lemma}+N+I+D+Px1Pl+Pl	${lemma}+N+I+D+Px1Pl+Loc
 _ Px12Pl	${lemma}+N+I+D+Px12Pl+Sg	${lemma}+N+I+D+Px12Pl+Pl	${lemma}+N+I+D+Px12Pl+Loc
 _ Px2Pl	${lemma}+N+I+D+Px2Pl+Sg	${lemma}+N+I+D+Px2Pl+Pl	${lemma}+N+I+D+Px2Pl+Loc
 _ Px3Pl	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px3Pl+Loc
-_ Px4Sg/Pl	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
+_ Px4Sg/Pl	${lemma}+N+I+D+Px4Sg/Pl+Sg	${lemma}+N+I+D+Px4Sg/Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
 			
 # Dim			
 	| Poss		

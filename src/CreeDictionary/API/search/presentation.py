@@ -301,7 +301,10 @@ def get_emoji_for_cree_wordclass(
     tags = to_fst_output_style(word_class)
     original = read_labels().emoji.get_longest(tags)
 
-    return use_preferred_animate_emoji(original, animate_emoji)
+    ret = original
+    if original:
+        ret = use_preferred_animate_emoji(original, animate_emoji)
+    return ret
 
 
 def use_preferred_animate_emoji(original: str, animate_emoji: str) -> str:

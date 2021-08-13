@@ -41,8 +41,6 @@ throughout the codebase, as well as in comments and docstrings throughout.
 
    linguistic-data
 
-   dictionary-data
-
    developers
 
    glossary

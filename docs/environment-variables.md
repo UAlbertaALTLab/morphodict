@@ -30,3 +30,12 @@ It specifies whether to use `test_db.sqlite3` instead of `db.sqlite3`. It defaul
 Note: python unit tests under `CreeDictionary/tests` always creates in memory empty database unless specified 
 in the test code otherwise. E.g. `CreeDictionary/tests/API_test/model_test.py` is
  an example configuration where `test_db.sqlite3` is actually used.
+
+(DEBUG_PARADIGM_TABLES)=
+
+### DEBUG_PARADIGM_TABLES
+
+When this environment variable is set to True, both layout files and
+`altlabel.tsv` are re-read on every page load. This is extremely convenient
+when editing paradigm layout or label files, as you don’t need to
+constantly restart the server to see the effects of your changes.
