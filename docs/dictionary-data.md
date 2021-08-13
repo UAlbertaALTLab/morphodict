@@ -1,7 +1,13 @@
-## Current dictionary data
+(dictionary-data)=
+
+## Dictionary data
+
+Dictionary applications require dictionary data.
+
+### Sources
 
 In theory, linguists will provide comprehensive and correct dictionary data
-in importjson format.
+in the morphodict-specific importjson format.
 
 In practice, at this time, full dictionaries for each language arise as
 follows:
@@ -10,13 +16,14 @@ follows:
     checked in to the secret git repository at
     `altlab.dev:/data/altlab.git`. This is what’s used in production. It
     was created by importing the old `crkeng.xml` file into an older
-    version of cree-intelligent-dictionary, that did a lot of paradigm and
+    version of cree-intelligent-dictionary that did a lot of paradigm and
     analysis inference during import, and then the database contents were
     exported in the new importjson format.
 
-  - For Woods Cree, the `cwdize` script transliterates the production
-    `crkeng_dictionary.importjson` file, using the `database.ndjson` file
-    from the ALTLab repo to get the proto-Cree forms.
+  - For Woods Cree, the `munge/cwdeng/cwdize` script transliterates the
+    production `crkeng_dictionary.importjson` file, using the
+    `database.ndjson` file from the ALTLab repo to get the proto-Cree
+    forms.
 
   - For Arapaho, the [private arp-db
     repo](https://github.com/UAlbertaALTLab/arp-db) has
@@ -35,7 +42,25 @@ have not given permission to make them publicly available in that form. For
 Arapaho we believe we could make the data public, but have not yet had
 sufficiently official confirmation of that.
 
-Each of these dictionaries is intended to be placed at
+### Building
+
+To install the prerequisites of the munge scripts:
+
+    cd munge
+    npm install
+
+Then, running them takes a little bit of fiddling because they are written
+in TypeScript and need to be transpiled to JavaScript. To do that on the
+fly:
+
+    node -r sucrase/register/ts cwdeng/cwdize.ts --help
+
+In several of the directories there is an executable `run.js` script to do
+that for you, so it could be as simple as `./run.js --help`.
+
+### Where do files go
+
+Each dictionary is intended to be placed at
 
     src/${sssttt}/resources/dictionaries/${sssttt}_dictionary.importjson
 
