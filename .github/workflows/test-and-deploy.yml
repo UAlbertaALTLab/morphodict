@@ -79,7 +79,7 @@ jobs:
       run: pipenv run test -v --cov=src --cov-report=xml
     - name: Check working directory clean
       run: ./libexec/check-git-status
-    - name: Check generated files up-to-date
+    - name: Check that generated files are up-to-date
       # A few auto-generated files are checked in for convenience; ensure
       # that they are up-to-date.
       run: "pipenv run docker/helper.py make-yaml
