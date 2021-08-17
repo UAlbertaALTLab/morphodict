@@ -160,11 +160,14 @@ root access, there is an ansible script in `docker/plays`.
 
 It’s off in its own little world because it requires sudo access to run,
 and it creates the users and directories that would normally have a
-checkout containing the setup code. When getting started, you can copy just
-this file plus `vars.yml` into any directory, and you’ll be able to run it
-from there.
+checkout containing the setup code.
 
-To install ansible, run this, **as your login user, not as root**:
+When getting started, from your local machine’s `docker/plays` folder, copy
+`initial-setup.yml` and `vars.yml` to anywhere on the production machine,
+and you’ll be able to run then from there.
+
+To install ansible on the production host, run this, **as your login user,
+not as root**:
 
     pip3 install --user ansible
 
