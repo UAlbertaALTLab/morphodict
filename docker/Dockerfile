@@ -70,9 +70,10 @@ RUN npm run build \
  && set -eu \
  `# the docker image contains assets for all language pairs` \
  && for MANAGE_COMMAND in *-manage; do \
-        ./${MANAGE_COMMAND} collectstatic --noinput & \
-    done; \
-    wait
+        echo ${MANAGE_COMMAND} collectstatic && \
+        /app/.venv/bin/python `# .venv python sees libs from pipenv` \
+            ./${MANAGE_COMMAND} collectstatic --noinput; \
+    done
 
 ############################# Application image ##############################
 
