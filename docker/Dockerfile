@@ -69,8 +69,8 @@ ENV NODE_ENV=production
 RUN npm run build \
  && set -eu \
  `# the docker image contains assets for all language pairs` \
- && for LANG_PAIR in crkeng cwdeng srseng arpeng; do \
-        /app/.venv/bin/python ./${LANG_PAIR}-manage collectstatic --noinput & \
+ && for MANAGE_COMMAND in *-manage; do \
+        ./${MANAGE_COMMAND} collectstatic --noinput & \
     done; \
     wait
 
