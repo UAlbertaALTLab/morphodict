@@ -29,14 +29,6 @@ If you run into trouble, the following notes may help:
   - On Ubuntu, if you get an error running pipenv that says `"Python.h" not
     found`, install the `python3.9-dev` package
 
-  - If pipenv fails to install `hfst_optimized_lookup` with the error
-    `ModuleNotFoundError: No module named 'hfst_optimized_lookup._hfst_optimized_lookup'`,
-    a newer pipenv version will fix that.
-
-    On Ubuntu, try
-
-        python3 -m pip install -U --user pipenv && ~/.local/bin/pipenv install --dev
-
 ### Install NodeJS
 
 Install [NodeJS][] version 10 or greater.
