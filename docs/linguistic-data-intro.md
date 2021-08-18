@@ -1,3 +1,5 @@
+# Summary
+
 To get a working dictionary, you’ll need the following kinds of linguistic
 data:
 
@@ -83,7 +85,7 @@ data:
 For the items summarized above, more details are available below, or
 may be requested.
 
-### A quick note on TSV files
+# Quick note on TSV files
 
 For editing CSV files, some people have had varying levels of success with:
 

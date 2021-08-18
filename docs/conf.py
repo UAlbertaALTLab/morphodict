@@ -6,30 +6,19 @@
 
 # -- Path setup --------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+import sys
+from pathlib import Path
 
+sys.path.append(os.fspath(Path(__file__).parent))
+
+import myst_parser_hack
 
 # -- Project information -----------------------------------------------------
 
 project = "morphodict"
 copyright = "2021, University of Alberta ALTLab"
 author = "University of Alberta ALTLab"
-
-try:
-    import myst_parser_hack
-except ImportError:
-    import os
-    import sys
-    from pathlib import Path
-
-    sys.path.append(os.fspath(Path(__file__).parent))
-    import myst_parser_hack
 
 # -- General configuration ---------------------------------------------------
 
@@ -54,7 +43,12 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 #
 html_theme = "alabaster"
 
+html_theme_options = {
+    # Add next + previous links at top and bottom of page
+    "show_relbars": True,
+}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ["_static"]
+# html_static_path = ["_static"]
