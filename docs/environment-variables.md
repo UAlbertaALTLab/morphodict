@@ -1,14 +1,14 @@
-## Environment variables
+# Environment variables
 
 These values can be set to tweak morphodict’s runtime behaviour.
 
-### DEBUG
+## DEBUG
 
 Django magical variable. This defaults to the production setting `False`.
 You should add `DEBUG=False` to .env file in development.
 Note: `DEBUG` CANNOT be enabled on Sapir!
 
-### ENABLE_DJANGO_DEBUG_TOOLBAR
+## ENABLE_DJANGO_DEBUG_TOOLBAR
 
 Whether to enable the [Django debug toolbar]. If unset, the default
 depends on whether `DEBUB` is on, and whether the code is running on
@@ -23,7 +23,7 @@ The debug toolbar is **always disabled** on production and in CI.
 
 [Django debug toolbar]: https://github.com/jazzband/django-debug-toolbar
 
-### USE_TEST_DB
+## USE_TEST_DB
 
 It specifies whether to use `test_db.sqlite3` instead of `db.sqlite3`. It defaults to production setting "False". you should add `USE_TEST_DB=True` in .env file.
 
@@ -33,7 +33,7 @@ in the test code otherwise. E.g. `CreeDictionary/tests/API_test/model_test.py` i
 
 (DEBUG_PARADIGM_TABLES)=
 
-### DEBUG_PARADIGM_TABLES
+## DEBUG_PARADIGM_TABLES
 
 When this environment variable is set to True, both layout files and
 `altlabel.tsv` are re-read on every page load. This is extremely convenient

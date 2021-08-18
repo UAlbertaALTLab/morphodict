@@ -1,10 +1,10 @@
-(dictionary-data)=
+(dictionary_data)=
 
-## Dictionary data
+# Dictionary data
 
 Dictionary applications require dictionary data.
 
-### Sources
+## Sources
 
 In theory, linguists will provide comprehensive and correct dictionary data
 in the morphodict-specific importjson format.
@@ -42,7 +42,7 @@ have not given permission to make them publicly available in that form. For
 Arapaho we believe we could make the data public, but have not yet had
 sufficiently official confirmation of that.
 
-### Building
+## Building
 
 To install the prerequisites of the munge scripts:
 
@@ -58,7 +58,7 @@ fly:
 In several of the directories there is an executable `run.js` script to do
 that for you, so it could be as simple as `./run.js --help`.
 
-### Where do files go
+## Where do files go?
 
 Each dictionary is intended to be placed at
 
@@ -66,7 +66,7 @@ Each dictionary is intended to be placed at
 
 There is a `.gitignore` rule to prevent accidentally committing them.
 
-### Building test dictionary data
+## Building test dictionary data
 
 Test dictionaries are exclusively created by taking subsets of the full
 dictionaries.
