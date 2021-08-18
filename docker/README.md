@@ -296,7 +296,7 @@ redeployment workflow begins on GitHub actions:
 
  - the unit tests and integration tests run
  - a Docker image is built
- - the Docker image is built and pushed to the [GitHub container
+ - the Docker image is pushed to the [GitHub container
    registry][ghcr]
 
 At the end of a successful CI run on the main branch, the CI workflow POSTs
