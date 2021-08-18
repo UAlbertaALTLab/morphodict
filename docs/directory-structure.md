@@ -8,7 +8,7 @@ to:
 
   - Address some other issues that have arisen with the source code layout.
 
-### High-level decisions / assumptions
+## High-level decisions / assumptions
 
   - In the file system, dictionary applications such as itwêwina are named
     `sssttt`, where `sss` and `ttt` are each three-letter [ISO 639-3
@@ -47,7 +47,7 @@ to:
 
 [639-3]: https://iso639-3.sil.org/code_tables/639/data
 
-### Layout
+## Layout
 
     $repo
     ├── .git/
@@ -56,8 +56,12 @@ to:
     ├── arpeng-manage               # django-admin scripts are at the top-level for easy access
     ├── crkeng-manage
     ├── crkfra-manage
+    ├── libexec/                    # programs only run by other programs
     ├── cwdeng-manage
     ├── srseng-manage
+    ├── scripts/                    # various auxiliary scripts for devs / CI
+    │   ├ reformat-altlabels
+    │   └ …
     └── src/
         ├── CreeDictionary/         # existing code, eventually goes away
         │   ├── __init__.py
@@ -155,7 +159,7 @@ to:
         ├── cr_shared               # for code and resources shared between Cree dialects
         └── srseng/
 
-#### Notes on source layout
+### Notes on source layout
 
   - The `sssttt` directories have parallel directory structures, containing
     a `site` python package for the django project, many python modules,
@@ -228,17 +232,3 @@ PS:
 
   - In Python code, prefer absolute imports to relative ones for now, as
     they are more explicit, and will allow us to grep for `CreeDictionary`.
-
-### Open questions
-
-**Where should we put random scripts used for development / maintenance /
-meta stuff?** Things like `lfs-push`, or if we have a script to create a
-new dictionary project, or to run tests across all django applications or
-something.
-
-We currently have a `libexec` directory but that name is not consistent
-with typical UNIX usage of that term as a place for “[Binaries run by other
-programs][libexec].” We can keep using it though until we come up with a
-better name.
-
-[libexec]: https://refspecs.linuxfoundation.org/FHS_3.0/fhs-3.0.html#usrlibexec

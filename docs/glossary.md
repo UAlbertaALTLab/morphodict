@@ -561,7 +561,6 @@ same word class behave morphologically in a similar way to each other.
 
 [NAD]: #NAD
 [NA]: #NA
-[NA]: #NA
 [NID]: #NID
 [NI]: #NI
 [VAI]: #VAI

@@ -52,7 +52,7 @@ Paradigm layouts are:
 For example, this is a paradigm layout file for Swahili personal
 pronouns (Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>):
 
-```tsv
+```
 | Class	| Ind	| Comb | Suffix	| Gen | Suffix	| All
 _ 1 _ Sg	mimi	-mi	_angu	--
 _ 2 _ Sg	wewe	-we	-ako	--
@@ -149,7 +149,7 @@ Here is a partial [W3C Extended Backus-Naur Form (EBNF)][EBNF] grammar of
 the layout file specification. The syntax of `WordformCell` and `Tag`
 are implementation-dependent.
 
-```ebnf
+```
 Layout ::= (Row NL)+
 
 Row ::= BlankRow | HeaderRow | ContentRow
