@@ -1,3 +1,5 @@
+{{ autogeneration_notice }}
+
 # A docker-compose override file more amenable to local work
 #
 # Run with
@@ -10,16 +12,23 @@
 version: "3"
 
 services:
-  itwewina:
-    # In prod, we *always* want itwêwina running, including on boot; that’s
+  {% for app in apps %}
+  {{ app.name }}:
+    # In prod, we *always* want the apps running, including on boot; that’s
     # not necessarily the case on our dev machines.
     restart: "no"
     build:
       context: ..
       dockerfile: docker/Dockerfile
     # The tag that will automatically be applied on build:
-    image: itwewina:dev
+    image: morphodict:dev
+
     volumes:
       - "./.env:/app/.env"
-      - "../src/crkeng/db/:/app/src/crkeng/db/"
-      - "../src/CreeDictionary/search_quality/sample_results/:/app/src/CreeDictionary/search_quality/sample_results/"
+      {% for mount in app.data_mounts %}
+      - "{{ mount.dev_src }}:{{ mount.target }}"
+     {% endfor %}
+  {% if not counter.last %}
+
+  {% endif %}
+  {% endfor %}

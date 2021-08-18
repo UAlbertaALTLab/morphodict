@@ -119,6 +119,8 @@ TEMPLATES = [
 
 # Custom settings
 
+WSGI_APPLICATION = "morphodict.site.wsgi.application"
+
 # Apps that have non-admin users typically have a stylized login page, but
 # we only have admin logins. This setting will redirect to the admin login
 # page if an anonymous user requests a page that requires permissions.

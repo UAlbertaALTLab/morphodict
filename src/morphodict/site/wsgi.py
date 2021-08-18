@@ -3,7 +3,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 
 """
-WSGI config for CreeDictionary project.
+WSGI config.
 
 This module contains the WSGI application used by Django's development server
 and any production WSGI deployments. It should expose a module-level variable
@@ -18,7 +18,9 @@ framework.
 
 """
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkeng.site.settings")
+if not "DJANGO_SETTINGS_MODULE" in os.environ:
+    raise Exception("DJANGO_SETTINGS_MODULE not set")
+
 os.environ.setdefault("PERFORM_TIME_CONSUMING_INITIALIZATIONS", "True")
 
 # This application object is used by any WSGI server configured to use this

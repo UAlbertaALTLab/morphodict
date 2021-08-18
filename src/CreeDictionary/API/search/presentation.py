@@ -132,9 +132,6 @@ class PresentationResult:
                     new_head.append(tag)
             self.linguistic_breakdown_head = new_head
             self.linguistic_breakdown_tail = new_tail_prefix + list(tail)
-            print(
-                f"{self.linguistic_breakdown_head=}, {self.linguistic_breakdown_tail=}"
-            )
         else:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
