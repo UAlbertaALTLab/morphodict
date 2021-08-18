@@ -10,7 +10,6 @@ Developer documentation
    environment-variables
    ci
    docker-stub
-   production-on-whorf
    example-cases
    directory-structure
 

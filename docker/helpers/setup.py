@@ -49,7 +49,9 @@ def setup_dirs():
                 # before and after.
                 chmod(src, GROUP_WRITABLE_DIR)
             else:
-                raise NotImplementedError("no non-dir mount support yet")
+                raise NotImplementedError(
+                    "Non-directory mounts are not yet supported by this script"
+                )
 
             print(data_mount, "ok")
 
@@ -58,6 +60,14 @@ def setup_db():
     for app in APPS:
         db_file = app.prod_db_file()
 
+        # Enable SQLite write-ahead-logging mode. Makes the database
+        # faster, with better concurrency support, at the cost of having
+        # three files on disk when the database is open instead of only
+        # one. This is safe for us to use with docker because we are
+        # careful to mount a directory containing the SQLite database file,
+        # instead of mounting just the database file by itself.
+        #
+        # See https://sqlite.org/wal.html
         check_call(
             [
                 "sqlite3",
@@ -65,6 +75,7 @@ def setup_db():
                 "PRAGMA journal_mode=WAL",
             ]
         )
+
         chmod(db_file.parent, GROUP_WRITABLE_DIR)
         chown(db_file, "morphodict", "morphodict-run")
         chmod(db_file, GROUP_WRITABLE_FILE)

@@ -171,11 +171,14 @@ not as root**:
 
     pip3 install --user ansible
 
-To run the playbook in a mode where it will show what it will do:
+To get a *preview* of what changes the playbook would apply if you weren’t
+previewing it, run it with the `--check` option as a non-root user:
 
     ansible-playbook --check --diff initial-setup.yml
 
-To actually apply changes:
+To actually apply changes, run the following command. `--become` means that
+it will use your sudo privileges to become the root user in order to apply
+the changes.
 
     ansible-playbook --become --ask-become-pass --diff initial-setup.yml
 
