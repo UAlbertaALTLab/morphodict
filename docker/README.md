@@ -110,7 +110,7 @@ to more easily poke at the production environment.
 ### Data paths
 
 Production data is stored in `/data_local/application-data`, and mounted
-into the containers. Data files should be all be readable, and some should
+into the containers. Data files should all be readable, and some should
 also be writable, by the `morphodict-run` group.
 
 To help ensure that directories are usable by the `morphodict-run` group

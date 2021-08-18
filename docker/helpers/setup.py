@@ -15,7 +15,7 @@ GROUP_WRITABLE_FILE = 0o664
 
 
 def do_setup(args):
-    """Ensure required files and directories exist with correct perms.
+    """Ensure required files and directories exist with correct permissions.
 
     Re-run this as the morphodict user at any time to make sure
     things are set up correctly.
