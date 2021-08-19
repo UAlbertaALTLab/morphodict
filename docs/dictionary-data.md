@@ -159,9 +159,9 @@ recommended*:
     argument as prettier does not automatically recognize the `.importjson`
     file extension.
 
-  - Sort the entries by slug, with any `formOf` entries coming immediately
-    after the corresponding lemma entry, and related `formOf` entries
-    sorted together by `head`.
+  - Sort the entries by `slug`, with any `formOf` entries coming
+    immediately after the corresponding lemma entry, and related `formOf`
+    entries sorted together by `head`.
 
     Compare strings using NFD unicode normalization so that accented and
     non-accented characters sort near each other.
@@ -189,29 +189,111 @@ There are two kinds of entries, normal entries and formOf entries.
 
 #### Normal entries
 
-Property                             | Type             | Description
--------------------------------------|------------------|-----------------
-`analysis`                           | Array            | The rich analysis returned from the FST (`lookup_lemma_with_affixes`; an array of features and the lemma for the entry).
-`formOf`                             | String           | A cross-reference to the entry that this entry is a form of. This is used especially when the current entry is an inflected form of a lexeme. The value of this field should be the slug (unique key) of the cross-referenced entry.
-`fstLemma`                           | String           | The FST lemma for this entry. This is only used for entries where a) the headword is not analyzable, but b) we still want to generate a paradigm table.
-`head`                               | Object           | The head(word/phrase/morpheme) for the entry, in the internal orthography for the language. This is what is literally displayed in as the headword in the entry. Currently there is no distinction made in the app between head and lemma, so the data in this field is actually the linguistic lemma, stripped of any punctuation.
-`paradigm`                           | String or `null` | The paradigm layout that should be displayed for this entry. `null` if no paradigm should be displayed.
-`senses`                             | Array<Object>    | The definitions for this entry.
-`sense.definition`                   | String           | The definition for this sense.
-`sense.sources`                      | Array<String>    | The sources for this definition.
-`slug`                               | String           | The slug to display in the URL for this entry. Also functions as the unique key for this entry.
-`linguistInfo`                       | Object           | Data used in the app for display purposes only.
-`linguistInfo.analysis`              | String           | The FST analysis of this entry.
-`linguistInfo.head.proto`            | String           | The headword in the proto-orthography.
-`linguistInfo.head.sro`              | String           | The headword in SRO.
-`linguistInfo.inflectional_category` | String           | The inflectional category for an entry, with trailing hyphen. (CW's `\ps`)
-`linguistInfo.pos`                   | String           | The part of speech for this entry. (`N` / `V` / `PRON`)
-`linguistInfo.stem`                  | Object           | The linguistic stem for this entry.
-`linguistInfo.stem.proto`            | String           | The linguistic stem for this entry, in the proto-orthography.
-`linguistInfo.stem.sro`              | String           | The linguistic stem for this entry, in SRO.
-`linguistInfo.wordclass`             | String           | The word class for this entry. (`VTA` / `VAI` / etc.)
+The fields are:
 
+  - The `head` field, a required string, is the head for the entry, in the
+    internal orthography for the language. This is what is literally
+    displayed in as the headword in the entry. It is usually a single
+    wordform, but also could be a multiword phrase, non-independent
+    morpheme, stem, &c.
 
+  - The `senses` field, a required array of `{definition: string, sources:
+    string[]}` objects, contains the definitions for the entry.
+
+    The sense must currently be a single unformatted string. We are aware
+    that people would like to specify things such as source-language text
+    to be shown in the current orthography, cross-references, notes,
+    examples, and so on.
+
+    The `sources` are typically short abbreviations for the name of a
+    source. `sources` is an array because multiple distinct sources may
+    give the same, or essentially the same, definition for a word.
+
+  - The `slug` field, a required string, is a unique key for this entry
+    that is used for several purposes, including user-facing URLs, to make
+    `formOf` references, and for homograph disambiguation.
+
+    Each normal entry must provide a `slug` that is distinct from every
+    other normal entry. It is recommended that this field be the same as
+    the `head`, including diacritics, but with any URL-unsafe characters
+    stripped, and a homograph disambiguator added at the end if needed for
+    uniqueness.
+
+    How to create disambiguators is up to the lexicographer. For example,
+    for the Plains Cree homograph `yôtin`, the lexicographer might set the
+    slugs for the three entries to `yôtin@1` and `yôtin@2` and `yôtin@3`;
+    or to `yôtin@na` and `yôtin@ni` and `yôtin@v`; or following any other
+    scheme they desire, so long as the assignments remain relatively
+    stable.
+
+    Any homograph disambiguator should start with `@`, as there is code in
+    morphodict to redirect an attempt to access an invalid homograph
+    disambiguator like `/word/nîmiw@foo` into a search for `nîmiw`, whereas
+    something like `nîmiw-foo` will do a search for `nîmiw-foo` instead of
+    `nîmiw`. That way if disambiguators change due to adding and removing
+    entries/definitions, old links should still be useful to people.
+
+  - The `paradigm` field, an optional string, is the name of the paradigm
+    used to display the paradigm tables for the entry. This may be a static
+    or dynamic paradigm.
+
+    This field may have a null value, or be omitted entirely, if the entry
+    is indeclinable.
+
+  - The `analysis` field, an optional array, is the analysis of the
+    headword. This field is used to populate the linguistic breakdown popup
+    shown by the blue ℹ️ icon.
+
+    The required format is that of an entry from the list returned by
+    `lookup_lemma_with_affixes`, e.g., `[[], "nîmiw", ["+V", "+AI", "+Ind",
+    "+3Sg"]]`. The format is:
+
+      - Array of:
+
+          - Array of FST tag strings
+
+          - FST lemma string
+
+          - Array of FST tag strings
+
+    This field may have a null value, or be omitted entirely, if the entry
+    is unanalyzable.
+
+  - The `linguistInfo` field, an optional arbitrary JSON object, allows
+    extra presentation data to be stored in the database. Morphodict HTML
+    templates have access to this data for the purpose of displaying
+    additional data to the end user.
+
+    Morphodict does not use any of this data for its core
+    language-independent functionality.
+
+    It is recommended *not* to put any unused data in here that ‘might be
+    handy later,’ but only to add new things here when required as part of
+    a coordinated effort with the frontend code to add new user-facing
+    features.
+
+  - The `fstLemma` field, an optional string, is the FST lemma to use when
+    generating paradigm tables.
+
+    To be clear: the FST lemma is the thing that gets plugged into a
+    paradigm layout template to generate associated wordforms. For example,
+    if the head is `nîminâniwan` with FST analysis `nîmiw+V+AI+Ind+X`, then
+    the FST lemma is `nîmiw`. If the head is `nimîw` with the FST
+    analysis `nimîw+V+AI+Ind+3Sg`, then the FST lemma is `nimîw`, which is
+    the same as the head.
+
+    Normally the FST lemma is included as part of the `analysis`, so this
+    field may only be specified on entries without an analysis.
+
+    This is useful when it’s desired to have the citation form of an entry
+    be a stem or other unanalyzable form, while still displaying dynamic
+    paradigms for it. For example, in Arapaho, one entry has the
+    non-analyzable stem `níhooyóó-` as a head, with `fstLemma` specified as
+    `nihooyoo` in the importjson for paradigm table generation to work.
+
+    This field is only supported for languages with the
+    `MORPHODICT_ENABLE_FST_LEMMA_SUPPORT` setting enabled, which is
+    currently only Arapaho.
 
 #### formOf entries
 
@@ -243,7 +325,43 @@ The fields are:
     entries, but with the additional condition that the formOf `analysis`
     FST lemma must equal the FST lemma of the corresponding normal entry.
 
-No other fields are permitted on formOf entries.
+No other fields are valid on formOf entries.
+
+#### Validation
+
+The following importjson validation checks are intended to be implemented
+for morphodict:
+
+  - Every entry must have at least one non-empty definition, and every
+    definition must have at least one valid source.
+
+  - If an `analysis` is specified, it must be one of the results returned
+    from doing an FST lookup on the `head`
+
+  - If an `analysis` is specified, the `head` must be one of the results
+    returned by running the `analysis` through the generator FST
+
+  - `fstLemma` may not be specified if there is an `analysis`
+
+  - The FST lemma in every `formOf` analysis must match the FST lemma of
+    the corresponding normal entry
+
+  - The `slug` must not contain certain URL-unsafe characters, e.g., `/`
+
+#### Caveats
+
+Known issues with the importjson format:
+
+  - In many dictionaries, the order of definitions is very important, with
+    the most common definitions being listed first. There is currently no
+    code in morphodict to explicitly store or preserve the order of
+    definitions. The dictionary is currently largely working by coincidence
+    in that the import process and database tend to show the same results
+    to the user as what was in the importjson file.
+
+    This isn’t so much an issue with the input format, which does have an
+    explicit definition order, as a warning that this order may not be
+    preserved.
 
 (where_dictionary_files_go)=
 ## Where do files go?
@@ -333,65 +451,50 @@ fly:
 In several of the directories there is an executable `run.js` script to do
 that for you, so it could be as simple as `./run.js --help`.
 
+## Cree `linguistInfo`
 
-## Dictionary entry level
+For the Plains Cree dictionary, the following `linguistInfo` fields are
+used to display linguistic info in search results, and for showing emoji:
 
-For each dictionary entry, we will need the following pieces of data:
+  - `inflectional_category`, String: The inflectional category for an
+    entry, with hyphen, e.g., `NI-1`. (CW's `\ps`)
 
-  - The entry head. In most dictionaries this is usually a single word, but
-    could also be a phrase or morpheme.
+  - `pos`, String: The part of speech for this entry (`N` / `V` / `PRON`).
+    If we were naming this today following our glossary, we would call it
+    the *general word class*.
 
-  - The inflectional category. Plains Cree can use inflectional categories
-    such as `IPH` “indeclinable phrase” and `IPM` “indeclinable morpheme”
-    for non-word heads.
+  - `stem`, String: The FST stem for this entry.
 
-  - The FST lemma. This is specified iff the inflectional class is
-    declinable. To be clear: the FST lemma is the thing that gets plugged
-    into a paradigm layout template to generate associated wordforms. For
-    example, if the head is `kinîminâwâw` with FST analysis
-    `nîmiw+V+AI+Ind+2Pl`, then the FST lemma is `nîmiw`.
+    For Plains Cree specifically, there are two variants of linguistic
+    stems in the ALTLab crk-db. For both, a preceding hyphen (for dependent
+    nouns, e.g. *-ohkom-*) and following hyphen (for all stems,
+    e.g. *nimî-*) indicate that they are not free morphemes (independent
+    wordforms):
 
-  - A list of definitions for the head. Each definition is typically a
-    string, and a list of citation abbreviations. There is intent to enrich
-    this data model by specifying things such as cross-references, notes,
-    and examples; specifying that is not in this document’s scope at the
-    moment.
+      - the plain/minimal `stem` according to the `\stm` field in the CW
+        toolbox source, which N.B. is lacking from MD and AECD. It should
+        be present there for all words, but absent for morphemes, and might
+        be a list when the head is a phrase. This minimal stem may lack
+        lexicalized reduplicative elements and/or preverbs/prenouns, and
+        thus may not have a one-to-one mapping to possible lemmas
+        (e.g. *api-* as the minimal stem of the lemma *ay-apiw*.
 
-  - The homograph key. In order to have stable ways to refer to different
-    homographs in the database and in URLs, whenever two or more heads have
-    the same text, each entry with a head that is a homograph must provide
-    a homograph key that is distinct from every other wordform.
+      - the full `FST-stem` according to the `fststem` field in the ALTLab
+        crk-db. This includes all the reduplicative elements as well as
+        preverbs/prenouns which have become lexicalized in a lemma, and
+        thus has a one-to-one mapping with the lemma. This is created in
+        the ALTLab crk-db based on the plain/minimal stem field,
+        e.g. *ay-api-* as the full FST-stem for the lemma *ay-apiw*. The
+        FST-stem, when supplemented with special morphophonological
+        symbols, is used in the lexc source code for crk stems in the
+        format: <`FST lemma`>:<`FST stem`>, e.g., [`acitakotêw:acitakot3
+        VTAt ;`][fst-stem1]
 
-    For example, for the Plains Cree homograph `yôtin`, the lexicographer
-    might set the keys for three wordforms to `yôtin1` and `yôtin2` and
-    `yôtin3`; or to `yôtin-na` and `yôtin-ni` and `yôtin-v`; or following
-    any other scheme they desire, so long as the assignments will remain
-    stable.
+      - itwêwina may opt to show either the plain/minimal stem or the full
+        FST-stem (or both). The code for generating the previously used XML
+        crkeng source opted to pass the FST-stem to itwêwina.
 
-    For convenience when the dictionary source has its own stable
-    identifiers, the homograph key may be set on every dictionary entry,
-    and will only be used on entries that are actually homographs.
+  - `wordclass`, String: The word class for this entry (`VTA` / `VAI` / etc.).
+    At one time our glossary called this a *specific word class*.
 
-    Note that homographs may or may not be in the same inflectional
-    category.
-
-  - Optionally, a static paradigm name. Specifying this is only permitted
-    if the specific word class should not be declinable. For example, in
-    Plains Cree, ‘niya’ from the indeclinable inflectional category `PrA`
-    “animate pronouns” has static paradigm `personal-pronouns`.
-
-  - Optionally, the linguistic stem. This is displayed on the website for
-    humans to see, but is not accessed or used for any other purposes by
-    the dictionary code. This is technically optional because not all
-    dictionary sources and language pairs will have this information and/or
-    want to display it.
-
-    For Plains Cree specifically: This is the `\stm` field in the *Cree:
-    Words* toolbox file and the value ends with a `-`, e.g., `nîmi-`. It
-    should be present there for all words, but absent for morphemes, and
-    might be a list when the head is a phrase. After appropriate processing
-    such as removing the trailing hyphen and ensuring preverbs and
-    reduplication are included and remapping some symbols, it becomes the
-    “FST stem” in the lexc source code as `<FST lemma>:<FST stem>`, e.g.,
-    [`acitakotêw:acitakot3 VTAt
-    ;`](https://github.com/giellalt/lang-crk/blob/8574d2b163d115e6da4419794f21ffe692d76b9b/src/fst/stems/verb_stems.lexc#L123)
+[FST-stem1]: https://github.com/giellalt/lang-crk/blob/8574d2b163d115e6da4419794f21ffe692d76b9b/src/fst/stems/verb_stems.lexc#L123
