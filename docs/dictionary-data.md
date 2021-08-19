@@ -4,7 +4,282 @@
 
 Dictionary applications require dictionary data.
 
-## Sources
+## Abstract data
+
+Having the following information available in some form is *extremely
+useful* for developers, community members, and other linguists who are not
+as familiar with the language, or your conventions for describing it, as
+you are.
+
+This may be in the form of prose documents, spreadsheets, diagrams, and so
+on, as long as the intent is to provide reference material for humans to
+understand what is going on.
+
+  - **Part-of-speech categories** and the relations among them
+
+    Linguists classify language elements into potentially overlapping
+    categories with varying levels of detail, e.g., “nouns” and “verbs” and
+    “type-1 animate intransitive verbs.” They also group these categories
+    into other meta-categories, such as ‘part of speech’ or ‘word class’ or
+    ‘linguistic category.’ For example, they may say that ‘nouns’ and
+    ‘verbs’ are ‘parts of speech’ while ‘transitive verbs’ and
+    ‘intransitive verbs’ are ‘word classes’ within the ‘verb’ ‘part of
+    speech.’
+
+    As handy as it would be, there is no universal terminology here, so
+    please spell out what terminology you’re using!
+
+    What categories do you have, what other categories do they contain or
+    overlap with, and what if anything do you call the different
+    meta-categories you use to group your categories?
+
+The morphodict code only really cares about what it calls a ‘paradigm’: a
+set of words where you’ll get a correct paradigm table output by using a
+template with the same shape, the same labels, and the same FST tags but
+differing entry-dependent FST lemmas for every word in the set.
+
+So your transitive and intransitive verbs are likely to belong to different
+paradigms from morphodict’s perspective because the respective generated
+paradigm table outputs will have different shapes based on whether they
+accommodate an object or not. But whether you have different
+morphodict-paradigms within the intransitive verbs depends on both the
+language and how the FST is implemented.
+
+It’s extremely helpful to know how morphodict’s ‘paradigm’ concept maps to
+the linguistic terminology for the language in question.
+
+  - For each part-of-speech category:
+
+      - What is the name of this category?
+
+      - What abbreviations are typically used and/or preferred to refer to
+        this category?
+
+      - A prose description of the category.
+
+      - What are some example members of this category?
+
+      - Are the members declinable?
+
+        If the members of this category are in theory declinable, but for
+        practical purposes morphodict will not be doing any declining—maybe
+        nobody’s figured out the rules yet, or the rules are known but
+        nobody’s put them into an FST—it is useful to note that.
+
+      - Do all the members of this category share the same paradigm table
+        template, with the same FST tags but different FST lemma inputs?
+
+        If the answer to this question is ‘no,’ morphodict cannot use this
+        particular part-of-speech category as a paradigm, and you can skip
+        the other questions for this category.
+
+      - If the members of the category are declinable, then, for some
+        example members, please provide one or more paradigm tables as
+        might be found in instructional or reference material.
+
+        These are extremely useful for checking that morphodict is
+        displaying paradigms correctly correctly.
+
+      - If the members are declinable, what is the preferred
+        lemma/citation/infinitive form for a lexeme?
+
+  - What additional information might people want to see as part of
+    entries? Examples of the kinds of things that have been implemented or
+    requested include showing stems, folio references to original linguist
+    notebooks, proto-forms, and whether an entry is attested in a certain
+    corpus.
+
+(importjson-spec)=
+## importjson
+
+morphodict requires dictionary data to be supplied in a custom format
+called `importjson`. It looks like this:
+
+    [
+      ⋮,
+      {
+        "analysis": [[], "nîmiw", ["+V", "+AI", "+Ind", "+3Sg"]],
+        "head": "nîmiw",
+        "linguistInfo": { "stem": "nîmi-" },
+        "paradigm": "VAI",
+        "senses": [{ "definition": "s/he dances", "sources": ["CW"] }],
+        "slug": "nîmiw"
+      },
+      {
+        "analysis": [[], "nîmiw", ["+V", "+AI", "+Ind", "+X"]],
+        "formOf": "nîmiw",
+        "head": "nîminâniwan",
+        "senses": [
+          {
+            "definition": "it is a dance, a time of dancing",
+            "sources": ["CW"]
+          }
+        ]
+      },
+      ⋮
+    ]
+
+This format is a subset of JSON that is intended to match the internal data
+structures and terminology of morphodict code. It is not recommended as a
+long-term storage format. It does not have room for everything a linguist
+might want in a dictionary, only for the things that morphodict currently
+supports. And it is unlikely to use your preferred linguistic terminology.
+
+In practice you will want to store your canonical dictionary data in some
+other format, such as [Daffodil], and write a short script to convert that
+to importjson format.
+
+[Daffodil]: https://format.digitallinguistics.io
+
+**If you do not yet have all of the data available**—e.g., you may have a
+draft dictionary that does not have paradigms or analyses assigned to
+entries—it is still *hugely* beneficial if you can provide initial
+dictionary data containing:
+
+  - *All the definitions* you have available
+
+  - At least one FST-analyzable entry *for every paradigm*
+
+That is, when getting started, it’s better to have a full dictionary that
+needs revision and is sparse on detail but provides full details for at
+least one entry in every paradigm, than to have full details for more
+entries but only from one or two paradigms. And it’s much better to have
+some initial draft dictionary data covering the whole language, allowing
+people to start working with it, than to have no data at all while waiting
+for it to be ‘right.’
+
+### importjson file suggestions
+
+To make it easier for humans to look at the raw dictionary data and to
+compare different versions of that data, the following points are *strongly
+recommended*:
+
+  - Run the importjson files through [`prettier`][prettier] to format them
+    nicely. If using the command line, you’ll need to add a `--parser=json`
+    argument as prettier does not automatically recognize the `.importjson`
+    file extension.
+
+  - Sort the entries by slug, with any `formOf` entries coming immediately
+    after the corresponding lemma entry, and related `formOf` entries
+    sorted together by `head`.
+
+    Compare strings using NFD unicode normalization so that accented and
+    non-accented characters sort near each other.
+
+  - Explicitly sort the *keys* of the emitted JSON objects. Otherwise the
+    JSON object keys can be emitted in random or insertion order, creating
+    unnecessary noise in diff output. In JS you can try the
+    [json-stable-sort] package, and in Python the `json.dump` functions
+    take an optional `sort_keys=True` argument.
+
+  - Make sure that the JSON you are emitting has unicode strings instead of
+    asciified strings with human-unfriendly escape sequences. For example,
+    in python, the `json.dump()` function needs an extra
+    `ensure_ascii=False` keyword argument or you will get
+    `"w\\u00e2pam\\u00eaw"` instead of `"wâpamêw"`.
+
+[prettier]: https://www.npmjs.com/package/prettier
+[json-stable-sort]: https://www.npmjs.com/package/json-stable-stringify
+
+### importjson Specification
+
+An importjson file is a JSON file containing an array of entries.
+
+There are two kinds of entries, normal entries and formOf entries.
+
+#### Normal entries
+
+Property                             | Type             | Description
+-------------------------------------|------------------|-----------------
+`analysis`                           | Array            | The rich analysis returned from the FST (`lookup_lemma_with_affixes`; an array of features and the lemma for the entry).
+`formOf`                             | String           | A cross-reference to the entry that this entry is a form of. This is used especially when the current entry is an inflected form of a lexeme. The value of this field should be the slug (unique key) of the cross-referenced entry.
+`fstLemma`                           | String           | The FST lemma for this entry. This is only used for entries where a) the headword is not analyzable, but b) we still want to generate a paradigm table.
+`head`                               | Object           | The head(word/phrase/morpheme) for the entry, in the internal orthography for the language. This is what is literally displayed in as the headword in the entry. Currently there is no distinction made in the app between head and lemma, so the data in this field is actually the linguistic lemma, stripped of any punctuation.
+`paradigm`                           | String or `null` | The paradigm layout that should be displayed for this entry. `null` if no paradigm should be displayed.
+`senses`                             | Array<Object>    | The definitions for this entry.
+`sense.definition`                   | String           | The definition for this sense.
+`sense.sources`                      | Array<String>    | The sources for this definition.
+`slug`                               | String           | The slug to display in the URL for this entry. Also functions as the unique key for this entry.
+`linguistInfo`                       | Object           | Data used in the app for display purposes only.
+`linguistInfo.analysis`              | String           | The FST analysis of this entry.
+`linguistInfo.head.proto`            | String           | The headword in the proto-orthography.
+`linguistInfo.head.sro`              | String           | The headword in SRO.
+`linguistInfo.inflectional_category` | String           | The inflectional category for an entry, with trailing hyphen. (CW's `\ps`)
+`linguistInfo.pos`                   | String           | The part of speech for this entry. (`N` / `V` / `PRON`)
+`linguistInfo.stem`                  | Object           | The linguistic stem for this entry.
+`linguistInfo.stem.proto`            | String           | The linguistic stem for this entry, in the proto-orthography.
+`linguistInfo.stem.sro`              | String           | The linguistic stem for this entry, in SRO.
+`linguistInfo.wordclass`             | String           | The word class for this entry. (`VTA` / `VAI` / etc.)
+
+
+
+#### formOf entries
+
+These entries add additional definitions to inflected forms of normal
+entries.
+
+In the morphodict application, formOf entries are described as being a
+‘form of’ the corresponding normal entry.
+
+Some linguists feel that, lexicographically, these entries may be more
+appropriate as standalone normal entries, on the grounds that having a
+distinct definition implies being a distinct lexeme. Others argue that
+there is room for certain inflected forms to have their own connotations
+and shades of meaning, even in English, but especially in morphologically
+complex languages.
+
+The fields are:
+
+  - The `formOf` field, a string, must equal the `slug` of a normal entry
+    in the same importjson file.
+
+  - The `head` field has the same format and meaning as for normal
+    entries.
+
+  - The `senses` field has the same format and meaning as for normal
+    entries.
+
+  - The `analysis` field has the same format and meaning as for normal
+    entries, but with the additional condition that the formOf `analysis`
+    FST lemma must equal the FST lemma of the corresponding normal entry.
+
+No other fields are permitted on formOf entries.
+
+(where_dictionary_files_go)=
+## Where do files go?
+
+Each full dictionary is intended to be placed at
+
+    src/${sssttt}/resources/dictionaries/${sssttt}_dictionary.importjson
+
+There is a `.gitignore` rule to prevent accidentally committing them.
+
+### Building test dictionary data
+
+Test dictionaries are created by taking subsets of the full dictionaries,
+and storing them beside the full dictionaries as
+`${sssttt}_test_db.importjson`.
+
+*These files are checked in so that people can do development and testing
+without having any access to the full dictionary files which have
+restricted distribution.*
+
+To update them, you’ll need a copy of the full dictionary file.
+
+ 1. Edit `src/${sssttt}/resources/dictionary/test_db_words.txt`
+
+ 2. Run `./${sssttt}-manage buildtestimportjson` to extract the words
+    mentioned in `test_db_words.txt`, from
+    `${sssttt}_dictionary.importjson` into `${sssttt}_test_db.importjson`
+
+ 3. Commit your changes and send a PR.
+
+*Exception: the current crkeng test database omits many unused keys,
+e.g., `wordclass_emoji`, that currently exist in the production
+`crkeng_dictionary.importjson` file.*
+
+
+## Current dictionary data
 
 In theory, linguists will provide comprehensive and correct dictionary data
 in the morphodict-specific importjson format.
@@ -42,7 +317,7 @@ have not given permission to make them publicly available in that form. For
 Arapaho we believe we could make the data public, but have not yet had
 sufficiently official confirmation of that.
 
-## Building
+### Building
 
 To install the prerequisites of the munge scripts:
 
@@ -58,97 +333,6 @@ fly:
 In several of the directories there is an executable `run.js` script to do
 that for you, so it could be as simple as `./run.js --help`.
 
-## Where do files go?
-
-Each dictionary is intended to be placed at
-
-    src/${sssttt}/resources/dictionaries/${sssttt}_dictionary.importjson
-
-There is a `.gitignore` rule to prevent accidentally committing them.
-
-## Building test dictionary data
-
-Test dictionaries are exclusively created by taking subsets of the full
-dictionaries.
-
-*These files are checked in so that people can do development and testing
-without having any access to the full dictionary files which have
-restricted distribution.*
-
-To update them:
-
- 1. Edit `src/${sssttt}/resources/dictionary/test_db_words.txt`
-
- 2. Run `./${sssttt}-manage buildtestimportjson` to extract the words
-    mentioned in `test_db_words.txt`, from
-    `${sssttt}_dictionary.importjson` into `${sssttt}_test_db.importjson`
-
- 3. Commit your changes and send a PR.
-
-*Exception: the current crkeng test database omits many unused keys,
-e.g., `wordclass_emoji`, that currently exist in the production
-`crkeng_dictionary.importjson` file.*
-
-# Data format info
-
-The data which is needed for setting up a dictionary application is as
-follows. Note that this is an abstract description of what’s needed,
-separate from details of field names or data formats like JSON or XML.
-
-## Language level
-
-Some thing are needed to describe the language itself, before dealing with
-any one particular dictionary entry.
-
-  - For each inflectional category:
-
-    - The category name, e.g., `VAI-1`
-
-    - A prose description spelling out any abbreviations in the name,
-      e.g., “type-1 animate intransitive verbs.” This is used only by
-      developers / linguists, and not shown to dictionary end-users.
-
-    - The specific word class that the inflectional category belongs to
-
-  - For each specific word class:
-      - The specific word class name, e.g., `VAI`
-      - A prose description
-      - The general word class that the specific word class belongs to,
-        e.g., `V`
-
-      - The paradigm layout list. This will be used for generating
-        wordforms. An example entry could be, `${lemma}+N+A+D+PxX+Sg`.
-
-        *Instead of directly specifying a list of expansions, we only
-        support automatically extracting this list from paradigm layout
-        files.* This prevents data redundancy and inconsistency.
-
-        In practice, this list may be empty even if the specific word class
-        should be declinable; see the next bullet point.
-
-      - Whether the specific word class *should* be declinable. Some word
-        classes are indeclinable because that’s how the language works.
-        Other word classes, although they should be declinable, won’t
-        actually be declinable in practice by this application for reasons
-        such as:
-          - The paradigm layout files haven’t been written
-          - There is no FST yet, or it doesn’t yet handle this specific
-            word class
-          - The dictionary entries haven’t been tagged with enough
-            specificity to identify the paradigm
-
-  - For each general word class:
-      - The general word class name, e.g., `V`
-      - A prose description
-
-Note that it may be useful to have inflectional categories and general and
-specific word classes for ‘unknown’; both generically, and for more refined
-concepts such as ‘verb with unknown inflectional category.’ This helps to
-keep separate the two distinct concepts of (1) word classes whose members
-are not declinable because that’s how the language works, and (2) word
-classes that should be declinable but where the required linguistic data
-together with a compatible computational model implementation is not
-presently at hand.
 
 ## Dictionary entry level
 

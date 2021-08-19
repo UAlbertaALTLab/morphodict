@@ -1,14 +1,28 @@
 # Summary
 
-To get a working dictionary, you’ll need the following kinds of linguistic
-data:
+To get a working dictionary application, you’ll need linguistic data for
+the morphodict code to use.
+
+Note that `${sssttt}` below refers to a string containing a concatenation
+of the 3-character [ISO 639-3] language codes for the [source
+language](source_language) and [target language](target_language)
+respectively, of the dictionary. For example, for the morphodict Plains
+Cree-to-English dictionary this is `crkeng`. These abbreviations are used
+in filenames and throughout the morphodict code to distinguish between
+different dictionary applications.
+
+[ISO 639-3]: https://iso639-3.sil.org/code_tables/639/data
+
+The specific kinds of required linguistic data are:
 
   - A dictionary in importjson format
 
-    These files are found in `src/${sssttt}/resources/dictionary`. There is
-    typically a full dictionary which is *not checked in* because it is not
-    publicly redistributable, and a small test dictionary extracted from it
-    for testing purposes.
+    These files are found in `src/${sssttt}/resources/dictionary`;
+    see [Where do dictionary files go?](where_dictionary_files_go).
+
+    There is typically a full dictionary which is *not checked in* because
+    it is not publicly redistributable, and a small test dictionary
+    extracted from it for testing purposes.
 
     [See the complete specification for how the importjson should be formatted here.](importjson-spec)
 
@@ -29,9 +43,9 @@ data:
 
   - Paradigm layout files
 
-    These generally go in `src/${sssttt}/resources/layouts`, but see the
-    [Where to place paradigm layout files](where_paradigm_files_go)
-    section for more specifics.
+    These generally go in `src/${sssttt}/resources/layouts`; see [Where to
+    place paradigm layout files](where_paradigm_files_go) for more
+    specifics.
 
     If you are editing these be sure to set a
     [`DEBUG_PARADIGM_TABLES=True`](DEBUG_PARADIGM_TABLES) environment

@@ -458,7 +458,7 @@ _children_.
    and it also happens to be a valid inflected form of mowêw (an
    imperative form)
 
-
+(source_language)=
 ### source language
 [source language]: #source-language
 
@@ -512,6 +512,7 @@ In the Plains Cree FST, these tags either end with a `+` for prefixes (e.g.,
 See this document for more info: https://giellalt.uit.no/lang/crk/crk.html
 
 
+(target_language)=
 ### target language
 [target language]: #target-language
 
