@@ -10,6 +10,8 @@ data:
     publicly redistributable, and a small test dictionary extracted from it
     for testing purposes.
 
+    [See the complete specification for how the importjson should be formatted here.](importjson-spec)
+
     The dictionary is loaded into the database via the `${sssttt}-manage
     importjsondict` command.
 

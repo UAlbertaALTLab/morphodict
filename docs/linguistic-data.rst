@@ -10,5 +10,7 @@ Linguistic data
 
    dictionary-data
 
+   import-json
+
    paradigm-layouts
 
