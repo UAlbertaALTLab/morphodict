@@ -21,18 +21,13 @@ def main():
     os.chdir(Path(__file__).parent)
 
     call(["git", "pull"])
-    call(["docker-compose", "pull"])
-    call(["docker-compose", "up", "-d", "--remove-orphans"])
-    call(
-        [
-            "docker-compose",
-            "exec",
-            "-T",
-            "itwewina",
-            "./crkeng-manage",
-            "migrate",
-        ]
-    )
+
+    # The rest of the deploy is separated out into a different script that is
+    # only loaded *after* the git pull. Otherwise we’d be running some old
+    # version of the script from a commit that is not the one being deployed.
+    import inner_deploy
+
+    inner_deploy.run(call=call)
 
 
 if __name__ == "__main__":

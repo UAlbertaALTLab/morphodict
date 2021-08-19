@@ -17,7 +17,7 @@ import postcss from 'rollup-plugin-postcss'
 
 ///////////////////////////////// Constants //////////////////////////////////
 
-const STATIC_DIR = './src/CreeDictionary/CreeDictionary/static/CreeDictionary/';
+const BUILD_DIR = './generated/frontend/morphodict';
 
 // Production mode when debug is false.
 const production = !process.env.DEBUG;
@@ -29,7 +29,7 @@ module.exports = [
   {
     input: "frontend/index.js",
     output: {
-      file: path.join(STATIC_DIR, "js", "index.js"),
+      file: path.join(BUILD_DIR, "js", "index.js"),
       name: null, // The script does not export anything.
       format: "iife",
       sourcemap: true,
@@ -39,7 +39,7 @@ module.exports = [
       commonjs(), // make rollup understand require() statements
       postcss({
         // Save the CSS here.
-        extract: path.join(STATIC_DIR, "css", "styles.css"),
+        extract: path.join(BUILD_DIR, "css", "styles.css"),
         minimize: production,
         sourcemap: true,
       }),
@@ -49,7 +49,7 @@ module.exports = [
   {
     input: "frontend/click-in-text-embedded-test.js",
     output: {
-      file: path.join(STATIC_DIR, "js", "click-in-text-embedded-test.js"),
+      file: path.join(BUILD_DIR, "js", "click-in-text-embedded-test.js"),
       name: null, // The script does not export anything.
       format: "iife",
       sourcemap: true,

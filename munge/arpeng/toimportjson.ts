@@ -12,14 +12,54 @@ const RESOURCE_DIR = resourceDir("arpeng");
 const DICTIONARY_DIR = joinPath(RESOURCE_DIR, "dictionary");
 const FST_DIR = joinPath(RESOURCE_DIR, "fst");
 
-type ArapahoLexiconEntry = {
+export type ArapahoLexiconEntry = {
   base_form: string;
   status: string;
   pos: string;
   lex: string;
   senses: [{ definition: string }];
+  // Only used to populate linguistInfo:
+  morphology: string;
 };
-type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
+export type AraphoLexicon = { [id: string]: ArapahoLexiconEntry };
+
+type AraphoLinguistInfo = {
+  sourceIds?: string[];
+  pos?: string;
+  morphologies?: string[];
+};
+
+/**
+ * Entries from arapho_lexicon.json to skip. Entries are identified by key, but
+ * only skipped if all of the indicated properties match: that way, if the
+ * source entry is updated to no longer be problematic, it will no longer be
+ * automatically excluded.
+ */
+const ENTRIES_TO_SKIP = new Map<string, Partial<ArapahoLexiconEntry>>([
+  ["L3", { base_form: "'" }],
+]);
+
+// Inspired by python’s functools.cache()
+function cached<T>(instantiator: () => T): () => T {
+  const cache: { value?: T } = {};
+  return () => {
+    if (!("value" in cache)) {
+      cache.value = instantiator();
+    }
+    return cache.value!;
+  };
+}
+
+const normativeAnalyzer = cached(() => {
+  console.log("loading analyser-gt-norm");
+  return new Transducer(joinPath(FST_DIR, "analyser-gt-norm.hfstol"));
+});
+const normativeGenerator = cached(
+  () => new Transducer(joinPath(FST_DIR, "generator-gt-norm.hfstol"))
+);
+const descriptiveAnalyzer = cached(
+  () => new Transducer(joinPath(FST_DIR, "analyser-gt-desc.hfstol"))
+);
 
 async function main() {
   const program = new Command();
@@ -39,23 +79,20 @@ async function main() {
 
   const options = program.opts();
 
-  const normativeAnalyzer = new Transducer(
-    joinPath(FST_DIR, "analyser-gt-norm.hfstol")
-  );
-  const normativeGenerator = new Transducer(
-    joinPath(FST_DIR, "generator-gt-norm.hfstol")
-  );
-  const descriptiveAnalyzer = new Transducer(
-    joinPath(FST_DIR, "analyser-gt-desc.hfstol")
-  );
-
   const lexicalDatabase = JSON.parse(
     await readFile(options.inputLexicon, "utf-8")
   ) as AraphoLexicon;
 
-  const dictionary = new Dictionary([]);
+  const assembled = munge(lexicalDatabase);
 
-  for (const [_key, obj] of Object.entries(lexicalDatabase)) {
+  await writeFile(options.outputFile, assembled);
+  console.log(`Wrote ${options.outputFile}`);
+}
+
+export function munge(lexicalDatabase: AraphoLexicon): string {
+  const dictionary = new Dictionary<AraphoLinguistInfo>([]);
+
+  for (const [key, obj] of Object.entries(lexicalDatabase)) {
     if (obj.status === "deleted") {
       continue;
     }
@@ -65,7 +102,45 @@ async function main() {
       continue;
     }
 
-    const entry = dictionary.getOrCreate(head);
+    // Skip certain entries listed with matching key, but only if specified
+    // properties still match
+    let exclusion = ENTRIES_TO_SKIP.get(key);
+    if (exclusion) {
+      let shouldExclude = true;
+      let propertyName: keyof ArapahoLexiconEntry;
+      for (propertyName in exclusion) {
+        if (exclusion[propertyName] !== obj[propertyName]) {
+          shouldExclude = false;
+          break;
+        }
+      }
+      if (shouldExclude) {
+        continue;
+      }
+    }
+
+    const entry = dictionary.getOrCreate({ text: head });
+    // The new ??= local assignment operator would need NodeJS 16
+    entry.linguistInfo = entry.linguistInfo ?? {};
+    if (entry.linguistInfo.pos && entry.linguistInfo.pos !== obj.pos) {
+      console.log(
+        `Warning: pos mismatch: ${JSON.stringify(entry.linguistInfo)} ${
+          entry.head
+        } ${entry.paradigm} vs ${key} ${head} ${obj.pos}`
+      );
+    }
+    entry.linguistInfo.pos = obj.pos;
+
+    entry.linguistInfo.sourceIds = entry.linguistInfo?.sourceIds ?? [];
+    entry.linguistInfo.sourceIds.push(key);
+
+    entry.linguistInfo.morphologies = entry.linguistInfo?.morphologies ?? [];
+    if (
+      obj.morphology &&
+      !entry.linguistInfo.morphologies.includes(obj.morphology)
+    ) {
+      entry.linguistInfo.morphologies.push(obj.morphology);
+    }
 
     for (const sense of obj.senses) {
       const { definition } = sense;
@@ -76,13 +151,15 @@ async function main() {
 
     // TODO: could also use obj.pos, e.g., `vii`, to disambiguate when there are
     // multiple analyses
-    const normativeAnalyses = normativeAnalyzer.lookup_lemma_with_affixes(head);
+    const normativeAnalyses = normativeAnalyzer().lookup_lemma_with_affixes(
+      head
+    );
     if (normativeAnalyses.length === 1) {
       entry.analysis = normativeAnalyses[0];
     } else if (normativeAnalyses.length > 1) {
       console.log(`multiple normative analyses for ${head}`);
     } else {
-      const descriptiveAnalyses = descriptiveAnalyzer.lookup_lemma_with_affixes(
+      const descriptiveAnalyses = descriptiveAnalyzer().lookup_lemma_with_affixes(
         head
       );
       if (descriptiveAnalyses.length === 1) {
@@ -138,7 +215,7 @@ async function main() {
       ] as [string, string, (lemma: string) => string][]) {
         if (obj.pos.startsWith(pos)) {
           const lemma = obj.lex.replace(/-$/, "");
-          const generated = normativeGenerator.lookup(template(lemma));
+          const generated = normativeGenerator().lookup(template(lemma));
           if (generated.length !== 0) {
             entry.fstLemma = lemma;
             entry.paradigm = paradigm;
@@ -149,8 +226,7 @@ async function main() {
     }
   }
 
-  await writeFile(options.outputFile, dictionary.assemble());
-  console.log(`Wrote ${options.outputFile}`);
+  return dictionary.assemble();
 }
 
-execIfMain(main);
+execIfMain(main, module);

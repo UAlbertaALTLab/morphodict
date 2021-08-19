@@ -9,9 +9,8 @@ Developer documentation
    developers-guide
    environment-variables
    ci
-   production-on-whorf
+   docker-stub
    example-cases
-   dict-setup-notes
    directory-structure
 
 

@@ -80,6 +80,8 @@ class TranslationStats:
     no_phrase_analysis_count: int = 0
     # phrase generator FST returned multiple analyses
     multiple_phrase_analyses_count: int = 0
+    # analysis contains preverb tags, which we don’t have mappings for
+    preverb_form: int = 0
 
     def __str__(self):
         return "\n".join(f"{k}: {v:,}" for k, v in asdict(self).items())
@@ -141,6 +143,13 @@ class Command(BaseCommand):
             if not wordform.analysis:
                 logger.debug(f"no analysis for {wordform.id} {wordform.text}")
                 self.translation_stats.no_wordform_analysis += 1
+                continue
+
+            if any(t.startswith("PV/") for t in wordform.analysis.prefix_tags):
+                logger.debug(
+                    f"skipping translation of preverb form {wordform.id} {wordform.text}"
+                )
+                self.translation_stats.preverb_form += 1
                 continue
 
             for definition in definitions.get(wordform.lemma_id, []):

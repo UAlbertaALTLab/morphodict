@@ -1,5 +1,13 @@
-from morphodict import morphodict_language_pair
+from django.conf import settings
 
 
-def language_pair(request):
-    return {"LANGUAGE_PAIR": morphodict_language_pair()}
+def morphodict_settings(request):
+    exported_keys = [
+        "MORPHODICT_PREVIEW_WARNING",
+        "MORPHODICT_SOURCE_LANGUAGE_NAME",
+        "MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME",
+        "MORPHODICT_DICTIONARY_NAME",
+        "MORPHODICT_ORTHOGRAPHY",
+    ]
+
+    return {k: getattr(settings, k) for k in exported_keys}

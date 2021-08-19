@@ -1,0 +1,139 @@
+# See “Privileged setup” in ../README.md
+---
+- name: privileged_setup
+  hosts: localhost
+
+  vars:
+    - morphodict_base: "/opt/morphodict"
+    - morphodict_base_bind_target: "/data_local/opt_morphodict"
+
+    - morphodict_uid: 60006
+    - morphodict_gid: 60006
+    - morphodict_home: "{{ morphodict_base }}/home"
+    - morphodict_run_uid: 60007
+    - morphodict_run_gid: 60007
+    - morphodict_run_home: "{{ morphodict_base }}/run-home"
+
+  tasks:
+    - include_vars: "vars.yml"
+
+    # the partitioning scheme on the current production host doesn’t have
+    # enough room in /, so we set up a bind mount to hold the files on
+    # another volume while still appearing to be in /
+
+    - name: "{{ morphodict_base }}"
+      file:
+        path: "{{ morphodict_base }}"
+        state: directory
+        mode: 0755
+
+    - name: "{{ morphodict_base_bind_target }}"
+      file:
+        path: "{{ morphodict_base_bind_target }}"
+        state: directory
+        mode: 0755
+
+    - name: "{{ morphodict_base }} bind mount"
+      mount:
+        name: "{{ morphodict_base }}"
+        src: "{{ morphodict_base_bind_target }}"
+        fstype: "none"
+        opts: "defaults,bind"
+        state: mounted
+
+    # the rest is pretty standard
+
+    - name: morphodict group
+      group:
+        name: morphodict
+        gid: "{{ morphodict_gid }}"
+
+    - name: morphodict-run group
+      group:
+        name: morphodict-run
+        gid: "{{ morphodict_run_gid }}"
+
+    - name: morphodict user
+      user:
+        name: morphodict
+        uid: "{{ morphodict_uid }}"
+        create_home: true
+        home: "{{ morphodict_home }}"
+        group: morphodict
+        groups:
+          - docker
+          - morphodict-run
+        shell: "/bin/bash"
+
+    - name: morphodict .ssh
+      file:
+        path: "{{ morphodict_home }}/.ssh"
+        owner: morphodict
+        group: morphodict
+        mode: 0755
+        state: directory
+
+    - name: morphodict .ssh deploy key
+      lineinfile:
+        path: "{{ morphodict_home }}/.ssh/authorized_keys"
+        line: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIABBEJ2SfizT5P8k0DB0FUGsWTlmiIcXhpfscRTgZHqq deploy@altlab-gw
+        regexp: "deploy@altlab-gw"
+        # Only set up key on production host
+        state: "{{ 'present' if ansible_hostname == 'altlab-itw' else 'absent' }}"
+        owner: morphodict
+        group: morphodict
+        create: true
+        mode: 0644
+
+    - name: "home directory {{ morphodict_run_home }} for morphodict-run"
+      file:
+        path: "{{ morphodict_run_home }}"
+        state: directory
+        owner: root
+        group: root
+        mode: 0755
+
+    - name: "{{ morphodict_run_home }}/README.md"
+      copy:
+        dest: "{{ morphodict_run_home }}/README.md"
+        content: |
+          This is the home directory for the morphodict-run user. It should
+          not contain any files other than this readme.
+        owner: root
+        group: root
+
+    # Based on https://stackoverflow.com/a/51607074/14558
+    - name: find other files in morphodict-run home directory
+      find:
+        paths: "{{ morphodict_run_home }}"
+        excludes: "README.md"
+        hidden: true
+        file_type: any
+      register: morphodict_run_home_files_to_delete
+    - name: delete other files in morphodict-run home directory
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      with_items: "{{ morphodict_run_home_files_to_delete.files }}"
+
+    - name: morphodict-run user
+      user:
+        name: morphodict-run
+        uid: "{{ morphodict_run_uid }}"
+        home: "{{ morphodict_run_home }}"
+        group: morphodict-run
+        groups: ''
+        shell: /usr/sbin/nologin
+        password_lock: true
+
+    - name: create base app directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: morphodict
+        group: morphodict-run
+        # Note the extra g+s bit. inode(7) says, “for that directory: files
+        # created there inherit their group ID from the directory, not from
+        # the effective group ID of the creating process”
+        mode: 02755
+      with_items: "{{ morphodict_prod_data_dirs }}"

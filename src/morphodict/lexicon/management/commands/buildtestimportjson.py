@@ -54,7 +54,7 @@ class Command(BaseCommand):
 
         test_dictionary = TestDictionary(full_dictionary, words)
         test_json = json.dumps(
-            test_dictionary.entries(), ensure_ascii=False, indent=True
+            test_dictionary.entries(), ensure_ascii=False, indent=True, sort_keys=True
         )
 
         (test_importjson.with_suffix(".orig")).write_text(test_json)

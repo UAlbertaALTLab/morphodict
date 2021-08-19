@@ -27,14 +27,14 @@ DEFAULT_RUNSERVER_PORT = 8007
 
 INSTALLED_APPS.insert(0, "arpeng.app")
 
-INSTALLED_APPS += ["arpeng.dictimport"]
-
 FST_TOOL_SAMPLES = [
     "nonoohowun",
     "[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]noohow[2SG-SUBJ][1SG-OBJ]",
 ]
 
 # Morphodict configuration
+
+MORPHODICT_DICTIONARY_NAME = "arpeng"
 
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
@@ -56,3 +56,5 @@ MORPHODICT_ORTHOGRAPHY = {
 MORPHODICT_TAG_STYLE = "Bracket"
 
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Arapaho"

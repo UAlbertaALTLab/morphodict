@@ -1,20 +1,13 @@
-import { join as joinPath, resolve as resolvePath } from "path";
+import { join as joinPath } from "path";
 import { writeFile } from "fs/promises";
 import { difference, flatten, intersection, isEqual, min } from "lodash";
 import { execIfMain } from "execifmain";
 import { Command } from "commander";
 import { Transducer } from "hfstol";
-import { loadTsvFile } from "../shared/util";
+import { loadTsvFile, resourceDir } from "../shared/util";
 import { Analysis, Dictionary } from "../shared/dictionary";
 
-const RESOURCE_DIR = resolvePath(
-  __dirname,
-  "..",
-  "..",
-  "src",
-  "srseng",
-  "resources"
-);
+const RESOURCE_DIR = resourceDir("srseng");
 
 const DICTIONARY_DIR = joinPath(RESOURCE_DIR, "dictionary");
 const FST_DIR = joinPath(RESOURCE_DIR, "fst");
@@ -70,7 +63,7 @@ function doTieBreaking(analyses: Analysis[]): Analysis | null {
     ["+SbjSg1"],
   ]) {
     const index = findEqualUniqueIndex(tags, tieBreaker);
-    if (index !== null) {
+    if (index != null) {
       const ret = analyses[index];
       return ret;
     }
@@ -98,6 +91,12 @@ async function main() {
   const options = program.opts();
 
   const inputTsv = await loadTsvFile(options.inputTsv);
+
+  const assembled = munge(inputTsv);
+  await writeFile(options.outputFile, assembled);
+}
+
+export function munge(inputTsv: { [key: string]: string }[]) {
   const dictionary = new Dictionary(["+V", "+T", "+I", "+D"]);
   let previousHead = "";
 
@@ -116,7 +115,7 @@ async function main() {
       console.log(`Warning: no definition for row with head ${head}`);
     }
 
-    const entry = dictionary.getOrCreate(head);
+    const entry = dictionary.getOrCreate({ text: head });
     entry.addDefinition(definition, ["OS"]);
 
     const analyses = analyzer.lookup_lemma_with_affixes(head);
@@ -161,8 +160,7 @@ async function main() {
 
     previousHead = head;
   }
-
-  await writeFile(options.outputFile, dictionary.assemble());
+  return dictionary.assemble();
 }
 
-execIfMain(main);
+execIfMain(main, module);

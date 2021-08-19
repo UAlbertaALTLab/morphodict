@@ -14,12 +14,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import secrets
+from typing import Optional
 
 from environs import Env
 
 from . import base_dir_setup
+from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL
 from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
+
 
 BASE_DIR = base_dir_setup.get_base_dir()
 
@@ -66,6 +69,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django_js_reverse",
+    # **New** Morphodict
+    "morphodict.lexicon",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "CreeDictionary.API.apps.APIConfig",
@@ -74,7 +79,6 @@ INSTALLED_APPS = [
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
-    "morphodict.lexicon",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
@@ -106,7 +110,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "CreeDictionary.CreeDictionary.context_processors.display_options",
-                "morphodict.lexicon.context_processors.language_pair",
+                "morphodict.lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
         },
@@ -114,6 +118,8 @@ TEMPLATES = [
 ]
 
 # Custom settings
+
+WSGI_APPLICATION = "morphodict.site.wsgi.application"
 
 # Apps that have non-admin users typically have a stylized login page, but
 # we only have admin logins. This setting will redirect to the admin login
@@ -271,6 +277,13 @@ STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "collected-static"))
 
+STATICFILES_DIRS = [
+    # This is where rollup puts the built versions of frontend files
+    BASE_DIR.parent.parent
+    / "generated"
+    / "frontend"
+]
+
 if DEBUG:
     # Use the default static storage backed for debug purposes.
     STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
@@ -325,6 +338,13 @@ LOGGING = {
 
 # Morphodict config
 
+# We try to document all settings here, in one place, that are
+# language-specific. Sometimes there is a useful default that will apply to most
+# language pairs. If there isn’t, it needs to be configured in the settings file
+# specific to a language pair. In that case, we set the default here to None,
+# mark it required, and then a system check will raise an error on startup if
+# any required settings are not set.
+
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
 
@@ -336,7 +356,24 @@ MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
 # lemma text when generating wordforms
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
 
+# Show a big banner at the top warning that the dictionary is a work in
+# progress. Set this to false once it’s gone through a reasonable amount of
+# testing.
+MORPHODICT_PREVIEW_WARNING = True
+
 # The style of tag used by the analyzer+generator FSTs. Must be "Plus" or
 # "Bracket". "Plus" is the ALTLab/Giella-style nipâw+V+AI+Ind+3Sg; "Bracket" is
 # a different style, with tags like `[VERB][TA]`.
 MORPHODICT_TAG_STYLE = "Plus"
+
+# The name of the source language, written in the target language. Used in
+# default templates to describe what language the dictionary is for.
+MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+
+# An optional, shorter name for the language. Currently only used in the search
+# bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
+
+
+# The marketing / brand / public-facing name of the dictionary
+MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL

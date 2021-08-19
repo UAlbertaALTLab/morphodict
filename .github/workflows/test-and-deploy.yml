@@ -77,6 +77,18 @@ jobs:
       env:
         DEBUG: "True"
       run: pipenv run test -v --cov=src --cov-report=xml
+    - name: Check working directory clean
+      run: ./libexec/check-git-status
+    - name: Check that generated files are up-to-date
+      # A few auto-generated files are checked in for convenience; ensure
+      # that they are up-to-date.
+      run: "pipenv run docker/helper.py make-yaml
+        && if ! ./libexec/check-git-status ; then
+            echo Error: running make-yaml resulted in changed files. When
+              changing template files, please ensure that updated generated
+              files get checked in too. 1>&2 ;
+            exit 1 ;
+        fi"
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1.5.0
 
@@ -181,6 +193,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Do LFS checkout
+      # actions/checkout@v2 has a `with: lfs: true` option, but it only
+      # knows how to talk to GitHub’s LFS server.
+      #
+      # These actions are automatic if you have run `git lfs install`
+      # even once on your dev machine.
+      run: git lfs install --local && git lfs fetch && git lfs checkout
     - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
       uses: actions/setup-node@v2
       with:

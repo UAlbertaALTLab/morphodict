@@ -41,6 +41,36 @@ class ParadigmLabel(Preference):
 
 
 @register_preference
+class AnimateEmoji(Preference):
+    """
+    Which emoji to use to substitute all animate emoji (awa words).
+    """
+
+    # Ensure the internal name and the cookie name (external name) are the same!
+    name = "animate_emoji"
+    cookie_name = name
+
+    default = "iyiniw"  # the original itwêwina animate emoji
+    choices = {
+        "iyiniw": "🧑🏽",  # iyiniw (NA)/tastawiyiniw (NA)
+        "granny": "👵🏽",  # kôhkom/*kokum (NDA)
+        "grandpa": "👴🏽",  # môsom/*moshum (NDA)
+        # Required by requester of this feature:
+        "wolf": "🐺",  # mahihkan (NA)
+        # Required for community partner
+        "bear": "🐻",  # maskwa (NA)
+        # Counter-intuitive awa word:
+        "bread": "🍞",  # pahkwêsikan (NA)
+        # Significant awa word:
+        "star": "🌟",  # atâhk/acâhkos (NA)
+        # I don't want to add too many options to start with, but more can always be
+        # added in the future like:
+        # - 🦬 paskwâwi-mostsos
+        # - 🦫 amisk
+    }
+
+
+@register_preference
 class DictionarySource(Preference):
     """
     Which dictionaries should be included in the search results?

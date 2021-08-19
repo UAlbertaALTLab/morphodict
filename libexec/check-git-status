@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Programmatically checking whether the git working directory is clean or
+# not gets surprisingly complicated.
+#
+# It’s not a one-liner, but checking for an empty `git status --porcelain`
+# output seems like the best option.
+#
+# See https://stackoverflow.com/questions/3878624/how-do-i-programmatically-determine-if-there-are-uncommitted-changes
+
+set -eu
+
+PROG="$(basename -- "${0}")"
+
+STATUS="$(git status --porcelain)"
+if [ -n "${STATUS}" ]; then
+    echo "${PROG}: git working directory not clean" 1>&2
+    git status
+    exit 1
+fi

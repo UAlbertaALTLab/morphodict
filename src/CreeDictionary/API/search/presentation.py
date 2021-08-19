@@ -3,6 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
+from django.conf import settings
 from django.forms import model_to_dict
 
 from CreeDictionary.API.search import core, types
@@ -10,7 +11,7 @@ from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode
+from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform
 
@@ -95,6 +96,7 @@ class PresentationResult:
         *,
         search_run: core.SearchRun,
         display_mode="community",
+        animate_emoji=AnimateEmoji.default,
     ):
         self._result = result
         self._search_run = search_run
@@ -102,19 +104,38 @@ class PresentationResult:
             "community": read_labels().english,
             "linguistic": read_labels().linguistic_long,
         }.get(display_mode, DisplayMode.default)
+        self._animate_emoji = animate_emoji
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
 
-        (
-            self.linguistic_breakdown_head,
-            _,
-            self.linguistic_breakdown_tail,
-        ) = result.wordform.analysis or [[], None, []]
+        if settings.MORPHODICT_TAG_STYLE == "Plus":
+            (
+                self.linguistic_breakdown_head,
+                _,
+                self.linguistic_breakdown_tail,
+            ) = result.wordform.analysis or [[], None, []]
+        elif settings.MORPHODICT_TAG_STYLE == "Bracket":
+            # Arapaho has some head tags that the Plus-style FSTs put at the
+            # tail. For now, move them; later on elaboration could be a
+            # language-specific function.
+            head, _, tail = result.wordform.analysis or [[], None, []]
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis)
+            new_head = []
+            new_tail_prefix = []
+            for i, tag in enumerate(head):
+                if tag.startswith("["):
+                    new_tail_prefix.append(tag)
+                else:
+                    new_head.append(tag)
+            self.linguistic_breakdown_head = new_head
+            self.linguistic_breakdown_tail = new_tail_prefix + list(tail)
+        else:
+            raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
+
+        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji)
 
         self.preverbs = [
             lexical_entry["entry"]
@@ -136,7 +157,9 @@ class PresentationResult:
 
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
-            "lemma_wordform": serialize_wordform(self.lemma_wordform),
+            "lemma_wordform": serialize_wordform(
+                self.lemma_wordform, self._animate_emoji
+            ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
             "definitions": serialize_definitions(
@@ -175,8 +198,8 @@ class PresentationResult:
             label = self._relabeller.get_longest(tags)
 
             if label is None:
-                # Skip unlabelled chunks
-                continue
+                print(f"Warning: no label for tag chunk {tags!r}")
+                label = " ".join(tags)
 
             results.append({"tags": list(tags), "label": str(label)})
 
@@ -186,7 +209,7 @@ class PresentationResult:
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
 
-def serialize_wordform(wordform) -> SerializedWordform:
+def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
 
@@ -211,7 +234,9 @@ def serialize_wordform(wordform) -> SerializedWordform:
                 }
             )
         if wordclass := wordform.linguist_info.get("wordclass"):
-            result["wordclass_emoji"] = get_emoji_for_cree_wordclass(wordclass)
+            result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
+                wordclass, animate_emoji
+            )
 
     for key in wordform.linguist_info or []:
         if key not in result:
@@ -255,7 +280,9 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
     return read_labels().english.get_full_relabelling(fst_tags)
 
 
-def get_emoji_for_cree_wordclass(word_class: Optional[str]) -> Optional[str]:
+def get_emoji_for_cree_wordclass(
+    word_class: Optional[str], animate_emoji: str = AnimateEmoji.default
+) -> Optional[str]:
     """
     Attempts to get an emoji description of the full wordclass.
     e.g., "👤👵🏽" for "nôhkom"
@@ -272,10 +299,27 @@ def get_emoji_for_cree_wordclass(word_class: Optional[str]) -> Optional[str]:
             return [value.title()]
 
     tags = to_fst_output_style(word_class)
-    return read_labels().emoji.get_longest(tags)
+    original = read_labels().emoji.get_longest(tags)
+
+    ret = original
+    if original:
+        ret = use_preferred_animate_emoji(original, animate_emoji)
+    return ret
 
 
-def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
+def use_preferred_animate_emoji(original: str, animate_emoji: str) -> str:
+    return original.replace(
+        emoji_for_value(AnimateEmoji.default), emoji_for_value(animate_emoji)
+    )
+
+
+def emoji_for_value(choice: str) -> str:
+    if emoji := AnimateEmoji.choices.get(choice):
+        return emoji
+    return AnimateEmoji.choices[AnimateEmoji.default]
+
+
+def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[Dict]:
     if not result_analysis:
         return []
 
@@ -349,7 +393,7 @@ def get_lexical_info(result_analysis: RichAnalysis) -> List[Dict]:
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result)
+            entry = serialize_wordform(preverb_result, animate_emoji)
             _type = "Preverb"
 
         if entry and _type:

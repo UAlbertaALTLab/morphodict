@@ -52,7 +52,7 @@ Paradigm layouts are:
 For example, this is a paradigm layout file for Swahili personal
 pronouns (Derived from: <https://en.wikipedia.org/wiki/Swahili_grammar#Personal_pronouns>):
 
-```tsv
+```
 | Class	| Ind	| Comb | Suffix	| Gen | Suffix	| All
 _ 1 _ Sg	mimi	-mi	_angu	--
 _ 2 _ Sg	wewe	-we	-ako	--
@@ -149,7 +149,7 @@ Here is a partial [W3C Extended Backus-Naur Form (EBNF)][EBNF] grammar of
 the layout file specification. The syntax of `WordformCell` and `Tag`
 are implementation-dependent.
 
-```ebnf
+```
 Layout ::= (Row NL)+
 
 Row ::= BlankRow | HeaderRow | ContentRow
@@ -176,13 +176,14 @@ SP  ::= #x20
 ```
 
 > The variant of EBNF chosen can be visualized using following tool:
-> https://www.bottlecaps.de/rr/ui
+> <https://www.bottlecaps.de/rr/ui>
 
 [EBNF]: https://www.w3.org/TR/2010/REC-xquery-20101214/#EBNFNotation
 
 [vd]: https://www.visidata.org/
 [pycharm-tsv]: https://www.jetbrains.com/help/pycharm/editing-csv-and-tsv-files.html
 
+(where_paradigm_files_go)=
 
 Where to place paradigm layout files
 ------------------------------------
@@ -209,10 +210,13 @@ Files directly within the `layouts` directory, can be:
    indicate the different _size options_ available for this _paradigm
    name_.
 
-> **Note**: the exact location for the root `layouts` file depends on
-> the dictionary, however, this _should_ be with in the dictionary's
-> resources directory. As of 2021-06-30, this means
-> `src/CreeDictionary/res/layouts` for the `crkeng` dictionary.
+This `layouts` directory should be placed in the dictionary-specific
+`resources` directory, e.g., `src/arpeng/resources/layouts` for `arpeng`.
+
+*Note*: as of 2021-08, the Cree layouts are still in their legacy location,
+`src/CreeDictionary/res/layouts`. This is because the same layout files are
+used by both Plains and Woods Cree. The intention to move them to
+`src/cr_shared/resources/layouts` once code to support that is written.
 
 How to configure paradigm sizes
 -------------------------------

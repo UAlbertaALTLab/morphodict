@@ -2,63 +2,63 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 12Pl	1p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiyânaw	
 1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	niyanân	
 1PlO	→ 1p (excl)	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kiyânaw	
-1Sg	1s	Actor: 1st Person Singular	I	niya 	
-1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ niya 	
-2Pl	2p	Actor: 2nd Person Plural	you (all)	kiyawâw 	
-2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kiyawâw 	
-2Sg	2s	Actor: 2nd Person Singular	you (one)	kiya 	
-2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kiya 	
+1Sg	1s	Actor: 1st Person Singular	I	niya	
+1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ niya	
+2Pl	2p	Actor: 2nd Person Plural	you (all)	kiyawâw	
+2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kiyawâw	
+2Sg	2s	Actor: 2nd Person Singular	you (one)	kiya	
+2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kiya	
 3Pl	3p	Actor: 3rd Person Plural	they	wiyanaw	
 3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ wiyanaw	
 3Sg	3s	Actor: 3rd Person Singular	s/he	wiya	
 3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wiya	
-4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (anihi) 	
-4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (anihi) 	
-4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (anihi) 	
-4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (anihi) 	
-5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nêhi) 	
-5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nêhi) 	
+4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (anihi)	
+4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (anihi)	
+4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	s/he/they	wiya/wiyawâw (anihi)	
+4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them	→ wiya/wiyawâw (anihi)	
+5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	s/he/they (further)	wiya/wiyawâw (nêhi)	
+5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ him/her/them (further)	→ wiya/wiyawâw (nêhi)	
 0Sg	0	Impersonal / Actor: Existential / Inanimate Singular	it / there (is)	ôma	
 0Pl	0p	Actor: Existential / Inanimate Plural	they / there (are)	ôhi	
 0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 0SgO	→ 0	Goal: Inanimate Singular	→ it	→ ôma	
 0PlO	→ 0p	Goal: Inanimate Plural	→ them (further)	→ nêhi	
 					
 0Sg+Prs	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is	ôma	
 0Pl+Prs	0p	Actor: Existential / Inanimate Plural	they / there are	ôhi	
 0Sg+Obv+Prs	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Prs	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Prs	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Prt	0	Impersonal / Actor: Existential / Inanimate Singular	it / there was	ôma	
 0Pl+Prt	0p	Actor: Existential / Inanimate Plural	they / there were	ôhi	
 0Sg+Obv+Prt	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Prt	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Prt	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Fut+Def	0	Impersonal / Actor: Existential / Inanimate Singular	it / there will be	ôma	
 0Pl+Fut+Def	0p	Actor: Existential / Inanimate Plural	they / there will be	ôhi	
 0Sg+Obv+Fut+Def	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Fut+Def	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Fut+Def	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Fut+Int	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is going to be	ôma	
 0Pl+Fut+Int	0p	Actor: Existential / Inanimate Plural	they / there is going to be	ôhi	
 0Sg+Obv+Fut+Int	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Fut+Int	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Fut+Int	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Fut+Cond	0	Impersonal / Actor: Existential / Inanimate Singular	it / when there is	ôma	
 0Pl+Fut+Cond	0p	Actor: Existential / Inanimate Plural	they / when there is	ôhi	
 0Sg+Obv+Fut+Cond	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Fut+Cond	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Fut+Cond	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Inf+PV/ka	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma	
-0Pl+Inf+Pv/ka	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi	
+0Pl+Inf+PV/ka	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi	
 0Sg+Obv+Inf+PV/ka	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Inf+PV/ka	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Inf+PV/ka	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 0Sg+Inf+PV/ta	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma	
 0Pl+Inf+Pv/ta	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi	
 0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nêma	
-0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (futher)	nêhi	
+0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi	
 					
 Inf+PV/ka	Conjunct (ka-)	Infinitive/Future (with ka-)	ka- word	ka- itwêwin	
 Inf+PV/ta	Conjunct (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin	
@@ -184,6 +184,7 @@ I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi
 IC	Initial change	Initial change	like: wiyâpamât	tâpiskôc: wiyâpamât	
 II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw	
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk	
+Interr	Interrogative	Interrogative	Question	kakwêcihkêmowin	
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡
 Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️
 IPH	Phrase	Phrase	like: êkosi pitamâ	tâpiskôc: êkosi pitamâ	
@@ -530,10 +531,10 @@ VAI-1	VAI-1	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâ
 VAI-v	VAI-v	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw	
 VAI-2	VAI-2	n-final animate intransitive verb	like: pimisin	tâpiskôc: pimisin	
 VAI-3	VAI-3	VTI-like animate intransitive verb	like: yâhyânam	tâpiskôc: yâhyânam	
-VII-1n	VII-1n	n-final impersonal inanimate intransive verb	like: kimiwan	tâpiskôc: kimiwan	
-VII-2n	VII-2n	n-final pluralizable inanimate intransive verb	like: miywâsin	tâpiskôc: miywâsin	
-VII-1v	VII-1v	vowel-final impersonal inanimate intransive verb	like: kîsikâw	tâpiskôc: kîsikâw	
-VII-2v	VII-2v	vowel-final pluralizable  inanimate Intransive verb	like: mihkwâw	tâpiskôc: mihkwâw	
+VII-1n	VII-1n	n-final impersonal inanimate intransitive verb	like: kimiwan	tâpiskôc: kimiwan	
+VII-2n	VII-2n	n-final pluralizable inanimate intransitive verb	like: miywâsin	tâpiskôc: miywâsin	
+VII-1v	VII-1v	vowel-final impersonal inanimate intransitive verb	like: kîsikâw	tâpiskôc: kîsikâw	
+VII-2v	VII-2v	vowel-final pluralizable  inanimate intransitive verb	like: mihkwâw	tâpiskôc: mihkwâw	
 VTA-1	VTA-1	transitive animate verb – class 1: regular	like: wîcihêw	tâpiskôc: wîcihêw	
 VTA-2	VTA-2	transitive animate verb – class 2	like: nitonawêw	tâpiskôc: nitonawêw	
 VTA-3	VTA-3	transitive animate verb – class 3	like: kîskiswêw	tâpiskôc: kîskiswêw	
@@ -548,5 +549,5 @@ XO	→ X	Goal: Unspecified	→ someone	→ (awiya)
 					
 A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pêyak (awa)	
 A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcêt (awa)	
-I+Sg+Title	I+Sg	Singular, Innimate	One (ôma word)	pêyak (ôma)	
+I+Sg+Title	I+Sg	Singular, Inanimate	One (ôma word)	pêyak (ôma)	
 I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcêt (ôma)	
