@@ -32,6 +32,9 @@ def change_preference(request: HttpRequest, name: str):
 
     value = request.POST.get(preference.cookie_name)
 
+    if preference.name in ["dictionary_source_md", "dictionary_source_cw"] and not ensure_at_least_one_dict_src(request, preference, value):
+        raise Http404("Cannot unselect all dictionary sources")
+
     # Tried to set to an unknown choice
     if value not in preference.choices:
         return HttpResponse(status=HTTPStatus.BAD_REQUEST)
@@ -48,25 +51,23 @@ def change_preference(request: HttpRequest, name: str):
     # When left to default, the cookie should last "only as long as the client’s
     # browser session", though... I'm not sure how long that generally is :/
     # See: https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse.set_cookie
-    if preference.cookie_name == "dictionarysource":
-        print()
-        print(value)
-        print()
-        print()
-        if "dictionarysource" in request.COOKIES:
-            dictionary_cookies = json.loads(request.COOKIES["dictionarysource"])
-        else:
-            dictionary_cookies = {"include": []}
 
-        print("BEFORE: ", dictionary_cookies["include"])
-        if value in dictionary_cookies["include"]:
-            dictionary_cookies["include"].remove(value)
-        else:
-            dictionary_cookies["include"].append(value)
-        print("AFTER: ", dictionary_cookies["include"])
-        json_dict_cookies = json.dumps(dictionary_cookies)
-        response.set_cookie(preference.cookie_name, json_dict_cookies)
-    else:
-        response.set_cookie(preference.cookie_name, value)
+    response.set_cookie(preference.cookie_name, value)
 
     return response
+
+
+def ensure_at_least_one_dict_src(request, preference, value):
+    """
+    Cannot unselect all dictionary sources--then there would be no results!
+    """
+    if value == "yes":
+        return True
+    if preference.name == "dictionary_source_cw" and value:
+        if request.COOKIES.get("dictionary_source_md") == "no":
+            return False
+    elif preference.name == "dictionary_source_md":
+        if request.COOKIES.get("dictionary_source_cw") == "no":
+            return False
+
+    return True

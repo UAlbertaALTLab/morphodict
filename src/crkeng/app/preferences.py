@@ -70,17 +70,34 @@ class AnimateEmoji(Preference):
 
 
 @register_preference
-class DictionarySource(Preference):
+class DictionarySourceCw(Preference):
     """
     Which dictionaries should be included in the search results?
     """
 
-    cookie_name = "dictionarysource"
+    cookie_name = "dictionary_source_cw"
     choices = {
-        "All": "Show entries from all dictionary sources",
-        "CW": "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
-        "MD": "Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
-        "OS": "Starlight, Bruce, Gary Donovan, and Christopher Cox, editors. John Onespot and Edward Sapir: Collected Tsuut’ina Narratives and Linguistic Notes. Revised scholarly edition in preparation; 1922."
+        "yes": "Entries from the CW dictionary source will appear in your search results",
+        "no": "Entries from the CW dictionary will be hidden in your search results",
+        # "All": "Show entries from all dictionary sources",
+        # "CW": "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
+        # "MD": "Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
+        # "OS": "Starlight, Bruce, Gary Donovan, and Christopher Cox, editors. John Onespot and Edward Sapir: Collected Tsuut’ina Narratives and Linguistic Notes. Revised scholarly edition in preparation; 1922."
     }
 
-    default = "All"
+    default = "yes"
+
+
+@register_preference
+class DictionarySourceMd(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "dictionary_source_md"
+    choices = {
+        "yes": "Entries from the MD dictionary source will appear in your search results",
+        "no": "Entries from the MD dictionary will be hidden in your search results",
+    }
+
+    default = "yes"

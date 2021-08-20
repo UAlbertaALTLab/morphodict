@@ -70,18 +70,46 @@
   </section>
 
   <section>
-    <h3 id="dictionary-source" class="setting__title">Dictionary Sources</h3>
+    <h3 id="dictionary-source" class="setting__title">Show entries from CW</h3>
 
-    <p class="setting__note"> The selected dictionary source(s) will appear in the search results.</p>
+    <p class="setting__note"> Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001</p>
 
-    <form method="POST" action="{% url "preference:change" "dictionary_source" %}" data-save-preference="dictionarysource">
+    <form method="POST" action="{% url "preference:change" "dictionary_source_cw" %}" data-save-preference="dictionary_source_cw">
       <ul class="unbullet">
-      {% for value, label in preferences.dictionary_source.choices_with_labels %}
+      {% for value, label in preferences.dictionary_source_cw.choices_with_labels %}
         <li class="option">
           <label class="option__label">
-            <input type="checkbox" name="dictionarysource" value="{{ value }}" class="option__control"
-                {% if preferences.dictionary_source.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ value }}</span>
+            <input type="radio" name="dictionary_source_cw" value="{{ value }}" class="option__control"
+                {% if preferences.dictionary_source_cw.current_choice == value %}checked{% endif %}>
+            <span class="option__label-text">{{ value|capfirst }}</span>
+          </label>
+            <p class="option__description">
+            {{ label }}
+            </p>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="action-bar">
+        {% csrf_token %}
+        <button type="submit"> Save settings </button>
+      </div>
+    </form>
+  </section>
+
+    <section>
+    <h3 id="dictionary-source" class="setting__title">Show entries from MD</h3>
+
+    <p class="setting__note"> Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.</p>
+
+    <form method="POST" action="{% url "preference:change" "dictionary_source_md" %}" data-save-preference="dictionary_source_md">
+      <ul class="unbullet">
+      {% for value, label in preferences.dictionary_source_cw.choices_with_labels %}
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" name="dictionary_source_md" value="{{ value }}" class="option__control"
+                {% if preferences.dictionary_source_md.current_choice == value %}checked{% endif %}>
+            <span class="option__label-text">{{ value|capfirst }}</span>
           </label>
             <p class="option__description">
             {{ label }}
