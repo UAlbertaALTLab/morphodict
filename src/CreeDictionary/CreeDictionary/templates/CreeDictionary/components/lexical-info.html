@@ -1,0 +1,58 @@
+{% spaceless %}
+  {% comment %}
+    Displays preverbs and reduplication in order
+    of occurrence in search query.
+
+    Parameters:
+      result: SerializedSearchResult
+
+    Example:
+
+      Preverb: ê- [i]
+      Reduplication: ma [i]
+      Preverb: miyo- [i]
+      Reduplication: mâh [i]
+      Preverb: mâmawi- [i]
+      Reduplication: na [i]
+
+  {% endcomment %}
+
+  {% load creedictionary_extras %}
+  {% load morphodict_orth %}
+  {% load static %}
+
+  {# show preverb and reduplication breakdown #}
+  <ol class="preverb-breakdown">
+    {% for item in result.lexical_info %}
+      <li>
+          <span>{{ item.type }}
+            {% if item.type != "Initial Change" %}: {% endif %}
+              {% if item.entry.id %}
+                  <a href="{{ item.entry.lemma_url }}">{{ item.entry.text}}</a>
+              {% else %}
+                  {{ item.entry.text}}
+              {% endif %}</span>
+
+
+          <div tabindex="0" class="preverb-breakdown__tooltip-icon" data-has-tooltip data-cy="information-mark">
+            <img
+              src="{% static 'morphodict/css/img/fa/info-circle-solid.svg' %}"
+              alt="preverb breakdown">
+          </div>
+          <div class="tooltip" role="tooltip">
+            {% for definition in item.entry.definitions %}
+                <p class="preverb-breakdown__preverb-definition">
+                    <span class="preverb-breakdown__preverb-definition-text">{{ definition.text }}</span>
+            {% if item.entry.id %} {# we know the preverb in the database #}
+                {% for source in definition.source_ids %}
+                    <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
+                {% endfor %}
+            {% endif %}
+            </p>
+            {% endfor %}
+            <div class="tooltip__arrow" data-popper-arrow></div>
+          </div>
+      </li>
+    {% endfor %}
+  </ol>
+{% endspaceless %}

@@ -1,0 +1,28 @@
+{{ autogeneration_notice }}
+
+version: "3"
+
+services:
+  {% for app in apps %}
+  {{ app.name }}:
+    restart: always
+    # Specify hostname to make it clearer which container is active when
+    # using docker to get a shell in the container.
+    hostname: {{ app.name }}-container
+    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+    command: /app/app.sh {{ app.name }}
+    ports:
+      - "{{ app.port }}:8000" # http
+      - "{{ app.uwsgi_stats_port }}:9191" # uWSGI stats
+    volumes:
+      - "./.env:/app/.env"
+
+      # LFS mounts
+    {% for lfs_mount in app.lfs_mounts %}
+      - "../src/{{ lfs_mount }}:/app/src/{{ lfs_mount }}:ro"
+    {% endfor %}
+
+    {% for mount in app.data_mounts %}
+      - "{{ mount.prod_src }}:{{ mount.target }}"
+     {% endfor %}
+  {% endfor %}

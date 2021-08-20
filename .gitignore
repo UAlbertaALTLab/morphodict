@@ -67,13 +67,10 @@ cypress/videos
 *_dictionary.importjson
 
 # Django collectstatic
-/src/CreeDictionary/static/
+/generated/
+/src/*/collected-static
 
 # Generated files:
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/click-in-text-embedded-test.js
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
-*.css.map
-*.js.map
 docker-compose.override.yml
 import-inconsistencies.jsonl
+_build

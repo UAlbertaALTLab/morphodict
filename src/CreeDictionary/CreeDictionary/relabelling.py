@@ -2,12 +2,30 @@ from __future__ import annotations
 
 import csv
 from enum import IntEnum
-from typing import Iterable, Optional, TextIO, Tuple, TypeVar, Union
+from threading import Lock
+from typing import Iterable, Optional, TextIO, Tuple, TypedDict
+
+from django.conf import settings
 
 from CreeDictionary.utils import shared_res_dir
-from CreeDictionary.utils.types import FSTTag, Label
+from CreeDictionary.utils.types import FSTTag, Label, cast_away_optional
+from morphodict.site.util import cache_unless
 
-CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
+
+def _find_altlabel_file():
+    """
+    If a language-specific file exists, use that; otherwise fall back to the
+    default crk one.
+    """
+
+    specific_language_altlabels = settings.BASE_DIR / "resources" / "altlabel.tsv"
+    if specific_language_altlabels.exists():
+        return specific_language_altlabels
+    else:
+        return shared_res_dir / "crk.altlabel.tsv"
+
+
+ALTERNATE_LABELS_FILE = _find_altlabel_file()
 
 
 class _LabelFriendliness(IntEnum):
@@ -190,9 +208,34 @@ def _label_from_column_or_none(column_no: _LabelFriendliness, row) -> Optional[L
     return Label(cleaned_label)
 
 
+class LabelCache(TypedDict):
+    mtime: Optional[float]
+    labels: Optional[Relabelling]
+
+
+_label_cache: LabelCache = {"mtime": None, "labels": None}
+# In case this code is run from a multi-threaded context, e.g., a production web
+# server; normal @cache does internally do a bit of locking.
+_label_cache_mutex = Lock()
+
+
+@cache_unless(settings.DEBUG_PARADIGM_TABLES)
 def read_labels() -> Relabelling:
-    with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
-        return Relabelling.from_tsv(tsv_file)
+    """
+    Construct Relabelling object from file data and return it.
 
+    In production, this is read once on startup and never re-read. if debugging
+    with DEBUG_PARADIGM_TABLES, it is cached based on file modification time.
+    """
 
-LABELS: Relabelling = read_labels()
+    with _label_cache_mutex:
+        mtime = ALTERNATE_LABELS_FILE.stat().st_mtime
+        previous_mtime = _label_cache["mtime"]
+
+        if previous_mtime is not None and mtime == previous_mtime:
+            return cast_away_optional(_label_cache["labels"])
+
+        with ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
+            _label_cache["mtime"] = mtime
+            _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
+            return cast_away_optional(_label_cache["labels"])

@@ -8,7 +8,8 @@ from typing import Sequence
 from django import template
 from django.template import Context
 
-from CreeDictionary.CreeDictionary.relabelling import LABELS
+from CreeDictionary.CreeDictionary.relabelling import read_labels
+from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from CreeDictionary.utils.types import FSTTag
 from crkeng.app.preferences import ParadigmLabel
 
@@ -18,11 +19,14 @@ register = template.Library()
 # If a paradigm label preference is not set, use this one!
 DEFAULT_PARADIGM_LABEL = "english"
 
-label_setting_to_relabeller = {
-    "english": LABELS.english,
-    "linguistic": LABELS.linguistic_short,
-    "nehiyawewin": LABELS.cree,
-}
+
+def label_setting_to_relabeller(label_setting: str):
+    labels = read_labels()
+    return {
+        "english": labels.english,
+        "linguistic": labels.linguistic_short,
+        "nehiyawewin": labels.cree,
+    }[label_setting]
 
 
 @register.simple_tag(takes_context=True)
@@ -36,9 +40,11 @@ def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     else:
         label_setting = labels
 
-    relabeller = label_setting_to_relabeller[label_setting]
+    relabeller = label_setting_to_relabeller(label_setting)
 
     if label := relabeller.get_longest(tags):
+        if label_setting == "nehiyawewin":
+            return orth_tag(context, label)
         return label
 
     logger.warning("Could not find relabelling for tags: %r", tags)

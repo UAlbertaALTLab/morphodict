@@ -1,0 +1,74 @@
+[
+  {
+    "head": "níhoonéíhi-",
+    "linguistInfo": {
+      "pos": "vai",
+      "sourceIds": ["L16721"],
+      "morphologies": ["nihoon-ehi-"]
+    },
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "analysis": [
+      ["[VERB]", "[AI]", "[ANIMATE-SUBJECT]", "[IMPERATIVE]"],
+      "nihooneihi",
+      ["[2SG-SUBJ]"]
+    ],
+    "paradigm": "AI",
+    "slug": "níhoonéíhi-"
+  },
+  {
+    "head": "níhooyóó-",
+    "linguistInfo": {
+      "pos": "vii",
+      "sourceIds": ["L16737"],
+      "morphologies": ["nihoon-yoo-"]
+    },
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "nihooyoo",
+    "paradigm": "II",
+    "slug": "níhooyóó-"
+  },
+  {
+    "head": "noohóot-",
+    "linguistInfo": {
+      "pos": "vti",
+      "sourceIds": ["L19469"],
+      "morphologies": ["nooh-ôot-"]
+    },
+    "senses": [
+      {
+        "definition": "see s.t.",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "noohoot",
+    "paradigm": "TI",
+    "slug": "noohóot-"
+  },
+  {
+    "head": "nóóhow-",
+    "linguistInfo": {
+      "pos": "vta",
+      "sourceIds": ["L19475"],
+      "morphologies": ["nooh-ow-"]
+    },
+    "senses": [
+      {
+        "definition": "see",
+        "sources": ["ALD"]
+      }
+    ],
+    "fstLemma": "noohow",
+    "paradigm": "TA",
+    "slug": "nóóhow-"
+  }
+]

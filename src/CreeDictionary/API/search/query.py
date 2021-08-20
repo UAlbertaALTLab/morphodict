@@ -33,6 +33,7 @@ def treat_query(query_string):
     query_string = unicodedata.normalize("NFC", query_string)
 
     query_string = query_string.lower()
+    query_string = query_string.replace("7", "ʔ")
     query_string = to_sro_circumflex(query_string)
     return query_string
 

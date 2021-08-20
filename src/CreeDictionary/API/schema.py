@@ -1,7 +1,7 @@
 """
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
-from typing import List, Tuple, Union, Optional, Sequence
+from typing import List, Optional, Sequence, Tuple, Union
 
 from typing_extensions import Literal, TypedDict
 
@@ -69,8 +69,5 @@ class SerializedSearchResult(TypedDict):
     # Sequence of all preverb tags, in order
     # Optional: we might not have some preverbs in our database
     preverbs: Tuple[Union[str, SerializedWordform], ...]
-
-    # This omits preverbs and other features displayed elsewhere
-    relevant_tags: Tuple[SerializedLinguisticTag, ...]
 
     definitions: Tuple[SerializedDefinition, ...]

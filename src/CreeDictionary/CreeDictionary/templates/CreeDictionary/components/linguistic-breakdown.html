@@ -24,7 +24,7 @@
     {% if result.friendly_linguistic_breakdown_head or result.friendly_linguistic_breakdown_tail %}
       <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip data-cy="information-mark">
         <img
-          src="{% static 'CreeDictionary/images/fa/info-circle-solid.svg' %}"
+          src="{% static 'morphodict/css/img/fa/info-circle-solid.svg' %}"
           alt="linguistic breakdown">
       </div>
 
@@ -35,8 +35,8 @@
           {% endif %}
 
           <ol class="linguistic-breakdown__list">
-            {% for tag in result.relevant_tags %}
-              <li><data value="{{ tag.value }}">{{ tag.in_plain_english }}</data></li>
+            {% for chunk in result.relabelled_fst_analysis %}
+              <li><data value="{{ chunk.tags }}"> {{ chunk.label }}</data></li>
             {% endfor %}
           </ol>
         </div>

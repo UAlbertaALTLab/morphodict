@@ -1,0 +1,6 @@
+myst-parser==0.15.1
+
+# include directive parser option is “New in Docutils 0.17”
+# https://docutils.sourceforge.io/docs/ref/rst/directives.html#including-an-external-document-fragment
+# https://sourceforge.net/p/docutils/code/8595/
+docutils==0.17.1

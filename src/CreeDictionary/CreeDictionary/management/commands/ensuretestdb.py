@@ -3,7 +3,7 @@ from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
 from CreeDictionary.cvd import definition_vectors_path
-from morphodict.lexicon.test_db import TEST_DB_IMPORTJSON
+from morphodict.lexicon import DEFAULT_TEST_IMPORTJSON_FILE
 
 
 class Command(BaseCommand):
@@ -23,7 +23,7 @@ class Command(BaseCommand):
 
         def importjson_newer_than_db():
             return (
-                TEST_DB_IMPORTJSON.stat().st_mtime
+                DEFAULT_TEST_IMPORTJSON_FILE.stat().st_mtime
                 > settings.TEST_DB_FILE.stat().st_mtime
             )
 
@@ -32,5 +32,5 @@ class Command(BaseCommand):
             or not definition_vectors_path().exists()
             or importjson_newer_than_db()
         ):
-            call_command("importjsondict", TEST_DB_IMPORTJSON, purge=True)
+            call_command("importjsondict", purge=True)
         call_command("ensurecypressadminuser")

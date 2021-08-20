@@ -2,6 +2,7 @@ from typing import Any, Iterable
 
 from django.db.models import prefetch_related_objects
 
+from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
@@ -55,24 +56,57 @@ class SearchRun:
         results.sort()
         return results
 
-    def presentation_results(self) -> list[presentation.PresentationResult]:
+    def presentation_results(
+        self,
+        display_mode=DisplayMode.default,
+        animate_emoji=AnimateEmoji.default,
+    ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
             [r.wordform for r in results],
             "lemma__definitions__citations",
             "definitions__citations",
         )
-        return [presentation.PresentationResult(r, search_run=self) for r in results]
+        return [
+            presentation.PresentationResult(
+                r,
+                search_run=self,
+                display_mode=display_mode,
+                animate_emoji=animate_emoji,
+            )
+            for r in results
+        ]
 
-    def serialized_presentation_results(self):
-        results = self.presentation_results()
+    def serialized_presentation_results(
+        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default
+    ):
+        results = self.presentation_results(
+            display_mode=display_mode, animate_emoji=animate_emoji
+        )
         return [r.serialize() for r in results]
 
     def add_verbose_message(self, message=None, **messages):
-        assert message is not None or messages
+        """
+        Add any arbitrary JSON-serializable data to be displayed to the user at the
+        top of the search page, if a search is run with verbose:1.
+
+        Protip! Use keyword arguments as syntactic sugar for adding a dictionary, e.g.,
+
+            search_run.add_verbose_message(foo="bar")
+
+        Will appear as:
+
+        [
+            {"foo": "bar"}
+        ]
+        """
+        if message is None and not messages:
+            raise TypeError("must provide a message or messages")
+
         if message is not None:
             self._verbose_messages.append(message)
-        self._verbose_messages.append(messages)
+        if messages:
+            self._verbose_messages.append(messages)
 
     @property
     def verbose_messages(self):

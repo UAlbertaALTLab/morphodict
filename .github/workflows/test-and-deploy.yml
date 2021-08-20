@@ -5,7 +5,7 @@ env:
   # Version required to run itwêwina:
   ACTIONS_PYTHON_VERSION: 3.9
   # Version required to run npm build:
-  ACTIONS_NODE_VERSION: 12
+  ACTIONS_NODE_VERSION: 14
 
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
@@ -76,7 +76,19 @@ jobs:
     - name: 🩺 Run unit tests
       env:
         DEBUG: "True"
-      run: pipenv run test -v --cov=CreeDictionary --cov-report=xml
+      run: pipenv run test -v --cov=src --cov-report=xml
+    - name: Check working directory clean
+      run: ./libexec/check-git-status
+    - name: Check that generated files are up-to-date
+      # A few auto-generated files are checked in for convenience; ensure
+      # that they are up-to-date.
+      run: "pipenv run docker/helper.py make-yaml
+        && if ! ./libexec/check-git-status ; then
+            echo Error: running make-yaml resulted in changed files. When
+              changing template files, please ensure that updated generated
+              files get checked in too. 1>&2 ;
+            exit 1 ;
+        fi"
     - name: 📤 Upload Codecov coverage report
       uses: codecov/codecov-action@v1.5.0
 
@@ -91,9 +103,10 @@ jobs:
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-      uses: actions/setup-node@v1
+      uses: actions/setup-node@v2
       with:
         node-version: ${{ env.ACTIONS_NODE_VERSION }}
+        cache: npm
     - name: 🖥 Install system dependencies
       run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
     - name: ☤ Install pipenv
@@ -173,6 +186,29 @@ jobs:
           type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
         tags: |
           ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
+
+  # Run NodeJS tests for code in munge directory
+  munge-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Do LFS checkout
+      # actions/checkout@v2 has a `with: lfs: true` option, but it only
+      # knows how to talk to GitHub’s LFS server.
+      #
+      # These actions are automatic if you have run `git lfs install`
+      # even once on your dev machine.
+      run: git lfs install --local && git lfs fetch && git lfs checkout
+    - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ env.ACTIONS_NODE_VERSION }}
+
+    - name: 📥 Install Node dependencies
+      run: cd munge && npm ci
+    - name: Run node tests
+      run: cd munge && npm run test:ci
 
   trigger-deployment:
     runs-on: ubuntu-latest

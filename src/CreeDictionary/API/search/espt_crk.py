@@ -71,7 +71,7 @@ verb_passthrough_tags = {
         "+2SgO",
         "+3SgO",
         "+1PlO",
-        "21PlO+",
+        "+21PlO",
         "+2PlO",
         "+3PlO",
         "+4Pl",
@@ -103,6 +103,10 @@ verb_tag_map = TagMap(
     ("+Def", ("PV/ka+", "+Ind"), 1),
     ("+Inf", ("PV/ka+", "+Cnj"), 1),
     (TagMap.DEFAULT, "+Ind", 1),
+    # Person - see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/891
+    ("+0Sg", "+3Sg", 2),
+    # Person - object
+    ("+0SgO", (), 3),
     # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
     *passthrough_tags_to_tuples(verb_passthrough_tags)
 )
@@ -110,18 +114,3 @@ verb_tag_map = TagMap(
 noun_tag_map = TagMap(
     ("+Dim", "+Der/Dim", 2), *passthrough_tags_to_tuples(noun_passthrough_tags)
 )
-
-
-crkeng_tag_dict = {
-    "+Prt": ("PV/ki+", "+Ind"),  # Preterite aka simple past
-    "+Cond": ("+Fut", "+Cond"),  # Future conditional
-    "+Imm": ("+Imp", "+Imm"),  # Immediate imperative
-    "+Del": ("+Imp", "+Del"),  # Delayed imperative
-    "+Fut": ("PV/wi+", "+Ind"),  # Future
-    # TODO: also handle "+Fut": "PV/wi+",  # Also accept PV/wi without independent as future?
-    # Note that these crk features as disjoint, but both are needed for the eng feature
-    "+Def": ("PV/ka+", "+Ind"),
-    "+Inf": ("PV/ka+", "+Cnj"),
-    # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
-    "+Dim": ("+Der/Dim",),
-}

@@ -19,9 +19,9 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from morphodict.lexicon.models import Wordform
-from morphodict.preference.views import ChangePreferenceView
+
 from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm
 from .utils import url_for_query
@@ -75,6 +75,7 @@ def entry_details(request, slug: str):
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
         )
 
+    animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -82,7 +83,7 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma),
+        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji),
         **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
@@ -105,7 +106,10 @@ def index(request):  # pragma: no cover
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
         )
-        search_results = search_run.serialized_presentation_results()
+        search_results = search_run.serialized_presentation_results(
+            display_mode=DisplayMode.current_value_from_request(request),
+            animate_emoji=AnimateEmoji.current_value_from_request(request),
+        )
         did_search = True
     else:
         search_results = []
@@ -137,7 +141,11 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     results = search_with_affixes(
         query_string, include_auto_definitions=should_include_auto_definitions(request)
-    ).serialized_presentation_results()
+    ).serialized_presentation_results(
+        # mypy cannot infer this property, but it exists!
+        display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
+        animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+    )
     return render(
         request,
         "CreeDictionary/search-results.html",
@@ -320,23 +328,6 @@ def google_site_verification(request):
     )
 
 
-class ChangeDisplayMode(ChangePreferenceView):
-    """
-    Sets the mode= cookie, which affects how search results are rendered.
-    """
-
-    preference = DisplayMode  # type: ignore  # mypy can't deal with the decorator :/
-
-
-class ChangeParadigmLabelPreference(ChangePreferenceView):
-    """
-    Sets the paradigmlabel= cookie, which affects the type of labels ONLY IN THE
-    PARADIGMS!
-    """
-
-    preference = ParadigmLabel  # type: ignore  # mypy can't deal with the decorator :/
-
-
 ## Helper functions
 
 
@@ -355,7 +346,12 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        if paradigm := manager.paradigm_for(name, wordform.lemma.text, paradigm_size):
+        fst_lemma = wordform.lemma.text
+
+        if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
+            fst_lemma = wordform.lemma.fst_lemma
+
+        if paradigm := manager.paradigm_for(name, fst_lemma, paradigm_size):
             return paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",

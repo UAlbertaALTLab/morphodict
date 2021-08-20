@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Dict, Literal, Union, Any
+from typing import Dict, Literal, Union
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
-from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
 
@@ -14,7 +13,6 @@ from CreeDictionary.API.schema import SerializedDefinition
 from CreeDictionary.utils import (
     shared_res_dir,
 )
-
 from morphodict.analysis import RichAnalysis
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
@@ -55,6 +53,15 @@ class Wordform(models.Model):
     text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
 
     raw_analysis = models.JSONField(null=True, encoder=DiacriticPreservingJsonEncoder)
+
+    fst_lemma = models.CharField(
+        max_length=MAX_WORDFORM_LENGTH,
+        null=True,
+        help_text="""
+            The form to use for generating wordforms of this lemma using the
+            generator FST. Should only be set for lemmas.
+         """,
+    )
 
     paradigm = models.CharField(
         max_length=MAX_WORDFORM_LENGTH,
@@ -148,6 +155,7 @@ class Wordform(models.Model):
          it's the least strict url that guarantees unique match in the database
         """
         assert self.is_lemma, "There is no page for non-lemmas"
+        # FIXME: will return '/word/None' if no slug
         return reverse("cree-dictionary-index-with-lemma", kwargs={"slug": self.slug})
 
 

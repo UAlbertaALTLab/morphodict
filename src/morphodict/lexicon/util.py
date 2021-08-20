@@ -1,7 +1,9 @@
 import unicodedata
 from unicodedata import normalize
 
-EXTRA_REPLACEMENTS = str.maketrans({"ł": "l", "Ł": "L", "ø": "o", "Ø": "O"})
+EXTRA_REPLACEMENTS = str.maketrans(
+    {"ł": "l", "Ł": "L", "ɫ": "l", "Ɫ": "l", "ø": "o", "Ø": "O"}
+)
 
 
 def to_source_language_keyword(s: str) -> str:
