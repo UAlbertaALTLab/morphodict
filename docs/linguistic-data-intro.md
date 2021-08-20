@@ -1,19 +1,27 @@
 # Summary
 
-To get a working dictionary, you’ll need the following kinds of linguistic
-data:
+To get a working dictionary application, you’ll need linguistic data for
+the morphodict code to use.
+
+_**Note**: `sssttt` below refers to a [language pair abbreviation](sssttt)._
+
+The specific kinds of required linguistic data are:
 
   - A dictionary in importjson format
 
-    These files are found in `src/${sssttt}/resources/dictionary`. There is
-    typically a full dictionary which is *not checked in* because it is not
-    publicly redistributable, and a small test dictionary extracted from it
-    for testing purposes.
+    These files are found in `src/${sssttt}/resources/dictionary`;
+    see [Where do dictionary files go?](where_dictionary_files_go).
+
+    There is typically a full dictionary which is *not checked in* because
+    it is not publicly redistributable, and a small test dictionary
+    extracted from it for development and testing purposes.
+
+    [See the complete specification for how the importjson should be formatted here.](importjson-spec)
 
     The dictionary is loaded into the database via the `${sssttt}-manage
     importjsondict` command.
 
-  - Analyzer and generator FSTs in hfstol format
+  - Analyzer and generator FSTs in [hfstol format]
 
     These go in the `src/${sssttt}/resources/fst` directory,
     with the exact files configured in `settings.py`.
@@ -27,9 +35,9 @@ data:
 
   - Paradigm layout files
 
-    These generally go in `src/${sssttt}/resources/layouts`, but see the
-    [Where to place paradigm layout files](where_paradigm_files_go)
-    section for more specifics.
+    These generally go in `src/${sssttt}/resources/layouts`; see [Where to
+    place paradigm layout files](where_paradigm_files_go) for more
+    specifics.
 
     If you are editing these be sure to set a
     [`DEBUG_PARADIGM_TABLES=True`](DEBUG_PARADIGM_TABLES) environment
@@ -81,6 +89,8 @@ data:
     works for picking exactly which combination labels are used when there
     isn’t an exact match between all the analysis tags and a single
     combination label.
+
+[hfstol format]: https://hdl.handle.net/10138/29370
 
 For the items summarized above, more details are available below, or
 may be requested.

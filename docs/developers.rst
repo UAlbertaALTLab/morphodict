@@ -10,7 +10,7 @@ Developer documentation
    environment-variables
    ci
    docker-stub
-   example-cases
    directory-structure
+   example-cases
 
 
