@@ -288,6 +288,29 @@ This is a **lacuna**: a gap in the paradigm, where you would otherwise
 expect a valid form.
 
 
+(sssttt)=
+### language pair
+
+Each dictionary gives [target language](#target_language) definitions for
+entries written in a specific [source language](#source_language).
+
+The specific combination of source and target languages in a dictionary
+application is called a *language pair*, e.g., the language pair of
+Plains Cree to English for itwêwina.
+
+In filenames and throughout the morphodict code, to distinguish between
+different dictionary applications, the abbreviation `sssttt` is used, where
+`sss` and `ttt` are the 3-character [ISO 639-3] language codes for the
+[source language](source_language) and [target language](target_language)
+respectively, of the dictionary.
+
+For example, for the morphodict Plains Cree-to-English dictionary this is
+`crkeng`, and many code and data file paths will contain the string
+`crkeng`. For example, you will find files such as the test dictionary at
+the path `../src/crkeng/resources/dictionary/crkeng_test_db.importjson`
+
+[ISO 639-3]: https://iso639-3.sil.org/code_tables/639/data
+
 ### lemma
 [lemma]: #lemma
 [lemmas]: #lemma

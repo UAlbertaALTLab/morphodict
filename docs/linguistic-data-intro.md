@@ -3,15 +3,7 @@
 To get a working dictionary application, you’ll need linguistic data for
 the morphodict code to use.
 
-Note that `${sssttt}` below refers to a string containing a concatenation
-of the 3-character [ISO 639-3] language codes for the [source
-language](source_language) and [target language](target_language)
-respectively, of the dictionary. For example, for the morphodict Plains
-Cree-to-English dictionary this is `crkeng`. These abbreviations are used
-in filenames and throughout the morphodict code to distinguish between
-different dictionary applications.
-
-[ISO 639-3]: https://iso639-3.sil.org/code_tables/639/data
+_**Note**: `sssttt` below refers to a [language pair abbreviation](sssttt)._
 
 The specific kinds of required linguistic data are:
 
@@ -22,14 +14,14 @@ The specific kinds of required linguistic data are:
 
     There is typically a full dictionary which is *not checked in* because
     it is not publicly redistributable, and a small test dictionary
-    extracted from it for testing purposes.
+    extracted from it for development and testing purposes.
 
     [See the complete specification for how the importjson should be formatted here.](importjson-spec)
 
     The dictionary is loaded into the database via the `${sssttt}-manage
     importjsondict` command.
 
-  - Analyzer and generator FSTs in hfstol format
+  - Analyzer and generator FSTs in [hfstol format]
 
     These go in the `src/${sssttt}/resources/fst` directory,
     with the exact files configured in `settings.py`.
@@ -97,6 +89,8 @@ The specific kinds of required linguistic data are:
     works for picking exactly which combination labels are used when there
     isn’t an exact match between all the analysis tags and a single
     combination label.
+
+[hfstol format]: https://hdl.handle.net/10138/29370
 
 For the items summarized above, more details are available below, or
 may be requested.

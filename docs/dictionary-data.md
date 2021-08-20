@@ -163,8 +163,8 @@ recommended*:
     immediately after the corresponding lemma entry, and related `formOf`
     entries sorted together by `head`.
 
-    Compare strings using NFD unicode normalization so that accented and
-    non-accented characters sort near each other.
+    Compare strings using [NFD unicode normalization][NFD] so that accented
+    and non-accented characters sort near each other.
 
   - Explicitly sort the *keys* of the emitted JSON objects. Otherwise the
     JSON object keys can be emitted in random or insertion order, creating
@@ -179,6 +179,7 @@ recommended*:
     `"w\\u00e2pam\\u00eaw"` instead of `"wâpamêw"`.
 
 [prettier]: https://www.npmjs.com/package/prettier
+[NFD]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize#canonical_equivalence_normalization
 [json-stable-sort]: https://www.npmjs.com/package/json-stable-stringify
 
 ### importjson Specification
@@ -273,27 +274,40 @@ The fields are:
     features.
 
   - The `fstLemma` field, an optional string, is the FST lemma to use when
-    generating paradigm tables.
+    generating dynamic paradigm tables for unanalyzable forms in
+    dictionaries that support that. It must not be specified when there is
+    also an `analysis` field.
 
-    To be clear: the FST lemma is the thing that gets plugged into a
-    paradigm layout template to generate associated wordforms. For example,
-    if the head is `nîminâniwan` with FST analysis `nîmiw+V+AI+Ind+X`, then
-    the FST lemma is `nîmiw`. If the head is `nimîw` with the FST
-    analysis `nimîw+V+AI+Ind+3Sg`, then the FST lemma is `nimîw`, which is
-    the same as the head.
+    To be clear on the concept that we’re talking about: the FST lemma is
+    the thing that gets plugged into a paradigm layout template to generate
+    associated wordforms. For example, if the head is `nîminâniwan` with
+    FST analysis `nîmiw+V+AI+Ind+X`, then the FST lemma is `nîmiw`. If the
+    head is `nimîw` with the FST analysis `nimîw+V+AI+Ind+3Sg`, then the
+    FST lemma is `nimîw`, which is the same as the head.
 
-    Normally the FST lemma is included as part of the `analysis`, so this
-    field may only be specified on entries without an analysis.
+    Normally the FST lemma is included as part of the `analysis`, and the
+    code can retrieve the conceptual FST lemma from that `analysis`, so the
+    separate `fstLemma` field is redundant and should not be explicitly
+    included.
 
-    This is useful when it’s desired to have the citation form of an entry
-    be a stem or other unanalyzable form, while still displaying dynamic
-    paradigms for it. For example, in Arapaho, one entry has the
-    non-analyzable stem `níhooyóó-` as a head, with `fstLemma` specified as
-    `nihooyoo` in the importjson for paradigm table generation to work.
+    However, sometimes it is desirable to have a dictionary entry that is
+    not analyzable but for which dynamic paradigms should be displayed. For
+    example, in Arapaho, one entry has the non-analyzable stem `níhooyóó-`
+    as a head, which should display dynamic paradigms using the FST lemma
+    `nihooyoo`. Therefore, that is precisely what the `fstLemma` field for
+    this entry contains.
+
+    In that case of dynamic paradigms for non-analyzable `head` entries,
+    and only in that case, is this field useful.
 
     This field is only supported for languages with the
     `MORPHODICT_ENABLE_FST_LEMMA_SUPPORT` setting enabled, which is
     currently only Arapaho.
+
+Note that the only strictly required fields are `head`, `slug`, and
+`senses`. If no other fields are supplied, morphodict will still work, but
+many interesting and useful features of morphodict will not; you will
+essentially have a static dictionary application.
 
 #### formOf entries
 
@@ -366,7 +380,8 @@ Known issues with the importjson format:
 (where_dictionary_files_go)=
 ## Where do files go?
 
-Each full dictionary is intended to be placed at
+Each full dictionary for language pair [`sssttt`](sssttt) is intended to be
+placed at
 
     src/${sssttt}/resources/dictionaries/${sssttt}_dictionary.importjson
 
@@ -467,32 +482,32 @@ used to display linguistic info in search results, and for showing emoji:
 
     For Plains Cree specifically, there are two variants of linguistic
     stems in the ALTLab crk-db. For both, a preceding hyphen (for dependent
-    nouns, e.g. *-ohkom-*) and following hyphen (for all stems,
-    e.g. *nimî-*) indicate that they are not free morphemes (independent
-    wordforms):
+    nouns, e.g. *-ohkom-*) and/or following hyphen (for all stems,
+    e.g. *nimî-*) indicate that they can take additional prefixes/suffixes:
 
-      - the plain/minimal `stem` according to the `\stm` field in the CW
-        toolbox source, which N.B. is lacking from MD and AECD. It should
-        be present there for all words, but absent for morphemes, and might
+      - the minimal CW stem from `\stm` field in the CW toolbox source,
+        which N.B. is lacking from MD and AECD. It should be present there
+        for all words, but blank for non-independent morphemes, and might
         be a list when the head is a phrase. This minimal stem may lack
         lexicalized reduplicative elements and/or preverbs/prenouns, and
         thus may not have a one-to-one mapping to possible lemmas
-        (e.g. *api-* as the minimal stem of the lemma *ay-apiw*.
+        (e.g. *api-* as the minimal CW stem of the lemma *ay-apiw*.
 
-      - the full `FST-stem` according to the `fststem` field in the ALTLab
+      - the full FST stem according to the `fst.stem` field in the ALTLab
         crk-db. This includes all the reduplicative elements as well as
         preverbs/prenouns which have become lexicalized in a lemma, and
         thus has a one-to-one mapping with the lemma. This is created in
-        the ALTLab crk-db based on the plain/minimal stem field,
-        e.g. *ay-api-* as the full FST-stem for the lemma *ay-apiw*. The
-        FST-stem, when supplemented with special morphophonological
-        symbols, is used in the lexc source code for crk stems in the
-        format: <`FST lemma`>:<`FST stem`>, e.g., [`acitakotêw:acitakot3
-        VTAt ;`][fst-stem1]
+        the ALTLab crk-db based on the minimal stem, e.g. *ay-api-* as the
+        full FST stem for the lemma *ay-apiw*. The FST stem, when
+        supplemented with special morphophonological symbols, is used in
+        the lexc source code for crk stems in the format: <`FST
+        lemma`>:<`FST stem`>, e.g., [`acitakotêw:acitakot3 VTAt
+        ;`][fst-stem1]
 
-      - itwêwina may opt to show either the plain/minimal stem or the full
-        FST-stem (or both). The code for generating the previously used XML
-        crkeng source opted to pass the FST-stem to itwêwina.
+    itwêwina currently has the FST stem in the `linguistInfo.stem` field,
+    and does not include a separate CW stem in the importjson. If display
+    of the minimal CW stem were some day added to morphodict, that would of
+    course require the dictionary data to include that data at that time.
 
   - `wordclass`, String: The word class for this entry (`VTA` / `VAI` / etc.).
     At one time our glossary called this a *specific word class*.
