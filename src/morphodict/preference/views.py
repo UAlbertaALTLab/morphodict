@@ -49,17 +49,23 @@ def change_preference(request: HttpRequest, name: str):
     # browser session", though... I'm not sure how long that generally is :/
     # See: https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse.set_cookie
     if preference.cookie_name == "dictionarysource":
+        print()
+        print(value)
+        print()
+        print()
         if "dictionarysource" in request.COOKIES:
             dictionary_cookies = json.loads(request.COOKIES["dictionarysource"])
         else:
             dictionary_cookies = {"include": []}
+
+        print("BEFORE: ", dictionary_cookies["include"])
         if value in dictionary_cookies["include"]:
             dictionary_cookies["include"].remove(value)
         else:
             dictionary_cookies["include"].append(value)
-        print(dictionary_cookies["include"])
-        dictionary_cookies = json.dumps(dictionary_cookies)
-        response.set_cookie(preference.cookie_name, dictionary_cookies)
+        print("AFTER: ", dictionary_cookies["include"])
+        json_dict_cookies = json.dumps(dictionary_cookies)
+        response.set_cookie(preference.cookie_name, json_dict_cookies)
     else:
         response.set_cookie(preference.cookie_name, value)
 

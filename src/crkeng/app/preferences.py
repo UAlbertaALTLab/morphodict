@@ -1,7 +1,6 @@
 """
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
-from morphodict.lexicon.models import DictionarySource
 from morphodict.preference import register_preference, Preference
 
 
@@ -77,7 +76,6 @@ class DictionarySource(Preference):
     """
 
     cookie_name = "dictionarysource"
-    dictionary_sources = DictionarySource.objects.all()
     choices = {
         "All": "Show entries from all dictionary sources",
         "CW": "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
