@@ -360,6 +360,13 @@ for morphodict:
   - The FST lemma in every `formOf` analysis must match the FST lemma of
     the corresponding normal entry
 
+  - Strings must not begin with a combining character. If a string is
+    intended to start with a diacritic, e.g., a floating tone such as
+    `"´a"`, or `" ̣gwà…"`, use a non-combining character such as `´`, or if
+    there is no non-combining equivalent such as for Combining Dot Below,
+    put the combining character on a space, a non-breaking space, or a
+    U+25CC ◌ Dotted Circle.
+
   - The `slug` must not contain certain URL-unsafe characters, e.g., `/`
 
 #### Caveats
