@@ -23,5 +23,5 @@ def simple_search(query: str, include_auto_definitions=False):
     return search(
         query=query,
         include_affixes=False,
-        include_auto_definitions=include_auto_definitions,
+        include_auto_definitions=include_auto_definitions
     ).serialized_presentation_results()

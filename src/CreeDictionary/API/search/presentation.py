@@ -11,7 +11,7 @@ from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySourceMd, DictionarySourceCw
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform
 
@@ -97,6 +97,9 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
+        include_md_results=DictionarySourceMd.default,
+        include_cw_results=DictionarySourceCw.default,
+
     ):
         self._result = result
         self._search_run = search_run
@@ -110,6 +113,8 @@ class PresentationResult:
         self.lemma_wordform = result.lemma_wordform
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
+        self.include_md_results = include_md_results
+        self.include_cw_results = include_cw_results
 
         if settings.MORPHODICT_TAG_STYLE == "Plus":
             (
@@ -135,7 +140,7 @@ class PresentationResult:
         else:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji)
+        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji, self.include_md_results, self.include_cw_results)
 
         self.preverbs = [
             lexical_entry["entry"]
@@ -158,7 +163,7 @@ class PresentationResult:
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(
-                self.lemma_wordform, self._animate_emoji
+                self.lemma_wordform, self._animate_emoji, self.include_md_results, self.include_cw_results
             ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -168,6 +173,8 @@ class PresentationResult:
                 # because we only auto-translate non-lemmas, and this is the
                 # only place where a non-lemma search result appears.
                 include_auto_definitions=self._search_run.include_auto_definitions,
+                include_md_results=self.include_md_results,
+                include_cw_results=self.include_cw_results
             ),
             "lexical_info": self.lexical_info,
             "preverbs": self.preverbs,
@@ -209,14 +216,14 @@ class PresentationResult:
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
 
-def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWordform:
+def serialize_wordform(wordform: Wordform, animate_emoji: str, include_md_results: bool, include_cw_results: bool) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
 
     :return: json parsable result
     """
     result = model_to_dict(wordform)
-    result["definitions"] = serialize_definitions(wordform.definitions.all())
+    result["definitions"] = serialize_definitions(wordform.definitions.all(), include_md_results, include_cw_results)
     result["lemma_url"] = wordform.get_absolute_url()
 
     if wordform.linguist_info:
@@ -245,11 +252,17 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWord
     return result
 
 
-def serialize_definitions(definitions, include_auto_definitions=False):
+def serialize_definitions(definitions, include_auto_definitions=False, include_md_results=True, include_cw_results=True):
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
-        if include_auto_definitions or "auto" not in serialized["source_ids"]:
+        if not include_auto_definitions and "auto" in serialized["source_ids"]:
+            continue
+        elif not include_md_results and "MD" in serialized["source_ids"]:
+            continue
+        elif not include_cw_results and "CW" in serialized["source_ids"]:
+            continue
+        else:
             ret.append(serialized)
     return ret
 
@@ -319,7 +332,7 @@ def emoji_for_value(choice: str) -> str:
     return AnimateEmoji.choices[AnimateEmoji.default]
 
 
-def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[Dict]:
+def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str, include_md_results: bool, include_cw_results: bool) -> List[Dict]:
     if not result_analysis:
         return []
 
@@ -393,7 +406,7 @@ def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result, animate_emoji)
+            entry = serialize_wordform(preverb_result, animate_emoji, include_md_results, include_cw_results)
             _type = "Preverb"
 
         if entry and _type:
