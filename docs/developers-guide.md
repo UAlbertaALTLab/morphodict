@@ -74,10 +74,10 @@ creates the test databases for all supported languages.
 
 ### Full database
 
-Where to get a full dictionary is described in [Dictionary
-data](dictionary_data).
+Where to get full dictionaries is described in [Current dictionary
+data](current_dictionary_data).
 
-Now import the dictionaries into the database:
+Once you have a full dictionary, import it into the database:
 
     ./${sssttt}-manage importjsondict [file]
 

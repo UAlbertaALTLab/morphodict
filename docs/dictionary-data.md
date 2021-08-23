@@ -394,6 +394,7 @@ placed at
 
 There is a `.gitignore` rule to prevent accidentally committing them.
 
+(building_test_dictionary_data)=
 ### Building test dictionary data
 
 Test dictionaries are created by taking subsets of the full dictionaries,
@@ -418,7 +419,7 @@ To update them, you’ll need a copy of the full dictionary file.
 e.g., `wordclass_emoji`, that currently exist in the production
 `crkeng_dictionary.importjson` file.*
 
-
+(current_dictionary_data)=
 ## Current dictionary data
 
 In theory, linguists will provide comprehensive and correct dictionary data
