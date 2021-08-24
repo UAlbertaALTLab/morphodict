@@ -59,7 +59,6 @@ class Command(BaseCommand):
                 other processes can’t access it. Good for development use.
             """,
         )
-
         parser.add_argument(
             "json_file",
             help=f"The importjson file to import",
@@ -91,6 +90,7 @@ class Command(BaseCommand):
         form_definitions = []
         logger.info(f"Importing {json_file}")
         data = json.loads(Path(json_file).read_text())
+
         for entry in tqdm(data):
             if "formOf" in entry:
                 form_definitions.append(entry)

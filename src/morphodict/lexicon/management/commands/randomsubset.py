@@ -41,7 +41,7 @@ class Command(BaseCommand):
         parser.add_argument(
             "--percentage",
             type=float,
-            help="What % of words to keep",
+            help="What percent of words to keep",
             default=10,
         )
 
