@@ -58,3 +58,10 @@ def test_single_entry_with_wordform(db):
 @pytest.mark.skip
 def test_blah():
     pass
+
+
+def blah():
+    """
+    >>> 1 + 1
+    NaN
+    """
