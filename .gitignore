@@ -47,6 +47,8 @@ venv/
 
 # MacOS Files
 .DS_Store
+xcuserdata/
+*pbxproj*.backup
 
 # Node and Cypress stuff
 .sass-cache/

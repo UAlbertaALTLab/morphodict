@@ -14,7 +14,7 @@ from functools import cached_property
 from itertools import chain
 from typing import Dict, Iterable, List, NewType, Tuple
 
-import dawg
+# import dawg
 from django.conf import settings
 
 from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
@@ -48,17 +48,18 @@ class AffixSearcher:
         for text, wordform_id in words_marked_for_indexing:
             self.text_to_ids[self.to_simplified_form(text)].append(wordform_id)
 
-        self._prefixes = dawg.CompletionDAWG(
-            [text for text, _ in words_marked_for_indexing]
-        )
-        self._suffixes = dawg.CompletionDAWG(
-            [_reverse(text) for text, _ in words_marked_for_indexing]
-        )
+        # self._prefixes = dawg.CompletionDAWG(
+        #     [text for text, _ in words_marked_for_indexing]
+        # )
+        # self._suffixes = dawg.CompletionDAWG(
+        #     [_reverse(text) for text, _ in words_marked_for_indexing]
+        # )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
         :return: an iterable of Wordform IDs that match the prefix
         """
+        return []
         term = self.to_simplified_form(prefix)
         matched_words = self._prefixes.keys(term)
         return chain.from_iterable(self.text_to_ids[t] for t in matched_words)
@@ -67,6 +68,7 @@ class AffixSearcher:
         """
         :return: an iterable of Wordform IDs that match the suffix
         """
+        return []
         term = self.to_simplified_form(suffix)
         matched_reversed_words = self._suffixes.keys(_reverse(term))
         return chain.from_iterable(

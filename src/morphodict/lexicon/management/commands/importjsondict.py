@@ -8,13 +8,12 @@ from argparse import (
 from pathlib import Path
 
 from django.conf import settings
-from django.core.management import BaseCommand, call_command
+from django.core.management import BaseCommand
 from django.db import transaction
 from tqdm import tqdm
 
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.utils.english_keyword_extraction import stem_keywords
-from morphodict.analysis import RichAnalysis, strict_generator
 from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE
 from morphodict.lexicon.models import (
     Wordform,
@@ -112,25 +111,25 @@ class Command(BaseCommand):
             wf.save()
 
             # Instantiate wordforms
-            if wf.analysis and wf.paradigm:
-                for (
-                    prefix_tags,
-                    suffix_tags,
-                ) in paradigm_manager.all_analysis_template_tags(wf.paradigm):
-                    analysis = RichAnalysis((prefix_tags, wf.text, suffix_tags))
-                    for generated in strict_generator().lookup(analysis.smushed()):
-                        # Skip re-instantiating lemma
-                        if analysis == wf.analysis:
-                            continue
-
-                        Wordform.objects.create(
-                            # For now, leaving paradigm and linguist_info empty;
-                            # code can get that info from the lemma instead.
-                            text=generated,
-                            raw_analysis=analysis.tuple,
-                            lemma=wf,
-                            is_lemma=False,
-                        )
+            # if wf.analysis and wf.paradigm:
+            #     for (
+            #         prefix_tags,
+            #         suffix_tags,
+            #     ) in paradigm_manager.all_analysis_template_tags(wf.paradigm):
+            #         analysis = RichAnalysis((prefix_tags, wf.text, suffix_tags))
+            #         for generated in strict_generator().lookup(analysis.smushed()):
+            #             # Skip re-instantiating lemma
+            #             if analysis == wf.analysis:
+            #                 continue
+            #
+            #             Wordform.objects.create(
+            #                 # For now, leaving paradigm and linguist_info empty;
+            #                 # code can get that info from the lemma instead.
+            #                 text=generated,
+            #                 raw_analysis=analysis.tuple,
+            #                 lemma=wf,
+            #                 is_lemma=False,
+            #             )
 
             if wf.raw_analysis is None:
                 self.index_unanalyzed_form(wf)
@@ -167,10 +166,10 @@ class Command(BaseCommand):
                     f"Purged {rows:,} rows from database for existing entries not found in import file: %r",
                     breakdown,
                 )
-        call_command("builddefinitionvectors")
-
-        if settings.MORPHODICT_SUPPORTS_AUTO_DEFINITIONS:
-            call_command("translatewordforms")
+        # call_command("builddefinitionvectors")
+        #
+        # if settings.MORPHODICT_SUPPORTS_AUTO_DEFINITIONS:
+        #     call_command("translatewordforms")
 
     def create_definitions(self, wordform, senses):
         keywords = set()

@@ -9,8 +9,8 @@ def save_secret_key(key: str) -> str:
     env_file_path = _get_env_file_path()
 
     print("Secret key does not exist; saving to", env_file_path, file=sys.stderr)
-    with env_file_path.open("a", encoding="UTF-8") as env_file:
-        env_file.write(f"SECRET_KEY={key}\n")
+    # with env_file_path.open("a", encoding="UTF-8") as env_file:
+    #     env_file.write(f"SECRET_KEY={key}\n")
 
     return key
 

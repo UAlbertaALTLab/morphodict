@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0E9046C29D7CDE45F879B03D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2254500A4F6F4915D412308 /* libssl.a */; };
+		1D60589B0D05DD56006BFB54 /* runPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* runPython.m */; };
+		2A334CFEA1B5A623FCFB45A9 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */; };
+		40A14067AA7FF6DF31D8334B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA146F39D101A97EDB7F518 /* libcrypto.a */; };
+		49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */; };
+		49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */; };
+		49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A7F626A9D2E500CC2B09 /* main.xib */; };
+		49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FC26A9D71900CC2B09 /* ViewController.swift */; };
+		49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */; };
+		49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B5A80026A9DEF500CC2B09 /* WebKit.framework */; };
+		49B5A80426AA1FFC00CC2B09 /* 
+
+ in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A80326AA1FFC00CC2B09 /* 
+
+ */; };
+		49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */; };
+		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
+		49F43F1226BEF9350062D570 /* swiftpy_module.c in Sources */ = {isa = PBXBuildFile; fileRef = 49F43F1126BEF9350062D570 /* swiftpy_module.c */; };
+		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
+		59738AB51A8BB5D8001B2C0C /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 59738AB41A8BB5D8001B2C0C /* lib */; };
+		59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
+		59FDEA8B21E7D34E004E6ECE /* include in Resources */ = {isa = PBXBuildFile; fileRef = 59FDEA8A21E7D34E004E6ECE /* include */; };
+		8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB245FD987A9A8E52E1D8AF /* libz.tbd */; };
+		B7984AC980677C16F8E998FD /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB164F1FB0785CAA25B6083B /* libffi.a */; };
+		F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */; };
+		F1C34E76A4E46051B7271B05 /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944194AC56336A435AF240 /* libpython3.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libbz2.tbd; sourceTree = "<absolute>"; };
+		1D6058910D05DD3D006BFB54 /* itwewina-offline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "itwewina-offline.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		29B97316FDCFA39411CA2CEA /* runPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runPython.m; sourceTree = "<group>"; };
+		34944194AC56336A435AF240 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = ../dist/lib/libpython3.a; sourceTree = SOURCE_ROOT; };
+		49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _hfst_optimized_lookup.h; sourceTree = "<group>"; };
+		49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "hfst-optimized-lookup.cc"; sourceTree = "<group>"; };
+		49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _hfst_optimized_lookup.cpp; sourceTree = "<group>"; };
+		49B5A7F326A98AB000CC2B09 /* hfst-optimized-lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hfst-optimized-lookup.h"; sourceTree = "<group>"; };
+		49B5A7F626A9D2E500CC2B09 /* main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
+		49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "itwewina-offline-Bridging-Header.h"; sourceTree = "<group>"; };
+		49B5A7FC26A9D71900CC2B09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		49B5A80026A9DEF500CC2B09 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		49B5A80226A9EB3B00CC2B09 /* runPython.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runPython.h; sourceTree = "<group>"; };
+		49B5A80326AA1FFC00CC2B09 /* 
+
+ */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "
+
+"; sourceTree = "<group>"; };
+		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
+		49F43F1026BEF9350062D570 /* swiftpy_module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swiftpy_module.h; sourceTree = "<group>"; };
+		49F43F1126BEF9350062D570 /* swiftpy_module.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = swiftpy_module.c; sourceTree = "<group>"; };
+		49F8638926A89F1300D35B6F /* sync-python.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "sync-python.sh"; sourceTree = "<group>"; };
+		49F8638A26A8A43400D35B6F /* app_python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_python; sourceTree = "<group>"; };
+		59738AB41A8BB5D8001B2C0C /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
+		59738ABA1A8E19AA001B2C0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "itwewina-offline/Images.xcassets"; sourceTree = "<group>"; };
+		59FDEA8A21E7D34E004E6ECE /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include"; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "itwewina-offline-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		ACB245FD987A9A8E52E1D8AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libz.tbd; sourceTree = "<absolute>"; };
+		AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libsqlite3.tbd; sourceTree = "<absolute>"; };
+		AEA146F39D101A97EDB7F518 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../dist/lib/libcrypto.a; sourceTree = SOURCE_ROOT; };
+		C2254500A4F6F4915D412308 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../dist/lib/libssl.a; sourceTree = SOURCE_ROOT; };
+		FB164F1FB0785CAA25B6083B /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = ../dist/lib/libffi.a; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A334CFEA1B5A623FCFB45A9 /* libbz2.tbd in Frameworks */,
+				8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */,
+				49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */,
+				F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */,
+				40A14067AA7FF6DF31D8334B /* libcrypto.a in Frameworks */,
+				F1C34E76A4E46051B7271B05 /* libpython3.a in Frameworks */,
+				B7984AC980677C16F8E998FD /* libffi.a in Frameworks */,
+				49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */,
+				0E9046C29D7CDE45F879B03D /* libssl.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* itwewina-offline.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				49F8638926A89F1300D35B6F /* sync-python.sh */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				49B5A7F626A9D2E500CC2B09 /* main.xib */,
+				49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */,
+				29B97316FDCFA39411CA2CEA /* runPython.m */,
+				49F8638A26A8A43400D35B6F /* app_python */,
+				49B5A7FC26A9D71900CC2B09 /* ViewController.swift */,
+				49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */,
+				49B5A80226A9EB3B00CC2B09 /* runPython.h */,
+				49B5A80326AA1FFC00CC2B09 /* 
+
+ */,
+				49F43F1026BEF9350062D570 /* swiftpy_module.h */,
+				49F43F1126BEF9350062D570 /* swiftpy_module.c */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */,
+				59738ABA1A8E19AA001B2C0C /* Images.xcassets */,
+				59738AB41A8BB5D8001B2C0C /* lib */,
+				59FDEA8A21E7D34E004E6ECE /* include */,
+				8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				49B5A80026A9DEF500CC2B09 /* WebKit.framework */,
+				0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */,
+				ACB245FD987A9A8E52E1D8AF /* libz.tbd */,
+				AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */,
+				AEA146F39D101A97EDB7F518 /* libcrypto.a */,
+				34944194AC56336A435AF240 /* libpython3.a */,
+				FB164F1FB0785CAA25B6083B /* libffi.a */,
+				C2254500A4F6F4915D412308 /* libssl.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */ = {
+			isa = PBXGroup;
+			children = (
+				49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */,
+				49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */,
+				49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */,
+				49B5A7F326A98AB000CC2B09 /* hfst-optimized-lookup.h */,
+			);
+			path = "hfst-optimized-lookup";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* itwewina-offline */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "itwewina-offline" */;
+			buildPhases = (
+				49F8638826A89EE500D35B6F /* ShellScript */,
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "itwewina-offline";
+			packageProductDependencies = (
+				49F43F0C26BEF4B30062D570 /* HTMLString */,
+			);
+			productName = "itwewina-offline";
+			productReference = 1D6058910D05DD3D006BFB54 /* itwewina-offline.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				TargetAttributes = {
+					1D6058900D05DD3D006BFB54 = {
+						DevelopmentTeam = 7Y56ENZQGF;
+						LastSwiftMigration = 1250;
+					};
+				};
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "itwewina-offline" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			packageReferences = (
+				49F43F0B26BEF4B30062D570 /* XCRemoteSwiftPackageReference "HTMLString" */,
+			);
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* itwewina-offline */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49B5A80426AA1FFC00CC2B09 /* 
+
+ in Resources */,
+				49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */,
+				49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */,
+				49F8638B26A8A43400D35B6F /* app_python in Resources */,
+				59738AB51A8BB5D8001B2C0C /* lib in Resources */,
+				59FDEA8B21E7D34E004E6ECE /* include in Resources */,
+				59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		49F8638826A89EE500D35B6F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/bash;
+			shellScript = "${PROJECT_DIR}/sync-python\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				49F43F1226BEF9350062D570 /* swiftpy_module.c in Sources */,
+				49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */,
+				49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */,
+				49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */,
+				49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */,
+				1D60589B0D05DD56006BFB54 /* runPython.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 7Y56ENZQGF;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/frameworks";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"BUILD_HFSTOL_MAIN=0",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**";
+				INFOPLIST_FILE = "itwewina-offline-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/../kivy-ios/dist/lib",
+					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
+					"$(SRCROOT)/../dist/lib",
+				);
+				MARKETING_VERSION = 0.1;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.ualberta.altlab.itwewina-offline";
+				PRODUCT_NAME = "itwewina-offline";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "itwewina-offline-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 7Y56ENZQGF;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/frameworks";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "";
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "BUILD_HFSTOL_MAIN=0";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = (
+					"${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**",
+					"${PROJECT_DIR}/../kivy-ios/dist/include/common/sdl2",
+				);
+				INFOPLIST_FILE = "itwewina-offline-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/../kivy-ios/dist/lib",
+					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
+					"$(SRCROOT)/../dist/lib",
+				);
+				MARKETING_VERSION = 0.1;
+				OTHER_LDFLAGS = "-all_load";
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.ualberta.altlab.itwewina-offline";
+				PRODUCT_NAME = "itwewina-offline";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "itwewina-offline-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/include/";
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEAD_CODE_STRIPPING = NO;
+				ENABLE_BITCODE = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				USER_HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/include/";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "itwewina-offline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "itwewina-offline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		49F43F0B26BEF4B30062D570 /* XCRemoteSwiftPackageReference "HTMLString" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexisakers/HTMLString";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		49F43F0C26BEF4B30062D570 /* HTMLString */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49F43F0B26BEF4B30062D570 /* XCRemoteSwiftPackageReference "HTMLString" */;
+			productName = HTMLString;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

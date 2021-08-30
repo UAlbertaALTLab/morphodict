@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Normally you’d interact with the venv for the mobile app through
+# `kivy-toolchain pip`. But that requires a hostpython3 build which is
+# time-consuming, large, and not very relocatable. So use this hack
+# instead.
+
+DIR="$(dirname -- "${0}")"
+DIST_ROOT="${DIR}/kivy-ios/dist/root/python3"
+
+python3.9 -m pip install --isolated --prefix "${DIST_ROOT}" \
+	-r "${DIR}/mobile-requirements.txt"
