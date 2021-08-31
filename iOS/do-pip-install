@@ -1,5 +1,10 @@
 #!/bin/bash
 
+if [ -n "${PIPENV_ACTIVE}" ] || [ -n "${VIRTUAL_ENV}" ]; then
+    echo "This script must *NOT* be run inside a pipenv/virtualenv!" 1>&2
+    exit 1
+fi
+
 # Normally you’d interact with the venv for the mobile app through
 # `kivy-toolchain pip`. But that requires a hostpython3 build which is
 # time-consuming, large, and not very relocatable. So use this hack
@@ -8,5 +13,12 @@
 DIR="$(dirname -- "${0}")"
 DIST_ROOT="${DIR}/kivy-ios/dist/root/python3"
 
-python3.9 -m pip install --isolated --prefix "${DIST_ROOT}" \
-	-r "${DIR}/mobile-requirements.txt"
+# if some packages are still missing in the app, try upgrading pip:
+#
+#     python3.9 -m pip install -U pip
+
+python3.9 -m pip install \
+    --isolated \
+    --ignore-installed \
+    --prefix "${DIST_ROOT}" \
+    -r "${DIR}/mobile-requirements.txt"

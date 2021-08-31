@@ -157,6 +157,11 @@ dedicating time to making the project maintainable:
 
   - File names and directory structure have not been refined
 
+  - Often `black` will search for python files inside the installed
+    packages for the iOS app, making PyCharm extremely slow and breaking
+    submit hooks. Hopefully there are some configuration option that can
+    address this.
+
 ## Things that don’t work
 
   - affix search: uses library with C code, would need to figure out how to
@@ -167,3 +172,29 @@ dedicating time to making the project maintainable:
 
   - phrase translation: uses foma FSTs, which would require figuring out
     how to build foma for iOS
+
+## Future stuff
+
+Things that might be needed to make a minimal submittable app:
+
+  - Do we need to handle lifecycle stuff like cleanly stopping the django
+    server if the app is backgrounded?
+
+  - Since the core of the app is a web view, there are lots of things
+    there. See [the “Web Views” chapter of *Programming iOS
+    14*][webviews-chapter].
+
+      - The listening port might not be the best way to do it. Among other
+        things, it exposes the server and might cause conflict with other
+        apps. I believe the web view and the django app can talk to each
+        through a custom scheme instead.
+
+      - The web view should be explicitly limited to only display content
+        from the django server. Otherwise the web view will still try to
+        generate traffic, e.g., retrieving recordings
+
+      - However, valid external links within the application, e.g., links
+        to funding organizations, *should* work; I think we can make them
+        open in Safari instead, or at least a more obvious browser mode.
+
+[webviews-chapter]: https://learning.oreilly.com/library/view/programming-ios-14/9781492092162/part02ch07.html#chap_id24
