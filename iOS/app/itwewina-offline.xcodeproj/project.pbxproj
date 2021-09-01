@@ -11,6 +11,7 @@
 		1D60589B0D05DD56006BFB54 /* runPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* runPython.m */; };
 		2A334CFEA1B5A623FCFB45A9 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */; };
 		40A14067AA7FF6DF31D8334B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA146F39D101A97EDB7F518 /* libcrypto.a */; };
+		49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49163B0826E03AC100CC79FD /* Launch Screen.storyboard */; };
 		49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */; };
 		49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */; };
 		49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A7F626A9D2E500CC2B09 /* main.xib */; };
@@ -35,6 +36,7 @@
 		1D6058910D05DD3D006BFB54 /* itwewina-offline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "itwewina-offline.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* runPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runPython.m; sourceTree = "<group>"; };
 		34944194AC56336A435AF240 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = ../dist/lib/libpython3.a; sourceTree = SOURCE_ROOT; };
+		49163B0826E03AC100CC79FD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _hfst_optimized_lookup.h; sourceTree = "<group>"; };
 		49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "hfst-optimized-lookup.cc"; sourceTree = "<group>"; };
 		49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _hfst_optimized_lookup.cpp; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				49163B0826E03AC100CC79FD /* Launch Screen.storyboard */,
 				49B5A7F626A9D2E500CC2B09 /* main.xib */,
 				49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */,
 				29B97316FDCFA39411CA2CEA /* runPython.m */,
@@ -234,6 +237,7 @@
 				59738AB51A8BB5D8001B2C0C /* lib in Resources */,
 				59FDEA8B21E7D34E004E6ECE /* include in Resources */,
 				59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */,
+				49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
