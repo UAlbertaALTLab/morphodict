@@ -117,6 +117,43 @@ installed.
     to switch the system default developer tools back to ones that support
     iOS development.
 
+# How the app works
+
+The `kivy-toolchain` command can create a new Xcode starter project for
+you. It’s intended for using with kivy, which runs on top of Python. So it
+includes Python, but because it expects you to use the kivy framework for
+all the GUI stuff, it leaves out all the typical boilerplate UI code you’d
+have in a normal IOS app. This generated code is also written in
+Objective-C instead of the newer Swift.
+
+The current demo was created by creating default starter projects with both
+`kivy-toolchain` and the standard Xcode process, and using the
+kivy-generated project with some of the kivy-specific stuff removed and the
+some of standard Xcode stuff added in.
+
+On startup, the iOS app does the following:
+
+  - The boilerplate kivy-ios Objective-C code calls some of our custom
+    swift code:
+
+      - That swift code creates a writable user directory to hold the database
+
+      - It then copies the default database file from the app bundle to
+        the writable user directory, if it’s already there
+
+  - There’s currently also some custom Objective-C code in there to
+    register our custom modules with Python before the Python interpreter
+    starts running.
+
+  - The kivy boilerplate code starts running python in a background thread,
+    and runs our `mobile.py` python code.
+
+  - `mobile.py` does `django.setup()`, then calls `runserver`
+
+  - On the main thread, normal iOS code written in Swift takes over to
+    display a GUI: a web view. When django is ready, it sends a signal to
+    the swift code which loads the internal django server’s home page.
+
 # Hacks to get the demo working that are broken / wrong / embarrassing
 
 These are things that would typically be addressed in due course, if
