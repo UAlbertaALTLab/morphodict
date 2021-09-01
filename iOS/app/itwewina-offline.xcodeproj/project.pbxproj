@@ -17,11 +17,6 @@
 		49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FC26A9D71900CC2B09 /* ViewController.swift */; };
 		49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */; };
 		49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B5A80026A9DEF500CC2B09 /* WebKit.framework */; };
-		49B5A80426AA1FFC00CC2B09 /* 
-
- in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A80326AA1FFC00CC2B09 /* 
-
- */; };
 		49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */; };
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
 		49F43F1226BEF9350062D570 /* swiftpy_module.c in Sources */ = {isa = PBXBuildFile; fileRef = 49F43F1126BEF9350062D570 /* swiftpy_module.c */; };
@@ -50,11 +45,6 @@
 		49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B5A80026A9DEF500CC2B09 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		49B5A80226A9EB3B00CC2B09 /* runPython.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runPython.h; sourceTree = "<group>"; };
-		49B5A80326AA1FFC00CC2B09 /* 
-
- */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "
-
-"; sourceTree = "<group>"; };
 		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
 		49F43F1026BEF9350062D570 /* swiftpy_module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swiftpy_module.h; sourceTree = "<group>"; };
 		49F43F1126BEF9350062D570 /* swiftpy_module.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = swiftpy_module.c; sourceTree = "<group>"; };
@@ -130,9 +120,6 @@
 				49B5A7FC26A9D71900CC2B09 /* ViewController.swift */,
 				49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */,
 				49B5A80226A9EB3B00CC2B09 /* runPython.h */,
-				49B5A80326AA1FFC00CC2B09 /* 
-
- */,
 				49F43F1026BEF9350062D570 /* swiftpy_module.h */,
 				49F43F1126BEF9350062D570 /* swiftpy_module.c */,
 			);
@@ -241,9 +228,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B5A80426AA1FFC00CC2B09 /* 
-
- in Resources */,
 				49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */,
 				49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */,
 				49F8638B26A8A43400D35B6F /* app_python in Resources */,
