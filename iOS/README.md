@@ -159,6 +159,11 @@ On startup, the iOS app does the following:
 These are things that would typically be addressed in due course, if
 dedicating time to making the project maintainable:
 
+  - There’s currently no lifecycle stuff like cleanly stopping the django
+    server if the app is backgrounded. So if you start the app, use it a
+    bit, then come back to it a few hours later … nothing works. You can
+    kill the app and re-start it and it will work fine again though.
+
   - Instead of being configurable settings to enable/disable features,
     a bunch of code is just *commented out* to disable it for mobile.
 
@@ -214,9 +219,6 @@ dedicating time to making the project maintainable:
 
 Things that might be needed to make a minimal submittable app:
 
-  - Do we need to handle lifecycle stuff like cleanly stopping the django
-    server if the app is backgrounded?
-
   - Since the core of the app is a web view, there are lots of things
     there. See [the “Web Views” chapter of *Programming iOS
     14*][webviews-chapter].
@@ -235,3 +237,35 @@ Things that might be needed to make a minimal submittable app:
         open in Safari instead, or at least a more obvious browser mode.
 
 [webviews-chapter]: https://learning.oreilly.com/library/view/programming-ios-14/9781492092162/part02ch07.html#chap_id24
+
+# Submitting the app
+
+To do this, you’ll need an organization-specific “iPhone Distribution”
+certificate, with the private key, in your keychain. Get it from someone
+who already has it. They can go into Keychain Access → My Certificates,
+right-click it, and export.
+
+ 1. First, to upload a new build, you’ll need to increment the version
+    and/or build number. Select the project in the project navigator; click
+    the target, and then under General, update the version and/or build
+    numbers accordingly.
+
+ 2. Make sure the selected device is “Any iOS Device” and not a specific
+    device or simulator
+
+ 3. Do Build → Archive
+
+ 4. Follow the steps, accepting the defaults. Try to have Xcode do the
+    signing automatically, but when it likely fails, choose the “Manually
+    manage signing” option, click the Download Profile option, and choose
+    the “itwêwina offline” profile.
+
+    For more about certificate types, provisioning profiles, &c., see the
+    “Running on a device” section of the “Life Cycle of a Project” chapter
+    of
+    [Neuberg](https://learning.oreilly.com/library/view/ios-14-programming/9781492092087/part02ch04.html#idm45495341795176).
+
+ 5. In App Store Connect, find the app, click on the TestFlight tab, and
+    once the new version has finished ‘Processing’, click on other stuff to
+    make it to the active version.
+
