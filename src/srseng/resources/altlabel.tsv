@@ -1,52 +1,52 @@
-TAG	LINGUISTIC	PLAIN ENGLISH	TSUUT'INA
-V	Verb	Action word	?
-I	Intransitive	Someone does something	?
-Im	Impersonal	Something happens	?
-T	Transitive	Someone acts on someone	?
-D	Ditransitive	Someone gives someone something	?
-E	Experiential	?	?
-O	?	?	?
-Ipfv	Imperfective	Unfinished / Non-past	?
-Pfv	Perfective	Finished / Past	?
-Prog	Progressive	On-going	?
+TAG	LINGUISTIC	PLAIN ENGLISH	TSUUT'INA	
+V	Verb	Action word	?	
+I	Intransitive	Someone does something	?	
+Im	Impersonal	Something happens	?	
+T	Transitive	Someone acts on someone	?	
+D	Ditransitive	Someone gives someone something	?	
+E	Experiential	?	?	
+O	?	?	?	
+Ipfv	Imperfective	Unfinished / Non-past	?	
+Pfv	Perfective	Finished / Past	?	
+Prog	Progressive	On-going	?	
 Pot	Potential	?		?
-Rep	Repetitive	Again and again	?
-SbjSg1	Subject: 1st person singular	I	?
-SbjSg2
-SbjSg3
-SbjSg4
-SbjPl1
-SbjPl2
-SbjPl3
-SbjPl4
-DObjSg1
-DObjSg2
-DObjSg3
-DObjSg4
-DObjPl1
-DObjPl2
-DObjPl3
-DObjPl4
-DObjAreal
-DObjRefl
-DObjRecip
-DObjGiven
-DObjEmphatic
-IObjSg1
-IObjSg2
-IObjSg3
-IObjSg4
-IObjPl1
-IObjPl2
-IObjPl3
-IObjPl4
-IObjAreal
-IObjRefl
-IObjRecip
-IObjGiven
-Distr
-Nomz
-NomzPl
-EN/gu
-EN/la
-EN/gula
+Rep	Repetitive	Again and again	?	
+SbjSg1	Subject: 1st person singular	I	?	
+SbjSg2				
+SbjSg3				
+SbjSg4				
+SbjPl1				
+SbjPl2				
+SbjPl3				
+SbjPl4				
+DObjSg1				
+DObjSg2				
+DObjSg3				
+DObjSg4				
+DObjPl1				
+DObjPl2				
+DObjPl3				
+DObjPl4				
+DObjAreal				
+DObjRefl				
+DObjRecip				
+DObjGiven				
+DObjEmphatic				
+IObjSg1				
+IObjSg2				
+IObjSg3				
+IObjSg4				
+IObjPl1				
+IObjPl2				
+IObjPl3				
+IObjPl4				
+IObjAreal				
+IObjRefl				
+IObjRecip				
+IObjGiven				
+Distr				
+Nomz				
+NomzPl				
+EN/gu				
+EN/la				
+EN/gula				
