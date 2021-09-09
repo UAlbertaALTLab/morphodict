@@ -2,14 +2,18 @@ import HTMLString
 import os
 import UIKit
 
-let log = OSLog(subsystem: "morphodict", category: "testing")
+let log = OSLog(subsystem: "morphodict", category: "default")
 
-var appDelegate: AppDelegate?;
+var appDelegate: AppDelegate?
+var serverHasBeenPreviouslyStarted = false
 
 func serveCallback() {
-    DispatchQueue.main.async {
-        appDelegate?.viewController?.goHome()
+    if !serverHasBeenPreviouslyStarted {
+        DispatchQueue.main.async {
+            appDelegate?.viewController?.goHome()
+        }
     }
+    serverHasBeenPreviouslyStarted = true
 }
 
 @main
@@ -25,10 +29,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
 
-        swiftpy_register_callback("serve", serveCallback)
+        morphodict_register_callback("serve", serveCallback)
 
-        DispatchQueue.global(qos: .userInitiated).async {
-            swiftpy_register_callback("hello") { print("Hello from swift") }
+        let pyq = DispatchQueue(
+            label: "python server", qos: .userInitiated, attributes: [],
+            autoreleaseFrequency: .inherit, target: .none)
+        pyq.async {
+            morphodict_register_callback("hello") { print("Hello from swift") }
 
             do {
                 try self.setupDatabase()
@@ -38,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
             runPython()
+            os_log("runPython finished", log: log)
         }
 
         return true
@@ -52,7 +60,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             os_log("Copying database to %@", log: log, dbFile.description)
 
             let bundle = Bundle(for: Self.self)
-            let includedDb = bundle.url(forResource: "db-mobile", withExtension: "sqlite3")!
+            let includedDb = bundle.url(
+                forResource: "db-mobile", withExtension: "sqlite3")!
             try fm.copyItem(at: includedDb, to: dbFile)
         }
         setenv("DATABASE_URL", "sqlite://\(dbFile.path)", 1)
@@ -62,11 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Create `$APPLICATION_SUPPORT_DIR/db`
      */
     func createDbDirectory() throws -> URL {
-        let applicationSupportDirectory = try fm.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        let applicationSupportDirectory = try fm.url(
+            for: .applicationSupportDirectory, in: .userDomainMask,
+            appropriateFor: nil, create: true)
         var dbDirectory = applicationSupportDirectory.appendingPathComponent("db", isDirectory: true)
         if !fm.fileExists(atPath: dbDirectory.path) {
             os_log("Creating db directory %@", log: log, dbDirectory.description)
-            try fm.createDirectory(at: dbDirectory, withIntermediateDirectories: false, attributes: nil)
+            try fm.createDirectory(
+                at: dbDirectory, withIntermediateDirectories: false,
+                attributes: nil)
         }
 
         // don’t add the app’s database to user backups
@@ -104,6 +117,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
               </body>
             </html>
             """, baseURL: nil)
+        }
+    }
+
+    func applicationDidEnterBackground(_: UIApplication) {
+        morphodict_stop_server()
+    }
+
+    func applicationWillEnterForeground(_: UIApplication) {
+        if serverHasBeenPreviouslyStarted {
+            morphodict_resume_server()
         }
     }
 }
