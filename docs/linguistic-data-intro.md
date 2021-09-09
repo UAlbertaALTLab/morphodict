@@ -60,6 +60,9 @@ The specific kinds of required linguistic data are:
     They also confusingly map Cree word class names and give definitions
     for preverbs sometimes too, but we need to do something different and
     better for other languages.
+    
+    The relabelling file is located at `sssttt/resources/altlabel.tsv`. This file is 
+    language specific.
 
     For example, the Plains Cree FST tag `+1Sg` can be mapped to:
 
