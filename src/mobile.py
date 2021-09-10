@@ -1,6 +1,7 @@
 import os
 import sys
 import threading
+import traceback
 from io import IOBase
 
 import django
@@ -30,16 +31,25 @@ def setup_logging():
     sys.stdout = Log("pystdout")
     sys.stderr = Log("pystderr")
 
+    print("multiline\nlogging\ntest")
+
 
 setup_logging()
 
+try:
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkeng.site.settings")
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkeng.site.settings")
+    # Save a bit of memory by giving runserver threads 1MiB stacks instead of
+    # default 8MiB.
+    threading.stack_size(1024 * 1024)
 
-# Save a bit of memory by giving runserver threads 1MiB stacks instead of
-# default 8MiB.
-threading.stack_size(1024 * 1024)
+    django.setup()
 
-django.setup()
+    call_command("runserver", use_reloader=False, addrport="4828", mobile_trigger=True)
 
-call_command("runserver", use_reloader=False, addrport="4828", mobile_trigger=True)
+except BaseException:
+    print("Caught fatal error:", file=sys.stderr)
+    traceback.print_exc()
+    sys.stdout.flush()
+    sys.stderr.flush()
+    raise
