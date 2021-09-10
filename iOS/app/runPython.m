@@ -67,12 +67,12 @@ int runPython() {
 
     /* Add modules, before Py_Initialize */
     if (PyImport_AppendInittab("_hfst_optimized_lookup", PyInit__hfst_optimized_lookup) == -1) {
-        NSLog(@"Error: could not extend in-built modules table");
+        NSLog(@"Error: could not add module");
         exit(1);
     }
 
     if (PyImport_AppendInittab("morphodict_mobile", PyInit_morphodict_mobile) == -1) {
-        NSLog(@"Error: could not extend in-built modules table\n");
+        NSLog(@"Error: could not add module");
         exit(1);
     }
 
@@ -84,11 +84,6 @@ int runPython() {
 
     NSLog(@"Initializing python");
     Py_Initialize();
-
-//    wchar_t** python_argv = PyMem_RawMalloc(sizeof(wchar_t *) *argc);
-//    for (int i = 0; i < argc; i++)
-//        python_argv[i] = Py_DecodeLocale(argv[i], NULL);
-//    PySys_SetArgv(argc, python_argv);
 
     // Add an importer for builtin modules
     load_custom_builtin_importer();
