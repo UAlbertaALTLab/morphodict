@@ -77,8 +77,6 @@ static void run_py_noargs_func(const char *module_name,
   PyObject *pModuleName, *pModule, *pFunc;
 
   pModuleName = PyUnicode_FromString(module_name);
-  PyObject_Print(pModuleName, stdout, 0);
-
   pModule = PyImport_Import(pModuleName);
   Py_DECREF(pModuleName);
 

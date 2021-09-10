@@ -44,11 +44,25 @@ int runPython() {
     putenv("KIVY_NO_CONSOLELOG=1");
     #endif
 
+    NSURL * documentDir = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSURL * stdoutLogFileUrl = [documentDir URLByAppendingPathComponent: @"stdout.txt"];
+    NSURL * stderrLogFileUrl = [documentDir URLByAppendingPathComponent: @"stderr.txt"];
+
+    fflush(stdout);
+    freopen([[stdoutLogFileUrl path] UTF8String], "a", stdout);
+    setvbuf(stdout, NULL, _IONBF, 0);
+    fflush(stderr);
+    freopen([[stderrLogFileUrl path] UTF8String], "a", stderr);
+    setvbuf(stderr, NULL, _IONBF, 0);
+
+    fprintf(stdout, "\n\n= %s: hello from stdout\n", [[[NSDate date] description] UTF8String]);
+    fprintf(stderr, "\n\n= %s: hello from stderr\n", [[[NSDate date] description] UTF8String]);
+
     // Export orientation preferences for Kivy
     export_orientation();
 
     NSString * resourcePath = [[NSBundle mainBundle] resourcePath];
-    NSString *python_home = [NSString stringWithFormat:@"PYTHONHOME=%@", resourcePath, nil];
+    NSString * python_home = [NSString stringWithFormat:@"PYTHONHOME=%@", resourcePath, nil];
     putenv((char *)[python_home UTF8String]);
 
     /* Add modules, before Py_Initialize */
