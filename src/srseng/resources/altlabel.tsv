@@ -33,7 +33,7 @@ DObjRecip	Direct Object: recipient	→ ?	→ ?
 DObjGiven	Direct Object: explicitly given	→ ?	→ ?	
 DObjEmphatic	Direct Object: emphatic	→ ?	→ ?	
 IObjSg1	Direct Object: 1st person singular	→ to me	→ ?	
-IObjSg2	Direct Object: 2nd person singular  → to you (one)	→ ?	
+IObjSg2	Direct Object: 2nd person singular	→ to you (one)	→ ?	
 IObjSg3	Direct Object: 3rd person singular	→ to him/her/it	→ ?	
 IObjSg4	Direct Object: 4th person singular	→ to someone	→ ?	
 IObjPl1	Direct Object: 1st person plural	→ to us	→ ?	
