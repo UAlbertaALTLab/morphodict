@@ -9,7 +9,7 @@ O	Oblique Object	?	?
 Ipfv	Imperfective	Unfinished / Non-past	?	
 Pfv	Perfective	Finished / Past	?	
 Prog	Progressive	On-going	?	
-Pot	Potential	?		?
+Pot	Potential	?	?	
 Rep	Repetitive	Again and again	?	
 SbjSg1	Subject: 1st person singular	I	?	
 SbjSg2	Subject: 2nd person singular	you (one)	?	
@@ -28,7 +28,7 @@ DObjPl2	Direct Object: 2nd person plural	→ you (all)	→ ?
 DObjPl3	Direct Object: 3rd person plural	→ them	→ ?	
 DObjPl4	Direct Object: 4th person plural	→ some people	→ ?	
 DObjAreal	Direct Object: areal	→ ?	→ ?	
-DObjRefl	Direct Object: reflexive	oneself/ves	→ ?	
+DObjRefl	Direct Object: reflexive	→ oneself/ves	→ ?	
 DObjRecip	Direct Object: recipient	→ ?	→ ?	
 DObjGiven	Direct Object: explicitly given	→ ?	→ ?	
 DObjEmphatic	Direct Object: emphatic	→ ?	→ ?	
