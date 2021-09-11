@@ -4,49 +4,50 @@ I	Intransitive	Someone does something	?
 Im	Impersonal	Something happens	?	
 T	Transitive	Someone acts on someone	?	
 D	Ditransitive	Someone gives someone something	?	
-E	Experiential	?	?	
-O	?	?	?	
+E	Experiential Object	?	?	
+O	Oblique Object	?	?	
 Ipfv	Imperfective	Unfinished / Non-past	?	
 Pfv	Perfective	Finished / Past	?	
 Prog	Progressive	On-going	?	
 Pot	Potential	?		?
 Rep	Repetitive	Again and again	?	
 SbjSg1	Subject: 1st person singular	I	?	
-SbjSg2				
-SbjSg3				
-SbjSg4				
-SbjPl1				
-SbjPl2				
-SbjPl3				
-SbjPl4				
-DObjSg1				
-DObjSg2				
-DObjSg3				
-DObjSg4				
-DObjPl1				
-DObjPl2				
-DObjPl3				
-DObjPl4				
-DObjAreal				
-DObjRefl				
-DObjRecip				
-DObjGiven				
-DObjEmphatic				
-IObjSg1				
-IObjSg2				
-IObjSg3				
-IObjSg4				
-IObjPl1				
-IObjPl2				
-IObjPl3				
-IObjPl4				
-IObjAreal				
-IObjRefl				
-IObjRecip				
-IObjGiven				
-Distr				
-Nomz				
-NomzPl				
-EN/gu				
-EN/la				
-EN/gula				
+SbjSg2	Subject: 2nd person singular	you (one)	?			
+SbjSg3	Subject: 3rd person singular	he/she/it	?	
+SbjSg4	Subject: 4th person singular	someone	?	
+SbjPl1	Subject: 1st person plural	we	?	
+SbjPl2	Subject: 2nd person plural	you (all)	?	
+SbjPl3	Subject: 3rd person plural	they	?	
+SbjPl4	Subject: 4th person plural	some people	?	
+DObjSg1	Direct Object: 1st person singular	→ me	?	
+DObjSg2	Direct Object: 2nd person singular  → you (one)	?	
+DObjSg3	Direct Object: 3rd person singular	→ him/her/it		
+DObjSg4	Direct Object: 4th person singular	→ someone		
+DObjPl1	Direct Object: 1st person plural	→ us		
+DObjPl2	Direct Object: 2nd person plural	→ you (all)		
+DObjPl3	Direct Object: 3rd person plural	→ them		
+DObjPl4	Direct Object: 4th person plural	→ some people		
+DObjAreal	Direct Object: areal	→ ?	→ ?	
+DObjRefl	Direct Object: reflexive	oneself/ves	→ ?	
+DObjRecip	Direct Object: recipient	→ ?	→ ?
+DObjGiven	Direct Object: explicitly given	→ ?	→ ?	
+DObjEmphatic	Direct Object: emphatic	→ ?	→ ?	
+IObjSg1	Direct Object: 1st person singular	→ to me	→ ?	
+IObjSg2	Direct Object: 2nd person singular  → to you (one)	→ ?	
+IObjSg3	Direct Object: 3rd person singular	→ to him/her/it	→ ?	
+IObjSg4	Direct Object: 4th person singular	→ to someone	→ ?	
+IObjPl1	Direct Object: 1st person plural	→ to us	→ ?	
+IObjPl2	Direct Object: 2nd person plural	→ to you (all)	→ ?	
+IObjPl3	Direct Object: 3rd person plural	→ to them	→ ?	
+IObjPl4	Direct Object: 4th person plural	→ to some people	→ ?	
+IObjAreal	Direct Object: areal	→ to ?	→ ?	
+IObjRefl	Direct Object: reflexive	→ oneself/ves	→ ?	
+IObjRecip	Direct Object: recipient	→ to ?	→ ?
+IObjGiven	Direct Object: explicitly given	→ to ?	→ ?	
+IObjEmphatic	Direct Object: emphatic	→ to ?	→ ?	
+Distr	Distributive each and every one	?	?	
+Nomz	Nominalized	?	?	
+NomzPl	Nominalized plural	?	?	
+EN/gu	Enclitic: gu	?	?
+EN/la	Enclitic: la	?	?	
+EN/gula	Enclitic: gula	?	?	
