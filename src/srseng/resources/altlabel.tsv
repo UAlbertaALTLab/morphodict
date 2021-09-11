@@ -19,14 +19,14 @@ SbjPl1	Subject: 1st person plural	we	?
 SbjPl2	Subject: 2nd person plural	you (all)	?	
 SbjPl3	Subject: 3rd person plural	they	?	
 SbjPl4	Subject: 4th person plural	some people	?	
-DObjSg1	Direct Object: 1st person singular	→ me	?	
-DObjSg2	Direct Object: 2nd person singular  → you (one)	?	
-DObjSg3	Direct Object: 3rd person singular	→ him/her/it		
-DObjSg4	Direct Object: 4th person singular	→ someone		
-DObjPl1	Direct Object: 1st person plural	→ us		
-DObjPl2	Direct Object: 2nd person plural	→ you (all)		
-DObjPl3	Direct Object: 3rd person plural	→ them		
-DObjPl4	Direct Object: 4th person plural	→ some people		
+DObjSg1	Direct Object: 1st person singular	→ me	→ ?	
+DObjSg2	Direct Object: 2nd person singular	→ you (one)	→ ?	
+DObjSg3	Direct Object: 3rd person singular	→ him/her/it	→ ?	
+DObjSg4	Direct Object: 4th person singular	→ someone	→ ?	
+DObjPl1	Direct Object: 1st person plural	→ us	→ ?	
+DObjPl2	Direct Object: 2nd person plural	→ you (all)	→ ?	
+DObjPl3	Direct Object: 3rd person plural	→ them	→ ?	
+DObjPl4	Direct Object: 4th person plural	→ some people	→ ?	
 DObjAreal	Direct Object: areal	→ ?	→ ?	
 DObjRefl	Direct Object: reflexive	oneself/ves	→ ?	
 DObjRecip	Direct Object: recipient	→ ?	→ ?
