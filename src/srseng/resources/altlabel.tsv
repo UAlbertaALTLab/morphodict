@@ -13,18 +13,18 @@ Pot	Potential	Possibly	?
 Rep	Repetitive	Again and again	?	
 Ipfv+Rep	Imperfective Repetitive	Non-past + Again and again	?	
 Pfv+Rep	Perfective Repetitive	Past + Again and again	?	
-Sg1	Subject: 1st person singular	I	síní	
-Sg2	Subject: 2nd person singular	you (one)	níní	
-Sg3	Subject: 3rd person singular	he/she/it	idíní	
-Sg4	Subject: 4th person singular	someone (unspec./holy)	gúní	
-Pl1	Subject: 1st person plural	we	niihíní	
-Pl2	Subject: 2nd person plural	you (all)	nahíní	
-Pl3	Subject: 3rd person plural	they	igidíní	
-Pl4	Subject: 4th person plural	some people	?	
-Pl1+Distr	Subject: distributive 1st person plural	each and every one of us	niihíní	
-Pl2+Distr	Subject: distributive 2nd person plural	each and every one of you (all)	nahíní	
-Pl3+Distr	Subject: distributive 3rd person plural	each and every one of them	igidíní	
-Pl4+Distr	Subject: distributive 4th person plural	each and every one of some people	?	
+1Sg	Subject: 1st person singular	I	síní	
+2Sg	Subject: 2nd person singular	you (one)	níní	
+3Sg	Subject: 3rd person singular	he/she/it	idíní	
+4Sg	Subject: 4th person singular	someone (unspec./holy)	gúní	
+1Pl	Subject: 1st person plural	we	niihíní	
+2Pl	Subject: 2nd person plural	you (all)	nahíní	
+3Pl3	Subject: 3rd person plural	they	igidíní	
+4Pl	Subject: 4th person plural	some people	?	
+1Pl+Distr	Subject: distributive 1st person plural	each and every one of us	niihíní	
+2Pl+Distr	Subject: distributive 2nd person plural	each and every one of you (all)	nahíní	
+3Pl+Distr	Subject: distributive 3rd person plural	each and every one of them	igidíní	
+4Pl+Distr	Subject: distributive 4th person plural	each and every one of some people	?	
 SbjSg1	Subject: 1st person singular	I	síní	
 SbjSg2	Subject: 2nd person singular	you (one)	níní	
 SbjSg3	Subject: 3rd person singular	he/she/it	idíní	
