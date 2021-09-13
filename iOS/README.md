@@ -117,6 +117,17 @@ installed.
     to switch the system default developer tools back to ones that support
     iOS development.
 
+  - Help! The app works fine when deployed from Xcode, but not through
+    TestFlight!
+
+    It may not cover *every* possible case, but at least once, [using a
+    release build instead of a debug one][TestFlight-troubleshooting] for
+    running the application has reproduced the issue, allowing both quick
+    iteration on the code and the ability to stop and breakpoints to
+    investigate and resolve the issue.
+
+[TestFlight-troubleshooting]: https://stackoverflow.com/questions/55759806/how-can-i-attach-to-released-in-the-testflight-application-to-debug
+
 # How the app works
 
 The `kivy-toolchain` command can create a new Xcode starter project for

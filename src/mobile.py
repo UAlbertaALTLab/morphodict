@@ -1,7 +1,6 @@
 import os
 import sys
 import threading
-import traceback
 from io import IOBase
 
 import django
@@ -19,20 +18,17 @@ def setup_logging():
     """
 
     class Log(IOBase):
-        def __init__(self, name, orig):
+        def __init__(self, name):
             self.name = name
-            self.orig = orig
 
         def write(self, s):
-            self.orig.write(s)
-
             if not isinstance(s, str):
                 s = str(s)
             if s.strip():
                 morphodict_mobile.log(self.name + ": " + s)
 
-    sys.stdout = Log("pystdout", sys.stdout)
-    sys.stderr = Log("pystderr", sys.stderr)
+    sys.stdout = Log("pystdout")
+    sys.stderr = Log("pystderr")
 
 
 setup_logging()
