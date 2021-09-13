@@ -1,7 +1,403 @@
-	| Column
+		| Ipfv	| Pfv
+_ 1Sg	_ 1SgO	${lemma}+V+I+Ipfv+SbjSg1+DObjSg1	${lemma}+V+I+Ipfv+SbjSg1+DObjSg1
+_ 1Sg	_ 2SgO	${lemma}+V+I+Ipfv+SbjSg1+DObjSg2	${lemma}+V+I+Ipfv+SbjSg1+DObjSg2
+_ 1Sg	_ 3SgO	${lemma}+V+I+Ipfv+SbjSg1+DObjSg3	${lemma}+V+I+Ipfv+SbjSg1+DObjSg3
+_ 1Sg	_ 4SgO	${lemma}+V+I+Ipfv+SbjSg1+DObjSg4	${lemma}+V+I+Ipfv+SbjSg1+DObjSg4
+_ 1Sg	_ 1PlO	${lemma}+V+I+Ipfv+SbjSg1+DObjPl1	${lemma}+V+I+Ipfv+SbjSg1+DObjPl1
+_ 1Sg	_ 2PlO	${lemma}+V+I+Ipfv+SbjSg1+DObjPl2	${lemma}+V+I+Ipfv+SbjSg1+DObjPl2
+_ 1Sg	_ 3PlO	${lemma}+V+I+Ipfv+SbjSg1+DObjPl3	${lemma}+V+I+Ipfv+SbjSg1+DObjPl3
+_ 1Sg	_ 4PlO	${lemma}+V+I+Ipfv+SbjSg1+DObjPl4	${lemma}+V+I+Ipfv+SbjSg1+DObjPl4
 
-_ SbjSg1+DObjSg2	${lemma}+V+T+Ipfv+SbjSg1+DObjSg2
-_ SbjSg1+DObjSg3	${lemma}+V+T+Ipfv+SbjSg1+DObjSg3
-_ SbjSg1+DObjSg4	${lemma}+V+T+Ipfv+SbjSg1+DObjSg4
-_ SbjSg1+DObjPl2	${lemma}+V+T+Ipfv+SbjSg1+DObjPl2
-_ SbjSg1+DObjPl3	${lemma}+V+T+Ipfv+SbjSg1+DObjPl3
+_ 2Sg	_ 1SgO	${lemma}+V+I+Ipfv+SbjSg2+DObjSg1	${lemma}+V+I+Ipfv+SbjSg2+DObjSg1
+_ 2Sg	_ 2SgO	${lemma}+V+I+Ipfv+SbjSg2+DObjSg2	${lemma}+V+I+Ipfv+SbjSg2+DObjSg2
+_ 2Sg	_ 3SgO	${lemma}+V+I+Ipfv+SbjSg2+DObjSg3	${lemma}+V+I+Ipfv+SbjSg2+DObjSg3
+_ 2Sg	_ 4SgO	${lemma}+V+I+Ipfv+SbjSg2+DObjSg4	${lemma}+V+I+Ipfv+SbjSg2+DObjSg4
+_ 2Sg	_ 1PlO	${lemma}+V+I+Ipfv+SbjSg2+DObjPl1	${lemma}+V+I+Ipfv+SbjSg2+DObjPl1
+_ 2Sg	_ 2PlO	${lemma}+V+I+Ipfv+SbjSg2+DObjPl2	${lemma}+V+I+Ipfv+SbjSg2+DObjPl2
+_ 2Sg	_ 3PlO	${lemma}+V+I+Ipfv+SbjSg2+DObjPl3	${lemma}+V+I+Ipfv+SbjSg2+DObjPl3
+_ 2Sg	_ 4PlO	${lemma}+V+I+Ipfv+SbjSg2+DObjPl4	${lemma}+V+I+Ipfv+SbjSg2+DObjPl4
+
+_ 3Sg	_ 1SgO	${lemma}+V+I+Ipfv+SbjSg3+DObjSg1	${lemma}+V+I+Ipfv+SbjSg3+DObjSg1
+_ 3Sg	_ 2SgO	${lemma}+V+I+Ipfv+SbjSg3+DObjSg2	${lemma}+V+I+Ipfv+SbjSg3+DObjSg2
+_ 3Sg	_ 3SgO	${lemma}+V+I+Ipfv+SbjSg3+DObjSg3	${lemma}+V+I+Ipfv+SbjSg3+DObjSg3
+_ 3Sg	_ 4SgO	${lemma}+V+I+Ipfv+SbjSg3+DObjSg4	${lemma}+V+I+Ipfv+SbjSg3+DObjSg4
+_ 3Sg	_ 1PlO	${lemma}+V+I+Ipfv+SbjSg3+DObjPl1	${lemma}+V+I+Ipfv+SbjSg3+DObjPl1
+_ 3Sg	_ 2PlO	${lemma}+V+I+Ipfv+SbjSg3+DObjPl2	${lemma}+V+I+Ipfv+SbjSg3+DObjPl2
+_ 3Sg	_ 3PlO	${lemma}+V+I+Ipfv+SbjSg3+DObjPl3	${lemma}+V+I+Ipfv+SbjSg3+DObjPl3
+_ 3Sg	_ 4PlO	${lemma}+V+I+Ipfv+SbjSg3+DObjPl4	${lemma}+V+I+Ipfv+SbjSg3+DObjPl4
+
+_ 1Pl	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl1+DObjSg1	${lemma}+V+I+Ipfv+SbjPl1+DObjSg1
+_ 1Pl	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl1+DObjSg2	${lemma}+V+I+Ipfv+SbjPl1+DObjSg2
+_ 1Pl	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl1+DObjSg3	${lemma}+V+I+Ipfv+SbjPl1+DObjSg3
+_ 1Pl	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl1+DObjSg4	${lemma}+V+I+Ipfv+SbjPl1+DObjSg4
+_ 1Pl	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl1+DObjPl1	${lemma}+V+I+Ipfv+SbjPl1+DObjPl1
+_ 1Pl	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl1+DObjPl2	${lemma}+V+I+Ipfv+SbjPl1+DObjPl2
+_ 1Pl	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl1+DObjPl3	${lemma}+V+I+Ipfv+SbjPl1+DObjPl3
+_ 1Pl	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl1+DObjPl4	${lemma}+V+I+Ipfv+SbjPl1+DObjPl4
+
+_ 2Pl	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl2+DObjSg1	${lemma}+V+I+Ipfv+SbjPl2+DObjSg1
+_ 2Pl	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl2+DObjSg2	${lemma}+V+I+Ipfv+SbjPl2+DObjSg2
+_ 2Pl	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl2+DObjSg3	${lemma}+V+I+Ipfv+SbjPl2+DObjSg3
+_ 2Pl	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl2+DObjSg4	${lemma}+V+I+Ipfv+SbjPl2+DObjSg4
+_ 2Pl	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl2+DObjPl1	${lemma}+V+I+Ipfv+SbjPl2+DObjPl1
+_ 2Pl	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl2+DObjPl2	${lemma}+V+I+Ipfv+SbjPl2+DObjPl2
+_ 2Pl	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl2+DObjPl3	${lemma}+V+I+Ipfv+SbjPl2+DObjPl3
+_ 2Pl	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl2+DObjPl4	${lemma}+V+I+Ipfv+SbjPl2+DObjPl4
+
+_ 3Pl	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl3+DObjSg1	${lemma}+V+I+Ipfv+SbjPl3+DObjSg1
+_ 3Pl	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl3+DObjSg2	${lemma}+V+I+Ipfv+SbjPl3+DObjSg2
+_ 3Pl	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl3+DObjSg3	${lemma}+V+I+Ipfv+SbjPl3+DObjSg3
+_ 3Pl	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl3+DObjSg4	${lemma}+V+I+Ipfv+SbjPl3+DObjSg4
+_ 3Pl	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl3+DObjPl1	${lemma}+V+I+Ipfv+SbjPl3+DObjPl1
+_ 3Pl	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl3+DObjPl2	${lemma}+V+I+Ipfv+SbjPl3+DObjPl2
+_ 3Pl	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl3+DObjPl3	${lemma}+V+I+Ipfv+SbjPl3+DObjPl3
+_ 3Pl	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl3+DObjPl4	${lemma}+V+I+Ipfv+SbjPl3+DObjPl4
+
+_ 4Sg	_ 1SgO	${lemma}+V+I+Ipfv+SbjSg4+DObjSg1	${lemma}+V+I+Ipfv+SbjSg4+DObjSg1
+_ 4Sg	_ 2SgO	${lemma}+V+I+Ipfv+SbjSg4+DObjSg2	${lemma}+V+I+Ipfv+SbjSg4+DObjSg2
+_ 4Sg	_ 3SgO	${lemma}+V+I+Ipfv+SbjSg4+DObjSg3	${lemma}+V+I+Ipfv+SbjSg4+DObjSg3
+_ 4Sg	_ 4SgO	${lemma}+V+I+Ipfv+SbjSg4+DObjSg4	${lemma}+V+I+Ipfv+SbjSg4+DObjSg4
+_ 4Sg	_ 1PlO	${lemma}+V+I+Ipfv+SbjSg4+DObjPl1	${lemma}+V+I+Ipfv+SbjSg4+DObjPl1
+_ 4Sg	_ 2PlO	${lemma}+V+I+Ipfv+SbjSg4+DObjPl2	${lemma}+V+I+Ipfv+SbjSg4+DObjPl2
+_ 4Sg	_ 3PlO	${lemma}+V+I+Ipfv+SbjSg4+DObjPl3	${lemma}+V+I+Ipfv+SbjSg4+DObjPl3
+_ 4Sg	_ 4PlO	${lemma}+V+I+Ipfv+SbjSg4+DObjPl4	${lemma}+V+I+Ipfv+SbjSg4+DObjPl4
+
+_ 1Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg1	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg1
+_ 1Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg2	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg2
+_ 1Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg3	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg3
+_ 1Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg4	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjSg4
+_ 1Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl1	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl1
+_ 1Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl2	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl2
+_ 1Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl3	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl3
+_ 1Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl4	${lemma}+V+I+Ipfv+SbjPl1+Distr+DObjPl4
+
+_ 2Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg1	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg1
+_ 2Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg2	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg2
+_ 2Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg3	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg3
+_ 2Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg4	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjSg4
+_ 2Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl1	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl1
+_ 2Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl2	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl2
+_ 2Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl3	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl3
+_ 2Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl4	${lemma}+V+I+Ipfv+SbjPl2+Distr+DObjPl4
+
+_ 3Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg1	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg1
+_ 3Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg2	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg2
+_ 3Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg3	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg3
+_ 3Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg4	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjSg4
+_ 3Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl1	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl1
+_ 3Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl2	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl2
+_ 3Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl3	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl3
+_ 3Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl4	${lemma}+V+I+Ipfv+SbjPl3+Distr+DObjPl4
+
+_ 4Sg _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg1	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg1
+_ 4Sg _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg2	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg2
+_ 4Sg _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg3	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg3
+_ 4Sg _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg4	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjSg4
+_ 4Sg _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl1	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl1
+_ 4Sg _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl2	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl2
+_ 4Sg _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl3	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl3
+_ 4Sg _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl4	${lemma}+V+I+Ipfv+SbjSg4+Distr+DObjPl4
+
+			
+		| Prog	
+_ 1Sg	_ 1SgO	${lemma}+V+I+Prog+SbjSg1+DObjSg1
+_ 1Sg	_ 2SgO	${lemma}+V+I+Prog+SbjSg1+DObjSg2
+_ 1Sg	_ 3SgO	${lemma}+V+I+Prog+SbjSg1+DObjSg3
+_ 1Sg	_ 4SgO	${lemma}+V+I+Prog+SbjSg1+DObjSg4
+_ 1Sg	_ 1PlO	${lemma}+V+I+Prog+SbjSg1+DObjPl1
+_ 1Sg	_ 2PlO	${lemma}+V+I+Prog+SbjSg1+DObjPl2
+_ 1Sg	_ 3PlO	${lemma}+V+I+Prog+SbjSg1+DObjPl3
+_ 1Sg	_ 4PlO	${lemma}+V+I+Prog+SbjSg1+DObjPl4
+
+_ 2Sg	_ 1SgO	${lemma}+V+I+Prog+SbjSg2+DObjSg1
+_ 2Sg	_ 2SgO	${lemma}+V+I+Prog+SbjSg2+DObjSg2
+_ 2Sg	_ 3SgO	${lemma}+V+I+Prog+SbjSg2+DObjSg3
+_ 2Sg	_ 4SgO	${lemma}+V+I+Prog+SbjSg2+DObjSg4
+_ 2Sg	_ 1PlO	${lemma}+V+I+Prog+SbjSg2+DObjPl1
+_ 2Sg	_ 2PlO	${lemma}+V+I+Prog+SbjSg2+DObjPl2
+_ 2Sg	_ 3PlO	${lemma}+V+I+Prog+SbjSg2+DObjPl3
+_ 2Sg	_ 4PlO	${lemma}+V+I+Prog+SbjSg2+DObjPl4
+
+_ 3Sg	_ 1SgO	${lemma}+V+I+Prog+SbjSg3+DObjSg1
+_ 3Sg	_ 2SgO	${lemma}+V+I+Prog+SbjSg3+DObjSg2
+_ 3Sg	_ 3SgO	${lemma}+V+I+Prog+SbjSg3+DObjSg3
+_ 3Sg	_ 4SgO	${lemma}+V+I+Prog+SbjSg3+DObjSg4
+_ 3Sg	_ 1PlO	${lemma}+V+I+Prog+SbjSg3+DObjPl1
+_ 3Sg	_ 2PlO	${lemma}+V+I+Prog+SbjSg3+DObjPl2
+_ 3Sg	_ 3PlO	${lemma}+V+I+Prog+SbjSg3+DObjPl3
+_ 3Sg	_ 4PlO	${lemma}+V+I+Prog+SbjSg3+DObjPl4
+
+_ 1Pl	_ 1SgO	${lemma}+V+I+Prog+SbjPl1+DObjSg1
+_ 1Pl	_ 2SgO	${lemma}+V+I+Prog+SbjPl1+DObjSg2
+_ 1Pl	_ 3SgO	${lemma}+V+I+Prog+SbjPl1+DObjSg3
+_ 1Pl	_ 4SgO	${lemma}+V+I+Prog+SbjPl1+DObjSg4
+_ 1Pl	_ 1PlO	${lemma}+V+I+Prog+SbjPl1+DObjPl1
+_ 1Pl	_ 2PlO	${lemma}+V+I+Prog+SbjPl1+DObjPl2
+_ 1Pl	_ 3PlO	${lemma}+V+I+Prog+SbjPl1+DObjPl3
+_ 1Pl	_ 4PlO	${lemma}+V+I+Prog+SbjPl1+DObjPl4
+
+_ 2Pl	_ 1SgO	${lemma}+V+I+Prog+SbjPl2+DObjSg1
+_ 2Pl	_ 2SgO	${lemma}+V+I+Prog+SbjPl2+DObjSg2
+_ 2Pl	_ 3SgO	${lemma}+V+I+Prog+SbjPl2+DObjSg3
+_ 2Pl	_ 4SgO	${lemma}+V+I+Prog+SbjPl2+DObjSg4
+_ 2Pl	_ 1PlO	${lemma}+V+I+Prog+SbjPl2+DObjPl1
+_ 2Pl	_ 2PlO	${lemma}+V+I+Prog+SbjPl2+DObjPl2
+_ 2Pl	_ 3PlO	${lemma}+V+I+Prog+SbjPl2+DObjPl3
+_ 2Pl	_ 4PlO	${lemma}+V+I+Prog+SbjPl2+DObjPl4
+
+_ 3Pl	_ 1SgO	${lemma}+V+I+Prog+SbjPl3+DObjSg1
+_ 3Pl	_ 2SgO	${lemma}+V+I+Prog+SbjPl3+DObjSg2
+_ 3Pl	_ 3SgO	${lemma}+V+I+Prog+SbjPl3+DObjSg3
+_ 3Pl	_ 4SgO	${lemma}+V+I+Prog+SbjPl3+DObjSg4
+_ 3Pl	_ 1PlO	${lemma}+V+I+Prog+SbjPl3+DObjPl1
+_ 3Pl	_ 2PlO	${lemma}+V+I+Prog+SbjPl3+DObjPl2
+_ 3Pl	_ 3PlO	${lemma}+V+I+Prog+SbjPl3+DObjPl3
+_ 3Pl	_ 4PlO	${lemma}+V+I+Prog+SbjPl3+DObjPl4
+
+_ 4Sg	_ 1SgO	${lemma}+V+I+Prog+SbjSg4+DObjSg1
+_ 4Sg	_ 2SgO	${lemma}+V+I+Prog+SbjSg4+DObjSg2
+_ 4Sg	_ 3SgO	${lemma}+V+I+Prog+SbjSg4+DObjSg3
+_ 4Sg	_ 4SgO	${lemma}+V+I+Prog+SbjSg4+DObjSg4
+_ 4Sg	_ 1PlO	${lemma}+V+I+Prog+SbjSg4+DObjPl1
+_ 4Sg	_ 2PlO	${lemma}+V+I+Prog+SbjSg4+DObjPl2
+_ 4Sg	_ 3PlO	${lemma}+V+I+Prog+SbjSg4+DObjPl3
+_ 4Sg	_ 4PlO	${lemma}+V+I+Prog+SbjSg4+DObjPl4
+
+_ 1Pl _ Distr	_ 1SgO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjSg1
+_ 1Pl _ Distr	_ 2SgO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjSg2
+_ 1Pl _ Distr	_ 3SgO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjSg3
+_ 1Pl _ Distr	_ 4SgO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjSg4
+_ 1Pl _ Distr	_ 1PlO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjPl1
+_ 1Pl _ Distr	_ 2PlO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjPl2
+_ 1Pl _ Distr	_ 3PlO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjPl3
+_ 1Pl _ Distr	_ 4PlO	${lemma}+V+I+Prog+SbjPl1+Distr+DObjPl4
+
+_ 2Pl _ Distr	_ 1SgO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjSg1
+_ 2Pl _ Distr	_ 2SgO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjSg2
+_ 2Pl _ Distr	_ 3SgO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjSg3
+_ 2Pl _ Distr	_ 4SgO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjSg4
+_ 2Pl _ Distr	_ 1PlO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjPl1
+_ 2Pl _ Distr	_ 2PlO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjPl2
+_ 2Pl _ Distr	_ 3PlO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjPl3
+_ 2Pl _ Distr	_ 4PlO	${lemma}+V+I+Prog+SbjPl2+Distr+DObjPl4
+
+_ 3Pl _ Distr	_ 1SgO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjSg1
+_ 3Pl _ Distr	_ 2SgO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjSg2
+_ 3Pl _ Distr	_ 3SgO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjSg3
+_ 3Pl _ Distr	_ 4SgO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjSg4
+_ 3Pl _ Distr	_ 1PlO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjPl1
+_ 3Pl _ Distr	_ 2PlO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjPl2
+_ 3Pl _ Distr	_ 3PlO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjPl3
+_ 3Pl _ Distr	_ 4PlO	${lemma}+V+I+Prog+SbjPl3+Distr+DObjPl4
+
+_ 4Sg _ Distr	_ 1SgO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjSg1
+_ 4Sg _ Distr	_ 2SgO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjSg2
+_ 4Sg _ Distr	_ 3SgO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjSg3
+_ 4Sg _ Distr	_ 4SgO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjSg4
+_ 4Sg _ Distr	_ 1PlO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjPl1
+_ 4Sg _ Distr	_ 2PlO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjPl2
+_ 4Sg _ Distr	_ 3PlO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjPl3
+_ 4Sg _ Distr	_ 4PlO	${lemma}+V+I+Prog+SbjSg4+Distr+DObjPl4
+
+			
+		| Ipfv | Rep	| Pfv | Rep
+_ 1Sg	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg1
+_ 1Sg	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg2
+_ 1Sg	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg3
+_ 1Sg	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjSg4
+_ 1Sg	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl1
+_ 1Sg	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl2
+_ 1Sg	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl3
+_ 1Sg	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjSg1+DObjPl4
+
+_ 2Sg	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg1
+_ 2Sg	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg2
+_ 2Sg	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg3
+_ 2Sg	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjSg4
+_ 2Sg	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl1
+_ 2Sg	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl2
+_ 2Sg	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl3
+_ 2Sg	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjSg2+DObjPl4
+
+_ 3Sg	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg1
+_ 3Sg	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg2
+_ 3Sg	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg3
+_ 3Sg	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjSg4
+_ 3Sg	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl1
+_ 3Sg	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl2
+_ 3Sg	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl3
+_ 3Sg	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjSg3+DObjPl4
+
+_ 1Pl	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg1
+_ 1Pl	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg2
+_ 1Pl	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg3
+_ 1Pl	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjSg4
+_ 1Pl	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl1
+_ 1Pl	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl2
+_ 1Pl	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl3
+_ 1Pl	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl1+DObjPl4
+
+_ 2Pl	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg1
+_ 2Pl	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg2
+_ 2Pl	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg3
+_ 2Pl	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjSg4
+_ 2Pl	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl1
+_ 2Pl	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl2
+_ 2Pl	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl3
+_ 2Pl	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl2+DObjPl4
+
+_ 3Pl	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg1
+_ 3Pl	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg2
+_ 3Pl	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg3
+_ 3Pl	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjSg4
+_ 3Pl	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl1
+_ 3Pl	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl2
+_ 3Pl	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl3
+_ 3Pl	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl3+DObjPl4
+
+_ 4Sg	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg1
+_ 4Sg	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg2
+_ 4Sg	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg3
+_ 4Sg	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjSg4
+_ 4Sg	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl1
+_ 4Sg	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl2
+_ 4Sg	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl3
+_ 4Sg	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjSg4+DObjPl4
+
+_ 1Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg1
+_ 1Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg2
+_ 1Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg3
+_ 1Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjSg4
+_ 1Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl1
+_ 1Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl2
+_ 1Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl3
+_ 1Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr+DObjPl4
+
+_ 2Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg1
+_ 2Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg2
+_ 2Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg3
+_ 2Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjSg4
+_ 2Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl1
+_ 2Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl2
+_ 2Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl3
+_ 2Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr+DObjPl4
+
+_ 3Pl _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg1
+_ 3Pl _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg2
+_ 3Pl _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg3
+_ 3Pl _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjSg4
+_ 3Pl _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl1
+_ 3Pl _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl2
+_ 3Pl _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl3
+_ 3Pl _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr+DObjPl4
+
+_ 4Sg _ Distr	_ 1SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg1	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg1
+_ 4Sg _ Distr	_ 2SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg2	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg2
+_ 4Sg _ Distr	_ 3SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg3	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg3
+_ 4Sg _ Distr	_ 4SgO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg4	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjSg4
+_ 4Sg _ Distr	_ 1PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl1	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl1
+_ 4Sg _ Distr	_ 2PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl2	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl2
+_ 4Sg _ Distr	_ 3PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl3	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl3
+_ 4Sg _ Distr	_ 4PlO	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl4	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr+DObjPl4
+
+			
+		| Pot	
+_ 1Sg	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjSg1
+_ 1Sg	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjSg2
+_ 1Sg	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjSg3
+_ 1Sg	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjSg4
+_ 1Sg	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjPl1
+_ 1Sg	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjPl2
+_ 1Sg	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjPl3
+_ 1Sg	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjSg1+DObjPl4
+
+_ 2Sg	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjSg1
+_ 2Sg	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjSg2
+_ 2Sg	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjSg3
+_ 2Sg	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjSg4
+_ 2Sg	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjPl1
+_ 2Sg	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjPl2
+_ 2Sg	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjPl3
+_ 2Sg	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjSg2+DObjPl4
+
+_ 3Sg	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjSg1
+_ 3Sg	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjSg2
+_ 3Sg	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjSg3
+_ 3Sg	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjSg4
+_ 3Sg	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjPl1
+_ 3Sg	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjPl2
+_ 3Sg	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjPl3
+_ 3Sg	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjSg3+DObjPl4
+
+_ 1Pl	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjSg1
+_ 1Pl	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjSg2
+_ 1Pl	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjSg3
+_ 1Pl	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjSg4
+_ 1Pl	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjPl1
+_ 1Pl	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjPl2
+_ 1Pl	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjPl3
+_ 1Pl	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl1+DObjPl4
+
+_ 2Pl	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjSg1
+_ 2Pl	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjSg2
+_ 2Pl	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjSg3
+_ 2Pl	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjSg4
+_ 2Pl	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjPl1
+_ 2Pl	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjPl2
+_ 2Pl	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjPl3
+_ 2Pl	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl2+DObjPl4
+
+_ 3Pl	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjSg1
+_ 3Pl	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjSg2
+_ 3Pl	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjSg3
+_ 3Pl	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjSg4
+_ 3Pl	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjPl1
+_ 3Pl	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjPl2
+_ 3Pl	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjPl3
+_ 3Pl	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl3+DObjPl4
+
+_ 4Sg	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjSg1
+_ 4Sg	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjSg2
+_ 4Sg	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjSg3
+_ 4Sg	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjSg4
+_ 4Sg	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjPl1
+_ 4Sg	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjPl2
+_ 4Sg	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjPl3
+_ 4Sg	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjSg4+DObjPl4
+
+_ 1Pl _ Distr	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjSg1
+_ 1Pl _ Distr	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjSg2
+_ 1Pl _ Distr	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjSg3
+_ 1Pl _ Distr	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjSg4
+_ 1Pl _ Distr	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjPl1
+_ 1Pl _ Distr	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjPl2
+_ 1Pl _ Distr	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjPl3
+_ 1Pl _ Distr	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl1+Distr+DObjPl4
+
+_ 2Pl _ Distr	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjSg1
+_ 2Pl _ Distr	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjSg2
+_ 2Pl _ Distr	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjSg3
+_ 2Pl _ Distr	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjSg4
+_ 2Pl _ Distr	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjPl1
+_ 2Pl _ Distr	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjPl2
+_ 2Pl _ Distr	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjPl3
+_ 2Pl _ Distr	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl2+Distr+DObjPl4
+
+_ 3Pl _ Distr	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjSg1
+_ 3Pl _ Distr	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjSg2
+_ 3Pl _ Distr	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjSg3
+_ 3Pl _ Distr	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjSg4
+_ 3Pl _ Distr	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjPl1
+_ 3Pl _ Distr	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjPl2
+_ 3Pl _ Distr	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjPl3
+_ 3Pl _ Distr	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjPl3+Distr+DObjPl4
+
+_ 4Sg _ Distr	_ 1SgO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjSg1
+_ 4Sg _ Distr	_ 2SgO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjSg2
+_ 4Sg _ Distr	_ 3SgO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjSg3
+_ 4Sg _ Distr	_ 4SgO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjSg4
+_ 4Sg _ Distr	_ 1PlO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjPl1
+_ 4Sg _ Distr	_ 2PlO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjPl2
+_ 4Sg _ Distr	_ 3PlO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjPl3
+_ 4Sg _ Distr	_ 4PlO	${lemma}+V+I+Pot+Rep+SbjSg4+Distr+DObjPl4
+
