@@ -46,14 +46,14 @@ DObjRefl	DO: reflexive	Direct Object: reflexive	→ oneself/ves	→ ?
 DObjRecip	DO: recipient	Direct Object: recipient	→ ?	→ ?
 DObjGiven	DO: explicitly given	Direct Object: explicitly given	→ ?	→ ?
 DObjEmphatic	DO: emphatic	Direct Object: emphatic	→ ?	→ ?
-Sg1O	DO: 1st person singular	Direct Object: 1st person singular	→ me	→ síní
-Sg2O	DO: 2nd person singular	Direct Object: 2nd person singular	→ you (one)	→ níní
-Sg3O	DO: 3rd person singular	Direct Object: 3rd person singular	→ him/her/it	→ idíní
-Sg4O	DO: 4th person singular	Direct Object: 4th person singular	→ someone	→ gúní
-Pl1O	DO: 1st person plural	Direct Object: 1st person plural	→ us	→ niihíní
-Pl2O	DO: 2nd person plural	Direct Object: 2nd person plural	→ you (all)	→ nahíní
-Pl3O	DO: 3rd person plural	Direct Object: 3rd person plural	→ them	→ igidíní
-Pl4O	DO: 4th person plural	Direct Object: 4th person plural	→ some people	→ ?
+1SgO	DO: 1st person singular	Direct Object: 1st person singular	→ me	→ síní
+2SgO	DO: 2nd person singular	Direct Object: 2nd person singular	→ you (one)	→ níní
+3SgO	DO: 3rd person singular	Direct Object: 3rd person singular	→ him/her/it	→ idíní
+4SgO	DO: 4th person singular	Direct Object: 4th person singular	→ someone	→ gúní
+1PlO	DO: 1st person plural	Direct Object: 1st person plural	→ us	→ niihíní
+2PlO	DO: 2nd person plural	Direct Object: 2nd person plural	→ you (all)	→ nahíní
+3PlO	DO: 3rd person plural	Direct Object: 3rd person plural	→ them	→ igidíní
+4PlO	DO: 4th person plural	Direct Object: 4th person plural	→ some people	→ ?
 ArealO	DO: areal	Direct Object: areal	→ ?	→ ?
 ReflO	DO: reflexive	Direct Object: reflexive	→ oneself/ves	→ ?
 RecipO	DO: recipient	Direct Object: recipient	→ ?	→ ?
