@@ -16,12 +16,12 @@
 		4901B0E226EA9FFD000EE786 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0E126EA9FFD000EE786 /* libffi.a */; };
 		4901E61C26EAA195000EE786 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4901E61B26EAA195000EE786 /* lib */; };
 		49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49163B0826E03AC100CC79FD /* Launch Screen.storyboard */; };
-		49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */; };
-		49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */; };
 		49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A7F626A9D2E500CC2B09 /* main.xib */; };
 		49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FC26A9D71900CC2B09 /* ViewController.swift */; };
 		49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */; };
 		49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B5A80026A9DEF500CC2B09 /* WebKit.framework */; };
+		49C4D80426F0F916000A1EC2 /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D80126F0F916000A1EC2 /* _hfst_optimized_lookup.cpp */; };
+		49C4D80526F0F916000A1EC2 /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D80326F0F916000A1EC2 /* hfst-optimized-lookup.cc */; };
 		49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */; };
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
 		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
@@ -42,16 +42,16 @@
 		4901B0E126EA9FFD000EE786 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "../kivy-ios/dist/lib/libffi.a"; sourceTree = "<group>"; };
 		4901E61B26EAA195000EE786 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "../kivy-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
 		49163B0826E03AC100CC79FD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _hfst_optimized_lookup.h; sourceTree = "<group>"; };
-		49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "hfst-optimized-lookup.cc"; sourceTree = "<group>"; };
-		49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = _hfst_optimized_lookup.cpp; sourceTree = "<group>"; };
-		49B5A7F326A98AB000CC2B09 /* hfst-optimized-lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "hfst-optimized-lookup.h"; sourceTree = "<group>"; };
 		49B5A7F626A9D2E500CC2B09 /* main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
 		49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "itwewina-offline-Bridging-Header.h"; sourceTree = "<group>"; };
 		49B5A7FC26A9D71900CC2B09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B5A80026A9DEF500CC2B09 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		49B5A80226A9EB3B00CC2B09 /* runPython.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runPython.h; sourceTree = "<group>"; };
+		49C4D80126F0F916000A1EC2 /* _hfst_optimized_lookup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = _hfst_optimized_lookup.cpp; path = "../kivy-ios/dist/root/python3/lib/python3.9/site-packages/hfst_optimized_lookup/_hfst_optimized_lookup.cpp"; sourceTree = "<group>"; };
+		49C4D80226F0F916000A1EC2 /* hfst-optimized-lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "hfst-optimized-lookup.h"; path = "../kivy-ios/dist/root/python3/lib/python3.9/site-packages/hfst_optimized_lookup/hfst-optimized-lookup.h"; sourceTree = "<group>"; };
+		49C4D80326F0F916000A1EC2 /* hfst-optimized-lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = "hfst-optimized-lookup.cc"; path = "../kivy-ios/dist/root/python3/lib/python3.9/site-packages/hfst_optimized_lookup/hfst-optimized-lookup.cc"; sourceTree = "<group>"; };
+		49C4D80626F10C41000A1EC2 /* _hfst_optimized_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = _hfst_optimized_lookup.h; path = "../kivy-ios/dist/root/python3/lib/python3.9/site-packages/hfst_optimized_lookup/_hfst_optimized_lookup.h"; sourceTree = "<group>"; };
 		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
 		49F8638A26A8A43400D35B6F /* app_python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_python; sourceTree = "<group>"; };
 		59738ABA1A8E19AA001B2C0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "itwewina-offline/Images.xcassets"; sourceTree = "<group>"; };
@@ -91,6 +91,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				49C4D80026F0F8FE000A1EC2 /* hfst_optimized_lookup */,
 				4901E61F26EAAC22000EE786 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -105,7 +106,6 @@
 			isa = PBXGroup;
 			children = (
 				49F8638A26A8A43400D35B6F /* app_python */,
-				49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */,
 				4901B0D526E92254000EE786 /* morphodict_mobile.h */,
 				4901B0D626E9226B000EE786 /* morphodict_mobile.m */,
 				49B5A80226A9EB3B00CC2B09 /* runPython.h */,
@@ -151,15 +151,15 @@
 			name = Classes;
 			sourceTree = "<group>";
 		};
-		49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */ = {
+		49C4D80026F0F8FE000A1EC2 /* hfst_optimized_lookup */ = {
 			isa = PBXGroup;
 			children = (
-				49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */,
-				49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */,
-				49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */,
-				49B5A7F326A98AB000CC2B09 /* hfst-optimized-lookup.h */,
+				49C4D80626F10C41000A1EC2 /* _hfst_optimized_lookup.h */,
+				49C4D80126F0F916000A1EC2 /* _hfst_optimized_lookup.cpp */,
+				49C4D80326F0F916000A1EC2 /* hfst-optimized-lookup.cc */,
+				49C4D80226F0F916000A1EC2 /* hfst-optimized-lookup.h */,
 			);
-			path = "hfst-optimized-lookup";
+			name = hfst_optimized_lookup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,11 +264,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */,
-				49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */,
+				49C4D80426F0F916000A1EC2 /* _hfst_optimized_lookup.cpp in Sources */,
 				49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */,
 				49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */,
 				1D60589B0D05DD56006BFB54 /* runPython.m in Sources */,
+				49C4D80526F0F916000A1EC2 /* hfst-optimized-lookup.cc in Sources */,
 				4901B0D726E9226B000EE786 /* morphodict_mobile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

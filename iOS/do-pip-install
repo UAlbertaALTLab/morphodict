@@ -21,4 +21,10 @@ python3.9 -m pip install \
     --isolated \
     --ignore-installed \
     --prefix "${DIST_ROOT}" \
-    -r "${DIR}/mobile-requirements.txt"
+    -r "${DIR}/mobile-requirements.txt" \
+    ~/alt/hfst-optimized-lookup/python/dist/hfst-optimized-lookup-0.0.13.dev0.tar.gz
+
+# The above pip command built this file for macOS, not iOS, so we don’t
+# want it. But with kivy’s python setup on iOS, an empty placeholder file
+# seems to be required? So overwrite the built file.
+printf '' > "${DIST_ROOT}"/lib/python3.9/site-packages/hfst_optimized_lookup/_hfst_optimized_lookup.*.so
