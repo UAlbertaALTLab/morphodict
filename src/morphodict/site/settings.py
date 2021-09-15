@@ -375,7 +375,7 @@ MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
 
 # The name of the language, in the language itself, e.g., ‘nêhiyawêwin’
-MORPHODICT_LANGUAGE_ENDONYM: Optional[str] = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 
 # The marketing / brand / public-facing name of the dictionary
