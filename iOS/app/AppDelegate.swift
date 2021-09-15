@@ -21,14 +21,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var viewController: ViewController?
     private let fm = FileManager.default
+    private let applicationSupportDirectory: URL
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    override init() {
+        applicationSupportDirectory = try! fm.url(
+            for: .applicationSupportDirectory, in: .userDomainMask,
+            appropriateFor: nil, create: true)
+
+        super.init()
+    }
+
+    func application(_: UIApplication, didFinishLaunchingWithOptions _:
+        [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
         window = window ?? UIWindow()
         appDelegate = self
         viewController = ViewController()
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
 
+        setenv("MORPHODICT_ENV_FILE_PATH",
+               applicationSupportDirectory.appendingPathComponent(".env").path,
+               1)
         morphodict_register_callback("serve", serveCallback)
 
         let pyq = DispatchQueue(
@@ -71,9 +85,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Create `$APPLICATION_SUPPORT_DIR/db`
      */
     func createDbDirectory() throws -> URL {
-        let applicationSupportDirectory = try fm.url(
-            for: .applicationSupportDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true)
         var dbDirectory = applicationSupportDirectory.appendingPathComponent("db", isDirectory: true)
         if !fm.fileExists(atPath: dbDirectory.path) {
             os_log("Creating db directory %@", log: log, dbDirectory.description)

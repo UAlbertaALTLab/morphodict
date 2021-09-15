@@ -4,8 +4,7 @@ from __future__ import annotations
 
 import logging
 import os
-
-# import readline
+import readline
 import sys
 import typing
 from argparse import ArgumentParser, BooleanOptionalAction
@@ -14,8 +13,7 @@ from pathlib import Path
 from typing import Iterable
 
 import django
-
-# import foma
+import foma
 
 from morphodict.analysis import RichAnalysis
 

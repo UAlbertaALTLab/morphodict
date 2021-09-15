@@ -11,7 +11,8 @@ skip = [
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--doctest-modules"
+addopts = "--doctest-modules --ignore=src/mobile.py --ignore=iOS --ignore=docker/docker-django-manage.py"
+norecursedirs = [".*", "node_modules", "iOS", "scratch"]
 
 env = [
     "USE_TEST_DB=true"

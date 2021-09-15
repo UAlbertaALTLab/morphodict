@@ -59,9 +59,7 @@ rsync -avv --delete --delete-excluded \
         --exclude='*' \
         "${SRC_DIR}"/ "${APP_PYTHON_DIR}"
 
-rsync -av --delete \
-    "${PROJECT_DIR}/../hfst_optimized_lookup"/*.py \
-    "${APP_PYTHON_DIR}/hfst_optimized_lookup/"
+rsync -av "${PROJECT_DIR}"/../fakes/ "${APP_PYTHON_DIR}"/
 
 # byte-compile
 python3.9 -m compileall -f -b "${APP_PYTHON_DIR}"

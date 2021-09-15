@@ -70,7 +70,7 @@ INSTALLED_APPS = [
     # TODO: our internal app organization is kind of a mess 🙃
     "CreeDictionary.API.apps.APIConfig",
     "CreeDictionary.CreeDictionary.apps.CreeDictionaryConfig",
-    # "CreeDictionary.cvd",
+    "CreeDictionary.cvd",
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
@@ -170,7 +170,7 @@ GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1"]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
 
 
 # Database
@@ -271,13 +271,13 @@ STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "collected-static"))
 
-# if DEBUG:
-# Use the default static storage backed for debug purposes.
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-# else:
-# In production, use a manifest to encourage aggressive caching
-# Note requires `manage.py collectstatic`!
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+if DEBUG:
+    # Use the default static storage backed for debug purposes.
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+else:
+    # In production, use a manifest to encourage aggressive caching
+    # Note requires `manage.py collectstatic`!
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -331,3 +331,8 @@ AFFIX_SEARCH_THRESHOLD = 4
 # This defaults to False, because in order to work it requires that there
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
+
+
+MORPHODICT_ENABLE_CVD = True
+
+MORPHODICT_ENABLE_AFFIX_SEARCH = True
