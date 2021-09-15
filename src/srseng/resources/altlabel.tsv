@@ -4,15 +4,15 @@ I	Intransitive	Intransitive	Someone does something	?
 Im	Impersonal	Impersonal	Something happens	?
 T	Transitive	Transitive	Someone acts on someone	?
 D	Ditransitive	Ditransitive	Someone gives someone something	?
-E	Experiential Object	Experiential object	?	?
+E	Experiential Object	Experiential object	Someone experiences something	?
 O	Oblique Object	Oblique object	?	?
-Ipfv	Imperfective	Aspect: imperfective	Unfinished / Non-past	?
-Pfv	Perfective	Aspect: perfective 	Finished / Past	?
-Prog	Progressive	Progressive	On-going	?
-Pot	Potential	Aspect: potential	Possibly	?
-Rep	Repetitive	Superaspect: repetitive	Again and again	?
-Ipfv+Rep	Imperfective Repetitive	Aspect: imperfective repetitive	Non-past + Again and again	?
-Pfv+Rep	Perfective Repetitive	Aspect: perfective repetitive	Past + Again and again	?
+Ipfv	Imperfective	Aspect: imperfective	Unfinished / Non-past	Dú k'àgunììt'a (ák'óo ágùná)
+Pfv	Perfective	Aspect: perfective 	Finished / Past	K'àgunììt'a (dzánádà ágùjàg)
+Prog	Progressive	Progressive	On-going	Ágùdánáł
+Pot	Potential	Aspect: potential	Possibly	Ágùyiná-hí-gulà
+Rep	Repetitive	Superaspect: repetitive	Again and again	Ánágùt'ìsh
+Ipfv+Rep	Imperfective Repetitive	Aspect: imperfective repetitive	Non-past + Again and again	Dú k'àgunììt'a (ánágùt'ìsh)
+Pfv+Rep	Perfective Repetitive	Aspect: perfective repetitive	Past + Again and again	K'àgunììt'a (ánágùyít'ìsh)
 1Sg	1st person singular	Subject: 1st person singular	I	síní
 2Sg	2nd person singular	Subject: 2nd person singular	you (one)	níní
 3Sg	3rd person singular	Subject: 3rd person singular	he/she/it	idíní
@@ -21,10 +21,10 @@ Pfv+Rep	Perfective Repetitive	Aspect: perfective repetitive	Past + Again and aga
 2Pl	2nd person plural	Subject: 2nd person plural	you (all)	nahíní
 3Pl	3rd person plural	Subject: 3rd person plural	they	igidíní
 4Pl	4th person plural	Subject: 4th person plural	some people	?
-1Pl+Distr	Distributive 1st person plural	Subject: distributive 1st person plural	each and every one of us	niihíní
-2Pl+Distr	Distributive 2nd person plural	Subject: distributive 2nd person plural	each and every one of you (all)	nahíní
-3Pl+Distr	Distributive 3rd person plural	Subject: distributive 3rd person plural	each and every one of them	igidíní
-4Sg+Distr	Distributive 4th person singular	Subject: distributive 4th person plural	each and every one of some people	?
+1Pl+Distr	Distributive 1st person plural	Subject: distributive 1st person plural	each and every one of us	niihíní (tłaát'áa)
+2Pl+Distr	Distributive 2nd person plural	Subject: distributive 2nd person plural	each and every one of you (all)	nahíní (tłaát'áa)
+3Pl+Distr	Distributive 3rd person plural	Subject: distributive 3rd person plural	each and every one of them	igidíní (tłaát'áa)
+4Sg+Distr	Distributive 4th person singular	Subject: distributive 4th person plural	each and every one of some people	gúní (tłaát'áa)
 SbjSg1	S: 1st person singular	Subject: 1st person singular	I	síní
 SbjSg2	S: 2nd person singular	Subject: 2nd person singular	you (one)	níní
 SbjSg3	S: 3rd person singular	Subject: 3rd person singular	he/she/it	idíní
@@ -78,3 +78,91 @@ NomzPl	Nominalized plural	Nominalized plural	?	?
 EN/gu	Enclitic: gu	Enclitic: gu	?	?
 EN/la	Enclitic: la	Enclitic: la	?	?
 EN/gula	Enclitic: gula	Enclitic: gula	?	?
+1Pl+1PlO	1st person plural → DO: 1st person plural	Subject: 1st person plural → Direct Object: 1st person plural	we → us	niihíní → niihíní
+1Pl+1SgO	1st person plural → DO: 1st person singular	Subject: 1st person plural → Direct Object: 1st person singular	we → me	niihíní → síní
+1Pl+2PlO	1st person plural → DO: 2nd person plural	Subject: 1st person plural → Direct Object: 2nd person plural	we → you (all)	niihíní → nahíní
+1Pl+2SgO	1st person plural → DO: 2nd person singular	Subject: 1st person plural → Direct Object: 2nd person singular	we → you (one)	niihíní → níní
+1Pl+3PlO	1st person plural → DO: 3rd person plural	Subject: 1st person plural → Direct Object: 3rd person plural	we → them	niihíní → igidíní
+1Pl+3SgO	1st person plural → DO: 3rd person singular	Subject: 1st person plural → Direct Object: 3rd person singular	we → him/her/it	niihíní → idíní
+1Pl+4PlO	1st person plural → DO: 4th person plural	Subject: 1st person plural → Direct Object: 4th person plural	we → some people	niihíní → ?
+1Pl+4SgO	1st person plural → DO: 4th person singular	Subject: 1st person plural → Direct Object: 4th person singular	we → someone	niihíní → gúní
+1Pl+Distr+1PlO	Distributive 1st person plural → DO: 1st person plural	Subject: distributive 1st person plural → Direct Object: 1st person plural	each and every one of us → us	niihíní (tłaát'áa) → niihíní
+1Pl+Distr+1SgO	Distributive 1st person plural → DO: 1st person singular	Subject: distributive 1st person plural → Direct Object: 1st person singular	each and every one of us → me	niihíní (tłaát'áa) → síní
+1Pl+Distr+2PlO	Distributive 1st person plural → DO: 2nd person plural	Subject: distributive 1st person plural → Direct Object: 2nd person plural	each and every one of us → you (all)	niihíní (tłaát'áa) → nahíní
+1Pl+Distr+2SgO	Distributive 1st person plural → DO: 2nd person singular	Subject: distributive 1st person plural → Direct Object: 2nd person singular	each and every one of us → you (one)	niihíní (tłaát'áa) → níní
+1Pl+Distr+3PlO	Distributive 1st person plural → DO: 3rd person plural	Subject: distributive 1st person plural → Direct Object: 3rd person plural	each and every one of us → them	niihíní (tłaát'áa) → igidíní
+1Pl+Distr+3SgO	Distributive 1st person plural → DO: 3rd person singular	Subject: distributive 1st person plural → Direct Object: 3rd person singular	each and every one of us → him/her/it	niihíní (tłaát'áa) → idíní
+1Pl+Distr+4PlO	Distributive 1st person plural → DO: 4th person plural	Subject: distributive 1st person plural → Direct Object: 4th person plural	each and every one of us → some people	niihíní (tłaát'áa) → ?
+1Pl+Distr+4SgO	Distributive 1st person plural → DO: 4th person singular	Subject: distributive 1st person plural → Direct Object: 4th person singular	each and every one of us → someone	niihíní (tłaát'áa) → gúní
+1Sg+1PlO	1st person singular → DO: 1st person plural	Subject: 1st person singular → Direct Object: 1st person plural	I → us	síní → niihíní
+1Sg+1SgO	1st person singular → DO: 1st person singular	Subject: 1st person singular → Direct Object: 1st person singular	I → me	síní → síní
+1Sg+2PlO	1st person singular → DO: 2nd person plural	Subject: 1st person singular → Direct Object: 2nd person plural	I → you (all)	síní → nahíní
+1Sg+2SgO	1st person singular → DO: 2nd person singular	Subject: 1st person singular → Direct Object: 2nd person singular	I → you (one)	síní → níní
+1Sg+3PlO	1st person singular → DO: 3rd person plural	Subject: 1st person singular → Direct Object: 3rd person plural	I → them	síní → igidíní
+1Sg+3SgO	1st person singular → DO: 3rd person singular	Subject: 1st person singular → Direct Object: 3rd person singular	I → him/her/it	síní → idíní
+1Sg+4PlO	1st person singular → DO: 4th person plural	Subject: 1st person singular → Direct Object: 4th person plural	I → some people	síní → ?
+1Sg+4SgO	1st person singular → DO: 4th person singular	Subject: 1st person singular → Direct Object: 4th person singular	I → someone	síní → gúní
+2Pl+1PlO	2nd person plural → DO: 1st person plural	Subject: 2nd person plural → Direct Object: 1st person plural	you (all) → us	nahíní → niihíní
+2Pl+1SgO	2nd person plural → DO: 1st person singular	Subject: 2nd person plural → Direct Object: 1st person singular	you (all) → me	nahíní → síní
+2Pl+2PlO	2nd person plural → DO: 2nd person plural	Subject: 2nd person plural → Direct Object: 2nd person plural	you (all) → you (all)	nahíní → nahíní
+2Pl+2SgO	2nd person plural → DO: 2nd person singular	Subject: 2nd person plural → Direct Object: 2nd person singular	you (all) → you (one)	nahíní → níní
+2Pl+3PlO	2nd person plural → DO: 3rd person plural	Subject: 2nd person plural → Direct Object: 3rd person plural	you (all) → them	nahíní → igidíní
+2Pl+3SgO	2nd person plural → DO: 3rd person singular	Subject: 2nd person plural → Direct Object: 3rd person singular	you (all) → him/her/it	nahíní → idíní
+2Pl+4PlO	2nd person plural → DO: 4th person plural	Subject: 2nd person plural → Direct Object: 4th person plural	you (all) → some people	nahíní → ?
+2Pl+4SgO	2nd person plural → DO: 4th person singular	Subject: 2nd person plural → Direct Object: 4th person singular	you (all) → someone	nahíní → gúní
+2Pl+Distr+1PlO	Distributive 2nd person plural → DO: 1st person plural	Subject: distributive 2nd person plural → Direct Object: 1st person plural	each and every one of you (all) → us	nahíní (tłaát'áa) → niihíní
+2Pl+Distr+1SgO	Distributive 2nd person plural → DO: 1st person singular	Subject: distributive 2nd person plural → Direct Object: 1st person singular	each and every one of you (all) → me	nahíní (tłaát'áa) → síní
+2Pl+Distr+2PlO	Distributive 2nd person plural → DO: 2nd person plural	Subject: distributive 2nd person plural → Direct Object: 2nd person plural	each and every one of you (all) → you (all)	nahíní (tłaát'áa) → nahíní
+2Pl+Distr+2SgO	Distributive 2nd person plural → DO: 2nd person singular	Subject: distributive 2nd person plural → Direct Object: 2nd person singular	each and every one of you (all) → you (one)	nahíní (tłaát'áa) → níní
+2Pl+Distr+3PlO	Distributive 2nd person plural → DO: 3rd person plural	Subject: distributive 2nd person plural → Direct Object: 3rd person plural	each and every one of you (all) → them	nahíní (tłaát'áa) → igidíní
+2Pl+Distr+3SgO	Distributive 2nd person plural → DO: 3rd person singular	Subject: distributive 2nd person plural → Direct Object: 3rd person singular	each and every one of you (all) → him/her/it	nahíní (tłaát'áa) → idíní
+2Pl+Distr+4PlO	Distributive 2nd person plural → DO: 4th person plural	Subject: distributive 2nd person plural → Direct Object: 4th person plural	each and every one of you (all) → some people	nahíní (tłaát'áa) → ?
+2Pl+Distr+4SgO	Distributive 2nd person plural → DO: 4th person singular	Subject: distributive 2nd person plural → Direct Object: 4th person singular	each and every one of you (all) → someone	nahíní (tłaát'áa) → gúní
+2Sg+1PlO	2nd person singular → DO: 1st person plural	Subject: 2nd person singular → Direct Object: 1st person plural	you (one) → us	níní → niihíní
+2Sg+1SgO	2nd person singular → DO: 1st person singular	Subject: 2nd person singular → Direct Object: 1st person singular	you (one) → me	níní → síní
+2Sg+2PlO	2nd person singular → DO: 2nd person plural	Subject: 2nd person singular → Direct Object: 2nd person plural	you (one) → you (all)	níní → nahíní
+2Sg+2SgO	2nd person singular → DO: 2nd person singular	Subject: 2nd person singular → Direct Object: 2nd person singular	you (one) → you (one)	níní → níní
+2Sg+3PlO	2nd person singular → DO: 3rd person plural	Subject: 2nd person singular → Direct Object: 3rd person plural	you (one) → them	níní → igidíní
+2Sg+3SgO	2nd person singular → DO: 3rd person singular	Subject: 2nd person singular → Direct Object: 3rd person singular	you (one) → him/her/it	níní → idíní
+2Sg+4PlO	2nd person singular → DO: 4th person plural	Subject: 2nd person singular → Direct Object: 4th person plural	you (one) → some people	níní → ?
+2Sg+4SgO	2nd person singular → DO: 4th person singular	Subject: 2nd person singular → Direct Object: 4th person singular	you (one) → someone	níní → gúní
+3Pl+1PlO	3rd person plural → DO: 1st person plural	Subject: 3rd person plural → Direct Object: 1st person plural	they → us	igidíní → niihíní
+3Pl+1SgO	3rd person plural → DO: 1st person singular	Subject: 3rd person plural → Direct Object: 1st person singular	they → me	igidíní → síní
+3Pl+2PlO	3rd person plural → DO: 2nd person plural	Subject: 3rd person plural → Direct Object: 2nd person plural	they → you (all)	igidíní → nahíní
+3Pl+2SgO	3rd person plural → DO: 2nd person singular	Subject: 3rd person plural → Direct Object: 2nd person singular	they → you (one)	igidíní → níní
+3Pl+3PlO	3rd person plural → DO: 3rd person plural	Subject: 3rd person plural → Direct Object: 3rd person plural	they → them	igidíní → igidíní
+3Pl+3SgO	3rd person plural → DO: 3rd person singular	Subject: 3rd person plural → Direct Object: 3rd person singular	they → him/her/it	igidíní → idíní
+3Pl+4PlO	3rd person plural → DO: 4th person plural	Subject: 3rd person plural → Direct Object: 4th person plural	they → some people	igidíní → ?
+3Pl+4SgO	3rd person plural → DO: 4th person singular	Subject: 3rd person plural → Direct Object: 4th person singular	they → someone	igidíní → gúní
+3Pl+Distr+1PlO	Distributive 3rd person plural → DO: 1st person plural	Subject: distributive 3rd person plural → Direct Object: 1st person plural	each and every one of them → us	igidíní (tłaát'áa) → niihíní
+3Pl+Distr+1SgO	Distributive 3rd person plural → DO: 1st person singular	Subject: distributive 3rd person plural → Direct Object: 1st person singular	each and every one of them → me	igidíní (tłaát'áa) → síní
+3Pl+Distr+2PlO	Distributive 3rd person plural → DO: 2nd person plural	Subject: distributive 3rd person plural → Direct Object: 2nd person plural	each and every one of them → you (all)	igidíní (tłaát'áa) → nahíní
+3Pl+Distr+2SgO	Distributive 3rd person plural → DO: 2nd person singular	Subject: distributive 3rd person plural → Direct Object: 2nd person singular	each and every one of them → you (one)	igidíní (tłaát'áa) → níní
+3Pl+Distr+3PlO	Distributive 3rd person plural → DO: 3rd person plural	Subject: distributive 3rd person plural → Direct Object: 3rd person plural	each and every one of them → them	igidíní (tłaát'áa) → igidíní
+3Pl+Distr+3SgO	Distributive 3rd person plural → DO: 3rd person singular	Subject: distributive 3rd person plural → Direct Object: 3rd person singular	each and every one of them → him/her/it	igidíní (tłaát'áa) → idíní
+3Pl+Distr+4PlO	Distributive 3rd person plural → DO: 4th person plural	Subject: distributive 3rd person plural → Direct Object: 4th person plural	each and every one of them → some people	igidíní (tłaát'áa) → ?
+3Pl+Distr+4SgO	Distributive 3rd person plural → DO: 4th person singular	Subject: distributive 3rd person plural → Direct Object: 4th person singular	each and every one of them → someone	igidíní (tłaát'áa) → gúní
+3Sg+1PlO	3rd person singular → DO: 1st person plural	Subject: 3rd person singular → Direct Object: 1st person plural	he/she/it → us	idíní → niihíní
+3Sg+1SgO	3rd person singular → DO: 1st person singular	Subject: 3rd person singular → Direct Object: 1st person singular	he/she/it → me	idíní → síní
+3Sg+2PlO	3rd person singular → DO: 2nd person plural	Subject: 3rd person singular → Direct Object: 2nd person plural	he/she/it → you (all)	idíní → nahíní
+3Sg+2SgO	3rd person singular → DO: 2nd person singular	Subject: 3rd person singular → Direct Object: 2nd person singular	he/she/it → you (one)	idíní → níní
+3Sg+3PlO	3rd person singular → DO: 3rd person plural	Subject: 3rd person singular → Direct Object: 3rd person plural	he/she/it → them	idíní → igidíní
+3Sg+3SgO	3rd person singular → DO: 3rd person singular	Subject: 3rd person singular → Direct Object: 3rd person singular	he/she/it → him/her/it	idíní → idíní
+3Sg+4PlO	3rd person singular → DO: 4th person plural	Subject: 3rd person singular → Direct Object: 4th person plural	he/she/it → some people	idíní → ?
+3Sg+4SgO	3rd person singular → DO: 4th person singular	Subject: 3rd person singular → Direct Object: 4th person singular	he/she/it → someone	idíní → gúní
+4Sg+1PlO	4th person singular → DO: 1st person plural	Subject: 4th person singular → Direct Object: 1st person plural	someone (unspec./holy) → us	gúní → niihíní
+4Sg+1SgO	4th person singular → DO: 1st person singular	Subject: 4th person singular → Direct Object: 1st person singular	someone (unspec./holy) → me	gúní → síní
+4Sg+2PlO	4th person singular → DO: 2nd person plural	Subject: 4th person singular → Direct Object: 2nd person plural	someone (unspec./holy) → you (all)	gúní → nahíní
+4Sg+2SgO	4th person singular → DO: 2nd person singular	Subject: 4th person singular → Direct Object: 2nd person singular	someone (unspec./holy) → you (one)	gúní → níní
+4Sg+3PlO	4th person singular → DO: 3rd person plural	Subject: 4th person singular → Direct Object: 3rd person plural	someone (unspec./holy) → them	gúní → igidíní
+4Sg+3SgO	4th person singular → DO: 3rd person singular	Subject: 4th person singular → Direct Object: 3rd person singular	someone (unspec./holy) → him/her/it	gúní → idíní
+4Sg+4PlO	4th person singular → DO: 4th person plural	Subject: 4th person singular → Direct Object: 4th person plural	someone (unspec./holy) → some people	gúní → ?
+4Sg+4SgO	4th person singular → DO: 4th person singular	Subject: 4th person singular → Direct Object: 4th person singular	someone (unspec./holy) → someone	gúní → gúní
+4Sg+Distr+1PlO	Distributive 4th person singular → DO: 1st person plural	Subject: distributive 4th person plural → Direct Object: 1st person plural	each and every one of some people → us	gúní (tłaát'áa) → niihíní
+4Sg+Distr+1SgO	Distributive 4th person singular → DO: 1st person singular	Subject: distributive 4th person plural → Direct Object: 1st person singular	each and every one of some people → me	gúní (tłaát'áa) → síní
+4Sg+Distr+2PlO	Distributive 4th person singular → DO: 2nd person plural	Subject: distributive 4th person plural → Direct Object: 2nd person plural	each and every one of some people → you (all)	gúní (tłaát'áa) → nahíní
+4Sg+Distr+2SgO	Distributive 4th person singular → DO: 2nd person singular	Subject: distributive 4th person plural → Direct Object: 2nd person singular	each and every one of some people → you (one)	gúní (tłaát'áa) → níní
+4Sg+Distr+3PlO	Distributive 4th person singular → DO: 3rd person plural	Subject: distributive 4th person plural → Direct Object: 3rd person plural	each and every one of some people → them	gúní (tłaát'áa) → igidíní
+4Sg+Distr+3SgO	Distributive 4th person singular → DO: 3rd person singular	Subject: distributive 4th person plural → Direct Object: 3rd person singular	each and every one of some people → him/her/it	gúní (tłaát'áa) → idíní
+4Sg+Distr+4PlO	Distributive 4th person singular → DO: 4th person plural	Subject: distributive 4th person plural → Direct Object: 4th person plural	each and every one of some people → some people	gúní (tłaát'áa) → ?
+4Sg+Distr+4SgO	Distributive 4th person singular → DO: 4th person singular	Subject: distributive 4th person plural → Direct Object: 4th person singular	each and every one of some people → someone	gúní (tłaát'áa) → gúní
