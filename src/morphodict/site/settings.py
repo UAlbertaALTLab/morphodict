@@ -352,11 +352,12 @@ AFFIX_SEARCH_THRESHOLD = 4
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
 
-# Enable semantic search via cosine vector distance. Optional
-# because
+# Enable semantic search via cosine vector distance. Optional because mobile
+# requires libraries we do not currently build, and a smaller vector file.
 MORPHODICT_ENABLE_CVD = True
 
-# Enable affix search. Optional because it requires a C++ library which we do not currently build for mobile.
+# Enable affix search. Optional because it requires a C++ library which we do
+# not currently build for mobile.
 MORPHODICT_ENABLE_AFFIX_SEARCH = True
 
 # Feature currently in development: use fst_lemma database field instead of

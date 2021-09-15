@@ -1,3 +1,6 @@
+# type: ignore
+# because there aren’t yet stubs for morphodict_mobile
+
 import os
 import sys
 import threading
