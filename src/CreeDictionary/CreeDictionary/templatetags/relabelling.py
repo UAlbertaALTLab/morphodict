@@ -25,7 +25,7 @@ def label_setting_to_relabeller(label_setting: str):
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
-        "nehiyawewin": labels.cree,
+        "source_language": labels.cree,
     }[label_setting]
 
 
@@ -43,7 +43,7 @@ def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     relabeller = label_setting_to_relabeller(label_setting)
 
     if label := relabeller.get_longest(tags):
-        if label_setting == "nehiyawewin":
+        if label_setting == "source_language":
             return orth_tag(context, label)
         return label
 

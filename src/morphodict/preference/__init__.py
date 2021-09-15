@@ -49,7 +49,15 @@ class Preference:
             return self.default
 
     def current_value_from_request(self, request: HttpRequest) -> str:
-        return request.COOKIES.get(self.cookie_name, self.default)
+        ret = request.COOKIES.get(self.cookie_name, self.default)
+
+        # If given an invalid cookie value, treat it as the default. Note that
+        # we can’t easily set this new cookie value on the client, because the
+        # Response object hasn’t been created yet.
+        if ret not in self.choices:
+            ret = self.default
+            request.COOKIES[self.cookie_name] = ret
+        return ret
 
 
 def all_preferences():

@@ -48,6 +48,8 @@ MORPHODICT_PREVIEW_WARNING = False
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Plains Cree"
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 
+MORPHODICT_LANGUAGE_ENDONYM = "nêhiyawêwin"
+
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:
 #  - standard Roman orthography (e.g., nêhiyawêwin)
