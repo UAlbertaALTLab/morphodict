@@ -34,7 +34,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         let url = navigationAction.request.url!
-        if url.absoluteString.hasPrefix("http://127.0.0.1:4828/") {
+        if url.absoluteString.hasPrefix("http://127.0.0.1:4828/")
+            || url.absoluteString == "about:blank"
+        {
             decisionHandler(.allow)
         } else {
             promptToOpenInSafari(url: url.absoluteString)

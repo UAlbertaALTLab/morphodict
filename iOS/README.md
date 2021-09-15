@@ -2,8 +2,6 @@ To get an offline mobile app without having to re-implement all the
 functions of the django webapp, this application takes the novel approach
 of running the django server itself on iOS.
 
-**Note: this code is almost entirely still demo-quality.**
-
 # Theory of building open-source C/C++ packages for iOS
 
 Xcode supports, as a very normal matter of course, having C/C++ files in
@@ -81,10 +79,10 @@ installed.
 
 # Steps to build
 
-  1. First, you need kivy to build.
+ 1. First, you need kivy to build.
 
-        cd cree-intelligent-dictionary/iOS
-        git clone https://github.com/UAlbertaALTLab/kivy-ios
+         cd cree-intelligent-dictionary/iOS
+         git clone https://github.com/UAlbertaALTLab/kivy-ios
 
     Normally at this point you’d use the kivy-ios tools to build python
     repeatedly. But our fork uses git-lfs to store pre-compiled files, so
@@ -170,33 +168,19 @@ On startup, the iOS app does the following:
 These are things that would typically be addressed in due course, if
 dedicating time to making the project maintainable:
 
-  - Instead of being configurable settings to enable/disable features,
-    a bunch of code is just *commented out* to disable it for mobile.
-
-    Some of these things get a little bit tricky: we can’t even `import`
-    libraries that we haven’t gotten working on mobile, so we can’t use the
-    normal django settings mechanism to skip calling something, as settings
-    only get configured after most packages have already been imported, and
-    it’s the import attempt that fails.
-
-    Note: One questionable hack, but that would be better than the
-    commented-out-branch, would be to have some placeholder files, like
-    `foma.py`, in the mobile app, that would simply return an error if you
-    tried to use them.
-
   - kivy is supposed to be a package manager that lets you write recipes to
     automatically build Python packages that have C extensions. I couldn’t
-    figure out how to get this working with hfst-optimized-lookup, so I
-    just dragged-and-dropped copies of the files into the Xcode project
-    instead of using released versions from PyPI.
+    figure out how to get this working with hfst-optimized-lookup,
+    so Xcode builds the C/C++ files from the `site_packages` directory.
+
+  - For python modules where we haven’t done the work to make the C
+    extensions compile, there are ‘fake’ packages in `iOS/fakes`,
+    so that you can still `import` libraries that aren’t available,
+    even though configuration will prevent you from using them.
 
   - I also couldn’t figure out how to get that working with kivy’s pyobjus
     library, which is supposed to let Python code call Objective-C/Swift
     code; instead there’s a very basic mechanism to register callbacks.
-
-  - Related to that same problem with fitting Python libraries that have C
-    extensions into kivy, affix search was only disabled because I couldn’t
-    get the library it uses to install.
 
   - The `sync-python` script that copies python code and assets from the
     morphodict `src` directory is very rough; it has comments with

@@ -1,30 +1,145 @@
-#!/bin/bash
+#!/usr/bin/env python3.9
 
-if [ -n "${PIPENV_ACTIVE}" ] || [ -n "${VIRTUAL_ENV}" ]; then
-    echo "This script must *NOT* be run inside a pipenv/virtualenv!" 1>&2
-    exit 1
-fi
+"""
+Install pip packages required by mobile app into kivy dist root
 
-# Normally you’d interact with the venv for the mobile app through
-# `kivy-toolchain pip`. But that requires a hostpython3 build which is
-# time-consuming, large, and not very relocatable. So use this hack
-# instead.
+Normally you’d interact with the venv for the mobile app through
+`kivy-toolchain pip`. But that requires a hostpython3 build which is
+time-consuming, large, and not very relocatable. So use this hack
+instead.
 
-DIR="$(dirname -- "${0}")"
-DIST_ROOT="${DIR}/kivy-ios/dist/root/python3"
+Note: If some packages are still missing in the app, try upgrading pip:
 
-# if some packages are still missing in the app, try upgrading pip:
-#
-#     python3.9 -m pip install -U pip
+    python3.9 -m pip install -U pip
 
-python3.9 -m pip install \
-    --isolated \
-    --ignore-installed \
-    --prefix "${DIST_ROOT}" \
-    -r "${DIR}/mobile-requirements.txt" \
-    ~/alt/hfst-optimized-lookup/python/dist/hfst-optimized-lookup-0.0.13.dev0.tar.gz
+"""
 
-# The above pip command built this file for macOS, not iOS, so we don’t
-# want it. But with kivy’s python setup on iOS, an empty placeholder file
-# seems to be required? So overwrite the built file.
-printf '' > "${DIST_ROOT}"/lib/python3.9/site-packages/hfst_optimized_lookup/_hfst_optimized_lookup.*.so
+import os
+import shutil
+import subprocess
+from argparse import (
+    ArgumentParser,
+    ArgumentDefaultsHelpFormatter,
+    BooleanOptionalAction,
+)
+from pathlib import Path
+
+
+def main():
+    parser = ArgumentParser(description=__doc__)
+    parser.formatter_class = ArgumentDefaultsHelpFormatter
+    parser.add_argument(
+        "--verbose",
+        action=BooleanOptionalAction,
+        help="Show more about what’s happening",
+    )
+    args = parser.parse_args()
+
+    def log(msg):
+        if args.verbose:
+            print(msg)
+
+    if "PIPENV_ACTIVE" in os.environ or "VIRTUAL_ENV" in os.environ:
+        raise Exception("This script must *NOT* be run inside a pipenv/virtualenv!")
+
+    iOS_dir = Path(__file__).parent
+    dist_root = iOS_dir / "kivy-ios" / "dist" / "root" / "python3"
+    site_packages_dir = dist_root / "lib" / "python3.9" / "site-packages"
+
+    def cleanup_site_packages():
+        """
+        Delete all the stuff in site-packages, which might be from
+        outdated/removed versions of PyPI package, *except* _sqlite3 which is
+        created during kivy-ios’s build of python
+        """
+
+        log(f"Removing existing packages from {site_packages_dir}")
+
+        for path in site_packages_dir.iterdir():
+            if path.name != "_sqlite3":
+                if path.is_dir():
+                    log(f"Removing dir {path}")
+                    shutil.rmtree(path)
+                else:
+                    log("Removing file {path}")
+                    os.unlink(path)
+
+    def do_pip_install():
+        cmd = [
+            "python3.9",
+            "-m",
+            "pip",
+            "install",
+            "--isolated",
+            "--ignore-installed",
+            "--prefix",
+            os.fspath(dist_root),
+            "-r",
+            iOS_dir / "mobile-requirements.txt",
+        ]
+        log(f"running {cmd!r}")
+        subprocess.check_call(cmd)
+
+    def truncate_c_extensions_built_for_macos():
+        """
+        The pip install command we run builds any C extensions for macOS, not
+        iOS, so we don’t want these files, But with kivy’s python setup on iOS,
+        an empty placeholder file seems to be required? So overwrite the built
+        files.
+        """
+
+        log("Truncating C extensions")
+
+        for path in iter_files_recursively(dist_root):
+            if path.name.endswith(".so"):
+                log(f"Truncating {path}")
+                os.truncate(path, 0)
+
+    def remove_extraneous_django_locale_files():
+        """
+        Remove extraneous django locale files
+
+        These contain translations for things that users will never see, such as
+        the admin stie, and take up 10s of megabytes in our app.
+        """
+
+        log("Removing extraneous django locale files")
+
+        def walk(path):
+            if path.is_dir():
+                if path.name == "locale" and any(
+                    d.name == "en" for d in path.iterdir()
+                ):
+                    for d in path.iterdir():
+                        if d.name != "en" and d.is_dir():
+                            log(f"Removing {d}")
+                            shutil.rmtree(d)
+                else:
+                    for d in path.iterdir():
+                        walk(d)
+
+        walk(site_packages_dir / "django")
+
+    cleanup_site_packages()
+    do_pip_install()
+    # Remove command line wrapper scripts
+    shutil.rmtree(dist_root / "bin")
+    truncate_c_extensions_built_for_macos()
+    remove_extraneous_django_locale_files()
+
+
+def iter_files_recursively(path):
+    """
+    Iterate over all files below a path, recursively.
+
+    Adapted from https://stackoverflow.com/a/64915960/14558
+    """
+    for p in path.iterdir():
+        if p.is_dir():
+            yield from iter_files_recursively(p)
+        else:
+            yield p.resolve()
+
+
+if __name__ == "__main__":
+    main()

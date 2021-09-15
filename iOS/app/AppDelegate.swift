@@ -2,6 +2,17 @@ import HTMLString
 import os
 import UIKit
 
+// When an app update ships with a new database, either because the dictionary
+// was updated or migrations were added, we need to copy it into place. But
+// we don’t want to do that on every launch because it would be slow.
+//
+// So the code will check whether the version number saved into a file matches.
+//
+// This could be automated by comparing query results between the database
+// file shipped with the app and the writable copy in the “Application Support”
+// directory.
+let CURRENT_DB_VERSION = "1"
+
 let log = OSLog(subsystem: "morphodict", category: "default")
 
 var appDelegate: AppDelegate?
@@ -69,14 +80,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let dbDirectory = try createDbDirectory()
 
         let dbFile = dbDirectory.appendingPathComponent("db.sqlite3")
+        let dbVersionFile = dbDirectory.appendingPathComponent("db_version")
 
-        if !fm.fileExists(atPath: dbFile.path) {
+        func dbFileNeedsUpdate() -> Bool {
+            if !fm.fileExists(atPath: dbFile.path) {
+                os_log("database file copy does not exist")
+                return true
+            }
+
+            if !fm.fileExists(atPath: dbVersionFile.path) {
+                os_log("database version file does not exist")
+                return true
+            }
+
+            if let savedVersion = try? String(contentsOf: dbVersionFile) {
+                os_log("previous database version: %s", savedVersion)
+                return savedVersion != CURRENT_DB_VERSION
+            }
+
+            // reading dbVersionFile failed, so try to update
+            return true
+        }
+
+        if dbFileNeedsUpdate() {
             os_log("Copying database to %@", log: log, dbFile.description)
 
             let bundle = Bundle(for: Self.self)
             let includedDb = bundle.url(
                 forResource: "db-mobile", withExtension: "sqlite3")!
+            try fm.removeItem(at: dbFile)
             try fm.copyItem(at: includedDb, to: dbFile)
+            try CURRENT_DB_VERSION.write(to: dbVersionFile, atomically: false, encoding: .utf8)
         }
         setenv("DATABASE_URL", "sqlite://\(dbFile.path)", 1)
     }
