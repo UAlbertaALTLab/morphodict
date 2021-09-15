@@ -22,11 +22,12 @@ DEFAULT_PARADIGM_LABEL = "english"
 
 def label_setting_to_relabeller(label_setting: str):
     labels = read_labels()
+
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
         "source_language": labels.cree,
-    }[label_setting]
+    }.get(label_setting, labels.english)
 
 
 @register.simple_tag(takes_context=True)
