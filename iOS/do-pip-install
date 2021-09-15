@@ -13,7 +13,7 @@ Note: If some packages are still missing in the app, try upgrading pip:
     python3.9 -m pip install -U pip
 
 """
-
+import json
 import os
 import shutil
 import subprocess
@@ -23,6 +23,7 @@ from argparse import (
     BooleanOptionalAction,
 )
 from pathlib import Path
+from tempfile import NamedTemporaryFile
 
 
 def main():
@@ -65,18 +66,44 @@ def main():
                     os.unlink(path)
 
     def do_pip_install():
-        cmd = [
-            "python3.9",
-            "-m",
-            "pip",
-            "install",
-            "--isolated",
-            "--ignore-installed",
-            "--prefix",
-            os.fspath(dist_root),
-            "-r",
-            iOS_dir / "mobile-requirements.txt",
-        ]
+        """
+        Run pip install to kivy-ios dist root directory
+
+        Uses the packages named in mobile-packages.txt, at the versions
+        specified in Pipfile.lock.
+        """
+        with NamedTemporaryFile(mode="wt", delete=False) as requirements_file:
+            packages_to_install = [
+                line
+                for line in (iOS_dir / "mobile-packages.txt").read_text().split("\n")
+                if line.strip() and not line.strip().startswith("#")
+            ]
+
+            pipfile_lock = json.loads((iOS_dir.parent / "Pipfile.lock").read_bytes())
+
+            for package_name in packages_to_install:
+                version = pipfile_lock["default"][package_name]["version"].removeprefix(
+                    "=="
+                )
+                requirements_file.write(f"{package_name}=={version}\n")
+            requirements_file.close()
+
+            with open(requirements_file.name, "rt") as f:
+                log(f.read())
+
+            cmd = [
+                "python3.9",
+                "-m",
+                "pip",
+                "install",
+                "--isolated",
+                "--no-deps",
+                "--ignore-installed",
+                "--prefix",
+                os.fspath(dist_root),
+                "-r",
+                requirements_file.name,
+            ]
         log(f"running {cmd!r}")
         subprocess.check_call(cmd)
 

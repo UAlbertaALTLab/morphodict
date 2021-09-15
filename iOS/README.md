@@ -186,12 +186,6 @@ dedicating time to making the project maintainable:
     morphodict `src` directory is very rough; it has comments with
     suggestions for improvement.
 
-  - The `mobile-requirements.txt` file used by pip has pretty random
-    versions of dependencies, instead of using versions that match what’s
-    in the main Pipenv.
-
-    (This is actually really easy, I should just fix it.)
-
   - File names and directory structure have not been refined
 
   - Often `black` will search for python files inside the installed
