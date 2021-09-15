@@ -1,0 +1,10 @@
+---
+{{ autogeneration_notice }}
+#
+# To prevent inconsistencies, python code writes out this file for ansible,
+# containing variables defined/derived from settings in python.
+
+morphodict_prod_data_dirs:
+  {% for app in apps %}
+  - "{{ app.prod_data_dir }}"
+  {% endfor %}

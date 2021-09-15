@@ -8,7 +8,6 @@ from django.core.management import BaseCommand
 from gensim.models import KeyedVectors
 from tqdm import tqdm
 
-from morphodict.lexicon.models import Definition
 from CreeDictionary.cvd import (
     google_news_vectors,
     extract_keyed_words,
@@ -16,6 +15,7 @@ from CreeDictionary.cvd import (
     definition_vectors_path,
 )
 from CreeDictionary.cvd.definition_keys import definition_to_cvd_key
+from morphodict.lexicon.models import Definition
 
 logger = logging.getLogger(__name__)
 
@@ -27,7 +27,7 @@ class Command(BaseCommand):
         parser.add_argument("--output-file", default=definition_vectors_path())
         parser.add_argument("--debug-output-file")
 
-    def handle(self, *args, **options):
+    def handle(self, output_file, debug_output_file, **options):
         logger.info("Building definition vectors")
 
         definitions = Definition.objects.filter(
@@ -43,7 +43,7 @@ class Command(BaseCommand):
 
         unknown_words = set()
 
-        with debug_output_file(options["debug_output_file"]) as debug_output:
+        with create_debug_output(debug_output_file) as debug_output:
             for d in tqdm(definitions.iterator(), total=count):
                 keys = extract_keyed_words(d.text, news_vectors, unknown_words)
                 debug_output(
@@ -66,11 +66,11 @@ class Command(BaseCommand):
             definition_vectors.add_vectors(
                 definition_vector_keys, definition_vector_vectors
             )
-            definition_vectors.save(fspath(options["output_file"]))
+            definition_vectors.save(fspath(output_file))
 
 
 @contextmanager
-def debug_output_file(path):
+def create_debug_output(path):
     """Context manager that returns a print function, or no-op if no path given'"""
 
     if path:

@@ -1,6 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: UTF-8 -*-
-
 from django import template
 from django.conf import settings
 from django.utils.html import format_html

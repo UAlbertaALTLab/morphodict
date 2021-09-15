@@ -38,3 +38,5 @@ context/
 /.env
 # Prevent changes from the Dockerfile from requiring a new docker build!
 docker/
+# but, include launcher script
+!docker/app.sh

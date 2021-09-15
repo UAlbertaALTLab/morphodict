@@ -36,7 +36,6 @@ throughout the codebase, as well as in comments and docstrings throughout.
   descriptions.
 
 .. toctree::
-   :maxdepth: 2
    :caption: Contents:
 
    linguistic-data

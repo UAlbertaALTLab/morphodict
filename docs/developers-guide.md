@@ -20,6 +20,15 @@ Within the directory, install all Python dependencies:
 
     pipenv install --dev
 
+If you run into trouble, the following notes may help:
+
+  - On Ubuntu 20.04, if pipenv can’t find Python 3.9 and complains about
+    there being `no module named distutils.command`, do `apt install -y
+    python3-distutils`
+
+  - On Ubuntu, if you get an error running pipenv that says `"Python.h" not
+    found`, install the `python3.9-dev` package
+
 ### Install NodeJS
 
 Install [NodeJS][] version 10 or greater.
@@ -39,6 +48,7 @@ template:
 # .env
 DEBUG=true
 USE_TEST_DB=true
+DEBUG_PARADIGM_TABLES=true
 ```
 
 These are environment variables that affect whether Django is in debug mode
@@ -64,29 +74,16 @@ creates the test databases for all supported languages.
 
 ### Full database
 
-> Note: if you have `USE_TEST_DB=true`, you can skip this
+Where to get full dictionaries is described in [Current dictionary
+data](current_dictionary_data).
 
-Download `crkeng.xml` and place it under `CreeDictionary/res/dictionaries/`
+Once you have a full dictionary, import it into the database:
 
-These files are copyright protected and not allowed on GitHub. Ask
-coworkers about the ‘altlab’ repo.
+    ./${sssttt}-manage importjsondict [file]
 
-If you do not have access to the full `crkeng.xml`, set `USE_TEST_DB=false`
-to automatically use the excerpt in this repository at
-`test_dictionaries/crkeng.xml`. That excerpt can be automatically updated
-from the full database file and `test_db_words.txt` by the `buildtestdbxml`
-management command.
-
-As is the custom with Django app, migrations are used to initialize the
-schema. Apply them with
-
-    ./crkeng-manage migrate
-
-Now import the dictionaries into the database:
-
-    ./crkeng-manage xmlimport CreeDictionary/res/dictionaries/crkeng.xml
-
-This typically takes 10-15 minutes on the full dictionary.
+As the current import code has not been optimized at all, for a full
+dictionary this can take half an hour even on a machine that is quite fast,
+and longer on slow ones.
 
 ### Compile JavaScript and CSS
 

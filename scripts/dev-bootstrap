@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# This script creates all databases files, adds a test user to each of
+# them, and runs a dictionary import on all test databases.
+#
 # This script started out in Python but that was too heavyweight at the
 # time. In its current form it could also be a small Makefile. If much
 # functionality gets added to it, it should probably go back to being
@@ -8,7 +11,7 @@
 set -eu
 
 function run() {
-    echo "${@}"
+    echo USE_TEST_DB="${USE_TEST_DB}" "${@}"
     "${@}"
 }
 
@@ -18,13 +21,14 @@ for LANG_PAIR in \
     cwdeng \
     srseng \
 ; do
-    for USE_TEST_DB in True False; do
+    for USE_TEST_DB in true false; do
         export USE_TEST_DB
 
         run ./${LANG_PAIR}-manage migrate
         run ./${LANG_PAIR}-manage ensurecypressadminuser --superuser
+
+        if ${USE_TEST_DB}; then
+            ./${LANG_PAIR}-manage ensuretestdb
+        fi
     done
 done
-
-# This is currently the only language pair with a test database
-USE_TEST_DB=True ./crkeng-manage ensuretestdb

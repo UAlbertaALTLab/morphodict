@@ -6,6 +6,8 @@ from functools import cache
 from pathlib import Path
 from typing import Collection, Iterable, Optional, Protocol
 
+from django.conf import settings
+
 from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
@@ -117,7 +119,7 @@ class ParadigmManager:
             # exist yet:
             self._name_to_layout.setdefault(paradigm_name, {})[size] = layout
 
-    _LITERAL_LEMMA = re.compile(r"\$\{lemma\}")
+    _LITERAL_LEMMA_RE = re.compile(r"\$\{lemma\}")
 
     @cache
     def all_analysis_template_tags(self, paradigm_name) -> Collection[tuple]:
@@ -136,16 +138,23 @@ class ParadigmManager:
             # The trick here is that we can look for a literal `${lemma}`
             # instead of having to parse arbitrary FST analyses.
             for template in layout.generate_fst_analyses("${lemma}"):
-                prefix, suffix = self._LITERAL_LEMMA.split(template)
+                prefix, suffix = self._LITERAL_LEMMA_RE.split(template)
 
-                prefix_tags = prefix.split("+")
-                assert prefix_tags[-1] == "", f"Prefix ${prefix!r} did not end with +"
-                suffix_tags = suffix.split("+")
-                assert suffix_tags[0] == "", f"Suffix ${suffix!r} did not end with +"
-                ret[template] = (
-                    tuple(t + "+" for t in prefix_tags[:-1]),
-                    tuple("+" + t for t in suffix_tags[1:]),
-                )
+                if settings.MORPHODICT_TAG_STYLE == "Plus":
+                    prefix_tags = prefix.split("+")
+                    assert (
+                        prefix_tags[-1] == ""
+                    ), f"Prefix {prefix!r} did not end with +"
+                    suffix_tags = suffix.split("+")
+                    assert suffix_tags[0] == "", f"Suffix {suffix!r} did not end with +"
+                    ret[template] = (
+                        tuple(t + "+" for t in prefix_tags[:-1]),
+                        tuple("+" + t for t in suffix_tags[1:]),
+                    )
+                elif settings.MORPHODICT_TAG_STYLE == "Bracket":
+                    ret[template] = (split_brackets(prefix), split_brackets(suffix))
+                else:
+                    raise Exception(f"Unsupported {settings.MORPHODICT_TAG_STYLE=!r}")
         return ret.values()
 
     def _inflect(self, layout: ParadigmLayout, lemma: str) -> Paradigm:
@@ -159,6 +168,26 @@ class ParadigmManager:
             for template, analysis in template2analysis.items()
         }
         return layout.fill(template2forms)
+
+
+_BRACKET_SEPATOR_RE = re.compile(
+    r"""
+            # regex to match the zero-width pattern in the middle of "]["
+            (?<= # look-behind
+                \] # literal ]
+            )
+            (?= # look-ahead
+                \[ # literal [
+            )
+           """,
+    re.VERBOSE,
+)
+
+
+def split_brackets(s):
+    if s == "":
+        return []
+    return _BRACKET_SEPATOR_RE.split(s)
 
 
 class ParadigmManagerWithExplicitSizes(ParadigmManager):

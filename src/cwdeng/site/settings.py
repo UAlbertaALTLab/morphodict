@@ -19,13 +19,11 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "cwdeng.altlab.dev"
+PRODUCTION_HOST = "itwiwina.altlab.dev"
 
 DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
-
-INSTALLED_APPS += ["cwdeng.dictimport"]
 
 FST_TOOL_SAMPLES = [
     "kika-nîminaw",
@@ -37,6 +35,8 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
+MORPHODICT_DICTIONARY_NAME = "itwîwina"
+
 RELAXED_ANALYZER_FST_FILENAME = "analyzer-gt-desc.hfstol"
 STRICT_ANALYZER_FST_FILENAME = RELAXED_ANALYZER_FST_FILENAME
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
@@ -46,6 +46,9 @@ MORPHODICT_ISO_639_1_CODE = "cr"
 
 MORPHODICT_SOURCE_LANGUAGE = "cwd"
 MORPHODICT_TARGET_LANGUAGE = "eng"
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Woods Cree"
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:
@@ -58,7 +61,8 @@ MORPHODICT_TARGET_LANGUAGE = "eng"
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
     # All entries in Wordform should be written in SRO (ēīōā)
-    "default": "Latn-x-macron",
+    # TODO: what is the current one?
+    "default": "CMRO",
     "available": {
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
@@ -68,5 +72,6 @@ MORPHODICT_ORTHOGRAPHY = {
             "name": "Syllabics",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
         },
+        "CMRO": {"name": "CMRO", "converter": "cwdeng.app.orthography.to_cmro"},
     },
 }

@@ -1,0 +1,151 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ MORPHODICT_DICTIONARY_NAME }} {{ MORPHODICT_SOURCE_LANGUAGE_NAME }} dictionary</title>
+  <meta name="theme-color" content="#A20010">
+  {% block headincludes %}
+  {% endblock %}
+  {% block faviconsetup %}
+  <link
+  rel="icon"
+  type="image/png"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-32.png' %}"
+/>
+<link
+  rel="alternate icon"
+  type="image/svg+xml"
+  href="{% static 'morphodict/css/img/morphodict-default-logo.svg' %}"
+/>
+<link
+  rel="mask-icon"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-safari-pinned-tab.svg' %}"
+  color="#FAEBD7"
+/>
+<link
+  rel="apple-touch-icon"
+  href="{% static 'morphodict/css/img/morphodict-default-logo-192.png' %}"
+/>
+  {% endblock %}
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'morphodict/css/styles.css' %}">
+  {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
+  <script src="{% url 'js_reverse' %}"></script>
+  <script src={% static 'morphodict/js/index.js' %}></script>
+
+  {% if displaying_paradigm %}
+    {% comment %}
+      On the lemma details/paradigm page:
+      This makes 'lemma-id' and 'paradigm-size' avaialble to JavaScript.
+    {% endcomment %}
+    {{ lemma_id|json_script:"lemma-id" }}
+    {{ paradigm_size|json_script:"paradigm-size" }}
+    {{ paradigm_sizes|json_script:"paradigm-sizes" }}
+  {% endif %}
+
+</head>
+<body class="app">
+{% if MORPHODICT_PREVIEW_WARNING %}
+<div style="background-color: red; text-align: center">
+    <span style="color: white; font-weight: bold;">🚧 <i>Warning</i> ⚠️ This is a preview dictionary, and may have wildly incorrect content 🚧</span>
+</div>
+{% endif %}
+<a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
+{% csrf_token %}
+{% include 'CreeDictionary/svg-sprites.html' %}
+{% include 'CreeDictionary/components/header.html' %}
+
+{% spaceless %}
+  {# The 🔊 button template. Gets inflated by JavaScript. #}
+  <template id="template:play-button">
+    <button aria-label="Play recording" class="definition__icon definition-title__play-button" data-cy="play-recording">
+      <svg class="definition-title__play-icon" focusable="false">
+        <use xlink:href="#fa-volume-up-solid"/>
+      </svg>
+    </button>
+  </template>
+
+  {# The toast or little message that pops-up to notifiy you of small state changes. #}
+   <dialog id="toast" class="toast" data-cy="toast">
+    <p class="toast__message"></p>
+  </dialog>
+{% endspaceless %}
+
+{% comment %}
+  JavaScript adds the class .search-progress--loading or
+  .search-progress-error, and changes the value:
+  {% endcomment %}
+<progress id="loading-indicator" class="search-progress" data-cy="loading-indicator" max="1"></progress>
+
+<main id="start-of-content" class="app__content app__pane">
+{% block content %}
+  <div id="prose">
+    {% block prose %}
+    {% endblock %}
+  </div>
+
+  <div class="search-results">
+    <ol class="search-results__results" id="search-result-list">
+      {% if did_search %}
+        {% include "CreeDictionary/search-results.html" %}
+      {% endif %}
+    </ol>
+  </div>
+
+  {% if displaying_paradigm %}
+    {% include 'CreeDictionary/word-detail.html' %}
+  {% endif %}
+{% endblock %}{# content #}
+</main>
+
+{% spaceless %}
+  <footer class="footer app__footer">
+    <ul class="footer__links footer__basic-links ">
+      <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
+             rel="noopener">Help</a></li>
+      <li><a href="{% url 'cree-dictionary-legend' %}" class="footer-links__link">Legend of abbreviations</a></li>
+      <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
+      <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
+    </ul>
+
+    <div class="footer__links footer__advanced-links">
+      <ul class="footer__links">
+        <li><a href="{% url 'cree-dictionary-settings' %}" class="footer-links__link">Settings</a></li>
+      </ul>
+
+      <h2 class="footer__option-header"> View search results in: </h2>
+      <ul class="unbullet">
+        <li>
+          <form method="POST" action={% url 'preference:change' 'display_mode' %}>
+            <button class="unbutton link footer__link" type="submit" name="mode" value="community" data-cy="enable-community-mode">
+              Community mode
+            </button>
+            {% csrf_token %}
+          </form>
+        </li>
+        <li>
+          <form method="POST" action={% url 'preference:change' 'display_mode' %}>
+            <button class="unbutton link footer__link" type="submit" name="mode" value="linguistic" data-cy="enable-linguistic-mode">
+              Linguist mode
+            </button>
+            {% csrf_token %}
+          </form>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__copyright copyright">
+      <p class="copyright__line">2019–{% now "Y" %} © Alberta Language Technology Lab.</p>
+      <p class="copyright__line"> Modified icons copyright © 2019
+        <a href="https://github.com/FortAwesome/Font-Awesome/tree/5.11.1">Font Awesome</a>,
+        licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.
+      </p>
+    </div>
+  </footer>
+{% endspaceless %}
+</body>
+</html>
+{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}

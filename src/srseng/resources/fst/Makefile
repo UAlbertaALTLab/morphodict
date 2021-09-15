@@ -24,8 +24,8 @@ all: generator-gt-norm.hfstol analyser-gt-norm.hfstol analyser-gt-desc.hfstol
 generator-gt-norm.hfst: $(FST_EXCHANGE)/srs-generator-gt-norm.hfst
 	cp $< $@
 
-analyser-gt-desc.hfst: spellrelax.hfst
-	hfst-compose -F -1 generator-gt-norm.hfst -2 $< \
+analyser-gt-desc.hfst: generator-gt-norm.hfst spellrelax.hfst
+	hfst-compose -F -1 $< -2 $(word 2,$^) \
 	    | hfst-invert -o $@
 
 spellrelax.hfst: $(LANG_SRS)/src/orthography/spellrelax.regex
