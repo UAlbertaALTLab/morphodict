@@ -51,7 +51,7 @@ If you run into trouble, the following notes may help:
 
   - On macOS, the official version of Python distributed by python.org is
     more likely to work successfully than anything from homebrew or
-    whatever.
+    elsewhere.
 
     Go to <https://www.python.org/downloads/> on your mac and click the
     yellow, easy-to-overlook button to “Download Python 3.9.x” (any 3.9.x
