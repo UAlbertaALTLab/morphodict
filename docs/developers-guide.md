@@ -3,6 +3,18 @@ Developer’s Guide
 
 Use this guide to work on the **Cree Intelligent Dictionary** repo.
 
+After you follow the steps below to get set up, this typically becomes as
+easy as running
+
+    pipenv shell
+
+and then, inside that shell, running
+
+    foreman start
+
+But the first time you try to do that, it will take a bit of work to get
+set up. If you have trouble, please contact us and/or file issues so that
+we can improve the process and/or this documentation.
 
 Installing for the first time
 -----------------------------
@@ -11,6 +23,14 @@ Clone the repo and `cd` into it, as usual.
 
     git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git
     cd cree-intelligent-dictionary
+
+And then, to pull some large data files not stored directly in the GitHub
+repository, run:
+
+    git lfs install --local && git lfs fetch && git lfs checkout
+
+If this fails, you can have [homebrew](https://brew.sh) install Git LFS
+with `brew install git-lfs`.
 
 ### Install Python
 
@@ -28,6 +48,39 @@ If you run into trouble, the following notes may help:
 
   - On Ubuntu, if you get an error running pipenv that says `"Python.h" not
     found`, install the `python3.9-dev` package
+
+  - On macOS, the official version of Python distributed by python.org is
+    more likely to work successfully than anything from homebrew or
+    elsewhere.
+
+    Go to <https://www.python.org/downloads/> on your mac and click the
+    yellow, easy-to-overlook button to “Download Python 3.9.x” (any 3.9.x
+    version is fine) underneath the “Download the latest version for macOS”
+    heading.
+
+    ![](how-to-download-python@2x.png)
+
+  - On macOS, if the `pipenv` command is not found, you can try:
+
+        python3.9 -m ensurepip --user --upgrade
+        python3.9 -m pip install --user --upgrade pipenv
+
+    and then run `python3.9 -m pipenv install --dev`. Running `python3.9 -m
+    pipenv` does the same thing as running `pipenv` is supposed to, but is
+    more likely to work if you have multiple versions of Python and/or
+    pipenv installed, or if you haven’t adjusted your shell’s `PATH`.
+
+  - On macOS, once in the pipenv shell, you can check exactly which python
+    you are using by running
+
+        ls -l $(which python)
+
+    If it is not
+    `/Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9`,
+    you can make it be that with
+
+        pipenv install --dev \
+            --python=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9
 
 ### Install NodeJS
 
@@ -128,6 +181,36 @@ Then you can access the sites with cookie isolation at
 
 If you only want to run one dictionary, you can locally comment out lines
 in the Procfile.
+
+
+Contributing
+------------
+
+Once you have committed some changes with git, you can send a pull request
+via GitHub. The repo is public, so you do not need any special permissions
+or access to the main repository in order to send pull requests.
+
+Create a ‘fork’, commit your changes to it, and then send a ‘pull request’
+which requests that the morphodict maintainers ‘pull’ your changes into the
+main repository.
+
+**Note**: *If you get odd problems with `git push` seeming to hang*, even
+when pushing to your own fork, you may be running into a firewall issue
+with Git LFS. There are two things you can try to fix that:
+
+   - Run `GIT_LFS_SKIP_PUSH=1 git push` instead of `git push` by itself
+
+   - Comment out the `pushUrl` line in the `.lfsconfig` file in your local
+     checkout of the repository
+
+Explanation: We use Git Large File Storage to manage some large files like
+built FSTs outside the typical git storage mechanism. Updates to these
+files can be pulled by anyone over https, but pushing them requires ssh
+access to our server. You only need this ssh access if you are updating
+these files, and without setting up this access in advance, git’s attempt
+to use ssh is likely to hang while trying to log in to our server directly
+from the public internet.
+
 
 Where are the JavaScript files?
 -------------------------------
