@@ -178,9 +178,9 @@ dedicating time to making the project maintainable:
     so that you can still `import` libraries that aren’t available,
     even though configuration will prevent you from using them.
 
-  - I also couldn’t figure out how to get that working with kivy’s pyobjus
-    library, which is supposed to let Python code call Objective-C/Swift
-    code; instead there’s a very basic mechanism to register callbacks.
+  - I also couldn’t figure out how to get kivy’s pyobjus library working.
+    That’s supposed to let Python code call Objective-C/Swift code; instead
+    there’s a custom, very basic mechanism to register callbacks.
 
   - The `sync-python` script that copies python code and assets from the
     morphodict `src` directory is very rough; it has comments with
@@ -206,30 +206,42 @@ dedicating time to making the project maintainable:
 
 ## Future stuff
 
-Things that might be needed to make a minimal submittable app:
-
-  - Since the core of the app is a web view, there are lots of things
+  - The core of the app is a web view. There are various things we could
     there. See [the “Web Views” chapter of *Programming iOS
-    14*][webviews-chapter].
+    14*][webviews-chapter] for some of the capabilities of web vies.
 
-      - The listening port might not be the best way to do it. Among other
-        things, it exposes the server and might cause conflict with other
-        apps. I believe the web view and the django app can talk to each
-        through a custom scheme instead.
+    In particular, the web view and the django app can likely talk to each
+    other through a custom scheme instead of a TCP socket.
 
 [webviews-chapter]: https://learning.oreilly.com/library/view/programming-ios-14/9781492092162/part02ch07.html#chap_id24
 
 # Submitting the app
 
-To do this, you’ll need an organization-specific “iPhone Distribution”
+To do this, you’ll need an organization-specific ‘Distribution’
 certificate, with the private key, in your keychain. Get it from someone
 who already has it. They can go into Keychain Access → My Certificates,
 right-click it, and export.
 
- 1. First, to upload a new build, you’ll need to increment the version
-    and/or build number. Select the project in the project navigator; click
-    the target, and then under General, update the version and/or build
-    numbers accordingly.
+You can, technically, also create a new one in App Store connect, or even
+have Xcode create one automatically, but the organization account is
+limited to only three distribution certificates. If you remove existing
+distribution certificates to make room for new ones, it *will* work for
+you, but Apple will mark those removed certificates as ‘revoked,’ causing
+all sorts of mysterious errors for other people who were using them
+successfully.
+
+ 1. First, to upload a new build, you’ll need to increment the build
+    number. Select the project in the project navigator; click the target,
+    and then under General, increment the build number.
+
+    If you update the version number, that triggers a time-consuming
+    re-review from Apple, even if the build is only intended for external
+    TestFlight users.
+
+    So you should only update the build number, not the version number.
+    However, once the app makes it into a public app store, new version
+    numbers will be required for every release that goes to the public app
+    store.
 
  2. Make sure the selected device is “Any iOS Device” and not a specific
     device or simulator
@@ -237,16 +249,20 @@ right-click it, and export.
  3. Do Build → Archive
 
  4. Follow the steps, accepting the defaults. Try to have Xcode do the
-    signing automatically, but when it likely fails, choose the “Manually
-    manage signing” option, click the Download Profile option, and choose
-    the “itwêwina offline” profile.
+    signing automatically. But if it fails, choose the “Manually manage
+    signing” option, click the Download Profile option, and choose the
+    “itwêwina offline” profile.
 
     For more about certificate types, provisioning profiles, &c., see the
     “Running on a device” section of the “Life Cycle of a Project” chapter
     of
     [Neuberg](https://learning.oreilly.com/library/view/ios-14-programming/9781492092087/part02ch04.html#idm45495341795176).
 
- 5. In App Store Connect, find the app, click on the TestFlight tab, and
-    once the new version has finished ‘Processing’, click on other stuff to
-    make it to the active version.
+ 5. Wait for the app to finish processing. [`watchbuild`] is a handy tool
+    for this.
 
+ 6. In App Store Connect, find the app, click on the TestFlight tab, click
+    on each group of internal or external testers you want to release the
+    build to, and click the + sign under ‘Builds.’
+
+[`watchbuild`]: https://github.com/fastlane/watchbuild

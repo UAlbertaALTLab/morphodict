@@ -84,17 +84,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func dbFileNeedsUpdate() -> Bool {
             if !fm.fileExists(atPath: dbFile.path) {
-                os_log("database file copy does not exist")
+                os_log("database file copy does not exist", log: log)
                 return true
             }
 
             if !fm.fileExists(atPath: dbVersionFile.path) {
-                os_log("database version file does not exist")
+                os_log("database version file does not exist", log: log)
                 return true
             }
 
             if let savedVersion = try? String(contentsOf: dbVersionFile) {
-                os_log("previous database version: %s", savedVersion)
+                os_log("previous database version: %s", log: log, savedVersion)
                 return savedVersion != CURRENT_DB_VERSION
             }
 

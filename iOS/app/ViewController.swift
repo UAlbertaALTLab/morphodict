@@ -32,7 +32,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
         webView.navigationDelegate = self
     }
 
-    func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+    func webView(_: WKWebView,
+                 decidePolicyFor navigationAction: WKNavigationAction,
+                 decisionHandler: @escaping (WKNavigationActionPolicy) -> Void)
+    {
         let url = navigationAction.request.url!
         if url.absoluteString.hasPrefix("http://127.0.0.1:4828/")
             || url.absoluteString == "about:blank"
@@ -64,6 +67,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
         present(controller, animated: true)
     }
 
+    /// Install a content blocker that will block access to everything
+    /// except our Django server, as our app is supposed to be offline-only.
+    ///
+    /// See https://stackoverflow.com/questions/32119975/how-to-block-external-resources-to-load-on-a-wkwebview/48084455#48084455
+    /// answers https://stackoverflow.com/a/48084455/14558
+    /// and https://stackoverflow.com/a/60864550/14558
     func makeWebViewOfflineOnly() {
         let blockRules = """
         [
@@ -77,7 +86,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
             },
             {
                 "trigger": {
-                    "url-filter": "http://127\\\\.0\\\\.0\\\\.1:4828/.*"
+                    "url-filter": "^http://127\\\\.0\\\\.0\\\\.1:4828/.*"
                 },
                 "action": {
                     "type": "ignore-previous-rules"
@@ -87,18 +96,21 @@ class ViewController: UIViewController, WKNavigationDelegate {
         """
         let configuration = webView.configuration
 
-        // there's a race condition here, but we're choosing to ignore it for now
+        // there's a race condition here, where the app might theoretically
+        // try to load a page before the offline-only content blocker is
+        // installed, but we're choosing to ignore it for now
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "ContentBlockingRules",
             encodedContentRuleList: blockRules) { contentRuleList, error in
                 if let error = error {
                     // Handle error
-                    print(error)
+                    os_log("Error installing content blocker: %@", log: log,
+                           error.localizedDescription)
                 } else if let contentRuleList = contentRuleList {
                     configuration.userContentController.add(contentRuleList)
-                    print("Added contentRuleList")
+                    os_log("Added contentRuleList", log: log)
                 } else {
-                    print("No contentRuleList")
+                    os_log("No contentRuleList", log: log)
                     return
                 }
         }
