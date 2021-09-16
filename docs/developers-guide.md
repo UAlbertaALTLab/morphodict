@@ -54,9 +54,9 @@ If you run into trouble, the following notes may help:
     whatever.
 
     Go to <https://www.python.org/downloads/> on your mac and click the
-    yellow, easy-to-overlook button “Download Python 3.9.x” button
-    (any 3.9.x version is fine) underneath the “Download the latest version
-    for macOS” heading.
+    yellow, easy-to-overlook button to “Download Python 3.9.x” (any 3.9.x
+    version is fine) underneath the “Download the latest version for macOS”
+    heading.
 
     ![](how-to-download-python@2x.png)
 
