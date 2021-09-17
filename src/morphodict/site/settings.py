@@ -341,9 +341,9 @@ LOGGING = {
 # We try to document all settings here, in one place, that are
 # language-specific. Sometimes there is a useful default that will apply to most
 # language pairs. If there isn’t, it needs to be configured in the settings file
-# specific to a language pair. In that case, we set the default here to None,
-# mark it required, and then a system check will raise an error on startup if
-# any required settings are not set.
+# specific to a language pair. In that case, we set the default here to a
+# sentinel value, and then a system check will raise an error on startup if any
+# such required settings are not set.
 
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
@@ -373,6 +373,9 @@ MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 # An optional, shorter name for the language. Currently only used in the search
 # bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
+
+# The name of the language, in the language itself, e.g., ‘nêhiyawêwin’
+MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 
 # The marketing / brand / public-facing name of the dictionary

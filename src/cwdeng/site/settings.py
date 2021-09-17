@@ -50,6 +50,8 @@ MORPHODICT_TARGET_LANGUAGE = "eng"
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Woods Cree"
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
 
+MORPHODICT_LANGUAGE_ENDONYM = "nîhithawîwin"
+
 # What orthographies -- writing systems -- are available
 # Plains Cree has two primary orthographies:
 #  - standard Roman orthography (e.g., nêhiyawêwin)

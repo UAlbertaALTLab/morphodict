@@ -1,6 +1,7 @@
 """
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
+from django.conf import settings
 
 from morphodict.preference import register_preference, Preference
 
@@ -35,7 +36,7 @@ class ParadigmLabel(Preference):
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
         "linguistic": "linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
-        "nehiyawewin": "nêhiyawêwin labels",
+        "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
     }
     default = "english"
 

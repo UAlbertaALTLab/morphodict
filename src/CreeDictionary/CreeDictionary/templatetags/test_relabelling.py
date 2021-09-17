@@ -33,13 +33,33 @@ def test_relabel_tag_uses_cookie():
     nehiyawewin = "awiya"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "nehiyawewin"
+    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
     template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
 
     rendered = template.render(context)
     assert nehiyawewin in rendered.lower()
+
+
+def test_relabel_tag_ignores_bad_cookie():
+    """
+    Test that simple relabelling works.
+    """
+    # NOTE: this relies on the current contents of crk.altlabel.tsv
+    # Its contents could change, so TRY to choose a label that is unlikely to change.
+    # I guess both the tag and label for "unspecified actor" are unlikely to change, so:
+    unspecified_actor = ("X",)
+    english = "someone"
+
+    request = HttpRequest()
+    request.COOKIES[ParadigmLabel.cookie_name] = "totally-invalid-value-🐐"
+
+    context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
+    template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
+
+    rendered = template.render(context)
+    assert english in rendered.lower()
 
 
 def test_relabel_tag_with_explict_label_setting() -> None:
@@ -55,7 +75,7 @@ def test_relabel_tag_with_explict_label_setting() -> None:
     nehiyawewin = "awiya"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "nehiyawewin"
+    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
 
@@ -86,7 +106,7 @@ def test_relabel_one_tag() -> None:
     unspecified_actor_tag = "X"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "nehiyawewin"
+    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
 
     context = RequestContext(
         request, {"label": RowLabel(unspecified_actor), "tag": unspecified_actor_tag}
