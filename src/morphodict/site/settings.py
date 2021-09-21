@@ -30,7 +30,9 @@ BASE_DIR = base_dir_setup.get_base_dir()
 # Read environment variables from project .env, if it exists
 # See: https://github.com/sloria/environs#readme
 env = Env()
-env.read_env()
+# We use an explicit path because the library’s auto-finding code doesn’t work
+# in the mobile app where we only have .pyc files
+env.read_env(os.fspath(BASE_DIR.parent.parent / ".env"))
 
 ################################# Core Django Settings #################################
 
@@ -351,6 +353,14 @@ AFFIX_SEARCH_THRESHOLD = 4
 # This defaults to False, because in order to work it requires that there
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
+
+# Enable semantic search via cosine vector distance. Optional because mobile
+# requires libraries we do not currently build, and a smaller vector file.
+MORPHODICT_ENABLE_CVD = True
+
+# Enable affix search. Optional because it requires a C++ library which we do
+# not currently build for mobile.
+MORPHODICT_ENABLE_AFFIX_SEARCH = True
 
 # Feature currently in development: use fst_lemma database field instead of
 # lemma text when generating wordforms

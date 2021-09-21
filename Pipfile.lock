@@ -188,10 +188,10 @@
         },
         "hfst-optimized-lookup": {
             "hashes": [
-                "sha256:a285b6505e2022733336f992e436d6753cd3de13cb33c5473f2210c9661c4eea"
+                "sha256:a58b9199fa28c373ce59b1cea2e20d21de9043878bf3bc9d176de552f534b428"
             ],
             "index": "pypi",
-            "version": "==0.0.12"
+            "version": "==0.0.13"
         },
         "marshmallow": {
             "hashes": [

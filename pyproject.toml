@@ -11,7 +11,7 @@ skip = [
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--doctest-modules"
+addopts = "--doctest-modules --ignore=src/mobile.py"
 
 # Where “to search for tests when no files or directories are given.” Saves
 # test collection time since all our python code is in src.
