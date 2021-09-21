@@ -30,7 +30,9 @@ BASE_DIR = base_dir_setup.get_base_dir()
 # Read environment variables from project .env, if it exists
 # See: https://github.com/sloria/environs#readme
 env = Env()
-env.read_env()
+# We use an explicit path because the library’s auto-finding code doesn’t work
+# in the mobile app where we only have .pyc files
+env.read_env(BASE_DIR.parent.parent / ".env")
 
 ################################# Core Django Settings #################################
 

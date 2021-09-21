@@ -64,5 +64,5 @@ rsync -av "${PROJECT_DIR}"/../fakes/ "${APP_PYTHON_DIR}"/
 # byte-compile
 python3.9 -m compileall -f -b "${APP_PYTHON_DIR}"
 # remove original python files
-#find "${APP_PYTHON_DIR}" -regex '.*\.py' -delete
+find "${APP_PYTHON_DIR}" -regex '.*\.py' -delete
 
