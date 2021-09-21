@@ -32,7 +32,7 @@ BASE_DIR = base_dir_setup.get_base_dir()
 env = Env()
 # We use an explicit path because the library’s auto-finding code doesn’t work
 # in the mobile app where we only have .pyc files
-env.read_env(BASE_DIR.parent.parent / ".env")
+env.read_env(os.fspath(BASE_DIR.parent.parent / ".env"))
 
 ################################# Core Django Settings #################################
 
