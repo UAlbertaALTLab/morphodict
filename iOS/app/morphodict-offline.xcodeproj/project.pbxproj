@@ -26,6 +26,12 @@
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
 		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
 		59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
+		5E9ED77026FB9CB000E2213D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */; };
+		5E9ED77226FB9CB000E2213D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */; };
+		5E9ED77426FB9CB000E2213D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED77326FB9CB000E2213D /* ViewController.swift */; };
+		5E9ED77726FB9CB000E2213D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77526FB9CB000E2213D /* Main.storyboard */; };
+		5E9ED77926FB9CB100E2213D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77826FB9CB100E2213D /* Assets.xcassets */; };
+		5E9ED77C26FB9CB100E2213D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */; };
 		8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB245FD987A9A8E52E1D8AF /* libz.tbd */; };
 		F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
@@ -55,6 +61,14 @@
 		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
 		49F8638A26A8A43400D35B6F /* app_python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_python; sourceTree = "<group>"; };
 		59738ABA1A8E19AA001B2C0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "itwewina-offline/Images.xcassets"; sourceTree = "<group>"; };
+		5E9ED76D26FB9CB000E2213D /* gunaha-offline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gunaha-offline.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5E9ED77326FB9CB000E2213D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5E9ED77626FB9CB000E2213D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5E9ED77826FB9CB100E2213D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		5E9ED77B26FB9CB100E2213D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5E9ED77D26FB9CB100E2213D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "itwewina-offline-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		ACB245FD987A9A8E52E1D8AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libz.tbd; sourceTree = "<absolute>"; };
 		AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libsqlite3.tbd; sourceTree = "<absolute>"; };
@@ -77,6 +91,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5E9ED76A26FB9CB000E2213D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* itwewina-offline.app */,
+				5E9ED76D26FB9CB000E2213D /* gunaha-offline.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +117,7 @@
 				4901E61F26EAAC22000EE786 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				5E9ED76E26FB9CB000E2213D /* gunaha-offline */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */,
@@ -162,6 +185,20 @@
 			name = hfst_optimized_lookup;
 			sourceTree = "<group>";
 		};
+		5E9ED76E26FB9CB000E2213D /* gunaha-offline */ = {
+			isa = PBXGroup;
+			children = (
+				5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */,
+				5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */,
+				5E9ED77326FB9CB000E2213D /* ViewController.swift */,
+				5E9ED77526FB9CB000E2213D /* Main.storyboard */,
+				5E9ED77826FB9CB100E2213D /* Assets.xcassets */,
+				5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */,
+				5E9ED77D26FB9CB100E2213D /* Info.plist */,
+			);
+			path = "gunaha-offline";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -186,6 +223,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* itwewina-offline.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5E9ED76C26FB9CB000E2213D /* gunaha-offline */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E9ED78026FB9CB100E2213D /* Build configuration list for PBXNativeTarget "gunaha-offline" */;
+			buildPhases = (
+				5E9ED76926FB9CB000E2213D /* Sources */,
+				5E9ED76A26FB9CB000E2213D /* Frameworks */,
+				5E9ED76B26FB9CB000E2213D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "gunaha-offline";
+			productName = "gunaha-offline";
+			productReference = 5E9ED76D26FB9CB000E2213D /* gunaha-offline.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -197,6 +251,9 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						LastSwiftMigration = 1250;
+					};
+					5E9ED76C26FB9CB000E2213D = {
+						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
 			};
@@ -219,6 +276,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* itwewina-offline */,
+				5E9ED76C26FB9CB000E2213D /* gunaha-offline */,
 			);
 		};
 /* End PBXProject section */
@@ -234,6 +292,16 @@
 				49F8638B26A8A43400D35B6F /* app_python in Resources */,
 				59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */,
 				49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E9ED76B26FB9CB000E2213D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9ED77C26FB9CB100E2213D /* LaunchScreen.storyboard in Resources */,
+				5E9ED77926FB9CB100E2213D /* Assets.xcassets in Resources */,
+				5E9ED77726FB9CB000E2213D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,7 +341,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5E9ED76926FB9CB000E2213D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E9ED77426FB9CB000E2213D /* ViewController.swift in Sources */,
+				5E9ED77026FB9CB000E2213D /* AppDelegate.swift in Sources */,
+				5E9ED77226FB9CB000E2213D /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5E9ED77526FB9CB000E2213D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E9ED77626FB9CB000E2213D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5E9ED77B26FB9CB100E2213D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -385,6 +482,148 @@
 			};
 			name = Release;
 		};
+		5E9ED77E26FB9CB100E2213D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 2K5J2584NX;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "gunaha-offline/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.ualberta.jcpoulin.gunaha-offline";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E9ED77F26FB9CB100E2213D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 2K5J2584NX;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "gunaha-offline/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "ca.ualberta.jcpoulin.gunaha-offline";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -416,6 +655,15 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E9ED78026FB9CB100E2213D /* Build configuration list for PBXNativeTarget "gunaha-offline" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E9ED77E26FB9CB100E2213D /* Debug */,
+				5E9ED77F26FB9CB100E2213D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
