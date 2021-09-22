@@ -108,7 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let bundle = Bundle(for: Self.self)
             let includedDb = bundle.url(
                 forResource: "db-mobile", withExtension: "sqlite3")!
-            try fm.removeItem(at: dbFile)
+//            try fm.removeItem(at: dbFile)
             try fm.copyItem(at: includedDb, to: dbFile)
             try CURRENT_DB_VERSION.write(to: dbVersionFile, atomically: false, encoding: .utf8)
         }

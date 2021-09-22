@@ -26,12 +26,27 @@
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
 		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
 		59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
-		5E9ED77026FB9CB000E2213D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */; };
-		5E9ED77226FB9CB000E2213D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */; };
-		5E9ED77426FB9CB000E2213D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9ED77326FB9CB000E2213D /* ViewController.swift */; };
-		5E9ED77726FB9CB000E2213D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77526FB9CB000E2213D /* Main.storyboard */; };
+		5E0F41E026FB9E58007AF67C /* morphodict_mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901B0D626E9226B000EE786 /* morphodict_mobile.m */; };
+		5E0F41E126FB9E64007AF67C /* runPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* runPython.m */; };
+		5E0F41E226FB9E6A007AF67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */; };
+		5E0F41E326FB9E6D007AF67C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FC26A9D71900CC2B09 /* ViewController.swift */; };
+		5E0F41E426FB9E78007AF67C /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D80126F0F916000A1EC2 /* _hfst_optimized_lookup.cpp */; };
+		5E0F41E526FB9E7B007AF67C /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49C4D80326F0F916000A1EC2 /* hfst-optimized-lookup.cc */; };
+		5E0F41E626FB9FE8007AF67C /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4901E61B26EAA195000EE786 /* lib */; };
+		5E0F41E726FB9FF4007AF67C /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */; };
+		5E0F41E826FB9FF8007AF67C /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DE26EA9FD4000EE786 /* libcrypto.a */; };
+		5E0F41E926FBA009007AF67C /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0E126EA9FFD000EE786 /* libffi.a */; };
+		5E0F41EA26FBA00B007AF67C /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DB26EA9FBE000EE786 /* libpython3.a */; };
+		5E0F41EB26FBA00E007AF67C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */; };
+		5E0F41EC26FBA012007AF67C /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DD26EA9FD4000EE786 /* libssl.a */; };
+		5E0F41ED26FBA015007AF67C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB245FD987A9A8E52E1D8AF /* libz.tbd */; };
+		5E0F41EE26FBA018007AF67C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B5A80026A9DEF500CC2B09 /* WebKit.framework */; };
+		5E0F41F026FBA2F5007AF67C /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 5E0F41EF26FBA2F5007AF67C /* HTMLString */; };
+		5E0F41F126FBA40A007AF67C /* main.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49B5A7F626A9D2E500CC2B09 /* main.xib */; };
+		5E0F41F226FBA466007AF67C /* db-mobile.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */; };
+		5E0F41F426FBA568007AF67C /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E0F41F326FBA568007AF67C /* Launch Screen.storyboard */; };
+		5E0F41F526FBA60C007AF67C /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
 		5E9ED77926FB9CB100E2213D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77826FB9CB100E2213D /* Assets.xcassets */; };
-		5E9ED77C26FB9CB100E2213D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */; };
 		8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB245FD987A9A8E52E1D8AF /* libz.tbd */; };
 		F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
@@ -49,7 +64,7 @@
 		4901E61B26EAA195000EE786 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "../kivy-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
 		49163B0826E03AC100CC79FD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		49B5A7F626A9D2E500CC2B09 /* main.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = main.xib; sourceTree = "<group>"; };
-		49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "itwewina-offline-Bridging-Header.h"; sourceTree = "<group>"; };
+		49B5A7F826A9D63100CC2B09 /* morphodict-offline-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "morphodict-offline-Bridging-Header.h"; sourceTree = "<group>"; };
 		49B5A7FC26A9D71900CC2B09 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		49B5A80026A9DEF500CC2B09 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -61,13 +76,9 @@
 		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
 		49F8638A26A8A43400D35B6F /* app_python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_python; sourceTree = "<group>"; };
 		59738ABA1A8E19AA001B2C0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "itwewina-offline/Images.xcassets"; sourceTree = "<group>"; };
+		5E0F41F326FBA568007AF67C /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		5E9ED76D26FB9CB000E2213D /* gunaha-offline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "gunaha-offline.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5E9ED77326FB9CB000E2213D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		5E9ED77626FB9CB000E2213D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5E9ED77826FB9CB100E2213D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5E9ED77B26FB9CB100E2213D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5E9ED77D26FB9CB100E2213D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "itwewina-offline-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		ACB245FD987A9A8E52E1D8AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libz.tbd; sourceTree = "<absolute>"; };
@@ -95,6 +106,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E0F41EB26FBA00E007AF67C /* libsqlite3.tbd in Frameworks */,
+				5E0F41E826FB9FF8007AF67C /* libcrypto.a in Frameworks */,
+				5E0F41EE26FBA018007AF67C /* WebKit.framework in Frameworks */,
+				5E0F41ED26FBA015007AF67C /* libz.tbd in Frameworks */,
+				5E0F41EC26FBA012007AF67C /* libssl.a in Frameworks */,
+				5E0F41E926FBA009007AF67C /* libffi.a in Frameworks */,
+				5E0F41E726FB9FF4007AF67C /* libbz2.tbd in Frameworks */,
+				5E0F41F026FBA2F5007AF67C /* HTMLString in Frameworks */,
+				5E0F41EA26FBA00B007AF67C /* libpython3.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +140,7 @@
 				5E9ED76E26FB9CB000E2213D /* gunaha-offline */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				49B5A7F826A9D63100CC2B09 /* itwewina-offline-Bridging-Header.h */,
+				49B5A7F826A9D63100CC2B09 /* morphodict-offline-Bridging-Header.h */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -188,12 +208,8 @@
 		5E9ED76E26FB9CB000E2213D /* gunaha-offline */ = {
 			isa = PBXGroup;
 			children = (
-				5E9ED76F26FB9CB000E2213D /* AppDelegate.swift */,
-				5E9ED77126FB9CB000E2213D /* SceneDelegate.swift */,
-				5E9ED77326FB9CB000E2213D /* ViewController.swift */,
-				5E9ED77526FB9CB000E2213D /* Main.storyboard */,
+				5E0F41F326FBA568007AF67C /* Launch Screen.storyboard */,
 				5E9ED77826FB9CB100E2213D /* Assets.xcassets */,
-				5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */,
 				5E9ED77D26FB9CB100E2213D /* Info.plist */,
 			);
 			path = "gunaha-offline";
@@ -236,6 +252,9 @@
 			dependencies = (
 			);
 			name = "gunaha-offline";
+			packageProductDependencies = (
+				5E0F41EF26FBA2F5007AF67C /* HTMLString */,
+			);
 			productName = "gunaha-offline";
 			productReference = 5E9ED76D26FB9CB000E2213D /* gunaha-offline.app */;
 			productType = "com.apple.product-type.application";
@@ -257,7 +276,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "itwewina-offline" */;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "morphodict-offline" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
@@ -299,9 +318,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E9ED77C26FB9CB100E2213D /* LaunchScreen.storyboard in Resources */,
+				5E0F41F526FBA60C007AF67C /* app_python in Resources */,
+				5E0F41E626FB9FE8007AF67C /* lib in Resources */,
+				5E0F41F126FBA40A007AF67C /* main.xib in Resources */,
+				5E0F41F226FBA466007AF67C /* db-mobile.sqlite3 in Resources */,
+				5E0F41F426FBA568007AF67C /* Launch Screen.storyboard in Resources */,
 				5E9ED77926FB9CB100E2213D /* Assets.xcassets in Resources */,
-				5E9ED77726FB9CB000E2213D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,32 +367,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E9ED77426FB9CB000E2213D /* ViewController.swift in Sources */,
-				5E9ED77026FB9CB000E2213D /* AppDelegate.swift in Sources */,
-				5E9ED77226FB9CB000E2213D /* SceneDelegate.swift in Sources */,
+				5E0F41E426FB9E78007AF67C /* _hfst_optimized_lookup.cpp in Sources */,
+				5E0F41E226FB9E6A007AF67C /* AppDelegate.swift in Sources */,
+				5E0F41E026FB9E58007AF67C /* morphodict_mobile.m in Sources */,
+				5E0F41E326FB9E6D007AF67C /* ViewController.swift in Sources */,
+				5E0F41E526FB9E7B007AF67C /* hfst-optimized-lookup.cc in Sources */,
+				5E0F41E126FB9E64007AF67C /* runPython.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		5E9ED77526FB9CB000E2213D /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E9ED77626FB9CB000E2213D /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5E9ED77A26FB9CB100E2213D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5E9ED77B26FB9CB100E2213D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
@@ -420,7 +426,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "itwewina-offline-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "morphodict-offline-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,10 +454,7 @@
 				GCC_PREFIX_HEADER = "";
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "BUILD_HFSTOL_MAIN=0";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				HEADER_SEARCH_PATHS = (
-					"${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**",
-					"${PROJECT_DIR}/../kivy-ios/dist/include/common/sdl2",
-				);
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**";
 				INFOPLIST_FILE = "itwewina-offline-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -474,7 +477,7 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "itwewina-offline-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "morphodict-offline-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -493,7 +496,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -523,6 +526,7 @@
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -530,6 +534,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					"BUILD_HFSTOL_MAIN=0",
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -537,11 +542,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**";
 				INFOPLIST_FILE = "gunaha-offline/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/../kivy-ios/dist/lib",
+					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
+					"$(SRCROOT)/../dist/lib",
 				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -550,6 +562,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "morphodict-offline-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -567,7 +580,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
@@ -597,19 +610,28 @@
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "BUILD_HFSTOL_MAIN=0";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include/python3.9/**";
 				INFOPLIST_FILE = "gunaha-offline/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PROJECT_DIR}/../kivy-ios/dist/lib",
+					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
+					"$(SRCROOT)/../dist/lib",
 				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -617,6 +639,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "morphodict-offline-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -668,7 +691,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "itwewina-offline" */ = {
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "morphodict-offline" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
@@ -692,6 +715,11 @@
 
 /* Begin XCSwiftPackageProductDependency section */
 		49F43F0C26BEF4B30062D570 /* HTMLString */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 49F43F0B26BEF4B30062D570 /* XCRemoteSwiftPackageReference "HTMLString" */;
+			productName = HTMLString;
+		};
+		5E0F41EF26FBA2F5007AF67C /* HTMLString */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 49F43F0B26BEF4B30062D570 /* XCRemoteSwiftPackageReference "HTMLString" */;
 			productName = HTMLString;
