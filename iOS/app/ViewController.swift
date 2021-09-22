@@ -53,16 +53,34 @@ class ViewController: UIViewController, WKNavigationDelegate {
             message: url,
             preferredStyle: .actionSheet)
 
+        var cancelButtonStyle: UIAlertAction.Style = .cancel
+
+        // On iPadOS, iPhone-style action sheets aren’t directly supported.
+        // The idea is to provide a popover, ideally pointing at the link that
+        // was just tapped, and with any Cancel button automatically removed
+        // on the assumption that you can tap elsewhere to close the popup.
+        // https://developer.apple.com/documentation/uikit/windows_and_screens/getting_the_user_s_attention_with_alerts_and_action_sheets
+        //
+        // That gets a bit complicated so for now we simply do our best to mimic
+        // an iPhone-style action sheet in the center of the view.
+        if let popoverController = controller.popoverPresentationController {
+            popoverController.sourceView = view
+            popoverController.sourceRect = CGRect(
+                x: view.bounds.midX, y: view.bounds.midY,
+                width: 0, height: 0)
+            popoverController.permittedArrowDirections = []
+            cancelButtonStyle = .default
+        }
+
         controller.addAction(UIAlertAction(
             title: "Open in Safari", style: .default) { _ in
                 UIApplication.shared.open(URL(string: url)!, options: [:])
         })
 
-        controller.addAction(
-            UIAlertAction(title: "Cancel",
-                          style: .cancel) { _ in
+        controller.addAction(UIAlertAction(
+            title: "Cancel", style: cancelButtonStyle) { _ in
                 self.dismiss(animated: true)
-            })
+        })
 
         present(controller, animated: true)
     }
