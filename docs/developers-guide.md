@@ -102,6 +102,11 @@ template:
 DEBUG=true
 USE_TEST_DB=true
 DEBUG_PARADIGM_TABLES=true
+
+# This next line prevents `git push` from hanging if you do not have SSH access
+# to our Git Large File Storage server. Such access is only needed if you want
+# to commit changes to large binary files such as FSTs and vector models.
+GIT_LFS_SKIP_PUSH=1
 ```
 
 These are environment variables that affect whether Django is in debug mode
@@ -200,16 +205,19 @@ with Git LFS. There are two things you can try to fix that:
 
    - Run `GIT_LFS_SKIP_PUSH=1 git push` instead of `git push` by itself
 
+   - Make sure `GIT_LFS_SKIP_PUSH=1` is in your `.env` file and run `git push`
+     from inside the pipenv shell
+
    - Comment out the `pushUrl` line in the `.lfsconfig` file in your local
      checkout of the repository
 
-Explanation: We use Git Large File Storage to manage some large files like
-built FSTs outside the typical git storage mechanism. Updates to these
-files can be pulled by anyone over https, but pushing them requires ssh
-access to our server. You only need this ssh access if you are updating
-these files, and without setting up this access in advance, git’s attempt
-to use ssh is likely to hang while trying to log in to our server directly
-from the public internet.
+Explanation: We use Git Large File Storage to manage some large files, such as
+already-built FSTs, outside the typical git storage mechanism. Updates to these
+files can be pulled by anyone over https, but pushing them requires ssh access
+to our server. You only need this ssh access if you are updating these files,
+and without setting up this access in advance, git’s attempt to use ssh is
+likely to hang while trying to log in to our server directly from the public
+internet.
 
 
 Where are the JavaScript files?
