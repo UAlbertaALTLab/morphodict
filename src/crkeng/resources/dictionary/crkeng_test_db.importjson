@@ -879,6 +879,26 @@
     "slug": "kotiskâwêw"
   },
   {
+    "analysis": [[], "kwâskwêpayihôs", ["+N", "+A", "+Sg"]],
+    "head": "kwâskwêpayihôs",
+    "linguistInfo": {
+      "inflectional_category": "NA-1",
+      "pos": "N",
+      "stem": "kwâskwêpayihôs-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "mule deer [literally: \"jumper; leaper\"; Lt: Odocoileus hemionus hemionus]",
+        "core_definition": "mule deer",
+        "semantic_definition": "mule deer jumper leaper",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "kwâskwêpayihôs"
+  },
+  {
     "head": "maskwa",
     "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
     "paradigm": "NA",

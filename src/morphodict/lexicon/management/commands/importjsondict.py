@@ -201,9 +201,13 @@ class Command(BaseCommand):
         keywords = set()
 
         for sense in senses:
+            kwargs = {}
+            for key in ["semantic_definition", "core_definition"]:
+                if key in sense:
+                    kwargs[f"raw_{key}"] = sense[key]
+
             d = Definition.objects.create(
-                wordform=wordform,
-                text=sense["definition"],
+                wordform=wordform, text=sense["definition"], **kwargs
             )
             for source in sense["sources"]:
                 d.citations.add(source)

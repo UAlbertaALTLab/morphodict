@@ -154,7 +154,7 @@ class Command(BaseCommand):
 
             for definition in definitions.get(wordform.lemma_id, []):
                 try:
-                    input_text = remove_parentheticals(definition.text)
+                    input_text = remove_parentheticals(definition.core_definition)
 
                     phrase = inflect_english_phrase(wordform.analysis, input_text)
                 except UnknownTagError:
@@ -239,7 +239,7 @@ class Command(BaseCommand):
                                         c.abbrv
                                         for c in d.auto_translation_source.citations.all()
                                     ),
-                                    d.text,
+                                    d.core_definition,
                                 )
                                 for d in auto_definitions
                             ],

@@ -182,7 +182,7 @@ recommended*:
 [NFD]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize#canonical_equivalence_normalization
 [json-stable-sort]: https://www.npmjs.com/package/json-stable-stringify
 
-### importjson Specification
+### importjson specification
 
 An importjson file is a JSON file containing an array of entries.
 
@@ -199,7 +199,10 @@ The fields are:
     morpheme, stem, &c.
 
   - The `senses` field, a required array of `{definition: string, sources:
-    string[]}` objects, contains the definitions for the entry.
+    string[], core_definition?: string, semantic_definition?: string}`
+    objects, contains the definitions for the entry.
+
+    Only the `definition` and `sources` fields are required.
 
     The sense must currently be a single unformatted string. We are aware
     that people would like to specify things such as source-language text
@@ -209,6 +212,18 @@ The fields are:
     The `sources` are typically short abbreviations for the name of a
     source. `sources` is an array because multiple distinct sources may
     give the same, or essentially the same, definition for a word.
+
+    The optional `core_definition` field may specify a definition to use
+    for auto-translation. For example, if an entry for ‘shoe’ has lots of
+    details and notes, but when auto-translated into first person
+    possessive it should simply become ‘my shoe’, you can specify the core
+    definition as `shoe`.
+
+    The optional `semantic_definition` field may specify a definition to
+    use instead of the main definition text when computing definition
+    vectors for semantic search. This is related to the concept of the core
+    definition, but may add additional relevant keywords, while leaving out
+    stopwords or explanatory text such as the literal word ‘literally.’
 
   - The `slug` field, a required string, is a unique key for this entry
     that is used for several purposes, including user-facing URLs, to make
