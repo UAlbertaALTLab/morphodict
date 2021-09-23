@@ -27,28 +27,42 @@ logger = logging.getLogger(__name__)
 class InsertBuffer:
     """A container for objects to be bulk-inserted.
 
-    Will call `manager.bulk_create` every `count` objects. The caller is
-    responsible for calling `save()` one final time when done.
+    Will automatically assign IDs to provided objects, and call
+    `manager.bulk_create` every `count` objects. The caller is responsible for
+    calling `save()` one final time when done.
     """
 
-    def __init__(self, manager, count=500):
+    def __init__(self, manager, count=500, assign_id=False):
+        """
+        If assign_id is True, this class will assign IDs to objects added to it,
+        so that they can immediately be used in foreign key references.
+
+        While SQLite `INSERT … RETURNING` is supported in SQLite 3.35.0+, it’s
+        not magic because you still have to be careful that foreign key
+        references are already inserted.
+        """
         self._queryset = manager
         self._count = count
         self._buffer = []
+        self._assign_id = assign_id
+
+        if self._assign_id:
+            max_id = manager.aggregate(Max("id"))["id__max"]
+            if max_id is None:
+                max_id = 0
+            self._next_id = max_id + 1
 
     def add(self, obj):
+        if self._assign_id and obj.id is None:
+            obj.id = self._next_id
+            self._next_id += 1
+
         self._buffer.append(obj)
         if len(self._buffer) >= self._count:
             self.save()
 
     def save(self):
-        # Quick test that the item being created is unsaved. We could check
-        # every element, but that would take time, and this should catch the
-        # most egregious cases.
-        assert self._buffer[0].id is None
         self._queryset.bulk_create(self._buffer)
-        # Ensure that bulk_create assigned IDs
-        assert self._buffer[0].id is not None
         self._buffer = []
 
 
@@ -189,7 +203,7 @@ class Command(BaseCommand):
 
         (ds, created_) = DictionarySource.objects.get_or_create(abbrv="auto")
 
-        definition_buffer = InsertBuffer(manager=Definition.objects)
+        definition_buffer = InsertBuffer(manager=Definition.objects, assign_id=True)
         citation_buffer = InsertBuffer(manager=Definition.citations.through.objects)
 
         for _, definitions in self.generate_translations():

@@ -13,7 +13,7 @@
 #
 
 ################################ Build stage #################################
-FROM python:3.9-slim AS builder
+FROM python:3.9-slim-buster AS builder
 
 LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
 
@@ -44,31 +44,6 @@ RUN set -ex \
  && pip install pipenv \
  && mkdir /app/ \
  && chown morphodict /app
-
-
-### HACK FOR SQLITE
-## To get `INSERT … RETURNING` support in SQLite, we need version 3.35 or
-## later. At the moment of writing this, that’s not available in any
-## released mainstream linux distro.
-##
-## The python:3-9 docker image is based on Debian 11 ‘bullseye’. This next
-## bit upgrades only the sqlite3 package to use the version from the
-## not-yet-released Debian 12 ‘bookworm’.
-##
-## See https://unix.stackexchange.com/a/253866/27685
-##
-## This block can be removed once ubuntu:21.10 is released on October 14,
-## 2021, at which time that can be used as the base image instead.
-
-RUN echo 'deb https://ftp.debian.org/debian bookworm main' > /etc/apt/sources.list.d/bookworm.list \
-    && echo 'APT::Default-Release "bullseye";' > /etc/apt/apt.conf.d/default-release \
-    && apt-get update \
-    && apt-get install -y -t bookworm libsqlite3-0 \
-    && rm -rf /var/cache/apt
-
-### END SQLITE HACK
-
-
 
 USER morphodict
 
@@ -102,10 +77,8 @@ RUN npm run build \
 
 ############################# Application image ##############################
 
-FROM python:3.9-slim
+FROM python:3.9-slim-buster
 LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
-
-
 
 # Choose an ID that will be consistent across all machines in the network
 # To avoid overlap with user IDs, use an ID over
@@ -118,30 +91,6 @@ RUN set -ex \
  && apt-get update \
  && apt-get install -y --no-install-recommends tini libfoma0 \
  && rm -rf /var/cache/apt
-
-
-### HACK FOR SQLITE
-## To get `INSERT … RETURNING` support in SQLite, we need version 3.35 or
-## later. At the moment of writing this, that’s not available in any
-## released mainstream linux distro.
-##
-## The python:3-9 docker image is based on Debian 11 ‘bullseye’. This next
-## bit upgrades only the sqlite3 package to use the version from the
-## not-yet-released Debian 12 ‘bookworm’.
-##
-## See https://unix.stackexchange.com/a/253866/27685
-##
-## This block can be removed once ubuntu:21.10 is released on October 14,
-## 2021, at which time that can be used as the base image instead.
-
-RUN echo 'deb https://ftp.debian.org/debian bookworm main' > /etc/apt/sources.list.d/bookworm.list \
-    && echo 'APT::Default-Release "bullseye";' > /etc/apt/apt.conf.d/default-release \
-    && apt-get update \
-    && apt-get install -y -t bookworm libsqlite3-0 \
-    && rm -rf /var/cache/apt
-
-### END SQLITE HACK
-
 
 # Create the user/group that will run the application code
 RUN set -xv ; groupadd --gid ${MORPHODICT_RUN_UID_GID} morphodict-run \
