@@ -4,22 +4,22 @@ from argparse import (
     ArgumentParser,
     RawDescriptionHelpFormatter,
 )
-from collections import defaultdict
-from dataclasses import dataclass, asdict
+from collections import defaultdict, Counter
+from dataclasses import dataclass, asdict, field
 from typing import Iterable
 
 from django.core.management import BaseCommand
 from django.db.models import Max, Q
 from tqdm import tqdm
 
-from morphodict.lexicon.models import Wordform, Definition, DictionarySource
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
-from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import (
     inflect_english_phrase,
     FomaLookupNotFoundException,
     FomaLookupMultipleFoundException,
 )
+from morphodict.analysis.tag_map import UnknownTagError
+from morphodict.lexicon.models import Wordform, Definition, DictionarySource
 
 logger = logging.getLogger(__name__)
 
@@ -82,9 +82,27 @@ class TranslationStats:
     multiple_phrase_analyses_count: int = 0
     # analysis contains preverb tags, which we don’t have mappings for
     preverb_form: int = 0
+    # How often are we seeing various unknown tags?
+    unknown_tags_during_auto_translation: Counter = field(default_factory=Counter)
 
     def __str__(self):
-        return "\n".join(f"{k}: {v:,}" for k, v in asdict(self).items())
+        ret = []
+
+        for field_name, value in asdict(self).items():
+            if isinstance(value, int):
+                formatted = format(value, ",")
+            elif isinstance(value, Counter):
+                # asdict messes up Counter objects
+                value = getattr(self, field_name)
+
+                formatted = ", ".join(
+                    f"{count:,}x {item}" for item, count in value.most_common()
+                )
+            else:
+                formatted = str(value)
+            ret.append(f"{field_name}: {formatted}")
+
+        return "\n".join(ret)
 
 
 class Command(BaseCommand):
@@ -157,10 +175,14 @@ class Command(BaseCommand):
                     input_text = remove_parentheticals(definition.text)
 
                     phrase = inflect_english_phrase(wordform.analysis, input_text)
-                except UnknownTagError:
-                    raise Exception(
-                        f"Unknown tag for {wordform.text} {wordform.analysis}"
+                except UnknownTagError as e:
+                    logger.debug(
+                        f"Unknown tag in {wordform.text} {wordform.analysis}: {e}"
                     )
+                    self.translation_stats.unknown_tags_during_auto_translation[
+                        e.args[0]
+                    ] += 1
+                    continue
                 except FomaLookupNotFoundException as e:
                     logger.debug(f"Couldn’t handle {wordform.text}: {e}")
                     self.translation_stats.no_phrase_analysis_count += 1
