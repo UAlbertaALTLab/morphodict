@@ -211,7 +211,7 @@ if USE_TEST_DB:
 
     DATABASES = {
         "default": {
-            "ENGINE": "django.db.backends.sqlite3",
+            "ENGINE": "morphodict.sqlite3_returning_backend",
             "NAME": os.fspath(TEST_DB_FILE),
         }
     }
