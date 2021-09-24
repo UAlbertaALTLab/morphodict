@@ -366,6 +366,11 @@ MORPHODICT_ENABLE_AFFIX_SEARCH = True
 # lemma text when generating wordforms
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
 
+# Default names for FST files
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
+
 # Show a big banner at the top warning that the dictionary is a work in
 # progress. Set this to false once it’s gone through a reasonable amount of
 # testing.
