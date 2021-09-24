@@ -10,7 +10,7 @@ context("Regressions", () => {
     cy.get("[data-cy=search-results]").should("contain", "atâhk");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+  // https://github.com/UAlbertaALTLab/morphodict/issues/147
   it("should allow space characters in exact strings", () => {
     cy.visitSearch("acâhkos kâ-osôsit");
     cy.get("[data-cy=search-results]").should("contain", "acâhkos kâ-osôsit");
@@ -22,7 +22,7 @@ context("Regressions", () => {
     );
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+  // https://github.com/UAlbertaALTLab/morphodict/issues/147
   it("should allow space characters in spell-relaxed results", () => {
     cy.visitSearch("niki nitawi kiskinwahamakosin");
     cy.get("[data-cy=search-results]").should("contain", "kiskinwahamâkosiw");
@@ -34,7 +34,7 @@ context("Regressions", () => {
     cy.get("[data-cy=search-results]").should("contain", "nipâw");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/158
+  // https://github.com/UAlbertaALTLab/morphodict/issues/158
   it("should display relevant English results", () => {
     cy.visitSearch("see");
     cy.get("[data-cy=search-results]")
@@ -52,7 +52,7 @@ context("Regressions", () => {
     cy.get("[data-cy=search-results]").should("contain", "nipâw");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/161
+  // https://github.com/UAlbertaALTLab/morphodict/issues/161
   it("should show preverbs", () => {
     cy.visitSearch("ati");
     cy.get("[data-cy=search-results]").should("contain", "ati-");
@@ -67,7 +67,7 @@ context("Regressions", () => {
     cy.get("[data-cy=search-results]").should("contain", "pê-");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/160
+  // https://github.com/UAlbertaALTLab/morphodict/issues/160
   it("should show results for pronouns", () => {
     cy.visitSearch("oma");
     cy.get("[data-cy=search-results]").should("contain", "ôma");
@@ -79,13 +79,13 @@ context("Regressions", () => {
     cy.get("[data-cy=search-results]").should("contain", "niya");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+  // https://github.com/UAlbertaALTLab/morphodict/issues/176
   it("should show results for lexicalized diminutive forms", () => {
     cy.visitSearch("acâhkos");
     cy.get("[data-cy=search-results]").should("contain", "atâhk");
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+  // https://github.com/UAlbertaALTLab/morphodict/issues/176
   describe("should show at least two lemmas for lexicalized diminutive forms", () => {
     it("should show atâhk and acâhkos for acâhkos", () => {
       cy.visitSearch("acâhkos");
@@ -95,7 +95,7 @@ context("Regressions", () => {
     });
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
+  // https://github.com/UAlbertaALTLab/morphodict/issues/181
   it("should just show two meanings for the lemma nipâw", () => {
     cy.visitSearch("nipâw");
     cy.get("[data-cy=search-results]")
@@ -104,7 +104,7 @@ context("Regressions", () => {
       .should("have.length", 2);
   });
 
-  // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/181
+  // https://github.com/UAlbertaALTLab/morphodict/issues/181
   it("should show the NRC logo", () => {
     cy.visit("/about");
     cy.get(
@@ -135,7 +135,7 @@ context("Regressions", () => {
   });
 
   /**
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/277
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/277
    */
   it("should show 3Sg→1Sg,2Sg rather than 4Sg/Pl→3Sg in the basic VTA layout", function () {
     // Go to a VTA word:
@@ -152,7 +152,7 @@ context("Regressions", () => {
   /**
    * Ensure search can be initiated from about page.
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/280
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/280
    */
   it("should search from the about page", function () {
     cy.visit("/about");
@@ -166,7 +166,7 @@ context("Regressions", () => {
   /**
    * Ensure English names with capitalization gets matches
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/343
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/343
    */
   it("should present results when one searches with capitalized English names", function () {
     cy.visitSearch("Cree");
@@ -179,7 +179,7 @@ context("Regressions", () => {
   /**
    * Ensure preverbs don't get weird search results
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/355
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/355
    */
   it("should not present un-related translation for preverbs", function () {
     cy.visitSearch("nitawi-");
@@ -191,7 +191,7 @@ context("Regressions", () => {
   /**
    * Ensure inflected form ê-kîsikâk get recognized
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/190
    */
   it("should not present un-related translation for preverbs", function () {
     cy.visitSearch("ê-kîsikâk");
@@ -203,7 +203,7 @@ context("Regressions", () => {
   /**
    * Ensure homographic entries can have paradigms shown
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/395
    */
   it("should let the user see the paradigm for different entries of ayâw and nôhtêpayiw", function () {
     // ayâw has three entries of different inflectional categories and nôhtêpayiw has two
@@ -241,7 +241,7 @@ context("Regressions", () => {
   /**
    * Ensure vowel length does not destroy affix search
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/420
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/420
    */
   it("should show affix search results when the query has diacritics on it", function () {
     // test assumption: without vowel length, affix search works
@@ -256,7 +256,7 @@ context("Regressions", () => {
   /**
    * There should be symbols for pronouns and preverbs.
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/489
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/489
    */
   context("symbols also for pronouns and preverbs", function () {
     // TODO: add emoji to represent ôma/awa words
@@ -281,7 +281,7 @@ context("Regressions", () => {
   /**
    * Ensure homographic entries can have paradigms shown
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/395
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/395
    */
   context("results for common place names", function () {
     const testCases = [
@@ -302,7 +302,7 @@ context("Regressions", () => {
   /**
    * Ensure audio is playable after clicking "show more"
    *
-   * See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/636
+   * See: https://github.com/UAlbertaALTLab/morphodict/issues/636
    */
 
   it("should show audio button after showing more", () => {
