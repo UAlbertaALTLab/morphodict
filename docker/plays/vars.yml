@@ -11,3 +11,4 @@ morphodict_prod_data_dirs:
   - "/data_local/application-data/cwdeng"
   - "/data_local/application-data/srseng"
   - "/data_local/application-data/arpeng"
+  - "/data_local/application-data/hdneng"

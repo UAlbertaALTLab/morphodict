@@ -1,5 +1,5 @@
 """
-Django settings for arpeng.
+Django settings for hdneng.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/3.2/topics/settings/
@@ -19,28 +19,25 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "arpeng.altlab.dev"
+PRODUCTION_HOST = "hdneng.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
-DEFAULT_RUNSERVER_PORT = 8007
+DEFAULT_RUNSERVER_PORT = 8010
 
-INSTALLED_APPS.insert(0, "arpeng.app")
-
-FST_TOOL_SAMPLES = [
-    "nonoohowun",
-    "[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]noohow[2SG-SUBJ][1SG-OBJ]",
-]
+INSTALLED_APPS.insert(0, "hdneng.app")
 
 # Morphodict configuration
 
-MORPHODICT_DICTIONARY_NAME = "arpeng"
-
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
-MORPHODICT_ISO_639_1_CODE = "arp"
+MORPHODICT_ISO_639_1_CODE = "hdn"
 
-MORPHODICT_SOURCE_LANGUAGE = "arp"
+MORPHODICT_SOURCE_LANGUAGE = "hdn"
 MORPHODICT_TARGET_LANGUAGE = "eng"
+
+MORPHODICT_LANGUAGE_ENDONYM = "X̲aad Kíl"
+MORPHODICT_DICTIONARY_NAME = "Guusaaw"
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Northern Haida"
 
 MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
@@ -48,11 +45,3 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "Latin"},
     },
 }
-
-MORPHODICT_TAG_STYLE = "Bracket"
-
-MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
-
-MORPHODICT_SOURCE_LANGUAGE_NAME = "Arapaho"
-
-MORPHODICT_LANGUAGE_ENDONYM = "Hinónoʼeitíít"
