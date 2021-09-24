@@ -24,7 +24,7 @@ def main():
     )
     parser.add_argument(
         "--repo",
-        default="UAlbertaALTLab/cree-intelligent-dictionary",
+        default="UAlbertaALTLab/morphodict",
         help="repo to push to",
     )
     parser.add_argument(

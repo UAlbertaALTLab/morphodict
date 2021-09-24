@@ -1,6 +1,6 @@
 // if I click this or visit that, xxx should show
 
-// corresponding requirements: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/143
+// corresponding requirements: https://github.com/UAlbertaALTLab/morphodict/issues/143
 describe("urls for lemma detail page should be handled correctly", () => {
   it("should show lemma detail (paradigms) if a unambiguous url is given", function () {
     // Get to the definition/paradigm page for "wâpamêw"

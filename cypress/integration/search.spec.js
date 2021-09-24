@@ -1,6 +1,6 @@
 context("Searching", () => {
   describe("I want to know what a Cree word means in English", () => {
-    // https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/120
+    // https://github.com/UAlbertaALTLab/morphodict/issues/120
     it("should search for an exact lemma", () => {
       cy.visitSearch("minos").searchResultsContain("cat");
     });
@@ -95,7 +95,7 @@ context("Searching", () => {
   });
 
   describe("When I perform a search, I should see the 'info' icon on corresponding entries", () => {
-    // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/239).
+    // Right – this is the test for issue #239 (https://github.com/UAlbertaALTLab/morphodict/issues/239).
 
     // At present, I want to target the definition's title, then look at the children to see if the the 'i' icon is
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
@@ -182,7 +182,7 @@ context("Searching", () => {
     });
 
     /**
-     * https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/549
+     * https://github.com/UAlbertaALTLab/morphodict/issues/549
      */
     it("displays the stem prominently in the linguistic breakdown", function () {
       cy.visitSearch("pê-nîmiw");

@@ -1,5 +1,5 @@
 context("Searching", () => {
-  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
+  // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=4.%20Inflected%20form
   context("result header", function () {
     const lemma = "nîmiw";
     const wordclassEmoji = "➡️"; // the arrow is the most consistent thing, which means verb
@@ -59,7 +59,7 @@ context("Searching", () => {
       );
     });
 
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=4.%20Inflected%20form
     it("should display an inflected form with a definition AND its lemma", function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition));
 
@@ -112,7 +112,7 @@ context("Searching", () => {
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
 
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
     it("should display an inflected form (without definition) and its lemma", function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition));
 
@@ -160,7 +160,7 @@ context("Searching", () => {
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
 
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=6.%20Lemma%20definition
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=6.%20Lemma%20definition
     it("should display the definition of a lemma", function () {
       cy.visitSearch(fudgeUpOrthography(lemma));
 

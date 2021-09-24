@@ -428,13 +428,12 @@ in the morphodict-specific importjson format.
 In practice, at this time, full dictionaries for each language arise as
 follows:
 
-  - For Plains Cree, there is `crk/dicts/crkeng_dictionary.importjson`
-    checked in to the secret git repository at
-    `altlab.dev:/data/altlab.git`. This is what’s used in production. It
-    was created by importing the old `crkeng.xml` file into an older
-    version of cree-intelligent-dictionary that did a lot of paradigm and
-    analysis inference during import, and then the database contents were
-    exported in the new importjson format.
+  - For Plains Cree, there is `crk/dicts/crkeng_dictionary.importjson` checked
+  in to the secret git repository at `altlab.dev:/data/altlab.git`. This is
+  what’s used in production. It was created by importing the old `crkeng.xml`
+  file into an older version of the software that did a lot of paradigm and
+  analysis inference during import, and then the database contents were exported
+  in the new importjson format.
 
   - For Woods Cree, the `munge/cwdeng/cwdize` script transliterates the
     production `crkeng_dictionary.importjson` file, using the

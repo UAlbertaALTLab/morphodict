@@ -103,7 +103,7 @@ verb_tag_map = TagMap(
     ("+Def", ("PV/ka+", "+Ind"), 1),
     ("+Inf", ("PV/ka+", "+Cnj"), 1),
     (TagMap.DEFAULT, "+Ind", 1),
-    # Person - see https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/891
+    # Person - see https://github.com/UAlbertaALTLab/morphodict/issues/891
     ("+0Sg", "+3Sg", 2),
     # Person - object
     ("+0SgO", (), 3),

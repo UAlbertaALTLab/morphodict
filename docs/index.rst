@@ -13,8 +13,7 @@ Dictionary <https://itwewina.altlab.app>`_, with support for additional
 languages in development.
 
 The project is open-source, with the code currently hosted at
-https://github.com/UAlbertaALTLab/cree-intelligent-dictionary; we intend
-to rename the repo at some point.
+<https://github.com/UAlbertaALTLab/morphodict>.
 
 This documentation is mainly targeted at computational linguists, and/or
 general linguists with some enthusiasm for programming, who are trying to
