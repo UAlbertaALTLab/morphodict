@@ -75,7 +75,7 @@ class Command(BaseCommand):
             self.run_import(json_file=json_file, purge=purge)
 
     def run_import(self, json_file, purge):
-        for abbrv in ["CW", "MD", "AE", "ALD", "OS"]:
+        for abbrv in ["CW", "MD", "AE", "ALD", "OS", "HD"]:
             if not DictionarySource.objects.filter(abbrv=abbrv):
                 DictionarySource.objects.create(abbrv=abbrv)
 

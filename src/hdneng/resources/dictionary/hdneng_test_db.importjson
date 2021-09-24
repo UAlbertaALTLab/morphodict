@@ -1,0 +1,47 @@
+[
+  {
+    "analysis": [[], "gatáa", ["+V", "+Sg", "+Impv"]],
+    "head": "gatáa",
+    "linguistInfo": {
+      "stem": "gatáa- (AA)"
+    },
+    "paradigm": "V",
+    "senses": [
+      {
+        "definition": "for S to eat",
+        "sources": ["HD"]
+      }
+    ],
+    "slug": "gatáa"
+  },
+  {
+    "analysis": [[], "háagaang k̲áa", ["+V", "+Sg", "+Impv"]],
+    "head": "háagaang k̲áa",
+    "linguistInfo": {
+      "stem": "háagaang k̲áa- (AA)"
+    },
+    "paradigm": "V",
+    "senses": [
+      {
+        "definition": "for S to walk along as people say ʼhaaʼ with each step",
+        "sources": ["HD"]
+      }
+    ],
+    "slug": "háagaang_k̲áa"
+  },
+  {
+    "analysis": [[], "sk̲ʼasgadáa", ["+V", "+Sg", "+Impv"]],
+    "head": "sk̲ʼasgadáa",
+    "linguistInfo": {
+      "stem": "sk̲ʼasgadáa- (AA)"
+    },
+    "paradigm": "V",
+    "senses": [
+      {
+        "definition": "for S to keep their mouth shut, not say anything",
+        "sources": ["HD"]
+      }
+    ],
+    "slug": "sk̲-asgadáa"
+  }
+]
