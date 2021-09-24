@@ -202,9 +202,10 @@ class Command(BaseCommand):
 
         for sense in senses:
             kwargs = {}
-            for key in ["semantic_definition", "core_definition"]:
-                if key in sense:
-                    kwargs[f"raw_{key}"] = sense[key]
+            if "semanticDefinition" in sense:
+                kwargs["raw_semantic_definition"] = sense["semanticDefinition"]
+            if "coreDefinition" in sense:
+                kwargs["raw_core_definition"] = sense["coreDefinition"]
 
             d = Definition.objects.create(
                 wordform=wordform, text=sense["definition"], **kwargs

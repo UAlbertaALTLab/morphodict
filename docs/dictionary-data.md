@@ -199,7 +199,7 @@ The fields are:
     morpheme, stem, &c.
 
   - The `senses` field, a required array of `{definition: string, sources:
-    string[], core_definition?: string, semantic_definition?: string}`
+    string[], coreDefinition?: string, semanticDefinition?: string}`
     objects, contains the definitions for the entry.
 
     Only the `definition` and `sources` fields are required.
@@ -213,13 +213,13 @@ The fields are:
     source. `sources` is an array because multiple distinct sources may
     give the same, or essentially the same, definition for a word.
 
-    The optional `core_definition` field may specify a definition to use
+    The optional `coreDefinition` field may specify a definition to use
     for auto-translation. For example, if an entry for ‘shoe’ has lots of
     details and notes, but when auto-translated into first person
     possessive it should simply become ‘my shoe’, you can specify the core
     definition as `shoe`.
 
-    The optional `semantic_definition` field may specify a definition to
+    The optional `semanticDefinition` field may specify a definition to
     use instead of the main definition text when computing definition
     vectors for semantic search. This is related to the concept of the core
     definition, but may add additional relevant keywords, while leaving out
