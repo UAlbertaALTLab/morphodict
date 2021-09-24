@@ -1,46 +1,102 @@
 [
   {
-    "analysis": [[], "ījīn", ["+V", "+I", "+Ipfv", "+Sbj3Sg"]],
-    "head": "ījīn",
-    "linguistInfo": { "stem": "=_.jin (0-IPFV)" },
-    "paradigm": "VI",
-    "senses": [{ "definition": "he/she/it is singing", "sources": ["OS"] }],
-    "slug": "ījīn"
+    "analysis": [
+      [],
+      "ànīyìgás",
+      ["+V", "+O", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]
+    ],
+    "head": "ànīyìgás",
+    "linguistInfo": {
+      "stem": "à=_niyi.gás (i-IPFV)"
+    },
+    "paradigm": "VO",
+    "senses": [
+      {
+        "definition": "he/she/it will bite him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "ànīyìgás"
   },
-
   {
-    "analysis": [[], "násʔín", ["+V", "+T", "+Ipfv", "+Sbj3Sg", "+DObjSg3", "+DObjGiven"]],
-    "head": "násʔín",
-    "linguistInfo": { "stem": "=_ná^O.ʔín2 (0s-IPFV)" },
-    "paradigm": "VT",
-    "senses": [{ "definition": "he/she is looking at him/her/it", "sources": ["OS"] }],
-    "slug": "násʔín"
-  },
-
-  {
-    "analysis": [[], "ōghàschút", ["+V", "+D", "+Ipfv", "+Sbj3Sg", "+DObjSg3", "+DObjGiven", "+IObjSb3", "+IObjGiven"]],
-    "head": "ōghàschút",
-    "linguistInfo": { "stem": "oghà=_.chút (0s-IPFV)" },
-    "paradigm": "VD",
-    "senses": [{ "definition": "he/she is feeding him/her/it", "sources": ["OS"] }],
-    "slug": "ōghàschút"
-  },
-
-  {
-    "analysis": [[], "ágūnìlín", ["+V", "+E", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]],
+    "analysis": [
+      [],
+      "ágūnìlín",
+      ["+V", "+E", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]
+    ],
     "head": "ágūnìlín",
-    "linguistInfo": { "stem": "á=gū_nì.lín (0-IPFV)" },
+    "linguistInfo": {
+      "stem": "á=gū_nì.lín (0-IPFV)"
+    },
     "paradigm": "VE",
-    "senses": [{ "definition": "he/she/it is good", "sources": ["OS"] }],
+    "senses": [
+      {
+        "definition": "he/she/it is good",
+        "sources": ["OS"]
+      }
+    ],
     "slug": "ágūnìlín"
   },
-
   {
-    "analysis": [[], "ànīyìgás", ["+V", "+O", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]],
-    "head": "ànīyìgás",
-    "linguistInfo": { "stem": "à=_niyi.gás (i-IPFV)" },
-    "paradigm": "VO",
-    "senses": [{ "definition": "he/she/it will bite him/her/it", "sources": ["OS"] }],
-    "slug": "ànīyìgás"
+    "analysis": [[], "ījīn", ["+V", "+I", "+Ipfv", "+Sbj3Sg"]],
+    "head": "ījīn",
+    "linguistInfo": {
+      "stem": "=_.jin (0-IPFV)"
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she/it is singing",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "ījīn"
+  },
+  {
+    "analysis": [
+      [],
+      "násʔín",
+      ["+V", "+T", "+Ipfv", "+Sbj3Sg", "+DObjSg3", "+DObjGiven"]
+    ],
+    "head": "násʔín",
+    "linguistInfo": {
+      "stem": "=_ná^O.ʔín2 (0s-IPFV)"
+    },
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is looking at him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "násʔín"
+  },
+  {
+    "analysis": [
+      [],
+      "ōghàschút",
+      [
+        "+V",
+        "+D",
+        "+Ipfv",
+        "+Sbj3Sg",
+        "+DObjSg3",
+        "+DObjGiven",
+        "+IObjSb3",
+        "+IObjGiven"
+      ]
+    ],
+    "head": "ōghàschút",
+    "linguistInfo": {
+      "stem": "oghà=_.chút (0s-IPFV)"
+    },
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she is feeding him/her/it",
+        "sources": ["OS"]
+      }
+    ],
+    "slug": "ōghàschút"
   }
 ]

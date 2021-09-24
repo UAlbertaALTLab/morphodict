@@ -73,3 +73,33 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v4.3.0
       with:
         commit_message: "🤖🧹 reformat JavaScript files [skip ci]"
+
+  reformat-importjson:
+    if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+
+    # sortimportjsondict is currently a django management command. If
+    # installing all the morphodict dependencies becomes too cumbersome,
+    # the command could be ported to a script without dependencies instead.
+    - name: 🖥 Install system dependencies
+      run: sudo apt-get install -y libfoma0
+    - name: ☤ Install pipenv
+      run: python3 -m pip install pipenv
+    - name: 📥 Install dependencies
+      run: pipenv install --dev
+
+    - name: Reformat files
+      run: "pipenv run ./crkeng-manage sortimportjson --git-files"
+
+    - name: Git Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      with:
+        commit_message: "🤖🧹 reformat importjson files [skip ci]"
