@@ -7,19 +7,24 @@ _**Note**: `sssttt` below refers to a [language pair abbreviation](sssttt)._
 
 The specific kinds of required linguistic data are:
 
-  - A dictionary in importjson format
+  - [A dictionary in importjson format](dictionary_data)
 
-    These files are found in `src/${sssttt}/resources/dictionary`;
-    see [Where do dictionary files go?](where_dictionary_files_go).
+    Usually you will have or create the canonical dictionary data in some
+    other format, and will write some code to extract and convert the
+    required data from the canonical dictionary source to [the
+    morphodict-specific importjson format](importjson-spec)
 
-    There is typically a full dictionary which is *not checked in* because
-    it is not publicly redistributable, and a small test dictionary
-    extracted from it for development and testing purposes.
+    The dictionary data is placed in `src/${sssttt}/resources/dictionary`;
+    and loaded into the database via the `${sssttt}-manage importjsondict`
+    command.
 
-    [See the complete specification for how the importjson should be formatted here.](importjson-spec)
+    Typically, there are two importjson files for each language:
 
-    The dictionary is loaded into the database via the `${sssttt}-manage
-    importjsondict` command.
+      - a full dictionary which is *not checked in on github* because
+        dictionaries tend not to be publicly redistributable,
+      - and a small test dictionary [extracted from the full
+        dictionary](building_test_dictionary_data), which is checked in for
+        development and testing purposes.
 
   - Analyzer and generator FSTs in [hfstol format]
 
@@ -33,7 +38,7 @@ The specific kinds of required linguistic data are:
     [GiellaLT](https://giellalt.uit.no/) infrastructure, though other FSTs
     have also been used.
 
-  - Paradigm layout files
+  - [Paradigm layout files](paradigm_layouts)
 
     These generally go in `src/${sssttt}/resources/layouts`; see [Where to
     place paradigm layout files](where_paradigm_files_go) for more
@@ -55,6 +60,9 @@ The specific kinds of required linguistic data are:
     They also confusingly map Cree word class names and give definitions
     for preverbs sometimes too, but we need to do something different and
     better for other languages.
+    
+    The relabelling file is located at `sssttt/resources/altlabel.tsv`. This file is 
+    language specific.
 
     For example, the Plains Cree FST tag `+1Sg` can be mapped to:
 
@@ -97,7 +105,8 @@ may be requested.
 
 # Quick note on TSV files
 
-For editing CSV files, some people have had varying levels of success with:
+For editing tab-separated value aka TSV files, some people have had varying
+levels of success with:
 
   - Excel, though it might need a byte-order mark at the start of a file to
     understand input on Windows, and might interpret things as formulas and

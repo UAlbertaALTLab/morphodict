@@ -148,7 +148,7 @@ jobs:
     - name: 🌲 Run Cypress tests
       env:
         DEBUG: "True"
-        # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/cree-intelligent-dictionary
+        # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/morphodict
         CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
       run: |
         # Enables uploading test runs to Cypress Dashboard:

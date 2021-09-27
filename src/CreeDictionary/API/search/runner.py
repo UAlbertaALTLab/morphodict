@@ -1,5 +1,7 @@
 import re
 
+from django.conf import settings
+
 from CreeDictionary.API.search.affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
@@ -33,25 +35,31 @@ def search(
         espt_search = EsptSearch(search_run)
         espt_search.analyze_query()
 
-    cvd_search_type = cast_away_optional(
-        first_non_none_value(search_run.query.cvd, default=CvdSearchType.DEFAULT)
-    )
+    if settings.MORPHODICT_ENABLE_CVD:
+        cvd_search_type = cast_away_optional(
+            first_non_none_value(search_run.query.cvd, default=CvdSearchType.DEFAULT)
+        )
 
-    # For when you type 'cvd:exclusive' in a query to debug ONLY CVD results!
-    if cvd_search_type == CvdSearchType.EXCLUSIVE:
-        do_cvd_search(search_run)
-        return search_run
+        # For when you type 'cvd:exclusive' in a query to debug ONLY CVD results!
+        if cvd_search_type == CvdSearchType.EXCLUSIVE:
+            do_cvd_search(search_run)
+            return search_run
 
     fetch_results(search_run)
 
-    if include_affixes and not query_would_return_too_many_results(
-        search_run.internal_query
+    if (
+        settings.MORPHODICT_ENABLE_AFFIX_SEARCH
+        and include_affixes
+        and not query_would_return_too_many_results(search_run.internal_query)
     ):
         do_source_language_affix_search(search_run)
         do_target_language_affix_search(search_run)
 
-    if cvd_search_type.should_do_search() and not is_almost_certainly_cree(search_run):
-        do_cvd_search(search_run)
+    if settings.MORPHODICT_ENABLE_CVD:
+        if cvd_search_type.should_do_search() and not is_almost_certainly_cree(
+            search_run
+        ):
+            do_cvd_search(search_run)
 
     if search_run.query.espt:
         espt_search.inflect_search_results()

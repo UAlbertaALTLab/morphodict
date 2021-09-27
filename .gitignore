@@ -47,6 +47,8 @@ venv/
 
 # MacOS Files
 .DS_Store
+xcuserdata/
+*pbxproj*.backup
 
 # Node and Cypress stuff
 .sass-cache/
@@ -74,3 +76,5 @@ cypress/videos
 docker-compose.override.yml
 import-inconsistencies.jsonl
 _build
+definitions*.kv
+test_db_definitions*.kv

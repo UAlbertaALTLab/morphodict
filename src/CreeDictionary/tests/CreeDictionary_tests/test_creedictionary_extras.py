@@ -146,7 +146,7 @@ def test_no_hyphens_in_syllabics():
     """
     Test that trailing hyphens disappear in syllabics.
 
-    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/314
+    See: https://github.com/UAlbertaALTLab/morphodict/issues/314
     """
     context = Context({"wordform": "nôhtê-"})
     template = Template("{% load morphodict_orth %}" "{{ wordform|orth:'Cans' }}")

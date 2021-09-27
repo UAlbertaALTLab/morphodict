@@ -1,7 +1,7 @@
 ### TODO FIXME TEMPORARY
 # This really belongs in the dictionary database model processing code, not the
 # webapp, but is being put here temporarily.
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/709
+# https://github.com/UAlbertaALTLab/morphodict/issues/709
 
 import re
 

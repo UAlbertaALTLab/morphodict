@@ -186,7 +186,7 @@ describe("Paradigm labels", () => {
 });
 
 describe("I want to see multiple variants of the same inflection on multiple rows", () => {
-  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/507
+  // See: https://github.com/UAlbertaALTLab/morphodict/issues/507
   it("should display two rows for nipâw+V+AI+Ind+12Pl", () => {
     const forms = ["kinipânaw", "kinipânânaw"];
     let rowA = null;

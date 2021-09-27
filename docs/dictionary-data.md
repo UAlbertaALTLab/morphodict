@@ -360,6 +360,13 @@ for morphodict:
   - The FST lemma in every `formOf` analysis must match the FST lemma of
     the corresponding normal entry
 
+  - Strings must not begin with a combining character. If a string is
+    intended to start with a diacritic, e.g., a floating tone such as
+    `"´a"`, or `" ̣gwà…"`, use a non-combining character such as `´`, or if
+    there is no non-combining equivalent such as for Combining Dot Below,
+    put the combining character on a space, a non-breaking space, or a
+    U+25CC ◌ Dotted Circle.
+
   - The `slug` must not contain certain URL-unsafe characters, e.g., `/`
 
 #### Caveats
@@ -387,6 +394,7 @@ placed at
 
 There is a `.gitignore` rule to prevent accidentally committing them.
 
+(building_test_dictionary_data)=
 ### Building test dictionary data
 
 Test dictionaries are created by taking subsets of the full dictionaries,
@@ -411,7 +419,7 @@ To update them, you’ll need a copy of the full dictionary file.
 e.g., `wordclass_emoji`, that currently exist in the production
 `crkeng_dictionary.importjson` file.*
 
-
+(current_dictionary_data)=
 ## Current dictionary data
 
 In theory, linguists will provide comprehensive and correct dictionary data
@@ -420,13 +428,12 @@ in the morphodict-specific importjson format.
 In practice, at this time, full dictionaries for each language arise as
 follows:
 
-  - For Plains Cree, there is `crk/dicts/crkeng_dictionary.importjson`
-    checked in to the secret git repository at
-    `altlab.dev:/data/altlab.git`. This is what’s used in production. It
-    was created by importing the old `crkeng.xml` file into an older
-    version of cree-intelligent-dictionary that did a lot of paradigm and
-    analysis inference during import, and then the database contents were
-    exported in the new importjson format.
+  - For Plains Cree, there is `crk/dicts/crkeng_dictionary.importjson` checked
+  in to the secret git repository at `altlab.dev:/data/altlab.git`. This is
+  what’s used in production. It was created by importing the old `crkeng.xml`
+  file into an older version of the software that did a lot of paradigm and
+  analysis inference during import, and then the database contents were exported
+  in the new importjson format.
 
   - For Woods Cree, the `munge/cwdeng/cwdize` script transliterates the
     production `crkeng_dictionary.importjson` file, using the
