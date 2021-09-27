@@ -20,7 +20,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     }
 
     func goHome() {
-        titleLabel.title = "itwêwina offline"
+        let product_names = ["crkeng": "itwêwina", "srseng": "Gūnáhà"]
+        let name = product_names[String(cString: morphodict_sssttt()), default: "NAME ME"]
+        titleLabel.title = "\(name) offline"
         let request = URLRequest(url: URL(string: "http://127.0.0.1:4828/")!)
         webView.load(request)
     }

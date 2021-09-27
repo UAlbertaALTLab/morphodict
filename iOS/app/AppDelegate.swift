@@ -11,7 +11,7 @@ import UIKit
 // This could be automated by comparing query results between the database
 // file shipped with the app and the writable copy in the “Application Support”
 // directory.
-let CURRENT_DB_VERSION = "1"
+let CURRENT_DB_VERSION = "2"
 
 let log = OSLog(subsystem: "morphodict", category: "default")
 
@@ -50,6 +50,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         viewController = ViewController()
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
+        
+        setenv("DJANGO_SETTINGS_MODULE", "\(String(cString: morphodict_sssttt())).site.settings_mobile", 1)
 
         setenv("MORPHODICT_ENV_FILE_PATH",
                applicationSupportDirectory.appendingPathComponent(".env").path,
@@ -108,7 +110,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let bundle = Bundle(for: Self.self)
             let includedDb = bundle.url(
                 forResource: "db-mobile", withExtension: "sqlite3")!
-//            try fm.removeItem(at: dbFile)
+            try fm.removeItem(at: dbFile)
             try fm.copyItem(at: includedDb, to: dbFile)
             try CURRENT_DB_VERSION.write(to: dbVersionFile, atomically: false, encoding: .utf8)
         }

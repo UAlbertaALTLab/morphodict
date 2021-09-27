@@ -10,15 +10,21 @@ if [ -z "${PROJECT_DIR}" ]; then
     PROJECT_DIR="$(dirname -- "${0}")"
 fi
 
+SSSTTT="$1"
+if [ -z "${SSSTTT}" ]; then
+  echo "Must provide SSSTTT" 1>&2
+  exit 1
+fi
+
 # Where original python code is stored
 SRC_DIR="${PROJECT_DIR}/../../src"
 # Where to sync it so that a copy ends up inside the iOS app
 APP_PYTHON_DIR="${PROJECT_DIR}/app_python"
 
-STYLES_FILE="${SRC_DIR}/crkeng/collected-static/CreeDictionary/css/styles.css"
+STYLES_FILE="${SRC_DIR}/${SSSTTT}/collected-static/CreeDictionary/css/styles.css"
 if ! [ -f "${STYLES_FILE}" ]; then
     echo "${PROG}: styles file ${STYLES_FILE} not found" 1>&2
-    echo "run ‘npx rollup -c && ./crkeng-manage collectstatic’ first" 1>&2
+    echo "run ‘npx rollup -c && ./${SSSTTT}-manage collectstatic’ first" 1>&2
     exit 1
 fi
 
@@ -36,7 +42,8 @@ fi
 rsync -avv --delete --delete-excluded \
         --exclude='__pycache__' \
         --exclude='.ipynb_checkpoints' \
-        --include='/crkeng' \
+        --include="/crkeng" `# oops, some CreeDictionary stuff points at crkeng` \
+        --include="/${SSSTTT}" \
         --include='/mobile.py' \
         --include='/morphodict' \
         --include='/CreeDictionary' \
@@ -52,7 +59,6 @@ rsync -avv --delete --delete-excluded \
         --include='*.png' \
         --include='*.jpg' \
         --include='*.woff' \
-        --include='crkeng_test_db.importjson' \
         --include='W_aggr_corp_morph_log_freq.txt' \
         --include='corpus_frequency.txt' \
         --include='*.hfstol' \
