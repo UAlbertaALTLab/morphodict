@@ -164,7 +164,7 @@ checkout containing the setup code.
 
 When getting started, from your local machine’s `docker/plays` folder, copy
 `initial-setup.yml` and `vars.yml` to anywhere on the production machine,
-and you’ll be able to run then from there.
+and you’ll be able to run them from there.
 
 To install ansible on the production host, run this, **as your login user,
 not as root**:
