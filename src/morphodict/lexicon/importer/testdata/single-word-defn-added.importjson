@@ -17,6 +17,10 @@
       {
         "definition": "bear, black bear",
         "sources": ["CW"]
+      },
+      {
+        "definition": "new defn",
+        "sources": ["CW", "MD", "XYZ"]
       }
     ],
     "slug": "maskwa"

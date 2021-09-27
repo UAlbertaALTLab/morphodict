@@ -30,6 +30,12 @@ noun_wordform_to_phrase = TagMap(
     ("+PxX", COPY_TAG_NAME, 3),
 )
 
+# Normally having a preverb tag excludes a wordform from auto-translation; this
+# list specifies exceptions to that rule for grammatical preverbs.
+#
+# (This could be automatically extracted from the TagMap object.)
+permitted_preverb_tags = {"PV/e+", "PV/ki+", "PV/ka+", "PV/ta+", "PV/wi+"}
+
 # Cree tense/aspects:
 verb_wordform_to_phrase = TagMap(
     ("+V", None, 0),

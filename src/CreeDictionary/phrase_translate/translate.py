@@ -101,15 +101,17 @@ def inflect_english_phrase(analysis, lemma_definition):
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
+        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
+        logger.debug("phrase = %s\n", phrase)
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
+        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
+        logger.debug("phrase = %s\n", phrase)
         return phrase.strip()
 
 

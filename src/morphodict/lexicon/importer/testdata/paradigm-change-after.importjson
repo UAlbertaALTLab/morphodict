@@ -1,0 +1,20 @@
+[
+  {
+    "analysis": [[], "miyotêhêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "miyotêhêw",
+    "linguistInfo": {
+      "inflectional_category": "VTA-1",
+      "pos": "V",
+      "stem": "miyotêh-",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "s/he gives s.o. a good feeling at heart",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "miyotêhêw"
+  }
+]

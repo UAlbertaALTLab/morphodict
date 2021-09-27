@@ -6,8 +6,8 @@
 import re
 
 _RE_UNWANTED_ENDING = re.compile(" (Also|Or|Animate|Inanimate).*")
-_RE_PARENTHETICAL = re.compile(
-    r"""
+
+PARENTHESIZED_PART = r"""
     \( # in round brackets
         (?! # docs: “Matches if ... doesn’t match next”
             (
@@ -19,6 +19,20 @@ _RE_PARENTHETICAL = re.compile(
         )
         .*? # anything, but non-greedy
     \)
+"""
+
+_RE_PARENTHETICAL = re.compile(
+    fr"""
+    
+    # If the parenthesized part comes at the end of a sentence, remove the space
+    # before it as well
+    \s+
+    {PARENTHESIZED_PART}
+    (?=\.) # lookahead for literal period 
+    
+    | # or a standalone parenthesized expression
+
+    {PARENTHESIZED_PART}   #
 
     | # or
 

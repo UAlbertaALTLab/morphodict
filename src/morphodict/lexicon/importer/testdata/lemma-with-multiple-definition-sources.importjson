@@ -1,0 +1,20 @@
+[
+  {
+    "analysis": [[], "amisk", ["+N", "+A", "+Sg"]],
+    "head": "amisk",
+    "linguistInfo": {
+      "inflectional_category": "NA-3",
+      "pos": "N",
+      "stem": "amiskw-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "beaver",
+        "sources": ["CW", "MD"]
+      }
+    ],
+    "slug": "amisk"
+  }
+]

@@ -20,5 +20,16 @@
       }
     ],
     "slug": "maskwa"
+  },
+  {
+    "analysis": [[], "maskwa", ["+N", "+A", "+Distr"]],
+    "formOf": "maskwa",
+    "head": "maskonâhk",
+    "senses": [
+      {
+        "definition": "among the bears",
+        "sources": ["X"]
+      }
+    ]
   }
 ]
