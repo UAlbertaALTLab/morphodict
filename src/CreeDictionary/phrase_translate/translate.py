@@ -124,7 +124,7 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
 
         for d in wordform.lemma.definitions.all():
             # Don’t try to re-translate already-translated items
-            if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
+            if d.auto_translation_source_id is not None:
                 continue
 
             print(f"    definition: {d} →")

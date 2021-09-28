@@ -216,7 +216,11 @@ class Definition(models.Model):
         """
         :return: json parsable format
         """
-        return {"text": self.text, "source_ids": self.source_ids}
+        return {
+            "text": self.text,
+            "source_ids": self.source_ids,
+            "is_auto_translation": self.auto_translation_source_id is not None,
+        }
 
     def __str__(self):
         return self.text

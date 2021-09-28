@@ -263,7 +263,7 @@ context("Searching", () => {
       cy.get("[data-cy=search-result]")
         .contains("my cats")
         .get(".cite-dict")
-        .contains("auto");
+        .contains("🤖CW");
     });
   });
 });
