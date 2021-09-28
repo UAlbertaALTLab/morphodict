@@ -76,6 +76,7 @@ jobs:
 
   reformat-importjson:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
+    needs: reformat-javascript
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
