@@ -213,7 +213,7 @@ class TestSourceLanguageKeywordPopulation:
         that doen’t work when the FST doesn’t know about a term.
 
         ‘maskwa’ is of course analyzable but in the test data for this test, no
-        ‘analysis is given in the importjson.
+        analysis is given in the importjson.
         """
 
         wf = Wordform.objects.get(slug="maskwa")
