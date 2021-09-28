@@ -148,11 +148,17 @@ some initial draft dictionary data covering the whole language, allowing
 people to start working with it, than to have no data at all while waiting
 for it to be ‘right.’
 
-### importjson file suggestions
+### importjson formatting suggestions
 
 To make it easier for humans to look at the raw dictionary data and to
-compare different versions of that data, the following points are *strongly
-recommended*:
+compare different versions of that data, it is *extremely strongly
+recommended* that you run
+
+    ./sssttt-manage sortimportjson FILENAME
+
+on any importjson files before committing or sharing them.
+
+That automatically implements the following suggestions:
 
   - Run the importjson files through [`prettier`][prettier] to format them
     nicely. If using the command line, you’ll need to add a `--parser=json`
@@ -201,9 +207,13 @@ The fields are:
   - The `senses` field, a required array of `{definition: string, sources:
     string[]}` objects, contains the definitions for the entry.
 
-    The sense must currently be a single unformatted string. We are aware
-    that people would like to specify things such as source-language text
-    to be shown in the current orthography, cross-references, notes,
+    If we were starting from scratch we might call the `definition` field a
+    `displayDefinition`, but we already have some data, and often it is the
+    only one definition field provided.
+
+    The definition must currently be a single unformatted string. We are
+    aware that people would like to specify things such as source-language
+    text to be shown in the current orthography, cross-references, notes,
     examples, and so on.
 
     The `sources` are typically short abbreviations for the name of a
