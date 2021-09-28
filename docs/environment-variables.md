@@ -51,3 +51,13 @@ When this environment variable is set to True, both layout files and
 `altlabel.tsv` are re-read on every page load. This is extremely convenient
 when editing paradigm layout or label files, as you don’t need to
 constantly restart the server to see the effects of your changes.
+
+## LOG_LEVEL
+
+You can set this to `DEBUG` to see a lot more info about what Django is
+doing behind the scenes.
+
+## QUERY_LOG_LEVEL
+
+You can set this to `DEBUG` to have Django print out all the SQL statements
+it runs, for debugging purposes.
