@@ -113,6 +113,15 @@ class Wordform(models.Model):
         """,
     )
 
+    import_hash = models.CharField(
+        max_length=MAX_WORDFORM_LENGTH,
+        null=True,
+        help_text="""
+            A hash of the input JSON, used to determine whether to update an
+            entry or not. Only valid on lemmas.
+        """,
+    )
+
     class Meta:
         indexes = [
             models.Index(fields=["text", "raw_analysis"]),
@@ -207,7 +216,11 @@ class Definition(models.Model):
         """
         :return: json parsable format
         """
-        return {"text": self.text, "source_ids": self.source_ids}
+        return {
+            "text": self.text,
+            "source_ids": self.source_ids,
+            "is_auto_translation": self.auto_translation_source_id is not None,
+        }
 
     def __str__(self):
         return self.text
@@ -220,11 +233,16 @@ class TargetLanguageKeyword(models.Model):
         Wordform, on_delete=models.CASCADE, related_name="target_language_keyword"
     )
 
-    def __repr__(self) -> str:
-        return f"<EnglishKeyword(text={self.text!r} of {self.wordform!r} ({self.id})>"
-
     class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=["text", "wordform_id"], name="target_kw_text_and_wordform"
+            )
+        ]
         indexes = [models.Index(fields=["text"])]
+
+    def __repr__(self) -> str:
+        return f"<TargetLanguageKeyword(text={self.text!r} of {self.wordform!r} ({self.id})>"
 
 
 class SourceLanguageKeyword(models.Model):
@@ -243,7 +261,19 @@ class SourceLanguageKeyword(models.Model):
     wordform = models.ForeignKey(Wordform, on_delete=models.CASCADE)
 
     class Meta:
-        indexes = [models.Index(fields=["text"])]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["text", "wordform_id"], name="source_kw_text_and_wordform"
+            )
+        ]
+        indexes = [
+            models.Index(
+                fields=["text"],
+            )
+        ]
+
+    def __repr__(self) -> str:
+        return f"<SourceLanguageKeyword(text={self.text!r} of {self.wordform!r} ({self.id})>"
 
 
 class _WordformCache:

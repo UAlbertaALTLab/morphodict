@@ -1,0 +1,24 @@
+[
+  {
+    "analysis": [[], "miyotêhêw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "miyotêhêw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-1",
+      "pos": "V",
+      "stem": "miyotêhê-",
+      "wordclass": "VAI"
+    },
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "He has a good heart (for people).",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "s/he is good-hearted, s/he has a good heart",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "miyotêhêw"
+  }
+]

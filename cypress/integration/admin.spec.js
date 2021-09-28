@@ -31,7 +31,7 @@ context("Admin interface", () => {
       cy.get("[data-cy=search-result]")
         .contains(autoTranslation)
         .get(".cite-dict")
-        .contains("auto");
+        .contains("🤖CW");
     });
 
     it("should not show auto-translations to anonymous users", function () {
@@ -42,8 +42,8 @@ context("Admin interface", () => {
           .get(".cite-dict")
           .should("have.length.at.least", 1)
           .each((citation) => {
-            // But none of those should be ‘auto’
-            cy.wrap(citation).should("not.contain", "auto");
+            // But none of those should be auto-definitions
+            cy.wrap(citation).should("not.contain", "🤖");
           });
       });
     });
