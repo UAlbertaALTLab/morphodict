@@ -13,8 +13,6 @@ noun_wordform_to_phrase = TagMap(
     ("+Obv", COPY_TAG_NAME, 1),
     ("+Loc", COPY_TAG_NAME, 1),
     ("+Distr", COPY_TAG_NAME, 1),
-    ## XXX FIXME I have no idea what +Voc is but it causes problems so drop it
-    ("+Voc", None, 0),
     # Diminutive
     ("+Dim", COPY_TAG_NAME, 2),
     ("+Der/Dim", "Dim+", 2),
@@ -29,6 +27,12 @@ noun_wordform_to_phrase = TagMap(
     ("+Px4Sg/Pl", COPY_TAG_NAME, 3),
     ("+PxX", COPY_TAG_NAME, 3),
 )
+
+# Normally having a preverb tag excludes a wordform from auto-translation; this
+# list specifies exceptions to that rule for grammatical preverbs.
+#
+# (This could be automatically extracted from the TagMap object.)
+permitted_preverb_tags = {"PV/e+", "PV/ki+", "PV/ka+", "PV/ta+", "PV/wi+"}
 
 # Cree tense/aspects:
 verb_wordform_to_phrase = TagMap(

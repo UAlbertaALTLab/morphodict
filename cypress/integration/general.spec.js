@@ -36,7 +36,7 @@ context("General", function () {
   });
 
   describe("I want to search for complex Cree words", function () {
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/150
     it("should have a clickable example on the front page", function () {
       const word = "ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk";
 

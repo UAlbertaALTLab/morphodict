@@ -84,7 +84,7 @@ context("Recordings", function () {
   });
 
   describe("When there are no recordings available", () => {
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/918
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/918
     it("should not show a play button", () => {
       const lemma = "kotiskâwêw";
 

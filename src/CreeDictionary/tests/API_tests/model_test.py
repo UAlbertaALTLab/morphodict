@@ -82,7 +82,7 @@ def test_search_for_exact_lemma(lemma: Wordform):
     assert exact_match.source_language_match == lemma.text
     assert not exact_match.preverbs
     # todo: enable the two lines below when #230 is fixed
-    #   https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/230
+    #   https://github.com/UAlbertaALTLab/morphodict/issues/230
     #   or there will be flaky local tests and ci tests
     # assert len(exact_match.definitions) >= 1
     # assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.definitions)
@@ -177,7 +177,7 @@ def test_search_for_stored_non_lemma():
 def test_search_space_characters_in_matched_term(term):
     """
     The search should find results with spaces in them.
-    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+    See: https://github.com/UAlbertaALTLab/morphodict/issues/147
     """
 
     # Ensure the word is in the database to begin with...
@@ -329,7 +329,7 @@ def test_logs_error_on_analyzable_result_without_generated_string(caplog):
 
     It used to raise: ValueError: min() arg is an empty sequence
 
-    See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/693
+    See: https://github.com/UAlbertaALTLab/morphodict/issues/693
     """
     with caplog.at_level(logging.ERROR):
         search(query="bod").presentation_results()

@@ -1,7 +1,7 @@
 # Cree Intelligent Dictionary
 
-[![Test and deploy](https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/workflows/Test%20and%20deploy/badge.svg)](https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/actions?query=workflow%3A%22Test+and+deploy%22)
-[![codecov](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary/branch/main/graph/badge.svg)](https://codecov.io/gh/UAlbertaALTLab/cree-intelligent-dictionary)
+[![Test and deploy](https://github.com/UAlbertaALTLab/morphodict/workflows/Test%20and%20deploy/badge.svg)](https://github.com/UAlbertaALTLab/morphodict/actions?query=workflow%3A%22Test+and+deploy%22)
+[![codecov](https://codecov.io/gh/UAlbertaALTLab/morphodict/branch/main/graph/badge.svg)](https://codecov.io/gh/UAlbertaALTLab/morphodict)
 [![Documentation](https://readthedocs.org/projects/morphodict/badge/?version=latest)](https://morphodict.readthedocs.io/en/latest/?badge=latest)
 
 

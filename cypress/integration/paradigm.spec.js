@@ -127,7 +127,7 @@ describe("paradigms can be toggled by the show more/less button", () => {
     cy.visitLemma("nipâw");
 
     const basicForm = "ninipân"; // Basic, first person singular form
-    const fullForm = "ê-kî-nipâyêk"; // past, conjuct, second person plural form -- not basic!
+    const fullForm = "ê-kî-nipâyêk"; // past, conjunct, second person plural form -- not basic!
 
     // Initially, we should be on the **basic** size
     paradigm().contains("td", basicForm);
@@ -153,8 +153,8 @@ describe("paradigms can be toggled by the show more/less button", () => {
 describe("Paradigm labels", () => {
   let lemma = "nipâw";
   let englishLabel = "they";
-  let nehiyawewinLabel = "wiyanaw";
-  let linguisticLabel = "3s";
+  let nehiyawewinLabel = "wiyawâw";
+  let linguisticLabel = "3p";
 
   it("should appear in plain English by default", () => {
     cy.visitLemma(lemma, { "paradigm-size": "FULL" });
@@ -186,7 +186,7 @@ describe("Paradigm labels", () => {
 });
 
 describe("I want to see multiple variants of the same inflection on multiple rows", () => {
-  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/507
+  // See: https://github.com/UAlbertaALTLab/morphodict/issues/507
   it("should display two rows for nipâw+V+AI+Ind+12Pl", () => {
     const forms = ["kinipânaw", "kinipânânaw"];
     let rowA = null;
