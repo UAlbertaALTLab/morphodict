@@ -159,7 +159,7 @@ In production, the import time for the Plains Cree dictionary is roughly:
     with `--incremental, plus at most a few tens of seconds of write out a
     new definition vector file.
 
-  - Two hours to update every single single entry, which is the default
+  - One hour to update every single single entry, which is the default
     when `--incremental` is not used, and which is required when you have
     added entirely new paradigm fields or have updated the generator FST or
     the phrase translation FSTs.
