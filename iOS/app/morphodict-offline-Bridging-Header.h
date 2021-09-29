@@ -3,3 +3,4 @@
 
 #include "runPython.h"
 #include "morphodict_mobile.h"
+#include "settings.h"

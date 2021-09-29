@@ -36,7 +36,6 @@ def setup_logging():
 
 setup_logging()
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkeng.site.settings_mobile")
 
 # Save a bit of memory by giving runserver threads 1MiB stacks instead of
 # default 8MiB.
