@@ -341,17 +341,20 @@ class Import:
 
             self.populate_wordform_definitions(wf, entry["senses"])
 
+            # Avoid dupes for this wordform
+            seen_source_language_keywords: set[str] = set()
+
             slug_base = wf.slug.split("@")[0]
-            if wf.text != slug_base:
-                self.source_language_keyword_buffer.add(
-                    SourceLanguageKeyword(wordform=wf, text=slug_base)
+            if wf.text != slug_base and slug_base:
+                self.add_source_language_keyword(
+                    wf, slug_base, seen_source_language_keywords
                 )
             if wf.fst_lemma and wf.text != wf.fst_lemma:
-                self.source_language_keyword_buffer.add(
-                    SourceLanguageKeyword(wordform=wf, text=wf.fst_lemma)
+                self.add_source_language_keyword(
+                    wf, wf.fst_lemma, seen_source_language_keywords
                 )
             if wf.raw_analysis is None:
-                self.index_unanalyzed_form(wf)
+                self.index_unanalyzed_form(wf, seen_source_language_keywords)
 
         # Make sure everything is saved for upcoming formOf queries
         self.flush_insert_buffers()
@@ -519,7 +522,7 @@ class Import:
         self.source_language_keyword_buffer.save()
         self.target_language_keyword_buffer.save()
 
-    def index_unanalyzed_form(self, wordform):
+    def index_unanalyzed_form(self, wordform, seen):
         """Index unanalyzed forms such as phrases, Cree preverbs
 
         These get put into the SourceLanguageKeyword table.
@@ -529,9 +532,18 @@ class Import:
         )
 
         for kw in keywords:
-            self.source_language_keyword_buffer.add(
-                SourceLanguageKeyword(text=kw, wordform=wordform)
-            )
+            self.add_source_language_keyword(wordform, kw, seen)
+
+    def add_source_language_keyword(
+        self, wordform: Wordform, keyword: str, seen: set[str]
+    ):
+        if keyword in seen:
+            return
+
+        self.source_language_keyword_buffer.add(
+            SourceLanguageKeyword(wordform=wordform, text=keyword)
+        )
+        seen.add(keyword)
 
 
 class Command(BaseCommand):
