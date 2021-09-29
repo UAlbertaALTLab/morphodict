@@ -95,7 +95,7 @@ def setup_database():
             return True
 
         bundled_migration_metadata = get_db_metadata(bundled_db_file)
-        target_migration_metadata = get_db_metadata(bundled_db_file)
+        target_migration_metadata = get_db_metadata(target_db_file)
 
         if bundled_migration_metadata == target_migration_metadata:
             return False
