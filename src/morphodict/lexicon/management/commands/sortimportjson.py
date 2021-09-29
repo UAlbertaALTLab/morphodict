@@ -57,13 +57,16 @@ class Command(BaseCommand):
                 "Error: cannot specify --output-file option when there are multiple input files"
             )
 
-        output_files = []
         if git_files:
+            # Override the default of [DEFAULT_IMPORTJSON_FILE]
+            json_files = []
+
             git_files = subprocess.check_output(["git", "ls-files", "-z"])
             for filename_bytes in git_files.split(b"\0"):
                 if filename_bytes.endswith(b".importjson"):
-                    output_files.append(filename_bytes)
+                    json_files.append(filename_bytes)
 
+        output_files = []
         for json_file in json_files:
             with open(json_file, "r") as f:
                 data = json.load(f)
