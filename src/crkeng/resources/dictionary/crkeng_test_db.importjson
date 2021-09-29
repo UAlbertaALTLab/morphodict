@@ -312,21 +312,6 @@
     "slug": "awâsisîwiw"
   },
   {
-    "analysis": [[], "awîna", ["+Ipc", "+Interj"]],
-    "head": "awîna",
-    "linguistInfo": {
-      "as_is": false,
-      "inflectional_category": "IPJ",
-      "pos": "IPC",
-      "smushedAnalysis": "awîna+Ipc+Interj",
-      "stem": "",
-      "wordclass": "IPC"
-    },
-    "paradigm": null,
-    "senses": [],
-    "slug": "awîna@i"
-  },
-  {
     "analysis": [[], "awîna", ["+Pron", "+Interr", "+Sg"]],
     "head": "awîna",
     "linguistInfo": {
@@ -344,7 +329,7 @@
         "sources": ["CW", "MD"]
       }
     ],
-    "slug": "awîna@p"
+    "slug": "awîna"
   },
   {
     "analysis": [[], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],

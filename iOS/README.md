@@ -81,7 +81,7 @@ installed.
 
  1. First, you need kivy to build.
 
-         cd cree-intelligent-dictionary/iOS
+         cd morphodict/iOS
          git clone https://github.com/UAlbertaALTLab/kivy-ios
 
     Normally at this point you’d use the kivy-ios tools to build python

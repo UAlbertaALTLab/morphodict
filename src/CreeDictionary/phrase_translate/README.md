@@ -23,5 +23,5 @@ The process to update the auto-translated phrases is as follows:
  6. After the pull request passes tests, is reviewed, merged, and
     auto-deployed to `itw.altlab.dev`, SSH there and run
 
-        cd /opt/docker-compose/itwewina/cree-intelligent-dictionary/docker \
+        cd /opt/docker-compose/itwewina/morphodict/docker \
           && docker-compose exec itwewina ./crkeng-manage translatewordforms

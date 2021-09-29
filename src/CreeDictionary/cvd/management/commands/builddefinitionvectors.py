@@ -66,6 +66,7 @@ class Command(BaseCommand):
             definition_vectors.add_vectors(
                 definition_vector_keys, definition_vector_vectors
             )
+            output_file.parent.mkdir(exist_ok=True)
             definition_vectors.save(fspath(output_file))
 
 

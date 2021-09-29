@@ -1,7 +1,8 @@
 {
-  "name": "cree-intelligent-dictionary",
+  "name": "morphodict",
+  "private": true,
   "version": "1.0.0",
-  "description": "Cree Intelligent Dictionary",
+  "description": "Morphodict",
   "scripts": {
     "build": "rollup -c",
     "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
@@ -12,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git"
+    "url": "git+https://github.com/UAlbertaALTLab/morphodict.git"
   },
   "author": "University of Alberta ALTLab",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues"
+    "url": "https://github.com/UAlbertaALTLab/morphodict/issues"
   },
-  "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
+  "homepage": "https://github.com/UAlbertaALTLab/morphodict#readme",
   "devDependencies": {
     "@cypress/skip-test": "^2.5.1",
     "cypress": "^6.2.0",

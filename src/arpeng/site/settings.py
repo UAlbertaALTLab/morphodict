@@ -36,10 +36,6 @@ FST_TOOL_SAMPLES = [
 
 MORPHODICT_DICTIONARY_NAME = "arpeng"
 
-STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
-RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
-STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
-
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"
 

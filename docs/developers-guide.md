@@ -21,8 +21,8 @@ Installing for the first time
 
 Clone the repo and `cd` into it, as usual.
 
-    git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git
-    cd cree-intelligent-dictionary
+    git clone https://github.com/UAlbertaALTLab/morphodict.git
+    cd morphodict
 
 And then, to pull some large data files not stored directly in the GitHub
 repository, run:

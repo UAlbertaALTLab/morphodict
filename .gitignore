@@ -76,3 +76,5 @@ cypress/videos
 docker-compose.override.yml
 import-inconsistencies.jsonl
 _build
+definitions*.kv
+test_db_definitions*.kv
