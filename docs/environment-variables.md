@@ -2,11 +2,25 @@
 
 These values can be set to tweak morphodict’s runtime behaviour.
 
+You can set these environment variables directly on the command-line using
+the standard method for your shell. But it is common to set them in a
+`.env` file instead, where various tools will automatically pick them up.
+
+However, all of pipenv, foreman, and our django setup will read from the
+`.env` file. These different bits of code have different rules for whether
+to prefer a value from the existing environment or from the `.env` file,
+and because they can set environment variables based on the `.env` file,
+they override each other’s default logic in complicated ways.
+
+For that reason, when changing any of these values, the safest way to
+ensure that the changes take effect is to make the change in the `.env`
+file, exit from the `pipenv shell` environment, and start a new `pipenv
+shell`.
+
 ## DEBUG
 
 Django magical variable. This defaults to the production setting `False`.
-You should add `DEBUG=False` to .env file in development.
-Note: `DEBUG` CANNOT be enabled on Sapir!
+You should add `DEBUG=False` to the `.env` file in development.
 
 ## ENABLE_DJANGO_DEBUG_TOOLBAR
 
@@ -27,9 +41,7 @@ The debug toolbar is **always disabled** on production and in CI.
 
 It specifies whether to use `test_db.sqlite3` instead of `db.sqlite3`. It defaults to production setting "False". you should add `USE_TEST_DB=True` in .env file.
 
-Note: python unit tests under `CreeDictionary/tests` always creates in memory empty database unless specified 
-in the test code otherwise. E.g. `CreeDictionary/tests/API_test/model_test.py` is
- an example configuration where `test_db.sqlite3` is actually used.
+Note: Python unit tests always use a test database.
 
 (DEBUG_PARADIGM_TABLES)=
 

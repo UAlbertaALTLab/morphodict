@@ -1,0 +1,42 @@
+[
+  {
+    "analysis": [[], "amisk", ["+N", "+A", "+Sg"]],
+    "head": "amisk",
+    "linguistInfo": {
+      "inflectional_category": "NA-3",
+      "pos": "N",
+      "stem": "amiskw-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "beaver",
+        "sources": ["CW", "MD"]
+      }
+    ],
+    "slug": "amisk2"
+  },
+  {
+    "fstLemma": "kôkom",
+    "head": "kôkom!",
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "Grandma!",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "kôkom_"
+  },
+  {
+    "head": "maskwa",
+    "senses": [
+      {
+        "definition": "bear",
+        "sources": ["X"]
+      }
+    ],
+    "slug": "maskwa"
+  }
+]

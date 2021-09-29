@@ -1,0 +1,21 @@
+FST-LABEL	SHORT LINGUISTIC	LONG LINGUISTIC	PLAIN ENGLISH	X̲AAD KÍL
+V	Verb	Verb	Action word	
+Pres	Present	Tense: Present	Something is happening now	
+Past	Past	Tense: Past	Something happened earlier	
+Fut	Future	Tense: Future	Something is going to happen	
+Simp	Simple	Simple	Simple	
+Dir	Direct	Direct	Direct	
+Long	Long	Long	Long	
+Impv	Imperative	Mood: Imperative	Command	
+Interr	Interrogative	Mood: interrogative	Question	
+Pos	Positive	Polarity: positive	Yes	
+Neg	Negative	Polarity: negation	No	
+Stmt	Statement	Statement	Stating a fact	
+Cont	Content	Content question	Regular answer	
+Y/N	Y/N	Yes/No Question	Yes or no answer	
+Sg	Singular	Number: singular	One	
+Pl	Plural	Number: plural	Many	
+Sg+Impv	Singular imperative	Singular imperative	Command: one	
+Pl+Impv	Plural imperative	Plural imperative	Command: many	
+Interr+Cont	Interrogative: Content response	Interrogative: Content response	Question: regular answer	
+Interr+Y/N	Interrogative: Y/N response	Interrogative: yes/no response	Question: yes/no answer	

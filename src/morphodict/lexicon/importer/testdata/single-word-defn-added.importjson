@@ -1,0 +1,28 @@
+[
+  {
+    "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
+    "head": "maskwa",
+    "linguistInfo": {
+      "inflectional_category": "NA-4w",
+      "pos": "N",
+      "stem": "maskw-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "A bear.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "bear, black bear",
+        "sources": ["CW"]
+      },
+      {
+        "definition": "new defn",
+        "sources": ["CW", "MD", "XYZ"]
+      }
+    ],
+    "slug": "maskwa"
+  }
+]
