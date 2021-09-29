@@ -6,6 +6,7 @@ collect_ignore = [
     "arpeng/site/settings.py",
     "crkeng/site/settings_mobile.py",
     "cwdeng/site/settings.py",
+    "hdneng/site/settings.py",
     "srseng/site/settings.py",
     "srseng/site/settings_mobile.py",
 ]

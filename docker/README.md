@@ -19,7 +19,7 @@ The containers will expose **ports like 8010** to the machine. See
 the [application registry] and [docker/helper/settings.py].
 
 [application registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
-[docker/helper/settings.py]: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/main/docker/helpers/settings.py
+[docker/helper/settings.py]: https://github.com/UAlbertaALTLab/morphodict/blob/main/docker/helpers/settings.py
 
 ## Development
 
@@ -164,7 +164,7 @@ checkout containing the setup code.
 
 When getting started, from your local machine’s `docker/plays` folder, copy
 `initial-setup.yml` and `vars.yml` to anywhere on the production machine,
-and you’ll be able to run then from there.
+and you’ll be able to run them from there.
 
 To install ansible on the production host, run this, **as your login user,
 not as root**:
@@ -198,7 +198,7 @@ inscrutable error messages on startup like `_pickle.UnpicklingError:
 invalid load key, 'v'.`
 
     $ sudo -i -u morphodict
-    $ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary morphodict
+    $ git clone https://github.com/UAlbertaALTLab/morphodict
     $ cd morphodict && git lfs install && git lfs fetch && git lfs checkout
 
 As the `morphodict` user, run `docker/helper.py setup`, and it’ll create

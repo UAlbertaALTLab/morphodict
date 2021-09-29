@@ -5,7 +5,7 @@ context("Searching", () => {
   before(() => setDefaultDisplayMode());
   after(() => setDefaultDisplayMode());
 
-  // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445#:~:text=4.%20Inflected%20form
+  // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=4.%20Inflected%20form
   context("result header", function () {
     const lemma = "mîciw";
     const inflectionalClass = "VTI-3";
@@ -30,7 +30,7 @@ context("Searching", () => {
   });
 
   describe("FST analysis", () => {
-    // See: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/742
+    // See: https://github.com/UAlbertaALTLab/morphodict/issues/742
     it("should display in Plain English", () => {
       cy.visitSearch("nimaskomak");
 
