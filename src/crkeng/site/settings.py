@@ -29,9 +29,9 @@ FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2S
 
 # Morphodict configuration
 
-STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
-STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
-RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-strict.hfstol"
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-strict.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-relaxed.hfstol"
 
 MORPHODICT_DICTIONARY_NAME = "itwêwina"
 
