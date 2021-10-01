@@ -135,13 +135,61 @@ creates the test databases for all supported languages.
 Where to get full dictionaries is described in [Current dictionary
 data](current_dictionary_data).
 
+### Importing dictionaries
+
 Once you have a full dictionary, import it into the database:
 
     ./${sssttt}-manage importjsondict [file]
 
-As the current import code has not been optimized at all, for a full
-dictionary this can take half an hour even on a machine that is quite fast,
-and longer on slow ones.
+There are three flags to know about for the `importjsondict` command:
+`--purge`, `--incremental`, and `--atomic`. They are described in the
+`--help` output. The default values depend on the specific language pair
+whether `DEBUG` is set; check the `--help` output to see what the defaults
+for your situation are.
+
+On a newish laptop or desktop, importing the full Plains Create dictionary
+should take roughly 5-10 minutes.
+
+In production, the import time for the Plains Cree dictionary is roughly:
+
+  - 20 minutes to import into a brand-new database, with much of that time
+    being spent creating auto-translations.
+
+  - Nearly instantaneous to update up to a few hundred entries, when used
+    with `--incremental`, plus at most a few tens of seconds of write out a
+    new definition vector file.
+
+  - One hour to update every single single entry, which is the default
+    when `--incremental` is not used, and which is required when you have
+    added entirely new paradigm fields or have updated the generator FST or
+    the phrase translation FSTs.
+
+    This could be greatly sped up by using solid-state drives, and/or
+    batching deletes in the importjsondict command.
+
+(dictionaries-in-production)=
+#### In production
+
+The following could all conceivably be automated.
+
+  - In production, the `~morphodict/src/sssttt/resources/dictionary` folder
+    is mounted into the docker container at
+    `/app/src/sssttt/resources/dictionary`.
+
+  - If the file `sssttt_dictionary.importjson` is placed into that folder,
+    possibly after being obtained from the git repo at `/data/altlab.git`,
+    then `importjsondict` will automatically use it.
+
+  - To update a production database, run `importjsondict` inside the
+    container:
+
+        ~morphodict/morphodict/docker/helper.py manage sssttt importjsondict --purge [PATH_TO_FILE_IN_CONTAINER]
+
+  - It is strongly recommended to restart the container after updating the
+    dictionary.
+
+        cd ~morphodict/morphodict/docker && docker-compose restart sssttt
+
 
 ### Compile JavaScript and CSS
 
