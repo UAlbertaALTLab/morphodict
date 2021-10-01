@@ -7,11 +7,11 @@ describe("The Tsúūt'ínà site", function () {
   });
 
   it("can search for a word", function () {
-    cy.visitSearch(`ditl'a`, urls.srseng).searchResultsContain("dītł'á");
+    cy.visitSearch(`nas7in`, urls.srseng).searchResultsContain("násʔín");
   });
 
   it("can display a paradigm", function () {
-    cy.visit(`${urls.srseng}/word/dītł'á`);
-    cy.get(".paradigm-cell").contains("dàdāàtł'á");
+    cy.visit(`${urls.srseng}/word/násʔín`);
+    cy.get(".paradigm-cell").contains("gīmīts'īnáyísʔìn");
   });
 });
