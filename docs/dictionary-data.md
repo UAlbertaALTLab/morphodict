@@ -4,91 +4,6 @@
 
 Dictionary applications require dictionary data.
 
-## Abstract data
-
-Having the following information available in some form is *extremely
-useful* for developers, community members, and other linguists who are not
-as familiar with the language, or your conventions for describing it, as
-you are.
-
-This may be in the form of prose documents, spreadsheets, diagrams, and so
-on, as long as the intent is to provide reference material for humans to
-understand what is going on.
-
-  - **Part-of-speech categories** and the relations among them
-
-    Linguists classify language elements into potentially overlapping
-    categories with varying levels of detail, e.g., “nouns” and “verbs” and
-    “type-1 animate intransitive verbs.” They also group these categories
-    into other meta-categories, such as ‘part of speech’ or ‘word class’ or
-    ‘linguistic category.’ For example, they may say that ‘nouns’ and
-    ‘verbs’ are ‘parts of speech’ while ‘transitive verbs’ and
-    ‘intransitive verbs’ are ‘word classes’ within the ‘verb’ ‘part of
-    speech.’
-
-    As handy as it would be, there is no universal terminology here, so
-    please spell out what terminology you’re using!
-
-    What categories do you have, what other categories do they contain or
-    overlap with, and what if anything do you call the different
-    meta-categories you use to group your categories?
-
-The morphodict code only really cares about what it calls a ‘paradigm’: a
-set of words where you’ll get a correct paradigm table output by using a
-template with the same shape, the same labels, and the same FST tags but
-differing entry-dependent FST lemmas for every word in the set.
-
-So your transitive and intransitive verbs are likely to belong to different
-paradigms from morphodict’s perspective because the respective generated
-paradigm table outputs will have different shapes based on whether they
-accommodate an object or not. But whether you have different
-morphodict-paradigms within the intransitive verbs depends on both the
-language and how the FST is implemented.
-
-It’s extremely helpful to know how morphodict’s ‘paradigm’ concept maps to
-the linguistic terminology for the language in question.
-
-  - For each part-of-speech category:
-
-      - What is the name of this category?
-
-      - What abbreviations are typically used and/or preferred to refer to
-        this category?
-
-      - A prose description of the category.
-
-      - What are some example members of this category?
-
-      - Are the members declinable?
-
-        If the members of this category are in theory declinable, but for
-        practical purposes morphodict will not be doing any declining—maybe
-        nobody’s figured out the rules yet, or the rules are known but
-        nobody’s put them into an FST—it is useful to note that.
-
-      - Do all the members of this category share the same paradigm table
-        template, with the same FST tags but different FST lemma inputs?
-
-        If the answer to this question is ‘no,’ morphodict cannot use this
-        particular part-of-speech category as a paradigm, and you can skip
-        the other questions for this category.
-
-      - If the members of the category are declinable, then, for some
-        example members, please provide one or more paradigm tables as
-        might be found in instructional or reference material.
-
-        These are extremely useful for checking that morphodict is
-        displaying paradigms correctly correctly.
-
-      - If the members are declinable, what is the preferred
-        lemma/citation/infinitive form for a lexeme?
-
-  - What additional information might people want to see as part of
-    entries? Examples of the kinds of things that have been implemented or
-    requested include showing stems, folio references to original linguist
-    notebooks, proto-forms, and whether an entry is attested in a certain
-    corpus.
-
 (importjson-spec)=
 ## importjson
 
@@ -148,11 +63,17 @@ some initial draft dictionary data covering the whole language, allowing
 people to start working with it, than to have no data at all while waiting
 for it to be ‘right.’
 
-### importjson file suggestions
+### importjson formatting suggestions
 
 To make it easier for humans to look at the raw dictionary data and to
-compare different versions of that data, the following points are *strongly
-recommended*:
+compare different versions of that data, it is *extremely strongly
+recommended* that you run
+
+    ./sssttt-manage sortimportjson FILENAME
+
+on any importjson files before committing or sharing them.
+
+That automatically implements the following suggestions:
 
   - Run the importjson files through [`prettier`][prettier] to format them
     nicely. If using the command line, you’ll need to add a `--parser=json`
@@ -182,7 +103,7 @@ recommended*:
 [NFD]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize#canonical_equivalence_normalization
 [json-stable-sort]: https://www.npmjs.com/package/json-stable-stringify
 
-### importjson Specification
+### importjson specification
 
 An importjson file is a JSON file containing an array of entries.
 
@@ -199,16 +120,37 @@ The fields are:
     morpheme, stem, &c.
 
   - The `senses` field, a required array of `{definition: string, sources:
-    string[]}` objects, contains the definitions for the entry.
+    string[], coreDefinition?: string, semanticDefinition?: string}`
+    objects, contains the definitions for the entry.
 
-    The sense must currently be a single unformatted string. We are aware
+    Only the `definition` and `sources` fields are required.
+
+    The `definition` must currently be an unformatted string. We are aware
     that people would like to specify things such as source-language text
     to be shown in the current orthography, cross-references, notes,
-    examples, and so on.
+    examples, and so on, in a more structured manner.
+
+    If we were starting from scratch we might call the `definition` field a
+    `displayDefinition`, but we already have some data, and often it is the
+    only one definition field provided.
 
     The `sources` are typically short abbreviations for the name of a
     source. `sources` is an array because multiple distinct sources may
     give the same, or essentially the same, definition for a word.
+
+    The optional `coreDefinition` field may specify a definition to use for
+    auto-translation. For example, if an entry for ‘shoe’ has lots of
+    details and notes, but when auto-translated into first person
+    possessive it should simply become ‘my shoe’, you can specify the core
+    definition as `shoe`.
+
+    The optional `semanticDefinition` field may specify a definition to use
+    instead of the main definition text for the purposes of search. It will
+    be used instead of the plain `definition` field for indexing keywords,
+    and when computing definition vectors for semantic search. This is
+    related to the concept of the core definition, but may add additional
+    relevant keywords, while leaving out stopwords or explanatory text such
+    as ‘see’ in ‘[see other-word]’ or the literal word ‘literally.’
 
   - The `slug` field, a required string, is a unique key for this entry
     that is used for several purposes, including user-facing URLs, to make

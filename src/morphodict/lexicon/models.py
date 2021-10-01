@@ -17,6 +17,7 @@ from morphodict.analysis import RichAnalysis
 
 # How long a wordform or dictionary head can be. Not actually enforced in SQLite.
 MAX_WORDFORM_LENGTH = 60
+MAX_TEXT_LENGTH = 200
 
 logger = logging.getLogger(__name__)
 
@@ -185,7 +186,58 @@ class DictionarySource(models.Model):
 
 
 class Definition(models.Model):
-    text = models.CharField(max_length=200)
+    text = models.CharField(
+        max_length=MAX_TEXT_LENGTH,
+        help_text="""
+            The definition text. This is displayed to the user, and terms within
+            it are indexed for full-text search.
+        """,
+    )
+
+    raw_core_definition = models.CharField(
+        max_length=MAX_TEXT_LENGTH,
+        null=True,
+        help_text="""
+            The definition to optionally use for auto-translation.
+
+            It should include only the core sense of the wordform without any
+            notes or cross-references.
+        """,
+    )
+    raw_semantic_definition = models.CharField(
+        max_length=MAX_TEXT_LENGTH,
+        null=True,
+        help_text="""
+            The definition to optionally use when building a semantic vector.
+
+            This is not visible to the user. It may include etymological terms,
+            and may omit stopwords.
+
+            Even though it is only used at import time, it is stored in the
+            database to enable the possibility of regenerating definition
+            vectors without the original importjson file.
+        """,
+    )
+
+    @property
+    def core_definition(self):
+        """
+        Return the core definition, or the standard definition text if no
+        explicit core definition has been provided.
+        """
+        if self.raw_core_definition is not None:
+            return self.raw_core_definition
+        return self.text
+
+    @property
+    def semantic_definition(self):
+        """
+        Return the semantic definition, or the standard definition text if no
+        explicit core definition has been provided.
+        """
+        if self.raw_semantic_definition is not None:
+            return self.raw_semantic_definition
+        return self.text
 
     # A definition **cites** one or more dictionary sources.
     citations = models.ManyToManyField(DictionarySource)
@@ -274,6 +326,15 @@ class SourceLanguageKeyword(models.Model):
 
     def __repr__(self) -> str:
         return f"<SourceLanguageKeyword(text={self.text!r} of {self.wordform!r} ({self.id})>"
+
+
+class ImportStamp(models.Model):
+    """Holds timestamp of the last import
+
+    This table that should only ever have at most a single row.
+    """
+
+    timestamp = models.FloatField(help_text="epoch time of import")
 
 
 class _WordformCache:

@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+import time
 from argparse import (
     ArgumentParser,
     BooleanOptionalAction,
@@ -30,6 +31,7 @@ from morphodict.lexicon.models import (
     DictionarySource,
     TargetLanguageKeyword,
     SourceLanguageKeyword,
+    ImportStamp,
 )
 from morphodict.lexicon.util import to_source_language_keyword
 
@@ -341,17 +343,20 @@ class Import:
 
             self.populate_wordform_definitions(wf, entry["senses"])
 
+            # Avoid dupes for this wordform
+            seen_source_language_keywords: set[str] = set()
+
             slug_base = wf.slug.split("@")[0]
-            if wf.text != slug_base:
-                self.source_language_keyword_buffer.add(
-                    SourceLanguageKeyword(wordform=wf, text=slug_base)
+            if wf.text != slug_base and slug_base:
+                self.add_source_language_keyword(
+                    wf, slug_base, seen_source_language_keywords
                 )
             if wf.fst_lemma and wf.text != wf.fst_lemma:
-                self.source_language_keyword_buffer.add(
-                    SourceLanguageKeyword(wordform=wf, text=wf.fst_lemma)
+                self.add_source_language_keyword(
+                    wf, wf.fst_lemma, seen_source_language_keywords
                 )
             if wf.raw_analysis is None:
-                self.index_unanalyzed_form(wf)
+                self.index_unanalyzed_form(wf, seen_source_language_keywords)
 
         # Make sure everything is saved for upcoming formOf queries
         self.flush_insert_buffers()
@@ -390,6 +395,15 @@ class Import:
                     f"Purged {rows:,} rows from database for existing entries not found in import file: %r",
                     breakdown,
                 )
+
+        timestamp = time.time()
+        stamp, created = ImportStamp.objects.get_or_create(
+            defaults={"timestamp": timestamp}
+        )
+        if not created:
+            stamp.timestamp = time.time()
+            stamp.save()
+
         call_command("builddefinitionvectors")
 
     def populate_wordform_definitions(self, wf, senses):
@@ -454,18 +468,12 @@ class Import:
                         auto_translation_source=d,
                     )
 
-    def _add_definition(
-        self, wordform, text, sources: list[str], auto_translation_source=None
-    ):
+    def _add_definition(self, wordform, text, sources: list[str], **kwargs):
         """Lower-level method to add a definition.
 
         Note that this method does *NOT* index keyword definitions. For that,
         you want the `create_definitions` method.
         """
-        kwargs = {}
-        if auto_translation_source is not None:
-            kwargs["auto_translation_source"] = auto_translation_source
-
         d = Definition(wordform=wordform, text=text, **kwargs)
         self.definition_buffer.add(d)
         for s in sources:
@@ -491,12 +499,18 @@ class Import:
         keywords = set()
 
         for sense in senses:
+            kwargs = {}
+            if "semanticDefinition" in sense:
+                kwargs["raw_semantic_definition"] = sense["semanticDefinition"]
+            if "coreDefinition" in sense:
+                kwargs["raw_core_definition"] = sense["coreDefinition"]
+
             new_definition = self._add_definition(
-                wordform, sense["definition"], sense["sources"]
+                wordform, sense["definition"], sense["sources"], **kwargs
             )
             definitions_and_sources.append((new_definition, sense["sources"]))
 
-            keywords.update(stem_keywords(sense["definition"]))
+            keywords.update(stem_keywords(new_definition.semantic_definition))
 
         for kw in keywords:
             self.target_language_keyword_buffer.add(
@@ -519,7 +533,7 @@ class Import:
         self.source_language_keyword_buffer.save()
         self.target_language_keyword_buffer.save()
 
-    def index_unanalyzed_form(self, wordform):
+    def index_unanalyzed_form(self, wordform, seen):
         """Index unanalyzed forms such as phrases, Cree preverbs
 
         These get put into the SourceLanguageKeyword table.
@@ -529,9 +543,18 @@ class Import:
         )
 
         for kw in keywords:
-            self.source_language_keyword_buffer.add(
-                SourceLanguageKeyword(text=kw, wordform=wordform)
-            )
+            self.add_source_language_keyword(wordform, kw, seen)
+
+    def add_source_language_keyword(
+        self, wordform: Wordform, keyword: str, seen: set[str]
+    ):
+        if keyword in seen:
+            return
+
+        self.source_language_keyword_buffer.add(
+            SourceLanguageKeyword(wordform=wordform, text=keyword)
+        )
+        seen.add(keyword)
 
 
 class Command(BaseCommand):

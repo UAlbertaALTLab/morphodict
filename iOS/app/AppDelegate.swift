@@ -2,17 +2,6 @@ import HTMLString
 import os
 import UIKit
 
-// When an app update ships with a new database, either because the dictionary
-// was updated or migrations were added, we need to copy it into place. But
-// we don’t want to do that on every launch because it would be slow.
-//
-// So the code will check whether the version number saved into a file matches.
-//
-// This could be automated by comparing query results between the database
-// file shipped with the app and the writable copy in the “Application Support”
-// directory.
-let CURRENT_DB_VERSION = "1"
-
 let log = OSLog(subsystem: "morphodict", category: "default")
 
 var appDelegate: AppDelegate?
@@ -51,21 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window!.rootViewController = viewController
         window!.makeKeyAndVisible()
 
-        setenv("MORPHODICT_ENV_FILE_PATH",
-               applicationSupportDirectory.appendingPathComponent(".env").path,
-               1)
         morphodict_register_callback("serve", serveCallback)
 
         let pyq = DispatchQueue(
             label: "python server", qos: .userInitiated, attributes: [],
             autoreleaseFrequency: .inherit, target: .none)
-        pyq.async {
+        pyq.async { [self] in
             morphodict_register_callback("hello") { print("Hello from swift") }
 
             do {
-                try self.setupDatabase()
+                try prePythonSetup()
             } catch {
-                self.handleError(error)
+                handleError(error)
                 return
             }
 
@@ -76,45 +62,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func setupDatabase() throws {
+    func prePythonSetup() throws {
+        setenv("DJANGO_SETTINGS_MODULE",
+               "\(String(cString: morphodict_sssttt())).site.settings_mobile", 1)
+        setenv("MORPHODICT_ENV_FILE_PATH",
+               applicationSupportDirectory.appendingPathComponent(".env").path,
+               1)
+
         let dbDirectory = try createDbDirectory()
 
-        let dbFile = dbDirectory.appendingPathComponent("db.sqlite3")
+        setenv("MORPHODICT_DB_DIRECTORY", dbDirectory.path, 1)
+
+        // Older versions of the app used this file; remove it if it is
+        // still around.
         let dbVersionFile = dbDirectory.appendingPathComponent("db_version")
-
-        func dbFileNeedsUpdate() -> Bool {
-            if !fm.fileExists(atPath: dbFile.path) {
-                os_log("database file copy does not exist", log: log)
-                return true
-            }
-
-            if !fm.fileExists(atPath: dbVersionFile.path) {
-                os_log("database version file does not exist", log: log)
-                return true
-            }
-
-            if let savedVersion = try? String(contentsOf: dbVersionFile) {
-                os_log("previous database version: %s", log: log, savedVersion)
-                return savedVersion != CURRENT_DB_VERSION
-            }
-
-            // reading dbVersionFile failed, so try to update
-            return true
+        if fm.fileExists(atPath: dbVersionFile.path) {
+            try fm.removeItem(at: dbVersionFile)
         }
 
-        if dbFileNeedsUpdate() {
-            os_log("Copying database to %@", log: log, dbFile.description)
+        let bundle = Bundle(for: Self.self)
+        let includedDb = bundle.url(
+            forResource: "db-mobile", withExtension: "sqlite3")!
 
-            let bundle = Bundle(for: Self.self)
-            let includedDb = bundle.url(
-                forResource: "db-mobile", withExtension: "sqlite3")!
-            if fm.fileExists(atPath: dbFile.path) {
-                try fm.removeItem(at: dbFile)
-            }
-            try fm.copyItem(at: includedDb, to: dbFile)
-            try CURRENT_DB_VERSION.write(to: dbVersionFile, atomically: false, encoding: .utf8)
-        }
-        setenv("DATABASE_URL", "sqlite://\(dbFile.path)", 1)
+        setenv("MORPHODICT_BUNDLED_DB", includedDb.path, 1)
     }
 
     /**
