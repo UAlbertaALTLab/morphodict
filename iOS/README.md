@@ -97,6 +97,23 @@ installed.
  3. Open `iOS/app/itwewina-offline.xcodeproj` in Xcode, build it and run
     it.
 
+## Building the mobile database
+
+This magic lets you access a mobile database:
+
+    USE_TEST_DB=False \
+    DATABASE_URL=sqlite:///src/crkeng/db/db-mobile.sqlite3 \
+    ./crkeng-manage …
+
+For example, you can update the dictionary database with:
+
+    USE_TEST_DB=False \
+    DATABASE_URL=sqlite:///src/crkeng/db/db-mobile.sqlite3 \
+    ./crkeng-manage importjsondict \
+    --incremental --no-translate-wordforms --atomic --purge
+
+This could definitely be scripted.
+
 ## Potential problems
 
   - Error claims that `"iphonesimulator" cannot be located`

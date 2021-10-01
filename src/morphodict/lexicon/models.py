@@ -276,6 +276,15 @@ class SourceLanguageKeyword(models.Model):
         return f"<SourceLanguageKeyword(text={self.text!r} of {self.wordform!r} ({self.id})>"
 
 
+class ImportStamp(models.Model):
+    """Holds timestamp of the last import
+
+    This table that should only ever have at most a single row.
+    """
+
+    timestamp = models.FloatField(help_text="epoch time of import")
+
+
 class _WordformCache:
     @cached_property
     def MORPHEME_RANKINGS(self) -> Dict[str, float]:

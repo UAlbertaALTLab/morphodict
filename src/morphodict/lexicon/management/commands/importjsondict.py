@@ -1,6 +1,7 @@
 import hashlib
 import json
 import logging
+import time
 from argparse import (
     ArgumentParser,
     BooleanOptionalAction,
@@ -30,6 +31,7 @@ from morphodict.lexicon.models import (
     DictionarySource,
     TargetLanguageKeyword,
     SourceLanguageKeyword,
+    ImportStamp,
 )
 from morphodict.lexicon.util import to_source_language_keyword
 
@@ -393,6 +395,15 @@ class Import:
                     f"Purged {rows:,} rows from database for existing entries not found in import file: %r",
                     breakdown,
                 )
+
+        timestamp = time.time()
+        stamp, created = ImportStamp.objects.get_or_create(
+            defaults={"timestamp": timestamp}
+        )
+        if not created:
+            stamp.timestamp = time.time()
+            stamp.save()
+
         call_command("builddefinitionvectors")
 
     def populate_wordform_definitions(self, wf, senses):
