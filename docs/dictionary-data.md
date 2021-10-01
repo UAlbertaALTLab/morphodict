@@ -103,7 +103,7 @@ That automatically implements the following suggestions:
 [NFD]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize#canonical_equivalence_normalization
 [json-stable-sort]: https://www.npmjs.com/package/json-stable-stringify
 
-### importjson Specification
+### importjson specification
 
 An importjson file is a JSON file containing an array of entries.
 
@@ -120,21 +120,37 @@ The fields are:
     morpheme, stem, &c.
 
   - The `senses` field, a required array of `{definition: string, sources:
-    string[]}` objects, contains the definitions for the entry.
+    string[], coreDefinition?: string, semanticDefinition?: string}`
+    objects, contains the definitions for the entry.
+
+    Only the `definition` and `sources` fields are required.
+
+    The `definition` must currently be an unformatted string. We are aware
+    that people would like to specify things such as source-language text
+    to be shown in the current orthography, cross-references, notes,
+    examples, and so on, in a more structured manner.
 
     If we were starting from scratch we might call the `definition` field a
     `displayDefinition`, but we already have some data, and often it is the
     only one definition field provided.
 
-    The definition must currently be a single unformatted string. We are
-    aware that people would like to specify things such as source-language
-    text to be shown in the current orthography, cross-references, notes,
-    examples, and so on. If these are supported in the future, they will
-    likely be separate fields rather included within the definition.
-
     The `sources` are typically short abbreviations for the name of a
     source. `sources` is an array because multiple distinct sources may
     give the same, or essentially the same, definition for a word.
+
+    The optional `coreDefinition` field may specify a definition to use for
+    auto-translation. For example, if an entry for ‘shoe’ has lots of
+    details and notes, but when auto-translated into first person
+    possessive it should simply become ‘my shoe’, you can specify the core
+    definition as `shoe`.
+
+    The optional `semanticDefinition` field may specify a definition to use
+    instead of the main definition text for the purposes of search. It will
+    be used instead of the plain `definition` field for indexing keywords,
+    and when computing definition vectors for semantic search. This is
+    related to the concept of the core definition, but may add additional
+    relevant keywords, while leaving out stopwords or explanatory text such
+    as ‘see’ in ‘[see other-word]’ or the literal word ‘literally.’
 
   - The `slug` field, a required string, is a unique key for this entry
     that is used for several purposes, including user-facing URLs, to make

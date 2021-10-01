@@ -468,18 +468,12 @@ class Import:
                         auto_translation_source=d,
                     )
 
-    def _add_definition(
-        self, wordform, text, sources: list[str], auto_translation_source=None
-    ):
+    def _add_definition(self, wordform, text, sources: list[str], **kwargs):
         """Lower-level method to add a definition.
 
         Note that this method does *NOT* index keyword definitions. For that,
         you want the `create_definitions` method.
         """
-        kwargs = {}
-        if auto_translation_source is not None:
-            kwargs["auto_translation_source"] = auto_translation_source
-
         d = Definition(wordform=wordform, text=text, **kwargs)
         self.definition_buffer.add(d)
         for s in sources:
@@ -505,12 +499,18 @@ class Import:
         keywords = set()
 
         for sense in senses:
+            kwargs = {}
+            if "semanticDefinition" in sense:
+                kwargs["raw_semantic_definition"] = sense["semanticDefinition"]
+            if "coreDefinition" in sense:
+                kwargs["raw_core_definition"] = sense["coreDefinition"]
+
             new_definition = self._add_definition(
-                wordform, sense["definition"], sense["sources"]
+                wordform, sense["definition"], sense["sources"], **kwargs
             )
             definitions_and_sources.append((new_definition, sense["sources"]))
 
-            keywords.update(stem_keywords(sense["definition"]))
+            keywords.update(stem_keywords(new_definition.semantic_definition))
 
         for kw in keywords:
             self.target_language_keyword_buffer.add(

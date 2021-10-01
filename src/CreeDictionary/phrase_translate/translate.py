@@ -135,7 +135,7 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
                 continue
 
             print(f"    definition: {d} →")
-            phrase = inflect_english_phrase(wordform.analysis, d.text)
+            phrase = inflect_english_phrase(wordform.analysis, d.core_definition)
             if phrase is None:
                 phrase = "(not supported)"
             print(f"      {phrase}")
