@@ -1,6 +1,6 @@
 import urls from "../../support/urls";
 
-describe("The Wood Cree site", function () {
+describe("The Woods Cree site", function () {
   it("works", function () {
     cy.visit(`${urls.cwdeng}`);
     cy.get(".branding__heading").contains("itwīwina");
