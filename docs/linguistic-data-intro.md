@@ -18,9 +18,9 @@ is the following:
     of a page from a textbook showing each wordform, annotated with the
     desired FST analysis for each.
 
-  - It’s nice to know the endonym, i.e., the name of the language in the
-    language itself; but `sssttt` can always be used as a placeholder at
-    the start.
+  - It’s nice to know the endonym aka autonym aka the name of the language
+    in the language itself; but `sssttt` can always be used as a
+    placeholder at the start.
 
 With that, you or a developer can create a very basic FST that only handles
 a single lemma, and create starter versions of the files described below in
@@ -174,15 +174,20 @@ understand what is going on.
 
     Linguists classify language elements into potentially overlapping
     categories with varying levels of detail, e.g., “nouns” and “verbs” and
-    “type-1 animate intransitive verbs.” They also group these categories
-    into other meta-categories, such as ‘part of speech’ or ‘word class’ or
-    ‘linguistic category.’ For example, they may say that ‘nouns’ and
-    ‘verbs’ are ‘parts of speech’ while ‘transitive verbs’ and
-    ‘intransitive verbs’ are ‘word classes’ within the ‘verb’ ‘part of
-    speech.’
+    “type-1 animate intransitive verbs.”
 
-    As handy as it would be, there is no universal terminology here, so
-    please spell out what terminology you’re using!
+    For example:
+
+    ![](flex-example.png)
+
+    Linguists also group these categories into other meta-categories, such
+    as ‘part of speech’ or ‘word class’ or ‘linguistic category.’ For
+    example, they may say that ‘nouns’ and ‘verbs’ are ‘parts of speech’
+    while ‘transitive verbs’ and ‘intransitive verbs’ are ‘word classes’
+    within the ‘verb’ ‘part of speech.’
+
+    As handy as it would be to have, there is no universal terminology
+    here, so please spell out what terminology you’re using!
 
     What categories do you have, what other categories do they contain or
     overlap with, and what if anything do you call the different
@@ -214,12 +219,14 @@ the linguistic terminology for the language in question.
 
       - What are some example members of this category?
 
-      - Are the members declinable?
+      - Are the members inflectable, i.e., can they be declined or
+        conjugated?
 
-        If the members of this category are in theory declinable, but for
-        practical purposes morphodict will not be doing any declining—maybe
-        nobody’s figured out the rules yet, or the rules are known but
-        nobody’s put them into an FST—it is useful to note that.
+        If the members of this category are in theory inflectable, but for
+        practical purposes morphodict will not be doing any
+        inflecting—maybe nobody’s figured out the rules yet, or the rules
+        are known but nobody’s put them into an FST—it is useful to note
+        that.
 
       - Do all the members of this category share the same paradigm table
         template, with the same FST tags but different FST lemma inputs?
