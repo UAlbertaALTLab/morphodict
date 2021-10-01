@@ -319,7 +319,8 @@ Did you know that
 To make things like this work, you enter magic ascii hostnames into the
 nginx config file that browsers convert to non-ascii. Search the web for a
 ‘punycode converter’ that’ll tell you that `itwêwina.altlab.app` ==
-`xn--itwwina-lya.altlab.app`.
+`xn--itwwina-lya.altlab.app`. Take a look at the nginx config file with
+that name on `altlab.dev` in production.
 
 For webapps, it’s not a good idea to have multiple domains serving up
 exactly the same content, so you should pick one canonical domain to appear
