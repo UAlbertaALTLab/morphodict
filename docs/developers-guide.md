@@ -142,7 +142,7 @@ Once you have a full dictionary, import it into the database:
     ./${sssttt}-manage importjsondict [file]
 
 There are three flags to know about for the `importjsondict` command:
-`--purge`, `--incremental`, and `--atomic`. They are describe in the
+`--purge`, `--incremental`, and `--atomic`. They are described in the
 `--help` output. The default values depend on the specific language pair
 whether `DEBUG` is set; check the `--help` output to see what the defaults
 for your situation are.
@@ -156,7 +156,7 @@ In production, the import time for the Plains Cree dictionary is roughly:
     being spent creating auto-translations.
 
   - Nearly instantaneous to update up to a few hundred entries, when used
-    with `--incremental, plus at most a few tens of seconds of write out a
+    with `--incremental`, plus at most a few tens of seconds of write out a
     new definition vector file.
 
   - Two hours to update every single single entry, which is the default

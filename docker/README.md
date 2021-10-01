@@ -142,7 +142,7 @@ parameters from a single place: [docker/helper/settings.py][].
 
 Run `./docker/helper.py --help` to see more about what it can do.
 
-That said, if you in production you can poke at the containers directly
+That said, if you are in production you can poke at the containers directly
 with `docker`, and if you are in the `~morphodict/morphodict/docker`
 directory, you can also run `docker-compose` directly. It’s really up to
 you.
