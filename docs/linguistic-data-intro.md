@@ -226,16 +226,17 @@ the linguistic terminology for the language in question.
 
         If the answer to this question is ‘no,’ morphodict cannot use this
         particular part-of-speech category as a paradigm, and you can skip
-        the other questions for this category.
+        the other questions for this category. You could however create
+        subcategories, each with their own inflectional paradigm.
 
-      - If the members of the category are declinable, then, for some
+      - If the members of the category are inflectable, then, for some
         example members, please provide one or more paradigm tables as
         might be found in instructional or reference material.
 
         These are extremely useful for checking that morphodict is
         displaying paradigms correctly correctly.
 
-      - If the members are declinable, what is the preferred
+      - If the members are inflectable, what is the preferred
         lemma/citation/infinitive form for a lexeme?
 
   - What additional information might people want to see as part of
