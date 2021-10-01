@@ -129,7 +129,8 @@ The fields are:
     The definition must currently be a single unformatted string. We are
     aware that people would like to specify things such as source-language
     text to be shown in the current orthography, cross-references, notes,
-    examples, and so on.
+    examples, and so on. If these are supported in the future, they will
+    likely be separate fields rather included within the definition.
 
     The `sources` are typically short abbreviations for the name of a
     source. `sources` is an array because multiple distinct sources may
