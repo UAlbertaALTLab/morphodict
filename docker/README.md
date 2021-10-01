@@ -142,6 +142,26 @@ parameters from a single place: [docker/helper/settings.py][].
 
 Run `./docker/helper.py --help` to see more about what it can do.
 
+That said, if you are in production you can poke at the containers directly
+with `docker`, and if you are in the `~morphodict/morphodict/docker`
+directory, you can also run `docker-compose` directly. It’s really up to
+you.
+
+  - For restarting a container, `docker-compose restart `sssttt` is
+    easiest, but must be run from the correct directory.
+
+  - For running a management command inside a docker container, there is a
+    handy helper into the tool.
+
+  - Sometimes for debugging you will want to use the `docker` command-line
+    tool directly.
+
+The basic guideline in developing the tool was that any common operation
+that needed any fiddly options or multiple commands to make work was
+encapsulated in a helper command. That’s why there’s not (yet?) a command
+for restarting a container: `docker-compose restart sssttt` isn’t very
+fiddly.
+
 ### Installation
 
 These steps should only be needed if you are setting up morphodict on a new
@@ -238,6 +258,9 @@ setup hasn’t been done yet.
     path must be inside the container, and be specified relative to the git
     repo root.
 
+    For more on updating production dictionaries, see [dictionaries in
+    production](dictionaries-in-production).
+
  5. The app may not work very well if it the container was started before
     the database schema was in place, or if an import has invalidated some
     caches built on startup. You can restart a container with
@@ -308,5 +331,11 @@ This script:
     the uploaded Docker image
   - restarts the container
   - runs migrations
+
+It is totally fine to run the deploy script by hand, especially for
+debugging; just try to be sure that no automated deployments are happening
+at the same time.
+
+    sudo -u morphodict ~morphodict/morphodict/docker/deploy
 
 [ghcr]: https://github.com/orgs/UAlbertaALTLab/packages/container/package/itwewina.altlab.app
