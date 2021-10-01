@@ -312,6 +312,30 @@ To add a new site:
     about setting up redirects because that’s already handled in the
     snippet above.
 
+#### Domains with diacritics
+
+Did you know that
+[https://itwêwina.altlab.app](https://itwêwina.altlab.app) is a valid link?
+To make things like this work, you enter magic ascii hostnames into the
+nginx config file that browsers convert to non-ascii. Search the web for a
+‘punycode converter’ that’ll tell you that `itwêwina.altlab.app` ==
+`xn--itwwina-lya.altlab.app`.
+
+For webapps, it’s not a good idea to have multiple domains serving up
+exactly the same content, so you should pick one canonical domain to appear
+in the address bar, and set all the other versions of the name to redirect
+to it. For itwêwina, the canonical domain is currently
+`itwewina.altlab.app`, but one could conceivably have the
+`itwêwina.altlab.app` one be canonical with the `itwewina.altlab.app`
+version redirecting to it.
+
+Note that for security reasons, browsers have complicated rules about which
+limited sets of characters they’ll allows to be displayed directly in the
+URL bar, with any transgression of those rules resulting int he domain
+displaying as the raw punycode form instead, e.g.,
+`xn--itwwina-lya.altlab.app`. If you try using diacritics for the canonical
+domain, be sure to test it on many browsers on many platforms!
+
 ## Redeployment
 
 Every time a commit is pushed to the default branch on GitHub, the
