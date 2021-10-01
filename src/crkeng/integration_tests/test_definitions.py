@@ -2,7 +2,7 @@ import pytest
 
 from CreeDictionary.API.search import search
 from CreeDictionary.conftest import django_db_setup
-from morphodict.lexicon.models import Wordform
+from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 
 # This no-op keeps PyCharm for optimizing the required import away
 django_db_setup
@@ -19,8 +19,18 @@ def test_db_has_custom_fields(db):
         defn.text
         == 'mule deer [literally: "jumper; leaper"; Lt: Odocoileus hemionus hemionus]'
     )
-    assert defn.semantic_definition == "mule deer jumper leaper"
+    assert (
+        defn.semantic_definition
+        == "mule deer jumper leaper Odocoileus hemionus hemionus"
+    )
     assert defn.core_definition == "mule deer"
+
+    assert set(
+        r[0]
+        for r in TargetLanguageKeyword.objects.filter(
+            wordform=defn.wordform
+        ).values_list("text")
+    ) == {"mule", "deer", "jumper", "leaper", "odocoileus", "hemionus"}
 
 
 @pytest.mark.parametrize("search_term", ["jumper", "Odocoileus"])

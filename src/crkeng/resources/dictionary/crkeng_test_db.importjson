@@ -877,7 +877,7 @@
       {
         "definition": "mule deer [literally: \"jumper; leaper\"; Lt: Odocoileus hemionus hemionus]",
         "coreDefinition": "mule deer",
-        "semanticDefinition": "mule deer jumper leaper",
+        "semanticDefinition": "mule deer jumper leaper Odocoileus hemionus hemionus",
         "sources": ["CW"]
       }
     ],

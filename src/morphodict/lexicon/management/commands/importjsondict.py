@@ -499,7 +499,7 @@ class Import:
             )
             definitions_and_sources.append((new_definition, sense["sources"]))
 
-            keywords.update(stem_keywords(sense["definition"]))
+            keywords.update(stem_keywords(new_definition.semantic_definition))
 
         for kw in keywords:
             self.target_language_keyword_buffer.add(
