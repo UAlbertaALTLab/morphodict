@@ -5,10 +5,8 @@
   "description": "Morphodict",
   "scripts": {
     "build": "rollup -c",
-    "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
+    "test": "pipenv run scripts/run-cypress --no-interactive",
     "stop-only": "stop-only --folder cypress/integration",
-    "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",
-    "test:ci": "pipenv run ensuretestdb && (pipenv run runserver_for_tests & trap 'kill %1' 0 1 2 3 15; $(npm bin)/wait-on -t 30000 tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS)",
     "reformat": "prettier --write '{frontend,cypress}/**/*.js'"
   },
   "repository": {

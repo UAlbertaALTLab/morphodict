@@ -42,6 +42,14 @@ function protoToWoods(s: string) {
   return ret;
 }
 
+function toMacrons(s: string) {
+  let ret = s;
+  ret = ret.replace(/â/g, "ā");
+  ret = ret.replace(/[êî]/g, "ī");
+  ret = ret.replace(/ô/g, "ō");
+  return ret;
+}
+
 export class NdjsonDatabase {
   private _entries;
   private _byHead;
@@ -162,6 +170,7 @@ function transliterateHeads(
         if (origHead === baseSlug) {
           entry.slug = protoToWoods(proto) + (suffix ? `@${suffix}` : "");
         }
+        entry.slug = toMacrons(entry.slug!);
       }
     }
   }

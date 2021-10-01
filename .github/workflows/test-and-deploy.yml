@@ -153,7 +153,7 @@ jobs:
       run: |
         # Enables uploading test runs to Cypress Dashboard:
         if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
-        npm run test:ci
+        ./scripts/run-cypress --no-interactive
 
   build-docker-image:
     runs-on: ubuntu-latest
