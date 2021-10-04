@@ -28,6 +28,15 @@ Quantitative linguist and doggo enthusiast.
 Documentary linguist with a focus on language typology and digital linguistics.
 
 
+#### [Andrew Neitsch](https://andrew.neitsch.ca/)
+
+Senior software developer 2021. Improvement of search and expansion of itwêwina to morphodict and mobidict.
+
+#### [Jolene Poulin](https://nienna73.github.io/)
+
+Software developer. General development of ALTLab applications 2020-
+
+
 #### [Aida Radu](https://github.com/aradu12)
 
 Linguist. 2020 software development intern.

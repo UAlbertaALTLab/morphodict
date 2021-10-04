@@ -1,3 +1,4 @@
+(paradigm_layouts)=
 Paradigm layouts
 ================
 

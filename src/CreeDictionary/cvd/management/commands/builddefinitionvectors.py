@@ -45,7 +45,9 @@ class Command(BaseCommand):
 
         with create_debug_output(debug_output_file) as debug_output:
             for d in tqdm(definitions.iterator(), total=count):
-                keys = extract_keyed_words(d.text, news_vectors, unknown_words)
+                keys = extract_keyed_words(
+                    d.semantic_definition, news_vectors, unknown_words
+                )
                 debug_output(
                     json.dumps(
                         {
@@ -66,6 +68,7 @@ class Command(BaseCommand):
             definition_vectors.add_vectors(
                 definition_vector_keys, definition_vector_vectors
             )
+            output_file.parent.mkdir(exist_ok=True)
             definition_vectors.save(fspath(output_file))
 
 

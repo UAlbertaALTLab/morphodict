@@ -256,7 +256,7 @@ def serialize_definitions(definitions, include_auto_definitions=False, include_m
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
-        if not include_auto_definitions and "auto" in serialized["source_ids"]:
+        if not include_auto_definitions and "auto" in serialized["is_auto_translation"]:
             continue
         elif not include_md_results and "MD" in serialized["source_ids"]:
             continue

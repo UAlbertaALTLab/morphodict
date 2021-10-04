@@ -11,7 +11,15 @@ skip = [
 
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--doctest-modules"
+addopts = "--doctest-modules --ignore=src/mobile.py"
+
+# Where “to search for tests when no files or directories are given.” Saves
+# test collection time since all our python code is in src.
+testpaths = "src"
+
+# Allow unicode in test nodeids. Useful for words like wâpamêw. If pytest
+# behaves oddly, remove this option before seeking community support.
+disable_test_id_escaping_and_forfeit_all_rights_to_community_support = true
 
 env = [
     "USE_TEST_DB=true"

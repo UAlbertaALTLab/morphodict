@@ -2,6 +2,7 @@ import logging
 import os
 
 from django.apps import AppConfig
+from django.conf import settings
 
 from CreeDictionary import cvd
 
@@ -37,6 +38,7 @@ class APIConfig(AppConfig):
         logger.debug("preloading caches")
         affix.cache.preload()
         wordform_cache.preload()
-        cvd.preload_models()
+        if settings.MORPHODICT_ENABLE_CVD:
+            cvd.preload_models()
 
         logger.debug("done")

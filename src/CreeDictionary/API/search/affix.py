@@ -48,12 +48,13 @@ class AffixSearcher:
         for text, wordform_id in words_marked_for_indexing:
             self.text_to_ids[self.to_simplified_form(text)].append(wordform_id)
 
-        self._prefixes = dawg.CompletionDAWG(
-            [text for text, _ in words_marked_for_indexing]
-        )
-        self._suffixes = dawg.CompletionDAWG(
-            [_reverse(text) for text, _ in words_marked_for_indexing]
-        )
+        if settings.MORPHODICT_ENABLE_AFFIX_SEARCH:
+            self._prefixes = dawg.CompletionDAWG(
+                [text for text, _ in words_marked_for_indexing]
+            )
+            self._suffixes = dawg.CompletionDAWG(
+                [_reverse(text) for text, _ in words_marked_for_indexing]
+            )
 
     def search_by_prefix(self, prefix: str) -> Iterable[int]:
         """
