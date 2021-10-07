@@ -2,7 +2,7 @@ from typing import Any, Iterable
 
 from django.db.models import prefetch_related_objects
 
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySourceMd, DictionarySourceCw
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource
 from . import types, presentation
 from .query import Query
 from .util import first_non_none_value
@@ -44,6 +44,7 @@ class SearchRun:
         return result.wordform.key in self._results
 
     def remove_result(self, result: types.Result):
+        print(result)
         del self._results[result.wordform.key]
 
     def unsorted_results(self) -> Iterable[types.Result]:
@@ -60,8 +61,7 @@ class SearchRun:
         self,
         display_mode=DisplayMode.default,
         animate_emoji=AnimateEmoji.default,
-        include_md_results=DictionarySourceMd.default,
-        include_cw_results=DictionarySourceCw.default
+        dict_source=DictionarySource.default
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
@@ -75,19 +75,19 @@ class SearchRun:
                 search_run=self,
                 display_mode=display_mode,
                 animate_emoji=animate_emoji,
-                include_md_results=include_md_results,
-                include_cw_results=include_cw_results,
+                dict_source=dict_source
             )
             for r in results
         ]
 
     def serialized_presentation_results(
-        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default, include_cw_results=DictionarySourceCw.default, include_md_results=DictionarySourceMd.default
+        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default, dict_source=DictionarySource.default
     ):
         results = self.presentation_results(
-            display_mode=display_mode, animate_emoji=animate_emoji, include_cw_results=include_cw_results, include_md_results=include_md_results
+            display_mode=display_mode, animate_emoji=animate_emoji, dict_source=dict_source
         )
-        return [r.serialize() for r in results]
+        serialized = [r.serialize() for r in results]
+        return [r for r in serialized if r["definitions"]]
 
     def add_verbose_message(self, message=None, **messages):
         """

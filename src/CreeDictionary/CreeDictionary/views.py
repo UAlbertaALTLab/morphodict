@@ -109,12 +109,12 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
-            include_cw_results=should_include_cw_results(request),
-            include_md_results=should_include_md_results(request)
+            dict_source=get_dict_source(request)
         )
-        for result in search_results:
-            if not result["definitions"]:
-                search_results.remove(result)
+        # for result in search_results:
+        #     print(result["definitions"])
+        #     if not result["definitions"]:
+        #         search_run.remove_result(result)
         did_search = True
     else:
         search_results = []
@@ -151,8 +151,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
-        include_cw_results=should_include_cw_results(request),  # type: ignore
-        include_md_results=should_include_md_results(request)   # type: ignore
+        dict_source=get_dict_source(request)  # type: ignore
     )
     for r in results:
         if not r["definitions"]:
@@ -347,18 +346,14 @@ def should_include_auto_definitions(request):
     return request.user.is_authenticated
 
 
-def should_include_md_results(request):
-    if dictionary_source_md := request.COOKIES.get("dictionary_source_md"):
-        if dictionary_source_md == "no":
-            return False
-    return True
+def get_dict_source(request):
+    if dictionary_source := request.COOKIES.get("dictionary_source"):
+        if dictionary_source == "md":
+            return ["MD"]
+        elif dictionary_source == "cw":
+            return ["CW"]
+    return ["CW", "MD"]
 
-
-def should_include_cw_results(request):
-    if dictionary_source_cw := request.COOKIES.get("dictionary_source_cw"):
-        if dictionary_source_cw == "no":
-            return False
-    return True
 
 def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     """
