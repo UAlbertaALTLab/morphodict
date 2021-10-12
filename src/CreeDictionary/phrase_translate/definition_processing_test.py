@@ -24,6 +24,7 @@ SHOULD_NOT_CHANGE = object()
         ("s/he has (s.t. as) a supply of food", SHOULD_NOT_CHANGE),
         ("s/he runs to fetch (s.t.)", SHOULD_NOT_CHANGE),
         ("He (it) turns or goes around. Animate.", "He (it) turns or goes around."),
+        ("He has a good heart (for people).", "He has a good heart."),
     ],
 )
 def test_remove_parentheticals(input, expected):

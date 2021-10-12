@@ -62,9 +62,14 @@ MORPHODICT_LANGUAGE_ENDONYM = "nîhithawîwin"
 # Morphodict assumes that the `text` of all Wordform are written in the default
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
-    # All entries in Wordform should be written in SRO (ēīōā)
-    # TODO: what is the current one?
-    "default": "CMRO",
+    # All entries in Wordform should be written in SRO (īōā).
+    #
+    # Reference: http://learncree.ca/ is a site made by LLRIB, and uses SRO with
+    # macrons.
+    #
+    # That said, the current FST and database use circumflexes for the internal
+    # orthography. We have to be careful to use macrons in the slugs.
+    "default": "Latn-x-macron",
     "available": {
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",

@@ -68,7 +68,7 @@ pê-
 # regression testing
 atâhk
 acâhkos
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/176
+# https://github.com/UAlbertaALTLab/morphodict/issues/176
 ayiwin
 ayiwinisa
 minôs
@@ -80,32 +80,32 @@ nipâwin
 mâci-nipâw
 amisk
 amiskwaciy-wâskahikan
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/147
+# https://github.com/UAlbertaALTLab/morphodict/issues/147
 acâhkos kâ-osôsit
 acâhkosa kâ-otakohpit
 
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+# https://github.com/UAlbertaALTLab/morphodict/issues/213
 # Cree word forms not getting some or all analyses
 maskwa
 niska
 sikâk
 nîsiwak
 
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/218
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/223
+# https://github.com/UAlbertaALTLab/morphodict/issues/218
+# https://github.com/UAlbertaALTLab/morphodict/issues/223
 âyiman
 
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/150
+# https://github.com/UAlbertaALTLab/morphodict/issues/150
 kotiskâwêw
 
 # ambiguous examples (multiple pos)
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/185
+# https://github.com/UAlbertaALTLab/morphodict/issues/185
 pipon
 
 # some inflected forms not showing up
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/190
+# https://github.com/UAlbertaALTLab/morphodict/issues/190
 # prefix search fails with added vowel length
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/429
+# https://github.com/UAlbertaALTLab/morphodict/issues/429
 kîsikâw
 
 # Some paradigms of homographic entries do not show up
@@ -113,17 +113,17 @@ nôhtêpayiw
 ayâw
 
 # some entries do not show up
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/213
+# https://github.com/UAlbertaALTLab/morphodict/issues/213
 maskwa
 
 # inflected form with definition
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/445
+# https://github.com/UAlbertaALTLab/morphodict/issues/445
 nîminâniwan
 # ...and its lemma:
 nîmiw
 
 # Missing place names
-# https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues/353
+# https://github.com/UAlbertaALTLab/morphodict/issues/353
 otôskwanihk
 oskana kâ-asastêki
 misâskwatôminihk
@@ -139,3 +139,5 @@ pimitâcimow
 wiya
 pahkwêsikan
 asikan
+kwâskwêpayihôs
+

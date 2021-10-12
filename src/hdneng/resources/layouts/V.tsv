@@ -1,0 +1,22 @@
+# Pres		
+	| Pos	| Neg
+_ Stmt	${lemma}+V+Simp+Pres	${lemma}+V+Neg+Simp+Pres
+_ Interr _ Cont	${lemma}+V+Simp+Pres	${lemma}+V+Neg+Simp+Pres
+_ Interr _ Y/N	${lemma}+V+Interr+Simp+Pres	${lemma}+V+Neg+Interr+Simp+Pres
+		
+# Past		
+	| Pos	| Neg
+_ Stmt	${lemma}+V+Dir+Past	${lemma}+V+Neg+Dir+Past
+_ Interr _ Cont	${lemma}+V+Interr+Past	${lemma}+V+Neg+Interr+Past
+_ Interr _ Y/N	${lemma}+V+Interr+Past	${lemma}+V+Neg+Interr+Past
+		
+# Fut		
+	| Pos	| Neg
+_ Stmt	${lemma}+V+Simp+Fut	${lemma}+V+Neg+Simp+Fut
+_ Interr _ Cont	${lemma}+V+Simp+Fut	${lemma}+V+Neg+Simp+Fut
+_ Interr _ Y/N	${lemma}+V+Interr+Fut+Long	${lemma}+V+Neg+Interr+Fut+Long
+		
+# Impv		
+	| Pos	| Neg
+_ Sg _ Impv	${lemma}+V+Sg+Impv	${lemma}+V+Neg+Sg+Impv
+_ Pl _ Impv	${lemma}+V+Pl+Impv	${lemma}+V+Neg+Pl+Impv

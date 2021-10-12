@@ -11,6 +11,7 @@ from CreeDictionary.utils.types import FSTTag
 class SerializedDefinition(TypedDict):
     text: str
     source_ids: Sequence[str]
+    is_auto_translation: bool
 
 
 class SerializedWordform(TypedDict):

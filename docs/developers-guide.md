@@ -21,8 +21,8 @@ Installing for the first time
 
 Clone the repo and `cd` into it, as usual.
 
-    git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git
-    cd cree-intelligent-dictionary
+    git clone https://github.com/UAlbertaALTLab/morphodict.git
+    cd morphodict
 
 And then, to pull some large data files not stored directly in the GitHub
 repository, run:
@@ -102,6 +102,11 @@ template:
 DEBUG=true
 USE_TEST_DB=true
 DEBUG_PARADIGM_TABLES=true
+
+# This next line prevents `git push` from hanging if you do not have SSH access
+# to our Git Large File Storage server. Such access is only needed if you want
+# to commit changes to large binary files such as FSTs and vector models.
+GIT_LFS_SKIP_PUSH=1
 ```
 
 These are environment variables that affect whether Django is in debug mode
@@ -130,13 +135,61 @@ creates the test databases for all supported languages.
 Where to get full dictionaries is described in [Current dictionary
 data](current_dictionary_data).
 
+### Importing dictionaries
+
 Once you have a full dictionary, import it into the database:
 
     ./${sssttt}-manage importjsondict [file]
 
-As the current import code has not been optimized at all, for a full
-dictionary this can take half an hour even on a machine that is quite fast,
-and longer on slow ones.
+There are three flags to know about for the `importjsondict` command:
+`--purge`, `--incremental`, and `--atomic`. They are described in the
+`--help` output. The default values depend on the specific language pair
+whether `DEBUG` is set; check the `--help` output to see what the defaults
+for your situation are.
+
+On a newish laptop or desktop, importing the full Plains Create dictionary
+should take roughly 5-10 minutes.
+
+In production, the import time for the Plains Cree dictionary is roughly:
+
+  - 20 minutes to import into a brand-new database, with much of that time
+    being spent creating auto-translations.
+
+  - Nearly instantaneous to update up to a few hundred entries, when used
+    with `--incremental`, plus at most a few tens of seconds of write out a
+    new definition vector file.
+
+  - One hour to update every single single entry, which is the default
+    when `--incremental` is not used, and which is required when you have
+    added entirely new paradigm fields or have updated the generator FST or
+    the phrase translation FSTs.
+
+    This could be greatly sped up by using solid-state drives, and/or
+    batching deletes in the importjsondict command.
+
+(dictionaries-in-production)=
+#### In production
+
+The following could all conceivably be automated.
+
+  - In production, the `~morphodict/src/sssttt/resources/dictionary` folder
+    is mounted into the docker container at
+    `/app/src/sssttt/resources/dictionary`.
+
+  - If the file `sssttt_dictionary.importjson` is placed into that folder,
+    possibly after being obtained from the git repo at `/data/altlab.git`,
+    then `importjsondict` will automatically use it.
+
+  - To update a production database, run `importjsondict` inside the
+    container:
+
+        ~morphodict/morphodict/docker/helper.py manage sssttt importjsondict --purge [PATH_TO_FILE_IN_CONTAINER]
+
+  - It is strongly recommended to restart the container after updating the
+    dictionary.
+
+        cd ~morphodict/morphodict/docker && docker-compose restart sssttt
+
 
 ### Compile JavaScript and CSS
 
@@ -200,16 +253,19 @@ with Git LFS. There are two things you can try to fix that:
 
    - Run `GIT_LFS_SKIP_PUSH=1 git push` instead of `git push` by itself
 
+   - Make sure `GIT_LFS_SKIP_PUSH=1` is in your `.env` file and run `git push`
+     from inside the pipenv shell
+
    - Comment out the `pushUrl` line in the `.lfsconfig` file in your local
      checkout of the repository
 
-Explanation: We use Git Large File Storage to manage some large files like
-built FSTs outside the typical git storage mechanism. Updates to these
-files can be pulled by anyone over https, but pushing them requires ssh
-access to our server. You only need this ssh access if you are updating
-these files, and without setting up this access in advance, git’s attempt
-to use ssh is likely to hang while trying to log in to our server directly
-from the public internet.
+Explanation: We use Git Large File Storage to manage some large files, such as
+already-built FSTs, outside the typical git storage mechanism. Updates to these
+files can be pulled by anyone over https, but pushing them requires ssh access
+to our server. You only need this ssh access if you are updating these files,
+and without setting up this access in advance, git’s attempt to use ssh is
+likely to hang while trying to log in to our server directly from the public
+internet.
 
 
 Where are the JavaScript files?

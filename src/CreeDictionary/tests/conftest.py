@@ -11,7 +11,7 @@ from morphodict.lexicon.models import Wordform
 settings.register_profile("default", deadline=timedelta(milliseconds=5000))
 # otherwise it's possible to get DeadlineExceed exception cuz each test function runs too long
 # see error report here
-# https://travis-ci.org/UAlbertaALTLab/cree-intelligent-dictionary/jobs/637122984?utm_medium=notification&utm_source=github_status
+# https://travis-ci.org/UAlbertaALTLab/morphodict/jobs/637122984?utm_medium=notification&utm_source=github_status
 
 settings.load_profile("default")
 
