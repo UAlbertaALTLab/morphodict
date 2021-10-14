@@ -22,7 +22,7 @@ noun_wordform_to_phrase = TagMap(
     ("+Px3Sg", COPY_TAG_NAME, 3),
     ("+Px1Pl", COPY_TAG_NAME, 3),
     ("+Px2Pl", COPY_TAG_NAME, 3),
-    ("+Px12Pl", COPY_TAG_NAME, 3), # Maybe needs to be recoded with 12 -> 21
+    ("+Px12Pl", COPY_TAG_NAME, 3),  # Maybe needs to be recoded with 12 -> 21
     ("+Px3Pl", COPY_TAG_NAME, 3),
     ("+Px4Sg/Pl", COPY_TAG_NAME, 3),
     ("+PxX", COPY_TAG_NAME, 3),
