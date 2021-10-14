@@ -28,7 +28,7 @@ noun_passthrough_tags = {
         "+Px3Sg",
         "+Px1Pl",
         "+Px2Pl",
-        "+Px12Pl",
+        # "+Px12Pl", # Needs to be recoded: 21 -> 12
         "+Px3Pl",
         "+Px4Sg/Pl",
         "+PxX",
@@ -58,7 +58,7 @@ verb_passthrough_tags = {
         "+2Sg",
         "+3Sg",
         "+1Pl",
-        "+12Pl",
+        # "+12Pl", # Needs to be recoded: 21 -> 12
         "+2Pl",
         "+3Pl",
         "+4Sg/Pl",
@@ -71,7 +71,7 @@ verb_passthrough_tags = {
         "+2SgO",
         "+3SgO",
         "+1PlO",
-        "+21PlO",
+        # "+21PlO", # Needs to be recoded: 21 -> 12
         "+2PlO",
         "+3PlO",
         "+4Pl",
@@ -105,12 +105,16 @@ verb_tag_map = TagMap(
     (TagMap.DEFAULT, "+Ind", 1),
     # Person - see https://github.com/UAlbertaALTLab/morphodict/issues/891
     ("+0Sg", "+3Sg", 2),
+    ("+21Pl", "+12Pl", 2), # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
     # Person - object
     ("+0SgO", (), 3),
+    ("+21PlO", "+12PlO", 3), # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
     # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
     *passthrough_tags_to_tuples(verb_passthrough_tags)
 )
 
 noun_tag_map = TagMap(
-    ("+Dim", "+Der/Dim", 2), *passthrough_tags_to_tuples(noun_passthrough_tags)
+    ("+Dim", "+Der/Dim", 2),
+    ("+Px21Pl","+Px12Pl",2),
+    *passthrough_tags_to_tuples(noun_passthrough_tags)
 )
