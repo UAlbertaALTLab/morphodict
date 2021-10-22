@@ -81,7 +81,7 @@ class DictionarySource(Preference):
     choices = {
         "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
         "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
-        "cw+md": "Show entries from CW and MD",
+        "cw+md": "Show entries from CW and MD (default)",
         # "All": "Show entries from all dictionary sources",
         # "CW": "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
         # "MD": "Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
