@@ -1,7 +1,7 @@
 ###############################################################################
 # Set default behavior to automatically normalize line endings.
 ###############################################################################
-* text eol=lf
+* text=auto eol=lf
 
 # Treat the database files as binaries.
 *.sqlite3	binary
