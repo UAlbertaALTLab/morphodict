@@ -103,6 +103,7 @@ def index(request):  # pragma: no cover
     search_run = None
 
     if user_query:
+        dict_source = get_dict_source(request)
         search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
@@ -110,13 +111,18 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
-            dict_source=get_dict_source(request)
+            dict_source=dict_source
         )
-        # for result in search_results:
-        #     print(result["definitions"])
-        #     if not result["definitions"]:
-        #         search_run.remove_result(result)
         did_search = True
+        for r in search_results:
+            if not r['is_lemma']:
+                for d in r['lemma_wordform']['definitions']:
+                    for s in d['source_ids']:
+                        if s in dict_source:
+                            r['show_form_of'] = True
+            if 'show_form_of' not in r:
+                r['show_form_of'] = False
+
     else:
         search_results = []
         did_search = False
@@ -145,6 +151,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
+    dict_source = get_dict_source(request)  # type: ignore
     results = search_with_affixes(
         query_string,
         include_auto_definitions=should_include_auto_definitions(request)
@@ -152,11 +159,12 @@ def search_results(request, query_string: str):  # pragma: no cover
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
-        dict_source=get_dict_source(request)  # type: ignore
+        dict_source=dict_source
     )
     for r in results:
         if not r["definitions"]:
             results.remove(r)
+
     return render(
         request,
         "CreeDictionary/search-results.html",

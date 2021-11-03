@@ -254,21 +254,11 @@ def serialize_definitions(definitions, include_auto_definitions=False, dict_sour
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
-        print("Serialized:", serialized)
-        if include_auto_definitions:
-            if 'CW' in dict_source and '🤖CW' not in dict_source:
-                dict_source.append('🤖CW')
-            if 'MD' in dict_source and '🤖MD' not in dict_source:
-                dict_source.append('🤖MD')
-        else:
-            if '🤖MD' in dict_source:
-                dict_source.remove('🤖MD')
-            if '🤖CW' in dict_source:
-                dict_source.remove('🤖CW')
-        print("Dict source:", dict_source)
-        print(all(x in dict_source for x in serialized["source_ids"]))
-        if all(x in dict_source for x in serialized["source_ids"]):
-            ret.append(serialized)
+        for source_id in serialized["source_ids"]:
+            if source_id in dict_source:
+                ret.append(serialized)
+            elif include_auto_definitions and source_id.replace('🤖', '') in serialized["source_ids"]:
+                ret.append(serialized)
     return ret
 
 
