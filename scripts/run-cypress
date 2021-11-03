@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+
+"""
+Start up the development server for every language, and then run cypress,
+automatically stopping all the development servers when done.
+"""
+
+import os
+from argparse import (
+    ArgumentParser,
+    BooleanOptionalAction,
+    ArgumentDefaultsHelpFormatter,
+)
+from os import isatty
+from pathlib import Path
+from subprocess import Popen, check_call
+
+script_dir = Path(__file__).parent
+base_dir = script_dir.parent
+
+
+def main():
+    parser = ArgumentParser()
+    parser.formatter_class = ArgumentDefaultsHelpFormatter
+    parser.add_argument(
+        "--interactive",
+        action=BooleanOptionalAction,
+        default=isatty(0),
+        help="Run in interactive windowed mode, instead of headless",
+    )
+    args = parser.parse_args()
+
+    def modified_env(**kwargs):
+        new_env = dict(os.environ)
+        new_env.update(kwargs)
+        return new_env
+
+    m_env = modified_env(USE_TEST_DB="True", USE_DJANGO_DEBUG_TOOLBAR="False")
+
+    manage_scripts = list(base_dir.glob("*-manage"))
+    assert len(manage_scripts) > 0
+
+    for script in manage_scripts:
+        check_call([script, "ensuretestdb"], env=m_env)
+
+    servers = []
+    for script in manage_scripts:
+        servers.append(Popen([script, "runserver"], env=m_env))
+
+    check_call(["npm", "run", "build"], cwd=base_dir)
+
+    try:
+        cypress_command = "open" if args.interactive else "run"
+
+        check_call(["npx", "--no-install", "cypress", cypress_command], cwd=base_dir)
+    finally:
+        for s in servers:
+            s.terminate()
+
+
+if __name__ == "__main__":
+    main()

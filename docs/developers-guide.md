@@ -150,7 +150,13 @@ for your situation are.
 On a newish laptop or desktop, importing the full Plains Create dictionary
 should take roughly 5-10 minutes.
 
-In production, the import time for the Plains Cree dictionary is roughly:
+In production, the same management command is used, it’s just that it takes
+a few more steps to get the dictionary content into the container, and to
+run `importjsondict` inside the container. [The production import process
+is documented
+here](https://github.com/UAlbertaALTLab/crk-db/tree/main#steps-to-incrementally-update-the-production-database).
+
+The production import time for the Plains Cree dictionary is roughly:
 
   - 20 minutes to import into a brand-new database, with much of that time
     being spent creating auto-translations.

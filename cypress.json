@@ -1,5 +1,6 @@
 {
   "baseUrl": "http://localhost:8000/",
+  "video": true,
   "viewportHeight": 568,
   "viewportWidth": 320,
   "projectId": "8r2xra",

@@ -211,7 +211,7 @@ describe("cwdize", function () {
             stem: "asiskîwiyâkanihkamaw-",
             wordclass: "VTA",
           },
-          slug: "asiskîwithâkanihkamawîw",
+          slug: "asiskīwithākanihkamawīw",
         },
         {
           analysis: [[], "ayâw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -253,7 +253,7 @@ describe("cwdize", function () {
             stem: "mâyiskaw-",
             wordclass: "VTA",
           },
-          slug: "mâthiskawîw",
+          slug: "māthiskawīw",
         },
         {
           head: "mâthiskâkow",
@@ -269,7 +269,7 @@ describe("cwdize", function () {
               sources: ["CW"],
             },
           ],
-          formOf: "mâthiskawîw",
+          formOf: "māthiskawīw",
         },
       ]);
     });
