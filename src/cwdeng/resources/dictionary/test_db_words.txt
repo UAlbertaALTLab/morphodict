@@ -1,0 +1,145 @@
+# Headwords listed in this file will be used to build the test database.
+
+# VTA examples
+wâpamîw
+mowîw
+âcimîw
+
+# VTI examples
+wâpahtam
+mîciw
+
+# VAI examples
+kiskinwahamâkosiw
+mîcisow
+nipâw
+wâpiw
+
+# VII examples
+nîpin
+tipiskâw
+
+# NAD examples
+nôhkom
+nipawâkan
+
+# NID examples
+mîpit
+
+# NA examples
+acâhkos
+minôs
+awâsisîwiw
+
+# NI examples
+nipiy
+
+# IPC examples
+îkwa
+tânisi
+
+# Pronoun examples
+nitha
+awa
+ôma
+awîna
+nithanân
+
+# particles
+ispîhk
+ohci
+anohc
+pîyak
+nisto
+
+# preverb examples
+ati-
+kâh-
+kîmôci-
+nitawi-
+nîso-
+pôni-
+pî-
+
+# reduplication stem examples
+pî-
+# Not loaded because no definitions, only notes
+#sa-
+
+# regression testing
+atâhk
+acâhkos
+# https://github.com/UAlbertaALTLab/morphodict/issues/176
+ayiwin
+ayiwinisa
+minôs
+minôsis
+
+âcimowin
+
+nipâwin
+mâci-nipâw
+amisk
+amiskwaciy-wâskahikan
+# https://github.com/UAlbertaALTLab/morphodict/issues/147
+acâhkos kâ-osôsit
+acâhkosa kâ-otakohpit
+
+# https://github.com/UAlbertaALTLab/morphodict/issues/213
+# Cree word forms not getting some or all analyses
+maskwa
+niska
+sikâk
+nîsiwak
+
+# https://github.com/UAlbertaALTLab/morphodict/issues/218
+# https://github.com/UAlbertaALTLab/morphodict/issues/223
+âthiman
+
+# https://github.com/UAlbertaALTLab/morphodict/issues/150
+kotiskâwîw
+
+# ambiguous examples (multiple pos)
+# https://github.com/UAlbertaALTLab/morphodict/issues/185
+pipon
+
+# some inflected forms not showing up
+# https://github.com/UAlbertaALTLab/morphodict/issues/190
+# prefix search fails with added vowel length
+# https://github.com/UAlbertaALTLab/morphodict/issues/429
+kîsikâw
+
+# Some paradigms of homographic entries do not show up
+nôhtîpathiw
+ayâw
+
+# some entries do not show up
+# https://github.com/UAlbertaALTLab/morphodict/issues/213
+maskwa
+
+# inflected form with definition
+# https://github.com/UAlbertaALTLab/morphodict/issues/445
+nîminâniwan
+# ...and its lemma:
+nîmiw
+
+# Missing place names
+# https://github.com/UAlbertaALTLab/morphodict/issues/353
+otôskwanihk
+oskana kâ-asastîki
+misâskwatôminihk
+
+# Assorted other wordforms used in tests
+âcimow
+îkwatik
+katawatîthimîw
+asawâpamîw
+atamiskawîw
+nîso-kîsikâw
+pimitâcimow
+witha
+pahkwîsikan
+asikan
+
+# Has both the ý and î orthography changes between Plains and Wood Cree
+asiskîwithâkanihkîw

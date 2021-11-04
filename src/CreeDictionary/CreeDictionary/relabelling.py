@@ -11,7 +11,21 @@ from CreeDictionary.utils import shared_res_dir
 from CreeDictionary.utils.types import FSTTag, Label, cast_away_optional
 from morphodict.site.util import cache_unless
 
-CRK_ALTERNATE_LABELS_FILE = shared_res_dir / "crk.altlabel.tsv"
+
+def _find_altlabel_file():
+    """
+    If a language-specific file exists, use that; otherwise fall back to the
+    default crk one.
+    """
+
+    specific_language_altlabels = settings.BASE_DIR / "resources" / "altlabel.tsv"
+    if specific_language_altlabels.exists():
+        return specific_language_altlabels
+    else:
+        return shared_res_dir / "crk.altlabel.tsv"
+
+
+ALTERNATE_LABELS_FILE = _find_altlabel_file()
 
 
 class _LabelFriendliness(IntEnum):
@@ -215,13 +229,13 @@ def read_labels() -> Relabelling:
     """
 
     with _label_cache_mutex:
-        mtime = CRK_ALTERNATE_LABELS_FILE.stat().st_mtime
+        mtime = ALTERNATE_LABELS_FILE.stat().st_mtime
         previous_mtime = _label_cache["mtime"]
 
         if previous_mtime is not None and mtime == previous_mtime:
             return cast_away_optional(_label_cache["labels"])
 
-        with CRK_ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
+        with ALTERNATE_LABELS_FILE.open(encoding="UTF-8") as tsv_file:
             _label_cache["mtime"] = mtime
             _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
             return cast_away_optional(_label_cache["labels"])

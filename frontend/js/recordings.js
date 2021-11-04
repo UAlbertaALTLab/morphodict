@@ -106,9 +106,33 @@ function showRecordingsExplainerText() {
  * Uses speech-db's bulk API to search for recordsings.
  *
  * @param {Iterable<str>}  one or more wordforms to search for.
- * @return {BulkSearchResponse} see API documentation: TODO
+ * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
+  let batches = chunk(requestedWordforms);
+
+  let allMatchedRecordings = [];
+  let allNotFound = [];
+
+  for (let batch of batches) {
+    let response = await _fetchRecordingUsingBulkSearch(batch);
+
+    response["matched_recordings"].forEach((rec) =>
+      allMatchedRecordings.push(rec)
+    );
+    response["not_found"].forEach((rec) => allNotFound.push(rec));
+  }
+
+  return {
+    matched_recordings: allMatchedRecordings,
+    not_found: allNotFound,
+  };
+}
+
+/**
+ * ACTUALLY does one HTTP request to the speech-db.
+ */
+async function _fetchRecordingUsingBulkSearch(requestedWordforms) {
   // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
@@ -145,4 +169,36 @@ function mapWordformsToBestRecordingURL(response) {
   }
 
   return wordform2recordingURL;
+}
+
+/**
+ * Chunks the iterable into subarrays of a maximum size.
+
+ * @param {Iterable<T>}  one or more wordforms to search for.
+ * @return {Array<Array<T>}}
+ */
+function chunk(collection) {
+  const MAX_BATCH_SIZE = 50;
+
+  // Chunk items iteratively, sort of like packing moving boxes, adding items
+  // to one box at at time until the box gets full, and then moving on to a
+  // new, empty box:
+  let chunks = [[]];
+  for (let item of collection) {
+    // invariant: the array of all chunks has at least one chunk
+    let currentChunk = chunks[chunks.length - 1];
+
+    if (currentChunk.length >= MAX_BATCH_SIZE) {
+      // The current chunk is full!
+      // We can't add anymore items so start a new chunk.
+      currentChunk = [];
+      chunks.push(currentChunk);
+    }
+
+    // invariant: currentChunk.length < batch size:
+    // ∴ it's safe to add an item to the current chunk
+    currentChunk.push(item);
+  }
+
+  return chunks;
 }

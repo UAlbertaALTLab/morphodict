@@ -14,12 +14,15 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import secrets
+from typing import Optional
 
 from environs import Env
 
 from . import base_dir_setup
+from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL
 from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
+
 
 BASE_DIR = base_dir_setup.get_base_dir()
 
@@ -27,7 +30,9 @@ BASE_DIR = base_dir_setup.get_base_dir()
 # Read environment variables from project .env, if it exists
 # See: https://github.com/sloria/environs#readme
 env = Env()
-env.read_env()
+# We use an explicit path because the library’s auto-finding code doesn’t work
+# in the mobile app where we only have .pyc files
+env.read_env(os.fspath(BASE_DIR.parent.parent / ".env"))
 
 ################################# Core Django Settings #################################
 
@@ -66,15 +71,16 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "django_js_reverse",
+    # **New** Morphodict
+    "morphodict.lexicon",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "CreeDictionary.API.apps.APIConfig",
     "CreeDictionary.CreeDictionary.apps.CreeDictionaryConfig",
-    # "CreeDictionary.cvd",
+    "CreeDictionary.cvd",
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
-    "morphodict.lexicon",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
@@ -106,7 +112,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "CreeDictionary.CreeDictionary.context_processors.display_options",
-                "morphodict.lexicon.context_processors.language_pair",
+                "morphodict.lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
         },
@@ -114,6 +120,8 @@ TEMPLATES = [
 ]
 
 # Custom settings
+
+WSGI_APPLICATION = "morphodict.site.wsgi.application"
 
 # Apps that have non-admin users typically have a stylized login page, but
 # we only have admin logins. This setting will redirect to the admin login
@@ -170,7 +178,7 @@ GOOGLE_SITE_VERIFICATION = "91c4e691b449e7e3"
 if DEBUG:
     ALLOWED_HOSTS = ["*"]
 else:  # pragma: no cover
-    ALLOWED_HOSTS = [HOSTNAME, "localhost", "127.0.0.1"]
+    ALLOWED_HOSTS = [HOSTNAME, "localhost"]
 
 
 # Database
@@ -271,13 +279,20 @@ STATIC_URL = env("STATIC_URL", "/static/")
 
 STATIC_ROOT = os.fspath(env("STATIC_ROOT", default=BASE_DIR / "collected-static"))
 
-# if DEBUG:
-# Use the default static storage backed for debug purposes.
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
-# else:
-# In production, use a manifest to encourage aggressive caching
-# Note requires `manage.py collectstatic`!
-# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATICFILES_DIRS = [
+    # This is where rollup puts the built versions of frontend files
+    BASE_DIR.parent.parent
+    / "generated"
+    / "frontend"
+]
+
+if DEBUG:
+    # Use the default static storage backed for debug purposes.
+    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+else:
+    # In production, use a manifest to encourage aggressive caching
+    # Note requires `manage.py collectstatic`!
+    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -325,9 +340,58 @@ LOGGING = {
 
 # Morphodict config
 
+# We try to document all settings here, in one place, that are
+# language-specific. Sometimes there is a useful default that will apply to most
+# language pairs. If there isn’t, it needs to be configured in the settings file
+# specific to a language pair. In that case, we set the default here to a
+# sentinel value, and then a system check will raise an error on startup if any
+# such required settings are not set.
+
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
 
 # This defaults to False, because in order to work it requires that there
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
+
+# Enable semantic search via cosine vector distance. Optional because mobile
+# requires libraries we do not currently build, and a smaller vector file.
+MORPHODICT_ENABLE_CVD = True
+
+# Enable affix search. Optional because it requires a C++ library which we do
+# not currently build for mobile.
+MORPHODICT_ENABLE_AFFIX_SEARCH = True
+
+# Feature currently in development: use fst_lemma database field instead of
+# lemma text when generating wordforms
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
+
+# Default names for FST files
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
+
+# Show a big banner at the top warning that the dictionary is a work in
+# progress. Set this to false once it’s gone through a reasonable amount of
+# testing.
+MORPHODICT_PREVIEW_WARNING = True
+
+# The style of tag used by the analyzer+generator FSTs. Must be "Plus" or
+# "Bracket". "Plus" is the ALTLab/Giella-style nipâw+V+AI+Ind+3Sg; "Bracket" is
+# a different style, with tags like `[VERB][TA]`.
+MORPHODICT_TAG_STYLE = "Plus"
+
+# The name of the source language, written in the target language. Used in
+# default templates to describe what language the dictionary is for.
+MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+
+# An optional, shorter name for the language. Currently only used in the search
+# bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
+MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
+
+# The name of the language, in the language itself, e.g., ‘nêhiyawêwin’
+MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+
+
+# The marketing / brand / public-facing name of the dictionary
+MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL

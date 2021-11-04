@@ -1,53 +1,47 @@
 const { join: joinPath } = require("path");
+import urls from "./urls";
 
 // Why does this path traverse OUTSIDE of the cypress/ directory only to traverse back into it?
 const CYPRESS_USER_JSON = joinPath(__dirname, "..", ".cypress-user.json");
 
 /**
- * Fixes a bug (feature?) in Cypress: it should call encodeURIComponent() for
- * /path/components/ in visit(). This way paths with non-ASCII stuff is
- * escaped automatically.
- *
- * Additional options:
- *
- *  escapeComponents: Boolean [default: true]  -- whether to escape URL components at all.
+ * Fixes a bug (feature?) in Cypress for paths with non-ASCII characters. Without
+ * this, `/word/wâpamêw` turns into the CP1252 `/word/w%E2pam%EAw` and then
+ * `/word/w%25E2pam%25EAw`, instead of the UTF-8 `/word/w%C3%A2pam%C3%AAw/`.
  */
-Cypress.Commands.overwrite("visit", (originalVisit, url, options = {}) => {
-  // Escape components by default:
-  if (options.escapeComponents === undefined) {
-    options.escapeComponents = true;
-  }
+Cypress.Commands.overwrite("visit", (originalVisit, url, options) => {
+  let newUrl = new URL(url, urls.crkeng).toString();
 
-  let newURL;
-  if (options.escapeComponents) {
-    newURL = url.split("/").map(encodeURIComponent).join("/");
-  } else {
-    newURL = url;
-  }
-  delete options.escapeComponents;
-
-  if (newURL !== url) {
+  if (newUrl !== url) {
     Cypress.log({
       name: "visit",
-      message: `‼️  Rewriting ${url} -> ${newURL}`,
+      message: `‼️  Rewriting ${url} -> ${newUrl}`,
+      consoleProps: () => ({
+        url,
+        newUrl,
+      }),
     });
   }
 
-  return originalVisit(newURL, options);
+  return originalVisit(newUrl, options);
 });
 
 /**
  * Visit the search page for the given search query.
  */
-Cypress.Commands.add("visitSearch", { prevSubject: false }, (searchQuery) => {
-  Cypress.log({
-    name: "visitSearch",
-    message: `visiting search page for: ${searchQuery}`,
-  });
-  return cy.visit(`/search?q=${encodeURIComponent(searchQuery)}`, {
-    escapeComponents: false,
-  });
-});
+Cypress.Commands.add(
+  "visitSearch",
+  { prevSubject: false },
+  (searchQuery, baseUrl = urls.crkeng) => {
+    Cypress.log({
+      name: "visitSearch",
+      message: `visiting search page for: ${searchQuery}`,
+    });
+    return cy.visit(`${baseUrl}/search?q=${encodeURIComponent(searchQuery)}`, {
+      escapeComponents: false,
+    });
+  }
+);
 
 /**
  * Visit the lemma details page (mostly paradigms) for a lemma

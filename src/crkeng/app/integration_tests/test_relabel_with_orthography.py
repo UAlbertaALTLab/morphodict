@@ -30,7 +30,7 @@ def test_relabel_respects_orthography(orth: str, expected: str) -> None:
     assert orth in ORTHOGRAPHY.available
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "nehiyawewin"
+    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
     request.COOKIES[ORTHOGRAPHY.COOKIE_NAME] = orth
 
     context = RequestContext(request, {"label": RowLabel(TAGS)})

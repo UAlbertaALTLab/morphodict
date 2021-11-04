@@ -7,6 +7,7 @@ SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = .
 BUILDDIR      = _build
+O	      ?= -W
 
 ifeq ($(PIPENV_ACTIVE),)
 	PIPENV_RUN = pipenv run

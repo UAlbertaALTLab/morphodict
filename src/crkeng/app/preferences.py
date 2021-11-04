@@ -1,12 +1,13 @@
 """
 Preferences used in itwêwina, the Cree Intelligent Dictionary.
 """
+from django.conf import settings
 
-from morphodict.preference import register_preference
+from morphodict.preference import register_preference, Preference
 
 
 @register_preference
-class DisplayMode:
+class DisplayMode(Preference):
     """
     As of 2021-04-14, "mode" is a coarse mechanism for affecting the display; there are
     plans for more fine-grained control over the display of, e.g., search results.
@@ -23,7 +24,7 @@ class DisplayMode:
 
 
 @register_preference
-class ParadigmLabel:
+class ParadigmLabel(Preference):
     """
     What style labels should be used in the paradigm?
     """
@@ -35,6 +36,36 @@ class ParadigmLabel:
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
         "linguistic": "linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
-        "nehiyawewin": "nêhiyawêwin labels",
+        "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
     }
     default = "english"
+
+
+@register_preference
+class AnimateEmoji(Preference):
+    """
+    Which emoji to use to substitute all animate emoji (awa words).
+    """
+
+    # Ensure the internal name and the cookie name (external name) are the same!
+    name = "animate_emoji"
+    cookie_name = name
+
+    default = "iyiniw"  # the original itwêwina animate emoji
+    choices = {
+        "iyiniw": "🧑🏽",  # iyiniw (NA)/tastawiyiniw (NA)
+        "granny": "👵🏽",  # kôhkom/*kokum (NDA)
+        "grandpa": "👴🏽",  # môsom/*moshum (NDA)
+        # Required by requester of this feature:
+        "wolf": "🐺",  # mahihkan (NA)
+        # Required for community partner
+        "bear": "🐻",  # maskwa (NA)
+        # Counter-intuitive awa word:
+        "bread": "🍞",  # pahkwêsikan (NA)
+        # Significant awa word:
+        "star": "🌟",  # atâhk/acâhkos (NA)
+        # I don't want to add too many options to start with, but more can always be
+        # added in the future like:
+        # - 🦬 paskwâwi-mostsos
+        # - 🦫 amisk
+    }

@@ -1,0 +1,23 @@
+# Python packages listed here will be included in the mobile app by
+# do-pip-install, at the version number listed in Pipfile.lock.
+#
+# Note: Transitive dependencies are *not* resolved. This file must specify
+# *all* required packages.
+
+asgiref
+django
+cree-sro-syllabics
+dj-database-url
+django-js-reverse
+environs
+hfst-optimized-lookup
+marshmallow
+more-itertools
+python-dotenv
+pytz
+secure
+snowballstemmer
+sqlparse
+tqdm
+typing-extensions
+whitenoise

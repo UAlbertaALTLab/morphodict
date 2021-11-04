@@ -11,9 +11,9 @@ from CreeDictionary.API.search.espt_crk import (
     crk_noun_tags,
 )
 from CreeDictionary.API.search.types import Result
-from morphodict.analysis.tag_map import UnknownTagError
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
-from morphodict.analysis import strict_generator, RichAnalysis
+from morphodict.analysis import RichAnalysis
+from morphodict.analysis.tag_map import UnknownTagError
 from morphodict.lexicon.models import Wordform
 
 logger = logging.getLogger(__name__)

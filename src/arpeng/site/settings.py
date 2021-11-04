@@ -27,8 +27,6 @@ DEFAULT_RUNSERVER_PORT = 8007
 
 INSTALLED_APPS.insert(0, "arpeng.app")
 
-INSTALLED_APPS += ["arpeng.dictimport"]
-
 FST_TOOL_SAMPLES = [
     "nonoohowun",
     "[VERB][TA][ANIMATE-OBJECT][AFFIRMATIVE][PRESENT][IC]noohow[2SG-SUBJ][1SG-OBJ]",
@@ -36,10 +34,7 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
-STRICT_ANALYZER_FST_FILENAME = "arapahoverbs-analyzer.hfstol"
-STRICT_GENERATOR_FST_FILENAME = "arapahoverbs-generator.hfstol"
-# There is no relaxed analyzer yet
-RELAXED_ANALYZER_FST_FILENAME = STRICT_ANALYZER_FST_FILENAME
+MORPHODICT_DICTIONARY_NAME = "arpeng"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"
@@ -53,3 +48,11 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "Latin"},
     },
 }
+
+MORPHODICT_TAG_STYLE = "Bracket"
+
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+
+MORPHODICT_SOURCE_LANGUAGE_NAME = "Arapaho"
+
+MORPHODICT_LANGUAGE_ENDONYM = "Hinónoʼeitíít"

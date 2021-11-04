@@ -21,8 +21,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var viewController: ViewController?
     private let fm = FileManager.default
+    private let applicationSupportDirectory: URL
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    override init() {
+        applicationSupportDirectory = try! fm.url(
+            for: .applicationSupportDirectory, in: .userDomainMask,
+            appropriateFor: nil, create: true)
+
+        super.init()
+    }
+
+    func application(_: UIApplication, didFinishLaunchingWithOptions _:
+        [UIApplication.LaunchOptionsKey: Any]?) -> Bool
+    {
         window = window ?? UIWindow()
         appDelegate = self
         viewController = ViewController()
@@ -34,13 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pyq = DispatchQueue(
             label: "python server", qos: .userInitiated, attributes: [],
             autoreleaseFrequency: .inherit, target: .none)
-        pyq.async {
+        pyq.async { [self] in
             morphodict_register_callback("hello") { print("Hello from swift") }
 
             do {
-                try self.setupDatabase()
+                try prePythonSetup()
             } catch {
-                self.handleError(error)
+                handleError(error)
                 return
             }
 
@@ -51,29 +62,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    func setupDatabase() throws {
+    func prePythonSetup() throws {
+        setenv("DJANGO_SETTINGS_MODULE",
+               "\(String(cString: morphodict_sssttt())).site.settings_mobile", 1)
+        setenv("MORPHODICT_ENV_FILE_PATH",
+               applicationSupportDirectory.appendingPathComponent(".env").path,
+               1)
+
         let dbDirectory = try createDbDirectory()
 
-        let dbFile = dbDirectory.appendingPathComponent("db.sqlite3")
+        setenv("MORPHODICT_DB_DIRECTORY", dbDirectory.path, 1)
 
-        if !fm.fileExists(atPath: dbFile.path) {
-            os_log("Copying database to %@", log: log, dbFile.description)
-
-            let bundle = Bundle(for: Self.self)
-            let includedDb = bundle.url(
-                forResource: "db-mobile", withExtension: "sqlite3")!
-            try fm.copyItem(at: includedDb, to: dbFile)
+        // Older versions of the app used this file; remove it if it is
+        // still around.
+        let dbVersionFile = dbDirectory.appendingPathComponent("db_version")
+        if fm.fileExists(atPath: dbVersionFile.path) {
+            try fm.removeItem(at: dbVersionFile)
         }
-        setenv("DATABASE_URL", "sqlite://\(dbFile.path)", 1)
+
+        let bundle = Bundle(for: Self.self)
+        let includedDb = bundle.url(
+            forResource: "db-mobile", withExtension: "sqlite3")!
+
+        setenv("MORPHODICT_BUNDLED_DB", includedDb.path, 1)
     }
 
     /**
             Create `$APPLICATION_SUPPORT_DIR/db`
      */
     func createDbDirectory() throws -> URL {
-        let applicationSupportDirectory = try fm.url(
-            for: .applicationSupportDirectory, in: .userDomainMask,
-            appropriateFor: nil, create: true)
         var dbDirectory = applicationSupportDirectory.appendingPathComponent("db", isDirectory: true)
         if !fm.fileExists(atPath: dbDirectory.path) {
             os_log("Creating db directory %@", log: log, dbDirectory.description)

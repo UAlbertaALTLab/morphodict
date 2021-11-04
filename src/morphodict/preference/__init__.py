@@ -49,14 +49,22 @@ class Preference:
             return self.default
 
     def current_value_from_request(self, request: HttpRequest) -> str:
-        return request.COOKIES.get(self.cookie_name, self.default)
+        ret = request.COOKIES.get(self.cookie_name, self.default)
+
+        # If given an invalid cookie value, treat it as the default. Note that
+        # we can’t easily set this new cookie value on the client, because the
+        # Response object hasn’t been created yet.
+        if ret not in self.choices:
+            ret = self.default
+            request.COOKIES[self.cookie_name] = ret
+        return ret
 
 
 def all_preferences():
     """
     Return all preferences registered in this site.
     """
-    return _registry().items()
+    return registry().items()
 
 
 def register_preference(declaration) -> Preference:
@@ -106,13 +114,13 @@ def register_preference(declaration) -> Preference:
         name=name, choices=choices, default=default, cookie_name=cookie_name
     )
 
-    _registry()[name] = pref
+    registry()[name] = pref
 
     return pref
 
 
 @cache
-def _registry() -> dict[str, Preference]:
+def registry() -> dict[str, Preference]:
     """
     Contains all registered preferences.
     """

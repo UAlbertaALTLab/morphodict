@@ -2,8 +2,6 @@ To get an offline mobile app without having to re-implement all the
 functions of the django webapp, this application takes the novel approach
 of running the django server itself on iOS.
 
-**Note: this code is almost entirely still demo-quality.**
-
 # Theory of building open-source C/C++ packages for iOS
 
 Xcode supports, as a very normal matter of course, having C/C++ files in
@@ -81,10 +79,10 @@ installed.
 
 # Steps to build
 
-  1. First, you need kivy to build.
+ 1. First, you need kivy to build.
 
-        cd cree-intelligent-dictionary/iOS
-        git clone https://github.com/UAlbertaALTLab/kivy-ios
+         cd morphodict/iOS
+         git clone https://github.com/UAlbertaALTLab/kivy-ios
 
     Normally at this point you’d use the kivy-ios tools to build python
     repeatedly. But our fork uses git-lfs to store pre-compiled files, so
@@ -98,6 +96,23 @@ installed.
 
  3. Open `iOS/app/itwewina-offline.xcodeproj` in Xcode, build it and run
     it.
+
+## Building the mobile database
+
+This magic lets you access a mobile database:
+
+    USE_TEST_DB=False \
+    DATABASE_URL=sqlite:///src/crkeng/db/db-mobile.sqlite3 \
+    ./crkeng-manage …
+
+For example, you can update the dictionary database with:
+
+    USE_TEST_DB=False \
+    DATABASE_URL=sqlite:///src/crkeng/db/db-mobile.sqlite3 \
+    ./crkeng-manage importjsondict \
+    --incremental --no-translate-wordforms --atomic --purge
+
+This could definitely be scripted.
 
 ## Potential problems
 
@@ -116,6 +131,17 @@ installed.
 
     to switch the system default developer tools back to ones that support
     iOS development.
+
+  - Help! The app works fine when deployed from Xcode, but not through
+    TestFlight!
+
+    It may not cover *every* possible case, but at least once, [using a
+    release build instead of a debug one][TestFlight-troubleshooting] for
+    running the application has reproduced the issue, allowing both quick
+    iteration on the code and the ability to stop and breakpoints to
+    investigate and resolve the issue.
+
+[TestFlight-troubleshooting]: https://stackoverflow.com/questions/55759806/how-can-i-attach-to-released-in-the-testflight-application-to-debug
 
 # How the app works
 
@@ -159,43 +185,23 @@ On startup, the iOS app does the following:
 These are things that would typically be addressed in due course, if
 dedicating time to making the project maintainable:
 
-  - Instead of being configurable settings to enable/disable features,
-    a bunch of code is just *commented out* to disable it for mobile.
-
-    Some of these things get a little bit tricky: we can’t even `import`
-    libraries that we haven’t gotten working on mobile, so we can’t use the
-    normal django settings mechanism to skip calling something, as settings
-    only get configured after most packages have already been imported, and
-    it’s the import attempt that fails.
-
-    Note: One questionable hack, but that would be better than the
-    commented-out-branch, would be to have some placeholder files, like
-    `foma.py`, in the mobile app, that would simply return an error if you
-    tried to use them.
-
   - kivy is supposed to be a package manager that lets you write recipes to
     automatically build Python packages that have C extensions. I couldn’t
-    figure out how to get this working with hfst-optimized-lookup, so I
-    just dragged-and-dropped copies of the files into the Xcode project
-    instead of using released versions from PyPI.
+    figure out how to get this working with hfst-optimized-lookup,
+    so Xcode builds the C/C++ files from the `site_packages` directory.
 
-  - I also couldn’t figure out how to get that working with kivy’s pyobjus
-    library, which is supposed to let Python code call Objective-C/Swift
-    code; instead there’s a very basic mechanism to register callbacks.
+  - For python modules where we haven’t done the work to make the C
+    extensions compile, there are ‘fake’ packages in `iOS/fakes`,
+    so that you can still `import` libraries that aren’t available,
+    even though configuration will prevent you from using them.
 
-  - Related to that same problem with fitting Python libraries that have C
-    extensions into kivy, affix search was only disabled because I couldn’t
-    get the library it uses to install.
+  - I also couldn’t figure out how to get kivy’s pyobjus library working.
+    That’s supposed to let Python code call Objective-C/Swift code; instead
+    there’s a custom, very basic mechanism to register callbacks.
 
   - The `sync-python` script that copies python code and assets from the
     morphodict `src` directory is very rough; it has comments with
     suggestions for improvement.
-
-  - The `mobile-requirements.txt` file used by pip has pretty random
-    versions of dependencies, instead of using versions that match what’s
-    in the main Pipenv.
-
-    (This is actually really easy, I should just fix it.)
 
   - File names and directory structure have not been refined
 
@@ -217,30 +223,42 @@ dedicating time to making the project maintainable:
 
 ## Future stuff
 
-Things that might be needed to make a minimal submittable app:
-
-  - Since the core of the app is a web view, there are lots of things
+  - The core of the app is a web view. There are various things we could
     there. See [the “Web Views” chapter of *Programming iOS
-    14*][webviews-chapter].
+    14*][webviews-chapter] for some of the capabilities of web vies.
 
-      - The listening port might not be the best way to do it. Among other
-        things, it exposes the server and might cause conflict with other
-        apps. I believe the web view and the django app can talk to each
-        through a custom scheme instead.
+    In particular, the web view and the django app can likely talk to each
+    other through a custom scheme instead of a TCP socket.
 
 [webviews-chapter]: https://learning.oreilly.com/library/view/programming-ios-14/9781492092162/part02ch07.html#chap_id24
 
 # Submitting the app
 
-To do this, you’ll need an organization-specific “iPhone Distribution”
+To do this, you’ll need an organization-specific ‘Distribution’
 certificate, with the private key, in your keychain. Get it from someone
 who already has it. They can go into Keychain Access → My Certificates,
 right-click it, and export.
 
- 1. First, to upload a new build, you’ll need to increment the version
-    and/or build number. Select the project in the project navigator; click
-    the target, and then under General, update the version and/or build
-    numbers accordingly.
+You can, technically, also create a new one in App Store connect, or even
+have Xcode create one automatically, but the organization account is
+limited to only three distribution certificates. If you remove existing
+distribution certificates to make room for new ones, it *will* work for
+you, but Apple will mark those removed certificates as ‘revoked,’ causing
+all sorts of mysterious errors for other people who were using them
+successfully.
+
+ 1. First, to upload a new build, you’ll need to increment the build
+    number. Select the project in the project navigator; click the target,
+    and then under General, increment the build number.
+
+    If you update the version number, that triggers a time-consuming
+    re-review from Apple, even if the build is only intended for external
+    TestFlight users.
+
+    So you should only update the build number, not the version number.
+    However, once the app makes it into a public app store, new version
+    numbers will be required for every release that goes to the public app
+    store.
 
  2. Make sure the selected device is “Any iOS Device” and not a specific
     device or simulator
@@ -248,16 +266,20 @@ right-click it, and export.
  3. Do Build → Archive
 
  4. Follow the steps, accepting the defaults. Try to have Xcode do the
-    signing automatically, but when it likely fails, choose the “Manually
-    manage signing” option, click the Download Profile option, and choose
-    the “itwêwina offline” profile.
+    signing automatically. But if it fails, choose the “Manually manage
+    signing” option, click the Download Profile option, and choose the
+    “itwêwina offline” profile.
 
     For more about certificate types, provisioning profiles, &c., see the
     “Running on a device” section of the “Life Cycle of a Project” chapter
     of
     [Neuberg](https://learning.oreilly.com/library/view/ios-14-programming/9781492092087/part02ch04.html#idm45495341795176).
 
- 5. In App Store Connect, find the app, click on the TestFlight tab, and
-    once the new version has finished ‘Processing’, click on other stuff to
-    make it to the active version.
+ 5. Wait for the app to finish processing. [`watchbuild`] is a handy tool
+    for this.
 
+ 6. In App Store Connect, find the app, click on the TestFlight tab, click
+    on each group of internal or external testers you want to release the
+    build to, and click the + sign under ‘Builds.’
+
+[`watchbuild`]: https://github.com/fastlane/watchbuild

@@ -1,4 +1,4 @@
-{% extends 'CreeDictionary/base.html' %}
+{% extends 'morphodict/base.html' %}
 
 {% load morphodict_orth %}
 {% load relabelling %}
@@ -13,7 +13,7 @@
     <p class="setting__note"> These are the labels that appear on the <strong>paradigm
         table</strong> to label features like person, tense, plurals, etc.</p>
 
-    <form method="POST" action="{% url "cree-dictionary-change-paradigm-label" %}" data-save-preference="paradigmlabel">
+    <form method="POST" action="{% url "preference:change" "paradigm_label" %}" data-save-preference="paradigmlabel">
       <ul class="unbullet">
       {% for value, label in preferences.paradigm_label.choices_with_labels %}
         <li class="option">
@@ -31,6 +31,33 @@
             <i>{% relabel_one 'Prs' labels=value %}</i>,
             <i>{% relabel_one 'Prt' labels=value %}</i>
           </p>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="action-bar">
+        {% csrf_token %}
+        <button type="submit"> Save settings </button>
+      </div>
+    </form>
+  </section>
+
+  <section>
+    <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
+
+    <p class="setting__note">Choose the emoji that will represent all {% orth 'awa' %} words. </p>
+
+    <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
+          data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
+      <ul class="unbullet">
+        {% for value, label in preferences.animate_emoji.choices_with_labels %}
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" class="option__control"
+                   name="animate_emoji" value="{{ value }}"
+               {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
+            <span class="option__label-text">{{ label|capfirst }}</span>
+          </label>
         </li>
         {% endfor %}
       </ul>

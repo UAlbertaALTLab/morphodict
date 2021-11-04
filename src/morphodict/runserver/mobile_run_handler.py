@@ -34,41 +34,9 @@ foreground again.
 
 import socketserver
 from threading import Condition, Lock
+from typing import Optional
 
 from django.core.servers.basehttp import WSGIRequestHandler, WSGIServer
-
-
-run_handler = None
-
-# Derived from Django’s basehttp.run, with portions split into the RunHandler
-# class below to encapsulate state.
-def custom_run(
-    addr,
-    port,
-    wsgi_handler,
-    ipv6=False,
-    threading=False,
-    server_cls=WSGIServer,
-):
-    server_address = (addr, port)
-    if threading:
-        httpd_cls = type("WSGIServer", (socketserver.ThreadingMixIn, server_cls), {})
-    else:
-        httpd_cls = server_cls
-
-    global run_handler
-    assert (
-        run_handler is None
-    ), "This run implementation can only be called once per process"
-
-    run_handler = RunHandler(
-        server_address=server_address,
-        wsgi_handler=wsgi_handler,
-        httpd_cls=httpd_cls,
-        ipv6=ipv6,
-        threading=threading,
-    )
-    run_handler.start()
 
 
 class RunHandler:
@@ -126,6 +94,39 @@ class RunHandler:
             self.httpd.shutdown()
             self.httpd.server_close()
             self.httpd = None
+
+
+run_handler: Optional[RunHandler] = None
+
+# Derived from Django’s basehttp.run, with portions split into the RunHandler
+# class below to encapsulate state.
+def custom_run(
+    addr,
+    port,
+    wsgi_handler,
+    ipv6=False,
+    threading=False,
+    server_cls=WSGIServer,
+):
+    server_address = (addr, port)
+    if threading:
+        httpd_cls = type("WSGIServer", (socketserver.ThreadingMixIn, server_cls), {})
+    else:
+        httpd_cls = server_cls
+
+    global run_handler
+    assert (
+        run_handler is None
+    ), "This run implementation can only be called once per process"
+
+    run_handler = RunHandler(
+        server_address=server_address,
+        wsgi_handler=wsgi_handler,
+        httpd_cls=httpd_cls,
+        ipv6=ipv6,
+        threading=threading,
+    )
+    run_handler.start()
 
 
 def resume_server():

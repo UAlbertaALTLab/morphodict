@@ -22,11 +22,12 @@ DEFAULT_PARADIGM_LABEL = "english"
 
 def label_setting_to_relabeller(label_setting: str):
     labels = read_labels()
+
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
-        "nehiyawewin": labels.cree,
-    }[label_setting]
+        "source_language": labels.cree,
+    }.get(label_setting, labels.english)
 
 
 @register.simple_tag(takes_context=True)
@@ -43,7 +44,7 @@ def relabel(context: Context, tags: Sequence[FSTTag], labels=None):
     relabeller = label_setting_to_relabeller(label_setting)
 
     if label := relabeller.get_longest(tags):
-        if label_setting == "nehiyawewin":
+        if label_setting == "source_language":
             return orth_tag(context, label)
         return label
 

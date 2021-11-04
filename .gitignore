@@ -20,8 +20,7 @@ pip-delete-this-directory.txt
 # Django stuff
 *.log
 local_settings.py
-db.sqlite3
-test_db.sqlite3
+*.sqlite3
 *.sqlite3.bak
 *.sqlite3-journal
 *.sqlite3-shm
@@ -69,14 +68,12 @@ cypress/videos
 *_dictionary.importjson
 
 # Django collectstatic
-/src/CreeDictionary/static/
+/generated/
+/src/*/collected-static
 
 # Generated files:
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/index.js
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/js/click-in-text-embedded-test.js
-/src/CreeDictionary/CreeDictionary/static/CreeDictionary/css/styles.css
-*.css.map
-*.js.map
 docker-compose.override.yml
 import-inconsistencies.jsonl
 _build
+definitions*.kv
+test_db_definitions*.kv
