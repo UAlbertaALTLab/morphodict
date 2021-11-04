@@ -1,7 +1,8 @@
+import os
 import UIKit
 import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
     @IBOutlet var titleLabel: UINavigationItem!
     @IBOutlet var webView: WKWebView!
 
@@ -27,8 +28,40 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         titleLabel.title = "Loading…"
         makeWebViewOfflineOnly()
+
+        webView.navigationDelegate = self
     }
-    
+
+    func webView(_: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        let url = navigationAction.request.url!
+        if url.absoluteString.hasPrefix("http://127.0.0.1:4828/") {
+            decisionHandler(.allow)
+        } else {
+            promptToOpenInSafari(url: url.absoluteString)
+            decisionHandler(.cancel)
+        }
+    }
+
+    func promptToOpenInSafari(url: String) {
+        let controller = UIAlertController(
+            title: "This link goes outside the app",
+            message: url,
+            preferredStyle: .actionSheet)
+
+        controller.addAction(UIAlertAction(
+            title: "Open in Safari", style: .default) { _ in
+                UIApplication.shared.open(URL(string: url)!, options: [:])
+        })
+
+        controller.addAction(
+            UIAlertAction(title: "Cancel",
+                          style: .cancel) { _ in
+                self.dismiss(animated: true)
+            })
+
+        present(controller, animated: true)
+    }
+
     func makeWebViewOfflineOnly() {
         let blockRules = """
         [
@@ -51,22 +84,21 @@ class ViewController: UIViewController {
         ]
         """
         let configuration = webView.configuration
-        
+
         // there's a race condition here, but we're choosing to ignore it for now
         WKContentRuleListStore.default().compileContentRuleList(
             forIdentifier: "ContentBlockingRules",
-            encodedContentRuleList: blockRules
-        ) { contentRuleList, error in
-            if let error = error {
-                // Handle error
-                print(error)
-            } else if let contentRuleList = contentRuleList {
-                configuration.userContentController.add(contentRuleList)
-                print("Added contentRuleList")
-            } else {
-                print("No contentRuleList")
-                return
-            }
+            encodedContentRuleList: blockRules) { contentRuleList, error in
+                if let error = error {
+                    // Handle error
+                    print(error)
+                } else if let contentRuleList = contentRuleList {
+                    configuration.userContentController.add(contentRuleList)
+                    print("Added contentRuleList")
+                } else {
+                    print("No contentRuleList")
+                    return
+                }
         }
     }
 }

@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E9046C29D7CDE45F879B03D /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2254500A4F6F4915D412308 /* libssl.a */; };
 		1D60589B0D05DD56006BFB54 /* runPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* runPython.m */; };
 		2A334CFEA1B5A623FCFB45A9 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */; };
-		40A14067AA7FF6DF31D8334B /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA146F39D101A97EDB7F518 /* libcrypto.a */; };
+		4901B0D726E9226B000EE786 /* morphodict_mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901B0D626E9226B000EE786 /* morphodict_mobile.m */; };
+		4901B0DC26EA9FBE000EE786 /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DB26EA9FBE000EE786 /* libpython3.a */; };
+		4901B0DF26EA9FD4000EE786 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DD26EA9FD4000EE786 /* libssl.a */; };
+		4901B0E026EA9FD4000EE786 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0DE26EA9FD4000EE786 /* libcrypto.a */; };
+		4901B0E226EA9FFD000EE786 /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4901B0E126EA9FFD000EE786 /* libffi.a */; };
+		4901E61C26EAA195000EE786 /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 4901E61B26EAA195000EE786 /* lib */; };
 		49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49163B0826E03AC100CC79FD /* Launch Screen.storyboard */; };
 		49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */; };
 		49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7F226A98AB000CC2B09 /* _hfst_optimized_lookup.cpp */; };
@@ -20,22 +24,23 @@
 		49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B5A80026A9DEF500CC2B09 /* WebKit.framework */; };
 		49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */ = {isa = PBXBuildFile; fileRef = 49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */; };
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
-		49F43F1226BEF9350062D570 /* swiftpy_module.c in Sources */ = {isa = PBXBuildFile; fileRef = 49F43F1126BEF9350062D570 /* swiftpy_module.c */; };
 		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
-		59738AB51A8BB5D8001B2C0C /* lib in Resources */ = {isa = PBXBuildFile; fileRef = 59738AB41A8BB5D8001B2C0C /* lib */; };
 		59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
-		59FDEA8B21E7D34E004E6ECE /* include in Resources */ = {isa = PBXBuildFile; fileRef = 59FDEA8A21E7D34E004E6ECE /* include */; };
 		8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = ACB245FD987A9A8E52E1D8AF /* libz.tbd */; };
-		B7984AC980677C16F8E998FD /* libffi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FB164F1FB0785CAA25B6083B /* libffi.a */; };
 		F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */; };
-		F1C34E76A4E46051B7271B05 /* libpython3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34944194AC56336A435AF240 /* libpython3.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libbz2.tbd; sourceTree = "<absolute>"; };
 		1D6058910D05DD3D006BFB54 /* itwewina-offline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "itwewina-offline.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		29B97316FDCFA39411CA2CEA /* runPython.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = runPython.m; sourceTree = "<group>"; };
-		34944194AC56336A435AF240 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = ../dist/lib/libpython3.a; sourceTree = SOURCE_ROOT; };
+		4901B0D526E92254000EE786 /* morphodict_mobile.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = morphodict_mobile.h; sourceTree = "<group>"; };
+		4901B0D626E9226B000EE786 /* morphodict_mobile.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = morphodict_mobile.m; sourceTree = "<group>"; };
+		4901B0DB26EA9FBE000EE786 /* libpython3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpython3.a; path = "../kivy-ios/dist/lib/libpython3.a"; sourceTree = "<group>"; };
+		4901B0DD26EA9FD4000EE786 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = "../kivy-ios/dist/lib/libssl.a"; sourceTree = "<group>"; };
+		4901B0DE26EA9FD4000EE786 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = "../kivy-ios/dist/lib/libcrypto.a"; sourceTree = "<group>"; };
+		4901B0E126EA9FFD000EE786 /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = "../kivy-ios/dist/lib/libffi.a"; sourceTree = "<group>"; };
+		4901E61B26EAA195000EE786 /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "../kivy-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
 		49163B0826E03AC100CC79FD /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		49B5A7F026A98AAF00CC2B09 /* _hfst_optimized_lookup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _hfst_optimized_lookup.h; sourceTree = "<group>"; };
 		49B5A7F126A98AAF00CC2B09 /* hfst-optimized-lookup.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "hfst-optimized-lookup.cc"; sourceTree = "<group>"; };
@@ -48,19 +53,11 @@
 		49B5A80026A9DEF500CC2B09 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.5.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		49B5A80226A9EB3B00CC2B09 /* runPython.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = runPython.h; sourceTree = "<group>"; };
 		49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; name = "db-mobile.sqlite3"; path = "../../databases/db-mobile.sqlite3"; sourceTree = "<group>"; };
-		49F43F1026BEF9350062D570 /* swiftpy_module.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = swiftpy_module.h; sourceTree = "<group>"; };
-		49F43F1126BEF9350062D570 /* swiftpy_module.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = swiftpy_module.c; sourceTree = "<group>"; };
-		49F8638926A89F1300D35B6F /* sync-python.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "sync-python.sh"; sourceTree = "<group>"; };
 		49F8638A26A8A43400D35B6F /* app_python */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_python; sourceTree = "<group>"; };
-		59738AB41A8BB5D8001B2C0C /* lib */ = {isa = PBXFileReference; lastKnownFileType = folder; name = lib; path = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/lib"; sourceTree = "<group>"; };
 		59738ABA1A8E19AA001B2C0C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "itwewina-offline/Images.xcassets"; sourceTree = "<group>"; };
-		59FDEA8A21E7D34E004E6ECE /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = "${PROJECT_DIR}/../kivy-ios/dist/root/python3/include"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "itwewina-offline-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		ACB245FD987A9A8E52E1D8AF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libz.tbd; sourceTree = "<absolute>"; };
 		AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib/libsqlite3.tbd; sourceTree = "<absolute>"; };
-		AEA146F39D101A97EDB7F518 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = ../dist/lib/libcrypto.a; sourceTree = SOURCE_ROOT; };
-		C2254500A4F6F4915D412308 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = ../dist/lib/libssl.a; sourceTree = SOURCE_ROOT; };
-		FB164F1FB0785CAA25B6083B /* libffi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libffi.a; path = ../dist/lib/libffi.a; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,27 +66,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A334CFEA1B5A623FCFB45A9 /* libbz2.tbd in Frameworks */,
+				4901B0DC26EA9FBE000EE786 /* libpython3.a in Frameworks */,
+				4901B0E026EA9FD4000EE786 /* libcrypto.a in Frameworks */,
+				4901B0DF26EA9FD4000EE786 /* libssl.a in Frameworks */,
 				8BED4A7E80700961BEA2E280 /* libz.tbd in Frameworks */,
 				49B5A80126A9DEF500CC2B09 /* WebKit.framework in Frameworks */,
 				F0434F31ADE5063B167A66A4 /* libsqlite3.tbd in Frameworks */,
-				40A14067AA7FF6DF31D8334B /* libcrypto.a in Frameworks */,
-				F1C34E76A4E46051B7271B05 /* libpython3.a in Frameworks */,
-				B7984AC980677C16F8E998FD /* libffi.a in Frameworks */,
+				4901B0E226EA9FFD000EE786 /* libffi.a in Frameworks */,
 				49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */,
-				0E9046C29D7CDE45F879B03D /* libssl.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,8 +91,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				49F8638926A89F1300D35B6F /* sync-python.sh */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				4901E61F26EAAC22000EE786 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -115,16 +104,12 @@
 		29B97315FDCFA39411CA2CEA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				49163B0826E03AC100CC79FD /* Launch Screen.storyboard */,
-				49B5A7F626A9D2E500CC2B09 /* main.xib */,
-				49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */,
-				29B97316FDCFA39411CA2CEA /* runPython.m */,
 				49F8638A26A8A43400D35B6F /* app_python */,
-				49B5A7FC26A9D71900CC2B09 /* ViewController.swift */,
-				49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */,
+				49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */,
+				4901B0D526E92254000EE786 /* morphodict_mobile.h */,
+				4901B0D626E9226B000EE786 /* morphodict_mobile.m */,
 				49B5A80226A9EB3B00CC2B09 /* runPython.h */,
-				49F43F1026BEF9350062D570 /* swiftpy_module.h */,
-				49F43F1126BEF9350062D570 /* swiftpy_module.c */,
+				29B97316FDCFA39411CA2CEA /* runPython.m */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -134,9 +119,9 @@
 			children = (
 				49F43F0926BEDBEF0062D570 /* db-mobile.sqlite3 */,
 				59738ABA1A8E19AA001B2C0C /* Images.xcassets */,
-				59738AB41A8BB5D8001B2C0C /* lib */,
-				59FDEA8A21E7D34E004E6ECE /* include */,
 				8D1107310486CEB800E47090 /* itwewina-offline-Info.plist */,
+				49163B0826E03AC100CC79FD /* Launch Screen.storyboard */,
+				49B5A7F626A9D2E500CC2B09 /* main.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -144,16 +129,26 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				49B5A80026A9DEF500CC2B09 /* WebKit.framework */,
 				0ABE4AF3B2C5E9025CF7A0F3 /* libbz2.tbd */,
-				ACB245FD987A9A8E52E1D8AF /* libz.tbd */,
+				4901E61B26EAA195000EE786 /* lib */,
+				4901B0DE26EA9FD4000EE786 /* libcrypto.a */,
+				4901B0E126EA9FFD000EE786 /* libffi.a */,
+				4901B0DB26EA9FBE000EE786 /* libpython3.a */,
 				AE3B48D6AD6BFE961C5D8CCD /* libsqlite3.tbd */,
-				AEA146F39D101A97EDB7F518 /* libcrypto.a */,
-				34944194AC56336A435AF240 /* libpython3.a */,
-				FB164F1FB0785CAA25B6083B /* libffi.a */,
-				C2254500A4F6F4915D412308 /* libssl.a */,
+				4901B0DD26EA9FD4000EE786 /* libssl.a */,
+				ACB245FD987A9A8E52E1D8AF /* libz.tbd */,
+				49B5A80026A9DEF500CC2B09 /* WebKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4901E61F26EAAC22000EE786 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */,
+				49B5A7FC26A9D71900CC2B09 /* ViewController.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 		49B5A7D726A9849100CC2B09 /* hfst-optimized-lookup */ = {
@@ -197,6 +192,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 0610;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
@@ -213,6 +209,7 @@
 				Japanese,
 				French,
 				German,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			packageReferences = (
@@ -231,11 +228,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4901E61C26EAA195000EE786 /* lib in Resources */,
 				49B5A7F726A9D2E500CC2B09 /* main.xib in Resources */,
 				49F43F0A26BEDBEF0062D570 /* db-mobile.sqlite3 in Resources */,
 				49F8638B26A8A43400D35B6F /* app_python in Resources */,
-				59738AB51A8BB5D8001B2C0C /* lib in Resources */,
-				59FDEA8B21E7D34E004E6ECE /* include in Resources */,
 				59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */,
 				49163B0926E03AC100CC79FD /* Launch Screen.storyboard in Resources */,
 			);
@@ -268,12 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49F43F1226BEF9350062D570 /* swiftpy_module.c in Sources */,
 				49B5A7F426A98AB000CC2B09 /* hfst-optimized-lookup.cc in Sources */,
 				49B5A7F526A98AB000CC2B09 /* _hfst_optimized_lookup.cpp in Sources */,
 				49B5A7FD26A9D71900CC2B09 /* ViewController.swift in Sources */,
 				49B5A7FF26A9DA0800CC2B09 /* AppDelegate.swift in Sources */,
 				1D60589B0D05DD56006BFB54 /* runPython.m in Sources */,
+				4901B0D726E9226B000EE786 /* morphodict_mobile.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,10 +282,11 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -323,6 +320,7 @@
 				PRODUCT_NAME = "itwewina-offline";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "itwewina-offline-Bridging-Header.h";
@@ -339,11 +337,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -374,6 +373,7 @@
 				PRODUCT_NAME = "itwewina-offline";
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = NO;

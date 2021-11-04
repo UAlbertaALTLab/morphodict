@@ -159,11 +159,6 @@ On startup, the iOS app does the following:
 These are things that would typically be addressed in due course, if
 dedicating time to making the project maintainable:
 
-  - There’s currently no lifecycle stuff like cleanly stopping the django
-    server if the app is backgrounded. So if you start the app, use it a
-    bit, then come back to it a few hours later … nothing works. You can
-    kill the app and re-start it and it will work fine again though.
-
   - Instead of being configurable settings to enable/disable features,
     a bunch of code is just *commented out* to disable it for mobile.
 
@@ -172,6 +167,11 @@ dedicating time to making the project maintainable:
     normal django settings mechanism to skip calling something, as settings
     only get configured after most packages have already been imported, and
     it’s the import attempt that fails.
+
+    Note: One questionable hack, but that would be better than the
+    commented-out-branch, would be to have some placeholder files, like
+    `foma.py`, in the mobile app, that would simply return an error if you
+    tried to use them.
 
   - kivy is supposed to be a package manager that lets you write recipes to
     automatically build Python packages that have C extensions. I couldn’t
@@ -227,14 +227,6 @@ Things that might be needed to make a minimal submittable app:
         things, it exposes the server and might cause conflict with other
         apps. I believe the web view and the django app can talk to each
         through a custom scheme instead.
-
-      - The web view should be explicitly limited to only display content
-        from the django server. Otherwise the web view will still try to
-        generate traffic, e.g., retrieving recordings
-
-      - However, valid external links within the application, e.g., links
-        to funding organizations, *should* work; I think we can make them
-        open in Safari instead, or at least a more obvious browser mode.
 
 [webviews-chapter]: https://learning.oreilly.com/library/view/programming-ios-14/9781492092162/part02ch07.html#chap_id24
 

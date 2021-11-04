@@ -4,7 +4,7 @@
 #include <dlfcn.h>
 #include "_hfst_optimized_lookup.h"
 #include "runPython.h"
-#include "swiftpy_module.h"
+#include "morphodict_mobile.h"
 
 void export_orientation();
 void load_custom_builtin_importer();
@@ -44,8 +44,6 @@ int runPython() {
     putenv("KIVY_NO_CONSOLELOG=1");
     #endif
 
-    NSError * error = [[NSError alloc] init];
-
     // Export orientation preferences for Kivy
     export_orientation();
 
@@ -53,14 +51,14 @@ int runPython() {
     NSString *python_home = [NSString stringWithFormat:@"PYTHONHOME=%@", resourcePath, nil];
     putenv((char *)[python_home UTF8String]);
 
-    /* Add a built-in module, before Py_Initialize */
+    /* Add modules, before Py_Initialize */
     if (PyImport_AppendInittab("_hfst_optimized_lookup", PyInit__hfst_optimized_lookup) == -1) {
-        fprintf(stderr, "Error: could not extend in-built modules table\n");
+        NSLog(@"Error: could not extend in-built modules table");
         exit(1);
     }
-    /* Add a built-in module, before Py_Initialize */
-    if (PyImport_AppendInittab("swiftpy", PyInit_swiftpy) == -1) {
-        fprintf(stderr, "Error: could not extend in-built modules table\n");
+
+    if (PyImport_AppendInittab("morphodict_mobile", PyInit_morphodict_mobile) == -1) {
+        NSLog(@"Error: could not extend in-built modules table\n");
         exit(1);
     }
 
@@ -87,11 +85,11 @@ int runPython() {
     const char * prog = [
         [[NSBundle mainBundle] pathForResource:@"app_python/mobile" ofType:MAIN_EXT] cStringUsingEncoding:
         NSUTF8StringEncoding];
-    NSLog(@"Running main.py: %s", prog);
+    NSLog(@"Running mobile.py: %s", prog);
     FILE* fd = fopen(prog, "r");
     if ( fd == NULL ) {
         ret = 1;
-        NSLog(@"Unable to open main.py, abort.");
+        NSLog(@"Unable to open mobile.py, abort.");
     } else {
         ret = PyRun_SimpleFileEx(fd, prog, 1);
         if (ret != 0)
@@ -99,11 +97,11 @@ int runPython() {
     }
 
     Py_Finalize();
-    NSLog(@"Leaving");
 
     [pool release];
 
     // Look like the app still runs even when we left here.
+    NSLog(@"mobile.py finished, exiting application");
     exit(ret);
     return ret;
 }
