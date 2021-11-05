@@ -60,7 +60,7 @@ jobs:
 
     - name: 📥 Install dependencies
       run: |
-        pipenv install --dev
+        pipenv install --dev && pipenv install
         # Install pytest plugin to show failed tests on the web
         pipenv run pip install pytest-github-actions-annotate-failures
     - name: Do LFS checkout
