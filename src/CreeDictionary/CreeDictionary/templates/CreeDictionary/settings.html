@@ -4,97 +4,103 @@
 {% load relabelling %}
 
 {% block prose %}
-<section id="settings" class="box">
-  <h2>Settings</h2>
+    <section id="settings" class="box">
+        <h2>Settings</h2>
 
-  <section>
-    <h3 id="paradigm-labels" class="setting__title">Paradigm labels</h3>
+        <section>
+            <h3 id="paradigm-labels" class="setting__title">Paradigm labels</h3>
 
-    <p class="setting__note"> These are the labels that appear on the <strong>paradigm
-        table</strong> to label features like person, tense, plurals, etc.</p>
+            <p class="setting__note"> These are the labels that appear on the <strong>paradigm
+                table</strong> to label features like person, tense, plurals, etc.</p>
 
-    <form method="POST" action="{% url "preference:change" "paradigm_label" %}" data-save-preference="paradigmlabel">
-      <ul class="unbullet">
-      {% for value, label in preferences.paradigm_label.choices_with_labels %}
-        <li class="option">
-          <label class="option__label">
-            <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"
-                {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ label|capfirst }}</span>
-          </label>
-          <p class="option__description">
-            Examples:
-            {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
-            <i>{% relabel_one '1Sg' labels=value %}</i>,
-            <i>{% relabel_one '2Sg' labels=value %}</i>,
-            <i>{% relabel_one '3Sg' labels=value %}</i>;
-            <i>{% relabel_one 'Prs' labels=value %}</i>,
-            <i>{% relabel_one 'Prt' labels=value %}</i>
-          </p>
-        </li>
-        {% endfor %}
-      </ul>
+            <form method="POST" action="{% url "preference:change" "paradigm_label" %}"
+                  data-save-preference="paradigmlabel">
+                <ul class="unbullet">
+                    {% for value, label in preferences.paradigm_label.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"
+                                       {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ label|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                Examples:
+                                {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
+                                <i>{% relabel_one '1Sg' labels=value %}</i>,
+                                <i>{% relabel_one '2Sg' labels=value %}</i>,
+                                <i>{% relabel_one '3Sg' labels=value %}</i>;
+                                <i>{% relabel_one 'Prs' labels=value %}</i>,
+                                <i>{% relabel_one 'Prt' labels=value %}</i>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-      <div class="action-bar">
-        {% csrf_token %}
-        <button type="submit"> Save settings </button>
-      </div>
-    </form>
-  </section>
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
 
-  <section>
-    <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
+        <section>
+            <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
 
-    <p class="setting__note">Choose the emoji that will represent all {% orth 'awa' %} words. </p>
+            <p class="setting__note">Choose the emoji that will represent all {% orth 'awa' %} words. </p>
 
-    <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
-          data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
-      <ul class="unbullet">
-        {% for value, label in preferences.animate_emoji.choices_with_labels %}
-        <li class="option">
-          <label class="option__label">
-            <input type="radio" class="option__control"
-                   name="animate_emoji" value="{{ value }}"
-               {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ label|capfirst }}</span>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
+            <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
+                  data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
+                <ul class="unbullet">
+                    {% for value, label in preferences.animate_emoji.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" class="option__control"
+                                       name="animate_emoji" value="{{ value }}"
+                                       {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ label|capfirst }}</span>
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-      <div class="action-bar">
-        {% csrf_token %}
-        <button type="submit"> Save settings </button>
-      </div>
-    </form>
-  </section>
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
 
-  <section>
-    <h3 id="dictionary-source" class="setting__title">Select Dictionary Source</h3>
+        {% if show_dict_source_setting %}
+            <section>
+                <h3 id="dictionary-source" class="setting__title">Select Dictionary Source</h3>
 
-    <p class="setting__note"> Select one of the following options to chose which entries are displayed in the search results</p>
+                <p class="setting__note"> Select one of the following options to chose which entries are displayed in
+                    the search results</p>
 
-    <form method="POST" action="{% url "preference:change" "dictionary_source" %}" data-save-preference="dictionary_source">
-      <ul class="unbullet">
-      {% for value, label in preferences.dictionary_source.choices_with_labels %}
-        <li class="option">
-          <label class="option__label">
-            <input type="radio" name="dictionary_source" value="{{ value }}" class="option__control"
-                {% if preferences.dictionary_source.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ value|upper }}</span>
-          </label>
-            <p class="option__description">
-            {{ label }}
-            </p>
-        </li>
-        {% endfor %}
-      </ul>
+                <form method="POST" action="{% url "preference:change" "dictionary_source" %}"
+                      data-save-preference="dictionary_source">
+                    <ul class="unbullet">
+                        {% for value, label in preferences.dictionary_source.choices_with_labels %}
+                            <li class="option">
+                                <label class="option__label">
+                                    <input type="radio" name="dictionary_source" value="{{ value }}"
+                                           class="option__control"
+                                           {% if preferences.dictionary_source.current_choice == value %}checked{% endif %}>
+                                    <span class="option__label-text">{{ value|upper }}</span>
+                                </label>
+                                <p class="option__description">
+                                    {{ label }}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
 
-      <div class="action-bar">
-        {% csrf_token %}
-        <button type="submit"> Save settings </button>
-      </div>
-    </form>
-  </section>
-</section>
+                    <div class="action-bar">
+                        {% csrf_token %}
+                        <button type="submit"> Save settings</button>
+                    </div>
+                </form>
+            </section>
+        {% endif %}
+    </section>
 {% endblock %}

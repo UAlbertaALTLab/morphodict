@@ -114,14 +114,15 @@ def index(request):  # pragma: no cover
             dict_source=dict_source
         )
         did_search = True
-        for r in search_results:
-            if not r['is_lemma']:
-                for d in r['lemma_wordform']['definitions']:
-                    for s in d['source_ids']:
-                        if s in dict_source:
-                            r['show_form_of'] = True
-            if 'show_form_of' not in r:
-                r['show_form_of'] = False
+        if dict_source:
+            for r in search_results:
+                if not r['is_lemma']:
+                    for d in r['lemma_wordform']['definitions']:
+                        for s in d['source_ids']:
+                            if s in dict_source:
+                                r['show_form_of'] = True
+                if 'show_form_of' not in r:
+                    r['show_form_of'] = False
 
     else:
         search_results = []
@@ -140,6 +141,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     if search_run and search_run.verbose_messages and search_run.query.verbose:
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
@@ -357,11 +359,11 @@ def should_include_auto_definitions(request):
 
 def get_dict_source(request):
     if dictionary_source := request.COOKIES.get("dictionary_source"):
-        if dictionary_source == "md":
-            return ["MD"]
-        elif dictionary_source == "cw":
-            return ["CW"]
-    return ["CW", "MD"]
+        if dictionary_source:
+            ret = dictionary_source.split('+')
+            ret = [r.upper() for r in ret]
+            return ret
+    return None
 
 
 def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
