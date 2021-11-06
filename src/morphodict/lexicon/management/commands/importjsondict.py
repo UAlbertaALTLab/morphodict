@@ -1,3 +1,4 @@
+import argparse
 import hashlib
 import json
 import logging
@@ -234,6 +235,7 @@ class Import:
         purge: bool,
         incremental: bool,
         atomic=True,
+        skip_building_vectors_because_testing=False,
     ):
         """
         Create an Import process.
@@ -246,6 +248,9 @@ class Import:
         self.translate_wordforms = translate_wordforms
         self.incremental = incremental
         self.purge = purge
+        self.skip_building_vectors_because_testing = (
+            skip_building_vectors_because_testing
+        )
 
         self._has_run = False
 
@@ -404,7 +409,10 @@ class Import:
             stamp.timestamp = time.time()
             stamp.save()
 
-        call_command("builddefinitionvectors")
+        if not self.skip_building_vectors_because_testing:
+            # Don’t overwrite the normal test_db definition vectors when doing a
+            # test import with only a word or two
+            call_command("builddefinitionvectors")
 
     def populate_wordform_definitions(self, wf, senses):
         should_do_translation = self.translate_wordforms
@@ -612,6 +620,11 @@ class Command(BaseCommand):
             """,
         )
         parser.add_argument(
+            "--skip-building-vectors-because-testing",
+            default=False,
+            help=argparse.SUPPRESS,
+        )
+        parser.add_argument(
             "json_file",
             help=f"The importjson file to import",
             nargs="?",
@@ -625,6 +638,7 @@ class Command(BaseCommand):
         atomic,
         translate_wordforms,
         incremental=False,
+        skip_building_vectors_because_testing=False,
         **options,
     ):
         logger.info(f"Importing {json_file}")
@@ -636,6 +650,7 @@ class Command(BaseCommand):
             atomic=atomic,
             translate_wordforms=translate_wordforms,
             incremental=incremental,
+            skip_building_vectors_because_testing=skip_building_vectors_because_testing,
         )
 
         if atomic:

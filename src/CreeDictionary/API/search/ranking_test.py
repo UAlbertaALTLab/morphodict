@@ -1,9 +1,10 @@
 import pytest
 from pytest import approx
 
-from morphodict.lexicon.models import Wordform
+from CreeDictionary.API.search import search
 from CreeDictionary.API.search.ranking import assign_relevance_score
 from CreeDictionary.API.search.types import Result
+from morphodict.lexicon.models import Wordform
 
 
 def build_result(
@@ -52,3 +53,21 @@ def test_model_evaluation(expected, kwargs):
     result = build_result(**kwargs)
     assign_relevance_score(result)
     assert result.relevance_score == approx(expected, abs=1e-6)
+
+
+def test_cvd_exclusive_only_uses_cvd_for_ranking(db):
+    search_run = search(query="dance cvd:2")
+    results = search_run.sorted_results()
+    assert len(results) > 2
+
+    def is_sorted_by_cvd(results: list[Result]):
+        for r1, r2 in zip(results, results[1:]):
+            if (
+                r1.cosine_vector_distance is not None
+                and r2.cosine_vector_distance is not None
+                and r1.cosine_vector_distance > r2.cosine_vector_distance
+            ):
+                raise Exception(f"Item {r1} comes first but has a bigger cvd than {r2}")
+        return True
+
+    assert is_sorted_by_cvd(results)
