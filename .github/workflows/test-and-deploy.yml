@@ -34,6 +34,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
       uses: actions/setup-python@v2
+      # actions/cache below uses this id to get the exact python version
+      id: setup-python
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: 🖥 Install system dependencies
@@ -46,18 +48,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
-        # is based on a hash of the absolute path of the Pipfile, so
-        # it will be reused between CI runs.
-        #
-        # But it contains symlinks to $pythonLocation set by
-        # @actions/setup-python, which can break when the CI host minor
-        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
-        # the cache key.
-        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
-
+        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
     - name: 📥 Install dependencies
       run: |
         pipenv install --dev && pipenv install
@@ -100,6 +91,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
       uses: actions/setup-python@v2
+      id: setup-python
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
@@ -117,18 +109,7 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.local/share/virtualenvs
-        # The pipenv location, e.g., ~/.local/share/virtualenvs/proj-zd-Sqvsw
-        # is based on a hash of the absolute path of the Pipfile, so
-        # it will be reused between CI runs.
-        #
-        # But it contains symlinks to $pythonLocation set by
-        # @actions/setup-python, which can break when the CI host minor
-        # version of python is upgraded, e.g., 3.9.2 → 3.9.3, so add it to
-        # the cache key.
-        key: ${{ runner.os }}-pipenv-${{ env.pythonLocation }}-${{ hashFiles('Pipfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-pipenv-${{ env.pythonLocation }}
-
+        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
     - name: 📥 Install Python dependencies
       run: |
         pipenv install --dev

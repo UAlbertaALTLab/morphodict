@@ -1,4 +1,5 @@
 import json
+import subprocess
 from argparse import (
     ArgumentParser,
     ArgumentDefaultsHelpFormatter,
@@ -35,29 +36,55 @@ class Command(BaseCommand):
             "--output-file",
             help="Write output to this file, instead of overwriting the input",
         )
-        parser.add_argument(
-            "json_file",
-            help=f"The importjson file to import",
-            nargs="?",
-            default=DEFAULT_IMPORTJSON_FILE,
+
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument(
+            "--git-files",
+            action="store_true",
+            help="Sort all importjson files known to git",
+        )
+        group.add_argument(
+            "json_files",
+            help=f"The importjson file(s) to import",
+            nargs="*",
+            default=[DEFAULT_IMPORTJSON_FILE],
         )
 
-    def handle(self, json_file, crkeng_cleanup, output_file, **options):
-        with open(json_file, "r") as f:
-            data = json.load(f)
+    def handle(self, json_files, git_files, crkeng_cleanup, output_file, **options):
+        has_output_file = output_file is not None
+        if (git_files or len(json_files) != 1) and has_output_file:
+            raise Exception(
+                "Error: cannot specify --output-file option when there are multiple input files"
+            )
 
-        if crkeng_cleanup:
-            self.crkeng_cleanup(data)
+        if git_files:
+            # Override the default of [DEFAULT_IMPORTJSON_FILE]
+            json_files = []
 
-        data.sort(key=entry_sort_key)
+            git_files = subprocess.check_output(["git", "ls-files", "-z"])
+            for filename_bytes in git_files.split(b"\0"):
+                if filename_bytes.endswith(b".importjson"):
+                    json_files.append(filename_bytes)
 
-        if not output_file:
-            output_file = json_file
+        output_files = []
+        for json_file in json_files:
+            with open(json_file, "r") as f:
+                data = json.load(f)
 
-        with open(output_file, "w") as f:
-            json.dump(data, f, indent=2, ensure_ascii=False, sort_keys=True)
+            if crkeng_cleanup:
+                self.crkeng_cleanup(data)
 
-        check_call(["npx", "prettier", "--parser=json", "--write", output_file])
+            data.sort(key=entry_sort_key)
+
+            if not has_output_file:
+                output_file = json_file
+
+            with open(output_file, "w") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False, sort_keys=True)
+
+            output_files.append(output_file)
+
+        check_call(["npx", "prettier", "--parser=json", "--write"] + output_files)
 
     def crkeng_cleanup(self, data):
         for entry in data:
