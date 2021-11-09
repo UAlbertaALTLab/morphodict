@@ -1,12 +1,13 @@
-from typing import Any, Iterable
+from typing import Iterable, Callable, Any, Optional
 
 from django.db.models import prefetch_related_objects
 
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource
+from morphodict.lexicon.models import WordformKey
 from . import types, presentation
 from .query import Query
+from .types import Result
 from .util import first_non_none_value
-from morphodict.lexicon.models import Wordform, wordform_cache, WordformKey
 
 
 class SearchRun:
@@ -30,6 +31,8 @@ class SearchRun:
     _results: dict[WordformKey, types.Result]
     VerboseMessage = dict[str, str]
     _verbose_messages: list[VerboseMessage]
+    # Set this to use a custom sort function
+    sort_function: Optional[Callable[[Result], Any]] = None
 
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):
@@ -44,7 +47,6 @@ class SearchRun:
         return result.wordform.key in self._results
 
     def remove_result(self, result: types.Result):
-        print(result)
         del self._results[result.wordform.key]
 
     def unsorted_results(self) -> Iterable[types.Result]:
@@ -54,7 +56,11 @@ class SearchRun:
         results = list(self._results.values())
         for r in results:
             r.assign_default_relevance_score()
-        results.sort()
+
+        if self.sort_function is not None:
+            results.sort(key=self.sort_function)
+        else:
+            results.sort()
         return results
 
     def presentation_results(

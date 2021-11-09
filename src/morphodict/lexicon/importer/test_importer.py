@@ -26,7 +26,10 @@ def import_test_file(filename, reimport=False, **command_kwargs):
 
     def do_import():
         call_command(
-            "importjsondict", json_file=TESTDATA_DIR / filename, **command_kwargs
+            "importjsondict",
+            skip_building_vectors_because_testing=True,
+            json_file=TESTDATA_DIR / filename,
+            **command_kwargs,
         )
 
     do_import()
