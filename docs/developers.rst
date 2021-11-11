@@ -9,8 +9,9 @@ Developer documentation
    developers-guide
    environment-variables
    ci
-   docker-stub
+   docker
    directory-structure
+   mobile
    example-cases
 
 

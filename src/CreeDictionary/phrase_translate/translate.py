@@ -7,7 +7,12 @@ import os
 import readline
 import sys
 import typing
-from argparse import ArgumentParser, BooleanOptionalAction
+from argparse import (
+    ArgumentParser,
+)
+from argparse import BooleanOptionalAction
+from collections import Counter
+from dataclasses import dataclass, asdict, field
 from functools import cache
 from pathlib import Path
 from typing import Iterable
@@ -15,7 +20,9 @@ from typing import Iterable
 import django
 import foma
 
+from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
 from morphodict.analysis import RichAnalysis
+from morphodict.analysis.tag_map import UnknownTagError
 
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
@@ -101,15 +108,17 @@ def inflect_english_phrase(analysis, lemma_definition):
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
+        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
+        logger.debug("phrase = %s\n", phrase)
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
+        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
+        logger.debug("phrase = %s\n", phrase)
         return phrase.strip()
 
 
@@ -122,14 +131,98 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
 
         for d in wordform.lemma.definitions.all():
             # Don’t try to re-translate already-translated items
-            if [ds.abbrv for ds in d.citations.all()] == ["auto"]:
+            if d.auto_translation_source_id is not None:
                 continue
 
             print(f"    definition: {d} →")
-            phrase = inflect_english_phrase(wordform.analysis, d.text)
+            phrase = inflect_english_phrase(wordform.analysis, d.core_definition)
             if phrase is None:
                 phrase = "(not supported)"
             print(f"      {phrase}")
+
+
+@dataclass
+class TranslationStats:
+    wordforms_examined: int = 0
+    definitions_created: int = 0
+    # no translation returned, typically because no +N or +V tag
+    no_translation_count: int = 0
+    # phrase generator FST returned 0 analyses
+    no_phrase_analysis_count: int = 0
+    # phrase generator FST returned multiple analyses
+    multiple_phrase_analyses_count: int = 0
+    # analysis contains preverb tags, which we don’t have mappings for
+    preverb_form: int = 0
+    # How often are we seeing various unknown tags?
+    unknown_tags_during_auto_translation: Counter = field(default_factory=Counter)
+
+    def __str__(self):
+        ret = []
+
+        for field_name, value in asdict(self).items():
+            if isinstance(value, int):
+                formatted = format(value, ",")
+            elif isinstance(value, Counter):
+                # asdict messes up Counter objects
+                value = getattr(self, field_name)
+
+                formatted = ", ".join(
+                    f"{count:,}x {item}" for item, count in value.most_common()
+                )
+            else:
+                formatted = str(value)
+            ret.append(f"{field_name}: {formatted}")
+
+        return "\n".join(ret)
+
+
+def translate_single_definition(wordform, text, stats: TranslationStats):
+    stats.wordforms_examined += 1
+
+    assert wordform.analysis
+
+    if any(
+        t.startswith("PV/")
+        ## This next commented-out line *is* useful, but it greatly increases
+        ## the number of instantiated wordforms, like at least ~3x? It would be
+        ## good to do some tests on whether that’s so many that it starts to
+        ## slow things down before turning this on. Maybe it’ll be necessary to
+        ## switch to computing them on-demand instead of pre-computing them all
+        ## in advance?
+        #
+        # and t not in permitted_preverb_tags
+        for t in wordform.analysis.prefix_tags
+    ):
+        logger.debug(
+            f"skipping translation of preverb form {wordform.id} {wordform.text}"
+        )
+        stats.preverb_form += 1
+        return
+
+    try:
+        input_text = remove_parentheticals(text)
+
+        phrase = inflect_english_phrase(wordform.analysis, input_text)
+    except UnknownTagError as e:
+        logger.debug(f"Unknown tag in {wordform.text} {wordform.analysis}: {e}")
+        stats.unknown_tags_during_auto_translation[e.args[0]] += 1
+        return None
+    except FomaLookupNotFoundException as e:
+        logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+        stats.no_phrase_analysis_count += 1
+        return None
+    except FomaLookupMultipleFoundException as e:
+        logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+        stats.multiple_phrase_analyses_count += 1
+        return None
+
+    if not phrase:
+        logger.debug(f"no translation for {wordform.text} {wordform.analysis}")
+        stats.no_translation_count += 1
+        return None
+
+    stats.definitions_created += 1
+    return phrase
 
 
 def main():

@@ -1,0 +1,42 @@
+[
+  {
+    "analysis": [[], "amisk", ["+N", "+A", "+Sg"]],
+    "head": "amisk",
+    "linguistInfo": {
+      "inflectional_category": "NA-3",
+      "pos": "N",
+      "stem": "amiskw-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "beaver",
+        "sources": ["CW", "MD"]
+      }
+    ],
+    "slug": "amisk"
+  },
+  {
+    "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
+    "head": "maskwa",
+    "linguistInfo": {
+      "inflectional_category": "NA-4w",
+      "pos": "N",
+      "stem": "maskw-",
+      "wordclass": "NA"
+    },
+    "paradigm": "NA",
+    "senses": [
+      {
+        "definition": "A bear.",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "bear, black bear",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "maskwa"
+  }
+]

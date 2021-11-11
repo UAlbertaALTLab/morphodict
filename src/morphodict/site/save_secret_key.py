@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -19,6 +20,9 @@ def _get_env_file_path() -> Path:
     """
     Return the path to the .env file at the root of the repository
     """
+    if "MORPHODICT_ENV_FILE_PATH" in os.environ:
+        return Path(os.environ["MORPHODICT_ENV_FILE_PATH"])
+
     path = Path(__file__)
     while path != path.parent and not (path / "pyproject.toml").is_file():
         path = path.parent

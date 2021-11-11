@@ -7,6 +7,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [INDICATIVE]	Indicative	Indicative	Statement				
 [IMPERATIVE]	Imper	Imperative	Command/Request				
 							
+[1SG-SUBJ]	1s	Subject: 1st Person Singular	I				
 [1PL-SUBJ]	1p	Subject: 1st Person Plural	we				
 [1PL-EXCL-SUBJ]	1p (excl)	Subject: 1st Person Plural (Exclusive)	we (but not you)				
 [1PL-INCL-SUBJ]	1p (incl)	Subject: 1st Person Plural (Inclusive)	you and we				

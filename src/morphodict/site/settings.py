@@ -30,7 +30,9 @@ BASE_DIR = base_dir_setup.get_base_dir()
 # Read environment variables from project .env, if it exists
 # See: https://github.com/sloria/environs#readme
 env = Env()
-env.read_env()
+# We use an explicit path because the library’s auto-finding code doesn’t work
+# in the mobile app where we only have .pyc files
+env.read_env(os.fspath(BASE_DIR.parent.parent / ".env"))
 
 ################################# Core Django Settings #################################
 
@@ -341,9 +343,9 @@ LOGGING = {
 # We try to document all settings here, in one place, that are
 # language-specific. Sometimes there is a useful default that will apply to most
 # language pairs. If there isn’t, it needs to be configured in the settings file
-# specific to a language pair. In that case, we set the default here to None,
-# mark it required, and then a system check will raise an error on startup if
-# any required settings are not set.
+# specific to a language pair. In that case, we set the default here to a
+# sentinel value, and then a system check will raise an error on startup if any
+# such required settings are not set.
 
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
@@ -352,9 +354,22 @@ AFFIX_SEARCH_THRESHOLD = 4
 # be correct tag mappings for all analyzable forms.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = False
 
+# Enable semantic search via cosine vector distance. Optional because mobile
+# requires libraries we do not currently build, and a smaller vector file.
+MORPHODICT_ENABLE_CVD = True
+
+# Enable affix search. Optional because it requires a C++ library which we do
+# not currently build for mobile.
+MORPHODICT_ENABLE_AFFIX_SEARCH = True
+
 # Feature currently in development: use fst_lemma database field instead of
 # lemma text when generating wordforms
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
+
+# Default names for FST files
+STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
+STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
 # Show a big banner at the top warning that the dictionary is a work in
 # progress. Set this to false once it’s gone through a reasonable amount of
@@ -373,6 +388,9 @@ MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 # An optional, shorter name for the language. Currently only used in the search
 # bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
+
+# The name of the language, in the language itself, e.g., ‘nêhiyawêwin’
+MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 
 # The marketing / brand / public-facing name of the dictionary

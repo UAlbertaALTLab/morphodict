@@ -1,25 +1,24 @@
 {
-  "name": "cree-intelligent-dictionary",
+  "name": "morphodict",
+  "private": true,
   "version": "1.0.0",
-  "description": "Cree Intelligent Dictionary",
+  "description": "Morphodict",
   "scripts": {
     "build": "rollup -c",
-    "test": "pipenv run dev & $(npm bin)/wait-on tcp:127.0.0.1:8000 && $(npm bin)/cypress run",
+    "test": "pipenv run scripts/run-cypress --no-interactive",
     "stop-only": "stop-only --folder cypress/integration",
-    "cypress": "npx wait-on tcp:127.0.0.1:8000 && npx cypress run",
-    "test:ci": "pipenv run ensuretestdb && (pipenv run runserver_for_tests & trap 'kill %1' 0 1 2 3 15; $(npm bin)/wait-on -t 30000 tcp:127.0.0.1:8000 && $(npm bin)/cypress run $CYPRESS_OPTS)",
     "reformat": "prettier --write '{frontend,cypress}/**/*.js'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UAlbertaALTLab/cree-intelligent-dictionary.git"
+    "url": "git+https://github.com/UAlbertaALTLab/morphodict.git"
   },
   "author": "University of Alberta ALTLab",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/issues"
+    "url": "https://github.com/UAlbertaALTLab/morphodict/issues"
   },
-  "homepage": "https://github.com/UAlbertaALTLab/cree-intelligent-dictionary#readme",
+  "homepage": "https://github.com/UAlbertaALTLab/morphodict#readme",
   "devDependencies": {
     "@cypress/skip-test": "^2.5.1",
     "cypress": "^6.2.0",

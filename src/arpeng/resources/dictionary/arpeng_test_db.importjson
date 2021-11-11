@@ -1,74 +1,74 @@
 [
   {
-    "head": "níhoonéíhi-",
-    "linguistInfo": {
-      "pos": "vai",
-      "sourceIds": ["L16721"],
-      "morphologies": ["nihoon-ehi-"]
-    },
-    "senses": [
-      {
-        "definition": "yellow",
-        "sources": ["ALD"]
-      }
-    ],
     "analysis": [
       ["[VERB]", "[AI]", "[ANIMATE-SUBJECT]", "[IMPERATIVE]"],
       "nihooneihi",
       ["[2SG-SUBJ]"]
     ],
-    "paradigm": "AI",
-    "slug": "níhoonéíhi-"
-  },
-  {
-    "head": "níhooyóó-",
+    "head": "níhoonéíhi-",
     "linguistInfo": {
-      "pos": "vii",
-      "sourceIds": ["L16737"],
-      "morphologies": ["nihoon-yoo-"]
+      "morphologies": ["nihoon-ehi-"],
+      "pos": "vai",
+      "sourceIds": ["L16721"]
     },
+    "paradigm": "AI",
     "senses": [
       {
         "definition": "yellow",
         "sources": ["ALD"]
       }
     ],
+    "slug": "níhoonéíhi-"
+  },
+  {
     "fstLemma": "nihooyoo",
+    "head": "níhooyóó-",
+    "linguistInfo": {
+      "morphologies": ["nihoon-yoo-"],
+      "pos": "vii",
+      "sourceIds": ["L16737"]
+    },
     "paradigm": "II",
+    "senses": [
+      {
+        "definition": "yellow",
+        "sources": ["ALD"]
+      }
+    ],
     "slug": "níhooyóó-"
   },
   {
+    "fstLemma": "noohoot",
     "head": "noohóot-",
     "linguistInfo": {
+      "morphologies": ["nooh-ôot-"],
       "pos": "vti",
-      "sourceIds": ["L19469"],
-      "morphologies": ["nooh-ôot-"]
+      "sourceIds": ["L19469"]
     },
+    "paradigm": "TI",
     "senses": [
       {
         "definition": "see s.t.",
         "sources": ["ALD"]
       }
     ],
-    "fstLemma": "noohoot",
-    "paradigm": "TI",
     "slug": "noohóot-"
   },
   {
+    "fstLemma": "noohow",
     "head": "nóóhow-",
     "linguistInfo": {
+      "morphologies": ["nooh-ow-"],
       "pos": "vta",
-      "sourceIds": ["L19475"],
-      "morphologies": ["nooh-ow-"]
+      "sourceIds": ["L19475"]
     },
+    "paradigm": "TA",
     "senses": [
       {
         "definition": "see",
         "sources": ["ALD"]
       }
     ],
-    "fstLemma": "noohow",
-    "paradigm": "TA",
     "slug": "nóóhow-"
   }
 ]

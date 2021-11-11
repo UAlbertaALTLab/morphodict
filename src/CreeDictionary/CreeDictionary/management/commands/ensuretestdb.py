@@ -32,5 +32,5 @@ class Command(BaseCommand):
             or not definition_vectors_path().exists()
             or importjson_newer_than_db()
         ):
-            call_command("importjsondict", purge=True)
+            call_command("importjsondict", purge=True, atomic=True)
         call_command("ensurecypressadminuser")

@@ -19,7 +19,7 @@ The containers will expose **ports like 8010** to the machine. See
 the [application registry] and [docker/helper/settings.py].
 
 [application registry]: https://github.com/UAlbertaALTLab/deploy.altlab.dev/blob/master/docs/application-registry.tsv
-[docker/helper/settings.py]: https://github.com/UAlbertaALTLab/cree-intelligent-dictionary/blob/main/docker/helpers/settings.py
+[docker/helper/settings.py]: https://github.com/UAlbertaALTLab/morphodict/blob/main/docker/helpers/settings.py
 
 ## Development
 
@@ -142,6 +142,26 @@ parameters from a single place: [docker/helper/settings.py][].
 
 Run `./docker/helper.py --help` to see more about what it can do.
 
+That said, if you are in production you can poke at the containers directly
+with `docker`, and if you are in the `~morphodict/morphodict/docker`
+directory, you can also run `docker-compose` directly. It’s really up to
+you.
+
+  - For restarting a container, `docker-compose restart `sssttt` is
+    easiest, but must be run from the correct directory.
+
+  - For running a management command inside a docker container, there is a
+    handy helper into the tool.
+
+  - Sometimes for debugging you will want to use the `docker` command-line
+    tool directly.
+
+The basic guideline in developing the tool was that any common operation
+that needed any fiddly options or multiple commands to make work was
+encapsulated in a helper command. That’s why there’s not (yet?) a command
+for restarting a container: `docker-compose restart sssttt` isn’t very
+fiddly.
+
 ### Installation
 
 These steps should only be needed if you are setting up morphodict on a new
@@ -164,7 +184,7 @@ checkout containing the setup code.
 
 When getting started, from your local machine’s `docker/plays` folder, copy
 `initial-setup.yml` and `vars.yml` to anywhere on the production machine,
-and you’ll be able to run then from there.
+and you’ll be able to run them from there.
 
 To install ansible on the production host, run this, **as your login user,
 not as root**:
@@ -198,7 +218,7 @@ inscrutable error messages on startup like `_pickle.UnpicklingError:
 invalid load key, 'v'.`
 
     $ sudo -i -u morphodict
-    $ git clone https://github.com/UAlbertaALTLab/cree-intelligent-dictionary morphodict
+    $ git clone https://github.com/UAlbertaALTLab/morphodict
     $ cd morphodict && git lfs install && git lfs fetch && git lfs checkout
 
 As the `morphodict` user, run `docker/helper.py setup`, and it’ll create
@@ -237,6 +257,9 @@ setup hasn’t been done yet.
     if you only want the test dictionary for now. Note that the specified
     path must be inside the container, and be specified relative to the git
     repo root.
+
+    For more on updating production dictionaries, see [dictionaries in
+    production](dictionaries-in-production).
 
  5. The app may not work very well if it the container was started before
     the database schema was in place, or if an import has invalidated some
@@ -289,6 +312,31 @@ To add a new site:
     about setting up redirects because that’s already handled in the
     snippet above.
 
+#### Domains with diacritics
+
+Did you know that
+[https://itwêwina.altlab.app](https://itwêwina.altlab.app) is a valid link?
+To make things like this work, you enter magic ascii hostnames into the
+nginx config file that browsers convert to non-ascii. Search the web for a
+‘punycode converter’ that’ll tell you that `itwêwina.altlab.app` ==
+`xn--itwwina-lya.altlab.app`. Take a look at the nginx config file with
+that name on `altlab.dev` in production.
+
+For webapps, it’s not a good idea to have multiple domains serving up
+exactly the same content, so you should pick one canonical domain to appear
+in the address bar, and set all the other versions of the name to redirect
+to it. For itwêwina, the canonical domain is currently
+`itwewina.altlab.app`, but one could conceivably have the
+`itwêwina.altlab.app` one be canonical with the `itwewina.altlab.app`
+version redirecting to it.
+
+Note that for security reasons, browsers have complicated rules about which
+limited sets of characters they’ll allows to be displayed directly in the
+URL bar, with any transgression of those rules resulting int he domain
+displaying as the raw punycode form instead, e.g.,
+`xn--itwwina-lya.altlab.app`. If you try using diacritics for the canonical
+domain, be sure to test it on many browsers on many platforms!
+
 ## Redeployment
 
 Every time a commit is pushed to the default branch on GitHub, the
@@ -308,5 +356,11 @@ This script:
     the uploaded Docker image
   - restarts the container
   - runs migrations
+
+It is totally fine to run the deploy script by hand, especially for
+debugging; just try to be sure that no automated deployments are happening
+at the same time.
+
+    sudo -u morphodict ~morphodict/morphodict/docker/deploy
 
 [ghcr]: https://github.com/orgs/UAlbertaALTLab/packages/container/package/itwewina.altlab.app

@@ -18,15 +18,12 @@
     "slug": "acâhkos"
   },
   {
-    "analysis": null,
     "head": "acâhkos kâ-osôsit",
     "linguistInfo": {
       "inflectional_category": "INM",
       "pos": "N",
-      "stem": "",
       "wordclass": null
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "comet, tailed star",
@@ -36,15 +33,12 @@
     "slug": "acâhkos_kâ-osôsit"
   },
   {
-    "analysis": null,
     "head": "acâhkosa kâ-otakohpit",
     "linguistInfo": {
       "inflectional_category": "INM",
       "pos": "N",
-      "stem": "",
       "wordclass": null
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "Starblanket; literally: One who has Stars as a Blanket; name of Cree chief, signatory to Treaty 4",
@@ -95,10 +89,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "now, today",
@@ -124,7 +116,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "asawâpamîw"
+    "slug": "asawāpamīw"
   },
   {
     "analysis": [[], "asikan", ["+N", "+A", "+Sg"]],
@@ -161,7 +153,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "asiskîwithâkanihkîw"
+    "slug": "asiskīwithākanihkīw"
   },
   {
     "analysis": [[], "atamiskawîw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
@@ -180,7 +172,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "atamiskawîw"
+    "slug": "atamiskawīw"
   },
   {
     "analysis": [[], "atâhk", ["+N", "+A", "+Sg"]],
@@ -212,15 +204,12 @@
     ]
   },
   {
-    "analysis": null,
     "head": "ati-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "begin to, beginning; progressively, proceed to, going on, progressing; on the way",
@@ -235,10 +224,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "it is (this) [focus marker]",
@@ -253,7 +240,6 @@
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "stem": "",
       "wordclass": "PRON"
     },
     "paradigm": "demonstrative-pronouns",
@@ -284,16 +270,13 @@
     "slug": "awâsisîwiw"
   },
   {
-    "analysis": null,
+    "analysis": [[], "awîna", ["+Pron", "+Interr", "+Sg"]],
     "head": "awîna",
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "proto": "awêna",
-      "stem": "",
       "wordclass": "PRON"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "who, whose",
@@ -303,22 +286,20 @@
     "slug": "awîna"
   },
   {
-    "analysis": [[], "awîna", ["+Pron", "+Interr", "+Sg"]],
     "head": "awîna",
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "PRON",
-      "stem": "",
+      "proto": "awêna",
       "wordclass": "PRON"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "who, whose",
         "sources": ["CW"]
       }
     ],
-    "slug": "awîna@p"
+    "slug": "awīna"
   },
   {
     "analysis": [[], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
@@ -422,25 +403,6 @@
     "slug": "ayiwinisa"
   },
   {
-    "analysis": [[], "âcimîw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
-    "head": "âcimîw",
-    "linguistInfo": {
-      "inflectional_category": "VTA-1",
-      "pos": "V",
-      "proto": "âcimêw",
-      "stem": "âcim-",
-      "wordclass": "VTA"
-    },
-    "paradigm": "VTA",
-    "senses": [
-      {
-        "definition": "s/he tells about s.o., s/he talks about s.o.; s/he narrates about s.o.",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "âcimîw"
-  },
-  {
     "analysis": [[], "âcimow", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "âcimow",
     "linguistInfo": {
@@ -506,6 +468,25 @@
     ]
   },
   {
+    "analysis": [[], "âcimîw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "âcimîw",
+    "linguistInfo": {
+      "inflectional_category": "VTA-1",
+      "pos": "V",
+      "proto": "âcimêw",
+      "stem": "âcim-",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "s/he tells about s.o., s/he talks about s.o.; s/he narrates about s.o.",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "ācimīw"
+  },
+  {
     "analysis": [[], "âthiman", ["+N", "+I", "+Sg"]],
     "head": "âthiman",
     "linguistInfo": {
@@ -522,7 +503,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "âthiman@i"
+    "slug": "āthiman@i"
   },
   {
     "analysis": [[], "âthiman", ["+N", "+I", "+Sg"]],
@@ -541,7 +522,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "âthiman@n"
+    "slug": "āthiman@n"
   },
   {
     "analysis": [[], "âthiman", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -560,7 +541,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "âthiman@v"
+    "slug": "āthiman@v"
   },
   {
     "analysis": [[], "ispîhk", ["+Ipc"]],
@@ -568,10 +549,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "when",
@@ -587,17 +566,15 @@
       "inflectional_category": "IPC",
       "pos": "IPC",
       "proto": "êkwa",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "and, also; then; now",
         "sources": ["CW"]
       }
     ],
-    "slug": "îkwa"
+    "slug": "īkwa"
   },
   {
     "analysis": [[], "îkwatik", ["+Ipc", "+Interj"]],
@@ -606,17 +583,15 @@
       "inflectional_category": "IPJ",
       "pos": "IPC",
       "proto": "êkwatik",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "o.k. now, let's go",
         "sources": ["CW"]
       }
     ],
-    "slug": "îkwatik"
+    "slug": "īkwatik"
   },
   {
     "analysis": [
@@ -639,18 +614,15 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "katawatîthimîw"
+    "slug": "katawatīthimīw"
   },
   {
-    "analysis": null,
     "head": "kâh-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "would, ought to; likely to",
@@ -683,10 +655,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "secret, in secret, stealthy, by stealth; private, in private",
@@ -696,15 +666,12 @@
     "slug": "kîmôci-@ipc"
   },
   {
-    "analysis": null,
     "head": "kîmôci-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "secretly, by stealth",
@@ -766,7 +733,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "kotiskâwîw"
+    "slug": "kotiskāwīw"
   },
   {
     "analysis": [[], "maskwa", ["+N", "+A", "+Sg"]],
@@ -1131,7 +1098,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "mowîw"
+    "slug": "mowīw"
   },
   {
     "analysis": [[], "nipawâkan", ["+N", "+A", "+D", "+Px1Sg", "+Sg"]],
@@ -1251,10 +1218,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "three",
@@ -1264,15 +1229,12 @@
     "slug": "nisto"
   },
   {
-    "analysis": null,
     "head": "nitawi-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "go and, go to; engaged in",
@@ -1288,7 +1250,6 @@
       "inflectional_category": "PrA",
       "pos": "PRON",
       "proto": "niýa",
-      "stem": "",
       "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
@@ -1307,7 +1268,6 @@
       "inflectional_category": "PrA",
       "pos": "PRON",
       "proto": "niýanân",
-      "stem": "",
       "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
@@ -1317,7 +1277,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nithanân"
+    "slug": "nithanān"
   },
   {
     "analysis": [[], "nitôskwan", ["+N", "+I", "+D", "+Px1Sg", "+Sg"]],
@@ -1429,15 +1389,12 @@
     "slug": "nîsiwak"
   },
   {
-    "analysis": null,
     "head": "nîso-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "two",
@@ -1452,10 +1409,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "two days",
@@ -1532,7 +1487,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nôhtîpathiw@vai"
+    "slug": "nōhtīpathiw@vai"
   },
   {
     "analysis": [[], "nôhtîpathiw", ["+V", "+II", "+Ind", "+3Sg"]],
@@ -1551,7 +1506,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "nôhtîpathiw@vii"
+    "slug": "nōhtīpathiw@vii"
   },
   {
     "analysis": [[], "ohci", ["+Ipc"]],
@@ -1559,10 +1514,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "from there, thence, out of; with, by means of; because of; for; from then; about",
@@ -1572,7 +1525,6 @@
     "slug": "ohci"
   },
   {
-    "analysis": null,
     "head": "oskana kâ-asastîki",
     "linguistInfo": {
       "inflectional_category": "INM",
@@ -1581,14 +1533,13 @@
       "stem": "oskan- [NI-1] + asastê- [VII-v]",
       "wordclass": null
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "Regina, SK; Pile-o'-Bones; literally: where the bones are piled",
         "sources": ["CW"]
       }
     ],
-    "slug": "oskana_kâ-asastêki"
+    "slug": "oskana_kā-asastīki"
   },
   {
     "analysis": [[], "ôma", ["+Ipc"]],
@@ -1596,10 +1547,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "it is this; the fact that; then; when; as it is, actually [focus marker]",
@@ -1609,12 +1558,10 @@
     "slug": "ôma@i"
   },
   {
-    "analysis": null,
     "head": "ôma",
     "linguistInfo": {
       "inflectional_category": "PrI",
       "pos": "PRON",
-      "stem": "",
       "wordclass": "PRON"
     },
     "paradigm": "demonstrative-pronouns",
@@ -1643,7 +1590,7 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "pahkwîsikan"
+    "slug": "pahkwīsikan"
   },
   {
     "analysis": [
@@ -1651,7 +1598,7 @@
       "pahkwîsikan",
       ["+N", "+A", "+Der/Dim", "+N", "+A", "+Sg"]
     ],
-    "formOf": "pahkwîsikan",
+    "formOf": "pahkwīsikan",
     "head": "pahkwîsikanis",
     "senses": [
       {
@@ -1715,23 +1662,20 @@
     "slug": "pipon@v"
   },
   {
-    "analysis": null,
     "head": "pî-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
       "proto": "pê-",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "come and; towards, approaching; hither; thence, from there on down; [towards focus]",
         "sources": ["CW"]
       }
     ],
-    "slug": "pî-"
+    "slug": "pī-"
   },
   {
     "analysis": [[], "pîyak", ["+Ipc"]],
@@ -1740,28 +1684,23 @@
       "inflectional_category": "IPC",
       "pos": "IPC",
       "proto": "pêyak",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "one; alone, single; the only one",
         "sources": ["CW"]
       }
     ],
-    "slug": "pîyak"
+    "slug": "pīyak"
   },
   {
-    "analysis": null,
     "head": "pôni-",
     "linguistInfo": {
       "inflectional_category": "IPV",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "stop, terminate, cease; after",
@@ -1805,10 +1744,8 @@
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "hello, how are you",
@@ -1831,10 +1768,8 @@
     "linguistInfo": {
       "inflectional_category": "IPJ",
       "pos": "IPC",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "hello, how are you",
@@ -1906,25 +1841,6 @@
     "slug": "wâpahtam"
   },
   {
-    "analysis": [[], "wâpamîw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
-    "head": "wâpamîw",
-    "linguistInfo": {
-      "inflectional_category": "VTA-1",
-      "pos": "V",
-      "proto": "wâpamêw",
-      "stem": "wâpam-",
-      "wordclass": "VTA"
-    },
-    "paradigm": "VTA",
-    "senses": [
-      {
-        "definition": "s/he sees s.o., s/he witnesses s.o.",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "wâpamîw"
-  },
-  {
     "analysis": [[], "wâpiw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "wâpiw",
     "linguistInfo": {
@@ -1947,16 +1863,33 @@
     "slug": "wâpiw"
   },
   {
+    "analysis": [[], "wâpamîw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "wâpamîw",
+    "linguistInfo": {
+      "inflectional_category": "VTA-1",
+      "pos": "V",
+      "proto": "wâpamêw",
+      "stem": "wâpam-",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "s/he sees s.o., s/he witnesses s.o.",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "wāpamīw"
+  },
+  {
     "analysis": [[], "witha", ["+Ipc"]],
     "head": "witha",
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "IPC",
       "proto": "wiýa",
-      "stem": "",
       "wordclass": "IPC"
     },
-    "paradigm": null,
     "senses": [
       {
         "definition": "this, that; as for, by contrast",
@@ -1976,7 +1909,6 @@
       "inflectional_category": "PrA",
       "pos": "PRON",
       "proto": "wiýa",
-      "stem": "",
       "wordclass": "PRON"
     },
     "paradigm": "personal-pronouns",
