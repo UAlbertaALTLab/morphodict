@@ -67,7 +67,7 @@ class SearchRun:
         self,
         display_mode=DisplayMode.default,
         animate_emoji=AnimateEmoji.default,
-        dict_source=DictionarySource.default
+        dict_source=None
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
@@ -87,7 +87,7 @@ class SearchRun:
         ]
 
     def serialized_presentation_results(
-        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default, dict_source=DictionarySource.default
+        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default, dict_source=None
     ):
         results = self.presentation_results(
             display_mode=display_mode, animate_emoji=animate_emoji, dict_source=dict_source

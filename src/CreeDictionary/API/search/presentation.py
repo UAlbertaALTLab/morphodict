@@ -97,7 +97,7 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
-        dict_source=DictionarySource.default
+        dict_source=None
 
     ):
         self._result = result
@@ -220,8 +220,7 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: list
     :return: json parsable result
     """
     result = model_to_dict(wordform)
-    result["definitions"] = serialize_definitions(wordform.definitions.all(), dict_source)
-    print(result["definitions"])
+    result["definitions"] = serialize_definitions(wordform.definitions.all(), dict_source=dict_source)
     result["lemma_url"] = wordform.get_absolute_url()
 
     if wordform.linguist_info:
