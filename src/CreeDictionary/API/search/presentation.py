@@ -10,12 +10,13 @@ from CreeDictionary.API.search import core, types
 from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform
 
-from ..schema import SerializedDefinition, SerializedWordform
+from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
 from .types import Preverb
 
 
@@ -189,6 +190,21 @@ class PresentationResult:
             cast(Any, ret)["verbose_info"] = self._result
 
         return ret
+
+    @property
+    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+        """
+        Tags and features to display in the linguistic breakdown pop-up.
+        This omits preverbs and other features displayed elsewhere
+        In itwêwina, these tags are derived from the suffix features exclusively.
+        We chunk based on the English relabelleings!
+        """
+        return tuple(
+            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
+            for fst_tags in LABELS.english.chunk(
+                t.strip("+") for t in self.linguistic_breakdown_tail
+            )
+        )
 
     @property
     def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
