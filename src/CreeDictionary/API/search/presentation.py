@@ -260,7 +260,7 @@ def serialize_definitions(definitions, include_auto_definitions=False, dict_sour
             for source_id in serialized["source_ids"]:
                 if source_id in dict_source:
                     ret.append(serialized)
-                elif include_auto_definitions and '🤖' in source_id and source_id.replace('🤖', '') in serialized["source_ids"]:
+                elif include_auto_definitions and '🤖' in source_id and source_id.replace('🤖', '') in dict_source:
                     ret.append(serialized)
     return ret
 

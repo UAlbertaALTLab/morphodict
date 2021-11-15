@@ -229,6 +229,7 @@ def paradigm_internal(request):
 def settings_page(request):
     # TODO: clean up template so that this weird hack is no longer needed.
     context = create_context_for_index_template("info-page")
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     return render(request, "CreeDictionary/settings.html", context)
 
 
