@@ -2,101 +2,4794 @@
   {
     "analysis": [
       [],
-      "ànīyìgás",
-      ["+V", "+O", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]
+     "yīzí",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ànīyìgás",
-    "linguistInfo": {
-      "stem": "à=_niyi.gás (i-IPFV)"
-    },
-    "paradigm": "VO",
-    "senses": [
-      {
-        "definition": "he/she/it will bite him/her/it",
-        "sources": ["OS"]
-      }
-    ],
-    "slug": "ànīyìgás"
-  },
-  {
-    "analysis": [
-      [],
-      "ágūnìlín",
-      ["+V", "+E", "+Ipfv", "+Sbj3Sg", "+IObjSb3", "+IObjGiven"]
-    ],
-    "head": "ágūnìlín",
-    "linguistInfo": {
-      "stem": "á=gū_nì.lín (0-IPFV)"
-    },
-    "paradigm": "VE",
-    "senses": [
-      {
-        "definition": "he/she/it is good",
-        "sources": ["OS"]
-      }
-    ],
-    "slug": "ágūnìlín"
-  },
-  {
-    "analysis": [[], "ījīn", ["+V", "+I", "+Ipfv", "+Sbj3Sg"]],
-    "head": "ījīn",
-    "linguistInfo": {
-      "stem": "=_.jin (0-IPFV)"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it is singing",
-        "sources": ["OS"]
-      }
-    ],
-    "slug": "ījīn"
-  },
-  {
-    "analysis": [
-      [],
-      "násʔín",
-      ["+V", "+T", "+Ipfv", "+Sbj3Sg", "+DObjSg3", "+DObjGiven"]
-    ],
-    "head": "násʔín",
-    "linguistInfo": {
-      "stem": "=_ná^O.ʔín2 (0s-IPFV)"
-    },
+    "head": "yīzí",
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is looking at him/her/it",
-        "sources": ["OS"]
+        "definition": "he she is reading it",
+        "sources": ["TVPD"]
       }
     ],
-    "slug": "násʔín"
+    "slug": "yīzí"
   },
+
   {
     "analysis": [
       [],
-      "ōghàschút",
-      [
-        "+V",
-        "+D",
-        "+Ipfv",
-        "+Sbj3Sg",
-        "+DObjSg3",
-        "+DObjGiven",
-        "+IObjSb3",
-        "+IObjGiven"
-      ]
+     "yīdīdzá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ōghàschút",
-    "linguistInfo": {
-      "stem": "oghà=_.chút (0s-IPFV)"
-    },
+    "head": "yīdīdzá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīdzá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàdzá",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàdzá",
     "paradigm": "VD",
     "senses": [
       {
-        "definition": "he/she is feeding him/her/it",
-        "sources": ["OS"]
+        "definition": "he/she will hand/give something to him/her (granular)",
+        "sources": ["TVPD"]
       }
     ],
-    "slug": "ōghàschút"
+    "slug": "yōghàdzá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mànágúdílōō áyīlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "mànágúdílōō áyīlàg",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she made him/her sick again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mànágúdílōō_áyīlàg"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīyā",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dīyā",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she went/walked",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīyā"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xāyìlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xāyìlàg",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "this is how he/she made/did it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xāyìlàg"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tū-tīī yīnìyízìt",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tū-tīī yīnìyízìt",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she was wanting water",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tū-tīī_yīnìyízìt"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàyītɫíɫ",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xàyītɫíɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is quickly going out",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàyītɫíɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīsgòsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīsgòsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "it is black",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīsgòsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúʔīdískīdí ìlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúʔīdískīdí ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "will he/she not ask later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúʔīdískīdí_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdōghá kúyīdīstsùùz",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+3SgR", "+DObjSg3"]
+    ],
+    "head": "īdōghá kúyīdīstsùùz",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying it in for himself/herself (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdōghá_kúyīdīstsùùz"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyāláɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyāláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is holding it/them up (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyāláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīstà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīstà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīstà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàgūt'īn gwáyīlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "nàgūt'īn gwáyīlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make him/her work",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàgūt'īn_gwáyīlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīk'ááz-gū gwánáyīʔìsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dīk'ááz-gū gwánáyīʔìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she makes it red like again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīk'ááz-gū_gwánáyīʔìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫ'á",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītɫ'á",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will run/drive somewhere",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫ'á"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīk'ááz-gū gwáyīdīdāláɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dīk'ááz-gū gwáyīdīdāláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is about to be making it red like",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīk'ááz-gū_gwáyīdīdāláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàzíd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàzíd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is standing",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàzíd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīyītɫ'ìsh",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīyītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she wrote it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīyītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dā-hī nádīyá-hí yīnízīní ìlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dā-hī nádīyá-hí yīnízīní ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "does he/she want to go home now",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dā-hī_nádīyá-hí_yīnízīní_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nádīyá-hī ìlà",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "nádīyá-hī ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "is he/she going to go home",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nádīyá-hī_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫīd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītɫīd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is weak",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ádīdánáɫ",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ádīdánáɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is about to become something (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ádīdánáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yītsáɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yītsáɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "as he/she is in motion he/she is crying (PROGRESSIVE)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yītsáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīstà",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīstà",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will give it to him/her (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīstà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīyí dátɫ'ìshí īyízíɫī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dīyí dátɫ'ìshí īyízíɫī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will read this book later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīyí_dátɫ'ìshí_īyízíɫī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nūwák'àsì dītɫ'á",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nūwák'àsì dītɫ'á",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will run/drive that way/in that direction",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nūwák'àsì_dītɫ'á"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúnátɫīīzh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "kúnátɫīīzh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she goes in quickly again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúnátɫīīzh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'āyìlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "k'āyìlàg",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she finished doing/making it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'āyìlàg"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyīsʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyīsʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is doing it is working at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyīsʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàyīdīsʔó(n)",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàyīdīsʔó(n)",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lost it (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàyīdīsʔó(n)"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mīwùs ágúdīdīyīlót",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mīwùs ágúdīdīyīlót",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she leg/legs might start to ache",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mīwùs_ágúdīdīyīlót"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dàɂi màgúúdílōdà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dàɂi màgúúdílōdà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "how is he/she sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dàɂi_màgúúdílōdà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyīnáʔìsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "náyīnáʔìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she looks at him/her again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyīnáʔìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dzánàdā dìsíyāʔí ìsà",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dzánàdā dìsíyāʔí ìsà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "perhaps he/she would have already gone",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dzánàdā_dìsíyāʔí_ìsà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīstsày",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dīstsày",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she started to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīstsày"
+  },
+
+  {
+    "analysis": [
+      [],
+     "sídīskīd",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg1"]
+    ],
+    "head": "sídīskīd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will ask me",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "sídīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīdzá",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīdzá",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give it to him/her (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīdzá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīkò",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīkò",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give it to him/her (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīkò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yānīdlùw",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yānīdlùw",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she laughs along with him/her in a joking way",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yānīdlùw"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàyīdìstsūūz",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàyīdìstsūūz",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lost it (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàyīdìstsūūz"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gūdīskīd",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "gūdīskīd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will ask them",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gūdīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīnátɫ'ò",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "nīnátɫ'ò",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she arrived running/driving again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīnátɫ'ò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xànáyīdīstó(n)",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xànáyīdīstó(n)",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying it out again (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xànáyīdīstó(n)"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīdìdlù",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīdìdlù",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is will start to laugh",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīdìdlù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīnásʔíní ānà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīnásʔíní ānà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "can/may he/she take a look at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīnásʔíní_ānà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyìlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyìlàg",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she made/did it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyìlàg"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nágūdīītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nágūdīītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will jump up",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nágūdīītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyidīdáláɫ",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyidīdáláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is about to start making it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyidīdáláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tōsgūnā gwáná",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tōsgūnā gwáná",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will become a policeman/soldier",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tōsgūnā_gwáná"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yídīskīd",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yídīskīd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will ask him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yídīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīnázìd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nīnázìd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is standing again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīnázìd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nánīdò",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nánīdò",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will sit down again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nánīdò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nìnátɫ'ásh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "nìnátɫ'ásh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she arrives by running/driving again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nìnátɫ'ásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kàdìdītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "kàdìdītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will start to go quickly into full view",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kàdìdītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúgūdīdátɫíɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "kúgūdīdátɫíɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is starting to jump in",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúgūdīdátɫíɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dútānáyáʔóɫī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dútānáyáʔóɫī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will not be holding it up again (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dútānáyáʔóɫī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫ'úɫ ànàdìsdló",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tɫ'úɫ ànàdìsdló",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lost a rope (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫ'úɫ_ànàdìsdló"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúgūdīsdlō",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "kúgūdīsdlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying/taking them inside (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúgūdīsdlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīyáɫí gúdīnìsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "yīyáɫí gúdīnìsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she often walks",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīyáɫí_gúdīnìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yáʔín",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yáʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she saw him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yáʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdīdìstɫ'ìsh",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "īdīdìstɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she started to write something",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdīdìstɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīdīdīʔò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīdīdīʔò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will start carrying/taking it inside (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīdīdīʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīnītó(n)",
+      ["+V", "+D", "+Pfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīnītó(n)",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she handed/gave it to him/her (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīnītó(n)"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nádātɫ'ásh",
+      ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "nádātɫ'ásh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she started running/driving somewhere again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nádātɫ'ásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúdàyīdīyītɫ'ìshí ìsà",
+      ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúdàyīdīyītɫ'ìshí ìsà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "perhaps he/she did not write each and every one",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúdàyīdīyītɫ'ìshí_ìsà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xànáyīyā",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "xànáyīyā",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she went/walked out again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xànáyīyā"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gúdīdītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "gúdīdītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will jump",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gúdīdītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīyīts'ònī ìsà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīyīts'ònī ìsà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "perhaps he/she will hear it later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīyīts'ònī_ìsà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ánáyiyīlá-hī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ánáyiyīlá-hī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will do/make it again later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ánáyiyīlá-hī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dútānáyāʔóɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dútānáyāʔóɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is not holding it up again (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dútānáyāʔóɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīdīdīstsús",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīdīdīstsús",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will start carrying/taking it inside (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīdīdīstsús"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nááchīīzh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nááchīīzh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will eat again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nááchīīzh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gūstsá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "gūstsá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is going to see them",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gūstsá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "àxágùnìstsàd",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "àxágùnìstsàd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she ate more than enough",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "àxágùnìstsàd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gūdīsdlō",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "gūdīsdlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she carried/took them (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gūdīsdlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīk'āgúdīdīyītɫīɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīk'āgúdīdīyītɫīɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is about to be grabbing it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīk'āgúdīdīyītɫīɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīʔò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīʔò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīk'ááz",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīk'ááz",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is red",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīk'ááz"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyìʔò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyìʔò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will put it up on something (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyìʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yíīnídíyīzīt",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yíīnídíyīzīt",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she was thinking about/remembered him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yíīnídíyīzīt"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ōò yīnásʔínī gù",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ōò yīnásʔínī gù",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "yes he/she can take a look at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ōò_yīnásʔínī_gù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kàdàɫí ìlà",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "kàdàɫí ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "is he/she lying",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kàdàɫí_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàátɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xàátɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will go out quickly",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàátɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yádóní ìlà",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yádóní ìlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "did he/she drink it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yádóní_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mágūdidīyìlít",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mágūdidīyìlít",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is about to become good/fine/personable",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mágūdidīyìlít"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīstsús",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīstsús",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīstsús"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīstà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīstà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry him/her inside (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīstà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúʔátsàd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dúʔátsàd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she did not eat something (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúʔátsàd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ōò tāyīdìstsús yīnīsīn",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ōò tāyīdìstsús yīnīsīn",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "yes he/she wants to lift it/pick it up (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ōò_tāyīdìstsús_yīnīsīn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xāt'àà tɫádínītà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xāt'àà tɫádínītà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will just fall sound asleep",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xāt'àà_tɫádínītà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdītɫ'ìsh",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is marking/writing it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dōòsák'àsí dīyá-gūlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dōòsák'àsí dīyá-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might walk/go in this direction",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dōòsák'àsí_dīyá-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúdīsgòsh gwáyīlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dúdīsgòsh gwáyīlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will not make it black",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúdīsgòsh_gwáyīlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītsá-hí át'à",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītsá-hí át'à",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will (ASSERTIVE) cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītsá-hí_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyínilō",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyínilō",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give it/them to him/her (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyínilō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɬ'ūwdīnà gwádīdánáɫ",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tɬ'ūwdīnà gwádīdánáɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is about to become a doctor",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɬ'ūwdīnà_gwádīdánáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màgúdílōō áyīlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "màgúdílōō áyīlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make him/her sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màgúdílōō_áyīlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīsnō",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dīsnō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she went to camp",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīsnō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫ'á gwáyìyīlá-hī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dītɫ'á gwáyìyīlá-hī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make him/her run/drive later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫ'á_gwáyìyīlá-hī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xāná",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xāná",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "that is how he/she will be/that is what he/she will do",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xāná"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyīdītīsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyīdītīsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts it again and again (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyīdītīsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "sīdō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "sīdō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is sitting",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "sīdō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yádón",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yádón",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she drank it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yádón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīdīsjáázh",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīdīsjáázh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she started carrying/taking it inside (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīdīsjáázh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nítàɂī",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nítàɂī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will sleep later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nítàɂī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yītà",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "yītà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she slept",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yītà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mītsì àgúdīdīyīlòɫ",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "mītsì àgúdīdīyīlòɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is getting a headache",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mītsì_àgúdīdīyīlòɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dā-hī xàdīdīyá yīnízīníìlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dā-hī xàdīdīyá yīnízīníìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "does he/she want to start to go out now",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dā-hī_xàdīdīyá_yīnízīníìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàkò",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàkò",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give something to him/her (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàkò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dádlù-hí ìsílā yīyáɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "dádlù-hí ìsílā yīyáɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is laughing while walking/going",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dádlù-hí_ìsílā_yīyáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīyá-hí át'à",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīyá-hí át'à",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will (ASSERTIVE) go/walk",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīyá-hí_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ánáyīʔìsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ánáyīʔìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she does/makes it again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ánáyīʔìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tīītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tīītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will quickly get off the regular path",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tīītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàkàtɫōdí ìlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàkàtɫōdí ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "is he/she going down quickly",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàkàtɫōdí_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyāʔín",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "náyāʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she saw him/her again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyāʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫík'á yākón",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tɫík'á yākón",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she carried/took it around (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫík'á_yākón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàyītɫ'ò",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "xàyītɫ'ò",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she ran/drove out",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàyītɫ'ò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàgūdītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàgūdītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will jump off/down",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàgūdītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dlùw gúdīnìsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dlùw gúdīnìsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she often laughs",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dlùw_gúdīnìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàdītɫ'ìsh",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàdītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she gets lost in thought while writing something",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàdītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīk'òsà dīts'í",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīk'òsà dīts'í",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will hear his/her/its voice",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīk'òsà_dīts'í"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xānáyīʔìsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xānáyīʔìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "this is how he/she does/makes it again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xānáyīʔìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mágūnìyílìn",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "mágūnìyílìn",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she was good/fine/personable",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mágūnìyílìn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yidíyiskīɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yidíyiskīɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is asking him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yidíyiskīɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dádlù",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "dádlù",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is laughing",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dádlù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyádzī",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "tāyádzī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is holding up a handful (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyádzī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "chāā dúdā-hī xàdīdīyá yīnízīn",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "chāā dúdā-hī xàdīdīyá yīnízīn",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "no he/she does not want to start to go out now",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "chāā_dúdā-hī_xàdīdīyá_yīnízīn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīnágūt'ìsh-gūlà",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "nīnágūt'ìsh-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might work again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīnágūt'ìsh-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ō dā-hī xànáyá yīnízīn",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "ō dā-hī xànáyá yīnízīn",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "yes he/she wants to go out again now",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ō_dā-hī_xànáyá_yīnízīn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mátágùdlì gwáyìlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "mátágùdlì gwáyìlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make him/her bad",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mátágùdlì_gwáyìlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mītsì àgúdīlō",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "mītsì àgúdīlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she has a headache",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mītsì_àgúdīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyītì",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyītì",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it inside (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyītì"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīk'āgúdīdītɫōd",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīk'āgúdīdītɫōd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is going to grab it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīk'āgúdīdītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdīyīskīd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
+    ],
+    "head": "īdīyīskīd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she asked someone",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdīyīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mànágúdílō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mànágúdílō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is sick again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mànágúdílō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nágūdīdīyītɫīɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "nágūdīdīyītɫīɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is just about to be jumping up",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nágūdīdīyītɫīɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màs áyiláɫ",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "màs áyiláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is working on making a hoop",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màs_áyiláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xākījī gwájàg",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "xākījī gwájàg",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she became chief",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xākījī_gwájàg"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīstsàyí-tīī",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīstsàyí-tīī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she really started to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīstsàyí-tīī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànànáyīdīʔò-hī át'à",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànànáyīdīʔò-hī át'à",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will (ASSERTIVE) lose it again (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànànáyīdīʔò-hī_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīdòʔī",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nīdòʔī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will sit down later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīdòʔī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàkàtɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàkàtɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will quickly go down",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàkàtɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúnáyīdīsʔòn",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúnáyīdīsʔòn",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying/taking it inside again (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúnáyīdīsʔòn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīdīlō",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīdīlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it inside (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīdīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàtɫ'á",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xàtɫ'á",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will run/drive out",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàtɫ'á"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nāsʔàghá-gū áyáláɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "nāsʔàghá-gū áyáláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is making it like a house",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nāsʔàghá-gū_áyáláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdītì",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdītì",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdītì"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàgūt'īnī",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàgūt'īnī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will work later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàgūt'īnī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will go quickly",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dōòsák'àsí dīyá-hí át'à",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dōòsák'àsí dīyá-hí át'à",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will walk/go that way/in that direction",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dōòsák'àsí_dīyá-hí_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīʔò",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīʔò",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give it to him/her (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúgūdátɫōd",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "kúgūdátɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she jumped in",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúgūdátɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'āʔídīyīskīd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
+    ],
+    "head": "k'āʔídīyīskīd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she finished asking someone",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'āʔídīyīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúkàyīdátł'í-gūlà",
+      ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúkàyīdátł'í-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might not have lied",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúkàyīdátł'í-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīdīnīyīk'ááz",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīdīnīyīk'ááz",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is becoming red",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīdīnīyīk'ááz"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīstsús",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīstsús",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give it to him/her (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīstsús"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīstó(n)",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīstó(n)",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she carried/took it (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīstó(n)"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàkànátɫōd",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "nàkànátɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she quickly went down",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàkànátɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yidīniyìsgòshī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yidīniyìsgòshī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will blacken it later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yidīniyìsgòshī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yidīnìsgòsh",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yidīnìsgòsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she blackened it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yidīnìsgòsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàyīdīstsúsī át'à",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàyīdīstsúsī át'à",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will lose it (ASSERTIVE) (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàyīdīstsúsī_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyìdìstásh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyìdìstásh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts/picks him/her up again and again (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyìdìstásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫīdí-gūlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītɫīdí-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might be weak later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫīdí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màgúdílōō áyīdīdáláɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "màgúdílōō áyīdīdáláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is making him/her become sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màgúdílōō_áyīdīdáláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màgúdílō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "màgúdílō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she/it is sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màgúdílō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nínáyáʔìshí-gūlà",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "nínáyáʔìshí-gūlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she might have looked at him/her again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nínáyáʔìshí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīnásʔín-gūlà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīnásʔín-gūlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she might look at something",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīnásʔín-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīnásʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīnásʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is looking at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīnásʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàyīnīstín",
+      ["+V", "+D", "+Pfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàyīnīstín",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she handed/gave it to him/her (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàyīnīstín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghànilō",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghànilō",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give something/s to him/her (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghànilō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyā",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "náyā",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she stood up/got out of bed",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyā"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mīwù àgúdīlō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mīwù àgúdīlō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she has a toothache/aching teeth",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mīwù_àgúdīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyīdīʔón",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyīdīʔón",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifted/picked it up (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyīdīʔón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàyīdìskón",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàyīdìskón",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lost it (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàyīdìskón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xīgògù yáʔín",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xīgògù yáʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she saw it yesterday",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xīgògù_yáʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nátáɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "nátáɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is falling asleep",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nátáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īnásʔín",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "īnásʔín",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is looking",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īnásʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàdāgūgīt'īn gwágūlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "nàdāgūgīt'īn gwágūlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make them work",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàdāgūgīt'īn_gwágūlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúdīsgòsh gwánáyīʔìshí-gūlà",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dúdīsgòsh gwánáyīʔìshí-gūlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she might not make it black again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúdīsgòsh_gwánáyīʔìshí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàdidīyá",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xàdidīyá",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will begin to go/walk out",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàdidīyá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dútɫídīnāsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dútɫídīnāsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she does not move camp from place to place",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dútɫídīnāsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúgúdīdītɫōd-gūlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúgúdīdītɫōd-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might not jump later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúgúdīdītɫōd-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'átsìy",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "k'átsìy",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is crying with strength",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'átsìy"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mátágùdlì",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mátágùdlì",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is bad",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mátágùdlì"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyīdīʔò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyīdīʔò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will lift/pick/hold it up again (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyīdīʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīlō",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàyīdīstín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "xàyīdīstín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying him/her out (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàyīdīstín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màgúdísdlōt",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "màgúdísdlōt",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she became sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màgúdísdlōt"
+  },
+
+  {
+    "analysis": [
+      [],
+     "màgúdīdíyīlōt",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "màgúdīdíyīlōt",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is starting to get sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "màgúdīdíyīlōt"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gīmànágúdílōsh gwánágūʔīsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "gīmànágúdílōsh gwánágūʔīsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is making them become sick again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gīmànágúdílōsh_gwánágūʔīsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúdā-hī xànáyá-hí yīnízīní ìlà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúdā-hī xànáyá-hí yīnízīní ìlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "does he/she not want to out again now",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúdā-hī_xànáyá-hí_yīnízīní_ìlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yídònī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yídònī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will drink it later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yídònī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyìyīlá-hī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyìyīlá-hī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will do/make it later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyìyīlá-hī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúdītɫīd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúdītɫīd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is not weak",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúdītɫīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīná",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīná",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will camp",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīná"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīch'īsh",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīch'īsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she hears it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīch'īsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàstà",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàstà",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will give something to him/her (human/animal)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàstà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàtì",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàtì",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will give something to him/her (stick-like)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàtì"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīdzīnīsà ák'ó màgúdìlō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīdzīnīsà ák'ó màgúdìlō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is still sick today",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīdzīnīsà_ák'ó_màgúdìlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdón",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "īdón",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is drinking (something) (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īzí",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "īzí",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he she is reading (something) (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īzí"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kàdītɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "kàdītɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will quickly go into full view",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kàdītɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyīyīsʔín",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyīyīsʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she have done/made/owned it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyīyīsʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dútāyāʔóɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dútāyāʔóɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is not holding it up (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dútāyāʔóɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyīdīʔò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyīdīʔò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will lift/pick/hold it up (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyīdīʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyástsús",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyástsús",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is holding it up (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyástsús"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mànágúdílōsh gwánáyīʔīsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "mànágúdílōsh gwánáyīʔīsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she keeps making him/her become sick again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mànágúdílōsh_gwánáyīʔīsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tíyá màgúdílō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tíyá màgúdílō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is very sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tíyá_màgúdílō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dìstsàyí át'à",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dìstsàyí át'à",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she did (ASSERTIVE) start to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dìstsàyí_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nààtɫ'á",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nààtɫ'á",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will arrive by running/driving",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nààtɫ'á"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyīdīyīʔòłī",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyīdīyīʔòłī",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will lift/pick it up later on (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyīdīyīʔòłī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyīdīlásh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyīdīlásh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts it up again and again (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyīdīlásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàgūdīdàtɫíɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "nàgūdīdàtɫíɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is just about to be jumping off/down",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàgūdīdàtɫíɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'ānītsày",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "k'ānītsày",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she finished crying",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'ānītsày"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mànágúdílōt",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mànágúdílōt",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will become sick again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mànágúdílōt"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyítsít",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyítsít",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will do/make it quickly",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyítsít"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīīhīdīskīdí-gūlà",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl1"]
+    ],
+    "head": "nīīhīdīskīdí-gūlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she might ask us",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīīhīdīskīdí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyidīdzá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "náyidīdzá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take something home (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyidīdzá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānádìkōsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānádìkōsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts/holds it up again and again (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānádìkōsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mánágūnìlíshí-gūlà",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "mánágūnìlíshí-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might become good/fine/personable again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mánágūnìlíshí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúxànáyáshí-gūlà",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúxànáyáshí-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might not go/walk out again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúxànáyáshí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'ātsád",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "k'ātsád",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will finish eating",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'ātsád"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dútānáyìdīʔóshī-gūlà",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "dútānáyìdīʔóshī-gūlà",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she might not lift it again and again on (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dútānáyìdīʔóshī-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nàgūt'īn",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nàgūt'īn",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is working",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nàgūt'īn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tīīnágūdītɫīīzh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "tīīnágūdītɫīīzh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she jumps aside from the regular path again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tīīnágūdītɫīīzh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mágūnìlít",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mágūnìlít",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will become good/fine/personable",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mágūnìlít"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdītɫ'ìsh",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "īdītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is writing something",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúnágūdìtɫīīzh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "kúnágūdìtɫīīzh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she jumps in again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúnágūdìtɫīīzh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yátsàd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yátsàd",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she ate it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yátsàd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdīskīd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "īdīskīd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will ask",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdīskīd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "ànàyīdīʔò-hī át'à",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "ànàyīdīʔò-hī át'à",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will (ASSERTIVE) lose it (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "ànàyīdīʔò-hī_át'à"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xīgògù màgúdìyílō",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "xīgògù màgúdìyílō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she was sick yesterday",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xīgògù_màgúdìyílō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "chāā chīchí yīnásʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "chāā chīchí yīnásʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "no he/she is not able to take a look at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "chāā_chīchí_yīnásʔín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'ānītsàyí-gūlà",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "k'ānītsàyí-gūlà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she might have stopped crying",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'ānītsàyí-gūlà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tāyákóɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tāyákóɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is holding it up (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tāyákóɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɬīkònī yīnízìn",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tɬīkònī yīnízìn",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she wants candy",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɬīkònī_yīnízìn"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītsá",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītsá",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is going to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītsá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyīdītɫ'ìsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "náyīdītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she writes it again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyīdītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kútɫōd",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "kútɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will quickly go in",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kútɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyìdìjīsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyìdìjīsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts it up a handful again and again (granular)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyìdìjīsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "īdīyītɫ'ìsh",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "īdīyītɫ'ìsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she wrote something (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "īdīyītɫ'ìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dúnīnāyásh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3", "+Neg"]
+    ],
+    "head": "dúnīnāyásh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will not stand up/get out of bed again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dúnīnāyásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xànádidìtɫīīzh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "xànádidìtɫīīzh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she starts to quickly go out again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xànádidìtɫīīzh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nītà",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nītà",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will go to sleep",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nītà"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīnáɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "yīnáɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is moving camp",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīnáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áná",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "áná",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will become (something) (something)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áná"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīk'ááz gwáyīlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dīk'ááz gwáyīlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he she it will make it red",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīk'ááz_gwáyīlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīsgòsh gwáyīdīdáláɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dīsgòsh gwáyīdīdáláɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is about to be making it all black",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīsgòsh_gwáyīdīdáláɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītɫ'úlà nànīlō",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "dītɫ'úlà nànīlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she has put down his/her/its rope (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītɫ'úlà_nànīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yīdīkò",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yīdīkò",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will carry/take it to a different place (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yīdīkò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫàʔí k'àdlù",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tɫàʔí k'àdlù",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will stop laughing right away",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫàʔí_k'àdlù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "mátágùdlì gwáyīnáɫ",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "mátágùdlì gwáyīnáɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is becoming bad",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "mátágùdlì_gwáyīnáɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tsīy gúdīnìsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "tsīy gúdīnìsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she often cries",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tsīy_gúdīnìsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gīmàgúdílōō ágūlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
+    ],
+    "head": "gīmàgúdílōō ágūlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will make them sick",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gīmàgúdílōō_ágūlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dōòsì nádīyásh",
+      ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "dōòsì nádīyásh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she comes/walks in this direction again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dōòsì_nádīyásh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīdzīnīsà mànágúdìlō",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīdzīnīsà mànágúdìlō",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is sick again today",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīdzīnīsà_mànágúdìlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kàyīdál",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "kàyīdál",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she lied",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kàyīdál"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàyīyā",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "xàyīyā",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she went out",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàyīyā"
+  },
+
+  {
+    "analysis": [
+      [],
+     "násītín",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "násītín",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is sleeping again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "násītín"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yītɫ'áɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "yītɫ'áɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is running/driving along",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yītɫ'áɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghā dīdìsdlùw",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yōghā dīdìsdlùw",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she started laughing about him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghā_dīdìsdlùw"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫ'úɫ ànàdīlō",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tɫ'úɫ ànàdīlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will lose a rope",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫ'úɫ_ànàdīlō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "íyìsnòɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "íyìsnòɫ",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is eating something as he/she in motion",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "íyìsnòɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàʔò",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàʔò",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give something to him/her (round)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàʔò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "k'ānáchīsh",
+      ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]
+    ],
+    "head": "k'ānáchīsh",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she quit crying again and again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "k'ānáchīsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "áyìlá",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "áyìlá",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she will do/make it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "áyìlá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "náyīdīnìsk'ááz",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "náyīdīnìsk'ááz",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she reddened it again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "náyīdīnìsk'ááz"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghàstsús",
+      ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
+    ],
+    "head": "yōghàstsús",
+    "paradigm": "VD",
+    "senses": [
+      {
+        "definition": "he/she will hand/give something to him/her (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghàstsús"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīstɫ'ò",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "dīstɫ'ò",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she started to run/drive somewhere",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīstɫ'ò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tānáyìdìschūsh",
+      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tānáyìdìschūsh",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she lifts it again and again (cloth)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tānáyìdìschūsh"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫàʔí k'ànīdlùw",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "tɫàʔí k'ànīdlùw",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she finished laughing right away",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫàʔí_k'ànīdlùw"
+  },
+
+  {
+    "analysis": [
+      [],
+     "xàyītɫōdī",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "xàyītɫōdī",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will quickly go out later on",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "xàyītɫōdī"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gwāt'īɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "gwāt'īɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is working along",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gwāt'īɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tìnáátɫōd",
+      ["+V", "+I", "+Pfv", "+SbjSg3"]
+    ],
+    "head": "tìnáátɫōd",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she quickly got off the regular path again",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tìnáátɫōd"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nádīyá",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nádīyá",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will go/walk/go home",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nádīyá"
+  },
+
+  {
+    "analysis": [
+      [],
+     "tɫík'á náyīdīskón",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "tɫík'á náyīdīskón",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is carrying/taking it around again (vessel)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "tɫík'á_náyīdīskón"
+  },
+
+  {
+    "analysis": [
+      [],
+     "nīdò",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "nīdò",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she will sit down",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "nīdò"
+  },
+
+  {
+    "analysis": [
+      [],
+     "yōghā dádlù",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "yōghā dádlù",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she is laughing about him/her",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "yōghā_dádlù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dīdìyītɫīɫ",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dīdìyītɫīɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is about start to be quickly going",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dīdìyītɫīɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "gúdīdátɫīɫ",
+      ["+V", "+I", "+Prog", "+SbjSg3"]
+    ],
+    "head": "gúdīdátɫīɫ",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is jumping along/about to jump",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "gúdīdátɫīɫ"
+  },
+
+  {
+    "analysis": [
+      [],
+     "kúyīdīdīsdlō",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
+    ],
+    "head": "kúyīdīdīsdlō",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "he/she started carrying/taking it inside (plural)",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "kúyīdīdīsdlō"
   }
 ]
