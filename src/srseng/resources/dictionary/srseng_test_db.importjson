@@ -240,10 +240,10 @@
   {
     "analysis": [
       [],
-     "dīk’ááz-gū gwánáyīʔìsh",
+     "dīk'ááz-gū gwánáyīʔìsh",
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dīk’ááz-gū gwánáyīʔìsh",
+    "head": "dīk'ááz-gū gwánáyīʔìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -251,7 +251,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīk’ááz-gū_gwánáyīʔìsh"
+    "slug": "dīk'ááz-gū_gwánáyīʔìsh"
   },
 
   {
@@ -274,10 +274,10 @@
   {
     "analysis": [
       [],
-     "dīk’ááz-gū gwáyīdīdāláɫ",
+     "dīk'ááz-gū gwáyīdīdāláɫ",
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dīk’ááz-gū gwáyīdīdāláɫ",
+    "head": "dīk'ááz-gū gwáyīdīdāláɫ",
     "paradigm": "VT",
     "senses": [
       {
@@ -285,7 +285,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīk’ááz-gū_gwáyīdīdāláɫ"
+    "slug": "dīk'ááz-gū_gwáyīdīdāláɫ"
   },
 
   {
@@ -308,10 +308,10 @@
   {
     "analysis": [
       [],
-     "yīdīyītɫ’ìsh",
+     "yīdīyītɫ'ìsh",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "yīdīyītɫ’ìsh",
+    "head": "yīdīyītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -319,7 +319,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "yīdīyītɫ’ìsh"
+    "slug": "yīdīyītɫ'ìsh"
   },
 
   {
@@ -427,10 +427,10 @@
   {
     "analysis": [
       [],
-     "dīyí dátɫ’ìshí īyízíɫī",
+     "dīyí dátɫ'ìshí īyízíɫī",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dīyí dátɫ’ìshí īyízíɫī",
+    "head": "dīyí dátɫ'ìshí īyízíɫī",
     "paradigm": "VT",
     "senses": [
       {
@@ -438,7 +438,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīyí_dátɫ’ìshí_īyízíɫī"
+    "slug": "dīyí_dátɫ'ìshí_īyízíɫī"
   },
 
   {
@@ -558,23 +558,6 @@
       }
     ],
     "slug": "dàɂi_màgúúdílōdà"
-  },
-
-  {
-    "analysis": [
-      [],
-     "chāā chīchí yīnásʔín",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
-    ],
-    "head": "chāā chīchí yīnásʔín",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "no he/she is not able to take a look at it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "chāā_chīchí_yīnásʔín"
   },
 
   {
@@ -1056,10 +1039,10 @@
   {
     "analysis": [
       [],
-     "īdīdìstɫ’ìsh",
+     "īdīdìstɫ'ìsh",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "īdīdìstɫ’ìsh",
+    "head": "īdīdìstɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -1067,7 +1050,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "īdīdìstɫ’ìsh"
+    "slug": "īdīdìstɫ'ìsh"
   },
 
   {
@@ -1124,10 +1107,10 @@
   {
     "analysis": [
       [],
-     "dúdàyīdīyītɫ’ìshí ìsà",
+     "dúdàyīdīyītɫ'ìshí ìsà",
       ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
     ],
-    "head": "dúdàyīdīyītɫ’ìshí ìsà",
+    "head": "dúdàyīdīyītɫ'ìshí ìsà",
     "paradigm": "VI",
     "senses": [
       {
@@ -1135,7 +1118,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúdàyīdīyītɫ’ìshí_ìsà"
+    "slug": "dúdàyīdīyītɫ'ìshí_ìsà"
   },
 
   {
@@ -1566,10 +1549,10 @@
   {
     "analysis": [
       [],
-     "yīdītɫ’ìsh",
+     "yīdītɫ'ìsh",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "yīdītɫ’ìsh",
+    "head": "yīdītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -1577,16 +1560,16 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "yīdītɫ’ìsh"
+    "slug": "yīdītɫ'ìsh"
   },
 
   {
     "analysis": [
       [],
-     "dōòsák’àsí dīyá-gūlà",
+     "dōòsák'àsí dīyá-gūlà",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dōòsák’àsí dīyá-gūlà",
+    "head": "dōòsák'àsí dīyá-gūlà",
     "paradigm": "VI",
     "senses": [
       {
@@ -1594,7 +1577,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dōòsák’àsí_dīyá-gūlà"
+    "slug": "dōòsák'àsí_dīyá-gūlà"
   },
 
   {
@@ -1651,10 +1634,10 @@
   {
     "analysis": [
       [],
-     "tɬ’ūwdīnà gwádīdánáɫ",
+     "tɬ'ūwdīnà gwádīdánáɫ",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "tɬ’ūwdīnà gwádīdánáɫ",
+    "head": "tɬ'ūwdīnà gwádīdánáɫ",
     "paradigm": "VI",
     "senses": [
       {
@@ -1662,7 +1645,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "tɬ’ūwdīnà_gwádīdánáɫ"
+    "slug": "tɬ'ūwdīnà_gwádīdánáɫ"
   },
 
   {
@@ -1702,10 +1685,10 @@
   {
     "analysis": [
       [],
-     "dītɫ’á gwáyìyīlá-hī",
+     "dītɫ'á gwáyìyīlá-hī",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dītɫ’á gwáyìyīlá-hī",
+    "head": "dītɫ'á gwáyìyīlá-hī",
     "paradigm": "VT",
     "senses": [
       {
@@ -1713,7 +1696,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dītɫ’á_gwáyìyīlá-hī"
+    "slug": "dītɫ'á_gwáyìyīlá-hī"
   },
 
   {
@@ -2059,10 +2042,10 @@
   {
     "analysis": [
       [],
-     "ànàdītɫ’ìsh",
+     "ànàdītɫ'ìsh",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ànàdītɫ’ìsh",
+    "head": "ànàdītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -2070,16 +2053,16 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "ànàdītɫ’ìsh"
+    "slug": "ànàdītɫ'ìsh"
   },
 
   {
     "analysis": [
       [],
-     "yīk’òsà dīts'í",
+     "yīk'òsà dīts'í",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "yīk’òsà dīts'í",
+    "head": "yīk'òsà dīts'í",
     "paradigm": "VT",
     "senses": [
       {
@@ -2087,7 +2070,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "yīk’òsà_dīts'í"
+    "slug": "yīk'òsà_dīts'í"
   },
 
   {
@@ -2195,10 +2178,10 @@
   {
     "analysis": [
       [],
-     "nīnágūt’ìsh-gūlà",
+     "nīnágūt'ìsh-gūlà",
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
-    "head": "nīnágūt’ìsh-gūlà",
+    "head": "nīnágūt'ìsh-gūlà",
     "paradigm": "VI",
     "senses": [
       {
@@ -2206,7 +2189,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "nīnágūt’ìsh-gūlà"
+    "slug": "nīnágūt'ìsh-gūlà"
   },
 
   {
@@ -2399,10 +2382,10 @@
   {
     "analysis": [
       [],
-     "ànànáyīdīʔò-hī át’à",
+     "ànànáyīdīʔò-hī át'à",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ànànáyīdīʔò-hī át’à",
+    "head": "ànànáyīdīʔò-hī át'à",
     "paradigm": "VT",
     "senses": [
       {
@@ -2410,7 +2393,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "ànànáyīdīʔò-hī_át’à"
+    "slug": "ànànáyīdīʔò-hī_át'à"
   },
 
   {
@@ -2569,10 +2552,10 @@
   {
     "analysis": [
       [],
-     "dōòsák’àsí dīyá-hí át'à",
+     "dōòsák'àsí dīyá-hí át'à",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dōòsák’àsí dīyá-hí át'à",
+    "head": "dōòsák'àsí dīyá-hí át'à",
     "paradigm": "VI",
     "senses": [
       {
@@ -2580,7 +2563,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dōòsák’àsí_dīyá-hí_át'à"
+    "slug": "dōòsák'àsí_dīyá-hí_át'à"
   },
 
   {
@@ -2620,10 +2603,10 @@
   {
     "analysis": [
       [],
-     "k’āʔídīyīskīd",
+     "k'āʔídīyīskīd",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
     ],
-    "head": "k’āʔídīyīskīd",
+    "head": "k'āʔídīyīskīd",
     "paradigm": "VT",
     "senses": [
       {
@@ -2631,16 +2614,16 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "k’āʔídīyīskīd"
+    "slug": "k'āʔídīyīskīd"
   },
 
   {
     "analysis": [
       [],
-     "dúkàyīdátł’í-gūlà",
+     "dúkàyīdátł'í-gūlà",
       ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
     ],
-    "head": "dúkàyīdátł’í-gūlà",
+    "head": "dúkàyīdátł'í-gūlà",
     "paradigm": "VI",
     "senses": [
       {
@@ -2648,16 +2631,16 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúkàyīdátł’í-gūlà"
+    "slug": "dúkàyīdátł'í-gūlà"
   },
 
   {
     "analysis": [
       [],
-     "dīdīnīyīk’ááz",
+     "dīdīnīyīk'ááz",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dīdīnīyīk’ááz",
+    "head": "dīdīnīyīk'ááz",
     "paradigm": "VI",
     "senses": [
       {
@@ -2665,7 +2648,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīdīnīyīk’ááz"
+    "slug": "dīdīnīyīk'ááz"
   },
 
   {
@@ -2756,10 +2739,10 @@
   {
     "analysis": [
       [],
-     "ànàyīdīstsúsī át’à",
+     "ànàyīdīstsúsī át'à",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ànàyīdīstsúsī át’à",
+    "head": "ànàyīdīstsúsī át'à",
     "paradigm": "VT",
     "senses": [
       {
@@ -2767,7 +2750,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "ànàyīdīstsúsī_át’à"
+    "slug": "ànàyīdīstsúsī_át'à"
   },
 
   {
@@ -3351,10 +3334,10 @@
   {
     "analysis": [
       [],
-     "yīdīch’īsh",
+     "yīdīch'īsh",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "yīdīch’īsh",
+    "head": "yīdīch'īsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -3362,7 +3345,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "yīdīch’īsh"
+    "slug": "yīdīch'īsh"
   },
 
   {
@@ -3402,10 +3385,10 @@
   {
     "analysis": [
       [],
-     "dīdzīnīsà ák’ó màgúdìlō",
+     "dīdzīnīsà ák'ó màgúdìlō",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dīdzīnīsà ák’ó màgúdìlō",
+    "head": "dīdzīnīsà ák'ó màgúdìlō",
     "paradigm": "VI",
     "senses": [
       {
@@ -3413,7 +3396,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīdzīnīsà_ák’ó_màgúdìlō"
+    "slug": "dīdzīnīsà_ák'ó_màgúdìlō"
   },
 
   {
@@ -3878,10 +3861,10 @@
   {
     "analysis": [
       [],
-     "īdītɫ’ìsh",
+     "īdītɫ'ìsh",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "īdītɫ’ìsh",
+    "head": "īdītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -3889,7 +3872,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "īdītɫ’ìsh"
+    "slug": "īdītɫ'ìsh"
   },
 
   {
@@ -3946,10 +3929,10 @@
   {
     "analysis": [
       [],
-     "ànàyīdīʔò-hī át’à",
+     "ànàyīdīʔò-hī át'à",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "ànàyīdīʔò-hī át’à",
+    "head": "ànàyīdīʔò-hī át'à",
     "paradigm": "VT",
     "senses": [
       {
@@ -3957,7 +3940,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "ànàyīdīʔò-hī_át’à"
+    "slug": "ànàyīdīʔò-hī_át'à"
   },
 
   {
@@ -3975,6 +3958,23 @@
       }
     ],
     "slug": "xīgògù_màgúdìyílō"
+  },
+
+  {
+    "analysis": [
+      [],
+     "chāā chīchí yīnásʔín",
+      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+    ],
+    "head": "chāā chīchí yīnásʔín",
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "no he/she is not able to take a look at it",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "chāā_chīchí_yīnásʔín"
   },
 
   {
@@ -4048,10 +4048,10 @@
   {
     "analysis": [
       [],
-     "náyīdītɫ’ìsh",
+     "náyīdītɫ'ìsh",
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "náyīdītɫ’ìsh",
+    "head": "náyīdītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -4059,7 +4059,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "náyīdītɫ’ìsh"
+    "slug": "náyīdītɫ'ìsh"
   },
 
   {
@@ -4099,10 +4099,10 @@
   {
     "analysis": [
       [],
-     "īdīyītɫ’ìsh",
+     "īdīyītɫ'ìsh",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "īdīyītɫ’ìsh",
+    "head": "īdīyītɫ'ìsh",
     "paradigm": "VT",
     "senses": [
       {
@@ -4110,7 +4110,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "īdīyītɫ’ìsh"
+    "slug": "īdīyītɫ'ìsh"
   },
 
   {
@@ -4201,10 +4201,10 @@
   {
     "analysis": [
       [],
-     "dīk’ááz gwáyīlá",
+     "dīk'ááz gwáyīlá",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dīk’ááz gwáyīlá",
+    "head": "dīk'ááz gwáyīlá",
     "paradigm": "VT",
     "senses": [
       {
@@ -4212,7 +4212,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dīk’ááz_gwáyīlá"
+    "slug": "dīk'ááz_gwáyīlá"
   },
 
   {
@@ -4541,10 +4541,10 @@
   {
     "analysis": [
       [],
-     "náyīdīnìsk’ááz",
+     "náyīdīnìsk'ááz",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "náyīdīnìsk’ááz",
+    "head": "náyīdīnìsk'ááz",
     "paradigm": "VT",
     "senses": [
       {
@@ -4552,7 +4552,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "náyīdīnìsk’ááz"
+    "slug": "náyīdīnìsk'ááz"
   },
 
   {
