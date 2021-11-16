@@ -51,7 +51,7 @@ jobs:
         key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
     - name: 📥 Install dependencies
       run: |
-        pipenv install --dev && pipenv install
+        pipenv install --dev
         # Install pytest plugin to show failed tests on the web
         pipenv run pip install pytest-github-actions-annotate-failures
     - name: Do LFS checkout

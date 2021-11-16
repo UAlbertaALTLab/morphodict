@@ -104,9 +104,10 @@ def index(request):  # pragma: no cover
 
     if user_query:
         dict_source = get_dict_source(request)
+        include_auto_definitions = should_include_auto_definitions(request)
         search_run = search_with_affixes(
             user_query,
-            include_auto_definitions=should_include_auto_definitions(request),
+            include_auto_definitions=include_auto_definitions,
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
@@ -114,15 +115,6 @@ def index(request):  # pragma: no cover
             dict_source=dict_source
         )
         did_search = True
-        if dict_source:
-            for r in search_results:
-                if not r['is_lemma']:
-                    for d in r['lemma_wordform']['definitions']:
-                        for s in d['source_ids']:
-                            if s in dict_source:
-                                r['show_form_of'] = True
-                if 'show_form_of' not in r:
-                    r['show_form_of'] = False
 
     else:
         search_results = []
@@ -154,15 +146,32 @@ def search_results(request, query_string: str):  # pragma: no cover
     returns rendered boxes of search results according to user query
     """
     dict_source = get_dict_source(request)  # type: ignore
+    include_auto_definitions = should_include_auto_definitions(request)
     results = search_with_affixes(
         query_string,
-        include_auto_definitions=should_include_auto_definitions(request)
+        include_auto_definitions=include_auto_definitions
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
         dict_source=dict_source
     )
+    for r in search_results:
+        if dict_source:
+            if not r['is_lemma']:
+                for d in r['lemma_wordform']['definitions']:
+                    for s in d['source_ids']:
+                        if s in dict_source:
+                            r['show_form_of'] = True
+                        elif include_auto_definitions and s.replace('🤖', '') in dict_source:
+                            r['show_form_of'] = True
+            if 'show_form_of' not in r:
+                r['show_form_of'] = False
+        else:
+            r['show_form_of'] = True
+
+        print("173", r['show_form_of'])
+
     for r in results:
         if not r["definitions"]:
             results.remove(r)
