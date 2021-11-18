@@ -20,6 +20,7 @@
   "senses": [
    {
     "definition": "star, little star",
+    "semanticDefinition": "star little star",
     "sources": [
      "CW"
     ]
@@ -34,9 +35,11 @@
    "pos": "Ipc",
    "wordclass": "INM"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "comet, tailed star",
+    "semanticDefinition": "comet tailed star",
     "sources": [
      "CW"
     ]
@@ -51,15 +54,18 @@
    "pos": "Ipc",
    "wordclass": "INM"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "Starblanket",
+    "semanticDefinition": "Starblanket One who has Stars Blanket",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "Cree chief, signatory to Treaty 4",
+    "semanticDefinition": "Cree chief signatory Treaty 4 One who has Stars Blanket",
     "sources": [
      "CW"
     ]
@@ -116,12 +122,14 @@
   "senses": [
    {
     "definition": "Edmonton, AB",
+    "semanticDefinition": "Edmonton AB Beaver Hills House",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "Fort Edmonton",
+    "semanticDefinition": "Fort Edmonton Beaver Hills House",
     "sources": [
      "CW"
     ]
@@ -130,22 +138,17 @@
   "slug": "amiskwaciy-wâskahikan"
  },
  {
-  "analysis": [
-   [],
-   "anohc",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "anohc",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "now, today",
+    "semanticDefinition": "now today",
     "sources": [
      "CW"
     ]
@@ -176,12 +179,14 @@
   "senses": [
    {
     "definition": "s/he looks out for s.o., s/he watches for s.o., s/he waits and watches for s.o., s/he lies in watch for s.o.",
+    "semanticDefinition": "looks out watches waits watches lies in watch",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He is on the look-out for him.",
+    "semanticDefinition": "on look-out",
     "sources": [
      "MD"
     ]
@@ -210,12 +215,14 @@
   "senses": [
    {
     "definition": "sock, stocking",
+    "semanticDefinition": "sock stocking",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "Sock.",
+    "semanticDefinition": "Sock",
     "sources": [
      "MD"
     ]
@@ -246,36 +253,42 @@
   "senses": [
    {
     "definition": "s/he greets s.o., s/he sends greetings to s.o.",
+    "semanticDefinition": "greets sends greetings",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he says hello to s.o.",
+    "semanticDefinition": "says hello",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he shakes hands with s.o.",
+    "semanticDefinition": "shakes hands",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he hugs s.o. in greeting, s/he kisses s.o. in greeting",
+    "semanticDefinition": "hugs in greeting kisses in greeting",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he bids s.o. farewell",
+    "semanticDefinition": "bids farewell",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He shook hands with him or them.",
+    "semanticDefinition": "shook hands",
     "sources": [
      "MD"
     ]
@@ -300,6 +313,7 @@
    "stem": "atâhkw-",
    "wordclass": "NA"
   },
+  "paradigm": "NA",
   "senses": [
    {
     "definition": "star",
@@ -309,6 +323,7 @@
    },
    {
     "definition": "A big bright star.",
+    "semanticDefinition": "big bright star",
     "sources": [
      "MD"
     ]
@@ -323,21 +338,25 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "start to, begin to, beginning",
+    "semanticDefinition": "start begin beginning",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "progressively, proceed to, going on, progressing",
+    "semanticDefinition": "progressively proceed going on progressing",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "on the way",
+    "semanticDefinition": "on way",
     "sources": [
      "CW"
     ]
@@ -346,24 +365,18 @@
   "slug": "ati-"
  },
  {
-  "analysis": [
-   [],
-   "awa",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "awa",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "coreDefinition": "it is",
     "definition": "it is (this) [focus marker]",
-    "semanticDefinition": "it is",
+    "semanticDefinition": "focus marker",
     "sources": [
      "CW"
     ]
@@ -372,17 +385,6 @@
   "slug": "awa@ipc"
  },
  {
-  "analysis": [
-   [],
-   "awa",
-   [
-    "+Pron",
-    "+Dem",
-    "+Prox",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "awa",
   "linguistInfo": {
    "inflectional_category": "PrA",
@@ -393,6 +395,7 @@
   "senses": [
    {
     "definition": "this, this one",
+    "semanticDefinition": "one",
     "sources": [
      "CW"
     ]
@@ -418,9 +421,11 @@
    "stem": "awâsisîwi-",
    "wordclass": "VAI"
   },
+  "paradigm": "VAI",
   "senses": [
    {
     "definition": "s/he is a child",
+    "semanticDefinition": "child",
     "sources": [
      "CW"
     ]
@@ -429,25 +434,17 @@
   "slug": "awâsisîwiw"
  },
  {
-  "analysis": [
-   [],
-   "awîna",
-   [
-    "+Pron",
-    "+Interr",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "awîna",
   "linguistInfo": {
    "inflectional_category": "PrA",
    "pos": "Pron",
    "wordclass": "PrA"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "who, whose",
+    "semanticDefinition": "who whose",
     "sources": [
      "CW"
     ]
@@ -477,18 +474,21 @@
   "senses": [
    {
     "definition": "s/he is, s/he is there, s/he is located there",
+    "semanticDefinition": "there located there",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he lives there, s/he stays there",
+    "semanticDefinition": "lives there stays there",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he exists",
+    "semanticDefinition": "exists",
     "sources": [
      "CW"
     ]
@@ -518,6 +518,7 @@
   "senses": [
    {
     "definition": "it is, it is there, it exists",
+    "semanticDefinition": "there exists",
     "sources": [
      "CW"
     ]
@@ -547,12 +548,14 @@
   "senses": [
    {
     "definition": "s/he has s.t., s/he owns s.t.",
+    "semanticDefinition": "has owns",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he has s.t. on",
+    "semanticDefinition": "has on",
     "sources": [
      "CW"
     ]
@@ -581,6 +584,7 @@
   "senses": [
    {
     "definition": "article of clothing",
+    "semanticDefinition": "article clothing",
     "sources": [
      "CW"
     ]
@@ -588,7 +592,7 @@
    {
     "coreDefinition": "clothing, apparel",
     "definition": "[plural:] clothing, apparel",
-    "semanticDefinition": "clothing, apparel",
+    "semanticDefinition": "clothing apparel",
     "sources": [
      "CW"
     ]
@@ -623,6 +627,7 @@
    },
    {
     "definition": "clothing, apparel, garb",
+    "semanticDefinition": "clothing apparel garb",
     "sources": [
      "CW"
     ]
@@ -636,13 +641,14 @@
    {
     "coreDefinition": "article of clothing",
     "definition": "[singular:] article of clothing",
-    "semanticDefinition": "article of clothing",
+    "semanticDefinition": "article clothing",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "piece of material, piece of cloth",
+    "semanticDefinition": "piece material piece cloth",
     "sources": [
      "CW"
     ]
@@ -673,12 +679,14 @@
   "senses": [
    {
     "definition": "s/he tells about s.o., s/he talks about s.o., s/he narrates about s.o.",
+    "semanticDefinition": "tells about talks about narrates about",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he tells s.o., s/he tells things to s.o.",
+    "semanticDefinition": "tells tells things",
     "sources": [
      "CW"
     ]
@@ -708,18 +716,21 @@
   "senses": [
    {
     "definition": "s/he tells, s/he tells a story",
+    "semanticDefinition": "tells tells story",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he tells news, s/he gives an account, s/he narrates",
+    "semanticDefinition": "tells news gives account narrates",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he tells his/her own story",
+    "semanticDefinition": "tells own story",
     "sources": [
      "CW"
     ]
@@ -745,6 +756,7 @@
   "senses": [
    {
     "definition": "s/he tells stories along the way, s/he goes along telling stories",
+    "semanticDefinition": "tells stories along way goes along telling stories",
     "sources": [
      "CW"
     ]
@@ -772,6 +784,7 @@
   "senses": [
    {
     "definition": "story, true story, account, report",
+    "semanticDefinition": "story true story account report",
     "sources": [
      "CW"
     ]
@@ -784,18 +797,21 @@
    },
    {
     "definition": "what is being told",
+    "semanticDefinition": "what being told",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "A story.",
+    "semanticDefinition": "story",
     "sources": [
      "MD"
     ]
    },
    {
     "definition": "A news forecast.",
+    "semanticDefinition": "news forecast",
     "sources": [
      "MD"
     ]
@@ -804,15 +820,6 @@
   "slug": "âcimowin"
  },
  {
-  "analysis": [
-   [],
-   "âyiman",
-   [
-    "+N",
-    "+I",
-    "+Sg"
-   ]
-  ],
   "head": "âyiman",
   "linguistInfo": {
    "inflectional_category": "NI-1",
@@ -832,16 +839,6 @@
   "slug": "âyiman@ni"
  },
  {
-  "analysis": [
-   [],
-   "âyiman",
-   [
-    "+V",
-    "+II",
-    "+Ind",
-    "+3Sg"
-   ]
-  ],
   "head": "âyiman",
   "linguistInfo": {
    "inflectional_category": "VII-2n",
@@ -853,6 +850,7 @@
   "senses": [
    {
     "definition": "it is difficult",
+    "semanticDefinition": "difficult",
     "sources": [
      "CW"
     ]
@@ -861,22 +859,17 @@
   "slug": "âyiman@vii"
  },
  {
-  "analysis": [
-   [],
-   "êkwa",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "êkwa",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "and, also",
+    "semanticDefinition": "also",
     "sources": [
      "CW"
     ]
@@ -895,12 +888,14 @@
    },
    {
     "definition": "let's go",
+    "semanticDefinition": "lets go",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "And also.",
+    "semanticDefinition": "also",
     "sources": [
      "MD"
     ]
@@ -909,23 +904,17 @@
   "slug": "êkwa"
  },
  {
-  "analysis": [
-   [],
-   "êkwatik",
-   [
-    "+Ipc",
-    "+Interj"
-   ]
-  ],
   "head": "êkwatik",
   "linguistInfo": {
    "inflectional_category": "IPJ",
    "pos": "Ipc",
    "wordclass": "IPJ"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "o.k. now, let's go",
+    "semanticDefinition": "ok now lets go",
     "sources": [
      "CW"
     ]
@@ -934,22 +923,17 @@
   "slug": "êkwatik"
  },
  {
-  "analysis": [
-   [],
-   "ispîhk",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "ispîhk",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "then, at such a time",
+    "semanticDefinition": "then at such time",
     "sources": [
      "CW"
     ]
@@ -970,17 +954,6 @@
   "slug": "ispîhk"
  },
  {
-  "analysis": [
-   [],
-   "katawatêyimêw",
-   [
-    "+V",
-    "+TA",
-    "+Ind",
-    "+3Sg",
-    "+4Sg/PlO"
-   ]
-  ],
   "head": "katawatêyimêw",
   "linguistInfo": {
    "inflectional_category": "VTA-1",
@@ -992,6 +965,7 @@
   "senses": [
    {
     "definition": "s/he thinks s.o. beautiful",
+    "semanticDefinition": "thinks beautiful",
     "sources": [
      "CW"
     ]
@@ -1006,9 +980,11 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "would, ought to",
+    "semanticDefinition": "would ought",
     "sources": [
      "CW"
     ]
@@ -1021,6 +997,7 @@
    },
    {
     "definition": "likely to",
+    "semanticDefinition": "likely",
     "sources": [
      "CW"
     ]
@@ -1035,9 +1012,10 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
-    "definition": "grammatical preverb: intermittent, repeatedly",
+    "definition": "grammatical preverb: intermittent, repeatedly; again and again; here and there; augmentative",
     "sources": [
      "CW"
     ]
@@ -1067,36 +1045,42 @@
   "senses": [
    {
     "definition": "s/he learns",
+    "semanticDefinition": "learns",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he is a student, s/he attends school",
+    "semanticDefinition": "student attends school",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he is taught",
+    "semanticDefinition": "taught",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He is being taught.",
+    "semanticDefinition": "being taught",
     "sources": [
      "MD"
     ]
    },
    {
     "definition": "He is learning.",
+    "semanticDefinition": "learning",
     "sources": [
      "MD"
     ]
    },
    {
     "definition": "He is going to school.",
+    "semanticDefinition": "going school",
     "sources": [
      "MD"
     ]
@@ -1111,15 +1095,18 @@
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "secret, in secret, stealthy, by stealth",
+    "semanticDefinition": "secret in secret stealthy stealth",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "private, in private",
+    "semanticDefinition": "private in private",
     "sources": [
      "CW"
     ]
@@ -1134,15 +1121,18 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "secretly, in secret, stealthily, by stealth",
+    "semanticDefinition": "secretly in secret stealthily stealth",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "privately, in private",
+    "semanticDefinition": "privately in private",
     "sources": [
      "CW"
     ]
@@ -1171,6 +1161,7 @@
   "senses": [
    {
     "definition": "day, daylight",
+    "semanticDefinition": "day daylight",
     "sources": [
      "CW"
     ]
@@ -1206,6 +1197,7 @@
   "senses": [
    {
     "definition": "it is day, it is daylight",
+    "semanticDefinition": "day daylight",
     "sources": [
      "CW"
     ]
@@ -1235,12 +1227,14 @@
   "senses": [
    {
     "definition": "s/he races, s/he is in a race",
+    "semanticDefinition": "races in race",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "it gallops",
+    "semanticDefinition": "gallops",
     "sources": [
      "CW"
     ]
@@ -1249,15 +1243,6 @@
   "slug": "kotiskâwêw"
  },
  {
-  "analysis": [
-   [],
-   "kwâskwêpayihôs",
-   [
-    "+N",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "kwâskwêpayihôs",
   "linguistInfo": {
    "inflectional_category": "NA-1",
@@ -1270,7 +1255,7 @@
    {
     "coreDefinition": "mule deer",
     "definition": "mule deer [literally: \"jumper; leaper\"; Lt: Odocoileus hemionus hemionus]",
-    "semanticDefinition": "mule deer",
+    "semanticDefinition": "mule deer jumper Odocoileus hemionus hemionus leaper",
     "sources": [
      "CW"
     ]
@@ -1279,15 +1264,6 @@
   "slug": "kwâskwêpayihôs"
  },
  {
-  "analysis": [
-   [],
-   "maskwa",
-   [
-    "+N",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "maskwa",
   "linguistInfo": {
    "inflectional_category": "NA-4w",
@@ -1299,6 +1275,7 @@
   "senses": [
    {
     "definition": "bear, black bear",
+    "semanticDefinition": "bear black bear",
     "sources": [
      "CW"
     ]
@@ -1307,15 +1284,6 @@
   "slug": "maskwa@1"
  },
  {
-  "analysis": [
-   [],
-   "maskwa",
-   [
-    "+N",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "maskwa",
   "linguistInfo": {
    "inflectional_category": "NA-4w",
@@ -1356,6 +1324,7 @@
   "senses": [
    {
     "definition": "s/he starts sleeping",
+    "semanticDefinition": "starts sleeping",
     "sources": [
      "CW"
     ]
@@ -1412,12 +1381,14 @@
   "senses": [
    {
     "definition": "kitten, little cat",
+    "semanticDefinition": "kitten little cat",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "A kitten.",
+    "semanticDefinition": "kitten",
     "sources": [
      "MD"
     ]
@@ -1426,14 +1397,6 @@
   "slug": "minôsis"
  },
  {
-  "analysis": [
-   [],
-   "misâskwatôminihk",
-   [
-    "+Ipc",
-    "+Prop"
-   ]
-  ],
   "head": "misâskwatôminihk",
   "linguistInfo": {
    "inflectional_category": "INM < NI-1",
@@ -1441,9 +1404,11 @@
    "stem": "misâskwatômin-",
    "wordclass": "INM"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "Saskatoon, SK",
+    "semanticDefinition": "Saskatoon SK at Saskatoon berry",
     "sources": [
      "CW"
     ]
@@ -1473,6 +1438,7 @@
   "senses": [
    {
     "definition": "s/he eats, s/he has a meal",
+    "semanticDefinition": "eats has meal",
     "sources": [
      "CW"
     ]
@@ -1480,7 +1446,7 @@
    {
     "coreDefinition": "it feeds",
     "definition": "it feeds (e.g. bird)",
-    "semanticDefinition": "it feeds",
+    "semanticDefinition": "feeds bird",
     "sources": [
      "CW"
     ]
@@ -1488,7 +1454,7 @@
    {
     "coreDefinition": "it chews its cud",
     "definition": "it chews its cud (e.g. ruminant)",
-    "semanticDefinition": "it chews its cud",
+    "semanticDefinition": "chews cud ruminant",
     "sources": [
      "CW"
     ]
@@ -1518,6 +1484,7 @@
   "senses": [
    {
     "definition": "s/he eats s.t.",
+    "semanticDefinition": "eats",
     "sources": [
      "CW"
     ]
@@ -1543,6 +1510,7 @@
   "senses": [
    {
     "definition": "s/he eats a lot of s.t., s/he eats much of s.t.",
+    "semanticDefinition": "eats lot eats much",
     "sources": [
      "CW"
     ]
@@ -1550,17 +1518,6 @@
   ]
  },
  {
-  "analysis": [
-   [],
-   "mîpit",
-   [
-    "+N",
-    "+I",
-    "+D",
-    "+PxX",
-    "+Sg"
-   ]
-  ],
   "head": "mîpit",
   "linguistInfo": {
    "inflectional_category": "NDI-1",
@@ -1603,7 +1560,7 @@
    {
     "coreDefinition": "s/he eats s.o.",
     "definition": "s/he eats s.o. (e.g. bread)",
-    "semanticDefinition": "s/he eats s.o.",
+    "semanticDefinition": "eats bread",
     "sources": [
      "CW"
     ]
@@ -1612,17 +1569,6 @@
   "slug": "mowêw"
  },
  {
-  "analysis": [
-   [],
-   "nipawâkan",
-   [
-    "+N",
-    "+A",
-    "+D",
-    "+Px1Sg",
-    "+Sg"
-   ]
-  ],
   "head": "nipawâkan",
   "linguistInfo": {
    "inflectional_category": "NDA-1",
@@ -1634,6 +1580,7 @@
   "senses": [
    {
     "definition": "my dream spirit",
+    "semanticDefinition": "dream spirit",
     "sources": [
      "CW"
     ]
@@ -1663,12 +1610,14 @@
   "senses": [
    {
     "definition": "s/he sleeps, s/he is asleep",
+    "semanticDefinition": "sleeps asleep",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He sleeps.",
+    "semanticDefinition": "sleeps",
     "sources": [
      "MD"
     ]
@@ -1697,12 +1646,14 @@
   "senses": [
    {
     "definition": "sleeping, sleep",
+    "semanticDefinition": "sleeping sleep",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "Sleep.",
+    "semanticDefinition": "Sleep",
     "sources": [
      "MD"
     ]
@@ -1727,6 +1678,7 @@
    "stem": "nipiy-",
    "wordclass": "NI"
   },
+  "paradigm": "NI",
   "senses": [
    {
     "definition": "water",
@@ -1738,15 +1690,6 @@
   "slug": "nipiy"
  },
  {
-  "analysis": [
-   [],
-   "niska",
-   [
-    "+N",
-    "+A",
-    "+Sg"
-   ]
-  ],
   "head": "niska",
   "linguistInfo": {
    "inflectional_category": "NA-4",
@@ -1766,22 +1709,17 @@
   "slug": "niska"
  },
  {
-  "analysis": [
-   [],
-   "nisto",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "nisto",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "three, 3",
+    "semanticDefinition": "three 3",
     "sources": [
      "CW"
     ]
@@ -1796,9 +1734,11 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "go and, go to",
+    "semanticDefinition": "go go",
     "sources": [
      "CW"
     ]
@@ -1813,15 +1753,6 @@
   "slug": "nitawi-"
  },
  {
-  "analysis": [
-   [],
-   "niya",
-   [
-    "+Pron",
-    "+Pers",
-    "+1Sg"
-   ]
-  ],
   "head": "niya",
   "linguistInfo": {
    "inflectional_category": "PrA",
@@ -1840,15 +1771,6 @@
   "slug": "niya"
  },
  {
-  "analysis": [
-   [],
-   "niyanân",
-   [
-    "+Pron",
-    "+Pers",
-    "+1Pl"
-   ]
-  ],
   "head": "niyanân",
   "linguistInfo": {
    "inflectional_category": "PrA",
@@ -1884,9 +1806,11 @@
    "stem": "nîmi-",
    "wordclass": "VAI"
   },
+  "paradigm": "VAI",
   "senses": [
    {
     "definition": "s/he dances",
+    "semanticDefinition": "dances",
     "sources": [
      "CW"
     ]
@@ -1910,6 +1834,7 @@
   "senses": [
    {
     "definition": "there is a dance, it is a time of dancing",
+    "semanticDefinition": "there dance time dancing",
     "sources": [
      "CW"
     ]
@@ -1938,6 +1863,7 @@
   "senses": [
    {
     "definition": "it is summer",
+    "semanticDefinition": "summer",
     "sources": [
      "CW"
     ]
@@ -1967,6 +1893,7 @@
   "senses": [
    {
     "definition": "they are two in number, they are two together",
+    "semanticDefinition": "are two in number are two together",
     "sources": [
      "CW"
     ]
@@ -1987,9 +1914,11 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "two, as two, two together",
+    "semanticDefinition": "two two two together",
     "sources": [
      "CW"
     ]
@@ -1998,22 +1927,17 @@
   "slug": "nîso-"
  },
  {
-  "analysis": [
-   [],
-   "nîso-kîsikâw",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "nîso-kîsikâw",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "two days, for two days",
+    "semanticDefinition": "two days two days",
     "sources": [
      "CW"
     ]
@@ -2043,6 +1967,7 @@
   "senses": [
    {
     "definition": "it is Tuesday",
+    "semanticDefinition": "Tuesday ( ) second day",
     "sources": [
      "CW"
     ]
@@ -2051,17 +1976,6 @@
   "slug": "nîso-kîsikâw@vii"
  },
  {
-  "analysis": [
-   [],
-   "nôhkom",
-   [
-    "+N",
-    "+A",
-    "+D",
-    "+Px1Sg",
-    "+Sg"
-   ]
-  ],
   "head": "nôhkom",
   "linguistInfo": {
    "inflectional_category": "NDA-1",
@@ -2073,12 +1987,14 @@
   "senses": [
    {
     "definition": "my grandmother",
+    "semanticDefinition": "grandmother",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "my respected female elder",
+    "semanticDefinition": "respected female elder",
     "sources": [
      "CW"
     ]
@@ -2087,16 +2003,6 @@
   "slug": "nôhkom"
  },
  {
-  "analysis": [
-   [],
-   "nôhtêpayiw",
-   [
-    "+V",
-    "+AI",
-    "+Ind",
-    "+3Sg"
-   ]
-  ],
   "head": "nôhtêpayiw",
   "linguistInfo": {
    "inflectional_category": "VAI-1",
@@ -2107,9 +2013,8 @@
   "paradigm": "VAI",
   "senses": [
    {
-    "coreDefinition": "s/he lacks",
     "definition": "s/he lacks (s.t.)",
-    "semanticDefinition": "s/he lacks",
+    "semanticDefinition": "lacks",
     "sources": [
      "CW"
     ]
@@ -2117,13 +2022,14 @@
    {
     "coreDefinition": "s/he falls short, s/he runs short",
     "definition": "s/he falls short, s/he runs short (of s.t.)",
-    "semanticDefinition": "s/he falls short, s/he runs short",
+    "semanticDefinition": "falls short runs short",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he is in want, s/he runs short of supplies",
+    "semanticDefinition": "in want runs short supplies",
     "sources": [
      "CW"
     ]
@@ -2139,9 +2045,11 @@
    "stem": "nôhtêpaýi-",
    "wordclass": "VII"
   },
+  "paradigm": "VII",
   "senses": [
    {
     "definition": "it is insufficient, it falls short",
+    "semanticDefinition": "insufficient falls short",
     "sources": [
      "CW"
     ]
@@ -2150,34 +2058,31 @@
   "slug": "nôhtêpayiw@vii"
  },
  {
-  "analysis": [
-   [],
-   "ohci",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "ohci",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "from there, thence, out of",
+    "semanticDefinition": "from there thence out",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "with, by means of",
+    "semanticDefinition": "means",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "because of, for that reason",
+    "semanticDefinition": "because reason",
     "sources": [
      "CW"
     ]
@@ -2202,12 +2107,14 @@
    },
    {
     "definition": "From,",
+    "semanticDefinition": "From",
     "sources": [
      "MD"
     ]
    },
    {
     "definition": "Out of,",
+    "semanticDefinition": "Out",
     "sources": [
      "MD"
     ]
@@ -2228,15 +2135,18 @@
    "pos": "Ipc",
    "wordclass": "INM"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "Regina, SK",
+    "semanticDefinition": "Regina SK where bones are piled",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "\"Pile-o'-Bones\"",
+    "semanticDefinition": "Pile-o-Bones where bones are piled",
     "sources": [
      "CW"
     ]
@@ -2245,14 +2155,6 @@
   "slug": "oskana_kâ-asastêki"
  },
  {
-  "analysis": [
-   [],
-   "otôskwanihk",
-   [
-    "+Ipc",
-    "+Prop"
-   ]
-  ],
   "head": "otôskwanihk",
   "linguistInfo": {
    "inflectional_category": "INM < NDI-1",
@@ -2260,9 +2162,11 @@
    "stem": "-tôskwan-",
    "wordclass": "INM"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "Calgary, AB",
+    "semanticDefinition": "Calgary AB at elbow",
     "sources": [
      "CW"
     ]
@@ -2271,19 +2175,13 @@
   "slug": "otôskwanihk"
  },
  {
-  "analysis": [
-   [],
-   "ôma",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "ôma",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "it is this",
@@ -2293,6 +2191,7 @@
    },
    {
     "definition": "the fact that",
+    "semanticDefinition": "fact",
     "sources": [
      "CW"
     ]
@@ -2312,7 +2211,7 @@
    {
     "coreDefinition": "as it is, actually",
     "definition": "as it is, actually [focus marker]",
-    "semanticDefinition": "as it is, actually",
+    "semanticDefinition": "actually focus marker",
     "sources": [
      "CW"
     ]
@@ -2321,17 +2220,6 @@
   "slug": "ôma@ipc"
  },
  {
-  "analysis": [
-   [],
-   "ôma",
-   [
-    "+Pron",
-    "+Dem",
-    "+Prox",
-    "+I",
-    "+Sg"
-   ]
-  ],
   "head": "ôma",
   "linguistInfo": {
    "inflectional_category": "PrI",
@@ -2370,6 +2258,7 @@
   "senses": [
    {
     "definition": "bannock, bread",
+    "semanticDefinition": "bannock bread",
     "sources": [
      "CW"
     ]
@@ -2382,6 +2271,7 @@
    },
    {
     "definition": "Bannock.",
+    "semanticDefinition": "Bannock",
     "sources": [
      "MD"
     ]
@@ -2396,15 +2286,18 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "come and, come to",
+    "semanticDefinition": "come come",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "towards, approaching",
+    "semanticDefinition": "towards approaching",
     "sources": [
      "CW"
     ]
@@ -2417,6 +2310,7 @@
    },
    {
     "definition": "thence, from there on down",
+    "semanticDefinition": "thence from there on down",
     "sources": [
      "CW"
     ]
@@ -2425,46 +2319,45 @@
   "slug": "pê-"
  },
  {
-  "analysis": [
-   [],
-   "pêyak",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "pêyak",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "one, 1",
+    "semanticDefinition": "one 1",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "alone, single, a single one",
+    "semanticDefinition": "alone single single one",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "the only one",
+    "semanticDefinition": "only one",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "a certain one",
+    "semanticDefinition": "certain one",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "One.",
+    "semanticDefinition": "One",
     "sources": [
      "MD"
     ]
@@ -2494,12 +2387,14 @@
   "senses": [
    {
     "definition": "s/he crawls about, s/he crawls around, s/he creeps",
+    "semanticDefinition": "crawls about crawls around creeps",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He crawls.",
+    "semanticDefinition": "crawls",
     "sources": [
      "MD"
     ]
@@ -2528,12 +2423,14 @@
   "senses": [
    {
     "definition": "year, winter",
+    "semanticDefinition": "year winter",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "It is winter.",
+    "semanticDefinition": "winter",
     "sources": [
      "MD"
     ]
@@ -2563,12 +2460,14 @@
   "senses": [
    {
     "definition": "it is winter",
+    "semanticDefinition": "winter",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "is one year",
+    "semanticDefinition": "one year",
     "sources": [
      "CW"
     ]
@@ -2583,9 +2482,11 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "stop, terminate, cease",
+    "semanticDefinition": "stop terminate cease",
     "sources": [
      "CW"
     ]
@@ -2606,6 +2507,7 @@
    "pos": "Ipc",
    "wordclass": "IPV"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "grammatical preverb: ongoing, continuing",
@@ -2645,22 +2547,17 @@
   "slug": "sikâk"
  },
  {
-  "analysis": [
-   [],
-   "tânisi",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "tânisi",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "how, in what way",
+    "semanticDefinition": "how in what way",
     "sources": [
      "CW"
     ]
@@ -2669,22 +2566,17 @@
   "slug": "tânisi@ipc"
  },
  {
-  "analysis": [
-   [],
-   "tânisi",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "tânisi",
   "linguistInfo": {
    "inflectional_category": "IPJ",
    "pos": "Ipc",
    "wordclass": "IPJ"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "hello, how are you",
+    "semanticDefinition": "hello how are",
     "sources": [
      "CW"
     ]
@@ -2748,12 +2640,14 @@
   "senses": [
    {
     "definition": "it is night, it is night time",
+    "semanticDefinition": "night night time",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "it is dark",
+    "semanticDefinition": "dark",
     "sources": [
      "CW"
     ]
@@ -2783,18 +2677,21 @@
   "senses": [
    {
     "definition": "s/he sees s.t., s/he witnesses s.t.",
+    "semanticDefinition": "sees witnesses",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "s/he has a vision",
+    "semanticDefinition": "has vision",
     "sources": [
      "CW"
     ]
    },
    {
     "definition": "He sees it.",
+    "semanticDefinition": "sees",
     "sources": [
      "MD"
     ]
@@ -2825,6 +2722,7 @@
   "senses": [
    {
     "definition": "s/he sees s.o., s/he witnesses s.o.",
+    "semanticDefinition": "sees witnesses",
     "sources": [
      "CW"
     ]
@@ -2854,6 +2752,7 @@
   "senses": [
    {
     "definition": "s/he sees, s/he has vision",
+    "semanticDefinition": "sees has vision",
     "sources": [
      "CW"
     ]
@@ -2884,7 +2783,7 @@
    {
     "coreDefinition": "s/he is blind",
     "definition": "[generally in negative phrases:] s/he is blind",
-    "semanticDefinition": "s/he is blind",
+    "semanticDefinition": "blind",
     "sources": [
      "CW"
     ]
@@ -2893,15 +2792,6 @@
   "slug": "wâpiw@2"
  },
  {
-  "analysis": [
-   [],
-   "wiya",
-   [
-    "+Pron",
-    "+Pers",
-    "+3Sg"
-   ]
-  ],
   "head": "wiya",
   "linguistInfo": {
    "inflectional_category": "PrA",
@@ -2924,6 +2814,7 @@
    },
    {
     "definition": "his, hers, its",
+    "semanticDefinition": "hers",
     "sources": [
      "CW"
     ]
@@ -2932,22 +2823,17 @@
   "slug": "wiya@1"
  },
  {
-  "analysis": [
-   [],
-   "wiya",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "wiya",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "for, because",
+    "semanticDefinition": "because",
     "sources": [
      "CW"
     ]
@@ -2956,19 +2842,13 @@
   "slug": "wiya@2"
  },
  {
-  "analysis": [
-   [],
-   "wiya",
-   [
-    "+Ipc"
-   ]
-  ],
   "head": "wiya",
   "linguistInfo": {
    "inflectional_category": "IPC",
    "pos": "Ipc",
    "wordclass": "IPC"
   },
+  "paradigm": null,
   "senses": [
    {
     "definition": "this, that",
@@ -2978,6 +2858,7 @@
    },
    {
     "definition": "as for, by contrast",
+    "semanticDefinition": "contrast",
     "sources": [
      "CW"
     ]
