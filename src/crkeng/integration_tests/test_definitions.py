@@ -30,7 +30,7 @@ def test_db_has_custom_fields(db):
         for r in TargetLanguageKeyword.objects.filter(
             wordform=defn.wordform
         ).values_list("text")
-    ) == {"mule", "deer"}
+    ) == {'odocoileus', 'deer', 'mule', 'jumper', 'hemionus', 'leaper'}
 
 
 @pytest.mark.parametrize("search_term", ["jumper", "Odocoileus"])
