@@ -546,10 +546,10 @@
   {
     "analysis": [
       [],
-     "dàɂi màgúúdílōdà",
+     "dàʔi màgúúdílōdà",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dàɂi màgúúdílōdà",
+    "head": "dàʔi màgúúdílōdà",
     "paradigm": "VI",
     "senses": [
       {
@@ -557,7 +557,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dàɂi_màgúúdílōdà"
+    "slug": "dàʔi_màgúúdílōdà"
   },
 
   {
@@ -609,23 +609,6 @@
       }
     ],
     "slug": "dīstsày"
-  },
-
-  {
-    "analysis": [
-      [],
-     "sídīskīd",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg1"]
-    ],
-    "head": "sídīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will ask me",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "sídīskīd"
   },
 
   {
@@ -699,23 +682,6 @@
   {
     "analysis": [
       [],
-     "gūdīskīd",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūdīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will ask them",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūdīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "nīnátɫ'ò",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
@@ -762,6 +728,23 @@
       }
     ],
     "slug": "dīdìdlù"
+  },
+
+  {
+    "analysis": [
+      [],
+     "dītsá",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītsá",
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is going to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītsá"
   },
 
   {
@@ -983,23 +966,6 @@
       }
     ],
     "slug": "tɫ'úɫ_ànàdìsdló"
-  },
-
-  {
-    "analysis": [
-      [],
-     "kúgūdīsdlō",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "kúgūdīsdlō",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is carrying/taking them inside (plural)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "kúgūdīsdlō"
   },
 
   {
@@ -1243,23 +1209,6 @@
   {
     "analysis": [
       [],
-     "gūstsá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūstsá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is going to see them",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūstsá"
-  },
-
-  {
-    "analysis": [
-      [],
      "àxágùnìstsàd",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
@@ -1272,23 +1221,6 @@
       }
     ],
     "slug": "àxágùnìstsàd"
-  },
-
-  {
-    "analysis": [
-      [],
-     "gūdīsdlō",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūdīsdlō",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she carried/took them (plural)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūdīsdlō"
   },
 
   {
@@ -1787,10 +1719,10 @@
   {
     "analysis": [
       [],
-     "nítàɂī",
+     "nítàʔī",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "nítàɂī",
+    "head": "nítàʔī",
     "paradigm": "VI",
     "senses": [
       {
@@ -1798,7 +1730,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "nítàɂī"
+    "slug": "nítàʔī"
   },
 
   {
@@ -2280,23 +2212,6 @@
   {
     "analysis": [
       [],
-     "īdīyīskīd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
-    ],
-    "head": "īdīyīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she asked someone",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "īdīyīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "mànágúdílō",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
@@ -2598,23 +2513,6 @@
       }
     ],
     "slug": "kúgūdátɫōd"
-  },
-
-  {
-    "analysis": [
-      [],
-     "k'āʔídīyīskīd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
-    ],
-    "head": "k'āʔídīyīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she finished asking someone",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "k'āʔídīyīskīd"
   },
 
   {
@@ -3028,23 +2926,6 @@
   {
     "analysis": [
       [],
-     "nàdāgūgīt'īn gwágūlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "nàdāgūgīt'īn gwágūlá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will make them work",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "nàdāgūgīt'īn_gwágūlá"
-  },
-
-  {
-    "analysis": [
-      [],
      "dúdīsgòsh gwánáyīʔìshí-gūlà",
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3", "+Neg"]
     ],
@@ -3227,23 +3108,6 @@
       }
     ],
     "slug": "màgúdīdíyīlōt"
-  },
-
-  {
-    "analysis": [
-      [],
-     "gīmànágúdílōsh gwánágūʔīsh",
-      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gīmànágúdílōsh gwánágūʔīsh",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is making them become sick again and again",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gīmànágúdílōsh_gwánágūʔīsh"
   },
 
   {
@@ -3691,23 +3555,6 @@
   {
     "analysis": [
       [],
-     "nīīhīdīskīdí-gūlà",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl1"]
-    ],
-    "head": "nīīhīdīskīdí-gūlà",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she might ask us",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "nīīhīdīskīdí-gūlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "náyidīdzá",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
@@ -4031,18 +3878,18 @@
   {
     "analysis": [
       [],
-     "dītsá",
+     "ītsīy",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dītsá",
+    "head": "ītsīy",
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is going to cry",
+        "definition": "he/she is crying",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dītsá"
+    "slug": "ītsīy"
   },
 
   {
@@ -4315,23 +4162,6 @@
       }
     ],
     "slug": "tsīy_gúdīnìsh"
-  },
-
-  {
-    "analysis": [
-      [],
-     "gīmàgúdílōō ágūlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gīmàgúdílōō ágūlá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will make them sick",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gīmàgúdílōō_ágūlá"
   },
 
   {
