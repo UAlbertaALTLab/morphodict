@@ -12,7 +12,7 @@
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he she is reading it",
+        "definition": "he/she is reading it",
         "sources": ["TVPD"]
       }
     ],
@@ -3852,7 +3852,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is drinking (something) (something)",
+        "definition": "he/she is drinking (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3872,7 +3872,7 @@
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he she is reading (something) (something)",
+        "definition": "he/she is reading (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -4752,7 +4752,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she will become (something) (something)",
+        "definition": "he/she will become (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -4772,7 +4772,7 @@
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he she it will make it red",
+        "definition": "he/she it will make it red",
         "sources": ["TVPD"]
       }
     ],
