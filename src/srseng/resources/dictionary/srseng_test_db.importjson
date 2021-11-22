@@ -3852,7 +3852,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is drinking (something)",
+        "definition": "he/she is drinking (something) (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3863,16 +3863,16 @@
     "analysis": [
       [],
      "īzí",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "īzí",
     "linguistInfo": {
       "stem": "Ipfv: īzí | Pfv: īyīzīn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
-    "paradigm": "VT",
+    "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is reading (something)",
+        "definition": "he/she is reading (something) (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -4752,7 +4752,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she will become (something)",
+        "definition": "he/she will become (something) (something)",
         "sources": ["TVPD"]
       }
     ],
