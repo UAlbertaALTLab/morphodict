@@ -9,25 +9,12 @@ const BULK_API_URL = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
 
 function getLanguageCodeFromLocation() {
     const location = window.location.toString();
-    switch (location) {
-        case location.includes("itwewina"):
-            return "maskwacis";
-            break;
-        case location.includes("itwiwina"):
-            return "woodscree";
-            break;
-        case location.includes("gunaha"):
-            return "tsuutina";
-            break;
-        case location.includes("arpeng"):
-            return "arapaho";
-            break;
-        case location.includes("guusaaw"):
-            return "haida";
-            break;
-        default:
-            return "maskwacis"
-    }
+    if (location.includes(`itwewina`) || location.includes(`crk`)) return `maskwacis`;
+    if (location.includes(`itwiwina`) || location.includes(`cwd`)) return `woodscree`;
+    if (location.includes(`gunaha`) || location.includes(`srs`)) return `tsuutina`;
+    if (location.includes(`arpeng`)) return `arapaho`;
+    if (location.includes(`guusaaw`) || location.includes(`hdn`)) return `haida`;
+    return `maskwacis`;
 }
 
 /**
