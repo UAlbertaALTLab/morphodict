@@ -182,26 +182,6 @@
   {
     "analysis": [
       [],
-     "dúʔīdískīdí ìlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúʔīdískīdí ìlà",
-    "linguistInfo": {
-      "stem": "Ipfv: dúʔīdískīdí ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "will he/she not ask later on",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúʔīdískīdí_ìlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "īdōghá kúyīdīstsùùz",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+3SgR", "+DObjSg3"]
     ],
@@ -987,7 +967,7 @@
     ],
     "head": "yídīskīd",
     "linguistInfo": {
-      "stem": "Ipfv: yídīskīd | Pfv: yídīyīskīd | Prog: – | Ipfv+Rep: dúnáyídískījī átà | Pfv+Rep: –"
+      "stem": "Ipfv: yídīskīd | Pfv: yídīyīskīd | Prog: – | Ipfv+Rep: náyídískīīzh | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
@@ -1097,26 +1077,6 @@
       }
     ],
     "slug": "kúgūdīdátɫíɫ"
-  },
-
-  {
-    "analysis": [
-      [],
-     "dútānáyáʔóɫī",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
-    ],
-    "head": "dútānáyáʔóɫī",
-    "linguistInfo": {
-      "stem": "Ipfv: dútānáyáʔóɫī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will not be holding it up again (round)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dútānáyáʔóɫī"
   },
 
   {
@@ -1267,7 +1227,7 @@
     ],
     "head": "dúdàyīdīyītɫ'ìshí ìsà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dúdàyīdīyītɫ'ìshí ìsà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VI",
     "senses": [
@@ -1362,21 +1322,21 @@
   {
     "analysis": [
       [],
-     "dútānáyāʔóɫ",
-      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "tānáyāʔóɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dútānáyāʔóɫ",
+    "head": "tānáyāʔóɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dútānáyāʔóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: tānáyāʔóɫ | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is not holding it up again (round)",
+        "definition": "he/she is holding it up again (round)",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dútānáyāʔóɫ"
+    "slug": "tānáyāʔóɫ"
   },
 
   {
@@ -1682,21 +1642,21 @@
   {
     "analysis": [
       [],
-     "dúʔátsàd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "átsàd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dúʔátsàd",
+    "head": "átsàd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dúʔátsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: átsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she did not eat something (something)",
+        "definition": "he/she ate something (something)",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúʔátsàd"
+    "slug": "átsàd"
   },
 
   {
@@ -1782,21 +1742,21 @@
   {
     "analysis": [
       [],
-     "dúdīsgòsh gwáyīlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "dīsgòsh gwáyīlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dúdīsgòsh gwáyīlá",
+    "head": "dīsgòsh gwáyīlàg",
     "linguistInfo": {
-      "stem": "Ipfv: dúdīsgòsh gwáyīlá | Pfv: dīsgòsh gwáyīlàg | Prog: dīsgòsh gwáyáláɫ | Ipfv+Rep: dīsgòsh gwnáyīʔìsh | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: dīsgòsh gwáyīlàg | Prog: dīsgòsh gwáyáláɫ | Ipfv+Rep: dīsgòsh gwnáyīʔìsh | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she will not make it black",
+        "definition": "he/she it made it black",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúdīsgòsh_gwáyīlá"
+    "slug": "dīsgòsh_gwáyīlàg"
   },
 
   {
@@ -1867,7 +1827,7 @@
     ],
     "head": "màgúdílōō áyīlá",
     "linguistInfo": {
-      "stem": "Ipfv: màgúdílōō áyīlá | Pfv: dúmàgúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: màgúdílōō áyīlá | Pfv: màgúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
@@ -2462,26 +2422,6 @@
   {
     "analysis": [
       [],
-     "chāā dúdā-hī xàdīdīyá yīnízīn",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "chāā dúdā-hī xàdīdīyá yīnízīn",
-    "linguistInfo": {
-      "stem": "Ipfv: chāā dúdā-hī xàdīdīyá yīnízīn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "no he/she does not want to start to go out now",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "chāā_dúdā-hī_xàdīdīyá_yīnízīn"
-  },
-
-  {
-    "analysis": [
-      [],
      "nīnágūt'ìsh-gūlà",
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
@@ -2967,7 +2907,7 @@
     ],
     "head": "dúkàyīdátł'í-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dúkàyīdátł'í-gūlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VI",
     "senses": [
@@ -3447,7 +3387,7 @@
     ],
     "head": "dúdīsgòsh gwánáyīʔìshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dúdīsgòsh gwánáyīʔìshí-gūlà | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
@@ -3482,41 +3422,21 @@
   {
     "analysis": [
       [],
-     "dútɫídīnāsh",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+     "tɫídīnāsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dútɫídīnāsh",
+    "head": "tɫídīnāsh",
     "linguistInfo": {
-      "stem": "Ipfv: dútɫídīnāsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: tɫídīnāsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she does not move camp from place to place",
+        "definition": "he/she moves camp from place to place",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dútɫídīnāsh"
-  },
-
-  {
-    "analysis": [
-      [],
-     "dúgúdīdītɫōd-gūlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúgúdīdītɫōd-gūlà",
-    "linguistInfo": {
-      "stem": "Ipfv: dúgúdīdītɫōd-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she might not jump later on",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúgúdīdītɫōd-gūlà"
+    "slug": "tɫídīnāsh"
   },
 
   {
@@ -3662,26 +3582,6 @@
   {
     "analysis": [
       [],
-     "dúdā-hī xànáyá-hí yīnízīní ìlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúdā-hī xànáyá-hí yīnízīní ìlà",
-    "linguistInfo": {
-      "stem": "Ipfv: dúdā-hī xànáyá-hí yīnízīní ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "does he/she not want to out again now",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúdā-hī_xànáyá-hí_yīnízīní_ìlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "yídònī",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
@@ -3717,26 +3617,6 @@
       }
     ],
     "slug": "áyìyīlá-hī"
-  },
-
-  {
-    "analysis": [
-      [],
-     "dúdītɫīd",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúdītɫīd",
-    "linguistInfo": {
-      "stem": "Ipfv: dúdītɫīd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she is not weak",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúdītɫīd"
   },
 
   {
@@ -3852,7 +3732,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is drinking (something) (something)",
+        "definition": "he/she is drinking (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3872,7 +3752,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is reading (something) (something)",
+        "definition": "he/she is reading (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3927,7 +3807,7 @@
     ],
     "head": "dútāyāʔóɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dútāyāʔóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
@@ -4247,7 +4127,7 @@
     ],
     "head": "dúxànáyáshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dúxànáyáshí-gūlà | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VI",
     "senses": [
@@ -4287,7 +4167,7 @@
     ],
     "head": "dútānáyìdīʔóshī-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dútānáyìdīʔóshī-gūlà | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VT",
     "senses": [
@@ -4482,26 +4362,6 @@
   {
     "analysis": [
       [],
-     "chāā chīchí yīnásʔín",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
-    ],
-    "head": "chāā chīchí yīnásʔín",
-    "linguistInfo": {
-      "stem": "Ipfv: chāā chīchí yīnásʔín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
-    },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "no he/she is not able to take a look at it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "chāā_chīchí_yīnásʔín"
-  },
-
-  {
-    "analysis": [
-      [],
      "k'ānītsàyí-gūlà",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
@@ -4667,7 +4527,7 @@
     ],
     "head": "dúnīnāyásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dúnīnāyásh | Pfv+Rep: –"
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
     },
     "paradigm": "VI",
     "senses": [
@@ -4752,7 +4612,7 @@
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she will become (something) (something)",
+        "definition": "he/she will become (something)",
         "sources": ["TVPD"]
       }
     ],
