@@ -96,10 +96,13 @@ class SearchRun:
 
         def has_definition(r):
             if r["definitions"]:
+                print("true")
                 return True
             for element in r:
-                if "definitions" in r[element] and r[element]["definitions"] != []:
+                if "definitions" in r[element] and r[element]["definitions"]:
+                    print("true")
                     return True
+            print("false")
             return False
 
         return [r for r in serialized if has_definition(r)]
