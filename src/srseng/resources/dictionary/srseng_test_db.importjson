@@ -6,10 +6,13 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīzí",
+    "linguistInfo": {
+      "stem": "Ipfv: yīzí | Pfv: – | Prog: – | Ipfv+Rep: náyīzísh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he she is reading it",
+        "definition": "he/she is reading it",
         "sources": ["TVPD"]
       }
     ],
@@ -23,6 +26,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīdzá",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīdzá | Pfv: yīdīsjààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -40,6 +46,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàdzá",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàdzá | Pfv: yōghàníjààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -57,6 +66,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "mànágúdílōō áyīlàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: mànágúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -74,6 +86,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dīyā",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dīyā | Prog: yīyáɫ | Ipfv+Rep: nádīyásh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -91,6 +106,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xāyìlàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xāyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -108,6 +126,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tū-tīī yīnìyízìt",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tū-tīī yīnìyízìt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -125,6 +146,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xàyītɫíɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: xàyītɫíɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -142,6 +166,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīsgòsh",
+    "linguistInfo": {
+      "stem": "Ipfv: dīsgòsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -155,27 +182,13 @@
   {
     "analysis": [
       [],
-     "dúʔīdískīdí ìlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúʔīdískīdí ìlà",
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "will he/she not ask later on",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúʔīdískīdí_ìlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "īdōghá kúyīdīstsùùz",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+3SgR", "+DObjSg3"]
     ],
     "head": "īdōghá kúyīdīstsùùz",
+    "linguistInfo": {
+      "stem": "Ipfv: īdōghá kúyīdīstsùùz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -193,6 +206,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyāláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: tāyāláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -210,6 +226,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīstà",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīstà | Pfv: yīdīstín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -227,6 +246,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "nàgūt'īn gwáyīlá",
+    "linguistInfo": {
+      "stem": "Ipfv: nàgūt'īn gwáyīlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -244,6 +266,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dīk'ááz-gū gwánáyīʔìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dīk'ááz-gū gwánáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -261,6 +286,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dītɫ'á",
+    "linguistInfo": {
+      "stem": "Ipfv: dītɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -278,6 +306,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dīk'ááz-gū gwáyīdīdāláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: dīk'ááz-gū gwáyīdīdāláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -295,6 +326,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàzíd",
+    "linguistInfo": {
+      "stem": "Ipfv: nàzíd | Pfv: nàyīzīd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -312,6 +346,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīyītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yīdīyītɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -329,6 +366,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dā-hī nádīyá-hí yīnízīní ìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: dā-hī nádīyá-hí yīnízīní ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -346,6 +386,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "nádīyá-hī ìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: nádīyá-hī ìlà | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -363,6 +406,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dītɫīd",
+    "linguistInfo": {
+      "stem": "Ipfv: dītɫīd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -380,10 +426,13 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ádīdánáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: ádīdánáɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is about to become something (something)",
+        "definition": "he/she is about to become (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -397,6 +446,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yītsáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yītsáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -414,6 +466,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīstà",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyīstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -431,6 +486,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dīyí dátɫ'ìshí īyízíɫī",
+    "linguistInfo": {
+      "stem": "Ipfv: dīyí dátɫ'ìshí īyízíɫī | Pfv: dīyí dátɫ'ìshí īyīzīn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -448,6 +506,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nūwák'àsì dītɫ'á",
+    "linguistInfo": {
+      "stem": "Ipfv: nūwák'àsì dītɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -465,6 +526,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "kúnátɫīīzh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: kúnátɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -482,6 +546,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "k'āyìlàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: k'āyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -499,10 +566,13 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyīsʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: áyīsʔín | Pfv: – | Prog: áyáláɫ | Ipfv+Rep: ánáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is doing it is working at it",
+        "definition": "he/she is doing/working at it",
         "sources": ["TVPD"]
       }
     ],
@@ -516,6 +586,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàyīdīsʔó(n)",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: ànàyīdīsʔó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -533,6 +606,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mīwùs ágúdīdīyīlót",
+    "linguistInfo": {
+      "stem": "Ipfv: mīwùs ágúdīdīyīlót | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -546,10 +622,13 @@
   {
     "analysis": [
       [],
-     "dàɂi màgúúdílōdà",
+     "dàʔi màgúúdílōdà",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dàɂi màgúúdílōdà",
+    "head": "dàʔi màgúúdílōdà",
+    "linguistInfo": {
+      "stem": "Ipfv: dàʔi màgúúdílōdà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -557,7 +636,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dàɂi_màgúúdílōdà"
+    "slug": "dàʔi_màgúúdílōdà"
   },
 
   {
@@ -567,6 +646,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "náyīnáʔìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: náyīnáʔìsh | Pfv+Rep: náyīnáyíʔìsh"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -584,6 +666,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dzánàdā dìsíyāʔí ìsà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dzánàdā dìsíyāʔí ìsà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -601,6 +686,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dīstsày",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dīstsày | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -614,27 +702,13 @@
   {
     "analysis": [
       [],
-     "sídīskīd",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg1"]
-    ],
-    "head": "sídīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will ask me",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "sídīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "yōghàyīdzá",
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīdzá",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyīdzá | Pfv: yōghàyīnījààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -652,6 +726,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīkò",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyīkò | Pfv: yōghàyīníkòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -669,6 +746,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yānīdlùw",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yānīdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -686,6 +766,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàyīdìstsūūz",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: ànàyīdìstsūūz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -699,27 +782,13 @@
   {
     "analysis": [
       [],
-     "gūdīskīd",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūdīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will ask them",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūdīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "nīnátɫ'ò",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "nīnátɫ'ò",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: nīnátɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -737,6 +806,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xànáyīdīstó(n)",
+    "linguistInfo": {
+      "stem": "Ipfv: xànáyīdīstó(n) | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -754,6 +826,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīdìdlù",
+    "linguistInfo": {
+      "stem": "Ipfv: dīdìdlù | Pfv: dīdīsdlùw | Prog: – | Ipfv+Rep: nádīdìdlùsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -767,10 +842,33 @@
   {
     "analysis": [
       [],
+     "dītsá",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
+    ],
+    "head": "dītsá",
+    "linguistInfo": {
+      "stem": "Ipfv: dītsá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "he/she is going to cry",
+        "sources": ["TVPD"]
+      }
+    ],
+    "slug": "dītsá"
+  },
+
+  {
+    "analysis": [
+      [],
      "yīnásʔíní ānà",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīnásʔíní ānà",
+    "linguistInfo": {
+      "stem": "Ipfv: yīnásʔíní ānà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -788,6 +886,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyìlàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: áyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -805,6 +906,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nágūdīītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: nágūdīītɫōd | Pfv: nágūdììtɫōd | Prog: – | Ipfv+Rep: nīnágúdìtɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -822,6 +926,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyidīdáláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: áyidīdáláɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -839,6 +946,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tōsgūnā gwáná",
+    "linguistInfo": {
+      "stem": "Ipfv: tōsgūnā gwáná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -856,6 +966,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yídīskīd",
+    "linguistInfo": {
+      "stem": "Ipfv: yídīskīd | Pfv: yídīyīskīd | Prog: – | Ipfv+Rep: náyídískīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -873,6 +986,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nīnázìd",
+    "linguistInfo": {
+      "stem": "Ipfv: nīnázìd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -890,6 +1006,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nánīdò",
+    "linguistInfo": {
+      "stem": "Ipfv: nánīdò | Pfv: nánìsdō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -907,6 +1026,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "nìnátɫ'ásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: nìnátɫ'ásh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -924,6 +1046,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "kàdìdītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: kàdìdītɫōd | Pfv: kàdìdīstɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -941,6 +1066,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "kúgūdīdátɫíɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: kúgūdīdátɫíɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -954,27 +1082,13 @@
   {
     "analysis": [
       [],
-     "dútānáyáʔóɫī",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
-    ],
-    "head": "dútānáyáʔóɫī",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will not be holding it up again (round)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dútānáyáʔóɫī"
-  },
-
-  {
-    "analysis": [
-      [],
      "tɫ'úɫ ànàdìsdló",
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tɫ'úɫ ànàdìsdló",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tɫ'úɫ ànàdìsdló | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -988,27 +1102,13 @@
   {
     "analysis": [
       [],
-     "kúgūdīsdlō",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "kúgūdīsdlō",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is carrying/taking them inside (plural)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "kúgūdīsdlō"
-  },
-
-  {
-    "analysis": [
-      [],
      "yīyáɫí gúdīnìsh",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "yīyáɫí gúdīnìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: yīyáɫí gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1026,6 +1126,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yáʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yáʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1043,6 +1146,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "īdīdìstɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: īdīdìstɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1060,6 +1166,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīdīdīʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: kúyīdīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1077,6 +1186,9 @@
       ["+V", "+D", "+Pfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīnītó(n)",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yōghàyīnītó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -1094,6 +1206,9 @@
       ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]
     ],
     "head": "nádātɫ'ásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: nádātɫ'ásh"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1111,6 +1226,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
     ],
     "head": "dúdàyīdīyītɫ'ìshí ìsà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1128,6 +1246,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "xànáyīyā",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xànáyīyā | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1145,6 +1266,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "gúdīdītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: gúdīdītɫōd | Pfv: gúdīdìstɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1162,6 +1286,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīyīts'ònī ìsà",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīyīts'ònī ìsà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1179,6 +1306,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ánáyiyīlá-hī",
+    "linguistInfo": {
+      "stem": "Ipfv: ánáyiyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1192,18 +1322,21 @@
   {
     "analysis": [
       [],
-     "dútānáyāʔóɫ",
-      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "tānáyāʔóɫ",
+      ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dútānáyāʔóɫ",
+    "head": "tānáyāʔóɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: tānáyāʔóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is not holding it up again (round)",
+        "definition": "he/she is holding it up again (round)",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dútānáyāʔóɫ"
+    "slug": "tānáyāʔóɫ"
   },
 
   {
@@ -1213,6 +1346,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīdīdīstsús",
+    "linguistInfo": {
+      "stem": "Ipfv: kúyīdīdīstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1230,6 +1366,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nááchīīzh",
+    "linguistInfo": {
+      "stem": "Ipfv: nááchīīzh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1243,27 +1382,13 @@
   {
     "analysis": [
       [],
-     "gūstsá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūstsá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is going to see them",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūstsá"
-  },
-
-  {
-    "analysis": [
-      [],
      "àxágùnìstsàd",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "àxágùnìstsàd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: àxágùnìstsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1277,27 +1402,13 @@
   {
     "analysis": [
       [],
-     "gūdīsdlō",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gūdīsdlō",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she carried/took them (plural)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gūdīsdlō"
-  },
-
-  {
-    "analysis": [
-      [],
      "yīk'āgúdīdīyītɫīɫ",
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīk'āgúdīdīyītɫīɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yīk'āgúdīdīyītɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1315,6 +1426,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīʔò | Pfv: yīdīsʔòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1332,6 +1446,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīk'ááz",
+    "linguistInfo": {
+      "stem": "Ipfv: dīk'ááz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1349,6 +1466,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyìʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: tāyìʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1366,6 +1486,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yíīnídíyīzīt",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yíīnídíyīzīt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1383,6 +1506,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ōò yīnásʔínī gù",
+    "linguistInfo": {
+      "stem": "Ipfv: ōò yīnásʔínī gù | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1400,6 +1526,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "kàdàɫí ìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: kàdàɫí ìlà | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1417,6 +1546,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xàátɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: xàátɫōd | Pfv: xàyītɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1434,6 +1566,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yádóní ìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yádóní ìlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1451,6 +1586,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mágūdidīyìlít",
+    "linguistInfo": {
+      "stem": "Ipfv: mágūdidīyìlít | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1468,6 +1606,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīstsús",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīstsús | Pfv: yīdīstsùùz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1485,6 +1626,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīstà",
+    "linguistInfo": {
+      "stem": "Ipfv: kúyīstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1498,18 +1642,21 @@
   {
     "analysis": [
       [],
-     "dúʔátsàd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "átsàd",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dúʔátsàd",
+    "head": "átsàd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: átsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she did not eat something (something)",
+        "definition": "he/she ate (something)",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúʔátsàd"
+    "slug": "átsàd"
   },
 
   {
@@ -1519,6 +1666,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ōò tāyīdìstsús yīnīsīn",
+    "linguistInfo": {
+      "stem": "Ipfv: ōò tāyīdìstsús yīnīsīn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1536,6 +1686,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xāt'àà tɫádínītà",
+    "linguistInfo": {
+      "stem": "Ipfv: xāt'àà tɫádínītà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1553,6 +1706,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1570,6 +1726,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dōòsák'àsí dīyá-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: dōòsák'àsí dīyá-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1583,18 +1742,21 @@
   {
     "analysis": [
       [],
-     "dúdīsgòsh gwáyīlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
+     "dīsgòsh gwáyīlàg",
+      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
-    "head": "dúdīsgòsh gwáyīlá",
+    "head": "dīsgòsh gwáyīlàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dīsgòsh gwáyīlàg | Prog: dīsgòsh gwáyáláɫ | Ipfv+Rep: dīsgòsh gwnáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she will not make it black",
+        "definition": "he/she/it made it black",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dúdīsgòsh_gwáyīlá"
+    "slug": "dīsgòsh_gwáyīlàg"
   },
 
   {
@@ -1604,6 +1766,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dītsá-hí át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: dītsá-hí át'à | Pfv: yītsàyí át'à | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1621,6 +1786,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyínilō",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyínilō | Pfv: yōghàyīnílō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -1638,6 +1806,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tɬ'ūwdīnà gwádīdánáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: tɬ'ūwdīnà gwádīdánáɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1655,6 +1826,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "màgúdílōō áyīlá",
+    "linguistInfo": {
+      "stem": "Ipfv: màgúdílōō áyīlá | Pfv: màgúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1672,6 +1846,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dīsnō",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dīsnō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1689,6 +1866,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dītɫ'á gwáyìyīlá-hī",
+    "linguistInfo": {
+      "stem": "Ipfv: dītɫ'á gwáyìyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1706,6 +1886,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xāná",
+    "linguistInfo": {
+      "stem": "Ipfv: xāná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1723,6 +1906,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyīdītīsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyīdītīsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1740,6 +1926,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "sīdō",
+    "linguistInfo": {
+      "stem": "Ipfv: sīdō | Pfv: yídò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1757,6 +1946,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yádón",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yádón | Prog: – | Ipfv+Rep: nádàts'īdísh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1774,6 +1966,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīdīsjáázh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: kúyīdīsjáázh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1787,10 +1982,13 @@
   {
     "analysis": [
       [],
-     "nítàɂī",
+     "nítàʔī",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "nítàɂī",
+    "head": "nítàʔī",
+    "linguistInfo": {
+      "stem": "Ipfv: nítàʔī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1798,7 +1996,7 @@
         "sources": ["TVPD"]
       }
     ],
-    "slug": "nítàɂī"
+    "slug": "nítàʔī"
   },
 
   {
@@ -1808,6 +2006,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "yītà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yītà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1825,6 +2026,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "mītsì àgúdīdīyīlòɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: mītsì àgúdīdīyīlòɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1842,6 +2046,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dā-hī xàdīdīyá yīnízīníìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: dā-hī xàdīdīyá yīnízīníìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1859,6 +2066,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàkò",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàkò | Pfv: yōghànīkòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -1876,6 +2086,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "dádlù-hí ìsílā yīyáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: dádlù-hí ìsílā yīyáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1893,6 +2106,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīyá-hí át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: dīyá-hí át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1910,6 +2126,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ánáyīʔìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: ánáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1927,6 +2146,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tīītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: tīītɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1944,6 +2166,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàkàtɫōdí ìlà",
+    "linguistInfo": {
+      "stem": "Ipfv: nàkàtɫōdí ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -1961,6 +2186,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "náyāʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: náyāʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1978,6 +2206,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tɫík'á yākón",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tɫík'á yākón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -1995,6 +2226,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "xàyītɫ'ò",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xàyītɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2012,6 +2246,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàgūdītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: nàgūdītɫōd | Pfv: nàgūdátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2029,6 +2266,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dlùw gúdīnìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: dlùw gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2046,6 +2286,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàdītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: ànàdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2063,6 +2306,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīk'òsà dīts'í",
+    "linguistInfo": {
+      "stem": "Ipfv: yīk'òsà dīts'í | Pfv: yīk'òsà dīsts'ón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2080,6 +2326,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xānáyīʔìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: xānáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2097,6 +2346,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "mágūnìyílìn",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: mágūnìyílìn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2114,6 +2366,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yidíyiskīɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yidíyiskīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2131,6 +2386,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "dádlù",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: dádlù | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2148,6 +2406,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "tāyádzī",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: tāyádzī | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2161,27 +2422,13 @@
   {
     "analysis": [
       [],
-     "chāā dúdā-hī xàdīdīyá yīnízīn",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "chāā dúdā-hī xàdīdīyá yīnízīn",
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "no he/she does not want to start to go out now",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "chāā_dúdā-hī_xàdīdīyá_yīnízīn"
-  },
-
-  {
-    "analysis": [
-      [],
      "nīnágūt'ìsh-gūlà",
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "nīnágūt'ìsh-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: nīnágūt'ìsh-gūlà | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2199,6 +2446,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "ō dā-hī xànáyá yīnízīn",
+    "linguistInfo": {
+      "stem": "Ipfv: ō dā-hī xànáyá yīnízīn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2216,6 +2466,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "mátágùdlì gwáyìlá",
+    "linguistInfo": {
+      "stem": "Ipfv: mátágùdlì gwáyìlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2233,6 +2486,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "mītsì àgúdīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: mītsì àgúdīlō | Pfv: mītsì àgúdīyīlò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2250,6 +2506,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyītì",
+    "linguistInfo": {
+      "stem": "Ipfv: kúyītì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2267,6 +2526,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīk'āgúdīdītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: yīk'āgúdīdītɫōd | Pfv: yīk'āgúdīdìstɫōd | Prog: – | Ipfv+Rep: yīk'ānágūdìtɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2280,27 +2542,13 @@
   {
     "analysis": [
       [],
-     "īdīyīskīd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
-    ],
-    "head": "īdīyīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she asked someone",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "īdīyīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "mànágúdílō",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mànágúdílō",
+    "linguistInfo": {
+      "stem": "Ipfv: mànágúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2318,6 +2566,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "nágūdīdīyītɫīɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: nágūdīdīyītɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2335,6 +2586,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "màs áyiláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: màs áyiláɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2352,6 +2606,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "xākījī gwájàg",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xākījī gwájàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2369,6 +2626,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīstsàyí-tīī",
+    "linguistInfo": {
+      "stem": "Ipfv: dīstsàyí-tīī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2386,6 +2646,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànànáyīdīʔò-hī át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: ànànáyīdīʔò-hī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2403,6 +2666,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nīdòʔī",
+    "linguistInfo": {
+      "stem": "Ipfv: nīdòʔī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2420,6 +2686,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàkàtɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: nàkàtɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2437,6 +2706,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúnáyīdīsʔòn",
+    "linguistInfo": {
+      "stem": "Ipfv: kúnáyīdīsʔòn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2454,6 +2726,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīdīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: kúyīdīlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2471,6 +2746,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xàtɫ'á",
+    "linguistInfo": {
+      "stem": "Ipfv: xàtɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2488,6 +2766,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "nāsʔàghá-gū áyáláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: nāsʔàghá-gū áyáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2505,6 +2786,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdītì",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdītì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2522,6 +2806,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàgūt'īnī",
+    "linguistInfo": {
+      "stem": "Ipfv: nàgūt'īnī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2539,6 +2826,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: dītɫōd | Pfv: dīsāàtɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2556,6 +2846,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dōòsák'àsí dīyá-hí át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: dōòsák'àsí dīyá-hí át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2573,6 +2866,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyīʔò | Pfv: yōghàyīnīʔòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -2590,6 +2886,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "kúgūdátɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: kúgūdátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2603,27 +2902,13 @@
   {
     "analysis": [
       [],
-     "k'āʔídīyīskīd",
-      ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjX"]
-    ],
-    "head": "k'āʔídīyīskīd",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she finished asking someone",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "k'āʔídīyīskīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "dúkàyīdátł'í-gūlà",
       ["+V", "+I", "+Pfv", "+SbjSg3", "+Neg"]
     ],
     "head": "dúkàyīdátł'í-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2641,6 +2926,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīdīnīyīk'ááz",
+    "linguistInfo": {
+      "stem": "Ipfv: dīdīnīyīk'ááz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2658,6 +2946,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīstsús",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàyīstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -2675,6 +2966,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīstó(n)",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yīdīstó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2692,6 +2986,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "nàkànátɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: nàkànátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2709,6 +3006,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yidīniyìsgòshī",
+    "linguistInfo": {
+      "stem": "Ipfv: yidīniyìsgòshī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2726,6 +3026,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yidīnìsgòsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yidīnìsgòsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2743,6 +3046,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàyīdīstsúsī át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: ànàyīdīstsúsī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2760,6 +3066,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyìdìstásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìstásh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2777,6 +3086,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dītɫīdí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: dītɫīdí-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2794,6 +3106,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "màgúdílōō áyīdīdáláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: màgúdílōō áyīdīdáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2811,6 +3126,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "màgúdílō",
+    "linguistInfo": {
+      "stem": "Ipfv: màgúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2828,6 +3146,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "nínáyáʔìshí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: nínáyáʔìshí-gūlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2845,6 +3166,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīnásʔín-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: yīnásʔín-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2862,6 +3186,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīnásʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: yīnásʔín | Pfv: yīnáyísʔìn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2879,6 +3206,9 @@
       ["+V", "+D", "+Pfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàyīnīstín",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yōghàyīnīstín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -2896,6 +3226,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghànilō",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghànilō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -2913,6 +3246,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "náyā",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: náyā | Prog: náyīyáɫ | Ipfv+Rep: nínāyásh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2930,6 +3266,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mīwù àgúdīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: mīwù àgúdīlō | Pfv: mīwù àgúdīyīlò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -2947,6 +3286,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyīdīʔón",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tāyīdīʔón | Prog: – | Ipfv+Rep: tānáyìdīʔōsh | Pfv+Rep: tānáyīdīyīʔōsh"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2964,6 +3306,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàyīdìskón",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: ànàyīdìskón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2981,6 +3326,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xīgògù yáʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xīgògù yáʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -2998,6 +3346,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "nátáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: nátáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3015,6 +3366,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "īnásʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: īnásʔín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3028,27 +3382,13 @@
   {
     "analysis": [
       [],
-     "nàdāgūgīt'īn gwágūlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "nàdāgūgīt'īn gwágūlá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will make them work",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "nàdāgūgīt'īn_gwágūlá"
-  },
-
-  {
-    "analysis": [
-      [],
      "dúdīsgòsh gwánáyīʔìshí-gūlà",
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3", "+Neg"]
     ],
     "head": "dúdīsgòsh gwánáyīʔìshí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3066,6 +3406,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xàdidīyá",
+    "linguistInfo": {
+      "stem": "Ipfv: xàdidīyá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3079,35 +3422,21 @@
   {
     "analysis": [
       [],
-     "dútɫídīnāsh",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
+     "tɫídīnāsh",
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dútɫídīnāsh",
+    "head": "tɫídīnāsh",
+    "linguistInfo": {
+      "stem": "Ipfv: tɫídīnāsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she does not move camp from place to place",
+        "definition": "he/she moves camp from place to place",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dútɫídīnāsh"
-  },
-
-  {
-    "analysis": [
-      [],
-     "dúgúdīdītɫōd-gūlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúgúdīdītɫōd-gūlà",
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she might not jump later on",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúgúdīdītɫōd-gūlà"
+    "slug": "tɫídīnāsh"
   },
 
   {
@@ -3117,6 +3446,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "k'átsìy",
+    "linguistInfo": {
+      "stem": "Ipfv: k'átsìy | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3134,6 +3466,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mátágùdlì",
+    "linguistInfo": {
+      "stem": "Ipfv: mátágùdlì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3151,6 +3486,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyīdīʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: tānáyīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3168,6 +3506,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīlō | Pfv: yīdīsdlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3185,6 +3526,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "xàyīdīstín",
+    "linguistInfo": {
+      "stem": "Ipfv: xàyīdīstín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3202,6 +3546,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "màgúdísdlōt",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: màgúdísdlōt | Prog: màgúdīdīyīlōɫ | Ipfv+Rep: mànágúdílōsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3219,6 +3566,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "màgúdīdíyīlōt",
+    "linguistInfo": {
+      "stem": "Ipfv: màgúdīdíyīlōt | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3232,44 +3582,13 @@
   {
     "analysis": [
       [],
-     "gīmànágúdílōsh gwánágūʔīsh",
-      ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gīmànágúdílōsh gwánágūʔīsh",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she is making them become sick again and again",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gīmànágúdílōsh_gwánágūʔīsh"
-  },
-
-  {
-    "analysis": [
-      [],
-     "dúdā-hī xànáyá-hí yīnízīní ìlà",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúdā-hī xànáyá-hí yīnízīní ìlà",
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "does he/she not want to out again now",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúdā-hī_xànáyá-hí_yīnízīní_ìlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "yídònī",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yídònī",
+    "linguistInfo": {
+      "stem": "Ipfv: yídònī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3287,6 +3606,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyìyīlá-hī",
+    "linguistInfo": {
+      "stem": "Ipfv: áyìyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3300,27 +3622,13 @@
   {
     "analysis": [
       [],
-     "dúdītɫīd",
-      ["+V", "+I", "+Ipfv", "+SbjSg3", "+Neg"]
-    ],
-    "head": "dúdītɫīd",
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she is not weak",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "dúdītɫīd"
-  },
-
-  {
-    "analysis": [
-      [],
      "dīná",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīná",
+    "linguistInfo": {
+      "stem": "Ipfv: dīná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3338,6 +3646,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīch'īsh",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīch'īsh | Pfv: yídìsts'ón | Prog: – | Ipfv+Rep: náyídīch'īsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3355,6 +3666,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàstà",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -3372,6 +3686,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàtì",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàtì | Pfv: mōghànāàtón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -3389,6 +3706,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīdzīnīsà ák'ó màgúdìlō",
+    "linguistInfo": {
+      "stem": "Ipfv: dīdzīnīsà ák'ó màgúdìlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3406,10 +3726,13 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "īdón",
+    "linguistInfo": {
+      "stem": "Ipfv: īdón | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is drinking (something) (something)",
+        "definition": "he/she is drinking (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3420,13 +3743,16 @@
     "analysis": [
       [],
      "īzí",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
+      ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "īzí",
-    "paradigm": "VT",
+    "linguistInfo": {
+      "stem": "Ipfv: īzí | Pfv: īyīzīn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
+    "paradigm": "VI",
     "senses": [
       {
-        "definition": "he she is reading (something) (something)",
+        "definition": "he/she is reading (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -3440,6 +3766,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "kàdītɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: kàdītɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3457,6 +3786,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyīyīsʔín",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: áyīyīsʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3474,6 +3806,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3", "+Neg"]
     ],
     "head": "dútāyāʔóɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3491,6 +3826,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyīdīʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: tāyīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3508,6 +3846,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyástsús",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: tāyástsús | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3525,6 +3866,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "mànágúdílōsh gwánáyīʔīsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: mànágúdílōsh gwánáyīʔīsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3542,6 +3886,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tíyá màgúdílō",
+    "linguistInfo": {
+      "stem": "Ipfv: tíyá màgúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3559,6 +3906,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dìstsàyí át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dìstsàyí át'à | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3576,6 +3926,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nààtɫ'á",
+    "linguistInfo": {
+      "stem": "Ipfv: nààtɫ'á | Pfv: nààtɫ'ò | Prog: nàyītɫ'áɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3593,6 +3946,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyīdīyīʔòłī",
+    "linguistInfo": {
+      "stem": "Ipfv: tāyīdīyīʔòłī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3610,6 +3966,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyīdīlásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyīdīlásh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3627,6 +3986,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "nàgūdīdàtɫíɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: nàgūdīdàtɫíɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3644,6 +4006,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "k'ānītsày",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: k'ānītsày | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3661,6 +4026,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mànágúdílōt",
+    "linguistInfo": {
+      "stem": "Ipfv: mànágúdílōt | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3678,6 +4046,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyítsít",
+    "linguistInfo": {
+      "stem": "Ipfv: áyítsít | Pfv: áyìnítsīt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3691,27 +4062,13 @@
   {
     "analysis": [
       [],
-     "nīīhīdīskīdí-gūlà",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl1"]
-    ],
-    "head": "nīīhīdīskīdí-gūlà",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she might ask us",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "nīīhīdīskīdí-gūlà"
-  },
-
-  {
-    "analysis": [
-      [],
      "náyidīdzá",
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "náyidīdzá",
+    "linguistInfo": {
+      "stem": "Ipfv: náyidīdzá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3729,6 +4086,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānádìkōsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānádìkōsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3746,6 +4106,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "mánágūnìlíshí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: mánágūnìlíshí-gūlà | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3763,6 +4126,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3", "+Neg"]
     ],
     "head": "dúxànáyáshí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3780,6 +4146,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "k'ātsád",
+    "linguistInfo": {
+      "stem": "Ipfv: k'ātsád | Pfv: k'ānītsád | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3797,6 +4166,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3", "+Neg"]
     ],
     "head": "dútānáyìdīʔóshī-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3814,6 +4186,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nàgūt'īn",
+    "linguistInfo": {
+      "stem": "Ipfv: nàgūt'īn | Pfv: nàgūyīt'īn | Prog: – | Ipfv+Rep: nīnágūt'ìsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3831,6 +4206,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "tīīnágūdītɫīīzh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tīīnágūdītɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3848,6 +4226,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mágūnìlít",
+    "linguistInfo": {
+      "stem": "Ipfv: mágūnìlít | Pfv: mágūnìsdlìt | Prog: – | Ipfv+Rep: mánágūnìlísh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3865,6 +4246,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "īdītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: īdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3882,6 +4266,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "kúnágūdìtɫīīzh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: kúnágūdìtɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3899,6 +4286,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yátsàd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yátsàd | Prog: yīsnō | Ipfv+Rep: náyísnòsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3916,6 +4306,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "īdīskīd",
+    "linguistInfo": {
+      "stem": "Ipfv: īdīskīd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3933,6 +4326,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "ànàyīdīʔò-hī át'à",
+    "linguistInfo": {
+      "stem": "Ipfv: ànàyīdīʔò-hī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -3950,6 +4346,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "xīgògù màgúdìyílō",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xīgògù màgúdìyílō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -3963,27 +4362,13 @@
   {
     "analysis": [
       [],
-     "chāā chīchí yīnásʔín",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3", "+Neg"]
-    ],
-    "head": "chāā chīchí yīnásʔín",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "no he/she is not able to take a look at it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "chāā_chīchí_yīnásʔín"
-  },
-
-  {
-    "analysis": [
-      [],
      "k'ānītsàyí-gūlà",
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "k'ānītsàyí-gūlà",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: k'ānītsàyí-gūlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4001,6 +4386,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tāyákóɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: tāyákóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4018,6 +4406,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tɬīkònī yīnízìn",
+    "linguistInfo": {
+      "stem": "Ipfv: tɬīkònī yīnízìn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4031,18 +4422,21 @@
   {
     "analysis": [
       [],
-     "dītsá",
+     "ītsīy",
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
-    "head": "dītsá",
+    "head": "ītsīy",
+    "linguistInfo": {
+      "stem": "Ipfv: ītsīy | Pfv: yītsày | Prog: – | Ipfv+Rep: náchīsh | Pfv+Rep: náyīchīsh"
+    },
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she is going to cry",
+        "definition": "he/she is crying",
         "sources": ["TVPD"]
       }
     ],
-    "slug": "dītsá"
+    "slug": "ītsīy"
   },
 
   {
@@ -4052,6 +4446,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "náyīdītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: náyīdītɫ'ìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4069,6 +4466,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "kútɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: kútɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4086,6 +4486,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyìdìjīsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìjīsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4103,10 +4506,13 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "īdīyītɫ'ìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: īdīyītɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she wrote something (something)",
+        "definition": "he/she wrote (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -4120,6 +4526,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3", "+Neg"]
     ],
     "head": "dúnīnāyásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4137,6 +4546,9 @@
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "xànádidìtɫīīzh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: xànádidìtɫīīzh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4154,6 +4566,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nītà",
+    "linguistInfo": {
+      "stem": "Ipfv: nītà | Pfv: nìstín | Prog: – | Ipfv+Rep: nánītāsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4171,6 +4586,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "yīnáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yīnáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4188,10 +4606,13 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "áná",
+    "linguistInfo": {
+      "stem": "Ipfv: áná | Pfv: – | Prog: áyīnáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
-        "definition": "he/she will become (something) (something)",
+        "definition": "he/she will become (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -4205,10 +4626,13 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dīk'ááz gwáyīlá",
+    "linguistInfo": {
+      "stem": "Ipfv: dīk'ááz gwáyīlá | Pfv: dīk'ááz gwáyīlàg | Prog: – | Ipfv+Rep: dīk'ááz gwánáyīʔìsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he she it will make it red",
+        "definition": "he/she/it will make it red",
         "sources": ["TVPD"]
       }
     ],
@@ -4222,6 +4646,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dīsgòsh gwáyīdīdáláɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: dīsgòsh gwáyīdīdáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4239,6 +4666,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "dītɫ'úlà nànīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dītɫ'úlà nànīlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4256,6 +4686,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yīdīkò",
+    "linguistInfo": {
+      "stem": "Ipfv: yīdīkò | Pfv: yīdīskón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4273,6 +4706,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tɫàʔí k'àdlù",
+    "linguistInfo": {
+      "stem": "Ipfv: tɫàʔí k'àdlù | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4290,6 +4726,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "mátágùdlì gwáyīnáɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: mátágùdlì gwáyīnáɫ | Pfv: mátágùsdlìt | Prog: – | Ipfv+Rep: mátánágùdlìsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4307,6 +4746,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "tsīy gúdīnìsh",
+    "linguistInfo": {
+      "stem": "Ipfv: tsīy gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4320,27 +4762,13 @@
   {
     "analysis": [
       [],
-     "gīmàgúdílōō ágūlá",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjPl3"]
-    ],
-    "head": "gīmàgúdílōō ágūlá",
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she will make them sick",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "gīmàgúdílōō_ágūlá"
-  },
-
-  {
-    "analysis": [
-      [],
      "dōòsì nádīyásh",
       ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]
     ],
     "head": "dōòsì nádīyásh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dōòsì nádīyásh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4358,6 +4786,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīdzīnīsà mànágúdìlō",
+    "linguistInfo": {
+      "stem": "Ipfv: dīdzīnīsà mànágúdìlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4375,6 +4806,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "kàyīdál",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: kàyīdál | Prog: kàdàɫ | Ipfv+Rep: kànáàdìɫsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4392,6 +4826,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "xàyīyā",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: xàyīyā | Prog: – | Ipfv+Rep: xànáyásh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4409,6 +4846,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "násītín",
+    "linguistInfo": {
+      "stem": "Ipfv: násītín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4426,6 +4866,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "yītɫ'áɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yītɫ'áɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4443,6 +4886,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yōghā dīdìsdlùw",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: yōghā dīdìsdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4460,6 +4906,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tɫ'úɫ ànàdīlō",
+    "linguistInfo": {
+      "stem": "Ipfv: tɫ'úɫ ànàdīlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4477,6 +4926,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "íyìsnòɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: íyìsnòɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4494,6 +4946,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàʔò",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàʔò | Pfv: yōghànīʔò(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -4511,6 +4966,9 @@
       ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]
     ],
     "head": "k'ānáchīsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: k'ānáchīsh"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4528,6 +4986,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "áyìlá",
+    "linguistInfo": {
+      "stem": "Ipfv: áyìlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4545,6 +5006,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "náyīdīnìsk'ááz",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: náyīdīnìsk'ááz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4562,6 +5026,9 @@
       ["+V", "+D", "+Ipfv", "+SbjSg3", "+DObjSg3", "+IObjSg3"]
     ],
     "head": "yōghàstsús",
+    "linguistInfo": {
+      "stem": "Ipfv: yōghàstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VD",
     "senses": [
       {
@@ -4579,6 +5046,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "dīstɫ'ò",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: dīstɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4596,6 +5066,9 @@
       ["+V", "+T", "+Ipfv", "+Rep", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tānáyìdìschūsh",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìschūsh | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4613,6 +5086,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "tɫàʔí k'ànīdlùw",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tɫàʔí k'ànīdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4630,6 +5106,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "xàyītɫōdī",
+    "linguistInfo": {
+      "stem": "Ipfv: xàyītɫōdī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4647,6 +5126,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "gwāt'īɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: gwāt'īɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4664,6 +5146,9 @@
       ["+V", "+I", "+Pfv", "+SbjSg3"]
     ],
     "head": "tìnáátɫōd",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: tìnáátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4681,6 +5166,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nádīyá",
+    "linguistInfo": {
+      "stem": "Ipfv: nádīyá | Pfv: – | Prog: náyīyáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4698,6 +5186,9 @@
       ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "tɫík'á náyīdīskón",
+    "linguistInfo": {
+      "stem": "Ipfv: tɫík'á náyīdīskón | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4715,6 +5206,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "nīdò",
+    "linguistInfo": {
+      "stem": "Ipfv: nīdò | Pfv: nìsdō | Prog: – | Ipfv+Rep: nánīdōsh | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4732,6 +5226,9 @@
       ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "yōghā dádlù",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: yōghā dádlù | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
@@ -4749,6 +5246,9 @@
       ["+V", "+I", "+Ipfv", "+SbjSg3"]
     ],
     "head": "dīdìyītɫīɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: dīdìyītɫīɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4766,6 +5266,9 @@
       ["+V", "+I", "+Prog", "+SbjSg3"]
     ],
     "head": "gúdīdátɫīɫ",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: – | Prog: gúdīdátɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VI",
     "senses": [
       {
@@ -4783,6 +5286,9 @@
       ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]
     ],
     "head": "kúyīdīdīsdlō",
+    "linguistInfo": {
+      "stem": "Ipfv: – | Pfv: kúyīdīdīsdlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+    },
     "paradigm": "VT",
     "senses": [
       {
