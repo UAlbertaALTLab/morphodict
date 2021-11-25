@@ -156,25 +156,25 @@ def search_results(request, query_string: str):  # pragma: no cover
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
         dict_source=dict_source
     )
-    for r in search_results:
-        if dict_source:
-            if not r['is_lemma']:
-                for d in r['lemma_wordform']['definitions']:
-                    for s in d['source_ids']:
-                        if s in dict_source:
-                            print("yes show form")
-                            r['show_form_of'] = True
-                        elif include_auto_definitions and s.replace('🤖', '') in dict_source:
-                            print("yes show form")
-                            r['show_form_of'] = True
-            if 'show_form_of' not in r:
-                print("no show form")
-                r['show_form_of'] = False
-        else:
-            print("yes show form")
-            r['show_form_of'] = True
-
-        print("173", r['show_form_of'])
+    # for r in results:
+    #     if dict_source:
+    #         if not r['is_lemma']:
+    #             for d in r['lemma_wordform']['definitions']:
+    #                 for s in d['source_ids']:
+    #                     if s in dict_source:
+    #                         print("yes show form")
+    #                         r['show_form_of'] = True
+    #                     elif include_auto_definitions and s.replace('🤖', '') in dict_source:
+    #                         print("yes show form")
+    #                         r['show_form_of'] = True
+    #         if 'show_form_of' not in r:
+    #             print("no show form")
+    #             r['show_form_of'] = False
+    #     else:
+    #         print("yes show form")
+    #         r['show_form_of'] = True
+    #
+    #     print("173", r['show_form_of'])
 
     for r in results:
         if not r["definitions"]:
