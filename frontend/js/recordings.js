@@ -190,7 +190,7 @@ function mapWordformsToBestRecordingURL(response) {
  * @return {Array<Array<T>}}
  */
 function chunk(collection) {
-    const MAX_BATCH_SIZE = 50;
+    const MAX_BATCH_SIZE = 30;
 
     // Chunk items iteratively, sort of like packing moving boxes, adding items
     // to one box at at time until the box gets full, and then moving on to a
