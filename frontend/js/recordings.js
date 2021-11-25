@@ -3,7 +3,19 @@ import SimpleTemplate from "./simple-template.js";
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
-const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
+const LANGUAGE_CODE = getLanguageCodeFromLocation();
+const BULK_API_URL = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
+
+
+function getLanguageCodeFromLocation() {
+    const location = window.location.toString();
+    if (location.includes(`itwewina`) || location.includes(`crk`)) return `maskwacis`;
+    if (location.includes(`itwiwina`) || location.includes(`cwd`)) return `woodscree`;
+    if (location.includes(`gunaha`) || location.includes(`srs`)) return `tsuutina`;
+    if (location.includes(`arpeng`)) return `arapaho`;
+    if (location.includes(`guusaaw`) || location.includes(`hdn`)) return `haida`;
+    return `maskwacis`;
+}
 
 /**
  * Fetches the recording URL for one wordform.
@@ -13,8 +25,8 @@ const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
  * @return {string?} the recording URL, if it exists, else undefined.
  */
 export async function fetchFirstRecordingURL(wordform) {
-  let response = await fetchRecordingUsingBulkSearch([wordform]);
-  return mapWordformsToBestRecordingURL(response).get(wordform);
+    let response = await fetchRecordingUsingBulkSearch([wordform]);
+    return mapWordformsToBestRecordingURL(response).get(wordform);
 }
 
 /**
@@ -24,8 +36,8 @@ export async function fetchFirstRecordingURL(wordform) {
  * @return {Map<str, str>} maps wordforms to a valid recording URL.
  */
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
-  let response = await fetchRecordingUsingBulkSearch(requestedWordforms);
-  return mapWordformsToBestRecordingURL(response);
+    let response = await fetchRecordingUsingBulkSearch(requestedWordforms);
+    return mapWordformsToBestRecordingURL(response);
 }
 
 /**
@@ -33,73 +45,73 @@ export async function fetchRecordingURLForEachWordform(requestedWordforms) {
  * interact with and hear the wordform pronounced in different ways.
  */
 export async function retrieveListOfSpeakers() {
-  // There SHOULD be a <data id="data:head" value="..."> element on the page
-  // that will tell us the current wordform: get it!
-  let wordform = document.getElementById("data:head").value;
+    // There SHOULD be a <data id="data:head" value="..."> element on the page
+    // that will tell us the current wordform: get it!
+    let wordform = document.getElementById("data:head").value;
 
-  // select for our elements for playback and link-generation
-  let recordingsDropdown = document.querySelector(
-    ".multiple-recordings select"
-  );
-  let recordingsPlayback = document.querySelector(
-    '[data-action="play-current-recording"]'
-  );
-  let recordingsLink = document.querySelector(
-    '[data-action="learn-about-speaker"]'
-  );
+    // select for our elements for playback and link-generation
+    let recordingsDropdown = document.querySelector(
+        ".multiple-recordings select"
+    );
+    let recordingsPlayback = document.querySelector(
+        '[data-action="play-current-recording"]'
+    );
+    let recordingsLink = document.querySelector(
+        '[data-action="learn-about-speaker"]'
+    );
 
-  // Get all recordings for this wordform
-  let response = await fetchRecordingUsingBulkSearch([wordform]);
+    // Get all recordings for this wordform
+    let response = await fetchRecordingUsingBulkSearch([wordform]);
 
-  displaySpeakerList(
-    response["matched_recordings"].filter(
-      (result) => result.wordform === wordform
-    )
-  );
-  showRecordingsExplainerText();
+    displaySpeakerList(
+        response["matched_recordings"].filter(
+            (result) => result.wordform === wordform
+        )
+    );
+    showRecordingsExplainerText();
 
-  ////////////////////////////////// helpers /////////////////////////////////
+    ////////////////////////////////// helpers /////////////////////////////////
 
-  // the function that displays an individual speaker's name
-  function displaySpeakerList(recordings) {
-    for (let recordingData of recordings) {
-      // using a template, place the speaker's name and dialect into the dropdown
-      let individualSpeaker = SimpleTemplate.fromId("template:speakerList");
-      individualSpeaker.slot.speakerName = recordingData.speaker_name;
-      individualSpeaker.slot.speakerDialect = recordingData.dialect;
-      recordingsDropdown.appendChild(individualSpeaker.element);
+    // the function that displays an individual speaker's name
+    function displaySpeakerList(recordings) {
+        for (let recordingData of recordings) {
+            // using a template, place the speaker's name and dialect into the dropdown
+            let individualSpeaker = SimpleTemplate.fromId("template:speakerList");
+            individualSpeaker.slot.speakerName = recordingData.speaker_name;
+            individualSpeaker.slot.speakerDialect = recordingData.dialect;
+            recordingsDropdown.appendChild(individualSpeaker.element);
+        }
+
+        // audio playback for the specific speaker
+        recordingsPlayback.addEventListener("click", () => {
+            let speakerPosition = recordingsDropdown.selectedIndex;
+            let audioURL = recordings[speakerPosition].recording_url;
+
+            // play the audio associated with that specific index
+            let audio = new Audio(audioURL);
+            audio.play();
+        });
+
+        // link for the specific speaker
+        recordingsLink.addEventListener("click", () => {
+            let speakerPosition = recordingsDropdown.selectedIndex;
+            let speakerBioLink = recordings[speakerPosition].speaker_bio_url;
+
+            // change the URL of the selected speaker
+            recordingsLink.href = speakerBioLink;
+        });
     }
-
-    // audio playback for the specific speaker
-    recordingsPlayback.addEventListener("click", () => {
-      let speakerPosition = recordingsDropdown.selectedIndex;
-      let audioURL = recordings[speakerPosition].recording_url;
-
-      // play the audio associated with that specific index
-      let audio = new Audio(audioURL);
-      audio.play();
-    });
-
-    // link for the specific speaker
-    recordingsLink.addEventListener("click", () => {
-      let speakerPosition = recordingsDropdown.selectedIndex;
-      let speakerBioLink = recordings[speakerPosition].speaker_bio_url;
-
-      // change the URL of the selected speaker
-      recordingsLink.href = speakerBioLink;
-    });
-  }
 }
 
 function showRecordingsExplainerText() {
-  let recordingsHeading = document.querySelector(
-    ".definition__recordings--not-loaded"
-  );
-  if (!recordingsHeading) {
-    return;
-  }
+    let recordingsHeading = document.querySelector(
+        ".definition__recordings--not-loaded"
+    );
+    if (!recordingsHeading) {
+        return;
+    }
 
-  recordingsHeading.classList.remove("definition__recordings--not-loaded");
+    recordingsHeading.classList.remove("definition__recordings--not-loaded");
 }
 
 /**
@@ -109,44 +121,44 @@ function showRecordingsExplainerText() {
  * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
 async function fetchRecordingUsingBulkSearch(requestedWordforms) {
-  let batches = chunk(requestedWordforms);
+    let batches = chunk(requestedWordforms);
 
-  let allMatchedRecordings = [];
-  let allNotFound = [];
+    let allMatchedRecordings = [];
+    let allNotFound = [];
 
-  for (let batch of batches) {
-    let response = await _fetchRecordingUsingBulkSearch(batch);
+    for (let batch of batches) {
+        let response = await _fetchRecordingUsingBulkSearch(batch);
 
-    response["matched_recordings"].forEach((rec) =>
-      allMatchedRecordings.push(rec)
-    );
-    response["not_found"].forEach((rec) => allNotFound.push(rec));
-  }
+        response["matched_recordings"].forEach((rec) =>
+            allMatchedRecordings.push(rec)
+        );
+        response["not_found"].forEach((rec) => allNotFound.push(rec));
+    }
 
-  return {
-    matched_recordings: allMatchedRecordings,
-    not_found: allNotFound,
-  };
+    return {
+        matched_recordings: allMatchedRecordings,
+        not_found: allNotFound,
+    };
 }
 
 /**
  * ACTUALLY does one HTTP request to the speech-db.
  */
 async function _fetchRecordingUsingBulkSearch(requestedWordforms) {
-  // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
-  let searchParams = new URLSearchParams();
-  for (let wordform of requestedWordforms) {
-    searchParams.append("q", wordform);
-  }
-  let url = new URL(BULK_API_URL);
-  url.search = searchParams;
+    // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
+    let searchParams = new URLSearchParams();
+    for (let wordform of requestedWordforms) {
+        searchParams.append("q", wordform);
+    }
+    let url = new URL(BULK_API_URL);
+    url.search = searchParams;
 
-  let response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Could not fetch recordings");
-  }
+    let response = await fetch(url);
+    if (!response.ok) {
+        throw new Error("Could not fetch recordings");
+    }
 
-  return response.json();
+    return response.json();
 }
 
 /**
@@ -157,18 +169,18 @@ async function _fetchRecordingUsingBulkSearch(requestedWordforms) {
  *                             search API.
  */
 function mapWordformsToBestRecordingURL(response) {
-  let wordform2recordingURL = new Map();
+    let wordform2recordingURL = new Map();
 
-  for (let result of response["matched_recordings"]) {
-    let wordform = result["wordform"];
+    for (let result of response["matched_recordings"]) {
+        let wordform = result["wordform"];
 
-    if (!wordform2recordingURL.has(wordform)) {
-      // Assume the first result returned is the best recording:
-      wordform2recordingURL.set(wordform, result["recording_url"]);
+        if (!wordform2recordingURL.has(wordform)) {
+            // Assume the first result returned is the best recording:
+            wordform2recordingURL.set(wordform, result["recording_url"]);
+        }
     }
-  }
 
-  return wordform2recordingURL;
+    return wordform2recordingURL;
 }
 
 /**
@@ -178,27 +190,27 @@ function mapWordformsToBestRecordingURL(response) {
  * @return {Array<Array<T>}}
  */
 function chunk(collection) {
-  const MAX_BATCH_SIZE = 50;
+    const MAX_BATCH_SIZE = 50;
 
-  // Chunk items iteratively, sort of like packing moving boxes, adding items
-  // to one box at at time until the box gets full, and then moving on to a
-  // new, empty box:
-  let chunks = [[]];
-  for (let item of collection) {
-    // invariant: the array of all chunks has at least one chunk
-    let currentChunk = chunks[chunks.length - 1];
+    // Chunk items iteratively, sort of like packing moving boxes, adding items
+    // to one box at at time until the box gets full, and then moving on to a
+    // new, empty box:
+    let chunks = [[]];
+    for (let item of collection) {
+        // invariant: the array of all chunks has at least one chunk
+        let currentChunk = chunks[chunks.length - 1];
 
-    if (currentChunk.length >= MAX_BATCH_SIZE) {
-      // The current chunk is full!
-      // We can't add anymore items so start a new chunk.
-      currentChunk = [];
-      chunks.push(currentChunk);
+        if (currentChunk.length >= MAX_BATCH_SIZE) {
+            // The current chunk is full!
+            // We can't add anymore items so start a new chunk.
+            currentChunk = [];
+            chunks.push(currentChunk);
+        }
+
+        // invariant: currentChunk.length < batch size:
+        // ∴ it's safe to add an item to the current chunk
+        currentChunk.push(item);
     }
 
-    // invariant: currentChunk.length < batch size:
-    // ∴ it's safe to add an item to the current chunk
-    currentChunk.push(item);
-  }
-
-  return chunks;
+    return chunks;
 }
