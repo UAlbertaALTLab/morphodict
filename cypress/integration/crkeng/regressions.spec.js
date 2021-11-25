@@ -306,7 +306,7 @@ context("Regressions", () => {
    */
 
   it("should show audio button after showing more", () => {
-    cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+    cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
       fixture: "recording/bulk_search/minôs.json",
     }).as("bulkSearch");
 

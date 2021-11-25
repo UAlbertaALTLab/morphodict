@@ -4,7 +4,7 @@
 context("Recordings", function () {
   describe("On the search page", () => {
     it("should display for words", () => {
-      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
         fixture: "recording/bulk_search/wâpamêw-asawâpamêw.json",
       }).as("bulkSearch");
 
@@ -22,7 +22,7 @@ context("Recordings", function () {
   describe("On the definition page", () => {
     beforeEach(() => {
       // Intercept calls to our API
-      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
         fixture: "recording/bulk_search/wâpamêw.json",
       }).as("recordingsResults");
     });
@@ -88,7 +88,7 @@ context("Recordings", function () {
     it("should not show a play button", () => {
       const lemma = "kotiskâwêw";
 
-      cy.intercept("https://speech-db.altlab.app/api/bulk_search?*", {
+      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
         // A valid response, but the lemma is simply not found:
         statusCode: 200,
         body: {
