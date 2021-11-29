@@ -1,7 +1,10 @@
 #/bin/sh
 
-gawk -v TOP=$1 -v REPORT=$2 'BEGIN { top=TOP; report=REPORT;
-  while((getline < "/Users/arppe/wordFrequency.txt")!=0)
+# Usage:
+#   cat ~/altlab2/crk/dicts/crkeng_dictionary.importjson | scripts/top-coca-vs-dict-eng-def-matches.sh 100 ~/wordFrequency.txt full | less
+
+gawk -v TOP=$1 -v COCA=$2 -v REPORT=$3 'BEGIN { top=TOP; report=REPORT; coca_freq_file=COCA;
+  while((getline < coca_freq_file)!=0)
        { gsub("\r","");
          if(($3=="n" || $3=="v" || $3=="j" || $3=="r") && length($2)>=3)
            { if($2!=lemma)
