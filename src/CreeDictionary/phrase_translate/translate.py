@@ -23,6 +23,7 @@ import foma
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
+from morphodict.site import settings
 
 if typing.TYPE_CHECKING:
     # When this file is run directly as __main__, importing Django models at
@@ -65,7 +66,7 @@ def eng_verb_entry_to_inflected_phrase_fst():
 @cache
 def eng_phrase_to_crk_features_fst():
     return foma.FST.load(
-        shared_fst_dir / "transcriptor-eng-phrase2crk-features.fomabin"
+        shared_fst_dir / "eng2srs.fomabin"
     )
 
 
