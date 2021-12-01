@@ -25,6 +25,7 @@
 		49F43F0D26BEF4B30062D570 /* HTMLString in Frameworks */ = {isa = PBXBuildFile; productRef = 49F43F0C26BEF4B30062D570 /* HTMLString */; };
 		49F8638B26A8A43400D35B6F /* app_python in Resources */ = {isa = PBXBuildFile; fileRef = 49F8638A26A8A43400D35B6F /* app_python */; };
 		59738ABB1A8E19AA001B2C0C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
+		5E0CA0712756EC7D00CD63EF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59738ABA1A8E19AA001B2C0C /* Images.xcassets */; };
 		5E0F41E026FB9E58007AF67C /* morphodict_mobile.m in Sources */ = {isa = PBXBuildFile; fileRef = 4901B0D626E9226B000EE786 /* morphodict_mobile.m */; };
 		5E0F41E126FB9E64007AF67C /* runPython.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* runPython.m */; };
 		5E0F41E226FB9E6A007AF67C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B5A7FE26A9DA0800CC2B09 /* AppDelegate.swift */; };
@@ -339,6 +340,7 @@
 			files = (
 				5E0F41F526FBA60C007AF67C /* app_python in Resources */,
 				5E0F41E626FB9FE8007AF67C /* lib in Resources */,
+				5E0CA0712756EC7D00CD63EF /* Images.xcassets in Resources */,
 				5E0F41F126FBA40A007AF67C /* main.xib in Resources */,
 				5E0F41F426FBA568007AF67C /* Launch Screen.storyboard in Resources */,
 				5E9ED77926FB9CB100E2213D /* Assets.xcassets in Resources */,
@@ -561,6 +563,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -594,6 +597,7 @@
 					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
 					"$(SRCROOT)/../dist/lib",
 				);
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -649,6 +653,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 2K5J2584NX;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -676,6 +681,7 @@
 					/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator14.5.sdk/usr/lib,
 					"$(SRCROOT)/../dist/lib",
 				);
+				MARKETING_VERSION = 1.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
