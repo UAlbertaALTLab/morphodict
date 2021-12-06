@@ -80,7 +80,7 @@ export async function retrieveListOfSpeakers() {
       // using a template, place the speaker's name and dialect into the dropdown
       let individualSpeaker = SimpleTemplate.fromId("template:speakerList");
       individualSpeaker.slot.speakerName = recordingData.speaker_name;
-      individualSpeaker.slot.speakerDialect = recordingData.dialect;
+      individualSpeaker.slot.speakerDialect = recordingData.language[0];
       recordingsDropdown.appendChild(individualSpeaker.element);
     }
 
