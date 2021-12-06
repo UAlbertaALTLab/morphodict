@@ -66,7 +66,7 @@ def eng_verb_entry_to_inflected_phrase_fst():
 @cache
 def eng_phrase_to_crk_features_fst():
     return foma.FST.load(
-        shared_fst_dir / "eng2srs.fomabin"
+        shared_fst_dir / "eng2srsinv.fomabin"
     )
 
 
@@ -107,7 +107,8 @@ def inflect_english_phrase(analysis, lemma_definition):
     cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
 
     if "+N" in cree_wordform_tag_list:
-        tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
+        # tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
+        tags_for_phrase = cree_wordform_tag_list
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
         phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
@@ -115,7 +116,8 @@ def inflect_english_phrase(analysis, lemma_definition):
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
-        tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
+        # tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
+        tags_for_phrase = cree_wordform_tag_list
         tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
         logger.debug("tagged_phrase = %s\n", tagged_phrase)
         phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)

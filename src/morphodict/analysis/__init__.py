@@ -8,6 +8,7 @@ FST_DIR = settings.BASE_DIR / "resources" / "fst"
 
 @cache
 def strict_generator():
+    print(FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
     return TransducerFile(FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
 
 

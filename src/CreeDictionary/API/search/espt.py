@@ -54,6 +54,7 @@ class EsptSearch:
             self.search_run.internal_query,
             add_verbose_message=self.search_run.add_verbose_message,
         )
+        print(analyzed_query)
         if analyzed_query.has_tags:
             if "+N" in analyzed_query.tags:
                 tag_map = noun_tag_map
@@ -63,7 +64,8 @@ class EsptSearch:
                 return
 
             try:
-                self.new_tags = tag_map.map_tags(analyzed_query.tags)
+                # self.new_tags = tag_map.map_tags(analyzed_query.tags)
+                self.new_tags = analyzed_query.tags
             except UnknownTagError as e:
                 logger.error(f"Unable to map tags for {analyzed_query}", exc_info=True)
                 self.search_run.add_verbose_message(espt_analysis_error=repr(e))
@@ -152,6 +154,9 @@ class EsptSearch:
                 orig_tags_starting_with_plus.append(t)
             else:
                 tags_ending_with_plus.append(t)
+
+        print(orig_tags_starting_with_plus)
+        print(tags_ending_with_plus)
 
         results = []
         for word in words:

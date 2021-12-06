@@ -27,6 +27,7 @@ def fetch_results(search_run: core.SearchRun):
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
+
     fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
 
     db_matches = list(
@@ -81,6 +82,7 @@ def fetch_results(search_run: core.SearchRun):
                 raw_analysis=analysis.tuple,
                 lemma=lemma_wordform,
             )
+            print("HERE", synthetic_wordform)
             search_run.add_result(
                 Result(
                     synthetic_wordform,

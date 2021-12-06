@@ -68,6 +68,7 @@ def search(
             do_cvd_search(search_run)
 
     if search_run.query.espt:
+        print("inflecting")
         espt_search.inflect_search_results()
 
     return search_run
