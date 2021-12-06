@@ -2269,6 +2269,26 @@
     "slug": "wâpiw"
   },
   {
+    "analysis": [[], "wiya", ["+Pron", "+Pers", "+3Sg"]],
+    "head": "wiya",
+    "linguistInfo": {
+      "as_is": false,
+      "inflectional_category": "PrA",
+      "pos": "PRON",
+      "smushedAnalysis": "wiya+Pron+Pers+3Sg",
+      "stem": "",
+      "wordclass": "PRON"
+    },
+    "paradigm": "personal-pronouns",
+    "senses": [
+      {
+        "definition": "he, she, it; him, her, it; his, hers, its",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "wiya@1"
+  },
+  {
     "analysis": [[], "wiya", ["+Ipc"]],
     "head": "wiya",
     "linguistInfo": {
@@ -2291,25 +2311,5 @@
       }
     ],
     "slug": "wiya@i"
-  },
-  {
-    "analysis": [[], "wiya", ["+Pron", "+Pers", "+3Sg"]],
-    "head": "wiya",
-    "linguistInfo": {
-      "as_is": false,
-      "inflectional_category": "PrA",
-      "pos": "PRON",
-      "smushedAnalysis": "wiya+Pron+Pers+3Sg",
-      "stem": "",
-      "wordclass": "PRON"
-    },
-    "paradigm": "personal-pronouns",
-    "senses": [
-      {
-        "definition": "he, she, it; him, her, it; his, hers, its",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "wiya@1"
   }
 ]
