@@ -59,8 +59,10 @@ def entry_details(request, slug: str):
     if paradigm is not None:
         paradigm_manager = default_paradigm_manager()
         sizes = list(paradigm_manager.sizes_of(paradigm))
-        default_size = sizes[0]
-        print(sizes)
+        if "basic" in sizes:
+            default_size = "basic"
+        else:
+            default_size = sizes[0]
 
         if len(sizes) <= 1:
             size = default_size
@@ -70,8 +72,6 @@ def entry_details(request, slug: str):
                 size = size.lower()
             if size not in sizes:
                 size = default_size
-
-        print(size)
 
         paradigm = paradigm_for(lemma, size)
         paradigm_context.update(
