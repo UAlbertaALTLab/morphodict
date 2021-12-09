@@ -44,12 +44,12 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             },
         ],
         [
-            "my little bears",
+            "my little cats",
             {
-                "expected_query_terms": ["bear"],
+                "expected_query_terms": ["cat"],
                 "expected_new_tags": ["+N", "+Der/Dim", "+Px1Sg", "+Pl"],
-                "slug": "maskwa@1",
-                "expected_inflection": "nimaskomisak",
+                "slug": "minôs",
+                "expected_inflection": "niminôsak",
             },
         ],
         [
@@ -71,12 +71,12 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             },
         ],
         [
-            "it will fall short",
+            "it will be difficult",
             {
-                "expected_query_terms": ["fall", "short"],
+                "expected_query_terms": ["be", "difficult"],
                 "expected_new_tags": ["+V", "+II", "PV/ka+", "+Ind", "+3Sg"],
-                "slug": "nôhtêpayiw@vii",
-                "expected_inflection": "ka-nôhtêpayiw",
+                "slug": "âyiman@vii",
+                "expected_inflection": "ka-âyiman",
             },
         ],
         [
@@ -91,6 +91,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
         ],
     ],
 )
+
 def test_espt_search(db, search, params):
     search_run = SearchRun(search)
     espt_search = EsptSearch(search_run)
