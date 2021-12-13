@@ -43,8 +43,8 @@ def test_auto_translation_works(db):
     """
     This would fail if auto-translation tried to use the full definition
     """
-    defn = Wordform.objects.get(text="nikwâskwêpayihôs").definitions.first()
-    assert defn.text == "my mule deer"
+    defn = Wordform.objects.get(text="nitâcimon").definitions.first()
+    assert defn.text == "I tell, I tell a story"
     assert defn.auto_translation_source_id is not None
 
 
