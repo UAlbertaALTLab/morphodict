@@ -3,7 +3,21 @@ import SimpleTemplate from "./simple-template.js";
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
-const BULK_API_URL = `${BASE_URL}/api/bulk_search`;
+const LANGUAGE_CODE = getLanguageCodeFromLocation();
+const BULK_API_URL = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
+
+function getLanguageCodeFromLocation() {
+  const location = window.location.toString();
+  if (location.includes(`itwewina`) || location.includes(`crk`))
+    return `maskwacis`;
+  if (location.includes(`itwiwina`) || location.includes(`cwd`))
+    return `woodscree`;
+  if (location.includes(`gunaha`) || location.includes(`srs`))
+    return `tsuutina`;
+  if (location.includes(`arpeng`)) return `arapaho`;
+  if (location.includes(`guusaaw`) || location.includes(`hdn`)) return `haida`;
+  return `maskwacis`;
+}
 
 /**
  * Fetches the recording URL for one wordform.
@@ -66,7 +80,7 @@ export async function retrieveListOfSpeakers() {
       // using a template, place the speaker's name and dialect into the dropdown
       let individualSpeaker = SimpleTemplate.fromId("template:speakerList");
       individualSpeaker.slot.speakerName = recordingData.speaker_name;
-      individualSpeaker.slot.speakerDialect = recordingData.dialect;
+      individualSpeaker.slot.speakerDialect = recordingData.language[0];
       recordingsDropdown.appendChild(individualSpeaker.element);
     }
 
@@ -178,7 +192,7 @@ function mapWordformsToBestRecordingURL(response) {
  * @return {Array<Array<T>}}
  */
 function chunk(collection) {
-  const MAX_BATCH_SIZE = 50;
+  const MAX_BATCH_SIZE = 30;
 
   // Chunk items iteratively, sort of like packing moving boxes, adding items
   // to one box at at time until the box gets full, and then moving on to a
