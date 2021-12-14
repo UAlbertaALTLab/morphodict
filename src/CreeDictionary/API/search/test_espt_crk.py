@@ -91,7 +91,6 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
         ],
     ],
 )
-
 def test_espt_search(db, search, params):
     search_run = SearchRun(search)
     espt_search = EsptSearch(search_run)
@@ -111,9 +110,9 @@ def test_espt_search(db, search, params):
 
     espt_search.inflect_search_results()
 
-    assert (
-        params["expected_inflection"] in [entry.wordform.text for entry in list(search_run.unsorted_results())]
-    )
+    assert params["expected_inflection"] in [
+        entry.wordform.text for entry in list(search_run.unsorted_results())
+    ]
 
 
 def test_espt_search_doesnt_crash_when_no_analysis(db):
