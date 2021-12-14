@@ -3,7 +3,7 @@
  * dictionary).
  */
 describe("Source citations", function () {
-  const LEMMA_WITH_MD_AND_CW_CITATIONS = "mowêw";
+  const LEMMA_WITH_MD_AND_CW_CITATIONS = "nipâw";
   const SOURCES = ["MD", "CW"];
   const CRITICAL_INFORMATION = {
     MD: "Maskwacîs Dictionary",
