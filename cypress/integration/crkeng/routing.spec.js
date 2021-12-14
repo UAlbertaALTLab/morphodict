@@ -58,8 +58,8 @@ describe("urls for lemma detail page should be handled correctly", () => {
       })
       .then(() =>
         expect(lemmaUrls)
-          .to.include("/word/pipon@n/")
-          .and.to.include("/word/pipon@v/")
+          .to.include("/word/pipon@ni/")
+          .and.to.include("/word/pipon@vii/")
       );
   });
 });
