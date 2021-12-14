@@ -7,7 +7,7 @@ context("Searching", () => {
     const plainEnglishInflectionalCategory = "like: nipâw";
     const nonLemmaFormWithDefinition = "nîminâniwan";
     const nonLemmaFormWithoutDefinition = "ninîmin";
-    const nonLemmaDefinition = "it is a dance";
+    const nonLemmaDefinition = "there is a dance, it is a time of dancing";
 
     it("should display the match wordform and word class on the same line for lemmas", function () {
       cy.visitSearch(fudgeUpOrthography(lemma));

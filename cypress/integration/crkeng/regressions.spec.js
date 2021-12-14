@@ -258,7 +258,7 @@ context("Regressions", () => {
    *
    * See: https://github.com/UAlbertaALTLab/morphodict/issues/489
    */
-  context("symbols also for pronouns and preverbs", function () {
+  context.skip("symbols also for pronouns and preverbs", function () {
     // TODO: add emoji to represent ôma/awa words
     const testCases = [
       ["niya", "➡️", "like: awa"],
@@ -287,7 +287,7 @@ context("Regressions", () => {
     const testCases = [
       ["Calgary", "otôskwanihk"],
       ["Regina", "oskana kâ-asastêki"],
-      ["Saskatoon", "misâskwatômina"],
+      ["Saskatoon", "misâskwatôminihk"],
     ];
 
     for (const [englishName, creeName] of testCases) {

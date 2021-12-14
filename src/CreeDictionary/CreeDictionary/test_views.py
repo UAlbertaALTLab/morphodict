@@ -28,22 +28,24 @@ RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 class TestLemmaDetailsInternal4xx:
     @pytest.mark.django_db
     @pytest.mark.parametrize(
-        ("lemma_id", "paradigm_size", "expected_code"),
+        ("slug", "paradigm_size", "expected_code"),
         [
             ["-10", "FULL", HttpResponseBadRequest.status_code],
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
-            ["maskwa", "LINUST", HttpResponseBadRequest.status_code],
+            ["maskwa@1", "LINUST", HttpResponseBadRequest.status_code],
             [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
     def test_paradigm_details_internal_400_404(
-        self, lemma_id: str, paradigm_size: Optional[str], expected_code: int
+        self, slug: str, paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
 
-        if not RE_NUMERIC.fullmatch(lemma_id):
-            lemma_id = str(Wordform.objects.get(slug=lemma_id).id)
+        if not RE_NUMERIC.fullmatch(slug):
+            lemma_id = str(Wordform.objects.get(slug=slug).id)
+        else:
+            lemma_id = slug
 
         get_data: Dict[str, str] = {}
         if lemma_id is not None:
@@ -96,7 +98,7 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     ("lexeme", "slug_disambiguator", "example_forms"),
     [
         ("niya", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
-        ("awa", "awa@p", ["ôma", "awa", "ana"]),
+        ("awa", "awa@pra", ["ôma", "awa", "ana"]),
         ("minôs", None, ["minôs", "minôsa", "niminôs"]),
     ],
 )

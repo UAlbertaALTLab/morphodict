@@ -11,7 +11,7 @@ context("Searching", () => {
     });
 
     it("should do suffix search for English", () => {
-      cy.visitSearch("katoon").searchResultsContain("saskatoon");
+      cy.visitSearch("katoon").searchResultsContain("Saskatoon");
     });
   });
 });
