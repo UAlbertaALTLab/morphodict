@@ -251,8 +251,6 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: list
 
 def serialize_definitions(definitions, include_auto_definitions=False, dict_source=None):
     ret = []
-    print(dict_source)
-    print(include_auto_definitions)
     for definition in definitions:
         serialized = definition.serialize()
         if not dict_source:
@@ -260,7 +258,6 @@ def serialize_definitions(definitions, include_auto_definitions=False, dict_sour
                 ret.append(serialized)
         else:
             for source_id in serialized["source_ids"]:
-                print(source_id)
                 if source_id in dict_source:
                     ret.append(serialized)
                 elif include_auto_definitions and source_id.replace('🤖', '') in dict_source:

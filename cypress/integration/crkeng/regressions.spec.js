@@ -160,7 +160,7 @@ context("Regressions", () => {
     cy.search("acâhkos");
 
     cy.url().should("contain", "/search");
-    cy.get("[data-cy=search-results]").should("contain", "atâhk");
+    cy.get("[data-cy=definition-title]").should("contain", "atâhk");
   });
 
   /**
