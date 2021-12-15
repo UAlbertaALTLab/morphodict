@@ -36,7 +36,7 @@ context("Admin interface", () => {
 
     it("should not show auto-translations to anonymous users", function () {
       cy.visitSearch(searchTerm);
-      cy.get("[data-cy=search-result]").should("not.exist");
+      cy.get("[data-cy=lemma-meaning]").should("not.contain.text", "🤖CW");
     });
   });
 
