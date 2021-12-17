@@ -395,3 +395,6 @@ MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # The marketing / brand / public-facing name of the dictionary
 MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+
+# Used for the bulk search API
+SPEECH_DB_EQ = "_"

@@ -370,9 +370,13 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
     return None
 
+
 def get_recordings_from_paradigm(paradigm):
     query_terms = []
     matched_recordings = {}
+    speech_db_eq = settings.SPEECH_DB_EQ
+    url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
+
     for pane in paradigm.panes:
         for row in pane.tr_rows:
             if not row.is_header:
@@ -383,7 +387,6 @@ def get_recordings_from_paradigm(paradigm):
     for search_terms in divide_chunks(query_terms, 30):
         print(search_terms)
         query_params = [("q", term) for term in search_terms]
-        url = "https://speech-db.altlab.app/maskwacis/api/bulk_search"
         response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
         recordings = response.json()
 
