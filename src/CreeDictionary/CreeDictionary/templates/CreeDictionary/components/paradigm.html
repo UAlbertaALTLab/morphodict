@@ -22,6 +22,7 @@
   {% load morphodict_orth %}
   {% load creedictionary_extras %}
   {% load relabelling %}
+{#<script src={% static 'morphodict/js/paradigm-recording.js' %}></script>#}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
     {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
@@ -53,9 +54,16 @@
                       <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
                         {% orth cell.inflection %}
                           {% if cell.recording %}
-                              <audio controls preload=none>
-                                <source src="{{ cell.recording }}" type="audio/mp4"/>
-                              </audio>
+                               &nbsp;
+{#                              <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}">#}
+{#                                <source src="{{ cell.recording }}" type="audio/mp4"/>#}
+{#                              </audio>#}
+                              <button aria-label="Play recording" class="definition__icon definition-title__play-button"
+                                    data-cy="play-recording-paradigm">
+                                <svg class="definition-title__play-icon" focusable="false">
+                                    <use xlink:href="#fa-volume-up-solid" data-rec-url="{{ cell.recording }}"/>
+                                </svg>
+                            </button>
                           {% endif %}
                       </td>
                     {% endif %}
