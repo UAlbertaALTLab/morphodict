@@ -52,6 +52,11 @@
                     {% else %}
                       <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
                         {% orth cell.inflection %}
+                          {% if cell.recording %}
+                              <audio controls preload=none>
+                                <source src="{{ cell.recording }}" type="audio/mp4"/>
+                              </audio>
+                          {% endif %}
                       </td>
                     {% endif %}
                   {% endfor %}
