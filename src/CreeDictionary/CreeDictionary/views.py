@@ -77,7 +77,7 @@ def entry_details(request, slug: str):
                 size = default_size
 
         paradigm = paradigm_for(lemma, size)
-        paradigm = get_recordings_from_paradigm(paradigm)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
 
         paradigm_context.update(
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
@@ -200,7 +200,7 @@ def paradigm_internal(request):
 
     try:
         paradigm = paradigm_for(lemma, paradigm_size)
-        paradigm = get_recordings_from_paradigm(paradigm)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
     except ParadigmDoesNotExistError:
         return HttpResponseBadRequest("paradigm does not exist")
     return render(
@@ -371,7 +371,10 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     return None
 
 
-def get_recordings_from_paradigm(paradigm):
+def get_recordings_from_paradigm(paradigm, request):
+    if not request.user.is_authenticated:
+        return paradigm
+
     query_terms = []
     matched_recordings = {}
     speech_db_eq = settings.SPEECH_DB_EQ
