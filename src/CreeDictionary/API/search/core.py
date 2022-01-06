@@ -92,7 +92,17 @@ class SearchRun:
         results = self.presentation_results(
             display_mode=display_mode, animate_emoji=animate_emoji, dict_source=dict_source
         )
-        return [r.serialize() for r in results]
+        serialized = [r.serialize() for r in results]
+
+        def has_definition(r):
+            if r["definitions"]:
+                return True
+            for element in r:
+                if isinstance(element, dict) and "definitions" in r[element] and r[element]["definitions"]:
+                    return True
+            return False
+
+        return [r for r in serialized if has_definition(r)]
 
     def add_verbose_message(self, message=None, **messages):
         """
