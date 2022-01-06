@@ -113,6 +113,7 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
+            dict_source=get_dict_source(request)
         )
         did_search = True
     else:
@@ -368,5 +369,6 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
 def get_dict_source(request):
     if dict_source := request.COOKIES.get("dictionary_source"):
+        print(dict_source)
         return dict_source
     return None

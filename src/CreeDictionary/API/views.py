@@ -17,7 +17,7 @@ def click_in_text(request) -> HttpResponse:
     elif q == "":
         return HttpResponseBadRequest("query param q is an empty string")
 
-    results = simple_search(q, include_auto_definitions=False)
+    results = simple_search(q, include_auto_definitions=False, dict_source=None)
 
     response = {"results": results}
 

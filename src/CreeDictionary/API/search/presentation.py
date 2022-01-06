@@ -250,10 +250,24 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: str)
 
 def serialize_definitions(definitions, include_auto_definitions=False, dict_source=None):
     ret = []
+    print(dict_source)
+    if not dict_source:
+        for definition in definitions:
+            serialized = definition.serialize()
+            if include_auto_definitions or not serialized["is_auto_translation"]:
+                ret.append(serialized)
+        return ret
+
+    if '+' in dict_source:
+        dict_source = dict_source.split('+')
     for definition in definitions:
         serialized = definition.serialize()
-        if include_auto_definitions or not serialized["is_auto_translation"]:
+        print(serialized)
+        if serialized["source_ids"][0].lower() in dict_source:
             ret.append(serialized)
+        elif include_auto_definitions and serialized["is_auto_translation"] and (serialized["source_ids"][0].replace('🤖', '').lower() in dict_source):
+            ret.append(serialized)
+
     return ret
 
 
