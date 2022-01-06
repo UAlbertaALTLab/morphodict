@@ -108,6 +108,7 @@ def index(request):  # pragma: no cover
         search_run = search_with_affixes(
             user_query,
             include_auto_definitions=should_include_auto_definitions(request),
+            dict_source=get_dict_source(request),
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
@@ -143,7 +144,7 @@ def search_results(request, query_string: str):  # pragma: no cover
     returns rendered boxes of search results according to user query
     """
     results = search_with_affixes(
-        query_string, include_auto_definitions=should_include_auto_definitions(request)
+        query_string, include_auto_definitions=should_include_auto_definitions(request), dict_source=get_dict_source(request)
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
@@ -362,4 +363,10 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
             wordform,
         )
 
+    return None
+
+
+def get_dict_source(request):
+    if dict_source := request.COOKIES.get("dictionary_source"):
+        return dict_source
     return None
