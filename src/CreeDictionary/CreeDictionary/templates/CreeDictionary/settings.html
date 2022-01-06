@@ -68,5 +68,33 @@
       </div>
     </form>
   </section>
+
+<section>
+    <h3 id="dictionary-source" class="setting__title">Dictionary Source</h3>
+
+    <p class="setting__note">Choose which dictionary sources will be displayed in search results </p>
+
+    <form method="POST" action="{% url "preference:change" "dictionary_source" %}"
+          data-save-preference="dictionary_source" data-cy="dictionary-source-choice">
+      <ul class="unbullet">
+        {% for value, label in preferences.dictionary_source.choices_with_labels %}
+        <li class="option">
+          <label class="option__label">
+            <input type="radio" class="option__control"
+                   name="dictionary_source" value="{{ value }}"
+               {% if preferences.dictionary_source.current_choice == value %}checked{% endif %}>
+            <span class="option__label-text">{{ value|upper }}</span>
+          </label>
+            <p class="option__description">{{ label }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+
+      <div class="action-bar">
+        {% csrf_token %}
+        <button type="submit"> Save settings </button>
+      </div>
+    </form>
+  </section>
 </section>
 {% endblock %}

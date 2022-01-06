@@ -69,3 +69,21 @@ class AnimateEmoji(Preference):
         # - 🦬 paskwâwi-mostsos
         # - 🦫 amisk
     }
+
+
+@register_preference
+class DictionarySource(Preference):
+    """
+    Which dictionary source(s) should be displayed in the search results
+    """
+
+    # Ensure the internal name and the cookie name (external name) are the same!
+    name = "dictionary_source"
+    cookie_name = name
+
+    default = "cw+md"
+    choices = {
+        "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
+        "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
+        "cw+md": "Show entries from CW and MD (default)"
+    }
