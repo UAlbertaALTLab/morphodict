@@ -79,6 +79,7 @@ def entry_details(request, slug: str):
         )
 
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
+    dict_source = get_dict_source(request)
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -86,7 +87,7 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji),
+        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji, dict_source=dict_source),
         **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)

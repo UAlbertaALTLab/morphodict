@@ -219,7 +219,7 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: str)
     :return: json parsable result
     """
     result = model_to_dict(wordform)
-    result["definitions"] = serialize_definitions(wordform.definitions.all(), dict_source)
+    result["definitions"] = serialize_definitions(wordform.definitions.all(), dict_source=dict_source)
     result["lemma_url"] = wordform.get_absolute_url()
 
     if wordform.linguist_info:
