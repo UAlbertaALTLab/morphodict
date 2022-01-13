@@ -161,11 +161,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
         dict_source=dict_source
     )
-
-    for r in results:
-        if not r["definitions"]:
-            results.remove(r)
-
+    
     return render(
         request,
         "CreeDictionary/search-results.html",
