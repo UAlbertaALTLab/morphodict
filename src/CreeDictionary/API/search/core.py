@@ -95,11 +95,14 @@ class SearchRun:
         serialized = [r.serialize() for r in results]
 
         def has_definition(r):
+            # does the entry itself have a definition?
             if r["definitions"]:
                 return True
-            for element in r:
-                if isinstance(element, dict) and "definitions" in r[element] and r[element]["definitions"]:
-                    return True
+            # is it a form of a word that has a definition?
+            if "lemma_wordform" in r:
+                if "definitions" in r["lemma_wordform"]:
+                    if r["lemma_wordform"]["definitions"]:
+                        return True
             return False
 
         return [r for r in serialized if has_definition(r)]
