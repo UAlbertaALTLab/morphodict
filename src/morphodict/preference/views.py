@@ -1,4 +1,3 @@
-import json
 from http import HTTPStatus
 
 from django.http import HttpResponse, HttpRequest, Http404
