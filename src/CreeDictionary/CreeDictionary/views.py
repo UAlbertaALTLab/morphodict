@@ -409,7 +409,6 @@ def get_recordings_from_paradigm(paradigm, request):
                         query_terms.append(str(cell))
 
     for search_terms in divide_chunks(query_terms, 30):
-        print(search_terms)
         query_params = [("q", term) for term in search_terms]
         response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
         recordings = response.json()
