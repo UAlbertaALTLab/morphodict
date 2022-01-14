@@ -355,7 +355,7 @@ def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[
                 text=preverb_text
             )
 
-            # get the actual wordform object and 
+            # get the actual wordform object and
             # make sure the result we return is an IPV
             if preverb_results:
                 preverb_result = None
