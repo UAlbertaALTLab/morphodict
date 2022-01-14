@@ -531,7 +531,7 @@ class WordformCell(Cell):
         # No need to fill a cell that already has contents!
         return (self,)
 
-    def __str__(self) -> tuple[str, ...]:
+    def __str__(self) -> str:
         return self.inflection
 
     def __eq__(self, other) -> bool:
