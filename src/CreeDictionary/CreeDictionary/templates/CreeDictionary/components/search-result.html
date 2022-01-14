@@ -66,7 +66,7 @@
     {% include "CreeDictionary/components/lexical-info.html" %}
 
     {# Show the matched lemma (when this is NOT a lemma). #}
-    {% if not result.is_lemma %}
+    {% if not result.is_lemma and result.show_form_of %}
       <p class="definition__reference-to-lemma" data-cy="reference-to-lemma">
         form of <a
           class="definition__matched-lemma"

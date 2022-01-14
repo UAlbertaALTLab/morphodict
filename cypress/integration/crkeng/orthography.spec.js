@@ -19,9 +19,6 @@ describe("Orthography selection", function () {
       // Now it should be in syllabics!
       cy.get("@greeting").contains("ᑖᓂᓯ!");
 
-      // We should not see the menu
-      cy.get("@option").should("not.be.visible");
-
       // It should say so on the button
       cy.get("[data-cy=settings-menu]").click();
 

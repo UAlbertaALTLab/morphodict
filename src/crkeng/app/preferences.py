@@ -69,3 +69,20 @@ class AnimateEmoji(Preference):
         # - 🦬 paskwâwi-mostsos
         # - 🦫 amisk
     }
+
+
+@register_preference
+class DictionarySource(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "dictionary_source"
+    choices = {
+        "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
+        "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
+        "cw+md": "Show entries from CW and MD (default)",
+        }
+
+    default = "cw+md"
+
