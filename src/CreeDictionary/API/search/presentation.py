@@ -13,7 +13,7 @@ from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import DisplayMode, AnimateEmoji
 from morphodict.analysis import RichAnalysis
-from morphodict.lexicon.models import Wordform
+from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
 from ..schema import SerializedDefinition, SerializedWordform
 from .types import Preverb
@@ -347,37 +347,32 @@ def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[
             entry = _InitialChangeResult(text=" ", definitions=change_types).serialize()
 
         elif tag.startswith("PV/"):
-            # use altlabel.tsv to figure out the preverb
+            preverb_text = tag.replace("PV/", "").replace("+", "")
 
-            # ling_short looks like: "Preverb: âpihci-"
-            ling_short = read_labels().linguistic_short.get(
-                cast(FSTTag, tag.rstrip("+"))
+            # Our FST analyzer doesn't return preverbs with diacritics
+            # but we store variations of words in this table
+            preverb_results = SourceLanguageKeyword.objects.filter(
+                text=preverb_text
             )
-            if ling_short:
-                # convert to "âpihci" by dropping prefix and last character
-                normative_preverb_text = ling_short[len("Preverb: ") :]
-                preverb_results = Wordform.objects.filter(
-                    text=normative_preverb_text, raw_analysis__isnull=True
+
+            # get the actual wordform object and 
+            # make sure the result we return is an IPV
+            if preverb_results:
+                preverb_result = None
+                for result in preverb_results:
+                    lexicon_result = Wordform.objects.get(id=result.wordform_id)
+                    if lexicon_result:
+                        _info = lexicon_result.linguist_info
+                        if _info["wordclass"] == 'IPV':
+                            preverb_result = lexicon_result
+            else:
+                # Can't find a match for the preverb in the database.
+                # This happens when searching against the test database for
+                # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
+                # lacks lacks ê and kî.
+                preverb_result = Wordform(
+                    text=preverb_text, is_lemma=True
                 )
-
-                # find the one that looks the most similar
-                if preverb_results:
-                    preverb_result = min(
-                        preverb_results,
-                        key=lambda pr: get_modified_distance(
-                            normative_preverb_text,
-                            pr.text.strip("-"),
-                        ),
-                    )
-
-                else:
-                    # Can't find a match for the preverb in the database.
-                    # This happens when searching against the test database for
-                    # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
-                    # lacks lacks ê and kî.
-                    preverb_result = Wordform(
-                        text=normative_preverb_text, is_lemma=True
-                    )
 
         if reduplication_string is not None:
             entry = _ReduplicationResult(
