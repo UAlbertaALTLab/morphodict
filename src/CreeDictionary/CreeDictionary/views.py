@@ -84,6 +84,7 @@ def entry_details(request, slug: str):
         )
 
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
+    dict_source = get_dict_source(request)  # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -91,7 +92,7 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji),
+        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji, dict_source=dict_source),
         **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
@@ -107,18 +108,24 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    dict_source = get_dict_source(request)
     search_run = None
 
     if user_query:
+        include_auto_definitions = should_include_auto_definitions(request)
         search_run = search_with_affixes(
             user_query,
-            include_auto_definitions=should_include_auto_definitions(request),
+            include_auto_definitions=include_auto_definitions,
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
+            dict_source=dict_source
         )
         did_search = True
+
+        search_results = should_show_form_of(search_results, dict_source, include_auto_definitions)
+
     else:
         search_results = []
         did_search = False
@@ -136,6 +143,7 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     if search_run and search_run.verbose_messages and search_run.query.verbose:
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
@@ -147,13 +155,18 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
+    dict_source = get_dict_source(request)  # type: ignore
+    include_auto_definitions = should_include_auto_definitions(request)
     results = search_with_affixes(
-        query_string, include_auto_definitions=should_include_auto_definitions(request)
+        query_string,
+        include_auto_definitions=include_auto_definitions
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+        dict_source=dict_source
     )
+
     return render(
         request,
         "CreeDictionary/search-results.html",
@@ -196,8 +209,6 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    print(lemma)
-
     try:
         paradigm = paradigm_for(lemma, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
@@ -217,6 +228,7 @@ def paradigm_internal(request):
 def settings_page(request):
     # TODO: clean up template so that this weird hack is no longer needed.
     context = create_context_for_index_template("info-page")
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     return render(request, "CreeDictionary/settings.html", context)
 
 
@@ -345,6 +357,15 @@ def should_include_auto_definitions(request):
     return request.user.is_authenticated
 
 
+def get_dict_source(request):
+    if dictionary_source := request.COOKIES.get("dictionary_source"):
+        if dictionary_source:
+            ret = dictionary_source.split('+')
+            ret = [r.upper() for r in ret]
+            return ret
+    return None
+
+
 def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     """
     Returns a paradigm for the given wordform at the desired size.
@@ -414,3 +435,21 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i:i + size]
+
+
+def should_show_form_of(search_results, dict_source, include_auto_definitions):
+    for r in search_results:
+        if dict_source:
+            if not r['is_lemma']:
+                for d in r['lemma_wordform']['definitions']:
+                    for s in d['source_ids']:
+                        if s in dict_source:
+                            r['show_form_of'] = True
+                        elif include_auto_definitions and s.replace('🤖', '') in dict_source:
+                            r['show_form_of'] = True
+            if 'show_form_of' not in r:
+                r['show_form_of'] = False
+        else:
+            r['show_form_of'] = True
+
+    return search_results

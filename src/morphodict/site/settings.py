@@ -347,6 +347,8 @@ LOGGING = {
 # sentinel value, and then a system check will raise an error on startup if any
 # such required settings are not set.
 
+SHOW_DICT_SOURCE_SETTING = False
+
 # We only apply affix search for user queries longer than the threshold length
 AFFIX_SEARCH_THRESHOLD = 4
 
