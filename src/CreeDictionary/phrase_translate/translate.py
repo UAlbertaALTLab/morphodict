@@ -38,7 +38,7 @@ if package_dir not in sys.path:
 
 from CreeDictionary.phrase_translate.crk_tag_map import (
     noun_wordform_to_phrase,
-    verb_wordform_to_phrase,
+    verb_wordform_to_phrase, permitted_preverb_tags,
 )
 
 from CreeDictionary.utils.shared_res_dir import shared_fst_dir
@@ -190,7 +190,7 @@ def translate_single_definition(wordform, text, stats: TranslationStats):
         ## switch to computing them on-demand instead of pre-computing them all
         ## in advance?
         #
-        # and t not in permitted_preverb_tags
+        and t not in permitted_preverb_tags
         for t in wordform.analysis.prefix_tags
     ):
         logger.debug(
