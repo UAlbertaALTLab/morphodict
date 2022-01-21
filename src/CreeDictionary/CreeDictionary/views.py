@@ -403,6 +403,7 @@ def get_recordings_from_paradigm(paradigm, request):
     matched_recordings = {}
     speech_db_eq = settings.SPEECH_DB_EQ
     url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
+    synth_url = "https://speech-db.altlab.app/synth/api/bulk_search"
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -412,12 +413,8 @@ def get_recordings_from_paradigm(paradigm, request):
                         query_terms.append(str(cell))
 
     for search_terms in divide_chunks(query_terms, 30):
-        query_params = [("q", term) for term in search_terms]
-        response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
-        recordings = response.json()
-
-        for recording in recordings["matched_recordings"]:
-            matched_recordings[recording["wordform"]] = recording["recording_url"]
+        matched_recordings.update(get_recordings_from_url(search_terms, synth_url))
+        matched_recordings.update(get_recordings_from_url(search_terms, url))
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -428,6 +425,18 @@ def get_recordings_from_paradigm(paradigm, request):
                             cell.add_recording(matched_recordings[str(cell)])
 
     return paradigm
+
+
+def get_recordings_from_url(search_terms, url):
+    matched_recordings = {}
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    recordings = response.json()
+
+    for recording in recordings["matched_recordings"]:
+        matched_recordings[recording["wordform"]] = recording["recording_url"]
+
+    return matched_recordings
 
 
 # Yield successive n-sized
