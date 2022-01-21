@@ -51,6 +51,7 @@ gensim = "*"
 more-itertools = "~=8.7.0"
 install = "*"
 types-requests = "*"
+pytest-django = "*"
 
 [scripts]
 # unit tests
