@@ -97,8 +97,7 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
-        dict_source=None
-
+        dict_source=None,
     ):
         self._result = result
         self._search_run = search_run
@@ -138,7 +137,9 @@ class PresentationResult:
         else:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji, self.dict_source)
+        self.lexical_info = get_lexical_info(
+            result.wordform.analysis, animate_emoji, self.dict_source
+        )
 
         self.preverbs = [
             lexical_entry["entry"]
@@ -213,14 +214,18 @@ class PresentationResult:
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
 
-def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: list) -> SerializedWordform:
+def serialize_wordform(
+    wordform: Wordform, animate_emoji: str, dict_source: list
+) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
 
     :return: json parsable result
     """
     result = model_to_dict(wordform)
-    result["definitions"] = serialize_definitions(wordform.definitions.all(), dict_source=dict_source)
+    result["definitions"] = serialize_definitions(
+        wordform.definitions.all(), dict_source=dict_source
+    )
     result["lemma_url"] = wordform.get_absolute_url()
 
     if wordform.linguist_info:
@@ -249,7 +254,9 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str, dict_source: list
     return result
 
 
-def serialize_definitions(definitions, include_auto_definitions=False, dict_source=None):
+def serialize_definitions(
+    definitions, include_auto_definitions=False, dict_source=None
+):
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
@@ -260,7 +267,10 @@ def serialize_definitions(definitions, include_auto_definitions=False, dict_sour
             for source_id in serialized["source_ids"]:
                 if source_id in dict_source:
                     ret.append(serialized)
-                elif include_auto_definitions and source_id.replace('🤖', '') in dict_source:
+                elif (
+                    include_auto_definitions
+                    and source_id.replace("🤖", "") in dict_source
+                ):
                     ret.append(serialized)
     return ret
 
@@ -330,7 +340,9 @@ def emoji_for_value(choice: str) -> str:
     return AnimateEmoji.choices[AnimateEmoji.default]
 
 
-def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str, dict_source: list) -> List[Dict]:
+def get_lexical_info(
+    result_analysis: RichAnalysis, animate_emoji: str, dict_source: list
+) -> List[Dict]:
     if not result_analysis:
         return []
 
