@@ -519,7 +519,7 @@ class WordformCell(Cell):
 
     def __init__(self, inflection: str):
         self.inflection = inflection
-        self. recording = None
+        self.recording = None
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform

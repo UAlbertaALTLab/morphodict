@@ -22,7 +22,6 @@
   {% load morphodict_orth %}
   {% load creedictionary_extras %}
   {% load relabelling %}
-{#<script src={% static 'morphodict/js/paradigm-recording.js' %}></script>#}
 
   <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
     {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
@@ -55,13 +54,17 @@
                         {% orth cell.inflection %}
                           {% if cell.recording %}
                                &nbsp;
-{#                              <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}">#}
-{#                                <source src="{{ cell.recording }}" type="audio/mp4"/>#}
-{#                              </audio>#}
+                              <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}" style="display: none;">
+                                <source src="{{ cell.recording }}" type="audio/mp4"/>
+                              </audio>
+                              {% comment %}
+                              I had to add the data-inflection tag to both the svg and the <use /> tag since sometimes
+                              the button is triggered, and sometimes the <use /> tag is triggered instead
+                              {% endcomment %}
                               <button aria-label="Play recording" class="definition__icon definition-title__play-button"
                                     data-cy="play-recording-paradigm">
-                                <svg class="definition-title__play-icon" focusable="false">
-                                    <use xlink:href="#fa-volume-up-solid" data-rec-url="{{ cell.recording }}"/>
+                                <svg class="definition-title__play-icon" focusable="false" data-inflection="{{ cell.inflection }}">
+                                    <use xlink:href="#fa-volume-up-solid" data-inflection="{{ cell.inflection }}" />
                                 </svg>
                             </button>
                           {% endif %}

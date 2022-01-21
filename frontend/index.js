@@ -53,8 +53,6 @@ document.addEventListener("DOMContentLoaded", () => {
   settings.setupAutoSubmitForEntirePage();
   toast.setGlobalElement(document.getElementById("toast"));
 
-  loadParadigmAudio();
-
   let route = makeRouteRelativeToSlash(window.location.pathname);
   // Tiny router.
   if (route === "/") {
@@ -75,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupAudioOnPageLoad();
     setupParadigm();
     prepareTooltips();
+    loadParadigmAudio();
   }
 });
 
