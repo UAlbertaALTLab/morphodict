@@ -87,7 +87,9 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji, dict_source=dict_source),
+        wordform=presentation.serialize_wordform(
+            lemma, animate_emoji=animate_emoji, dict_source=dict_source
+        ),
         **paradigm_context,
     )
     return render(request, "CreeDictionary/index.html", context)
@@ -115,11 +117,13 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
-            dict_source=dict_source
+            dict_source=dict_source,
         )
         did_search = True
 
-        search_results = should_show_form_of(search_results, dict_source, include_auto_definitions)
+        search_results = should_show_form_of(
+            search_results, dict_source, include_auto_definitions
+        )
 
     else:
         search_results = []
@@ -153,13 +157,12 @@ def search_results(request, query_string: str):  # pragma: no cover
     dict_source = get_dict_source(request)  # type: ignore
     include_auto_definitions = should_include_auto_definitions(request)
     results = search_with_affixes(
-        query_string,
-        include_auto_definitions=include_auto_definitions
+        query_string, include_auto_definitions=include_auto_definitions
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
-        dict_source=dict_source
+        dict_source=dict_source,
     )
 
     return render(
@@ -354,7 +357,7 @@ def should_include_auto_definitions(request):
 def get_dict_source(request):
     if dictionary_source := request.COOKIES.get("dictionary_source"):
         if dictionary_source:
-            ret = dictionary_source.split('+')
+            ret = dictionary_source.split("+")
             ret = [r.upper() for r in ret]
             return ret
     return None
@@ -389,16 +392,19 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 def should_show_form_of(search_results, dict_source, include_auto_definitions):
     for r in search_results:
         if dict_source:
-            if not r['is_lemma']:
-                for d in r['lemma_wordform']['definitions']:
-                    for s in d['source_ids']:
+            if not r["is_lemma"]:
+                for d in r["lemma_wordform"]["definitions"]:
+                    for s in d["source_ids"]:
                         if s in dict_source:
-                            r['show_form_of'] = True
-                        elif include_auto_definitions and s.replace('🤖', '') in dict_source:
-                            r['show_form_of'] = True
-            if 'show_form_of' not in r:
-                r['show_form_of'] = False
+                            r["show_form_of"] = True
+                        elif (
+                            include_auto_definitions
+                            and s.replace("🤖", "") in dict_source
+                        ):
+                            r["show_form_of"] = True
+            if "show_form_of" not in r:
+                r["show_form_of"] = False
         else:
-            r['show_form_of'] = True
+            r["show_form_of"] = True
 
     return search_results
