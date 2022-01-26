@@ -62,7 +62,7 @@ jobs:
         # even once on your dev machine.
         run: git lfs install --local && git lfs fetch && git lfs checkout
       - name: Debugging
-        run: pip freeze
+        run: pipenv run pip freeze
       - name: 🧶 Run linters/static-analysis
         run: |
           pipenv run mypy src
