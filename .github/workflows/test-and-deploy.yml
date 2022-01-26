@@ -61,6 +61,8 @@ jobs:
         # These actions are automatic if you have run `git lfs install`
         # even once on your dev machine.
         run: git lfs install --local && git lfs fetch && git lfs checkout
+      - name: Debugging
+        run: pip freeze
       - name: 🧶 Run linters/static-analysis
         run: |
           pipenv run mypy src
