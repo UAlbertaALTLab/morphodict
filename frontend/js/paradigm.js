@@ -1,7 +1,7 @@
 /**
  * Set up any page that has the #paradigm element with its size controls.
  */
-import {loadParadigmAudio} from "./paradigm-recording";
+import { loadParadigmAudio } from "./paradigm-recording";
 
 export function setupParadigm() {
   setupParadigmSizeToggleButton(null);

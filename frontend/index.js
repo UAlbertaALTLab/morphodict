@@ -27,7 +27,7 @@ import { debounce } from "./js/debounce.js";
 import { setupParadigm } from "./js/paradigm.js";
 import * as settings from "./js/settings-page.js";
 import * as toast from "./js/toast.js";
-import {loadParadigmAudio} from "./js/paradigm-recording";
+import { loadParadigmAudio } from "./js/paradigm-recording";
 
 ///////////////////////////////// Constants //////////////////////////////////
 
