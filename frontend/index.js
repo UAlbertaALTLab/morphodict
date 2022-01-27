@@ -27,6 +27,7 @@ import { debounce } from "./js/debounce.js";
 import { setupParadigm } from "./js/paradigm.js";
 import * as settings from "./js/settings-page.js";
 import * as toast from "./js/toast.js";
+import { loadParadigmAudio } from "./js/paradigm-recording";
 
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -40,7 +41,7 @@ const NO_BREAK_SPACE = "\u00A0";
  * https://madoshakalaka.github.io/2020/08/31/how-hard-should-you-debounce-on-a-responsive-search-bar.html
  * @type {number}
  */
-const SERACH_BAR_DEBOUNCE_TIME = 450;
+const SEARCH_BAR_DEBOUNCE_TIME = 450;
 
 //////////////////////////////// On page load ////////////////////////////////
 
@@ -72,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupAudioOnPageLoad();
     setupParadigm();
     prepareTooltips();
+    loadParadigmAudio();
   }
 });
 
@@ -79,7 +81,7 @@ function setupSearchBar() {
   const searchBar = document.getElementById("search");
   const debouncedLoadSearchResults = debounce(() => {
     loadSearchResults(searchBar);
-  }, SERACH_BAR_DEBOUNCE_TIME);
+  }, SEARCH_BAR_DEBOUNCE_TIME);
 
   searchBar.addEventListener("input", () => {
     indicateLoading();

@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import json
 import logging
+import urllib
+import numpy as np
 from typing import Any, Dict, Literal, Optional
 
+import requests
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -74,6 +77,8 @@ def entry_details(request, slug: str):
                 size = default_size
 
         paradigm = paradigm_for(lemma, size)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
+
         paradigm_context.update(
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
         )
@@ -209,6 +214,7 @@ def paradigm_internal(request):
 
     try:
         paradigm = paradigm_for(lemma, paradigm_size)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
     except ParadigmDoesNotExistError:
         return HttpResponseBadRequest("paradigm does not exist")
     return render(
@@ -387,6 +393,59 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         )
 
     return None
+
+
+def get_recordings_from_paradigm(paradigm, request):
+    if not request.user.is_authenticated:
+        return paradigm
+
+    query_terms = []
+    matched_recordings = {}
+    speech_db_eq = settings.SPEECH_DB_EQ
+    url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
+    synth_url = "https://speech-db.altlab.app/synth/api/bulk_search"
+
+    for pane in paradigm.panes:
+        for row in pane.tr_rows:
+            if not row.is_header:
+                for cell in row.cells:
+                    if cell.is_inflection:
+                        query_terms.append(str(cell))
+
+    for search_terms in divide_chunks(query_terms, 30):
+        matched_recordings.update(get_recordings_from_url(search_terms, synth_url))
+        matched_recordings.update(get_recordings_from_url(search_terms, url))
+
+    for pane in paradigm.panes:
+        for row in pane.tr_rows:
+            if not row.is_header:
+                for cell in row.cells:
+                    if cell.is_inflection:
+                        if str(cell) in matched_recordings:
+                            cell.add_recording(matched_recordings[str(cell)])
+
+    return paradigm
+
+
+def get_recordings_from_url(search_terms, url):
+    matched_recordings = {}
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    recordings = response.json()
+
+    for recording in recordings["matched_recordings"]:
+        matched_recordings[recording["wordform"]] = recording["recording_url"]
+
+    return matched_recordings
+
+
+# Yield successive n-sized
+# chunks from l.
+# https://www.geeksforgeeks.org/break-list-chunks-size-n-python/
+def divide_chunks(terms, size):
+    # looping till length l
+    for i in range(0, len(terms), size):
+        yield terms[i : i + size]
 
 
 def should_show_form_of(search_results, dict_source, include_auto_definitions):

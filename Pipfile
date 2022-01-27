@@ -5,8 +5,8 @@ verify_ssl = true
 
 [dev-packages]
 black = ">=19.10b0"
-pytest = "*"
-pytest-django = "*"
+pytest = "==6.2.5"
+pytest-django = "==4.4.0"
 pytest-cov = "*"
 pytest-datadir = "*"
 pytest-mypy = "*"
@@ -49,6 +49,8 @@ foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"
 uwsgi = "*"
 gensim = "*"
 more-itertools = "~=8.7.0"
+types-requests = "*"
+requests = "*"
 
 [scripts]
 # unit tests

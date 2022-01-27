@@ -1,6 +1,8 @@
 /**
  * Set up any page that has the #paradigm element with its size controls.
  */
+import { loadParadigmAudio } from "./paradigm-recording";
+
 export function setupParadigm() {
   setupParadigmSizeToggleButton(null);
 }
@@ -81,6 +83,7 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
           newParadigm.querySelector(".js-button-text").textContent = text;
           newParadigm.querySelector(".js-plus-minus").textContent = symbol;
         }
+        loadParadigmAudio();
       })
       .catch((err) => {
         displayButtonAsError(toggleButton);

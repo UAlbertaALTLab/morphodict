@@ -88,3 +88,5 @@ MORPHODICT_PARADIGM_SIZES = [
     "full",
     # Variants for linguists go here:
 ]
+
+SPEECH_DB_EQ = "maskwacis"
