@@ -11,7 +11,7 @@ from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource, ShowEmoji
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
@@ -97,6 +97,7 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
         dict_source=None,
     ):
         self._result = result
@@ -106,6 +107,7 @@ class PresentationResult:
             "linguistic": read_labels().linguistic_long,
         }.get(display_mode, DisplayMode.default)
         self._animate_emoji = animate_emoji
+        self._show_emoji = show_emoji
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
@@ -162,7 +164,7 @@ class PresentationResult:
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(
-                self.lemma_wordform, self._animate_emoji, self.dict_source
+                self.lemma_wordform, self._animate_emoji, self._show_emoji, self.dict_source
             ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -215,7 +217,7 @@ class PresentationResult:
 
 
 def serialize_wordform(
-    wordform: Wordform, animate_emoji: str, dict_source: list
+    wordform: Wordform, animate_emoji: str, show_emoji: str, dict_source: list
 ) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
@@ -246,6 +248,8 @@ def serialize_wordform(
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
+    result["show_emoji"] = True if show_emoji == "yes" else False
+    print(result["show_emoji"])
 
     for key in wordform.linguist_info or []:
         if key not in result:

@@ -22,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
@@ -122,6 +122,7 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
+            show_emoji=ShowEmoji.current_value_from_request(request),
             dict_source=dict_source,
         )
         did_search = True
@@ -167,6 +168,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+        show_emoji=ShowEmoji.current_value_from_request(request),   # type: ignore
         dict_source=dict_source,
     )
 

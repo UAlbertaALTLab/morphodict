@@ -43,6 +43,36 @@
             </form>
         </section>
 
+    <section>
+            <h3 id="show-emoji" class="setting__title">Show emojis with entries?</h3>
+
+            <p class="setting__note">Emojis illustrate word classes </p>
+
+            <form method="POST" action="{% url "preference:change" "show_emoji" %}"
+                  data-save-preference="show_emoji" data-cy="show-emoji-preference">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_emoji.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" class="option__control"
+                                       name="show_emoji" value="{{ value }}"
+                                       {% if preferences.show_emoji.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                        <p class="option__description">
+                                    {{ label }}
+                                </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
         <section>
             <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
 

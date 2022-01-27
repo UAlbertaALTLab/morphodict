@@ -85,3 +85,18 @@ class DictionarySource(Preference):
     }
 
     default = "cw+md"
+
+
+@register_preference
+class ShowEmoji(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "show_emoji"
+    choices = {
+        "yes": "Show emojis with my entries (default)",
+        "no": "Don't show emojis with my entries",
+    }
+
+    default = "yes"
