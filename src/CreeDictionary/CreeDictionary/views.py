@@ -445,7 +445,7 @@ def get_recordings_from_url(search_terms, url):
 def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
-        yield terms[i:i + size]
+        yield terms[i : i + size]
 
 
 def should_show_form_of(search_results, dict_source, include_auto_definitions):
