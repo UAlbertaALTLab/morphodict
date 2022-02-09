@@ -14,7 +14,7 @@ function getLanguageCodeFromLocation() {
     return `woodscree`;
   if (location.includes(`gunaha`) || location.includes(`srs`))
     return `tsuutina`;
-  if (location.includes(`arpeng`)) return `arapaho`;
+  if (location.includes(`nihiitono`)) return `arapaho`;
   if (location.includes(`guusaaw`) || location.includes(`hdn`)) return `haida`;
   return `maskwacis`;
 }
