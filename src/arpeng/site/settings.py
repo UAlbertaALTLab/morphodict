@@ -34,7 +34,7 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
-MORPHODICT_DICTIONARY_NAME = "arpeng"
+MORPHODICT_DICTIONARY_NAME = "nihiitono"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"
