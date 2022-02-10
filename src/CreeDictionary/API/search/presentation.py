@@ -64,6 +64,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_tail: Iterable[Label]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
+    show_form_of: bool
 
 
 class SerializedRelabelling(TypedDict):
@@ -179,6 +180,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
+            "show_form_of": should_show_form_of(self.is_lemma, self.wordform, self.dict_source, self._search_run.include_auto_definitions),
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
@@ -213,6 +215,22 @@ class PresentationResult:
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
+
+def should_show_form_of(is_lemma, lemma_wordform, dict_source, include_auto_definitions):
+    if dict_source:
+        if not is_lemma:
+            for definition in lemma_wordform["definitions"]:
+                for source in definition["source_ids"]:
+                    if source in dict_source:
+                        return True
+                    elif (
+                            include_auto_definitions
+                            and source.replace("🤖", "") in dict_source
+                    ):
+                        return True
+        return False
+    else:
+        return True
 
 def serialize_wordform(
     wordform: Wordform, animate_emoji: str, dict_source: list
