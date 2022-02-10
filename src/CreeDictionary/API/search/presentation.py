@@ -219,16 +219,20 @@ class PresentationResult:
 def should_show_form_of(is_lemma, lemma_wordform, dict_source, include_auto_definitions):
     if dict_source:
         if not is_lemma:
-            for definition in lemma_wordform["definitions"]:
-                for source in definition["source_ids"]:
-                    if source in dict_source:
-                        return True
-                    elif (
-                            include_auto_definitions
-                            and source.replace("🤖", "") in dict_source
-                    ):
-                        return True
-        return False
+            if lemma_wordform.definitions.exists():
+                for definition in lemma_wordform.definitions.all():
+                    print(definition.source_ids)
+                    for source in definition.source_ids:
+                        if source in dict_source:
+                            return True
+                        elif (
+                                include_auto_definitions
+                                and source.replace("🤖", "") in dict_source
+                        ):
+                            return True
+            return True
+        else:
+            return True
     else:
         return True
 
