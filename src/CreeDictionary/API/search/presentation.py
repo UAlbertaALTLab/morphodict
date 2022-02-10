@@ -180,7 +180,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
-            "show_form_of": should_show_form_of(self.is_lemma, self.wordform, self.dict_source, self._search_run.include_auto_definitions),
+            "show_form_of": should_show_form_of(self.is_lemma, self.lemma_wordform, self.dict_source, self._search_run.include_auto_definitions),
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
@@ -217,26 +217,17 @@ class PresentationResult:
 
 
 def should_show_form_of(is_lemma, lemma_wordform, dict_source, include_auto_definitions):
-    print(is_lemma)
-    print(lemma_wordform)
-    print(dict_source)
-    print(include_auto_definitions)
     if not dict_source:
         return True
     for definition in lemma_wordform.definitions.all():
-        print(definition)
         for source in definition.source_ids:
-            print("source:", source)
             if source in dict_source:
-                print("231")
                 return True
             elif (
                     include_auto_definitions
                     and source.replace("🤖", "") in dict_source
             ):
-                print("237")
                 return True
-        print("239")
         return False
 
 
