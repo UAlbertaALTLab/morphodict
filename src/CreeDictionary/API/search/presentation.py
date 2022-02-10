@@ -217,24 +217,28 @@ class PresentationResult:
 
 
 def should_show_form_of(is_lemma, lemma_wordform, dict_source, include_auto_definitions):
-    if dict_source:
-        if not is_lemma:
-            if lemma_wordform.definitions.exists():
-                for definition in lemma_wordform.definitions.all():
-                    print(definition.source_ids)
-                    for source in definition.source_ids:
-                        if source in dict_source:
-                            return True
-                        elif (
-                                include_auto_definitions
-                                and source.replace("🤖", "") in dict_source
-                        ):
-                            return True
-            return True
-        else:
-            return True
-    else:
+    print(is_lemma)
+    print(lemma_wordform)
+    print(dict_source)
+    print(include_auto_definitions)
+    if not dict_source:
         return True
+    for definition in lemma_wordform.definitions.all():
+        print(definition)
+        for source in definition.source_ids:
+            print("source:", source)
+            if source in dict_source:
+                print("231")
+                return True
+            elif (
+                    include_auto_definitions
+                    and source.replace("🤖", "") in dict_source
+            ):
+                print("237")
+                return True
+        print("239")
+        return False
+
 
 def serialize_wordform(
     wordform: Wordform, animate_emoji: str, dict_source: list
