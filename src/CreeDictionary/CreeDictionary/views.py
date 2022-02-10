@@ -126,10 +126,6 @@ def index(request):  # pragma: no cover
         )
         did_search = True
 
-        search_results = should_show_form_of(
-            search_results, dict_source, include_auto_definitions
-        )
-
     else:
         search_results = []
         did_search = False
@@ -446,24 +442,3 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i : i + size]
-
-
-def should_show_form_of(search_results, dict_source, include_auto_definitions):
-    for r in search_results:
-        if dict_source:
-            if not r["is_lemma"]:
-                for d in r["lemma_wordform"]["definitions"]:
-                    for s in d["source_ids"]:
-                        if s in dict_source:
-                            r["show_form_of"] = True
-                        elif (
-                            include_auto_definitions
-                            and s.replace("🤖", "") in dict_source
-                        ):
-                            r["show_form_of"] = True
-            if "show_form_of" not in r:
-                r["show_form_of"] = False
-        else:
-            r["show_form_of"] = True
-
-    return search_results
