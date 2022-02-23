@@ -3,20 +3,19 @@ import SimpleTemplate from "./simple-template.js";
 // the specific URL for a given wordform (refactored from previous commits).
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
-const LANGUAGE_CODE = getLanguageCodeFromLocation();
-const BULK_API_URL = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
+const LANGUAGE_CODES = getLanguageCodesFromLocation();
 
-function getLanguageCodeFromLocation() {
+function getLanguageCodesFromLocation() {
   const location = window.location.toString();
   if (location.includes(`itwewina`) || location.includes(`crk`))
-    return `maskwacis`;
+    return [`maskwacis`, `moswacihk`];
   if (location.includes(`itwiwina`) || location.includes(`cwd`))
-    return `woodscree`;
+    return [`woodscree`];
   if (location.includes(`gunaha`) || location.includes(`srs`))
-    return `tsuutina`;
-  if (location.includes(`nihiitono`)) return `arapaho`;
-  if (location.includes(`guusaaw`) || location.includes(`hdn`)) return `haida`;
-  return `maskwacis`;
+    return [`tsuutina`];
+  if (location.includes(`nihiitono`)) return [`arapaho`];
+  if (location.includes(`guusaaw`) || location.includes(`hdn`)) return [`haida`];
+  return [`maskwacis`];
 }
 
 /**
@@ -27,7 +26,7 @@ function getLanguageCodeFromLocation() {
  * @return {string?} the recording URL, if it exists, else undefined.
  */
 export async function fetchFirstRecordingURL(wordform) {
-  let response = await fetchRecordingUsingBulkSearch([wordform]);
+  let response = await getRecordingsForWordformsFromMultipleUrls([wordform]);
   return mapWordformsToBestRecordingURL(response).get(wordform);
 }
 
@@ -38,7 +37,7 @@ export async function fetchFirstRecordingURL(wordform) {
  * @return {Map<str, str>} maps wordforms to a valid recording URL.
  */
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
-  let response = await fetchRecordingUsingBulkSearch(requestedWordforms);
+  let response = await getRecordingsForWordformsFromMultipleUrls(requestedWordforms);
   return mapWordformsToBestRecordingURL(response);
 }
 
@@ -63,7 +62,7 @@ export async function retrieveListOfSpeakers() {
   );
 
   // Get all recordings for this wordform
-  let response = await fetchRecordingUsingBulkSearch([wordform]);
+  let response = await getRecordingsForWordformsFromMultipleUrls([wordform])
 
   displaySpeakerList(
     response["matched_recordings"].filter(
@@ -105,6 +104,17 @@ export async function retrieveListOfSpeakers() {
   }
 }
 
+async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
+  let retObject = {matched_recordings: [], not_found: []}
+  for (let LANGUAGE_CODE of LANGUAGE_CODES) {
+    let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
+    let response = await fetchRecordingUsingBulkSearch(bulkApiUrl, requestedWordforms);
+    retObject["matched_recordings"] = retObject["matched_recordings"].concat(response["matched_recordings"])
+    retObject["not_found"] = retObject["not_found"].concat(response["not_found"])
+  }
+  return retObject
+}
+
 function showRecordingsExplainerText() {
   let recordingsHeading = document.querySelector(
     ".definition__recordings--not-loaded"
@@ -122,14 +132,14 @@ function showRecordingsExplainerText() {
  * @param {Iterable<str>}  one or more wordforms to search for.
  * @return {BulkSearchResponse} see https://github.com/UAlbertaALTLab/recording-validation-interface#bulk-recording-search
  */
-async function fetchRecordingUsingBulkSearch(requestedWordforms) {
+async function fetchRecordingUsingBulkSearch(bulkApiUrl, requestedWordforms) {
   let batches = chunk(requestedWordforms);
 
   let allMatchedRecordings = [];
   let allNotFound = [];
 
   for (let batch of batches) {
-    let response = await _fetchRecordingUsingBulkSearch(batch);
+    let response = await _fetchRecordingUsingBulkSearch(bulkApiUrl, batch);
 
     response["matched_recordings"].forEach((rec) =>
       allMatchedRecordings.push(rec)
@@ -146,13 +156,13 @@ async function fetchRecordingUsingBulkSearch(requestedWordforms) {
 /**
  * ACTUALLY does one HTTP request to the speech-db.
  */
-async function _fetchRecordingUsingBulkSearch(requestedWordforms) {
+async function _fetchRecordingUsingBulkSearch(bulkApiUrl, requestedWordforms) {
   // Construct the query parameters: ?q=word&q=word2&q=word3&q=...
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
     searchParams.append("q", wordform);
   }
-  let url = new URL(BULK_API_URL);
+  let url = new URL(bulkApiUrl);
   url.search = searchParams;
 
   let response = await fetch(url);

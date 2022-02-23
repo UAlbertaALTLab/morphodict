@@ -139,6 +139,7 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     );
   } catch {
     // fail silently ¯\_(ツ)_/¯
+    console.log("failed silently");
     return;
   }
 

@@ -55,4 +55,4 @@ MORPHODICT_ORTHOGRAPHY = {
     },
 }
 
-SPEECH_DB_EQ = "tsuutina"
+SPEECH_DB_EQ = ["tsuutina"]
