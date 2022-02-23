@@ -4,6 +4,7 @@ import SimpleTemplate from "./simple-template.js";
 // TODO: should come from config.
 const BASE_URL = "https://speech-db.altlab.app";
 const LANGUAGE_CODES = getLanguageCodesFromLocation();
+let SPEAKER_LIST_SHOWING = false;
 
 function getLanguageCodesFromLocation() {
   const location = window.location.toString();
@@ -48,6 +49,9 @@ export async function fetchRecordingURLForEachWordform(requestedWordforms) {
 export async function retrieveListOfSpeakers() {
   // There SHOULD be a <data id="data:head" value="..."> element on the page
   // that will tell us the current wordform: get it!
+  if (SPEAKER_LIST_SHOWING) {
+    return
+  }
   let wordform = document.getElementById("data:head").value;
 
   // select for our elements for playback and link-generation
@@ -70,6 +74,7 @@ export async function retrieveListOfSpeakers() {
     )
   );
   showRecordingsExplainerText();
+  SPEAKER_LIST_SHOWING = true;
 
   ////////////////////////////////// helpers /////////////////////////////////
 
