@@ -398,8 +398,8 @@ def get_recordings_from_paradigm(paradigm, request):
     query_terms = []
     matched_recordings = {}
     speech_db_eq = settings.SPEECH_DB_EQ
-    url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
-    synth_url = "https://speech-db.altlab.app/synth/api/bulk_search"
+    if speech_db_eq == ["_"]:
+        return paradigm
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -409,8 +409,9 @@ def get_recordings_from_paradigm(paradigm, request):
                         query_terms.append(str(cell))
 
     for search_terms in divide_chunks(query_terms, 30):
-        matched_recordings.update(get_recordings_from_url(search_terms, synth_url))
-        matched_recordings.update(get_recordings_from_url(search_terms, url))
+        for source in speech_db_eq:
+            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
+            matched_recordings.update(get_recordings_from_url(search_terms, url))
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
