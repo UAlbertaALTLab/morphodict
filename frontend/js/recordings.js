@@ -70,9 +70,10 @@ export async function retrieveListOfSpeakers() {
 
   // Get all recordings for this wordform
   let response = await getRecordingsForWordformsFromMultipleUrls([wordform]);
+  let matchedRecordings = replaceMacrons(response["matched_recordings"]);
 
   displaySpeakerList(
-    response["matched_recordings"].filter(
+    matchedRecordings.filter(
       (result) => result.wordform === wordform
     )
   );
@@ -109,6 +110,16 @@ export async function retrieveListOfSpeakers() {
       // change the URL of the selected speaker
       recordingsLink.href = speakerBioLink;
     });
+  }
+
+  function replaceMacrons(wordform) {
+    for (let form of wordform) {
+      form.wordform = form.wordform.replace(/ā/g, "â");
+      form.wordform = form.wordform.replace(/ē/g, "ê");
+      form.wordform = form.wordform.replace(/ī/g, "î");
+      form.wordform = form.wordform.replace(/ō/g, "ô");
+    }
+    return wordform
   }
 }
 
