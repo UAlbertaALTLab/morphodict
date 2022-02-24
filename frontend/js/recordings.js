@@ -73,9 +73,7 @@ export async function retrieveListOfSpeakers() {
   let matchedRecordings = replaceMacrons(response["matched_recordings"]);
 
   displaySpeakerList(
-    matchedRecordings.filter(
-      (result) => result.wordform === wordform
-    )
+    matchedRecordings.filter((result) => result.wordform === wordform)
   );
   showRecordingsExplainerText();
   SPEAKER_LIST_SHOWING = true;
@@ -119,7 +117,7 @@ export async function retrieveListOfSpeakers() {
       form.wordform = form.wordform.replace(/ī/g, "î");
       form.wordform = form.wordform.replace(/ō/g, "ô");
     }
-    return wordform
+    return wordform;
   }
 }
 
