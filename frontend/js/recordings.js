@@ -15,7 +15,8 @@ function getLanguageCodesFromLocation() {
   if (location.includes(`gunaha`) || location.includes(`srs`))
     return [`tsuutina`];
   if (location.includes(`nihiitono`)) return [`arapaho`];
-  if (location.includes(`guusaaw`) || location.includes(`hdn`)) return [`haida`];
+  if (location.includes(`guusaaw`) || location.includes(`hdn`))
+    return [`haida`];
   return [`maskwacis`];
 }
 
@@ -38,7 +39,9 @@ export async function fetchFirstRecordingURL(wordform) {
  * @return {Map<str, str>} maps wordforms to a valid recording URL.
  */
 export async function fetchRecordingURLForEachWordform(requestedWordforms) {
-  let response = await getRecordingsForWordformsFromMultipleUrls(requestedWordforms);
+  let response = await getRecordingsForWordformsFromMultipleUrls(
+    requestedWordforms
+  );
   return mapWordformsToBestRecordingURL(response);
 }
 
@@ -50,7 +53,7 @@ export async function retrieveListOfSpeakers() {
   // There SHOULD be a <data id="data:head" value="..."> element on the page
   // that will tell us the current wordform: get it!
   if (SPEAKER_LIST_SHOWING) {
-    return
+    return;
   }
   let wordform = document.getElementById("data:head").value;
 
@@ -66,8 +69,8 @@ export async function retrieveListOfSpeakers() {
   );
 
   // Get all recordings for this wordform
-  let response = await getRecordingsForWordformsFromMultipleUrls([wordform])
-  let matchedRecordings = replaceMacrons(response["matched_recordings"])
+  let response = await getRecordingsForWordformsFromMultipleUrls([wordform]);
+  let matchedRecordings = replaceMacrons(response["matched_recordings"]);
 
   displaySpeakerList(
     matchedRecordings.filter(
@@ -121,14 +124,21 @@ export async function retrieveListOfSpeakers() {
 }
 
 async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
-  let retObject = {matched_recordings: [], not_found: []}
+  let retObject = { matched_recordings: [], not_found: [] };
   for (let LANGUAGE_CODE of LANGUAGE_CODES) {
     let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
-    let response = await fetchRecordingUsingBulkSearch(bulkApiUrl, requestedWordforms);
-    retObject["matched_recordings"] = retObject["matched_recordings"].concat(response["matched_recordings"])
-    retObject["not_found"] = retObject["not_found"].concat(response["not_found"])
+    let response = await fetchRecordingUsingBulkSearch(
+      bulkApiUrl,
+      requestedWordforms
+    );
+    retObject["matched_recordings"] = retObject["matched_recordings"].concat(
+      response["matched_recordings"]
+    );
+    retObject["not_found"] = retObject["not_found"].concat(
+      response["not_found"]
+    );
   }
-  return retObject
+  return retObject;
 }
 
 function showRecordingsExplainerText() {
