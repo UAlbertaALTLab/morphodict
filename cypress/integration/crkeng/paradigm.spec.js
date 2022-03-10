@@ -135,7 +135,7 @@ describe("paradigms can be toggled by the show more/less button", () => {
 
     // Switch to the full size
     cy.get("[data-cy=paradigm-toggle-button]").click();
-    cy.wait(5000);    // needs time to load paradigm audio
+    cy.wait(5000); // needs time to load paradigm audio
     cy.location("search").should("match", /\bfull\b/i);
 
     paradigm().contains("td", basicForm);
@@ -143,7 +143,7 @@ describe("paradigms can be toggled by the show more/less button", () => {
 
     // Switch once more to get back to the basic paradigm
     cy.get("[data-cy=paradigm-toggle-button]").click();
-    cy.wait(5000);    // needs time to load paradigm audio
+    cy.wait(5000); // needs time to load paradigm audio
     cy.location("search").should("match", /\bbasic\b/i);
 
     function paradigm() {
