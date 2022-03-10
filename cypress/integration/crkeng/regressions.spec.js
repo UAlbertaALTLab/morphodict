@@ -316,6 +316,7 @@ context("Regressions", () => {
     cy.get("[data-cy=play-recording]").should("be.visible");
 
     cy.get("[data-cy=paradigm-toggle-button").click();
+    cy.wait(4500);    // needs time to load audio
 
     cy.location("search").should("match", /paradigm-size=FULL/i);
 
