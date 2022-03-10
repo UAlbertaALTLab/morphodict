@@ -392,7 +392,7 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
 
 def get_recordings_from_paradigm(paradigm, request):
-    if not request.user.is_authenticated:
+    if request.COOKIES.get("paradigm_audio") == "no":
         return paradigm
 
     query_terms = []

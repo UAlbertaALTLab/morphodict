@@ -85,3 +85,17 @@ class DictionarySource(Preference):
     }
 
     default = "cw+md"
+
+
+@register_preference
+class ParadigmAudio(Preference):
+    """
+    Should we show audio in the paradigms?
+    """
+
+    cookie_name = "paradigm_audio"
+    choices = {
+        "yes": "I would like to see audio in paradigm layouts",
+        "no": "I do not want to see audio in paradigm layouts",
+    }
+    default = "no"
