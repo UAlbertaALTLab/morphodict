@@ -58,7 +58,7 @@ class SearchRun:
             r.assign_default_relevance_score()
 
         # sort based on cvd
-        results.sort(key=lambda x: cvd(x))
+        results.sort(key=lambda x: cvd(x), reverse=True)
         return results
 
     def presentation_results(
@@ -146,4 +146,4 @@ class SearchRun:
 
 
 def cvd(val):
-    return val.cosine_vector_distance or 1
+    return val.relevance_score or 1
