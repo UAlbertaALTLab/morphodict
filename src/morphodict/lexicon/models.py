@@ -344,7 +344,7 @@ class _WordformCache:
         ret = {}
 
         lines = (
-            Path(shared_res_dir / "W_aggr_corp_morph_log_freq.txt")
+            Path(shared_res_dir / "CW_aggregate_morpheme_log_freqs.txt")
             .read_text()
             .splitlines()
         )

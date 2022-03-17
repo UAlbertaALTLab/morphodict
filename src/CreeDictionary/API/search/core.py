@@ -32,7 +32,7 @@ class SearchRun:
     VerboseMessage = dict[str, str]
     _verbose_messages: list[VerboseMessage]
     # Set this to use a custom sort function
-    sort_function: Optional[Callable[[Result], Any]] = None
+    sort_function: Optional[Callable[[Result], Any]] = lambda: print()
 
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):
@@ -57,10 +57,8 @@ class SearchRun:
         for r in results:
             r.assign_default_relevance_score()
 
-        if self.sort_function is not None:
-            results.sort(key=self.sort_function)
-        else:
-            results.sort()
+        # sort based on cvd
+        results.sort(key=lambda x: cvd(x))
         return results
 
     def presentation_results(
@@ -145,3 +143,7 @@ class SearchRun:
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"
+
+
+def cvd(val):
+    return val.cosine_vector_distance or 1
