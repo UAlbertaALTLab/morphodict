@@ -42,10 +42,8 @@
             {% endif %}
             <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                   aria-describedby="tooltip:{{ id }}"> ({{ lemma.inflectional_category }}) - {{ lemma.inflectional_category_linguistic }} </span>
-
-
             <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                {% cree_example ic %} - {% orth ic %}
+                {% relabel_plain_english lemma.inflectional_category %} - {% relabel_crk lemma.inflectional_category %}
 {#                {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})#}
                 <div class="tooltip__arrow" data-popper-arrow></div>
             </div>
