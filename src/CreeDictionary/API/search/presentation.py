@@ -104,8 +104,9 @@ class PresentationResult:
         self._result = result
         self._search_run = search_run
         self._relabeller = {
-            "community": read_labels().english,
+            "english": read_labels().english,
             "linguistic": read_labels().linguistic_long,
+            "source_language": read_labels().cree,
         }.get(display_mode, DisplayMode.default)
         self._animate_emoji = animate_emoji
         self._show_emoji = show_emoji
