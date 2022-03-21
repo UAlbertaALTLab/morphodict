@@ -127,10 +127,6 @@ def index(request):  # pragma: no cover
         )
         did_search = True
 
-        search_results = should_show_form_of(
-            search_results, dict_source, include_auto_definitions
-        )
-
     else:
         search_results = []
         did_search = False
@@ -398,14 +394,14 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
 
 def get_recordings_from_paradigm(paradigm, request):
-    if not request.user.is_authenticated:
+    if request.COOKIES.get("paradigm_audio") in ["no", None]:
         return paradigm
 
     query_terms = []
     matched_recordings = {}
     speech_db_eq = settings.SPEECH_DB_EQ
-    url = f"https://speech-db.altlab.app/{speech_db_eq}/api/bulk_search"
-    synth_url = "https://speech-db.altlab.app/synth/api/bulk_search"
+    if speech_db_eq == ["_"]:
+        return paradigm
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -415,8 +411,9 @@ def get_recordings_from_paradigm(paradigm, request):
                         query_terms.append(str(cell))
 
     for search_terms in divide_chunks(query_terms, 30):
-        matched_recordings.update(get_recordings_from_url(search_terms, synth_url))
-        matched_recordings.update(get_recordings_from_url(search_terms, url))
+        for source in speech_db_eq:
+            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
+            matched_recordings.update(get_recordings_from_url(search_terms, url))
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -448,24 +445,3 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i : i + size]
-
-
-def should_show_form_of(search_results, dict_source, include_auto_definitions):
-    for r in search_results:
-        if dict_source:
-            if not r["is_lemma"]:
-                for d in r["lemma_wordform"]["definitions"]:
-                    for s in d["source_ids"]:
-                        if s in dict_source:
-                            r["show_form_of"] = True
-                        elif (
-                            include_auto_definitions
-                            and s.replace("🤖", "") in dict_source
-                        ):
-                            r["show_form_of"] = True
-            if "show_form_of" not in r:
-                r["show_form_of"] = False
-        else:
-            r["show_form_of"] = True
-
-    return search_results

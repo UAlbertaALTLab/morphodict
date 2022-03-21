@@ -7,23 +7,23 @@
     <section id="settings" class="box">
         <h2>Settings</h2>
 
+
         <section>
-            <h3 id="paradigm-labels" class="setting__title">Paradigm labels</h3>
+            <h3 id="display-mode" class="setting__title">Display Mode</h3>
 
-            <p class="setting__note"> These are the labels that appear on the <strong>paradigm
-                table</strong> to label features like person, tense, plurals, etc.</p>
+            <p class="setting__note"> How would you like the labels to appear throughout the site?</p>
 
-            <form method="POST" action="{% url "preference:change" "paradigm_label" %}"
-                  data-save-preference="paradigmlabel">
+            <form method="POST" action="{% url "preference:change" "display_mode" %}"
+                  data-save-preference="display_mode">
                 <ul class="unbullet">
-                    {% for value, label in preferences.paradigm_label.choices_with_labels %}
+                    {% for value, label in preferences.display_mode.choices_with_labels %}
                         <li class="option">
                             <label class="option__label">
-                                <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"
-                                       {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>
+                                <input type="radio" name="display_mode" value="{{ value }}" class="option__control"
+                                       {% if preferences.display_mode.current_choice == value %}checked{% endif %}>
                                 <span class="option__label-text">{{ label|capfirst }}</span>
                             </label>
-                            <p class="option__description">
+                            <p class="option__descriptioiption">
                                 Examples:
                                 {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
                                 <i>{% relabel_one '1Sg' labels=value %}</i>,
@@ -42,6 +42,42 @@
                 </div>
             </form>
         </section>
+
+{#        <section>#}
+{#            <h3 id="paradigm-labels" class="setting__title">Paradigm labels</h3>#}
+{##}
+{#            <p class="setting__note"> These are the labels that appear on the <strong>paradigm#}
+{#                table</strong> to label features like person, tense, plurals, etc.</p>#}
+{##}
+{#            <form method="POST" action="{% url "preference:change" "paradigm_label" %}"#}
+{#                  data-save-preference="paradigmlabel">#}
+{#                <ul class="unbullet">#}
+{#                    {% for value, label in preferences.paradigm_label.choices_with_labels %}#}
+{#                        <li class="option">#}
+{#                            <label class="option__label">#}
+{#                                <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"#}
+{#                                       {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>#}
+{#                                <span class="option__label-text">{{ label|capfirst }}</span>#}
+{#                            </label>#}
+{#                            <p class="option__description">#}
+{#                                Examples:#}
+{#                                {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}#}
+{#                                <i>{% relabel_one '1Sg' labels=value %}</i>,#}
+{#                                <i>{% relabel_one '2Sg' labels=value %}</i>,#}
+{#                                <i>{% relabel_one '3Sg' labels=value %}</i>;#}
+{#                                <i>{% relabel_one 'Prs' labels=value %}</i>,#}
+{#                                <i>{% relabel_one 'Prt' labels=value %}</i>#}
+{#                            </p>#}
+{#                        </li>#}
+{#                    {% endfor %}#}
+{#                </ul>#}
+{##}
+{#                <div class="action-bar">#}
+{#                    {% csrf_token %}#}
+{#                    <button type="submit"> Save settings</button>#}
+{#                </div>#}
+{#            </form>#}
+{#        </section>#}
 
     <section>
             <h3 id="show-emoji" class="setting__title">Show emojis with entries?</h3>
@@ -131,5 +167,34 @@
                 </form>
             </section>
         {% endif %}
+        <section>
+            <h3 id="paradigm-audio" class="setting__title">Show Paradigm Audio</h3>
+
+            <p class="setting__note"> When available, paradigm audio will be displayed and played in paradigms</p>
+
+            <form method="POST" action="{% url "preference:change" "paradigm_audio" %}"
+                  data-save-preference="paradigm_audio">
+                <ul class="unbullet">
+                    {% for value, label in preferences.paradigm_audio.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="paradigm_audio" value="{{ value }}"
+                                       class="option__control"
+                                       {% if preferences.paradigm_audio.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
     </section>
 {% endblock %}

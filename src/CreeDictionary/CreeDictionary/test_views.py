@@ -20,7 +20,7 @@ from morphodict.lexicon.models import Wordform
 # have over two billion wordforms, however, we'll most likely run into problems once
 # we exceed certain storage requirements. For example, the maximum for a signed,
 # 32-bit int is a possible boundary condition that may cause issues elsewhere:
-ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
+ID_THAT_SHOULD_BE_TOO_BIG = str(2**31 - 1)
 
 RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 
