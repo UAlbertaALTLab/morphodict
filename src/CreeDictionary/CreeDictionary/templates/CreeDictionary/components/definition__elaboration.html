@@ -37,47 +37,68 @@
         {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
             {% if display_options.mode == 'linguistic' %}
                 {% if lemma.show_emoji %}
-                <span class="wordclass" data-cy="word-class">
+                    <span class="wordclass" data-cy="word-class">
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
                 <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
-                      aria-describedby="tooltip:{{ id }}"> ({{ lemma.inflectional_category }}) - {{ lemma.inflectional_category_linguistic }} </span>
+                      aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
                 <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    {% relabel_plain_english lemma.inflectional_category %} - {% relabel_crk lemma.inflectional_category %}
+                    {% relabel_plain_english lemma.inflectional_category %}
+                    - {% relabel_crk lemma.inflectional_category %}
                     <div class="tooltip__arrow" data-popper-arrow></div>
                 </div>
-                <span> &nbsp;  📖 </span>
+                  <span data-has-tooltip aria-describedby="tooltip:linguistic-{{ id }}"> &nbsp;  📖 </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {% if result.lemma_wordform.stem %}
+                        <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
+                    {% endif %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
             {% endif %}
 
             {% if display_options.mode == 'english' %}
                 {% if lemma.show_emoji %}
-                <span class="wordclass" data-cy="word-class">
+                    <span class="wordclass" data-cy="word-class">
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
                 <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                       aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
                 <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    ({{ lemma.inflectional_category }}) - {{ lemma.inflectional_category_linguistic }} - {% relabel_crk lemma.inflectional_category %}
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_crk lemma.inflectional_category %}
                     <div class="tooltip__arrow" data-popper-arrow></div>
                 </div>
-                <span> &nbsp;  📖 </span>
+                <span data-has-tooltip aria-describedby="tooltip:linguistic-{{ id }}"> &nbsp;  📖 </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {% if result.lemma_wordform.stem %}
+                        <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
+                    {% endif %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
             {% endif %}
 
             {% if display_options.mode == 'source_language' %}
                 {% if lemma.show_emoji %}
-                <span class="wordclass" data-cy="word-class">
+                    <span class="wordclass" data-cy="word-class">
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
                 <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                       aria-describedby="tooltip:{{ id }}"> {% relabel_crk lemma.inflectional_category %} </span>
                 <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    ({{ lemma.inflectional_category }}) - {{ lemma.inflectional_category_linguistic }} - {% relabel_plain_english lemma.inflectional_category %}
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_plain_english lemma.inflectional_category %}
                     <div class="tooltip__arrow" data-popper-arrow></div>
                 </div>
-                <span> &nbsp;  📖 </span>
+                <span data-has-tooltip aria-describedby="tooltip:linguistic-{{ id }}"> &nbsp;  📖 </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {% if result.lemma_wordform.stem %}
+                        <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
+                    {% endif %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
             {% endif %}
         {% endwith %}
     </div>
