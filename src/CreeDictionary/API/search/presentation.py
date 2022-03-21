@@ -106,7 +106,7 @@ class PresentationResult:
         self._relabeller = {
             "english": read_labels().english,
             "linguistic": read_labels().linguistic_long,
-            "source_language": read_labels().cree,
+            "source_language": read_labels().source_language,
         }.get(display_mode, DisplayMode.default)
         self._animate_emoji = animate_emoji
         self._show_emoji = show_emoji
@@ -142,7 +142,7 @@ class PresentationResult:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
         self.lexical_info = get_lexical_info(
-            result.wordform.analysis, animate_emoji, self.dict_source
+            result.wordform.analysis, animate_emoji, self._show_emoji, self.dict_source
         )
 
         self.preverbs = [
@@ -367,7 +367,7 @@ def emoji_for_value(choice: str) -> str:
 
 
 def get_lexical_info(
-    result_analysis: RichAnalysis, animate_emoji: str, dict_source: list
+    result_analysis: RichAnalysis, animate_emoji: str, show_emoji: str, dict_source: list
 ) -> List[Dict]:
     if not result_analysis:
         return []
@@ -437,7 +437,7 @@ def get_lexical_info(
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result, animate_emoji, dict_source)
+            entry = serialize_wordform(preverb_result, animate_emoji, show_emoji, dict_source)
             _type = "Preverb"
 
         if entry and _type:

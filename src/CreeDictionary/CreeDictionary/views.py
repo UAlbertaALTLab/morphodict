@@ -35,6 +35,7 @@ IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 logger = logging.getLogger(__name__)
 
+
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
 # it should be used on the view functions that are well covered by integration tests
@@ -93,7 +94,8 @@ def entry_details(request, slug: str):
         lemma=lemma,
         # ...this parameter
         wordform=presentation.serialize_wordform(
-            lemma, animate_emoji=animate_emoji, dict_source=dict_source
+            lemma, animate_emoji=animate_emoji,
+            show_emoji=ShowEmoji.current_value_from_request(request), dict_source=dict_source
         ),
         **paradigm_context,
     )
@@ -164,7 +166,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
-        show_emoji=ShowEmoji.current_value_from_request(request),   # type: ignore
+        show_emoji=ShowEmoji.current_value_from_request(request),  # type: ignore
         dict_source=dict_source,
     )
 
@@ -444,4 +446,4 @@ def get_recordings_from_url(search_terms, url):
 def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
-        yield terms[i : i + size]
+        yield terms[i: i + size]
