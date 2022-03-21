@@ -26,7 +26,7 @@ def label_setting_to_relabeller(label_setting: str):
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
-        "source_language": labels.cree,
+        "source_language": labels.source_language,
     }.get(label_setting, labels.english)
 
 

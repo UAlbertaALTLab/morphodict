@@ -148,13 +148,13 @@ def relabel_plain_english(pos: str):
 
 
 @register.simple_tag()
-def relabel_crk(pos: str):
+def relabel_source(pos: str):
     """
     Should take in a class and return the plain english labelling for it
     So if I pass in "VTA-1", I should get back:
     tâpiskôc: wîcihêw
     """
-    return read_labels().cree.get(pos)
+    return read_labels().source_language.get(pos)
 
 
 @register.simple_tag()
