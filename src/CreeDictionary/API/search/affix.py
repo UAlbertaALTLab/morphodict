@@ -118,7 +118,7 @@ def do_source_language_affix_search(search_run: core.SearchRun):
                 source_language_affix_match=True,
                 query_wordform_edit_distance=get_modified_distance(
                     word.text, search_run.internal_query
-                ),
+                )
             )
         )
 

@@ -66,6 +66,8 @@ class Command(BaseCommand):
                         if d.auto_translation_source_id is None
                     ]
                     ret["webapp_sort_rank"] = i + 1
+                    ret["pos_match"] = r.pos_match
+                    ret["morpheme_ranking"] = r.morpheme_ranking
                     print(json.dumps(ret, ensure_ascii=False), file=out)
 
 

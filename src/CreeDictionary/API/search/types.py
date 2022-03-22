@@ -56,6 +56,8 @@ class Result:
         self.lemma_wordform = self.wordform.lemma
         self.wordform_length = len(self.wordform.text)
 
+        self.pos_match = self.pos_match
+
         if self.did_match_source_language and self.query_wordform_edit_distance is None:
             raise Exception("must include edit distance on source language matches")
 
@@ -138,6 +140,8 @@ class Result:
     source_language_keyword_match: list[str] = field(default_factory=list)
 
     is_espt_result: Optional[bool] = None
+
+    pos_match: Optional[int] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
