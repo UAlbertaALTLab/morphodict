@@ -104,7 +104,7 @@ class ParadigmAudio(Preference):
 @register_preference
 class SynthesizedAudio(Preference):
     """
-    Should we show audio in the paradigms?
+    Should we show synthesized audio?
     """
 
     cookie_name = "synthesized_audio"
