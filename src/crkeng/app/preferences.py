@@ -99,3 +99,17 @@ class ParadigmAudio(Preference):
         "no": "I do not want to see audio in paradigm layouts",
     }
     default = "no"
+
+
+@register_preference
+class SynthesizedAudio(Preference):
+    """
+    Should we show audio in the paradigms?
+    """
+
+    cookie_name = "synthesized_audio"
+    choices = {
+        "yes": "I would like to hear synthesized recordings",
+        "no": "I do not want to hear synthesized recordings",
+    }
+    default = "no"

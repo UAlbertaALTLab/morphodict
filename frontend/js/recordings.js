@@ -6,10 +6,22 @@ const BASE_URL = "https://speech-db.altlab.app";
 const LANGUAGE_CODES = getLanguageCodesFromLocation();
 let SPEAKER_LIST_SHOWING = false;
 
+
+// https://stackoverflow.com/questions/10730362/get-cookie-by-name?page=1&tab=scoredesc#tab-top
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
+
+
 function getLanguageCodesFromLocation() {
   const location = window.location.toString();
-  if (location.includes(`itwewina`) || location.includes(`crk`))
-    return [`maskwacis`, `moswacihk`];
+  if (location.includes(`itwewina`) || location.includes(`crk`)) {
+    if (getCookie("synthesized_audio") == "yes") {
+      return [`maskwacis`, `moswacihk`, `synth`];
+    } else return [`maskwacis`, `moswacihk`];
+  }
   if (location.includes(`itwiwina`) || location.includes(`cwd`))
     return [`woodscree`];
   if (location.includes(`gunaha`) || location.includes(`srs`))
