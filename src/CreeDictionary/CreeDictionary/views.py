@@ -405,6 +405,9 @@ def get_recordings_from_paradigm(paradigm, request):
     if speech_db_eq == ["_"]:
         return paradigm
 
+    if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
+        speech_db_eq.append("synth")
+
     for pane in paradigm.panes:
         for row in pane.tr_rows:
             if not row.is_header:
