@@ -31,8 +31,8 @@ def pos_match(result, analyzed_query):
     i = 0
     j = 0
     while j < max:
-        if result_tags[i] == query_tags[i]:
-            i += 1
+        if result_tags[j] == query_tags[j]:
+            i += 1/(j+1)
         j += 1
     return i
 

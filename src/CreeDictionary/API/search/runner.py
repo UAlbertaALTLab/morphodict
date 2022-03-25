@@ -9,7 +9,7 @@ from CreeDictionary.API.search.affix import (
 )
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.cvd_search import do_cvd_search
-from CreeDictionary.API.search.doc_freq import get_document_frequency
+from CreeDictionary.API.search.corp_freq import get_corpus_frequency
 from CreeDictionary.API.search.espt import EsptSearch
 from CreeDictionary.API.search.lookup import fetch_results
 from CreeDictionary.API.search.pos_matches import find_pos_matches
@@ -73,7 +73,7 @@ def search(
         espt_search.inflect_search_results()
 
     find_pos_matches(search_run)
-    get_document_frequency(search_run)
+    get_corpus_frequency(search_run)
 
     return search_run
 
