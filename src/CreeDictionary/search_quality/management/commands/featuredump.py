@@ -68,7 +68,7 @@ class Command(BaseCommand):
                     ret["webapp_sort_rank"] = i + 1
                     ret["pos_match"] = r.pos_match
                     ret["morpheme_ranking"] = r.morpheme_ranking
-                    ret["doc_freq"] = r.document_freq
+                    ret["corp_freq"] = r.corp_freq
                     print(json.dumps(ret, ensure_ascii=False), file=out)
 
 
