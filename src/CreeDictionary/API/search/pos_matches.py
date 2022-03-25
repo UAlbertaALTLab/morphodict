@@ -41,16 +41,8 @@ def pos_match(result, analyzed_query):
 
 
 class AnalyzedQuery:
-    """A structured object holding pieces of, and info about, a phrase query.
-
-    >>> AnalyzedQuery("they swam").filtered_query
-    'swim'
-    >>> AnalyzedQuery("they swam").has_tags
-    True
-    >>> AnalyzedQuery("they swam").tags
-    ['+V', '+AI', '+Prt', '+3Pl']
-    >>> AnalyzedQuery("excellent").has_tags
-    False
+    """
+    A structured object holding pieces of, and info about, a phrase query.
     """
 
     def __init__(self, query: str):

@@ -253,7 +253,7 @@ context("Searching", () => {
     it("should show search features for a verbose search", function () {
       cy.visitSearch("verbose:1 acahkosa");
 
-      cy.get("[data-cy=verbose-info]").should("contain", "morpheme_ranking");
+      cy.get("[data-cy=verbose-info]").should("contain", "relevance_score");
     });
 
     it("should show auto-translations with auto:y", function () {

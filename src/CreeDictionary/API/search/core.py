@@ -32,7 +32,7 @@ class SearchRun:
     VerboseMessage = dict[str, str]
     _verbose_messages: list[VerboseMessage]
     # Set this to use a custom sort function
-    sort_function: Optional[Callable[[Result], Any]] = lambda: print()
+    sort_function: Optional[Callable[[Result], Any]] = None
 
     def add_result(self, result: types.Result):
         if not isinstance(result, types.Result):
