@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
@@ -64,6 +65,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_tail: Iterable[Label]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
+    relabelled_linguist_analysis: str
     show_form_of: bool
 
 
@@ -183,6 +185,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
+            "relabelled_linguist_analysis": self.relabelled_linguist_analysis,
             "show_form_of": should_show_form_of(
                 self.is_lemma,
                 self.lemma_wordform,
@@ -219,6 +222,36 @@ class PresentationResult:
             results.append({"tags": list(tags), "label": str(label)})
 
         return results
+
+    @property
+    def relabelled_linguist_analysis(self) -> str:
+        try:
+            analysis = self.lemma_wordform.linguist_info["analysis"]
+            pattern = "<td>(.*?)</td>"
+            info = re.findall(pattern, analysis)
+            cleaned_info = []
+            for i in info:
+                print(i)
+                if "<b>" in i:
+                    j = i.replace("<b>", "").replace("</b>", "")
+                else:
+                    j = i
+                cleaned_info.append(j)
+            print(cleaned_info)
+            relabelled = []
+            for c in cleaned_info:
+                if self._relabeller.get_longest(c):
+                    relabelled.append(self._relabeller.get_longest(c))
+                else:
+                    relabelled.append(c)
+
+            k = 0
+            while k < len(cleaned_info):
+                analysis = analysis.replace(cleaned_info[k], relabelled[k])
+                k += 1
+            return analysis
+        except:
+            return ""
 
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
