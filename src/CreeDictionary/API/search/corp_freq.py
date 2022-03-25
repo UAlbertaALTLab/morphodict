@@ -7,8 +7,7 @@ DOCUMENT_FREQUENCY = {}
 
 def get_corpus_frequency(search_run):
     prep_freqs()
-    for result in search_run.unsorted_results():
-        result.corp_freq = find_corpus_freq(result)
+    [find_corpus_freq(result) for result in search_run.unsorted_results()]
 
 
 def prep_freqs():
@@ -27,5 +26,7 @@ def prep_freqs():
 
 def find_corpus_freq(result):
     if result.lemma_wordform.text in DOCUMENT_FREQUENCY:
-        return DOCUMENT_FREQUENCY[result.lemma_wordform.text]
-    return 0
+        result.corp_freq = DOCUMENT_FREQUENCY[result.lemma_wordform.text]
+        return
+    result.corp_freq = 0
+    return

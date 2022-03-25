@@ -9,8 +9,7 @@ def find_pos_matches(search_run: SearchRun) -> None:
                 search_run.internal_query
             )
 
-    for result in search_run.unsorted_results():
-        result.pos_match = pos_match(result, analyzed_query)
+    [pos_match(result, analyzed_query) for result in search_run.unsorted_results()]
 
 
 def pos_match(result, analyzed_query):
@@ -20,9 +19,11 @@ def pos_match(result, analyzed_query):
     If they aren't related or aren't analyzable, return 0
     """
     if not analyzed_query.has_tags:
-        return 0
+        result.pos_match = 0
+        return
     if not result.wordform.raw_analysis:
-        return 0
+        result.pos_match = 0
+        return
 
     result_tags = result.wordform.raw_analysis[2]
     query_tags = list(analyzed_query.analysis)
@@ -34,7 +35,8 @@ def pos_match(result, analyzed_query):
         if result_tags[j] == query_tags[j]:
             i += 1/(j+1)
         j += 1
-    return i
+    result.pos_match = i
+    return
 
 
 
