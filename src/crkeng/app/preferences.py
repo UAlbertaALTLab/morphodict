@@ -14,9 +14,9 @@ class DisplayMode(Preference):
     cookie_name = "display_mode"
     choices = {
         # Plain English labels; e.g., I → You (one), Something is happening now
-        "english": "plain English labels",
+        "english": "Plain English labels",
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
-        "linguistic": "linguistic labels",
+        "linguistic": "Linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
         "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
     }
