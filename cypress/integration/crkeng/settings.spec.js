@@ -10,7 +10,7 @@ context("The settings page", () => {
   });
 
   describe("setting a preference", () => {
-    const PREFERENCE_COOKIE = "paradigmlabel";
+    const PREFERENCE_COOKIE = "display_mode";
 
     it("should set the preference without a submit button", () => {
       let checkedValue;

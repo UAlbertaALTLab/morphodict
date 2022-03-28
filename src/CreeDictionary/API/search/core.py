@@ -2,7 +2,12 @@ from typing import Iterable, Callable, Any, Optional
 
 from django.db.models import prefetch_related_objects
 
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource
+from crkeng.app.preferences import (
+    DisplayMode,
+    AnimateEmoji,
+    DictionarySource,
+    ShowEmoji,
+)
 from morphodict.lexicon.models import WordformKey
 from . import types, presentation
 from .query import Query
@@ -68,6 +73,7 @@ class SearchRun:
         self,
         display_mode=DisplayMode.default,
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
         dict_source=None,
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
@@ -82,6 +88,7 @@ class SearchRun:
                 search_run=self,
                 display_mode=display_mode,
                 animate_emoji=animate_emoji,
+                show_emoji=show_emoji,
                 dict_source=dict_source,
             )
             for r in results
@@ -91,11 +98,13 @@ class SearchRun:
         self,
         display_mode=DisplayMode.default,
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
         dict_source=None,
     ):
         results = self.presentation_results(
             display_mode=display_mode,
             animate_emoji=animate_emoji,
+            show_emoji=show_emoji,
             dict_source=dict_source,
         )
         serialized = [r.serialize() for r in results]

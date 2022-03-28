@@ -22,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
@@ -34,6 +34,7 @@ from .utils import url_for_query
 IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 logger = logging.getLogger(__name__)
+
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -85,6 +86,7 @@ def entry_details(request, slug: str):
 
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
     dict_source = get_dict_source(request)  # type: ignore
+    should_show_emoji = ShowEmoji.current_value_from_request(request)  # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -93,7 +95,10 @@ def entry_details(request, slug: str):
         lemma=lemma,
         # ...this parameter
         wordform=presentation.serialize_wordform(
-            lemma, animate_emoji=animate_emoji, dict_source=dict_source
+            lemma,
+            animate_emoji=animate_emoji,
+            dict_source=dict_source,
+            show_emoji=should_show_emoji,
         ),
         **paradigm_context,
     )
@@ -122,6 +127,7 @@ def index(request):  # pragma: no cover
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
+            show_emoji=ShowEmoji.current_value_from_request(request),
             dict_source=dict_source,
         )
         did_search = True
@@ -163,6 +169,7 @@ def search_results(request, query_string: str):  # pragma: no cover
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+        show_emoji=ShowEmoji.current_value_from_request(request),  # type: ignore
         dict_source=dict_source,
     )
 
@@ -400,6 +407,9 @@ def get_recordings_from_paradigm(paradigm, request):
     speech_db_eq = settings.SPEECH_DB_EQ
     if speech_db_eq == ["_"]:
         return paradigm
+
+    if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
+        speech_db_eq.append("synth")
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:

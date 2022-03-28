@@ -6,7 +6,7 @@ from CreeDictionary.CreeDictionary.orthography import to_macrons, to_syllabics
 from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
 from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
 from pytest_django.asserts import assertInHTML
-from crkeng.app.preferences import ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 
 # Choose a tag whose label:
 #  - probably won't change (or the tests will break)
@@ -30,7 +30,7 @@ def test_relabel_respects_orthography(orth: str, expected: str) -> None:
     assert orth in ORTHOGRAPHY.available
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
+    request.COOKIES[DisplayMode.cookie_name] = "source_language"
     request.COOKIES[ORTHOGRAPHY.COOKIE_NAME] = orth
 
     context = RequestContext(request, {"label": RowLabel(TAGS)})

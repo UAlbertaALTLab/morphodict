@@ -13,7 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 from morphodict.lexicon.models import Wordform
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll
@@ -173,11 +173,11 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
         # (spelling is not the IETF's strong suit)
         headers["HTTP_REFERER"] = whence
 
-    res = client.post(url, {"mode": mode}, **headers)
+    res = client.post(url, {"display_mode": mode}, **headers)
 
     # morsel is Python's official term for a chunk of a cookie
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
-    assert (morsel := res.cookies.get("mode")) is not None
+    assert (morsel := res.cookies.get("display_mode")) is not None
     assert morsel.value == mode
 
     if whence:
@@ -187,25 +187,25 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
         assert res.status_code in (HTTPStatus.OK, HTTPStatus.NO_CONTENT)
 
 
-@pytest.mark.parametrize("option", ParadigmLabel.choices)
+@pytest.mark.parametrize("option", DisplayMode.choices)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_paradigm_label_preference(option, whence, client: Client):
     """
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("preference:change", args=[ParadigmLabel.name])
+    url = reverse("preference:change", args=[DisplayMode.name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP
         # (spelling is not the IETF's strong suit)
         headers["HTTP_REFERER"] = whence
 
-    res = client.post(url, {ParadigmLabel.cookie_name: option}, **headers)
+    res = client.post(url, {DisplayMode.cookie_name: option}, **headers)
 
     # morsel is Python's official term for a chunk of a cookie
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
-    assert (morsel := res.cookies.get(ParadigmLabel.cookie_name)) is not None
+    assert (morsel := res.cookies.get(DisplayMode.cookie_name)) is not None
     assert morsel.value == option
 
     if whence:
