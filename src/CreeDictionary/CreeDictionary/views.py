@@ -86,6 +86,7 @@ def entry_details(request, slug: str):
 
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
     dict_source = get_dict_source(request)  # type: ignore
+    should_show_emoji = ShowEmoji.current_value_from_request(request)   # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -95,7 +96,7 @@ def entry_details(request, slug: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(
             lemma, animate_emoji=animate_emoji,
-            dict_source=dict_source, show_emoji=ShowEmoji.current_value_from_request(request=request)
+            dict_source=dict_source, show_emoji=should_show_emoji
         ),
         **paradigm_context,
     )
