@@ -95,7 +95,7 @@ def entry_details(request, slug: str):
         # ...this parameter
         wordform=presentation.serialize_wordform(
             lemma, animate_emoji=animate_emoji,
-            show_emoji=ShowEmoji.current_value_from_request(request), dict_source=dict_source
+            dict_source=dict_source, show_emoji=ShowEmoji.current_value_from_request(request=request)
         ),
         **paradigm_context,
     )
