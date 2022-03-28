@@ -5,36 +5,18 @@ from django.conf import settings
 
 from morphodict.preference import register_preference, Preference
 
-
 @register_preference
 class DisplayMode(Preference):
-    """
-    As of 2021-04-14, "mode" is a coarse mechanism for affecting the display; there are
-    plans for more fine-grained control over the display of, e.g., search results.
-    """
-
-    cookie_name = "mode"
-    choices = {
-        # Community-mode: uses emoji and hides inflectional class
-        "community": "Community mode",
-        # Linguist-mode: always displays inflectional class (e.g., VTA-1, NA-3, IPJ, etc.)
-        "linguistic": "Linguistic mode",
-    }
-    default = "community"
-
-
-@register_preference
-class ParadigmLabel(Preference):
     """
     What style labels should be used in the paradigm?
     """
 
-    cookie_name = "paradigmlabel"
+    cookie_name = "display_mode"
     choices = {
         # Plain English labels; e.g., I → You (one), Something is happening now
-        "english": "plain English labels",
+        "english": "Plain English labels",
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
-        "linguistic": "linguistic labels",
+        "linguistic": "Linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
         "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
     }
@@ -85,6 +67,21 @@ class DictionarySource(Preference):
     }
 
     default = "cw+md"
+
+
+@register_preference
+class ShowEmoji(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "show_emoji"
+    choices = {
+        "yes": "Show emojis with my entries (default)",
+        "no": "Don't show emojis with my entries",
+    }
+
+    default = "yes"
 
 
 @register_preference

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 
@@ -11,9 +12,9 @@ from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource, ShowEmoji
 from morphodict.analysis import RichAnalysis
-from morphodict.lexicon.models import Wordform
+from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
 from ..schema import SerializedDefinition, SerializedWordform
 from .types import Preverb
@@ -64,6 +65,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_tail: Iterable[Label]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
+    relabelled_linguist_analysis: str
     show_form_of: bool
 
 
@@ -98,15 +100,18 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
         dict_source=None,
     ):
         self._result = result
         self._search_run = search_run
         self._relabeller = {
-            "community": read_labels().english,
+            "english": read_labels().english,
             "linguistic": read_labels().linguistic_long,
+            "source_language": read_labels().source_language,
         }.get(display_mode, DisplayMode.default)
         self._animate_emoji = animate_emoji
+        self._show_emoji = show_emoji
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
@@ -139,7 +144,7 @@ class PresentationResult:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
         self.lexical_info = get_lexical_info(
-            result.wordform.analysis, animate_emoji, self.dict_source
+            result.wordform.analysis, animate_emoji, self._show_emoji, self.dict_source
         )
 
         self.preverbs = [
@@ -163,7 +168,7 @@ class PresentationResult:
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(
-                self.lemma_wordform, self._animate_emoji, self.dict_source
+                self.lemma_wordform, self._animate_emoji, self._show_emoji, self.dict_source
             ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -180,6 +185,7 @@ class PresentationResult:
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
+            "relabelled_linguist_analysis": self.relabelled_linguist_analysis,
             "show_form_of": should_show_form_of(
                 self.is_lemma,
                 self.lemma_wordform,
@@ -217,6 +223,36 @@ class PresentationResult:
 
         return results
 
+    @property
+    def relabelled_linguist_analysis(self) -> str:
+        try:
+            analysis = self.lemma_wordform.linguist_info["analysis"]
+            pattern = "<td>(.*?)</td>"
+            info = re.findall(pattern, analysis)
+            cleaned_info = []
+            for i in info:
+                print(i)
+                if "<b>" in i:
+                    j = i.replace("<b>", "").replace("</b>", "")
+                else:
+                    j = i
+                cleaned_info.append(j)
+            print(cleaned_info)
+            relabelled = []
+            for c in cleaned_info:
+                if self._relabeller.get_longest(c):
+                    relabelled.append(self._relabeller.get_longest(c))
+                else:
+                    relabelled.append(c)
+
+            k = 0
+            while k < len(cleaned_info):
+                analysis = analysis.replace(cleaned_info[k], relabelled[k])
+                k += 1
+            return analysis
+        except:
+            return ""
+
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
@@ -236,7 +272,7 @@ def should_show_form_of(
 
 
 def serialize_wordform(
-    wordform: Wordform, animate_emoji: str, dict_source: list
+    wordform: Wordform, animate_emoji: str, show_emoji: str, dict_source: list
 ) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
@@ -267,6 +303,8 @@ def serialize_wordform(
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
+    result["show_emoji"] = True if show_emoji == "yes" else False
+    print(result["show_emoji"])
 
     for key in wordform.linguist_info or []:
         if key not in result:
@@ -362,7 +400,7 @@ def emoji_for_value(choice: str) -> str:
 
 
 def get_lexical_info(
-    result_analysis: RichAnalysis, animate_emoji: str, dict_source: list
+    result_analysis: RichAnalysis, animate_emoji: str, show_emoji: str, dict_source: list
 ) -> List[Dict]:
     if not result_analysis:
         return []
@@ -391,37 +429,32 @@ def get_lexical_info(
             entry = _InitialChangeResult(text=" ", definitions=change_types).serialize()
 
         elif tag.startswith("PV/"):
-            # use altlabel.tsv to figure out the preverb
+            preverb_text = tag.replace("PV/", "").replace("+", "")
 
-            # ling_short looks like: "Preverb: âpihci-"
-            ling_short = read_labels().linguistic_short.get(
-                cast(FSTTag, tag.rstrip("+"))
+            # Our FST analyzer doesn't return preverbs with diacritics
+            # but we store variations of words in this table
+            preverb_results = SourceLanguageKeyword.objects.filter(
+                text=preverb_text
             )
-            if ling_short:
-                # convert to "âpihci" by dropping prefix and last character
-                normative_preverb_text = ling_short[len("Preverb: ") :]
-                preverb_results = Wordform.objects.filter(
-                    text=normative_preverb_text, raw_analysis__isnull=True
+
+            # get the actual wordform object and
+            # make sure the result we return is an IPV
+            if preverb_results:
+                preverb_result = None
+                for result in preverb_results:
+                    lexicon_result = Wordform.objects.get(id=result.wordform_id)
+                    if lexicon_result:
+                        _info = lexicon_result.linguist_info
+                        if _info["wordclass"] == 'IPV':
+                            preverb_result = lexicon_result
+            else:
+                # Can't find a match for the preverb in the database.
+                # This happens when searching against the test database for
+                # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
+                # lacks lacks ê and kî.
+                preverb_result = Wordform(
+                    text=preverb_text, is_lemma=True
                 )
-
-                # find the one that looks the most similar
-                if preverb_results:
-                    preverb_result = min(
-                        preverb_results,
-                        key=lambda pr: get_modified_distance(
-                            normative_preverb_text,
-                            pr.text.strip("-"),
-                        ),
-                    )
-
-                else:
-                    # Can't find a match for the preverb in the database.
-                    # This happens when searching against the test database for
-                    # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
-                    # lacks lacks ê and kî.
-                    preverb_result = Wordform(
-                        text=normative_preverb_text, is_lemma=True
-                    )
 
         if reduplication_string is not None:
             entry = _ReduplicationResult(
@@ -437,7 +470,7 @@ def get_lexical_info(
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result, animate_emoji, dict_source)
+            entry = serialize_wordform(preverb_result, animate_emoji, show_emoji, dict_source)
             _type = "Preverb"
 
         if entry and _type:

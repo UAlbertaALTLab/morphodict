@@ -72,12 +72,12 @@ describe("Orthography selection", function () {
       cy.contains(".prose__heading", "ᓀᐦᐃᔭᐍᐏᐣ");
     });
 
-    it("should display Cree examples in syllabics", function () {
+    it.skip("should display Cree examples in syllabics", function () {
       cy.setCookie("orth", "Cans");
 
       // Visiting a page should be in syllabics
       cy.visitSearch("ᓃᒥᓈᓂᐘᐣ");
-      cy.contains("[data-cy=word-class]", "like: ᓂᐹᐤ");
+      cy.contains("[data-cy=elaboration]", "like: ᓂᐹᐤ");
     });
   });
 });
