@@ -175,4 +175,3 @@ def relabel_linguistic_long(pos: str):
     transitive animate verb – class 1: regular
     """
     return read_labels().linguistic_long.get(pos)
-

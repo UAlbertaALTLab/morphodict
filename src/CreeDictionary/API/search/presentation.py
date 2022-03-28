@@ -12,7 +12,12 @@ from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode, AnimateEmoji, DictionarySource, ShowEmoji
+from crkeng.app.preferences import (
+    DisplayMode,
+    AnimateEmoji,
+    DictionarySource,
+    ShowEmoji,
+)
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
@@ -168,7 +173,10 @@ class PresentationResult:
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(
-                self.lemma_wordform, self._animate_emoji, self._show_emoji, self.dict_source
+                self.lemma_wordform,
+                self._animate_emoji,
+                self._show_emoji,
+                self.dict_source,
             ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -400,7 +408,10 @@ def emoji_for_value(choice: str) -> str:
 
 
 def get_lexical_info(
-    result_analysis: RichAnalysis, animate_emoji: str, show_emoji: str, dict_source: list
+    result_analysis: RichAnalysis,
+    animate_emoji: str,
+    show_emoji: str,
+    dict_source: list,
 ) -> List[Dict]:
     if not result_analysis:
         return []
@@ -433,9 +444,7 @@ def get_lexical_info(
 
             # Our FST analyzer doesn't return preverbs with diacritics
             # but we store variations of words in this table
-            preverb_results = SourceLanguageKeyword.objects.filter(
-                text=preverb_text
-            )
+            preverb_results = SourceLanguageKeyword.objects.filter(text=preverb_text)
 
             # get the actual wordform object and
             # make sure the result we return is an IPV
@@ -445,16 +454,14 @@ def get_lexical_info(
                     lexicon_result = Wordform.objects.get(id=result.wordform_id)
                     if lexicon_result:
                         _info = lexicon_result.linguist_info
-                        if _info["wordclass"] == 'IPV':
+                        if _info["wordclass"] == "IPV":
                             preverb_result = lexicon_result
             else:
                 # Can't find a match for the preverb in the database.
                 # This happens when searching against the test database for
                 # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
                 # lacks lacks ê and kî.
-                preverb_result = Wordform(
-                    text=preverb_text, is_lemma=True
-                )
+                preverb_result = Wordform(text=preverb_text, is_lemma=True)
 
         if reduplication_string is not None:
             entry = _ReduplicationResult(
@@ -470,7 +477,9 @@ def get_lexical_info(
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result, animate_emoji, show_emoji, dict_source)
+            entry = serialize_wordform(
+                preverb_result, animate_emoji, show_emoji, dict_source
+            )
             _type = "Preverb"
 
         if entry and _type:

@@ -5,6 +5,7 @@ from django.conf import settings
 
 from morphodict.preference import register_preference, Preference
 
+
 @register_preference
 class DisplayMode(Preference):
     """

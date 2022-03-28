@@ -68,9 +68,7 @@ def label_setting_from_context(context: Context):
     """
     if hasattr(context, "request"):
         # We can get the paradigm label from the cookie!
-        return context.request.COOKIES.get(
-            DisplayMode.cookie_name, DisplayMode.default
-        )
+        return context.request.COOKIES.get(DisplayMode.cookie_name, DisplayMode.default)
 
     # Cannot get the request context? We can't detect the current cookie :/
     return DisplayMode.default
