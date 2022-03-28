@@ -143,7 +143,7 @@
                 <li>
                     <form method="POST" action={% url 'preference:change' 'display_mode' %}>
                         <button class="unbutton link footer__link" type="submit" name="display_mode" value="source_language"
-                                data-cy="enable-linguistic-mode">
+                                data-cy="enable-source-mode">
                             {{ MORPHODICT_SOURCE_LANGUAGE_NAME }} labels
                         </button>
                         {% csrf_token %}
