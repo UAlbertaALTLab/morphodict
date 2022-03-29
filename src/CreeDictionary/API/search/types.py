@@ -4,10 +4,10 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import NewType, Optional, Protocol
+from typing import NewType, Optional, Protocol, cast
 
 from CreeDictionary.API.schema import SerializedLinguisticTag
-from CreeDictionary.utils.types import FSTTag
+from CreeDictionary.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.search import ranking
 from CreeDictionary.CreeDictionary.relabelling import LABELS

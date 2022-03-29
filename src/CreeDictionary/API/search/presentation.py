@@ -8,7 +8,7 @@ from django.conf import settings
 from django.forms import model_to_dict
 
 from CreeDictionary.API.search import core, types
-from CreeDictionary.CreeDictionary.relabelling import read_labels
+from CreeDictionary.CreeDictionary.relabelling import read_labels, LABELS
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
@@ -160,7 +160,7 @@ class PresentationResult:
         else:
             self.morphemes = None
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji)
+        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji=animate_emoji, dict_source=self.dict_source, show_emoji=self._show_emoji)
 
         self.preverbs = [
             lexical_entry["entry"]
