@@ -51,8 +51,12 @@
                                         <td class="paradigm-cell paradigm-cell--empty"></td>
                                     {% else %}
                                         <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
-                                            {% if cell.morphemes %}
-                                                {{ cell.morphemes|join:"·" }}
+                                            {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
+                                                {% if cell.morphemes %}
+                                                    {{ cell.morphemes|join:"·" }}
+                                                {% else %}
+                                                    {% orth cell.inflection %}
+                                                {% endif %}
                                             {% else %}
                                                 {% orth cell.inflection %}
                                             {% endif %}

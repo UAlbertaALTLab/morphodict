@@ -1,8 +1,12 @@
 {% spaceless %}
-{% load morphodict_orth %}
-{% if result.morphemes %}
-  {{ result.morphemes|join:"·" }}
-{% else %}
-  {% orth result.lemma_wordform.text %}
-{% endif %}
+    {% load morphodict_orth %}
+    {% if show_morphemes == "everywhere" or show_morphemes == "headers" %}
+        {% if result.morphemes %}
+            {{ result.morphemes|join:"·" }}
+        {% else %}
+            {% orth result.lemma_wordform.text %}
+        {% endif %}
+    {% else %}
+        {% orth result.lemma_wordform.text %}
+    {% endif %}
 {% endspaceless %}
