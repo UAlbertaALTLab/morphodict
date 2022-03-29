@@ -44,12 +44,12 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             },
         ],
         [
-            "my little bears",
+            "my cats",
             {
-                "expected_query_terms": ["bear"],
-                "expected_new_tags": ["+N", "+Der/Dim", "+Px1Sg", "+Pl"],
-                "slug": "maskwa",
-                "expected_inflection": "nimaskomisak",
+                "expected_query_terms": ["cat"],
+                "expected_new_tags": ["+N", "+Px1Sg", "+Pl"],
+                "slug": "minôs",
+                "expected_inflection": "niminôsak",
             },
         ],
         [
@@ -57,7 +57,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             {
                 "expected_query_terms": ["see"],
                 "expected_new_tags": ["+V", "+AI", "+Ind", "+3Pl"],
-                "slug": "wâpiw",
+                "slug": "wâpiw@1",
                 "expected_inflection": "wâpiwak",
             },
         ],
@@ -71,12 +71,12 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             },
         ],
         [
-            "it will fall short",
+            "they ran",
             {
-                "expected_query_terms": ["fall", "short"],
-                "expected_new_tags": ["+V", "+II", "PV/ka+", "+Ind", "+3Sg"],
-                "slug": "nôhtêpayiw@vii",
-                "expected_inflection": "ka-nôhtêpayiw",
+                "expected_query_terms": ["run"],
+                "expected_new_tags": ["+V", "+AI", "PV/ki+", "+Ind", "+3Pl"],
+                "slug": "kotiskâwêw",
+                "expected_inflection": "kî-kotiskâwêwak",
             },
         ],
         [
@@ -85,7 +85,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
                 # Don’t try to inflect results for searches not analyzable as phrases
                 "expected_query_terms": ["bear"],
                 "expected_new_tags": [],
-                "slug": "maskwa",
+                "slug": "maskwa@1",
                 "expected_inflection": "maskwa",
             },
         ],
@@ -110,10 +110,9 @@ def test_espt_search(db, search, params):
 
     espt_search.inflect_search_results()
 
-    assert (
-        list(search_run.unsorted_results())[0].wordform.text
-        == params["expected_inflection"]
-    )
+    assert params["expected_inflection"] in [
+        entry.wordform.text for entry in list(search_run.unsorted_results())
+    ]
 
 
 def test_espt_search_doesnt_crash_when_no_analysis(db):

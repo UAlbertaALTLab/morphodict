@@ -48,13 +48,6 @@
       {% endif %}
     </h2>
 
-    {% if display_options.mode == 'linguistic' %}
-      &#32; {# separate inflectiona class from wordform #}
-      <span class="definition-title__inflectional-class" data-cy="inflectional-class">
-        {{ result.lemma_wordform.inflectional_category }}
-      </span>
-    {% endif %}
-
     &#32; {# separate title proper from icons #}
 
     {% include "CreeDictionary/components/definition__icons.html" %}

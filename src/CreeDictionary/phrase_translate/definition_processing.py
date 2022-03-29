@@ -22,7 +22,7 @@ PARENTHESIZED_PART = r"""
 """
 
 _RE_PARENTHETICAL = re.compile(
-    fr"""
+    rf"""
     
     # If the parenthesized part comes at the end of a sentence, remove the space
     # before it as well
