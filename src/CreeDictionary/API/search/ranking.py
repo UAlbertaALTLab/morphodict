@@ -45,7 +45,7 @@ def assign_relevance_score(result: types.Result):
             + 0.0244343126 * _default_if_none(result.morpheme_ranking, default=1)
             + 0.0036 * _default_if_none(result.is_espt_result, default=0)
             + 0.0447407131 * _default_if_none(result.pos_match, default=0)
-            + 0.0447407131 * _default_if_none(result.corp_freq, default=0)
+            + 0.0447407131 * _default_if_none(result.word_list_freq, default=0)
             + -0.0693265378
             * log(1 + _default_if_none(result.cosine_vector_distance, default=1.1))
         )

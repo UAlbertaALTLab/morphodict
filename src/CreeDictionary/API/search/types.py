@@ -57,7 +57,8 @@ class Result:
         self.wordform_length = len(self.wordform.text)
 
         self.pos_match = self.pos_match
-        self.corp_freq = self.corp_freq
+        self.word_list_freq = self.word_list_freq
+        self.lemma_freq = self.lemma_freq
 
         if self.did_match_source_language and self.query_wordform_edit_distance is None:
             raise Exception("must include edit distance on source language matches")
@@ -143,7 +144,8 @@ class Result:
     is_espt_result: Optional[bool] = None
 
     pos_match: Optional[int] = None
-    corp_freq: Optional[int] = None
+    word_list_freq: Optional[int] = None
+    lemma_freq: Optional[int] = None
 
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None

@@ -5,7 +5,7 @@ from CreeDictionary.utils import shared_res_dir
 DOCUMENT_FREQUENCY = {}
 
 
-def get_corpus_frequency(search_run):
+def get_word_list_freq(search_run):
     prep_freqs()
     [find_corpus_freq(result) for result in search_run.unsorted_results()]
 
@@ -26,7 +26,7 @@ def prep_freqs():
 
 def find_corpus_freq(result):
     if result.lemma_wordform.text in DOCUMENT_FREQUENCY:
-        result.corp_freq = DOCUMENT_FREQUENCY[result.lemma_wordform.text]
+        result.word_list_freq = DOCUMENT_FREQUENCY[result.lemma_wordform.text]
         return
-    result.corp_freq = 0
+    result.word_list_freq = 0
     return
