@@ -14,6 +14,8 @@ from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO
 
 from more_itertools import ilen, one
 
+from morphodict.analysis import rich_analyze_strict
+
 logger = logging.getLogger(__name__)
 
 
@@ -520,12 +522,18 @@ class WordformCell(Cell):
     def __init__(self, inflection: str):
         self.inflection = inflection
         self.recording = None
+        self.morphemes = None
+        self.add_morphemes()
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
 
     def add_recording(self, recording):
         self.recording = recording
+
+    def add_morphemes(self):
+        analysis = rich_analyze_strict(self.inflection)[0]
+        self.morphemes = analysis.generate_with_morphemes()
 
     def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         # No need to fill a cell that already has contents!
