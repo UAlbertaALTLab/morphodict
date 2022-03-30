@@ -48,7 +48,6 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
-
     lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemma.count() != 1:
@@ -56,6 +55,11 @@ def entry_details(request, slug: str):
         return redirect(url_for_query(slug.split("@")[0] or ""))
 
     lemma = lemma.get()
+
+    if rich_analysis := lemma.analysis:
+        morphemes = rich_analysis.generate_with_morphemes()
+    else:
+        morphemes = None
 
     paradigm_context: dict[str, Any] = {}
 
@@ -103,6 +107,7 @@ def entry_details(request, slug: str):
         **paradigm_context,
     )
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
+    context["morphemes"] = morphemes
     return render(request, "CreeDictionary/index.html", context)
 
 
