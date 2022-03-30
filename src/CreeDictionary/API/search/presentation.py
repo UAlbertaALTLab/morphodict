@@ -239,17 +239,15 @@ class PresentationResult:
             info = re.findall(pattern, analysis)
             cleaned_info = []
             for i in info:
-                print(i)
                 if "<b>" in i:
                     j = i.replace("<b>", "").replace("</b>", "")
                 else:
                     j = i
                 cleaned_info.append(j)
-            print(cleaned_info)
             relabelled = []
             for c in cleaned_info:
-                if self._relabeller.get_longest(c):
-                    relabelled.append(self._relabeller.get_longest(c))
+                if self._relabeller.get(c):
+                    relabelled.append(self._relabeller.get(c))
                 else:
                     relabelled.append(c)
 
