@@ -103,7 +103,7 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
+        .should("contain", wordclassEmoji);
 
       cy.get("@elaboration")
         .get('[data-cy="elaboration"]')
@@ -154,7 +154,7 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
+        .should("contain", wordclassEmoji);
 
       cy.get("@elaboration")
         .get('[data-cy="elaboration"]')
@@ -199,7 +199,7 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
+        .should("contain", wordclassEmoji);
 
       cy.get("@elaboration")
         .get('[data-cy="elaboration"]')
