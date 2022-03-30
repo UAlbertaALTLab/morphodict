@@ -1,0 +1,13 @@
+{% if result.lemma_wordform.stem or result.relabelled_linguist_analysis %}
+    <span data-has-tooltip aria-describedby="tooltip:linguistic-{{ id }}"
+          data-cy="linguistic-dict-icon">&nbsp; 📖 </span>
+    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+        {% if result.relabelled_linguist_analysis %}
+            {{ result.relabelled_linguist_analysis  | safe }}
+        {% else %}
+            <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
+        {% endif %}
+
+        <div class="tooltip__arrow" data-popper-arrow></div>
+    </div>
+{% endif %}
