@@ -81,10 +81,14 @@ class RichAnalysis:
         return strict_generator().lookup(self.smushed())
 
     def generate_with_morphemes(self):
-        results = strict_generator_with_morpheme_boundaries().lookup(self.smushed())
-        if len(results) != 1:
-            return None
-        return re.split(r"[<>]", results[0])
+        try:
+            results = strict_generator_with_morpheme_boundaries().lookup(self.smushed())
+            if len(results) != 1:
+                return None
+            return re.split(r"[<>]", results[0])
+        except RuntimeError as e:
+            print("Could not generate morphemes:", e)
+            return []
 
     def smushed(self):
         return "".join(self.prefix_tags) + self.lemma + "".join(self.suffix_tags)
