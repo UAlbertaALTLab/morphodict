@@ -28,7 +28,7 @@
             <form method="POST" action="{% url "preference:change" "display_mode" %}">
               <button type="submit" class="unbutton fill-width"
                       name="display_mode" value="{{ value }}">
-                <span class="menu-choice__label">{{ label|capfirst }}</span>
+                <span class="menu-choice__label">{{ label }}</span>
               {% csrf_token %}
               </button>
             </form>
