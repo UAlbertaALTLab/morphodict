@@ -19,7 +19,6 @@ MatchedEnglish = NewType("MatchedEnglish", str)
 InternalForm = NewType("InternalForm", str)
 
 
-
 class LinguisticTag(Protocol):
     """
     A linguistic feature/tag pair.
@@ -81,6 +80,7 @@ def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
         return SimpleLinguisticTag(tags[0])
     else:
         return CompoundLinguisticTag(tags)
+
 
 class Language(Enum):
     SOURCE = "Source"

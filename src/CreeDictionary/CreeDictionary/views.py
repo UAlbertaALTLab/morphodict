@@ -183,8 +183,11 @@ def search_results(request, query_string: str):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/search-results.html",
-        {"query_string": query_string, "search_results": results,
-            "show_morphemes": request.COOKIES.get("show_morphemes")},
+        {
+            "query_string": query_string,
+            "search_results": results,
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
+        },
     )
 
 
@@ -235,7 +238,7 @@ def paradigm_internal(request):
             "lemma": lemma,
             "paradigm_size": paradigm_size,
             "paradigm": paradigm,
-            "show_morphemes": request.COOKIES.get("show_morphemes")
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
         },
     )
 

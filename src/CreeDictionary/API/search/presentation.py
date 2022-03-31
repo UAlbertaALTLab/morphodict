@@ -160,7 +160,12 @@ class PresentationResult:
         else:
             self.morphemes = None
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji=animate_emoji, dict_source=self.dict_source, show_emoji=self._show_emoji)
+        self.lexical_info = get_lexical_info(
+            result.wordform.analysis,
+            animate_emoji=animate_emoji,
+            dict_source=self.dict_source,
+            show_emoji=self._show_emoji,
+        )
 
         self.preverbs = [
             lexical_entry["entry"]

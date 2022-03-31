@@ -96,10 +96,11 @@ class ShowMorphemes(Preference):
         "everywhere": "I would like to see morpheme boundaries in entry headers and in paradigm tables",
         "headers": "I would like to see morpheme boundaries in headers only",
         "paradigm": "I would like to see morpheme boundaries in paradigm tables only",
-        "nowhere": "I do not want to see morpheme boundaries (default)"
+        "nowhere": "I do not want to see morpheme boundaries (default)",
     }
 
     default = "nowhere"
+
 
 @register_preference
 class ParadigmAudio(Preference):
