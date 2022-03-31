@@ -4,9 +4,9 @@
         {% if result.morphemes %}
             {%  orth result.morphemes|join:"·" %}
         {% else %}
-            {% orth result.lemma_wordform.text %}
+            {% orth result.wordform_text %}
         {% endif %}
     {% else %}
-        {% orth result.lemma_wordform.text %}
+        {% orth result.wordform_text %}
     {% endif %}
 {% endspaceless %}

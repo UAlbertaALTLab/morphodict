@@ -21,7 +21,7 @@
             <h1 id="head" class="definition-title">
                 <dfn class="definition__matched-head">
                     <data id="data:head" value="{{ lemma.text }}">
-                        {% if morphemes and show_morphemes != "nowhere" %}
+                        {% if morphemes and show_morphemes != "nowhere" and show_morphemes %}
                             {%  orth morphemes|join:"·" %}
                         {% else %}
                             {% orth wordform.text %}
