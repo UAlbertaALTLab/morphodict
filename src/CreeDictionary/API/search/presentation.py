@@ -2,15 +2,16 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast, Tuple
 
 from django.conf import settings
 from django.forms import model_to_dict
 
 from CreeDictionary.API.search import core, types
-from CreeDictionary.CreeDictionary.relabelling import read_labels
+from CreeDictionary.CreeDictionary.relabelling import read_labels, LABELS
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import (
     DisplayMode,
@@ -21,7 +22,7 @@ from crkeng.app.preferences import (
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
-from ..schema import SerializedDefinition, SerializedWordform
+from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
 from .types import Preverb
 
 
@@ -68,6 +69,8 @@ class SerializedPresentationResult(TypedDict):
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
+    relevant_tags: Iterable[SerializedLinguisticTag]
+    morphemes: Optional[Iterable[str]]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
     relabelled_linguist_analysis: str
@@ -152,6 +155,13 @@ class PresentationResult:
             result.wordform.analysis, animate_emoji, self._show_emoji, self.dict_source
         )
 
+        if rich_analysis := result.wordform.analysis:
+            self.morphemes = rich_analysis.generate_with_morphemes()
+        else:
+            self.morphemes = None
+
+        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji=animate_emoji, dict_source=self.dict_source, show_emoji=self._show_emoji)
+
         self.preverbs = [
             lexical_entry["entry"]
             for lexical_entry in self.lexical_info
@@ -200,11 +210,28 @@ class PresentationResult:
                 self.dict_source,
                 self._search_run.include_auto_definitions,
             ),
+            "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
+            "morphemes": self.morphemes,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
 
         return ret
+
+    @property
+    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+        """
+        Tags and features to display in the linguistic breakdown pop-up.
+        This omits preverbs and other features displayed elsewhere
+        In itwêwina, these tags are derived from the suffix features exclusively.
+        We chunk based on the English relabelleings!
+        """
+        return tuple(
+            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
+            for fst_tags in LABELS.english.chunk(
+                t.strip("+") for t in self.linguistic_breakdown_tail
+            )
+        )
 
     @property
     def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:

@@ -1,5 +1,5 @@
 {% spaceless %}
-  {% comment %}
+    {% comment %}
 
   Word Details and Paradigm Page
 
@@ -13,55 +13,67 @@
     This should be included or placed dynamically within <main>
   {% endcomment %}
 
-  {% load static %}
-  {% load morphodict_orth %}
+    {% load static %}
+    {% load morphodict_orth %}
 
-  <article id="definition" class="definition">
-    <header class="definition__header">
-      <h1 id="head" class="definition-title">
-        <dfn class="definition__matched-head">
-          <data id="data:head" value="{{ lemma.text }}">
-            {% orth wordform.text %}
-          </data>
-        </dfn>
-      </h1>
+    <article id="definition" class="definition">
+        <header class="definition__header">
+            <h1 id="head" class="definition-title">
+                <dfn class="definition__matched-head">
+                    <data id="data:head" value="{{ lemma.text }}">
+                        {% if morphemes and show_morphemes != "nowhere" and show_morphemes %}
+                            {%  orth morphemes|join:"·" %}
+                        {% else %}
+                            {% orth wordform.text %}
+                        {% endif %}
+                    </data>
+                </dfn>
+            </h1>
 
-      {% include "CreeDictionary/components/definition__elaboration.html" with lemma=wordform verbose=True %}
-    </header>
+            {% include "CreeDictionary/components/definition__elaboration.html" with lemma=wordform verbose=True %}
+        </header>
 
-    <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown" data-cy="multiple-recordings">
-      <p class="multiple-recordings__help-text explainer">Choose a name from the dropdown to hear the word said by the speaker.</p>
+        <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown"
+                 data-cy="multiple-recordings">
+            <p class="multiple-recordings__help-text explainer">Choose a name from the dropdown to hear the word said by
+                the speaker.</p>
 
-      <select name="recordings-dropdown" data-cy="recordings-dropdown" class="multiple-recordings__dropdown">
-        <template id="template:speakerList">
-          <option><slot name="speakerName"></slot>, <slot name="speakerDialect"></slot></option>
-        </template>
-      </select>
-      <button class="multiple-recordings__action-button" data-action="play-current-recording" aria-label="Play recording" data-cy="play-selected-speaker">
-        <svg class="definition__icon speaker-playback-action-button" focusable="false">
-          <use xlink:href="#play-solid"/>
-        </svg>
-      </button>
-      <a class="multiple-recordings__action-button" data-action="learn-about-speaker" aria-label="Learn more about speaker" data-cy="learn-about-speaker" target="_blank" rel="noopener">
-        Learn more about the speaker.
-      </a>
-    </section>
+            <select name="recordings-dropdown" data-cy="recordings-dropdown" class="multiple-recordings__dropdown">
+                <template id="template:speakerList">
+                    <option>
+                        <slot name="speakerName"></slot>
+                        ,
+                        <slot name="speakerDialect"></slot>
+                    </option>
+                </template>
+            </select>
+            <button class="multiple-recordings__action-button" data-action="play-current-recording"
+                    aria-label="Play recording" data-cy="play-selected-speaker">
+                <svg class="definition__icon speaker-playback-action-button" focusable="false">
+                    <use xlink:href="#play-solid"/>
+                </svg>
+            </button>
+            <a class="multiple-recordings__action-button" data-action="learn-about-speaker"
+               aria-label="Learn more about speaker" data-cy="learn-about-speaker" target="_blank" rel="noopener">
+                Learn more about the speaker.
+            </a>
+        </section>
 
-    <section class="definition__meanings" data-cy="meanings">
-      <ol class="meanings">
-        {% for def in wordform.definitions %}
-          <li class="meanings__meaning">{{ def.text }}
-            {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
-          </li>
-        {% endfor %}
-      </ol>
-    </section>
+        <section class="definition__meanings" data-cy="meanings">
+            <ol class="meanings">
+                {% for def in wordform.definitions %}
+                    <li class="meanings__meaning">{{ def.text }}
+                        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                    </li>
+                {% endfor %}
+            </ol>
+        </section>
 
-    <section id="paradigm">
-      {% if paradigm %}
-        {% include './components/paradigm-label-switcher.html' %}
-        {% include './components/paradigm.html' %}
-      {% endif %}
-    </section>
-  </article>
+        <section id="paradigm">
+            {% if paradigm %}
+                {% include './components/paradigm-label-switcher.html' %}
+                {% include './components/paradigm.html' %}
+            {% endif %}
+        </section>
+    </article>
 {% endspaceless %}
