@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast, Tuple
 
 from django.conf import settings
 from django.forms import model_to_dict

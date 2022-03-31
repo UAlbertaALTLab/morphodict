@@ -4,7 +4,7 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import NewType, Optional, Protocol, cast
+from typing import NewType, Optional, Protocol, cast, Iterable, Tuple
 
 from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.utils.types import FSTTag, Label
