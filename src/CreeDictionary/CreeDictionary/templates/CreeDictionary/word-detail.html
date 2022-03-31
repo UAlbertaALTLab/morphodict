@@ -22,7 +22,7 @@
                 <dfn class="definition__matched-head">
                     <data id="data:head" value="{{ lemma.text }}">
                         {% if morphemes and show_morphemes != "nowhere" %}
-                            {{ morphemes|join:"·" }}
+                            {%  orth morphemes|join:"·" %}
                         {% else %}
                             {% orth wordform.text %}
                         {% endif %}
