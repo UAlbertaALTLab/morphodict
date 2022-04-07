@@ -156,7 +156,7 @@ class PresentationResult:
         )
 
         if rich_analysis := result.wordform.analysis:
-            self.morphemes = rich_analysis.generate_with_morphemes()
+            self.morphemes = rich_analysis.generate_with_morphemes(result.wordform.text)
         else:
             self.morphemes = None
 
@@ -342,7 +342,6 @@ def serialize_wordform(
                 wordclass, animate_emoji
             )
     result["show_emoji"] = True if show_emoji == "yes" else False
-    print(result["show_emoji"])
 
     for key in wordform.linguist_info or []:
         if key not in result:

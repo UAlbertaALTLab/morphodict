@@ -57,7 +57,7 @@ def entry_details(request, slug: str):
     lemma = lemma.get()
 
     if rich_analysis := lemma.analysis:
-        morphemes = rich_analysis.generate_with_morphemes()
+        morphemes = rich_analysis.generate_with_morphemes(lemma.text)
     else:
         morphemes = None
 

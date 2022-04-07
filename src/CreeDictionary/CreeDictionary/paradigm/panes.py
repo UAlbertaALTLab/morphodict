@@ -535,7 +535,7 @@ class WordformCell(Cell):
         analysis = rich_analyze_strict(self.inflection)
         if analysis:
             analysis = analysis[0]
-            self.morphemes = analysis.generate_with_morphemes()
+            self.morphemes = analysis.generate_with_morphemes(self.inflection)
 
     def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         # No need to fill a cell that already has contents!
