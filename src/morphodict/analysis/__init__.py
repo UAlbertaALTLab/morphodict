@@ -85,7 +85,7 @@ class RichAnalysis:
             results = strict_generator_with_morpheme_boundaries().lookup(self.smushed())
             if len(results) != 1:
                 for result in results:
-                    if ''.join(re.split(r"[<>]", result)) == inflection:
+                    if "".join(re.split(r"[<>]", result)) == inflection:
                         return re.split(r"[<>]", result)
                 return None
             return re.split(r"[<>]", results[0])
