@@ -1266,6 +1266,7 @@ a.menu-choice__label:active {
 
 .dropdown__menu {
   position: absolute;
+  z-index: 1;
 }
 
 /*********************************** BOX ************************************/
