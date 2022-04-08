@@ -300,13 +300,15 @@ def should_show_form_of(
 ):
     if not dict_source:
         return True
+    if is_lemma:
+        return True
     for definition in lemma_wordform.definitions.all():
         for source in definition.source_ids:
             if source in dict_source:
                 return True
             elif include_auto_definitions and source.replace("🤖", "") in dict_source:
                 return True
-        return False
+    return False
 
 
 def serialize_wordform(
