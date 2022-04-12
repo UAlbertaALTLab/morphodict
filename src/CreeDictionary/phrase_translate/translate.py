@@ -21,6 +21,7 @@ import django
 import foma
 
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
+from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 
@@ -67,6 +68,17 @@ def eng_phrase_to_crk_features_fst():
     return foma.FST.load(
         shared_fst_dir / "transcriptor-eng-phrase2crk-features.fomabin"
     )
+
+
+def parse_analysis_and_tags(analysis):
+    """Extract tags into a list in the form required by inflect_english_phrase
+    >>> parse_analysis_and_tags('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
+    ['PV/e+', 'PV/ki+', '+V', '+TA', '+Cnj', '+1Pl', '+2SgO']
+    """
+    print("HIYA", analysis)
+    head_tags = analysis.prefix_tags
+    tail_tags = analysis.suffix_tags
+    return [t + "+" for t in head_tags] + ["+" + t for t in tail_tags]
 
 
 class FomaLookupException(Exception):
