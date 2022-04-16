@@ -7,7 +7,9 @@
     ],
     "head": "ànàdītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: ànàdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ànàdītɫ'ìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -26,7 +28,9 @@
     ],
     "head": "ànànáyīdīʔò-hī át'à",
     "linguistInfo": {
-      "stem": "Ipfv: ànànáyīdīʔò-hī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ànànáyīdīʔò-hī át'à</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -45,7 +49,9 @@
     ],
     "head": "ànàyīdìskón",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: ànàyīdìskón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>ànàyīdìskón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -64,7 +70,9 @@
     ],
     "head": "ànàyīdìstsūūz",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: ànàyīdìstsūūz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>ànàyīdìstsūūz</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -83,7 +91,9 @@
     ],
     "head": "ànàyīdīstsúsī át'à",
     "linguistInfo": {
-      "stem": "Ipfv: ànàyīdīstsúsī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ànàyīdīstsúsī át'à</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -102,7 +112,9 @@
     ],
     "head": "ànàyīdīsʔó(n)",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: ànàyīdīsʔó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>ànàyīdīsʔó(n)</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -121,7 +133,9 @@
     ],
     "head": "ànàyīdīʔò-hī át'à",
     "linguistInfo": {
-      "stem": "Ipfv: ànàyīdīʔò-hī át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ànàyīdīʔò-hī át'à</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -136,7 +150,9 @@
     "analysis": [[], "àxágùnìstsàd", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "àxágùnìstsàd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: àxágùnìstsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>àxágùnìstsàd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -151,7 +167,9 @@
     "analysis": [[], "ádīdánáɫ", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "ádīdánáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: ádīdánáɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ádīdánáɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -166,7 +184,9 @@
     "analysis": [[], "áná", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "áná",
     "linguistInfo": {
-      "stem": "Ipfv: áná | Pfv: – | Prog: áyīnáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áná</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>áyīnáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -185,7 +205,9 @@
     ],
     "head": "ánáyiyīlá-hī",
     "linguistInfo": {
-      "stem": "Ipfv: ánáyiyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ánáyiyīlá-hī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -204,7 +226,9 @@
     ],
     "head": "ánáyīʔìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: ánáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>ánáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -219,7 +243,9 @@
     "analysis": [[], "átsàd", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "átsàd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: átsàd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>átsàd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -238,7 +264,9 @@
     ],
     "head": "áyidīdáláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: áyidīdáláɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áyidīdáláɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -253,7 +281,9 @@
     "analysis": [[], "áyìlàg", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "áyìlàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: áyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>áyìlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -268,7 +298,9 @@
     "analysis": [[], "áyìlá", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "áyìlá",
     "linguistInfo": {
-      "stem": "Ipfv: áyìlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áyìlá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -287,7 +319,9 @@
     ],
     "head": "áyìyīlá-hī",
     "linguistInfo": {
-      "stem": "Ipfv: áyìyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áyìyīlá-hī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -302,7 +336,9 @@
     "analysis": [[], "áyítsít", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "áyítsít",
     "linguistInfo": {
-      "stem": "Ipfv: áyítsít | Pfv: áyìnítsīt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áyítsít</td></tr><tr><td>Pfv</td><td>áyìnítsīt</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -317,12 +353,14 @@
     "analysis": [[], "áyīsʔín", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "áyīsʔín",
     "linguistInfo": {
-      "stem": "Ipfv: áyīsʔín | Pfv: – | Prog: áyáláɫ | Ipfv+Rep: ánáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>áyīsʔín</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>áyáláɫ</td></tr><tr><td>Ipfv+Rep</td><td>ánáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is doing/working at it",
+        "definition": "he/she is doing it is working at it",
         "sources": ["TVPD"]
       }
     ],
@@ -332,7 +370,9 @@
     "analysis": [[], "áyīyīsʔín", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "áyīyīsʔín",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: áyīyīsʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>áyīyīsʔín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -347,7 +387,9 @@
     "analysis": [[], "dàʔi màgúúdílōdà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dàʔi màgúúdílōdà",
     "linguistInfo": {
-      "stem": "Ipfv: dàʔi màgúúdílōdà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dàʔi màgúúdílōdà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -362,7 +404,9 @@
     "analysis": [[], "dádlù", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "dádlù",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dádlù | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>dádlù</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -377,7 +421,9 @@
     "analysis": [[], "dádlù-hí ìsílā yīyáɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "dádlù-hí ìsílā yīyáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dádlù-hí ìsílā yīyáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>dádlù-hí ìsílā yīyáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -396,7 +442,9 @@
     ],
     "head": "dā-hī nádīyá-hí yīnízīní ìlà",
     "linguistInfo": {
-      "stem": "Ipfv: dā-hī nádīyá-hí yīnízīní ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dā-hī nádīyá-hí yīnízīní ìlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -415,7 +463,9 @@
     ],
     "head": "dā-hī xàdīdīyá yīnízīníìlà",
     "linguistInfo": {
-      "stem": "Ipfv: dā-hī xàdīdīyá yīnízīníìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dā-hī xàdīdīyá yīnízīníìlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -430,7 +480,9 @@
     "analysis": [[], "dìstsàyí át'à", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dìstsàyí át'à",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dìstsàyí át'à | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dìstsàyí át'à</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -445,7 +497,9 @@
     "analysis": [[], "dīdìdlù", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīdìdlù",
     "linguistInfo": {
-      "stem": "Ipfv: dīdìdlù | Pfv: dīdīsdlùw | Prog: – | Ipfv+Rep: nádīdìdlùsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīdìdlù</td></tr><tr><td>Pfv</td><td>dīdīsdlùw</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nádīdìdlùsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -460,7 +514,9 @@
     "analysis": [[], "dīdìyītɫīɫ", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīdìyītɫīɫ",
     "linguistInfo": {
-      "stem": "Ipfv: dīdìyītɫīɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīdìyītɫīɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -475,7 +531,9 @@
     "analysis": [[], "dīdīnīyīk'ááz", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīdīnīyīk'ááz",
     "linguistInfo": {
-      "stem": "Ipfv: dīdīnīyīk'ááz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīdīnīyīk'ááz</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -494,7 +552,9 @@
     ],
     "head": "dīdzīnīsà ák'ó màgúdìlō",
     "linguistInfo": {
-      "stem": "Ipfv: dīdzīnīsà ák'ó màgúdìlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīdzīnīsà ák'ó màgúdìlō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -509,7 +569,9 @@
     "analysis": [[], "dīdzīnīsà mànágúdìlō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīdzīnīsà mànágúdìlō",
     "linguistInfo": {
-      "stem": "Ipfv: dīdzīnīsà mànágúdìlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīdzīnīsà mànágúdìlō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -524,7 +586,9 @@
     "analysis": [[], "dīk'ááz", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīk'ááz",
     "linguistInfo": {
-      "stem": "Ipfv: dīk'ááz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīk'ááz</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -543,7 +607,9 @@
     ],
     "head": "dīk'ááz-gū gwánáyīʔìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dīk'ááz-gū gwánáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>dīk'ááz-gū gwánáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -562,7 +628,9 @@
     ],
     "head": "dīk'ááz-gū gwáyīdīdāláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dīk'ááz-gū gwáyīdīdāláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>dīk'ááz-gū gwáyīdīdāláɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -581,12 +649,14 @@
     ],
     "head": "dīk'ááz gwáyīlá",
     "linguistInfo": {
-      "stem": "Ipfv: dīk'ááz gwáyīlá | Pfv: dīk'ááz gwáyīlàg | Prog: – | Ipfv+Rep: dīk'ááz gwánáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīk'ááz gwáyīlá</td></tr><tr><td>Pfv</td><td>dīk'ááz gwáyīlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>dīk'ááz gwánáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she/it will make it red",
+        "definition": "he she it will make it red",
         "sources": ["TVPD"]
       }
     ],
@@ -596,7 +666,9 @@
     "analysis": [[], "dīná", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīná",
     "linguistInfo": {
-      "stem": "Ipfv: dīná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīná</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -611,7 +683,9 @@
     "analysis": [[], "dīsgòsh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīsgòsh",
     "linguistInfo": {
-      "stem": "Ipfv: dīsgòsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīsgòsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -630,7 +704,9 @@
     ],
     "head": "dīsgòsh gwáyīdīdáláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: dīsgòsh gwáyīdīdáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>dīsgòsh gwáyīdīdáláɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -649,12 +725,14 @@
     ],
     "head": "dīsgòsh gwáyīlàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dīsgòsh gwáyīlàg | Prog: dīsgòsh gwáyáláɫ | Ipfv+Rep: dīsgòsh gwnáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dīsgòsh gwáyīlàg</td></tr><tr><td>Prog</td><td>dīsgòsh gwáyáláɫ</td></tr><tr><td>Ipfv+Rep</td><td>dīsgòsh gwnáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she/it made it black",
+        "definition": "he she it made it black",
         "sources": ["TVPD"]
       }
     ],
@@ -664,7 +742,9 @@
     "analysis": [[], "dīsnō", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dīsnō",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dīsnō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dīsnō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -679,7 +759,9 @@
     "analysis": [[], "dīstsày", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dīstsày",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dīstsày | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dīstsày</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -694,7 +776,9 @@
     "analysis": [[], "dīstsàyí-tīī", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīstsàyí-tīī",
     "linguistInfo": {
-      "stem": "Ipfv: dīstsàyí-tīī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīstsàyí-tīī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -709,7 +793,9 @@
     "analysis": [[], "dīstɫ'ò", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dīstɫ'ò",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dīstɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dīstɫ'ò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -724,7 +810,9 @@
     "analysis": [[], "dītsá", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītsá",
     "linguistInfo": {
-      "stem": "Ipfv: dītsá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītsá</td></tr><tr><td>Pfv</td><td>yītsày</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náchīsh</td></tr><tr><td>Pfv+Rep</td><td>náyīchīsh</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -739,7 +827,9 @@
     "analysis": [[], "dītsá-hí át'à", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītsá-hí át'à",
     "linguistInfo": {
-      "stem": "Ipfv: dītsá-hí át'à | Pfv: yītsàyí át'à | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītsá-hí át'à</td></tr><tr><td>Pfv</td><td>yītsàyí át'à</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -754,7 +844,9 @@
     "analysis": [[], "dītɫ'á", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītɫ'á",
     "linguistInfo": {
-      "stem": "Ipfv: dītɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītɫ'á</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -773,7 +865,9 @@
     ],
     "head": "dītɫ'á gwáyìyīlá-hī",
     "linguistInfo": {
-      "stem": "Ipfv: dītɫ'á gwáyìyīlá-hī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītɫ'á gwáyìyīlá-hī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -792,7 +886,9 @@
     ],
     "head": "dītɫ'úlà nànīlō",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dītɫ'úlà nànīlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dītɫ'úlà nànīlō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -807,7 +903,9 @@
     "analysis": [[], "dītɫīd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītɫīd",
     "linguistInfo": {
-      "stem": "Ipfv: dītɫīd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītɫīd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -822,7 +920,9 @@
     "analysis": [[], "dītɫīdí-gūlà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītɫīdí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: dītɫīdí-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītɫīdí-gūlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -837,7 +937,9 @@
     "analysis": [[], "dītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: dītɫōd | Pfv: dīsāàtɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dītɫōd</td></tr><tr><td>Pfv</td><td>dīsāàtɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -852,7 +954,9 @@
     "analysis": [[], "dīyá-hí át'à", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dīyá-hí át'à",
     "linguistInfo": {
-      "stem": "Ipfv: dīyá-hí át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīyá-hí át'à</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -867,7 +971,9 @@
     "analysis": [[], "dīyā", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dīyā",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dīyā | Prog: yīyáɫ | Ipfv+Rep: nádīyásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dīyā</td></tr><tr><td>Prog</td><td>yīyáɫ</td></tr><tr><td>Ipfv+Rep</td><td>nádīyásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -886,7 +992,9 @@
     ],
     "head": "dīyí dátɫ'ìshí īyízíɫī",
     "linguistInfo": {
-      "stem": "Ipfv: dīyí dátɫ'ìshí īyízíɫī | Pfv: dīyí dátɫ'ìshí īyīzīn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dīyí dátɫ'ìshí īyízíɫī</td></tr><tr><td>Pfv</td><td>dīyí dátɫ'ìshí īyīzīn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -901,7 +1009,9 @@
     "analysis": [[], "dlùw gúdīnìsh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dlùw gúdīnìsh",
     "linguistInfo": {
-      "stem": "Ipfv: dlùw gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dlùw gúdīnìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -916,7 +1026,9 @@
     "analysis": [[], "dōòsák'àsí dīyá-gūlà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "dōòsák'àsí dīyá-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: dōòsák'àsí dīyá-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dōòsák'àsí dīyá-gūlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -935,7 +1047,9 @@
     ],
     "head": "dōòsák'àsí dīyá-hí át'à",
     "linguistInfo": {
-      "stem": "Ipfv: dōòsák'àsí dīyá-hí át'à | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>dōòsák'àsí dīyá-hí át'à</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -954,7 +1068,9 @@
     ],
     "head": "dōòsì nádīyásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: dōòsì nádīyásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>dōòsì nádīyásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -973,7 +1089,9 @@
     ],
     "head": "dúdàyīdīyītɫ'ìshí ìsà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -992,7 +1110,9 @@
     ],
     "head": "dúdīsgòsh gwánáyīʔìshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1011,7 +1131,9 @@
     ],
     "head": "dúkàyīdátł'í-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1030,7 +1152,9 @@
     ],
     "head": "dúnīnāyásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1049,7 +1173,9 @@
     ],
     "head": "dútānáyìdīʔóshī-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1068,7 +1194,9 @@
     ],
     "head": "dútāyāʔóɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1087,7 +1215,9 @@
     ],
     "head": "dúxànáyáshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1102,7 +1232,9 @@
     "analysis": [[], "dzánàdā dìsíyāʔí ìsà", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "dzánàdā dìsíyāʔí ìsà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: dzánàdā dìsíyāʔí ìsà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>dzánàdā dìsíyāʔí ìsà</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1117,7 +1249,9 @@
     "analysis": [[], "gúdīdátɫīɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "gúdīdátɫīɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: gúdīdátɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>gúdīdátɫīɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1132,7 +1266,9 @@
     "analysis": [[], "gúdīdītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "gúdīdītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: gúdīdītɫōd | Pfv: gúdīdìstɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>gúdīdītɫōd</td></tr><tr><td>Pfv</td><td>gúdīdìstɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1147,7 +1283,9 @@
     "analysis": [[], "gwāt'īɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "gwāt'īɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: gwāt'īɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>gwāt'īɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1162,7 +1300,9 @@
     "analysis": [[], "íyìsnòɫ", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "íyìsnòɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: íyìsnòɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>íyìsnòɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1181,7 +1321,9 @@
     ],
     "head": "īdīdìstɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: īdīdìstɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>īdīdìstɫ'ìsh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1196,7 +1338,9 @@
     "analysis": [[], "īdīskīd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "īdīskīd",
     "linguistInfo": {
-      "stem": "Ipfv: īdīskīd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īdīskīd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1211,7 +1355,9 @@
     "analysis": [[], "īdītɫ'ìsh", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "īdītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: īdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īdītɫ'ìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1230,7 +1376,9 @@
     ],
     "head": "īdīyītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: īdīyītɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>īdīyītɫ'ìsh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1245,7 +1393,9 @@
     "analysis": [[], "īdón", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "īdón",
     "linguistInfo": {
-      "stem": "Ipfv: īdón | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īdón</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1264,7 +1414,9 @@
     ],
     "head": "īdōghá kúyīdīstsùùz",
     "linguistInfo": {
-      "stem": "Ipfv: īdōghá kúyīdīstsùùz | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īdōghá kúyīdīstsùùz</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1279,7 +1431,9 @@
     "analysis": [[], "īnásʔín", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "īnásʔín",
     "linguistInfo": {
-      "stem": "Ipfv: īnásʔín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īnásʔín</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1291,30 +1445,17 @@
     "slug": "īnásʔín"
   },
   {
-    "analysis": [[], "ītsīy", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "ītsīy",
-    "linguistInfo": {
-      "stem": "Ipfv: ītsīy | Pfv: yītsày | Prog: – | Ipfv+Rep: náchīsh | Pfv+Rep: náyīchīsh"
-    },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she is crying",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "ītsīy"
-  },
-  {
-    "analysis": [[], "īzí", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
+    "analysis": [[], "īzí", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "īzí",
     "linguistInfo": {
-      "stem": "Ipfv: īzí | Pfv: īyīzīn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>īzí</td></tr><tr><td>Pfv</td><td>īyīzīn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
-    "paradigm": "VI",
+    "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is reading (something)",
+        "definition": "he she is reading (something)",
         "sources": ["TVPD"]
       }
     ],
@@ -1324,7 +1465,9 @@
     "analysis": [[], "k'átsìy", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "k'átsìy",
     "linguistInfo": {
-      "stem": "Ipfv: k'átsìy | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>k'átsìy</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1339,7 +1482,9 @@
     "analysis": [[], "k'ānáchīsh", ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]],
     "head": "k'ānáchīsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: k'ānáchīsh"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>k'ānáchīsh</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1354,7 +1499,9 @@
     "analysis": [[], "k'ānītsày", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "k'ānītsày",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: k'ānītsày | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>k'ānītsày</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1369,7 +1516,9 @@
     "analysis": [[], "k'ānītsàyí-gūlà", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "k'ānītsàyí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: k'ānītsàyí-gūlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>k'ānītsàyí-gūlà</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1384,7 +1533,9 @@
     "analysis": [[], "k'ātsád", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "k'ātsád",
     "linguistInfo": {
-      "stem": "Ipfv: k'ātsád | Pfv: k'ānītsád | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>k'ātsád</td></tr><tr><td>Pfv</td><td>k'ānītsád</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1399,7 +1550,9 @@
     "analysis": [[], "k'āyìlàg", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "k'āyìlàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: k'āyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>k'āyìlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1414,7 +1567,9 @@
     "analysis": [[], "kàdàɫí ìlà", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "kàdàɫí ìlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: kàdàɫí ìlà | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>kàdàɫí ìlà</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1429,7 +1584,9 @@
     "analysis": [[], "kàdìdītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "kàdìdītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: kàdìdītɫōd | Pfv: kàdìdīstɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kàdìdītɫōd</td></tr><tr><td>Pfv</td><td>kàdìdīstɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1444,7 +1601,9 @@
     "analysis": [[], "kàdītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "kàdītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: kàdītɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kàdītɫōd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1459,7 +1618,9 @@
     "analysis": [[], "kàyīdál", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "kàyīdál",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: kàyīdál | Prog: kàdàɫ | Ipfv+Rep: kànáàdìɫsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>kàyīdál</td></tr><tr><td>Prog</td><td>kàdàɫ</td></tr><tr><td>Ipfv+Rep</td><td>kànáàdìɫsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1474,7 +1635,9 @@
     "analysis": [[], "kúgūdátɫōd", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "kúgūdátɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: kúgūdátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>kúgūdátɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1489,7 +1652,9 @@
     "analysis": [[], "kúgūdīdátɫíɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "kúgūdīdátɫíɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: kúgūdīdátɫíɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>kúgūdīdátɫíɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1508,7 +1673,9 @@
     ],
     "head": "kúnágūdìtɫīīzh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: kúnágūdìtɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>kúnágūdìtɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1523,7 +1690,9 @@
     "analysis": [[], "kúnátɫīīzh", ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]],
     "head": "kúnátɫīīzh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: kúnátɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>kúnátɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1542,7 +1711,9 @@
     ],
     "head": "kúnáyīdīsʔòn",
     "linguistInfo": {
-      "stem": "Ipfv: kúnáyīdīsʔòn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúnáyīdīsʔòn</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1557,7 +1728,9 @@
     "analysis": [[], "kútɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "kútɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: kútɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kútɫōd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1576,7 +1749,9 @@
     ],
     "head": "kúyīdīdīsdlō",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: kúyīdīdīsdlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>kúyīdīdīsdlō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1595,7 +1770,9 @@
     ],
     "head": "kúyīdīdīstsús",
     "linguistInfo": {
-      "stem": "Ipfv: kúyīdīdīstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúyīdīdīstsús</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1614,7 +1791,9 @@
     ],
     "head": "kúyīdīdīʔò",
     "linguistInfo": {
-      "stem": "Ipfv: kúyīdīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúyīdīdīʔò</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1629,7 +1808,9 @@
     "analysis": [[], "kúyīdīlō", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "kúyīdīlō",
     "linguistInfo": {
-      "stem": "Ipfv: kúyīdīlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúyīdīlō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1648,7 +1829,9 @@
     ],
     "head": "kúyīdīsjáázh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: kúyīdīsjáázh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>kúyīdīsjáázh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1663,7 +1846,9 @@
     "analysis": [[], "kúyīstà", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "kúyīstà",
     "linguistInfo": {
-      "stem": "Ipfv: kúyīstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúyīstà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1678,7 +1863,9 @@
     "analysis": [[], "kúyītì", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "kúyītì",
     "linguistInfo": {
-      "stem": "Ipfv: kúyītì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>kúyītì</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1693,7 +1880,9 @@
     "analysis": [[], "màgúdílō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "màgúdílō",
     "linguistInfo": {
-      "stem": "Ipfv: màgúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>màgúdílō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1712,7 +1901,9 @@
     ],
     "head": "màgúdílōō áyīdīdáláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: màgúdílōō áyīdīdáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>màgúdílōō áyīdīdáláɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1731,7 +1922,9 @@
     ],
     "head": "màgúdílōō áyīlá",
     "linguistInfo": {
-      "stem": "Ipfv: màgúdílōō áyīlá | Pfv: màgúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>màgúdílōō áyīlá</td></tr><tr><td>Pfv</td><td>màgúdílōō áyīlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1746,7 +1939,9 @@
     "analysis": [[], "màgúdísdlōt", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "màgúdísdlōt",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: màgúdísdlōt | Prog: màgúdīdīyīlōɫ | Ipfv+Rep: mànágúdílōsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>màgúdísdlōt</td></tr><tr><td>Prog</td><td>màgúdīdīyīlōɫ</td></tr><tr><td>Ipfv+Rep</td><td>mànágúdílōsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1761,7 +1956,9 @@
     "analysis": [[], "màgúdīdíyīlōt", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "màgúdīdíyīlōt",
     "linguistInfo": {
-      "stem": "Ipfv: màgúdīdíyīlōt | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>màgúdīdíyīlōt</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1776,7 +1973,9 @@
     "analysis": [[], "mànágúdílō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mànágúdílō",
     "linguistInfo": {
-      "stem": "Ipfv: mànágúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mànágúdílō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1795,7 +1994,9 @@
     ],
     "head": "mànágúdílōō áyīlàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: mànágúdílōō áyīlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>mànágúdílōō áyīlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1814,7 +2015,9 @@
     ],
     "head": "mànágúdílōsh gwánáyīʔīsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: mànágúdílōsh gwánáyīʔīsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>mànágúdílōsh gwánáyīʔīsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1829,7 +2032,9 @@
     "analysis": [[], "mànágúdílōt", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mànágúdílōt",
     "linguistInfo": {
-      "stem": "Ipfv: mànágúdílōt | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mànágúdílōt</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1848,7 +2053,9 @@
     ],
     "head": "màs áyiláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: màs áyiláɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>màs áyiláɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1863,7 +2070,9 @@
     "analysis": [[], "mágūdidīyìlít", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mágūdidīyìlít",
     "linguistInfo": {
-      "stem": "Ipfv: mágūdidīyìlít | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mágūdidīyìlít</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1878,7 +2087,9 @@
     "analysis": [[], "mágūnìlít", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mágūnìlít",
     "linguistInfo": {
-      "stem": "Ipfv: mágūnìlít | Pfv: mágūnìsdlìt | Prog: – | Ipfv+Rep: mánágūnìlísh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mágūnìlít</td></tr><tr><td>Pfv</td><td>mágūnìsdlìt</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>mánágūnìlísh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1893,7 +2104,9 @@
     "analysis": [[], "mágūnìyílìn", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "mágūnìyílìn",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: mágūnìyílìn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>mágūnìyílìn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1912,7 +2125,9 @@
     ],
     "head": "mánágūnìlíshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: mánágūnìlíshí-gūlà | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>mánágūnìlíshí-gūlà</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1927,7 +2142,9 @@
     "analysis": [[], "mátágùdlì", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mátágùdlì",
     "linguistInfo": {
-      "stem": "Ipfv: mátágùdlì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mátágùdlì</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1946,7 +2163,9 @@
     ],
     "head": "mátágùdlì gwáyìlá",
     "linguistInfo": {
-      "stem": "Ipfv: mátágùdlì gwáyìlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mátágùdlì gwáyìlá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1961,7 +2180,9 @@
     "analysis": [[], "mátágùdlì gwáyīnáɫ", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mátágùdlì gwáyīnáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: mátágùdlì gwáyīnáɫ | Pfv: mátágùsdlìt | Prog: – | Ipfv+Rep: mátánágùdlìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mátágùdlì gwáyīnáɫ</td></tr><tr><td>Pfv</td><td>mátágùsdlìt</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>mátánágùdlìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -1980,7 +2201,9 @@
     ],
     "head": "mītsì àgúdīdīyīlòɫ",
     "linguistInfo": {
-      "stem": "Ipfv: mītsì àgúdīdīyīlòɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mītsì àgúdīdīyīlòɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -1999,7 +2222,9 @@
     ],
     "head": "mītsì àgúdīlō",
     "linguistInfo": {
-      "stem": "Ipfv: mītsì àgúdīlō | Pfv: mītsì àgúdīyīlò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mītsì àgúdīlō</td></tr><tr><td>Pfv</td><td>mītsì àgúdīyīlò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2014,7 +2239,9 @@
     "analysis": [[], "mīwù àgúdīlō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mīwù àgúdīlō",
     "linguistInfo": {
-      "stem": "Ipfv: mīwù àgúdīlō | Pfv: mīwù àgúdīyīlò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mīwù àgúdīlō</td></tr><tr><td>Pfv</td><td>mīwù àgúdīyīlò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2029,7 +2256,9 @@
     "analysis": [[], "mīwùs ágúdīdīyīlót", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "mīwùs ágúdīdīyīlót",
     "linguistInfo": {
-      "stem": "Ipfv: mīwùs ágúdīdīyīlót | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>mīwùs ágúdīdīyīlót</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2044,7 +2273,9 @@
     "analysis": [[], "nààtɫ'á", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nààtɫ'á",
     "linguistInfo": {
-      "stem": "Ipfv: nààtɫ'á | Pfv: nààtɫ'ò | Prog: nàyītɫ'áɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nààtɫ'á</td></tr><tr><td>Pfv</td><td>nààtɫ'ò</td></tr><tr><td>Prog</td><td>nàyītɫ'áɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2059,7 +2290,9 @@
     "analysis": [[], "nàgūdīdàtɫíɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "nàgūdīdàtɫíɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: nàgūdīdàtɫíɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>nàgūdīdàtɫíɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2074,7 +2307,9 @@
     "analysis": [[], "nàgūdītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàgūdītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: nàgūdītɫōd | Pfv: nàgūdátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàgūdītɫōd</td></tr><tr><td>Pfv</td><td>nàgūdátɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2089,7 +2324,9 @@
     "analysis": [[], "nàgūt'īn", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàgūt'īn",
     "linguistInfo": {
-      "stem": "Ipfv: nàgūt'īn | Pfv: nàgūyīt'īn | Prog: – | Ipfv+Rep: nīnágūt'ìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàgūt'īn</td></tr><tr><td>Pfv</td><td>nàgūyīt'īn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nīnágūt'ìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2108,7 +2345,9 @@
     ],
     "head": "nàgūt'īn gwáyīlá",
     "linguistInfo": {
-      "stem": "Ipfv: nàgūt'īn gwáyīlá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàgūt'īn gwáyīlá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2123,7 +2362,9 @@
     "analysis": [[], "nàgūt'īnī", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàgūt'īnī",
     "linguistInfo": {
-      "stem": "Ipfv: nàgūt'īnī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàgūt'īnī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2138,7 +2379,9 @@
     "analysis": [[], "nàkànátɫōd", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "nàkànátɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: nàkànátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>nàkànátɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2153,7 +2396,9 @@
     "analysis": [[], "nàkàtɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàkàtɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: nàkàtɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàkàtɫōd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2168,7 +2413,9 @@
     "analysis": [[], "nàkàtɫōdí ìlà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàkàtɫōdí ìlà",
     "linguistInfo": {
-      "stem": "Ipfv: nàkàtɫōdí ìlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàkàtɫōdí ìlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2183,7 +2430,9 @@
     "analysis": [[], "nàzíd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nàzíd",
     "linguistInfo": {
-      "stem": "Ipfv: nàzíd | Pfv: nàyīzīd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàzíd</td></tr><tr><td>Pfv</td><td>nàyīzīd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2198,7 +2447,9 @@
     "analysis": [[], "nááchīīzh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nááchīīzh",
     "linguistInfo": {
-      "stem": "Ipfv: nááchīīzh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nááchīīzh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2213,7 +2464,9 @@
     "analysis": [[], "nádātɫ'ásh", ["+V", "+I", "+Pfv", "+Rep", "+SbjSg3"]],
     "head": "nádātɫ'ásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: nádātɫ'ásh"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>nádātɫ'ásh</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2228,7 +2481,9 @@
     "analysis": [[], "nádīyá", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nádīyá",
     "linguistInfo": {
-      "stem": "Ipfv: nádīyá | Pfv: – | Prog: náyīyáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nádīyá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>náyīyáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2243,7 +2498,9 @@
     "analysis": [[], "nádīyá-hī ìlà", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "nádīyá-hī ìlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: nádīyá-hī ìlà | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>nádīyá-hī ìlà</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2258,7 +2515,9 @@
     "analysis": [[], "nágūdīdīyītɫīɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "nágūdīdīyītɫīɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: nágūdīdīyītɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>nágūdīdīyītɫīɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2273,7 +2532,9 @@
     "analysis": [[], "nágūdīītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nágūdīītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: nágūdīītɫōd | Pfv: nágūdììtɫōd | Prog: – | Ipfv+Rep: nīnágúdìtɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nágūdīītɫōd</td></tr><tr><td>Pfv</td><td>nágūdììtɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nīnágúdìtɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2288,7 +2549,9 @@
     "analysis": [[], "nánīdò", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nánīdò",
     "linguistInfo": {
-      "stem": "Ipfv: nánīdò | Pfv: nánìsdō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nánīdò</td></tr><tr><td>Pfv</td><td>nánìsdō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2303,7 +2566,9 @@
     "analysis": [[], "násītín", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "násītín",
     "linguistInfo": {
-      "stem": "Ipfv: násītín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>násītín</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2318,7 +2583,9 @@
     "analysis": [[], "nátáɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "nátáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: nátáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>nátáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2333,7 +2600,9 @@
     "analysis": [[], "náyā", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "náyā",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: náyā | Prog: náyīyáɫ | Ipfv+Rep: nínāyásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>náyā</td></tr><tr><td>Prog</td><td>náyīyáɫ</td></tr><tr><td>Ipfv+Rep</td><td>nínāyásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2348,7 +2617,9 @@
     "analysis": [[], "náyāʔín", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "náyāʔín",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: náyāʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>náyāʔín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2363,7 +2634,9 @@
     "analysis": [[], "náyidīdzá", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "náyidīdzá",
     "linguistInfo": {
-      "stem": "Ipfv: náyidīdzá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>náyidīdzá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2382,7 +2655,9 @@
     ],
     "head": "náyīdīnìsk'ááz",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: náyīdīnìsk'ááz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>náyīdīnìsk'ááz</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2401,7 +2676,9 @@
     ],
     "head": "náyīdītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: náyīdītɫ'ìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náyīdītɫ'ìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2420,7 +2697,9 @@
     ],
     "head": "náyīnáʔìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: náyīnáʔìsh | Pfv+Rep: náyīnáyíʔìsh"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náyīnáʔìsh</td></tr><tr><td>Pfv+Rep</td><td>náyīnáyíʔìsh</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2439,7 +2718,9 @@
     ],
     "head": "nāsʔàghá-gū áyáláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: nāsʔàghá-gū áyáláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>nāsʔàghá-gū áyáláɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2454,7 +2735,9 @@
     "analysis": [[], "nìnátɫ'ásh", ["+V", "+I", "+Ipfv", "+Rep", "+SbjSg3"]],
     "head": "nìnátɫ'ásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: nìnátɫ'ásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nìnátɫ'ásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2473,7 +2756,9 @@
     ],
     "head": "nínáyáʔìshí-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: nínáyáʔìshí-gūlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>nínáyáʔìshí-gūlà</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2488,7 +2773,9 @@
     "analysis": [[], "nítàʔī", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nítàʔī",
     "linguistInfo": {
-      "stem": "Ipfv: nítàʔī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nítàʔī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2503,7 +2790,9 @@
     "analysis": [[], "nīdò", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nīdò",
     "linguistInfo": {
-      "stem": "Ipfv: nīdò | Pfv: nìsdō | Prog: – | Ipfv+Rep: nánīdōsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nīdò</td></tr><tr><td>Pfv</td><td>nìsdō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nánīdōsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2518,7 +2807,9 @@
     "analysis": [[], "nīdòʔī", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nīdòʔī",
     "linguistInfo": {
-      "stem": "Ipfv: nīdòʔī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nīdòʔī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2537,7 +2828,9 @@
     ],
     "head": "nīnágūt'ìsh-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: nīnágūt'ìsh-gūlà | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nīnágūt'ìsh-gūlà</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2552,7 +2845,9 @@
     "analysis": [[], "nīnátɫ'ò", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "nīnátɫ'ò",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: nīnátɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>nīnátɫ'ò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2567,7 +2862,9 @@
     "analysis": [[], "nīnázìd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nīnázìd",
     "linguistInfo": {
-      "stem": "Ipfv: nīnázìd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nīnázìd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2582,7 +2879,9 @@
     "analysis": [[], "nītà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nītà",
     "linguistInfo": {
-      "stem": "Ipfv: nītà | Pfv: nìstín | Prog: – | Ipfv+Rep: nánītāsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nītà</td></tr><tr><td>Pfv</td><td>nìstín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nánītāsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2597,7 +2896,9 @@
     "analysis": [[], "nūwák'àsì dītɫ'á", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "nūwák'àsì dītɫ'á",
     "linguistInfo": {
-      "stem": "Ipfv: nūwák'àsì dītɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nūwák'àsì dītɫ'á</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2616,7 +2917,9 @@
     ],
     "head": "ō dā-hī xànáyá yīnízīn",
     "linguistInfo": {
-      "stem": "Ipfv: ō dā-hī xànáyá yīnízīn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ō dā-hī xànáyá yīnízīn</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2635,7 +2938,9 @@
     ],
     "head": "ōò tāyīdìstsús yīnīsīn",
     "linguistInfo": {
-      "stem": "Ipfv: ōò tāyīdìstsús yīnīsīn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ōò tāyīdìstsús yīnīsīn</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2654,7 +2959,9 @@
     ],
     "head": "ōò yīnásʔínī gù",
     "linguistInfo": {
-      "stem": "Ipfv: ōò yīnásʔínī gù | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ōò yīnásʔínī gù</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2669,7 +2976,9 @@
     "analysis": [[], "sīdō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "sīdō",
     "linguistInfo": {
-      "stem": "Ipfv: sīdō | Pfv: yídò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>sīdō</td></tr><tr><td>Pfv</td><td>yídò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2688,7 +2997,9 @@
     ],
     "head": "tānádìkōsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānádìkōsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānádìkōsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2703,7 +3014,9 @@
     "analysis": [[], "tānáyāʔóɫ", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "tānáyāʔóɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: tānáyāʔóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>tānáyāʔóɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2722,7 +3035,9 @@
     ],
     "head": "tānáyìdìjīsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìjīsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyìdìjīsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2741,7 +3056,9 @@
     ],
     "head": "tānáyìdìschūsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìschūsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyìdìschūsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2760,7 +3077,9 @@
     ],
     "head": "tānáyìdìstásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyìdìstásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyìdìstásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2779,7 +3098,9 @@
     ],
     "head": "tānáyīdīlásh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyīdīlásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyīdīlásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2798,7 +3119,9 @@
     ],
     "head": "tānáyīdītīsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tānáyīdītīsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyīdītīsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2817,7 +3140,9 @@
     ],
     "head": "tānáyīdīʔò",
     "linguistInfo": {
-      "stem": "Ipfv: tānáyīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tānáyīdīʔò</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2832,7 +3157,9 @@
     "analysis": [[], "tāyádzī", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "tāyádzī",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: tāyádzī | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>tāyádzī</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2847,7 +3174,9 @@
     "analysis": [[], "tāyákóɫ", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyákóɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: tāyákóɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>tāyákóɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2862,7 +3191,9 @@
     "analysis": [[], "tāyástsús", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyástsús",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: tāyástsús | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>tāyástsús</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2877,7 +3208,9 @@
     "analysis": [[], "tāyāláɫ", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyāláɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: tāyāláɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>tāyāláɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2892,7 +3225,9 @@
     "analysis": [[], "tāyìʔò", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyìʔò",
     "linguistInfo": {
-      "stem": "Ipfv: tāyìʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tāyìʔò</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2911,7 +3246,9 @@
     ],
     "head": "tāyīdīyīʔòłī",
     "linguistInfo": {
-      "stem": "Ipfv: tāyīdīyīʔòłī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tāyīdīyīʔòłī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2926,7 +3263,9 @@
     "analysis": [[], "tāyīdīʔò", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyīdīʔò",
     "linguistInfo": {
-      "stem": "Ipfv: tāyīdīʔò | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tāyīdīʔò</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2941,7 +3280,9 @@
     "analysis": [[], "tāyīdīʔón", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "tāyīdīʔón",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tāyīdīʔón | Prog: – | Ipfv+Rep: tānáyìdīʔōsh | Pfv+Rep: tānáyīdīyīʔōsh"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tāyīdīʔón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tānáyìdīʔōsh</td></tr><tr><td>Pfv+Rep</td><td>tānáyīdīyīʔōsh</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -2956,7 +3297,9 @@
     "analysis": [[], "tìnáátɫōd", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "tìnáátɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tìnáátɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tìnáátɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2971,7 +3314,9 @@
     "analysis": [[], "tíyá màgúdílō", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tíyá màgúdílō",
     "linguistInfo": {
-      "stem": "Ipfv: tíyá màgúdílō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tíyá màgúdílō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -2990,7 +3335,9 @@
     ],
     "head": "tīīnágūdītɫīīzh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: tīīnágūdītɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>tīīnágūdītɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3005,7 +3352,9 @@
     "analysis": [[], "tīītɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tīītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: tīītɫōd | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tīītɫōd</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3020,7 +3369,9 @@
     "analysis": [[], "tōsgūnā gwáná", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tōsgūnā gwáná",
     "linguistInfo": {
-      "stem": "Ipfv: tōsgūnā gwáná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tōsgūnā gwáná</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3035,7 +3386,9 @@
     "analysis": [[], "tsīy gúdīnìsh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tsīy gúdīnìsh",
     "linguistInfo": {
-      "stem": "Ipfv: tsīy gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tsīy gúdīnìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3054,7 +3407,9 @@
     ],
     "head": "tū-tīī yīnìyízìt",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tū-tīī yīnìyízìt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tū-tīī yīnìyízìt</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3073,7 +3428,9 @@
     ],
     "head": "tɫ'úɫ ànàdìsdló",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tɫ'úɫ ànàdìsdló | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tɫ'úɫ ànàdìsdló</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3092,7 +3449,9 @@
     ],
     "head": "tɫ'úɫ ànàdīlō",
     "linguistInfo": {
-      "stem": "Ipfv: tɫ'úɫ ànàdīlō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɫ'úɫ ànàdīlō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3107,7 +3466,9 @@
     "analysis": [[], "tɫàʔí k'àdlù", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tɫàʔí k'àdlù",
     "linguistInfo": {
-      "stem": "Ipfv: tɫàʔí k'àdlù | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɫàʔí k'àdlù</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3122,7 +3483,9 @@
     "analysis": [[], "tɫàʔí k'ànīdlùw", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "tɫàʔí k'ànīdlùw",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tɫàʔí k'ànīdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tɫàʔí k'ànīdlùw</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3137,7 +3500,9 @@
     "analysis": [[], "tɫídīnāsh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tɫídīnāsh",
     "linguistInfo": {
-      "stem": "Ipfv: tɫídīnāsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɫídīnāsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3156,7 +3521,9 @@
     ],
     "head": "tɫík'á náyīdīskón",
     "linguistInfo": {
-      "stem": "Ipfv: tɫík'á náyīdīskón | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɫík'á náyīdīskón</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3175,7 +3542,9 @@
     ],
     "head": "tɫík'á yākón",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: tɫík'á yākón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>tɫík'á yākón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3190,7 +3559,9 @@
     "analysis": [[], "tɬ'ūwdīnà gwádīdánáɫ", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "tɬ'ūwdīnà gwádīdánáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: tɬ'ūwdīnà gwádīdánáɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɬ'ūwdīnà gwádīdánáɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3209,7 +3580,9 @@
     ],
     "head": "tɬīkònī yīnízìn",
     "linguistInfo": {
-      "stem": "Ipfv: tɬīkònī yīnízìn | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tɬīkònī yīnízìn</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3224,7 +3597,9 @@
     "analysis": [[], "xàátɫōd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xàátɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: xàátɫōd | Pfv: xàyītɫōd | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàátɫōd</td></tr><tr><td>Pfv</td><td>xàyītɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3239,7 +3614,9 @@
     "analysis": [[], "xàdidīyá", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xàdidīyá",
     "linguistInfo": {
-      "stem": "Ipfv: xàdidīyá | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàdidīyá</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3258,7 +3635,9 @@
     ],
     "head": "xànádidìtɫīīzh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: xànádidìtɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>xànádidìtɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3277,7 +3656,9 @@
     ],
     "head": "xànáyīdīstó(n)",
     "linguistInfo": {
-      "stem": "Ipfv: xànáyīdīstó(n) | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xànáyīdīstó(n)</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3292,7 +3673,9 @@
     "analysis": [[], "xànáyīyā", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "xànáyīyā",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xànáyīyā | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xànáyīyā</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3307,7 +3690,9 @@
     "analysis": [[], "xàtɫ'á", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xàtɫ'á",
     "linguistInfo": {
-      "stem": "Ipfv: xàtɫ'á | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàtɫ'á</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3326,7 +3711,9 @@
     ],
     "head": "xàyīdīstín",
     "linguistInfo": {
-      "stem": "Ipfv: xàyīdīstín | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàyīdīstín</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3341,7 +3728,9 @@
     "analysis": [[], "xàyītɫ'ò", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "xàyītɫ'ò",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xàyītɫ'ò | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xàyītɫ'ò</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3356,7 +3745,9 @@
     "analysis": [[], "xàyītɫíɫ", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xàyītɫíɫ",
     "linguistInfo": {
-      "stem": "Ipfv: xàyītɫíɫ | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàyītɫíɫ</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3371,7 +3762,9 @@
     "analysis": [[], "xàyītɫōdī", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xàyītɫōdī",
     "linguistInfo": {
-      "stem": "Ipfv: xàyītɫōdī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xàyītɫōdī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3386,7 +3779,9 @@
     "analysis": [[], "xàyīyā", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "xàyīyā",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xàyīyā | Prog: – | Ipfv+Rep: xànáyásh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xàyīyā</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>xànáyásh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3401,7 +3796,9 @@
     "analysis": [[], "xākījī gwájàg", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "xākījī gwájàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xākījī gwájàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xākījī gwájàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3416,7 +3813,9 @@
     "analysis": [[], "xāná", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "xāná",
     "linguistInfo": {
-      "stem": "Ipfv: xāná | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xāná</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3435,7 +3834,9 @@
     ],
     "head": "xānáyīʔìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: – | Ipfv+Rep: xānáyīʔìsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>xānáyīʔìsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3450,7 +3851,9 @@
     "analysis": [[], "xāt'àà tɫádínītà", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "xāt'àà tɫádínītà",
     "linguistInfo": {
-      "stem": "Ipfv: xāt'àà tɫádínītà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>xāt'àà tɫádínītà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3465,7 +3868,9 @@
     "analysis": [[], "xāyìlàg", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "xāyìlàg",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xāyìlàg | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xāyìlàg</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3480,7 +3885,9 @@
     "analysis": [[], "xīgògù màgúdìyílō", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "xīgògù màgúdìyílō",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xīgògù màgúdìyílō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xīgògù màgúdìyílō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -3499,7 +3906,9 @@
     ],
     "head": "xīgògù yáʔín",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: xīgògù yáʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>xīgògù yáʔín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3514,7 +3923,9 @@
     "analysis": [[], "yádón", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yádón",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yádón | Prog: – | Ipfv+Rep: nádàts'īdísh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yádón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>nádàts'īdísh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3529,7 +3940,9 @@
     "analysis": [[], "yádóní ìlà", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yádóní ìlà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yádóní ìlà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yádóní ìlà</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3544,7 +3957,9 @@
     "analysis": [[], "yátsàd", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yátsàd",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yátsàd | Prog: yīsnō | Ipfv+Rep: náyísnòsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yátsàd</td></tr><tr><td>Prog</td><td>yīsnō</td></tr><tr><td>Ipfv+Rep</td><td>náyísnòsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3559,7 +3974,9 @@
     "analysis": [[], "yáʔín", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yáʔín",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yáʔín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yáʔín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3574,7 +3991,9 @@
     "analysis": [[], "yānīdlùw", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yānīdlùw",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yānīdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yānīdlùw</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3593,7 +4012,9 @@
     ],
     "head": "yidíyiskīɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yidíyiskīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yidíyiskīɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3612,7 +4033,9 @@
     ],
     "head": "yidīniyìsgòshī",
     "linguistInfo": {
-      "stem": "Ipfv: yidīniyìsgòshī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yidīniyìsgòshī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3631,7 +4054,9 @@
     ],
     "head": "yidīnìsgòsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yidīnìsgòsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yidīnìsgòsh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3646,7 +4071,9 @@
     "analysis": [[], "yídīskīd", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yídīskīd",
     "linguistInfo": {
-      "stem": "Ipfv: yídīskīd | Pfv: yídīyīskīd | Prog: – | Ipfv+Rep: náyídískīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yídīskīd</td></tr><tr><td>Pfv</td><td>yídīyīskīd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náyídískīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3661,7 +4088,9 @@
     "analysis": [[], "yídònī", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yídònī",
     "linguistInfo": {
-      "stem": "Ipfv: yídònī | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yídònī</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3680,7 +4109,9 @@
     ],
     "head": "yíīnídíyīzīt",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yíīnídíyīzīt | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yíīnídíyīzīt</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3699,7 +4130,9 @@
     ],
     "head": "yīdīch'īsh",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīch'īsh | Pfv: yídìsts'ón | Prog: – | Ipfv+Rep: náyídīch'īsh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīch'īsh</td></tr><tr><td>Pfv</td><td>yídìsts'ón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náyídīch'īsh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3714,7 +4147,9 @@
     "analysis": [[], "yīdīdzá", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīdzá",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīdzá | Pfv: yīdīsjààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīdzá</td></tr><tr><td>Pfv</td><td>yīdīsjààzh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3729,7 +4164,9 @@
     "analysis": [[], "yīdīkò", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīkò",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīkò | Pfv: yīdīskón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīkò</td></tr><tr><td>Pfv</td><td>yīdīskón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3744,7 +4181,9 @@
     "analysis": [[], "yīdīlō", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīlō",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīlō | Pfv: yīdīsdlō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīlō</td></tr><tr><td>Pfv</td><td>yīdīsdlō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3759,7 +4198,9 @@
     "analysis": [[], "yīdīstà", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīstà",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīstà | Pfv: yīdīstín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīstà</td></tr><tr><td>Pfv</td><td>yīdīstín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3774,7 +4215,9 @@
     "analysis": [[], "yīdīstó(n)", ["+V", "+T", "+Pfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīstó(n)",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yīdīstó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yīdīstó(n)</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3789,7 +4232,9 @@
     "analysis": [[], "yīdīstsús", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīstsús",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīstsús | Pfv: yīdīstsùùz | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīstsús</td></tr><tr><td>Pfv</td><td>yīdīstsùùz</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3804,7 +4249,9 @@
     "analysis": [[], "yīdītì", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdītì",
     "linguistInfo": {
-      "stem": "Ipfv: yīdītì | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdītì</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3823,7 +4270,9 @@
     ],
     "head": "yīdītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: yīdītɫ'ìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdītɫ'ìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3842,7 +4291,9 @@
     ],
     "head": "yīdīyīts'ònī ìsà",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīyīts'ònī ìsà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīyīts'ònī ìsà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3861,7 +4312,9 @@
     ],
     "head": "yīdīyītɫ'ìsh",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yīdīyītɫ'ìsh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yīdīyītɫ'ìsh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3876,7 +4329,9 @@
     "analysis": [[], "yīdīʔò", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīdīʔò",
     "linguistInfo": {
-      "stem": "Ipfv: yīdīʔò | Pfv: yīdīsʔòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīdīʔò</td></tr><tr><td>Pfv</td><td>yīdīsʔòn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3895,7 +4350,9 @@
     ],
     "head": "yīk'āgúdīdītɫōd",
     "linguistInfo": {
-      "stem": "Ipfv: yīk'āgúdīdītɫōd | Pfv: yīk'āgúdīdìstɫōd | Prog: – | Ipfv+Rep: yīk'ānágūdìtɫīīzh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīk'āgúdīdītɫōd</td></tr><tr><td>Pfv</td><td>yīk'āgúdīdìstɫōd</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>yīk'ānágūdìtɫīīzh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3914,7 +4371,9 @@
     ],
     "head": "yīk'āgúdīdīyītɫīɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yīk'āgúdīdīyītɫīɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yīk'āgúdīdīyītɫīɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3933,7 +4392,9 @@
     ],
     "head": "yīk'òsà dīts'í",
     "linguistInfo": {
-      "stem": "Ipfv: yīk'òsà dīts'í | Pfv: yīk'òsà dīsts'ón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīk'òsà dīts'í</td></tr><tr><td>Pfv</td><td>yīk'òsà dīsts'ón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3948,7 +4409,9 @@
     "analysis": [[], "yīnásʔín", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīnásʔín",
     "linguistInfo": {
-      "stem": "Ipfv: yīnásʔín | Pfv: yīnáyísʔìn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīnásʔín</td></tr><tr><td>Pfv</td><td>yīnáyísʔìn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3967,7 +4430,9 @@
     ],
     "head": "yīnásʔín-gūlà",
     "linguistInfo": {
-      "stem": "Ipfv: yīnásʔín-gūlà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīnásʔín-gūlà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -3986,7 +4451,9 @@
     ],
     "head": "yīnásʔíní ānà",
     "linguistInfo": {
-      "stem": "Ipfv: yīnásʔíní ānà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīnásʔíní ānà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -4001,7 +4468,9 @@
     "analysis": [[], "yīnáɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "yīnáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yīnáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yīnáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -4016,7 +4485,9 @@
     "analysis": [[], "yītà", ["+V", "+I", "+Pfv", "+SbjSg3"]],
     "head": "yītà",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yītà | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yītà</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -4031,7 +4502,9 @@
     "analysis": [[], "yītsáɫ", ["+V", "+T", "+Prog", "+SbjSg3", "+DObjSg3"]],
     "head": "yītsáɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yītsáɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yītsáɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -4046,7 +4519,9 @@
     "analysis": [[], "yītɫ'áɫ", ["+V", "+I", "+Prog", "+SbjSg3"]],
     "head": "yītɫ'áɫ",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yītɫ'áɫ | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yītɫ'áɫ</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -4061,7 +4536,9 @@
     "analysis": [[], "yīyáɫí gúdīnìsh", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
     "head": "yīyáɫí gúdīnìsh",
     "linguistInfo": {
-      "stem": "Ipfv: yīyáɫí gúdīnìsh | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīyáɫí gúdīnìsh</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "I",
+      "pos:": "I"
     },
     "paradigm": "VI",
     "senses": [
@@ -4076,12 +4553,14 @@
     "analysis": [[], "yīzí", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
     "head": "yīzí",
     "linguistInfo": {
-      "stem": "Ipfv: yīzí | Pfv: – | Prog: – | Ipfv+Rep: náyīzísh | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yīzí</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>náyīzísh</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
       {
-        "definition": "he/she is reading it",
+        "definition": "he she is reading it",
         "sources": ["TVPD"]
       }
     ],
@@ -4095,7 +4574,9 @@
     ],
     "head": "yōghàdzá",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàdzá | Pfv: yōghàníjààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàdzá</td></tr><tr><td>Pfv</td><td>yōghàníjààzh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4114,7 +4595,9 @@
     ],
     "head": "yōghàkò",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàkò | Pfv: yōghànīkòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàkò</td></tr><tr><td>Pfv</td><td>yōghànīkòn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4133,7 +4616,9 @@
     ],
     "head": "yōghànilō",
     "linguistInfo": {
-      "stem": "Ipfv: yōghànilō | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghànilō</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4152,7 +4637,9 @@
     ],
     "head": "yōghàstà",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàstà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4171,7 +4658,9 @@
     ],
     "head": "yōghàstsús",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàstsús</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4190,7 +4679,9 @@
     ],
     "head": "yōghàtì",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàtì | Pfv: mōghànāàtón | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàtì</td></tr><tr><td>Pfv</td><td>mōghànāàtón</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4209,7 +4700,9 @@
     ],
     "head": "yōghàyínilō",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyínilō | Pfv: yōghàyīnílō | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyínilō</td></tr><tr><td>Pfv</td><td>yōghàyīnílō</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4228,7 +4721,9 @@
     ],
     "head": "yōghàyīdzá",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyīdzá | Pfv: yōghàyīnījààzh | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyīdzá</td></tr><tr><td>Pfv</td><td>yōghàyīnījààzh</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4247,7 +4742,9 @@
     ],
     "head": "yōghàyīkò",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyīkò | Pfv: yōghàyīníkòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyīkò</td></tr><tr><td>Pfv</td><td>yōghàyīníkòn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4266,7 +4763,9 @@
     ],
     "head": "yōghàyīnīstín",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yōghàyīnīstín | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yōghàyīnīstín</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4285,7 +4784,9 @@
     ],
     "head": "yōghàyīnītó(n)",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yōghàyīnītó(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yōghàyīnītó(n)</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4304,7 +4805,9 @@
     ],
     "head": "yōghàyīstà",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyīstà | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyīstà</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4323,7 +4826,9 @@
     ],
     "head": "yōghàyīstsús",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyīstsús | Pfv: – | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyīstsús</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4342,7 +4847,9 @@
     ],
     "head": "yōghàyīʔò",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàyīʔò | Pfv: yōghàyīnīʔòn | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàyīʔò</td></tr><tr><td>Pfv</td><td>yōghàyīnīʔòn</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4361,7 +4868,9 @@
     ],
     "head": "yōghàʔò",
     "linguistInfo": {
-      "stem": "Ipfv: yōghàʔò | Pfv: yōghànīʔò(n) | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yōghàʔò</td></tr><tr><td>Pfv</td><td>yōghànīʔò(n)</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "D",
+      "pos:": "D"
     },
     "paradigm": "VD",
     "senses": [
@@ -4380,7 +4889,9 @@
     ],
     "head": "yōghā dádlù",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: – | Prog: yōghā dádlù | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>–</td></tr><tr><td>Prog</td><td>yōghā dádlù</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [
@@ -4399,7 +4910,9 @@
     ],
     "head": "yōghā dīdìsdlùw",
     "linguistInfo": {
-      "stem": "Ipfv: – | Pfv: yōghā dīdìsdlùw | Prog: – | Ipfv+Rep: – | Pfv+Rep: –"
+      "analysis": "<table colspan=2><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</td><td>yōghā dīdìsdlùw</td></tr><tr><td>Prog</td><td>–</td></tr><tr><td>Ipfv+Rep</td><td>–</td></tr><tr><td>Pfv+Rep</td><td>–</td></tr></table>",
+      "inflectional_category:": "T",
+      "pos:": "T"
     },
     "paradigm": "VT",
     "senses": [

@@ -31,18 +31,13 @@
 
         <div class="tooltip" role="tooltip">
             <div data-cy="linguistic-breakdown">
-                {% if result.relabelled_linguist_analysis %}
-                    {{ result.relabelled_linguist_analysis  | safe }}
-                {% else %}
-
-                    <ol class="linguistic-breakdown__list">
-                        {% for chunk in result.relabelled_fst_analysis %}
-                            <li>
-                                <data value="{{ chunk.tags }}"> {{ chunk.label }}</data>
-                            </li>
-                        {% endfor %}
-                    </ol>
-                {% endif %}
+                <ol class="linguistic-breakdown__list">
+                    {% for chunk in result.relabelled_fst_analysis %}
+                        <li>
+                            <data value="{{ chunk.tags }}"> {{ chunk.label }}</data>
+                        </li>
+                    {% endfor %}
+                </ol>
             </div>
 
             <div class="tooltip__arrow" data-popper-arrow></div>

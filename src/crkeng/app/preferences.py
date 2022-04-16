@@ -86,6 +86,23 @@ class ShowEmoji(Preference):
 
 
 @register_preference
+class ShowMorphemes(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "show_morphemes"
+    choices = {
+        "everywhere": "I would like to see morpheme boundaries in entry headers and in paradigm tables",
+        "headers": "I would like to see morpheme boundaries in headers only",
+        "paradigm": "I would like to see morpheme boundaries in paradigm tables only",
+        "nowhere": "I do not want to see morpheme boundaries (default)",
+    }
+
+    default = "nowhere"
+
+
+@register_preference
 class ParadigmAudio(Preference):
     """
     Should we show audio in the paradigms?

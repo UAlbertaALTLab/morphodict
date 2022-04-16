@@ -48,7 +48,6 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
-
     lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemma.count() != 1:
@@ -56,6 +55,11 @@ def entry_details(request, slug: str):
         return redirect(url_for_query(slug.split("@")[0] or ""))
 
     lemma = lemma.get()
+
+    if rich_analysis := lemma.analysis:
+        morphemes = rich_analysis.generate_with_morphemes(lemma.text)
+    else:
+        morphemes = None
 
     paradigm_context: dict[str, Any] = {}
 
@@ -102,6 +106,8 @@ def entry_details(request, slug: str):
         ),
         **paradigm_context,
     )
+    context["show_morphemes"] = request.COOKIES.get("show_morphemes")
+    context["morphemes"] = morphemes
     return render(request, "CreeDictionary/index.html", context)
 
 
@@ -150,6 +156,7 @@ def index(request):  # pragma: no cover
         did_search=did_search,
     )
     context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
+    context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     if search_run and search_run.verbose_messages and search_run.query.verbose:
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
@@ -176,7 +183,11 @@ def search_results(request, query_string: str):  # pragma: no cover
     return render(
         request,
         "CreeDictionary/search-results.html",
-        {"query_string": query_string, "search_results": results},
+        {
+            "query_string": query_string,
+            "search_results": results,
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
+        },
     )
 
 
@@ -227,6 +238,7 @@ def paradigm_internal(request):
             "lemma": lemma,
             "paradigm_size": paradigm_size,
             "paradigm": paradigm,
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
         },
     )
 

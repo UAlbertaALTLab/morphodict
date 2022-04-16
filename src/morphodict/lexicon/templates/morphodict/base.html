@@ -126,7 +126,7 @@
                     <form method="POST" action={% url 'preference:change' 'display_mode' %}>
                         <button class="unbutton link footer__link" type="submit" name="display_mode" value="english"
                                 data-cy="enable-community-mode">
-                            English labels
+                            Plain English labels
                         </button>
                         {% csrf_token %}
                     </form>
@@ -135,7 +135,7 @@
                     <form method="POST" action={% url 'preference:change' 'display_mode' %}>
                         <button class="unbutton link footer__link" type="submit" name="display_mode" value="linguistic"
                                 data-cy="enable-linguistic-mode">
-                            Linguist labels
+                            Linguistic labels
                         </button>
                         {% csrf_token %}
                     </form>

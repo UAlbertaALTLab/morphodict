@@ -239,3 +239,6 @@ def read_labels() -> Relabelling:
             _label_cache["mtime"] = mtime
             _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
             return cast_away_optional(_label_cache["labels"])
+
+
+LABELS: Relabelling = read_labels()

@@ -4,16 +4,82 @@ import dataclasses
 import json
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import NewType, Optional
+from typing import NewType, Optional, Protocol, cast, Iterable, Tuple
 
+from CreeDictionary.API.schema import SerializedLinguisticTag
+from CreeDictionary.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.search import ranking
+from CreeDictionary.CreeDictionary.relabelling import LABELS
 
 
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
 MatchedEnglish = NewType("MatchedEnglish", str)
 InternalForm = NewType("InternalForm", str)
+
+
+class LinguisticTag(Protocol):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    @property
+    def value(self) -> FSTTag:
+        ...
+
+    # TODO: linguistic feature
+
+    @property
+    def in_plain_english(self) -> str:
+        ...
+
+    def serialize(self) -> SerializedLinguisticTag:
+        return SerializedLinguisticTag(
+            value=self.value,
+            in_plain_english=self.in_plain_english,
+        )
+
+
+class SimpleLinguisticTag(LinguisticTag):
+    """
+    A linguistic feature/tag pair.
+    """
+
+    def __init__(self, value: FSTTag):
+        self._value = value
+
+    @property
+    def value(self) -> FSTTag:
+        return self._value
+
+    @property
+    def in_plain_english(self) -> str:
+        return cast(str, LABELS.english.get(self.value, cast(Label, self.value)))
+
+
+class CompoundLinguisticTag(LinguisticTag):
+    def __init__(self, tags: Iterable[FSTTag]) -> None:
+        self._fst_tags = tuple(tags)
+
+    @property
+    def value(self):
+        return "".join(self._fst_tags)
+
+    @property
+    def in_plain_english(self):
+        return LABELS.english.get_longest(self._fst_tags)
+
+
+def linguistic_tag_from_fst_tags(tags: Tuple[FSTTag, ...]) -> LinguisticTag:
+    """
+    Returns the appropriate LinguisticTag, no matter how many tags you chuck at it!
+    """
+    assert len(tags) > 0
+    if len(tags) == 1:
+        return SimpleLinguisticTag(tags[0])
+    else:
+        return CompoundLinguisticTag(tags)
 
 
 class Language(Enum):
