@@ -70,6 +70,7 @@ class Command(BaseCommand):
                     ret["morpheme_ranking"] = r.morpheme_ranking
                     ret["word_list_freq"] = r.word_list_freq
                     ret["lemma_freq"] = r.lemma_freq
+                    ret["is_espt_result"] = 1 if r.is_espt_result else 0
                     print(json.dumps(ret, ensure_ascii=False), file=out)
 
 

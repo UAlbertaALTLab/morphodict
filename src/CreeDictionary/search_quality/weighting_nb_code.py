@@ -20,9 +20,13 @@ def dataframe_from_featuredump(filename):
             try:
                 if json.loads(line) != []:
                     rows.append(json.loads(line))
+                try:
+                    print(int(line))
+                except:
+                    continue
             except:
                 continue
-
+    
     all_keys = set(list(k for row in rows for k in row.keys()))
     data = {}
     for key in all_keys:
