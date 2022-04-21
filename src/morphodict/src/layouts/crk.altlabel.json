@@ -1,0 +1,4437 @@
+﻿[
+  {
+    "FST TAG": "12Pl",
+    "LINGUISTIC (SHORT)": "21p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive)",
+    "ENGLISH": "you and we",
+    "NÊHIYAWÊWIN": "kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl",
+    "LINGUISTIC (SHORT)": "1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive)",
+    "ENGLISH": "we (but not you)",
+    "NÊHIYAWÊWIN": "niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1PlO",
+    "LINGUISTIC (SHORT)": "→ 1p",
+    "LINGUISTIC (LONG)": "Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "→ you (but not us)",
+    "NÊHIYAWÊWIN": "→ kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg",
+    "LINGUISTIC (SHORT)": "1s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular",
+    "ENGLISH": "I",
+    "NÊHIYAWÊWIN": "niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1SgO",
+    "LINGUISTIC (SHORT)": "→ 1s",
+    "LINGUISTIC (LONG)": "Goal: 1st Person Singular",
+    "ENGLISH": "→ me",
+    "NÊHIYAWÊWIN": "→ niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl",
+    "LINGUISTIC (SHORT)": "2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural",
+    "ENGLISH": "you (all)",
+    "NÊHIYAWÊWIN": "kiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2PlO",
+    "LINGUISTIC (SHORT)": "→ 2p",
+    "LINGUISTIC (LONG)": "Goal: 2nd Person Plural",
+    "ENGLISH": "→ you (all)",
+    "NÊHIYAWÊWIN": "→ kiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg",
+    "LINGUISTIC (SHORT)": "2s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular",
+    "ENGLISH": "you (one)",
+    "NÊHIYAWÊWIN": "kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2SgO",
+    "LINGUISTIC (SHORT)": "→ 2s",
+    "LINGUISTIC (LONG)": "Goal: 2nd Person Singular",
+    "ENGLISH": "→ you (one)",
+    "NÊHIYAWÊWIN": "→ kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl",
+    "LINGUISTIC (SHORT)": "3p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural",
+    "ENGLISH": "they",
+    "NÊHIYAWÊWIN": "wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3PlO",
+    "LINGUISTIC (SHORT)": "→ 3p",
+    "LINGUISTIC (LONG)": "Goal: 3rd Person Plural",
+    "ENGLISH": "→ them",
+    "NÊHIYAWÊWIN": "→ wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg",
+    "LINGUISTIC (SHORT)": "3s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular",
+    "ENGLISH": "s/he",
+    "NÊHIYAWÊWIN": "wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3SgO",
+    "LINGUISTIC (SHORT)": "→ 3s",
+    "LINGUISTIC (LONG)": "Goal: 3rd Person Singular",
+    "ENGLISH": "→ him/her/it",
+    "NÊHIYAWÊWIN": "→ wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Pl",
+    "LINGUISTIC (SHORT)": "4p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural (Obviative)",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg",
+    "LINGUISTIC (SHORT)": "4s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular (Obviative)",
+    "ENGLISH": "s/he (further)",
+    "NÊHIYAWÊWIN": "wiya (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl",
+    "LINGUISTIC (SHORT)": "4",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "s/he/they",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/PlO",
+    "LINGUISTIC (SHORT)": "→ 4",
+    "LINGUISTIC (LONG)": "Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "→ him/her/them",
+    "NÊHIYAWÊWIN": "→ wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl",
+    "LINGUISTIC (SHORT)": "5",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "s/he/they (further)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/PlO",
+    "LINGUISTIC (SHORT)": "→ 5",
+    "LINGUISTIC (LONG)": "Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "→ him/her/them (further)",
+    "NÊHIYAWÊWIN": "→ wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / there (is)",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / there (are)",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0SgO",
+    "LINGUISTIC (SHORT)": "→ 0",
+    "LINGUISTIC (LONG)": "Goal: Inanimate Singular",
+    "ENGLISH": "→ it",
+    "NÊHIYAWÊWIN": "→ ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0PlO",
+    "LINGUISTIC (SHORT)": "→ 0p",
+    "LINGUISTIC (LONG)": "Goal: Inanimate Plural",
+    "ENGLISH": "→ them (further)",
+    "NÊHIYAWÊWIN": "→ nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Prs",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / there is",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Prs",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / there are",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Prs",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Prs",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Prt",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / there was",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Prt",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / there were",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Prt",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Prt",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Fut+Def",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / there will be",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Fut+Def",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / there will be",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Fut+Def",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Fut+Def",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Fut+Int",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / there is going to be",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Fut+Int",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / there is going to be",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Fut+Int",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Fut+Int",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Fut+Cond",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / when there is",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Fut+Cond",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / when there is",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Fut+Cond",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Fut+Cond",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Inf+PV/ka",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / for there to be",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Inf+PV/ka",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / for there to be",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Inf+PV/ka",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Inf+PV/ka",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Inf+PV/ta",
+    "LINGUISTIC (SHORT)": "0",
+    "LINGUISTIC (LONG)": "Impersonal / Actor: Existential / Inanimate Singular",
+    "ENGLISH": "it / for there to be",
+    "NÊHIYAWÊWIN": "ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Inf+Pv/ta",
+    "LINGUISTIC (SHORT)": "0p",
+    "LINGUISTIC (LONG)": "Actor: Existential / Inanimate Plural",
+    "ENGLISH": "they / for there to be",
+    "NÊHIYAWÊWIN": "ôhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Sg+Obv+Inf+PV/ta",
+    "LINGUISTIC (SHORT)": "0'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Singular Obviative",
+    "ENGLISH": "it (further)",
+    "NÊHIYAWÊWIN": "nêma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "0Pl+Obv+Inf+PV/ta",
+    "LINGUISTIC (SHORT)": "0p'",
+    "LINGUISTIC (LONG)": "Actor: Inanimate Plural Obviative",
+    "ENGLISH": "they (further)",
+    "NÊHIYAWÊWIN": "nêhi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Inf+PV/ka",
+    "LINGUISTIC (SHORT)": "Conjunct (ka-)",
+    "LINGUISTIC (LONG)": "Infinitive/Future (with ka-)",
+    "ENGLISH": "ka- word",
+    "NÊHIYAWÊWIN": "ka- itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Inf+PV/ta",
+    "LINGUISTIC (SHORT)": "Conjunct (ta-)",
+    "LINGUISTIC (LONG)": "Infinitive/Future (with ta-)",
+    "ENGLISH": "ta- word",
+    "NÊHIYAWÊWIN": "ta- itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+2SgO",
+    "LINGUISTIC (SHORT)": "1s → 2s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 2nd Person Singular",
+    "ENGLISH": "I → you (one)",
+    "NÊHIYAWÊWIN": "niya → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+3SgO",
+    "LINGUISTIC (SHORT)": "1s → 3s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 3rd Person Singular",
+    "ENGLISH": "I → him/her",
+    "NÊHIYAWÊWIN": "niya → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+1PlO",
+    "LINGUISTIC (SHORT)": "1s → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "I → we (but not you)",
+    "NÊHIYAWÊWIN": "niya → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+12PlO",
+    "LINGUISTIC (SHORT)": "1s → 21p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "I → you and us",
+    "NÊHIYAWÊWIN": "niya → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+2PlO",
+    "LINGUISTIC (SHORT)": "1s → 2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 2nd Person Plural",
+    "ENGLISH": "I → you (all)",
+    "NÊHIYAWÊWIN": "niya → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+3PlO",
+    "LINGUISTIC (SHORT)": "1s → 3p",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 3rd Person Plural",
+    "ENGLISH": "I → them",
+    "NÊHIYAWÊWIN": "niya → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "1s → 4",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "I → him/her/them",
+    "NÊHIYAWÊWIN": "niya → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Sg+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "1s → 5",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "I → him/her/them (further)",
+    "NÊHIYAWÊWIN": "niya → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+1SgO",
+    "LINGUISTIC (SHORT)": "2s → 1s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 1st Person Singular",
+    "ENGLISH": "you (one) → me",
+    "NÊHIYAWÊWIN": "kiya → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+3SgO",
+    "LINGUISTIC (SHORT)": "2s → 3s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 3rd Person Singular",
+    "ENGLISH": "you (one) → him/her",
+    "NÊHIYAWÊWIN": "kiya → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+1PlO",
+    "LINGUISTIC (SHORT)": "2s → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "you (one) → we (but not you)",
+    "NÊHIYAWÊWIN": "kiya → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+12PlO",
+    "LINGUISTIC (SHORT)": "2s → 1p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "you (one) → you and us",
+    "NÊHIYAWÊWIN": "kiya → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+2PlO",
+    "LINGUISTIC (SHORT)": "2s → 2p",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 2nd Person Plural",
+    "ENGLISH": "you (one) → you (all)",
+    "NÊHIYAWÊWIN": "kiya → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+3PlO",
+    "LINGUISTIC (SHORT)": "2s → 3p",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 3rd Person Plural",
+    "ENGLISH": "you (one) → them",
+    "NÊHIYAWÊWIN": "kiya → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "2s → 4",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "you (one) → him/her/them",
+    "NÊHIYAWÊWIN": "kiya → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Sg+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "2s → 5",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "you (one) → him/her/them (further)",
+    "NÊHIYAWÊWIN": "kiya → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+1SgO",
+    "LINGUISTIC (SHORT)": "3s → 1s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 1st Person Singular",
+    "ENGLISH": "s/he → me",
+    "NÊHIYAWÊWIN": "wiya → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+2SgO",
+    "LINGUISTIC (SHORT)": "3s → 2s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 2nd Person Singular",
+    "ENGLISH": "s/he → you (one)",
+    "NÊHIYAWÊWIN": "wiya → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+1PlO",
+    "LINGUISTIC (SHORT)": "3s → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "s/he → we (but not you)",
+    "NÊHIYAWÊWIN": "wiya → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+12PlO",
+    "LINGUISTIC (SHORT)": "3s → 1p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "s/he → you and us",
+    "NÊHIYAWÊWIN": "wiya → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+2PlO",
+    "LINGUISTIC (SHORT)": "3s → 2p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 2nd Person Plural",
+    "ENGLISH": "s/he → you (all)",
+    "NÊHIYAWÊWIN": "wiya → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+3PlO",
+    "LINGUISTIC (SHORT)": "3s → 3p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 3rd Person Plural",
+    "ENGLISH": "s/he → them",
+    "NÊHIYAWÊWIN": "wiya → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "3s → 4",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "s/he → him/her/them",
+    "NÊHIYAWÊWIN": "wiya → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Sg+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "3s → 5",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "s/he → him/her/them (further)",
+    "NÊHIYAWÊWIN": "wiya → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+1SgO",
+    "LINGUISTIC (SHORT)": "X → 1s",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 1st Person Singular",
+    "ENGLISH": "someone → me",
+    "NÊHIYAWÊWIN": "(awiya) → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+2SgO",
+    "LINGUISTIC (SHORT)": "X → 2s",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 2nd Person Singular",
+    "ENGLISH": "someone → you (one)",
+    "NÊHIYAWÊWIN": "(awiya) → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+3SgO",
+    "LINGUISTIC (SHORT)": "X → 3s",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 3rd Person Singular",
+    "ENGLISH": "someone → him/her",
+    "NÊHIYAWÊWIN": "(awiya) → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+1PlO",
+    "LINGUISTIC (SHORT)": "X → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "someone → us (but not you)",
+    "NÊHIYAWÊWIN": "(awiya) → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+12PlO",
+    "LINGUISTIC (SHORT)": "X → 1p (incl)",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "someone → you and us",
+    "NÊHIYAWÊWIN": "(awiya) → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+2PlO",
+    "LINGUISTIC (SHORT)": "X → 2p",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 2nd Person Plural",
+    "ENGLISH": "someone → you (all)",
+    "NÊHIYAWÊWIN": "(awiya) → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+3PlO",
+    "LINGUISTIC (SHORT)": "X → 3p",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 3rd Person Plural",
+    "ENGLISH": "someone → them",
+    "NÊHIYAWÊWIN": "(awiya) → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "X → 4",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "someone → him/her/them",
+    "NÊHIYAWÊWIN": "(awiya) → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "X → 5",
+    "LINGUISTIC (LONG)": "Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "someone → him/her/them (further)",
+    "NÊHIYAWÊWIN": "(awiya) → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+1SgO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 1s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Singular",
+    "ENGLISH": "we (but not you) → me",
+    "NÊHIYAWÊWIN": "niyanân → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+2SgO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 2s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Singular",
+    "ENGLISH": "we (but not you) → you (one)",
+    "NÊHIYAWÊWIN": "niyanân → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+3SgO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 3s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular",
+    "ENGLISH": "we (but not you) → him/her",
+    "NÊHIYAWÊWIN": "niyanân → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+12PlO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 1p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "we (but not you) → you and us",
+    "NÊHIYAWÊWIN": "niyanân → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+2PlO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 2p",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Plural",
+    "ENGLISH": "we (but not you) → you (all)",
+    "NÊHIYAWÊWIN": "niyanân → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+3PlO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 3p",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Plural",
+    "ENGLISH": "we (but not you) → them",
+    "NÊHIYAWÊWIN": "niyanân → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 4",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "we (but not you) → him/her/them",
+    "NÊHIYAWÊWIN": "niyanân → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "1Pl+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "1p (excl) → 5",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "we (but not you) → him/her/them (further)",
+    "NÊHIYAWÊWIN": "niyanân → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+1SgO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 1s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Singular",
+    "ENGLISH": "you and we → me",
+    "NÊHIYAWÊWIN": "kiyânaw → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+2SgO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 2s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Singular",
+    "ENGLISH": "you and we → you (one)",
+    "NÊHIYAWÊWIN": "kiyânaw → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+3SgO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 3s",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular",
+    "ENGLISH": "you and we → him/her",
+    "NÊHIYAWÊWIN": "kiyânaw → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+1PlO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "you and we → you and us",
+    "NÊHIYAWÊWIN": "kiyânaw → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+2PlO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Plural",
+    "ENGLISH": "you and we → you (all)",
+    "NÊHIYAWÊWIN": "kiyânaw → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+3PlO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 3p",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Plural",
+    "ENGLISH": "you and we → them",
+    "NÊHIYAWÊWIN": "kiyânaw → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 4",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "you and we → him/her/them",
+    "NÊHIYAWÊWIN": "kiyânaw → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "12Pl+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "21p (incl) → 5",
+    "LINGUISTIC (LONG)": "Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "you and we → him/her/them (further)",
+    "NÊHIYAWÊWIN": "kiyânaw → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+1SgO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 1s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 1st Person Singular",
+    "ENGLISH": "you (all) → me",
+    "NÊHIYAWÊWIN": "kiyâwaw → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+2SgO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 2s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 2nd Person Singular",
+    "ENGLISH": "you (all) → you (one)",
+    "NÊHIYAWÊWIN": "kiyâwaw → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+3SgO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 3s",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 3rd Person Singular",
+    "ENGLISH": "you (all) → him/her",
+    "NÊHIYAWÊWIN": "kiyâwaw → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+1PlO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "you (all) → us (but not you)",
+    "NÊHIYAWÊWIN": "kiyâwaw → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+12PlO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 1p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "you (all) → you and us",
+    "NÊHIYAWÊWIN": "kiyâwaw → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+3PlO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 3p",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 3rd Person Plural",
+    "ENGLISH": "you (all) → them",
+    "NÊHIYAWÊWIN": "kiyâwaw → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 4",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "you (all) → him/her/them",
+    "NÊHIYAWÊWIN": "kiyâwaw → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "2Pl+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "2p (excl) → 5",
+    "LINGUISTIC (LONG)": "Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "you (all) → him/her/them (further)",
+    "NÊHIYAWÊWIN": "kiyâwaw → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+1SgO",
+    "LINGUISTIC (SHORT)": "3p → 1s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 1st Person Singular",
+    "ENGLISH": "they → me",
+    "NÊHIYAWÊWIN": "wiyâwaw → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+2SgO",
+    "LINGUISTIC (SHORT)": "3p → 2s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 2nd Person Singular",
+    "ENGLISH": "they → you (one)",
+    "NÊHIYAWÊWIN": "wiyâwaw → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+3SgO",
+    "LINGUISTIC (SHORT)": "3p → 3s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 3rd Person Singular",
+    "ENGLISH": "they → him/her",
+    "NÊHIYAWÊWIN": "wiyâwaw → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+1PlO",
+    "LINGUISTIC (SHORT)": "3p → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "they → us (but not you)",
+    "NÊHIYAWÊWIN": "wiyâwaw → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+12PlO",
+    "LINGUISTIC (SHORT)": "3p → 21p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "they → you and us",
+    "NÊHIYAWÊWIN": "wiyâwaw → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+2PlO",
+    "LINGUISTIC (SHORT)": "3p → 2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 2nd Person Plural",
+    "ENGLISH": "they → you (all)",
+    "NÊHIYAWÊWIN": "wiyâwaw → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "3p → 4",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "they → him/her/them",
+    "NÊHIYAWÊWIN": "wiyâwaw → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "3Pl+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "3p → 5",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)",
+    "ENGLISH": "they → him/her/them (further)",
+    "NÊHIYAWÊWIN": "wiyâwaw → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+1SgO",
+    "LINGUISTIC (SHORT)": "4 → 1s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Singular",
+    "ENGLISH": "s/he/they → me",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+2SgO",
+    "LINGUISTIC (SHORT)": "4 → 2s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Singular",
+    "ENGLISH": "s/he/they → you (one)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+3SgO",
+    "LINGUISTIC (SHORT)": "4 → 3s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Singular",
+    "ENGLISH": "s/he/they → him/her",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+1PlO",
+    "LINGUISTIC (SHORT)": "4 → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "s/he/they → us (but not you)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+12PlO",
+    "LINGUISTIC (SHORT)": "4 → 21p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "s/he/they → you and us",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+2PlO",
+    "LINGUISTIC (SHORT)": "4 → 2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Plural",
+    "ENGLISH": "s/he/they → you (all)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+3PlO",
+    "LINGUISTIC (SHORT)": "4 → 3p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Plural",
+    "ENGLISH": "s/he/they → him/her/them",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi) → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "4Sg/Pl+5Sg/PlO",
+    "LINGUISTIC (SHORT)": "4 → 5",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Obviative) → 5",
+    "ENGLISH": "s/he/they → him/her/them (further)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (ana/aniki) → wiya/wiyawâw (nêhi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+1SgO",
+    "LINGUISTIC (SHORT)": "5 → 1s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Singular",
+    "ENGLISH": "s/he/they (further) → me",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+2SgO",
+    "LINGUISTIC (SHORT)": "5 → 2s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Singular",
+    "ENGLISH": "s/he/they (further) → you (one)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+3SgO",
+    "LINGUISTIC (SHORT)": "5 → 3s",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular",
+    "ENGLISH": "s/he/they (further) → him/her",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+1PlO",
+    "LINGUISTIC (SHORT)": "5 → 1p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Exclusive)",
+    "ENGLISH": "s/he/they (further) → us (but not you)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+12PlO",
+    "LINGUISTIC (SHORT)": "5 → 21p (incl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Inclusive)",
+    "ENGLISH": "s/he/they (further) → you and us",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+2PlO",
+    "LINGUISTIC (SHORT)": "5 → 2p (excl)",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Plural",
+    "ENGLISH": "s/he/they (further) → you (all)",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → kiyâwaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+3PlO",
+    "LINGUISTIC (SHORT)": "5 → 3p",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Plural",
+    "ENGLISH": "s/he/they (further) → him/her/them",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "5Sg/Pl+4Sg/PlO",
+    "LINGUISTIC (SHORT)": "5 → 4",
+    "LINGUISTIC (LONG)": "Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "s/he/they (further) → him/her/them",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (nêhi) → wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "A",
+    "LINGUISTIC (SHORT)": "Animate",
+    "LINGUISTIC (LONG)": "Animate",
+    "ENGLISH": "like: asikan, iyiniw, maskwa",
+    "NÊHIYAWÊWIN": "tâpiskôc: asikan, iyiniw, maskwa",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "AI",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Animate Intransitive",
+    "ENGLISH": "like: mîcisow, nipâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: mîcisow, nipâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Arab",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Arabic",
+    "ENGLISH": "like: 0, 1, 2, ...",
+    "NÊHIYAWÊWIN": "tâpiskôc: 0, 1, 2, ...",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "CC",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Co-ordinating Conjunction",
+    "ENGLISH": "like: êkwa",
+    "NÊHIYAWÊWIN": "tâpiskôc: êkwa",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "CS",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Subordinate Conjunction",
+    "ENGLISH": "like: mâka",
+    "NÊHIYAWÊWIN": "tâpiskôc: mâka",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Cnj",
+    "LINGUISTIC (SHORT)": "Conjunct",
+    "LINGUISTIC (LONG)": "Conjunct",
+    "ENGLISH": "ê-/kâ- word",
+    "NÊHIYAWÊWIN": "ê-/kâ- itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Cond",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Conditional",
+    "ENGLISH": "when/if something happens",
+    "NÊHIYAWÊWIN": "kisik/kîsâspin ê-ispayik",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Fut+Cond",
+    "LINGUISTIC (SHORT)": "Future Conditional",
+    "LINGUISTIC (LONG)": "Future conditional",
+    "ENGLISH": "when/if something happens",
+    "NÊHIYAWÊWIN": "kisik/kîsâspin ê-ispayik",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Core",
+    "LINGUISTIC (SHORT)": "Core",
+    "LINGUISTIC (LONG)": "Core forms",
+    "ENGLISH": "Key forms",
+    "NÊHIYAWÊWIN": "âpâpiskahikan-itwêwina",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "D",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Dependent",
+    "ENGLISH": "like: nôhkom, mîpit",
+    "NÊHIYAWÊWIN": "tâpiskôc: nôhkom, mîpit",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Def",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Definite",
+    "ENGLISH": "certainly",
+    "NÊHIYAWÊWIN": "cikêmâ",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Fut+Def",
+    "LINGUISTIC (SHORT)": "Future Definite",
+    "LINGUISTIC (LONG)": "Future definite tense",
+    "ENGLISH": "something will certainly happen",
+    "NÊHIYAWÊWIN": "ka-ispayik nîkânihk/cikêmâ",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Del",
+    "LINGUISTIC (SHORT)": "Delayed",
+    "LINGUISTIC (LONG)": "Delayed",
+    "ENGLISH": "later",
+    "NÊHIYAWÊWIN": "mwêstas",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Imp+Del",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Delayed imperative",
+    "ENGLISH": "command/request that something will happen later",
+    "NÊHIYAWÊWIN": "nitotamâkêwin ka-ispayik mwêstâs",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Dem",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Demonstrative",
+    "ENGLISH": "like: awa, ôma",
+    "NÊHIYAWÊWIN": "tâpiskôc: awa, ôma",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Der/Com",
+    "LINGUISTIC (SHORT)": "Comitative",
+    "LINGUISTIC (LONG)": "Derived comitative",
+    "ENGLISH": "with another person",
+    "NÊHIYAWÊWIN": "wîci-",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Der/Dim",
+    "LINGUISTIC (SHORT)": "Diminutive",
+    "LINGUISTIC (LONG)": "Derived diminutive",
+    "ENGLISH": "smaller / younger / lesser",
+    "NÊHIYAWÊWIN": " nawac apisîs",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Der/X",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Derived unspecified actor",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Dim",
+    "LINGUISTIC (SHORT)": "Diminutive",
+    "LINGUISTIC (LONG)": "Diminutive",
+    "ENGLISH": "smaller / lesser / younger",
+    "NÊHIYAWÊWIN": "nawac apisîs / ayiwâk osk-âyis",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Dist",
+    "LINGUISTIC (SHORT)": "Distal",
+    "LINGUISTIC (LONG)": "Distal",
+    "ENGLISH": "Over yonder",
+    "NÊHIYAWÊWIN": "nêta",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Distr",
+    "LINGUISTIC (SHORT)": "Distributive",
+    "LINGUISTIC (LONG)": "Distributive",
+    "ENGLISH": "among",
+    "NÊHIYAWÊWIN": "âkine",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Err/Orth",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "(Sub-standard form)",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Foc",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Focus",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Fut",
+    "LINGUISTIC (SHORT)": "Future",
+    "LINGUISTIC (LONG)": "Future tense",
+    "ENGLISH": "something is happening later on",
+    "NÊHIYAWÊWIN": "ê-ispayik mwêstas/nîkânihk",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "I",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Inanimate",
+    "ENGLISH": "like: cîmân, wâwi",
+    "NÊHIYAWÊWIN": "tâpiskôc: cîmân, wâwi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "IC",
+    "LINGUISTIC (SHORT)": "Initial change",
+    "LINGUISTIC (LONG)": "Initial change",
+    "ENGLISH": "like: wiyâpamât",
+    "NÊHIYAWÊWIN": "tâpiskôc: wiyâpamât",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "II",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Inanimate Intransitive",
+    "ENGLISH": "like: miywâsin, mihkwâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: miywâsin, mihkwâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "INM",
+    "LINGUISTIC (SHORT)": "Name",
+    "LINGUISTIC (LONG)": "Name",
+    "ENGLISH": "like: otôskwanihk",
+    "NÊHIYAWÊWIN": "tâpiskôc: otôskwanihk",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Interr",
+    "LINGUISTIC (SHORT)": "Interrogative",
+    "LINGUISTIC (LONG)": "Interrogative",
+    "ENGLISH": "Question",
+    "NÊHIYAWÊWIN": "kakwêcihkêmowin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "IPC",
+    "LINGUISTIC (SHORT)": "Particle",
+    "LINGUISTIC (LONG)": "Particle",
+    "ENGLISH": "like: anohc",
+    "NÊHIYAWÊWIN": "tâpiskôc: anohc",
+    "EMOJI": "⚡"
+  },
+  {
+    "FST TAG": "Ipc",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Independent Particle",
+    "ENGLISH": "Connecting word",
+    "NÊHIYAWÊWIN": "âniskohtâwin-itwêwin",
+    "EMOJI": "⚡️"
+  },
+  {
+    "FST TAG": "IPH",
+    "LINGUISTIC (SHORT)": "Phrase",
+    "LINGUISTIC (LONG)": "Phrase",
+    "ENGLISH": "like: êkosi pitamâ",
+    "NÊHIYAWÊWIN": "tâpiskôc: êkosi pitamâ",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "IPJ",
+    "LINGUISTIC (SHORT)": "Interjection",
+    "LINGUISTIC (LONG)": "Interjection",
+    "ENGLISH": "like: hay hay",
+    "NÊHIYAWÊWIN": "tâpiskôc: hay hay",
+    "EMOJI": "⚡"
+  },
+  {
+    "FST TAG": "IPN",
+    "LINGUISTIC (SHORT)": "Prenoun",
+    "LINGUISTIC (LONG)": "Prenoun",
+    "ENGLISH": "like: amisko-",
+    "NÊHIYAWÊWIN": "tâpiskôc: amisko-",
+    "EMOJI": "⚡"
+  },
+  {
+    "FST TAG": "IPP",
+    "LINGUISTIC (SHORT)": "Particle",
+    "LINGUISTIC (LONG)": "Particle",
+    "ENGLISH": "like: akâmi-",
+    "NÊHIYAWÊWIN": "tâpiskîc: akâmi- ",
+    "EMOJI": "⚡️"
+  },
+  {
+    "FST TAG": "IPV",
+    "LINGUISTIC (SHORT)": "Preverb",
+    "LINGUISTIC (LONG)": "Preverb",
+    "ENGLISH": "like: pê-",
+    "NÊHIYAWÊWIN": "tâpiskôc: pê-",
+    "EMOJI": "⚡️"
+  },
+  {
+    "FST TAG": "Ipv",
+    "LINGUISTIC (SHORT)": "Preverb",
+    "LINGUISTIC (LONG)": "Preverb",
+    "ENGLISH": "like: pê-",
+    "NÊHIYAWÊWIN": "tâpiskôc: pê-",
+    "EMOJI": "⚡️"
+  },
+  {
+    "FST TAG": "Imm",
+    "LINGUISTIC (SHORT)": "Immediate",
+    "LINGUISTIC (LONG)": "Immediate",
+    "ENGLISH": "now",
+    "NÊHIYAWÊWIN": "mêkwâc/kîsac",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Imp",
+    "LINGUISTIC (SHORT)": "Imperative",
+    "LINGUISTIC (LONG)": "Imperative",
+    "ENGLISH": "command/request",
+    "NÊHIYAWÊWIN": "nitotamâkêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Imp+Imm",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Immediate imperative",
+    "ENGLISH": "command/request that something happens immediately",
+    "NÊHIYAWÊWIN": "nitotamâkêwin piko ka-ispayik",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Ind",
+    "LINGUISTIC (SHORT)": "Independent",
+    "LINGUISTIC (LONG)": "Independent",
+    "ENGLISH": "ni-/ki- word",
+    "NÊHIYAWÊWIN": "ni-/ki- itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Inf",
+    "LINGUISTIC (SHORT)": "Infinitive",
+    "LINGUISTIC (LONG)": "Infinitive form",
+    "ENGLISH": "for something to happen",
+    "NÊHIYAWÊWIN": "ka-ispaiyk / ta-ispayik",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Int",
+    "LINGUISTIC (SHORT)": "Intentional",
+    "LINGUISTIC (LONG)": "Intentional",
+    "ENGLISH": "be going to",
+    "NÊHIYAWÊWIN": "akâwâtamowin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Fut+Int",
+    "LINGUISTIC (SHORT)": "Future Intentional",
+    "LINGUISTIC (LONG)": "Future intentional tense",
+    "ENGLISH": "something is going to happen",
+    "NÊHIYAWÊWIN": "ê-wî-ihkik nîkânihk",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Interj",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Interjection",
+    "ENGLISH": "Shouting word",
+    "NÊHIYAWÊWIN": "têpwêwin-itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Loc",
+    "LINGUISTIC (SHORT)": "Locative",
+    "LINGUISTIC (LONG)": "Locative",
+    "ENGLISH": "in/on/to",
+    "NÊHIYAWÊWIN": "pîhci-, tahkoht, ohci",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Med",
+    "LINGUISTIC (SHORT)": "Medial",
+    "LINGUISTIC (LONG)": "Medial",
+    "ENGLISH": "There",
+    "NÊHIYAWÊWIN": "anita",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "N",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Noun",
+    "ENGLISH": "Naming word",
+    "NÊHIYAWÊWIN": "wîhyowin-itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "N+A",
+    "LINGUISTIC (SHORT)": "Animate noun",
+    "LINGUISTIC (LONG)": "Noun — animate",
+    "ENGLISH": "Naming word — like: asikan, iyiniw, maskwa",
+    "NÊHIYAWÊWIN": "wîhyowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa ",
+    "EMOJI": "🧑🏽"
+  },
+  {
+    "FST TAG": "N+I",
+    "LINGUISTIC (SHORT)": "Inanimate noun",
+    "LINGUISTIC (LONG)": "Noun — inanimate",
+    "ENGLISH": "Naming word — like: cîmân, wâwi",
+    "NÊHIYAWÊWIN": "wîhyowin-itwêwin — tâpiskôc: cîmân, wâwi",
+    "EMOJI": "💧"
+  },
+  {
+    "FST TAG": "N+A+D",
+    "LINGUISTIC (SHORT)": "Dependent animate noun",
+    "LINGUISTIC (LONG)": "Noun — dependent animate",
+    "ENGLISH": "Naming word — like: nôhkom",
+    "NÊHIYAWÊWIN": "wîhyowin-itwêwin — tâpiskôc: nôhkom",
+    "EMOJI": "👤🧑🏽"
+  },
+  {
+    "FST TAG": "N+I+D",
+    "LINGUISTIC (SHORT)": "Dependent inanimate noun",
+    "LINGUISTIC (LONG)": "Noun — dependent animate",
+    "ENGLISH": "Naming word — like: mîpit",
+    "NÊHIYAWÊWIN": "wîhyowin-itwêwin — tâpiskôc: mîpit",
+    "EMOJI": "👤💧"
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-1",
+    "LINGUISTIC (SHORT)": "NA-1",
+    "LINGUISTIC (LONG)": "Regular animate noun stem",
+    "ENGLISH": "like: pahkwêsikan, asikan",
+    "NÊHIYAWÊWIN": "tâpiskôc: pahkwêsikan, asikan",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-2",
+    "LINGUISTIC (SHORT)": "NA-2",
+    "LINGUISTIC (LONG)": "Vowel-glide animate noun stem",
+    "ENGLISH": "like: kihc-ôkiniy, ayapiy",
+    "NÊHIYAWÊWIN": "tâpiskôc: kihc-ôkiniy, ayapiy",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-3",
+    "LINGUISTIC (SHORT)": "NA-3",
+    "LINGUISTIC (LONG)": "Consonant-/w/ animate noun stem",
+    "ENGLISH": "like: masinahikanāhtik(w), askihk(w)",
+    "NÊHIYAWÊWIN": "tâpiskôc: masinahikanāhtik(w), askihk(w)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-4",
+    "LINGUISTIC (SHORT)": "NA-4",
+    "LINGUISTIC (LONG)": "Single-syllable animate noun stem",
+    "ENGLISH": "like: niska, êsa",
+    "NÊHIYAWÊWIN": "tâpiskôc: niska, êsa",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-4w",
+    "LINGUISTIC (SHORT)": "NA-4w",
+    "LINGUISTIC (LONG)": "Single-syllable-/w/ animate noun stem",
+    "ENGLISH": "like: wâhkwa, ihkwa",
+    "NÊHIYAWÊWIN": "tâpiskôc: wâhkwa, ihkwa",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NA-?",
+    "LINGUISTIC (SHORT)": "NA-?",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-1",
+    "LINGUISTIC (SHORT)": "NDA-1",
+    "LINGUISTIC (LONG)": "Regular animate dependent noun stem",
+    "ENGLISH": "like: mitâs (-tâs-), mohpan (-ohpan-)",
+    "NÊHIYAWÊWIN": "tâpiskôc: mitâs (-tâs-), mohpan (-ohpan-)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-2",
+    "LINGUISTIC (SHORT)": "NDA-2",
+    "LINGUISTIC (LONG)": "Vowel-glide animate dependent noun stem",
+    "ENGLISH": "like: mitihtikosiy, maskasiy",
+    "NÊHIYAWÊWIN": "tâpiskôc: mitihtikosiy, maskasiy",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-3",
+    "LINGUISTIC (SHORT)": "NDA-3",
+    "LINGUISTIC (LONG)": "Consonant-/w/ animate dependent noun stem",
+    "ENGLISH": "like: ninîkihik(w), nîtim(w)",
+    "NÊHIYAWÊWIN": "tâpiskôc: ninîkihik(w), nîtim(w)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-4",
+    "LINGUISTIC (SHORT)": "NDA-4",
+    "LINGUISTIC (LONG)": "Single-syllable animate dependent noun stem",
+    "ENGLISH": "like: nîwa (-îw-)",
+    "NÊHIYAWÊWIN": "tâpiskôc: nîwa (-îw-)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-4w",
+    "LINGUISTIC (SHORT)": "NDA-4w",
+    "LINGUISTIC (LONG)": "Single-syllable-/w/ animate dependent noun stem",
+    "ENGLISH": "like: nîskwa (-îskw-)",
+    "NÊHIYAWÊWIN": "tâpiskôc: nîskwa (-îskw-)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDA-x",
+    "LINGUISTIC (SHORT)": "NDA-x",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-1",
+    "LINGUISTIC (SHORT)": "NDI-1",
+    "LINGUISTIC (LONG)": "Regular inanimate dependent noun stem",
+    "ENGLISH": "like: mitêh (-têh-), mîpit (-îpit-)",
+    "NÊHIYAWÊWIN": "tâpiskôc: mitêh (-têh-), mîpit (-îpit-)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-2",
+    "LINGUISTIC (SHORT)": "NDI-2",
+    "LINGUISTIC (LONG)": "Consonant-glide inanimate dependent noun stem",
+    "ENGLISH": "like: miskotâkay, mêstakay",
+    "NÊHIYAWÊWIN": "tâpiskôc: miskotâkay, mêstakay",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-3",
+    "LINGUISTIC (SHORT)": "NDI-3",
+    "LINGUISTIC (LONG)": "Consonant-/w/ inanimate dependent noun stem",
+    "ENGLISH": "like: miskîsik, mayakask",
+    "NÊHIYAWÊWIN": "tâpiskôc: miskîsik, mayakask",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-4",
+    "LINGUISTIC (SHORT)": "NDI-4",
+    "LINGUISTIC (LONG)": "Single-syllable inanimate dependent noun stem",
+    "ENGLISH": "like: mîki, mîwas",
+    "NÊHIYAWÊWIN": "tâpiskôc: mîki, mîwas",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-?",
+    "LINGUISTIC (SHORT)": "NDI-?",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NDI-x",
+    "LINGUISTIC (SHORT)": "NDI-x",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-1",
+    "LINGUISTIC (SHORT)": "NI-1",
+    "LINGUISTIC (LONG)": "Regular inanimate noun stem",
+    "ENGLISH": "like: cîmân, astotin",
+    "NÊHIYAWÊWIN": "tâpiskôc: cîmân, astotin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-2",
+    "LINGUISTIC (SHORT)": "NI-2",
+    "LINGUISTIC (LONG)": "Vowel-glide inanimate noun stem",
+    "ENGLISH": "like: mîkisasâkay, oskasâkay",
+    "NÊHIYAWÊWIN": "tâpiskôc: mîkisasâkay, oskasâkay",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-3",
+    "LINGUISTIC (SHORT)": "NI-3",
+    "LINGUISTIC (LONG)": "Consonant-/w/ inanimate noun stem",
+    "ENGLISH": "like: pahkêkin(w), askêkin(w)",
+    "NÊHIYAWÊWIN": "tâpiskôc: pahkêkin(w), askêkin(w)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-4",
+    "LINGUISTIC (SHORT)": "NI-4",
+    "LINGUISTIC (LONG)": "Single-syllable inanimate noun stem",
+    "ENGLISH": "like: wâwi, osk-âyi",
+    "NÊHIYAWÊWIN": "tâpiskôc: wâwi, osk-âyi",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-5",
+    "LINGUISTIC (SHORT)": "NI-5",
+    "LINGUISTIC (LONG)": "Single-syllable-/w/ inanimate noun stem",
+    "ENGLISH": "like: ôsi, mihko",
+    "NÊHIYAWÊWIN": "tâpiskôc: ôsi, mihko",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "NI-?",
+    "LINGUISTIC (SHORT)": "NI-?",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Neg",
+    "LINGUISTIC (SHORT)": "Negation",
+    "LINGUISTIC (LONG)": "Negation",
+    "ENGLISH": "not",
+    "NÊHIYAWÊWIN": "nâmoya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Nonposs",
+    "LINGUISTIC (SHORT)": "Non-possessed",
+    "LINGUISTIC (LONG)": "Non-possessed forms",
+    "ENGLISH": "No ownership",
+    "NÊHIYAWÊWIN": "êkâ awiyak kâ-tipêyihtahk",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Num",
+    "LINGUISTIC (SHORT)": "Numeral",
+    "LINGUISTIC (LONG)": "Numeral",
+    "ENGLISH": "Number",
+    "NÊHIYAWÊWIN": "akihtâson",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Obv",
+    "LINGUISTIC (SHORT)": "Obviative",
+    "LINGUISTIC (LONG)": "Obviative",
+    "ENGLISH": "further",
+    "NÊHIYAWÊWIN": "anima/anihi (awasimê)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Poss",
+    "LINGUISTIC (SHORT)": "Possession",
+    "LINGUISTIC (LONG)": "Ownership",
+    "ENGLISH": "whose / whom something belongs to",
+    "NÊHIYAWÊWIN": "tipêyihcikêwin / awîni (kâ-tipêyihtahk)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Pers",
+    "LINGUISTIC (SHORT)": "Person",
+    "LINGUISTIC (LONG)": "Person",
+    "ENGLISH": "Person",
+    "NÊHIYAWÊWIN": "iyiniw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Preverb",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/acici",
+    "LINGUISTIC (SHORT)": "Preverb: acici-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "head down; upside down",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ahcahkowi",
+    "LINGUISTIC (SHORT)": "Preverb: ahcahkowi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "spiritual",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ahci",
+    "LINGUISTIC (SHORT)": "Preverb: âhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "to a different place",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ahkami",
+    "LINGUISTIC (SHORT)": "Preverb: âhkami-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "persistently, untiringly, unfailingly, unceasingly, unwaveringly; keep on, persevere",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/akawaci",
+    "LINGUISTIC (SHORT)": "Preverb: akâwâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "wishfully",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ako",
+    "LINGUISTIC (SHORT)": "Preverb: âkô-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "covered, shielded",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/akoci",
+    "LINGUISTIC (SHORT)": "Preverb: akoci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "hanging",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/akwa",
+    "LINGUISTIC (SHORT)": "Preverb: âkwâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "quite a lot; well on its way, in progress of time",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ami",
+    "LINGUISTIC (SHORT)": "Preverb: âmi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "almost",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/aniski",
+    "LINGUISTIC (SHORT)": "Preverb: âniski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "succession, extension",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apihci",
+    "LINGUISTIC (SHORT)": "Preverb: âpihci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "halfway",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apihta",
+    "LINGUISTIC (SHORT)": "Preverb: âpihtâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "half",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apihta-kisikawi",
+    "LINGUISTIC (SHORT)": "Preverb: âpihtâ-kîsikâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "at noon",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apihtawi",
+    "LINGUISTIC (SHORT)": "Preverb: âpihtawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "half",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apisci",
+    "LINGUISTIC (SHORT)": "Preverb: apisci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "small, little",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apisi",
+    "LINGUISTIC (SHORT)": "Preverb: apisi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "small, tiny",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/apisisi",
+    "LINGUISTIC (SHORT)": "Preverb: apisîsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "small",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/asawi",
+    "LINGUISTIC (SHORT)": "Preverb: âsawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in passing something on",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ase",
+    "LINGUISTIC (SHORT)": "Preverb: âsê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "see: asê-",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/aseya",
+    "LINGUISTIC (SHORT)": "Preverb: asêya-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in a group",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/asowi",
+    "LINGUISTIC (SHORT)": "Preverb: âsowi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in turn, in succession",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/aste",
+    "LINGUISTIC (SHORT)": "Preverb: âstê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "ceasing; quit",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ata",
+    "LINGUISTIC (SHORT)": "Preverb: âta-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "although, in vain",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ati",
+    "LINGUISTIC (SHORT)": "Preverb: ati-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "begin to, beginning; progressively, proceed to, going on, progressing; on the way",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/atimi",
+    "LINGUISTIC (SHORT)": "Preverb: atimi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "going away from speaker, towards addressee",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ayamihawi",
+    "LINGUISTIC (SHORT)": "Preverb: ayamihâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "prayer, pertaining to Christian prayer; of the Christian religion, of church",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ayamihewi",
+    "LINGUISTIC (SHORT)": "Preverb: ayamihêwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "of the Christian religion, of church",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ayaso",
+    "LINGUISTIC (SHORT)": "Preverb: ayâsô-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "a little here and there",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ayi",
+    "LINGUISTIC (SHORT)": "Preverb: ayi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "ah, hm",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ayici",
+    "LINGUISTIC (SHORT)": "Preverb: âyîci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "firmly, tightly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/cipehtako",
+    "LINGUISTIC (SHORT)": "Preverb: cîpêhtako-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "blue, greyish blue, grey",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/e",
+    "LINGUISTIC (SHORT)": "Preverb: ê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb: complementizer; defines a changed conjunct clause",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ikate",
+    "LINGUISTIC (SHORT)": "Preverb: îkatê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "aside, off to one side",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/isi",
+    "LINGUISTIC (SHORT)": "Preverb: isi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "so, this way, thus, thither, such",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/isko",
+    "LINGUISTIC (SHORT)": "Preverb: isko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "so far, to such an extent",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ispi",
+    "LINGUISTIC (SHORT)": "Preverb: ispi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "then, when",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ispihci",
+    "LINGUISTIC (SHORT)": "Preverb: ispîhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "meanwhile, beforehand",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/itahto",
+    "LINGUISTIC (SHORT)": "Preverb: itahto-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in such number",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ka",
+    "LINGUISTIC (SHORT)": "Preverb: ka-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb: future will, shall; infinitive; optative ought, should",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ka-ki",
+    "LINGUISTIC (SHORT)": "Preverb: ka-kî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "can, be able to; may; should, ought to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kaa",
+    "LINGUISTIC (SHORT)": "Preverb: kâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; defines a changed conjunct clause; often a relative clause, i.e. who, which",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kah",
+    "LINGUISTIC (SHORT)": "Preverb: kâh-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "would, ought to; likely to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kah-kape",
+    "LINGUISTIC (SHORT)": "Preverb: kâh-kapê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "all the time",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kakepaci",
+    "LINGUISTIC (SHORT)": "Preverb: kakêpâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "stupidly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kakwahyaki",
+    "LINGUISTIC (SHORT)": "Preverb: kakwâhyaki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "greatly, extremely, overwhelmingly; with startled surprise",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kakwayaki",
+    "LINGUISTIC (SHORT)": "Preverb: kakwâyaki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "greatly, extremely",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kakwe",
+    "LINGUISTIC (SHORT)": "Preverb: kakwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "try to, attempt to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kakweci",
+    "LINGUISTIC (SHORT)": "Preverb: kakwêci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "inquire",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kamwaci",
+    "LINGUISTIC (SHORT)": "Preverb: kâmwâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "quietly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kanaci",
+    "LINGUISTIC (SHORT)": "Preverb: kanâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "clean",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kape",
+    "LINGUISTIC (SHORT)": "Preverb: kapê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "for the full duration of; always",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kaski",
+    "LINGUISTIC (SHORT)": "Preverb: kaski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dense",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kaskitewi",
+    "LINGUISTIC (SHORT)": "Preverb: kaskitêwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "black",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kaspi",
+    "LINGUISTIC (SHORT)": "Preverb: kâspi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "crunching",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kawi",
+    "LINGUISTIC (SHORT)": "Preverb: kâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "again; back, in return",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kayasi",
+    "LINGUISTIC (SHORT)": "Preverb: kayâsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "old",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ke",
+    "LINGUISTIC (SHORT)": "Preverb: kê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; future, conditional: shall; defines a changed conjunct clause",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kekaci",
+    "LINGUISTIC (SHORT)": "Preverb: kêkâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "almost",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ket",
+    "LINGUISTIC (SHORT)": "Preverb: kêt-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "take off, remove",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ketiski",
+    "LINGUISTIC (SHORT)": "Preverb: kêtiski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "to exact measure",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ki",
+    "LINGUISTIC (SHORT)": "Preverb: kî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; past, completion",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kici",
+    "LINGUISTIC (SHORT)": "Preverb: kici-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "so that",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kihci",
+    "LINGUISTIC (SHORT)": "Preverb: kihci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "great, big, important",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kika",
+    "LINGUISTIC (SHORT)": "Preverb: kika-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; future; defines a conjunct clause",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kimoci",
+    "LINGUISTIC (SHORT)": "Preverb: kîmôci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "secretly, by stealth",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kipi",
+    "LINGUISTIC (SHORT)": "Preverb: kîpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "quickly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisci",
+    "LINGUISTIC (SHORT)": "Preverb: kisci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "big",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kise",
+    "LINGUISTIC (SHORT)": "Preverb: kisê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "great, gentle",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisi",
+    "LINGUISTIC (SHORT)": "Preverb: kîsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "finish; completely, to completion; completing, having done",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisipi",
+    "LINGUISTIC (SHORT)": "Preverb: kisipi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "end, finish, ending",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisiska",
+    "LINGUISTIC (SHORT)": "Preverb: kisiskâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "fast, quickly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisiwi",
+    "LINGUISTIC (SHORT)": "Preverb: kisîwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "angrily, in anger",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kiski",
+    "LINGUISTIC (SHORT)": "Preverb: kîski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "severing, breaking, cutting off",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kisopwe",
+    "LINGUISTIC (SHORT)": "Preverb: kîsopwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "with hot weather",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kita",
+    "LINGUISTIC (SHORT)": "Preverb: kita-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "[grammatical preverb]; future: will, shall; infinitive; optative: ought, should",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kita-ki",
+    "LINGUISTIC (SHORT)": "Preverb: kita-kî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "can, be able to; may; ought to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kitimaki",
+    "LINGUISTIC (SHORT)": "Preverb: kitimâki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "pitiable, pitiably",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kiwaci",
+    "LINGUISTIC (SHORT)": "Preverb: kîwâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "orphaned, stray; lonely, desolately",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kiwe",
+    "LINGUISTIC (SHORT)": "Preverb: kîwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "back, homeward",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kiye",
+    "LINGUISTIC (SHORT)": "Preverb: kiyê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; future; in changed conjunct clauses",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kiyi",
+    "LINGUISTIC (SHORT)": "Preverb: kiyi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb; future; defines a conjunct clause",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/koci",
+    "LINGUISTIC (SHORT)": "Preverb: koci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "try to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kota",
+    "LINGUISTIC (SHORT)": "Preverb: kôta-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "long for, be deprived of",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kotate",
+    "LINGUISTIC (SHORT)": "Preverb: kôtatê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "at a loss, making no attempt",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwahci",
+    "LINGUISTIC (SHORT)": "Preverb: kwâhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "far off",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwaskwe",
+    "LINGUISTIC (SHORT)": "Preverb: kwâskwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "upwards",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwataki",
+    "LINGUISTIC (SHORT)": "Preverb: kwâtaki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "distressing, tormenting, tortuous",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwayaci",
+    "LINGUISTIC (SHORT)": "Preverb: kwayâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in readiness, already; in preparation; beforehand",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwayako",
+    "LINGUISTIC (SHORT)": "Preverb: kwayako-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "taking out, directly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwayaski",
+    "LINGUISTIC (SHORT)": "Preverb: kwayaski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "properly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwayasko",
+    "LINGUISTIC (SHORT)": "Preverb: kwayasko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "straight; properly, correctly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kweski",
+    "LINGUISTIC (SHORT)": "Preverb: kwêski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "turning",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwetawi",
+    "LINGUISTIC (SHORT)": "Preverb: kwêtawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "doubtful",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/kwitawi",
+    "LINGUISTIC (SHORT)": "Preverb: kwîtawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "impatiently",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/maaci",
+    "LINGUISTIC (SHORT)": "Preverb: mâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "begin to, start to; commencement; initially",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/maci",
+    "LINGUISTIC (SHORT)": "Preverb: maci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "bad, evil, wicked, wrong, ill",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/maci-manitowi",
+    "LINGUISTIC (SHORT)": "Preverb: maci-manitowi",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "evil, devilish; of the Devil",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mahi",
+    "LINGUISTIC (SHORT)": "Preverb: mâhi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "downstream",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mahti",
+    "LINGUISTIC (SHORT)": "Preverb: mahti-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "let us; hortatory",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mamawi",
+    "LINGUISTIC (SHORT)": "Preverb: mâmawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "together; in full number of them all, altogether, all together as a group",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mana",
+    "LINGUISTIC (SHORT)": "Preverb: manâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "beware of, careful not to, avoid doing",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mani",
+    "LINGUISTIC (SHORT)": "Preverb: mani-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "with the intent of, with the purpose of",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/maninakisko",
+    "LINGUISTIC (SHORT)": "Preverb: mâninâkisko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "without hesitation, entirely",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/maski",
+    "LINGUISTIC (SHORT)": "Preverb: mâski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "crippled; defective, deformed",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/masta",
+    "LINGUISTIC (SHORT)": "Preverb: mastâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "later",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/matwe",
+    "LINGUISTIC (SHORT)": "Preverb: matwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "audibly, visibly; perceptibly; loudly; heard or seen from a distance",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mayaci",
+    "LINGUISTIC (SHORT)": "Preverb: mâyâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "bad",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mayi",
+    "LINGUISTIC (SHORT)": "Preverb: mâyi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "bad, evil; badly, evilly, wickedly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mecimwaci",
+    "LINGUISTIC (SHORT)": "Preverb: mêcimwâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "permanently, for good",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mesci",
+    "LINGUISTIC (SHORT)": "Preverb: mêsci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "exhaustively, till all is gone",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mesti",
+    "LINGUISTIC (SHORT)": "Preverb: mêsti-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "it is used up, it is burnt out, it is spent",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mihko",
+    "LINGUISTIC (SHORT)": "Preverb: mihko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "red",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mihyawe",
+    "LINGUISTIC (SHORT)": "Preverb: mihyawê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "with fur or body hair",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/misakame",
+    "LINGUISTIC (SHORT)": "Preverb: misakâmê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "all the way",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/misi",
+    "LINGUISTIC (SHORT)": "Preverb: misi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "big, greatly; much, a lot; very, extremely, to the extreme",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mistiko",
+    "LINGUISTIC (SHORT)": "Preverb: mistiko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "wood, of wood, wooden",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/miyo",
+    "LINGUISTIC (SHORT)": "Preverb: miyo-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "good, well, beautifully",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mohco",
+    "LINGUISTIC (SHORT)": "Preverb: môhco-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "silly, crazy",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mosci",
+    "LINGUISTIC (SHORT)": "Preverb: mosci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "just, merely, plainly, simply, directly, without mediation, without instrumentality; by hand",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mwayi",
+    "LINGUISTIC (SHORT)": "Preverb: mwayî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "before, prior to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/mêkwa",
+    "LINGUISTIC (SHORT)": "Preverb: mêkwâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "currently, presently, right now; while, during, in the meantime, in the act or place",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/naci",
+    "LINGUISTIC (SHORT)": "Preverb: nâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "getting",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nahi",
+    "LINGUISTIC (SHORT)": "Preverb: nahi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "well, fair",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nahta",
+    "LINGUISTIC (SHORT)": "Preverb: nahtâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "able; good at, competent, practised, experienced, skillful at, expert at, known as one who does s.t. habitually; well",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/naki",
+    "LINGUISTIC (SHORT)": "Preverb: naki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "stopping",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nanitaw",
+    "LINGUISTIC (SHORT)": "Preverb: nânitaw-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "[in negative clauses:] any",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/napaki",
+    "LINGUISTIC (SHORT)": "Preverb: napaki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "flat",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/naspaci",
+    "LINGUISTIC (SHORT)": "Preverb: naspâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "opposite, contrarily",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/natakasi",
+    "LINGUISTIC (SHORT)": "Preverb: nâtakâsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "into the bush country",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/natawi",
+    "LINGUISTIC (SHORT)": "Preverb: natawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "go to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nawaci",
+    "LINGUISTIC (SHORT)": "Preverb: nawaci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "better",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nawayawi",
+    "LINGUISTIC (SHORT)": "Preverb: nâwayawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "one behind the other, in a row",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nehiyawi",
+    "LINGUISTIC (SHORT)": "Preverb: nêhiyawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "Cree, in Cree",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nihci",
+    "LINGUISTIC (SHORT)": "Preverb: nîhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "down, downwards; bottom",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nihta",
+    "LINGUISTIC (SHORT)": "Preverb: nihtâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "able; good at, competent, practised, experienced, skillful at, expert at, known as one who does s.t. habitually; well",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nihtaciwe",
+    "LINGUISTIC (SHORT)": "Preverb: nîhtaciwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "downhill, down",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nikani",
+    "LINGUISTIC (SHORT)": "Preverb: nîkâni-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in front, ahead, at the head, in the future",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nimi",
+    "LINGUISTIC (SHORT)": "Preverb: nîmi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "take along",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nipa",
+    "LINGUISTIC (SHORT)": "Preverb: nîpâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "at night, in the dark",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nipahi",
+    "LINGUISTIC (SHORT)": "Preverb: nipahi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "really, very, extremely",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nisihkaci",
+    "LINGUISTIC (SHORT)": "Preverb: nisîhkâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "gently, carefully, slowly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/niso",
+    "LINGUISTIC (SHORT)": "Preverb: nîso-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "two",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nitawi",
+    "LINGUISTIC (SHORT)": "Preverb: nitawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "go and, go to; engaged in",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/nohte",
+    "LINGUISTIC (SHORT)": "Preverb: nôhtê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "want to, desire to; lack",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/o",
+    "LINGUISTIC (SHORT)": "Preverb: ô-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "from there, for that reason; with, by means of; [grammatical preverb]",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ocihci",
+    "LINGUISTIC (SHORT)": "Preverb: ocihci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "back in time; far back; from before, earlier; having lived long enough for something; chance to, live to, live to see",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/oh",
+    "LINGUISTIC (SHORT)": "Preverb: ôh-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "from there, for that reason; with, by means of; [past preverb in negative clauses]",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ohci",
+    "LINGUISTIC (SHORT)": "Preverb: ohci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "from there; with, by means of; because, for that reason, therefore, thence; [grammatical preverb; past preverb in negative clauses]",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ohtiskawi",
+    "LINGUISTIC (SHORT)": "Preverb: ohtiskawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "facing",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/osami",
+    "LINGUISTIC (SHORT)": "Preverb: osâmi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "too much, because of excess, for",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/osawaski",
+    "LINGUISTIC (SHORT)": "Preverb: osâwaski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "green, blue-green",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/osawi",
+    "LINGUISTIC (SHORT)": "Preverb: osâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "yellow, brown",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/oski",
+    "LINGUISTIC (SHORT)": "Preverb: oski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "new, young, first",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/otami",
+    "LINGUISTIC (SHORT)": "Preverb: otami-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "busy, occupied, delayed",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/paci",
+    "LINGUISTIC (SHORT)": "Preverb: paci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "wrongly, in error",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pahkaci",
+    "LINGUISTIC (SHORT)": "Preverb: pâhkaci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "fixed, not moving; locked in to a previously stated obligation",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pahki",
+    "LINGUISTIC (SHORT)": "Preverb: pahki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "portion of",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pahko",
+    "LINGUISTIC (SHORT)": "Preverb: pâhko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dry",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pakwano",
+    "LINGUISTIC (SHORT)": "Preverb: pakwâno-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "from memory",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/papa",
+    "LINGUISTIC (SHORT)": "Preverb: papâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "go around, about, all over",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/papami",
+    "LINGUISTIC (SHORT)": "Preverb: papâmi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "around, about, all over, here and there, hither and thither",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/papasi",
+    "LINGUISTIC (SHORT)": "Preverb: papâsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "fast, in a hurry, quick",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pasci",
+    "LINGUISTIC (SHORT)": "Preverb: pâsci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "over, beyond",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pasici",
+    "LINGUISTIC (SHORT)": "Preverb: pâsici-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "stepping over, skipping",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pasiko",
+    "LINGUISTIC (SHORT)": "Preverb: pasikô-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "get up (from sitting)",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/paspi",
+    "LINGUISTIC (SHORT)": "Preverb: paspi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "through narrow opening",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pe",
+    "LINGUISTIC (SHORT)": "Preverb: pê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "come and; towards, approaching; hither; thence, from there on down; [towards focus]",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/peyako",
+    "LINGUISTIC (SHORT)": "Preverb: pêyako-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "alone, only; as one",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pihci",
+    "LINGUISTIC (SHORT)": "Preverb: pîhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "inside, in, within",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pihtawe",
+    "LINGUISTIC (SHORT)": "Preverb: pîhtawê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "under; double",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pihtoke",
+    "LINGUISTIC (SHORT)": "Preverb: pîhtokê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "entering to the inside, entering house",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pikiskaci",
+    "LINGUISTIC (SHORT)": "Preverb: pîkiskâci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "sorry, sad, lonely",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pimi",
+    "LINGUISTIC (SHORT)": "Preverb: pîmi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "twisted",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pimici",
+    "LINGUISTIC (SHORT)": "Preverb: pimici-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "crosswise, from side, at right angle",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pimipahci",
+    "LINGUISTIC (SHORT)": "Preverb: pimipahci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "running, on the run",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pisci",
+    "LINGUISTIC (SHORT)": "Preverb: pisci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "accidentally, mistakenly, erroneously",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pitosi",
+    "LINGUISTIC (SHORT)": "Preverb: pîtosi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "different, foreign",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/piwi",
+    "LINGUISTIC (SHORT)": "Preverb: pîwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "small",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/poni",
+    "LINGUISTIC (SHORT)": "Preverb: pôni-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "stop, terminate, cease; after",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/posko",
+    "LINGUISTIC (SHORT)": "Preverb: pôsko-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "the same",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pwana",
+    "LINGUISTIC (SHORT)": "Preverb: pwâna-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "unable, fail to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/pwatawi",
+    "LINGUISTIC (SHORT)": "Preverb: pwâtawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "unable to do, failing",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sakewe",
+    "LINGUISTIC (SHORT)": "Preverb: sâkêwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "behind obstacle to vision, into view",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sapo",
+    "LINGUISTIC (SHORT)": "Preverb: sâpo-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "fully, exhaustively, through, through and through, right through, from end to end; beyond",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/saposci",
+    "LINGUISTIC (SHORT)": "Preverb: sâposci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "through",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sasakici",
+    "LINGUISTIC (SHORT)": "Preverb: sâsakici-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "backwards; supine",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/saskaci",
+    "LINGUISTIC (SHORT)": "Preverb: saskaci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "weary, tired of",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sehke",
+    "LINGUISTIC (SHORT)": "Preverb: sêhkê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "by itself, of own accord; move ahead of own accord; willingly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sesawi",
+    "LINGUISTIC (SHORT)": "Preverb: sêsâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "stretching, exercising",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sikaci",
+    "LINGUISTIC (SHORT)": "Preverb: sikaci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "impatiently, bored with",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sikawi",
+    "LINGUISTIC (SHORT)": "Preverb: sîkawi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "pouring, flooding",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/simaci",
+    "LINGUISTIC (SHORT)": "Preverb: simaci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "upright; straightened",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sipwe",
+    "LINGUISTIC (SHORT)": "Preverb: sipwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "leaving, departing, going away; starting out, commencement",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sisikoci",
+    "LINGUISTIC (SHORT)": "Preverb: sisikoci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "suddenly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sisiwe",
+    "LINGUISTIC (SHORT)": "Preverb: sisiwê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "spread, scatter",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sohkahat",
+    "LINGUISTIC (SHORT)": "Preverb: sôhkahât-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "greatly, powerfully",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/sohki",
+    "LINGUISTIC (SHORT)": "Preverb: sôhki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "hard, strongly, intensively, vigourously, properly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/soniyawi",
+    "LINGUISTIC (SHORT)": "Preverb: sôniyâwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "with respect to money, in financial matters",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ta",
+    "LINGUISTIC (SHORT)": "Preverb: ta-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb: future; infinitive",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/ta-ki",
+    "LINGUISTIC (SHORT)": "Preverb: ta-kî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "can, be able to; should, ought to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tah",
+    "LINGUISTIC (SHORT)": "Preverb: tâh-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "would, ought to; likely to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tahci",
+    "LINGUISTIC (SHORT)": "Preverb: tâhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "on the top",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tahki",
+    "LINGUISTIC (SHORT)": "Preverb: tahki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "repeated action, always, constantly ;; receiving a chill, cold",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tahkohci",
+    "LINGUISTIC (SHORT)": "Preverb: tahkohci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "on top",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tahto",
+    "LINGUISTIC (SHORT)": "Preverb: tahto-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "as many as",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/takahki",
+    "LINGUISTIC (SHORT)": "Preverb: takahki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "good, nice",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tako",
+    "LINGUISTIC (SHORT)": "Preverb: tako-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "in addition to, on top, over and above; with, having along, also",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tapi",
+    "LINGUISTIC (SHORT)": "Preverb: tâpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "through the same place",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tapisi",
+    "LINGUISTIC (SHORT)": "Preverb: tâpisi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "threading, inserting",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tasi",
+    "LINGUISTIC (SHORT)": "Preverb: tasi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "for such a time, for the duration; an action at a time, while",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tehci",
+    "LINGUISTIC (SHORT)": "Preverb: têhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "on, on top of something",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tepi",
+    "LINGUISTIC (SHORT)": "Preverb: têpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "sufficiently; enough; reaching",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tewi",
+    "LINGUISTIC (SHORT)": "Preverb: têwi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "pain",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/teyi",
+    "LINGUISTIC (SHORT)": "Preverb: têyi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "pain",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tipi",
+    "LINGUISTIC (SHORT)": "Preverb: tipi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "equal",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tita",
+    "LINGUISTIC (SHORT)": "Preverb: tita-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "[grammatical preverb; future]",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/tomi",
+    "LINGUISTIC (SHORT)": "Preverb: tômi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "oily, greasy",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wa",
+    "LINGUISTIC (SHORT)": "Preverb: wâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "intend to, be about to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wah",
+    "LINGUISTIC (SHORT)": "Preverb: wâh-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "whenever in future",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wahke",
+    "LINGUISTIC (SHORT)": "Preverb: wahkê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "addicted to, easily led to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/waki",
+    "LINGUISTIC (SHORT)": "Preverb: wâki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "curving",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wani",
+    "LINGUISTIC (SHORT)": "Preverb: wani-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dim, dark, indistinctly, blurred; lose; destroy",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wapani",
+    "LINGUISTIC (SHORT)": "Preverb: wâpani-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dawn; at, until dawn",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wapohki",
+    "LINGUISTIC (SHORT)": "Preverb: wâpôhki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "white",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wasa",
+    "LINGUISTIC (SHORT)": "Preverb: wâsâ-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "around",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wase",
+    "LINGUISTIC (SHORT)": "Preverb: wâsê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "clear; bright",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wawiye",
+    "LINGUISTIC (SHORT)": "Preverb: wâwiyê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "round, spherical",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wayawi",
+    "LINGUISTIC (SHORT)": "Preverb: wayawî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "outside; out from inside, out from the tipi",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wayesi",
+    "LINGUISTIC (SHORT)": "Preverb: wayêsi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "deceitfully",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wehci",
+    "LINGUISTIC (SHORT)": "Preverb: wêhci-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "easily",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wi",
+    "LINGUISTIC (SHORT)": "Preverb: wî-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "grammatical preverb: intend to, be about to",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wihpi",
+    "LINGUISTIC (SHORT)": "Preverb: wîhpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "hollowing out",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wini",
+    "LINGUISTIC (SHORT)": "Preverb: wîni-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "soil, dirty",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wipi",
+    "LINGUISTIC (SHORT)": "Preverb: wîpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dirty, unclean",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wipo",
+    "LINGUISTIC (SHORT)": "Preverb: wîpo-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "narrow",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wisaki",
+    "LINGUISTIC (SHORT)": "Preverb: wîsaki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "painfully",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wito",
+    "LINGUISTIC (SHORT)": "Preverb: wîto-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "want, intend",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/wiyipi",
+    "LINGUISTIC (SHORT)": "Preverb: wiyîpi-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "dirty looking; dull brown, drab",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/yahki",
+    "LINGUISTIC (SHORT)": "Preverb: yahki-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "act of pushing forward; increasing, increasingly, adding, more and more",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/yikate",
+    "LINGUISTIC (SHORT)": "Preverb: yîkatê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "aside",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/yipe",
+    "LINGUISTIC (SHORT)": "Preverb: yîpê-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "on a slant, on a slope, on the side, sideways",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PV/yoski",
+    "LINGUISTIC (SHORT)": "Preverb: yôski-",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "soft, softly",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Pl",
+    "LINGUISTIC (SHORT)": "Plural",
+    "LINGUISTIC (LONG)": "Plural",
+    "ENGLISH": "many",
+    "NÊHIYAWÊWIN": "mihcêt",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PlO",
+    "LINGUISTIC (SHORT)": "→ Pl",
+    "LINGUISTIC (LONG)": "Goal: Plural",
+    "ENGLISH": "→ many",
+    "NÊHIYAWÊWIN": "→ mihcêt",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PrA",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Pronoun: Animate",
+    "ENGLISH": "like: awa",
+    "NÊHIYAWÊWIN": "tâpiskôc: awa",
+    "EMOJI": "➡️🧑🏽"
+  },
+  {
+    "FST TAG": "PrI",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Pronoun: Inanimate",
+    "ENGLISH": "like: ôma",
+    "NÊHIYAWÊWIN": "tâpiskôc: ôma",
+    "EMOJI": "➡️💧"
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Pron",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Pronoun",
+    "ENGLISH": "Pointing word",
+    "NÊHIYAWÊWIN": "itâskonamin-itwêwin",
+    "EMOJI": "➡️"
+  },
+  {
+    "FST TAG": "Prop",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Proper",
+    "ENGLISH": "how something/someone is called",
+    "NÊHIYAWÊWIN": "isiyihkâsowin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Prox",
+    "LINGUISTIC (SHORT)": "Proximal",
+    "LINGUISTIC (LONG)": "Proximate",
+    "ENGLISH": "Here",
+    "NÊHIYAWÊWIN": "ôtâ",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Prs",
+    "LINGUISTIC (SHORT)": "Present",
+    "LINGUISTIC (LONG)": "Present tense",
+    "ENGLISH": "something is happening now",
+    "NÊHIYAWÊWIN": "ê-ispayik anohc/mêkwâc/mâna",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Prt",
+    "LINGUISTIC (SHORT)": "Past",
+    "LINGUISTIC (LONG)": "Past tense",
+    "ENGLISH": "something happened earlier",
+    "NÊHIYAWÊWIN": "ê-ispayik kwayâc",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px12Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 21p (incl)",
+    "LINGUISTIC (LONG)": "Possessor: 1st Person Plural (Inclusive)",
+    "ENGLISH": "your and our",
+    "NÊHIYAWÊWIN": "kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px1Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 1p (excl)",
+    "LINGUISTIC (LONG)": "Possessor: 1st Person Plural (Exclusive)",
+    "ENGLISH": "our (but not your)",
+    "NÊHIYAWÊWIN": "niyanân",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px1Sg",
+    "LINGUISTIC (SHORT)": "Possessor: 1s",
+    "LINGUISTIC (LONG)": "Possessor: 1st Person Singular",
+    "ENGLISH": "my",
+    "NÊHIYAWÊWIN": "niya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px21Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 21p (incl)",
+    "LINGUISTIC (LONG)": "Possessor: 1st Person Plural (Inclusive)",
+    "ENGLISH": "your and our",
+    "NÊHIYAWÊWIN": "kiyânaw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px2Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 2p (excl)",
+    "LINGUISTIC (LONG)": "Possessor: 2nd Person Plural",
+    "ENGLISH": "your (all)",
+    "NÊHIYAWÊWIN": "kiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px2Sg",
+    "LINGUISTIC (SHORT)": "Possessor: 2s",
+    "LINGUISTIC (LONG)": "Possessor: 2nd Person Singular",
+    "ENGLISH": "your (one)",
+    "NÊHIYAWÊWIN": "kiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px3Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 3p",
+    "LINGUISTIC (LONG)": "Possessor: 3rd Person Plural",
+    "ENGLISH": "their",
+    "NÊHIYAWÊWIN": "wiyawâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px3Sg",
+    "LINGUISTIC (SHORT)": "Possessor: 3s",
+    "LINGUISTIC (LONG)": "Possessor: 3rd Person Singular",
+    "ENGLISH": "his/her",
+    "NÊHIYAWÊWIN": "wiya",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px4Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 4p",
+    "LINGUISTIC (LONG)": "Possessor: 3rd Person Plural (Obviative)",
+    "ENGLISH": "his/her (further)",
+    "NÊHIYAWÊWIN": "wiya (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px4Sg",
+    "LINGUISTIC (SHORT)": "Possessor: 4s",
+    "LINGUISTIC (LONG)": "Possessor: 3rd Person Singular (Obviative)",
+    "ENGLISH": "their (further)",
+    "NÊHIYAWÊWIN": "wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Px4Sg/Pl",
+    "LINGUISTIC (SHORT)": "Possessor: 4",
+    "LINGUISTIC (LONG)": "Possessor: 3rd Person Singular/Plural (Obviative)",
+    "ENGLISH": "his/her/their",
+    "NÊHIYAWÊWIN": "wiya/wiyawâw (anihi)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "PxX",
+    "LINGUISTIC (SHORT)": "Possessor: X",
+    "LINGUISTIC (LONG)": "Possessor: Unspecified",
+    "ENGLISH": "someone's",
+    "NÊHIYAWÊWIN": "(awiya)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "RdplS",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Reduplication: Strong/Heavy",
+    "ENGLISH": "Intense",
+    "NÊHIYAWÊWIN": "tâpiskôc: nâh-nipâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "RdplW",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Reduplication: Weak/Light",
+    "ENGLISH": "Repeated",
+    "NÊHIYAWÊWIN": "tâpiskôc: na-nipâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Rel",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Relative",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Rom",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "Roman",
+    "ENGLISH": "like: I, V, X",
+    "NÊHIYAWÊWIN": "tâpiskôc: I, V, X",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Sg",
+    "LINGUISTIC (SHORT)": "Singular",
+    "LINGUISTIC (LONG)": "Singular",
+    "ENGLISH": "one",
+    "NÊHIYAWÊWIN": "pêyak",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "TA",
+    "LINGUISTIC (SHORT)": "Transitive Animate",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "like: wîcihêw, itêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: wîcihêw, itêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "TI",
+    "LINGUISTIC (SHORT)": "Transitive Inaminate",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "like: nâtam, mîciw",
+    "NÊHIYAWÊWIN": "tâpiskôc: nâtam, mîciw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "V",
+    "LINGUISTIC (SHORT)": "Verb",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "Action word",
+    "NÊHIYAWÊWIN": "ispayin-itwêwin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "V+II",
+    "LINGUISTIC (SHORT)": "Inanimate intransitive verb",
+    "LINGUISTIC (LONG)": "Verb — inanimate intransitive",
+    "ENGLISH": "Action word — like: miywâsin, mihkwâw",
+    "NÊHIYAWÊWIN": "ispayin-itwêwin — tâpiskôc: miywâsin, mihkwâw",
+    "EMOJI": "💧➡️"
+  },
+  {
+    "FST TAG": "V+AI",
+    "LINGUISTIC (SHORT)": "Animate intransitive verb",
+    "LINGUISTIC (LONG)": "Verb — animate intransitive",
+    "ENGLISH": "Action word — like: mîcisow, nipâw",
+    "NÊHIYAWÊWIN": "ispayin-itwêwin — tâpiskôc: mîcisow, nipâw",
+    "EMOJI": "🧑🏽➡️"
+  },
+  {
+    "FST TAG": "V+TI",
+    "LINGUISTIC (SHORT)": "Transitive inanimate verb",
+    "LINGUISTIC (LONG)": "Verb — transitive inanimate",
+    "ENGLISH": "Action word — like: nâtam, mîciw",
+    "NÊHIYAWÊWIN": "ispayin-itwêwin — tâpiskôc: nâtam, mîciw",
+    "EMOJI": "🧑🏽➡️💧"
+  },
+  {
+    "FST TAG": "V+TA",
+    "LINGUISTIC (SHORT)": "Transitive animate verb",
+    "LINGUISTIC (LONG)": "Verb — transitive animate",
+    "ENGLISH": "Action word — like: wîcihêw, itêw",
+    "NÊHIYAWÊWIN": "ispayin-itwêwin — tâpiskôc: wîcihêw, itêw",
+    "EMOJI": "🧑🏽➡️🧑🏽"
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "Voc",
+    "LINGUISTIC (SHORT)": "Vocative",
+    "LINGUISTIC (LONG)": "Vocative",
+    "ENGLISH": "call/address",
+    "NÊHIYAWÊWIN": "kitowin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VAI-1",
+    "LINGUISTIC (SHORT)": "VAI-1",
+    "LINGUISTIC (LONG)": "vowel-final animate intransitive verb",
+    "ENGLISH": "like: nipâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: nipâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VAI-v",
+    "LINGUISTIC (SHORT)": "VAI-v",
+    "LINGUISTIC (LONG)": "vowel-final animate intransitive verb",
+    "ENGLISH": "like: nipâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: nipâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VAI-2",
+    "LINGUISTIC (SHORT)": "VAI-2",
+    "LINGUISTIC (LONG)": "n-final animate intransitive verb",
+    "ENGLISH": "like: pimisin",
+    "NÊHIYAWÊWIN": "tâpiskôc: pimisin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VAI-3",
+    "LINGUISTIC (SHORT)": "VAI-3",
+    "LINGUISTIC (LONG)": "VTI-like animate intransitive verb",
+    "ENGLISH": "like: yâhyânam",
+    "NÊHIYAWÊWIN": "tâpiskôc: yâhyânam",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VII-1n",
+    "LINGUISTIC (SHORT)": "VII-1n",
+    "LINGUISTIC (LONG)": "n-final impersonal inanimate intransitive verb",
+    "ENGLISH": "like: kimiwan",
+    "NÊHIYAWÊWIN": "tâpiskôc: kimiwan",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VII-2n",
+    "LINGUISTIC (SHORT)": "VII-2n",
+    "LINGUISTIC (LONG)": "n-final pluralizable inanimate intransitive verb",
+    "ENGLISH": "like: miywâsin",
+    "NÊHIYAWÊWIN": "tâpiskôc: miywâsin",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VII-1v",
+    "LINGUISTIC (SHORT)": "VII-1v",
+    "LINGUISTIC (LONG)": "vowel-final impersonal inanimate intransitive verb",
+    "ENGLISH": "like: kîsikâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: kîsikâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VII-2v",
+    "LINGUISTIC (SHORT)": "VII-2v",
+    "LINGUISTIC (LONG)": "vowel-final pluralizable  inanimate intransitive verb",
+    "ENGLISH": "like: mihkwâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: mihkwâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTA-1",
+    "LINGUISTIC (SHORT)": "VTA-1",
+    "LINGUISTIC (LONG)": "transitive animate verb – class 1: regular",
+    "ENGLISH": "like: wîcihêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: wîcihêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTA-2",
+    "LINGUISTIC (SHORT)": "VTA-2",
+    "LINGUISTIC (LONG)": "transitive animate verb – class 2",
+    "ENGLISH": "like: nitonawêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: nitonawêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTA-3",
+    "LINGUISTIC (SHORT)": "VTA-3",
+    "LINGUISTIC (LONG)": "transitive animate verb – class 3",
+    "ENGLISH": "like: kîskiswêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: kîskiswêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTA-4",
+    "LINGUISTIC (SHORT)": "VTA-4",
+    "LINGUISTIC (LONG)": "transitive animate verb – class 4",
+    "ENGLISH": "like: nakatêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: nakatêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTA-5",
+    "LINGUISTIC (SHORT)": "VTA-5",
+    "LINGUISTIC (LONG)": "transitive animate verb – class 5",
+    "ENGLISH": "like: itêw",
+    "NÊHIYAWÊWIN": "tâpiskôc: itêw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTI-1",
+    "LINGUISTIC (SHORT)": "VTI-1",
+    "LINGUISTIC (LONG)": "transitive inanimate verb – class 1: regular",
+    "ENGLISH": "like: nâtam",
+    "NÊHIYAWÊWIN": "tâpiskôc: nâtam",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTI-2",
+    "LINGUISTIC (SHORT)": "VTI-2",
+    "LINGUISTIC (LONG)": "transitive inanimate verb – class 2: stem-final -â",
+    "ENGLISH": "like: kisihtâw",
+    "NÊHIYAWÊWIN": "tâpiskôc: kisihtâw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "VTI-3",
+    "LINGUISTIC (SHORT)": "VTI-3",
+    "LINGUISTIC (LONG)": "transitive inanimate verb – class 3",
+    "ENGLISH": "like: mîciw",
+    "NÊHIYAWÊWIN": "tâpiskôc: mîciw",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "X",
+    "LINGUISTIC (SHORT)": "X",
+    "LINGUISTIC (LONG)": "Actor: Unspecified",
+    "ENGLISH": "someone",
+    "NÊHIYAWÊWIN": "(awiya)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "XO",
+    "LINGUISTIC (SHORT)": "→ X",
+    "LINGUISTIC (LONG)": "Goal: Unspecified",
+    "ENGLISH": "→ someone",
+    "NÊHIYAWÊWIN": "→ (awiya)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "NÊHIYAWÊWIN": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "A+Sg+Title",
+    "LINGUISTIC (SHORT)": "A+Sg",
+    "LINGUISTIC (LONG)": "Singular, Animate",
+    "ENGLISH": "One (awa word)",
+    "NÊHIYAWÊWIN": "pêyak (awa)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "A+Pl+Title",
+    "LINGUISTIC (SHORT)": "A+Pl",
+    "LINGUISTIC (LONG)": "Plural, Animate",
+    "ENGLISH": "Many (awa word)",
+    "NÊHIYAWÊWIN": "mihcêt (awa)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "I+Sg+Title",
+    "LINGUISTIC (SHORT)": "I+Sg",
+    "LINGUISTIC (LONG)": "Singular, Inanimate",
+    "ENGLISH": "One (ôma word)",
+    "NÊHIYAWÊWIN": "pêyak (ôma)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "I+Pl+Title",
+    "LINGUISTIC (SHORT)": "I+Pl",
+    "LINGUISTIC (LONG)": "Plural, Inanimate",
+    "ENGLISH": "Many (ôma word)",
+    "NÊHIYAWÊWIN": "mihcêt (ôma)",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": ""
+  }
+]
