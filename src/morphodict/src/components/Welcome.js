@@ -5,7 +5,7 @@ function Welcome(props) {
       <article className="prose box">
         <h2 className="prose__heading no-italics">tânisi!</h2>
 
-        <p>itwêwinais a Plains Cree Dictionary.</p>
+        <p>itwêwina is a Plains Cree Dictionary.</p>
 
         <p>
           Type any Cree word to find its English translation. You can search for

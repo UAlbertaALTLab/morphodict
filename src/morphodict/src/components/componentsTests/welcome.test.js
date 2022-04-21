@@ -18,8 +18,8 @@ afterEach(() => {
   container = null;
 });
 
-let value = "itwêwinais a Plains Cree Dictionary."
+let value = "itwêwina is a Plains Cree Dictionary."
 
-it("I as a user wish to see the following values inside the weclome page", () => {
+it("I as a user wish to see the following values inside the welcome page", () => {
   act(() => {    render(<About />, container);  });  expect(container.textContent).toContain(value);
 });

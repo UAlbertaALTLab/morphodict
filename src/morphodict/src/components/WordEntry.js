@@ -7,13 +7,12 @@ import { useQuery } from "react-query";
 
 function WordEntry(props) {
   //const fakeData = fake_data;
-
   async function getWord() {
     let word = window.location.href.split("/")[4];
     if (word === "") {
       return null;
     }
-    return fetch("http://10.2.10.152/local/word/" + word).then((res) =>
+    return fetch("http://127.0.0.1:8081/local/word/" + word).then((res) =>
       res.json()
     );
   }

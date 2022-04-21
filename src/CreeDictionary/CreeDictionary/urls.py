@@ -34,6 +34,13 @@ urlpatterns = [
     path("settings", views.settings_page, name="cree-dictionary-settings"),
     path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
     ################################# Internal API #################################
+    path("api/", views.search_api, name="cree-dictionary-search"),  # main page
+    path("api/search/", views.search_api, name="cree-dictionary-search"),  # word_search returns wordforms as json
+    path(
+        "api/word/<str:slug>/",
+        views.word_details_api,
+        name="cree-dictionary-index-with-lemma",
+    ),  # returns details related to a spesific word
     # internal use to render boxes of search results
     path(
         "_search_results/<str:query_string>/",

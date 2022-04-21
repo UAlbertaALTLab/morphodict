@@ -24,7 +24,7 @@ function SearchResult(props) {
     if (test === "") {
       return [];
     }
-    return fetch("http://10.2.10.152/local/search/" + test).then((res) =>
+    return fetch("http://127.0.0.1:8081/local/search/" + test).then((res) =>
       res.json()
     );
   }
