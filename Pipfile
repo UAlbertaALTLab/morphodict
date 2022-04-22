@@ -51,6 +51,7 @@ gensim = "*"
 more-itertools = "~=8.7.0"
 types-requests = "*"
 requests = "*"
+paradigm-panes = "*"
 
 [scripts]
 # unit tests

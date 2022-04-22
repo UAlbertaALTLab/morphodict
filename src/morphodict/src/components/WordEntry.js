@@ -19,6 +19,7 @@ function WordEntry(props) {
 
   async function getWordRes() {
     let namedData = await getWord();
+    console.log(namedData);
     try {
       namedData = JSON.parse(namedData);
       return namedData;

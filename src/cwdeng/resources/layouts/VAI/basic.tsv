@@ -1,0 +1,24 @@
+	| Ind
+_ 1Sg	${lemma}+V+AI+Ind+1Sg
+_ 2Sg	${lemma}+V+AI+Ind+2Sg
+_ 3Sg	${lemma}+V+AI+Ind+3Sg
+_ 1Pl	${lemma}+V+AI+Ind+1Pl
+_ 12Pl	${lemma}+V+AI+Ind+12Pl
+_ 2Pl	${lemma}+V+AI+Ind+2Pl
+_ 3Pl	${lemma}+V+AI+Ind+3Pl
+_ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl
+_ X	${lemma}+V+AI+Ind+X
+	
+	| Cnj
+_ 1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg
+_ 2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg
+_ 3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg
+_ 1Pl	PV/e+${lemma}+V+AI+Cnj+1Pl
+_ 12Pl	PV/e+${lemma}+V+AI+Cnj+12Pl
+_ 2Pl	PV/e+${lemma}+V+AI+Cnj+2Pl
+_ 3Pl	PV/e+${lemma}+V+AI+Cnj+3Pl
+_ 4Sg/Pl	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl
+_ X	PV/e+${lemma}+V+AI+Cnj+X
+	
+# Imp	
+_ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg

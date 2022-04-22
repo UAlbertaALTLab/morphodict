@@ -35,10 +35,7 @@ function App() {
             <CreeDictionarySettings></CreeDictionarySettings>
           </Route>
           <Route
-            exact
-            path="/word/*"
-            render={(props) => <WordEntry {...props}></WordEntry>}
-          ></Route>
+            exact path="/word/*" render={(props) => <WordEntry {...props}></WordEntry>} />
           <Route path="/search/:id" exact component={SearchResult} />
           <Route exact path="/cree-dictionary-legend">
             <AbbreviationsLegend></AbbreviationsLegend>

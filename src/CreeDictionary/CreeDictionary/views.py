@@ -11,6 +11,7 @@ import json
 from http import HTTPStatus
 from django.http.response import JsonResponse, HttpResponse
 from rest_framework.decorators import api_view
+import paradigm_panes
 
 from .utils import *
 
@@ -504,12 +505,18 @@ def word_details_api(request, slug: str):
     wordform = presentation.serialize_wordform(
         lemma,
         animate_emoji=AnimateEmoji.current_value_from_request(request),
+        show_emoji=ShowEmoji.current_value_from_request(request),
         dict_source=get_dict_source(request)
     )
     wordform = wordform_orth(wordform)
 
     if paradigm is not None:
+        FST_DIR = settings.BASE_DIR / "resources" / "fst"
+        print("BASE DiR", settings.BASE_DIR)
         paradigm_manager = default_paradigm_manager()
+        pane_generator = paradigm_panes.PaneGenerator()
+        pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
+        pane_generator.set_fst_filepath(FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
         try:
             paradigm_sizes = list(paradigm_manager.sizes_of(paradigm))
         except ParadigmDoesNotExistError:
@@ -529,7 +536,7 @@ def word_details_api(request, slug: str):
             if paradigm_size not in paradigm_sizes:
                 paradigm_size = default_size
 
-        paradigm = paradigm_for(lemma, paradigm_size)
+        paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
         paradigm = paradigm_orth(paradigm)
 

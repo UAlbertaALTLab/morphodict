@@ -28,6 +28,8 @@ from utils.shared_res_dir import shared_res_dir
 
 from django.urls import reverse
 
+logger = logging.getLogger(__name__)
+
 
 def url_for_query(user_query: str) -> str:
     """
@@ -200,11 +202,15 @@ def paradigm_orth(paradigm):
     """
     Modifies inflections in a serialized paradigm to include all orthographic representations
     """
+    print(paradigm)
     for pane in paradigm["panes"]:
         for row in pane["tr_rows"]:
-            for cell in row["cells"]:
-                if cell["is_inflection"] and not cell["is_missing"]:
-                    cell["inflection"] = orth(cell["inflection"])
+            try:
+                for cell in row["cells"]:
+                    if cell["is_inflection"] and not cell["is_missing"]:
+                        cell["inflection"] = orth(cell["inflection"])
+            except NotImplementedError as e:
+                logger.error("No cells for row:", e)
     return paradigm
 
 
