@@ -41,10 +41,9 @@ function WordEntry(props) {
   let type = "Latn";
 
   if (!isFetching && !error && data !== null) {
-    wordform = data.nipaw_wordform.wordform;
+    wordform = data.entry.wordform;
     recordings = data.niya_recordings;
-    paradigm = data.nipaw_wordform.paradigm;
-    console.log(paradigm);
+    paradigm = data.entry.paradigm;
   }
 
   // MAYBE to do?
@@ -114,12 +113,12 @@ function WordEntry(props) {
                 data-cy="recordings-dropdown"
                 className="multiple-recordings__dropdown"
               >
-                <template id="template:speakerList">
-                  <option>
-                    <slot name="speakerName"></slot>,{" "}
-                    <slot name="speakerDialect"></slot>
-                  </option>
-                </template>
+                {/*<template id="template:speakerList">*/}
+                {/*  <option>*/}
+                {/*    <slot name="speakerName"></slot>,{" "}*/}
+                {/*    <slot name="speakerDialect"></slot>*/}
+                {/*  </option>*/}
+                {/*</template>*/}
               </select>
 
               <button

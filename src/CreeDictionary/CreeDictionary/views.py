@@ -512,7 +512,6 @@ def word_details_api(request, slug: str):
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "resources" / "fst"
-        print("BASE DiR", settings.BASE_DIR)
         paradigm_manager = default_paradigm_manager()
         pane_generator = paradigm_panes.PaneGenerator()
         pane_generator.set_layouts_dir(settings.LAYOUTS_DIR)
@@ -522,8 +521,8 @@ def word_details_api(request, slug: str):
         except ParadigmDoesNotExistError:
             return HttpResponseNotFound("bad paradigm size")
 
-        if "basic" in paradigm_sizes:
-            default_size = "basic"
+        if "full" in paradigm_sizes:
+            default_size = "full"
         else:
             default_size = paradigm_sizes[0]
 
@@ -541,7 +540,7 @@ def word_details_api(request, slug: str):
         paradigm = paradigm_orth(paradigm)
 
     content = {
-        "nipaw_wordform": {
+        "entry": {
             "lemma_id": lemma.id,
             "wordform": wordform,
             "paradigm": paradigm,

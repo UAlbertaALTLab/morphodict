@@ -202,7 +202,6 @@ def paradigm_orth(paradigm):
     """
     Modifies inflections in a serialized paradigm to include all orthographic representations
     """
-    print(paradigm)
     for pane in paradigm["panes"]:
         for row in pane["tr_rows"]:
             try:
