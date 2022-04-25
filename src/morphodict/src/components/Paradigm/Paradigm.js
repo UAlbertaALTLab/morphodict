@@ -91,21 +91,21 @@ function Paradigm(state) {
 
   const pane_layouts = panes_columns_slice.map((pane_column, i) => {
     return (
-      <Grid item xs={12 / columns} key={i}>
-        <Grid container>
+      <div class="row" >
+        <div class="col-sm">
           {pane_column.map((pane, j) => {
             return (
-              <Grid item style={{ width: "100%" }} key={i * num_per_column + j}>
+              <div class="card">
                 <SingleColumnPane pane={pane}></SingleColumnPane>
-              </Grid>
+              </div>
             );
           })}
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     );
   });
 
-  return <Grid container>{pane_layouts}</Grid>;
+  return <div class="container">{pane_layouts}</div>;
 }
 
 function useWindowDimensions() {

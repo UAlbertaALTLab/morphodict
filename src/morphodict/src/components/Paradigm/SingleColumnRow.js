@@ -48,7 +48,7 @@ function SingleColumnRow(props) {
       );
     }
   });
-  return <tr className="paradigm-row">{cell_layouts}</tr>;
+  return <div class="card-body"><tr className="paradigm-row">{cell_layouts}</tr></div>;
 }
 
 export default SingleColumnRow;
