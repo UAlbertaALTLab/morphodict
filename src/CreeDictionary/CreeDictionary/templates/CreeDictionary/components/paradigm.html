@@ -91,6 +91,44 @@
             </table>
         </div>
 
+{#    <div class="row" >#}
+{#        <div class="col-sm">#}
+{#            {% for pane in pane_columns %}#}
+{#              <div class="card">#}
+{#        <Accordion style="minHeight: 4.5em; width: 100%">#}
+{#      <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">#}
+{#        <div style="margin: auto; width: 100%">#}
+{#          <Typography style="width: 100%; textAlign: center">#}
+{#              {% if pane.header.label.0 %}#}
+{#              {% orth pane.header.label.0 %}#}
+{#              {% else %}#}
+{#              {% orth "Core" %}#}
+{#              {% endif %}#}
+{#          </Typography>#}
+{#          <Typography#}
+{#            style="#}
+{#              width: 100%;#}
+{#              textAlign: center;#}
+{#              fontWeight: bold",#}
+{#          >#}
+{#              &nbsp;{% orth pane.col_label.label.0 %}#}
+{#          </Typography>#}
+{#        </div>#}
+{#      </AccordionSummary>#}
+{#      <AccordionDetails>#}
+{#        <Card style="width: 100%">#}
+{#          &nbsp;#}
+{#          <table>#}
+{#            <tbody>{{ row_layouts }}</tbody>#}
+{#          </table>#}
+{#        </Card>#}
+{#      </AccordionDetails>#}
+{#    </Accordion>#}
+{#              </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+
         {% include "CreeDictionary/components/paradigm-size-button.html" %}
     </section>
 {% endspaceless %}
