@@ -253,13 +253,15 @@ img {
   .app__pane {
     padding: 0 0;
     margin: auto;
-    width: var(--tablet-search-bar-width);
+    width: 75%;
+    /*width: var(--tablet-search-bar-width);*/
   }
 }
 
 @media (min-width: 960px) {
   .app__pane {
-    width: var(--desktop-search-bar-width);
+    width: 80%;
+    /*width: var(--desktop-search-bar-width);*/
   }
 }
 
@@ -1446,7 +1448,7 @@ textarea {
 .paradigm-title,
 .paradigm-header {
   text-align: center;
-  font-style: italic;
+  /*font-style: italic;*/
   font-weight: var(--body-font-weight);
 }
 
@@ -1457,6 +1459,7 @@ textarea {
 
 .paradigm-label--row {
   font-style: italic;
+  font-weight: bolder;
 }
 
 .paradigm-label--col {
@@ -1469,6 +1472,7 @@ textarea {
 
 .paradigm-cell {
   font-weight: var(--body-font-weight);
+  padding-left: 2em;
 }
 
 .paradigm-cell--observed {
@@ -1482,4 +1486,9 @@ textarea {
 .paradigm-label--row,
 .paradigm-cell {
   vertical-align: top; /* When a label applies to multiple wordforms */
+}
+
+.paradigm-table {
+  width: 100%;
+  text-align: justify;
 }
