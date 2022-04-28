@@ -63,7 +63,7 @@ function SingleColumnPane(props) {
   return (
     <Accordion style={{ minHeight: "4.5em", width: "100%" }}>
       <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
-        <div style={{ margin: "auto", width: "100%" }}>
+        <div style={{ margin: "auto" }}>
           <Typography style={{ width: "100%", textAlign: "center" }}>
             {header == null ? defaultHeader : labels[header["label"].join("+")][labelType]}
           </Typography>
@@ -83,7 +83,7 @@ function SingleColumnPane(props) {
       <AccordionDetails>
         <Card style={{ width: "100%" }}>
           {" "}
-          <table>
+          <table style={{ width: "100%", alignItems: "center" }}>
             <tbody>{row_layouts}</tbody>
           </table>
         </Card>

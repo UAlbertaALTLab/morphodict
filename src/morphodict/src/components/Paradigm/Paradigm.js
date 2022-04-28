@@ -92,15 +92,16 @@ function Paradigm(state) {
   const pane_layouts = panes_columns_slice.map((pane_column, i) => {
     return (
       <div class="row" >
-        <div class="col-sm">
           {pane_column.map((pane, j) => {
             return (
+                <div className="col-sm-6">
               <div class="card">
                 <SingleColumnPane pane={pane}></SingleColumnPane>
               </div>
+                </div>
             );
           })}
-        </div>
+        {/*</div>*/}
       </div>
     );
   });

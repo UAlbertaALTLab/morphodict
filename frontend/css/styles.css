@@ -133,13 +133,13 @@ html {
   .app__pane {
     padding: 0 0;
     margin: auto;
-    width: var(--tablet-search-bar-width);
+    width: 70%;
   }
 }
 
 @media (min-width: 960px) {
   .app__pane {
-    width: var(--desktop-search-bar-width);
+    width: 80%;
   }
 }
 
@@ -800,7 +800,7 @@ a.multiple-recordings__action-button {
 .paradigm-title,
 .paradigm-header {
   text-align: center;
-  font-style: italic;
+  /*font-style: italic;*/
   font-weight: var(--body-font-weight);
 }
 
@@ -810,7 +810,7 @@ a.multiple-recordings__action-button {
 }
 
 .paradigm-label--row {
-  font-style: italic;
+  font-weight: bolder;
 }
 
 .paradigm-label--col {
