@@ -113,12 +113,12 @@ function WordEntry(props) {
                 data-cy="recordings-dropdown"
                 className="multiple-recordings__dropdown"
               >
-                {/*<template id="template:speakerList">*/}
-                {/*  <option>*/}
-                {/*    <slot name="speakerName"></slot>,{" "}*/}
-                {/*    <slot name="speakerDialect"></slot>*/}
-                {/*  </option>*/}
-                {/*</template>*/}
+                <template id="template:speakerList">
+                  <option>
+                    <slot name="speakerName"></slot>,{" "}
+                    <slot name="speakerDialect"></slot>
+                  </option>
+                </template>
               </select>
 
               <button

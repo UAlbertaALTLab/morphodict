@@ -543,7 +543,6 @@ def word_details_api(request, slug: str):
         paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
         paradigm = paradigm_orth(paradigm)
-        # pane_columns = get_pane_layouts(request, paradigm)
 
     content = {
         "entry": {
