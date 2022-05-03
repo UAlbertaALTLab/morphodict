@@ -84,14 +84,14 @@ function SingleColumnPane(props) {
         </div>
       </AccordionSummary>
       <AccordionDetails>
-        <Card style={{ width: "100%" }}>
+        <div style={{ width: "100%" }}>
           <div className="card-body">
           {" "}
           <table className="paradigm-table">
             <tbody>{row_layouts}</tbody>
           </table>
           </div>
-        </Card>
+        </div>
       </AccordionDetails>
     </Accordion>
   );

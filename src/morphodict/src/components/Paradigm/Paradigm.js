@@ -82,19 +82,15 @@ function Paradigm(state) {
     const pane_layouts = pane_columns.map((pane_column, i) => {
         counter += 1;
         return (
-            <div key={i} className="row">
-
-                <div className="col-lg-8">
-                    <div className="card">
-                        <SingleColumnPane pane={pane_column} counter={counter}></SingleColumnPane>
-                    </div>
+            <div className="col-sm-12 col-md-6 col-lg-4">
+                <div className="card">
+                    <SingleColumnPane pane={pane_column} counter={counter}></SingleColumnPane>
                 </div>
-
             </div>
         );
     });
 
-    return <div className="container">{pane_layouts}</div>;
+    return <div className="container"><div className={"row"}>{pane_layouts}</div></div>;
 }
 
 export default Paradigm;
