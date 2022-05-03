@@ -19,7 +19,6 @@ function WordEntry(props) {
 
   async function getWordRes() {
     let namedData = await getWord();
-    console.log(namedData);
     try {
       namedData = JSON.parse(namedData);
       return namedData;
@@ -146,7 +145,7 @@ function WordEntry(props) {
             <ol className="meanings">
               {wordform.definitions.map((def, index) => (
                 <li className="meanings__meaning" key={index}>
-                  {def.text}
+                  {def.text}&nbsp; {index} {def.source_id}
                 </li>
               ))}
             </ol>

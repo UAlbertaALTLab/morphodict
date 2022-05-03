@@ -3,6 +3,7 @@ function SingleColumnRow(props) {
   const cell_list = props.cells;
   const labelType = props.labelType;
   const labels = props.labels;
+  const counter = props.counter;
   const cell_layouts = cell_list.map((cell, index) => {
     if (cell.is_label) {
       const class_name = "paradigm-label paradigm-label--" + cell.label_for;
@@ -11,7 +12,7 @@ function SingleColumnRow(props) {
           scope={cell.label_for}
           rowSpan={1}
           className={class_name}
-          key={index}
+          key={counter.toString() + '-' + index.toString()}
         >
           {labels[cell.label.join("+")][labelType]}
         </th>
@@ -33,7 +34,7 @@ function SingleColumnRow(props) {
           scope={"row"}
           rowSpan={1}
           className={class_name}
-          key={index}
+          key={counter.toString() + '-' + index.toString()}
         >
         </th>
       );

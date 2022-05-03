@@ -1,3 +1,5 @@
+"use strict";
+
 export function loadParadigmAudio() {
   for (let button of document.querySelectorAll(
     "[data-cy='play-recording-paradigm']"
