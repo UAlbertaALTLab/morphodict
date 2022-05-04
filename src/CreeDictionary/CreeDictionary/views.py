@@ -425,8 +425,9 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
 
 def get_recordings_from_paradigm(paradigm, request):
-    if request.COOKIES.get("paradigm_audio") in ["no", None]:
-        return paradigm
+    print(request.COOKIES.get("paradigm_audio"))
+    # if request.COOKIES.get("paradigm_audio") in ["no", None]:
+    #     return paradigm
 
     query_terms = []
     matched_recordings = {}
@@ -437,25 +438,26 @@ def get_recordings_from_paradigm(paradigm, request):
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.append("synth")
 
-    for pane in paradigm.panes:
-        for row in pane.tr_rows:
-            if not row.is_header:
-                for cell in row.cells:
-                    if cell.is_inflection:
-                        query_terms.append(str(cell))
+    for pane in paradigm["panes"]:
+        for row in pane["tr_rows"]:
+            if not row["is_header"]:
+                for cell in row["cells"]:
+                    if "inflection" in cell:
+                        print("CELLL", cell)
+                        query_terms.append(cell["inflection"])
 
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
             matched_recordings.update(get_recordings_from_url(search_terms, url))
 
-    for pane in paradigm.panes:
-        for row in pane.tr_rows:
-            if not row.is_header:
-                for cell in row.cells:
-                    if cell.is_inflection:
-                        if str(cell) in matched_recordings:
-                            cell.add_recording(matched_recordings[str(cell)])
+    for pane in paradigm["panes"]:
+        for row in pane["tr_rows"]:
+            if not row["is_header"]:
+                for cell in row["cells"]:
+                    if "inflection" in cell:
+                        if cell["inflection"] in matched_recordings:
+                            cell["recording"] = matched_recordings[cell["inflection"]]
 
     return paradigm
 
@@ -529,7 +531,6 @@ def word_details_api(request, slug: str):
         print(matched_recs)
         if matched_recs:
             recordings.extend(matched_recs)
-    print("RECORDINGS", recordings)
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "resources" / "fst"

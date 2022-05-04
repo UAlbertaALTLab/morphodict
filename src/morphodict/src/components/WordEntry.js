@@ -1,5 +1,4 @@
 import { AiOutlineSound } from "react-icons/ai";
-import { BsPlayFill } from "react-icons/bs";
 import { Grid } from "@mui/material";
 import { useState } from "react";
 import Paradigm from "./Paradigm/Paradigm";
@@ -40,7 +39,6 @@ function WordEntry(props) {
   let type = "Latn";
 
   if (!isFetching && !error && data !== null) {
-    console.log(data);
     wordform = data.entry.wordform;
     recordings = data.entry.recordings;
     paradigm = data.entry.paradigm;

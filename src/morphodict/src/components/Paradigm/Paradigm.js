@@ -82,7 +82,7 @@ function Paradigm(state) {
     const pane_layouts = pane_columns.map((pane_column, i) => {
         counter += 1;
         return (
-            <div className="col-sm-12 col-md-6 col-lg-4">
+            <div className="col-sm-12 col-md-6 col-lg-4" key={counter.toString() + '-' + i.toString()}>
                 <div className="card">
                     <SingleColumnPane pane={pane_column} counter={counter}></SingleColumnPane>
                 </div>
