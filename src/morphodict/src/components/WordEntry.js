@@ -3,10 +3,10 @@ import { BsPlayFill } from "react-icons/bs";
 import { Grid } from "@mui/material";
 import { useState } from "react";
 import Paradigm from "./Paradigm/Paradigm";
+import MultiPlayer from './MultiPlayer';
 import { useQuery } from "react-query";
 
 function WordEntry(props) {
-  //const fakeData = fake_data;
   async function getWord() {
     let word = window.location.href.split("/")[4];
     if (word === "") {
@@ -40,8 +40,9 @@ function WordEntry(props) {
   let type = "Latn";
 
   if (!isFetching && !error && data !== null) {
+    console.log(data);
     wordform = data.entry.wordform;
-    recordings = data.niya_recordings;
+    recordings = data.entry.recordings;
     paradigm = data.entry.paradigm;
   }
 
@@ -113,10 +114,14 @@ function WordEntry(props) {
                 className="multiple-recordings__dropdown"
               >
                 <template id="template:speakerList">
-                  <option>
-                    <slot name="speakerName"></slot>,{" "}
-                    <slot name="speakerDialect"></slot>
-                  </option>
+
+                  {/*<option>*/}
+                    <MultiPlayer
+                    recordings={recordings}
+                  />
+                    {/*<slot name="speakerName"></slot>,{" "}*/}
+                    {/*<slot name="speakerDialect"></slot>*/}
+                  {/*</option>*/}
                 </template>
               </select>
 
@@ -128,6 +133,7 @@ function WordEntry(props) {
               >
                 <BsPlayFill></BsPlayFill>
               </button>
+
               <a
                 className="multiple-recordings__action-button"
                 data-action="learn-about-speaker"
@@ -145,7 +151,7 @@ function WordEntry(props) {
             <ol className="meanings">
               {wordform.definitions.map((def, index) => (
                 <li className="meanings__meaning" key={index}>
-                  {def.text}&nbsp; {index} {def.source_id}
+                  {def.text} {def.source_id}
                 </li>
               ))}
             </ol>

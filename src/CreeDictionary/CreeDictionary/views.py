@@ -472,6 +472,14 @@ def get_recordings_from_url(search_terms, url):
     return matched_recordings
 
 
+def get_recordings_from_url_with_speaker_info(search_terms, url):
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    recordings = response.json()
+
+    return recordings["matched_recordings"]
+
+
 # Yield successive n-sized
 # chunks from l.
 # https://www.geeksforgeeks.org/break-list-chunks-size-n-python/
@@ -514,6 +522,14 @@ def word_details_api(request, slug: str):
         dict_source=get_dict_source(request)
     )
     wordform = wordform_orth(wordform)
+    recordings = []
+    for source in settings.SPEECH_DB_EQ:
+        url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
+        matched_recs = get_recordings_from_url_with_speaker_info([lemma], url)
+        print(matched_recs)
+        if matched_recs:
+            recordings.extend(matched_recs)
+    print("RECORDINGS", recordings)
 
     if paradigm is not None:
         FST_DIR = settings.BASE_DIR / "resources" / "fst"
@@ -550,7 +566,8 @@ def word_details_api(request, slug: str):
             "wordform": wordform,
             "paradigm": paradigm,
             "paradigm_size": paradigm_size,
-            "paradigm_sizes": paradigm_sizes
+            "paradigm_sizes": paradigm_sizes,
+            "recordings": recordings,
         }
     }
 
