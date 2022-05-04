@@ -5,7 +5,6 @@ import React, { useState, useEffect } from 'react'
 const useMultiAudio = recordings => {
   const [sources] = useState(
     recordings.map(rec => {
-      console.log("HIYA", rec)
       const rec_url = rec.recording_url;
       const speaker = rec.speaker_name;
       const language = rec.language[0]
@@ -74,21 +73,23 @@ const MultiPlayer = ({ recordings }) => {
   for (let rec of recordings) {
     urls.push(rec.recording_url);
   }
-  const [players, toggle] = useMultiAudio(recordings)
-  console.log("PLAYERS", players);
+  const [players, toggle] = useMultiAudio(recordings);
 
   return (
-    <option>
+    <div>
       {players.map((player, i) => (
         <Player key={i} player={player} toggle={toggle(i)} />
       ))}
-    </option>
+    </div>
   )
 }
 
 const Player = ({ player, toggle }) => (
   <div>
-    <button onClick={toggle}><p>{player.url.speaker_name}, {player.url.language}</p></button>
+    <p>
+      <button onClick={toggle}>&#9655; </button> {player.url.speaker_name}, {player.url.language} <br />
+      <a href={player.url.speaker_bio_url} target={"_blank"}> Learn more about the speaker...</a>
+    </p>
   </div>
 )
 

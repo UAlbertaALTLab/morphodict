@@ -63,7 +63,7 @@ function WordEntry(props) {
   const handleSoundPlay = () => {
     // TODO: NEED API
     // need sound api
-    setShowSpeakerMenu(true);
+    setShowSpeakerMenu(!showSpeakerMenu);
   };
 
   return (
@@ -103,47 +103,7 @@ function WordEntry(props) {
               id="recordings-dropdown"
               data-cy="multiple-recordings"
             >
-              <p className="multiple-recordings__help-text explainer">
-                Choose a name from the dropdown to hear the word said by the
-                speaker.
-              </p>
-
-              <select
-                name="recordings-dropdown"
-                data-cy="recordings-dropdown"
-                className="multiple-recordings__dropdown"
-              >
-                <template id="template:speakerList">
-
-                  {/*<option>*/}
-                    <MultiPlayer
-                    recordings={recordings}
-                  />
-                    {/*<slot name="speakerName"></slot>,{" "}*/}
-                    {/*<slot name="speakerDialect"></slot>*/}
-                  {/*</option>*/}
-                </template>
-              </select>
-
-              <button
-                className="multiple-recordings__action-button"
-                data-action="play-current-recording"
-                aria-label="Play recording"
-                data-cy="play-selected-speaker"
-              >
-                <BsPlayFill></BsPlayFill>
-              </button>
-
-              <a
-                className="multiple-recordings__action-button"
-                data-action="learn-about-speaker"
-                aria-label="Learn more about speaker"
-                data-cy="learn-about-speaker"
-                target="_blank"
-                rel="noopener"
-              >
-                Learn more about the speaker.
-              </a>
+              <MultiPlayer recordings={recordings} />
             </section>
           ) : null}
 
