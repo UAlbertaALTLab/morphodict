@@ -44,6 +44,15 @@ function WordEntry(props) {
     paradigm = data.entry.paradigm;
   }
 
+  let recs = [];
+  if (recordings) {
+    recs = recordings.map((recording) =>
+      <option onClick={submittedAudio} key={recording.url} data-link={recording.speaker_bio_url} value={recording.recording_url}>
+          {recording.speaker_name}, {recording.language[0]}
+      </option>
+    );
+  }
+
   // MAYBE to do?
   let settings = JSON.parse(window.localStorage.getItem("settings"));
   if (settings.latn_x_macron) {
@@ -59,10 +68,27 @@ function WordEntry(props) {
 
   const [showSpeakerMenu, setShowSpeakerMenu] = useState(false);
   const handleSoundPlay = () => {
-    // TODO: NEED API
-    // need sound api
-    setShowSpeakerMenu(!showSpeakerMenu);
+    setShowSpeakerMenu(true);
+    const recToPlay = recordings[0].recording_url;
+    const audio = new Audio(recToPlay);
+    audio.play();
   };
+
+  function submittedAudio(){
+    const link = document.getElementById("audio_select").value;
+    const audio = new Audio(link);
+    audio.play();
+  }
+
+  const audioChanged = (e) => {
+    const idx = e.target.selectedIndex;
+    const option = e.target.querySelectorAll('option')[idx];
+    const link = option.getAttribute('data-link');
+    const linkElement = document.getElementById("learnMoreLink");
+    linkElement.href = link;
+    submittedAudio();
+    return false;
+  }
 
   return (
     <>
@@ -92,16 +118,22 @@ function WordEntry(props) {
                 </button>
               </Grid>
             </Grid>
-            {/* include "CreeDictionary/components/definition__elaboration.html" with lemma=wordform verbose=True */}
           </header>
+
+
 
           {showSpeakerMenu ? (
             <section
               className="multiple-recordings"
               id="recordings-dropdown"
               data-cy="multiple-recordings"
+              key={"speakerDropdownSection"}
             >
-              <MultiPlayer recordings={recordings} />
+              <h6 key={"speakerDropdownHelpText"}>Choose a name from the dropdown to hear the word said by the speaker.</h6>
+              <select id="audio_select" onChange={audioChanged}>
+              {recs}
+            </select>
+            <button onClick={submittedAudio}>&#9655;</button> <a href={recordings[0].speaker_bio_url} id={"learnMoreLink"} target={"_blank"}>Learn more about the speaker...</a>
             </section>
           ) : null}
 
@@ -124,4 +156,5 @@ function WordEntry(props) {
     </>
   );
 }
+
 export default WordEntry;
