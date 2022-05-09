@@ -66,9 +66,7 @@ function WordEntry(props) {
     console.log(type);
   });
 
-  const [showSpeakerMenu, setShowSpeakerMenu] = useState(false);
   const handleSoundPlay = () => {
-    setShowSpeakerMenu(true);
     const recToPlay = recordings[0].recording_url;
     const audio = new Audio(recToPlay);
     audio.play();
@@ -120,10 +118,7 @@ function WordEntry(props) {
             </Grid>
           </header>
 
-
-
-          {showSpeakerMenu ? (
-            <section
+          <section
               className="multiple-recordings"
               id="recordings-dropdown"
               data-cy="multiple-recordings"
@@ -135,7 +130,6 @@ function WordEntry(props) {
             </select>
             <button onClick={submittedAudio}>&#9655;</button> <a href={recordings[0].speaker_bio_url} id={"learnMoreLink"} target={"_blank"}>Learn more about the speaker...</a>
             </section>
-          ) : null}
 
           <section className="definition__meanings" data-cy="meanings">
             <ol className="meanings">
