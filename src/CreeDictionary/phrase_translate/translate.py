@@ -21,7 +21,6 @@ import django
 import foma
 
 from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 
