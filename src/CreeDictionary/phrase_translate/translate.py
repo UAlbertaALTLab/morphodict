@@ -70,17 +70,6 @@ def eng_phrase_to_crk_features_fst():
     )
 
 
-def parse_analysis_and_tags(analysis):
-    """Extract tags into a list in the form required by inflect_english_phrase
-    >>> parse_analysis_and_tags('PV/e+PV/ki+atamihêw+V+TA+Cnj+1Pl+2SgO')
-    ['PV/e+', 'PV/ki+', '+V', '+TA', '+Cnj', '+1Pl', '+2SgO']
-    """
-    print("HIYA", analysis)
-    head_tags = analysis.prefix_tags
-    tail_tags = analysis.suffix_tags
-    return [t + "+" for t in head_tags] + ["+" + t for t in tail_tags]
-
-
 class FomaLookupException(Exception):
     pass
 

@@ -5,8 +5,7 @@ from django.core.management import BaseCommand
 from django.db.models import Max
 from tqdm import tqdm
 
-from CreeDictionary.phrase_translate.translate import inflect_english_phrase, FomaLookupException, \
-    parse_analysis_and_tags
+from CreeDictionary.phrase_translate.translate import inflect_english_phrase, FomaLookupException
 from morphodict.lexicon.models import DictionarySource, Definition, Wordform
 
 logger = logging.getLogger(__name__)
