@@ -454,7 +454,9 @@ def get_recordings_from_url(search_terms, url):
 
     for recording in recordings["matched_recordings"]:
         matched_recordings[recording["wordform"]] = {}
-        matched_recordings[recording["wordform"]]["recording_url"] = recording["recording_url"]
+        matched_recordings[recording["wordform"]]["recording_url"] = recording[
+            "recording_url"
+        ]
         matched_recordings[recording["wordform"]]["speaker"] = recording["speaker"]
 
     return matched_recordings
