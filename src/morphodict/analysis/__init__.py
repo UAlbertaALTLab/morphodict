@@ -80,10 +80,13 @@ class RichAnalysis:
     def generate(self):
         return strict_generator().lookup(self.smushed())
 
-    def generate_with_morphemes(self):
+    def generate_with_morphemes(self, inflection):
         try:
             results = strict_generator_with_morpheme_boundaries().lookup(self.smushed())
             if len(results) != 1:
+                for result in results:
+                    if "".join(re.split(r"[<>]", result)) == inflection:
+                        return re.split(r"[<>]", result)
                 return None
             return re.split(r"[<>]", results[0])
         except RuntimeError as e:
