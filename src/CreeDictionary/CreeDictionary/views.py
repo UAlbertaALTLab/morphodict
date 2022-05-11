@@ -421,7 +421,7 @@ def get_recordings_from_paradigm(paradigm, request):
         return paradigm
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
-        speech_db_eq.append("synth")
+        speech_db_eq.insert(0, "synth")
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -453,7 +453,9 @@ def get_recordings_from_url(search_terms, url):
     recordings = response.json()
 
     for recording in recordings["matched_recordings"]:
-        matched_recordings[recording["wordform"]] = recording["recording_url"]
+        matched_recordings[recording["wordform"]] = {}
+        matched_recordings[recording["wordform"]]["recording_url"] = recording["recording_url"]
+        matched_recordings[recording["wordform"]]["speaker"] = recording["speaker"]
 
     return matched_recordings
 
