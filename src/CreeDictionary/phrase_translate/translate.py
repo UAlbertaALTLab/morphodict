@@ -181,23 +181,23 @@ def translate_single_definition(wordform, text, stats: TranslationStats):
 
     assert wordform.analysis
 
-    if any(
-        t.startswith("PV/")
-        ## This next commented-out line *is* useful, but it greatly increases
-        ## the number of instantiated wordforms, like at least ~3x? It would be
-        ## good to do some tests on whether that’s so many that it starts to
-        ## slow things down before turning this on. Maybe it’ll be necessary to
-        ## switch to computing them on-demand instead of pre-computing them all
-        ## in advance?
-        #
-        # and t not in permitted_preverb_tags
-        for t in wordform.analysis.prefix_tags
-    ):
-        logger.debug(
-            f"skipping translation of preverb form {wordform.id} {wordform.text}"
-        )
-        stats.preverb_form += 1
-        return
+    # if any(
+    #     t.startswith("PV/")
+    #     ## This next commented-out line *is* useful, but it greatly increases
+    #     ## the number of instantiated wordforms, like at least ~3x? It would be
+    #     ## good to do some tests on whether that’s so many that it starts to
+    #     ## slow things down before turning this on. Maybe it’ll be necessary to
+    #     ## switch to computing them on-demand instead of pre-computing them all
+    #     ## in advance?
+    #     #
+    #     # and t not in permitted_preverb_tags
+    #     for t in wordform.analysis.prefix_tags
+    # ):
+    #     logger.debug(
+    #         f"skipping translation of preverb form {wordform.id} {wordform.text}"
+    #     )
+    #     stats.preverb_form += 1
+    #     return
 
     try:
         input_text = remove_parentheticals(text)
