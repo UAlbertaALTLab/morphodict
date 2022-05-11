@@ -475,7 +475,7 @@ def divide_chunks(terms, size):
 def macron_to_circumflex(item):
     """
     >>> macron_to_circumflex("wāpamēw")
-    wâpamêw
+    'wâpamêw'
     """
     item = item.translate(str.maketrans("ēīōā", "êîôâ"))
     return item
