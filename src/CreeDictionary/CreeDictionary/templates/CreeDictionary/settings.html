@@ -72,6 +72,35 @@
             </form>
         </section>
 
+    <section>
+            <h3 id="show-inflectional-category" class="setting__title">Inflectional Category</h3>
+
+            <p class="setting__note"> Would you like to see the inflectional category with search results?</p>
+
+            <form method="POST" action="{% url "preference:change" "show_inflectional_category" %}"
+                  data-save-preference="show_inflectional_category">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_inflectional_category.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="show_inflectional_category" value="{{ value }}" class="option__control"
+                                       {% if preferences.show_inflectional_category.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
         <section>
             <h3 id="show-emoji" class="setting__title">Show emojis with entries?</h3>
 

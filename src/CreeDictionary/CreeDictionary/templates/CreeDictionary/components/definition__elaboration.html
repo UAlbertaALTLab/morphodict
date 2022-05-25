@@ -35,6 +35,9 @@
     <div class="definition__elaboration" data-cy="elaboration">
 
         {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
+            {% if show_ic != "no" %}
+                {{ lemma.inflectional_category }}
+            {% endif %}
             {% if display_options.mode == 'linguistic' %}
                 {% if lemma.show_emoji %}
                     <span class="wordclass" data-cy="word-class">

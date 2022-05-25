@@ -187,6 +187,7 @@ def search_results(request, query_string: str):  # pragma: no cover
             "query_string": query_string,
             "search_results": results,
             "show_morphemes": request.COOKIES.get("show_morphemes"),
+            "show_ic": request.COOKIES.get("show_inflectional_category"),
         },
     )
 

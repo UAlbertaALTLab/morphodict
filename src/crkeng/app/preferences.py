@@ -142,3 +142,17 @@ class SynthesizedAudioInParadigm(Preference):
         "no": "I do not want to hear synthesized recordings in my paradigm layouts",
     }
     default = "no"
+
+
+@register_preference
+class ShowInflectionalCategory(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "show_inflectional_category"
+    choices = {
+        "yes": "I always want to see the inflectional category",
+        "no": "I only want to see the inflectional category in linguistic mode",
+    }
+    default = "yes"
