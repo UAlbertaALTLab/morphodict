@@ -454,11 +454,12 @@ def get_recordings_from_url(search_terms, url):
     recordings = response.json()
 
     for recording in recordings["matched_recordings"]:
-        matched_recordings[recording["wordform"]] = {}
-        matched_recordings[recording["wordform"]]["recording_url"] = recording[
+        entry = macron_to_circumflex(recording["wordform"])
+        matched_recordings[entry] = {}
+        matched_recordings[entry]["recording_url"] = recording[
             "recording_url"
         ]
-        matched_recordings[recording["wordform"]]["speaker"] = recording["speaker"]
+        matched_recordings[entry]["speaker"] = recording["speaker"]
 
     return matched_recordings
 
@@ -470,3 +471,12 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i : i + size]
+
+
+def macron_to_circumflex(item):
+    """
+    >>> macron_to_circumflex("wāpamēw")
+    'wâpamêw'
+    """
+    item = item.translate(str.maketrans("ēīōā", "êîôâ"))
+    return item
