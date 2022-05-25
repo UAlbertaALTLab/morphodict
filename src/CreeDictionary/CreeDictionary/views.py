@@ -458,9 +458,7 @@ def get_recordings_from_url(search_terms, url):
     for recording in recordings["matched_recordings"]:
         entry = macron_to_circumflex(recording["wordform"])
         matched_recordings[entry] = {}
-        matched_recordings[entry]["recording_url"] = recording[
-            "recording_url"
-        ]
+        matched_recordings[entry]["recording_url"] = recording["recording_url"]
         matched_recordings[entry]["speaker"] = recording["speaker"]
 
     return matched_recordings
