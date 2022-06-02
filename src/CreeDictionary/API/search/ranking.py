@@ -47,13 +47,13 @@ def assign_relevance_score(result: types.Result):
             # The POS and corp-freq coefficients have been overriden to be the same on purpose
             0.0872175733
             # + -0.0004337761 * result.wordform_length
-            + 0.2206422552 * len(result.target_language_keyword_match)
+            + 0.2204347216 * len(result.target_language_keyword_match)
             # + -2.094435278e-17 * _has_value(result.morpheme_ranking)
-            + 0.0872175733 * _default_if_none(result.morpheme_ranking, default=1)
-            + 0.0077219246 * _default_if_none(none_or_true_to_zero_or_one(result.is_espt_result), default=0)
-            + 0.011161893 * _default_if_none(result.pos_match, default=0)
-            + 0.0014792908 * _default_if_none(result.word_list_freq, default=0)
-            + -0.0000006131 * _default_if_none(result.lemma_freq, default=0)
-            + -0.3050365581
+            + 0.0314788206 * _default_if_none(result.morpheme_ranking, default=1)
+            # + 0.0077219246 * _default_if_none(none_or_true_to_zero_or_one(result.is_espt_result), default=0)
+            + 0.0203591827 * _default_if_none(result.pos_match, default=0)
+            + 0.0018736602 * _default_if_none(result.word_list_freq, default=0)
+            + 0.0000001589 * _default_if_none(result.lemma_freq, default=0)
+            + -0.1134934198
             * log(1 + _default_if_none(result.cosine_vector_distance, default=1.1))
         )

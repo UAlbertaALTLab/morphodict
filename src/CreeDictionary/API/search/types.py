@@ -130,6 +130,7 @@ class Result:
             raise Exception("must include edit distance on source language matches")
 
         if self.morpheme_ranking is None:
+            # todo: normalize morpheme ranking by dividing by max value
             self.morpheme_ranking = wordform_cache.MORPHEME_RANKINGS.get(
                 self.wordform.text, None
             ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)

@@ -8,17 +8,20 @@ def find_pos_matches(search_run: SearchRun) -> None:
     analyzed_query = AnalyzedQuery(
                 search_run.internal_query
             )
+    # print(search_run.verbose_messages["new_tags"])
 
-    [pos_match(result, analyzed_query) for result in search_run.unsorted_results()]
+    tags = search_run.verbose_messages[1].get("tags")
+    [pos_match(result, tags) for result in search_run.unsorted_results()]
 
 
-def pos_match(result, analyzed_query):
+def pos_match(result, tags):
     """
     Returns an int value based on how closely related the search result and query term are
     The higher the value, the more related
     If they aren't related or aren't analyzable, return 0
     """
-    if not analyzed_query.has_tags:
+    print("hi")
+    if not tags:
         result.pos_match = 0
         return
     if not result.wordform.raw_analysis:
@@ -26,7 +29,7 @@ def pos_match(result, analyzed_query):
         return
 
     result_tags = result.wordform.raw_analysis[2]
-    query_tags = list(analyzed_query.analysis)
+    query_tags = tags
 
     max = min(len(result_tags), len(query_tags))
     i = 0
