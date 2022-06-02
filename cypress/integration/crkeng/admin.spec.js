@@ -25,15 +25,6 @@ context("Admin interface", () => {
     let searchTerm = "niminôsak";
     let autoTranslation = "my cats";
 
-    it("should show auto-translations to logged-in users", function () {
-      cy.login();
-      cy.visitSearch(searchTerm);
-      cy.get("[data-cy=search-result]")
-        .contains(autoTranslation)
-        .get(".cite-dict")
-        .contains("🤖CW");
-    });
-
     it("should not show auto-translations to anonymous users", function () {
       cy.visitSearch(searchTerm);
       cy.get("[data-cy=lemma-meaning]").should("not.contain.text", "🤖CW");
