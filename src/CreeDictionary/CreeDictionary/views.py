@@ -127,9 +127,11 @@ def index(request):  # pragma: no cover
 
     if user_query:
         include_auto_definitions = should_include_auto_definitions(request)
+        inflect_english_phrases = should_inflect_phrases(request)
         search_run = search_with_affixes(
             user_query,
             include_auto_definitions=include_auto_definitions,
+            inflect_english_phrases=inflect_english_phrases
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
@@ -172,8 +174,9 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     dict_source = get_dict_source(request)  # type: ignore
     include_auto_definitions = should_include_auto_definitions(request)
+    inflect_english_phrases = should_inflect_phrases(request)
     results = search_with_affixes(
-        query_string, include_auto_definitions=include_auto_definitions
+        query_string, include_auto_definitions=include_auto_definitions, inflect_english_phrases=inflect_english_phrases
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
@@ -374,8 +377,11 @@ def google_site_verification(request):
 
 
 def should_include_auto_definitions(request):
-    # For now, show auto-translations if and only if the user is logged in
-    return request.user.is_authenticated
+    return True if request.COOKIES.get("auto_translate_defs") == "yes" else False
+
+
+def should_inflect_phrases(request):
+    return True if request.COOKIES.get("inflect_english_phrase") == "yes" else False
 
 
 def get_dict_source(request):

@@ -20,7 +20,7 @@ CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
 
 def search(
-    *, query: str, include_affixes=True, include_auto_definitions=False
+    *, query: str, include_affixes=True, include_auto_definitions=False, inflect_english_phrases=False
 ) -> SearchRun:
     """
     Perform an actual search, using the provided options.
@@ -32,7 +32,7 @@ def search(
         query=query, include_auto_definitions=include_auto_definitions
     )
 
-    if search_run.query.espt:
+    if search_run.query.espt or inflect_english_phrases:
         espt_search = EsptSearch(search_run)
         espt_search.analyze_query()
 
@@ -67,7 +67,7 @@ def search(
         ):
             do_cvd_search(search_run)
 
-    if search_run.query.espt:
+    if search_run.query.espt or inflect_english_phrases:
         espt_search.inflect_search_results()
 
     return search_run

@@ -156,3 +156,31 @@ class ShowInflectionalCategory(Preference):
         "no": "I only want to see the inflectional category in linguistic mode",
     }
     default = "yes"
+
+
+@register_preference
+class InflectEnglishPhrase(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "inflect_english_phrase"
+    choices = {
+        "yes": "Show me analyzed and inflected English phrases when available",
+        "no": "Only show me dictionary entries",
+    }
+    default = "no"
+
+
+@register_preference
+class AutoTranslateDefs(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "auto_translate_defs"
+    choices = {
+        "yes": "Show me auto-translated definitions when available",
+        "no": "Only show me dictionary definitions",
+    }
+    default = "no"
