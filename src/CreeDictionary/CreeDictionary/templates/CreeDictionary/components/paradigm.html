@@ -1,6 +1,6 @@
 {% spaceless %}
 
-  {% comment %}
+    {% comment %}
     The paradigm table.
 
     Parameters:
@@ -19,50 +19,79 @@
 
   {% endcomment %}
 
-  {% load morphodict_orth %}
-  {% load creedictionary_extras %}
-  {% load relabelling %}
+    {% load morphodict_orth %}
+    {% load creedictionary_extras %}
+    {% load relabelling %}
 
-  <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
-    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
-    <div class="HACK-overflow-x-scroll">
-      <table class="paradigm__table">
-        {% for pane in paradigm.panes %}
-          <tbody>
-            {% for row in pane.tr_rows %}
-              {% if row.is_header %}
-                <tr>
-                  <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
-                  >{% relabel row.fst_tags %}</th>
-                </tr>
-              {% else %}
-                <tr class="paradigm-row">
-                  {% for cell in row.cells %}
-                    {% if cell.should_suppress_output %}
-                        {% comment %} Produce NO output! {% endcomment %}
-                    {% elif cell.is_label %}
-                      <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
-                          class="paradigm-label paradigm-label--{{ cell.label_for }}">
-                          {% relabel cell.fst_tags %}
-                      </th>
-                    {% elif cell.is_missing %}
-                        <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
-                    {% elif cell.is_empty %}
-                      <td class="paradigm-cell paradigm-cell--empty"></td>
-                    {% else %}
-                      <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
-                        {% orth cell.inflection %}
-                      </td>
-                    {% endif %}
-                  {% endfor %}
-                </tr>
-              {% endif %}
-            {% endfor %} {# /rows #}
-          </tbody>
-        {% endfor %} {# /paradigm.panes #}
-      </table>
-    </div>
+    <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
+        {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
+        <div class="HACK-overflow-x-scroll">
+            <table class="paradigm__table">
+                {% for pane in paradigm.panes %}
+                    <tbody>
+                    {% for row in pane.tr_rows %}
+                        {% if row.is_header %}
+                            <tr>
+                                <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                                >{% relabel row.fst_tags %}</th>
+                            </tr>
+                        {% else %}
+                            <tr class="paradigm-row">
+                                {% for cell in row.cells %}
+                                    {% if cell.should_suppress_output %}
+                                        {% comment %} Produce NO output! {% endcomment %}
+                                    {% elif cell.is_label %}
+                                        <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
+                                            class="paradigm-label paradigm-label--{{ cell.label_for }}">
+                                            {% relabel cell.fst_tags %}
+                                        </th>
+                                    {% elif cell.is_missing %}
+                                        <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
+                                    {% elif cell.is_empty %}
+                                        <td class="paradigm-cell paradigm-cell--empty"></td>
+                                    {% else %}
+                                        <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
+                                            {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
+                                                {% if cell.morphemes %}
+                                                    {% orth cell.morphemes|join:"·" %}
+                                                {% else %}
+                                                    {% orth cell.inflection %}
+                                                {% endif %}
+                                            {% else %}
+                                                {% orth cell.inflection %}
+                                            {% endif %}
+                                            {% if cell.recording %}
+                                                &nbsp;
+                                                {% if cell.recording_speaker == "SDOL" %}🤖 {% else %} 🧑🏽‍🦱 {% endif %}
+                                                <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}"
+                                                       style="display: none;">
+                                                    <source src="{{ cell.recording }}" type="audio/mp4"/>
+                                                </audio>
+                                                {% comment %}
+                              I had to add the data-inflection tag to both the svg and the <use /> tag since sometimes
+                              the button is triggered, and sometimes the <use /> tag is triggered instead
+                              {% endcomment %}
+                                                <button aria-label="Play recording"
+                                                        class="definition__icon definition-title__play-button"
+                                                        data-cy="play-recording-paradigm">
+                                                    <svg class="definition-title__play-icon" focusable="false"
+                                                         data-inflection="{{ cell.inflection }}">
+                                                        <use xlink:href="#fa-volume-up-solid"
+                                                             data-inflection="{{ cell.inflection }}"/>
+                                                    </svg>
+                                                </button>
+                                            {% endif %}
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %} {# /rows #}
+                    </tbody>
+                {% endfor %} {# /paradigm.panes #}
+            </table>
+        </div>
 
-    {% include "CreeDictionary/components/paradigm-size-button.html" %}
-  </section>
+        {% include "CreeDictionary/components/paradigm-size-button.html" %}
+    </section>
 {% endspaceless %}

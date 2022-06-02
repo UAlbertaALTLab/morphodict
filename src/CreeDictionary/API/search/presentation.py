@@ -1,21 +1,28 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
+from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast, Tuple
 
 from django.conf import settings
 from django.forms import model_to_dict
 
 from CreeDictionary.API.search import core, types
-from CreeDictionary.CreeDictionary.relabelling import read_labels
+from CreeDictionary.CreeDictionary.relabelling import read_labels, LABELS
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import (
+    DisplayMode,
+    AnimateEmoji,
+    DictionarySource,
+    ShowEmoji,
+)
 from morphodict.analysis import RichAnalysis
-from morphodict.lexicon.models import Wordform
+from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
-from ..schema import SerializedDefinition, SerializedWordform
+from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
 from .types import Preverb
 
 
@@ -62,8 +69,12 @@ class SerializedPresentationResult(TypedDict):
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
+    relevant_tags: Iterable[SerializedLinguisticTag]
+    morphemes: Optional[Iterable[str]]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
+    relabelled_linguist_analysis: str
+    show_form_of: bool
 
 
 class SerializedRelabelling(TypedDict):
@@ -97,19 +108,24 @@ class PresentationResult:
         search_run: core.SearchRun,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
+        dict_source=None,
     ):
         self._result = result
         self._search_run = search_run
         self._relabeller = {
-            "community": read_labels().english,
+            "english": read_labels().english,
             "linguistic": read_labels().linguistic_long,
+            "source_language": read_labels().source_language,
         }.get(display_mode, DisplayMode.default)
         self._animate_emoji = animate_emoji
+        self._show_emoji = show_emoji
 
         self.wordform = result.wordform
         self.lemma_wordform = result.lemma_wordform
         self.is_lemma = result.is_lemma
         self.source_language_match = result.source_language_match
+        self.dict_source = dict_source
 
         if settings.MORPHODICT_TAG_STYLE == "Plus":
             (
@@ -135,7 +151,21 @@ class PresentationResult:
         else:
             raise Exception(f"Unknown {settings.MORPHODICT_TAG_STYLE=}")
 
-        self.lexical_info = get_lexical_info(result.wordform.analysis, animate_emoji)
+        self.lexical_info = get_lexical_info(
+            result.wordform.analysis, animate_emoji, self._show_emoji, self.dict_source
+        )
+
+        if rich_analysis := result.wordform.analysis:
+            self.morphemes = rich_analysis.generate_with_morphemes(result.wordform.text)
+        else:
+            self.morphemes = None
+
+        self.lexical_info = get_lexical_info(
+            result.wordform.analysis,
+            animate_emoji=animate_emoji,
+            dict_source=self.dict_source,
+            show_emoji=self._show_emoji,
+        )
 
         self.preverbs = [
             lexical_entry["entry"]
@@ -158,7 +188,10 @@ class PresentationResult:
     def serialize(self) -> SerializedPresentationResult:
         ret: SerializedPresentationResult = {
             "lemma_wordform": serialize_wordform(
-                self.lemma_wordform, self._animate_emoji
+                self.lemma_wordform,
+                self._animate_emoji,
+                self._show_emoji,
+                self.dict_source,
             ),
             "wordform_text": self.wordform.text,
             "is_lemma": self.is_lemma,
@@ -168,17 +201,42 @@ class PresentationResult:
                 # because we only auto-translate non-lemmas, and this is the
                 # only place where a non-lemma search result appears.
                 include_auto_definitions=self._search_run.include_auto_definitions,
+                dict_source=self.dict_source,
             ),
             "lexical_info": self.lexical_info,
             "preverbs": self.preverbs,
             "friendly_linguistic_breakdown_head": self.friendly_linguistic_breakdown_head,
             "friendly_linguistic_breakdown_tail": self.friendly_linguistic_breakdown_tail,
             "relabelled_fst_analysis": self.relabelled_fst_analysis,
+            "relabelled_linguist_analysis": self.relabelled_linguist_analysis,
+            "show_form_of": should_show_form_of(
+                self.is_lemma,
+                self.lemma_wordform,
+                self.dict_source,
+                self._search_run.include_auto_definitions,
+            ),
+            "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
+            "morphemes": self.morphemes,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
 
         return ret
+
+    @property
+    def relevant_tags(self) -> Tuple[LinguisticTag, ...]:
+        """
+        Tags and features to display in the linguistic breakdown pop-up.
+        This omits preverbs and other features displayed elsewhere
+        In itwêwina, these tags are derived from the suffix features exclusively.
+        We chunk based on the English relabelleings!
+        """
+        return tuple(
+            linguistic_tag_from_fst_tags(tuple(cast(FSTTag, t) for t in fst_tags))
+            for fst_tags in LABELS.english.chunk(
+                t.strip("+") for t in self.linguistic_breakdown_tail
+            )
+        )
 
     @property
     def relabelled_fst_analysis(self) -> list[SerializedRelabelling]:
@@ -205,18 +263,66 @@ class PresentationResult:
 
         return results
 
+    @property
+    def relabelled_linguist_analysis(self) -> str:
+        try:
+            analysis = self.lemma_wordform.linguist_info["analysis"]
+            pattern = "<td>(.*?)</td>"
+            info = re.findall(pattern, analysis)
+            cleaned_info = []
+            for i in info:
+                if "<b>" in i:
+                    j = i.replace("<b>", "").replace("</b>", "")
+                else:
+                    j = i
+                cleaned_info.append(j)
+            relabelled = []
+            for c in cleaned_info:
+                if self._relabeller.get(c):
+                    relabelled.append(self._relabeller.get(c))
+                else:
+                    relabelled.append(c)
+
+            k = 0
+            while k < len(cleaned_info):
+                analysis = analysis.replace(cleaned_info[k], relabelled[k])
+                k += 1
+            return analysis
+        except:
+            return ""
+
     def __str__(self):
         return f"PresentationResult<{self.wordform}:{self.wordform.id}>"
 
 
-def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWordform:
+def should_show_form_of(
+    is_lemma, lemma_wordform, dict_source, include_auto_definitions
+):
+    if not dict_source:
+        return True
+    if is_lemma:
+        return True
+    for definition in lemma_wordform.definitions.all():
+        for source in definition.source_ids:
+            if source in dict_source:
+                return True
+            elif include_auto_definitions and source.replace("🤖", "") in dict_source:
+                return True
+    return False
+
+
+def serialize_wordform(
+    wordform: Wordform, animate_emoji: str, show_emoji: str, dict_source: list
+) -> SerializedWordform:
     """
     Intended to be passed in a JSON API or into templates.
 
     :return: json parsable result
     """
     result = model_to_dict(wordform)
-    result["definitions"] = serialize_definitions(wordform.definitions.all())
+    result["definitions"] = serialize_definitions(
+        wordform.definitions.all(), dict_source=dict_source
+    )
     result["lemma_url"] = wordform.get_absolute_url()
 
     if wordform.linguist_info:
@@ -237,6 +343,7 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWord
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
+    result["show_emoji"] = True if show_emoji == "yes" else False
 
     for key in wordform.linguist_info or []:
         if key not in result:
@@ -245,12 +352,24 @@ def serialize_wordform(wordform: Wordform, animate_emoji: str) -> SerializedWord
     return result
 
 
-def serialize_definitions(definitions, include_auto_definitions=False):
+def serialize_definitions(
+    definitions, include_auto_definitions=False, dict_source=None
+):
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
-        if include_auto_definitions or not serialized["is_auto_translation"]:
-            ret.append(serialized)
+        if not dict_source:
+            if include_auto_definitions or not serialized["is_auto_translation"]:
+                ret.append(serialized)
+        else:
+            for source_id in serialized["source_ids"]:
+                if source_id in dict_source:
+                    ret.append(serialized)
+                elif (
+                    include_auto_definitions
+                    and source_id.replace("🤖", "") in dict_source
+                ):
+                    ret.append(serialized)
     return ret
 
 
@@ -319,7 +438,12 @@ def emoji_for_value(choice: str) -> str:
     return AnimateEmoji.choices[AnimateEmoji.default]
 
 
-def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[Dict]:
+def get_lexical_info(
+    result_analysis: RichAnalysis,
+    animate_emoji: str,
+    show_emoji: str,
+    dict_source: list,
+) -> List[Dict]:
     if not result_analysis:
         return []
 
@@ -347,37 +471,28 @@ def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[
             entry = _InitialChangeResult(text=" ", definitions=change_types).serialize()
 
         elif tag.startswith("PV/"):
-            # use altlabel.tsv to figure out the preverb
+            preverb_text = tag.replace("PV/", "").replace("+", "")
 
-            # ling_short looks like: "Preverb: âpihci-"
-            ling_short = read_labels().linguistic_short.get(
-                cast(FSTTag, tag.rstrip("+"))
-            )
-            if ling_short:
-                # convert to "âpihci" by dropping prefix and last character
-                normative_preverb_text = ling_short[len("Preverb: ") :]
-                preverb_results = Wordform.objects.filter(
-                    text=normative_preverb_text, raw_analysis__isnull=True
-                )
+            # Our FST analyzer doesn't return preverbs with diacritics
+            # but we store variations of words in this table
+            preverb_results = SourceLanguageKeyword.objects.filter(text=preverb_text)
 
-                # find the one that looks the most similar
-                if preverb_results:
-                    preverb_result = min(
-                        preverb_results,
-                        key=lambda pr: get_modified_distance(
-                            normative_preverb_text,
-                            pr.text.strip("-"),
-                        ),
-                    )
-
-                else:
-                    # Can't find a match for the preverb in the database.
-                    # This happens when searching against the test database for
-                    # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
-                    # lacks lacks ê and kî.
-                    preverb_result = Wordform(
-                        text=normative_preverb_text, is_lemma=True
-                    )
+            # get the actual wordform object and
+            # make sure the result we return is an IPV
+            if preverb_results:
+                preverb_result = None
+                for result in preverb_results:
+                    lexicon_result = Wordform.objects.get(id=result.wordform_id)
+                    if lexicon_result:
+                        _info = lexicon_result.linguist_info
+                        if _info["wordclass"] == "IPV":
+                            preverb_result = lexicon_result
+            else:
+                # Can't find a match for the preverb in the database.
+                # This happens when searching against the test database for
+                # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
+                # lacks lacks ê and kî.
+                preverb_result = Wordform(text=preverb_text, is_lemma=True)
 
         if reduplication_string is not None:
             entry = _ReduplicationResult(
@@ -393,7 +508,9 @@ def get_lexical_info(result_analysis: RichAnalysis, animate_emoji: str) -> List[
             _type = "Reduplication"
 
         if preverb_result is not None:
-            entry = serialize_wordform(preverb_result, animate_emoji)
+            entry = serialize_wordform(
+                preverb_result, animate_emoji, show_emoji, dict_source
+            )
             _type = "Preverb"
 
         if entry and _type:

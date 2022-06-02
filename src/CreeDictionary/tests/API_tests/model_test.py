@@ -353,8 +353,7 @@ def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
     """
     Some searches should not even **TOUCH** CVD, yielding zero results.
     """
-    results = search(query=query).presentation_results()
-    assert len(results) == 0
+    assert search(query=query).verbose_messages[0].startswith("Skipping CVD")
 
 
 ####################################### Helpers ########################################

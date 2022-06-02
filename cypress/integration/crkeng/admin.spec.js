@@ -36,16 +36,7 @@ context("Admin interface", () => {
 
     it("should not show auto-translations to anonymous users", function () {
       cy.visitSearch(searchTerm);
-      cy.get("[data-cy=search-result]").each((r) => {
-        // Every result should have a dictionary citation
-        cy.wrap(r)
-          .get(".cite-dict")
-          .should("have.length.at.least", 1)
-          .each((citation) => {
-            // But none of those should be auto-definitions
-            cy.wrap(citation).should("not.contain", "🤖");
-          });
-      });
+      cy.get("[data-cy=lemma-meaning]").should("not.contain.text", "🤖CW");
     });
   });
 

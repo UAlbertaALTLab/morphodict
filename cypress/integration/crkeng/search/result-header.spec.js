@@ -7,7 +7,7 @@ context("Searching", () => {
     const plainEnglishInflectionalCategory = "like: nipâw";
     const nonLemmaFormWithDefinition = "nîminâniwan";
     const nonLemmaFormWithoutDefinition = "ninîmin";
-    const nonLemmaDefinition = "it is a dance";
+    const nonLemmaDefinition = "there is a dance, it is a time of dancing";
 
     it("should display the match wordform and word class on the same line for lemmas", function () {
       cy.visitSearch(fudgeUpOrthography(lemma));
@@ -25,7 +25,7 @@ context("Searching", () => {
         wordclassEmoji
       );
       cy.get("@search-result").contains(
-        'header [data-cy="word-class"]',
+        'header [data-cy="elaboration"]',
         plainEnglishInflectionalCategory
       );
     });
@@ -54,7 +54,7 @@ context("Searching", () => {
         .and("contain", lemma);
       cy.get("@elaboration").contains('[data-cy="word-class"]', wordclassEmoji);
       cy.get("@elaboration").contains(
-        '[data-cy="word-class"]',
+        '[data-cy="elaboration"]',
         plainEnglishInflectionalCategory
       );
     });
@@ -103,11 +103,14 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
-        .and("contain", plainEnglishInflectionalCategory);
+        .should("contain", wordclassEmoji);
+
+      cy.get("@elaboration")
+        .get('[data-cy="elaboration"]')
+        .should("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tool tip
-      cy.get("@elaboration").get('[data-cy="word-class"]').first().click();
+      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
       cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
@@ -151,11 +154,14 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
-        .and("contain", plainEnglishInflectionalCategory);
+        .should("contain", wordclassEmoji);
+
+      cy.get("@elaboration")
+        .get('[data-cy="elaboration"]')
+        .should("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tooltip
-      cy.get("@elaboration").get('[data-cy="word-class"]').first().click();
+      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
       cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
@@ -193,11 +199,14 @@ context("Searching", () => {
 
       cy.get("@elaboration")
         .get('[data-cy="word-class"]')
-        .should("contain", wordclassEmoji)
+        .should("contain", wordclassEmoji);
+
+      cy.get("@elaboration")
+        .get('[data-cy="elaboration"]')
         .and("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tool tip
-      cy.get("@elaboration").get('[data-cy="word-class"]').first().click();
+      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
       cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
@@ -210,7 +219,7 @@ context("Searching", () => {
 
       cy.get("[data-cy=search-result]")
         .first()
-        .find("[data-cy=word-class]")
+        .find("[data-cy=elaboration]")
         .should("contain", "like: pê-")
         .and("not.contain", "None");
     });

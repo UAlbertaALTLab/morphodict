@@ -47,6 +47,7 @@ def change_preference(request: HttpRequest, name: str):
     # When left to default, the cookie should last "only as long as the client’s
     # browser session", though... I'm not sure how long that generally is :/
     # See: https://docs.djangoproject.com/en/3.2/ref/request-response/#django.http.HttpResponse.set_cookie
+
     response.set_cookie(preference.cookie_name, value)
 
     return response

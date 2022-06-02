@@ -20,15 +20,15 @@
 
   <div class="menu-bar menu-bar--align-end">
     <details class="menu-bar__item dropdown dropdown--align-end close-on-click-away">
-      <summary class="dropdown__label" data-cy="open-paradigm-label-switcher">Show {{ preferences.paradigm_label.current_label }}</summary>
+      <summary class="dropdown__label" data-cy="open-paradigm-label-switcher">Show {{ preferences.display_mode.current_label }}</summary>
       <div class="menu dropdown__menu" data-cy="paradigm-label-options">
         <ul class="unbullet">
-          {% for value, label in preferences.paradigm_label.choices_with_labels %}
-          <li class="menu-choice{% if value == preferences.paradigm_label.current_choice %} menu-choice--selected{% endif %}">
-            <form method="POST" action="{% url "preference:change" "paradigm_label" %}">
+          {% for value, label in preferences.display_mode.choices_with_labels %}
+          <li class="menu-choice{% if value == preferences.display_mode.current_choice %} menu-choice--selected{% endif %}">
+            <form method="POST" action="{% url "preference:change" "display_mode" %}">
               <button type="submit" class="unbutton fill-width"
-                      name="paradigmlabel" value="{{ value }}">
-                <span class="menu-choice__label">{{ label|capfirst }}</span>
+                      name="display_mode" value="{{ value }}">
+                <span class="menu-choice__label">{{ label }}</span>
               {% csrf_token %}
               </button>
             </form>

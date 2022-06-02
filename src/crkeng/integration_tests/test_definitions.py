@@ -21,7 +21,7 @@ def test_db_has_custom_fields(db):
     )
     assert (
         defn.semantic_definition
-        == "mule deer jumper leaper Odocoileus hemionus hemionus"
+        == "mule deer jumper Odocoileus hemionus hemionus leaper"
     )
     assert defn.core_definition == "mule deer"
 
@@ -30,7 +30,7 @@ def test_db_has_custom_fields(db):
         for r in TargetLanguageKeyword.objects.filter(
             wordform=defn.wordform
         ).values_list("text")
-    ) == {"mule", "deer", "jumper", "leaper", "odocoileus", "hemionus"}
+    ) == {"odocoileus", "deer", "mule", "jumper", "hemionus", "leaper"}
 
 
 @pytest.mark.parametrize("search_term", ["jumper", "Odocoileus"])
@@ -43,8 +43,8 @@ def test_auto_translation_works(db):
     """
     This would fail if auto-translation tried to use the full definition
     """
-    defn = Wordform.objects.get(text="nikwâskwêpayihôs").definitions.first()
-    assert defn.text == "my mule deer"
+    defn = Wordform.objects.get(text="nitâcimon").definitions.first()
+    assert defn.text == "I tell, I tell a story"
     assert defn.auto_translation_source_id is not None
 
 
@@ -52,8 +52,8 @@ def test_object_has_default_values_for_extra_definition_types(db):
     """
     When an entry *doesn’t* have any special core_definition or semantic_definition.
     """
-    defn = first_definition_for("maskwa")
+    defn = first_definition_for("maskwa@1")
 
-    assert defn.text == "A bear."
-    assert defn.semantic_definition == defn.text
+    assert defn.text == "bear, black bear"
+    assert defn.semantic_definition == "bear black bear"
     assert defn.core_definition == defn.text

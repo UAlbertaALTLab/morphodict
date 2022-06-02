@@ -1,0 +1,12 @@
+{% spaceless %}
+    {% load morphodict_orth %}
+    {% if show_morphemes == "everywhere" or show_morphemes == "headers" %}
+        {% if result.morphemes %}
+            {%  orth result.morphemes|join:"·" %}
+        {% else %}
+            {% orth result.wordform_text %}
+        {% endif %}
+    {% else %}
+        {% orth result.wordform_text %}
+    {% endif %}
+{% endspaceless %}

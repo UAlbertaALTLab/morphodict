@@ -38,7 +38,7 @@ class _LabelFriendliness(IntEnum):
     LINGUISTIC_SHORT = 1
     LINGUISTIC_LONG = 2
     ENGLISH = 3
-    NEHIYAWEWIN = 4
+    SOURCE_LANGUAGE = 4
     EMOJI = 5
 
 
@@ -52,7 +52,7 @@ class Relabelling:
         .linguistic_short[tag]  or .linguistic_short.get(tag, default)
         .linguistic_long[tag]   or .linguistic_long.get(tag, default)
         .english[tag]           or .english.get(tag, default)
-        .cree[tag]              or .cree.get(tag, default)
+        .source_language[tag]   or .source_language.get(tag, default)
         .emoji[tag]             or .emoji.get(tag, default)
     """
 
@@ -67,7 +67,7 @@ class Relabelling:
         )
         self.linguistic_long = _RelabelFetcher(data, _LabelFriendliness.LINGUISTIC_LONG)
         self.english = _RelabelFetcher(data, _LabelFriendliness.ENGLISH)
-        self.cree = _RelabelFetcher(data, _LabelFriendliness.NEHIYAWEWIN)
+        self.source_language = _RelabelFetcher(data, _LabelFriendliness.SOURCE_LANGUAGE)
         self.emoji = _RelabelFetcher(data, _LabelFriendliness.EMOJI)
 
     def __contains__(self, key: object) -> bool:
@@ -239,3 +239,6 @@ def read_labels() -> Relabelling:
             _label_cache["mtime"] = mtime
             _label_cache["labels"] = Relabelling.from_tsv(tsv_file)
             return cast_away_optional(_label_cache["labels"])
+
+
+LABELS: Relabelling = read_labels()

@@ -19,7 +19,7 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "arpeng.altlab.dev"
+PRODUCTION_HOST = "nihiitono.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
@@ -34,7 +34,7 @@ FST_TOOL_SAMPLES = [
 
 # Morphodict configuration
 
-MORPHODICT_DICTIONARY_NAME = "arpeng"
+MORPHODICT_DICTIONARY_NAME = "nihiitono"
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "arp"

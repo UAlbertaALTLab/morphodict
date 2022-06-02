@@ -1,5 +1,5 @@
 name: Test and deploy
-on: [push, pull_request]
+on: [ push, pull_request ]
 
 env:
   # Version required to run itwêwina:
@@ -17,236 +17,213 @@ jobs:
 
     if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main'
     steps:
-    - uses: actions/checkout@v2
-      with:
-        # ci-skip needs to do a partial checkout
-        fetch-depth: '0'
-    - id: ci-skip
-      uses: mstachniuk/ci-skip@v1
-      with:
-        commit-filter: '[skip deploy]'
+      - uses: actions/checkout@v2
+        with:
+          # ci-skip needs to do a partial checkout
+          fetch-depth: '0'
+      - id: ci-skip
+        uses: mstachniuk/ci-skip@v1
+        with:
+          commit-filter: '[skip deploy]'
 
   # Run Pytest unit tests
   unit-test:
     runs-on: ubuntu-20.04
 
     steps:
-    - uses: actions/checkout@v2
-    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v2
-      # actions/cache below uses this id to get the exact python version
-      id: setup-python
-      with:
-        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
-    - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y libfoma0
-    - name: ☤ Install pipenv
-      run: python3 -m pip install pipenv==2021.5.29
+      - uses: actions/checkout@v2
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        # actions/cache below uses this id to get the exact python version
+        id: setup-python
+        with:
+          python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+      - name: 🖥 Install system dependencies
+        run: sudo apt-get install -y libfoma0
+      - name: ☤ Install pipenv
+        run: python3 -m pip install pipenv==2021.11.9
 
-    # This started out life as a copy-paste from
-    # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-    - uses: actions/cache@v2
-      with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-    - name: 📥 Install dependencies
-      run: |
-        pipenv install --dev
-        # Install pytest plugin to show failed tests on the web
-        pipenv run pip install pytest-github-actions-annotate-failures
-    - name: Do LFS checkout
-      # actions/checkout@v2 has a `with: lfs: true` option, but it only
-      # knows how to talk to GitHub’s LFS server.
-      #
-      # These actions are automatic if you have run `git lfs install`
-      # even once on your dev machine.
-      run: git lfs install --local && git lfs fetch && git lfs checkout
-    - name: 🧶 Run linters/static-analysis
-      run: |
-        pipenv run mypy src
-    - name: 🩺 Run unit tests
-      env:
-        DEBUG: "True"
-      run: pipenv run test -v --cov=src --cov-report=xml
-    - name: Check working directory clean
-      run: ./libexec/check-git-status
-    - name: Check that generated files are up-to-date
-      # A few auto-generated files are checked in for convenience; ensure
-      # that they are up-to-date.
-      run: "pipenv run docker/helper.py make-yaml
+      # This started out life as a copy-paste from
+      # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+      - uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+      - name: 📥 Install dependencies
+        run: |
+          pipenv install --dev
+          # Install pytest plugin to show failed tests on the web
+          pipenv run pip install pytest-github-actions-annotate-failures
+      - name: Do LFS checkout
+        # actions/checkout@v2 has a `with: lfs: true` option, but it only
+        # knows how to talk to GitHub’s LFS server.
+        #
+        # These actions are automatic if you have run `git lfs install`
+        # even once on your dev machine.
+        run: git lfs install --local && git lfs fetch && git lfs checkout
+      - name: 🧶 Run linters/static-analysis
+        run: |
+          pipenv run mypy src
+      - name: 🩺 Run unit tests
+        env:
+          DEBUG: "True"
+        run: pipenv run test -v --cov=src --cov-report=xml
+      - name: Check working directory clean
+        run: ./libexec/check-git-status
+      - name: Check that generated files are up-to-date
+        # A few auto-generated files are checked in for convenience; ensure
+        # that they are up-to-date.
+        run: "pipenv run docker/helper.py make-yaml
         && if ! ./libexec/check-git-status ; then
             echo Error: running make-yaml resulted in changed files. When
               changing template files, please ensure that updated generated
               files get checked in too. 1>&2 ;
             exit 1 ;
         fi"
-    - name: 📤 Upload Codecov coverage report
-      uses: codecov/codecov-action@v1.5.0
+      - name: 📤 Upload Codecov coverage report
+        uses: codecov/codecov-action@v1.5.0
 
   # Runs Cypress acceptance tests
   integration-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v2
-      id: setup-python
-      with:
-        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
-    - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.ACTIONS_NODE_VERSION }}
-        cache: npm
-    - name: 🖥 Install system dependencies
-      run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-    - name: ☤ Install pipenv
-      run: python3 -m pip install pipenv==2021.5.29
+      - uses: actions/checkout@v2
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        id: setup-python
+        with:
+          python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+      - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.ACTIONS_NODE_VERSION }}
+          cache: npm
+      - name: 🖥 Install system dependencies
+        run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+      - name: ☤ Install pipenv
+        run: python3 -m pip install pipenv==2021.11.9
 
-    # This started out life as a copy-paste from
-    # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-    - uses: actions/cache@v2
-      with:
-        path: ~/.local/share/virtualenvs
-        key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-    - name: 📥 Install Python dependencies
-      run: |
-        pipenv install --dev
-    - name: Do LFS checkout
-      # actions/checkout@v2 has a `with: lfs: true` option, but it only
-      # knows how to talk to GitHub’s LFS server.
-      #
-      # These actions are automatic if you have run `git lfs install`
-      # even once on your dev machine.
-      run: git lfs install --local && git lfs fetch && git lfs checkout
-    - name: 📥 Install Node dependencies
-      run: npm ci
-    - name: 🛑 Halt tests if Cypress tests are marked as '.only'
-      run: npm run stop-only
-    - name: 🏗 Build frontend
-      run: npm run build
-    - name: 🌲 Run Cypress tests
-      env:
-        DEBUG: "True"
-        # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/morphodict
-        CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
-      run: |
-        # Enables uploading test runs to Cypress Dashboard:
-        if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
-        pipenv run ./scripts/run-cypress --no-interactive
-    - name: Archive cypress videos
-      uses: actions/upload-artifact@v2
-      with:
-        name: cypress-videos
-        path: |
-          cypress/videos
+      # This started out life as a copy-paste from
+      # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
+      - uses: actions/cache@v2
+        with:
+          path: ~/.local/share/virtualenvs
+          key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+      - name: 📥 Install Python dependencies
+        run: |
+          pipenv install --dev
+      - name: Do LFS checkout
+        # actions/checkout@v2 has a `with: lfs: true` option, but it only
+        # knows how to talk to GitHub’s LFS server.
+        #
+        # These actions are automatic if you have run `git lfs install`
+        # even once on your dev machine.
+        run: git lfs install --local && git lfs fetch && git lfs checkout
+      - name: 📥 Install Node dependencies
+        run: npm ci
+      - name: 🛑 Halt tests if Cypress tests are marked as '.only'
+        run: npm run stop-only
+      - name: 🏗 Build frontend
+        run: npm run build
+      - name: 🌲 Run Cypress tests
+        env:
+          DEBUG: "True"
+          # NOTE: only set on the upstream repo, i.e., UAlbertaALTLab/morphodict
+          CYPRESS_RECORD_KEY: "${{ secrets.CYPRESS_RECORD_KEY }}"
+        run: |
+          # Enables uploading test runs to Cypress Dashboard:
+          if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
+          pipenv run ./scripts/run-cypress --no-interactive
+      - name: Archive cypress videos
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-videos
+          path: |
+            cypress/videos
 
   build-docker-image:
     runs-on: ubuntu-latest
 
     # Only build the Docker Image when we're deploying!
     needs:
-     - should-deploy 
+      - should-deploy
     if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-    - uses: actions/checkout@v2
-    - name: Build and push Docker images
-      uses: docker/build-push-action@v2
-      with:
-        # build-push-action with the default ‘git context’ ignores the
-        # .dockerignore file
-        # https://github.com/docker/build-push-action/issues/182
-        context: .
-        file: docker/Dockerfile
-        push: true
-        # hopefully this will speed up builds and save disk space by
-        # sharing layers with the existing docker image, where possible
-        cache-from: |
-          type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-        tags: |
-          ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
-
-  # Run NodeJS tests for code in munge directory
-  munge-test:
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: Do LFS checkout
-      # actions/checkout@v2 has a `with: lfs: true` option, but it only
-      # knows how to talk to GitHub’s LFS server.
-      #
-      # These actions are automatic if you have run `git lfs install`
-      # even once on your dev machine.
-      run: git lfs install --local && git lfs fetch && git lfs checkout
-    - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ env.ACTIONS_NODE_VERSION }}
-
-    - name: 📥 Install Node dependencies
-      run: cd munge && npm ci
-    - name: Run node tests
-      run: cd munge && npm run test:ci
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          # build-push-action with the default ‘git context’ ignores the
+          # .dockerignore file
+          # https://github.com/docker/build-push-action/issues/182
+          context: .
+          file: docker/Dockerfile
+          push: true
+          # hopefully this will speed up builds and save disk space by
+          # sharing layers with the existing docker image, where possible
+          cache-from: |
+            type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+          tags: |
+            ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   trigger-deployment:
     runs-on: ubuntu-latest
 
     needs:
-    - should-deploy
-    - unit-test
-    - integration-test
-    - build-docker-image
+      - should-deploy
+      - unit-test
+      - integration-test
+      - build-docker-image
 
     if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{ github.repository_owner }}
-        password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-    - uses: actions/checkout@v2
-    - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
-    - name: Install requests
-      run: pip install requests
-    - name: Update tag
-      run: docker/copy-registry-tag ${{ github.sha }} latest
-      env:
-        GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-    - name: send HTTP request to deploy.altlab.dev webhook
-      # Be careful with spacing here.
-      #
-      # What https://yaml-multiline.info *doesn’t* warn you about: although
-      # `>-` means “replace newlines with spaces,” if you have an extra
-      # space on the next line, the newline gets preserved!
-      #
-      # So although
-      #
-      #     foo: >-
-      #       a
-      #       a
-      #
-      # means `{ "foo": "a a" }`,
-      #
-      #     foo: >-
-      #       a
-      #        a
-      #
-      # turns into `{ "foo": "a\n a" }` !
-      run: >-
-        curl -X POST https://deploy.altlab.dev/itwewina --fail
-        -d '{ "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }'
-        -H 'Content-Type: application/json'
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+      - name: Install requests
+        run: pip install requests
+      - name: Update tag
+        run: docker/copy-registry-tag ${{ github.sha }} latest
+        env:
+          GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+      - name: send HTTP request to deploy.altlab.dev webhook
+        # Be careful with spacing here.
+        #
+        # What https://yaml-multiline.info *doesn’t* warn you about: although
+        # `>-` means “replace newlines with spaces,” if you have an extra
+        # space on the next line, the newline gets preserved!
+        #
+        # So although
+        #
+        #     foo: >-
+        #       a
+        #       a
+        #
+        # means `{ "foo": "a a" }`,
+        #
+        #     foo: >-
+        #       a
+        #        a
+        #
+        # turns into `{ "foo": "a\n a" }` !
+        run: >-
+          curl -X POST https://deploy.altlab.dev/itwewina --fail
+          -d '{ "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }'
+          -H 'Content-Type: application/json'

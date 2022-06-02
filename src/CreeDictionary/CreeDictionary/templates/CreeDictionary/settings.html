@@ -4,69 +4,284 @@
 {% load relabelling %}
 
 {% block prose %}
-<section id="settings" class="box">
-  <h2>Settings</h2>
+    <section id="settings" class="box">
+        <h2>Settings</h2>
 
-  <section>
-    <h3 id="paradigm-labels" class="setting__title">Paradigm labels</h3>
 
-    <p class="setting__note"> These are the labels that appear on the <strong>paradigm
-        table</strong> to label features like person, tense, plurals, etc.</p>
+        <section>
+            <h3 id="display-mode" class="setting__title">Display Mode</h3>
 
-    <form method="POST" action="{% url "preference:change" "paradigm_label" %}" data-save-preference="paradigmlabel">
-      <ul class="unbullet">
-      {% for value, label in preferences.paradigm_label.choices_with_labels %}
-        <li class="option">
-          <label class="option__label">
-            <input type="radio" name="paradigmlabel" value="{{ value }}" class="option__control"
-                {% if preferences.paradigm_label.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ label|capfirst }}</span>
-          </label>
-          <p class="option__description">
-            Examples:
-            {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
-            <i>{% relabel_one '1Sg' labels=value %}</i>,
-            <i>{% relabel_one '2Sg' labels=value %}</i>,
-            <i>{% relabel_one '3Sg' labels=value %}</i>;
-            <i>{% relabel_one 'Prs' labels=value %}</i>,
-            <i>{% relabel_one 'Prt' labels=value %}</i>
-          </p>
-        </li>
-        {% endfor %}
-      </ul>
+            <p class="setting__note"> How would you like the labels to appear throughout the site?</p>
 
-      <div class="action-bar">
-        {% csrf_token %}
-        <button type="submit"> Save settings </button>
-      </div>
-    </form>
-  </section>
+            <form method="POST" action="{% url "preference:change" "display_mode" %}"
+                  data-save-preference="display_mode">
+                <ul class="unbullet">
+                    {% for value, label in preferences.display_mode.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="display_mode" value="{{ value }}" class="option__control"
+                                       {% if preferences.display_mode.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ label }}</span>
+                            </label>
+                            <p class="option__descriptioiption">
+                                Examples:
+                                {% comment %}<i> is not italic; it's “idiomatic text” ;){% endcomment %}
+                                <i>{% relabel_one '1Sg' labels=value %}</i>,
+                                <i>{% relabel_one '2Sg' labels=value %}</i>,
+                                <i>{% relabel_one '3Sg' labels=value %}</i>;
+                                <i>{% relabel_one 'Prs' labels=value %}</i>,
+                                <i>{% relabel_one 'Prt' labels=value %}</i>
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
 
-  <section>
-    <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
 
-    <p class="setting__note">Choose the emoji that will represent all {% orth 'awa' %} words. </p>
+        <section>
+            <h3 id="show-morphemes" class="setting__title">Morpheme Boundaries</h3>
 
-    <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
-          data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
-      <ul class="unbullet">
-        {% for value, label in preferences.animate_emoji.choices_with_labels %}
-        <li class="option">
-          <label class="option__label">
-            <input type="radio" class="option__control"
-                   name="animate_emoji" value="{{ value }}"
-               {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
-            <span class="option__label-text">{{ label|capfirst }}</span>
-          </label>
-        </li>
-        {% endfor %}
-      </ul>
+            <p class="setting__note"> Where would you like to see morpheme boundaries in the app?</p>
 
-      <div class="action-bar">
-        {% csrf_token %}
-        <button type="submit"> Save settings </button>
-      </div>
-    </form>
-  </section>
-</section>
+            <form method="POST" action="{% url "preference:change" "show_morphemes" %}"
+                  data-save-preference="show_morphemes">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_morphemes.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="show_morphemes" value="{{ value }}" class="option__control"
+                                       {% if preferences.show_morphemes.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+    <section>
+            <h3 id="show-inflectional-category" class="setting__title">Inflectional Category</h3>
+
+            <p class="setting__note"> Would you like to see the inflectional category with search results?</p>
+
+            <form method="POST" action="{% url "preference:change" "show_inflectional_category" %}"
+                  data-save-preference="show_inflectional_category">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_inflectional_category.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="show_inflectional_category" value="{{ value }}" class="option__control"
+                                       {% if preferences.show_inflectional_category.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h3 id="show-emoji" class="setting__title">Show emojis with entries?</h3>
+
+            <p class="setting__note">Emojis illustrate word classes </p>
+
+            <form method="POST" action="{% url "preference:change" "show_emoji" %}"
+                  data-save-preference="show_emoji" data-cy="show-emoji-preference">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_emoji.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" class="option__control"
+                                       name="show_emoji" value="{{ value }}"
+                                       {% if preferences.show_emoji.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h3 id="animate-emoji" class="setting__title">Emoji for animate nouns ({% orth 'awa' %} words)</h3>
+
+            <p class="setting__note">Choose the emoji that will represent all {% orth 'awa' %} words. </p>
+
+            <form method="POST" action="{% url "preference:change" "animate_emoji" %}"
+                  data-save-preference="animate_emoji" data-cy="animate-emoji-choice">
+                <ul class="unbullet">
+                    {% for value, label in preferences.animate_emoji.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" class="option__control"
+                                       name="animate_emoji" value="{{ value }}"
+                                       {% if preferences.animate_emoji.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ label|capfirst }}</span>
+                            </label>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+        {% if show_dict_source_setting %}
+            <section>
+                <h3 id="dictionary-source" class="setting__title">Select Dictionary Source</h3>
+
+                <p class="setting__note"> Select one of the following options to chose which entries are displayed in
+                    the search results</p>
+
+                <form method="POST" action="{% url "preference:change" "dictionary_source" %}"
+                      data-save-preference="dictionary_source">
+                    <ul class="unbullet">
+                        {% for value, label in preferences.dictionary_source.choices_with_labels %}
+                            <li class="option">
+                                <label class="option__label">
+                                    <input type="radio" name="dictionary_source" value="{{ value }}"
+                                           class="option__control"
+                                           {% if preferences.dictionary_source.current_choice == value %}checked{% endif %}>
+                                    <span class="option__label-text">{{ value|upper }}</span>
+                                </label>
+                                <p class="option__description">
+                                    {{ label }}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="action-bar">
+                        {% csrf_token %}
+                        <button type="submit"> Save settings</button>
+                    </div>
+                </form>
+            </section>
+        {% endif %}
+        <section>
+            <h3 id="paradigm-audio" class="setting__title">Show Paradigm Audio</h3>
+
+            <p class="setting__note"> When available, paradigm audio will be displayed and played in paradigms</p>
+
+            <form method="POST" action="{% url "preference:change" "paradigm_audio" %}"
+                  data-save-preference="paradigm_audio">
+                <ul class="unbullet">
+                    {% for value, label in preferences.paradigm_audio.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="paradigm_audio" value="{{ value }}"
+                                       class="option__control"
+                                       {% if preferences.paradigm_audio.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h3 id="paradigm-audio" class="setting__title">Show Synthesized Audio in Paradigms</h3>
+
+            <p class="setting__note"> Synthesized audio is generated by a computer model. It's fairly accurate, but not
+                as
+                precise as a human speaker. This setting applies to the <em>Paradigm Layouts</em> specifically.
+                <i>Note: this setting only applies if "Show Paradigm Audio" is set to "yes"</i></p>
+
+            <form method="POST" action="{% url "preference:change" "synthesized_audio_in_paradigm" %}"
+                  data-save-preference="synthesized_audio_in_paradigm">
+                <ul class="unbullet">
+                    {% for value, label in preferences.synthesized_audio_in_paradigm.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="synthesized_audio_in_paradigm" value="{{ value }}"
+                                       class="option__control"
+                                       {% if preferences.synthesized_audio_in_paradigm.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+        <section>
+            <h3 id="paradigm-audio" class="setting__title">Show Synthesized Audio</h3>
+
+            <p class="setting__note"> Synthesized audio is generated by a computer model. It's fairly accurate, but not
+                as
+                precise as a human speaker. This setting applies to all speech except the paradigm layouts.</p>
+
+            <form method="POST" action="{% url "preference:change" "synthesized_audio" %}"
+                  data-save-preference="synthesized_audio">
+                <ul class="unbullet">
+                    {% for value, label in preferences.synthesized_audio.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="synthesized_audio" value="{{ value }}"
+                                       class="option__control"
+                                       {% if preferences.synthesized_audio.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+    </section>
 {% endblock %}

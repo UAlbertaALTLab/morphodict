@@ -6,6 +6,9 @@ EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
 
 
 @pytest.mark.django_db
+@pytest.mark.skip(
+    reason="Cannot use dictionary source and auto translations for click-in-text"
+)
 def test_click_in_text_correct_usage(client):
     # niskak means goose in plains Cree
     response = client.get(
