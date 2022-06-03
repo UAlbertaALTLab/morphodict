@@ -20,7 +20,11 @@ CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
 
 def search(
-    *, query: str, include_affixes=True, include_auto_definitions=False, inflect_english_phrases=False
+    *,
+    query: str,
+    include_affixes=True,
+    include_auto_definitions=False,
+    inflect_english_phrases=False
 ) -> SearchRun:
     """
     Perform an actual search, using the provided options.

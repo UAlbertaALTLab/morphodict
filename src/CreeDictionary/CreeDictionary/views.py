@@ -131,7 +131,7 @@ def index(request):  # pragma: no cover
         search_run = search_with_affixes(
             user_query,
             include_auto_definitions=include_auto_definitions,
-            inflect_english_phrases=inflect_english_phrases
+            inflect_english_phrases=inflect_english_phrases,
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
@@ -176,7 +176,9 @@ def search_results(request, query_string: str):  # pragma: no cover
     include_auto_definitions = should_include_auto_definitions(request)
     inflect_english_phrases = should_inflect_phrases(request)
     results = search_with_affixes(
-        query_string, include_auto_definitions=include_auto_definitions, inflect_english_phrases=inflect_english_phrases
+        query_string,
+        include_auto_definitions=include_auto_definitions,
+        inflect_english_phrases=inflect_english_phrases,
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
