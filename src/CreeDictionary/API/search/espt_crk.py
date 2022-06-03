@@ -116,6 +116,11 @@ verb_tag_map = TagMap(
         "+21PlO",
         "+12PlO",
         3,
+    ),
+    (
+        "+PV/pimi",
+        ("PV/pimi+"),
+        3,
     ),  # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
     # TODO: also handle "+Inf": ("PV/ta+", "+Cnj")  # future definite?
     *passthrough_tags_to_tuples(verb_passthrough_tags)

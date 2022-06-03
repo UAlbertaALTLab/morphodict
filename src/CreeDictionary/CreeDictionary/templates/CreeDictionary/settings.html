@@ -72,6 +72,35 @@
             </form>
         </section>
 
+    <section>
+            <h3 id="show-inflectional-category" class="setting__title">Inflectional Category</h3>
+
+            <p class="setting__note"> Would you like to see the inflectional category with search results?</p>
+
+            <form method="POST" action="{% url "preference:change" "show_inflectional_category" %}"
+                  data-save-preference="show_inflectional_category">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_inflectional_category.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="show_inflectional_category" value="{{ value }}" class="option__control"
+                                       {% if preferences.show_inflectional_category.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
         <section>
             <h3 id="show-emoji" class="setting__title">Show emojis with entries?</h3>
 
@@ -239,6 +268,59 @@
                                 <input type="radio" name="synthesized_audio" value="{{ value }}"
                                        class="option__control"
                                        {% if preferences.synthesized_audio.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+    <section>
+            <h3 id="inflect-english-phrase" class="setting__title">Inflect English Phrases</h3>
+
+            <form method="POST" action="{% url "preference:change" "inflect_english_phrase" %}"
+                  data-save-preference="inflect_english_phrase">
+                <ul class="unbullet">
+                    {% for value, label in preferences.inflect_english_phrase.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="inflect_english_phrase" value="{{ value }}" class="option__control"
+                                       {% if preferences.inflect_english_phrase.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+    <section>
+            <h3 id="auto-translate-defs" class="setting__title">Show Auto-translations</h3>
+
+            <form method="POST" action="{% url "preference:change" "auto_translate_defs" %}"
+                  data-save-preference="auto_translate_defs">
+                <ul class="unbullet">
+                    {% for value, label in preferences.auto_translate_defs.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="auto_translate_defs" value="{{ value }}" class="option__control"
+                                       {% if preferences.auto_translate_defs.current_choice == value %}checked{% endif %}>
                                 <span class="option__label-text">{{ value|capfirst }}</span>
                             </label>
                             <p class="option__description">
