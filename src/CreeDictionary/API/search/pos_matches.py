@@ -10,6 +10,8 @@ def find_pos_matches(search_run: SearchRun) -> None:
             )
     # print(search_run.verbose_messages["new_tags"])
 
+    if len(search_run.verbose_messages) <= 1:
+        return
     tags = search_run.verbose_messages[1].get("tags")
     [pos_match(result, tags) for result in search_run.unsorted_results()]
 
@@ -20,7 +22,6 @@ def pos_match(result, tags):
     The higher the value, the more related
     If they aren't related or aren't analyzable, return 0
     """
-    print("hi")
     if not tags:
         result.pos_match = 0
         return

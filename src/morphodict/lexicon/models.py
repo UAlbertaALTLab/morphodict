@@ -348,7 +348,7 @@ class _WordformCache:
             .read_text()
             .splitlines()
         )
-        max = -1
+        max = -1.0
         for line in lines:
             cells = line.split("\t")
             # todo: use the third row
