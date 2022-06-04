@@ -14,8 +14,8 @@ def get_word_list_freq(search_run):
 def prep_freqs():
     lines = (
         Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt")
-            .read_text()
-            .splitlines()
+        .read_text()
+        .splitlines()
     )
     max = -1
     for line in lines:

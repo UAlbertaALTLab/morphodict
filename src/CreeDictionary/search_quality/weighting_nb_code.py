@@ -26,7 +26,7 @@ def dataframe_from_featuredump(filename):
                     continue
             except:
                 continue
-    
+
     all_keys = set(list(k for row in rows for k in row.keys()))
     data = {}
     for key in all_keys:
