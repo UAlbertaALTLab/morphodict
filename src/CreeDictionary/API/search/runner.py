@@ -9,8 +9,11 @@ from CreeDictionary.API.search.affix import (
 )
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.cvd_search import do_cvd_search
+from CreeDictionary.API.search.lemma_freq import get_lemma_freq
+from CreeDictionary.API.search.word_list_freq import get_word_list_freq
 from CreeDictionary.API.search.espt import EsptSearch
 from CreeDictionary.API.search.lookup import fetch_results
+from CreeDictionary.API.search.pos_matches import find_pos_matches
 from CreeDictionary.API.search.query import CvdSearchType
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.API.search.util import first_non_none_value
@@ -73,6 +76,10 @@ def search(
 
     if search_run.query.espt or inflect_english_phrases:
         espt_search.inflect_search_results()
+
+    find_pos_matches(search_run)
+    get_word_list_freq(search_run)
+    get_lemma_freq(search_run)
 
     return search_run
 
