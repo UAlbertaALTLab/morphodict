@@ -2,7 +2,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [AFFIRMATIVE]	Affirmative	Affirmative	Affirmative statement		
 [NON_AFFIRMATIVE]	Non-Affirmative	Non-affirmative	Not		
 [NON_AFFIRMATIVE][NEG]	Negative Non-affirmative negative	Not			
-[NON_AFFIRMATIVE][INTERROGATIVE]	Non-Affirm Interrogative	Non-affirmative Interrogative	"Not" Question		
+[NON_AFFIRMATIVE][INTERROGATIVE]	Non-Affirm Interrogative	Non-affirmative Interrogative	Negative Question		
 [INTERROGATIVE]	Interrogative	Interrogative	Question		
 [INDICATIVE]	Indicative	Indicative	Statement		
 [IMPERATIVE]	Imper	Imperative	Command/Request		
