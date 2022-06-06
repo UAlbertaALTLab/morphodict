@@ -95,7 +95,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [SIMPLE]	Simple	Simple tense	simple event		
 [IC]	IC	Initial change	starts change		
 [II]	II	Inanimate Intransitive	unalive actor		
-[AI]	AI	Animate Intransitive	alive actor							
+[AI]	AI	Animate Intransitive	alive actor		
 [TA]	TA	Animate Transitive	alive actor acting on something/one		
 [TI]	TI	Inanimate Transitive	unalive actor acting on something/one		
 					
