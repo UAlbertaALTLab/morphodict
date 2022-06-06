@@ -39,7 +39,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [3PL-OBJ]	→ 3p	Object: 3rd Person Plural	→ they		
 [4SG-OBJ]	→ 4s	3rd Person Singular (Obviative)	→ him/her		
 [4PL-OBJ]	→ 4p	3rd Person Plural (Obviative)	→ them		
-							
+					
 [1SG-SUBJ][2SG-OBJ]	1s → 2s	Subject: 1st Person Singular → Object: 2nd Person Singular	I → you		
 [1SG-SUBJ][2PL-OBJ]	1s → 2p	Subject: 1st Person Singular → Object: 2nd Person Plural	I → you (all)		
 [2SG-SUBJ][1SG-OBJ]	2s → 1s	Subject: 2nd Person Singular → Object: 1st Person Singular	you → me			
