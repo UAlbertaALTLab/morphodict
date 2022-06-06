@@ -45,7 +45,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [2SG-SUBJ][1SG-OBJ]	2s → 1s	Subject: 2nd Person Singular → Object: 1st Person Singular	you → me		
 [2PL-SUBJ][1SG-OBJ]	2p → 1s	Subject: 2nd Person Plural → Object: 1st Person Singular	you (all) → me		
 [1PL-SUBJ][2SG-OBJ]	1p → 2s	Subject: 1st Person Plural → Object: 2nd Person Singular	we → you		
-[1PL-SUBJ][2PL-OBJ]	1p → 2p	Subject: 1st Person Plural → Object: 2nd Person Plural		we → you (all)		
+[1PL-SUBJ][2PL-OBJ]	1p → 2p	Subject: 1st Person Plural → Object: 2nd Person Plural	we → you (all)		
 [2SG-SUBJ][1PL-EXCL-OBJ]	2s → 1p (excl)	Subject: 2nd Person Singular → Object: 1st Person Plural (Exclusive)	you → us (but not you)		
 [2PL-SUBJ][1PL-EXCL-OBJ]	2p → 1p (excl)	Subject: 2nd Person Plural → Object: 1st Person Plural (Exclusive)	you (all) → us (but not you)		
 [1SG-SUBJ][3SG-OBJ]	1s → 3s	Subject: 1st Person Singular → Object: 3rd Person Singular	I → her/him/it		
