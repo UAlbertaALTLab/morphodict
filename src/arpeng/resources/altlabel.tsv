@@ -28,7 +28,7 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [4SG-SUBJ][INANIMATE-OBJECT]	4s → 3s	Subject: 4th Person Singular (Obviative)	s/he (further) → it/them		
 [4PL-SUBJ][INANIMATE-OBJECT]	4p → 3s	Subject: 4th Person Plural (Obviative)	s/he (further) → it/them		
 [INANIMATE-OBJECT]	Inanimate Obj	Object: Inanimate	 → it		
-							
+					
 [1SG-OBJ]	→ 1s	Object: 1st Person Singular	→ me		
 [1PL-OBJ]	→ 1s	Object: 1st Person Plural	→ us		
 [1PL-EXCL-OBJ]	→ 1p (excl)	Object: 1st Person Plural (Exclusive)	→ you (but not us)		
