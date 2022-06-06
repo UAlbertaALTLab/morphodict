@@ -43,14 +43,14 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
 [1SG-SUBJ][2SG-OBJ]	1s → 2s	Subject: 1st Person Singular → Object: 2nd Person Singular	I → you		
 [1SG-SUBJ][2PL-OBJ]	1s → 2p	Subject: 1st Person Singular → Object: 2nd Person Plural	I → you (all)		
 [2SG-SUBJ][1SG-OBJ]	2s → 1s	Subject: 2nd Person Singular → Object: 1st Person Singular	you → me		
-[2PL-SUBJ][1SG-OBJ]	2p → 1s	Subject: 2nd Person Plural → Object: 1st Person Singular	you (all) → me			
-[1PL-SUBJ][2SG-OBJ]	1p → 2s	Subject: 1st Person Plural → Object: 2nd Person Singular	we → you			
+[2PL-SUBJ][1SG-OBJ]	2p → 1s	Subject: 2nd Person Plural → Object: 1st Person Singular	you (all) → me		
+[1PL-SUBJ][2SG-OBJ]	1p → 2s	Subject: 1st Person Plural → Object: 2nd Person Singular	we → you		
 [1PL-SUBJ][2PL-OBJ]	1p → 2p	Subject: 1st Person Plural → Object: 2nd Person Plural		we → you (all)		
 [2SG-SUBJ][1PL-EXCL-OBJ]	2s → 1p (excl)	Subject: 2nd Person Singular → Object: 1st Person Plural (Exclusive)	you → us (but not you)		
 [2PL-SUBJ][1PL-EXCL-OBJ]	2p → 1p (excl)	Subject: 2nd Person Plural → Object: 1st Person Plural (Exclusive)	you (all) → us (but not you)		
 [1SG-SUBJ][3SG-OBJ]	1s → 3s	Subject: 1st Person Singular → Object: 3rd Person Singular	I → her/him/it		
 [1SG-SUBJ][3PL-OBJ]	1s → 3p	Subject: 1st Person Singular → Object: 3rd Person Plural	I → them		
-[2SG-SUBJ][3SG-OBJ]	2s → 3s	Subject: 2nd Person Singular → Object: 3rd Person Singular	you → her/him/it	
+[2SG-SUBJ][3SG-OBJ]	2s → 3s	Subject: 2nd Person Singular → Object: 3rd Person Singular	you → her/him/it		
 [2SG-SUBJ][3PL-OBJ]	2s → 3p	Subject: 2nd Person Singular → Object: 3rd Person Plural	you → them		
 [3SG-SUBJ][4SG-OBJ]	3s → 4s	Subject: 3rd Person Singular → Object: 4th Person Singular	s/he/it → them (further)		
 [3SG-SUBJ][3PL-OBJ]	3s → 3p	Subject: 3rd Person Singular → Object: 3rd Person Plural	s/he/it → them		
