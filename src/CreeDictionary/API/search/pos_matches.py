@@ -5,9 +5,7 @@ from morphodict.analysis import rich_analyze_relaxed
 
 def find_pos_matches(search_run: SearchRun) -> None:
 
-    analyzed_query = AnalyzedQuery(
-                search_run.internal_query
-            )
+    analyzed_query = AnalyzedQuery(search_run.internal_query)
     # print(search_run.verbose_messages["new_tags"])
 
     if len(search_run.verbose_messages) <= 1:
@@ -37,11 +35,10 @@ def pos_match(result, tags):
     j = 0
     while j < max:
         if result_tags[j] == query_tags[j]:
-            i += 1/(j+1)
+            i += 1 / (j + 1)
         j += 1
     result.pos_match = i
     return
-
 
 
 class AnalyzedQuery:
@@ -67,9 +64,13 @@ class AnalyzedQuery:
         else:
             phrase_analyses = eng_phrase_to_crk_features_fst()[query]
             if phrase_analyses:
-                phrase_analysis = phrase_analyses[0].decode('utf-8')
+                phrase_analysis = phrase_analyses[0].decode("utf-8")
                 self.has_tags = True
-                split_tags = phrase_analysis.split()[1].split('+') if len(phrase_analysis.split()) > 1  else []
+                split_tags = (
+                    phrase_analysis.split()[1].split("+")
+                    if len(phrase_analysis.split()) > 1
+                    else []
+                )
                 analysis = []
                 for tag in split_tags:
                     if not tag:
@@ -77,7 +78,6 @@ class AnalyzedQuery:
                     tag = "+" + tag
                     analysis.append(tag)
                 self.analysis = analysis
-
 
     def __repr__(self):
         return f"<PhraseAnalyzedQuery {self.__dict__!r}>"
