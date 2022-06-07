@@ -28,7 +28,6 @@ services:
       - "./.env:/app/.env"
       - "../src/crkeng/resources/vector_models/:/app/src/crkeng/resources/vector_models/"
       - "../src/crkeng/db/:/app/src/crkeng/db/"
-      - "../src/CreeDictionary/res:/app/src/CreeDictionary/res"
       - "../src/crkeng/CreeDictionary/search_quality/:/app/src/crkeng/CreeDictionary/search_quality/"
 
   cwdeng:
