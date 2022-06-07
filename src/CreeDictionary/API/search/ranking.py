@@ -48,7 +48,7 @@ def assign_relevance_score(result: types.Result):
             0.0872175733
             + 0.2204347216 * len(result.target_language_keyword_match)
             + 0.0314788206 * _default_if_none(result.morpheme_ranking, default=1)
-            + 0.0018736602 * _default_if_none(result.word_list_freq, default=0)
+            + 0.0018736602 * _default_if_none(result.glossary_count, default=0)
             + 0.0000001589 * _default_if_none(result.lemma_freq, default=0)
             + 0.0203591827 * _default_if_none(result.pos_match, default=0)
             + -0.1134934198

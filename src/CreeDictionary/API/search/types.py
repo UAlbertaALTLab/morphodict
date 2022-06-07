@@ -123,7 +123,7 @@ class Result:
         self.wordform_length = len(self.wordform.text)
 
         self.pos_match = self.pos_match
-        self.word_list_freq = self.word_list_freq
+        self.glossary_count = self.glossary_count
         self.lemma_freq = self.lemma_freq
 
         if self.did_match_source_language and self.query_wordform_edit_distance is None:
@@ -211,7 +211,7 @@ class Result:
     is_espt_result: Optional[bool] = None
 
     pos_match: Optional[int] = None
-    word_list_freq: Optional[int] = None
+    glossary_count: Optional[int] = None
     lemma_freq: Optional[int] = None
 
     #: Was anything in the query a target-language match for this result?

@@ -6,9 +6,9 @@ DOCUMENT_FREQUENCY = {}
 NORMALIZED_FREQUENCIES = {}
 
 
-def get_word_list_freq(search_run):
+def get_glossary_count(search_run):
     prep_freqs()
-    [find_corpus_freq(result) for result in search_run.unsorted_results()]
+    [find_glossary_count(result) for result in search_run.unsorted_results()]
 
 
 def prep_freqs():
@@ -31,9 +31,9 @@ def prep_freqs():
         NORMALIZED_FREQUENCIES[morph] = DOCUMENT_FREQUENCY[morph] / max
 
 
-def find_corpus_freq(result):
+def find_glossary_count(result):
     if result.lemma_wordform.text in DOCUMENT_FREQUENCY:
-        result.word_list_freq = DOCUMENT_FREQUENCY[result.lemma_wordform.text]
+        result.glossary_count = DOCUMENT_FREQUENCY[result.lemma_wordform.text]
         return
-    result.word_list_freq = 0
+    result.glossary_count = 0
     return
