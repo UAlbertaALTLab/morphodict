@@ -8,7 +8,7 @@ NORMALIZED_FREQUENCIES = {}
 
 def load_lemma_data():
     lines = Path(shared_res_dir / "lemma_frequency.txt").read_text().splitlines()
-    max = -1
+    max = 1.0
     for line in lines:
         cells = line.split("\t")
         # todo: use the third row
