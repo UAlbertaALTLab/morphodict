@@ -20,7 +20,6 @@ def prep_freqs():
     )
     max = -1
     for line in lines:
-        print(line)
         cells = line.split("\t")
         # todo: use the third row
         if len(cells) >= 2:
