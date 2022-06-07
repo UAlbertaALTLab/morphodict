@@ -27,7 +27,7 @@ def prep_freqs():
                 max = int(freq)
             DOCUMENT_FREQUENCY[morpheme] = int(freq)
 
-    print(DOCUMENT_FREQUENCY)
+    print("DOC FREQ:", DOCUMENT_FREQUENCY)
     for morph in DOCUMENT_FREQUENCY:
         NORMALIZED_FREQUENCIES[morph] = DOCUMENT_FREQUENCY[morph] / max
 
