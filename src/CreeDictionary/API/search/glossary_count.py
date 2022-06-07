@@ -12,6 +12,7 @@ def get_glossary_count(search_run):
 
 
 def prep_freqs():
+    print("Location of glossary file:", Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt"))
     lines = (
         Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt")
         .read_text()
@@ -19,10 +20,12 @@ def prep_freqs():
     )
     max = -1
     for line in lines:
+        print(line)
         cells = line.split("\t")
         # todo: use the third row
         if len(cells) >= 2:
             freq, morpheme, *_ = cells
+            print(morpheme)
             if int(freq) > max:
                 max = int(freq)
             DOCUMENT_FREQUENCY[morpheme] = int(freq)
