@@ -25,7 +25,6 @@ def prep_freqs():
         # todo: use the third row
         if len(cells) >= 2:
             freq, morpheme, *_ = cells
-            print(morpheme)
             if int(freq) > max:
                 max = int(freq)
             DOCUMENT_FREQUENCY[morpheme] = int(freq)
