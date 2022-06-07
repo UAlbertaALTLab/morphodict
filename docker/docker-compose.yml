@@ -65,7 +65,7 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/srseng/resources/fst:/app/src/srseng/resources/fst:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/CreeDictionary/res:/app/src/CreeDictionary/res:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
       - "../src/srseng/resources/dictionary/:/app/src/srseng/resources/dictionary/:ro"
 
