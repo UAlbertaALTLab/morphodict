@@ -68,7 +68,7 @@ class Command(BaseCommand):
                     ret["webapp_sort_rank"] = i + 1
                     ret["pos_match"] = r.pos_match
                     ret["morpheme_ranking"] = r.morpheme_ranking
-                    ret["word_list_freq"] = r.word_list_freq
+                    ret["glossary_count"] = r.glossary_count
                     ret["lemma_freq"] = r.lemma_freq
                     ret["is_espt_result"] = 1 if r.is_espt_result else 0
                     print(json.dumps(ret, ensure_ascii=False), file=out)
