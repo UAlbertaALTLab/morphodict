@@ -45,13 +45,13 @@ def assign_relevance_score(result: types.Result):
             # See weighting.ipynb for the model that produced these coefficients.
             # The ESPT coefficient has been added at random for now--further investigation is needed
             # The POS and corp-freq coefficients have been overriden to be the same on purpose
-            0.0872175733
-            + 0.2204347216 * len(result.target_language_keyword_match)
-            + 0.0314788206 * _default_if_none(result.morpheme_ranking, default=1)
-            + 0.018736602 * _default_if_none(result.glossary_count, default=0)
-            + 0.0000001589 * _default_if_none(result.lemma_freq, default=0)
-            + 0.0203591827 * _default_if_none(result.pos_match, default=0)
-            + -0.1134934198
+            0
+            + 1 * len(result.target_language_keyword_match)
+            + 2 * _default_if_none(result.morpheme_ranking, default=1)
+            + 3 * _default_if_none(result.glossary_count, default=0)
+            + 0.5 * _default_if_none(result.lemma_freq, default=0)
+            + 2 * _default_if_none(result.pos_match, default=0)
+            + -0.25
             * log(1 + _default_if_none(result.cosine_vector_distance, default=1.1))
             # These features used to be useful but have been temporarily removed
             # + -0.0004337761 * result.wordform_length
