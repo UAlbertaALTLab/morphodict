@@ -48,9 +48,9 @@ def assign_relevance_score(result: types.Result):
             0
             + 1 * len(result.target_language_keyword_match)
             + 2 * _default_if_none(result.morpheme_ranking, default=1)
-            + 3 * _default_if_none(result.glossary_count, default=0)
+            + 2 * _default_if_none(result.glossary_count, default=0)
             + 0.5 * _default_if_none(result.lemma_freq, default=0)
-            + 2 * _default_if_none(result.pos_match, default=0)
+            + 3 * _default_if_none(result.pos_match, default=0)
             + -0.25
             * log(1 + _default_if_none(result.cosine_vector_distance, default=1.1))
             # These features used to be useful but have been temporarily removed
