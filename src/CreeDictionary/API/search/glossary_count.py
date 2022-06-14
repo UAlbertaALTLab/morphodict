@@ -3,7 +3,6 @@ from pathlib import Path
 from CreeDictionary.utils import shared_res_dir
 
 DOCUMENT_FREQUENCY = {}
-NORMALIZED_FREQUENCIES = {}
 
 
 def get_glossary_count(search_run):
@@ -21,19 +20,13 @@ def prep_freqs():
         .read_text()
         .splitlines()
     )
-    max = -1
+    max = 3
     for line in lines:
         cells = line.split("\t")
-        # todo: use the third row
         if len(cells) >= 2:
             freq, morpheme, *_ = cells
-            if int(freq) > max:
-                max = int(freq)
-            DOCUMENT_FREQUENCY[morpheme] = int(freq)
-
-    print("DOC FREQ:", DOCUMENT_FREQUENCY)
-    for morph in DOCUMENT_FREQUENCY:
-        NORMALIZED_FREQUENCIES[morph] = DOCUMENT_FREQUENCY[morph] / max
+            # normalize by dividing by max
+            DOCUMENT_FREQUENCY[morpheme] = int(freq) / max
 
 
 def find_glossary_count(result):

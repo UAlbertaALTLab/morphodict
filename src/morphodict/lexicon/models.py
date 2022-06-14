@@ -348,17 +348,14 @@ class _WordformCache:
             .read_text()
             .splitlines()
         )
-        max = -1.0
+        max = 65.04136
         for line in lines:
             cells = line.split("\t")
             # todo: use the third row
             if len(cells) >= 2:
                 freq, morpheme, *_ = cells
-                if float(freq) > max:
-                    max = float(freq)
-                ret[morpheme] = float(freq)
-        for morph in ret:
-            ret[morph] = ret[morph] / max
+                # normalize the morpheme ranking
+                ret[morpheme] = float(freq) / max
         return ret
 
     def preload(self):
