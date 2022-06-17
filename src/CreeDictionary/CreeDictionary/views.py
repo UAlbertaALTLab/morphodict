@@ -379,11 +379,11 @@ def google_site_verification(request):
 
 
 def should_include_auto_definitions(request):
-    return True if request.COOKIES.get("auto_translate_defs") == "yes" else False
+    return False if request.COOKIES.get("auto_translate_defs") == "no" else True
 
 
 def should_inflect_phrases(request):
-    return True if request.COOKIES.get("inflect_english_phrase") == "yes" else False
+    return False if request.COOKIES.get("inflect_english_phrase") == "no" else True
 
 
 def get_dict_source(request):
