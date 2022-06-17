@@ -162,6 +162,7 @@ class ShowInflectionalCategory(Preference):
 class InflectEnglishPhrase(Preference):
     """
     Should we show synthesized audio in the paradigms?
+    espt: t
     """
 
     cookie_name = "inflect_english_phrase"
@@ -176,6 +177,7 @@ class InflectEnglishPhrase(Preference):
 class AutoTranslateDefs(Preference):
     """
     Should we show synthesized audio in the paradigms?
+    auto: t
     """
 
     cookie_name = "auto_translate_defs"
