@@ -160,7 +160,7 @@ context("Regressions", () => {
     cy.search("acâhkos");
 
     cy.url().should("contain", "/search");
-    cy.get("[data-cy=search-results]").should("contain", "atâhk");
+    cy.get("[data-cy=definition-title]").should("contain", "atâhk");
   });
 
   /**
@@ -258,7 +258,7 @@ context("Regressions", () => {
    *
    * See: https://github.com/UAlbertaALTLab/morphodict/issues/489
    */
-  context("symbols also for pronouns and preverbs", function () {
+  context.skip("symbols also for pronouns and preverbs", function () {
     // TODO: add emoji to represent ôma/awa words
     const testCases = [
       ["niya", "➡️", "like: awa"],
@@ -287,7 +287,7 @@ context("Regressions", () => {
     const testCases = [
       ["Calgary", "otôskwanihk"],
       ["Regina", "oskana kâ-asastêki"],
-      ["Saskatoon", "misâskwatômina"],
+      ["Saskatoon", "misâskwatôminihk"],
     ];
 
     for (const [englishName, creeName] of testCases) {
@@ -316,6 +316,7 @@ context("Regressions", () => {
     cy.get("[data-cy=play-recording]").should("be.visible");
 
     cy.get("[data-cy=paradigm-toggle-button").click();
+    cy.wait(4500); // needs time to load audio
 
     cy.location("search").should("match", /paradigm-size=FULL/i);
 

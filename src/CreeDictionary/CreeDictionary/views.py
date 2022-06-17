@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import json
 import logging
+import urllib
+import numpy as np
 from typing import Any, Dict, Literal, Optional
 
+import requests
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
@@ -19,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
 )
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
@@ -31,6 +34,7 @@ from .utils import url_for_query
 IndexPageMode = Literal["home-page", "search-page", "word-detail", "info-page"]
 
 logger = logging.getLogger(__name__)
+
 
 # "pragma: no cover" works with coverage.
 # It excludes the clause or line (could be a function/class/if else block) from coverage
@@ -44,7 +48,6 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
-
     lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemma.count() != 1:
@@ -53,13 +56,21 @@ def entry_details(request, slug: str):
 
     lemma = lemma.get()
 
+    if rich_analysis := lemma.analysis:
+        morphemes = rich_analysis.generate_with_morphemes(lemma.text)
+    else:
+        morphemes = None
+
     paradigm_context: dict[str, Any] = {}
 
     paradigm = lemma.paradigm
     if paradigm is not None:
         paradigm_manager = default_paradigm_manager()
         sizes = list(paradigm_manager.sizes_of(paradigm))
-        default_size = sizes[0]
+        if "basic" in sizes:
+            default_size = "basic"
+        else:
+            default_size = sizes[0]
 
         if len(sizes) <= 1:
             size = default_size
@@ -71,11 +82,15 @@ def entry_details(request, slug: str):
                 size = default_size
 
         paradigm = paradigm_for(lemma, size)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
+
         paradigm_context.update(
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
         )
 
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
+    dict_source = get_dict_source(request)  # type: ignore
+    should_show_emoji = ShowEmoji.current_value_from_request(request)  # type: ignore
     context = create_context_for_index_template(
         "word-detail",
         # TODO: rename this to wordform ID
@@ -83,9 +98,17 @@ def entry_details(request, slug: str):
         # TODO: remove this parameter in favour of...
         lemma=lemma,
         # ...this parameter
-        wordform=presentation.serialize_wordform(lemma, animate_emoji=animate_emoji),
+        wordform=presentation.serialize_wordform(
+            lemma,
+            animate_emoji=animate_emoji,
+            dict_source=dict_source,
+            show_emoji=should_show_emoji,
+        ),
         **paradigm_context,
     )
+    context["show_morphemes"] = request.COOKIES.get("show_morphemes")
+    context["morphemes"] = morphemes
+    context["show_ic"] = request.COOKIES.get("show_inflectional_category")
     return render(request, "CreeDictionary/index.html", context)
 
 
@@ -99,18 +122,25 @@ def index(request):  # pragma: no cover
     """
 
     user_query = request.GET.get("q", None)
+    dict_source = get_dict_source(request)
     search_run = None
 
     if user_query:
+        include_auto_definitions = should_include_auto_definitions(request)
+        inflect_english_phrases = should_inflect_phrases(request)
         search_run = search_with_affixes(
             user_query,
-            include_auto_definitions=should_include_auto_definitions(request),
+            include_auto_definitions=include_auto_definitions,
+            inflect_english_phrases=inflect_english_phrases,
         )
         search_results = search_run.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
+            show_emoji=ShowEmoji.current_value_from_request(request),
+            dict_source=dict_source,
         )
         did_search = True
+
     else:
         search_results = []
         did_search = False
@@ -128,6 +158,9 @@ def index(request):  # pragma: no cover
         search_results=search_results,
         did_search=did_search,
     )
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
+    context["show_morphemes"] = request.COOKIES.get("show_morphemes")
+    context["show_ic"] = request.COOKIES.get("show_inflectional_category")
     if search_run and search_run.verbose_messages and search_run.query.verbose:
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
@@ -139,17 +172,30 @@ def search_results(request, query_string: str):  # pragma: no cover
     """
     returns rendered boxes of search results according to user query
     """
+    dict_source = get_dict_source(request)  # type: ignore
+    include_auto_definitions = should_include_auto_definitions(request)
+    inflect_english_phrases = should_inflect_phrases(request)
     results = search_with_affixes(
-        query_string, include_auto_definitions=should_include_auto_definitions(request)
+        query_string,
+        include_auto_definitions=include_auto_definitions,
+        inflect_english_phrases=inflect_english_phrases,
     ).serialized_presentation_results(
         # mypy cannot infer this property, but it exists!
         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+        show_emoji=ShowEmoji.current_value_from_request(request),  # type: ignore
+        dict_source=dict_source,
     )
+
     return render(
         request,
         "CreeDictionary/search-results.html",
-        {"query_string": query_string, "search_results": results},
+        {
+            "query_string": query_string,
+            "search_results": results,
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
+            "show_ic": request.COOKIES.get("show_inflectional_category"),
+        },
     )
 
 
@@ -188,10 +234,9 @@ def paradigm_internal(request):
         return HttpResponseNotFound("specified lemma-id is not found in the database")
     # end guards
 
-    print(lemma)
-
     try:
         paradigm = paradigm_for(lemma, paradigm_size)
+        paradigm = get_recordings_from_paradigm(paradigm, request)
     except ParadigmDoesNotExistError:
         return HttpResponseBadRequest("paradigm does not exist")
     return render(
@@ -201,6 +246,7 @@ def paradigm_internal(request):
             "lemma": lemma,
             "paradigm_size": paradigm_size,
             "paradigm": paradigm,
+            "show_morphemes": request.COOKIES.get("show_morphemes"),
         },
     )
 
@@ -208,6 +254,7 @@ def paradigm_internal(request):
 def settings_page(request):
     # TODO: clean up template so that this weird hack is no longer needed.
     context = create_context_for_index_template("info-page")
+    context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     return render(request, "CreeDictionary/settings.html", context)
 
 
@@ -332,8 +379,20 @@ def google_site_verification(request):
 
 
 def should_include_auto_definitions(request):
-    # For now, show auto-translations if and only if the user is logged in
-    return request.user.is_authenticated
+    return False if request.COOKIES.get("auto_translate_defs") == "no" else True
+
+
+def should_inflect_phrases(request):
+    return False if request.COOKIES.get("inflect_english_phrase") == "no" else True
+
+
+def get_dict_source(request):
+    if dictionary_source := request.COOKIES.get("dictionary_source"):
+        if dictionary_source:
+            ret = dictionary_source.split("+")
+            ret = [r.upper() for r in ret]
+            return ret
+    return None
 
 
 def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
@@ -360,3 +419,72 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         )
 
     return None
+
+
+def get_recordings_from_paradigm(paradigm, request):
+    if request.COOKIES.get("paradigm_audio") in ["no", None]:
+        return paradigm
+
+    query_terms = []
+    matched_recordings = {}
+    speech_db_eq = settings.SPEECH_DB_EQ
+    if speech_db_eq == ["_"]:
+        return paradigm
+
+    if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
+        speech_db_eq.insert(0, "synth")
+
+    for pane in paradigm.panes:
+        for row in pane.tr_rows:
+            if not row.is_header:
+                for cell in row.cells:
+                    if cell.is_inflection:
+                        query_terms.append(str(cell))
+
+    for search_terms in divide_chunks(query_terms, 30):
+        for source in speech_db_eq:
+            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
+            matched_recordings.update(get_recordings_from_url(search_terms, url))
+
+    for pane in paradigm.panes:
+        for row in pane.tr_rows:
+            if not row.is_header:
+                for cell in row.cells:
+                    if cell.is_inflection:
+                        if str(cell) in matched_recordings:
+                            cell.add_recording(matched_recordings[str(cell)])
+
+    return paradigm
+
+
+def get_recordings_from_url(search_terms, url):
+    matched_recordings = {}
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    recordings = response.json()
+
+    for recording in recordings["matched_recordings"]:
+        entry = macron_to_circumflex(recording["wordform"])
+        matched_recordings[entry] = {}
+        matched_recordings[entry]["recording_url"] = recording["recording_url"]
+        matched_recordings[entry]["speaker"] = recording["speaker"]
+
+    return matched_recordings
+
+
+# Yield successive n-sized
+# chunks from l.
+# https://www.geeksforgeeks.org/break-list-chunks-size-n-python/
+def divide_chunks(terms, size):
+    # looping till length l
+    for i in range(0, len(terms), size):
+        yield terms[i : i + size]
+
+
+def macron_to_circumflex(item):
+    """
+    >>> macron_to_circumflex("wāpamēw")
+    'wâpamêw'
+    """
+    item = item.translate(str.maketrans("ēīōā", "êîôâ"))
+    return item

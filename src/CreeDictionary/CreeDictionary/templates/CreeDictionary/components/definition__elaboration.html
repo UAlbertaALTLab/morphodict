@@ -1,6 +1,6 @@
 {% spaceless %}
 
-  {% comment %}
+    {% comment %}
     ## .definition__elaboration ##
 
     Parameters:
@@ -27,44 +27,67 @@
 
   {% endcomment %}
 
-  {% load creedictionary_extras %}
+    {% load creedictionary_extras %}
+    {% load relabelling %}
+    {% load morphodict_orth %}
 
-  {# Second line of the header: the elaboration #}
-  <div class="definition__elaboration" data-cy="elaboration">
-    {# TODO: clean up this big conditional #}
-    {% if verbose %}
-      {% with ic=lemma.inflectional_category emoji=lemma.wordclass_emoji %}
-        {# Django's parser is not good and does not understand linebreaks, so this HAS TO BE all on one line: #}
-        {% include "CreeDictionary/components/definition__elaboration--verbose.html" with wordclass=lemma.wordclass ic_linguistic=lemma.inflectional_category_linguistic ic_short=lemma.inflectional_category ic_plain_english=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji %}
-      {% endwith %}
-
-    {% else %}{# not verbose #}
+    {# Second line of the header: the elaboration #}
+    <div class="definition__elaboration" data-cy="elaboration">
 
         {% with ic=lemma.inflectional_category_plain_english emoji=lemma.wordclass_emoji id=request|unique_id %}
-          {% if ic %}
-            {% if display_options.mode == 'community' %}
-              <span class="wordclass wordclass--described" data-cy="word-class" data-has-tooltip tabindex="0" aria-describedby="tooltip:{{ id }}">
-                {% if emoji %}
-                  <span class="wordclass__emoji">{{ emoji }}</span>
-                {% endif %}
-                {% if emoji and ic %} — {% endif %}
-                <span class="wordclass__help">{% cree_example ic %}</span>
-              </span>
-
-              <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
-                <div class="tooltip__arrow" data-popper-arrow></div>
-              </div>
-            {% elif display_options.mode == 'linguistic' %}
-                <span class="wordclass__inflectional-class"> {{ lemma.inflectional_category_linguistic }} </span>
+            {% if show_ic != "no" %}
+                {{ lemma.inflectional_category }}
             {% endif %}
-          {% elif emoji %}
-            <span class="wordclass" data-cy="word-class">
-              <span class="wordclass__emoji">{{ lemma.wordclass_emoji }}</span>
-            </span>
-          {% endif %}
-      {% endwith %}
+            {% if display_options.mode == 'linguistic' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {% relabel_plain_english lemma.inflectional_category %}
+                    - {% relabel_source lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
 
-    {% endif %}
-  </div>
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+
+            {% if display_options.mode == 'english' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_source lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
+
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+
+            {% if display_options.mode == 'source_language' %}
+                {% if lemma.show_emoji %}
+                    <span class="wordclass" data-cy="word-class">
+                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+                  </span>
+                {% endif %}
+                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                      aria-describedby="tooltip:{{ id }}"> {% relabel_source lemma.inflectional_category %} </span>
+                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                    - {% relabel_plain_english lemma.inflectional_category %}
+                    <div class="tooltip__arrow" data-popper-arrow></div>
+                </div>
+
+                {% include "CreeDictionary/components/lexical-breakdown.html" %}
+            {% endif %}
+        {% endwith %}
+    </div>
 {% endspaceless %}

@@ -54,3 +54,5 @@ MORPHODICT_ORTHOGRAPHY = {
         "Latn": {"name": "Latin"},
     },
 }
+
+SPEECH_DB_EQ = ["tsuutina"]

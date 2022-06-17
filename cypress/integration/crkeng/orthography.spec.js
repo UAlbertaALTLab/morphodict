@@ -19,9 +19,6 @@ describe("Orthography selection", function () {
       // Now it should be in syllabics!
       cy.get("@greeting").contains("ᑖᓂᓯ!");
 
-      // We should not see the menu
-      cy.get("@option").should("not.be.visible");
-
       // It should say so on the button
       cy.get("[data-cy=settings-menu]").click();
 
@@ -75,12 +72,12 @@ describe("Orthography selection", function () {
       cy.contains(".prose__heading", "ᓀᐦᐃᔭᐍᐏᐣ");
     });
 
-    it("should display Cree examples in syllabics", function () {
+    it.skip("should display Cree examples in syllabics", function () {
       cy.setCookie("orth", "Cans");
 
       // Visiting a page should be in syllabics
       cy.visitSearch("ᓃᒥᓈᓂᐘᐣ");
-      cy.contains("[data-cy=word-class]", "like: ᓂᐹᐤ");
+      cy.contains("[data-cy=elaboration]", "like: ᓂᐹᐤ");
     });
   });
 });

@@ -9,32 +9,15 @@ from morphodict.preference import register_preference, Preference
 @register_preference
 class DisplayMode(Preference):
     """
-    As of 2021-04-14, "mode" is a coarse mechanism for affecting the display; there are
-    plans for more fine-grained control over the display of, e.g., search results.
-    """
-
-    cookie_name = "mode"
-    choices = {
-        # Community-mode: uses emoji and hides inflectional class
-        "community": "Community mode",
-        # Linguist-mode: always displays inflectional class (e.g., VTA-1, NA-3, IPJ, etc.)
-        "linguistic": "Linguistic mode",
-    }
-    default = "community"
-
-
-@register_preference
-class ParadigmLabel(Preference):
-    """
     What style labels should be used in the paradigm?
     """
 
-    cookie_name = "paradigmlabel"
+    cookie_name = "display_mode"
     choices = {
         # Plain English labels; e.g., I → You (one), Something is happening now
-        "english": "plain English labels",
+        "english": "Plain English labels",
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
-        "linguistic": "linguistic labels",
+        "linguistic": "Linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
         "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
     }
@@ -69,3 +52,137 @@ class AnimateEmoji(Preference):
         # - 🦬 paskwâwi-mostsos
         # - 🦫 amisk
     }
+
+
+@register_preference
+class DictionarySource(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "dictionary_source"
+    choices = {
+        "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
+        "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
+        "cw+md": "Show entries from CW and MD (default)",
+    }
+
+    default = "cw+md"
+
+
+@register_preference
+class ShowEmoji(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "show_emoji"
+    choices = {
+        "yes": "Show emojis with my entries (default)",
+        "no": "Don't show emojis with my entries",
+    }
+
+    default = "yes"
+
+
+@register_preference
+class ShowMorphemes(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "show_morphemes"
+    choices = {
+        "everywhere": "I would like to see morpheme boundaries in entry headers and in paradigm tables",
+        "headers": "I would like to see morpheme boundaries in headers only",
+        "paradigm": "I would like to see morpheme boundaries in paradigm tables only",
+        "nowhere": "I do not want to see morpheme boundaries (default)",
+    }
+
+    default = "nowhere"
+
+
+@register_preference
+class ParadigmAudio(Preference):
+    """
+    Should we show audio in the paradigms?
+    """
+
+    cookie_name = "paradigm_audio"
+    choices = {
+        "yes": "I would like to see audio in paradigm layouts",
+        "no": "I do not want to see audio in paradigm layouts",
+    }
+    default = "no"
+
+
+@register_preference
+class SynthesizedAudio(Preference):
+    """
+    Should we show synthesized audio?
+    """
+
+    cookie_name = "synthesized_audio"
+    choices = {
+        "yes": "I would like to hear synthesized recordings",
+        "no": "I do not want to hear synthesized recordings",
+    }
+    default = "no"
+
+
+@register_preference
+class SynthesizedAudioInParadigm(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "synthesized_audio_in_paradigm"
+    choices = {
+        "yes": "I would like to hear synthesized recordings in my paradigm layouts",
+        "no": "I do not want to hear synthesized recordings in my paradigm layouts",
+    }
+    default = "no"
+
+
+@register_preference
+class ShowInflectionalCategory(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "show_inflectional_category"
+    choices = {
+        "yes": "I always want to see the inflectional category",
+        "no": "I only want to see the inflectional category in linguistic mode",
+    }
+    default = "yes"
+
+
+@register_preference
+class InflectEnglishPhrase(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    espt: t
+    """
+
+    cookie_name = "inflect_english_phrase"
+    choices = {
+        "yes": "Generate Cree word-forms matching simple English verb or noun phrases",
+        "no": "Only show dictionary entry headwords as they are",
+    }
+    default = "yes"
+
+
+@register_preference
+class AutoTranslateDefs(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    auto: t
+    """
+
+    cookie_name = "auto_translate_defs"
+    choices = {
+        "yes": "Generate English definitions matching core Cree word-forms",
+        "no": "Only show dictionary definitions as they are",
+    }
+    default = "yes"

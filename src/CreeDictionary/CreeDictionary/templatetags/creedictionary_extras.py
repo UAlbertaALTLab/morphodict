@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from CreeDictionary.CreeDictionary.paradigm.crkeng_corpus_frequency import (
     observed_wordforms,
 )
+from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.CreeDictionary.utils import url_for_query
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from morphodict.lexicon.models import Wordform
@@ -23,7 +24,7 @@ register = template.Library()
 @register.simple_tag(takes_context=True)
 def cree_example(context, example):
     """
-    Similart to {% orth %}, but does not convert the 'like: ' prefix.
+    Similar to {% orth %}, but does not convert the 'like: ' prefix.
     This should be used for the examples given in crk.altlabel.tsv.
 
     e.g.,
@@ -134,3 +135,43 @@ def unique_id(request: HttpRequest) -> str:
     PER_REQUEST_ID_COUNTER[request] += 1
 
     return str(generated_id)
+
+
+@register.simple_tag()
+def relabel_plain_english(pos: str):
+    """
+    Should take in a class and return the plain english labelling for it
+    So if I pass in "VTA-1", I should get back:
+    like: wîcihêw
+    """
+    return read_labels().english.get(pos)
+
+
+@register.simple_tag()
+def relabel_source(pos: str):
+    """
+    Should take in a class and return the plain english labelling for it
+    So if I pass in "VTA-1", I should get back:
+    tâpiskôc: wîcihêw
+    """
+    return read_labels().source_language.get(pos)
+
+
+@register.simple_tag()
+def relabel_linguistic_short(pos: str):
+    """
+    Should take in a class and return the plain english labelling for it
+    So if I pass in "VTA-1", I should get back:
+    VTA-1
+    """
+    return read_labels().linguistic_short.get(pos)
+
+
+@register.simple_tag()
+def relabel_linguistic_long(pos: str):
+    """
+    Should take in a class and return the plain english labelling for it
+    So if I pass in "VTA-1", I should get back:
+    transitive animate verb – class 1: regular
+    """
+    return read_labels().linguistic_long.get(pos)

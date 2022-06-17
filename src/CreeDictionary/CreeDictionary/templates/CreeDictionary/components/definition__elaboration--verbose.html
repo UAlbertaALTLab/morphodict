@@ -23,27 +23,9 @@
 
   {% load creedictionary_extras %}
 
-  {% if ic_plain_english or emoji %}
-    <p class="elaboration__row elaboration__wordclass-row">
-      {% if ic_plain_english %}
-        <span class="wordclass" data-cy="word-class">
-          {% if emoji %}
-            <span class="wordclass__emoji">{{ emoji }}</span>
-          {% endif %}
-          {% if emoji and ic_plain_english %} — {% endif %}
-          <span class="wordclass__help">{% cree_example ic_plain_english %}</span>
-        </span>
-      {% elif emoji %}
-        <span class="wordclass" data-cy="word-class">
-          <span class="wordclass__emoji">{{ emoji }}</span>
-        </span>
-      {% endif %}
-    </p>
-  {% endif %}
-
-  {% if ic_short %}
+{#  {% if ic_short %}#}
     <p class="elaboration__row elaboration__ic-row">
     <small> {{ ic_short }}{% if ic_linguistic %}: {{ ic_linguistic }} {% endif %}</small>
     </p>
-  {% endif %}
+{#  {% endif %}#}
 {% endspaceless %}

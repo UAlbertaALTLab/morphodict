@@ -6,9 +6,9 @@
       "speaker_name": "Harley Simon",
       "anonymous": false,
       "gender": "M",
-      "dialect": "Maskwacîs",
+      "language": ["Maskwacîs"],
       "recording_url": "http://speech-db.altlab.app/media/audio/da213e0ac776a153030a87c1c47bc7e0d24a91233d9a1fa1e32d4b04cb383b65_fdqRrHt.m4a",
-      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+      "speaker_bio_url": "https://speech-db.altlab.app/maskwacis/speakers/HAR"
     },
     {
       "wordform": "wâpamêw",
@@ -16,9 +16,9 @@
       "speaker_name": "Harley Simon",
       "anonymous": false,
       "gender": "M",
-      "dialect": "Maskwacîs",
+      "language": ["Maskwacîs"],
       "recording_url": "http://speech-db.altlab.app/media/audio/8efae63b40e1bc44c37515ec56121bc734e2cb11d90c59d71f6d847dc6f82ac3_bM2P2A6.m4a",
-      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+      "speaker_bio_url": "https://speech-db.altlab.app/maskwacis/speakers/HAR"
     },
     {
       "wordform": "wâpamêw",
@@ -26,9 +26,9 @@
       "speaker_name": "Harley Simon",
       "anonymous": false,
       "gender": "M",
-      "dialect": "Maskwacîs",
+      "language": ["Maskwacîs"],
       "recording_url": "http://speech-db.altlab.app/media/audio/79d38cc7e67e73a50cb91f8d93fe96212c906d18b404f6d91412f6f7508c56c4_8csquYb.m4a",
-      "speaker_bio_url": "https://www.altlab.dev/maskwacis/Speakers/HAR.html"
+      "speaker_bio_url": "https://speech-db.altlab.app/maskwacis/speakers/HAR"
     }
   ],
   "not_found": []

@@ -1,5 +1,5 @@
 {% spaceless %}
-  {% comment %}
+    {% comment %}
     ## .linguistic-breakdown ##
 
     Parameters:
@@ -18,31 +18,30 @@
 
   {% endcomment %}
 
-  {% load morphodict_orth %}
-  {% load static %}
+    {% load morphodict_orth %}
+    {% load static %}
 
     {% if result.friendly_linguistic_breakdown_head or result.friendly_linguistic_breakdown_tail %}
-      <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip data-cy="information-mark">
-        <img
-          src="{% static 'morphodict/css/img/fa/info-circle-solid.svg' %}"
-          alt="linguistic breakdown">
-      </div>
-
-      <div class="tooltip" role="tooltip">
-        <div data-cy="linguistic-breakdown">
-          {% if result.lemma_wordform.stem %}
-            <h3 class="linguistic-breakdown__stem"> {{ result.lemma_wordform.stem }} </h3>
-          {% endif %}
-
-          <ol class="linguistic-breakdown__list">
-            {% for chunk in result.relabelled_fst_analysis %}
-              <li><data value="{{ chunk.tags }}"> {{ chunk.label }}</data></li>
-            {% endfor %}
-          </ol>
+        <div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip
+             data-cy="information-mark">
+            <img
+                    src="{% static 'morphodict/css/img/fa/info-circle-solid.svg' %}"
+                    alt="linguistic breakdown">
         </div>
 
-        <div class="tooltip__arrow" data-popper-arrow></div>
-      </div>
-      {# NB: the "Play recording" icon will be appened here #}
+        <div class="tooltip" role="tooltip">
+            <div data-cy="linguistic-breakdown">
+                <ol class="linguistic-breakdown__list">
+                    {% for chunk in result.relabelled_fst_analysis %}
+                        <li>
+                            <data value="{{ chunk.tags }}"> {{ chunk.label }}</data>
+                        </li>
+                    {% endfor %}
+                </ol>
+            </div>
+
+            <div class="tooltip__arrow" data-popper-arrow></div>
+        </div>
+        {# NB: the "Play recording" icon will be appened here #}
     {% endif %}
 {% endspaceless %}

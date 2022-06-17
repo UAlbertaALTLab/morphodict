@@ -1,3 +1,4 @@
+import re
 from functools import cache
 
 from django.conf import settings
@@ -9,6 +10,13 @@ FST_DIR = settings.BASE_DIR / "resources" / "fst"
 @cache
 def strict_generator():
     return TransducerFile(FST_DIR / settings.STRICT_GENERATOR_FST_FILENAME)
+
+
+@cache
+def strict_generator_with_morpheme_boundaries():
+    return TransducerFile(
+        FST_DIR / "crk-strict-generator-with-morpheme-boundaries.hfstol"
+    )
 
 
 @cache
@@ -71,6 +79,19 @@ class RichAnalysis:
 
     def generate(self):
         return strict_generator().lookup(self.smushed())
+
+    def generate_with_morphemes(self, inflection):
+        try:
+            results = strict_generator_with_morpheme_boundaries().lookup(self.smushed())
+            if len(results) != 1:
+                for result in results:
+                    if "".join(re.split(r"[<>]", result)) == inflection:
+                        return re.split(r"[<>]", result)
+                return None
+            return re.split(r"[<>]", results[0])
+        except RuntimeError as e:
+            print("Could not generate morphemes:", e)
+            return []
 
     def smushed(self):
         return "".join(self.prefix_tags) + self.lemma + "".join(self.suffix_tags)

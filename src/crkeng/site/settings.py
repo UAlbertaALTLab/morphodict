@@ -29,6 +29,8 @@ FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2S
 
 # Morphodict configuration
 
+SHOW_DICT_SOURCE_SETTING = True
+
 STRICT_GENERATOR_FST_FILENAME = "crk-strict-generator.hfstol"
 STRICT_ANALYZER_FST_FILENAME = "crk-strict-analyzer-for-dictionary.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "crk-relaxed-analyzer-for-dictionary.hfstol"
@@ -86,3 +88,5 @@ MORPHODICT_PARADIGM_SIZES = [
     "full",
     # Variants for linguists go here:
 ]
+
+SPEECH_DB_EQ = ["maskwacis", "moswacihk"]

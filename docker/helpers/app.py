@@ -18,6 +18,7 @@ class App:
             f"{self.name}/resources/fst",
             # Holds phrase-translation FSTs
             "CreeDictionary/res/fst/",
+            "CreeDictionary/res/",
             # Not actually an LFS thing, but this is where production dictionary
             # files get stored so they can be imported.
             f"{self.name}/resources/dictionary/",

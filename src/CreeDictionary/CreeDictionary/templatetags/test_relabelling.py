@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 
 from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
-from crkeng.app.preferences import ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 
 
 def test_relabel_tag():
@@ -33,7 +33,7 @@ def test_relabel_tag_uses_cookie():
     nehiyawewin = "awiya"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
+    request.COOKIES[DisplayMode.cookie_name] = "source_language"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
     template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
@@ -53,7 +53,7 @@ def test_relabel_tag_ignores_bad_cookie():
     english = "someone"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "totally-invalid-value-🐐"
+    request.COOKIES[DisplayMode.cookie_name] = "totally-invalid-value-🐐"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
     template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
@@ -75,7 +75,7 @@ def test_relabel_tag_with_explict_label_setting() -> None:
     nehiyawewin = "awiya"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
+    request.COOKIES[DisplayMode.cookie_name] = "source_language"
 
     context = RequestContext(request, {"label": RowLabel(unspecified_actor)})
 
@@ -106,7 +106,7 @@ def test_relabel_one_tag() -> None:
     unspecified_actor_tag = "X"
 
     request = HttpRequest()
-    request.COOKIES[ParadigmLabel.cookie_name] = "source_language"
+    request.COOKIES[DisplayMode.cookie_name] = "source_language"
 
     context = RequestContext(
         request, {"label": RowLabel(unspecified_actor), "tag": unspecified_actor_tag}

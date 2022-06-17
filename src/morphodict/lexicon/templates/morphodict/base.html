@@ -120,22 +120,31 @@
                 <li><a href="{% url 'cree-dictionary-settings' %}" class="footer-links__link">Settings</a></li>
             </ul>
 
-            <h2 class="footer__option-header"> View search results in: </h2>
+            <h2 class="footer__option-header"> View search results with: </h2>
             <ul class="unbullet">
                 <li>
                     <form method="POST" action={% url 'preference:change' 'display_mode' %}>
-                        <button class="unbutton link footer__link" type="submit" name="mode" value="community"
+                        <button class="unbutton link footer__link" type="submit" name="display_mode" value="english"
                                 data-cy="enable-community-mode">
-                            Community mode
+                            Plain English labels
                         </button>
                         {% csrf_token %}
                     </form>
                 </li>
                 <li>
                     <form method="POST" action={% url 'preference:change' 'display_mode' %}>
-                        <button class="unbutton link footer__link" type="submit" name="mode" value="linguistic"
+                        <button class="unbutton link footer__link" type="submit" name="display_mode" value="linguistic"
                                 data-cy="enable-linguistic-mode">
-                            Linguist mode
+                            Linguistic labels
+                        </button>
+                        {% csrf_token %}
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action={% url 'preference:change' 'display_mode' %}>
+                        <button class="unbutton link footer__link" type="submit" name="display_mode" value="source_language"
+                                data-cy="enable-source-mode">
+                            {{ MORPHODICT_SOURCE_LANGUAGE_NAME }} labels
                         </button>
                         {% csrf_token %}
                     </form>

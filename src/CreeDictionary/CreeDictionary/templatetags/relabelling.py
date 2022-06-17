@@ -11,7 +11,7 @@ from django.template import Context
 from CreeDictionary.CreeDictionary.relabelling import read_labels
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from CreeDictionary.utils.types import FSTTag
-from crkeng.app.preferences import ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 
 logger = logging.getLogger(__name__)
 register = template.Library()
@@ -26,7 +26,7 @@ def label_setting_to_relabeller(label_setting: str):
     return {
         "english": labels.english,
         "linguistic": labels.linguistic_short,
-        "source_language": labels.cree,
+        "source_language": labels.source_language,
     }.get(label_setting, labels.english)
 
 
@@ -68,9 +68,7 @@ def label_setting_from_context(context: Context):
     """
     if hasattr(context, "request"):
         # We can get the paradigm label from the cookie!
-        return context.request.COOKIES.get(
-            ParadigmLabel.cookie_name, ParadigmLabel.default
-        )
+        return context.request.COOKIES.get(DisplayMode.cookie_name, DisplayMode.default)
 
     # Cannot get the request context? We can't detect the current cookie :/
-    return ParadigmLabel.default
+    return DisplayMode.default

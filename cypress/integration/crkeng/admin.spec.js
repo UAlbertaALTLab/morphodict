@@ -19,36 +19,6 @@ context("Admin interface", () => {
     cy.location("pathname").should("eq", Cypress.env("admin_url"));
   });
 
-  context("auto-translations", function () {
-    // NB: need to make sure this wordform is added **explicitly** in the
-    // `ensuretestdb` management commands:
-    let searchTerm = "niminôsak";
-    let autoTranslation = "my cats";
-
-    it("should show auto-translations to logged-in users", function () {
-      cy.login();
-      cy.visitSearch(searchTerm);
-      cy.get("[data-cy=search-result]")
-        .contains(autoTranslation)
-        .get(".cite-dict")
-        .contains("🤖CW");
-    });
-
-    it("should not show auto-translations to anonymous users", function () {
-      cy.visitSearch(searchTerm);
-      cy.get("[data-cy=search-result]").each((r) => {
-        // Every result should have a dictionary citation
-        cy.wrap(r)
-          .get(".cite-dict")
-          .should("have.length.at.least", 1)
-          .each((citation) => {
-            // But none of those should be auto-definitions
-            cy.wrap(citation).should("not.contain", "🤖");
-          });
-      });
-    });
-  });
-
   specify("the FST tool should work", function () {
     cy.login();
     for (const [query, result] of [

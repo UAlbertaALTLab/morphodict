@@ -7,10 +7,14 @@ from __future__ import annotations
 import logging
 import re
 import string
+import urllib
+import requests
 from itertools import zip_longest
 from typing import Collection, Iterable, Mapping, Optional, Sequence, TextIO
 
 from more_itertools import ilen, one
+
+from morphodict.analysis import rich_analyze_strict
 
 logger = logging.getLogger(__name__)
 
@@ -356,7 +360,10 @@ class ContentRow(Row):
         return all(a == b for a, b in zip_longest(self.cells, other.cells))
 
     def __str__(self):
-        return "\t".join(str(cell) for cell in self.cells)
+        try:
+            return "\t".join(str(cell[0]) for cell in self.cells)
+        except TypeError as e:
+            return "\t".join(str(cell) for cell in self.cells)
 
     def __repr__(self):
         name = type(self).__qualname__
@@ -493,6 +500,9 @@ class Cell:
         # Namely, InflectionTemplate should override this.
         raise NotImplementedError
 
+    def add_recording(self, recording):
+        pass
+
 
 class WordformCell(Cell):
     """
@@ -511,9 +521,23 @@ class WordformCell(Cell):
 
     def __init__(self, inflection: str):
         self.inflection = inflection
+        self.recording = None
+        self.recording_speaker = None
+        self.morphemes = None
+        self.add_morphemes()
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
+
+    def add_recording(self, recording_object):
+        self.recording = recording_object["recording_url"]
+        self.recording_speaker = recording_object["speaker"]
+
+    def add_morphemes(self):
+        analysis = rich_analyze_strict(self.inflection)
+        if analysis:
+            analysis = analysis[0]
+            self.morphemes = analysis.generate_with_morphemes(self.inflection)
 
     def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
         # No need to fill a cell that already has contents!

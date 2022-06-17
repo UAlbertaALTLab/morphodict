@@ -2,7 +2,12 @@ from typing import Iterable, Callable, Any, Optional
 
 from django.db.models import prefetch_related_objects
 
-from crkeng.app.preferences import DisplayMode, AnimateEmoji
+from crkeng.app.preferences import (
+    DisplayMode,
+    AnimateEmoji,
+    DictionarySource,
+    ShowEmoji,
+)
 from morphodict.lexicon.models import WordformKey
 from . import types, presentation
 from .query import Query
@@ -57,16 +62,19 @@ class SearchRun:
         for r in results:
             r.assign_default_relevance_score()
 
+        # sort based on cvd
         if self.sort_function is not None:
             results.sort(key=self.sort_function)
         else:
-            results.sort()
+            results.sort(key=lambda x: cvd(x), reverse=True)
         return results
 
     def presentation_results(
         self,
         display_mode=DisplayMode.default,
         animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
+        dict_source=None,
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
@@ -80,17 +88,39 @@ class SearchRun:
                 search_run=self,
                 display_mode=display_mode,
                 animate_emoji=animate_emoji,
+                show_emoji=show_emoji,
+                dict_source=dict_source,
             )
             for r in results
         ]
 
     def serialized_presentation_results(
-        self, display_mode=DisplayMode.default, animate_emoji=AnimateEmoji.default
+        self,
+        display_mode=DisplayMode.default,
+        animate_emoji=AnimateEmoji.default,
+        show_emoji=ShowEmoji.default,
+        dict_source=None,
     ):
         results = self.presentation_results(
-            display_mode=display_mode, animate_emoji=animate_emoji
+            display_mode=display_mode,
+            animate_emoji=animate_emoji,
+            show_emoji=show_emoji,
+            dict_source=dict_source,
         )
-        return [r.serialize() for r in results]
+        serialized = [r.serialize() for r in results]
+
+        def has_definition(r):
+            # does the entry itself have a definition?
+            if r["definitions"]:
+                return True
+            # is it a form of a word that has a definition?
+            if "lemma_wordform" in r:
+                if "definitions" in r["lemma_wordform"]:
+                    if r["lemma_wordform"]["definitions"]:
+                        return True
+            return False
+
+        return [r for r in serialized if has_definition(r)]
 
     def add_verbose_message(self, message=None, **messages):
         """
@@ -125,3 +155,7 @@ class SearchRun:
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"
+
+
+def cvd(val):
+    return val.relevance_score or 0.0

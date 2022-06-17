@@ -13,14 +13,14 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from crkeng.app.preferences import DisplayMode, ParadigmLabel
+from crkeng.app.preferences import DisplayMode
 from morphodict.lexicon.models import Wordform
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll
 # have over two billion wordforms, however, we'll most likely run into problems once
 # we exceed certain storage requirements. For example, the maximum for a signed,
 # 32-bit int is a possible boundary condition that may cause issues elsewhere:
-ID_THAT_SHOULD_BE_TOO_BIG = str(2 ** 31 - 1)
+ID_THAT_SHOULD_BE_TOO_BIG = str(2**31 - 1)
 
 RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 
@@ -28,22 +28,24 @@ RE_NUMERIC = re.compile(r"^-?[0-9]+(\.[0-9]+)?$")
 class TestLemmaDetailsInternal4xx:
     @pytest.mark.django_db
     @pytest.mark.parametrize(
-        ("lemma_id", "paradigm_size", "expected_code"),
+        ("slug", "paradigm_size", "expected_code"),
         [
             ["-10", "FULL", HttpResponseBadRequest.status_code],
             ["10", None, HttpResponseBadRequest.status_code],
             ["5.2", "LINGUISTIC", HttpResponseBadRequest.status_code],
-            ["maskwa", "LINUST", HttpResponseBadRequest.status_code],
+            ["maskwa@1", "LINUST", HttpResponseBadRequest.status_code],
             [ID_THAT_SHOULD_BE_TOO_BIG, "FULL", HttpResponseNotFound.status_code],
         ],
     )
     def test_paradigm_details_internal_400_404(
-        self, lemma_id: str, paradigm_size: Optional[str], expected_code: int
+        self, slug: str, paradigm_size: Optional[str], expected_code: int
     ):
         c = Client()
 
-        if not RE_NUMERIC.fullmatch(lemma_id):
-            lemma_id = str(Wordform.objects.get(slug=lemma_id).id)
+        if not RE_NUMERIC.fullmatch(slug):
+            lemma_id = str(Wordform.objects.get(slug=slug).id)
+        else:
+            lemma_id = slug
 
         get_data: Dict[str, str] = {}
         if lemma_id is not None:
@@ -96,7 +98,7 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     ("lexeme", "slug_disambiguator", "example_forms"),
     [
         ("niya", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
-        ("awa", "awa@p", ["ôma", "awa", "ana"]),
+        ("awa", "awa@pra", ["ôma", "awa", "ana"]),
         ("minôs", None, ["minôs", "minôsa", "niminôs"]),
     ],
 )
@@ -171,11 +173,11 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
         # (spelling is not the IETF's strong suit)
         headers["HTTP_REFERER"] = whence
 
-    res = client.post(url, {"mode": mode}, **headers)
+    res = client.post(url, {"display_mode": mode}, **headers)
 
     # morsel is Python's official term for a chunk of a cookie
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
-    assert (morsel := res.cookies.get("mode")) is not None
+    assert (morsel := res.cookies.get("display_mode")) is not None
     assert morsel.value == mode
 
     if whence:
@@ -185,25 +187,25 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
         assert res.status_code in (HTTPStatus.OK, HTTPStatus.NO_CONTENT)
 
 
-@pytest.mark.parametrize("option", ParadigmLabel.choices)
+@pytest.mark.parametrize("option", DisplayMode.choices)
 @pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
 def test_change_paradigm_label_preference(option, whence, client: Client):
     """
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("preference:change", args=[ParadigmLabel.name])
+    url = reverse("preference:change", args=[DisplayMode.name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP
         # (spelling is not the IETF's strong suit)
         headers["HTTP_REFERER"] = whence
 
-    res = client.post(url, {ParadigmLabel.cookie_name: option}, **headers)
+    res = client.post(url, {DisplayMode.cookie_name: option}, **headers)
 
     # morsel is Python's official term for a chunk of a cookie
     # see: https://docs.python.org/3/library/http.cookies.html#morsel-objects
-    assert (morsel := res.cookies.get(ParadigmLabel.cookie_name)) is not None
+    assert (morsel := res.cookies.get(DisplayMode.cookie_name)) is not None
     assert morsel.value == option
 
     if whence:

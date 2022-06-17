@@ -40,18 +40,13 @@
     {# the matched head itself: #}
     <h2 class="definition-title__title definition__matched-head" data-cy="definition-title">
       {% if result.is_lemma %}
-        <a data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
+        <a data-cy="lemma-link" href="{{ result.lemma_wordform.lemma_url }}">
+          {% include "./title.html" with text=result.lemma_wordform.text  %}
+        </a>
       {% else %}
-        {% orth result.wordform_text %}
+        {% include "./title.html" with text=result.wordform_text %}
       {% endif %}
     </h2>
-
-    {% if display_options.mode == 'linguistic' %}
-      &#32; {# separate inflectiona class from wordform #}
-      <span class="definition-title__inflectional-class" data-cy="inflectional-class">
-        {{ result.lemma_wordform.inflectional_category }}
-      </span>
-    {% endif %}
 
     &#32; {# separate title proper from icons #}
 

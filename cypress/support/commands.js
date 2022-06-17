@@ -284,7 +284,7 @@ Cypress.Commands.add(
  *
  */
 Cypress.Commands.add("search", { prevSubject: false }, (query, options) => {
-  options = options || { pressEnter: false, waitTime: 500 };
+  options = options || { pressEnter: true, waitTime: 500 };
 
   if (options.pressEnter === true) {
     options.waitTime = 0;
