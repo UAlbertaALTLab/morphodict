@@ -166,10 +166,10 @@ class InflectEnglishPhrase(Preference):
 
     cookie_name = "inflect_english_phrase"
     choices = {
-        "yes": "Show me analyzed and inflected English phrases when available",
-        "no": "Only show me dictionary entries",
+        "yes": "Generate Cree word-forms matching simple English verb or noun phrases",
+        "no": "Only show dictionary entry headwords as they are",
     }
-    default = "no"
+    default = "yes"
 
 
 @register_preference
@@ -180,7 +180,7 @@ class AutoTranslateDefs(Preference):
 
     cookie_name = "auto_translate_defs"
     choices = {
-        "yes": "Show me auto-translated definitions when available",
-        "no": "Only show me dictionary definitions",
+        "yes": "Generate English definitions matching core Cree word-forms",
+        "no": "Only show dictionary definitions as they are",
     }
-    default = "no"
+    default = "yes"
