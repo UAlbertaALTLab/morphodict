@@ -226,7 +226,7 @@ class Result:
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
-            if field.name in ["target_language_keyword_match", "morpheme_ranking", "glossary_count", "lemma_freq", "pos_match", "cosine_vector_distance"]:
+            if field.name in ["target_language_keyword_match", "morpheme_ranking", "glossary_count", "lemma_freq", "pos_match", "cosine_vector_distance", "relevance_score"]:
                 value = getattr(self, field.name)
                 ret[field.name] = value
         return ret
