@@ -21,3 +21,9 @@ sqlparse
 tqdm
 typing-extensions
 whitenoise
+packaging
+requests
+urllib3
+charset-normalizer
+certifi
+idna

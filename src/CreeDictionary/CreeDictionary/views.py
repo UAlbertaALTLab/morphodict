@@ -3,7 +3,6 @@ from __future__ import annotations
 import json
 import logging
 import urllib
-import numpy as np
 from typing import Any, Dict, Literal, Optional
 
 import requests
