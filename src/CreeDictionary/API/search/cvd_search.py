@@ -26,6 +26,7 @@ def do_cvd_search(search_run: SearchRun):
     added together, and then compared against pre-computed definition vectors.
     """
     keys = extract_keyed_words(search_run.query.query_string, google_news_vectors())
+    # TODO: we're seeing how the CVD is calculated to figure out why some entries don't get CVD values
     if not keys:
         return
 
@@ -34,6 +35,7 @@ def do_cvd_search(search_run: SearchRun):
 
     try:
         closest = definition_vectors().similar_by_vector(query_vector, 50)
+        print("CLOSEST:", closest)
     except DefinitionVectorsNotFoundException:
         logger.exception("")
         return
@@ -64,6 +66,7 @@ def do_cvd_search(search_run: SearchRun):
         distance = 1 - similarity
 
         wordforms_for_query = wordforms_by_text.get(wordform_query["text"], None)
+        print(wordforms_for_query)
         if wordforms_for_query is None:
             logger.warning(
                 f"Wordform {wordform_query['text']} not found in CVD; mismatch between definition vector model file and definitions in database?"

@@ -6,8 +6,6 @@ from morphodict.analysis import rich_analyze_relaxed
 def find_pos_matches(search_run: SearchRun) -> None:
 
     analyzed_query = AnalyzedQuery(search_run.internal_query)
-    # print(search_run.verbose_messages["new_tags"])
-    print(analyzed_query)
 
     if len(search_run.verbose_messages) <= 1:
         tags = analyzed_query.analysis
@@ -24,7 +22,6 @@ def pos_match(result, tags):
     """
     if not tags:
         result.pos_match = 0
-        print('returned at 27')
         return
     if result.wordform.raw_analysis:
         result_tags = result.wordform.raw_analysis[2]
@@ -35,7 +32,6 @@ def pos_match(result, tags):
         return
 
     query_tags = tags
-    print("TAG TYPE:", type(result_tags))
 
     if isinstance(result_tags, list):
         result.pos_match = calculate_pos_match(result_tags, query_tags)

@@ -74,6 +74,7 @@ def search(
         if cvd_search_type.should_do_search() and not is_almost_certainly_cree(
             search_run
         ):
+            print("here")
             do_cvd_search(search_run)
 
     if (search_run.query.espt or inflect_english_phrases) and (
@@ -81,7 +82,6 @@ def search(
     ):
         espt_search.inflect_search_results()
 
-    print("here")
     find_pos_matches(search_run)
     get_glossary_count(search_run)
     get_lemma_freq(search_run)

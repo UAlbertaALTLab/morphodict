@@ -6,6 +6,8 @@ from os import fspath
 from django.conf import settings
 from gensim.models import KeyedVectors
 
+from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
+from morphodict.analysis import rich_analyze_relaxed
 from morphodict.lexicon import MORPHODICT_LEXICON_RESOURCE_DIR
 
 logger = logging.getLogger(__name__)
@@ -113,6 +115,9 @@ def extract_keyed_words(query: str, keys, already_warned=None):
         else:
             _warn(word, f"not found: {word!r}", already_warned)
 
+    analyzed_query = AnalyzedQuery(query)
+    ret.append(analyzed_query.parsed_query)
+
     return uniq(ret)
 
 
@@ -124,3 +129,49 @@ def _warn(word, msg, already_warned):
     ):
         already_warned.add(word)
         logger.debug(msg)
+
+
+
+class AnalyzedQuery:
+    """
+    A structured object holding pieces of, and info about, a phrase query.
+    """
+
+    def __init__(self, query: str):
+        self.query = query
+        self.has_tags = False
+        self.filtered_query = None
+        self.tags = None
+        self.analysis = []
+        self.parsed_query = None
+        phrase_analyses = rich_analyze_relaxed(query)
+
+        if len(phrase_analyses) == 1:
+            phrase_analysis = phrase_analyses[0]
+
+            self.analysis = phrase_analysis.suffix_tags
+            if phrase_analysis:
+                self.has_tags = True
+
+        else:
+            phrase_analyses = eng_phrase_to_crk_features_fst()[query]
+            if phrase_analyses:
+                print("HEEERE:", phrase_analyses)
+                phrase_analysis = phrase_analyses[0].decode("utf-8")
+                self.has_tags = True
+                self.parsed_query = phrase_analysis.split()[0]
+                split_tags = (
+                    phrase_analysis.split()[1].split("+")
+                    if len(phrase_analysis.split()) > 1
+                    else []
+                )
+                analysis = []
+                for tag in split_tags:
+                    if not tag:
+                        continue
+                    tag = "+" + tag
+                    analysis.append(tag)
+                self.analysis = analysis
+
+    def __repr__(self):
+        return f"<PhraseAnalyzedQuery {self.__dict__!r}>"
