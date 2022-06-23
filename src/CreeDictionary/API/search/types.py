@@ -226,10 +226,17 @@ class Result:
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
-            if field.name not in ["wordform", "lemma_wordform"]:
+            if field.name in [
+                "target_language_keyword_match",
+                "morpheme_ranking",
+                "glossary_count",
+                "lemma_freq",
+                "pos_match",
+                "cosine_vector_distance",
+                "relevance_score",
+            ]:
                 value = getattr(self, field.name)
-                if value is not None:
-                    ret[field.name] = value
+                ret[field.name] = value
         return ret
 
     def features_json(self):

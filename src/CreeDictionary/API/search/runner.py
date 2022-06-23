@@ -38,8 +38,11 @@ def search(
     search_run = SearchRun(
         query=query, include_auto_definitions=include_auto_definitions
     )
+    initial_query_terms = search_run.query.query_terms[:]
 
-    if search_run.query.espt or inflect_english_phrases:
+    if (search_run.query.espt or inflect_english_phrases) and (
+        len(initial_query_terms) > 1
+    ):
         espt_search = EsptSearch(search_run)
         espt_search.analyze_query()
 
@@ -74,7 +77,9 @@ def search(
         ):
             do_cvd_search(search_run)
 
-    if search_run.query.espt or inflect_english_phrases:
+    if (search_run.query.espt or inflect_english_phrases) and (
+        len(initial_query_terms) > 1
+    ):
         espt_search.inflect_search_results()
 
     find_pos_matches(search_run)
