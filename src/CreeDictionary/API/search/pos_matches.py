@@ -7,10 +7,12 @@ def find_pos_matches(search_run: SearchRun) -> None:
 
     analyzed_query = AnalyzedQuery(search_run.internal_query)
     # print(search_run.verbose_messages["new_tags"])
+    print(analyzed_query)
 
     if len(search_run.verbose_messages) <= 1:
-        return
-    tags = search_run.verbose_messages[1].get("tags")
+        tags = analyzed_query.analysis
+    else:
+        tags = search_run.verbose_messages[1].get("tags")
     [pos_match(result, tags) for result in search_run.unsorted_results()]
 
 
@@ -22,14 +24,33 @@ def pos_match(result, tags):
     """
     if not tags:
         result.pos_match = 0
+        print('returned at 27')
         return
-    if not result.wordform.raw_analysis:
+    if result.wordform.raw_analysis:
+        result_tags = result.wordform.raw_analysis[2]
+    elif result.wordform.linguist_info['pos']:
+        result_tags = ["+" + r for r in result.wordform.linguist_info['pos']]
+    else:
         result.pos_match = 0
         return
 
-    result_tags = result.wordform.raw_analysis[2]
     query_tags = tags
+    print("TAG TYPE:", type(result_tags))
 
+    if isinstance(result_tags, list):
+        result.pos_match = calculate_pos_match(result_tags, query_tags)
+        return
+    else:
+        max = 0
+        for tag_list in query_tags:
+            pos_match = calculate_pos_match(result_tags, tag_list)
+            if pos_match > max:
+                max = pos_match
+        result.pos_match = max
+        return
+
+
+def calculate_pos_match(result_tags, query_tags):
     max = min(len(result_tags), len(query_tags))
     i = 0
     j = 0
@@ -37,9 +58,7 @@ def pos_match(result, tags):
         if result_tags[j] == query_tags[j]:
             i += 1 / (j + 1)
         j += 1
-    result.pos_match = i
-    return
-
+    return i
 
 class AnalyzedQuery:
     """

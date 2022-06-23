@@ -81,6 +81,7 @@ def search(
     ):
         espt_search.inflect_search_results()
 
+    print("here")
     find_pos_matches(search_run)
     get_glossary_count(search_run)
     get_lemma_freq(search_run)
