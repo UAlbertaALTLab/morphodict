@@ -60,7 +60,10 @@ rsync -avv --delete --delete-excluded \
         --include='*.jpg' \
         --include='*.woff' \
         --include='W_aggr_corp_morph_log_freq.txt' \
+        --include='CW_aggregate_morpheme_log_freqs.txt' \
+        --include='crk_glossaries_aggregate_vocab.txt' \
         --include='corpus_frequency.txt' \
+        --include='lemma_frequency.txt' \
         --include='*.hfstol' \
         --exclude='*' \
         "${SRC_DIR}"/ "${APP_PYTHON_DIR}"

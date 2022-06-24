@@ -61,7 +61,7 @@ class AnalyzedQuery:
             if phrase_analysis:
                 self.has_tags = True
 
-        else:
+        elif eng_phrase_to_crk_features_fst():
             phrase_analyses = eng_phrase_to_crk_features_fst()[query]
             if phrase_analyses:
                 phrase_analysis = phrase_analyses[0].decode("utf-8")
