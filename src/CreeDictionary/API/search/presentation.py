@@ -71,6 +71,7 @@ class SerializedPresentationResult(TypedDict):
     friendly_linguistic_breakdown_tail: Iterable[Label]
     relevant_tags: Iterable[SerializedLinguisticTag]
     morphemes: Optional[Iterable[str]]
+    lemma_morphemes: Optional[Iterable[str]]
     # Maps a display mode to relabellings
     relabelled_fst_analysis: list[SerializedRelabelling]
     relabelled_linguist_analysis: str
@@ -160,6 +161,8 @@ class PresentationResult:
         else:
             self.morphemes = None
 
+        self.lemma_morphemes = result.lemma_morphemes
+
         self.lexical_info = get_lexical_info(
             result.wordform.analysis,
             animate_emoji=animate_emoji,
@@ -217,6 +220,7 @@ class PresentationResult:
             ),
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
             "morphemes": self.morphemes,
+            "lemma_morphemes": self.lemma_morphemes
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result

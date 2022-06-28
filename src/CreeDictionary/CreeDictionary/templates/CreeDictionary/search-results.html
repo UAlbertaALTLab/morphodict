@@ -1,19 +1,20 @@
 {% spaceless %}
 
-{% if verbose_messages %}
-<li class="search-results__result box">
-<h3>Messages from search run</h3>
-<pre>{{ verbose_messages }}</pre>
-</li>
-{% endif %}
-{% for result in search_results %}
-<li class="search-results__result" data-cy="search-results">
-  {% include './components/search-result.html' with result=result %}
-</li>
-{% empty %}
-<li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
-  No results found for <output class="query">{{ query_string }}</output>
-</li>
-{% endfor %}
-{# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
+    {% if verbose_messages %}
+        <li class="search-results__result box">
+            <h3>Messages from search run</h3>
+            <pre>{{ verbose_messages }}</pre>
+        </li>
+    {% endif %}
+    {% for result in search_results %}
+        <li class="search-results__result" data-cy="search-results">
+            {% include './components/search-result.html' with result=result %}
+        </li>
+    {% empty %}
+        <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
+            No results found for
+            <output class="query">{{ query_string }}</output>
+        </li>
+    {% endfor %}
+    {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
 {% endspaceless %}
