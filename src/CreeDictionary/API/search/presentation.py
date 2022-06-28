@@ -220,7 +220,7 @@ class PresentationResult:
             ),
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
             "morphemes": self.morphemes,
-            "lemma_morphemes": self.lemma_morphemes
+            "lemma_morphemes": self.lemma_morphemes,
         }
         if self._search_run.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result

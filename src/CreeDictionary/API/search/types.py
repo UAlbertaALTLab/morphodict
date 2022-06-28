@@ -136,7 +136,9 @@ class Result:
             ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
 
         if rich_analysis := self.lemma_wordform.analysis:
-            self.lemma_morphemes = rich_analysis.generate_with_morphemes(self.lemma_wordform.text)
+            self.lemma_morphemes = rich_analysis.generate_with_morphemes(
+                self.lemma_wordform.text
+            )
 
     def add_features_from(self, other: Result):
         """Add the features from `other` into this object
