@@ -135,6 +135,9 @@ class Result:
                 self.wordform.text, None
             ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
 
+        if rich_analysis := self.lemma_wordform.analysis:
+            self.lemma_morphemes = rich_analysis.generate_with_morphemes(self.lemma_wordform.text)
+
     def add_features_from(self, other: Result):
         """Add the features from `other` into this object
 
@@ -194,6 +197,7 @@ class Result:
     lemma_wordform: Lemma = field(init=False)
     is_lemma: bool = field(init=False)
     wordform_length: int = field(init=False)
+    lemma_morphemes: Optional[list] = None
 
     #: What, if any, was the matching string?
     source_language_match: Optional[str] = None
