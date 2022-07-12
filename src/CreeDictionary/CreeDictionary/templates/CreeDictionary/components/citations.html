@@ -24,7 +24,7 @@
 
   {% for source in dictionary_sources %}
     {% with id=request|unique_id %}
-      <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }}</cite>
+      <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }} </cite>
 
       <div id="tooltip:{{ id }}" class="tooltip" role="tooltip" data-cy="citation-tooltip">
         {% if source == "CW" %}
@@ -46,6 +46,10 @@
         {% elif source == "TVPD" %}
           Starlight, Bruce, Gary Donovan, and Christopher Cox, editors.
           <span class="source-title">Tsuut'ina Verb Phrase Dictionary</span>.
+        {% elif source == "AECD" %}
+          Alberta Elders' Cree Dictionary.
+        {% elif source == "🤖AECD" %}
+          Experimental automatically inflected form of AECD definition
         {% else %}
           UNKNOWN SOURCE ID: {{ source }}. If you're reading this, please
           contact us using the link in the footer, near the bottom of the
