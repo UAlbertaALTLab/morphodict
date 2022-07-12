@@ -298,7 +298,7 @@ class PresentationResult:
 def should_show_form_of(
     is_lemma, lemma_wordform, dict_source, include_auto_definitions
 ):
-    if not dict_source or dict_source == "ALL":
+    if not dict_source or dict_source == ["ALL"]:
         return True
     if is_lemma:
         return True
@@ -358,7 +358,7 @@ def serialize_definitions(
     ret = []
     for definition in definitions:
         serialized = definition.serialize()
-        if not dict_source or dict_source == "ALL":
+        if not dict_source or dict_source == ["ALL"]:
             if include_auto_definitions or not serialized["is_auto_translation"]:
                 ret.append(serialized)
         else:
