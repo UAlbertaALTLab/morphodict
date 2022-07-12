@@ -64,7 +64,7 @@ class DictionarySource(Preference):
     choices = {
         "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
         "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
-        "aecd": "Show entries from the Alberta Elders' Cree Dictionary.",
+        "aecd": "Show entries from the Alberta Elders' Cree Dictionary/alberta ohci kehtehayak nehiyaw otwestamâkewasinahikan compiled by Nancy LeClaire and George Cardinal, edited by Earle H. Waugh. Edmonton: University of Alberta Press, 2002.",
         "all": "Show entries from CW, AECD, and MD (default)",
     }
 
