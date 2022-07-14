@@ -80,7 +80,10 @@ class AudioSource(Preference):
     cookie_name = "audio_source"
     choices = {
         "maskwacis": ["Maskwacîs", "Show audio from the Maskwacîs Cree community"],
-        "moswacihk": ["mōswacīhk", "Show audio from the mōswacīhk community (White Bear First Nations, Saskatchewan"],
+        "moswacihk": [
+            "mōswacīhk",
+            "Show audio from the mōswacīhk community (White Bear First Nations, Saskatchewan",
+        ],
         "both": ["Both", "Show audio from both sources (default)"],
     }
 
