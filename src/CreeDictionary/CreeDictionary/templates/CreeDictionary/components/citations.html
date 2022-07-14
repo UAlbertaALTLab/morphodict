@@ -22,7 +22,7 @@
 
   {% load creedictionary_extras %}
 
-  {% for source in dictionary_sources %}
+  {% for source in dictionary_sources|sort_sources %}
     {% with id=request|unique_id %}
       <cite class="cite-dict" data-has-tooltip aria-describedby="tooltip:{{ id }}">{{ source }} </cite>
 
