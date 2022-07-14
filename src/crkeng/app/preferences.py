@@ -72,6 +72,22 @@ class DictionarySource(Preference):
 
 
 @register_preference
+class AudioSource(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "audio_source"
+    choices = {
+        "maskwacis": ["Maskwacîs", "Show audio from the Maskwacîs Cree community"],
+        "moswacihk": ["mōswacīhk", "Show audio from the mōswacīhk community (White Bear First Nations, Saskatchewan"],
+        "both": ["Both", "Show audio from both sources (default)"],
+    }
+
+    default = "both"
+
+
+@register_preference
 class ShowEmoji(Preference):
     """
     Which dictionaries should be included in the search results?

@@ -188,6 +188,36 @@
                     </div>
                 </form>
             </section>
+
+            <section>
+                <h3 id="audio-source" class="setting__title">Select Audio Source</h3>
+
+                <p class="setting__note"> Select one of the following options to chose which audio source you would like to use</p>
+
+                <form method="POST" action="{% url "preference:change" "audio_source" %}"
+                      data-save-preference="audio_source">
+                    <ul class="unbullet">
+                        {% for value, label in preferences.audio_source.choices_with_labels %}
+                            <li class="option">
+                                <label class="option__label">
+                                    <input type="radio" name="audio_source" value="{{ value }}"
+                                           class="option__control"
+                                           {% if preferences.audio_source.current_choice == value %}checked{% endif %}>
+                                    <span class="option__label-text">{{ label|first }}</span>
+                                </label>
+                                <p class="option__description">
+                                    {{ label|last }}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="action-bar">
+                        {% csrf_token %}
+                        <button type="submit"> Save settings</button>
+                    </div>
+                </form>
+            </section>
         {% endif %}
         <section>
             <h3 id="paradigm-audio" class="setting__title">Show Paradigm Audio</h3>
