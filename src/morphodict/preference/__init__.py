@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cache
+from typing import Union
 
 from django.http import HttpRequest
 from django.template import Context
@@ -34,7 +35,7 @@ class Preference:
     # {
     #     "internalname": "user-readable label"
     # }
-    choices: dict[str, str]
+    choices: Union[dict[str, str], dict[str, list[str]]]
 
     # Which one of the choices is the default
     default: str

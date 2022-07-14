@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Union
+
 from django.http import HttpRequest
 
 from morphodict.preference import Preference, all_preferences
@@ -71,7 +73,7 @@ class _PreferenceInfo:
         return self._preference.current_value_from_request(self._request)
 
     @property
-    def current_label(self) -> str:
+    def current_label(self) -> Union[str, list[str]]:
         """
         Returns the current label (user-facing) for a preference, given the
         current request.
