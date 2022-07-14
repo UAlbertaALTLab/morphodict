@@ -427,7 +427,13 @@ def get_recordings_from_paradigm(paradigm, request):
 
     query_terms = []
     matched_recordings = {}
-    speech_db_eq = settings.SPEECH_DB_EQ
+    if source := request.COOKIES.get("audio_source"):
+        if source != "both":
+            speech_db_eq = [remove_diacritics(source)]
+        else:
+            speech_db_eq = settings.SPEECH_DB_EQ
+    else:
+        speech_db_eq = settings.SPEECH_DB_EQ
     if speech_db_eq == ["_"]:
         return paradigm
 
@@ -487,4 +493,15 @@ def macron_to_circumflex(item):
     'wâpamêw'
     """
     item = item.translate(str.maketrans("ēīōā", "êîôâ"))
+    return item
+
+
+def remove_diacritics(item):
+    """
+    >>> remove_diacritics("mōswacīhk")
+    'moswacihk'
+    >>> remove_diacritics("maskwacîs")
+    'maskwacis'
+    """
+    item = item.translate(str.maketrans("ēīōāêîôâ", "eioaeioa"))
     return item
