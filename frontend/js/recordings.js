@@ -15,16 +15,14 @@ function getCookie(name) {
 
 function getLanguageCodesFromLocation() {
   const location = window.location.toString();
-  const audio_source = getCookie('audio_source');
+  const audio_source = getCookie("audio_source");
   if (audio_source && audio_source != "both") {
-    return [audio_source]
-  }
-  else if (location.includes(`itwewina`) || location.includes(`crk`)) {
+    return [audio_source];
+  } else if (location.includes(`itwewina`) || location.includes(`crk`)) {
     if (getCookie("synthesized_audio") == "yes") {
       return [`maskwacis`, `moswacihk`, `synth`];
     } else return [`maskwacis`, `moswacihk`];
-  }
-  else if (location.includes(`itwiwina`) || location.includes(`cwd`))
+  } else if (location.includes(`itwiwina`) || location.includes(`cwd`))
     return [`woodscree`];
   else if (location.includes(`gunaha`) || location.includes(`srs`))
     return [`tsuutina`];
