@@ -20,11 +20,11 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 function SearchResult(props) {
   async function getAllData() {
     await delay(1000);
-    let test = window.location.href.split("q=")[1];
-    if (test === "") {
+    let query = window.location.href.split("q=")[1];
+    if (query === "") {
       return [];
     }
-    return fetch("http://127.0.0.1:8081/local/search/" + test).then((res) =>
+    return fetch("http://127.0.0.1:8000/api/search/?name=" + query).then((res) =>
       res.json()
     );
   }
@@ -32,7 +32,7 @@ function SearchResult(props) {
   async function getMyResults() {
     let namedData = await getAllData();
     try {
-      namedData = JSON.parse(namedData);
+      // namedData = JSON.parse(namedData);
 
       return namedData["search_results"];
     } catch (err) {

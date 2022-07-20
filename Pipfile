@@ -52,6 +52,7 @@ more-itertools = "~=8.7.0"
 types-requests = "*"
 requests = "*"
 paradigm-panes = "*"
+django-cors-headers = "*"
 
 [scripts]
 # unit tests

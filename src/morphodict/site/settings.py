@@ -73,6 +73,8 @@ INSTALLED_APPS = [
     "django_js_reverse",
     # **New** Morphodict
     "morphodict.lexicon",
+    "corsheaders",
+    "rest_framework",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "CreeDictionary.API.apps.APIConfig",
@@ -90,6 +92,7 @@ MIDDLEWARE = [
     # Static files with WhiteNoise:
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -403,3 +406,8 @@ MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # Used for the bulk search API
 SPEECH_DB_EQ = ["_"]
+
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+]

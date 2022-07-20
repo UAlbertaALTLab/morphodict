@@ -19,19 +19,19 @@ from CreeDictionary.CreeDictionary.sitemaps import sitemaps
 
 urlpatterns = [
     ################################# Primary URLs #################################
-    path("", views.index, name="cree-dictionary-index"),
-    path("search", views.index, name="cree-dictionary-search"),
+    # path("", views.index, name="cree-dictionary-index"),
+    # path("search", views.index, name="cree-dictionary-search"),
     # "word" is a user-friendly alternative for the linguistic term "lemma"
-    path(
-        "word/<str:slug>/",
-        views.entry_details,
-        name="cree-dictionary-index-with-lemma",
-    ),
-    path("about", views.about, name="cree-dictionary-about"),
-    path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
-    path("query-help", views.query_help, name="cree-dictionary-query-help"),
-    path("legend", views.legend, name="cree-dictionary-legend"),
-    path("settings", views.settings_page, name="cree-dictionary-settings"),
+    # path(
+    #     "word/<str:slug>/",
+    #     views.entry_details,
+    #     name="cree-dictionary-index-with-lemma",
+    # ),
+    # path("about", views.about, name="cree-dictionary-about"),
+    # path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
+    # path("query-help", views.query_help, name="cree-dictionary-query-help"),
+    # path("legend", views.legend, name="cree-dictionary-legend"),
+    # path("settings", views.settings_page, name="cree-dictionary-settings"),
     path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
     ################################# Internal API #################################
     path("api/", views.search_api, name="cree-dictionary-search"),  # main page
@@ -42,17 +42,17 @@ urlpatterns = [
         name="cree-dictionary-index-with-lemma",
     ),  # returns details related to a spesific word
     # internal use to render boxes of search results
-    path(
-        "_search_results/<str:query_string>/",
-        views.search_results,
-        name="cree-dictionary-search-results",
-    ),
+    # path(
+    #     "_search_results/<str:query_string>/",
+    #     views.search_results,
+    #     name="cree-dictionary-search-results",
+    # ),
     # internal use to render paradigm and only the paradigm
-    path(
-        "_paradigm_details/",
-        views.paradigm_internal,
-        name="cree-dictionary-paradigm-detail",
-    ),
+    # path(
+    #     "_paradigm_details/",
+    #     views.paradigm_internal,
+    #     name="cree-dictionary-paradigm-detail",
+    # ),
     # See morphodict.preference.urls for all available views
     # Hint: You will probably use preference:change the most!
     path("_preference/", include("morphodict.preference.urls", namespace="preference")),

@@ -11,17 +11,19 @@ function WordEntry(props) {
     if (word === "") {
       return null;
     }
-    return fetch("http://127.0.0.1:8081/local/word/" + word).then((res) =>
+    return fetch("http://127.0.0.1:8000/api/word/" + word).then((res) =>
       res.json()
     );
   }
 
   async function getWordRes() {
     let namedData = await getWord();
+    console.log(namedData);
     try {
-      namedData = JSON.parse(namedData);
+      // namedData = JSON.parse(namedData);
       return namedData;
     } catch (err) {
+      console.log(err);
       return null;
     }
   }
@@ -33,12 +35,14 @@ function WordEntry(props) {
       refetchOnWindowFocus: false,
     }
   );
+  console.log(isFetching, error, data);
   let wordform = "";
   let recordings = "";
   let paradigm = "";
   let type = "Latn";
 
   if (!isFetching && !error && data !== null) {
+    console.log(data);
     wordform = data.entry.wordform;
     recordings = data.entry.recordings;
     paradigm = data.entry.paradigm;
@@ -90,7 +94,8 @@ function WordEntry(props) {
 
   return (
     <>
-      {!isFetching && !error && data !== null && (
+      {/*<p>{data}</p>*/}
+      {(!isFetching && !error && data !== null) ? (
         <article id="definition" className="definition">
           <header className="definition__header">
             <Grid container direction="row">
@@ -118,7 +123,7 @@ function WordEntry(props) {
             </Grid>
           </header>
 
-          <section
+          {recordings[0] ? (<section
               className="multiple-recordings"
               id="recordings-dropdown"
               data-cy="multiple-recordings"
@@ -129,7 +134,7 @@ function WordEntry(props) {
               {recs}
             </select>
             <button onClick={submittedAudio}>&#9655;</button> <a href={recordings[0].speaker_bio_url} id={"learnMoreLink"} target={"_blank"}>Learn more about the speaker...</a>
-            </section>
+            </section> ) : <></> }
 
           <section className="definition__meanings" data-cy="meanings">
             <ol className="meanings">
@@ -146,7 +151,7 @@ function WordEntry(props) {
           </section>
 
         </article>
-      )}
+      ) : <></> }
     </>
   );
 }
