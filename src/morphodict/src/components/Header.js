@@ -7,8 +7,9 @@ import { Redirect } from "react-router-dom";
 import Settings from "../HelperClasses/SettingClass";
 
 function Header(props) {
-  const [dictionaryName, setDictionaryName] = useState("itwêwina");
-  const [sourceLanguageName, setSourceLanguageName] = useState("Plains Cree");
+  const dictionaryName = process.env.REACT_APP_NAME;
+  const description = process.env.REACT_APP_SUBTITLE;
+  const sourceLanguageName = process.env.REACT_APP_SOURCE_LANGUAGE_ENDONYM;
   const [queryString, setQueryString] = useState("");
   const [query, setQuery] = useState(false);
   const [type, setDispType] = useState("Latn");
@@ -140,7 +141,7 @@ function Header(props) {
               className="branding__heading branding__subtitle"
               role="doc-subtitle"
             >
-              {sourceLanguageName} Dictionary
+              {description}
             </p>
           </hgroup>
         </a>

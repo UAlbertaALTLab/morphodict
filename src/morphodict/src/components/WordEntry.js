@@ -6,12 +6,13 @@ import MultiPlayer from './MultiPlayer';
 import { useQuery } from "react-query";
 
 function WordEntry(props) {
+  const port = process.env.REACT_APP_PORT_NUMBER
   async function getWord() {
     let word = window.location.href.split("/")[4];
     if (word === "") {
       return null;
     }
-    return fetch("http://127.0.0.1:8000/api/word/" + word).then((res) =>
+    return fetch("http://127.0.0.1:" + port + "/api/word/" + word).then((res) =>
       res.json()
     );
   }
@@ -146,9 +147,9 @@ function WordEntry(props) {
             </ol>
           </section>
 
-          <section>
+          {paradigm ? (<section>
             <Paradigm paradigm={paradigm}></Paradigm>
-          </section>
+          </section>) : <></>}
 
         </article>
       ) : <></> }

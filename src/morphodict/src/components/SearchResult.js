@@ -18,13 +18,14 @@ import { useEffect } from "react";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 function SearchResult(props) {
+  const port = process.env.REACT_APP_PORT_NUMBER
   async function getAllData() {
     await delay(1000);
     let query = window.location.href.split("q=")[1];
     if (query === "") {
       return [];
     }
-    return fetch("http://127.0.0.1:8000/api/search/?name=" + query).then((res) =>
+    return fetch("http://127.0.0.1:" + port + "/api/search/?name=" + query).then((res) =>
       res.json()
     );
   }

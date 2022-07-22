@@ -193,7 +193,9 @@ def wordform_orth(wordform):
 
     except TypeError:
         wordform["text"] = {"Latn": wordform["text"]}
-        wordform["inflectional_category_plain_english"] = {"Latn": wordform["inflectional_category_plain_english"]}
+        # wordform["inflectional_category_plain_english"] = {"Latn": wordform["inflectional_category_plain_english"]}
+    except KeyError:
+        wordform["text"] = {"Latn": wordform["text"]}
 
     return wordform
 

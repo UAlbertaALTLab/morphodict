@@ -25,15 +25,25 @@ const SearchSection = (props) => {
 
   const wordInformation = props.display;
   const wordsDefs = wordInformation["definitions"];
+  console.log(wordsDefs)
 
   let dictionary_index = function (type) {
-    return type[0] === "CW" ? wolvengrey : misku;
+      try {
+          return citationChoices[type[0]]
+      }
+      catch (KeyError) {
+          return maskwacis
+      }
   };
 
   const wolvengrey =
     "Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001";
-  const misku =
+  const maskwacis =
     "Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.";
+  const aecd = "Alberta Elders' Cree Dictionary/alberta ohci kehtehayak nehiyaw otwestamâkewasinahikan, compiled by Nancy LeClaire and George Cardinal, edited by Earle H. Waugh. Edmonton: University of Alberta Press, 2002."
+  const tvpd = "Starlight, Bruce, Gary Donovan, and Christopher Cox, editors. Tsuut'ina Verb Phrase Dictionary"
+
+    const citationChoices = {"CW": wolvengrey, "MD": maskwacis, "AECD": aecd, "TVPD": tvpd}
 
   let information = wordInformation["friendly_linguistic_breakdown_tail"];
   let inflectionCatagory =
@@ -106,7 +116,7 @@ const SearchSection = (props) => {
           },
         }}
       >
-        {wordInformation["lemma_wordform"]["text"][props.type] + ""}
+          {wordInformation['wordform_text']}
       </Link>
       {/*When font-settings is built in sp3 make the check from the local store here */}
       <br />
@@ -147,18 +157,19 @@ const SearchSection = (props) => {
 
         <div className="definition-title__play-icon">{soundBtn}</div>
       </div>
+        {wordInformation["lemma_wordform"]["inflectional_category_linguistic"] ? (
       <LikeWord
         likeWord={
           wordInformation["lemma_wordform"]["inflectional_category_linguistic"]
         }
         emoticon={wordInformation["lemma_wordform"]["wordclass_emoji"]}
         hoverInfo={inflectionCatagory}
-      />
+      />) : <></>}
 
       <ul className="list-group text-center">
-        {wordsDefs.filter(checkVal => run.includes(checkVal["source_ids"])).map((item, i) => (
+        {wordsDefs.map((item, i) => (
           <li className="list-group-item " key={i}>
-            {i + 1}. {item["text"]} :
+            {i + 1}. {item["text"]} &nbsp;
             {
               <>
                 <OverlayTrigger
