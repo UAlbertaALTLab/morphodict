@@ -1,7 +1,7 @@
-# TA				| Imp | Imm	| Imp | Del					
-	| Core 		_ 2Sg	${lemma}+V+TA+Imp+Imm+2Sg	${lemma}+V+TA+Imp+Del+2Sg					
-	| Prs+Ind		_ 12Pl	${lemma}+V+TA+Imp+Imm+12Pl	${lemma}+V+TA+Imp+Del+12Pl					
-_ 1Sg _ 2SgO	${lemma}+V+TA+Ind+1Sg+2SgO		_ 2Pl	${lemma}+V+TA+Imp+Imm+2Pl	${lemma}+V+TA+Imp+Del+2Pl					
+# TA										
+	| Core 									
+	| Prs+Ind									
+_ 1Sg _ 2SgO	${lemma}+V+TA+Ind+1Sg+2SgO									
 _ 1Sg _ 3SgO	${lemma}+V+TA+Ind+1Sg+3SgO									
 _ 2Sg _ 1SgO	${lemma}+V+TA+Ind+2Sg+1SgO									
 _ 2Sg _ 3SgO	${lemma}+V+TA+Ind+2Sg+3SgO									
@@ -15,6 +15,7 @@ _ 2Sg _ 3SgO	PV/e+${lemma}+V+TA+Cnj+2Sg+3SgO
 _ 3Sg _ 4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+3Sg+4Sg/PlO									
 _ 4Sg/Pl _ 3Sg	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO									
 	| Imp									
+_ 2Sg _ 1SgO	${lemma}+V+TA+Imp+Imm+2Sg+1SgO									
 _ 2Sg _ 3SgO	${lemma}+V+TA+Imp+Imm+2Sg+3SgO									
 										
 	| Prs | Ind	| Prs | Cnj	| Prt | Ind	| Prt | Cnj	| Fut+Int | Ind	| Fut+Int | Cnj	| Fut+Def | Ind	| Inf | PV/ka	| Inf | PV/ta	| Fut | Cond
