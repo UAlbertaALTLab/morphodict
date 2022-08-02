@@ -91,7 +91,7 @@ function SearchResult(props) {
         <>
           <Alert variant="danger">
             <Alert.Heading>
-              Pîkiskâci: No results found for &lt;&lt;{" "}
+              No results found for &lt;&lt;{" "}
               {window.location.href.split("q=")[1]} &gt;&gt;
             </Alert.Heading>
           </Alert>
