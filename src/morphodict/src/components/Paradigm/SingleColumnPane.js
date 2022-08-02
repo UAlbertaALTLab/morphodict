@@ -15,6 +15,7 @@ import Labels from "../../layouts/crk.altlabel.json";
 function SingleColumnPane(props) {
   const pane = props.pane;
   let counter = props.counter;
+  const type = props.type;
   let defaultLabel = JSON.parse(window.localStorage.getItem("settings")).label;
   if (!defaultLabel) {
     defaultLabel = "ENGLISH";
@@ -59,6 +60,7 @@ function SingleColumnPane(props) {
         labels={labels}
         counter={counter}
         key={counter.toString() + '-' + index.toString()}
+        type={type}
       ></SingleColumnRow>
     );
   });

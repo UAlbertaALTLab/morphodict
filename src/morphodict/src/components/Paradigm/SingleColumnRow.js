@@ -1,14 +1,13 @@
-import MultiPlayer from "../MultiPlayer";
 
 function SingleColumnRow(props) {
   const cell_list = props.cells;
-  console.log("CELLS", cell_list)
   const labelType = props.labelType;
   const labels = props.labels;
   const counter = props.counter;
+  const type = props.type;
 
   const cell_layouts = cell_list.map((cell, index) => {
-    // console.log("CELL", cell);
+    console.log("CELL??", cell);
     if (cell.is_label) {
       const class_name = "paradigm-label paradigm-label--" + cell.label_for;
       return (
@@ -47,7 +46,6 @@ function SingleColumnRow(props) {
           "paradigm-cell paradigm-cell--" +
           (cell.observed ? "observed" : "unobserved");
       const recording = cell.recording || "";
-      console.log("RECORDING", recording);
       if (recording) {
         function playRecording() {
           const audio = new Audio(recording);
@@ -55,14 +53,14 @@ function SingleColumnRow(props) {
         }
         return (
             <td className={class_name} key={index}>
-              {cell.inflection}&nbsp;
+              {cell.inflection[type]}&nbsp;
               <button onClick={playRecording}>&#9655;</button>
             </td>
         );
       } else {
         return (
             <td className={class_name} key={index}>
-              {cell.inflection}
+              {cell.inflection[type]}
             </td>
         );
       }

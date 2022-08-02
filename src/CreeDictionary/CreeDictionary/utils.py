@@ -200,6 +200,37 @@ def wordform_orth(wordform):
     return wordform
 
 
+def wordform_orth_text(wordform):
+    """
+        Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
+        contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
+
+        e.g.,
+
+            'wâpamêw'
+
+        becomes:
+
+            {
+                "Latn": "wâpamêw",
+                "Latn-x-macron": "wāpamēw",
+                "Cans": "ᐚᐸᒣᐤ"
+            }
+
+        :param wordform:
+        :return:
+        """
+    try:
+        ret_wordform = {}
+        for code in ORTHOGRAPHY.available:
+            ret_wordform[code] = ORTHOGRAPHY.converter[code](wordform)
+    except TypeError:
+        ret_wordform = {"Latn": wordform}
+    except KeyError:
+        ret_wordform = {"Latn": wordform}
+    return ret_wordform
+
+
 def paradigm_orth(paradigm):
     """
     Modifies inflections in a serialized paradigm to include all orthographic representations
@@ -209,7 +240,7 @@ def paradigm_orth(paradigm):
             try:
                 for cell in row["cells"]:
                     if cell["is_inflection"] and not cell["is_missing"]:
-                        cell["inflection"] = orth(cell["inflection"])
+                        cell["inflection"] = wordform_orth_text(cell["inflection"])
             except NotImplementedError as e:
                 logger.error("No cells for row:", e)
     return paradigm

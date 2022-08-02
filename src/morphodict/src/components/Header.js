@@ -107,6 +107,7 @@ function Header(props) {
           <Redirect
             to={{
               pathname: "/word/" + window.location.href.split("/")[4],
+              state: {type: type}
             }}
           ></Redirect>
         </>

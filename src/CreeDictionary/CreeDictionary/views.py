@@ -566,6 +566,7 @@ def word_details_api(request, slug: str):
         paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
         paradigm = paradigm_orth(paradigm)
+        print("PARADIGM:", paradigm)
 
     content = {
         "entry": {
@@ -627,7 +628,7 @@ def search_api(request):
         )
 
     for result in context["search_results"]:
-        result["lemma_wordform"] = wordform_orth(result["lemma_wordform"])
+        result["wordform_text"] = wordform_orth_text(result["wordform_text"])
 
     return Response(context)
 
@@ -635,12 +636,12 @@ def search_api(request):
 def get_pane_layouts(request, paradigm):
     panes = paradigm["panes"]
 
-    # settings = json.load(request.localStorage.getItem("settings"))
+    settings = json.load(request.localStorage.getItem("settings"))
     type = "Latn"
-    # if settings.latn_x_macron:
-    #     type = "Latn-x-macron"
-    # if settings.syllabics:
-    #     type = "Cans"
+    if settings.latn_x_macron:
+        type = "Latn-x-macron"
+    if settings.syllabics:
+        type = "Cans"
 
     # parsing the paradigm
     pane_columns = []
@@ -675,6 +676,7 @@ def get_pane_layouts(request, paradigm):
                     row_resolved_inflection = row["cells"][k]
 
                     if not row["cells"][k]["is_missing"] and row["cells"][k]["is_inflection"]:
+                        print("INFLECTION:", row["cells"][k]["inflection"], type)
                         if type in row["cells"][k]["inflection"]:
                             row_resolved_inflection["inflection"] = row["cells"][k]["inflection"][type]
                         else:

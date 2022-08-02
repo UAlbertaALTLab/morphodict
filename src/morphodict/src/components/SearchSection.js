@@ -25,7 +25,15 @@ const SearchSection = (props) => {
 
   const wordInformation = props.display;
   const wordsDefs = wordInformation["definitions"];
-  console.log(wordsDefs)
+  const displayType = props.type;
+
+  const displayWord = function() {
+      try {
+          return wordInformation['wordform_text'][displayType]
+      } catch (TypeError) {
+          return wordInformation['wordform_text'][displayType]
+      }
+  }
 
   let dictionary_index = function (type) {
       try {
@@ -116,7 +124,7 @@ const SearchSection = (props) => {
           },
         }}
       >
-          {wordInformation['wordform_text']}
+          {displayWord()}
       </Link>
       {/*When font-settings is built in sp3 make the check from the local store here */}
       <br />

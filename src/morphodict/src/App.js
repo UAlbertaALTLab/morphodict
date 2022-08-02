@@ -18,7 +18,6 @@ import {QueryClient, QueryClientProvider} from "react-query";
 function App() {
     const queryClient = new QueryClient();
 
-
     return (
         <div>
             <Helmet>
@@ -40,7 +39,7 @@ function App() {
                         <CreeDictionarySettings></CreeDictionarySettings>
                     </Route>
                     <Route
-                        exact path="/word/*" render={(props) => <WordEntry {...props}></WordEntry>}/>
+                        exact path="/word/*" component={WordEntry}/>
                     <Route path="/search/:id" exact component={SearchResult}/>
                     <Route exact path="/cree-dictionary-legend">
                         <AbbreviationsLegend></AbbreviationsLegend>

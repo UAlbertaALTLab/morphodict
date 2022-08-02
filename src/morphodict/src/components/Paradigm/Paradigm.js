@@ -8,16 +8,17 @@ import {useLocation} from "react-router-dom/cjs/react-router-dom.min";
 
 function Paradigm(state) {
     const panes = state.paradigm.panes;
+    const type = state.type;
     let counter = 0;
 
-    let settings = JSON.parse(window.localStorage.getItem("settings"));
-    let type = "Latn";
-    if (settings.latn_x_macron) {
-        type = "Latn-x-macron";
-    }
-    if (settings.syllabics) {
-        type = "Cans";
-    }
+    // let settings = JSON.parse(window.localStorage.getItem("settings"));
+    // let type = "Latn";
+    // if (settings.latn_x_macron) {
+    //     type = "Latn-x-macron";
+    // }
+    // if (settings.syllabics) {
+    //     type = "Cans";
+    // }
 
     // parsing the paradigm
     let pane_columns = [];
@@ -60,11 +61,9 @@ function Paradigm(state) {
                     let row_resolved_inflection = row.cells[k];
 
                     if (!row.cells[k].is_missing) {
-                        try {
-                            row_resolved_inflection.inflection = row.cells[k].inflection[type];
-                        } catch {
-                            row_resolved_inflection.inflection = row.cells[k].inflection;
-                        }
+
+                        row_resolved_inflection.inflection = row.cells[k].inflection;
+
                     }
 
                     pane_columns_buffer[column_index].cells.push(row_resolved_inflection);
@@ -84,7 +83,7 @@ function Paradigm(state) {
         return (
             <div className="col-sm-12 col-md-6 col-lg-4" key={counter.toString() + '-' + i.toString()}>
                 <div className="card">
-                    <SingleColumnPane pane={pane_column} counter={counter}></SingleColumnPane>
+                    <SingleColumnPane pane={pane_column} counter={counter} type={type}></SingleColumnPane>
                 </div>
             </div>
         );

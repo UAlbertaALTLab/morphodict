@@ -40,10 +40,10 @@ function WordEntry(props) {
   let wordform = "";
   let recordings = "";
   let paradigm = "";
-  let type = "Latn";
+  let type = props.location.state.type;
+  console.log("TYPE:", type);
 
   if (!isFetching && !error && data !== null) {
-    console.log(data);
     wordform = data.entry.wordform;
     recordings = data.entry.recordings;
     paradigm = data.entry.paradigm;
@@ -52,24 +52,11 @@ function WordEntry(props) {
   let recs = [];
   if (recordings) {
     recs = recordings.map((recording) =>
-      <option onClick={submittedAudio} key={recording.url} data-link={recording.speaker_bio_url} value={recording.recording_url}>
+      <option onClick={submittedAudio} key={recording.url} data-link={recording.speaker_bio_url} value={recording.recording_url} key={recording.recording_url}>
           {recording.speaker_name}, {recording.language[0]}
       </option>
     );
   }
-
-  // MAYBE to do?
-  let settings = JSON.parse(window.localStorage.getItem("settings"));
-  if (settings.latn_x_macron) {
-    type = "Latn-x-macron";
-  }
-  if (settings.syllabics) {
-    type = "Cans";
-  }
-
-  window.addEventListener(type, (e) => {
-    console.log(type);
-  });
 
   const handleSoundPlay = () => {
     const recToPlay = recordings[0].recording_url;
@@ -109,18 +96,6 @@ function WordEntry(props) {
                   </dfn>
                 </h1>
               </Grid>
-              <Grid item>
-                <button
-                  className="definition__icon"
-                  onClick={() => handleSoundPlay()}
-                  style={{
-                    marginTop: "20%",
-                    marginLeft: "0.5em",
-                  }}
-                >
-                  <AiOutlineSound className="definition-title__play-button"></AiOutlineSound>
-                </button>
-              </Grid>
             </Grid>
           </header>
 
@@ -148,7 +123,7 @@ function WordEntry(props) {
           </section>
 
           {paradigm ? (<section>
-            <Paradigm paradigm={paradigm}></Paradigm>
+            <Paradigm paradigm={paradigm} type={type}></Paradigm>
           </section>) : <></>}
 
         </article>
