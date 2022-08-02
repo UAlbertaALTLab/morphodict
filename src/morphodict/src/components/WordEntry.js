@@ -41,6 +41,7 @@ function WordEntry(props) {
   let recordings = "";
   let paradigm = "";
   let type = props.location.state.type;
+  if (!type) { type = "Latn" }
   console.log("TYPE:", type);
 
   if (!isFetching && !error && data !== null) {
@@ -80,6 +81,8 @@ function WordEntry(props) {
     return false;
   }
 
+  console.log(wordform.definitions)
+
   return (
     <>
       {/*<p>{data}</p>*/}
@@ -116,7 +119,7 @@ function WordEntry(props) {
             <ol className="meanings">
               {wordform.definitions.map((def, index) => (
                 <li className="meanings__meaning" key={index}>
-                  {def.text} {def.source_id}
+                  {def.text} {def.source_ids.map((i, index) => (<span>{i}</span>))}
                 </li>
               ))}
             </ol>
