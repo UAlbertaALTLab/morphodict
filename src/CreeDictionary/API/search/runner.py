@@ -9,8 +9,11 @@ from CreeDictionary.API.search.affix import (
 )
 from CreeDictionary.API.search.core import SearchRun
 from CreeDictionary.API.search.cvd_search import do_cvd_search
+from CreeDictionary.API.search.lemma_freq import get_lemma_freq
+from CreeDictionary.API.search.glossary_count import get_glossary_count
 from CreeDictionary.API.search.espt import EsptSearch
 from CreeDictionary.API.search.lookup import fetch_results
+from CreeDictionary.API.search.pos_matches import find_pos_matches
 from CreeDictionary.API.search.query import CvdSearchType
 from CreeDictionary.API.search.types import Result
 from CreeDictionary.API.search.util import first_non_none_value
@@ -20,7 +23,11 @@ CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
 
 def search(
-    *, query: str, include_affixes=True, include_auto_definitions=False
+    *,
+    query: str,
+    include_affixes=True,
+    include_auto_definitions=False,
+    inflect_english_phrases=False
 ) -> SearchRun:
     """
     Perform an actual search, using the provided options.
@@ -31,8 +38,11 @@ def search(
     search_run = SearchRun(
         query=query, include_auto_definitions=include_auto_definitions
     )
+    initial_query_terms = search_run.query.query_terms[:]
 
-    if search_run.query.espt:
+    if (search_run.query.espt or inflect_english_phrases) and (
+        len(initial_query_terms) > 1
+    ):
         espt_search = EsptSearch(search_run)
         espt_search.analyze_query()
 
@@ -67,8 +77,14 @@ def search(
         ):
             do_cvd_search(search_run)
 
-    if search_run.query.espt:
+    if (search_run.query.espt or inflect_english_phrases) and (
+        len(initial_query_terms) > 1
+    ):
         espt_search.inflect_search_results()
+
+    find_pos_matches(search_run)
+    get_glossary_count(search_run)
+    get_lemma_freq(search_run)
 
     return search_run
 

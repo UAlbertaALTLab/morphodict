@@ -261,8 +261,8 @@ def test_search_text_with_ambiguous_word_classes():
 def test_lemma_ranking_most_frequent_word():
     # the English sleep should many Cree words. But nipâw should show first because
     # it undoubtedly has the highest frequency
-    results = search(query="sleeps").presentation_results()
-    assert results[0].wordform.text == "nipâw"
+    results = search(query="sees").presentation_results()
+    assert results[0].wordform.text == "wâpahtam"
 
 
 @pytest.mark.django_db

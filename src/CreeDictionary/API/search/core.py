@@ -62,10 +62,11 @@ class SearchRun:
         for r in results:
             r.assign_default_relevance_score()
 
+        # sort based on cvd
         if self.sort_function is not None:
             results.sort(key=self.sort_function)
         else:
-            results.sort()
+            results.sort(key=lambda x: cvd(x), reverse=True)
         return results
 
     def presentation_results(
@@ -154,3 +155,7 @@ class SearchRun:
 
     def __repr__(self):
         return f"SearchRun<query={self.query!r}>"
+
+
+def cvd(val):
+    return val.relevance_score or 0.0

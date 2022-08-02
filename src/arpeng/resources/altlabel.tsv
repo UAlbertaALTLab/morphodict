@@ -1,107 +1,105 @@
-FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI		
-[AFFIRMATIVE]		Affirmative	Affirmative				
-[NON_AFFIRMATIVE]		Non-affirmative	Non-affirmative				
-[NON_AFFIRMATIVE][NEG]		Non-affirmative negative	Not				
-[NON_AFFIRMATIVE][INTERROGATIVE]		Non-affirmative Interrogative	Question				
-[INTERROGATIVE]	Interrogative	Interrogative	Question				
-[INDICATIVE]	Indicative	Indicative	Statement				
-[IMPERATIVE]	Imper	Imperative	Command/Request				
-							
-[1SG-SUBJ]	1s	Subject: 1st Person Singular	I				
-[1PL-SUBJ]	1p	Subject: 1st Person Plural	we				
-[1PL-EXCL-SUBJ]	1p (excl)	Subject: 1st Person Plural (Exclusive)	we (but not you)				
-[1PL-INCL-SUBJ]	1p (incl)	Subject: 1st Person Plural (Inclusive)	you and we				
-[2SG-SUBJ]	2s	Subject: 2nd Person Singular	you (one)				
-[2PL-SUBJ]	2p	Subject: 2nd Person Plural	you (all)				
-[3SG-SUBJ]	3s	Subject: 3rd Person Singular	s/he				
-[3PL-SUBJ]	3p	Subject: 3rd Person Plural	they				
-[4SG-SUBJ]	4s	Subject: 4th Person Singular (Obviative)	s/he (further)				
-[4PL-SUBJ]	4p	Subject: 4th Person Plural (Obviative)	s/he (further)				
-[INANIMATE-SUBJECT]		Subject: Inanimate	it				
-							
-[1PL-SUBJ][INANIMATE-OBJECT]	1p → 3s	Subject: 1st Person Plural	we → it				
-[1PL-EXCL-SUBJ][INANIMATE-OBJECT]	1p (excl) → 3s	Subject: 1st Person Plural (Exclusive)	we (but not you) → it/they				
-[1PL-INCL-SUBJ][INANIMATE-OBJECT]	1p (incl) → 3s	Subject: 1st Person Plural (Inclusive)	you and we → it/they				
-[2SG-SUBJ][INANIMATE-OBJECT]	2s → 3s	Subject: 2nd Person Singular	you (one) → it/they				
-[2PL-SUBJ][INANIMATE-OBJECT]	2p → 3s	Subject: 2nd Person Plural	you (all) → it/they				
-[3SG-SUBJ][INANIMATE-OBJECT]	3s → 3s	Subject: 3rd Person Singular	s/he → it/they				
-[3PL-SUBJ][INANIMATE-OBJECT]	3p → 3s	Subject: 3rd Person Plural	they → it/they				
-[4SG-SUBJ][INANIMATE-OBJECT]	4s → 3s	Subject: 4th Person Singular (Obviative)	s/he (further) → it/they				
-[4PL-SUBJ][INANIMATE-OBJECT]	4p → 3s	Subject: 4th Person Plural (Obviative)	s/he (further) → it/they				
-[INANIMATE-OBJECT]		Object: Inanimate	it				
-							
-[1SG-OBJ]	→ 1s	Object: 1st Person Singular	→ me				
-[1PL-OBJ]	→ 1s	Object: 1st Person Plural	→ us				
-[1PL-EXCL-OBJ]	→ 1p (excl)	Object: 1st Person Plural (Exclusive)	→ you (but not us)				
-[1PL-INCL-OBJ]	→ 1p (incl)	Object: 1st Person Plural (Inclusive)	→ you and we				
-[2SG-OBJ]	→ 2s	Object: 2nd Person Singular	→ you (one)				
-[2PL-OBJ]	→ 2p	Object: 2nd Person Plural	→ you (all)				
-[3SG-OBJ]	→ 3s	Object: 3rd Person Singular	→ her/him				
-[3PL-OBJ]	→ 3p	Object: 3rd Person Plural	→ they				
-[4SG-OBJ]	→ 4s	3rd Person Singular (Obviative)	→ him/her				
-[4PL-OBJ]	→ 4p	3rd Person Plural (Obviative)	→ them				
-							
-[1SG-SUBJ][2SG-OBJ]	1s → 2s	Subject: 1st Person Singular → Object: 2nd Person Singular					
-[1SG-SUBJ][2PL-OBJ]	1s → 2p	Subject: 1st Person Singular → Object: 2nd Person Plural					
-[2SG-SUBJ][1SG-OBJ]	2s → 1s	Subject: 2nd Person Singular → Object: 1st Person Singular					
-[2PL-SUBJ][1SG-OBJ]	2p → 1s	Subject: 2nd Person Plural → Object: 1st Person Singular					
-[1PL-SUBJ][2SG-OBJ]	1p → 2s	Subject: 1st Person Plural → Object: 2nd Person Singular					
-[1PL-SUBJ][2PL-OBJ]	1p → 2p	Subject: 1st Person Plural → Object: 2nd Person Plural					
-[2SG-SUBJ][1PL-EXCL-OBJ]	2s → 1p (excl)	Subject: 2nd Person Singular → Object: 1st Person Plural (Exclusive)					
-[2PL-SUBJ][1PL-EXCL-OBJ]	2p → 1p (excl)	Subject: 2nd Person Plural → Object: 1st Person Plural (Exclusive)					
-[1SG-SUBJ][3SG-OBJ]	1s → 3s	Subject: 1st Person Singular → Object: 3rd Person Singular					
-[1SG-SUBJ][3PL-OBJ]	1s → 3p	Subject: 1st Person Singular → Object: 3rd Person Plural					
-[2SG-SUBJ][3SG-OBJ]	2s → 3s	Subject: 2nd Person Singular → Object: 3rd Person Singular					
-[2SG-SUBJ][3PL-OBJ]	2s → 3p	Subject: 2nd Person Singular → Object: 3rd Person Plural					
-[3SG-SUBJ][4SG-OBJ]	3s → 4s	Subject: 3rd Person Singular → Object: 4th Person Singular					
-[3SG-SUBJ][4PL-OBJ]	3s → 4p	Subject: 3rd Person Singular → Object: 4th Person Plural					
-[4SG-SUBJ][4SG-OBJ]	4s → 4s	Subject: 4th Person Singular → Object: 4th Person Singular					
-[4SG-SUBJ][4PL-OBJ]	4s → 4p	Subject: 4th Person Singular → Object: 4th Person Plural					
-[1PL-SUBJ][3SG-OBJ]	1p → 3s	Subject: 1st Person Plural → Object: 3rd Person Singular					
-[1PL-SUBJ][3PL-OBJ]	1p → 3p	Subject: 1st Person Plural → Object: 3rd Person Plural					
-[1PL-INCL-SUBJ][3SG-OBJ]	1p (incl) → 3s	Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Singular					
-[1PL-INCL-SUBJ][3PL-OBJ]	1p (incl) → 3p	Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Plural					
-[2PL-SUBJ][3SG-OBJ]	2p → 3s	Subject: 2nd Person Plural → Object: 3rd Person Singular					
-[2PL-SUBJ][3PL-OBJ]	2p → 3p	Subject: 2nd Person Plural → Object: 3rd Person Plural					
-[3PL-SUBJ][3SG-OBJ]	3p → 3s	Subject: 3rd Person Plural → Object: 3rd Person Singular					
-[3PL-SUBJ][3PL-OBJ]	3p → 3p	Subject: 3rd Person Plural → Object: 3rd Person Plural					
-[4PL-SUBJ][4SG-OBJ]	4p → 4s	Subject: 4th Person Plural → Object: 4th Person Singular					
-[4PL-SUBJ][4PL-OBJ]	4p → 4p	Subject: 4th Person Plural → Object: 4th Person Plural					
-[3SG-SUBJ][1SG-OBJ]	3s → 1s	Subject: 3rd Person Singular → Object: 1st Person Singular					
-[3PL-SUBJ][1SG-OBJ]	3p → 1s	Subject: 3rd Person Plural → Object: 1st Person Singular					
-[3SG-SUBJ][2SG-OBJ]	3s → 2s	Subject: 3rd Person Singular → Object: 2nd Person Singular					
-[3PL-SUBJ][2SG-OBJ]	3p → 2s	Subject: 3rd Person Plural → Object: 2nd Person Singular					
-[4SG-SUBJ][3SG-OBJ]	4s → 3s	Subject: 4th Person Singular → Object: 3rd Person Singular					
-[4PL-SUBJ][3SG-OBJ]	4p → 3s	Subject: 4th Person Plural → Object: 3rd Person Singular					
-[4SG-SUBJ][4SG-OBJ]	4s → 4s	Subject: 4th Person Singular → Object: 4th Person Singular					
-[4PL-SUBJ][4SG-OBJ]	4p → 4s	Subject: 4th Person Plural → Object: 4th Person Singular					
-[3SG-SUBJ][1PL-EXCL-OBJ]	3s → 1p (excl)	Subject: 3rd Person Singular → Object: 1st Person Plural (Exclusive)					
-[3PL-SUBJ][1PL-EXCL-OBJ]	3p → 1p (excl)	Subject: 3rd Person Plural → Object: 1st Person Plural (Exclusive)					
-[3SG-SUBJ][1PL-INCL-OBJ]	3s → 1p (incl)	Subject: 3rd Person Singular → Object: 1st Person Plural (Inclusive)					
-[3PL-SUBJ][1PL-INCL-OBJ]	3p → 1p (incl)	Subject: 3rd Person Plural → Object: 1st Person Plural (Inclusive)					
-[3SG-SUBJ][2PL-OBJ]	3s → 2p	Subject: 3rd Person Singular → Object: 2nd Person Plural					
-[3PL-SUBJ][2PL-OBJ]	3p → 2p	Subject: 3rd Person Plural → Object: 2nd Person Plural					
-[4SG-SUBJ][3PL-OBJ]	4s → 3p	Subject: 4th Person Singular → Object: 3rd Person Plural					
-[4PL-SUBJ][3PL-OBJ]	4p → 3p	Subject: 4th Person Plural → Object: 3rd Person Plural					
-[4SG-SUBJ][4PL-OBJ]	4s → 4p	Subject: 4th Person Singular → Object: 4th Person Plural					
-[4PL-SUBJ][4PL-OBJ]	4p → 4p	Subject: 4th Person Plural → Object: 4th Person Plural					
-							
-[PRESENT]	Present	Present tense	something is happening now				
-[PAST]	Past	Past tense	something happened before this				
-[FUTURE]	Future	Future tense	something is happening later on				
-[INF]	Infinitive	Infinitive form	for something to happen				
-[PROGRESSIVE]	Progresssive	Progressive					
-[PERFECTIVE]	Perfective	Perfective					
-[IMPERFECTIVE]	Imperfective	Imperfective					
-[SIMPLE]	Simple	Simple tense					
-[IC]	IC	Initial change	Initial change	Initial change			
-[II]	II	Inanimate Intransitive					
-[AI]	AI	Animate Intransitive					
-[IA]	IA						
-[TA]	TA	Animate Transitive					
-[TI]	TI	Inanimate Transitive					
-							
-[CONJUNCT]		Conjunct					
-[SUBJUNCTIVE]	Subjunct	Subjunctive	would/could				
-[ITERATIVE]	Iter	Iterative	repeatedly				
-[PROHIBITIVE]	Prohib	Prohibitive	not allowed				
+FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI
+[AFFIRMATIVE]	Affirmative	Affirmative	Affirmative statement		
+[NON_AFFIRMATIVE]	Non-Affirmative	Non-affirmative	Not		
+[NON_AFFIRMATIVE][NEG]	Negative	Non-affirmative negative	Not		
+[NON_AFFIRMATIVE][INTERROGATIVE]	Non-Affirm Interrogative	Non-affirmative Interrogative	Negative Question		
+[INTERROGATIVE]	Interrogative	Interrogative	Question		
+[INDICATIVE]	Indicative	Indicative	Statement		
+[IMPERATIVE]	Imper	Imperative	Command/Request		
+[1SG-SUBJ]	1s	Subject: 1st Person Singular	I		
+[1PL-SUBJ]	1p	Subject: 1st Person Plural	we		
+[1PL-EXCL-SUBJ]	1p (excl)	Subject: 1st Person Plural (Exclusive)	we (but not you)		
+[1PL-INCL-SUBJ]	1p (incl)	Subject: 1st Person Plural (Inclusive)	you and we		
+[2SG-SUBJ]	2s	Subject: 2nd Person Singular	you (one)		
+[2PL-SUBJ]	2p	Subject: 2nd Person Plural	you (all)		
+[3SG-SUBJ]	3s	Subject: 3rd Person Singular	s/he		
+[3PL-SUBJ]	3p	Subject: 3rd Person Plural	they		
+[4SG-SUBJ]	4s	Subject: 4th Person Singular (Obviative)	s/he (further)		
+[4PL-SUBJ]	4p	Subject: 4th Person Plural (Obviative)	s/he (further)		
+[INANIMATE-SUBJECT]	Inanimate Subj	Subject: Inanimate	it		
+					
+[1PL-SUBJ][INANIMATE-OBJECT]	1p → 3s	Subject: 1st Person Plural	we → it		
+[1PL-EXCL-SUBJ][INANIMATE-OBJECT]	1p (excl) → 3s	Subject: 1st Person Plural (Exclusive)	we (but not you) → it/them		
+[1PL-INCL-SUBJ][INANIMATE-OBJECT]	1p (incl) → 3s	Subject: 1st Person Plural (Inclusive)	you and we → it/them		
+[2SG-SUBJ][INANIMATE-OBJECT]	2s → 3s	Subject: 2nd Person Singular	you (one) → it/them		
+[2PL-SUBJ][INANIMATE-OBJECT]	2p → 3s	Subject: 2nd Person Plural	you (all) → it/them		
+[3SG-SUBJ][INANIMATE-OBJECT]	3s → 3s	Subject: 3rd Person Singular	s/he → it/them		
+[3PL-SUBJ][INANIMATE-OBJECT]	3p → 3s	Subject: 3rd Person Plural	they → it/them		
+[4SG-SUBJ][INANIMATE-OBJECT]	4s → 3s	Subject: 4th Person Singular (Obviative)	s/he (further) → it/them		
+[4PL-SUBJ][INANIMATE-OBJECT]	4p → 3s	Subject: 4th Person Plural (Obviative)	s/he (further) → it/them		
+[INANIMATE-OBJECT]	Inanimate Obj	Object: Inanimate	 → it		
+					
+[1SG-OBJ]	→ 1s	Object: 1st Person Singular	→ me		
+[1PL-OBJ]	→ 1s	Object: 1st Person Plural	→ us		
+[1PL-EXCL-OBJ]	→ 1p (excl)	Object: 1st Person Plural (Exclusive)	→ you (but not us)		
+[1PL-INCL-OBJ]	→ 1p (incl)	Object: 1st Person Plural (Inclusive)	→ you and us		
+[2SG-OBJ]	→ 2s	Object: 2nd Person Singular	→ you (one)		
+[2PL-OBJ]	→ 2p	Object: 2nd Person Plural	→ you (all)		
+[3SG-OBJ]	→ 3s	Object: 3rd Person Singular	→ her/him		
+[3PL-OBJ]	→ 3p	Object: 3rd Person Plural	→ they		
+[4SG-OBJ]	→ 4s	3rd Person Singular (Obviative)	→ him/her		
+[4PL-OBJ]	→ 4p	3rd Person Plural (Obviative)	→ them		
+					
+[1SG-SUBJ][2SG-OBJ]	1s → 2s	Subject: 1st Person Singular → Object: 2nd Person Singular	I → you		
+[1SG-SUBJ][2PL-OBJ]	1s → 2p	Subject: 1st Person Singular → Object: 2nd Person Plural	I → you (all)		
+[2SG-SUBJ][1SG-OBJ]	2s → 1s	Subject: 2nd Person Singular → Object: 1st Person Singular	you → me		
+[2PL-SUBJ][1SG-OBJ]	2p → 1s	Subject: 2nd Person Plural → Object: 1st Person Singular	you (all) → me		
+[1PL-SUBJ][2SG-OBJ]	1p → 2s	Subject: 1st Person Plural → Object: 2nd Person Singular	we → you		
+[1PL-SUBJ][2PL-OBJ]	1p → 2p	Subject: 1st Person Plural → Object: 2nd Person Plural	we → you (all)		
+[2SG-SUBJ][1PL-EXCL-OBJ]	2s → 1p (excl)	Subject: 2nd Person Singular → Object: 1st Person Plural (Exclusive)	you → us (but not you)		
+[2PL-SUBJ][1PL-EXCL-OBJ]	2p → 1p (excl)	Subject: 2nd Person Plural → Object: 1st Person Plural (Exclusive)	you (all) → us (but not you)		
+[1SG-SUBJ][3SG-OBJ]	1s → 3s	Subject: 1st Person Singular → Object: 3rd Person Singular	I → her/him/it		
+[1SG-SUBJ][3PL-OBJ]	1s → 3p	Subject: 1st Person Singular → Object: 3rd Person Plural	I → them		
+[2SG-SUBJ][3SG-OBJ]	2s → 3s	Subject: 2nd Person Singular → Object: 3rd Person Singular	you → her/him/it		
+[2SG-SUBJ][3PL-OBJ]	2s → 3p	Subject: 2nd Person Singular → Object: 3rd Person Plural	you → them		
+[3SG-SUBJ][4SG-OBJ]	3s → 4s	Subject: 3rd Person Singular → Object: 4th Person Singular	s/he/it → them (further)		
+[3SG-SUBJ][3PL-OBJ]	3s → 3p	Subject: 3rd Person Singular → Object: 3rd Person Plural	s/he/it → them		
+[4SG-SUBJ][4SG-OBJ]	4s → 4s	Subject: 4th Person Singular → Object: 4th Person Singular	s/he/it (further) → her/him/it (further)		
+[4SG-SUBJ][4PL-OBJ]	4s → 4p	Subject: 4th Person Singular → Object: 4th Person Plural	s/he/it (fruther) → them (further)		
+[1PL-SUBJ][3SG-OBJ]	1p → 3s	Subject: 1st Person Plural → Object: 3rd Person Singular	we → her/him/it		
+[1PL-SUBJ][3PL-OBJ]	1p → 3p	Subject: 1st Person Plural → Object: 3rd Person Plural	we → them		
+[1PL-INCL-SUBJ][3SG-OBJ]	1p (incl) → 3s	Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Singular	you and we → her/him/it		
+[1PL-INCL-SUBJ][3PL-OBJ]	1p (incl) → 3p	Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Plural	you and we → them		
+[2PL-SUBJ][3SG-OBJ]	2p → 3s	Subject: 2nd Person Plural → Object: 3rd Person Singular	you (all) → her/him/it		
+[2PL-SUBJ][3PL-OBJ]	2p → 3p	Subject: 2nd Person Plural → Object: 3rd Person Plural	you (all) → them		
+[3PL-SUBJ][3SG-OBJ]	3p → 3s	Subject: 3rd Person Plural → Object: 3rd Person Singular	they → her/him/it		
+[3PL-SUBJ][3PL-OBJ]	3p → 3p	Subject: 3rd Person Plural → Object: 3rd Person Plural	they → them		
+[4PL-SUBJ][4SG-OBJ]	4p → 4s	Subject: 4th Person Plural → Object: 4th Person Singular	they (further) → her/him/it (further)		
+[4PL-SUBJ][4PL-OBJ]	4p → 4p	Subject: 4th Person Plural → Object: 4th Person Plural	they (further) → them (further)		
+[3SG-SUBJ][1SG-OBJ]	3s → 1s	Subject: 3rd Person Singular → Object: 1st Person Singular	s/he/it → me		
+[3PL-SUBJ][1SG-OBJ]	3p → 1s	Subject: 3rd Person Plural → Object: 1st Person Singular	they → me		
+[3SG-SUBJ][2SG-OBJ]	3s → 2s	Subject: 3rd Person Singular → Object: 2nd Person Singular	s/he/it → you		
+[3PL-SUBJ][2SG-OBJ]	3p → 2s	Subject: 3rd Person Plural → Object: 2nd Person Singular	they → you		
+[4SG-SUBJ][3SG-OBJ]	4s → 3s	Subject: 4th Person Singular → Object: 3rd Person Singular	they (further) → her/him/it		
+[4PL-SUBJ][3PL-OBJ]	4p → 3p	Subject: 4th Person Plural → Object: 3rd Person Plural	they (further) → them		
+[4SG-SUBJ][4SG-OBJ]	4s → 4s	Subject: 4th Person Singular → Object: 4th Person Singular	they (further) → them (further)		
+[4PL-SUBJ][4SG-OBJ]	4p → 4s	Subject: 4th Person Plural → Object: 4th Person Singular	they (further) → her/him/it (further)		
+[3SG-SUBJ][1PL-EXCL-OBJ]	3s → 1p (excl)	Subject: 3rd Person Singular → Object: 1st Person Plural (Exclusive)	s/he/it → us (but not you)		
+[3PL-SUBJ][1PL-EXCL-OBJ]	3p → 1p (excl)	Subject: 3rd Person Plural → Object: 1st Person Plural (Exclusive)	they → us (but not you)		
+[3SG-SUBJ][1PL-INCL-OBJ]	3s → 1p (incl)	Subject: 3rd Person Singular → Object: 1st Person Plural (Inclusive)	s/he/it → us		
+[3PL-SUBJ][1PL-INCL-OBJ]	3p → 1p (incl)	Subject: 3rd Person Plural → Object: 1st Person Plural (Inclusive)	they → us		
+[3SG-SUBJ][2PL-OBJ]	3s → 2p	Subject: 3rd Person Singular → Object: 2nd Person Plural	s/he/it → you (all)		
+[3PL-SUBJ][2PL-OBJ]	3p → 2p	Subject: 3rd Person Plural → Object: 2nd Person Plural	they → you (all)		
+[4SG-SUBJ][3PL-OBJ]	4s → 3p	Subject: 4th Person Singular → Object: 3rd Person Plural	s/he/it (further) → them		
+[4PL-SUBJ][3PL-OBJ]	4p → 3p	Subject: 4th Person Plural → Object: 3rd Person Plural	they (further) → them		
+[4SG-SUBJ][4PL-OBJ]	4s → 4p	Subject: 4th Person Singular → Object: 4th Person Plural	s/he/it (further) → them (further)		
+[4PL-SUBJ][4PL-OBJ]	4p → 4p	Subject: 4th Person Plural → Object: 4th Person Plural	they (further) → them (further)		
+					
+[PRESENT]	Present	Present tense	happens now		
+[PAST]	Past	Past tense	happened before this		
+[FUTURE]	Future	Future tense	happening later on		
+[INF]	Infinitive	Infinitive form	to happen		
+[PROGRESSIVE]	Progresssive	Progressive	happening		
+[PERFECTIVE]	Perfective	Perfective	have happened		
+[IMPERFECTIVE]	Imperfective	Imperfective	incomplete event		
+[SIMPLE]	Simple	Simple tense	simple event		
+[IC]	IC	Initial change	starts change		
+[II]	II	Inanimate Intransitive	unalive actor		
+[AI]	AI	Animate Intransitive	alive actor		
+[TA]	TA	Animate Transitive	alive actor acting on something/one		
+[TI]	TI	Inanimate Transitive	unalive actor acting on something/one		
+					
+[CONJUNCT]	Conjunct	Conjunct			
+[SUBJUNCTIVE]	Subjunct	Subjunctive	would/could		
+[ITERATIVE]	Iter	Iterative	repeatedly		
+[PROHIBITIVE]	Prohib	Prohibitive	not allowed		

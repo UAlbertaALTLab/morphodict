@@ -175,3 +175,18 @@ def relabel_linguistic_long(pos: str):
     transitive animate verb – class 1: regular
     """
     return read_labels().linguistic_long.get(pos)
+
+
+@register.filter()
+def sort_sources(sources: list):
+    """
+    Should take in a class and return the plain english labelling for it
+    So if I pass in "VTA-1", I should get back:
+    transitive animate verb – class 1: regular
+    """
+    if "CW" in sources:
+        sources.remove("CW")
+        ret = ["CW"] + sources[:]
+    else:
+        ret = sources
+    return ret

@@ -64,10 +64,30 @@ class DictionarySource(Preference):
     choices = {
         "cw": "Show entries from the Cree: Words dictionary. Wolvengrey, Arok, editor. Cree: Words. Regina, University of Regina Press, 2001",
         "md": "Show entries from the Maskwacîs Dictionary. Maskwacîs Dictionary. Maskwacîs, Maskwachees Cultural College, 1998.",
-        "cw+md": "Show entries from CW and MD (default)",
+        "aecd": "Show entries from the Alberta Elders' Cree Dictionary/alberta ohci kehtehayak nehiyaw otwestamâkewasinahikan compiled by Nancy LeClaire and George Cardinal, edited by Earle H. Waugh. Edmonton: University of Alberta Press, 2002.",
+        "all": "Show entries from CW, AECD, and MD (default)",
     }
 
-    default = "cw+md"
+    default = "all"
+
+
+@register_preference
+class AudioSource(Preference):
+    """
+    Which dictionaries should be included in the search results?
+    """
+
+    cookie_name = "audio_source"
+    choices = {
+        "maskwacis": ["Maskwacîs", "Show audio from the Maskwacîs Cree community"],
+        "moswacihk": [
+            "mōswacīhk",
+            "Show audio from the mōswacīhk community (White Bear First Nations, Saskatchewan",
+        ],
+        "both": ["Both", "Show audio from both sources (default)"],
+    }
+
+    default = "both"
 
 
 @register_preference
@@ -142,3 +162,47 @@ class SynthesizedAudioInParadigm(Preference):
         "no": "I do not want to hear synthesized recordings in my paradigm layouts",
     }
     default = "no"
+
+
+@register_preference
+class ShowInflectionalCategory(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    """
+
+    cookie_name = "show_inflectional_category"
+    choices = {
+        "yes": "I always want to see the inflectional category",
+        "no": "I only want to see the inflectional category in linguistic mode",
+    }
+    default = "yes"
+
+
+@register_preference
+class InflectEnglishPhrase(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    espt: t
+    """
+
+    cookie_name = "inflect_english_phrase"
+    choices = {
+        "yes": "Generate Cree word-forms matching simple English verb or noun phrases",
+        "no": "Only show dictionary entry headwords as they are",
+    }
+    default = "yes"
+
+
+@register_preference
+class AutoTranslateDefs(Preference):
+    """
+    Should we show synthesized audio in the paradigms?
+    auto: t
+    """
+
+    cookie_name = "auto_translate_defs"
+    choices = {
+        "yes": "Generate English definitions matching core Cree word-forms",
+        "no": "Only show dictionary definitions as they are",
+    }
+    default = "yes"

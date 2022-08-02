@@ -239,7 +239,7 @@ Neg	Negation	Negation	not	nâmoya
 Nonposs	Non-possessed	Non-possessed forms	No ownership	êkâ awiyak kâ-tipêyihtahk	
 Num	Numeral	Numeral	Number	akihtâson	
 Obv	Obviative	Obviative	further	anima/anihi (awasimê)	
-Poss	Possession	Ownership	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)	
+Poss	Possession	Possessed forms	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)	
 Pers	Person	Person	Person	iyiniw	
 PV		Preverb			
 PV/acici	Preverb: acici-		head down; upside down		
@@ -495,6 +495,7 @@ Prop		Proper	how something/someone is called	isiyihkâsowin
 Prox	Proximal	Proximate	Here	ôtâ	
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna	
 Prt	Past	Past tense	something happened earlier	ê-ispayik kwayâc	
+Px	Possession	Possessed forms	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)	
 Px12Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw	
 Px1Pl	Possessor: 1p (excl)	Possessor: 1st Person Plural (Exclusive)	our (but not your)	niyanân	
 Px1Sg	Possessor: 1s	Possessor: 1st Person Singular	my	niya	

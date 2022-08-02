@@ -522,14 +522,16 @@ class WordformCell(Cell):
     def __init__(self, inflection: str):
         self.inflection = inflection
         self.recording = None
+        self.recording_speaker = None
         self.morphemes = None
         self.add_morphemes()
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
 
-    def add_recording(self, recording):
-        self.recording = recording
+    def add_recording(self, recording_object):
+        self.recording = recording_object["recording_url"]
+        self.recording_speaker = recording_object["speaker"]
 
     def add_morphemes(self):
         analysis = rich_analyze_strict(self.inflection)

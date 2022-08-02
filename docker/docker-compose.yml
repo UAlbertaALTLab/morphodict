@@ -22,6 +22,7 @@ services:
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/crkeng/resources/fst:/app/src/crkeng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
       - "../src/crkeng/resources/dictionary/:/app/src/crkeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/resources/vector_models/"
@@ -44,6 +45,7 @@ services:
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/cwdeng/resources/fst:/app/src/cwdeng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
       - "../src/cwdeng/resources/dictionary/:/app/src/cwdeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/resources/vector_models/"
@@ -66,6 +68,7 @@ services:
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/srseng/resources/fst:/app/src/srseng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
       - "../src/srseng/resources/dictionary/:/app/src/srseng/resources/dictionary/:ro"
 
       - "/data_local/application-data/srseng/vector_models:/app/src/srseng/resources/vector_models/"
@@ -88,6 +91,7 @@ services:
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/arpeng/resources/fst:/app/src/arpeng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
       - "../src/arpeng/resources/dictionary/:/app/src/arpeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/resources/vector_models/"
@@ -110,6 +114,7 @@ services:
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/hdneng/resources/fst:/app/src/hdneng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
       - "../src/hdneng/resources/dictionary/:/app/src/hdneng/resources/dictionary/:ro"
 
       - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/resources/vector_models/"

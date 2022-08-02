@@ -17,7 +17,15 @@ def dataframe_from_featuredump(filename):
     rows = []
     with open(filename, "rt") as f:
         for line in f:
-            rows.append(json.loads(line))
+            try:
+                if json.loads(line) != []:
+                    rows.append(json.loads(line))
+                try:
+                    print(int(line))
+                except:
+                    continue
+            except:
+                continue
 
     all_keys = set(list(k for row in rows for k in row.keys()))
     data = {}

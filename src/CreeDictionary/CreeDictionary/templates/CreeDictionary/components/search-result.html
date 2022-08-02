@@ -1,5 +1,5 @@
 {% spaceless %}
-  {% comment %}
+    {% comment %}
     ## .definition ##
 
     PARAMETERS:
@@ -44,59 +44,68 @@
     (see: https://github.com/UAlbertaALTLab/morphodict/issues/445)
   {% endcomment %}
 
-  {% load morphodict_orth %}
+    {% load morphodict_orth %}
 
-  <article class="definition box box--rounded" data-cy="search-result">
-    <header class="definition__header">
-      {% include "CreeDictionary/components/definition-title.html" %}
-      {% if result.is_lemma %}
-        {% include "CreeDictionary/components/definition__elaboration.html" with lemma=result.lemma_wordform %}
-      {% endif %}
-    </header>
+    <article class="definition box box--rounded" data-cy="search-result">
+        <header class="definition__header">
+            {% include "CreeDictionary/components/definition-title.html" %}
+            {% if result.is_lemma %}
+                {% include "CreeDictionary/components/definition__elaboration.html" with lemma=result.lemma_wordform %}
+            {% endif %}
+        </header>
 
-    {# These are the definitions for the inflection (non-lemma), could be empty  #}
-    <ol class="meanings meanings--search-result">
-      {% for def in result.definitions %}
-      <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
-      </li>
-      {% endfor %}
-    </ol>
+        {# These are the definitions for the inflection (non-lemma), could be empty  #}
+        <ol class="meanings meanings--search-result">
+            {% for def in result.definitions %}
+                <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
+                    {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                </li>
+            {% endfor %}
+        </ol>
 
-    {% include "CreeDictionary/components/lexical-info.html" %}
+        {% include "CreeDictionary/components/lexical-info.html" %}
 
-    {# Show the matched lemma (when this is NOT a lemma). #}
-    {% if not result.is_lemma and result.show_form_of %}
-      <p class="definition__reference-to-lemma" data-cy="reference-to-lemma">
-        form of <a
-          class="definition__matched-lemma"
-          href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
-      </p>
+        {# Show the matched lemma (when this is NOT a lemma). #}
+        {% if not result.is_lemma and result.show_form_of %}
+            <p class="definition__reference-to-lemma" data-cy="reference-to-lemma">
+                form of <a
+                    class="definition__matched-lemma"
+                    href="{{ result.lemma_wordform.lemma_url }}">{% if result.lemma_morphemes and show_morphemes != "nowhere" and show_morphemes %}
+                                {% orth result.lemma_morphemes|join:"·" %}
+                            {% else %}
+                                {% orth result.lemma_wordform.text %}
+                            {% endif %}</a>
+            </p>
 
-      <hr class="cleave-inflection-from-lemma">
+            <hr class="cleave-inflection-from-lemma">
 
-      <header class="definition__header">
-        <h2 class="definition-title definition-title--search-result">
-          <dfn class="definition__matched-head" data-cy="definition-title">
-            <a href="{{ result.lemma_wordform.lemma_url }}">{% orth result.lemma_wordform.text %}</a>
-          </dfn>
-        </h2>
+            <header class="definition__header">
+                <h2 class="definition-title definition-title--search-result">
+                    <dfn class="definition__matched-head" data-cy="definition-title">
+                        <a href="{{ result.lemma_wordform.lemma_url }}">
+                            {% if result.lemma_morphemes and show_morphemes != "nowhere" and show_morphemes %}
+                                {% orth result.lemma_morphemes|join:"·" %}
+                            {% else %}
+                                {% orth result.lemma_wordform.text %}
+                            {% endif %}</a>
+                    </dfn>
+                </h2>
 
-        {% include 'CreeDictionary/components/definition__elaboration.html' with lemma=result.lemma_wordform %}
-      </header>
+                {% include 'CreeDictionary/components/definition__elaboration.html' with lemma=result.lemma_wordform %}
+            </header>
 
-      {# Theses are the definitions for the lemma, guaranteed to exist in the database #}
-      <ol class="meanings meanings--search-result">
-        {% for def in result.lemma_wordform.definitions %}
-        <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-          {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
-        </li>
-        {% endfor %}
-      </ol>
-    {% endif %}
+            {# Theses are the definitions for the lemma, guaranteed to exist in the database #}
+            <ol class="meanings meanings--search-result">
+                {% for def in result.lemma_wordform.definitions %}
+                    <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
+                        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                    </li>
+                {% endfor %}
+            </ol>
+        {% endif %}
 
-    {% if result.verbose_info %}
-        <pre data-cy="verbose-info">{{ result.verbose_info.features_json }}</pre>
-    {% endif %}
-  </article>
+        {% if result.verbose_info %}
+            <pre data-cy="verbose-info">{{ result.verbose_info.features_json }}</pre>
+        {% endif %}
+    </article>
 {% endspaceless %}

@@ -63,6 +63,7 @@
                                             {% endif %}
                                             {% if cell.recording %}
                                                 &nbsp;
+                                                {% if cell.recording_speaker == "SDOL" %}🤖 {% else %} 🧑🏽‍🦱 {% endif %}
                                                 <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}"
                                                        style="display: none;">
                                                     <source src="{{ cell.recording }}" type="audio/mp4"/>

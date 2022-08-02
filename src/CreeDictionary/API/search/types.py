@@ -122,13 +122,23 @@ class Result:
         self.lemma_wordform = self.wordform.lemma
         self.wordform_length = len(self.wordform.text)
 
+        self.pos_match = self.pos_match
+        self.glossary_count = self.glossary_count
+        self.lemma_freq = self.lemma_freq
+
         if self.did_match_source_language and self.query_wordform_edit_distance is None:
             raise Exception("must include edit distance on source language matches")
 
         if self.morpheme_ranking is None:
+            # todo: normalize morpheme ranking by dividing by max value
             self.morpheme_ranking = wordform_cache.MORPHEME_RANKINGS.get(
                 self.wordform.text, None
             ) or wordform_cache.MORPHEME_RANKINGS.get(self.lemma_wordform.text, None)
+
+        if rich_analysis := self.lemma_wordform.analysis:
+            self.lemma_morphemes = rich_analysis.generate_with_morphemes(
+                self.lemma_wordform.text
+            )
 
     def add_features_from(self, other: Result):
         """Add the features from `other` into this object
@@ -189,6 +199,7 @@ class Result:
     lemma_wordform: Lemma = field(init=False)
     is_lemma: bool = field(init=False)
     wordform_length: int = field(init=False)
+    lemma_morphemes: Optional[list] = None
 
     #: What, if any, was the matching string?
     source_language_match: Optional[str] = None
@@ -205,6 +216,10 @@ class Result:
 
     is_espt_result: Optional[bool] = None
 
+    pos_match: Optional[int] = None
+    glossary_count: Optional[int] = None
+    lemma_freq: Optional[int] = None
+
     #: Was anything in the query a target-language match for this result?
     did_match_target_language: Optional[bool] = None
 
@@ -217,10 +232,17 @@ class Result:
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
-            if field.name not in ["wordform", "lemma_wordform"]:
+            if field.name in [
+                "target_language_keyword_match",
+                "morpheme_ranking",
+                "glossary_count",
+                "lemma_freq",
+                "pos_match",
+                "cosine_vector_distance",
+                "relevance_score",
+            ]:
                 value = getattr(self, field.name)
-                if value is not None:
-                    ret[field.name] = value
+                ret[field.name] = value
         return ret
 
     def features_json(self):

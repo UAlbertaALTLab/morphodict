@@ -177,6 +177,22 @@ logger = logging.getLogger(__name__)
 #         )
 #     return render(request, "CreeDictionary/index.html", context)
 
+    # context = create_context_for_index_template(
+    #     mode,
+    #     word_search_form=WordSearchForm(),
+    #     # when we have initial query word to search and display
+    #     query_string=user_query,
+    #     search_results=search_results,
+    #     did_search=did_search,
+    # )
+    # context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
+    # context["show_morphemes"] = request.COOKIES.get("show_morphemes")
+    # context["show_ic"] = request.COOKIES.get("show_inflectional_category")
+    # if search_run and search_run.verbose_messages and search_run.query.verbose:
+    #     context["verbose_messages"] = json.dumps(
+    #         search_run.verbose_messages, indent=2, ensure_ascii=False
+    #     )
+    # return render(request, "CreeDictionary/index.html", context)
 
 # def search_results(request, query_string: str):  # pragma: no cover
 #     """
@@ -204,6 +220,24 @@ logger = logging.getLogger(__name__)
 #         },
 #     )
 
+# def search_results(request, query_string: str):  # pragma: no cover
+#     """
+#     returns rendered boxes of search results according to user query
+#     """
+#     dict_source = get_dict_source(request)  # type: ignore
+#     include_auto_definitions = should_include_auto_definitions(request)
+#     inflect_english_phrases = should_inflect_phrases(request)
+#     results = search_with_affixes(
+#         query_string,
+#         include_auto_definitions=include_auto_definitions,
+#         inflect_english_phrases=inflect_english_phrases,
+#     ).serialized_presentation_results(
+#         # mypy cannot infer this property, but it exists!
+#         display_mode=DisplayMode.current_value_from_request(request),  # type: ignore
+#         animate_emoji=AnimateEmoji.current_value_from_request(request),  # type: ignore
+#         show_emoji=ShowEmoji.current_value_from_request(request),  # type: ignore
+#         dict_source=dict_source,
+#     )
 
 # @require_GET
 # def paradigm_internal(request):
@@ -253,6 +287,16 @@ logger = logging.getLogger(__name__)
 #             "paradigm_size": paradigm_size,
 #             "paradigm": paradigm,
 #             "show_morphemes": request.COOKIES.get("show_morphemes"),
+#         },
+#     )
+#     return render(
+#         request,
+#         "CreeDictionary/search-results.html",
+#         {
+#             "query_string": query_string,
+#             "search_results": results,
+#             "show_morphemes": request.COOKIES.get("show_morphemes"),
+#             "show_ic": request.COOKIES.get("show_inflectional_category"),
 #         },
 #     )
 
@@ -385,8 +429,11 @@ def google_site_verification(request):
 
 
 def should_include_auto_definitions(request):
-    # For now, show auto-translations if and only if the user is logged in
-    return request.user.is_authenticated
+    return False if request.COOKIES.get("auto_translate_defs") == "no" else True
+
+
+def should_inflect_phrases(request):
+    return False if request.COOKIES.get("inflect_english_phrase") == "no" else True
 
 
 def get_dict_source(request):
@@ -431,12 +478,18 @@ def get_recordings_from_paradigm(paradigm, request):
 
     query_terms = []
     matched_recordings = {}
-    speech_db_eq = settings.SPEECH_DB_EQ
+    if source := request.COOKIES.get("audio_source"):
+        if source != "both":
+            speech_db_eq = [remove_diacritics(source)]
+        else:
+            speech_db_eq = settings.SPEECH_DB_EQ
+    else:
+        speech_db_eq = settings.SPEECH_DB_EQ
     if speech_db_eq == ["_"]:
         return paradigm
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
-        speech_db_eq.append("synth")
+        speech_db_eq.insert(0, "synth")
 
     for pane in paradigm["panes"]:
         for row in pane["tr_rows"]:
@@ -469,8 +522,11 @@ def get_recordings_from_url(search_terms, url):
     if response.status_code == 200:
         recordings = response.json()
 
-        for recording in recordings["matched_recordings"]:
-            matched_recordings[recording["wordform"]] = recording["recording_url"]
+    for recording in recordings["matched_recordings"]:
+        entry = macron_to_circumflex(recording["wordform"])
+        matched_recordings[entry] = {}
+        matched_recordings[entry]["recording_url"] = recording["recording_url"]
+        matched_recordings[entry]["speaker"] = recording["speaker"]
 
         return matched_recordings
     else:
@@ -495,6 +551,26 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i : i + size]
+
+
+def macron_to_circumflex(item):
+    """
+    >>> macron_to_circumflex("wāpamēw")
+    'wâpamêw'
+    """
+    item = item.translate(str.maketrans("ēīōā", "êîôâ"))
+    return item
+
+
+def remove_diacritics(item):
+    """
+    >>> remove_diacritics("mōswacīhk")
+    'moswacihk'
+    >>> remove_diacritics("maskwacîs")
+    'maskwacis'
+    """
+    item = item.translate(str.maketrans("ēīōāêîôâ", "eioaeioa"))
+    return item
 
 
 @api_view(['GET', ])

@@ -46,7 +46,7 @@
         <section>
             <h3 id="show-morphemes" class="setting__title">Morpheme Boundaries</h3>
 
-            <p class="setting__note"> Where would you like to see morpheme boundaries in the app?</p>
+            <p class="setting__note"> Where would you like to see morpheme boundaries to be shown?</p>
 
             <form method="POST" action="{% url "preference:change" "show_morphemes" %}"
                   data-save-preference="show_morphemes">
@@ -56,6 +56,35 @@
                             <label class="option__label">
                                 <input type="radio" name="show_morphemes" value="{{ value }}" class="option__control"
                                        {% if preferences.show_morphemes.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+    <section>
+            <h3 id="show-inflectional-category" class="setting__title">Inflectional Category</h3>
+
+            <p class="setting__note"> Would you like to see the inflectional category with search results?</p>
+
+            <form method="POST" action="{% url "preference:change" "show_inflectional_category" %}"
+                  data-save-preference="show_inflectional_category">
+                <ul class="unbullet">
+                    {% for value, label in preferences.show_inflectional_category.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="show_inflectional_category" value="{{ value }}" class="option__control"
+                                       {% if preferences.show_inflectional_category.current_choice == value %}checked{% endif %}>
                                 <span class="option__label-text">{{ value|capfirst }}</span>
                             </label>
                             <p class="option__description">
@@ -132,7 +161,7 @@
             <section>
                 <h3 id="dictionary-source" class="setting__title">Select Dictionary Source</h3>
 
-                <p class="setting__note"> Select one of the following options to chose which entries are displayed in
+                <p class="setting__note"> Select one of the following options to choose which entries are displayed in
                     the search results</p>
 
                 <form method="POST" action="{% url "preference:change" "dictionary_source" %}"
@@ -159,11 +188,41 @@
                     </div>
                 </form>
             </section>
+
+            <section>
+                <h3 id="audio-source" class="setting__title">Select Audio Source</h3>
+
+                <p class="setting__note"> Select one of the following options to choose which audio source you would like to hear</p>
+
+                <form method="POST" action="{% url "preference:change" "audio_source" %}"
+                      data-save-preference="audio_source">
+                    <ul class="unbullet">
+                        {% for value, label in preferences.audio_source.choices_with_labels %}
+                            <li class="option">
+                                <label class="option__label">
+                                    <input type="radio" name="audio_source" value="{{ value }}"
+                                           class="option__control"
+                                           {% if preferences.audio_source.current_choice == value %}checked{% endif %}>
+                                    <span class="option__label-text">{{ label|first }}</span>
+                                </label>
+                                <p class="option__description">
+                                    {{ label|last }}
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="action-bar">
+                        {% csrf_token %}
+                        <button type="submit"> Save settings</button>
+                    </div>
+                </form>
+            </section>
         {% endif %}
         <section>
-            <h3 id="paradigm-audio" class="setting__title">Show Paradigm Audio</h3>
+            <h3 id="paradigm-audio" class="setting__title">Show/Play Paradigm Audio</h3>
 
-            <p class="setting__note"> When available, paradigm audio will be displayed and played in paradigms</p>
+            <p class="setting__note"> When available, audio will be displayed and played in paradigms</p>
 
             <form method="POST" action="{% url "preference:change" "paradigm_audio" %}"
                   data-save-preference="paradigm_audio">
@@ -191,11 +250,11 @@
         </section>
 
         <section>
-            <h3 id="paradigm-audio" class="setting__title">Show Synthesized Audio in Paradigms</h3>
+            <h3 id="paradigm-audio" class="setting__title">Show/Play Synthesized Audio in Paradigms</h3>
 
-            <p class="setting__note"> Synthesized audio is generated by a computer model. It's fairly accurate, but not
+            <p class="setting__note"> Synthesized audio is generated by a computer model. It is fairly accurate, but not
                 as
-                precise as a human speaker. This setting applies to the <em>Paradigm Layouts</em> specifically.
+                precise or natural as a human speaker. This setting applies to the <em>Paradigm Layouts</em> specifically.
                 <i>Note: this setting only applies if "Show Paradigm Audio" is set to "yes"</i></p>
 
             <form method="POST" action="{% url "preference:change" "synthesized_audio_in_paradigm" %}"
@@ -224,11 +283,11 @@
         </section>
 
         <section>
-            <h3 id="paradigm-audio" class="setting__title">Show Synthesized Audio</h3>
+            <h3 id="paradigm-audio" class="setting__title">Show/Play Synthesized Audio</h3>
 
-            <p class="setting__note"> Synthesized audio is generated by a computer model. It's fairly accurate, but not
+            <p class="setting__note"> Synthesized audio is generated by a computer model. It is fairly accurate, but not
                 as
-                precise as a human speaker. This setting applies to all speech except the paradigm layouts.</p>
+                precise or natural as a human speaker. This setting applies to all speech except the paradigm layouts.</p>
 
             <form method="POST" action="{% url "preference:change" "synthesized_audio" %}"
                   data-save-preference="synthesized_audio">
@@ -239,6 +298,59 @@
                                 <input type="radio" name="synthesized_audio" value="{{ value }}"
                                        class="option__control"
                                        {% if preferences.synthesized_audio.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+    <section>
+            <h3 id="inflect-english-phrase" class="setting__title">Automatically translate English phrases into Cree word-forms </h3>
+
+            <form method="POST" action="{% url "preference:change" "inflect_english_phrase" %}"
+                  data-save-preference="inflect_english_phrase">
+                <ul class="unbullet">
+                    {% for value, label in preferences.inflect_english_phrase.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="inflect_english_phrase" value="{{ value }}" class="option__control"
+                                       {% if preferences.inflect_english_phrase.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
+
+    <section>
+            <h3 id="auto-translate-defs" class="setting__title">Automatically translate Cree word-forms into English phrases</h3>
+
+            <form method="POST" action="{% url "preference:change" "auto_translate_defs" %}"
+                  data-save-preference="auto_translate_defs">
+                <ul class="unbullet">
+                    {% for value, label in preferences.auto_translate_defs.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="auto_translate_defs" value="{{ value }}" class="option__control"
+                                       {% if preferences.auto_translate_defs.current_choice == value %}checked{% endif %}>
                                 <span class="option__label-text">{{ value|capfirst }}</span>
                             </label>
                             <p class="option__description">

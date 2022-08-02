@@ -44,7 +44,7 @@
                 <p class="preverb-breakdown__preverb-definition">
                     <span class="preverb-breakdown__preverb-definition-text">{{ definition.text }}</span>
             {% if item.entry.id %} {# we know the preverb in the database #}
-                {% for source in definition.source_ids %}
+                {% for source in definition.source_ids|sort_sources %}
                     <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
                 {% endfor %}
             {% endif %}
