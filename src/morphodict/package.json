@@ -27,8 +27,11 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start:crk": "PORT=3000 ./node_modules/.bin/env-cmd -f .env.crk react-scripts start",
     "start:srs": "PORT=3001 ./node_modules/.bin/env-cmd -f .env.srs react-scripts start",
+    "start:cwd": "PORT=3002 ./node_modules/.bin/env-cmd -f .env.cwd react-scripts start",
+    "start:hdn": "PORT=3003 ./node_modules/.bin/env-cmd -f .env.hdn react-scripts start",
+    "start:arp": "PORT=3004 ./node_modules/.bin/env-cmd -f .env.arp react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
