@@ -40,7 +40,17 @@ function WordEntry(props) {
   let wordform = "";
   let recordings = "";
   let paradigm = "";
-  let type = props.location.state.type;
+  let type = getType()
+
+  function getType() {
+    if ("state" in props.location && props.location.state) {
+      if ("type" in props.location.state && props.location.state.type) {
+        return props.location.state.type;
+      }
+    }
+    return "Latn";
+  }
+
   if (!type) { type = "Latn" }
   console.log("TYPE:", type);
 
@@ -53,7 +63,7 @@ function WordEntry(props) {
   let recs = [];
   if (recordings) {
     recs = recordings.map((recording) =>
-      <option onClick={submittedAudio} key={recording.url} data-link={recording.speaker_bio_url} value={recording.recording_url} key={recording.recording_url}>
+      <option onClick={submittedAudio} key={recording.url} data-link={recording.speaker_bio_url} value={recording.recording_url}>
           {recording.speaker_name}, {recording.language[0]}
       </option>
     );
@@ -81,11 +91,8 @@ function WordEntry(props) {
     return false;
   }
 
-  console.log(wordform.definitions)
-
   return (
     <>
-      {/*<p>{data}</p>*/}
       {(!isFetching && !error && data !== null) ? (
         <article id="definition" className="definition">
           <header className="definition__header">
@@ -119,7 +126,7 @@ function WordEntry(props) {
             <ol className="meanings">
               {wordform.definitions.map((def, index) => (
                 <li className="meanings__meaning" key={index}>
-                  {def.text} {def.source_ids.map((i, index) => (<span>{i}</span>))}
+                  {def.text}  {def.source_ids.map((i, index) => (<span>{i}  </span>))}
                 </li>
               ))}
             </ol>

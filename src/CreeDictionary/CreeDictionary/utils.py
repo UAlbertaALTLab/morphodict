@@ -181,23 +181,28 @@ def wordform_orth(wordform):
     :param wordform:
     :return:
     """
+    ret_wordform = {}
     try:
-        wordform["text"] = {
+        ret_wordform["text"] = {
             code: ORTHOGRAPHY.converter[code](wordform["text"])
             for code in ORTHOGRAPHY.available
         }
-        wordform["inflectional_category_plain_english"] = {
+        ret_wordform["inflectional_category_plain_english"] = {
             code: "like: " + ORTHOGRAPHY.converter[code](wordform["inflectional_category_plain_english"][6:])
             for code in ORTHOGRAPHY.available
         }
 
     except TypeError:
-        wordform["text"] = {"Latn": wordform["text"]}
+        ret_wordform["text"] = {"Latn": wordform["text"]}
         # wordform["inflectional_category_plain_english"] = {"Latn": wordform["inflectional_category_plain_english"]}
     except KeyError:
-        wordform["text"] = {"Latn": wordform["text"]}
+        ret_wordform["text"] = {"Latn": wordform["text"]}
 
-    return wordform
+    for key in wordform:
+        if key not in ret_wordform:
+            ret_wordform[key] = wordform[key]
+
+    return ret_wordform
 
 
 def wordform_orth_text(wordform):

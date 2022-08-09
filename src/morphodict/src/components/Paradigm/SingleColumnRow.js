@@ -7,7 +7,6 @@ function SingleColumnRow(props) {
   const type = props.type;
 
   const cell_layouts = cell_list.map((cell, index) => {
-    console.log("CELL??", cell);
     if (cell.is_label) {
       const class_name = "paradigm-label paradigm-label--" + cell.label_for;
       return (

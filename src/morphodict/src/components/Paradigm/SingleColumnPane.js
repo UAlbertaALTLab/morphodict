@@ -10,7 +10,15 @@ import {
   AccordionDetails,
   Grid,
 } from "@mui/material";
-import Labels from "../../layouts/crk.altlabel.json";
+import SrsLabels from "../../layouts/srs.altlabel.json";
+import CrkLabels from "../../layouts/crk.altlabel.json";
+
+let Labels;
+if (process.env.REACT_APP_ISO_CODE === "srs") {
+  Labels = SrsLabels;
+} else if (process.env.REACT_APP_ISO_CODE === "crk") {
+  Labels = CrkLabels;
+}
 
 function SingleColumnPane(props) {
   const pane = props.pane;
@@ -21,6 +29,7 @@ function SingleColumnPane(props) {
     defaultLabel = "ENGLISH";
   }
   const [labelType, setLabelType] = useState(defaultLabel);
+  const sourceLanguage = process.env.REACT_APP_SOURCE_LANGUAGE;
 
   let labels = {}
   Labels.map((items) => {
@@ -28,7 +37,7 @@ function SingleColumnPane(props) {
         "LINGUISTIC (SHORT)": items["LINGUISTIC (SHORT)"],
         "LINGUISTIC (LONG)": items["LINGUISTIC (LONG)"],
         "ENGLISH": items["ENGLISH"],
-        "NÊHIYAWÊWIN": items["NÊHIYAWÊWIN"],
+        sourceLanguage: items[sourceLanguage],
         "EMOJI": items["EMOJI"]
       }
     }

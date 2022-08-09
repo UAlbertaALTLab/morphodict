@@ -1,0 +1,1209 @@
+[
+  {
+    "FST TAG": "V",
+    "LINGUISTIC (SHORT)": "Verb",
+    "LINGUISTIC (LONG)": "Verb",
+    "ENGLISH": "Action word",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "I",
+    "LINGUISTIC (SHORT)": "Intransitive",
+    "LINGUISTIC (LONG)": "Intransitive",
+    "ENGLISH": "Someone does something",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "Im",
+    "LINGUISTIC (SHORT)": "Impersonal",
+    "LINGUISTIC (LONG)": "Impersonal",
+    "ENGLISH": "Something happens",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "T",
+    "LINGUISTIC (SHORT)": "Transitive",
+    "LINGUISTIC (LONG)": "Transitive",
+    "ENGLISH": "Someone acts on someone",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "D",
+    "LINGUISTIC (SHORT)": "Ditransitive",
+    "LINGUISTIC (LONG)": "Ditransitive",
+    "ENGLISH": "Someone gives someone something",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "E",
+    "LINGUISTIC (SHORT)": "Experiential Object",
+    "LINGUISTIC (LONG)": "Experiential object",
+    "ENGLISH": "Someone experiences something",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "O",
+    "LINGUISTIC (SHORT)": "Oblique Object",
+    "LINGUISTIC (LONG)": "Oblique object",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "Ipfv",
+    "LINGUISTIC (SHORT)": "Imperfective",
+    "LINGUISTIC (LONG)": "Aspect: imperfective",
+    "ENGLISH": "Unfinished / Non-past",
+    "TSUUT'INA": "Dú k'àgunììt'a (ák'óo ágùná)"
+  },
+  {
+    "FST TAG": "Pfv",
+    "LINGUISTIC (SHORT)": "Perfective",
+    "LINGUISTIC (LONG)": "Aspect: perfective ",
+    "ENGLISH": "Finished / Past",
+    "TSUUT'INA": "K'àgunììt'a (dzánádà ágùjàg)"
+  },
+  {
+    "FST TAG": "Prog",
+    "LINGUISTIC (SHORT)": "Progressive",
+    "LINGUISTIC (LONG)": "Progressive",
+    "ENGLISH": "On-going",
+    "TSUUT'INA": "Ágùdánáł"
+  },
+  {
+    "FST TAG": "Pot",
+    "LINGUISTIC (SHORT)": "Potential",
+    "LINGUISTIC (LONG)": "Aspect: potential",
+    "ENGLISH": "Possibly",
+    "TSUUT'INA": "Ágùyiná-hí-gulà"
+  },
+  {
+    "FST TAG": "Rep",
+    "LINGUISTIC (SHORT)": "Repetitive",
+    "LINGUISTIC (LONG)": "Superaspect: repetitive",
+    "ENGLISH": "Again and again",
+    "TSUUT'INA": "Ánágùt'ìsh"
+  },
+  {
+    "FST TAG": "Ipfv+Rep",
+    "LINGUISTIC (SHORT)": "Imperfective Repetitive",
+    "LINGUISTIC (LONG)": "Aspect: imperfective repetitive",
+    "ENGLISH": "Non-past + Again and again",
+    "TSUUT'INA": "Dú k'àgunììt'a (ánágùt'ìsh)"
+  },
+  {
+    "FST TAG": "Pfv+Rep",
+    "LINGUISTIC (SHORT)": "Perfective Repetitive",
+    "LINGUISTIC (LONG)": "Aspect: perfective repetitive",
+    "ENGLISH": "Past + Again and again",
+    "TSUUT'INA": "K'àgunììt'a (ánágùyít'ìsh)"
+  },
+  {
+    "FST TAG": "Neg",
+    "LINGUISTIC (SHORT)": "Negation",
+    "LINGUISTIC (LONG)": "Negation",
+    "ENGLISH": "not",
+    "TSUUT'INA": "chāā"
+  },
+  {
+    "FST TAG": "1Sg",
+    "LINGUISTIC (SHORT)": "1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular",
+    "ENGLISH": "I",
+    "TSUUT'INA": "síní"
+  },
+  {
+    "FST TAG": "2Sg",
+    "LINGUISTIC (SHORT)": "2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular",
+    "ENGLISH": "you (one)",
+    "TSUUT'INA": "níní"
+  },
+  {
+    "FST TAG": "3Sg",
+    "LINGUISTIC (SHORT)": "3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular",
+    "ENGLISH": "he/she/it",
+    "TSUUT'INA": "idíní"
+  },
+  {
+    "FST TAG": "4Sg",
+    "LINGUISTIC (SHORT)": "4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular",
+    "ENGLISH": "someone (unspec./holy)",
+    "TSUUT'INA": "gúní"
+  },
+  {
+    "FST TAG": "1Pl",
+    "LINGUISTIC (SHORT)": "1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural",
+    "ENGLISH": "we",
+    "TSUUT'INA": "niihíní"
+  },
+  {
+    "FST TAG": "2Pl",
+    "LINGUISTIC (SHORT)": "2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural",
+    "ENGLISH": "you (all)",
+    "TSUUT'INA": "nahíní"
+  },
+  {
+    "FST TAG": "3Pl",
+    "LINGUISTIC (SHORT)": "3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural",
+    "ENGLISH": "they",
+    "TSUUT'INA": "igidíní"
+  },
+  {
+    "FST TAG": "4Pl",
+    "LINGUISTIC (SHORT)": "4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person plural",
+    "ENGLISH": "some people",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "1Pl+Distr",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural",
+    "ENGLISH": "each and every one of us",
+    "TSUUT'INA": "niihíní (tłaát'áa)"
+  },
+  {
+    "FST TAG": "2Pl+Distr",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural",
+    "ENGLISH": "each and every one of you (all)",
+    "TSUUT'INA": "nahíní (tłaát'áa)"
+  },
+  {
+    "FST TAG": "3Pl+Distr",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural",
+    "ENGLISH": "each and every one of them",
+    "TSUUT'INA": "igidíní (tłaát'áa)"
+  },
+  {
+    "FST TAG": "4Sg+Distr",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural",
+    "ENGLISH": "each and every one of some people",
+    "TSUUT'INA": "gúní (tłaát'áa)"
+  },
+  {
+    "FST TAG": "SbjSg1",
+    "LINGUISTIC (SHORT)": "S: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular",
+    "ENGLISH": "I",
+    "TSUUT'INA": "síní"
+  },
+  {
+    "FST TAG": "SbjSg2",
+    "LINGUISTIC (SHORT)": "S: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular",
+    "ENGLISH": "you (one)",
+    "TSUUT'INA": "níní"
+  },
+  {
+    "FST TAG": "SbjSg3",
+    "LINGUISTIC (SHORT)": "S: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular",
+    "ENGLISH": "he/she/it",
+    "TSUUT'INA": "idíní"
+  },
+  {
+    "FST TAG": "SbjSg4",
+    "LINGUISTIC (SHORT)": "S: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular",
+    "ENGLISH": "someone (unspec./holy)",
+    "TSUUT'INA": "gúní"
+  },
+  {
+    "FST TAG": "SbjPl1",
+    "LINGUISTIC (SHORT)": "S: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural",
+    "ENGLISH": "we",
+    "TSUUT'INA": "niihíní"
+  },
+  {
+    "FST TAG": "SbjPl2",
+    "LINGUISTIC (SHORT)": "S: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural",
+    "ENGLISH": "you (all)",
+    "TSUUT'INA": "nahíní"
+  },
+  {
+    "FST TAG": "SbjPl3",
+    "LINGUISTIC (SHORT)": "S: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural",
+    "ENGLISH": "they",
+    "TSUUT'INA": "igidíní"
+  },
+  {
+    "FST TAG": "SbjPl4",
+    "LINGUISTIC (SHORT)": "S: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person plural",
+    "ENGLISH": "some people",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "DObjSg1",
+    "LINGUISTIC (SHORT)": "DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 1st person singular",
+    "ENGLISH": "→ me",
+    "TSUUT'INA": "→ síní"
+  },
+  {
+    "FST TAG": "DObjSg2",
+    "LINGUISTIC (SHORT)": "DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 2nd person singular",
+    "ENGLISH": "→ you (one)",
+    "TSUUT'INA": "→ níní"
+  },
+  {
+    "FST TAG": "DObjSg3",
+    "LINGUISTIC (SHORT)": "DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 3rd person singular",
+    "ENGLISH": "→ him/her/it",
+    "TSUUT'INA": "→ idíní"
+  },
+  {
+    "FST TAG": "DObjSg4",
+    "LINGUISTIC (SHORT)": "DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 4th person singular",
+    "ENGLISH": "→ someone",
+    "TSUUT'INA": "→ gúní"
+  },
+  {
+    "FST TAG": "DObjPl1",
+    "LINGUISTIC (SHORT)": "DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 1st person plural",
+    "ENGLISH": "→ us",
+    "TSUUT'INA": "→ niihíní"
+  },
+  {
+    "FST TAG": "DObjPl2",
+    "LINGUISTIC (SHORT)": "DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 2nd person plural",
+    "ENGLISH": "→ you (all)",
+    "TSUUT'INA": "→ nahíní"
+  },
+  {
+    "FST TAG": "DObjPl3",
+    "LINGUISTIC (SHORT)": "DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 3rd person plural",
+    "ENGLISH": "→ them",
+    "TSUUT'INA": "→ igidíní"
+  },
+  {
+    "FST TAG": "DObjPl4",
+    "LINGUISTIC (SHORT)": "DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 4th person plural",
+    "ENGLISH": "→ some people",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "DObjAreal",
+    "LINGUISTIC (SHORT)": "DO: areal",
+    "LINGUISTIC (LONG)": "Direct Object: areal",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "DObjRefl",
+    "LINGUISTIC (SHORT)": "DO: reflexive",
+    "LINGUISTIC (LONG)": "Direct Object: reflexive",
+    "ENGLISH": "→ oneself/ves",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "DObjRecip",
+    "LINGUISTIC (SHORT)": "DO: recipient",
+    "LINGUISTIC (LONG)": "Direct Object: recipient",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "DObjGiven",
+    "LINGUISTIC (SHORT)": "DO: explicitly given",
+    "LINGUISTIC (LONG)": "Direct Object: explicitly given",
+    "ENGLISH": "(O)",
+    "TSUUT'INA": "(áts'idá-ìsà/its'íná-ìsà)"
+  },
+  {
+    "FST TAG": "DObjEmphatic",
+    "LINGUISTIC (SHORT)": "DO: emphatic",
+    "LINGUISTIC (LONG)": "Direct Object: emphatic",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "1SgO",
+    "LINGUISTIC (SHORT)": "DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 1st person singular",
+    "ENGLISH": "→ me",
+    "TSUUT'INA": "→ síní"
+  },
+  {
+    "FST TAG": "2SgO",
+    "LINGUISTIC (SHORT)": "DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 2nd person singular",
+    "ENGLISH": "→ you (one)",
+    "TSUUT'INA": "→ níní"
+  },
+  {
+    "FST TAG": "3SgO",
+    "LINGUISTIC (SHORT)": "DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 3rd person singular",
+    "ENGLISH": "→ him/her/it",
+    "TSUUT'INA": "→ idíní"
+  },
+  {
+    "FST TAG": "4SgO",
+    "LINGUISTIC (SHORT)": "DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Direct Object: 4th person singular",
+    "ENGLISH": "→ someone",
+    "TSUUT'INA": "→ gúní"
+  },
+  {
+    "FST TAG": "1PlO",
+    "LINGUISTIC (SHORT)": "DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 1st person plural",
+    "ENGLISH": "→ us",
+    "TSUUT'INA": "→ niihíní"
+  },
+  {
+    "FST TAG": "2PlO",
+    "LINGUISTIC (SHORT)": "DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 2nd person plural",
+    "ENGLISH": "→ you (all)",
+    "TSUUT'INA": "→ nahíní"
+  },
+  {
+    "FST TAG": "3PlO",
+    "LINGUISTIC (SHORT)": "DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 3rd person plural",
+    "ENGLISH": "→ them",
+    "TSUUT'INA": "→ igidíní"
+  },
+  {
+    "FST TAG": "4PlO",
+    "LINGUISTIC (SHORT)": "DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Direct Object: 4th person plural",
+    "ENGLISH": "→ some people",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "ArealO",
+    "LINGUISTIC (SHORT)": "DO: areal",
+    "LINGUISTIC (LONG)": "Direct Object: areal",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "ReflO",
+    "LINGUISTIC (SHORT)": "DO: reflexive",
+    "LINGUISTIC (LONG)": "Direct Object: reflexive",
+    "ENGLISH": "→ oneself/ves",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "RecipO",
+    "LINGUISTIC (SHORT)": "DO: recipient",
+    "LINGUISTIC (LONG)": "Direct Object: recipient",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "GivenO",
+    "LINGUISTIC (SHORT)": "DO: explicitly given",
+    "LINGUISTIC (LONG)": "Direct Object: explicitly given",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "EmphaticO",
+    "LINGUISTIC (SHORT)": "DO: emphatic",
+    "LINGUISTIC (LONG)": "Direct Object: emphatic",
+    "ENGLISH": "→ ?",
+    "TSUUT'INA": "→ ?"
+  },
+  {
+    "FST TAG": "IObjSg1",
+    "LINGUISTIC (SHORT)": "IO: 1st person singular",
+    "LINGUISTIC (LONG)": "Indirect Object: 1st person singular",
+    "ENGLISH": "⇉ to me",
+    "TSUUT'INA": "⇉ síní"
+  },
+  {
+    "FST TAG": "IObjSg2",
+    "LINGUISTIC (SHORT)": "IO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Indirect Object: 2nd person singular",
+    "ENGLISH": "⇉ to you (one)",
+    "TSUUT'INA": "⇉ níní"
+  },
+  {
+    "FST TAG": "IObjSg3",
+    "LINGUISTIC (SHORT)": "IO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Indirect Object: 3rd person singular",
+    "ENGLISH": "⇉ to him/her/it",
+    "TSUUT'INA": "⇉ idíní"
+  },
+  {
+    "FST TAG": "IObjSg4",
+    "LINGUISTIC (SHORT)": "IO: 4th person singular",
+    "LINGUISTIC (LONG)": "Indirect Object: 4th person singular",
+    "ENGLISH": "⇉ to someone",
+    "TSUUT'INA": "⇉ gúní"
+  },
+  {
+    "FST TAG": "IObjPl1",
+    "LINGUISTIC (SHORT)": "IO: 1st person plural",
+    "LINGUISTIC (LONG)": "Indirect Object: 1st person plural",
+    "ENGLISH": "⇉ to us",
+    "TSUUT'INA": "⇉ niihíní"
+  },
+  {
+    "FST TAG": "IObjPl2",
+    "LINGUISTIC (SHORT)": "IO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Indirect Object: 2nd person plural",
+    "ENGLISH": "⇉ to you (all)",
+    "TSUUT'INA": "⇉ nahíní"
+  },
+  {
+    "FST TAG": "IObjPl3",
+    "LINGUISTIC (SHORT)": "IO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Indirect Object: 3rd person plural",
+    "ENGLISH": "⇉ to them",
+    "TSUUT'INA": "⇉ igidíní"
+  },
+  {
+    "FST TAG": "IObjPl4",
+    "LINGUISTIC (SHORT)": "IO: 4th person plural",
+    "LINGUISTIC (LONG)": "Indirect Object: 4th person plural",
+    "ENGLISH": "⇉ to some people",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "IObjAreal",
+    "LINGUISTIC (SHORT)": "IO: areal",
+    "LINGUISTIC (LONG)": "Indirect Object: areal",
+    "ENGLISH": "⇉ to ?",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "IObjRefl",
+    "LINGUISTIC (SHORT)": "IO: reflexive",
+    "LINGUISTIC (LONG)": "Indirect Object: reflexive",
+    "ENGLISH": "⇉ to oneself/ves",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "IObjRecip",
+    "LINGUISTIC (SHORT)": "IO: recipient",
+    "LINGUISTIC (LONG)": "Indirect Object: recipient",
+    "ENGLISH": "⇉ to ?",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "IObjGiven",
+    "LINGUISTIC (SHORT)": "IO: explicitly given",
+    "LINGUISTIC (LONG)": "Indirect Object: explicitly given",
+    "ENGLISH": "⇉ to ?",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "IObjEmphatic",
+    "LINGUISTIC (SHORT)": "IO: emphatic",
+    "LINGUISTIC (LONG)": "Indirect Object: emphatic",
+    "ENGLISH": "⇉ to ?",
+    "TSUUT'INA": "⇉ ?"
+  },
+  {
+    "FST TAG": "Distr",
+    "LINGUISTIC (SHORT)": "Distributive",
+    "LINGUISTIC (LONG)": "Distributive",
+    "ENGLISH": "each and every one",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "Nomz",
+    "LINGUISTIC (SHORT)": "Nominalized",
+    "LINGUISTIC (LONG)": "Nominalized",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "NomzPl",
+    "LINGUISTIC (SHORT)": "Nominalized plural",
+    "LINGUISTIC (LONG)": "Nominalized plural",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "EN/gu",
+    "LINGUISTIC (SHORT)": "Enclitic: gu",
+    "LINGUISTIC (LONG)": "Enclitic: gu",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "EN/la",
+    "LINGUISTIC (SHORT)": "Enclitic: la",
+    "LINGUISTIC (LONG)": "Enclitic: la",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "EN/gula",
+    "LINGUISTIC (SHORT)": "Enclitic: gula",
+    "LINGUISTIC (LONG)": "Enclitic: gula",
+    "ENGLISH": "?",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "1Pl+1PlO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 1st person plural",
+    "ENGLISH": "we → us",
+    "TSUUT'INA": "niihíní → niihíní"
+  },
+  {
+    "FST TAG": "1Pl+1SgO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 1st person singular",
+    "ENGLISH": "we → me",
+    "TSUUT'INA": "niihíní → síní"
+  },
+  {
+    "FST TAG": "1Pl+2PlO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "we → you (all)",
+    "TSUUT'INA": "niihíní → nahíní"
+  },
+  {
+    "FST TAG": "1Pl+2SgO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "we → you (one)",
+    "TSUUT'INA": "niihíní → níní"
+  },
+  {
+    "FST TAG": "1Pl+3PlO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "we → them",
+    "TSUUT'INA": "niihíní → igidíní"
+  },
+  {
+    "FST TAG": "1Pl+3SgO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "we → him/her/it",
+    "TSUUT'INA": "niihíní → idíní"
+  },
+  {
+    "FST TAG": "1Pl+4PlO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 4th person plural",
+    "ENGLISH": "we → some people",
+    "TSUUT'INA": "niihíní → ?"
+  },
+  {
+    "FST TAG": "1Pl+4SgO",
+    "LINGUISTIC (SHORT)": "1st person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person plural → Direct Object: 4th person singular",
+    "ENGLISH": "we → someone",
+    "TSUUT'INA": "niihíní → gúní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+1PlO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 1st person plural",
+    "ENGLISH": "each and every one of us → us",
+    "TSUUT'INA": "niihíní (tłaát'áa) → niihíní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+1SgO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 1st person singular",
+    "ENGLISH": "each and every one of us → me",
+    "TSUUT'INA": "niihíní (tłaát'áa) → síní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+2PlO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "each and every one of us → you (all)",
+    "TSUUT'INA": "niihíní (tłaát'áa) → nahíní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+2SgO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "each and every one of us → you (one)",
+    "TSUUT'INA": "niihíní (tłaát'áa) → níní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+3PlO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "each and every one of us → them",
+    "TSUUT'INA": "niihíní (tłaát'áa) → igidíní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+3SgO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "each and every one of us → him/her/it",
+    "TSUUT'INA": "niihíní (tłaát'áa) → idíní"
+  },
+  {
+    "FST TAG": "1Pl+Distr+4PlO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 4th person plural",
+    "ENGLISH": "each and every one of us → some people",
+    "TSUUT'INA": "niihíní (tłaát'áa) → ?"
+  },
+  {
+    "FST TAG": "1Pl+Distr+4SgO",
+    "LINGUISTIC (SHORT)": "Distributive 1st person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 1st person plural → Direct Object: 4th person singular",
+    "ENGLISH": "each and every one of us → someone",
+    "TSUUT'INA": "niihíní (tłaát'áa) → gúní"
+  },
+  {
+    "FST TAG": "1Sg+1PlO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 1st person plural",
+    "ENGLISH": "I → us",
+    "TSUUT'INA": "síní → niihíní"
+  },
+  {
+    "FST TAG": "1Sg+1SgO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 1st person singular",
+    "ENGLISH": "I → me",
+    "TSUUT'INA": "síní → síní"
+  },
+  {
+    "FST TAG": "1Sg+2PlO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 2nd person plural",
+    "ENGLISH": "I → you (all)",
+    "TSUUT'INA": "síní → nahíní"
+  },
+  {
+    "FST TAG": "1Sg+2SgO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 2nd person singular",
+    "ENGLISH": "I → you (one)",
+    "TSUUT'INA": "síní → níní"
+  },
+  {
+    "FST TAG": "1Sg+3PlO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 3rd person plural",
+    "ENGLISH": "I → them",
+    "TSUUT'INA": "síní → igidíní"
+  },
+  {
+    "FST TAG": "1Sg+3SgO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 3rd person singular",
+    "ENGLISH": "I → him/her/it",
+    "TSUUT'INA": "síní → idíní"
+  },
+  {
+    "FST TAG": "1Sg+4PlO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 4th person plural",
+    "ENGLISH": "I → some people",
+    "TSUUT'INA": "síní → ?"
+  },
+  {
+    "FST TAG": "1Sg+4SgO",
+    "LINGUISTIC (SHORT)": "1st person singular → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 1st person singular → Direct Object: 4th person singular",
+    "ENGLISH": "I → someone",
+    "TSUUT'INA": "síní → gúní"
+  },
+  {
+    "FST TAG": "2Pl+1PlO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 1st person plural",
+    "ENGLISH": "you (all) → us",
+    "TSUUT'INA": "nahíní → niihíní"
+  },
+  {
+    "FST TAG": "2Pl+1SgO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 1st person singular",
+    "ENGLISH": "you (all) → me",
+    "TSUUT'INA": "nahíní → síní"
+  },
+  {
+    "FST TAG": "2Pl+2PlO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "you (all) → you (all)",
+    "TSUUT'INA": "nahíní → nahíní"
+  },
+  {
+    "FST TAG": "2Pl+2SgO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "you (all) → you (one)",
+    "TSUUT'INA": "nahíní → níní"
+  },
+  {
+    "FST TAG": "2Pl+3PlO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "you (all) → them",
+    "TSUUT'INA": "nahíní → igidíní"
+  },
+  {
+    "FST TAG": "2Pl+3SgO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "you (all) → him/her/it",
+    "TSUUT'INA": "nahíní → idíní"
+  },
+  {
+    "FST TAG": "2Pl+4PlO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 4th person plural",
+    "ENGLISH": "you (all) → some people",
+    "TSUUT'INA": "nahíní → ?"
+  },
+  {
+    "FST TAG": "2Pl+4SgO",
+    "LINGUISTIC (SHORT)": "2nd person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person plural → Direct Object: 4th person singular",
+    "ENGLISH": "you (all) → someone",
+    "TSUUT'INA": "nahíní → gúní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+1PlO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 1st person plural",
+    "ENGLISH": "each and every one of you (all) → us",
+    "TSUUT'INA": "nahíní (tłaát'áa) → niihíní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+1SgO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 1st person singular",
+    "ENGLISH": "each and every one of you (all) → me",
+    "TSUUT'INA": "nahíní (tłaát'áa) → síní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+2PlO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "each and every one of you (all) → you (all)",
+    "TSUUT'INA": "nahíní (tłaát'áa) → nahíní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+2SgO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "each and every one of you (all) → you (one)",
+    "TSUUT'INA": "nahíní (tłaát'áa) → níní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+3PlO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "each and every one of you (all) → them",
+    "TSUUT'INA": "nahíní (tłaát'áa) → igidíní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+3SgO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "each and every one of you (all) → him/her/it",
+    "TSUUT'INA": "nahíní (tłaát'áa) → idíní"
+  },
+  {
+    "FST TAG": "2Pl+Distr+4PlO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 4th person plural",
+    "ENGLISH": "each and every one of you (all) → some people",
+    "TSUUT'INA": "nahíní (tłaát'áa) → ?"
+  },
+  {
+    "FST TAG": "2Pl+Distr+4SgO",
+    "LINGUISTIC (SHORT)": "Distributive 2nd person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 2nd person plural → Direct Object: 4th person singular",
+    "ENGLISH": "each and every one of you (all) → someone",
+    "TSUUT'INA": "nahíní (tłaát'áa) → gúní"
+  },
+  {
+    "FST TAG": "2Sg+1PlO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 1st person plural",
+    "ENGLISH": "you (one) → us",
+    "TSUUT'INA": "níní → niihíní"
+  },
+  {
+    "FST TAG": "2Sg+1SgO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 1st person singular",
+    "ENGLISH": "you (one) → me",
+    "TSUUT'INA": "níní → síní"
+  },
+  {
+    "FST TAG": "2Sg+2PlO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 2nd person plural",
+    "ENGLISH": "you (one) → you (all)",
+    "TSUUT'INA": "níní → nahíní"
+  },
+  {
+    "FST TAG": "2Sg+2SgO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 2nd person singular",
+    "ENGLISH": "you (one) → you (one)",
+    "TSUUT'INA": "níní → níní"
+  },
+  {
+    "FST TAG": "2Sg+3PlO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 3rd person plural",
+    "ENGLISH": "you (one) → them",
+    "TSUUT'INA": "níní → igidíní"
+  },
+  {
+    "FST TAG": "2Sg+3SgO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 3rd person singular",
+    "ENGLISH": "you (one) → him/her/it",
+    "TSUUT'INA": "níní → idíní"
+  },
+  {
+    "FST TAG": "2Sg+4PlO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 4th person plural",
+    "ENGLISH": "you (one) → some people",
+    "TSUUT'INA": "níní → ?"
+  },
+  {
+    "FST TAG": "2Sg+4SgO",
+    "LINGUISTIC (SHORT)": "2nd person singular → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 2nd person singular → Direct Object: 4th person singular",
+    "ENGLISH": "you (one) → someone",
+    "TSUUT'INA": "níní → gúní"
+  },
+  {
+    "FST TAG": "3Pl+1PlO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 1st person plural",
+    "ENGLISH": "they → us",
+    "TSUUT'INA": "igidíní → niihíní"
+  },
+  {
+    "FST TAG": "3Pl+1SgO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 1st person singular",
+    "ENGLISH": "they → me",
+    "TSUUT'INA": "igidíní → síní"
+  },
+  {
+    "FST TAG": "3Pl+2PlO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "they → you (all)",
+    "TSUUT'INA": "igidíní → nahíní"
+  },
+  {
+    "FST TAG": "3Pl+2SgO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "they → you (one)",
+    "TSUUT'INA": "igidíní → níní"
+  },
+  {
+    "FST TAG": "3Pl+3PlO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "they → them",
+    "TSUUT'INA": "igidíní → igidíní"
+  },
+  {
+    "FST TAG": "3Pl+3SgO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "they → him/her/it",
+    "TSUUT'INA": "igidíní → idíní"
+  },
+  {
+    "FST TAG": "3Pl+4PlO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 4th person plural",
+    "ENGLISH": "they → some people",
+    "TSUUT'INA": "igidíní → ?"
+  },
+  {
+    "FST TAG": "3Pl+4SgO",
+    "LINGUISTIC (SHORT)": "3rd person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person plural → Direct Object: 4th person singular",
+    "ENGLISH": "they → someone",
+    "TSUUT'INA": "igidíní → gúní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+1PlO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 1st person plural",
+    "ENGLISH": "each and every one of them → us",
+    "TSUUT'INA": "igidíní (tłaát'áa) → niihíní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+1SgO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 1st person singular",
+    "ENGLISH": "each and every one of them → me",
+    "TSUUT'INA": "igidíní (tłaát'áa) → síní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+2PlO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "each and every one of them → you (all)",
+    "TSUUT'INA": "igidíní (tłaát'áa) → nahíní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+2SgO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "each and every one of them → you (one)",
+    "TSUUT'INA": "igidíní (tłaát'áa) → níní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+3PlO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "each and every one of them → them",
+    "TSUUT'INA": "igidíní (tłaát'áa) → igidíní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+3SgO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "each and every one of them → him/her/it",
+    "TSUUT'INA": "igidíní (tłaát'áa) → idíní"
+  },
+  {
+    "FST TAG": "3Pl+Distr+4PlO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 4th person plural",
+    "ENGLISH": "each and every one of them → some people",
+    "TSUUT'INA": "igidíní (tłaát'áa) → ?"
+  },
+  {
+    "FST TAG": "3Pl+Distr+4SgO",
+    "LINGUISTIC (SHORT)": "Distributive 3rd person plural → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 3rd person plural → Direct Object: 4th person singular",
+    "ENGLISH": "each and every one of them → someone",
+    "TSUUT'INA": "igidíní (tłaát'áa) → gúní"
+  },
+  {
+    "FST TAG": "3Sg+1PlO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 1st person plural",
+    "ENGLISH": "he/she/it → us",
+    "TSUUT'INA": "idíní → niihíní"
+  },
+  {
+    "FST TAG": "3Sg+1SgO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 1st person singular",
+    "ENGLISH": "he/she/it → me",
+    "TSUUT'INA": "idíní → síní"
+  },
+  {
+    "FST TAG": "3Sg+2PlO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 2nd person plural",
+    "ENGLISH": "he/she/it → you (all)",
+    "TSUUT'INA": "idíní → nahíní"
+  },
+  {
+    "FST TAG": "3Sg+2SgO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 2nd person singular",
+    "ENGLISH": "he/she/it → you (one)",
+    "TSUUT'INA": "idíní → níní"
+  },
+  {
+    "FST TAG": "3Sg+3PlO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 3rd person plural",
+    "ENGLISH": "he/she/it → them",
+    "TSUUT'INA": "idíní → igidíní"
+  },
+  {
+    "FST TAG": "3Sg+3SgO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 3rd person singular",
+    "ENGLISH": "he/she/it → him/her/it",
+    "TSUUT'INA": "idíní → idíní"
+  },
+  {
+    "FST TAG": "3Sg+4PlO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 4th person plural",
+    "ENGLISH": "he/she/it → some people",
+    "TSUUT'INA": "idíní → ?"
+  },
+  {
+    "FST TAG": "3Sg+4SgO",
+    "LINGUISTIC (SHORT)": "3rd person singular → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 3rd person singular → Direct Object: 4th person singular",
+    "ENGLISH": "he/she/it → someone",
+    "TSUUT'INA": "idíní → gúní"
+  },
+  {
+    "FST TAG": "4Sg+1PlO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 1st person plural",
+    "ENGLISH": "someone (unspec./holy) → us",
+    "TSUUT'INA": "gúní → niihíní"
+  },
+  {
+    "FST TAG": "4Sg+1SgO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 1st person singular",
+    "ENGLISH": "someone (unspec./holy) → me",
+    "TSUUT'INA": "gúní → síní"
+  },
+  {
+    "FST TAG": "4Sg+2PlO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 2nd person plural",
+    "ENGLISH": "someone (unspec./holy) → you (all)",
+    "TSUUT'INA": "gúní → nahíní"
+  },
+  {
+    "FST TAG": "4Sg+2SgO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 2nd person singular",
+    "ENGLISH": "someone (unspec./holy) → you (one)",
+    "TSUUT'INA": "gúní → níní"
+  },
+  {
+    "FST TAG": "4Sg+3PlO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 3rd person plural",
+    "ENGLISH": "someone (unspec./holy) → them",
+    "TSUUT'INA": "gúní → igidíní"
+  },
+  {
+    "FST TAG": "4Sg+3SgO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 3rd person singular",
+    "ENGLISH": "someone (unspec./holy) → him/her/it",
+    "TSUUT'INA": "gúní → idíní"
+  },
+  {
+    "FST TAG": "4Sg+4PlO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 4th person plural",
+    "ENGLISH": "someone (unspec./holy) → some people",
+    "TSUUT'INA": "gúní → ?"
+  },
+  {
+    "FST TAG": "4Sg+4SgO",
+    "LINGUISTIC (SHORT)": "4th person singular → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: 4th person singular → Direct Object: 4th person singular",
+    "ENGLISH": "someone (unspec./holy) → someone",
+    "TSUUT'INA": "gúní → gúní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+1PlO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 1st person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 1st person plural",
+    "ENGLISH": "each and every one of some people → us",
+    "TSUUT'INA": "gúní (tłaát'áa) → niihíní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+1SgO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 1st person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 1st person singular",
+    "ENGLISH": "each and every one of some people → me",
+    "TSUUT'INA": "gúní (tłaát'áa) → síní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+2PlO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 2nd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 2nd person plural",
+    "ENGLISH": "each and every one of some people → you (all)",
+    "TSUUT'INA": "gúní (tłaát'áa) → nahíní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+2SgO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 2nd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 2nd person singular",
+    "ENGLISH": "each and every one of some people → you (one)",
+    "TSUUT'INA": "gúní (tłaát'áa) → níní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+3PlO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 3rd person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 3rd person plural",
+    "ENGLISH": "each and every one of some people → them",
+    "TSUUT'INA": "gúní (tłaát'áa) → igidíní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+3SgO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 3rd person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 3rd person singular",
+    "ENGLISH": "each and every one of some people → him/her/it",
+    "TSUUT'INA": "gúní (tłaát'áa) → idíní"
+  },
+  {
+    "FST TAG": "4Sg+Distr+4PlO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 4th person plural",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 4th person plural",
+    "ENGLISH": "each and every one of some people → some people",
+    "TSUUT'INA": "gúní (tłaát'áa) → ?"
+  },
+  {
+    "FST TAG": "4Sg+Distr+4SgO",
+    "LINGUISTIC (SHORT)": "Distributive 4th person singular → DO: 4th person singular",
+    "LINGUISTIC (LONG)": "Subject: distributive 4th person plural → Direct Object: 4th person singular",
+    "ENGLISH": "each and every one of some people → someone",
+    "TSUUT'INA": "gúní (tłaát'áa) → gúní"
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "TSUUT'INA": ""
+  },
+  {
+    "FST TAG": "Aspect",
+    "LINGUISTIC (SHORT)": "Aspect",
+    "LINGUISTIC (LONG)": "Aspect",
+    "ENGLISH": "Nature of the verb",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "Theme",
+    "LINGUISTIC (SHORT)": "Theme",
+    "LINGUISTIC (LONG)": "Theme",
+    "ENGLISH": "Parts",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": "TAMA",
+    "LINGUISTIC (SHORT)": "TAMA",
+    "LINGUISTIC (LONG)": "Tense/Aspect/Mood/Agent",
+    "ENGLISH": "Chunk",
+    "TSUUT'INA": "?"
+  },
+  {
+    "FST TAG": ""
+  }
+]
