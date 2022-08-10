@@ -472,7 +472,6 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
 
 
 def get_recordings_from_paradigm(paradigm, request):
-    print(request.COOKIES.get("paradigm_audio"))
     # if request.COOKIES.get("paradigm_audio") in ["no", None]:
     #     return paradigm
 
@@ -496,7 +495,6 @@ def get_recordings_from_paradigm(paradigm, request):
             if not row["is_header"]:
                 for cell in row["cells"]:
                     if "inflection" in cell:
-                        print("CELLL", cell)
                         query_terms.append(cell["inflection"])
 
     for search_terms in divide_chunks(query_terms, 30):
@@ -522,21 +520,18 @@ def get_recordings_from_url(search_terms, url):
     if response.status_code == 200:
         recordings = response.json()
 
-    for recording in recordings["matched_recordings"]:
-        entry = macron_to_circumflex(recording["wordform"])
-        matched_recordings[entry] = {}
-        matched_recordings[entry]["recording_url"] = recording["recording_url"]
-        matched_recordings[entry]["speaker"] = recording["speaker"]
+        for recording in recordings["matched_recordings"]:
+            entry = macron_to_circumflex(recording["wordform"])
+            matched_recordings[entry] = {}
+            matched_recordings[entry]["recording_url"] = recording["recording_url"]
+            matched_recordings[entry]["speaker"] = recording["speaker"]
 
-        return matched_recordings
-    else:
-        return []
+    return matched_recordings
 
 
 def get_recordings_from_url_with_speaker_info(search_terms, url):
     query_params = [("q", term) for term in search_terms]
     response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
-    print(response)
     if response.status_code == 200:
         recordings = response.json()
         return recordings["matched_recordings"]
@@ -610,7 +605,6 @@ def word_details_api(request, slug: str):
     for source in settings.SPEECH_DB_EQ:
         url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
         matched_recs = get_recordings_from_url_with_speaker_info([lemma], url)
-        print(matched_recs)
         if matched_recs:
             recordings.extend(matched_recs)
 
@@ -642,7 +636,6 @@ def word_details_api(request, slug: str):
         paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
         paradigm = paradigm_orth(paradigm)
-        print("PARADIGM:", paradigm)
 
     content = {
         "entry": {
@@ -752,7 +745,6 @@ def get_pane_layouts(request, paradigm):
                     row_resolved_inflection = row["cells"][k]
 
                     if not row["cells"][k]["is_missing"] and row["cells"][k]["is_inflection"]:
-                        print("INFLECTION:", row["cells"][k]["inflection"], type)
                         if type in row["cells"][k]["inflection"]:
                             row_resolved_inflection["inflection"] = row["cells"][k]["inflection"][type]
                         else:

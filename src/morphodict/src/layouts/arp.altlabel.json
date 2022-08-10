@@ -1,0 +1,837 @@
+[
+  {
+    "FST TAG": "[AFFIRMATIVE]",
+    "LINGUISTIC (SHORT)": "Affirmative",
+    "LINGUISTIC (LONG)": "Affirmative",
+    "ENGLISH": "Affirmative statement",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[NON_AFFIRMATIVE]",
+    "LINGUISTIC (SHORT)": "Non-Affirmative",
+    "LINGUISTIC (LONG)": "Non-affirmative",
+    "ENGLISH": "Not",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[NON_AFFIRMATIVE][NEG]",
+    "LINGUISTIC (SHORT)": "Negative",
+    "LINGUISTIC (LONG)": "Non-affirmative negative",
+    "ENGLISH": "Not",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[NON_AFFIRMATIVE][INTERROGATIVE]",
+    "LINGUISTIC (SHORT)": "Non-Affirm Interrogative",
+    "LINGUISTIC (LONG)": "Non-affirmative Interrogative",
+    "ENGLISH": "Negative Question",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[INTERROGATIVE]",
+    "LINGUISTIC (SHORT)": "Interrogative",
+    "LINGUISTIC (LONG)": "Interrogative",
+    "ENGLISH": "Question",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[INDICATIVE]",
+    "LINGUISTIC (SHORT)": "Indicative",
+    "LINGUISTIC (LONG)": "Indicative",
+    "ENGLISH": "Statement",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[IMPERATIVE]",
+    "LINGUISTIC (SHORT)": "Imper",
+    "LINGUISTIC (LONG)": "Imperative",
+    "ENGLISH": "Command/Request",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-SUBJ]",
+    "LINGUISTIC (SHORT)": "1s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular",
+    "ENGLISH": "I",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ]",
+    "LINGUISTIC (SHORT)": "1p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural",
+    "ENGLISH": "we",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-EXCL-SUBJ]",
+    "LINGUISTIC (SHORT)": "1p (excl)",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural (Exclusive)",
+    "ENGLISH": "we (but not you)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-INCL-SUBJ]",
+    "LINGUISTIC (SHORT)": "1p (incl)",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural (Inclusive)",
+    "ENGLISH": "you and we",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ]",
+    "LINGUISTIC (SHORT)": "2s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular",
+    "ENGLISH": "you (one)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ]",
+    "LINGUISTIC (SHORT)": "2p",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural",
+    "ENGLISH": "you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ]",
+    "LINGUISTIC (SHORT)": "3s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular",
+    "ENGLISH": "s/he",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ]",
+    "LINGUISTIC (SHORT)": "3p",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural",
+    "ENGLISH": "they",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ]",
+    "LINGUISTIC (SHORT)": "4s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular (Obviative)",
+    "ENGLISH": "s/he (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ]",
+    "LINGUISTIC (SHORT)": "4p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural (Obviative)",
+    "ENGLISH": "s/he (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[INANIMATE-SUBJECT]",
+    "LINGUISTIC (SHORT)": "Inanimate Subj",
+    "LINGUISTIC (LONG)": "Subject: Inanimate",
+    "ENGLISH": "it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "1p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural",
+    "ENGLISH": "we → it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-EXCL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "1p (excl) → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural (Exclusive)",
+    "ENGLISH": "we (but not you) → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-INCL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "1p (incl) → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural (Inclusive)",
+    "ENGLISH": "you and we → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "2s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular",
+    "ENGLISH": "you (one) → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "2p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural",
+    "ENGLISH": "you (all) → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "3s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular",
+    "ENGLISH": "s/he → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "3p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural",
+    "ENGLISH": "they → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "4s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular (Obviative)",
+    "ENGLISH": "s/he (further) → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "4p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural (Obviative)",
+    "ENGLISH": "s/he (further) → it/them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[INANIMATE-OBJECT]",
+    "LINGUISTIC (SHORT)": "Inanimate Obj",
+    "LINGUISTIC (LONG)": "Object: Inanimate",
+    "ENGLISH": " → it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 1s",
+    "LINGUISTIC (LONG)": "Object: 1st Person Singular",
+    "ENGLISH": "→ me",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 1s",
+    "LINGUISTIC (LONG)": "Object: 1st Person Plural",
+    "ENGLISH": "→ us",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-EXCL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 1p (excl)",
+    "LINGUISTIC (LONG)": "Object: 1st Person Plural (Exclusive)",
+    "ENGLISH": "→ you (but not us)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-INCL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 1p (incl)",
+    "LINGUISTIC (LONG)": "Object: 1st Person Plural (Inclusive)",
+    "ENGLISH": "→ you and us",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 2s",
+    "LINGUISTIC (LONG)": "Object: 2nd Person Singular",
+    "ENGLISH": "→ you (one)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 2p",
+    "LINGUISTIC (LONG)": "Object: 2nd Person Plural",
+    "ENGLISH": "→ you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 3s",
+    "LINGUISTIC (LONG)": "Object: 3rd Person Singular",
+    "ENGLISH": "→ her/him",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 3p",
+    "LINGUISTIC (LONG)": "Object: 3rd Person Plural",
+    "ENGLISH": "→ they",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 4s",
+    "LINGUISTIC (LONG)": "3rd Person Singular (Obviative)",
+    "ENGLISH": "→ him/her",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-OBJ]",
+    "LINGUISTIC (SHORT)": "→ 4p",
+    "LINGUISTIC (LONG)": "3rd Person Plural (Obviative)",
+    "ENGLISH": "→ them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-SUBJ][2SG-OBJ]",
+    "LINGUISTIC (SHORT)": "1s → 2s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular → Object: 2nd Person Singular",
+    "ENGLISH": "I → you",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-SUBJ][2PL-OBJ]",
+    "LINGUISTIC (SHORT)": "1s → 2p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular → Object: 2nd Person Plural",
+    "ENGLISH": "I → you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ][1SG-OBJ]",
+    "LINGUISTIC (SHORT)": "2s → 1s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular → Object: 1st Person Singular",
+    "ENGLISH": "you → me",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ][1SG-OBJ]",
+    "LINGUISTIC (SHORT)": "2p → 1s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural → Object: 1st Person Singular",
+    "ENGLISH": "you (all) → me",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ][2SG-OBJ]",
+    "LINGUISTIC (SHORT)": "1p → 2s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural → Object: 2nd Person Singular",
+    "ENGLISH": "we → you",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ][2PL-OBJ]",
+    "LINGUISTIC (SHORT)": "1p → 2p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural → Object: 2nd Person Plural",
+    "ENGLISH": "we → you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ][1PL-EXCL-OBJ]",
+    "LINGUISTIC (SHORT)": "2s → 1p (excl)",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular → Object: 1st Person Plural (Exclusive)",
+    "ENGLISH": "you → us (but not you)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ][1PL-EXCL-OBJ]",
+    "LINGUISTIC (SHORT)": "2p → 1p (excl)",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural → Object: 1st Person Plural (Exclusive)",
+    "ENGLISH": "you (all) → us (but not you)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "1s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular → Object: 3rd Person Singular",
+    "ENGLISH": "I → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1SG-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "1s → 3p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular → Object: 3rd Person Plural",
+    "ENGLISH": "I → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "2s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular → Object: 3rd Person Singular",
+    "ENGLISH": "you → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2SG-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "2s → 3p",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Singular → Object: 3rd Person Plural",
+    "ENGLISH": "you → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 4s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 4th Person Singular",
+    "ENGLISH": "s/he/it → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 3p",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 3rd Person Plural",
+    "ENGLISH": "s/he/it → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 4s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 4th Person Singular",
+    "ENGLISH": "s/he/it (further) → her/him/it (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][4PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 4p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 4th Person Plural",
+    "ENGLISH": "s/he/it (fruther) → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "1p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural → Object: 3rd Person Singular",
+    "ENGLISH": "we → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "1p → 3p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Plural → Object: 3rd Person Plural",
+    "ENGLISH": "we → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-INCL-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "1p (incl) → 3s",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Singular",
+    "ENGLISH": "you and we → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[1PL-INCL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "1p (incl) → 3p",
+    "LINGUISTIC (LONG)": "Subject: 1st Person Singular (Inclusive) → Object: 3rd Person Plural",
+    "ENGLISH": "you and we → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "2p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural → Object: 3rd Person Singular",
+    "ENGLISH": "you (all) → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[2PL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "2p → 3p",
+    "LINGUISTIC (LONG)": "Subject: 2nd Person Plural → Object: 3rd Person Plural",
+    "ENGLISH": "you (all) → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 3s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 3rd Person Singular",
+    "ENGLISH": "they → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 3p",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 3rd Person Plural",
+    "ENGLISH": "they → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 4s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 4th Person Singular",
+    "ENGLISH": "they (further) → her/him/it (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][4PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 4p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 4th Person Plural",
+    "ENGLISH": "they (further) → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][1SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 1s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 1st Person Singular",
+    "ENGLISH": "s/he/it → me",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][1SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 1s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 1st Person Singular",
+    "ENGLISH": "they → me",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][2SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 2s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 2nd Person Singular",
+    "ENGLISH": "s/he/it → you",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][2SG-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 2s",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 2nd Person Singular",
+    "ENGLISH": "they → you",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][3SG-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 3s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 3rd Person Singular",
+    "ENGLISH": "they (further) → her/him/it",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 3p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 3rd Person Plural",
+    "ENGLISH": "they (further) → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 4s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 4th Person Singular",
+    "ENGLISH": "they (further) → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][4SG-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 4s",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 4th Person Singular",
+    "ENGLISH": "they (further) → her/him/it (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][1PL-EXCL-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 1p (excl)",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 1st Person Plural (Exclusive)",
+    "ENGLISH": "s/he/it → us (but not you)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][1PL-EXCL-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 1p (excl)",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 1st Person Plural (Exclusive)",
+    "ENGLISH": "they → us (but not you)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][1PL-INCL-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 1p (incl)",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 1st Person Plural (Inclusive)",
+    "ENGLISH": "s/he/it → us",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][1PL-INCL-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 1p (incl)",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 1st Person Plural (Inclusive)",
+    "ENGLISH": "they → us",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3SG-SUBJ][2PL-OBJ]",
+    "LINGUISTIC (SHORT)": "3s → 2p",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Singular → Object: 2nd Person Plural",
+    "ENGLISH": "s/he/it → you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[3PL-SUBJ][2PL-OBJ]",
+    "LINGUISTIC (SHORT)": "3p → 2p",
+    "LINGUISTIC (LONG)": "Subject: 3rd Person Plural → Object: 2nd Person Plural",
+    "ENGLISH": "they → you (all)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 3p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 3rd Person Plural",
+    "ENGLISH": "s/he/it (further) → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][3PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 3p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 3rd Person Plural",
+    "ENGLISH": "they (further) → them",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4SG-SUBJ][4PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4s → 4p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Singular → Object: 4th Person Plural",
+    "ENGLISH": "s/he/it (further) → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[4PL-SUBJ][4PL-OBJ]",
+    "LINGUISTIC (SHORT)": "4p → 4p",
+    "LINGUISTIC (LONG)": "Subject: 4th Person Plural → Object: 4th Person Plural",
+    "ENGLISH": "they (further) → them (further)",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[PRESENT]",
+    "LINGUISTIC (SHORT)": "Present",
+    "LINGUISTIC (LONG)": "Present tense",
+    "ENGLISH": "happens now",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[PAST]",
+    "LINGUISTIC (SHORT)": "Past",
+    "LINGUISTIC (LONG)": "Past tense",
+    "ENGLISH": "happened before this",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[FUTURE]",
+    "LINGUISTIC (SHORT)": "Future",
+    "LINGUISTIC (LONG)": "Future tense",
+    "ENGLISH": "happening later on",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[INF]",
+    "LINGUISTIC (SHORT)": "Infinitive",
+    "LINGUISTIC (LONG)": "Infinitive form",
+    "ENGLISH": "to happen",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[PROGRESSIVE]",
+    "LINGUISTIC (SHORT)": "Progresssive",
+    "LINGUISTIC (LONG)": "Progressive",
+    "ENGLISH": "happening",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[PERFECTIVE]",
+    "LINGUISTIC (SHORT)": "Perfective",
+    "LINGUISTIC (LONG)": "Perfective",
+    "ENGLISH": "have happened",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[IMPERFECTIVE]",
+    "LINGUISTIC (SHORT)": "Imperfective",
+    "LINGUISTIC (LONG)": "Imperfective",
+    "ENGLISH": "incomplete event",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[SIMPLE]",
+    "LINGUISTIC (SHORT)": "Simple",
+    "LINGUISTIC (LONG)": "Simple tense",
+    "ENGLISH": "simple event",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[IC]",
+    "LINGUISTIC (SHORT)": "IC",
+    "LINGUISTIC (LONG)": "Initial change",
+    "ENGLISH": "starts change",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[II]",
+    "LINGUISTIC (SHORT)": "II",
+    "LINGUISTIC (LONG)": "Inanimate Intransitive",
+    "ENGLISH": "unalive actor",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[AI]",
+    "LINGUISTIC (SHORT)": "AI",
+    "LINGUISTIC (LONG)": "Animate Intransitive",
+    "ENGLISH": "alive actor",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[TA]",
+    "LINGUISTIC (SHORT)": "TA",
+    "LINGUISTIC (LONG)": "Animate Transitive",
+    "ENGLISH": "alive actor acting on something/one",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[TI]",
+    "LINGUISTIC (SHORT)": "TI",
+    "LINGUISTIC (LONG)": "Inanimate Transitive",
+    "ENGLISH": "unalive actor acting on something/one",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "",
+    "LINGUISTIC (SHORT)": "",
+    "LINGUISTIC (LONG)": "",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[CONJUNCT]",
+    "LINGUISTIC (SHORT)": "Conjunct",
+    "LINGUISTIC (LONG)": "Conjunct",
+    "ENGLISH": "",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[SUBJUNCTIVE]",
+    "LINGUISTIC (SHORT)": "Subjunct",
+    "LINGUISTIC (LONG)": "Subjunctive",
+    "ENGLISH": "would/could",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[ITERATIVE]",
+    "LINGUISTIC (SHORT)": "Iter",
+    "LINGUISTIC (LONG)": "Iterative",
+    "ENGLISH": "repeatedly",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": "[PROHIBITIVE]",
+    "LINGUISTIC (SHORT)": "Prohib",
+    "LINGUISTIC (LONG)": "Prohibitive",
+    "ENGLISH": "not allowed",
+    "HINÓNO'ÉÍ": "",
+    "EMOJI": ""
+  },
+  {
+    "FST TAG": ""
+  }
+]

@@ -5,10 +5,16 @@ function SingleColumnRow(props) {
   const labels = props.labels;
   const counter = props.counter;
   const type = props.type;
+  const showAudio = JSON.parse(window.localStorage.getItem("settings"))["showAudio"];
+  console.log("Label type:", labelType);
+  console.log(labels)
 
   const cell_layouts = cell_list.map((cell, index) => {
     if (cell.is_label) {
       const class_name = "paradigm-label paradigm-label--" + cell.label_for;
+      if (!labels[cell.label.join("+")]) {
+        return <></>
+      }
       return (
         <th
           scope={cell.label_for}
@@ -45,9 +51,9 @@ function SingleColumnRow(props) {
           "paradigm-cell paradigm-cell--" +
           (cell.observed ? "observed" : "unobserved");
       const recording = cell.recording || "";
-      if (recording) {
+      if (recording && showAudio) {
         function playRecording() {
-          const audio = new Audio(recording);
+          const audio = new Audio(recording.recording_url);
           audio.play();
         }
         return (

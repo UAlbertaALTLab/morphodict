@@ -75,7 +75,10 @@ function Paradigm(state) {
                 }
             }
         }
-        pane_columns.push(...pane_columns_buffer);
+
+        if (pane_columns_buffer) {
+            pane_columns.push(...pane_columns_buffer);
+        }
     }
 
     const pane_layouts = pane_columns.map((pane_column, i) => {

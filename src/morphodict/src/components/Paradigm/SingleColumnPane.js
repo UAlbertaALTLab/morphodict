@@ -12,12 +12,29 @@ import {
 } from "@mui/material";
 import SrsLabels from "../../layouts/srs.altlabel.json";
 import CrkLabels from "../../layouts/crk.altlabel.json";
+import HdnLabels from "../../layouts/hdn.altlabel.json";
+import ArpLabels from "../../layouts/arp.altlabel.json";
+import CwdLabels from "../../layouts/cwd.altlabel.json";
 
 let Labels;
-if (process.env.REACT_APP_ISO_CODE === "srs") {
-  Labels = SrsLabels;
-} else if (process.env.REACT_APP_ISO_CODE === "crk") {
-  Labels = CrkLabels;
+switch (process.env.REACT_APP_ISO_CODE) {
+  case "srs":
+    Labels = SrsLabels;
+    break;
+  case "crk":
+    Labels = CrkLabels;
+    break;
+  case "hdn":
+    Labels = HdnLabels;
+    break;
+  case "arp":
+    Labels = ArpLabels;
+    break;
+  case "cwd":
+    Labels = CwdLabels;
+    break;
+  default:
+    Labels = CrkLabels;
 }
 
 function SingleColumnPane(props) {
@@ -37,9 +54,9 @@ function SingleColumnPane(props) {
         "LINGUISTIC (SHORT)": items["LINGUISTIC (SHORT)"],
         "LINGUISTIC (LONG)": items["LINGUISTIC (LONG)"],
         "ENGLISH": items["ENGLISH"],
-        sourceLanguage: items[sourceLanguage],
         "EMOJI": items["EMOJI"]
       }
+      labels[items["FST TAG"]][sourceLanguage] = items[sourceLanguage]
     }
   );
 

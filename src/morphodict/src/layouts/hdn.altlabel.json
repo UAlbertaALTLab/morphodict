@@ -1,0 +1,145 @@
+[
+  {
+    "FST TAG": "V",
+    "LINGUISTIC (SHORT)": "Verb",
+    "LINGUISTIC (LONG)": "Verb",
+    "ENGLISH": "Action word",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Pres",
+    "LINGUISTIC (SHORT)": "Present",
+    "LINGUISTIC (LONG)": "Tense: Present",
+    "ENGLISH": "Something is happening now",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Past",
+    "LINGUISTIC (SHORT)": "Past",
+    "LINGUISTIC (LONG)": "Tense: Past",
+    "ENGLISH": "Something happened earlier",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Fut",
+    "LINGUISTIC (SHORT)": "Future",
+    "LINGUISTIC (LONG)": "Tense: Future",
+    "ENGLISH": "Something is going to happen",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Simp",
+    "LINGUISTIC (SHORT)": "Simple",
+    "LINGUISTIC (LONG)": "Simple",
+    "ENGLISH": "Simple",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Dir",
+    "LINGUISTIC (SHORT)": "Direct",
+    "LINGUISTIC (LONG)": "Direct",
+    "ENGLISH": "Direct",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Long",
+    "LINGUISTIC (SHORT)": "Long",
+    "LINGUISTIC (LONG)": "Long",
+    "ENGLISH": "Long",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Impv",
+    "LINGUISTIC (SHORT)": "Imperative",
+    "LINGUISTIC (LONG)": "Mood: Imperative",
+    "ENGLISH": "Command",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Interr",
+    "LINGUISTIC (SHORT)": "Interrogative",
+    "LINGUISTIC (LONG)": "Mood: interrogative",
+    "ENGLISH": "Question",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Pos",
+    "LINGUISTIC (SHORT)": "Positive",
+    "LINGUISTIC (LONG)": "Polarity: positive",
+    "ENGLISH": "Yes",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Neg",
+    "LINGUISTIC (SHORT)": "Negative",
+    "LINGUISTIC (LONG)": "Polarity: negation",
+    "ENGLISH": "No",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Stmt",
+    "LINGUISTIC (SHORT)": "Statement",
+    "LINGUISTIC (LONG)": "Statement",
+    "ENGLISH": "Stating a fact",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Cont",
+    "LINGUISTIC (SHORT)": "Content",
+    "LINGUISTIC (LONG)": "Content question",
+    "ENGLISH": "Regular answer",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Y/N",
+    "LINGUISTIC (SHORT)": "Y/N",
+    "LINGUISTIC (LONG)": "Yes/No Question",
+    "ENGLISH": "Yes or no answer",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Sg",
+    "LINGUISTIC (SHORT)": "Singular",
+    "LINGUISTIC (LONG)": "Number: singular",
+    "ENGLISH": "One",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Pl",
+    "LINGUISTIC (SHORT)": "Plural",
+    "LINGUISTIC (LONG)": "Number: plural",
+    "ENGLISH": "Many",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Sg+Impv",
+    "LINGUISTIC (SHORT)": "Singular imperative",
+    "LINGUISTIC (LONG)": "Singular imperative",
+    "ENGLISH": "Command: one",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Pl+Impv",
+    "LINGUISTIC (SHORT)": "Plural imperative",
+    "LINGUISTIC (LONG)": "Plural imperative",
+    "ENGLISH": "Command: many",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Interr+Cont",
+    "LINGUISTIC (SHORT)": "Interrogative: Content response",
+    "LINGUISTIC (LONG)": "Interrogative: Content response",
+    "ENGLISH": "Question: regular answer",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": "Interr+Y/N",
+    "LINGUISTIC (SHORT)": "Interrogative: Y/N response",
+    "LINGUISTIC (LONG)": "Interrogative: yes/no response",
+    "ENGLISH": "Question: yes/no answer",
+    "X̲AAD KÍL": ""
+  },
+  {
+    "FST TAG": ""
+  }
+]

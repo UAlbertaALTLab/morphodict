@@ -6,6 +6,68 @@ import { TextField } from "@mui/material";
 import { Redirect } from "react-router-dom";
 import Settings from "../HelperClasses/SettingClass";
 
+const crkSettings = {
+    Latn: "SRO (êîôâ)",
+    "Latn-x-macron": "SRO (ēīōā)",
+    Cans: "Syllabics",
+    ENGLISH: "English Labels",
+    "LINGUISTIC (LONG)": "Linguistic Labels (long)",
+    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
+    NÊHIYAWÊWIN: "nêhiyawêwin labels",
+  }
+
+const srsSettings = {
+    ENGLISH: "English Labels",
+    "LINGUISTIC (LONG)": "Linguistic Labels (long)",
+    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
+    "TSUUT'INA": "Tsuut'ina labels",
+  }
+
+const hdnSettings = {
+    ENGLISH: "English Labels",
+    "LINGUISTIC (LONG)": "Linguistic Labels (long)",
+    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
+    "X̲AAD KÍL": "X̲aad Kíl labels",
+  }
+
+  const arpSettings = {
+    ENGLISH: "English Labels",
+    "LINGUISTIC (LONG)": "Linguistic Labels (long)",
+    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
+    "HINÓNO'ÉÍ": "Hinónoʼeitíít labels",
+  }
+
+const cwdSettings = {
+    "Latn-x-macron": "SRO (ēīōā)",
+    CMRO: "CMRO",
+    Cans: "Syllabics",
+    ENGLISH: "English Labels",
+    "LINGUISTIC (LONG)": "Linguistic Labels (long)",
+    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
+    NÊHIYAWÊWIN: "nîhithawîwin labels",
+}
+
+let defaultSettings;
+switch (process.env.REACT_APP_ISO_CODE) {
+  case "srs":
+    defaultSettings = srsSettings;
+    break;
+  case "crk":
+    defaultSettings = crkSettings;
+    break;
+  case "hdn":
+    defaultSettings = hdnSettings;
+    break;
+  case "arp":
+    defaultSettings = arpSettings;
+    break;
+  case "cwd":
+    defaultSettings = cwdSettings;
+    break;
+  default:
+    defaultSettings = crkSettings;
+}
+
 function Header(props) {
   const dictionaryName = process.env.REACT_APP_NAME;
   const description = process.env.REACT_APP_SUBTITLE;
@@ -13,15 +75,7 @@ function Header(props) {
   const [queryString, setQueryString] = useState("");
   const [query, setQuery] = useState(false);
   const [type, setDispType] = useState("Latn");
-  const [settingMenu, setSettingMenu] = useState({
-    Latn: "SRO (êîôâ)",
-    "Latn-x-macron": "SRO (ēīōā)",
-    Cans: "Syllabics",
-    ENGLISH: "English Labels", 
-    "LINGUISTIC (LONG)": "Linguistic Labels (long)", 
-    "LINGUISTIC (SHORT)": "Linguistic Labels (short)",
-    NÊHIYAWÊWIN: "nêhiyawêwin labels",
-  });
+  const [settingMenu, setSettingMenu] = useState(defaultSettings);
 
   if (!window.localStorage.getItem("settings")) {
     window.localStorage.setItem("settings", JSON.stringify(new Settings()));
@@ -35,19 +89,29 @@ function Header(props) {
         settings.latn = true;
         settings.latn_x_macron = false;
         settings.syllabics = false;
+        settings.cmro = false;
         setDispType("Latn");
         break;
       case "Latn-x-macron":
         settings.latn = false;
         settings.latn_x_macron = true;
         settings.syllabics = false;
+        settings.cmro = false;
         setDispType("Latn-x-macron");
         break;
       case "Cans":
         settings.latn = false;
         settings.latn_x_macron = false;
         settings.syllabics = true;
+        settings.cmro = false;
         setDispType("Cans");
+        break;
+      case "CMRO":
+        settings.latn = false;
+        settings.latn_x_macron = false;
+        settings.syllabics = false;
+        settings.cmro = true;
+        setDispType("CMRO");
         break;
       case "ENGLISH":
         settings.label = "ENGLISH";
@@ -60,6 +124,15 @@ function Header(props) {
         break;
       case "NÊHIYAWÊWIN":
         settings.label = "NÊHIYAWÊWIN";
+        break;
+      case "TSUUT'INA":
+        settings.label = "TSUUT'INA";
+        break;
+      case "X̲AAD KÍL":
+        settings.label = "X̲AAD KÍL";
+        break;
+      case "HINÓNO'ÉÍ":
+        settings.label = "HINÓNO'ÉÍ";
         break;
       default:
         break;
