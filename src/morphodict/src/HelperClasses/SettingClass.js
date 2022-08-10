@@ -46,6 +46,35 @@ class Settings {
 
     // Audio Options
     this.showAudio = false;
+
+    // Show synthesized audio
+    this.synthAudio = false;
+
+    // Show synth audio in paradigms
+    this.synthAudioParadigm = false;
+
+    // Turns ESPT on?
+    this.espt = false;
+
+    // Turn AUTO on?
+    this.autoTranslate = false;
+
+    // Show emojis?
+    this.showEmoji = true;
+
+    // Show the inflectional category?
+    this.showIC = true;
+
+    // Where to show morpheme boundaries
+    this.morphemes_everywhere = false;
+    this.morphemes_headers = false;
+    this.morphemes_paradigms = false;
+    this.morphemes_nowhere = true;
+
+    // audio sources
+    this.md_audio = false;
+    this.mos_audio = false;
+    this.both_audio = true;
   }
 }
 
