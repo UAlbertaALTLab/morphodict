@@ -8,7 +8,7 @@ import WordEntry from "./components/WordEntry";
 import About from "./components/About";
 import ContactUs from "./components/ContactUs";
 import Welcome from "./components/Welcome";
-import CreeDictionarySettings from "./components/CreeDictionarySettings";
+import Settings from "./components/Settings";
 import SearchResult from "./components/SearchResult";
 import AbbreviationsLegend from "./components/AbbreviationsLegend";
 
@@ -35,8 +35,8 @@ function App() {
                     <Route exact path="/contact-us">
                         <ContactUs></ContactUs>
                     </Route>
-                    <Route exact path="/cree-dictionary-settings">
-                        <CreeDictionarySettings></CreeDictionarySettings>
+                    <Route exact path="/settings">
+                        <Settings></Settings>
                     </Route>
                     <Route
                         exact path="/word/*" component={WordEntry}/>

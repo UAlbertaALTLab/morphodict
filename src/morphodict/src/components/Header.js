@@ -273,7 +273,7 @@ function Header(props) {
 
             <div className="menu__category">
               <a
-                href="/cree-dictionary-settings"
+                href="/settings"
                 className="menu-choice"
                 data-cy="settings-link"
               >

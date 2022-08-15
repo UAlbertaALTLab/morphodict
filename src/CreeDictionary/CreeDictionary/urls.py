@@ -31,7 +31,7 @@ urlpatterns = [
     # path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
     # path("query-help", views.query_help, name="cree-dictionary-query-help"),
     # path("legend", views.legend, name="cree-dictionary-legend"),
-    # path("settings", views.settings_page, name="cree-dictionary-settings"),
+    # path("settings", views.settings_page, name="settings"),
     path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
     ################################# Internal API #################################
     path("api/", views.search_api, name="cree-dictionary-search"),  # main page

@@ -6,9 +6,9 @@ Goal   : Allows the user to chaneg the settings of the app
 */
 
 import {ListGroup, Form} from "react-bootstrap";
-import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap";
-import Settings from "../HelperClasses/SettingClass";
+import Settings from "../../HelperClasses/SettingClass";
 
 function CreeDictionarySettings(props) {
     let localStorage = window.localStorage;
@@ -296,7 +296,7 @@ function CreeDictionarySettings(props) {
                         type={"radio"}
                         id={"nêhiyaw"}
                         name="engl_type"
-                        label="Nêhiyawêwin labels"
+                        label="nêhiyawêwin labels"
                         defaultChecked={settings.niyaLabel ? true : false}
                         value={settings.niyaLabel}
                         onChange={changeSettingsMain}
@@ -548,7 +548,7 @@ function CreeDictionarySettings(props) {
                         id={"MD-DIC"}
                         name="dict-sources"
                         label="MD"
-                        defaultChecked={settings.md_sources ? true : false}
+                        defaultChecked={settings.md_source ? true : false}
                         value={settings.md_sources}
                         onChange={changeSettingsDicts}
                     />
@@ -609,7 +609,7 @@ function CreeDictionarySettings(props) {
                     <Form.Check
                         type={"radio"}
                         id={"ALL-AUDIO"}
-                        name="dict-sources"
+                        name="audio-sources"
                         label="Both"
                         defaultChecked={settings.both_audio ? true : false}
                         value={settings.both_audio}

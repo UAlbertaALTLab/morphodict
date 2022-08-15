@@ -42,7 +42,7 @@ function Footer(props) {
       <div className="footer__links footer__advanced-links">
         <ul className="footer__links">
           <li>
-            <a href="/cree-dictionary-settings" className="footer-links__link">
+            <a href="/settings" className="footer-links__link">
               Settings
             </a>
           </li>
