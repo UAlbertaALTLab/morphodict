@@ -15,11 +15,15 @@ const LikeWord = (props) => {
   const likeWord = props.likeWord;
   let emoticon = props.emoticon;
   const wordInformation = props.hoverInfo;
+  const ic = props.ic;
+  const displayIc = ic["lemma_wordform"]["linguist_info"]["inflectional_category"]
 
   let settings = JSON.parse(window.localStorage.getItem("settings"));
   if (emoticon && emoticon.includes("🧑🏽")) {
     emoticon = emoticon.replaceAll("🧑🏽", settings.active_emoti);
   }
+  const showIc = settings.showIC;
+
 
   //Don't exactly understand the whole emoticon thing.
   //Will need to ask cline to explain that information
@@ -29,7 +33,7 @@ const LikeWord = (props) => {
       variant="btn bg-white rounded shadow-none text-decoration-underline"
       onClick={() => navigator.clipboard.writeText(wordInformation)}
     >
-      {emoticon} — {likeWord}
+      {showIc === true ? (<>{displayIc} - {emoticon} — {likeWord}</>) : (<>{emoticon} - {likeWord}</>) }
     </Button>
   );
 

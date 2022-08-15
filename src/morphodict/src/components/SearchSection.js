@@ -28,6 +28,7 @@ const SearchSection = (props) => {
   const displayType = props.type;
 
   const displayWord = function() {
+      //TODO: this try catch is broken
       try {
           return wordInformation['wordform_text'][displayType]
       } catch (TypeError) {
@@ -172,6 +173,7 @@ const SearchSection = (props) => {
         }
         emoticon={wordInformation["lemma_wordform"]["wordclass_emoji"]}
         hoverInfo={inflectionCatagory}
+        ic={wordInformation}
       />) : <></>}
 
       <ul className="list-group text-center">

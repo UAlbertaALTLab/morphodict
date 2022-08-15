@@ -396,7 +396,7 @@ function CreeDictionarySettings(props) {
                         id={"IC-NO"}
                         name="ic"
                         label="No"
-                        defaultChecked={settings.ShowIC ? true : false}
+                        defaultChecked={settings.ShowIC ? false : true}
                         value={settings.ShowIC}
                         onChange={changeSettingsIc}
                     />

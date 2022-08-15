@@ -38,6 +38,22 @@ function WoodsCreeSettings(props) {
         window.localStorage.setItem("settings", JSON.stringify(settings));
     };
 
+    let changeSettingsIc = (e) => {
+        settings = JSON.parse(localStorage.getItem("settings"));
+        switch (e.target.id) {
+            case "IC-YES":
+                settings.showIC = true;
+                break;
+            case "IC-NO":
+                settings.showIC = false;
+                break;
+            default:
+                break;
+        }
+
+        window.localStorage.setItem("settings", JSON.stringify(settings));
+    }
+
     let changeSettingsEmoji = (e) => {
 
         settings = JSON.parse(localStorage.getItem("settings"));
@@ -60,7 +76,7 @@ function WoodsCreeSettings(props) {
 
         window.localStorage.setItem("settings", JSON.stringify(settings));
     }
-    
+
     return (
         <div className="container bg-white">
             <h1>Settings</h1>
@@ -114,6 +130,41 @@ function WoodsCreeSettings(props) {
                     />
                     <p className="font-weight-light">
                         Examples: niyu, kiyu, wiyu; ê-ispayik anohc/mêkwâc/mâna, ê-ispayik kwayâc
+                    </p>
+                </ListGroup.Item>
+            </ListGroup>
+
+            <h2>Show Inflectional Category</h2>
+            <p className="font-weight-light">
+                Would you like to see the inflectional category?</p>
+
+            <ListGroup variant="flush">
+                <ListGroup.Item>
+                    <Form.Check
+                        type={"radio"}
+                        id={"IC-YES"}
+                        name="ic"
+                        label="Yes"
+                        defaultChecked={settings.showIC ? true : false}
+                        value={settings.showIC}
+                        onChange={changeSettingsIc}
+                    />
+                    <p>
+                        I want to see the inflectional category with every entry
+                    </p>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <Form.Check
+                        type={"radio"}
+                        id={"IC-NO"}
+                        name="ic"
+                        label="No"
+                        defaultChecked={settings.ShowIC ? false : true}
+                        value={settings.ShowIC}
+                        onChange={changeSettingsIc}
+                    />
+                    <p>
+                        I don't want to see the inflectional category with entries
                     </p>
                 </ListGroup.Item>
             </ListGroup>
