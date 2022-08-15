@@ -23,6 +23,8 @@ const LikeWord = (props) => {
     emoticon = emoticon.replaceAll("🧑🏽", settings.active_emoti);
   }
   const showIc = settings.showIC;
+  const showEmoji = settings.showEmoji;
+  if (!showEmoji) { emoticon = ""; } else { emoticon = emoticon + " - "}
 
 
   //Don't exactly understand the whole emoticon thing.
@@ -33,7 +35,7 @@ const LikeWord = (props) => {
       variant="btn bg-white rounded shadow-none text-decoration-underline"
       onClick={() => navigator.clipboard.writeText(wordInformation)}
     >
-      {showIc === true ? (<>{displayIc} - {emoticon} — {likeWord}</>) : (<>{emoticon} - {likeWord}</>) }
+      {showIc === true ? (<>{displayIc} - {emoticon} {likeWord}</>) : (<>{emoticon} {likeWord}</>) }
     </Button>
   );
 

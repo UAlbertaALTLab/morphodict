@@ -194,7 +194,7 @@ function WoodsCreeSettings(props) {
                         id={"SHOW-EMOJI-NO"}
                         name="show-emoji"
                         label="No"
-                        defaultChecked={settings.showEmoji ? true : false}
+                        defaultChecked={settings.showEmoji ? false : true}
                         value={settings.showEmoji}
                         onChange={changeSettingsShowEmoji}
                     />
