@@ -1,6 +1,7 @@
 from __future__ import annotations
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
+from morphodict.analysis import RichAnalysis, rich_analyze_strict
 
 """
 Utilities that depend on the CreeDictionary Django application.
@@ -236,19 +237,20 @@ def wordform_orth_text(wordform):
     return ret_wordform
 
 
-def paradigm_orth(paradigm):
-    """
-    Modifies inflections in a serialized paradigm to include all orthographic representations
-    """
-    for pane in paradigm["panes"]:
-        for row in pane["tr_rows"]:
-            try:
-                for cell in row["cells"]:
-                    if cell["is_inflection"] and not cell["is_missing"]:
-                        cell["inflection"] = wordform_orth_text(cell["inflection"])
-            except NotImplementedError as e:
-                logger.error("No cells for row:", e)
-    return paradigm
+def wordform_morphemes(wordform):
+    morphemes = {}
+    print("WORDFORM", wordform)
+    if rich_analysis := RichAnalysis(wordform["raw_analysis"]):
+        parts = rich_analysis.generate_with_morphemes(wordform["text"])
+        for part in parts:
+            part = wordform_orth_text(part)
+            print(part)
+            for orth in part:
+                if orth not in morphemes:
+                    morphemes[orth] = []
+                morphemes[orth].append(part[orth])
+    wordform["morphemes"] = morphemes
+    return wordform
 
 
 def orth(word):
@@ -287,3 +289,29 @@ def divide_chunks(terms, size):
     # looping till length l
     for i in range(0, len(terms), size):
         yield terms[i: i + size]
+
+
+def inflect_paradigm(paradigm):
+    for pane in paradigm["panes"]:
+        for row in pane["tr_rows"]:
+            if not row["is_header"]:
+                for cell in row["cells"]:
+                    if cell["is_inflection"] and not cell["is_missing"]:
+                        analysis = rich_analyze_strict(cell["inflection"])
+                        if analysis:
+                            analysis = analysis[0]
+                            parts = analysis.generate_with_morphemes(cell["inflection"])
+                            morphemes = {}
+                            for part in parts:
+                                part = wordform_orth_text(part)
+                                print(part)
+                                for orth in part:
+                                    if orth not in morphemes:
+                                        morphemes[orth] = []
+                                    morphemes[orth].append(part[orth])
+                            if not morphemes:
+                                for orth in ORTHOGRAPHY.available:
+                                    morphemes[orth] = [cell["inflection"]]
+                            cell["morphemes"] = morphemes
+
+    return paradigm

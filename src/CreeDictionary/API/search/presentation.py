@@ -24,6 +24,7 @@ from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
 from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
 from .types import Preverb
+from ...morphodict.orthography import ORTHOGRAPHY
 
 
 class AbstractResult:
@@ -156,10 +157,12 @@ class PresentationResult:
             result.wordform.analysis, animate_emoji, self._show_emoji, self.dict_source
         )
 
-        if rich_analysis := result.wordform.analysis:
-            self.morphemes = rich_analysis.generate_with_morphemes(result.wordform.text)
-        else:
-            self.morphemes = None
+        self.morphemes = wordform_morphemes(result.wordform)
+
+        # if rich_analysis := result.wordform.analysis:
+        #     self.morphemes = rich_analysis.generate_with_morphemes(result.wordform.text)
+        # else:
+        #     self.morphemesrphemes = None
 
         self.lemma_morphemes = result.lemma_morphemes
 
@@ -347,12 +350,12 @@ def serialize_wordform(
             result["wordclass_emoji"] = get_emoji_for_cree_wordclass(
                 wordclass, animate_emoji
             )
-    result["show_emoji"] = True if show_emoji == "yes" else False
 
     for key in wordform.linguist_info or []:
         if key not in result:
             result[key] = wordform.linguist_info[key]
 
+    print("RESULT:", result)
     return result
 
 
@@ -586,3 +589,47 @@ def to_list_of_fst_tags(raw_tags: Iterable[str]) -> list[FSTTag]:
     analysis) to a list of FSTTag. FSTTag instances can be used to looup relabellings!
     """
     return [FSTTag(t.strip("+")) for t in raw_tags]
+
+
+def wordform_orth_text(wordform):
+    """
+        Modifies a serialized wordform object. The text and inflectional_catagory_plain_english fields are modifed to
+        contain a dictionary containing all orthographic representations of their text given in Standard Roman Orthography.
+
+        e.g.,
+
+            'wâpamêw'
+
+        becomes:
+
+            {
+                "Latn": "wâpamêw",
+                "Latn-x-macron": "wāpamēw",
+                "Cans": "ᐚᐸᒣᐤ"
+            }
+
+        :param wordform:
+        :return:
+        """
+    try:
+        ret_wordform = {}
+        for code in ORTHOGRAPHY.available:
+            ret_wordform[code] = ORTHOGRAPHY.converter[code](wordform)
+    except TypeError:
+        ret_wordform = {"Latn": wordform}
+    except KeyError:
+        ret_wordform = {"Latn": wordform}
+    return ret_wordform
+
+
+def wordform_morphemes(wordform):
+    morphemes = {}
+    if rich_analysis := wordform.analysis:
+        parts = rich_analysis.generate_with_morphemes(wordform.text)
+        for part in parts:
+            part = wordform_orth_text(part)
+            for orth in part:
+                if orth not in morphemes:
+                    morphemes[orth] = []
+                morphemes[orth].append(part[orth])
+    return morphemes

@@ -29,10 +29,19 @@ const SearchSection = (props) => {
 
   const displayWord = function() {
       //TODO: this try catch is broken
+
+      const settings = JSON.parse(window.localStorage.getItem("settings"));
+      console.log(wordInformation)
       try {
-          return wordInformation['wordform_text'][displayType]
+          if (settings.morphemes_everywhere || settings.morphemes_headers) {
+              return wordInformation["morphemes"][displayType].join('/');
+          }
       } catch (TypeError) {
-          return wordInformation['wordform_text'][displayType]
+          try {
+              return wordInformation['wordform_text'][displayType]
+          } catch (TypeError) {
+              return wordInformation['wordform_text'][displayType]
+          }
       }
   }
 

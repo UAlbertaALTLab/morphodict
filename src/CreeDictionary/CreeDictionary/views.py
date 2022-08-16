@@ -600,6 +600,7 @@ def word_details_api(request, slug: str):
         show_emoji=ShowEmoji.current_value_from_request(request),
         dict_source=get_dict_source(request)
     )
+    wordform = wordform_morphemes(wordform)
     wordform = wordform_orth(wordform)
     recordings = []
     for source in settings.SPEECH_DB_EQ:
@@ -635,7 +636,7 @@ def word_details_api(request, slug: str):
 
         paradigm = pane_generator.generate_pane(lemma, paradigm, paradigm_size)
         paradigm = get_recordings_from_paradigm(paradigm, request)
-        paradigm = paradigm_orth(paradigm)
+        paradigm = inflect_paradigm(paradigm)
 
     content = {
         "entry": {

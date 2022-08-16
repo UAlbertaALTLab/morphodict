@@ -91,6 +91,16 @@ function WordEntry(props) {
     return false;
   }
 
+  console.log("THIS ONE:", wordform)
+  let displayText = "";
+  if (!isFetching && !error && data !== null) {
+    displayText = wordform["text"][type];
+    let settings = JSON.parse(window.localStorage.getItem("settings"));
+    if (settings.morphemes_everywhere || settings.morphemes_headers) {
+      displayText = wordform["morphemes"][type].join("/");
+    }
+  }
+
   return (
     <>
       {(!isFetching && !error && data !== null) ? (
@@ -101,7 +111,7 @@ function WordEntry(props) {
                 <h1 id="head" className="definition-title">
                   <dfn className="definition__matched-head">
                     <data id="data:head" value="{{ lemma.text }}">
-                      {wordform["text"][type]}
+                      {displayText}
                     </data>
                   </dfn>
                 </h1>
