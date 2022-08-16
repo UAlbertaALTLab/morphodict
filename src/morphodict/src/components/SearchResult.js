@@ -65,6 +65,57 @@ function SearchResult(props) {
 
   let results = data;
 
+  let filterFunc = (d) => { return d; };
+  let settings = JSON.parse(window.localStorage.getItem("settings"));
+  if (settings.md_source === true) {
+    filterFunc = (d) => {
+      d.definitions = d.definitions.filter((def) => {
+        if (def.source_ids.find(item => {
+          return item === "MD"
+        })) {
+          return def;
+        }
+      });
+      for (let def of d.definitions) {
+        if (def) {
+          return d;
+        }
+      }
+    }
+  }
+  if (settings.cw_source === true) {
+    filterFunc = (d) => {
+      d.definitions = d.definitions.filter((def) => {
+        if (def.source_ids.find(item => {
+          return item === "CW"
+        })) {
+          return def;
+        }
+      });
+      for (let def of d.definitions) {
+        if (def) {
+          return d;
+        }
+      }
+    }
+  }
+  if (settings.aecd_source === true) {
+    filterFunc = (d) => {
+      d.definitions = d.definitions.filter((def) => {
+        if (def.source_ids.find(item => {
+          return item === "AECD"
+        })) {
+          return def;
+        }
+      });
+      for (let def of d.definitions) {
+        if (def) {
+          return d;
+        }
+      }
+    }
+  }
+
   return (
     <div className="container">
       {typeof results === "undefined" && !isFetching && (
@@ -120,7 +171,7 @@ function SearchResult(props) {
           !error &&
           data !== null &&
           data !== "empty" &&
-          data.map((result, word_index) => (
+          results.filter(filterFunc).map((result, word_index) => (
             <SearchSection
               key={word_index}
               display={result}

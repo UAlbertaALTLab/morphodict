@@ -61,17 +61,26 @@ function CreeDictionarySettings(props) {
             case "MD-DIC":
                 settings.md_source = true;
                 settings.cw_source = false;
-                settings.both_sources = false;
+                settings.aecd_source = false;
+                settings.all_sources = false;
                 break;
             case "CW-DIC":
                 settings.md_source = false;
                 settings.cw_source = true;
-                settings.both_sources = false;
+                settings.aecd_source = false;
+                settings.all_sources = false;
+                break;
+            case "AECD-DIC":
+                settings.md_source = false;
+                settings.cw_source = false;
+                settings.aecd_source = true;
+                settings.all_sources = false;
                 break;
             case "ALL-DIC":
                 settings.md_source = false;
                 settings.cw_source = false;
-                settings.both_sources = true;
+                settings.aecd_source = false;
+                settings.all_sources = true;
                 break;
             default:
                 break;
@@ -560,14 +569,28 @@ function CreeDictionarySettings(props) {
                 <ListGroup.Item>
                     <Form.Check
                         type={"radio"}
-                        id={"ALL-DIC"}
+                        id={"AECD-DIC"}
                         name="dict-sources"
-                        label="CW-MD"
-                        defaultChecked={settings.both_sources ? true : false}
-                        value={settings.both_sources}
+                        label="AECD"
+                        defaultChecked={settings.aecd_source ? true : false}
+                        value={settings.aecd_sources}
                         onChange={changeSettingsDicts}
                     />
-                    Show entries from CW and MD (default)
+                    <p>
+                        Show entries from the Alberta Elders' Cree Dictionary/alberta ohci kehtehayak nehiyaw otwestamâkewasinahikan compiled by Nancy LeClaire and George Cardinal, edited by Earle H. Waugh. Edmonton: University of Alberta Press, 2002.
+                    </p>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                    <Form.Check
+                        type={"radio"}
+                        id={"ALL-DIC"}
+                        name="dict-sources"
+                        label="All"
+                        defaultChecked={settings.all_sources ? true : false}
+                        value={settings.all_sources}
+                        onChange={changeSettingsDicts}
+                    />
+                    Show entries from all sources (default)
                 </ListGroup.Item>
             </ListGroup>
 

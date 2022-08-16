@@ -35,7 +35,8 @@ class Settings {
 
     this.cw_source = false;
     this.md_source = false;
-    this.both_sources = true;
+    this.aecd_source = false;
+    this.all_sources = true;
 
     // word_types
     this.latn = true; //angle hat

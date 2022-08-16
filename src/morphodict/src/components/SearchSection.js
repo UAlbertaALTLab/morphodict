@@ -143,18 +143,6 @@ const SearchSection = (props) => {
     </Button>
   );
 
-  let settings = JSON.parse(window.localStorage.getItem("settings"));
-  let run = "";
-  if(settings.both_sources){
-    run = "CWMD"
-  }
-  if(settings.cw_source){
-    run = "CW";
-  }
-  if(settings.md_source){
-    run = "MD"
-  }
-
   return (
     <div id="results" className="shadow p-3 mb-5 bg-body rounded">
       {wordInformation === "" &&
