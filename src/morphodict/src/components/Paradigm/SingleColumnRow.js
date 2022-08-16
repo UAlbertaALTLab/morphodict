@@ -50,7 +50,6 @@ function SingleColumnRow(props) {
         } else {
             let displayText = cell.inflection[type];
             if (settings.morphemes_everywhere || settings.morphemes_paradigms) {
-                console.log("TADA", cell);
                 displayText = cell.morphemes[type].join("/");
             }
             const class_name =

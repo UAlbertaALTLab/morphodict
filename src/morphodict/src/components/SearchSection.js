@@ -35,12 +35,14 @@ const SearchSection = (props) => {
       try {
           if (settings.morphemes_everywhere || settings.morphemes_headers) {
               return wordInformation["morphemes"][displayType].join('/');
+          } else {
+              return wordInformation['wordform_text'][displayType];
           }
       } catch (TypeError) {
           try {
-              return wordInformation['wordform_text'][displayType]
+              return wordInformation['wordform_text'][displayType];
           } catch (TypeError) {
-              return wordInformation['wordform_text'][displayType]
+              return wordInformation['wordform_text'][displayType];
           }
       }
   }
