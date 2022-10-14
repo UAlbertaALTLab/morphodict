@@ -41,43 +41,26 @@ context("Recordings", function () {
       // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     });
 
-    it("should display the lemma's multiple speakers when the speaker icon is clicked", () => {
-      // 'wâpamêw' is the word that we have a bunch of recordings for
-      cy.visitLemma("wâpamêw");
-      cy.wait("@recordingsResults");
-
-      // Play the recording to get the full list of speakers.
-      cy.get("[data-cy=play-recording]").click();
-
-      // the names of the speakers should appear on the page in a dropdown list (select tag)
-      cy.get("[data-cy=multiple-recordings]").find("select");
-    });
-
     it("should play an individual speaker's pronounciation of the word when the speaker's name is clicked", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
-      cy.wait("@recordingsResults");
-
-      // Play the recording to get the full list of speakers.
-      cy.get("[data-cy=play-recording]").click();
+      cy.wait(20000);
 
       // the names of the speakers should appear on the page via the select tag
-      cy.get("[data-cy=multiple-recordings]").find("button");
+      cy.get("[data-cy=multiple-recordings]").find("button").click();
 
-      // clicking the 'play' button should output sound
-      cy.get("[data-cy=play-selected-speaker]").click();
     });
 
     it("should open a link to the speaker's webpage in a new tab", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
-      cy.wait("@recordingsResults");
+      cy.wait(20000);
 
       // Play the recording to get the full list of speakers.
-      cy.get("[data-cy=play-recording]").click();
+      cy.get("[data-cy=multiple-recordings]").find("button").click();
 
       // the name of the speaker should appear as a link:
-      cy.get("a[data-cy=learn-about-speaker]")
+      cy.get('#learnMoreLink')
         // clicking the link should open a new tab
         .should("have.attr", "target", "_blank");
     });
@@ -86,23 +69,12 @@ context("Recordings", function () {
   describe("When there are no recordings available", () => {
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/918
     it("should not show a play button", () => {
-      const lemma = "kotiskâwêw";
-
-      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
-        // A valid response, but the lemma is simply not found:
-        statusCode: 200,
-        body: {
-          matched_recordings: [],
-          not_found: [lemma],
-        },
-      }).as("recordingsResultsNotFound");
+      const lemma = "mistikomin";   // a word with no recordings
 
       cy.visitLemma(lemma);
-      cy.wait("@recordingsResultsNotFound");
-      // Wait just a smidge for any asynchronous stuff to resolve:
-      cy.wait(5);
+      cy.wait(5000);
 
-      cy.get("[data-cy=play-recording]").should("not.exist");
+      cy.get("[data-cy=multiple-recordings]").should("not.exist");
     });
   });
 });

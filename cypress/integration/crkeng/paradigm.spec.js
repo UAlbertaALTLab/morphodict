@@ -31,9 +31,13 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
   for (let { pos, lemma, inflections } of testCases) {
     it(`should display the paradigm for a word belonging to the ${pos} word class`, () => {
       cy.visitSearch(lemma);
-      cy.get("[data-cy=search-results]").contains("a", lemma).click();
+      cy.wait(2000);
 
-      cy.get("[data-cy=paradigm]").as("paradigm");
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').contains("a", lemma).click();
+      cy.wait(20000);
+
+      cy.get('.row > :nth-child(1)').as("paradigm");
+      cy.get("@paradigm").click();
 
       let ctx = cy.get("@paradigm").should("contain", lemma);
       for (let wordform of inflections) {
@@ -47,7 +51,9 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
     const inflections = ["kiya", "wiya"];
 
     cy.visitSearch(head);
-    cy.get("[data-cy=search-results]").contains("a", head).click();
+    cy.wait(1000);
+    cy.get(':nth-child(1) > :nth-child(1) > .definition-title > .btn').contains("a", head).click();
+    cy.wait(10000);
 
     cy.get("[data-cy=paradigm]").as("paradigm");
 
@@ -100,7 +106,10 @@ describe("I want to see a clear indicator that a form does not exist", () => {
 
     // minôs does NOT have a diminutive
     cy.visitLemma("minôs");
-    cy.get("[data-cy=paradigm]").contains("td", EM_DASH);
+    cy.wait(1500);
+    cy.get('.row > :nth-child(2)').click();
+    cy.wait(100);
+    cy.get(':nth-child(2) > .card > .MuiPaper-root > .MuiCollapse-root > .MuiCollapse-wrapper > .MuiCollapse-wrapperInner > #panel1a-content > .MuiAccordionDetails-root > [style="width: 100%;"] > .card-body').contains("td", EM_DASH);
   });
 });
 
@@ -108,6 +117,7 @@ describe("paradigms are visitable from link", () => {
   const lemmaText = "niska";
   it("shows basic paradigm", () => {
     cy.visitLemma(lemmaText, { analysis: "niska+N+A+Sg" });
+    cy.wait(2000);
     // "Smaller" should be in the plain English labeling
     cy.get("[data-cy=paradigm]").contains(/\bSmaller\b/i);
   });
@@ -125,27 +135,21 @@ describe("paradigms are visitable from link", () => {
 describe("paradigms can be toggled by the show more/less button", () => {
   it("shows basic, full, linguistic, and basic paradigm in sequence", () => {
     cy.visitLemma("nipâw");
+    cy.wait(10000);
 
     const basicForm = "ninipân"; // Basic, first person singular form
     const fullForm = "ê-kî-nipâyêk"; // past, conjunct, second person plural form -- not basic!
 
     // Initially, we should be on the **basic** size
-    paradigm().contains("td", basicForm);
-    paradigm().contains("td", fullForm).should("not.exist");
-
-    // Switch to the full size
-    cy.get("[data-cy=paradigm-toggle-button]").click();
-    cy.location("search").should("match", /\bfull\b/i);
-
-    paradigm().contains("td", basicForm);
-    paradigm().contains("td", fullForm);
-
-    // Switch once more to get back to the basic paradigm
-    cy.get("[data-cy=paradigm-toggle-button]").click();
-    cy.location("search").should("match", /\bbasic\b/i);
+    paradigm().should("contain", basicForm);
+    paradigm().should("contain", fullForm)
 
     function paradigm() {
-      return cy.get("[data-cy=paradigm]");
+      for (let i = 1; i < 13; i++) {
+        // expand the whole paradigm
+        cy.get(`.row > :nth-child(${i})`).click();
+      }
+      return cy.get('#definition');
     }
   });
 });

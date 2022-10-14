@@ -79,7 +79,7 @@ Cypress.Commands.add(
       expect(
         loc.pathname,
         "lemmaText and queryParams should be enough to disambiguate the lemma"
-      ).to.eq(`/word/${encodeURIComponent(lemmaText)}/`);
+      ).to.eq(`/word/${encodeURIComponent(lemmaText)}`);
     });
   }
 );

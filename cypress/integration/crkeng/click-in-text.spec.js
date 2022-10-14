@@ -1,6 +1,7 @@
 describe("click-in-text", function () {
   beforeEach(function () {
     cy.visit("/click-in-text-embedded-test");
+    cy.wait(1000);
   });
 
   function withPopupDivs(popupDivsHandler) {

@@ -33,7 +33,7 @@ function Footer(props) {
           </a>
         </li>
         <li>
-          <a href="/Contact-us" className="footer-links__link">
+          <a href="/contact-us" className="footer-links__link">
             Contact us
           </a>
         </li>

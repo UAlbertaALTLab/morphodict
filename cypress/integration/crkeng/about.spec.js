@@ -5,14 +5,14 @@ context("The About page", function () {
   describe("Visiting any page", () => {
     it("should have a link to the about page in the footer", () => {
       cy.visit("/");
-      cy.wait(3000);
+      cy.wait(1000);
       cy.get("footer").contains("a", "About");
     });
   });
 
   beforeEach(function () {
     cy.visit("/about");
-    cy.wait(3000);
+    cy.wait(1000);
   });
 
   describe("Visiting the about page", () => {

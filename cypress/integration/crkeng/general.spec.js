@@ -30,6 +30,7 @@ context("General", function () {
         .should("be.visible")
         .contains("Syllabics")
         .click();
+      cy.wait(1000);
 
       cy.get("h1").contains("ᐃᑘᐏᓇ");
     });
@@ -37,12 +38,13 @@ context("General", function () {
 
   describe("I want to search for complex Cree words", function () {
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/150
-    it("should have a clickable example on the front page", function () {
+    it.only("should have a clickable example on the front page", function () {
       const word = "ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk";
 
       cy.visit("/");
 
       cy.get("[data-cy=long-word-example]").should("contain", word).click();
+      cy.wait(1000);
 
       // we should be on a new page.
       cy.url().should("contain", "/search");
