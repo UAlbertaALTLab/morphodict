@@ -17,7 +17,7 @@ context("Searching", () => {
 
       cy.get("[data-cy=enable-linguistic-mode]").click();
 
-      cy.get("[data-cy=elaboration]")
+      cy.get("main")
         .contains(inflectionalClass)
         .should("be.visible");
     });

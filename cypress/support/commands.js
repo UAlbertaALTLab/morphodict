@@ -37,7 +37,7 @@ Cypress.Commands.add(
       name: "visitSearch",
       message: `visiting search page for: ${searchQuery}`,
     });
-    return cy.visit(`${baseUrl}/search?q=${encodeURIComponent(searchQuery)}`, {
+    return cy.visit(`${baseUrl}/search/?q=${encodeURIComponent(searchQuery)}`, {
       escapeComponents: false,
     });
   }
@@ -290,7 +290,7 @@ Cypress.Commands.add("search", { prevSubject: false }, (query, options) => {
     options.waitTime = 0;
   }
 
-  cy.get("[data-cy=search]")
+  cy.get("#search")
     .type(query + (options.pressEnter ? "{enter}" : ""))
     .wait(options.waitTime);
 });
@@ -309,6 +309,6 @@ Cypress.Commands.add(
   "searchResultsContain",
   { prevSubject: false },
   (expectedString) => {
-    return cy.get("[data-cy=search-results]").should("contain", expectedString);
+    return cy.get("main").should("contain", expectedString);
   }
 );

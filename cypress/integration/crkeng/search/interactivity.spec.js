@@ -3,10 +3,14 @@ context("Searching", () => {
     // https://github.com/UAlbertaALTLab/morphodict/issues/120
     it("should search for first minos, then minosis", () => {
       cy.visit("/");
-      cy.search("minos").searchResultsContain("cat");
+      cy.search("minos");
+      cy.wait(3000);
+      cy.searchResultsContain("cat");
 
       // makes it minos+is = minosis
-      cy.search("is").searchResultsContain("kitten");
+      cy.search("is");
+      cy.wait(3000);
+      cy.searchResultsContain("kitten");
     });
   });
 
@@ -14,7 +18,9 @@ context("Searching", () => {
     // https://github.com/UAlbertaALTLab/morphodict/issues/120
     it("shows results for minosis immediately after enter is pressed", () => {
       cy.visit("/");
-      cy.search("minosis", { pressEnter: true }).searchResultsContain("kitten");
+      cy.search("minosis", { pressEnter: true });
+      cy.wait(3000);
+      cy.searchResultsContain("kitten");
     });
   });
 });

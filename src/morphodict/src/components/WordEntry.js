@@ -91,7 +91,10 @@ function WordEntry(props) {
     return false;
   }
 
-  console.log("THIS ONE:", wordform)
+  if (type === "Latn" && process.env.REACT_APP_ISO_CODE === "cwd") {
+    type = "Latn-x-macron"
+  }
+
   let displayText = "";
   if (!isFetching && !error && data !== null) {
     displayText = wordform["text"][type];

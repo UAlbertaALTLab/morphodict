@@ -3,7 +3,7 @@ function SingleColumnRow(props) {
     const labelType = props.labelType;
     const labels = props.labels;
     const counter = props.counter;
-    const type = props.type;
+    let type = props.type;
     const showAudio = JSON.parse(window.localStorage.getItem("settings"))["showAudio"];
     let settings = JSON.parse(window.localStorage.getItem("settings"));
     console.log("Label type:", labelType);
@@ -48,6 +48,9 @@ function SingleColumnRow(props) {
                 </th>
             );
         } else {
+            if (type === "Latn" && process.env.REACT_APP_ISO_CODE === "cwd") {
+                type = "Latn-x-macron"
+              }
             let displayText = cell.inflection[type];
             if (settings.morphemes_everywhere || settings.morphemes_paradigms) {
                 displayText = cell.morphemes[type].join("/");

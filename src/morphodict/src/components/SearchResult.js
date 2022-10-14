@@ -116,6 +116,11 @@ function SearchResult(props) {
     }
   }
 
+  let _type = props.location.state.type;
+  if (_type === "Latn" && process.env.REACT_APP_ISO_CODE === "cwd") {
+    _type = "Latn-x-macron"
+  }
+
   return (
     <div className="container">
       {typeof results === "undefined" && !isFetching && (
@@ -176,7 +181,7 @@ function SearchResult(props) {
               key={word_index}
               display={result}
               index={word_index}
-              type={props.location.state.type}
+              type={_type}
             ></SearchSection>
           ))}
       </div>

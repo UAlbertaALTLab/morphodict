@@ -45,6 +45,7 @@ const SearchSection = (props) => {
               return wordInformation['wordform_text'][displayType];
           }
       }
+      return wordInformation;
   }
 
   let dictionary_index = function (type) {
@@ -125,6 +126,8 @@ const SearchSection = (props) => {
       </Button>
     );
   }
+
+  console.log("DISP WORD", displayWord());
 
   //change
   wordBtn = (

@@ -11,50 +11,45 @@ context("Searching", () => {
 
     it("should display the match wordform and word class on the same line for lemmas", function () {
       cy.visitSearch(fudgeUpOrthography(lemma));
+      cy.wait(1000);
 
       // make sure we get at least one search result...
-      cy.get("[data-cy=search-result]").as("search-result");
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').as("search-result");
 
       // now let's make sure the NORMATIZED form is in the search result
-      cy.get("@search-result").contains(
-        'header [data-cy="matched-wordform"]',
+      cy.get(
+        ':nth-child(1) > :nth-child(1) > .definition-title > .btn > a').contains(
         lemma
       );
-      cy.get("@search-result").contains(
-        'header [data-cy="word-class"]',
+      cy.get(":nth-child(1) > .container > .d-flex > .mb-auto > .btn").contains(
         wordclassEmoji
       );
-      cy.get("@search-result").contains(
-        'header [data-cy="elaboration"]',
+      cy.get(":nth-child(1) > .container > .d-flex > .mb-auto > .btn").contains(
         plainEnglishInflectionalCategory
       );
     });
 
     it("should display the matched word form and its lemma/word class on separate lines for non-lemmas", function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition));
+      cy.wait(1000);
 
       // make sure we get at least one search result...
-      cy.get("[data-cy=search-result]").as("search-result");
+      cy.get(".app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)").as("search-result");
 
       // now let's make sure the NORMATIZED form is in the search result
-      cy.get("@search-result").contains(
-        'header [data-cy="matched-wordform"]',
+      cy.get(
+        ':nth-child(1) > :nth-child(1) > .definition-title > .btn > a').contains(
         nonLemmaFormWithoutDefinition
       );
 
       // now make sure the 'form of' text is below that
-      cy.get("@search-result")
-        .get('header [data-cy="elaboration"]')
-        .as("elaboration");
 
-      cy.get("@elaboration")
-        .get('[data-cy="reference-to-lemma"]')
+      cy.get('.mb-auto > .btn')
         // TODO: should we be testing for this exact text?
         .should("contain", "form of")
         .and("contain", lemma);
-      cy.get("@elaboration").contains('[data-cy="word-class"]', wordclassEmoji);
-      cy.get("@elaboration").contains(
-        '[data-cy="elaboration"]',
+      cy.get('.mb-auto > .btn').should("contain", wordclassEmoji);
+      cy.get('.mb-auto > .btn').should("contain",
         plainEnglishInflectionalCategory
       );
     });
@@ -62,164 +57,136 @@ context("Searching", () => {
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=4.%20Inflected%20form
     it("should display an inflected form with a definition AND its lemma", function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithDefinition));
+      cy.wait(1000);
 
       // make sure we get at least one search result...
-      cy.get("[data-cy=search-result]").as("search-result");
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').as("search-result");
 
       // make sure the NORMATIZED form is in the search result
-      cy.get("@search-result").contains(
-        'header [data-cy="matched-wordform"]',
+      cy.get("@search-result").should(
+        "contain",
         nonLemmaFormWithDefinition
       );
 
       // Open the linguistic breakdown popup
-      cy.get("@search-result")
-        .find("[data-cy=information-mark]")
+      cy.get(':nth-child(1) > :nth-child(1) > .definition__icon > .btn > .bi')
         .as("information-mark")
         .first()
         .click();
 
       // See the linguistic breakdown as an ordered list
-      cy.get("[data-cy=linguistic-breakdown]")
-        .first()
-        .should("be.visible")
-        .contains("li", "ni-/ki- word");
-
-      // Close the tooltip
-      cy.get("@information-mark").first().blur();
+      cy.get("@search-result")
+        .should("contain", "ni-/ki- word");
 
       // make sure it has a definition
       cy.get("@search-result")
         // TODO: change name of [data-cy="lemma-meaning"] as it's misleading :/
-        .contains('[data-cy="lemma-meaning"]', nonLemmaDefinition);
+        .should('contain', nonLemmaDefinition);
 
       // "form of nîmiw"
       cy.get("@search-result")
-        .get('[data-cy="reference-to-lemma"]')
         .should("contain", "form of")
         .and("contain", lemma);
 
-      cy.get("@search-result").get('[data-cy="elaboration"]').as("elaboration");
-
-      cy.get("@elaboration")
-        .get('[data-cy="word-class"]')
+      cy.get("@search-result")
         .should("contain", wordclassEmoji);
 
-      cy.get("@elaboration")
-        .get('[data-cy="elaboration"]')
+      cy.get("@search-result")
         .should("contain", plainEnglishInflectionalCategory);
 
-      // Inflectional category tool tip
-      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
-      cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
-      cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
 
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=5.%20Inflected%20form%20without%20definition
     it("should display an inflected form (without definition) and its lemma", function () {
       cy.visitSearch(fudgeUpOrthography(nonLemmaFormWithoutDefinition));
+      cy.wait(1000);
 
       // make sure we get at least one search result...
-      cy.get("[data-cy=search-result]").as("search-result");
+      cy.get('#results').as("search-result");
 
       // make sure the NORMATIZED form is in the search result
       cy.get("@search-result").contains(
-        'header [data-cy="matched-wordform"]',
         nonLemmaFormWithoutDefinition
       );
 
       // Open the linguistic breakdown popup
-      cy.get("@search-result")
-        .get("[data-cy=information-mark]")
+      cy.get('.definition__icon > .btn > .bi')
         .first()
         .as("information-mark")
         .click();
 
       // See the linguistic breakdown as an ordered list
-      cy.get("[data-cy=linguistic-breakdown]")
+      cy.get("@search-result")
         .first()
         .should("be.visible")
         .contains("li", "ni-/ki- word");
 
       // Close the tooltip
-      cy.get("@information-mark").blur();
+      cy.get("@search-result").click();
 
       // "form of nîmiw"
       cy.get("@search-result")
-        .get('[data-cy="reference-to-lemma"]')
         .should("contain", "form of")
         .and("contain", lemma);
 
-      cy.get("@search-result").get('[data-cy="elaboration"]').as("elaboration");
-
-      cy.get("@elaboration")
-        .get('[data-cy="word-class"]')
+      cy.get("@search-result")
         .should("contain", wordclassEmoji);
 
-      cy.get("@elaboration")
-        .get('[data-cy="elaboration"]')
+      cy.get("@search-result")
         .should("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tooltip
-      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
-      cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
-      cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
+      cy.get("@search-result").should('contain', inflectionalCategory);
     });
 
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/445#:~:text=6.%20Lemma%20definition
     it("should display the definition of a lemma", function () {
       cy.visitSearch(fudgeUpOrthography(lemma));
+      cy.wait(1000);
 
       // make sure we get at least one search result...
-      cy.get("[data-cy=search-result]").as("search-result");
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').as("search-result");
 
       // make sure the NORMATIZED form is in the search result
-      cy.get("@search-result").contains(
-        'header [data-cy="matched-wordform"]',
+      cy.get("@search-result").should(
+        'contain',
         lemma
       );
 
       // Open the linguistic breakdown popup
-      cy.get("@search-result")
-        .get("[data-cy=information-mark]")
+      cy.get(':nth-child(1) > :nth-child(1) > .definition__icon > .btn')
         .first()
         .as("information-mark")
         .click();
 
       // See the linguistic breakdown as an ordered list
-      cy.get("[data-cy=linguistic-breakdown]")
+      cy.get("@search-result")
         .first()
         .should("be.visible")
         .contains("li", "ni-/ki- word");
 
-      // Close the tooltip
-      cy.get("@information-mark").blur();
+      cy.get("@search-result").click()
 
-      cy.get("@search-result").get('[data-cy="elaboration"]').as("elaboration");
+      cy.get(':nth-child(1) > .container > .d-flex > .mb-auto').as("elaboration");
 
       cy.get("@elaboration")
-        .get('[data-cy="word-class"]')
         .should("contain", wordclassEmoji);
 
       cy.get("@elaboration")
-        .get('[data-cy="elaboration"]')
         .and("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tool tip
-      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
-      cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
-      cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
+      cy.get("@elaboration").should('contain', inflectionalCategory);
     });
 
     // Regression: it used to display 'like — pê-' :/
-    it("should not display wordclass emoji if it does not exist", function () {
+    it.only("should not display wordclass emoji if it does not exist", function () {
       // Preverbs do not have an elaboration (right now)
       const preverb = "nitawi-";
       cy.visitSearch(preverb);
+      cy.wait(1000);
 
-      cy.get("[data-cy=search-result]")
-        .first()
-        .find("[data-cy=elaboration]")
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)')
         .should("contain", "like: pê-")
         .and("not.contain", "None");
     });
