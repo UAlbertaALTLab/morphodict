@@ -299,7 +299,7 @@ Cypress.Commands.add("search", { prevSubject: false }, (query, options) => {
  * this command clears the search bar
  */
 Cypress.Commands.add("clearSearchBar", { prevSubject: false }, () => {
-  cy.get("[data-cy=search]").clear();
+  cy.get('#search').clear();
 });
 
 /**

@@ -180,7 +180,7 @@ context("Searching", () => {
     });
 
     // Regression: it used to display 'like — pê-' :/
-    it.only("should not display wordclass emoji if it does not exist", function () {
+    it("should not display wordclass emoji if it does not exist", function () {
       // Preverbs do not have an elaboration (right now)
       const preverb = "nitawi-";
       cy.visitSearch(preverb);

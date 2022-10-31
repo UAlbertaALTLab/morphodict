@@ -2,16 +2,18 @@ context("Searching", () => {
   describe("I want to know what a Cree word means in English", () => {
     // https://github.com/UAlbertaALTLab/morphodict/issues/120
     it("should search for an exact lemma", () => {
-      cy.visitSearch("minos").searchResultsContain("cat");
+      cy.visitSearch("minos")
+      cy.wait(2000);
+      cy.searchResultsContain("cat");
     });
   });
 
   describe("search results should be ranked by modified levenshtein distance", () => {
     it("should show nipîhk before nîpîhk if the search string is the former", () => {
       cy.visitSearch("nipîhk");
+      cy.wait(2000);
 
-      cy.get("[data-cy=search-results]")
-        .first()
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)')
         .should("contain", "nipîhk")
         .and("contain", "water");
     });
@@ -25,8 +27,8 @@ context("Searching", () => {
       let dicts = ["CW", "MD"];
 
       cy.visitSearch(lemma);
-      cy.get("[data-cy=search-results]")
-        .contains("[data-cy=search-result]", lemma)
+      cy.wait(2000);
+      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)')
         .as("definition");
 
       // Check each citation.
@@ -45,21 +47,29 @@ context("Searching", () => {
     it("should treat apostrophes as short-Is ", () => {
       cy.visit("/");
 
-      cy.visitSearch("tan'si").searchResultsContain("tânisi");
+      cy.visitSearch("tan'si");
+      cy.wait(2000);
+      cy.searchResultsContain("tânisi");
     });
 
     it("should forgive omitted long vowel marking", () => {
       cy.visit("/");
 
-      cy.visitSearch("acimew").searchResultsContain("âcimêw");
+      cy.visitSearch("acimew");
+      cy.wait(2000);
+      cy.searchResultsContain("âcimêw");
 
       cy.clearSearchBar();
 
-      cy.visitSearch("ayiman").searchResultsContain("âyiman");
+      cy.visitSearch("ayiman");
+      cy.wait(2000);
+      cy.searchResultsContain("âyiman");
     });
 
     it("should handle English-influenced spelling", () => {
-      cy.visitSearch("atchakosuk").searchResultsContain("atâhk");
+      cy.visitSearch("atchakosuk");
+      cy.wait(2000);
+      cy.searchResultsContain("atâhk");
     });
   });
 
@@ -70,8 +80,9 @@ context("Searching", () => {
       cy.visit("/");
 
       cy.visitSearch(searchTerm);
+      cy.wait(2000);
 
-      cy.get("[data-cy=search-results]")
+      cy.get('#results')
         .contains("[data-cy=search-result]", /Form of/i)
         .as("searchResult");
 
@@ -89,8 +100,9 @@ context("Searching", () => {
 
   it("should leave out not normatized content", () => {
     // nipa means "Kill Him" in MD
-    cy.visitSearch("nipa")
-      .searchResultsContain("sleeps")
+    cy.visitSearch("nipa");
+    cy.wait(2000);
+    cy.searchResultsContain("sleeps")
       .and("not.contain", "Kill");
   });
 
@@ -103,14 +115,16 @@ context("Searching", () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = "niya";
       cy.visitSearch(searchTerm);
+      cy.wait(2000);
 
-      cy.get("[data-cy=search-result]").find("[data-cy=information-mark]");
+      cy.get(':nth-child(1) > :nth-child(1) > .definition__icon > .btn');
     });
   });
 
   describe("A tooltip should show up when the user click/focus on the i icon beside the matched wordform", () => {
     it("should show tooltip when the user focuses on the i icon beside ê-wâpamat", () => {
       cy.visitSearch("ewapamat");
+      cy.wait(2000);
 
       // not visible at the start
       cy.get("[data-cy=linguistic-breakdown]")
@@ -124,6 +138,7 @@ context("Searching", () => {
 
     it("should show tooltip with relevant linguistic breakdowns when the user clicks on the i icon beside ê-wâpamat", () => {
       cy.visitSearch("ewapamat");
+      cy.wait(2000);
 
       // not visible at the start
       cy.get("[data-cy=linguistic-breakdown]").should("not.be.visible");
@@ -141,6 +156,7 @@ context("Searching", () => {
 
     it("should show linguistic breakdowns as an ordered list when the user clicks on the i icon beside a word", () => {
       cy.visitSearch("nipaw");
+      cy.wait(2000);
 
       // tab through the elements to force the tooltip to pop up
       cy.get("[data-cy=information-mark]").first().click();
@@ -154,6 +170,7 @@ context("Searching", () => {
       // begin from the homepage
       cy.visit("/");
       cy.search("nipaw");
+      cy.wait(2000);
 
       // tab through the page elements until arriving on the '?' icon
       cy.get("[data-cy=information-mark]").first().click();
@@ -168,6 +185,7 @@ context("Searching", () => {
     it("should not overlap other page elements when being displayed in the page", () => {
       // Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!
       cy.visitSearch("e-ki-nitawi-kah-kimoci-kotiskaweyahk");
+      cy.wait(2000);
 
       // force the tooltip to appear
       cy.get("[data-cy=information-mark]").first().click({ force: true });
@@ -206,9 +224,10 @@ context("Searching", () => {
 
     it("displays the suffix features in the linguistic breakdown", function () {
       cy.visitSearch("pê-nîmiw");
+      cy.wait(2000);
 
       // Open the linguistic breakdown popup
-      cy.get("[data-cy=search-result]")
+      cy.get("#results")
         .find("[data-cy=information-mark]")
         .first()
         .click();
@@ -228,14 +247,15 @@ context("Searching", () => {
 
     it("should report no results found for ordinary search", function () {
       cy.visitSearch(NON_WORD);
+      cy.wait(2000);
 
       cy.location().should((loc) => {
-        expect(loc.pathname).to.eq("/search");
+        expect(loc.pathname).to.eq("/search/");
         expect(loc.search).to.contain(`q=${encodeURIComponent(NON_WORD)}`);
       });
 
       // There should be something telling us that there are no results
-      cy.get("[data-cy=no-search-result]")
+      cy.get('.alert-heading')
         .and("contain", "No results found")
         .should("contain", NON_WORD);
     });
@@ -243,7 +263,7 @@ context("Searching", () => {
     it("should report no results found when visiting the page directly", function () {
       cy.visitSearch(NON_WORD);
 
-      cy.get("[data-cy=no-search-result]")
+      cy.get('.alert-heading')
         .and("contain", "No results found")
         .should("contain", NON_WORD);
     });
@@ -252,6 +272,7 @@ context("Searching", () => {
   describe("fancy queries", function () {
     it("should show search features for a verbose search", function () {
       cy.visitSearch("verbose:1 acahkosa");
+      cy.wait(2000);
 
       cy.get("[data-cy=verbose-info]").should("contain", "relevance_score");
     });
@@ -260,7 +281,8 @@ context("Searching", () => {
       // NB: need to make sure this wordform is added **explicitly** in the
       // `ensuretestdb` management commands:
       cy.visitSearch("auto:y niminôsak");
-      cy.get("[data-cy=search-result]")
+      cy.wait(2000);
+      cy.get("#results")
         .contains("my cats")
         .get(".cite-dict")
         .contains("🤖CW");

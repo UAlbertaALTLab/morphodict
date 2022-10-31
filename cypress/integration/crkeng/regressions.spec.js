@@ -135,7 +135,7 @@ context("Regressions", () => {
       .invoke("attr", "src")
   });
 
-  it.only("should have the search bar appear wide on desktop", () => {
+  it("should have the search bar appear wide on desktop", () => {
     let minimumWidth;
     const factor = 0.35; // it should be at least 35% the size of the viewport.
     cy.viewport("macbook-13"); // a small laptop size

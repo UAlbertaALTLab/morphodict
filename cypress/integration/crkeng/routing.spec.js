@@ -5,9 +5,12 @@ describe("urls for lemma detail page should be handled correctly", () => {
   it("should show lemma detail (paradigms) if a unambiguous url is given", function () {
     // Get to the definition/paradigm page for "wâpamêw"
     cy.visit("/word/wâpamêw/");
-    cy.get("[data-cy=paradigm]")
+    cy.wait(25000);
+    cy.get('.row > :nth-child(1)')
       .should("be.visible")
-      .and("contain", "kiwâpamitin");
+        .click()
+    cy.get(':nth-child(1) > .card > .MuiPaper-root > .MuiCollapse-root > .MuiCollapse-wrapper > .MuiCollapse-wrapperInner > #panel1a-content > .MuiAccordionDetails-root > [style="width: 100%;"] > .card-body')
+      .should("contain", "kiwâpamitin");
   });
 
   it("should redirect to search page if no match is found", function () {
@@ -48,18 +51,21 @@ describe("urls for lemma detail page should be handled correctly", () => {
   it("should add relevant constraints as query params in href for ambiguous lemmas on the search page", function () {
     // pipon is a verb as well as a noun
     cy.visitSearch("pipon");
+    cy.wait(2000);
 
     let lemmaUrls = [];
 
     // both results should be present
-    cy.get("[data-cy=definition-title] a")
+    cy.get(".definition-title > .btn > a")
       .each(($e) => {
         lemmaUrls.push($e.attr("href"));
       })
-      .then(() =>
-        expect(lemmaUrls)
-          .to.include("/word/pipon@ni/")
-          .and.to.include("/word/pipon@vii/")
+      .then(() => {
+            console.log(lemmaUrls);
+            expect(lemmaUrls)
+                .to.include("/word/pipon@ni")
+                .and.to.include("/word/pipon@vii");
+          }
       );
   });
 });

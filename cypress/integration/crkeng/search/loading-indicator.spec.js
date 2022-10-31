@@ -13,7 +13,7 @@ context("Searching", () => {
       }).as("search");
 
       // We have typed all but ONE character of the search string:
-      cy.get("[data-cy=search]").invoke("val", "amis").as("searchBox");
+      cy.get("#search").invoke("val", "amis").as("searchBox");
 
       // Initially, there should be no loading indicator visible
       cy.get("[data-cy=loading-indicator]").should("not.be.visible");

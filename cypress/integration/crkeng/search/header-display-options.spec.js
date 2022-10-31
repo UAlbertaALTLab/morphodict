@@ -33,21 +33,16 @@ context("Searching", () => {
     // See: https://github.com/UAlbertaALTLab/morphodict/issues/742
     it("should display in Plain English", () => {
       cy.visitSearch("nimaskomak");
+      cy.wait(3000);
 
       // Open the linguistic breakdown popup
-      cy.get("[data-cy=search-result]:first")
-        .find("[data-cy=information-mark]:first")
-        .click();
+      cy.get("#results")
+        .find(".definition__icon > .btn")
+        .click()
+          .and("contain", "Naming word")
+          .and("contain", "my")
+          .and("contain", "many");
 
-      cy.get("[data-cy=linguistic-breakdown]:first")
-        .should("be.visible")
-        .then(($popup) => {
-          let popupText = $popup.text().toLowerCase().replace(/\s+/, " ");
-
-          expect(popupText).to.contain("naming word");
-          expect(popupText).to.contain("my");
-          expect(popupText).to.contain("many");
-        });
     });
 
     it("should display in Linguistic English", () => {
@@ -76,6 +71,7 @@ context("Searching", () => {
 
   function setDefaultDisplayMode() {
     cy.visit("/");
+    cy.wait(1000);
     cy.get("[data-cy=enable-community-mode]").click();
   }
 });

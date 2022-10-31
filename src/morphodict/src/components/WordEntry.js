@@ -38,6 +38,7 @@ function WordEntry(props) {
   );
   console.log(isFetching, error, data);
   let wordform = "";
+  let wordInformation = "";
   let recordings = "";
   let paradigm = "";
   let type = getType()
@@ -98,9 +99,11 @@ function WordEntry(props) {
   let displayText = "";
   if (!isFetching && !error && data !== null) {
     displayText = wordform["text"][type];
+    console.log("WORDFORM", wordform);
+    wordInformation = wordform["inflectional_category"] + "  " + wordform["wordclass_emoji"] + "  " + wordform["inflectional_category_plain_english"][type]
     let settings = JSON.parse(window.localStorage.getItem("settings"));
     if (settings.morphemes_everywhere || settings.morphemes_headers) {
-      displayText = wordform["morphemes"][type].join("/");
+      displayText = wordform["morphemes"][type].join("•");
     }
   }
 
@@ -121,6 +124,7 @@ function WordEntry(props) {
               </Grid>
             </Grid>
           </header>
+          <p> {wordInformation} </p>
 
           {recordings[0] ? (<section
               className="multiple-recordings"

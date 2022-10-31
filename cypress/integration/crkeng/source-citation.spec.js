@@ -11,48 +11,44 @@ describe("Source citations", function () {
   };
 
   context("Search page", () => {
-    it("should cite on the search page, with a tooltip", () => {
-      cy.visitSearch(LEMMA_WITH_MD_AND_CW_CITATIONS);
+    for (let sourceAbbreviation of SOURCES) {
+      it(`should cite on the search page, with a tooltip for ${sourceAbbreviation}`, () => {
+        cy.visitSearch(LEMMA_WITH_MD_AND_CW_CITATIONS);
+        cy.wait(1000);
 
-      for (let sourceAbbreviation of SOURCES) {
-        clearFocus();
 
-        searchResult().contains("cite", sourceAbbreviation).first().click();
+        searchResult().contains(sourceAbbreviation).first().click();
 
         tooltip()
-          .should("be.visible")
-          .contains(CRITICAL_INFORMATION[sourceAbbreviation]);
-      }
-    });
+            .should("be.visible")
+            .contains(CRITICAL_INFORMATION[sourceAbbreviation]);
+      });
+    }
 
     function searchResult() {
-      return cy.get("[data-cy=search-result]").first();
+      return cy.get("#results").first();
     }
   });
 
   context("Details page", () => {
-    it("should cite on the details page with a tooltip", () => {
-      cy.visitLemma(LEMMA_WITH_MD_AND_CW_CITATIONS);
       for (let sourceAbbreviation of SOURCES) {
-        clearFocus();
+        it.only("should cite on the details page with a tooltip", () => {
+          cy.visitLemma(LEMMA_WITH_MD_AND_CW_CITATIONS);
+          cy.wait(7000);
 
-        cy.get("[data-cy=meanings]")
-          .contains("cite", sourceAbbreviation)
-          .first()
-          .click();
+          cy.get("[data-cy=meanings]")
+              .contains(sourceAbbreviation)
+              .first()
+              .click();
 
-        tooltip()
-          .should("be.visible")
-          .contains(CRITICAL_INFORMATION[sourceAbbreviation]);
+          tooltip()
+              .should("be.visible")
+              .contains(CRITICAL_INFORMATION[sourceAbbreviation]);
+        });
       }
-    });
   });
 
-  function clearFocus() {
-    cy.get("[data-cy=search]").click().blur();
-  }
-
   function tooltip() {
-    return cy.get("[data-cy=citation-tooltip]");
+    return cy.get('.tooltip-inner');
   }
 });

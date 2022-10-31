@@ -20,6 +20,7 @@ context("Word details", () => {
     for (let { wc, word, ic } of testCases) {
       it(`should display the word class and inflection class for ${word} (${wc})`, () => {
         cy.visitLemma(word);
+        cy.wait(5000);
 
         cy.url().should("contain", "word/");
 
