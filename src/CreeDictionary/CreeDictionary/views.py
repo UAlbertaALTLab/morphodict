@@ -593,6 +593,10 @@ def word_details_api(request, slug: str):
     paradigm_size = ""
     paradigm_sizes = []
     paradigm = lemma.paradigm
+    if paradigm == "NDA":
+        paradigm = "NAD"
+    if paradigm == "NDI":
+        paradigm = "NID"
 
     wordform = presentation.serialize_wordform(
         lemma,

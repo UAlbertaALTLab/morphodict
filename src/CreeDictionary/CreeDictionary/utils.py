@@ -1,6 +1,8 @@
 from __future__ import annotations
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
+from hfst_optimized_lookup import Analysis
+
 from morphodict.analysis import RichAnalysis, rich_analyze_strict
 
 """
@@ -240,8 +242,13 @@ def wordform_orth_text(wordform):
 def wordform_morphemes(wordform):
     morphemes = {}
     print("WORDFORM", wordform)
-    if rich_analysis := RichAnalysis(wordform["raw_analysis"]):
+    raw_analysis = wordform["raw_analysis"]
+    if not raw_analysis:
+        raw_analysis = Analysis((), wordform["text"], ())
+    if rich_analysis := RichAnalysis(raw_analysis):
         parts = rich_analysis.generate_with_morphemes(wordform["text"])
+        if not parts:
+            return wordform
         for part in parts:
             part = wordform_orth_text(part)
             print(part)
