@@ -1,5 +1,5 @@
 # TA										
-	| Core 									
+	| Core
 	| Prs+Ind									
 _ 1Sg _ 2SgO	${lemma}+V+TA+Ind+1Sg+2SgO									
 _ 1Sg _ 3SgO	${lemma}+V+TA+Ind+1Sg+3SgO									

@@ -1,5 +1,5 @@
 # NI			
-	| Core		
+	| Core
 	| Nonposs		
 _ Sg	${lemma}+N+I+Sg		
 _ Pl	${lemma}+N+I+Pl		

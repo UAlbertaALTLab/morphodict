@@ -1,5 +1,5 @@
 # TI										
-	| Core 									
+	| Core
 	| Prs+Ind									
 _ 1Sg	${lemma}+V+TI+Ind+1Sg									
 _ 2Sg	${lemma}+V+TI+Ind+2Sg									
