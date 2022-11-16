@@ -1,4 +1,4 @@
-	# Core 									
+	* Core 									
 	| Prs+Ind									
 _ 1Sg _ 2SgO	${lemma}+V+TA+Ind+1Sg+2SgO									
 _ 1Sg _ 3SgO	${lemma}+V+TA+Ind+1Sg+3SgO									
@@ -17,7 +17,7 @@ _ 4Sg/Pl _ 3Sg	PV/e+${lemma}+V+TA+Cnj+4Sg/Pl+3SgO
 _ 2Sg _ 1SgO	${lemma}+V+TA+Imp+Imm+2Sg+1SgO									
 _ 2Sg _ 3SgO	${lemma}+V+TA+Imp+Imm+2Sg+3SgO									
 										
-	# Prs # Ind	# Prs # Cnj	# Prt # Ind	# Prt # Cnj	# Fut+Int # Ind	# Fut+Int # Cnj	# Fut+Def # Ind	# Inf # PV/ka	# Inf # PV/ta	# Fut # Cond
+	* Prs * Ind	* Prs * Cnj	* Prt * Ind	* Prt * Cnj	* Fut+Int * Ind	* Fut+Int * Cnj	* Fut+Def * Ind	* Inf * PV/ka	* Inf * PV/ta	* Fut * Cond
 	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg	| 1Sg
 _ 1Sg _ 2SgO	${lemma}+V+TA+Ind+1Sg+2SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+2SgO	PV/ki+${lemma}+V+TA+Ind+1Sg+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Sg+2SgO	PV/wi+${lemma}+V+TA+Ind+1Sg+2SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Sg+2SgO	PV/ka+${lemma}+V+TA+Ind+1Sg+2SgO	PV/ka+${lemma}+V+TA+Cnj+1Sg+2SgO	PV/ta+${lemma}+V+TA+Cnj+1Sg+2SgO	${lemma}+V+TA+Fut+Cond+1Sg+2SgO
 _ 1Sg _ 3SgO	${lemma}+V+TA+Cnj+1Sg+3SgO	PV/e+${lemma}+V+TA+Cnj+1Sg+3SgO	PV/ki+${lemma}+V+TA+Ind+1Sg+3SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+1Sg+3SgO	PV/wi+${lemma}+V+TA+Ind+1Sg+3SgO	PV/e+PV/wi+${lemma}+V+TA+Cnj+1Sg+3SgO	PV/ka+${lemma}+V+TA+Ind+1Sg+3SgO	PV/ka+${lemma}+V+TA+Cnj+1Sg+3SgO	PV/ta+${lemma}+V+TA+Cnj+1Sg+3SgO	${lemma}+V+TA+Fut+Cond+1Sg+3SgO
@@ -93,7 +93,7 @@ _ X _ 2PlO	${lemma}+V+TA+Ind+X+2PlO	PV/e+${lemma}+V+TA+Cnj+X+2PlO	PV/ki+${lemma}
 _ X _ 3PlPlO	${lemma}+V+TA+Ind+X+3PlO	PV/e+${lemma}+V+TA+Cnj+X+3PlO	PV/ki+${lemma}+V+TA+Ind+X+3PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+X+3PlO	PV/wi+${lemma}+V+TA+Ind+X+3PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+X+3PlO	PV/ka+${lemma}+V+TA+Ind+X+3PlO	PV/ka+${lemma}+V+TA+Cnj+X+3PlO	PV/ta+${lemma}+V+TA+Cnj+X+3PlO	${lemma}+V+TA+Fut+Cond+X+3PlO
 _ X _ 4Sg/PlO	${lemma}+V+TA+Ind+X+4Sg/PlO	PV/e+${lemma}+V+TA+Cnj+X+4Sg/PlO	PV/ki+${lemma}+V+TA+Ind+X+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+X+4Sg/PlO	PV/wi+${lemma}+V+TA+Ind+X+4Sg/PlO	PV/e+PV/wi+${lemma}+V+TA+Cnj+X+4Sg/PlO	PV/ka+${lemma}+V+TA+Ind+X+4Sg/PlO	PV/ka+${lemma}+V+TA+Cnj+X+4Sg/PlO	PV/ta+${lemma}+V+TA+Cnj+X+4Sg/PlO	${lemma}+V+TA+Fut+Cond+X+4Sg/PlO
 										
-	# Imp # Imm	# Imp # Del								
+	* Imp * Imm	* Imp * Del								
 	| 2Sg	| 2Sg								
 _ 2Sg _ 1SgO	${lemma}+V+TA+Imp+Imm+2Sg+1SgO	${lemma}+V+TA+Imp+Del+2Sg+1SgO								
 _ 2Sg _ 1PlO	${lemma}+V+TA+Imp+Imm+2Sg+1PlO	${lemma}+V+TA+Imp+Del+2Sg+1PlO								

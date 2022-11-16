@@ -1,13 +1,13 @@
-	# Core		
+	* Core		
 	| Poss		
 _ Px1Sg	${lemma}+N+I+D+Px1Sg+Sg		
 _ Px2Sg	${lemma}+N+I+D+Px2Sg+Sg		
 _ Px3Sg	${lemma}+N+I+D+Px3Sg+Sg		
 			
-	# Der/Dim		
+	* Der/Dim		
 _ Sg	${lemma}+N+I+D+Der/Dim+N+I+D+Sg		
 			
-	# Poss # Sg	# Poss # Pl	# Poss # Loc
+	* Poss * Sg	* Poss * Pl	* Poss * Loc
 _ Px1Sg	${lemma}+N+I+D+Px1Sg+Sg	${lemma}+N+I+D+Px1Sg+Pl	${lemma}+N+I+D+Px1Sg+Loc
 _ Px2Sg	${lemma}+N+I+D+Px2Sg+Sg	${lemma}+N+I+D+Px2Sg+Pl	${lemma}+N+I+D+Px2Sg+Loc
 _ Px3Sg	--	--	${lemma}+N+I+D+Px3Sg+Loc
