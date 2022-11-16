@@ -1,0 +1,266 @@
+# AI										
+	| Core									
+	| Ind									
+_ 1Sg	${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	${lemma}+V+AI+Ind+3Sg									
+	| Cnj									
+_ 1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg									
+	| Imp									
+_ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg									
+										
+	| Prs | Ind	| Prs | Cnj	| Prt | Ind	| Prt | Cnj	| Fut+Int | Ind	| Fut+Int | Cnj	| Fut+Def | Ind	| Inf | PV/ka	| Inf | PV/ta	| Fut | Cond
+_ 1Sg	${lemma}+V+AI+Ind+1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg	PV/ki+${lemma}+V+AI+Ind+1Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Sg	PV/wi+${lemma}+V+AI+Ind+1Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Sg	PV/ka+${lemma}+V+AI+Ind+1Sg	PV/ka+${lemma}+V+AI+Cnj+1Sg	PV/ta+${lemma}+V+AI+Cnj+1Sg	${lemma}+V+AI+Fut+Cond+1Sg
+_ 2Sg	${lemma}+V+AI+Ind+2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg	PV/ki+${lemma}+V+AI+Ind+2Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Sg	PV/wi+${lemma}+V+AI+Ind+2Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Sg	PV/ka+${lemma}+V+AI+Ind+2Sg	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg	${lemma}+V+AI+Fut+Cond+2Sg
+_ 3Sg	${lemma}+V+AI+Ind+3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg	PV/ki+${lemma}+V+AI+Ind+3Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Sg	PV/wi+${lemma}+V+AI+Ind+3Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Sg	PV/ka+${lemma}+V+AI+Ind+3Sg	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg	${lemma}+V+AI+Fut+Cond+3Sg
+_ 1Pl	${lemma}+V+AI+Ind+1Pl	PV/e+${lemma}+V+AI+Cnj+1Pl	PV/ki+${lemma}+V+AI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl	PV/wi+${lemma}+V+AI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl	PV/ka+${lemma}+V+AI+Ind+1Pl	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl	${lemma}+V+AI+Fut+Cond+1Pl
+_ 12Pl	${lemma}+V+AI+Ind+12Pl	PV/e+${lemma}+V+AI+Cnj+12Pl	PV/ki+${lemma}+V+AI+Ind+12Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+12Pl	PV/wi+${lemma}+V+AI+Ind+12Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+12Pl	PV/ka+${lemma}+V+AI+Ind+12Pl	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl	${lemma}+V+AI+Fut+Cond+12Pl
+_ 2Pl	${lemma}+V+AI+Ind+2Pl	PV/e+${lemma}+V+AI+Cnj+2Pl	PV/ki+${lemma}+V+AI+Ind+2Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Pl	PV/wi+${lemma}+V+AI+Ind+2Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Pl	PV/ka+${lemma}+V+AI+Ind+2Pl	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl	${lemma}+V+AI+Fut+Cond+2Pl
+_ 3Pl	${lemma}+V+AI+Ind+3Pl	PV/e+${lemma}+V+AI+Cnj+3Pl	PV/ki+${lemma}+V+AI+Ind+3Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Pl	PV/wi+${lemma}+V+AI+Ind+3Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Pl	PV/ka+${lemma}+V+AI+Ind+3Pl	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl	${lemma}+V+AI+Fut+Cond+3Pl
+_ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ki+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+4Sg/Pl	PV/wi+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl	${lemma}+V+AI+Fut+Cond+4Sg/Pl
+_ X	${lemma}+V+AI+Ind+X	PV/e+${lemma}+V+AI+Cnj+X	PV/ki+${lemma}+V+AI+Ind+X	PV/e+PV/ki+${lemma}+V+AI+Cnj+X	PV/wi+${lemma}+V+AI+Ind+X	PV/e+PV/wi+${lemma}+V+AI+Cnj+X	PV/ka+${lemma}+V+AI+Ind+X	PV/ka+${lemma}+V+AI+Cnj+X	PV/ta+${lemma}+V+AI+Cnj+X	${lemma}+V+AI+Fut+Cond+X
+										
+	| Imp | Imm	| Imp | Del								
+_ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg	${lemma}+V+AI+Imp+Del+2Sg								
+_ 12Pl	${lemma}+V+AI+Imp+Imm+12Pl	${lemma}+V+AI+Imp+Del+12Pl								
+_ 2Pl	${lemma}+V+AI+Imp+Imm+2Pl	${lemma}+V+AI+Imp+Del+2Pl								
+										
+	Single-column presentation									
+										
+	* Prs * Ind									
+_ 1Sg	${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	${lemma}+V+AI+Ind+3Sg									
+_ 1Pl	${lemma}+V+AI+Ind+1Pl									
+_ 12Pl	${lemma}+V+AI+Ind+12Pl									
+_ 2Pl	${lemma}+V+AI+Ind+2Pl									
+_ 3Pl	${lemma}+V+AI+Ind+3Pl									
+_ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl									
+_ X	${lemma}+V+AI+Ind+X									
+										
+	* Prs * Cnj									
+_ 1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg									
+_ 1Pl	PV/e+${lemma}+V+AI+Cnj+1Pl									
+_ 12Pl	PV/e+${lemma}+V+AI+Cnj+12Pl									
+_ 2Pl	PV/e+${lemma}+V+AI+Cnj+2Pl									
+_ 3Pl	PV/e+${lemma}+V+AI+Cnj+3Pl									
+_ 4Sg/Pl	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl									
+_ X	PV/e+${lemma}+V+AI+Cnj+X									
+										
+	* Prt * Ind									
+_ 1Sg	PV/ki+${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	PV/ki+${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	PV/ki+${lemma}+V+AI+Ind+3Sg									
+_ 1Pl	PV/ki+${lemma}+V+AI+Ind+1Pl									
+_ 12Pl	PV/ki+${lemma}+V+AI+Ind+12Pl									
+_ 2Pl	PV/ki+${lemma}+V+AI+Ind+2Pl									
+_ 3Pl	PV/ki+${lemma}+V+AI+Ind+3Pl									
+_ 4Sg/Pl	PV/ki+${lemma}+V+AI+Ind+4Sg/Pl									
+_ X	PV/ki+${lemma}+V+AI+Ind+X									
+										
+	| Prt | Cnj									
+_ 1Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Sg									
+_ 1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl									
+_ 12Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+12Pl									
+_ 2Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Pl									
+_ 3Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Pl									
+_ 4Sg/Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+4Sg/Pl									
+_ X	PV/e+PV/ki+${lemma}+V+AI+Cnj+X									
+										
+	* Fut+Int * Ind									
+_ 1Sg	PV/wi+${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	PV/wi+${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	PV/wi+${lemma}+V+AI+Ind+3Sg									
+_ 1Pl	PV/wi+${lemma}+V+AI+Ind+1Pl									
+_ 12Pl	PV/wi+${lemma}+V+AI+Ind+12Pl									
+_ 2Pl	PV/wi+${lemma}+V+AI+Ind+2Pl									
+_ 3Pl	PV/wi+${lemma}+V+AI+Ind+3Pl									
+_ 4Sg/Pl	PV/wi+${lemma}+V+AI+Ind+4Sg/Pl									
+_ X	PV/wi+${lemma}+V+AI+Ind+X									
+										
+	* Fut+Int * Cnj									
+_ 1Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Sg									
+_ 1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl									
+_ 12Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+12Pl									
+_ 2Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Pl									
+_ 3Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Pl									
+_ 4Sg/Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+4Sg/Pl									
+_ X	PV/e+PV/wi+${lemma}+V+AI+Cnj+X									
+										
+´	* Fut+Def * Ind									
+_ 1Sg	PV/ka+${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	PV/ka+${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	PV/ka+${lemma}+V+AI+Ind+3Sg									
+_ 1Pl	PV/ka+${lemma}+V+AI+Ind+1Pl									
+_ 12Pl	PV/ka+${lemma}+V+AI+Ind+12Pl									
+_ 2Pl	PV/ka+${lemma}+V+AI+Ind+2Pl									
+_ 3Pl	PV/ka+${lemma}+V+AI+Ind+3Pl									
+_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl									
+_ X	PV/ka+${lemma}+V+AI+Ind+X									
+										
+	* Inf * PV/ka									
+_ 1Sg	PV/ka+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/ka+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/ka+${lemma}+V+AI+Cnj+3Sg									
+_ 1Pl	PV/ka+${lemma}+V+AI+Cnj+1Pl									
+_ 12Pl	PV/ka+${lemma}+V+AI+Cnj+12Pl									
+_ 2Pl	PV/ka+${lemma}+V+AI+Cnj+2Pl									
+_ 3Pl	PV/ka+${lemma}+V+AI+Cnj+3Pl									
+_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl									
+_ X	PV/ka+${lemma}+V+AI+Cnj+X									
+										
+	* Inf * PV/ta									
+_ 1Sg	PV/ta+${lemma}+V+AI+Cnj+1Sg									
+_ 2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg									
+_ 3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg									
+_ 1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl									
+_ 12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl									
+_ 2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl									
+_ 3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl									
+_ 4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl									
+_ X	PV/ta+${lemma}+V+AI+Cnj+X									
+										
+	* Fut * Cond									
+_ 1Sg	${lemma}+V+AI+Fut+Cond+1Sg									
+_ 2Sg	${lemma}+V+AI+Fut+Cond+2Sg									
+_ 3Sg	${lemma}+V+AI+Fut+Cond+3Sg									
+_ 1Pl	${lemma}+V+AI+Fut+Cond+1Pl									
+_ 12Pl	${lemma}+V+AI+Fut+Cond+12Pl									
+_ 2Pl	${lemma}+V+AI+Fut+Cond+2Pl									
+_ 3Pl	${lemma}+V+AI+Fut+Cond+3Pl									
+_ 4Sg/Pl	${lemma}+V+AI+Fut+Cond+4Sg/Pl									
+_ X	${lemma}+V+AI+Fut+Cond+X									
+										
+	* Imp * Imm									
+_ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg									
+_ 12Pl	${lemma}+V+AI+Imp+Imm+12Pl									
+_ 2Pl	${lemma}+V+AI+Imp+Imm+2Pl									
+										
+	* Imp * Del									
+_ 2Sg	${lemma}+V+AI+Imp+Del+2Sg									
+_ 12Pl	${lemma}+V+AI+Imp+Del+12Pl									
+_ 2Pl	${lemma}+V+AI+Imp+Del+2Pl									
+										
+# 2-column presentation										
+										
+	* Prs 									
+	| Ind	| Cnj								
+_ 1Sg	${lemma}+V+AI+Ind+1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg								
+_ 2Sg	${lemma}+V+AI+Ind+2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg								
+_ 3Sg	${lemma}+V+AI+Ind+3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg								
+_ 1Pl	${lemma}+V+AI+Ind+1Pl	PV/e+${lemma}+V+AI+Cnj+1Pl								
+_ 12Pl	${lemma}+V+AI+Ind+12Pl	PV/e+${lemma}+V+AI+Cnj+12Pl								
+_ 2Pl	${lemma}+V+AI+Ind+2Pl	PV/e+${lemma}+V+AI+Cnj+2Pl								
+_ 3Pl	${lemma}+V+AI+Ind+3Pl	PV/e+${lemma}+V+AI+Cnj+3Pl								
+_ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl								
+_ X	${lemma}+V+AI+Ind+X	PV/e+${lemma}+V+AI+Cnj+X								
+										
+	* Prt 	 								
+	| Ind	| Cnj								
+_ 1Sg	PV/ki+${lemma}+V+AI+Ind+1Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Sg								
+_ 2Sg	PV/ki+${lemma}+V+AI+Ind+2Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Sg								
+_ 3Sg	PV/ki+${lemma}+V+AI+Ind+3Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Sg								
+_ 1Pl	PV/ki+${lemma}+V+AI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl								
+_ 12Pl	PV/ki+${lemma}+V+AI+Ind+12Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+12Pl								
+_ 2Pl	PV/ki+${lemma}+V+AI+Ind+2Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Pl								
+_ 3Pl	PV/ki+${lemma}+V+AI+Ind+3Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Pl								
+_ 4Sg/Pl	PV/ki+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+4Sg/Pl								
+_ X	PV/ki+${lemma}+V+AI+Ind+X	PV/e+PV/ki+${lemma}+V+AI+Cnj+X								
+										
+	* Fut+Int 									
+	| Ind	| Cnj								
+_ 1Sg	PV/wi+${lemma}+V+AI+Ind+1Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Sg								
+_ 2Sg	PV/wi+${lemma}+V+AI+Ind+2Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Sg								
+_ 3Sg	PV/wi+${lemma}+V+AI+Ind+3Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Sg								
+_ 1Pl	PV/wi+${lemma}+V+AI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl								
+_ 12Pl	PV/wi+${lemma}+V+AI+Ind+12Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+12Pl								
+_ 2Pl	PV/wi+${lemma}+V+AI+Ind+2Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Pl								
+_ 3Pl	PV/wi+${lemma}+V+AI+Ind+3Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Pl								
+_ 4Sg/Pl	PV/wi+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+4Sg/Pl								
+_ X	PV/wi+${lemma}+V+AI+Ind+X	PV/e+PV/wi+${lemma}+V+AI+Cnj+X								
+										
+	* Fut+Def * Ind									
+_ 1Sg	PV/ka+${lemma}+V+AI+Ind+1Sg									
+_ 2Sg	PV/ka+${lemma}+V+AI+Ind+2Sg									
+_ 3Sg	PV/ka+${lemma}+V+AI+Ind+3Sg									
+_ 1Pl	PV/ka+${lemma}+V+AI+Ind+1Pl									
+_ 12Pl	PV/ka+${lemma}+V+AI+Ind+12Pl									
+_ 2Pl	PV/ka+${lemma}+V+AI+Ind+2Pl									
+_ 3Pl	PV/ka+${lemma}+V+AI+Ind+3Pl									
+_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl									
+_ X	PV/ka+${lemma}+V+AI+Ind+X									
+										
+	* Inf 									
+	| PV/ka	| PV/ta								
+_ 1Sg	PV/ka+${lemma}+V+AI+Cnj+1Sg	PV/ta+${lemma}+V+AI+Cnj+1Sg								
+_ 2Sg	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg								
+_ 3Sg	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg								
+_ 1Pl	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl								
+_ 12Pl	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl								
+_ 2Pl	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl								
+_ 3Pl	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl								
+_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl								
+_ X	PV/ka+${lemma}+V+AI+Cnj+X	PV/ta+${lemma}+V+AI+Cnj+X								
+										
+	* Fut * Cond									
+_ 1Sg	${lemma}+V+AI+Fut+Cond+1Sg									
+_ 2Sg	${lemma}+V+AI+Fut+Cond+2Sg									
+_ 3Sg	${lemma}+V+AI+Fut+Cond+3Sg									
+_ 1Pl	${lemma}+V+AI+Fut+Cond+1Pl									
+_ 12Pl	${lemma}+V+AI+Fut+Cond+12Pl									
+_ 2Pl	${lemma}+V+AI+Fut+Cond+2Pl									
+_ 3Pl	${lemma}+V+AI+Fut+Cond+3Pl									
+_ 4Sg/Pl	${lemma}+V+AI+Fut+Cond+4Sg/Pl									
+_ X	${lemma}+V+AI+Fut+Cond+X									
+										
+	* Imp 									
+	| Imm	| Del								
+_ 2Sg	${lemma}+V+AI+Imp+Imm+2Sg	${lemma}+V+AI+Imp+Del+2Sg								
+_ 12Pl	${lemma}+V+AI+Imp+Imm+12Pl	${lemma}+V+AI+Imp+Del+12Pl								
+_ 2Pl	${lemma}+V+AI+Imp+Imm+2Pl	${lemma}+V+AI+Imp+Del+2Pl								
+										
+	4-column presentation									
+										
+	* Prs 			* Prt 	 					
+	| Ind	| Cnj		| Ind	| Cnj					
+_ 1Sg	${lemma}+V+AI+Ind+1Sg	PV/e+${lemma}+V+AI+Cnj+1Sg	_ 1Sg	PV/ki+${lemma}+V+AI+Ind+1Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Sg					
+_ 2Sg	${lemma}+V+AI+Ind+2Sg	PV/e+${lemma}+V+AI+Cnj+2Sg	_ 2Sg	PV/ki+${lemma}+V+AI+Ind+2Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Sg					
+_ 3Sg	${lemma}+V+AI+Ind+3Sg	PV/e+${lemma}+V+AI+Cnj+3Sg	_ 3Sg	PV/ki+${lemma}+V+AI+Ind+3Sg	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Sg					
+_ 1Pl	${lemma}+V+AI+Ind+1Pl	PV/e+${lemma}+V+AI+Cnj+1Pl	_ 1Pl	PV/ki+${lemma}+V+AI+Ind+1Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+1Pl					
+_ 12Pl	${lemma}+V+AI+Ind+12Pl	PV/e+${lemma}+V+AI+Cnj+12Pl	_ 12Pl	PV/ki+${lemma}+V+AI+Ind+12Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+12Pl					
+_ 2Pl	${lemma}+V+AI+Ind+2Pl	PV/e+${lemma}+V+AI+Cnj+2Pl	_ 2Pl	PV/ki+${lemma}+V+AI+Ind+2Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+2Pl					
+_ 3Pl	${lemma}+V+AI+Ind+3Pl	PV/e+${lemma}+V+AI+Cnj+3Pl	_ 3Pl	PV/ki+${lemma}+V+AI+Ind+3Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+3Pl					
+_ 4Sg/Pl	${lemma}+V+AI+Ind+4Sg/Pl	PV/e+${lemma}+V+AI+Cnj+4Sg/Pl	_ 4Sg/Pl	PV/ki+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/ki+${lemma}+V+AI+Cnj+4Sg/Pl					
+_ X	${lemma}+V+AI+Ind+X	PV/e+${lemma}+V+AI+Cnj+X	_ X	PV/ki+${lemma}+V+AI+Ind+X	PV/e+PV/ki+${lemma}+V+AI+Cnj+X					
+										
+	* Fut+Int 									
+	| Ind	| Cnj		* Fut+Def * Ind						
+_ 1Sg	PV/wi+${lemma}+V+AI+Ind+1Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Sg	_ 1Sg	PV/ka+${lemma}+V+AI+Ind+1Sg						
+_ 2Sg	PV/wi+${lemma}+V+AI+Ind+2Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Sg	_ 2Sg	PV/ka+${lemma}+V+AI+Ind+2Sg						
+_ 3Sg	PV/wi+${lemma}+V+AI+Ind+3Sg	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Sg	_ 3Sg	PV/ka+${lemma}+V+AI+Ind+3Sg						
+_ 1Pl	PV/wi+${lemma}+V+AI+Ind+1Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+1Pl	_ 1Pl	PV/ka+${lemma}+V+AI+Ind+1Pl						
+_ 12Pl	PV/wi+${lemma}+V+AI+Ind+12Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+12Pl	_ 12Pl	PV/ka+${lemma}+V+AI+Ind+12Pl						
+_ 2Pl	PV/wi+${lemma}+V+AI+Ind+2Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+2Pl	_ 2Pl	PV/ka+${lemma}+V+AI+Ind+2Pl						
+_ 3Pl	PV/wi+${lemma}+V+AI+Ind+3Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+3Pl	_ 3Pl	PV/ka+${lemma}+V+AI+Ind+3Pl						
+_ 4Sg/Pl	PV/wi+${lemma}+V+AI+Ind+4Sg/Pl	PV/e+PV/wi+${lemma}+V+AI+Cnj+4Sg/Pl	_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Ind+4Sg/Pl						
+_ X	PV/wi+${lemma}+V+AI+Ind+X	PV/e+PV/wi+${lemma}+V+AI+Cnj+X	_ X	PV/ka+${lemma}+V+AI+Ind+X						
+										
+	* Inf 									
+	| PV/ka	| PV/ta		* Fut * Cond						
+_ 1Sg	PV/ka+${lemma}+V+AI+Cnj+1Sg	PV/ta+${lemma}+V+AI+Cnj+1Sg	_ 1Sg	${lemma}+V+AI+Fut+Cond+1Sg						
+_ 2Sg	PV/ka+${lemma}+V+AI+Cnj+2Sg	PV/ta+${lemma}+V+AI+Cnj+2Sg	_ 2Sg	${lemma}+V+AI+Fut+Cond+2Sg						
+_ 3Sg	PV/ka+${lemma}+V+AI+Cnj+3Sg	PV/ta+${lemma}+V+AI+Cnj+3Sg	_ 3Sg	${lemma}+V+AI+Fut+Cond+3Sg						
+_ 1Pl	PV/ka+${lemma}+V+AI+Cnj+1Pl	PV/ta+${lemma}+V+AI+Cnj+1Pl	_ 1Pl	${lemma}+V+AI+Fut+Cond+1Pl						
+_ 12Pl	PV/ka+${lemma}+V+AI+Cnj+12Pl	PV/ta+${lemma}+V+AI+Cnj+12Pl	_ 12Pl	${lemma}+V+AI+Fut+Cond+12Pl						
+_ 2Pl	PV/ka+${lemma}+V+AI+Cnj+2Pl	PV/ta+${lemma}+V+AI+Cnj+2Pl	_ 2Pl	${lemma}+V+AI+Fut+Cond+2Pl						
+_ 3Pl	PV/ka+${lemma}+V+AI+Cnj+3Pl	PV/ta+${lemma}+V+AI+Cnj+3Pl	_ 3Pl	${lemma}+V+AI+Fut+Cond+3Pl						
+_ 4Sg/Pl	PV/ka+${lemma}+V+AI+Cnj+4Sg/Pl	PV/ta+${lemma}+V+AI+Cnj+4Sg/Pl	_ 4Sg/Pl	${lemma}+V+AI+Fut+Cond+4Sg/Pl						
+_ X	PV/ka+${lemma}+V+AI+Cnj+X	PV/ta+${lemma}+V+AI+Cnj+X	_ X	${lemma}+V+AI+Fut+Cond+X						
