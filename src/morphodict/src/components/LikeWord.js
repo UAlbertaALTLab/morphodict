@@ -13,7 +13,7 @@ import { Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 
 function getDisplayIc(ic) {
   try {
-    return ic["linguist_info"]["inflectional_category"];
+    return ic["inflectional_category"];
   } catch (TypeError) {
     return ic;
   }
@@ -24,8 +24,9 @@ const LikeWord = (props) => {
   let emoticon = props.emoticon;
   const wordInformation = props.hoverInfo;
   const ic = props.ic;
-  console.log("IC", ic);
-  const displayIc = getDisplayIc();
+  console.log("like word", likeWord);
+  const displayIc = ic["inflectional_category"];
+  console.log("DISPLAY IC", ic);
 
   let settings = JSON.parse(window.localStorage.getItem("settings"));
   if (emoticon && emoticon.includes("🧑🏽")) {
@@ -33,7 +34,7 @@ const LikeWord = (props) => {
   }
   const showIc = settings.showIC;
   const showEmoji = settings.showEmoji;
-  if (!showEmoji) { emoticon = ""; } else { emoticon = emoticon + " - "}
+  if (showEmoji === false) { emoticon = ""; } else { emoticon = emoticon + " - "}
 
 
   //Don't exactly understand the whole emoticon thing.
@@ -44,7 +45,7 @@ const LikeWord = (props) => {
       variant="btn bg-white rounded shadow-none text-decoration-underline"
       onClick={() => navigator.clipboard.writeText(wordInformation)}
     >
-      {showIc === true ? (<>{displayIc} - {emoticon} {likeWord}</>) : (<>{emoticon} {likeWord}</>) }
+      {showIc === false ? (<>{emoticon} {likeWord}</>) : (<>{displayIc} - {emoticon} {likeWord}</>) }
     </Button>
   );
 

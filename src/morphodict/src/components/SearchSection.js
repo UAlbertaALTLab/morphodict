@@ -29,6 +29,20 @@ function getInflectionalCategory(wordInformation) {
     }
 }
 
+function getInflectionalCategoryPlainEnglish(wordInformation) {
+    try {
+        return wordInformation["lemma_wordform"]["inflectional_category_linguistic"] +
+            " (" +
+            wordInformation["lemma_wordform"]["inflectional_category_plain_english"] +
+            ")";
+    } catch (TypeError) {
+        return wordInformation["inflectional_category_linguistic"] +
+            " (" +
+            wordInformation["inflectional_category_plain_english"] +
+            ")";
+    }
+}
+
 const SearchSection = (props) => {
     //Information BTN tooltip(Here is where the info is to be typed out)
     const getStem = () => {
@@ -49,7 +63,7 @@ const SearchSection = (props) => {
         <Tooltip data-cy="infoButtonInfo" id="button-tooltip" {...props}>
             {getStem()}
             <br/>
-            {information}
+            {information.map((item, i) => (<li>{item}</li>))}
         </Tooltip>
     );
 
@@ -81,6 +95,14 @@ const SearchSection = (props) => {
         return wordInformation;
     }
 
+    const getInformation = () => {
+        if (wordInformation["friendly_linguistic_breakdown_tail"]) {
+            return wordInformation["friendly_linguistic_breakdown_tail"];
+        } else {
+            return props.information;
+        }
+    }
+
     let dictionary_index = function (type) {
         try {
             return citationChoices[type[0]]
@@ -98,8 +120,9 @@ const SearchSection = (props) => {
 
     const citationChoices = {"CW": wolvengrey, "MD": maskwacis, "AECD": aecd, "TVPD": tvpd}
 
-    let information = wordInformation["friendly_linguistic_breakdown_tail"];
+    let information = getInformation(wordInformation);
     const inflectionalCategory = getInflectionalCategory(wordInformation); // This is passed into LikeWord
+    const inflectionalCategoryPlainEnglish = getInflectionalCategoryPlainEnglish(wordInformation); // This is passed into LikeWord
 
     const getLemmaWordform = () => {
         try {
@@ -149,10 +172,10 @@ const SearchSection = (props) => {
     }
 
     console.log("DISP WORD", displayWord());
-    console.log(wordInformation);
+    console.log("word info", wordInformation);
     const getEmoticon = () => {
         try {
-            return wordInformation["wordclass_emoji"];
+            return wordInformation["lemma_wordform"]["wordclass_emoji"];
         } catch (TypeError) {
             try {
                 return props.emoticon;
@@ -175,9 +198,9 @@ const SearchSection = (props) => {
     }
 
     const getIc = () => {
-        try {
+        if (wordInformation["lemma_wordform"]) {
             return wordInformation["lemma_wordform"];
-        } catch (TypeError) {
+        } else {
             return wordInformation;
         }
     }
@@ -236,7 +259,7 @@ const SearchSection = (props) => {
             {inflectionalCategory ? (
                 <LikeWord
                     likeWord={
-                        inflectionalCategory
+                        inflectionalCategoryPlainEnglish
                     }
                     emoticon={emoticon}
                     hoverInfo={inflectionalCategory}
@@ -263,6 +286,23 @@ const SearchSection = (props) => {
                 </ul>
                 :
                 <div>
+                    <ul className="list-group text-center">
+                    {wordsDefs.map((item, i) => (
+                        <li className="list-group-item " data-cy="definitionText" key={i}>
+                            {i + 1}. {item["text"]} &nbsp; {item.source_ids.map((i, index) => (
+                            <OverlayTrigger
+                                placement="bottom"
+                                delay={{show: 250, hide: 400}}
+                                overlay={<Tooltip id="button-tooltip-dicts" {...props} key={index + ""}>
+                                    {citationChoices[i]}
+                                </Tooltip>}
+                            >
+                                <span>{i}&nbsp;</span>
+                            </OverlayTrigger>))}
+                            {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
+                        </li>
+                    ))}
+                </ul>
                     <p><i>Form of:</i></p>
                     <SearchSection
                         key={props.index + 0.5}
@@ -271,6 +311,7 @@ const SearchSection = (props) => {
                         type={props.type}
                         emoji={getEmoticon()}
                         slug={getSlug()}
+                        information={getInformation()}
                     ></SearchSection>
                 </div>
             }
