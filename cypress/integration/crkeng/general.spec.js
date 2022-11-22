@@ -44,12 +44,12 @@ context("General", function () {
       cy.visit("/");
 
       cy.get("[data-cy=long-word-example]").should("contain", word).click();
-      cy.wait(1000);
+      cy.wait(5000);
 
       // we should be on a new page.
       cy.url().should("contain", "/search");
 
-      cy.get("[data-cy=search-results]").should("contain", word);
+      cy.get("[data-cy=lemmaLink]").should("contain", word);
     });
   });
 });

@@ -17,11 +17,20 @@ import { useQuery } from "react-query";
 import { useEffect } from "react";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
+function replaceSpecials(query) {
+  let result = query.replace(/%C3%A2/g, 'â')
+  result = result.replace(/%C3%AE/g, 'î')
+  result = result.replace(/%C3%AA/g, 'ê')
+  result = result.replace(/%C3%B4/g, 'ô')
+  return result
+}
+
 function SearchResult(props) {
   const port = process.env.REACT_APP_PORT_NUMBER
+  const query = window.location.href.toString().split("q=")[1];
+  console.log("QUERY", query);
   async function getAllData() {
     await delay(1000);
-    let query = window.location.href.split("q=")[1];
     if (query === "") {
       return [];
     }
@@ -147,8 +156,7 @@ function SearchResult(props) {
         <>
           <Alert variant="danger">
             <Alert.Heading>
-              No results found for &lt;&lt;{" "}
-              {window.location.href.split("q=")[1]} &gt;&gt;
+              No results found for {replaceSpecials(query)}
             </Alert.Heading>
           </Alert>
         </>
@@ -170,7 +178,7 @@ function SearchResult(props) {
         ></Redirect>
       )}
 
-      <div className="container">
+      <div className="container" data-cy="all-search-results">
         {/* what happens if we get a result from the the db call*/}
         {!isFetching &&
           !error &&

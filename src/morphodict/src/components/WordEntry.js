@@ -114,7 +114,7 @@ function WordEntry(props) {
           <header className="definition__header">
             <Grid container direction="row">
               <Grid item>
-                <h1 id="head" className="definition-title">
+                <h1 id="head" className="definition-title" data-cy="definition-title">
                   <dfn className="definition__matched-head">
                     <data id="data:head" value="{{ lemma.text }}">
                       {displayText}
@@ -136,7 +136,7 @@ function WordEntry(props) {
               <select id="audio_select" onChange={audioChanged}>
               {recs}
             </select>
-            <button onClick={submittedAudio}>&#9655;</button> <a href={recordings[0].speaker_bio_url} id={"learnMoreLink"} target={"_blank"}>Learn more about the speaker...</a>
+            <button onClick={submittedAudio} data-cy="playRecording">&#9655;</button> <a href={recordings[0].speaker_bio_url} id={"learnMoreLink"} target={"_blank"}>Learn more about the speaker...</a>
             </section> ) : <></> }
 
           <section className="definition__meanings" data-cy="meanings">

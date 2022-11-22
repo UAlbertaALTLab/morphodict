@@ -61,6 +61,7 @@ function Paradigm(state) {
                     let row_resolved_inflection = row.cells[k];
 
                     if (!row.cells[k].is_missing) {
+                        console.log("ROW CELLS K", row.cells[k])
 
                         row_resolved_inflection.inflection = row.cells[k].inflection;
 
@@ -84,7 +85,7 @@ function Paradigm(state) {
     const pane_layouts = pane_columns.map((pane_column, i) => {
         counter += 1;
         return (
-            <div className="col-sm-12 col-md-6 col-lg-4" key={counter.toString() + '-' + i.toString()}>
+            <div data-cy="paradigm" className="col-sm-12 col-md-6 col-lg-4" key={counter.toString() + '-' + i.toString()}>
                 <div className="card">
                     <SingleColumnPane pane={pane_column} counter={counter} type={type}></SingleColumnPane>
                 </div>

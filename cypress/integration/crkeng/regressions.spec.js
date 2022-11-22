@@ -6,20 +6,20 @@ context("Regressions", () => {
    */
   it("should handle a non-ASCII letter in the URL properly", () => {
     cy.visitSearch("acâhkos");
-    cy.wait(1000);
+    cy.wait(6000);
 
-    cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').should("contain", "acâhkos");
+    cy.get("[data-cy='definitionTitle']").first().should("contain", "acâhkos");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/147
   it("should allow space characters in exact strings", () => {
     cy.visitSearch("acâhkos kâ-osôsit");
-    cy.wait(1000);
-    cy.get(':nth-child(1) > .container > :nth-child(1)').should("contain", "acâhkos kâ-osôsit");
+    cy.wait(3000);
+    cy.get("[data-cy='definitionTitle']").first().should("contain", "acâhkos kâ-osôsit");
 
     cy.visitSearch("acâhkosa kâ-otakohpit");
-    cy.wait(1000);
-    cy.get(':nth-child(1) > .container > :nth-child(1)').should(
+    cy.wait(3000);
+    cy.get("[data-cy='definitionTitle']").first().should(
       "contain",
       "acâhkosa kâ-otakohpit"
     );
@@ -28,96 +28,96 @@ context("Regressions", () => {
   // https://github.com/UAlbertaALTLab/morphodict/issues/147
   it("should allow space characters in spell-relaxed results", () => {
     cy.visitSearch("niki nitawi kiskinwahamakosin");
-    cy.wait(2000);
-    cy.get(':nth-child(1) > :nth-child(1) > .definition-title > .btn').should("contain", "nikî-nitawi-kiskinwahamâkosin");
+    cy.wait(5000);
+    cy.get("[data-cy='definitionTitle']").first().should("contain", "nikî-nitawi-kiskinwahamâkosin");
 
     cy.visitSearch("ka ki awasisiwiyan");
-    cy.wait(2500);
-    cy.get(':nth-child(1) > :nth-child(1) > .definition-title > .btn').should("contain", "ka-kî-awâsisîwiyan");
+    cy.wait(5000);
+    cy.get("[data-cy='definitionTitle']").first().should("contain", "ka-kî-awâsisîwiyan");
 
     cy.visitSearch("e nipat");
-    cy.wait(3000);
-    cy.get(':nth-child(1) > :nth-child(1) > .definition-title > .btn').should("contain", "ê-nipât");
+    cy.wait(30000);
+    cy.get("[data-cy='definitionTitle']").first().should("contain", "ê-nipât");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/158
   it("should display relevant English results", () => {
     cy.visitSearch("see");
-    cy.wait(3000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)')
+    cy.wait(10000);
+    cy.get('[data-cy=all-search-results]')
       .should("contain", "wâpiw")
       .and("contain", "wâpahtam")
       .and("contain", "wâpamêw");
 
     cy.visitSearch("eat");
-    cy.wait(3000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)')
+    cy.wait(10000);
+    cy.get('[data-cy=all-search-results]')
       .should("contain", "mîcisow")
       .and("contain", "mîciw")
       .and("contain", "mowêw");
 
     cy.visitSearch("sleep");
-    cy.wait(3000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "nipâw");
+    cy.wait(8000);
+    cy.get('[data-cy=all-search-results]').should("contain", "nipâw");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/161
   it("should show preverbs", () => {
     cy.visitSearch("ati");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "ati-");
+    cy.wait(4000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "ati-");
 
     cy.visitSearch("ati-");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "ati-");
+    cy.wait(4000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "ati-");
 
     cy.visitSearch("nitawi");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "nitawi-");
+    cy.wait(4000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "nitawi-");
 
     cy.visitSearch("pe");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "pê-");
+    cy.wait(4000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "pê-");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/160
   it("should show results for pronouns", () => {
     cy.visitSearch("oma");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "ôma");
+    cy.wait(8000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "ôma");
 
     cy.visitSearch("awa");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "awa");
+    cy.wait(8000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "awa");
 
     cy.visitSearch("niya");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "niya");
+    cy.wait(8000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "niya");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/176
   it("should show results for lexicalized diminutive forms", () => {
     cy.visitSearch("acâhkos");
-    cy.wait(2000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)').should("contain", "atâhk");
+    cy.wait(4000);
+    cy.get("[data-cy='definitionTitle']").should("contain", "atâhk");
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/176
   describe("should show at least two lemmas for lexicalized diminutive forms", () => {
     it("should show atâhk and acâhkos for acâhkos", () => {
       cy.visitSearch("acâhkos");
-      cy.wait(1000);
-      cy.get('.app__content > :nth-child(1) > :nth-child(1)')
+      cy.wait(3000);
+      cy.get('[data-cy=definitionTitle]')
         .should("contain", "atâhk")
         .and("contain", "acâhkos");
     });
   });
 
   // https://github.com/UAlbertaALTLab/morphodict/issues/181
-  it("should just show two meanings for the lemma nipâw", () => {
+  it("should just show three meanings for the lemma nipâw", () => {
     cy.visitSearch("nipâw");
-    cy.wait(1000);
-    cy.get('.app__content > :nth-child(1) > :nth-child(1)');
+    cy.wait(3000);
+    cy.get('[data-cy=definitionTitle]');
     // check for length of 3
     for (let i = 1; i < 4; i++) {
       cy.get(`:nth-child(1) > .list-group > :nth-child(${i})`).should("exist");
@@ -160,7 +160,9 @@ context("Regressions", () => {
   it("should show 3Sg→1Sg,2Sg rather than 4Sg/Pl→3Sg in the basic VTA layout", function () {
     // Go to a VTA word:
     cy.visitSearch("wâpamêw");
+    cy.wait(4000);
     cy.contains("a", "wâpamêw").click();
+    cy.wait(18000);
 
     // N.B.: This test will fail if the labels change. ¯\_(ツ)_/¯
     cy.contains("th", "s/he → him/her/them"); // 3Sg → 4Sg/PlO (lemma)
@@ -176,11 +178,13 @@ context("Regressions", () => {
    */
   it("should search from the about page", function () {
     cy.visit("/about");
+    cy.wait(3000);
 
     cy.search("acâhkos");
+    cy.wait(4000);
 
     cy.url().should("contain", "/search");
-    cy.get("[data-cy=definition-title]").should("contain", "atâhk");
+    cy.get("[data-cy=definitionTitle]").should("contain", "atâhk");
   });
 
   /**
@@ -190,10 +194,12 @@ context("Regressions", () => {
    */
   it("should present results when one searches with capitalized English names", function () {
     cy.visitSearch("Cree");
-    cy.get("[data-cy=search-results]").should("be.visible");
+    cy.wait(8000);
+    cy.get("[data-cy=searchResults]").should("be.visible");
 
     cy.visitSearch("Edmonton");
-    cy.get("[data-cy=search-results]").should("be.visible");
+    cy.wait(3000);
+    cy.get("[data-cy=searchResults]").should("be.visible");
   });
 
   /**
@@ -203,9 +209,10 @@ context("Regressions", () => {
    */
   it("should not present un-related translation for preverbs", function () {
     cy.visitSearch("nitawi-");
+    cy.wait(3000);
 
     // there should be only one result
-    cy.get("[data-cy=search-results]").first().should("contain", "go and");
+    cy.get("[data-cy=searchResults]").first().should("contain", "go and");
   });
 
   /**
@@ -215,9 +222,10 @@ context("Regressions", () => {
    */
   it("should not present un-related translation for preverbs", function () {
     cy.visitSearch("ê-kîsikâk");
+    cy.wait(4000);
 
     // there should be only one result
-    cy.get("[data-cy=search-results]").should("contain", "kîsikâw");
+    cy.get("[data-cy=searchResults]").should("contain", "kîsikâw");
   });
 
   /**
@@ -232,26 +240,32 @@ context("Regressions", () => {
     // the website didn't do anything
 
     cy.visitSearch("ayâw");
-    cy.get("[data-cy=lemma-link]")
+    cy.wait(3000);
+    cy.get("[data-cy=lemmaLink]")
       .its("length")
       .then((length) => {
         // each clickable link should show paradigm
         for (let i = 0; i < length; i++) {
           cy.visitSearch("ayâw");
+          cy.wait(3000);
           // .eq(n) selects the nth matched element
-          cy.get("[data-cy=lemma-link]").eq(i).click();
+          cy.get("[data-cy=lemmaLink]").eq(i).click();
+          cy.wait(15000);
           cy.get("[data-cy=paradigm]").should("be.visible");
         }
       })
       .then(() => {
         // repeat the same test with nôhtêpayiw
         cy.visitSearch("nôhtêpayiw");
-        cy.get("[data-cy=lemma-link]")
+        cy.wait(3000);
+        cy.get("[data-cy=lemmaLink]")
           .its("length")
           .then((length) => {
             for (let i = 0; i < length; i++) {
               cy.visitSearch("nôhtêpayiw");
-              cy.get("[data-cy=lemma-link]").eq(i).click();
+              cy.wait(3000);
+              cy.get("[data-cy=lemmaLink]").eq(i).click();
+              cy.wait(5000);
               cy.get("[data-cy=paradigm]").should("be.visible");
             }
           });
@@ -266,11 +280,13 @@ context("Regressions", () => {
   it("should show affix search results when the query has diacritics on it", function () {
     // test assumption: without vowel length, affix search works
     cy.visitSearch("niso-");
-    cy.get("[data-cy=search-results]").should("contain", "nîso-kîsikâw");
+    cy.wait(8000)
+    cy.get("[data-cy=searchResults]").should("contain", "nîso-kîsikâw");
 
     // Now if we add the vowel length, we should still get the result
     cy.visitSearch("nîso-");
-    cy.get("[data-cy=search-results]").should("contain", "nîso-kîsikâw");
+    cy.wait(8000);
+    cy.get("[data-cy=searchResults]").should("contain", "nîso-kîsikâw");
   });
 
   /**
@@ -278,7 +294,7 @@ context("Regressions", () => {
    *
    * See: https://github.com/UAlbertaALTLab/morphodict/issues/489
    */
-  context.skip("symbols also for pronouns and preverbs", function () {
+  context("symbols also for pronouns and preverbs", function () {
     // TODO: add emoji to represent ôma/awa words
     const testCases = [
       ["niya", "➡️", "like: awa"],
@@ -289,6 +305,7 @@ context("Regressions", () => {
     for (const [wordform, emoji, inflectsLike] of testCases) {
       it(`should have a symbol for ${wordform}`, function () {
         cy.visitSearch(wordform);
+        cy.wait(5000);
 
         cy.contains("[data-cy=elaboration]", inflectsLike).should(
           "contain",
@@ -313,43 +330,22 @@ context("Regressions", () => {
     for (const [englishName, creeName] of testCases) {
       it(`should have a definition for ${englishName}`, function () {
         cy.visitSearch(englishName.toLowerCase());
+        cy.wait(5000);
 
-        cy.contains("[data-cy=matched-wordform]", creeName);
+        cy.contains("[data-cy=lemmaLink]", creeName);
       });
     }
-  });
-
-  /**
-   * Ensure audio is playable after clicking "show more"
-   *
-   * See: https://github.com/UAlbertaALTLab/morphodict/issues/636
-   */
-
-  it("should show audio button after showing more", () => {
-    cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
-      fixture: "recording/bulk_search/minôs.json",
-    }).as("bulkSearch");
-
-    cy.visitLemma("minôs");
-    cy.wait("@bulkSearch");
-
-    cy.get("[data-cy=play-recording]").should("be.visible");
-
-    cy.get("[data-cy=paradigm-toggle-button").click();
-    cy.wait(4500); // needs time to load audio
-
-    cy.location("search").should("match", /paradigm-size=FULL/i);
-
-    cy.get("[data-cy=play-recording]").should("be.visible");
   });
 
   it("should remove the word detail pages when viewing details then going to search", () => {
     // Visit the details page of one entry:
     cy.visitLemma("kotiskâwêw");
+    cy.wait(6000);
     cy.contains(".definition-title", "kotiskâwêw");
 
     // Now, start searching for a completely DIFFERENT word
     cy.search("oskana");
+    cy.wait(3000);
     // It should not exist
     cy.contains(".definition-title", "kotiskâwêw").should("not.exist");
   });

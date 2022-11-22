@@ -1,3 +1,11 @@
+function getDisplayText(cell, settings, type) {
+    if (settings.morphemes_everywhere || settings.morphemes_paradigms) {
+        return cell.morphemes[type].join("·");
+    }
+
+    return cell.wordform_text[type];
+}
+
 function SingleColumnRow(props) {
     const cell_list = props.cells;
     const labelType = props.labelType;
@@ -51,10 +59,7 @@ function SingleColumnRow(props) {
             if (type === "Latn" && process.env.REACT_APP_ISO_CODE === "cwd") {
                 type = "Latn-x-macron"
               }
-            let displayText = cell.inflection[type];
-            if (settings.morphemes_everywhere || settings.morphemes_paradigms) {
-                displayText = cell.morphemes[type].join("/");
-            }
+            let displayText = getDisplayText(cell, settings, type);
             const class_name =
                 "paradigm-cell paradigm-cell--" +
                 (cell.observed ? "observed" : "unobserved");

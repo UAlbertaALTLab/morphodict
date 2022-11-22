@@ -1033,9 +1033,6 @@ a.menu-choice__label:active {
 .definition-title__play-icon,
 .speaker-playback-action-button {
   width: 100%;
-  height: var(--tooltip-icon-size);
-
-  overflow: hidden;
 }
 
 .elaboration__row {

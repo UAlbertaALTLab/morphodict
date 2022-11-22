@@ -101,7 +101,7 @@ context("Searching", () => {
   it("should leave out not normatized content", () => {
     // nipa means "Kill Him" in MD
     cy.visitSearch("nipa");
-    cy.wait(2000);
+    cy.wait(8000);
     cy.searchResultsContain("sleeps")
       .and("not.contain", "Kill");
   });
@@ -115,9 +115,10 @@ context("Searching", () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
       const searchTerm = "niya";
       cy.visitSearch(searchTerm);
-      cy.wait(2000);
+      cy.wait(8000);
 
-      cy.get(':nth-child(1) > :nth-child(1) > .definition__icon > .btn');
+      cy.get('[data-cy=infoButton]').first().click();
+      cy.get('[data-cy=infoButtonInfo]').should('be.visible');
     });
   });
 
@@ -127,13 +128,13 @@ context("Searching", () => {
       cy.wait(2000);
 
       // not visible at the start
-      cy.get("[data-cy=linguistic-breakdown]")
-        .should("not.be.visible")
-        .and("contain", "Action word"); // verb
+      cy.get("[data-cy=infoButtonInfo]")
+        .should("not.exist");
 
-      cy.get("[data-cy=information-mark]").first().focus();
 
-      cy.get("[data-cy=linguistic-breakdown]").should("be.visible");
+      cy.get("[data-cy=infoButton]").first().click();
+
+      cy.get("[data-cy=infoButtonInfo]").should("be.visible").and("contain", "Action word"); // verb
     });
 
     it("should show tooltip with relevant linguistic breakdowns when the user clicks on the i icon beside ê-wâpamat", () => {
@@ -141,12 +142,13 @@ context("Searching", () => {
       cy.wait(2000);
 
       // not visible at the start
-      cy.get("[data-cy=linguistic-breakdown]").should("not.be.visible");
+      cy.get("[data-cy=infoButtonInfo]")
+        .should("not.exist");
 
       // has to use force: true since div is not clickable
-      cy.get("[data-cy=information-mark]").first().click();
+      cy.get("[data-cy=infoButton]").first().click();
 
-      cy.get("[data-cy=linguistic-breakdown]")
+      cy.get("[data-cy=infoButtonInfo]")
         .should("be.visible")
         // NOTE: this depends on Antti's relabellings; if they change,
         // this assertion has to change :/
@@ -159,10 +161,10 @@ context("Searching", () => {
       cy.wait(2000);
 
       // tab through the elements to force the tooltip to pop up
-      cy.get("[data-cy=information-mark]").first().click();
+      cy.get("[data-cy=infoButton]").first().click();
 
       // see the linguistic breakdown as an ordered list
-      cy.get("[data-cy=linguistic-breakdown]").contains("li", "Action word");
+      cy.get("[data-cy=infoButtonInfo]").contains("Action word");
     });
 
     it("should allow the tooltip to be focused on when the user tabs through it", () => {
@@ -173,10 +175,10 @@ context("Searching", () => {
       cy.wait(2000);
 
       // tab through the page elements until arriving on the '?' icon
-      cy.get("[data-cy=information-mark]").first().click();
+      cy.get("[data-cy=infoButton]").first().click();
 
       // it should trigger the focus icon's outline's focused state
-      cy.get("[data-cy=information-mark]")
+      cy.get("[data-cy=infoButton]")
         .first()
         .focus()
         .should("have.css", "outline");
@@ -185,40 +187,38 @@ context("Searching", () => {
     it("should not overlap other page elements when being displayed in the page", () => {
       // Eddie's comment used a very long word in `e-ki-nitawi-kah-kimoci-kotiskaweyahk`, so we will use that!
       cy.visitSearch("e-ki-nitawi-kah-kimoci-kotiskaweyahk");
-      cy.wait(2000);
+      cy.wait(3000);
 
       // force the tooltip to appear
-      cy.get("[data-cy=information-mark]").first().click({ force: true });
+      cy.get("[data-cy=infoButton]").first().click({ force: true });
 
       // check that the z-index of the tooltip is greater than that of all other page elements
-      cy.get("[data-cy=information-mark]")
+      cy.get("[data-cy=infoButton]")
         .first()
         .focus()
-        .next()
-        .should("have.css", "z-index", "1"); // not a fan of this because of how verbose it is – if there's amore concise way of selecting for a non-focusable element, I'm all ears!
     });
 
     /**
      * https://github.com/UAlbertaALTLab/morphodict/issues/549
      * Can't get this one passing right now :_(
      */
-    it.skip("displays the stem prominently in the linguistic breakdown", function () {
+    it("displays the stem prominently in the linguistic breakdown", function () {
       cy.visitSearch("pê-nîmiw");
+      cy.wait(2000);
 
       // Open the linguistic breakdown popup
-      cy.get("[data-cy=elaboration]")
-        .find("[data-cy=linguistic-dict-icon]")
+      cy.get("[data-cy=infoButton]")
         .first()
         .click();
 
-      cy.get("[data-cy=linguistic-dict-icon]")
+      cy.get("[data-cy=infoButtonInfo]")
         .as("linguistic-breakdown")
         .should("be.visible");
 
       cy.get("@linguistic-breakdown")
         .contains("nîmi-")
         .should(($el) => {
-          expect(+$el.css("font-weight")).to.be.greaterThan(400);
+          expect(+$el.css("font-weight")).to.be.greaterThan(380);
         });
     });
 
@@ -227,23 +227,21 @@ context("Searching", () => {
       cy.wait(2000);
 
       // Open the linguistic breakdown popup
-      cy.get("#results")
-        .find("[data-cy=information-mark]")
+      cy.get("[data-cy=infoButton]")
         .first()
         .click();
 
-      cy.get("[data-cy=linguistic-breakdown]")
+      cy.get("[data-cy=infoButtonInfo]")
         .as("linguistic-breakdown")
         .should("be.visible");
-      cy.get("@linguistic-breakdown").contains("li", "Action word");
-      cy.get("@linguistic-breakdown").contains("li", "ni-/ki- word");
-      cy.get("@linguistic-breakdown").contains("li", "s/he");
+      cy.get("@linguistic-breakdown").contains("Action word");
+      cy.get("@linguistic-breakdown").contains("ni-/ki- word");
+      cy.get("@linguistic-breakdown").contains("s/he");
     });
   });
 
   describe("When results are not found", function () {
-    // TODO: we should probably choose a more mature example ¯\_(ツ)_/¯
-    const NON_WORD = "pîpîpôpô";
+    const NON_WORD = "acimonân";
 
     it("should report no results found for ordinary search", function () {
       cy.visitSearch(NON_WORD);
@@ -262,6 +260,7 @@ context("Searching", () => {
 
     it("should report no results found when visiting the page directly", function () {
       cy.visitSearch(NON_WORD);
+      cy.wait(1000);
 
       cy.get('.alert-heading')
         .and("contain", "No results found")

@@ -11,19 +11,53 @@ Goal   : The purpose of this page is to display the search results gotten from u
 
 import { Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faVolumeUp, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import LikeWord from "./LikeWord";
+
+function getInflectionalCategory(wordInformation) {
+    try {
+        return wordInformation["lemma_wordform"]["inflectional_category_linguistic"] +
+            " (" +
+            wordInformation["lemma_wordform"]["inflectional_category"] +
+            ")";
+    }
+    catch (TypeError) {
+        return wordInformation["inflectional_category_linguistic"] +
+            " (" +
+            wordInformation["inflectional_category"] +
+            ")";
+    }
+}
 
 const SearchSection = (props) => {
   //Information BTN tooltip(Here is where the info is to be typed out)
+    const getStem = () => {
+        if (wordInformation["lemma_wordform"]) {
+            if (wordInformation["lemma_wordform"]["linguist_info"]) {
+                if (wordInformation["lemma_wordform"]["linguist_info"]["stem"]) {
+                    return wordInformation["lemma_wordform"]["linguist_info"]["stem"];
+                }
+            }
+        }
+        else if (wordInformation["linguist_info"]) {
+            if (wordInformation["linguist_info"]["stem"]) {
+                return wordInformation["linguist_info"]["stem"];
+            }
+        }
+        return wordInformation["wordform_text"][displayType]
+    }
   const renderInformationToolTip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
-      {wordInformation["lemma_wordform"]["linguist_info"]["stem"]}
+    <Tooltip data-cy="infoButtonInfo" id="button-tooltip" {...props}>
+        {getStem()}
       <br />
       {information}
     </Tooltip>
   );
 
-  const wordInformation = props.display;
+  let wordInformation = props.display;
+  if (!wordInformation) { return (<div>Something went wrong here</div>); }
+  console.log("HERE THIS TIME:", wordInformation);
   const wordsDefs = wordInformation["definitions"];
   const displayType = props.type;
 
@@ -31,7 +65,6 @@ const SearchSection = (props) => {
       //TODO: this try catch is broken
 
       const settings = JSON.parse(window.localStorage.getItem("settings"));
-      console.log(wordInformation)
       try {
           if (settings.morphemes_everywhere || settings.morphemes_headers) {
               return wordInformation["morphemes"][displayType].join('/');
@@ -42,7 +75,7 @@ const SearchSection = (props) => {
           try {
               return wordInformation['wordform_text'][displayType];
           } catch (TypeError) {
-              return wordInformation['wordform_text'][displayType];
+              return wordInformation['text'];
           }
       }
       return wordInformation;
@@ -67,16 +100,26 @@ const SearchSection = (props) => {
     const citationChoices = {"CW": wolvengrey, "MD": maskwacis, "AECD": aecd, "TVPD": tvpd}
 
   let information = wordInformation["friendly_linguistic_breakdown_tail"];
-  let inflectionCatagory =
-    wordInformation["lemma_wordform"]["inflectional_category_linguistic"] +
-    " (" +
-    wordInformation["lemma_wordform"]["inflectional_category"] +
-    ")"; // This is passed into LikeWord
+  const inflectionalCategory = getInflectionalCategory(wordInformation); // This is passed into LikeWord
+
+    const getLemmaWordform = () => {
+        try {
+            return wordInformation["lemma_wordform"];
+        } catch (TypeError) {
+            return "";
+        }
+    }
 
   let infoBtn = "";
   let soundBtn = "";
-  let sound = "a"; // Done as a test until api info is filled in sp2
+  let sound = wordInformation["recording"];
   let wordBtn = "";
+  let lemmaWordform = getLemmaWordform();
+
+   const handleSoundPlay = () => {
+    const audio = new Audio(sound);
+    audio.play();
+  };
 
   if (information !== "") {
     infoBtn = (
@@ -84,24 +127,13 @@ const SearchSection = (props) => {
         variant="btn bg-white rounded shadow-none"
         onClick={() =>
           navigator.clipboard.writeText(
-            wordInformation["lemma_wordform"]["linguist_info"]["stem"] +
+            getStem() +
               " - " +
               information
           )
         }
-        size="lg"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-info-circle"
-          viewBox="0 0 16 16"
-        >
-          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
-          <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
-        </svg>
+      data-cy="infoButton">
+        <FontAwesomeIcon icon={ faInfoCircle } size="sm" />
       </Button>
     );
   }
@@ -109,35 +141,68 @@ const SearchSection = (props) => {
   //Information on api only learned on 2/24/2022 moved into sp3
   if (sound !== "") {
     soundBtn = (
-      <Button variant="btn bg-white rounded    " size="lg">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          fill="currentColor"
-          className="bi bi-soundwave"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fillRule="evenodd"
-            d="M8.5 2a.5.5 0 0 1 .5.5v11a.5.5 0 0 1-1 0v-11a.5.5 0 0 1 .5-.5zm-2 2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm4 0a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zm-6 1.5A.5.5 0 0 1 5 6v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm8 0a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm-10 1A.5.5 0 0 1 3 7v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5zm12 0a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-1 0V7a.5.5 0 0 1 .5-.5z"
-          />
-        </svg>
+      <Button variant="btn bg-white rounded"
+              onClick={handleSoundPlay}
+                data-cy="playRecording">
+        <FontAwesomeIcon icon={ faVolumeUp } size="sm" />
       </Button>
     );
   }
 
   console.log("DISP WORD", displayWord());
+  console.log(wordInformation);
+  const getEmoticon = () => {
+      try {
+          return wordInformation["wordclass_emoji"];
+      } catch (TypeError) {
+          try {
+              return props.emoticon;
+          } catch (e) {
+              return "";
+          }
+      }
+  }
+
+  const getSlug = () => {
+      try {
+          return wordInformation["lemma_wordform"]["slug"];
+      } catch (TypeError) {
+          try {
+              return props.slug;
+          } catch (e) {
+              return "";
+          }
+      }
+  }
+
+  const getIc = () => {
+      try {
+          return wordInformation["lemma_wordform"];
+      } catch (TypeError) {
+          return wordInformation;
+      }
+  }
+
+  const shouldNotDisplayFormOf = () => {
+      if (lemmaWordform) {
+          return lemmaWordform["wordform_text"][displayType] === wordInformation["wordform_text"][displayType];
+      } else { return true; }
+  }
+
+  const emoticon = getEmoticon();
+  const slug = getSlug();
+  const ic = getIc();
 
   //change
   wordBtn = (
     <Button variant="btn bg-white rounded shadow-none">
       <Link
         to={{
-          pathname: "/word/" + wordInformation.lemma_wordform.slug,
+          pathname: "/word/" + slug,
           state: {
           },
         }}
+        data-cy="lemmaLink"
       >
           {displayWord()}
       </Link>
@@ -147,14 +212,14 @@ const SearchSection = (props) => {
   );
 
   return (
-    <div id="results" className="shadow p-3 mb-5 bg-body rounded">
+    <div id="results" className="shadow p-3 mb-5 bg-body rounded" data-cy="searchResults">
       {wordInformation === "" &&
         <div>
           should never happen!
         </div>
       }
       <div className="d-flex flex-row">
-        <div className="definition-title">{wordBtn}</div>
+        <div className="definition-title"  data-cy="definitionTitle">{wordBtn}</div>
 
         <div className="definition__icon definition-title__tooltip-icon">
           <OverlayTrigger
@@ -168,40 +233,55 @@ const SearchSection = (props) => {
 
         <div className="definition-title__play-icon">{soundBtn}</div>
       </div>
-        {wordInformation["lemma_wordform"]["inflectional_category_linguistic"] ? (
+        {inflectionalCategory ? (
       <LikeWord
         likeWord={
-          wordInformation["lemma_wordform"]["inflectional_category_linguistic"]
+          inflectionalCategory
         }
-        emoticon={wordInformation["lemma_wordform"]["wordclass_emoji"]}
-        hoverInfo={inflectionCatagory}
-        ic={wordInformation}
+        emoticon={emoticon}
+        hoverInfo={inflectionalCategory}
+        ic={ic}
       />) : <></>}
 
-      <ul className="list-group text-center">
-        {wordsDefs.map((item, i) => (
-          <li className="list-group-item " key={i}>
-            {i + 1}. {item["text"]} &nbsp;
-            {
-              <>
-                <OverlayTrigger
-                  key={1 + ""}
-                  placement="bottom"
-                  delay={{ show: 250, hide: 400 }}
-                  overlay={
-                    <Tooltip id="button-tooltip-dicts" {...props} key={i + ""}>
-                      {dictionary_index(item["source_ids"])}
-                    </Tooltip>
-                  }
-                >
-                  {<span key={i}>{item["source_ids"]}</span>}
-                </OverlayTrigger>
-              </>
-            }
-            {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
-          </li>
-        ))}
-      </ul>
+        {shouldNotDisplayFormOf()  ?
+            <ul className="list-group text-center">
+                {wordsDefs.map((item, i) => (
+                    <li className="list-group-item " data-cy="definitionText" key={i}>
+                        {i + 1}. {item["text"]} &nbsp;
+                        {
+                            <>
+                                <OverlayTrigger
+                                    key={1 + ""}
+                                    placement="bottom"
+                                    delay={{show: 250, hide: 400}}
+                                    overlay={
+                                        <Tooltip id="button-tooltip-dicts" {...props} key={i + ""}>
+                                            {dictionary_index(item["source_ids"])}
+                                        </Tooltip>
+                                    }
+                                >
+                                    {<span key={i}>{item["source_ids"]}</span>}
+                                </OverlayTrigger>
+                            </>
+                        }
+                        {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
+                    </li>
+                ))}
+            </ul>
+        :
+        <div>
+            <p><i>Form of:</i></p>
+            <SearchSection
+              key={props.index + 0.5}
+              display={lemmaWordform}
+              index={props.index + 0.5}
+              type={props.type}
+              emoji={getEmoticon()}
+              slug={getSlug()}
+            ></SearchSection>
+        </div>
+        }
+
     </div>
   );
 };

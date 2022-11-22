@@ -11,12 +11,21 @@ Goal         : Show word information and also provide the ability to highlight a
 
 import { Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 
+function getDisplayIc(ic) {
+  try {
+    return ic["linguist_info"]["inflectional_category"];
+  } catch (TypeError) {
+    return ic;
+  }
+}
+
 const LikeWord = (props) => {
   const likeWord = props.likeWord;
   let emoticon = props.emoticon;
   const wordInformation = props.hoverInfo;
   const ic = props.ic;
-  const displayIc = ic["lemma_wordform"]["linguist_info"]["inflectional_category"]
+  console.log("IC", ic);
+  const displayIc = getDisplayIc();
 
   let settings = JSON.parse(window.localStorage.getItem("settings"));
   if (emoticon && emoticon.includes("🧑🏽")) {
@@ -49,7 +58,7 @@ const LikeWord = (props) => {
     <>
       {likeWord !== null && (
         <>
-          <div className="container">
+          <div data-cy="elaboration" className="container">
             <div className="d-flex flex-row">
               <div className="mb-auto p-2">
                 <OverlayTrigger

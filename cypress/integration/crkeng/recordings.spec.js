@@ -4,36 +4,26 @@
 context("Recordings", function () {
   describe("On the search page", () => {
     it("should display for words", () => {
-      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
-        fixture: "recording/bulk_search/wâpamêw-asawâpamêw.json",
-      }).as("bulkSearch");
 
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitSearch("wâpamêw");
-      cy.wait("@bulkSearch");
+      cy.wait(8000);
 
       // Play the recording:
-      cy.contains(".definition-title", "wâpamêw")
-        .find("button[data-cy=play-recording]")
+      cy.get("[data-cy=playRecording]")
+          .first()
         .click();
     });
   });
 
   describe("On the definition page", () => {
-    beforeEach(() => {
-      // Intercept calls to our API
-      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
-        fixture: "recording/bulk_search/wâpamêw.json",
-      }).as("recordingsResults");
-    });
-
     it("should play a recording via a 🔊 icon", function () {
       // Get to the definition/paradigm page for "wâpamêw"
       cy.visitLemma("wâpamêw");
-      cy.wait("@recordingsResults");
+      cy.wait(15000);
 
       // And we should be able to click it.
-      cy.get("[data-cy=play-recording]").click();
+      cy.get("[data-cy=playRecording]").click();
 
       // Note: figuring out if the audio actually played is... involved,
       // and error-prone, so it is not tested.
@@ -44,7 +34,7 @@ context("Recordings", function () {
     it("should play an individual speaker's pronounciation of the word when the speaker's name is clicked", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
-      cy.wait(20000);
+      cy.wait(15000);
 
       // the names of the speakers should appear on the page via the select tag
       cy.get("[data-cy=multiple-recordings]").find("button").click();
@@ -54,7 +44,7 @@ context("Recordings", function () {
     it("should open a link to the speaker's webpage in a new tab", () => {
       // 'wâpamêw' is the word that we have a bunch of recordings for
       cy.visitLemma("wâpamêw");
-      cy.wait(20000);
+      cy.wait(15000);
 
       // Play the recording to get the full list of speakers.
       cy.get("[data-cy=multiple-recordings]").find("button").click();

@@ -39,6 +39,7 @@ switch (process.env.REACT_APP_ISO_CODE) {
 
 function SingleColumnPane(props) {
   const pane = props.pane;
+  console.log("PANE:", pane);
   let counter = props.counter;
   const type = props.type;
   let defaultLabel = JSON.parse(window.localStorage.getItem("settings")).label;

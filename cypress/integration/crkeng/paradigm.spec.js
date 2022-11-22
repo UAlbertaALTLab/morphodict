@@ -31,13 +31,13 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
   for (let { pos, lemma, inflections } of testCases) {
     it(`should display the paradigm for a word belonging to the ${pos} word class`, () => {
       cy.visitSearch(lemma);
-      cy.wait(2000);
+      cy.wait(4000);
 
-      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)').contains("a", lemma).click();
+      cy.get('[data-cy=lemmaLink]').contains("a", lemma).click();
       cy.wait(20000);
 
-      cy.get('.row > :nth-child(1)').as("paradigm");
-      cy.get("@paradigm").click();
+      cy.get('[data-cy=paradigm]').as("paradigm");
+      cy.get('.row > :nth-child(1)').click();
 
       let ctx = cy.get("@paradigm").should("contain", lemma);
       for (let wordform of inflections) {
@@ -51,44 +51,31 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
     const inflections = ["kiya", "wiya"];
 
     cy.visitSearch(head);
-    cy.wait(1000);
-    cy.get(':nth-child(1) > :nth-child(1) > .definition-title > .btn').contains("a", head).click();
-    cy.wait(10000);
+    cy.wait(8000);
+    cy.get('[data-cy=lemmaLink]').contains("a", head).click();
+    cy.wait(4000);
 
     cy.get("[data-cy=paradigm]").as("paradigm");
+    cy.get('.row > :nth-child(1)').click();
 
     let ctx = cy.get("@paradigm").should("contain", head);
     for (let wordform of inflections) {
       ctx = ctx.and("contain", wordform);
     }
-
-    const labels = [
-      { scope: "col", label: /\bone\b/i },
-      { scope: "col", label: /\bmany\b/i },
-      { scope: "row", label: "I" },
-      { scope: "row", label: /\byou\b/i },
-    ];
-
-    for (let { scope, label } of labels) {
-      cy.get("@paradigm")
-        .contains("th", label)
-        .should("have.attr", "scope", scope);
-    }
   });
 
-  // TODO: the next test should be here, but it is broken because the
-  // upstream layouts are broken :/
-  it.skip("should display titles within the paradigm", () => {
-    // TODO: move this test into the previous test when the layout is fixed.
+  it("should display titles within the paradigm", () => {
     cy.visitSearch("minôsis");
-    cy.get("[data-cy=search-results]").contains("a", "minôsis").click();
+    cy.wait(3000);
+    cy.get("[data-cy=lemmaLink]").contains("a", "minôsis").click();
+    cy.wait(3000);
 
     cy.get("[data-cy=paradigm]").as("paradigm");
 
     // TODO: the layouts should be able to differentiate between titles and
     // labels; currently, the specificiation is ambigous, hence, it's seen
     // as a .paradigm-label, when it should be a .paradigm-title :/
-    cy.get("@paradigm").contains(".paradigm-title", "Ownership");
+    cy.get("@paradigm").contains("belongs to");
   });
 });
 
@@ -109,7 +96,7 @@ describe("I want to see a clear indicator that a form does not exist", () => {
     cy.wait(1500);
     cy.get('.row > :nth-child(2)').click();
     cy.wait(100);
-    cy.get(':nth-child(2) > .card > .MuiPaper-root > .MuiCollapse-root > .MuiCollapse-wrapper > .MuiCollapse-wrapperInner > #panel1a-content > .MuiAccordionDetails-root > [style="width: 100%;"] > .card-body').contains("td", EM_DASH);
+    cy.get('[data-cy=paradigm]').contains("td", EM_DASH);
   });
 });
 
@@ -127,6 +114,7 @@ describe("paradigms are visitable from link", () => {
       analysis: "niska+N+A+Sg",
       "paradigm-size": "FULL",
     });
+    cy.wait(3000);
     // his/her/their is an exclusive user friendly tag for FULL paradigms
     cy.get("[data-cy=paradigm]").contains("his/her/their");
   });
@@ -196,6 +184,7 @@ describe("I want to see multiple variants of the same inflection on multiple row
     let rowA = null;
     let rowB = null;
     cy.visitLemma("nipâw");
+    cy.wait(6000);
 
     // get the first row
     cy.get("[data-cy=paradigm]")

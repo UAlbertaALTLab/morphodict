@@ -320,5 +320,6 @@ def inflect_paradigm(paradigm):
                                 for orth in ORTHOGRAPHY.available:
                                     morphemes[orth] = [cell["inflection"]]
                             cell["morphemes"] = morphemes
+                        cell["wordform_text"] = wordform_orth_text(cell["inflection"])
 
     return paradigm

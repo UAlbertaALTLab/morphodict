@@ -13,7 +13,7 @@ function MainPageCrk() {
                 {
                     " "
                 }
-                <a data-cy="long-word-example" href={`/word/${long_word}`}>
+                <a data-cy="long-word-example" href={`/search/?q=${long_word}`}>
                     {long_word}
                 </a>
                 ). Or you can type an English word and find its possible Cree
