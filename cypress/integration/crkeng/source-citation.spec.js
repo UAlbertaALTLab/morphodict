@@ -14,7 +14,7 @@ describe("Source citations", function () {
     for (let sourceAbbreviation of SOURCES) {
       it(`should cite on the search page, with a tooltip for ${sourceAbbreviation}`, () => {
         cy.visitSearch(LEMMA_WITH_MD_AND_CW_CITATIONS);
-        cy.wait(1000);
+        cy.wait(3000);
 
 
         searchResult().contains(sourceAbbreviation).first().click();
@@ -32,7 +32,7 @@ describe("Source citations", function () {
 
   context("Details page", () => {
       for (let sourceAbbreviation of SOURCES) {
-        it.only("should cite on the details page with a tooltip", () => {
+        it("should cite on the details page with a tooltip", () => {
           cy.visitLemma(LEMMA_WITH_MD_AND_CW_CITATIONS);
           cy.wait(7000);
 
