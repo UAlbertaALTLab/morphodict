@@ -69,13 +69,13 @@ switch (process.env.REACT_APP_ISO_CODE) {
 }
 
 function Header(props) {
-  const dictionaryName = process.env.REACT_APP_NAME;
+  const [dictionaryName, setDictionaryName] = useState(process.env.REACT_APP_NAME);
   const description = process.env.REACT_APP_SUBTITLE;
   const sourceLanguageName = process.env.REACT_APP_SOURCE_LANGUAGE_ENDONYM;
   const [queryString, setQueryString] = useState("");
   const [query, setQuery] = useState(false);
   const [type, setDispType] = useState("Latn");
-  const [settingMenu, setSettingMenu] = useState(defaultSettings);
+  const settingMenu = defaultSettings;
 
   if (!window.localStorage.getItem("settings")) {
     window.localStorage.setItem("settings", JSON.stringify(new Settings()));
@@ -90,6 +90,9 @@ function Header(props) {
         settings.latn_x_macron = false;
         settings.syllabics = false;
         settings.cmro = false;
+        if (sourceLanguageName === "nêhiyawêwin") {
+          setDictionaryName(process.env.REACT_APP_NAME);
+        }
         setDispType("Latn");
         break;
       case "Latn-x-macron":
@@ -97,6 +100,9 @@ function Header(props) {
         settings.latn_x_macron = true;
         settings.syllabics = false;
         settings.cmro = false;
+        if (sourceLanguageName === "nêhiyawêwin") {
+          setDictionaryName(process.env.REACT_APP_SRO_MACRONS_NAME);
+        }
         setDispType("Latn-x-macron");
         break;
       case "Cans":
@@ -104,6 +110,9 @@ function Header(props) {
         settings.latn_x_macron = false;
         settings.syllabics = true;
         settings.cmro = false;
+        if (sourceLanguageName === "nêhiyawêwin") {
+          setDictionaryName(process.env.REACT_APP_SYLLABICS_NAME);
+        }
         setDispType("Cans");
         break;
       case "CMRO":

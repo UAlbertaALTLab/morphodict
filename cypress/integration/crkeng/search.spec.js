@@ -3,7 +3,7 @@ context("Searching", () => {
     // https://github.com/UAlbertaALTLab/morphodict/issues/120
     it("should search for an exact lemma", () => {
       cy.visitSearch("minos")
-      cy.wait(2000);
+      cy.wait(8000);
       cy.searchResultsContain("cat");
     });
   });
@@ -28,13 +28,13 @@ context("Searching", () => {
 
       cy.visitSearch(lemma);
       cy.wait(2000);
-      cy.get('.app__content > :nth-child(1) > :nth-child(1) > :nth-child(1)')
+      cy.get('[data-cy=citation]')
         .as("definition");
 
       // Check each citation.
       for (let id of dicts) {
         cy.get("@definition")
-          .contains("cite.cite-dict", id)
+          .contains(id)
           .should("be.visible")
           .should(($cite) => {
             expect($cite.text()).to.match(/^\s*\w+\s*$/);
@@ -80,20 +80,19 @@ context("Searching", () => {
       cy.visit("/");
 
       cy.visitSearch(searchTerm);
-      cy.wait(2000);
+      cy.wait(3000);
 
-      cy.get('#results')
-        .contains("[data-cy=search-result]", /Form of/i)
+      cy.get('[data-cy=all-search-results]')
+        .first()
         .as("searchResult");
 
       // normatized form:
       cy.get("@searchResult").contains(
-        "[data-cy=definition-title]",
+        "[data-cy=definitionTitle]",
         "nipê-âcimon"
       );
 
       cy.get("@searchResult")
-        .get("[data-cy=reference-to-lemma]")
         .contains("âcimow");
     });
   });
@@ -222,7 +221,7 @@ context("Searching", () => {
         });
     });
 
-    it("displays the suffix features in the linguistic breakdown", function () {
+    it.only("displays the suffix features in the linguistic breakdown", function () {
       cy.visitSearch("pê-nîmiw");
       cy.wait(2000);
 

@@ -278,7 +278,7 @@ const SearchSection = (props) => {
                                     {citationChoices[i]}
                                 </Tooltip>}
                             >
-                                <span>{i}&nbsp;</span>
+                                <span data-cy="citation">{i}&nbsp;</span>
                             </OverlayTrigger>))}
                             {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
                         </li>

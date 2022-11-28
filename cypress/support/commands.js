@@ -309,6 +309,6 @@ Cypress.Commands.add(
   "searchResultsContain",
   { prevSubject: false },
   (expectedString) => {
-    return cy.get("main").should("contain", expectedString);
+    return cy.get("[data-cy=all-search-results]").should("contain", expectedString);
   }
 );
