@@ -13,7 +13,7 @@ describe("click-in-text", function () {
     });
   }
 
-  it("works on Cree words", function () {
+  it.skip("works on Cree words", function () {
     cy.contains("span", "wâpamêw").click();
     withPopupDivs((popupDivs) => {
       expect(popupDivs).to.be.visible;
@@ -22,7 +22,7 @@ describe("click-in-text", function () {
     });
   });
 
-  it("works on English words", function () {
+  it.skip("works on English words", function () {
     cy.contains("span", "hello").click();
     withPopupDivs((popupDivs) => {
       expect(popupDivs).to.be.visible;

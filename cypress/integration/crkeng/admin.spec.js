@@ -1,12 +1,12 @@
 context("Admin interface", () => {
-  it("should redirect anonymous users to the login page", function () {
+  it.skip("should redirect anonymous users to the login page", function () {
     cy.visit("/admin");
     cy.location().then(({ pathname }) =>
       expect(pathname).to.contain(Cypress.env("admin_login_url"))
     );
   });
 
-  it("should allow login", function () {
+  it.skip("should allow login", function () {
     // If this test fails, you are probably using `manage.py runserver` without
     // USE_TEST_DB=True, because the `cypress` user only gets created in the
     // test database.
@@ -19,7 +19,7 @@ context("Admin interface", () => {
     cy.location("pathname").should("eq", Cypress.env("admin_url"));
   });
 
-  specify("the FST tool should work", function () {
+  specify.skip("the FST tool should work", function () {
     cy.login();
     for (const [query, result] of [
       ["kikaniminaw", "PV/ka+nîmiw+V+AI+Ind+12Pl"],
@@ -33,7 +33,7 @@ context("Admin interface", () => {
     }
   });
 
-  it("should not show the FST tool to non-admin users", function () {
+  it.skip("should not show the FST tool to non-admin users", function () {
     cy.visit("/admin/fst-tool");
     cy.location().then(({ pathname }) =>
       expect(pathname).to.contain(Cypress.env("admin_login_url"))
