@@ -1,21 +1,27 @@
 import {AiOutlineSound} from "react-icons/ai";
 import {Grid} from "@mui/material";
-import {useState} from "react";
+import React, {useState} from "react";
 import Paradigm from "./Paradigm/Paradigm";
 import MultiPlayer from './MultiPlayer';
 import {useQuery} from "react-query";
 import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 
 function WordEntry(props) {
     const port = process.env.REACT_APP_PORT_NUMBER
+    const word = window.location.href.split("/")[4];
 
     async function getWord() {
-        let word = window.location.href.split("/")[4];
         if (word === "") {
             return null;
         }
-        return fetch("http://127.0.0.1:" + port + "/api/word/" + word).then((res) =>
-            res.json()
+        return fetch("http://127.0.0.1:" + port + "/api/word/" + word).then((res) => {
+                if (res.status !== 200) {
+                    return res.status;
+                } else {
+                    return res.json();
+                }
+            }
         );
     }
 
@@ -39,11 +45,30 @@ function WordEntry(props) {
         }
     );
     console.log(isFetching, error, data);
+
     let wordform = "";
     let wordInformation = "";
     let recordings = "";
     let paradigm = "";
     let type = getType()
+
+    if (typeof (data) === "number" || (!isFetching && !data)) {
+        // No results found
+        // or no search term given
+        const searchWord = word.split("@")[0];
+        return <>
+            <Redirect
+                to={{
+                    pathname: "/search/?q=" + searchWord,
+                    state: {
+                        queryString: searchWord,
+                        query: searchWord,
+                        type: type,
+                    },
+                }}
+            ></Redirect>
+        </>
+    }
 
     function getType() {
         if ("state" in props.location && props.location.state) {

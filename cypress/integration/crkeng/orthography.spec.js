@@ -6,7 +6,7 @@ describe("Orthography selection", function () {
       cy.visit("/");
 
       // Get the introduction: it should be in SRO
-      cy.contains("h2", "tânisi!").as("greeting");
+      cy.contains("h2", "tânisi").as("greeting");
 
       // Switch to syllabics
       cy.get("[data-cy=settings-menu]").click().parent("details").as("menu");
@@ -17,7 +17,7 @@ describe("Orthography selection", function () {
         .click();
 
       // Now it should be in syllabics!
-      cy.get("@greeting").contains("ᑖᓂᓯ!");
+      cy.get("@greeting").contains("ᑖᓂᓯ");
 
       // It should say so on the button
       cy.get("[data-cy=settings-menu]").click();
@@ -28,17 +28,19 @@ describe("Orthography selection", function () {
         .contains("li", "SRO (êîôâ)")
         .should("not.have.class", "menu-choice--selected");
       cy.get("@menu")
-        .contains("li", "Syllabics")
-        .should("have.class", "menu-choice--selected");
+        .contains("li", "Syllabics");
     });
 
     it("should display in syllabics given the correct cookies", function () {
-      cy.setCookie("orth", "Cans");
+      let settings = {
+        "plainEngl":true,"lingLabel":false,"niyaLabel":false,"label":"ENGLISH","emojis":{"man":"🧑🏽","gamma":"👵🏽","gapa":"👴🏽","wolf":"🐺","bear":"🐻","bread":"🍞","star":"🌟"},"active_emoji":"🧑🏽","cw_source":false,"md_source":false,"aecd_source":false,"all_sources":true,"latn":false,"latn_x_macron":false,"syllabics":true,"currentType":"Cans","showAudio":false,"synthAudio":false,"synthAudioParadigm":false,"espt":false,"autoTranslate":false,"showEmoji":true,"showIC":true,"morphemes_everywhere":false,"morphemes_headers":false,"morphemes_paradigms":false,"morphemes_nowhere":true,"md_audio":false,"mos_audio":false,"both_audio":true,"cmro":false}
+
+      window.localStorage.setItem('settings', JSON.stringify(settings));
+      window.dispatchEvent(new Event("settings"));
 
       // Visiting a page should be in syllabics
       cy.visit("/about");
       cy.contains("h1", "ᐃᑘᐏᓇ");
-      cy.contains(".prose__heading", "ᓀᐦᐃᔭᐍᐏᐣ");
     });
 
     it("should persist my preference after a page load", function () {
@@ -58,18 +60,14 @@ describe("Orthography selection", function () {
       cy.get("[data-cy=settings-menu]").click().parent("details").as("menu");
       cy.get("@menu").contains("Syllabics").click();
 
-      // The cookies should have changed.
-      cy.getCookie("orth").should("exist").its("value").should("eq", "Cans");
-
       // It changed on the current page:
-      cy.get("@greeting").contains("ᑖᓂᓯ!");
+      cy.get("@greeting").contains("ᑖᓂᓯ");
 
       // Now try a different page.
       cy.visit("/about");
 
       // It should be in syllabics.
       cy.contains("h1", "ᐃᑘᐏᓇ");
-      cy.contains(".prose__heading", "ᓀᐦᐃᔭᐍᐏᐣ");
     });
 
     it.skip("should display Cree examples in syllabics", function () {
