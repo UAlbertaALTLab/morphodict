@@ -19,6 +19,9 @@ class Settings {
     this.lingLabel = false;
     this.niyaLabel = false;
 
+    // Options: English, Linguistic (long), Linguistic (short), source language
+    this.label = "ENGLISH";
+
     // Settings emoti
     this.emojis = {
       man: "🧑🏽",
@@ -29,7 +32,7 @@ class Settings {
       bread: "🍞",
       star: "🌟",
     };
-    this.active_emoti = "🧑🏽";
+    this.active_emoji = "🧑🏽";
 
     // dict sources
 

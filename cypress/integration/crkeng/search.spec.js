@@ -221,7 +221,7 @@ context("Searching", () => {
         });
     });
 
-    it.only("displays the suffix features in the linguistic breakdown", function () {
+    it("displays the suffix features in the linguistic breakdown", function () {
       cy.visitSearch("pê-nîmiw");
       cy.wait(2000);
 

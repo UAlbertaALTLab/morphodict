@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import logging
 import urllib
+from pathlib import Path
+
 import numpy as np
 from typing import Any, Dict, Literal, Optional
 
@@ -14,6 +16,7 @@ from rest_framework.decorators import api_view
 import paradigm_panes
 from rest_framework.response import Response
 
+from .relabelling import Relabelling
 from .utils import *
 
 import requests
@@ -702,6 +705,9 @@ def search_api(request):
     for result in context["search_results"]:
         result["wordform_text"] = wordform_orth_text(result["wordform_text"])
         result["lemma_wordform"]["wordform_text"] = wordform_orth_text(result["lemma_wordform"]["text"])
+        result["lemma_wordform"]["inflectional_category_relabelled"] = relabelInflectionalCategory(result["lemma_wordform"]["inflectional_category"])
+        if ("relabelled_fst_analysis" in result):
+            result["relabelled_fst_analysis"] = relabelFSTAnalysis(result["relabelled_fst_analysis"])
 
     return Response(context)
 
@@ -807,3 +813,46 @@ def fetch_single_recording(results, request):
             result["recording"] = ""
 
     return results
+
+def relabelInflectionalCategory(ic):
+    with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
+        labels = Relabelling.from_tsv(f)
+    if not labels:
+        return ic
+    ling_long = labels.linguistic_long.get_longest(ic)
+    ling_short = labels.linguistic_short.get_longest(ic)
+    plain_english = labels.english.get_longest(ic)
+    source_language = labels.source_language.get_longest(ic)
+    ret = {"linguistic_long": ling_long, "linguistic_short": ling_short, "plain_english": plain_english, "source_language": source_language}
+    return ret
+
+
+def relabelFSTAnalysis(analysis):
+    ling_long = []
+    ling_short = []
+    source_language = []
+    english = []
+    with open(Path(settings.RESOURCES_DIR / "altlabel.tsv")) as f:
+        labels = Relabelling.from_tsv(f)
+    if not labels:
+        return {
+            "linguistic_long": analysis["label"],
+            "linguistic_short": analysis["label"],
+            "plain_english": analysis["label"],
+            "source_language": analysis["label"]
+        }
+
+    for item in analysis:
+        tags = item["tags"]
+        print("TAGS:", tags)
+        ling_long.append(labels.linguistic_long.get_longest(tags))
+        ling_short.append(labels.linguistic_short.get_longest(tags))
+        source_language.append(labels.source_language.get_longest(tags))
+        english.append(labels.english.get_longest(tags))
+
+    return {
+        "linguistic_long": ling_long,
+        "linguistic_short": ling_short,
+        "plain_english": english,
+        "source_language": source_language
+    }

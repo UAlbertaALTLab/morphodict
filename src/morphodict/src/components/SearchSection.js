@@ -9,6 +9,7 @@ Goal   : The purpose of this page is to display the search results gotten from u
        
 */
 
+import React, {useState} from "react";
 import {Tooltip, OverlayTrigger, Button} from "react-bootstrap";
 import {Link, Redirect} from "react-router-dom";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -44,7 +45,33 @@ function getInflectionalCategoryPlainEnglish(wordInformation) {
 }
 
 const SearchSection = (props) => {
+
+    const getInformation = () => {
+        console.log("HERE:", wordInformation);
+        if (wordInformation["relabelled_fst_analysis"]) {
+            switch (settings.label) {
+                case "ENGLISH":
+                    return wordInformation["relabelled_fst_analysis"]["plain_english"];
+                case "LINGUISTIC (LONG)":
+                    return wordInformation["relabelled_fst_analysis"]["linguistic_long"];
+                case "LINGUISTIC (SHORT)":
+                    return wordInformation["relabelled_fst_analysis"]["linguistic_short"];
+                case "NÊHIYAWÊWIN":
+                    return wordInformation["relabelled_fst_analysis"]["source_language"];
+                default:
+                    return wordInformation["relabelled_fst_analysis"]
+            }
+        } else if (wordInformation["friendly_linguistic_breakdown_tail"]) {
+            return wordInformation["friendly_linguistic_breakdown_tail"];
+        } else {
+            return [];
+        }
+    }
     //Information BTN tooltip(Here is where the info is to be typed out)
+    let [settings, setSettings] = useState(JSON.parse(window.localStorage.getItem("settings")));
+    window.addEventListener("settings", () => {
+        setSettings(JSON.parse(window.localStorage.getItem("settings")));
+    });
     const getStem = () => {
         if (wordInformation["lemma_wordform"]) {
             if (wordInformation["lemma_wordform"]["linguist_info"]) {
@@ -59,6 +86,14 @@ const SearchSection = (props) => {
         }
         return wordInformation["wordform_text"][displayType]
     }
+
+    let wordInformation = props.display;
+    if (!wordInformation) {
+        return (<div>Something went wrong here</div>);
+    }
+
+    let information = getInformation(wordInformation, settings);
+
     const renderInformationToolTip = (props) => (
         <Tooltip data-cy="infoButtonInfo" id="button-tooltip" {...props}>
             {getStem()}
@@ -67,11 +102,6 @@ const SearchSection = (props) => {
         </Tooltip>
     );
 
-    let wordInformation = props.display;
-    if (!wordInformation) {
-        return (<div>Something went wrong here</div>);
-    }
-    console.log("HERE THIS TIME:", wordInformation);
     const wordsDefs = wordInformation["definitions"];
     const displayType = props.type;
 
@@ -95,14 +125,6 @@ const SearchSection = (props) => {
         return wordInformation;
     }
 
-    const getInformation = () => {
-        if (wordInformation["friendly_linguistic_breakdown_tail"]) {
-            return wordInformation["friendly_linguistic_breakdown_tail"];
-        } else {
-            return props.information;
-        }
-    }
-
     let dictionary_index = function (type) {
         try {
             return citationChoices[type[0]]
@@ -120,7 +142,6 @@ const SearchSection = (props) => {
 
     const citationChoices = {"CW": wolvengrey, "MD": maskwacis, "AECD": aecd, "TVPD": tvpd}
 
-    let information = getInformation(wordInformation);
     const inflectionalCategory = getInflectionalCategory(wordInformation); // This is passed into LikeWord
     const inflectionalCategoryPlainEnglish = getInflectionalCategoryPlainEnglish(wordInformation); // This is passed into LikeWord
 
@@ -171,8 +192,6 @@ const SearchSection = (props) => {
         );
     }
 
-    console.log("DISP WORD", displayWord());
-    console.log("word info", wordInformation);
     const getEmoticon = () => {
         try {
             return wordInformation["lemma_wordform"]["wordclass_emoji"];
@@ -256,54 +275,29 @@ const SearchSection = (props) => {
 
                 <div className="definition-title__play-icon">{soundBtn}</div>
             </div>
-            {inflectionalCategory ? (
-                <LikeWord
-                    likeWord={
-                        inflectionalCategoryPlainEnglish
-                    }
-                    emoticon={emoticon}
-                    hoverInfo={inflectionalCategory}
-                    ic={ic}
-                />) : <></>}
 
-            {shouldNotDisplayFormOf() ?
-                <ul className="list-group text-center">
-                    {wordsDefs.map((item, i) => (
-                        <li className="list-group-item " data-cy="definitionText" key={i}>
-                            {i + 1}. {item["text"]} &nbsp; {item.source_ids.map((i, index) => (
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{show: 250, hide: 400}}
-                                overlay={<Tooltip id="button-tooltip-dicts" {...props} key={index + ""}>
-                                    {citationChoices[i]}
-                                </Tooltip>}
-                            >
-                                <span data-cy="citation">{i}&nbsp;</span>
-                            </OverlayTrigger>))}
-                            {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
-                        </li>
-                    ))}
-                </ul>
-                :
-                <div>
-                    <ul className="list-group text-center">
-                    {wordsDefs.map((item, i) => (
-                        <li className="list-group-item " data-cy="definitionText" key={i}>
-                            {i + 1}. {item["text"]} &nbsp; {item.source_ids.map((i, index) => (
-                            <OverlayTrigger
-                                placement="bottom"
-                                delay={{show: 250, hide: 400}}
-                                overlay={<Tooltip id="button-tooltip-dicts" {...props} key={index + ""}>
-                                    {citationChoices[i]}
-                                </Tooltip>}
-                            >
-                                <span>{i}&nbsp;</span>
-                            </OverlayTrigger>))}
-                            {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
-                        </li>
-                    ))}
-                </ul>
-                    <p><i>Form of:</i></p>
+            <LikeWord
+                wordform={wordInformation}
+            />
+            <ul className="list-group text-center">
+                {wordsDefs.map((item, i) => (
+                    <li className="list-group-item " data-cy="definitionText" key={i}>
+                        {i + 1}. {item["text"]} &nbsp; {item.source_ids.map((i, index) => (
+                        <OverlayTrigger
+                            placement="bottom"
+                            delay={{show: 250, hide: 400}}
+                            overlay={<Tooltip id="button-tooltip-dicts" {...props} key={index + ""}>
+                                {citationChoices[i]}
+                            </Tooltip>}
+                        >
+                            <span data-cy="citation">{i}&nbsp;</span>
+                        </OverlayTrigger>))}
+                        {/*TODO: make a better trigger for src so that they can copy the tooltip SP3*/}
+                    </li>
+                ))}
+            </ul>
+            {shouldNotDisplayFormOf() ? <></> :
+                <><p><i>Form of:</i></p>
                     <SearchSection
                         key={props.index + 0.5}
                         display={lemmaWordform}
@@ -312,9 +306,7 @@ const SearchSection = (props) => {
                         emoji={getEmoticon()}
                         slug={getSlug()}
                         information={getInformation()}
-                    ></SearchSection>
-                </div>
-            }
+                    /></>}
 
         </div>
     );

@@ -12,10 +12,11 @@ context("Searching", () => {
 
     it("shows the inflectional class in linguistic mode", function () {
       cy.visitSearch(lemma);
+      cy.wait(4000);
 
       inflectionalClassInDefinitionTitle().should("not.exist");
 
-      cy.get("[data-cy=enable-linguistic-mode]").click();
+      cy.get("[data-cy=enable-linguistic-mode-long]").click();
 
       cy.get("main")
         .contains(inflectionalClass)
@@ -36,10 +37,11 @@ context("Searching", () => {
       cy.wait(3000);
 
       // Open the linguistic breakdown popup
-      cy.get("#results")
-        .find(".definition__icon > .btn")
-        .click()
-          .and("contain", "Naming word")
+      cy.get("[data-cy=infoButton]:first")
+        .click();
+
+      cy.get("[data-cy=infoButtonInfo]:first")
+          .should("contain", "Naming word")
           .and("contain", "my")
           .and("contain", "many");
 
@@ -47,16 +49,17 @@ context("Searching", () => {
 
     it("should display in Linguistic English", () => {
       cy.visit("/");
-      cy.get("[data-cy=enable-linguistic-mode]").click();
+      cy.get("[data-cy=enable-linguistic-mode-long]").click();
 
       cy.visitSearch("nimaskomak");
+      cy.wait(3000);
 
       // Open the linguistic breakdown popup
-      cy.get("[data-cy=search-result]:first")
-        .find("[data-cy=information-mark]:first")
+      cy.get("[data-cy=all-search-results]:first")
+        .find("[data-cy=infoButton]:first")
         .click();
 
-      cy.get("[data-cy=linguistic-breakdown]:first")
+      cy.get("[data-cy=infoButtonInfo]:first")
         .should("be.visible")
         .then(($popup) => {
           let popupText = $popup.text().toLowerCase().replace(/\s+/, " ");

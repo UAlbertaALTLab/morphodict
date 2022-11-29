@@ -33,7 +33,6 @@ function Welcome(props) {
 
     window.addEventListener("settings", () => {
         setSettings(JSON.parse(window.localStorage.getItem("settings")));
-        [title, welcome] = updateOrthSettings(endonym, settings);
     });
 
     [title, welcome] = updateOrthSettings(endonym, settings);
