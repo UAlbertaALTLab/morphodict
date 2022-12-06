@@ -20,12 +20,12 @@ SYSTEMD_SERVICE = docker-compose-itwewina
 
 .PHONY: production
 production: db.sqlite3 .env
-	docker-compose up --build --remove-orphans
+	docker-compose up --build
 
 .PHONY: staging
 staging: .env ../src/CreeDictionary/test_db.sqlite3
 	ln -f ../src/CreeDictionary/test_db.sqlite3 ./db.sqlite3
-	docker-compose up --build --remove-orphans
+	docker-compose up --build
 
 .PHONY: unit-file
 unit-file: $(SYSTEMD_SERVICE).service
