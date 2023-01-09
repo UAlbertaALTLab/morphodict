@@ -364,3 +364,20 @@ at the same time.
     sudo -u morphodict ~morphodict/morphodict/docker/deploy
 
 [ghcr]: https://github.com/orgs/UAlbertaALTLab/packages/container/package/itwewina.altlab.app
+
+## Restarting the Production Server
+Sometimes issues arise where restarting the production docker container (the production
+ server) is the best solution to solving the problem. To do this, use the following 
+steps:
+```shell
+ssh itw.altlab.dev
+sudo -i -u morphodict
+docker restart morphodict_sssttt_1
+```
+
+In order, these steps will:
+1. Give you access to the development server. Your command may be different than 
+the one shown. Use the command you usually use to access to the itw server.
+2. Allow you to become the "morphodict" user. You need special permissions to do this.
+3. Restart the docker container corresponding to language pair sssttt. For example,
+to restart the Plains Cree (crk) to English (eng) container, I would type `docker restart morphodict_crkeng_1`
