@@ -207,7 +207,6 @@ command:
 (note: using foreman automatically runs the underlying command in watch
 mode)
 
-
 Running the development server
 ------------------------------
 
