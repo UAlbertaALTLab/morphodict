@@ -35,7 +35,7 @@ def do_cvd_search(search_run: SearchRun):
     try:
         closest = definition_vectors().similar_by_vector(query_vector, 50)
     except DefinitionVectorsNotFoundException:
-        logger.exception("")
+        logger.exception("Definition Vectors Not Found")
         return
 
     wordform_queries = [

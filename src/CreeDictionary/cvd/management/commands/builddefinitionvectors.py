@@ -29,6 +29,7 @@ class Command(BaseCommand):
 
     def handle(self, output_file, debug_output_file, **options):
         logger.info("Building definition vectors")
+        logger.info(output_file)
 
         definitions = Definition.objects.filter(
             auto_translation_source_id__isnull=True
