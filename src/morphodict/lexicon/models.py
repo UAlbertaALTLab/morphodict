@@ -114,6 +114,33 @@ class Wordform(models.Model):
         """,
     )
 
+    rw_domains = models.CharField(
+        max_length=2048,
+        blank=True,
+        null=True,
+        help_text="""
+            RapidWords domains for an entry, separated by a semicolon
+            """
+    )
+
+    rw_indices = models.CharField(
+        max_length=2048,
+        blank=True,
+        null=True,
+        help_text="""
+                RapidWords indices for an entry, separated by a semicolon
+                """
+    )
+
+    wn_synsets = models.CharField(
+        max_length=2048,
+        blank=True,
+        null=True,
+        help_text="""
+                WordNet synsets for an entry, separated by a semicolon
+                """
+    )
+
     import_hash = models.CharField(
         max_length=MAX_WORDFORM_LENGTH,
         null=True,
