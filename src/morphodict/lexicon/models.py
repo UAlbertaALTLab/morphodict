@@ -120,7 +120,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
             RapidWords domains for an entry, separated by a semicolon
-            """
+            """,
     )
 
     rw_indices = models.CharField(
@@ -129,7 +129,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
                 RapidWords indices for an entry, separated by a semicolon
-                """
+                """,
     )
 
     wn_synsets = models.CharField(
@@ -138,7 +138,7 @@ class Wordform(models.Model):
         null=True,
         help_text="""
                 WordNet synsets for an entry, separated by a semicolon
-                """
+                """,
     )
 
     import_hash = models.CharField(
