@@ -546,7 +546,10 @@ def extract_first_letters(analysis: RichAnalysis) -> List[str]:
 
     def first_letter(x):
         pieces = x.split("/")
-        return pieces[-1][0]
+        if len(pieces) and len(pieces[-1]):
+            return pieces[-1][0]
+        else:
+            return ""
 
     return [first_letter(t) for t in tags]
 
