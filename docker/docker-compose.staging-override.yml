@@ -94,7 +94,7 @@ services:
       - "../src/hdneng/db/:/app/src/hdneng/db/"
       - "../src/hdneng/CreeDictionary/search_quality/:/app/src/hdneng/CreeDictionary/search_quality/"
 
-  crk-Lacombeeng:
+  crkLacombeeng:
     # In prod, we *always* want the apps running, including on boot; that’s
     # not necessarily the case on our dev machines.
     restart: "no"
@@ -106,7 +106,7 @@ services:
 
     volumes:
       - "./.env:/app/.env"
-      - "../src/crk-Lacombeeng/resources/vector_models/:/app/src/crk-Lacombeeng/resources/vector_models/"
-      - "../src/crk-Lacombeeng/db/:/app/src/crk-Lacombeeng/db/"
-      - "../src/crk-Lacombeeng/CreeDictionary/search_quality/:/app/src/crk-Lacombeeng/CreeDictionary/search_quality/"
+      - "../src/crkLacombeeng/resources/vector_models/:/app/src/crkLacombeeng/resources/vector_models/"
+      - "../src/crkLacombeeng/db/:/app/src/crkLacombeeng/db/"
+      - "../src/crkLacombeeng/CreeDictionary/search_quality/:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
 

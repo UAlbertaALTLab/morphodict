@@ -12,4 +12,4 @@ morphodict_prod_data_dirs:
   - "/data_local/application-data/srseng"
   - "/data_local/application-data/arpeng"
   - "/data_local/application-data/hdneng"
-  - "/data_local/application-data/crk-Lacombeeng"
+  - "/data_local/application-data/crkLacombeeng"

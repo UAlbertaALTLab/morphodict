@@ -12,7 +12,7 @@ from pathlib import Path
 sys.path[0] = os.fspath(Path(sys.path[0]) / "src")
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crk-Lacombeeng.site.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "crkLacombeeng.site.settings")
 
     from django.core.management import execute_from_command_line
 

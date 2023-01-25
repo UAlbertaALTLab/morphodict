@@ -120,13 +120,13 @@ services:
       - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/resources/vector_models/"
       - "/data_local/application-data/hdneng/db:/app/src/hdneng/db/"
       - "/data_local/application-data/hdneng/search_quality:/app/src/hdneng/CreeDictionary/search_quality/"
-  crk-Lacombeeng:
+  crkLacombeeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
     # using docker to get a shell in the container.
-    hostname: crk-Lacombeeng-container
+    hostname: crkLacombeeng-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
-    command: /app/app.sh crk-Lacombeeng
+    command: /app/app.sh crkLacombeeng
     ports:
       - "8016:8000" # http
       - "9016:9191" # uWSGI stats
@@ -135,11 +135,11 @@ services:
 
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
-      - "../src/crk-Lacombeeng/resources/fst:/app/src/crk-Lacombeeng/resources/fst:ro"
+      - "../src/crkLacombeeng/resources/fst:/app/src/crkLacombeeng/resources/fst:ro"
       - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
       - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
-      - "../src/crk-Lacombeeng/resources/dictionary/:/app/src/crk-Lacombeeng/resources/dictionary/:ro"
+      - "../src/crkLacombeeng/resources/dictionary/:/app/src/crkLacombeeng/resources/dictionary/:ro"
 
-      - "/data_local/application-data/crk-Lacombeeng/vector_models:/app/src/crk-Lacombeeng/resources/vector_models/"
-      - "/data_local/application-data/crk-Lacombeeng/db:/app/src/crk-Lacombeeng/db/"
-      - "/data_local/application-data/crk-Lacombeeng/search_quality:/app/src/crk-Lacombeeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/crkLacombeeng/vector_models:/app/src/crkLacombeeng/resources/vector_models/"
+      - "/data_local/application-data/crkLacombeeng/db:/app/src/crkLacombeeng/db/"
+      - "/data_local/application-data/crkLacombeeng/search_quality:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
