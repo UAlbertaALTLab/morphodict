@@ -1,1 +1,82 @@
-[{"head": "ÂBAT", "linguistInfo": {"suffixes": "", "pos": "(rac.)", "inflectional_category": "(rac.)"}, "paradigm": null, "analysis": [[], "", []], "slug": "ÂBAT", "senses": [{"definition": "Useful,  suitable for rendering service,  make use of.", "sources": ["Lacombe"]}], "rw_domains": "", "rw_indices": "", "wn_synsets": ""}, {"head": "ÂBATEYImew", "linguistInfo": {"suffixes": "TTAM,  MIWEW,  TCHIKEW", "pos": "(v. a.)", "inflectional_category": "(v. a.)"}, "paradigm": null, "analysis": [[], "", []], "slug": "ÂBATEYImew", "senses": [{"definition": "he finds it useful,  he thinks he likes to be of service,  v.g. misiwe âbateyimâwok mistatimwok,  horses are found useful everywhere; ayamihawin eoko piko osâm âbateyittamuk; only find religion useful,  or,  there is only one thing needed,  religion.", "sources": ["Lacombe"]}], "rw_domains": "", "rw_indices": "", "wn_synsets": ""},{"head": "ABATJITJIGAN", "linguistInfo": {"suffixes": "a", "pos": "(n. f.)", "inflectional_category": "(n. f.)"}, "paradigm": null, "analysis": [[], "", []], "slug": "ABATJITJIGAN", "senses": [{"definition": "tool,  instrument.", "sources": ["Lacombe"]}], "rw_domains": "", "rw_indices": "", "wn_synsets": ""},{"head": "ÂKÂWÂSTESIMOW", "linguistInfo": {"suffixes": "ok", "pos": "(v. n.)", "inflectional_category": "(v. n.)"}, "paradigm": null, "analysis": [[], "", []], "slug": "ÂKÂWÂSTESIMOW", "senses": [{"definition": "he sits in the shade of the sun.", "sources": ["Lacombe"]}], "rw_domains": "", "rw_indices": "", "wn_synsets": ""}]
+[
+  {
+    "analysis": [[], "", []],
+    "head": "ABATJITJIGAN",
+    "linguistInfo": {
+      "inflectional_category": "(n. f.)",
+      "pos": "(n. f.)",
+      "suffixes": "a"
+    },
+    "paradigm": null,
+    "rw_domains": "",
+    "rw_indices": "",
+    "senses": [
+      {
+        "definition": "tool,  instrument.",
+        "sources": ["Lacombe"]
+      }
+    ],
+    "slug": "ABATJITJIGAN",
+    "wn_synsets": ""
+  },
+  {
+    "analysis": [[], "", []],
+    "head": "ÂBAT",
+    "linguistInfo": {
+      "inflectional_category": "(rac.)",
+      "pos": "(rac.)",
+      "suffixes": ""
+    },
+    "paradigm": null,
+    "rw_domains": "",
+    "rw_indices": "",
+    "senses": [
+      {
+        "definition": "Useful,  suitable for rendering service,  make use of.",
+        "sources": ["Lacombe"]
+      }
+    ],
+    "slug": "ÂBAT",
+    "wn_synsets": ""
+  },
+  {
+    "analysis": [[], "", []],
+    "head": "ÂBATEYImew",
+    "linguistInfo": {
+      "inflectional_category": "(v. a.)",
+      "pos": "(v. a.)",
+      "suffixes": "TTAM,  MIWEW,  TCHIKEW"
+    },
+    "paradigm": null,
+    "rw_domains": "",
+    "rw_indices": "",
+    "senses": [
+      {
+        "definition": "he finds it useful,  he thinks he likes to be of service,  v.g. misiwe âbateyimâwok mistatimwok,  horses are found useful everywhere; ayamihawin eoko piko osâm âbateyittamuk; only find religion useful,  or,  there is only one thing needed,  religion.",
+        "sources": ["Lacombe"]
+      }
+    ],
+    "slug": "ÂBATEYImew",
+    "wn_synsets": ""
+  },
+  {
+    "analysis": [[], "", []],
+    "head": "ÂKÂWÂSTESIMOW",
+    "linguistInfo": {
+      "inflectional_category": "(v. n.)",
+      "pos": "(v. n.)",
+      "suffixes": "ok"
+    },
+    "paradigm": null,
+    "rw_domains": "",
+    "rw_indices": "",
+    "senses": [
+      {
+        "definition": "he sits in the shade of the sun.",
+        "sources": ["Lacombe"]
+      }
+    ],
+    "slug": "ÂKÂWÂSTESIMOW",
+    "wn_synsets": ""
+  }
+]
