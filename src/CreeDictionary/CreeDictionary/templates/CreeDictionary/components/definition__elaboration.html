@@ -44,13 +44,15 @@
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
-                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
-                      aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
-                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    {% relabel_plain_english lemma.inflectional_category %}
-                    - {% relabel_source lemma.inflectional_category %}
-                    <div class="tooltip__arrow" data-popper-arrow></div>
-                </div>
+                {% if lemma.inflectional_category_linguistic %}
+                    <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                          aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
+                    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                        {% relabel_plain_english lemma.inflectional_category %}
+                        - {% relabel_source lemma.inflectional_category %}
+                        <div class="tooltip__arrow" data-popper-arrow></div>
+                    </div>
+                {% endif %}
 
                 {% include "CreeDictionary/components/lexical-breakdown.html" %}
             {% endif %}
@@ -61,13 +63,15 @@
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
-                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
-                      aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
-                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
-                    - {% relabel_source lemma.inflectional_category %}
-                    <div class="tooltip__arrow" data-popper-arrow></div>
-                </div>
+                {% if lemma.inflectional_category_linguistic %}
+                    <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                          aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
+                    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                        {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                        - {% relabel_source lemma.inflectional_category %}
+                        <div class="tooltip__arrow" data-popper-arrow></div>
+                    </div>
+                {% endif %}
 
                 {% include "CreeDictionary/components/lexical-breakdown.html" %}
             {% endif %}
@@ -78,13 +82,15 @@
                       <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
                   </span>
                 {% endif %}
-                <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
-                      aria-describedby="tooltip:{{ id }}"> {% relabel_source lemma.inflectional_category %} </span>
-                <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
-                    {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
-                    - {% relabel_plain_english lemma.inflectional_category %}
-                    <div class="tooltip__arrow" data-popper-arrow></div>
-                </div>
+                {% if lemma.inflectional_category_linguistic %}
+                    <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
+                          aria-describedby="tooltip:{{ id }}"> {% relabel_source lemma.inflectional_category %} </span>
+                    <div id="tooltip:{{ id }}" class="tooltip" role="tooltip">
+                        {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})
+                        - {% relabel_plain_english lemma.inflectional_category %}
+                        <div class="tooltip__arrow" data-popper-arrow></div>
+                    </div>
+                {% endif %}
 
                 {% include "CreeDictionary/components/lexical-breakdown.html" %}
             {% endif %}
