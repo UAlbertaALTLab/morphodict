@@ -38,12 +38,12 @@
             {% if show_ic != "no" %}
                 {{ lemma.inflectional_category }}
             {% endif %}
+            {% if lemma.show_emoji %}
+                <span class="wordclass" data-cy="word-class">
+                  <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
+              </span>
+            {% endif %}
             {% if display_options.mode == 'linguistic' %}
-                {% if lemma.show_emoji %}
-                    <span class="wordclass" data-cy="word-class">
-                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
-                  </span>
-                {% endif %}
                 {% if lemma.inflectional_category_linguistic %}
                     <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                           aria-describedby="tooltip:{{ id }}"> {{ lemma.inflectional_category_linguistic }} ({{ lemma.inflectional_category }})</span>
@@ -58,11 +58,6 @@
             {% endif %}
 
             {% if display_options.mode == 'english' %}
-                {% if lemma.show_emoji %}
-                    <span class="wordclass" data-cy="word-class">
-                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
-                  </span>
-                {% endif %}
                 {% if lemma.inflectional_category_linguistic %}
                     <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                           aria-describedby="tooltip:{{ id }}"> {% relabel_plain_english lemma.inflectional_category %} </span>
@@ -77,11 +72,6 @@
             {% endif %}
 
             {% if display_options.mode == 'source_language' %}
-                {% if lemma.show_emoji %}
-                    <span class="wordclass" data-cy="word-class">
-                      <span class="wordclass__emoji">{{ emoji }} &nbsp;</span>
-                  </span>
-                {% endif %}
                 {% if lemma.inflectional_category_linguistic %}
                     <span class="wordclass__inflectional-class  wordclass--described" data-has-tooltip tabindex="0"
                           aria-describedby="tooltip:{{ id }}"> {% relabel_source lemma.inflectional_category %} </span>

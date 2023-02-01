@@ -8,6 +8,8 @@ const AVAILABLE_ORTHOGRAPHIES = new Set([
   "Latn",
   "Latn-x-macron",
   "CMRO",
+  "Standardized",
+  "Original",
 ]);
 
 /**
@@ -32,6 +34,7 @@ export function registerEventListener(csrfToken) {
  * Changes the orthography of EVERYTHING on the page.
  */
 export function changeOrth(which) {
+  console.log(AVAILABLE_ORTHOGRAPHIES)
   if (!AVAILABLE_ORTHOGRAPHIES.has(which)) {
     throw new Error(`tried to switch to unknown orthography: ${which}`);
   }

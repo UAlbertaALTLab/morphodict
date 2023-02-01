@@ -132,7 +132,7 @@ class Wordform(models.Model):
                 """
     )
 
-    wn_synsets = models.CharField(
+    wn_synsets_string = models.CharField(
         max_length=2048,
         blank=True,
         null=True,
