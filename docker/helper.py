@@ -98,7 +98,6 @@ def manage(args):
         containers = [app.name for app in APPS]
 
     for container in containers:
-
         app = next(app for app in APPS if app.name == container)
 
         if len(containers) > 1:

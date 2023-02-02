@@ -456,7 +456,7 @@ def get_lexical_info(
 
     lexical_info: List[Dict] = []
 
-    for (i, tag) in enumerate(result_analysis_tags):
+    for i, tag in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
         _type: Optional[LexicalEntryType] = None

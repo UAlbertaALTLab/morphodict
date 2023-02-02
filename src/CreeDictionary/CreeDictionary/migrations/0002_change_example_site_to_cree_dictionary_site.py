@@ -30,7 +30,6 @@ def change_example_to_production_site(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("sites", "0002_alter_domain_unique"),
         ("CreeDictionary", "0001_insert_bibliographic_data"),

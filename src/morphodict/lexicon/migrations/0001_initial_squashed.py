@@ -4,7 +4,6 @@ import morphodict.lexicon.models
 
 
 class Migration(migrations.Migration):
-
     replaces = [
         ("lexicon", "0001_initial"),
         ("lexicon", "0002_alter_wordform_linguist_info"),

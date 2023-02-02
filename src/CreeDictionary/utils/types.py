@@ -20,6 +20,7 @@ class HashableNamedTupleFieldValue(Protocol):
 
 T = TypeVar("T")
 
+
 # From https://github.com/python/typing/issues/645#issuecomment-501057220
 def cast_away_optional(arg: Optional[T]) -> T:
     assert arg is not None

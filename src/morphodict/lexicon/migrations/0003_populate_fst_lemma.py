@@ -19,7 +19,6 @@ def noop(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("lexicon", "0002_add_fst_lemma"),
     ]

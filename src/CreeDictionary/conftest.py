@@ -47,7 +47,6 @@ def django_db_setup(request, django_db_blocker):
     # https://github.com/pytest-dev/pytest/issues/2704#issuecomment-603387680
     capmanager = request.config.pluginmanager.getplugin("capturemanager")
     with capmanager.global_and_fixture_disabled():
-
         with django_db_blocker.unblock():
             print("\nSyncing test database")
             call_command("ensuretestdb", verbosity=0)

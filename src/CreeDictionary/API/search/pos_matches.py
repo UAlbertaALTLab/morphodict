@@ -4,7 +4,6 @@ from morphodict.analysis import rich_analyze_relaxed
 
 
 def find_pos_matches(search_run: SearchRun) -> None:
-
     analyzed_query = AnalyzedQuery(search_run.internal_query)
     # print(search_run.verbose_messages["new_tags"])
 
