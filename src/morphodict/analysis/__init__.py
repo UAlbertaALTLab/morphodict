@@ -15,7 +15,7 @@ def strict_generator():
 @cache
 def strict_generator_with_morpheme_boundaries():
     return TransducerFile(
-        FST_DIR / "crk-strict-generator-with-morpheme-boundaries.hfstol"
+        FST_DIR / "generator-gt-dict-norm-with-boundaries.hfstol"
     )
 
 
