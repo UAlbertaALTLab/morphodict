@@ -57,7 +57,7 @@
         {# These are the definitions for the inflection (non-lemma), could be empty  #}
         <ol class="meanings meanings--search-result">
             {% for def in result.definitions %}
-                <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
+                <li class="meanings__meaning" data-cy="lemma-meaning">{% convert def.text %}
                     {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
                 </li>
             {% endfor %}
