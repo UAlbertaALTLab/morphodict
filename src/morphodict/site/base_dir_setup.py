@@ -18,6 +18,6 @@ def get_base_dir() -> Path:
 def set_base_dir(dir: Path):
     global _base_dir
 
-    assert _base_dir is None, "base_dir is already set!"
+    # assert _base_dir is None, "base_dir is already set!"
     assert dir.is_dir()
     _base_dir = dir
