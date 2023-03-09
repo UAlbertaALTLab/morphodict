@@ -450,7 +450,7 @@ def get_recordings_from_paradigm(paradigm, request):
     for search_terms in divide_chunks(query_terms, 30):
         for source in speech_db_eq:
             url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            matched_recordings.update(get_recordings_from_url(search_terms, url))
+            matched_recordings.update(get_recordings_from_url(search_terms, url, speech_db_eq))
 
     for pane in paradigm.panes:
         for row in pane.tr_rows:
@@ -463,14 +463,17 @@ def get_recordings_from_paradigm(paradigm, request):
     return paradigm
 
 
-def get_recordings_from_url(search_terms, url):
+def get_recordings_from_url(search_terms, url, speech_db_eq):
     matched_recordings = {}
     query_params = [("q", term) for term in search_terms]
     response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
     recordings = response.json()
 
     for recording in recordings["matched_recordings"]:
-        entry = macron_to_circumflex(recording["wordform"])
+        if "moswacihk" in speech_db_eq:
+            entry = macron_to_circumflex(recording["wordform"])
+        else:
+            entry = recording["wordform"]
         matched_recordings[entry] = {}
         matched_recordings[entry]["recording_url"] = recording["recording_url"]
         matched_recordings[entry]["speaker"] = recording["speaker"]
