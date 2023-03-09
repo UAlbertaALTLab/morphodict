@@ -26,7 +26,7 @@ from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
-from .paradigm.panes import Paradigm
+from .paradigm.panes import Paradigm, WordformCell
 from .utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -456,8 +456,8 @@ def get_recordings_from_paradigm(paradigm, request):
         for row in pane.tr_rows:
             if not row.is_header:
                 for cell in row.cells:
-                    if cell.is_inflection:
-                        if str(cell) in matched_recordings:
+                    if cell.is_inflection and isinstance(cell, WordformCell):
+                        if cell.inflection in matched_recordings.keys():
                             cell.add_recording(matched_recordings[str(cell)])
 
     return paradigm
