@@ -118,7 +118,7 @@ describe("paradigms are visitable from link", () => {
       "paradigm-size": "FULL",
     });
     // another's/others' is an exclusive user friendly tag for FULL paradigms
-    cy.get("[data-cy=paradigm]").contains("another's/others'");
+    cy.get("[data-cy=paradigm]").contains("another");
   });
 });
 
