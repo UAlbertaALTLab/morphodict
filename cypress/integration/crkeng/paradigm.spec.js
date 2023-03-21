@@ -117,8 +117,8 @@ describe("paradigms are visitable from link", () => {
       analysis: "niska+N+A+Sg",
       "paradigm-size": "FULL",
     });
-    // his/her/their is an exclusive user friendly tag for FULL paradigms
-    cy.get("[data-cy=paradigm]").contains("his/her/their");
+    // another's/others' is an exclusive user friendly tag for FULL paradigms
+    cy.get("[data-cy=paradigm]").contains("another's/others'");
   });
 });
 

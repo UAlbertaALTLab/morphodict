@@ -143,10 +143,10 @@ context("Regressions", () => {
     cy.contains("a", "wâpamêw").click();
 
     // N.B.: This test will fail if the labels change. ¯\_(ツ)_/¯
-    cy.contains("th", "s/he → him/her/them"); // 3Sg → 4Sg/PlO (lemma)
+    cy.contains("th", "s/he → another/others"); // 3Sg → 4Sg/PlO (lemma)
     cy.contains("th", "s/he → me"); // 3Sg → 1Sg
     cy.contains("th", "s/he → you"); // 3Sg → 2Sg
-    cy.contains("th", "s/he/they → him/her"); // 4Sg/Pl → 3Sg
+    cy.contains("th", "another/others → him/her"); // 4Sg/Pl → 3Sg
   });
 
   /**
