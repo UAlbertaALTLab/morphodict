@@ -41,15 +41,13 @@ verb_wordform_to_phrase = TagMap(
     ("+AI", None, 0),
     ("+II", None, 0),
     ("+TI", None, 0),
+    (("PV/e+", "+Cnj"), "Cnj+", 0),
     # Tense/Aspect
     ("PV/ki+", "Prt+", 1),  # Preterite aka simple past
-    (("PV/ki+", "+Ind"), "Prt+", 1),  # Preterite aka simple past
     (("+Fut", "+Cond"), "Cond+", 1),  # Future conditional
     (("+Imp", "+Imm"), "Imm+", 1),  # Immediate imperative
     (("+Imp", "+Del"), "Del+", 1),  # Delayed imperative
-    (("PV/wi+", "+Ind"), "Fut+", 1),  # Future
-    ("PV/wi+", "Fut+", 1),  # Also accept PV/wi without indicative as future
-    (("PV/e+", "+Cnj"), None, 1),  # conjunctive marker
+    ("PV/wi+",  "Fut+", 1),  # Future
     # Note that these crk features as disjoint, but both are needed for the eng feature
     (("PV/ka+", "+Ind"), "Def+", 1),
     (("PV/ka+", "+Cnj"), "Inf+", 1),
