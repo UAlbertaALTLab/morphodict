@@ -187,7 +187,7 @@ II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihk
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk		
 Interr	Interrogative	Interrogative	Question	kakwêcihkêmowin		
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡	
-Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️	
+Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️	https://plainscree.atlas-ling.ca/grammar/words/particles/
 IPH	Phrase	Phrase	like: êkosi pitamâ	tâpiskôc: êkosi pitamâ		
 IPJ	Interjection	Interjection	like: hay hay	tâpiskôc: hay hay	⚡	
 IPN	Prenoun	Prenoun	like: amisko-	tâpiskôc: amisko-	⚡	
@@ -205,7 +205,7 @@ Interj		Interjection	Shouting word	têpwêwin-itwêwin
 Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci		
 Med	Medial	Medial	There	anita		
 						
-N		Noun	Naming word	wîhyowin-itwêwin		
+N		Noun	Naming word	wîhyowin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/nouns/
 N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhyowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
 N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhyowin-itwêwin — tâpiskôc: cîmân, wâwi	💧	
 N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhyowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
@@ -490,7 +490,7 @@ PlO	→ Pl	Goal: Plural	→ many	→ mihcêt
 PrA		Pronoun: Animate	like: awa	tâpiskôc: awa	➡️🧑🏽	
 PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧	
 						
-Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	
+Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	https://plainscree.atlas-ling.ca/grammar/words/pronouns/
 Prop		Proper	how something/someone is called	isiyihkâsowin		
 Prox	Proximal	Proximate	Here	ôtâ		
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
@@ -522,7 +522,7 @@ Sg	Singular	Singular	one	pêyak
 TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw		
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw		
 						
-V	Verb		Action word	ispayin-itwêwin		
+V	Verb		Action word	ispayin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/verbs/
 V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: miywâsin, mihkwâw	ispayin-itwêwin — tâpiskôc: miywâsin, mihkwâw	💧➡️	
 V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
 V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
