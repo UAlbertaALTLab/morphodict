@@ -173,9 +173,11 @@ Del	Delayed	Delayed	later	mwêstas
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
 Der/Com	Comitative	Derived comitative	with another person	wîci-		
-Der/Dim	Diminutive	Derived diminutive	smaller / younger / lesser	 nawac apisîs		
+Der/Dim	Diminutive	Derived diminutive	smaller / younger	 kâ-apisisîhiht / kâ-apisisîhcâhk		
 Der/X		Derived unspecified actor				
-Dim	Diminutive	Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis		
+Dim	Diminutive	Diminutive	smaller / younger	nawac apisîs / ayiwâk osk-âyis		
+Dim+NA	Diminutive	Diminutive	smaller / younger	nawac ê-apisîsisit / nawac ê-osk-âyiwit		
+Dim+NI	Diminutive	Diminutive	smaller	nawac ê-apisâsik		
 Dist	Distal	Distal	Over yonder	nêta		
 Distr	Distributive	Distributive	among	âkine		
 Err/Orth		(Sub-standard form)				
@@ -187,7 +189,7 @@ II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihk
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk		
 Interr	Interrogative	Interrogative	Question	kakwêcihkêmowin		
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡	
-Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️	
+Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️	https://plainscree.atlas-ling.ca/grammar/words/particles/
 IPH	Phrase	Phrase	like: êkosi pitamâ	tâpiskôc: êkosi pitamâ		
 IPJ	Interjection	Interjection	like: hay hay	tâpiskôc: hay hay	⚡	
 IPN	Prenoun	Prenoun	like: amisko-	tâpiskôc: amisko-	⚡	
@@ -205,11 +207,11 @@ Interj		Interjection	Shouting word	têpwêwin-itwêwin
 Loc	Locative	Locative	in/on/to	pîhci-, tahkoht, ohci		
 Med	Medial	Medial	There	anita		
 						
-N		Noun	Naming word	wîhyowin-itwêwin		
-N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhyowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
-N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhyowin-itwêwin — tâpiskôc: cîmân, wâwi	💧	
-N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhyowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
-N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhyowin-itwêwin — tâpiskôc: mîpit	👤💧	
+N		Noun	Naming word	wîhowin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/nouns/
+N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
+N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhowin-itwêwin — tâpiskôc: cîmân, wâwi	💧	
+N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
+N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhowin-itwêwin — tâpiskôc: mîpit	👤💧	
 						
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan		
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy		
@@ -484,13 +486,13 @@ PV/yahki	Preverb: yahki-		act of pushing forward; increasing, increasingly, addi
 PV/yikate	Preverb: yîkatê-		aside			
 PV/yipe	Preverb: yîpê-		on a slant, on a slope, on the side, sideways			
 PV/yoski	Preverb: yôski-		soft, softly			
-Pl	Plural	Plural	many	mihcêt		
-PlO	→ Pl	Goal: Plural	→ many	→ mihcêt		
+Pl	Plural	Plural	two or more	nîso ahpô ayiwâk		
+PlO	→ Pl	Goal: Plural	→ two or more	→ nîso ahpô ayiwâk		
 						
 PrA		Pronoun: Animate	like: awa	tâpiskôc: awa	➡️🧑🏽	
 PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧	
 						
-Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	
+Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	https://plainscree.atlas-ling.ca/grammar/words/pronouns/
 Prop		Proper	how something/someone is called	isiyihkâsowin		
 Prox	Proximal	Proximate	Here	ôtâ		
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
@@ -514,7 +516,7 @@ RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw
 Rel		Relative				
 Rom		Roman	like: I, V, X	tâpiskôc: I, V, X		
 						
-Sg	Singular	Singular	one	pêyak		
+Sg	Singular	Singular	only one	pêyak piko		
 						
 						
 						
@@ -522,7 +524,7 @@ Sg	Singular	Singular	one	pêyak
 TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw		
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw		
 						
-V	Verb		Action word	ispayin-itwêwin		
+V	Verb		Action word	ispayin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/verbs/
 V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: miywâsin, mihkwâw	ispayin-itwêwin — tâpiskôc: miywâsin, mihkwâw	💧➡️	
 V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
 V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
