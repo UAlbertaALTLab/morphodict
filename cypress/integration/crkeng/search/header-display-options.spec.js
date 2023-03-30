@@ -46,7 +46,7 @@ context("Searching", () => {
 
           expect(popupText).to.contain("naming word");
           expect(popupText).to.contain("my");
-          expect(popupText).to.contain("many");
+          expect(popupText).to.contain("two or more");
         });
     });
 
