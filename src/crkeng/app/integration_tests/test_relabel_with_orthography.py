@@ -12,7 +12,7 @@ from crkeng.app.preferences import DisplayMode
 #  - probably won't change (or the tests will break)
 #  - has at least one long vowel, so that we test that macrons are generated
 TAGS = ("Sg",)
-EXPECTED_LABEL_INTERNAL_ORTHOGRAPHY = "pêyak"
+EXPECTED_LABEL_INTERNAL_ORTHOGRAPHY = "pêyak piko"
 
 
 @pytest.mark.parametrize(
