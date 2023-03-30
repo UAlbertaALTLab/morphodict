@@ -57,8 +57,8 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
     }
 
     const labels = [
-      { scope: "col", label: /\bone\b/i },
-      { scope: "col", label: /\bmany\b/i },
+      { scope: "col", label: /\bonly one\b/i },
+      { scope: "col", label: /\btwo or more\b/i },
       { scope: "row", label: "I" },
       { scope: "row", label: /\byou\b/i },
     ];
