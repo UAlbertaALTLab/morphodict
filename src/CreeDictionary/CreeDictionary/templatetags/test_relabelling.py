@@ -13,7 +13,7 @@ def test_relabel_tag():
     # Its contents could change, so TRY to choose a label that is unlikely to change.
     # I guess both the tag and label for "unspecified actor" are unlikely to change, so:
     unspecified_actor = ("X",)
-    plain_english = "someone"
+    plain_english = "people"
 
     context = Context({"label": RowLabel(unspecified_actor)})
     template = Template("{% load relabelling %} {% relabel label.fst_tags %}")
@@ -50,7 +50,7 @@ def test_relabel_tag_ignores_bad_cookie():
     # Its contents could change, so TRY to choose a label that is unlikely to change.
     # I guess both the tag and label for "unspecified actor" are unlikely to change, so:
     unspecified_actor = ("X",)
-    english = "someone"
+    english = "people"
 
     request = HttpRequest()
     request.COOKIES[DisplayMode.cookie_name] = "totally-invalid-value-🐐"
@@ -71,7 +71,7 @@ def test_relabel_tag_with_explict_label_setting() -> None:
     # Its contents could change, so TRY to choose a label that is unlikely to change.
     # I guess both the tag and label for "unspecified actor" are unlikely to change, so:
     unspecified_actor = ("X",)
-    plain_english = "someone"
+    plain_english = "people"
     nehiyawewin = "awiya"
 
     request = HttpRequest()
