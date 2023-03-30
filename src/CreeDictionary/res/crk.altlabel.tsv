@@ -173,9 +173,11 @@ Del	Delayed	Delayed	later	mwêstas
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
 Der/Com	Comitative	Derived comitative	with another person	wîci-		
-Der/Dim	Diminutive	Derived diminutive	smaller / younger / lesser	 nawac apisîs		
+Der/Dim	Diminutive	Derived diminutive	smaller / younger	 kâ-apisisîhiht / kâ-apisisîhcâhk		
 Der/X		Derived unspecified actor				
-Dim	Diminutive	Diminutive	smaller / lesser / younger	nawac apisîs / ayiwâk osk-âyis		
+Dim	Diminutive	Diminutive	smaller / younger	nawac apisîs / ayiwâk osk-âyis		
+Dim+NA	Diminutive	Diminutive	smaller / younger	nawac ê-apisîsisit / nawac ê-osk-âyiwit		
+Dim+NI	Diminutive	Diminutive	smaller	nawac ê-apisâsik		
 Dist	Distal	Distal	Over yonder	nêta		
 Distr	Distributive	Distributive	among	âkine		
 Err/Orth		(Sub-standard form)				
@@ -484,8 +486,8 @@ PV/yahki	Preverb: yahki-		act of pushing forward; increasing, increasingly, addi
 PV/yikate	Preverb: yîkatê-		aside			
 PV/yipe	Preverb: yîpê-		on a slant, on a slope, on the side, sideways			
 PV/yoski	Preverb: yôski-		soft, softly			
-Pl	Plural	Plural	many	mihcêt		
-PlO	→ Pl	Goal: Plural	→ many	→ mihcêt		
+Pl	Plural	Plural	two or more	nîso ahpô ayiwâk		
+PlO	→ Pl	Goal: Plural	→ two or more	→ nîso ahpô ayiwâk		
 						
 PrA		Pronoun: Animate	like: awa	tâpiskôc: awa	➡️🧑🏽	
 PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧	
@@ -514,7 +516,7 @@ RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw
 Rel		Relative				
 Rom		Roman	like: I, V, X	tâpiskôc: I, V, X		
 						
-Sg	Singular	Singular	one	pêyak		
+Sg	Singular	Singular	only one	pêyak piko		
 						
 						
 						
