@@ -2,7 +2,7 @@ _ Sg	${lemma}+N+I+Sg
 _ Pl	${lemma}+N+I+Pl
 _ Loc	${lemma}+N+I+Loc
 	
-# Der/Dim+NI	
+# DimNI	
 _ Sg	${lemma}+N+I+Der/Dim+N+I+Sg
 	
 # Poss	

@@ -10,7 +10,7 @@ _ Px2Pl	${lemma}+N+I+D+Px2Pl+Sg	${lemma}+N+I+D+Px2Pl+Pl	${lemma}+N+I+D+Px2Pl+Loc
 _ Px3Pl	${lemma}+N+I+D+Px3Pl+Sg	${lemma}+N+I+D+Px3Pl+Pl	${lemma}+N+I+D+Px3Pl+Loc
 _ Px4Sg/Pl	${lemma}+N+I+D+Px4Sg/Pl+Sg	${lemma}+N+I+D+Px4Sg/Pl+Pl	${lemma}+N+I+D+Px4Sg/Pl+Loc
 			
-# Der/Dim+NI			
+# DimNI			
 	| Poss		
 _ PxX	${lemma}+N+I+D+Der/Dim+N+I+D+PxX+Sg		
 _ Px1Sg	${lemma}+N+I+D+Der/Dim+N+I+D+Px1Sg+Sg		

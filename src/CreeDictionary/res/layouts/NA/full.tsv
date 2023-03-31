@@ -3,7 +3,7 @@ _ Pl	${lemma}+N+A+Pl
 _ Obv	${lemma}+N+A+Obv		
 _ Distr	${lemma}+N+A+Distr		
 			
-# Der/Dim+NA			
+# DimNA			
 _ Sg	${lemma}+N+A+Der/Dim+N+A+Sg		
 			
 # Poss			
