@@ -1,7 +1,6 @@
 _ Sg	${lemma}+N+A+Sg		
 _ Pl	${lemma}+N+A+Pl		
 _ Obv	${lemma}+N+A+Obv		
-_ Distr	${lemma}+N+A+Distr		
 			
 # DimNA			
 _ Sg	${lemma}+N+A+Der/Dim+N+A+Sg		
