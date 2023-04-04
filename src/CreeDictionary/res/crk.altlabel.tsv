@@ -60,8 +60,8 @@ FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI	LINK
 0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
 0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
 						
-Inf+PV/ka	Conjunct (ka-)	Infinitive/Future (with ka-)	ka- word	ka- itwêwin		
-Inf+PV/ta	Conjunct (ta-)	Infinitive/Future (with ta-)	ta- word	ta- itwêwin		
+Inf+PV/ka	Conjunct (ka-)	Infinitive / Irrealis (with ka-)	ka- word	ka- itwêwin		
+Inf+PV/ta	Conjunct (ta-)	Infinitive / Irrealis (with ta-)	ta- word	ta- itwêwin		
 						
 						
 						
@@ -168,7 +168,7 @@ Fut+Cond	Future Conditional	Future conditional	when/if something happens	kisik/k
 Core	Core	Core forms	Key forms	âpâpiskahikan-itwêwina		
 D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit		
 Def		Definite	certainly	cikêmâ		
-Fut+Def	Future Definite	Future definite tense	something will certainly happen	ka-ispayik nîkânihk/cikêmâ		
+Fut+Def	Future Definite	Future definite tense: ka- (~ ta-)	something will certainly happen	ka-ispayik nîkânihk/cikêmâ		
 Del	Delayed	Delayed	later	mwêstas		
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
@@ -202,7 +202,7 @@ Imp+Imm		Immediate imperative	command/request that something happens immediately
 Ind	Independent	Independent	ni-/ki- word	ni-/ki- itwêwin		
 Inf	Infinitive	Infinitive form	for something to happen	ka-ispaiyk / ta-ispayik		
 Int	Intentional	Intentional	be going to	akâwâtamowin		
-Fut+Int	Future Intentional	Future intentional tense	something is going to happen	ê-wî-ihkik nîkânihk		
+Fut+Int	Future Intentional	Future intentional / prospective aspect: wî-	something is going to happen	ê-wî-ihkik nîkânihk		
 Interj		Interjection	Shouting word	têpwêwin-itwêwin		
 Loc	Locative	Locative	in/on/at / place	itê ê-ayâk/ê-ayât kîkway / itê ê-ayât awiyak		
 Med	Medial	Medial	There	anita		
@@ -496,7 +496,7 @@ Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	https://plainscree.atla
 Prop		Proper	how something/someone is called	isiyihkâsowin		
 Prox	Proximal	Proximate	Here	ôtâ		
 Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
-Prt	Past	Past tense	something happened earlier	ê-ispayik kwayâc		
+Prt	Past	Past tense: kî-	something happened earlier	ê-ispayik kwayâc		
 Px	Possession	Possessed forms	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)		
 Px12Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw		
 Px1Pl	Possessor: 1p (excl)	Possessor: 1st Person Plural (Exclusive)	our (but not your)	niyanân		
