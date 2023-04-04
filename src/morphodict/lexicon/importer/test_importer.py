@@ -447,11 +447,11 @@ def test_non_lemma_wordform_added(db, translate_wordforms, incremental):
     )
 
     assert Wordform.objects.filter(is_lemma=True).count() == 1
-    assert Wordform.objects.get(slug="maskwa")
+    assert Wordform.objects.get(slug="masinahikan")
 
     if translate_wordforms:
         assert (
-            Wordform.objects.get(text="maskonâhk")
+            Wordform.objects.get(text="masinahikanihk")
             .definitions.filter(auto_translation_source_id__isnull=True)
             .count()
             == 0
@@ -465,10 +465,10 @@ def test_non_lemma_wordform_added(db, translate_wordforms, incremental):
         incremental=incremental,
     )
 
-    wf = Wordform.objects.get(text="maskonâhk")
+    wf = Wordform.objects.get(text="masinahikanihk")
     assert definitions_match(
         wf.definitions.filter(auto_translation_source__isnull=True),
-        [["among the bears", "X"]],
+        [["in a book", "X"]],
     )
 
 
@@ -481,10 +481,10 @@ def test_non_lemma_wordform_removed(db, translate_wordforms, incremental):
         incremental=incremental,
     )
 
-    wf = Wordform.objects.get(text="maskonâhk")
+    wf = Wordform.objects.get(text="masinahikanihk")
     assert definitions_match(
         wf.definitions.filter(auto_translation_source__isnull=True),
-        [["among the bears", "X"]],
+        [["in a book", "X"]],
     )
 
     import_test_file(
@@ -495,11 +495,11 @@ def test_non_lemma_wordform_removed(db, translate_wordforms, incremental):
     )
 
     assert Wordform.objects.filter(is_lemma=True).count() == 1
-    assert Wordform.objects.get(slug="maskwa")
+    assert Wordform.objects.get(slug="masinahikan")
 
     if translate_wordforms:
         assert (
-            Wordform.objects.get(text="maskonâhk")
+            Wordform.objects.get(text="masinahikanihk")
             .definitions.filter(auto_translation_source_id__isnull=True)
             .count()
             == 0
