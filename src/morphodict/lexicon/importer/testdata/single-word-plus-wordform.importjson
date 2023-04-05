@@ -22,12 +22,12 @@
     "slug": "maskwa"
   },
   {
-    "analysis": [[], "maskwa", ["+N", "+A", "+Distr"]],
+    "analysis": [[], "maskwa", ["+N", "+A", "+Pl"]],
     "formOf": "maskwa",
-    "head": "maskonâhk",
+    "head": "maskwak",
     "senses": [
       {
-        "definition": "among the bears",
+        "definition": "bears",
         "sources": ["X"]
       }
     ]
