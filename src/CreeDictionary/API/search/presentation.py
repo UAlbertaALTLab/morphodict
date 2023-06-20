@@ -55,7 +55,10 @@ LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
 
 @dataclass
 class _LexicalEntry:
-    entry: _ReduplicationResult | SerializedWordform | _InitialChangeResult
+    entry: List[_ReduplicationResult | SerializedWordform | _InitialChangeResult]
+    text: str
+    url: str
+    id: str
     type: LexicalEntryType
     original_tag: FSTTag
 
@@ -65,7 +68,7 @@ class SerializedPresentationResult(TypedDict):
     wordform_text: str
     is_lemma: bool
     definitions: Iterable[SerializedDefinition]
-    lexical_info: List[Dict]
+    lexical_info: List
     preverbs: Iterable[SerializedWordform]
     friendly_linguistic_breakdown_head: Iterable[Label]
     friendly_linguistic_breakdown_tail: Iterable[Label]
@@ -380,6 +383,9 @@ def serialize_definitions(
 def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
     return {
         "entry": lexical_entry.entry,
+        "text": lexical_entry.text,
+        "url": lexical_entry.url,
+        "id": lexical_entry.id,
         "type": lexical_entry.type,
         "original_tag": lexical_entry.original_tag,
     }
@@ -447,14 +453,14 @@ def get_lexical_info(
     animate_emoji: str,
     show_emoji: str,
     dict_source: list,
-) -> List[Dict]:
+) -> List:
     if not result_analysis:
         return []
 
     result_analysis_tags = result_analysis.prefix_tags
     first_letters = extract_first_letters(result_analysis)
 
-    lexical_info: List[Dict] = []
+    lexical_info: List = []
 
     for i, tag in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
@@ -476,29 +482,36 @@ def get_lexical_info(
 
         elif tag.startswith("PV/"):
             preverb_text = tag.replace("PV/", "").replace("+", "")
-
             # Our FST analyzer doesn't return preverbs with diacritics
             # but we store variations of words in this table
             preverb_results = SourceLanguageKeyword.objects.filter(text=preverb_text)
-
             # get the actual wordform object and
             # make sure the result we return is an IPV
             if preverb_results:
-                preverb_result = None
-                for result in preverb_results:
-                    lexicon_result = Wordform.objects.get(id=result.wordform_id)
+                entries = []
+                for preverb in preverb_results:
+                    lexicon_result = Wordform.objects.get(id=preverb.wordform_id)
                     if lexicon_result:
                         _info = lexicon_result.linguist_info
                         if _info["wordclass"] == "IPV":
-                            preverb_result = lexicon_result
+                            entry = serialize_wordform(
+                            lexicon_result, animate_emoji, show_emoji, dict_source)
+                            if entry:
+                                entries.append(entry)
+                url = "search?q=" + preverb_text
+                _type = "Preverb"
+                id = entries[0]["id"]
+                result = _LexicalEntry(entry=entries,text=preverb_text, url=url, id = id, type=_type, original_tag=tag)
+                lexical_info.append(serialize_lexical_entry(result)) 
             else:
                 # Can't find a match for the preverb in the database.
                 # This happens when searching against the test database for
                 # ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk, as the test database
                 # lacks lacks ê and kî.
-                preverb_result = Wordform(text=preverb_text, is_lemma=True)
+                preverb_result1 = Wordform(text=preverb_text, is_lemma=True)
 
         if reduplication_string is not None:
+            
             entry = _ReduplicationResult(
                 text=reduplication_string,
                 definitions=[
@@ -510,17 +523,16 @@ def get_lexical_info(
                 ],
             ).serialize()
             _type = "Reduplication"
-
-        if preverb_result is not None:
-            entry = serialize_wordform(
-                preverb_result, animate_emoji, show_emoji, dict_source
-            )
-            _type = "Preverb"
-
-        if entry and _type:
-            result = _LexicalEntry(entry=entry, type=_type, original_tag=tag)
+        if entry and _type!="Preverb" and _type is not None:
+            url = entry.get("lemma_url")
+            id = None
+            try: 
+                id = entry[0]["id"]
+            except:
+                id = None
+            entry = [entry]
+            result = _LexicalEntry(entry=entry, text=reduplication_string, url=url, id= id, type=_type, original_tag=tag)
             lexical_info.append(serialize_lexical_entry(result))
-
     return lexical_info
 
 
