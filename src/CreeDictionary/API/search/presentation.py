@@ -495,14 +495,22 @@ def get_lexical_info(
                         _info = lexicon_result.linguist_info
                         if _info["wordclass"] == "IPV":
                             entry = serialize_wordform(
-                            lexicon_result, animate_emoji, show_emoji, dict_source)
+                                lexicon_result, animate_emoji, show_emoji, dict_source
+                            )
                             if entry:
                                 entries.append(entry)
                 url = "search?q=" + preverb_text
                 _type = "Preverb"
                 id = entries[0]["id"]
-                result = _LexicalEntry(entry=entries,text=preverb_text, url=url, id = id, type=_type, original_tag=tag)
-                lexical_info.append(serialize_lexical_entry(result)) 
+                result = _LexicalEntry(
+                    entry=entries,
+                    text=preverb_text,
+                    url=url,
+                    id=id,
+                    type=_type,
+                    original_tag=tag,
+                )
+                lexical_info.append(serialize_lexical_entry(result))
             else:
                 # Can't find a match for the preverb in the database.
                 # This happens when searching against the test database for
@@ -511,7 +519,6 @@ def get_lexical_info(
                 preverb_result1 = Wordform(text=preverb_text, is_lemma=True)
 
         if reduplication_string is not None:
-            
             entry = _ReduplicationResult(
                 text=reduplication_string,
                 definitions=[
@@ -523,15 +530,22 @@ def get_lexical_info(
                 ],
             ).serialize()
             _type = "Reduplication"
-        if entry and _type!="Preverb" and _type is not None:
+        if entry and _type != "Preverb" and _type is not None:
             url = entry.get("lemma_url")
             id = None
-            try: 
+            try:
                 id = entry[0]["id"]
             except:
                 id = None
             entry = [entry]
-            result = _LexicalEntry(entry=entry, text=reduplication_string, url=url, id= id, type=_type, original_tag=tag)
+            result = _LexicalEntry(
+                entry=entry,
+                text=reduplication_string,
+                url=url,
+                id=id,
+                type=_type,
+                original_tag=tag,
+            )
             lexical_info.append(serialize_lexical_entry(result))
     return lexical_info
 
