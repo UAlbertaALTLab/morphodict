@@ -27,11 +27,12 @@
       <li>
           <span>{{ item.type }}
             {% if item.type != "Initial Change" %}: {% endif %}
-              {% if item.entry.id %}
-                  <a href="{{ item.entry.lemma_url }}">{{ item.entry.text}}</a>
+            {% if item.id %}
+                <a href="{{ item.url }}">{{ item.text}}</a>
               {% else %}
-                  {{ item.entry.text}}
-              {% endif %}</span>
+                {{ item.text}}
+              {% endif %}
+          </span>
 
 
           <div tabindex="0" class="preverb-breakdown__tooltip-icon" data-has-tooltip data-cy="information-mark">
@@ -40,15 +41,12 @@
               alt="preverb breakdown">
           </div>
           <div class="tooltip" role="tooltip">
-            {% for definition in item.entry.definitions %}
+            {% for word in item.entry %}
+            {% for definition in word.definitions %}
                 <p class="preverb-breakdown__preverb-definition">
-                    <span class="preverb-breakdown__preverb-definition-text">{{ definition.text }}</span>
-            {% if item.entry.id %} {# we know the preverb in the database #}
-                {% for source in definition.source_ids|sort_sources %}
-                    <cite class="cite-dict cite-dict--popup">{{ source }}</cite>
-                {% endfor %}
-            {% endif %}
+                    <span class="preverb-breakdown__preverb-definition-text">{{ definition.text}}</span>
             </p>
+            {% endfor %}
             {% endfor %}
             <div class="tooltip__arrow" data-popper-arrow></div>
           </div>
