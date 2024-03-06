@@ -14,8 +14,7 @@ NamedTupleFieldName = NewType("NamedTupleFieldName", str)
 
 
 class HashableNamedTupleFieldValue(Protocol):
-    def __hash__(self):
-        ...
+    def __hash__(self): ...
 
 
 T = TypeVar("T")

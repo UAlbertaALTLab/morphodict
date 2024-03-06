@@ -1,6 +1,7 @@
 """
 Stub for data migration that used to add data to a table that no longer exists.
 """
+
 from django.db import migrations
 
 

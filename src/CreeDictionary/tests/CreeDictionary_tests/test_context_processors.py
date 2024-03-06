@@ -2,7 +2,6 @@
 Test Django template context processors.
 """
 
-
 import pytest
 from django.http import HttpRequest
 from django.template import RequestContext, Template

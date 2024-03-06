@@ -3,6 +3,7 @@ Preferences framework.
 
 Allows for generic site-wide preferences stored in cookies.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass

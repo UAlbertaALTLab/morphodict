@@ -1,6 +1,7 @@
 """
 this file contains `TypedDict` classes that effectively serves as json schema for serialized objects
 """
+
 from typing import List, Optional, Sequence, Tuple, Union
 
 from typing_extensions import Literal, TypedDict

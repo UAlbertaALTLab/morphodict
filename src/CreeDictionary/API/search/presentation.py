@@ -523,9 +523,11 @@ def get_lexical_info(
                 text=reduplication_string,
                 definitions=[
                     {
-                        "text": "Strong reduplication: intermittent, repeatedly, iteratively; again and again; here and there"
-                        if tag == "RdplS+"
-                        else "Weak Reduplication: ongoing, continuing"
+                        "text": (
+                            "Strong reduplication: intermittent, repeatedly, iteratively; again and again; here and there"
+                            if tag == "RdplS+"
+                            else "Weak Reduplication: ongoing, continuing"
+                        )
                     }
                 ],
             ).serialize()

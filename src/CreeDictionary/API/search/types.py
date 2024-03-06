@@ -25,14 +25,12 @@ class LinguisticTag(Protocol):
     """
 
     @property
-    def value(self) -> FSTTag:
-        ...
+    def value(self) -> FSTTag: ...
 
     # TODO: linguistic feature
 
     @property
-    def in_plain_english(self) -> str:
-        ...
+    def in_plain_english(self) -> str: ...
 
     def serialize(self) -> SerializedLinguisticTag:
         return SerializedLinguisticTag(

@@ -1,6 +1,7 @@
 """
 Template tags related to the Cree Dictionary specifically.
 """
+
 from urllib.parse import quote
 from weakref import WeakKeyDictionary
 

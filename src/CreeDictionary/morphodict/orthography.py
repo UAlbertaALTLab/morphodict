@@ -1,6 +1,7 @@
 """
 Handling of the writing system of the language.
 """
+
 import logging
 from importlib import import_module
 from typing import Callable, Set

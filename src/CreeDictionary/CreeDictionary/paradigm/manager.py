@@ -285,5 +285,4 @@ class Transducer(Protocol):
     the paradigm manager actually uses.
     """
 
-    def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]:
-        ...
+    def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]: ...

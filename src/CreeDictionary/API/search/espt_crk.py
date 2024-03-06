@@ -1,6 +1,7 @@
 """
 Cree-specific data for English Inflected Phrase search
 """
+
 from morphodict.analysis.tag_map import TagMap
 
 # tags needed for FST generator

@@ -1,6 +1,7 @@
 """
 ESPT: English simple phrase translation
 """
+
 import logging
 import re
 from dataclasses import dataclass

@@ -1,6 +1,7 @@
 """
 Unit tests for the paradigm pane module.
 """
+
 import pytest
 from more_itertools import first, ilen, last, one
 

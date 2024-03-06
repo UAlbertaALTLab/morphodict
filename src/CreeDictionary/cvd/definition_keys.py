@@ -8,7 +8,6 @@ This file has functions to turn definitions into string keys that:
  2. Also refer unambiguously to a single wordform.
 """
 
-
 import json
 import logging
 from typing import TypedDict, cast, Optional

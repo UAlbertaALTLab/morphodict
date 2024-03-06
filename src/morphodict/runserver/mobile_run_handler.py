@@ -31,7 +31,6 @@ calling stop_server() when backgrounded, and resume_server() when brought to the
 foreground again.
 """
 
-
 import socketserver
 from threading import Condition, Lock
 from typing import Optional

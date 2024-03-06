@@ -1,6 +1,7 @@
 """
 Test paradigm generation for the itwêwina (crkeng) dictionary.
 """
+
 from more_itertools import first
 
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager

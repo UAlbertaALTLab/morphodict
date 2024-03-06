@@ -10,6 +10,7 @@ In your site URLConf, include() these URLs:
         path("preferences", include("morphodict.preference.urls")),
     ]
 """
+
 from django.urls import path
 
 from . import views
