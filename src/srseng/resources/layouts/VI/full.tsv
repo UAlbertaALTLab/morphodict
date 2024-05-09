@@ -38,14 +38,14 @@ _ 3Pl _ Distr	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr	${lemma}+V+I+Pfv+Rep+SbjPl3+Dis
 _ 4Sg _ Distr	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr	${lemma}+V+I+Pfv+Rep+SbjSg4+Distr
 		
 	| Pot	
-_ 1Sg	${lemma}+V+I+Pot+Rep+SbjSg1	
-_ 2Sg	${lemma}+V+I+Pot+Rep+SbjSg2	
-_ 3Sg	${lemma}+V+I+Pot+Rep+SbjSg3	
-_ 1Pl	${lemma}+V+I+Pot+Rep+SbjPl1	
-_ 2Pl	${lemma}+V+I+Pot+Rep+SbjPl2	
-_ 3Pl	${lemma}+V+I+Pot+Rep+SbjPl3	
-_ 4Sg	${lemma}+V+I+Pot+Rep+SbjSg4	
-_ 1Pl _ Distr	${lemma}+V+I+Pot+Rep+SbjPl1+Distr	
-_ 2Pl _ Distr	${lemma}+V+I+Pot+Rep+SbjPl2+Distr	
-_ 3Pl _ Distr	${lemma}+V+I+Pot+Rep+SbjPl3+Distr	
-_ 4Sg _ Distr	${lemma}+V+I+Pot+Rep+SbjSg4+Distr	
+_ 1Sg	${lemma}+V+I+Pot+SbjSg1	
+_ 2Sg	${lemma}+V+I+Pot+SbjSg2	
+_ 3Sg	${lemma}+V+I+Pot+SbjSg3	
+_ 1Pl	${lemma}+V+I+Pot+SbjPl1	
+_ 2Pl	${lemma}+V+I+Pot+SbjPl2	
+_ 3Pl	${lemma}+V+I+Pot+SbjPl3	
+_ 4Sg	${lemma}+V+I+Pot+SbjSg4	
+_ 1Pl _ Distr	${lemma}+V+I+Pot+SbjPl1+Distr	
+_ 2Pl _ Distr	${lemma}+V+I+Pot+SbjPl2+Distr	
+_ 3Pl _ Distr	${lemma}+V+I+Pot+SbjPl3+Distr	
+_ 4Sg _ Distr	${lemma}+V+I+Pot+SbjSg4+Distr	
