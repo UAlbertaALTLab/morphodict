@@ -633,12 +633,13 @@
         },
         "codecov": {
             "hashes": [
-                "sha256:585dc217dc3d8185198ceb402f85d5cb5dbfa0c5f350a5abcdf9e347776a5b47",
-                "sha256:782a8e5352f22593cbc5427a35320b99490eb24d9dcfa2155fd99d2b75cfb635",
-                "sha256:a0da46bb5025426da895af90938def8ee12d37fcbcbbbc15b6dc64cf7ebc51c1"
+                "sha256:2362b685633caeaf45b9951a9b76ce359cd3581dd515b430c6c3f5dfb4d92a8c",
+                "sha256:7d2b16c1153d01579a89a94ff14f9dbeb63634ee79e18c11036f34e7de66cbc9",
+                "sha256:c2ca5e51bba9ebb43644c43d0690148a55086f7f5e6fd36170858fa4206744d5"
             ],
             "index": "pypi",
-            "version": "==2.1.12"
+            "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+            "version": "==2.1.13"
         },
         "coverage": {
             "hashes": [
