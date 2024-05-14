@@ -114,16 +114,12 @@
             "index": "pypi",
             "version": "==2021.7.26"
         },
-        "dawg": {
+        "dawg2": {
             "hashes": [
-                "sha256:34881e06278d4a54cf0b402c0c8b587bef0caa78f0eee595adc7a2aa530e48ce",
-                "sha256:73760ad1272b1b47997f1a768b8f3bf547c92475bcd62185f4ab7e1bc691964e",
-                "sha256:7aecc4c89243edaf1efe7a4d769d993a7cd9307a8a04f48e07c4fc7c44bdd38f",
-                "sha256:83ce4a73f7632b0ed31af16c2750533ecbed347bad1148a52f6436e348b5b7ac",
-                "sha256:fb90b799fb7d6d728531840529c812a9ee17736da71e8a596ede8bfd6c62bf36"
+                "sha256:d8cbf0ddc15882b723848bf7d849a6d3186a15945738b3cf4bf8cfc810cda2db"
             ],
             "index": "pypi",
-            "version": "==0.8.0"
+            "version": "==0.13.0"
         },
         "dj-database-url": {
             "hashes": [
@@ -1065,13 +1061,6 @@
             ],
             "index": "pypi",
             "version": "==0.16.1"
-        },
-        "nb-black": {
-            "hashes": [
-                "sha256:1ca52e3a46675f6a0a6d79ac73a1f8f951bef60f919eced56173e76ab1b6d62b"
-            ],
-            "index": "pypi",
-            "version": "==1.0.7"
         },
         "nbclassic": {
             "hashes": [
