@@ -1,9 +1,0 @@
-	| Sg
-_ Px1Sg	${lemma}+N+A+D+Px1Sg+Sg
-_ Px2Sg	${lemma}+N+A+D+Px2Sg+Sg
-_ Px3Sg	${lemma}+N+A+D+Px3Sg+Obv
-	
-	| PxX
-_ Sg	${lemma}+N+A+D+PxX+Sg
-_ Pl	${lemma}+N+A+D+PxX+Pl
-_ Obv	${lemma}+N+A+D+PxX+Obv
