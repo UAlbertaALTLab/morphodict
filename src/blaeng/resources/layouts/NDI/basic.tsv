@@ -1,0 +1,9 @@
+	| Sg
+_ Px1Sg	${lemma}+N+I+D+Px1Sg+Sg
+_ Px2Sg	${lemma}+N+I+D+Px2Sg+Sg
+_ Px3Sg	${lemma}+N+I+D+Px3Sg+Sg
+	
+# PxX	
+_ Sg	${lemma}+N+I+D+PxX+Sg
+_ Pl	${lemma}+N+I+D+PxX+Pl
+_ Loc	${lemma}+N+I+D+PxX+Loc
