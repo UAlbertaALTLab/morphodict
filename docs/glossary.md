@@ -239,9 +239,9 @@ other hand, tells you enough to be able to [inflect].
 
 #### In Plains Cree
 
-* Noun — contains the word classes: [NI], [NA], [NID], [NAD]
-* Verb — contains the word classes: [VII], [VAI], [VTI], [VTA]
-* Indeclinable particle
+- Noun — contains the word classes: [NI], [NA], [NID], [NAD]
+- Verb — contains the word classes: [VII], [VAI], [VTI], [VTA]
+- Indeclinable particle
 
 
 ### gloss
@@ -265,7 +265,7 @@ Each head is listed alphabetically (with derivations (phrases on the
 [wordform][]) coming after the 'root' listing).
 
 ### inflected form
-[inflect]: #inflect
+[inflect]: #inflected-form
 [inflected form]: #inflected-form
 [inflected forms]: #inflected-form
 
@@ -581,19 +581,19 @@ same word class behave morphologically in a similar way to each other.
 
 -   **1 or more** [inflectional categories][].
 
+(wc-plains-cree)=
 #### in Plains Cree
 
-[NAD]: #NAD
-[NA]: #NA
-[NID]: #NID
-[NI]: #NI
-[VAI]: #VAI
-[VII]: #VII
-[VTA]: #VTA
-[VTI]: #VTI
+[NI]: #wc-plains-cree
+[NA]: #wc-plains-cree
+[NAD]: #wc-plains-cree
+[NID]: #wc-plains-cree
+[VII]: #wc-plains-cree
+[VAI]: #wc-plains-cree
+[VTI]: #wc-plains-cree
+[VTA]: #wc-plains-cree
 
 These are the word classes in Plains Cree:
-<a id="#NA"></a><a id="#NA"></a><a id="#NAD"></a><a id="#NI"></a><a id="#NID"></a><a id="#VAI"></a><a id="#VII"></a><a id="#VTA"></a><a id="#VTI"></a>
 
 -   NA: 🧑🏽 — **a**nimate **n**oun
 -   NI: 📘 — **i**nanimate **n**oun
