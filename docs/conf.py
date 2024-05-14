@@ -17,7 +17,7 @@ import myst_parser_hack
 # -- Project information -----------------------------------------------------
 
 project = "morphodict"
-copyright = "2021, University of Alberta ALTLab"
+copyright = "2024, University of Alberta ALTLab"
 author = "University of Alberta ALTLab"
 
 # -- General configuration ---------------------------------------------------
@@ -27,6 +27,8 @@ author = "University of Alberta ALTLab"
 # ones.
 extensions = ["myst_parser"]
 
+myst_enable_extensions = ["attrs_inline"]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
@@ -35,6 +37,8 @@ templates_path = ["_templates"]
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 
+# myst-parser now requires explict declaration of anchors.
+myst_heading_anchors = 6
 
 # -- Options for HTML output -------------------------------------------------
 
