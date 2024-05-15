@@ -56,9 +56,9 @@ LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
 @dataclass
 class _LexicalEntry:
     entry: List[_ReduplicationResult | SerializedWordform | _InitialChangeResult]
-    text: str
+    text: Optional[str]
     url: str
-    id: str
+    id: Optional[str]
     type: LexicalEntryType
     original_tag: FSTTag
 
@@ -488,7 +488,7 @@ def get_lexical_info(
             # get the actual wordform object and
             # make sure the result we return is an IPV
             if preverb_results:
-                entries = []
+                entries: List[_ReduplicationResult | SerializedWordform | _InitialChangeResult] = []
                 for preverb in preverb_results:
                     lexicon_result = Wordform.objects.get(id=preverb.wordform_id)
                     if lexicon_result:
@@ -501,7 +501,7 @@ def get_lexical_info(
                                 entries.append(entry)
                 url = "search?q=" + preverb_text
                 _type = "Preverb"
-                id = entries[0]["id"]
+                id : Optional[str] = str(cast(SerializedWordform, entries[0])["id"])
                 result = _LexicalEntry(
                     entry=entries,
                     text=preverb_text,
@@ -533,15 +533,15 @@ def get_lexical_info(
             ).serialize()
             _type = "Reduplication"
         if entry and _type != "Preverb" and _type is not None:
-            url = entry.get("lemma_url")
+            url = cast(SerializedWordform, entry).get("lemma_url")
             id = None
             try:
-                id = entry[0]["id"]
+                id = str(cast(SerializedWordform, entry)["id"])
             except:
                 id = None
-            entry = [entry]
+            entries = [entry]
             result = _LexicalEntry(
-                entry=entry,
+                entry=entries,
                 text=reduplication_string,
                 url=url,
                 id=id,

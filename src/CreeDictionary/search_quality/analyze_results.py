@@ -130,7 +130,7 @@ def load_results_file(results_file: PathLike) -> SampleSearchResultsJson:
         return search_results
 
 
-def analyze(results_file, sample_definition: SampleDefinition = None):
+def analyze(results_file, sample_definition: SampleDefinition = []):
     """
 
     If sample_definition is None, the default will be used.
