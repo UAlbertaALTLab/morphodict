@@ -185,7 +185,7 @@ Foc		Focus
 Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk		
 I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi		
 IC	Initial change	Initial change	like: wiyâpamât	tâpiskôc: wiyâpamât		
-II		Inanimate Intransitive	like: miywâsin, mihkwâw	tâpiskôc: miywâsin, mihkwâw		
+II		Inanimate Intransitive	like: mîthwâsin, miskwâw	tâpiskôc: mîthwâsin, miskwâw		
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk		
 Interr	Interrogative	Interrogative	Question	kakwêcihkêmowin		
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡	
@@ -525,7 +525,7 @@ TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw		
 						
 V	Verb		Action word	ispayin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/verbs/
-V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: miywâsin, mihkwâw	ispayin-itwêwin — tâpiskôc: miywâsin, mihkwâw	💧➡️	
+V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: mithwâsin, miskwâw	ispayin-itwêwin — tâpiskôc: mithwâsin, miskwâw	💧➡️	
 V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
 V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
 V+TA	Transitive animate verb	Verb — transitive animate	Action word — like: wîcihêw, itêw	ispayin-itwêwin — tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽	
