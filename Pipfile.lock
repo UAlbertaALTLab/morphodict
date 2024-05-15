@@ -399,10 +399,10 @@
         },
         "uwsgi": {
             "hashes": [
-                "sha256:88ab9867d8973d8ae84719cf233b7dafc54326fcaec89683c3f9f77c002cdff9"
+                "sha256:d653d2d804c194c8cbe2585fa56efa2650313ae75c686a9d7931374d4dfbfc6e"
             ],
             "index": "pypi",
-            "version": "==2.0.20"
+            "version": "==2.0.25.1"
         },
         "whitenoise": {
             "hashes": [
