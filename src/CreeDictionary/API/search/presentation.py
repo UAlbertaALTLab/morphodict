@@ -173,8 +173,8 @@ class PresentationResult:
             show_emoji=self._show_emoji,
         )
 
-        self.preverbs: List[SerializedWordform]= [
-            cast(SerializedWordform, entry) 
+        self.preverbs: List[SerializedWordform] = [
+            cast(SerializedWordform, entry)
             for lexical_entry in self.lexical_info
             for entry in lexical_entry["entry"]
             if lexical_entry["type"] == "Preverb"
@@ -454,7 +454,7 @@ def get_lexical_info(
     animate_emoji: str,
     show_emoji: str,
     dict_source: list,
-) -> List[dict] :
+) -> List[dict]:
     if not result_analysis:
         return []
 
