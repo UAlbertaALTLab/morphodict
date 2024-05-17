@@ -12,6 +12,9 @@ Director of the [University of Alberta ALTLab][ALTLab]. Hands-on, quantitative l
 
 [ALTLab]: https://altlab.artsrn.ualberta.ca/
 
+#### [Felipe Bañados Schwerter](https://github.com/fbanados)
+
+Software Developer.  General developer of ALTLab applications 2024-
 
 #### [Diane Boytang](https://github.com/starryEcliipse)
 
@@ -34,7 +37,7 @@ Senior software developer 2021. Improvement of search and expansion of itwêwina
 
 #### [Jolene Poulin](https://nienna73.github.io/)
 
-Software developer. General development of ALTLab applications 2020-
+Software developer. General development of ALTLab applications 2020-2023.
 
 
 #### [Aida Radu](https://github.com/aradu12)
