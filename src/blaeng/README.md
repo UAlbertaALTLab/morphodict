@@ -14,13 +14,15 @@ These are all the instructions I followed to create this new version.
 # MISSING TRANSDUCERS 
 
 ```
-Generating from the instructions set!
+
+I had to make transducers. Generating from the instructions we just collected today!
+
 `git clone giellalt/lang-bla`
 after generating the FSTs with the default infrastructure:
 ```
 hfst-xfst
 ```
-And run:
+And ran:
 ```
 read lexc src/fst/morphology/lexicon.lexc
 define Morphology
