@@ -119,6 +119,25 @@
     "slug": "asawāpamīw"
   },
   {
+    "analysis": [[], "iino", ["+V", "+TA", "+Ind", "+3Sg", "+4SgO"]],
+    "head": "ino",
+    "linguistInfo": {
+      "inflectional_category": "VTA-1",
+      "pos": "V",
+      "proto": "iino",
+      "stem": "iino-",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "s/he recognizes s.o.",
+        "sources": ["BD"]
+      }
+    ],
+    "slug": "iino"
+  },
+  {
     "analysis": [[], "asikan", ["+N", "+A", "+Sg"]],
     "head": "asikan",
     "linguistInfo": {
