@@ -9,4 +9,5 @@ collect_ignore = [
     "hdneng/site/settings.py",
     "srseng/site/settings.py",
     "srseng/site/settings_mobile.py",
+    "blaeng/site/settings.py",
 ]
