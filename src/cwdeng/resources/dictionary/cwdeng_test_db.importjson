@@ -13,6 +13,10 @@
       {
         "definition": "star",
         "sources": ["CW"]
+      },
+      {
+	"definition": "star - first word in CW",
+	"sources": ["TEST"]
       }
     ],
     "slug": "acâhkos"
