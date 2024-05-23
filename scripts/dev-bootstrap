@@ -20,6 +20,7 @@ for LANG_PAIR in \
     crkeng \
     cwdeng \
     srseng \
+    blaeng \
 ; do
     for USE_TEST_DB in true false; do
         export USE_TEST_DB

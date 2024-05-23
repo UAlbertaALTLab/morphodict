@@ -56,9 +56,9 @@ LexicalEntryType = Literal["Preverb", "Reduplication", "Initial Change"]
 @dataclass
 class _LexicalEntry:
     entry: List[_ReduplicationResult | SerializedWordform | _InitialChangeResult]
-    text: str
+    text: Optional[str]
     url: str
-    id: str
+    id: str | int | None
     type: LexicalEntryType
     original_tag: FSTTag
 
@@ -173,9 +173,10 @@ class PresentationResult:
             show_emoji=self._show_emoji,
         )
 
-        self.preverbs = [
-            lexical_entry["entry"]
+        self.preverbs: List[SerializedWordform] = [
+            cast(SerializedWordform, entry)
             for lexical_entry in self.lexical_info
+            for entry in lexical_entry["entry"]
             if lexical_entry["type"] == "Preverb"
         ]
         self.reduplication = [
@@ -453,22 +454,20 @@ def get_lexical_info(
     animate_emoji: str,
     show_emoji: str,
     dict_source: list,
-) -> List:
+) -> List[dict]:
     if not result_analysis:
         return []
 
     result_analysis_tags = result_analysis.prefix_tags
     first_letters = extract_first_letters(result_analysis)
 
-    lexical_info: List = []
+    lexical_info: List[_LexicalEntry] = []
 
     for i, tag in enumerate(result_analysis_tags):
         preverb_result: Optional[Preverb] = None
         reduplication_string: Optional[str] = None
         _type: Optional[LexicalEntryType] = None
-        entry: Optional[
-            _ReduplicationResult | SerializedWordform | _InitialChangeResult
-        ] = None
+        entry = None
 
         if tag in ["RdplW+", "RdplS+"]:
             reduplication_string = generate_reduplication_string(
@@ -501,16 +500,16 @@ def get_lexical_info(
                                 entries.append(entry)
                 url = "search?q=" + preverb_text
                 _type = "Preverb"
-                id = entries[0]["id"]
+                id: Optional[int] = entries[0]["id"]
                 result = _LexicalEntry(
-                    entry=entries,
+                    entry=cast(Any, entries),
                     text=preverb_text,
                     url=url,
                     id=id,
                     type=_type,
                     original_tag=tag,
                 )
-                lexical_info.append(serialize_lexical_entry(result))
+                lexical_info.append(result)
             else:
                 # Can't find a match for the preverb in the database.
                 # This happens when searching against the test database for
@@ -548,8 +547,8 @@ def get_lexical_info(
                 type=_type,
                 original_tag=tag,
             )
-            lexical_info.append(serialize_lexical_entry(result))
-    return lexical_info
+            lexical_info.append(result)
+    return [serialize_lexical_entry(entry) for entry in lexical_info]
 
 
 def extract_first_letters(analysis: RichAnalysis) -> List[str]:
