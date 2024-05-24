@@ -15,7 +15,7 @@
         "sources": ["CW"]
       },
       {
-        "definition": "star - first word in CW. testing changes.",
+        "definition": "star - first word in CW.",
         "sources": ["TEST"]
       }
     ],
