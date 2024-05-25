@@ -123,6 +123,23 @@
     "slug": "asawāpamīw"
   },
   {
+    "head": "asâmîhkîw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-1",
+      "pos": "V",
+      "stem": "asâmîhkî-",
+      "wordclass": "VAI"
+    },
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "he/she makes snowshoes",
+        "sources": ["CCCD"]
+      }
+    ],
+    "slug": "asâmîhkîw"
+  },
+  {
     "analysis": [[], "asikan", ["+N", "+A", "+Sg"]],
     "head": "asikan",
     "linguistInfo": {
@@ -1923,17 +1940,5 @@
       }
     ],
     "slug": "witha@p"
-  },
-  {   
-    "head": "asâmîhkîw",
-    "linguistInfo": {
-      "inflectional_category": "VAI-1",
-      "stem": "asâmîhkî-",
-      "pos": "V",
-      "wordclass": "VAI"
-     },
-    "paradigm": "VAI",
-    "senses": [{ "definition": "he/she makes snowshoes", "sources": ["CCCD"] }],
-    "slug": "asâmîhkîw"
   }
 ]
