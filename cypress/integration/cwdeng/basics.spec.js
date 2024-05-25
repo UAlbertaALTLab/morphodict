@@ -7,13 +7,13 @@ describe("The Woods Cree site", function () {
   });
 
   it("can search for a word", function () {
-    cy.visitSearch(`makes pottery`, urls.cwdeng).searchResultsContain(
-      "asiskīwithākanihkīw"
+    cy.visitSearch(`makes snowshoes`, urls.cwdeng).searchResultsContain(
+      "asāmīhkīw"
     );
   });
 
   it("can display a paradigm", function () {
-    cy.visit(`${urls.cwdeng}/word/asiskīwithākanihkīw`);
-    cy.get(".paradigm-cell").contains("kitasiskīwithākanihkānaw");
+    cy.visit(`${urls.cwdeng}/word/asâmîhkîw`);
+    cy.get(".paradigm-cell").contains("kitasāmīhkānānaw");
   });
 });

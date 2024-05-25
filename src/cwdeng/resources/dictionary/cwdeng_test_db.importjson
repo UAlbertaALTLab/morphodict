@@ -1923,5 +1923,17 @@
       }
     ],
     "slug": "witha@p"
+  },
+  {   
+    "head": "asâmîhkîw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-1",
+      "stem": "asâmîhkî-",
+      "pos": "V",
+      "wordclass": "VAI"
+     },
+    "paradigm": "VAI",
+    "senses": [{ "definition": "he/she makes snowshoes", "sources": ["CCCD"] }],
+    "slug": "asâmîhkîw"
   }
 ]
