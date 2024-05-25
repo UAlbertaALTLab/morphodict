@@ -1,24 +1,25 @@
 	| Ind
-_ 1Sg	${lemma}+V+TI+Ind+1Sg
-_ 2Sg	${lemma}+V+TI+Ind+2Sg
-_ 3Sg	${lemma}+V+TI+Ind+3Sg
-_ 1Pl	${lemma}+V+TI+Ind+1Pl
-_ 12Pl	${lemma}+V+TI+Ind+12Pl
-_ 2Pl	${lemma}+V+TI+Ind+2Pl
-_ 3Pl	${lemma}+V+TI+Ind+3Pl
-_ 4Sg/Pl	${lemma}+V+TI+Ind+4Sg/Pl
-_ X	${lemma}+V+TI+Ind+X
+_ 1Sg	${lemma}+VTI+Ind+1Sg+0SgO
+_ 2Sg	${lemma}+VTI+Ind+2Sg+0SgO
+_ 3Sg	${lemma}+VTI+Ind+3Sg+0SgO
+_ 1Pl	${lemma}+VTI+Ind+1Pl+0SgO
+_ 21Pl	${lemma}+VTI+Ind+21Pl+0SgO
+_ 2Pl	${lemma}+VTI+Ind+2Pl+0SgO
+_ 3Pl	${lemma}+VTI+Ind+3Pl+0SgO
+_ 4Sg	${lemma}+VTI+Ind+4Sg+0SgO
+_ 4Sg	${lemma}+VTI+Ind+4Pl+0SgO
 	
 	| Cnj
-_ 1Sg	PV/î+${lemma}+V+TI+Cnj+1Sg
-_ 2Sg	PV/î+${lemma}+V+TI+Cnj+2Sg
-_ 3Sg	PV/î+${lemma}+V+TI+Cnj+3Sg
-_ 1Pl	PV/î+${lemma}+V+TI+Cnj+1Pl
-_ 12Pl	PV/î+${lemma}+V+TI+Cnj+12Pl
-_ 2Pl	PV/î+${lemma}+V+TI+Cnj+2Pl
-_ 3Pl	PV/î+${lemma}+V+TI+Cnj+3Pl
-_ 4Sg/Pl	PV/î+${lemma}+V+TI+Cnj+4Sg/Pl
-_ X	PV/î+${lemma}+V+TI+Cnj+X
+_ 1Sg	${lemma}+VTI+Cnj+1Sg+0SgO
+_ 2Sg	${lemma}+VTI+Cnj+2Sg+0SgO
+_ 3Sg	${lemma}+VTI+Cnj+3Sg+0SgO
+_ 1Pl	${lemma}+VTI+Cnj+1Pl+0SgO
+_ 21Pl	${lemma}+VTI+Cnj+21Pl+0SgO
+_ 2Pl	${lemma}+VTI+Cnj+2Pl+0SgO
+_ 3Pl	${lemma}+VTI+Cnj+3Pl+0SgO
+_ 4Sg	${lemma}+VTI+Cnj+4Sg+0SgO
+_ 4Pl	${lemma}+VTI+Cnj+4Pl+0SgO
 	
 # Imp	
-_ 2Sg	${lemma}+V+TI+Imp+Imm+2Sg
+_ 2Sg	${lemma}+VTI+Imp+2Sg+0SgO
+_ 2Pl	${lemma}+VTI+Imp+2Pl+0SgO

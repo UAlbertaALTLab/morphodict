@@ -1,9 +1,12 @@
 	| Sg
-_ Px1Sg	${lemma}+N+I+D+Px1Sg+Sg
-_ Px2Sg	${lemma}+N+I+D+Px2Sg+Sg
-_ Px3Sg	${lemma}+N+I+D+Px3Sg+Sg
+_ Px1Sg	${lemma}+NID+Px1Sg+Sg
+_ Px2Sg	${lemma}+NID+Px2Sg+Sg
+_ Px3Sg	${lemma}+NID+Px3Sg+Sg
 	
-# PxX	
-_ Sg	${lemma}+N+I+D+PxX+Sg
-_ Pl	${lemma}+N+I+D+PxX+Pl
-_ Loc	${lemma}+N+I+D+PxX+Loc
+	| Sg
+_ Px1Pl	${lemma}+NID+Px1Pl+Sg
+_ Px21Pl	${lemma}+NID+Px21Pl+Sg
+_ Px2Pl	${lemma}+NID+Px2Pl+Sg
+_ Px3Pl	${lemma}+NID+Px3Pl+Sg
+	
+
