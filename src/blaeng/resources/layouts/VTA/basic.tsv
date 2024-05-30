@@ -1,4 +1,7 @@
-	| Ind
+
+# Ind
+
+	| Pos
 _ 1Sg _ 2SgO	${lemma}+VTA+Ind+1Sg+2SgO
 _ 1Sg _ 3SgO	${lemma}+VTA+Ind+1Sg+3SgO
 _ 2Sg _ 1SgO	${lemma}+VTA+Ind+2Sg+1SgO
@@ -10,18 +13,22 @@ _ 3Sg _ 4PlO	${lemma}+VTA+Ind+3Sg+4PlO
 _ 4Sg _ 3SgO	${lemma}+VTA+Ind+4Sg+3SgO
 _ 4Pl _ 3SgO	${lemma}+VTA+Ind+4Pl+3SgO
 	
-	| Cnj
-_ 1Sg _ 2SgO	${lemma}+VTA+Cnj+1Sg+2SgO
-_ 1Sg _ 3SgO	${lemma}+VTA+Cnj+1Sg+3SgO
-_ 2Sg _ 1SgO	${lemma}+VTA+Cnj+2Sg+1SgO
-_ 2Sg _ 3SgO	${lemma}+VTA+Cnj+2Sg+3SgO
-_ 3Sg _ 1SgO	${lemma}+VTA+Cnj+3Sg+1SgO
-_ 3Sg _ 2SgO	${lemma}+VTA+Cnj+3Sg+2SgO
-_ 3Sg _ 4SgO	${lemma}+VTA+Cnj+3Sg+4SgO
-_ 3Sg _ 4PlO	${lemma}+VTA+Cnj+3Sg+4PlO
-_ 4Sg _ 3SgO	${lemma}+VTA+Cnj+4Sg+3SgO
-_ 4Pl _ 3SgO	${lemma}+VTA+Cnj+4Pl+3SgO
+	| Neg
+_ 1Sg _ 2SgO	Neg+${lemma}+VTA+Ind+1Sg+2SgO
+_ 1Sg _ 3SgO	Neg+${lemma}+VTA+Ind+1Sg+3SgO
+_ 2Sg _ 1SgO	Neg+${lemma}+VTA+Ind+2Sg+1SgO
+_ 2Sg _ 3SgO	Neg+${lemma}+VTA+Ind+2Sg+3SgO
+_ 3Sg _ 1SgO	Neg+${lemma}+VTA+Ind+3Sg+1SgO
+_ 3Sg _ 2SgO	Neg+${lemma}+VTA+Ind+3Sg+2SgO
+_ 3Sg _ 4SgO	Neg+${lemma}+VTA+Ind+3Sg+4SgO
+_ 3Sg _ 4PlO	Neg+${lemma}+VTA+Ind+3Sg+4PlO
+_ 4Sg _ 3SgO	Neg+${lemma}+VTA+Ind+4Sg+3SgO
+_ 4Pl _ 3SgO	Neg+${lemma}+VTA+Ind+4Pl+3SgO
 	
 # Imp	
-_ 2Sg _ 1SgO	${lemma}+VTA+Imp+Imm+2Sg+1SgO
-_ 2Sg _ 3SgO	${lemma}+VTA+Imp+Imm+2Sg+3SgO
+	| Pos
+_ 2Sg _ 1SgO	${lemma}+VTA+Imp+2Sg+1SgO
+_ 2Sg _ 3SgO	${lemma}+VTA+Imp+2Sg+3SgO
+	| Neg
+_ 2Sg _ 1SgO	Neg+${lemma}+VTA+Imp+2Sg+1SgO
+_ 2Sg _ 3SgO	Neg+${lemma}+VTA+Imp+2Sg+3SgO

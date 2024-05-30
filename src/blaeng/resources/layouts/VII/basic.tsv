@@ -1,7 +1,7 @@
 	| Ind
-_ 0Sg _ Prs	${lemma}+V+II+Ind+3Sg
-_ 0Pl _ Prs	${lemma}+V+II+Ind+3Pl
+_ 0Sg _ Prs	${lemma}+VII+Ind+0Sg
+_ 0Pl _ Prs	${lemma}+VII+Ind+0Pl
 	
-	| Cnj
-_ 0Sg _ Prs	PV/î+${lemma}+V+II+Cnj+3Sg
-_ 0Pl _ Prs	PV/î+${lemma}+V+II+Cnj+3Pl
+	| Neg
+_ 0Sg	Neg+${lemma}+VII+Ind+0Sg
+_ 0Pl	Neg+${lemma}+VII+Ind+0Pl
