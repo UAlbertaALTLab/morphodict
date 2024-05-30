@@ -130,5 +130,17 @@
     "paradigm": "VTA",
     "senses": [{ "definition": "see; recognize", "sources": ["F&R"] }],
     "slug": "ino"
+  },
+  {
+    "head": "imitááwa",
+    "linguistInfo": {
+      "inflectional_category": "NA",
+      "stem": "imitááwa",
+      "pos": "N",
+      "wordclass": "NA"
+     },
+    "paradigm": "NA",
+    "senses": [{ "definition": "dog", "sources": ["F&R"] }],
+    "slug": "imitááwa"
   }
 ]
