@@ -183,7 +183,7 @@ jobs:
       - integration-test
       - build-docker-image
 
-    if: needs.should-deploy.outputs.should-run == 'true'
+    if: needs.should-deploy.outputs.should-run == 'true' && false # Deactivate this task to have successfull outcomes until re-deploying decision
 
     steps:
       - name: Login to GitHub Container Registry

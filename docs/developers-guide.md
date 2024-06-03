@@ -221,6 +221,7 @@ Then you can access the dictionary applications at various port numbers:
  - arpeng: <http://127.0.0.1:8007/>
  - cwdeng: <http://127.0.0.1:8005/>
  - srseng: <http://127.0.0.1:8009/>
+ - blaeng: <http://127.0.0.1:8011/>
 
 Because [cookies are not port-specific for historical insecurity
 reasons](https://stackoverflow.com/questions/1612177/are-http-cookies-port-specific),
@@ -232,6 +233,7 @@ adding the following to `/etc/hosts`:
     127.0.0.1 cwdeng-local
     127.0.0.1 crkeng-local
     127.0.0.1 srseng-local
+    127.0.0.1 blaeng-local
 
 Then you can access the sites with cookie isolation at
 <http://crkeng-local:8000/>, <http://cwdeng-local:8005/>,

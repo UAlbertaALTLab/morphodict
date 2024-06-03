@@ -110,3 +110,19 @@ services:
       - "../src/crkLacombeeng/db/:/app/src/crkLacombeeng/db/"
       - "../src/crkLacombeeng/CreeDictionary/search_quality/:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
 
+  blaeng:
+    # In prod, we *always* want the apps running, including on boot; that’s
+    # not necessarily the case on our dev machines.
+    restart: "no"
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    # The tag that will automatically be applied on build:
+    image: morphodict:dev
+
+    volumes:
+      - "./.env:/app/.env"
+      - "../src/blaeng/resources/vector_models/:/app/src/blaeng/resources/vector_models/"
+      - "../src/blaeng/db/:/app/src/blaeng/db/"
+      - "../src/blaeng/CreeDictionary/search_quality/:/app/src/blaeng/CreeDictionary/search_quality/"
+

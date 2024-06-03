@@ -143,3 +143,26 @@ services:
       - "/data_local/application-data/crkLacombeeng/vector_models:/app/src/crkLacombeeng/resources/vector_models/"
       - "/data_local/application-data/crkLacombeeng/db:/app/src/crkLacombeeng/db/"
       - "/data_local/application-data/crkLacombeeng/search_quality:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
+  blaeng:
+    restart: always
+    # Specify hostname to make it clearer which container is active when
+    # using docker to get a shell in the container.
+    hostname: blaeng-container
+    image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:latest
+    command: /app/app.sh blaeng
+    ports:
+      - "8017:8000" # http
+      - "9017:9191" # uWSGI stats
+    volumes:
+      - "./.env:/app/.env"
+
+      # LFS mounts
+      - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
+      - "../src/blaeng/resources/fst:/app/src/blaeng/resources/fst:ro"
+      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
+      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/blaeng/resources/dictionary/:/app/src/blaeng/resources/dictionary/:ro"
+
+      - "/data_local/application-data/blaeng/vector_models:/app/src/blaeng/resources/vector_models/"
+      - "/data_local/application-data/blaeng/db:/app/src/blaeng/db/"
+      - "/data_local/application-data/blaeng/search_quality:/app/src/blaeng/CreeDictionary/search_quality/"

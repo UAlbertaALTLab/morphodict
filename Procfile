@@ -14,3 +14,5 @@ cwdeng: ./cwdeng-manage runserver
 srseng: ./srseng-manage runserver
 hdneng: ./hdneng-manage runserver
 lacombe:  ./crkLacombeeng-manage runserver
+blaeng: ./blaeng-manage runserver
+
