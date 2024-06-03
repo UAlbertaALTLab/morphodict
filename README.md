@@ -33,4 +33,4 @@ See [AUTHORS.md](./AUTHORS.md).
 License
 -------
 
-Copyright © 2019–2021 University of Alberta. This project licensed under Apache License Version 2.0.
+Copyright © 2019–2024 University of Alberta. This project licensed under Apache License Version 2.0.
