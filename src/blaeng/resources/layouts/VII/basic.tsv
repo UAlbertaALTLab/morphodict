@@ -2,6 +2,6 @@
 _ 0Sg _ Prs	${lemma}+VII+Ind+0Sg
 _ 0Pl _ Prs	${lemma}+VII+Ind+0Pl
 	
-	| Neg
-_ 0Sg	Neg+${lemma}+VII+Ind+0Sg
-_ 0Pl	Neg+${lemma}+VII+Ind+0Pl
+	| Cnj
+_ 0Sg _ Prs	${lemma}+VII+Cnj+0Sg
+_ 0Pl _ Prs	${lemma}+VII+Cnj+0Pl

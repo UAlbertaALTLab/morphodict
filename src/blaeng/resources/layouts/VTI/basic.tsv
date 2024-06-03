@@ -1,30 +1,25 @@
-# Ind
-| Pos
-_ 1Sg _ 0SgO	${lemma}+VTI+Ind+1Sg+0SgO
-_ 2Sg _ 0SgO	${lemma}+VTI+Ind+2Sg+0SgO
-_ 3Sg _ 0SgO	${lemma}+VTI+Ind+3Sg+0SgO
-_ 1Pl _ 0SgO	${lemma}+VTI+Ind+1Pl+0SgO
-_ 21Pl _ 0SgO	${lemma}+VTI+Ind+21Pl+0SgO
-_ 2Pl _ 0SgO	${lemma}+VTI+Ind+2Pl+0SgO
-_ 3Pl _ 0PlO	${lemma}+VTI+Ind+3Pl+0PlO
-_ 4Sg _ 0SgO	${lemma}+VTI+Ind+4Sg+0SgO
-_ 4Pl _ 0PlO	${lemma}+VTI+Ind+4Pl+0PlO
+	| Ind
+_ 1Sg	${lemma}+VTI+Ind+1Sg+0SgO
+_ 2Sg	${lemma}+VTI+Ind+2Sg+0SgO
+_ 3Sg	${lemma}+VTI+Ind+3Sg+0SgO
+_ 1Pl	${lemma}+VTI+Ind+1Pl+0SgO
+_ 21Pl	${lemma}+VTI+Ind+21Pl+0SgO
+_ 2Pl	${lemma}+VTI+Ind+2Pl+0SgO
+_ 3Pl	${lemma}+VTI+Ind+3Pl+0SgO
+_ 4Sg	${lemma}+VTI+Ind+4Sg+0SgO
+_ 4Sg	${lemma}+VTI+Ind+4Pl+0SgO
 	
-	| Neg
-_ 1Sg _ 0SgO	Neg+${lemma}+VTI+Ind+1Sg+0SgO
-_ 2Sg _ 0SgO	Neg+${lemma}+VTI+Ind+2Sg+0SgO
-_ 3Sg _ 0SgO	Neg+${lemma}+VTI+Ind+3Sg+0SgO
-_ 1Pl _ 0SgO	Neg+${lemma}+VTI+Ind+1Pl+0SgO
-_ 21Pl _ 0SgO	Neg+${lemma}+VTI+Ind+21Pl+0SgO
-_ 2Pl _ 0SgO	Neg+${lemma}+VTI+Ind+2Pl+0SgO
-_ 3Pl _ 0SgO	Neg+${lemma}+VTI+Ind+3Pl+0PlO
-_ 4Sg _ 0SgO	Neg+${lemma}+VTI+Ind+4Sg+0SgO
-_ 4Pl _ 0SgO	Neg+${lemma}+VTI+Ind+4Pl+0PlO
+	| Cnj
+_ 1Sg	${lemma}+VTI+Cnj+1Sg+0SgO
+_ 2Sg	${lemma}+VTI+Cnj+2Sg+0SgO
+_ 3Sg	${lemma}+VTI+Cnj+3Sg+0SgO
+_ 1Pl	${lemma}+VTI+Cnj+1Pl+0SgO
+_ 21Pl	${lemma}+VTI+Cnj+21Pl+0SgO
+_ 2Pl	${lemma}+VTI+Cnj+2Pl+0SgO
+_ 3Pl	${lemma}+VTI+Cnj+3Pl+0SgO
+_ 4Sg	${lemma}+VTI+Cnj+4Sg+0SgO
+_ 4Pl	${lemma}+VTI+Cnj+4Pl+0SgO
 	
 # Imp	
-	| Pos
-_ 2Sg _ 0SgO	${lemma}+VTI+Imp+Sg+0SgO
-_ 2Pl _ 0SgO	${lemma}+VTI+Imp+Pl+0SgO
-	| Neg
-_ 2Sg _ 0SgO	Neg+${lemma}+VTI+Imp+Sg+0SgO
-_ 2Pl _ 0SgO	Neg+${lemma}+VTI+Imp+Pl+0SgO
+_ 2Sg	${lemma}+VTI+Imp+2Sg+0SgO
+_ 2Pl	${lemma}+VTI+Imp+2Pl+0SgO

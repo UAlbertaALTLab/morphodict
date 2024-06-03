@@ -13,6 +13,10 @@
       {
         "definition": "star",
         "sources": ["CW"]
+      },
+      {
+        "definition": "star - first word in CW.",
+        "sources": ["TEST"]
       }
     ],
     "slug": "acâhkos"
@@ -117,6 +121,23 @@
       }
     ],
     "slug": "asawāpamīw"
+  },
+  {
+    "head": "asâmîhkîw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-1",
+      "pos": "V",
+      "stem": "asâmîhkî-",
+      "wordclass": "VAI"
+    },
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "he/she makes snowshoes",
+        "sources": ["CCCD"]
+      }
+    ],
+    "slug": "asâmîhkîw"
   },
   {
     "analysis": [[], "asikan", ["+N", "+A", "+Sg"]],
