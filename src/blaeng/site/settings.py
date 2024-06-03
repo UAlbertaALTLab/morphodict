@@ -19,13 +19,13 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "blaeng.altlab.dev"
+PRODUCTION_HOST = "ipowahsin.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 DEFAULT_RUNSERVER_PORT = 8011
 
-INSTALLED_APPS.insert(0, "blaeng.app")
+INSTALLED_APPS.insert(0, "ipowahsin.app")
 
 # Morphodict configuration
 
