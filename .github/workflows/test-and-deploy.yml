@@ -183,7 +183,7 @@ jobs:
       - integration-test
       - build-docker-image
 
-    if: needs.should-deploy.outputs.should-run == 'true' && false # Deactivate this task to have successfull outcomes until re-deploying decision
+    if: needs.should-deploy.outputs.should-run == 'true'
 
     steps:
       - name: Login to GitHub Container Registry
@@ -223,7 +223,8 @@ jobs:
         #        a
         #
         # turns into `{ "foo": "a\n a" }` !
-        run: >-
-          curl -X POST https://deploy.altlab.dev/itwewina --fail
-          -d '{ "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }'
-          -H 'Content-Type: application/json'
+        # run: >-
+        #  curl -X POST https://deploy.altlab.dev/itwewina --fail
+        #  -d '{ "secret": "${{ secrets.DEPLOY_ALTLAB_DEV_ITWEWINA_KEY }}" }'
+        #  -H 'Content-Type: application/json'
+        run: echo "This step has been temporarily disabled, call the deploy script."
