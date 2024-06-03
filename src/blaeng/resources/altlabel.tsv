@@ -66,21 +66,21 @@ Inf+PV/ta	Conjunct (ta-)	Infinitive / Irrealis (with ta-)	ta- word	ta- itwêwin
 						
 						
 						
-1Sg+0SgO	1s → 0s	Actor: 1st Person Singular → Goal: Inanimate Singular	I → it	niistó → omi
-1Sg+0PlO	1s → 0p	Actor: 1st Person Singular → Goal: Inanimate Plural	I → those	niistó → omiksi
-2Sg+0SgO	2s → 0s	Actor: 2nd Person Singular → Goal: Inanimate Singular	you → it	kiistó → omi
-2Sg+0PlO	2s → 0p	Actor: 2nd Person Singular → Goal: Inanimate Plural	you → those	kiistó → omiksi
-3Sg+0SgO	3s → 0s	Actor: 3rd Person Singular → Goal: Inanimate Singular	s/he → it	oostóyi → omi
-4Sg+0SgO	4s → 0s	Actor: 4th Person Singular → Goal: Inanimate Singular	another → it	oostóyi (anihi) → omi
-1Pl+0SgO	1p → 0s	Actor: 1st Person Plural (Exclusive) → Goal: Inanimate Singular	we (but not you) → 	niistónnaan → omi
-1Pl+0PlO	1p → 0p	Actor: 1st Person Plural (Exclusive) → Goal: Inanimate Plural	we (but not you) → those	niistónnaan → omiksi
-21Pl+0SgO	21 → 0s	Actor: 1st Person Plural (Inclusive) → Goal: Inanimate Singular	you and we → it	kiistónnoon → omi
-21Pl+0PlO	21 → 0p	Actor: 1st Person Plural (Inclusive) → Goal: Inanimate Plural	you and we → those	kiistónnoon → omiksi
-2Pl+0SgO	2p → 0s	Actor: 2nd Person Plural (Exclusive) → Goal: Inanimate Singular	you all → it	kiistówaawa → omi
-2Pl+0PlO	2p → 0p	Actor: 2nd Person Plural (Exclusive) → Goal: Inanimate Plural	you all → those	kiistówaawa → omiksi
-3Pl+0PlO	3p → 0p	Actor: 3rd Person Plural → Goal: Inanimate Plural	they → those	oostówaawayi → omiksi
-4Pl+0PlO	4p → 0p	Actor: 4th Person Plural → Goal: Inanimate Plural	others → those	oostówaawayi (anihi) → omiksi
-
+1Sg+0SgO	1s → 0s	Actor: 1st Person Singular → Goal: Inanimate Singular	I → it	niistó → omi		
+1Sg+0PlO	1s → 0p	Actor: 1st Person Singular → Goal: Inanimate Plural	I → those	niistó → omiksi		
+2Sg+0SgO	2s → 0s	Actor: 2nd Person Singular → Goal: Inanimate Singular	you → it	kiistó → omi		
+2Sg+0PlO	2s → 0p	Actor: 2nd Person Singular → Goal: Inanimate Plural	you → those	kiistó → omiksi		
+3Sg+0SgO	3s → 0s	Actor: 3rd Person Singular → Goal: Inanimate Singular	s/he → it	oostóyi → omi		
+4Sg+0SgO	4s → 0s	Actor: 4th Person Singular → Goal: Inanimate Singular	another → it	oostóyi (anihi) → omi		
+1Pl+0SgO	1p → 0s	Actor: 1st Person Plural (Exclusive) → Goal: Inanimate Singular	we (but not you) → 	niistónnaan → omi		
+1Pl+0PlO	1p → 0p	Actor: 1st Person Plural (Exclusive) → Goal: Inanimate Plural	we (but not you) → those	niistónnaan → omiksi		
+21Pl+0SgO	21 → 0s	Actor: 1st Person Plural (Inclusive) → Goal: Inanimate Singular	you and we → it	kiistónnoon → omi		
+21Pl+0PlO	21 → 0p	Actor: 1st Person Plural (Inclusive) → Goal: Inanimate Plural	you and we → those	kiistónnoon → omiksi		
+2Pl+0SgO	2p → 0s	Actor: 2nd Person Plural (Exclusive) → Goal: Inanimate Singular	you all → it	kiistówaawa → omi		
+2Pl+0PlO	2p → 0p	Actor: 2nd Person Plural (Exclusive) → Goal: Inanimate Plural	you all → those	kiistówaawa → omiksi		
+3Pl+0PlO	3p → 0p	Actor: 3rd Person Plural → Goal: Inanimate Plural	they → those	oostówaawayi → omiksi		
+4Pl+0PlO	4p → 0p	Actor: 4th Person Plural → Goal: Inanimate Plural	others → those	oostówaawayi (anihi) → omiksi		
+						
 1Sg+2SgO	1s → 2s	Actor: 1st Person Singular → Goal: 2nd Person Singular	I → you (one)	niistó → kiistó		
 1Sg+3SgO	1s → 3s	Actor: 1st Person Singular → Goal: 3rd Person Singular	I → him/her	niistó → oostóyi		
 1Sg+1PlO	1s → 1p (excl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Exclusive)	I → we (but not you)	niistó → niistónnaan		
@@ -264,7 +264,7 @@ NI-4	NI-4	Single-syllable inanimate noun stem	like: wâwi, osk-âyi	tâpiskôc: 
 NI-5	NI-5	Single-syllable-/w/ inanimate noun stem	like: ôsi, mihko	tâpiskôc: ôsi, mihko		
 NI-?	NI-?					
 Neg	Negation	Negation	not	saa		
-Pos	Positive	Positive	yes	áa
+Pos	Positive	Positive	yes	áa		
 Non	Non-referential	Non-referential	Generic	stsik / anihi / awiya		
 Nonposs	Non-possessed	Non-possessed forms	No ownership	êkâ awiyak kâ-tipêyihtahk		
 Num	Numeral	Numeral	Number	akihtâson		
