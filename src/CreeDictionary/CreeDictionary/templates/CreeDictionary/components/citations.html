@@ -28,8 +28,7 @@
 
       <div id="tooltip:{{ id }}" class="tooltip" role="tooltip" data-cy="citation-tooltip">
         {% if source == "CW" %}
-          Wolvengrey, Arok, editor.
-          <span class="source-title">Cree: Words</span>.
+          <span class="source-title">Cree: Words</span>, by Wolvengrey, Arok, editor.
           Regina, University of Regina Press, 2001.
         {% elif source == "🤖CW" %}
             Experimental automatically inflected form of CW definition
@@ -39,22 +38,22 @@
         {% elif source == "🤖MD" %}
             Experimental automatically inflected form of MD definition
         {% elif source == "OS" %}
-          Starlight, Bruce, Gary Donovan, and Christopher Cox, editors.
           <span class="source-title">John Onespot and Edward Sapir: Collected
-          Tsuut’ina Narratives and Linguistic Notes</span>.
+          Tsuut’ina Narratives and Linguistic Notes</span>, by Starlight, Bruce, Gary Donovan, and Christopher Cox, editors.
           Revised scholarly edition in preparation; 1922.
         {% elif source == "TVPD" %}
-          Starlight, Bruce, Gary Donovan, and Christopher Cox, editors.
-          <span class="source-title">Tsuut'ina Verb Phrase Dictionary</span>.
+            <span class="source-title">Tsuut'ina Verb Phrase Dictionary</span>, by Starlight, Bruce, Gary Donovan, and Christopher Cox, editors.
         {% elif source == "AECD" %}
             <span class="source-title">Alberta Elders' Cree Dictionary/alberta ohci kehtehayak nehiyaw otwestamâkewasinahikan</span>,
             compiled by Nancy LeClaire and George Cardinal, edited by Earle H. Waugh. Edmonton: University of Alberta Press, 2002.
         {% elif source == "🤖AECD" %}
           Experimental automatically inflected form of AECD definition
         {%  elif source == "Lacombe" %}
-            Lacombe, Albert O.M.I. 1874. <span class="source-title">Dictionnaire de la langue des Cris.</span> Montréal, QC: C. O. Beauchemin et Valois.
+            <span class="source-title">Dictionnaire de la langue des Cris.</span> by Lacombe, Albert O.M.I.  Montréal, QC: C. O. Beauchemin et Valois, 1874.
         {% elif source == "CCCD" %}
-            Charles, C., Goulet, K., McKenzie, M. <span class="source-title">Colin Charles Cree Dictionary.</span> Lac La Ronge Indian Band, 2021. 
+            <span class="source-title">Colin Charles Cree Dictionary</span>, by Charles, C., Goulet, K., and McKenzie, M. Lac La Ronge Indian Band, 2021. 
+        {% elif source == "F&R" %}
+            <span class="source-title">Blackfoot Dictionary of Stems, Roots, and Affixes (3rd Edition)</span>, by Donald Frantz and Norma Jean Russell. University of Toronto Press, 2017.
         {% else %}
           UNKNOWN SOURCE ID: {{ source }}. If you're reading this, please
           contact us using the link in the footer, near the bottom of the
