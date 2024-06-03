@@ -38,9 +38,9 @@ MORPHODICT_TARGET_LANGUAGE = "eng"
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Blackfoot"
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Blackfoot"
 
-MORPHODICT_LANGUAGE_ENDONYM = "ᓱᖽᐧᖿ"
+MORPHODICT_LANGUAGE_ENDONYM = "Siksiká"
 
-MORPHODICT_DICTIONARY_NAME = "sínaakia’tsis"
+MORPHODICT_DICTIONARY_NAME = "i’pówahsin"
 
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-dict-desc.hfstol"
 STRICT_ANALYZER_FST_FILENAME = RELAXED_ANALYZER_FST_FILENAME
@@ -50,9 +50,5 @@ MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
     "available": {
         "Latn": {"name": "Latin"},
-        "Cans": {
-            "name": "Syllabics",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
-            },
     },
 }
