@@ -25,7 +25,7 @@ ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
 DEFAULT_RUNSERVER_PORT = 8011
 
-INSTALLED_APPS.insert(0, "ipowahsin.app")
+INSTALLED_APPS.insert(0, "blaeng.app")
 
 # Morphodict configuration
 
