@@ -16,7 +16,7 @@ APP_INFO = {
     "arpeng": {"port": 8014, "uwsgi_stats_port": 9014},
     "hdneng": {"port": 8015, "uwsgi_stats_port": 9015},
     "crkLacombeeng": {"port": 8016, "uwsgi_stats_port": 9016},
-    "blaeng": {"port": 8017, "uwsgi_stats_port":9017},
+    "blaeng": {"port": 8017, "uwsgi_stats_port": 9017},
 }
 
 APPS = [App(k, **v) for k, v in APP_INFO.items()]
