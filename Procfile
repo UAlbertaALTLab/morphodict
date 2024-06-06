@@ -8,11 +8,11 @@
 #     USE_TEST_DB=True foreman start -e /dev/null
 
 rollup: npx rollup --config --watch
-arpeng: ./arpeng-manage runserver
-crkeng: ./crkeng-manage runserver
-cwdeng: ./cwdeng-manage runserver
-srseng: ./srseng-manage runserver
-hdneng: ./hdneng-manage runserver
-lacombe:  ./crkLacombeeng-manage runserver
-blaeng: ./blaeng-manage runserver
+arpeng: ./arpeng-manage runserver 0.0.0.0:8007
+crkeng: ./crkeng-manage runserver 0.0.0.0:8000
+cwdeng: ./cwdeng-manage runserver 0.0.0.0:8005
+srseng: ./srseng-manage runserver 0.0.0.0:8009
+hdneng: ./hdneng-manage runserver 0.0.0.0:8010
+lacombe:  ./crkLacombeeng-manage runserver 0.0.0.0:8016
+blaeng: ./blaeng-manage runserver 0.0.0.0:8011
 
