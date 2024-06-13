@@ -26,9 +26,9 @@ jobs:
     - name: Reformat
       run: ./scripts/reformat-altlabels
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "🤖🧹 reformat crk.altlabel [skip ci]"
+        commit_message: "🤖🧹 reformat crk.altlabel"
 
   reformat-python:
     runs-on: ubuntu-latest
@@ -48,9 +48,9 @@ jobs:
       run: |
         black .
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "🤖🧹 reformat Python files [skip ci]"
+        commit_message: "🤖🧹 reformat Python files"
 
   reformat-javascript:
     runs-on: ubuntu-latest
@@ -70,9 +70,9 @@ jobs:
     - name: Reformat JavaScript
       run: npm run reformat
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "🤖🧹 reformat JavaScript files [skip ci]"
+        commit_message: "🤖🧹 reformat JavaScript files"
 
   reformat-importjson:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
@@ -114,6 +114,6 @@ jobs:
       run: "pipenv run ./crkeng-manage sortimportjson --git-files"
 
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v4.3.0
+      uses: stefanzweifel/git-auto-commit-action@v4
       with:
-        commit_message: "🤖🧹 reformat importjson files [skip ci]"
+        commit_message: "🤖🧹 reformat importjson files"
