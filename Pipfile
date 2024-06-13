@@ -12,6 +12,7 @@ pytest-datadir = "*"
 pytest-mypy = "*"
 hypothesis = {version = "~=4.34", extras = ["django"]}
 codecov = "*"
+pathlib = "*"
 pysnooper = "*"
 python-levenshtein = "*"
 django-debug-toolbar = "*"
@@ -51,6 +52,8 @@ gensim = "*"
 more-itertools = "~=8.7.0"
 types-requests = "*"
 requests = "*"
+boto3 = "*"
+paradigm-panes = "*"
 
 [scripts]
 # unit tests

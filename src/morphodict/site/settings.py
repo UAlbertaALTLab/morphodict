@@ -64,6 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.sites",
     "django.contrib.sitemaps",
+    'rest_framework',
     "morphodict.runserver",
     # WhiteNoise nostatic HAS to come before Django's staticfiles
     # See: http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
@@ -81,8 +82,11 @@ INSTALLED_APPS = [
     "CreeDictionary.search_quality",
     "CreeDictionary.phrase_translate",
     "CreeDictionary.morphodict.apps.MorphodictConfig",
+    "CreeDictionary.REST_API",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
+    "drf_yasg",
+    
 ]
 
 MIDDLEWARE = [
@@ -399,4 +403,4 @@ MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # Used for the bulk search API
-SPEECH_DB_EQ = ["_"]
+SPEECH_DB_EQ = "_"
