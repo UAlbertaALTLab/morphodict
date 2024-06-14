@@ -26,6 +26,24 @@ jobs:
         with:
           commit-filter: '[skip deploy]'
 
+  should-update-dev:
+    runs-on: ubuntu-latest
+
+    outputs:
+      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
+
+    if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          # ci-skip needs to do a partial checkout
+          fetch-depth: '0'
+      - id: ci-skip
+        uses: mstachniuk/ci-skip@v1
+        with:
+          commit-filter: '[skip deploy]'
+
+
   # Run Pytest unit tests
   unit-test:
     runs-on: ubuntu-22.04
@@ -141,6 +159,68 @@ jobs:
           name: cypress-videos
           path: |
             cypress/videos
+
+build-docker-image-dev:
+    runs-on: ubuntu-latest
+
+    # Only build the Docker Image when we're deploying!
+    needs:
+      - should-update-dev
+    if: needs.should-update-dev.outputs.should-run == 'true'
+
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v2
+        with:
+          # build-push-action with the default ‘git context’ ignores the
+          # .dockerignore file
+          # https://github.com/docker/build-push-action/issues/182
+          context: .
+          file: docker/Dockerfile
+          push: true
+          # hopefully this will speed up builds and save disk space by
+          # sharing layers with the existing docker image, where possible
+          cache-from: |
+            type=registry,ref=ghcr.io/ualbertaaltlab/itwewina.altlab.app:dev
+          tags: |
+            ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
+
+  update-docker-dev-tag:
+    runs-on: ubuntu-latest
+
+    needs:
+      - should-update-dev
+      - unit-test
+      - integration-test
+      - build-docker-image-dev
+
+    if: needs.should-update-dev.outputs.should-run == 'true'
+
+    steps:
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
+      - name: Install requests
+        run: pip install requests
+      - name: Update tag
+        run: docker/copy-registry-tag ${{ github.sha }} dev
+        env:
+          GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
 
   build-docker-image:
     runs-on: ubuntu-latest
