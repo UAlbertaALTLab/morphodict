@@ -323,7 +323,9 @@ def test_search_results_order(query: str, top_result: str, later_result: str):
     ), f"{top_result} did not come before {later_result}"
 
 
-@pytest.mark.skip(reason="New FSTs do not fail on this situation.  Note this skip may reintroduce regressions.  If that happens we'll get a replacement test case.")
+@pytest.mark.skip(
+    reason="New FSTs do not fail on this situation.  Note this skip may reintroduce regressions.  If that happens we'll get a replacement test case."
+)
 @pytest.mark.django_db
 def test_logs_error_on_analyzable_result_without_generated_string(caplog):
     """
