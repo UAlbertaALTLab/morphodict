@@ -16,7 +16,7 @@ from morphodict.analysis import RichAnalysis, rich_analyze_relaxed, strict_gener
             # See: https://github.com/UAlbertaALTLab/morphodict/issues/897
             "ê-pim-nêhiyawêyahk",
             RichAnalysis(
-                (("PV/e+", "PV/pimi+"), "nêhiyawêw", ("+V", "+AI", "+Cnj", "+12Pl"))
+                (("PV/e+", "PV/pimi+"), "nêhiýawêw", ("+V", "+AI", "+Cnj", "+12Pl"))
             ),
         ),
         (
