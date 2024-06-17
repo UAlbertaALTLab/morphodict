@@ -5,27 +5,26 @@ verify_ssl = true
 
 [dev-packages]
 black = ">=19.10b0"
-pytest = "==6.2.5"
+pytest = "==7.4.4"
 pytest-django = "==4.4.0"
 pytest-cov = "*"
 pytest-datadir = "*"
 pytest-mypy = "*"
-hypothesis = {version = "~=4.34", extras = ["django"]}
+hypothesis = {version = "*", extras = ["django"]}
 codecov = "*"
 pysnooper = "*"
 python-levenshtein = "*"
-django-debug-toolbar = "*"
-isort = {extras = ["pyproject"],version = "*"}
+django-debug-toolbar = "~=3.6"
+isort = "*"
 toml = "*"
 mypy = "*"
 pytest-env = "*"
 jupyterlab = "*"
 appnope = "*"
-nb_black = "*"
+nb_black = "==1.0.5"
 pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
-pytest-pythonpath = "*"
 sphinx = "*"
 myst-parser = "*"
 
@@ -35,12 +34,12 @@ coverage = "*"
 cree-sro-syllabics = ">=2020.6.23"
 pytz = "==2019.2"
 Django = "~=3.2"
-typing-extensions = "~=3.7"
-attrs = "~=19.1"
+typing-extensions = "~=4.0"
+attrs = "~=23.2"
 django-js-reverse = "~=0.9"
 secure = "*"
 snowballstemmer = "*"
-dawg = "~=0.8"
+dawg2 = "~=0.12"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "*"
@@ -62,7 +61,7 @@ format = "black src"
 ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
 
 [requires]
-python_version = "3.9"
+python_version = "3.10"
 
 [pipenv]
 # this allows "black>=19.10b0" to work
