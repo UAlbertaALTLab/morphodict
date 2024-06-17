@@ -47,6 +47,7 @@ whitenoise = "*"
 foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
 uwsgi = "*"
 gensim = "*"
+scipy = "==1.10.1"
 more-itertools = "~=8.7.0"
 types-requests = "*"
 requests = "*"
