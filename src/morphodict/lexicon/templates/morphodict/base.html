@@ -32,10 +32,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'morphodict/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'morphodict/styles.css' %}">
     {# magic that allows us to reverse urls in js  https://github.com/ierror/django-js-reverse #}
     <script src="{% url 'js_reverse' %}"></script>
-    <script src={% static 'morphodict/js/index.js' %}></script>
+    <script src={% static 'morphodict/index.js' %}></script>
 
     {% if displaying_paradigm %}
         {% comment %}

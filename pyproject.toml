@@ -35,4 +35,4 @@ DJANGO_SETTINGS_MODULE = "crkeng.site.settings"
 # partial imports (`import bar` when the full package name is `foo.bar`)
 # from working by accident.
 django_find_project = false
-python_paths = "src"
+pythonpath = "src"

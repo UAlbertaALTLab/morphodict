@@ -3,7 +3,7 @@ on: [ push, pull_request ]
 
 env:
   # Version required to run itwêwina:
-  ACTIONS_PYTHON_VERSION: 3.9
+  ACTIONS_PYTHON_VERSION: 3.10
   # Version required to run npm build:
   ACTIONS_NODE_VERSION: 14
 

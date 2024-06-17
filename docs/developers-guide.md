@@ -34,7 +34,7 @@ with `brew install git-lfs`.
 
 ### Install Python
 
-Get Python 3.9 and [Pipenv](https://github.com/pypa/pipenv#installation).
+Get Python 3.10 and [Pipenv](https://github.com/pypa/pipenv#installation).
 
 Within the directory, install all Python dependencies:
 
@@ -42,7 +42,7 @@ Within the directory, install all Python dependencies:
 
 If you run into trouble, the following notes may help:
 
-  - On Ubuntu 20.04, if pipenv can’t find Python 3.9 and complains about
+  - On Ubuntu 22.04, if pipenv can’t find Python 3.10 and complains about
     there being `no module named distutils.command`, do `apt install -y
     python3-distutils`
 
