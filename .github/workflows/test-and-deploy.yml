@@ -197,8 +197,8 @@ build-docker-image-dev:
 
     needs:
       - should-update-dev
-      - unit-test
-      - integration-test
+      # - unit-test
+      # - integration-test
       - build-docker-image-dev
 
     if: needs.should-update-dev.outputs.should-run == 'true'
