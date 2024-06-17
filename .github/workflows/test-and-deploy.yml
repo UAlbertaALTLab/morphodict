@@ -3,9 +3,9 @@ on: [ push, pull_request ]
 
 env:
   # Version required to run itwêwina:
-  ACTIONS_PYTHON_VERSION: 3.10
+  ACTIONS_PYTHON_VERSION: '3.10'
   # Version required to run npm build:
-  ACTIONS_NODE_VERSION: 14
+  ACTIONS_NODE_VERSION: 20
 
 jobs:
   # Skips deploy if [skip deploy] is present in the commit message
