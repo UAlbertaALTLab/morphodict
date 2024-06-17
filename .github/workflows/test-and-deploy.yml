@@ -160,7 +160,7 @@ jobs:
           path: |
             cypress/videos
 
-build-docker-image-dev:
+  build-docker-image-dev:
     runs-on: ubuntu-latest
 
     # Only build the Docker Image when we're deploying!
