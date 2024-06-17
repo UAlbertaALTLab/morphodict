@@ -99,7 +99,7 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
     [
         ("niya", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
         ("awa", "awa@pra", ["ôma", "awa", "ana"]),
-        ("minôs", None, ["minôs", "minôsa", "niminôs"]),
+        ("minôs", None, ["minôs", "minôsa", "niminôsim"]),
     ],
 )
 def test_retrieve_paradigm(

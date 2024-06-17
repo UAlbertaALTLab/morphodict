@@ -69,7 +69,7 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
     """
     lemma = "minôs"
     word_class = "NA"
-    inflections = ["minôsa", "minôsak", "niminôs"]
+    inflections = ["minôsa", "minôsak", "niminôsim"]
 
     default_size = first(paradigm_manager.sizes_of(word_class))
     paradigm = paradigm_manager.paradigm_for(word_class, lemma=lemma, size=default_size)

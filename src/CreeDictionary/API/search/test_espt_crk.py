@@ -49,7 +49,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
                 "expected_query_terms": ["cat"],
                 "expected_new_tags": ["+N", "+Px1Sg", "+Pl"],
                 "slug": "minôs",
-                "expected_inflection": "niminôsak",
+                "expected_inflection": "niminôsimak",
             },
         ],
         [
