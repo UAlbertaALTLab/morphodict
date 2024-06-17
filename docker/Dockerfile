@@ -13,12 +13,12 @@
 #
 
 ################################ Build stage #################################
-FROM python:3.9-slim-buster AS builder
+FROM python:3.10-slim-bookworm AS builder
 
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+LABEL maintainer="Felipe Bañados Schwerter <banadoss@ualberta.ca>"
 
 ARG MORPHODICT_UID_GID=60006
-ARG NODE_VERSION=v12.20.2
+ARG NODE_VERSION=v20.14.0
 
 # Install Node + npm
 # (note: default npm is too old for the apt install'd version of NodeJS??!?!?!)
@@ -77,8 +77,8 @@ RUN npm run build \
 
 ############################# Application image ##############################
 
-FROM python:3.9-slim-buster
-LABEL maintainer="Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>"
+FROM python:3.10-slim-bookworm
+LABEL maintainer="Felipe Bañados Schwerter <banadoss@ualberta.ca>"
 
 # Choose an ID that will be consistent across all machines in the network
 # To avoid overlap with user IDs, use an ID over
