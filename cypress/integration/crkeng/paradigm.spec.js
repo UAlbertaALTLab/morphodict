@@ -18,8 +18,8 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
     },
     { 
       pos: "VTI", 
-      lemma: "kisâkamisam", 
-      inflections: ["nikisâkamisên", "kisâkamisamwak", "ê-kisâkamisamiyit"]
+      lemma: "mîciw", 
+      inflections: ["nimîcin", "mîciwak", "ê-mîciniwahk"]
     },
     { pos: "VII", lemma: "nîpin", inflections: ["nîpin", "ê-nîpihk"] },
     { pos: "NDA", lemma: "nôhkom", inflections: ["kôhkom", "ohkoma"] },
