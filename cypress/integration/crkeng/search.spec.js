@@ -259,7 +259,7 @@ context("Searching", () => {
     it("should show auto-translations with auto:y", function () {
       // NB: need to make sure this wordform is added **explicitly** in the
       // `ensuretestdb` management commands:
-      cy.visitSearch("auto:y niminôsak");
+      cy.visitSearch("auto:y niminôsimak");
       cy.get("[data-cy=search-result]")
         .contains("my cats")
         .get(".cite-dict")
