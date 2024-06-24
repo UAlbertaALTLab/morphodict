@@ -17,7 +17,7 @@ jobs:
 
     if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           # ci-skip needs to do a partial checkout
           fetch-depth: '0'
@@ -34,7 +34,7 @@ jobs:
 
     if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev'
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
         with:
           # ci-skip needs to do a partial checkout
           fetch-depth: '0'
@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v2
         # actions/cache below uses this id to get the exact python version
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v2
         id: setup-python
@@ -175,7 +175,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
@@ -210,7 +210,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v2
         with:
@@ -237,7 +237,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Build and push Docker images
         uses: docker/build-push-action@v2
         with:
@@ -272,7 +272,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v2
         with:
