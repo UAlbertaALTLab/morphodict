@@ -16,10 +16,10 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
       lemma: "mîcisow",
       inflections: ["nimîcison", "kimîcison", "ê-mîcisoyit"],
     },
-    { 
-      pos: "VTI", 
-      lemma: "mîciw", 
-      inflections: ["nimîcin", "mîciwak", "ê-mîciniwahk"]
+    {
+      pos: "VTI",
+      lemma: "mîciw",
+      inflections: ["nimîcin", "mîciwak", "ê-mîciniwahk"],
     },
     { pos: "VII", lemma: "nîpin", inflections: ["nîpin", "ê-nîpihk"] },
     { pos: "NDA", lemma: "nôhkom", inflections: ["kôhkom", "ohkoma"] },
@@ -36,7 +36,11 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
   for (let { pos, lemma, inflections } of testCases) {
     it(`should display the paradigm for a word belonging to the ${pos} word class`, () => {
       cy.visitSearch(lemma);
-      cy.get("[data-cy=search-results]").contains(pos).closest("[data-cy=search-result]").contains("a", lemma).click();
+      cy.get("[data-cy=search-results]")
+        .contains(pos)
+        .closest("[data-cy=search-result]")
+        .contains("a", lemma)
+        .click();
 
       cy.get("[data-cy=paradigm]").as("paradigm");
 
