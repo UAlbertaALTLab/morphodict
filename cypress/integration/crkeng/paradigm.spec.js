@@ -12,18 +12,23 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
       inflections: ["niwâpin", "kiwâpin", "ê-wâpiyit"],
     },
     {
-      pos: "VTI",
+      pos: "VAI",
       lemma: "mîcisow",
       inflections: ["nimîcison", "kimîcison", "ê-mîcisoyit"],
     },
+    { 
+      pos: "VTI", 
+      lemma: "kisâkamisam", 
+      inflections: ["nikisâkamisên", "kisâkamisamwak", "ê-kisâkamisamiyit"]
+    },
     { pos: "VII", lemma: "nîpin", inflections: ["nîpin", "ê-nîpihk"] },
-    { pos: "NAD", lemma: "nôhkom", inflections: ["kôhkom", "ohkoma"] },
-    { pos: "NID", lemma: "mîpit", inflections: ["nîpit", "kîpit", "wîpit"] },
+    { pos: "NDA", lemma: "nôhkom", inflections: ["kôhkom", "ohkoma"] },
+    { pos: "NDI", lemma: "mîpit", inflections: ["nîpit", "kîpit", "wîpit"] },
     { pos: "NA", lemma: "minôs", inflections: ["minôsak", "minôsa"] },
     {
       pos: "NI",
       lemma: "nipiy",
-      inflections: ["nipîhk", "ninipiy", "kinipiy"],
+      inflections: ["nipîhk", "ninipîm", "kinipîm"],
     },
   ];
 
@@ -31,7 +36,7 @@ describe("I want to search for a Cree word and see its inflectional paradigm", (
   for (let { pos, lemma, inflections } of testCases) {
     it(`should display the paradigm for a word belonging to the ${pos} word class`, () => {
       cy.visitSearch(lemma);
-      cy.get("[data-cy=search-results]").contains("a", lemma).click();
+      cy.get("[data-cy=search-results]").contains(pos).closest("[data-cy=search-result]").contains("a", lemma).click();
 
       cy.get("[data-cy=paradigm]").as("paradigm");
 
