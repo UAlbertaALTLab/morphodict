@@ -63,7 +63,7 @@ jobs:
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
@@ -124,7 +124,7 @@ jobs:
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
-      - uses: actions/cache@v2
+      - uses: actions/cache@v4
         with:
           path: ~/.local/share/virtualenvs
           key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
