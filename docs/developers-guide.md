@@ -42,19 +42,14 @@ Within the directory, install all Python dependencies:
 
 If you run into trouble, the following notes may help:
 
-  - On Ubuntu 22.04, if pipenv can’t find Python 3.10 and complains about
-    there being `no module named distutils.command`, do `apt install -y
-    python3-distutils`
-
-  - On Ubuntu, if you get an error running pipenv that says `"Python.h" not
-    found`, install the `python3.9-dev` package
+  - On Ubuntu 22.04, do *not* install pipenv using `apt` (See [this issue](https://github.com/pypa/pipenv/issues/5133)).  Instead, do `pip install pipenv`.
 
   - On macOS, the official version of Python distributed by python.org is
     more likely to work successfully than anything from homebrew or
     elsewhere.
 
     Go to <https://www.python.org/downloads/> on your mac and click the
-    yellow, easy-to-overlook button to “Download Python 3.9.x” (any 3.9.x
+    yellow, easy-to-overlook button to “Download Python 3.10.x” (any 3.10.x
     version is fine) underneath the “Download the latest version for macOS”
     heading.
 
@@ -62,10 +57,10 @@ If you run into trouble, the following notes may help:
 
   - On macOS, if the `pipenv` command is not found, you can try:
 
-        python3.9 -m ensurepip --user --upgrade
-        python3.9 -m pip install --user --upgrade pipenv
+        python3.10 -m ensurepip --user --upgrade
+        python3.10 -m pip install --user --upgrade pipenv
 
-    and then run `python3.9 -m pipenv install --dev`. Running `python3.9 -m
+    and then run `python3.10 -m pipenv install --dev`. Running `python3.10 -m
     pipenv` does the same thing as running `pipenv` is supposed to, but is
     more likely to work if you have multiple versions of Python and/or
     pipenv installed, or if you haven’t adjusted your shell’s `PATH`.
@@ -76,15 +71,15 @@ If you run into trouble, the following notes may help:
         ls -l $(which python)
 
     If it is not
-    `/Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9`,
+    `/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10`,
     you can make it be that with
 
         pipenv install --dev \
-            --python=/Library/Frameworks/Python.framework/Versions/3.9/bin/python3.9
+            --python=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10
 
 ### Install NodeJS
 
-Install [NodeJS][] version 10 or greater.
+Install [NodeJS][] version 20 or greater.
 
 [NodeJS]: https://nodejs.org/
 
