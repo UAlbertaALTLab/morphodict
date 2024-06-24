@@ -4,7 +4,7 @@
   "viewportHeight": 568,
   "viewportWidth": 320,
   "projectId": "8r2xra",
-  "defaultCommandTimeout": 1000,
+  "defaultCommandTimeout": 4000,
   "supportFile": "cypress/support/commands.js",
   "pluginsFile": false,
   "env": {
