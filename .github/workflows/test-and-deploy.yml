@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         # actions/cache below uses this id to get the exact python version
         id: setup-python
         with:
@@ -108,12 +108,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         id: setup-python
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.ACTIONS_NODE_VERSION }}
           cache: npm
@@ -154,7 +154,7 @@ jobs:
           if [ -n "$CYPRESS_RECORD_KEY" ] ; then export CYPRESS_OPTS="--key $CYPRESS_RECORD_KEY" ; fi
           pipenv run ./scripts/run-cypress --no-interactive
       - name: Archive cypress videos
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: |
@@ -170,14 +170,14 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           # build-push-action with the default ‘git context’ ignores the
           # .dockerignore file
@@ -205,14 +205,14 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests
@@ -232,14 +232,14 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
       - name: Build and push Docker images
-        uses: docker/build-push-action@v2
+        uses: docker/build-push-action@v6
         with:
           # build-push-action with the default ‘git context’ ignores the
           # .dockerignore file
@@ -267,14 +267,14 @@ jobs:
 
     steps:
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests
