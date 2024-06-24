@@ -4,6 +4,7 @@ describe("click-in-text", function () {
   });
 
   function withPopupDivs(popupDivsHandler) {
+    cy.wait(1000);
     cy.get("transover-popup").should((popups) => {
       expect(popups.length).to.eql(1);
       const popup = popups[0];
