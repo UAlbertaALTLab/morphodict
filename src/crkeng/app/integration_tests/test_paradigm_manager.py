@@ -51,7 +51,7 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
         ("NDA", "nôhkom", ["nôhkom", "kôhkom", "ohkoma"]),
         ("NDI", "mîpit", ["mîpit", "nîpit", "kîpit", "wîpit"]),
         ("NA", "minôs", ["minôs", "minôsak", "minôsa"]),
-        ("NI", "nipiy", ["nipiy", "nipîhk", "ninipîm", "kinipîm"]),
+        ("NI", "nipiy", ["nipiy", "nipîhk", "ninipiy", "kinipiy"]),
     ],
 )
 def test_paradigm(paradigm_manager, name, lemma, examples: list[str]):
