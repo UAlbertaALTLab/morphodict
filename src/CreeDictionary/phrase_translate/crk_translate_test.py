@@ -21,7 +21,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
         (
             ((), "atâhk", ("+N", "+A", "+Der/Dim", "+N", "+A", "+Obv")),
             "star",
-            "little star over there",
+            "an/other little star(s)",
         ),
         (
             (
@@ -60,7 +60,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
         (
             (("PV/wi+",), "wâpamêw", ("+V", "+TA", "+Ind", "+4Sg/Pl", "+3PlO")),
             WAPAMEW_DEFINITION,
-            "s/he/they are going to see them",
+            "another/others are going to see them",
         ),
         (
             (("PV/e+", "PV/wi+"), "wâpamêw", ("+V", "+TA", "+Cnj", "+1Sg", "+3PlO")),
@@ -70,7 +70,7 @@ WAPAMEW_DEFINITION = "s/he sees s.o."
         (
             (("PV/ka+",), "wâpamêw", ("+V", "+TA", "+Ind", "+4Sg/Pl", "+3SgO")),
             WAPAMEW_DEFINITION,
-            "s/he/they will see him/her",
+            "another/others will see him/her",
         ),
         (
             (("PV/ka+",), "wâpamêw", ("+V", "+TA", "+Cnj", "+1Sg", "+2PlO")),
