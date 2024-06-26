@@ -52,7 +52,7 @@ def main():
     try:
         cypress_command = "open" if args.interactive else "run"
 
-        check_call(["npx", "--no-install", "cypress", cypress_command], cwd=base_dir)
+        check_call(["npx", "--no-install", "cypress", cypress_command, "--browser", "electron"], cwd=base_dir)
     finally:
         for s in servers:
             s.terminate()
