@@ -347,7 +347,9 @@ class ContentRow(Row):
             return ContentRow(one(cells) for cells in columns)
 
         # Before creating compound row, fillup first line with emptyness
-        columns[0] = columns[0] + [SuppressOutputCell()] * (num_rows_needed - len(columns[0]))
+        columns[0] = columns[0] + [SuppressOutputCell()] * (
+            num_rows_needed - len(columns[0])
+        )
 
         # Now create compound rows
         rows = []
