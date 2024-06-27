@@ -19,7 +19,7 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "itwewina.altlab.app"
+PRODUCTION_HOST = "itwewina.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
