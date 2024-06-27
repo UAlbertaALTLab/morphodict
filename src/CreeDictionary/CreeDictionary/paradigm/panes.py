@@ -346,7 +346,12 @@ class ContentRow(Row):
             # A row with all columns having a single cell:
             return ContentRow(one(cells) for cells in columns)
 
-        # Create compound rows
+        # Before creating compound row, fillup first line with emptyness
+        columns[0] = columns[0] + [SuppressOutputCell()] * (
+            num_rows_needed - len(columns[0])
+        )
+
+        # Now create compound rows
         rows = []
         for row_num in range(num_rows_needed):
             cells = [cell_if_exists_or_no_output(col, row_num) for col in columns]
@@ -805,7 +810,7 @@ def cell_if_exists_or_no_output(col: Sequence[Cell], row_num: int):
     try:
         return col[row_num]
     except IndexError:
-        return SuppressOutputCell()
+        return EmptyCell()
 
 
 def adjust_row_span(cell: Cell, span: int) -> Cell:

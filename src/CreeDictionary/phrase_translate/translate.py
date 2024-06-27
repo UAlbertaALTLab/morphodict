@@ -58,7 +58,7 @@ def eng_noun_entry_to_inflected_phrase_fst():
 def eng_verb_entry_to_inflected_phrase_fst():
     return foma.FST.load(
         shared_fst_dir
-        / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags.fomabin"
+        / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags-and-templates.fomabin"
     )
 
 
