@@ -67,3 +67,5 @@
 src/CreeDictionary/res/CW_aggregate_morpheme_log_freqs.txt filter=lfs diff=lfs merge=lfs -text
 src/CreeDictionary/res/crk_glossaries_aggregate_vocab.txt filter=lfs diff=lfs merge=lfs -text
 src/CreeDictionary/res/lemma_frequency.txt filter=lfs diff=lfs merge=lfs -text
+src/docker/docker-compose.yml merge=ours
+src/crkeng/site/settings.py merge=ours
