@@ -13,8 +13,8 @@ services:
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:dev
     command: /app/app.sh crkeng
     ports:
-      - "8011:8200" # http
-      - "9011:9291" # uWSGI stats
+      - "8211:8000" # http
+      - "9211:9191" # uWSGI stats
     volumes:
       - "./.env:/app/.env"
 
