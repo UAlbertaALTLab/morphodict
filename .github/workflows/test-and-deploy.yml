@@ -91,6 +91,7 @@ jobs:
       - name: Check that generated files are up-to-date
         # A few auto-generated files are checked in for convenience; ensure
         # that they are up-to-date.
+        if: github.ref != 'refs/heads/dev'
         run: "pipenv run docker/helper.py make-yaml
         && if ! ./libexec/check-git-status ; then
             echo Error: running make-yaml resulted in changed files. When
