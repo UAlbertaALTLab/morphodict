@@ -525,7 +525,7 @@ def test_non_lemma_definition(db, translate_wordforms):
 
     expected_defns = [["it is a dance, a time of dancing", "CW"]]
     if translate_wordforms:
-        expected_defns.append(["someone dances", "🤖CW"])
+        expected_defns.append(["people dance", "🤖CW"])
     assert definitions_match(non_lemma.definitions.all(), expected_defns)
 
     assert {"time", "danc"}.issubset(

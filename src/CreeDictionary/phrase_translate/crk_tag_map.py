@@ -66,7 +66,7 @@ verb_wordform_to_phrase = TagMap(
     ("+3Pl", COPY_TAG_NAME, 2),
     ("+4Sg/Pl", COPY_TAG_NAME, 2),
     ("+5Sg/Pl", COPY_TAG_NAME, 2),
-    ("+X", "+XPl", 2),
+    ("+X", "XPl+", 2),
     # Person - Object
     ("+1SgO", COPY_TAG_NAME, 3),
     ("+2SgO", COPY_TAG_NAME, 3),
@@ -79,5 +79,5 @@ verb_wordform_to_phrase = TagMap(
     ("+4Sg", COPY_TAG_NAME, 3),
     ("+4Sg/PlO", COPY_TAG_NAME, 3),
     ("+5Sg/PlO", COPY_TAG_NAME, 3),
-    ("+XO", "+XPlO", 3),
+    ("+XO", "XPlO+", 3),
 )
