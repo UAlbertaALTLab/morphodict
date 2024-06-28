@@ -25,7 +25,7 @@ noun_wordform_to_phrase = TagMap(
     ("+Px12Pl", COPY_TAG_NAME, 3),  # Maybe needs to be recoded with 12 -> 21
     ("+Px3Pl", COPY_TAG_NAME, 3),
     ("+Px4Sg/Pl", COPY_TAG_NAME, 3),
-    ("+PxX", COPY_TAG_NAME, 3),
+    ("+PxX", "PxXPl+", 3),
 )
 
 # Normally having a preverb tag excludes a wordform from auto-translation; this
@@ -66,7 +66,7 @@ verb_wordform_to_phrase = TagMap(
     ("+3Pl", COPY_TAG_NAME, 2),
     ("+4Sg/Pl", COPY_TAG_NAME, 2),
     ("+5Sg/Pl", COPY_TAG_NAME, 2),
-    ("+X", COPY_TAG_NAME, 2),
+    ("+X", "XPl+", 2),
     # Person - Object
     ("+1SgO", COPY_TAG_NAME, 3),
     ("+2SgO", COPY_TAG_NAME, 3),
@@ -79,5 +79,5 @@ verb_wordform_to_phrase = TagMap(
     ("+4Sg", COPY_TAG_NAME, 3),
     ("+4Sg/PlO", COPY_TAG_NAME, 3),
     ("+5Sg/PlO", COPY_TAG_NAME, 3),
-    ("+XO", COPY_TAG_NAME, 3),
+    ("+XO", "XPlO+", 3),
 )
