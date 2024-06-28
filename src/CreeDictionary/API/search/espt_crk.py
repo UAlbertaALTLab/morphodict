@@ -33,6 +33,7 @@ noun_passthrough_tags = {
         "+Px3Pl",
         "+Px4Sg/Pl",
         "+PxX",
+        "+PxXPl",
     ],
     3: [
         # N: number
@@ -65,6 +66,7 @@ verb_passthrough_tags = {
         "+4Sg/Pl",
         "+5Sg/Pl",
         "+X",
+        "+XPl",
     ],
     3: [
         # V: Person - object
@@ -80,6 +82,7 @@ verb_passthrough_tags = {
         "+4Sg/PlO",
         "+5Sg/PlO",
         "+XO",
+        "+XPlO",
     ],
 }
 
@@ -111,6 +114,7 @@ verb_tag_map = TagMap(
         "+12Pl",
         2,
     ),  # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
+    ("+XPl", "+X", 2),
     # Person - object
     ("+0SgO", (), 3),
     (
@@ -118,6 +122,7 @@ verb_tag_map = TagMap(
         "+12PlO",
         3,
     ),
+    ("+XPlO", "+XO", 3),
     (
         "+PV/pimi",
         ("PV/pimi+"),
@@ -130,5 +135,6 @@ verb_tag_map = TagMap(
 noun_tag_map = TagMap(
     ("+Dim", "+Der/Dim", 2),
     ("+Px21Pl", "+Px12Pl", 2),
+    ("+PxXPl", "+PxX", 2),
     *passthrough_tags_to_tuples(noun_passthrough_tags)
 )
