@@ -102,7 +102,7 @@ jobs:
       - name: 📤 Upload Codecov coverage report
         uses: codecov/codecov-action@v4
         with:
-          token: ${{ secrects.CODECOV_TOKEN }}
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   # Runs Cypress acceptance tests
   integration-test:
