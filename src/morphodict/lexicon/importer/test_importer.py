@@ -296,7 +296,7 @@ def test_entry_changed(db, translate_wordforms, incremental):
         incremental=incremental,
     )
 
-    lemma = Wordform.objects.get(slug="miyotêhêw")
+    lemma = Wordform.objects.get(slug="miýotêhêw")
     assert lemma.paradigm == "VAI"
     assert definitions_match(
         lemma.definitions.all(),
@@ -307,7 +307,7 @@ def test_entry_changed(db, translate_wordforms, incremental):
     )
 
     if translate_wordforms:
-        inflected_wf = Wordform.objects.get(text="kimiyotêhânâwâw")
+        inflected_wf = Wordform.objects.get(text="kimiýotêhânâwâw")
         assert inflected_wf.lemma == lemma
         assert definitions_match(
             inflected_wf.definitions.all(),
@@ -323,7 +323,7 @@ def test_entry_changed(db, translate_wordforms, incremental):
         incremental=incremental,
     )
 
-    lemma = Wordform.objects.get(slug="miyotêhêw")
+    lemma = Wordform.objects.get(slug="miýotêhêw")
     assert lemma.paradigm == "VTA"
     assert definitions_match(
         lemma.definitions.all(),
@@ -336,7 +336,7 @@ def test_entry_changed(db, translate_wordforms, incremental):
     )
 
     if translate_wordforms:
-        inflected_wf = Wordform.objects.get(text="kimiyotêhâwâwak")
+        inflected_wf = Wordform.objects.get(text="kimiýotêhâwâwak")
         assert inflected_wf.lemma == lemma
         assert definitions_match(
             inflected_wf.definitions.all(),
@@ -353,12 +353,12 @@ def test_running_without_translations_after_running_with_removes_stuff(db):
     import_test_file("paradigm-change-before.importjson", translate_wordforms=True)
 
     assert Wordform.objects.count() > 10
-    assert Wordform.objects.get(slug="miyotêhêw")
+    assert Wordform.objects.get(slug="miýotêhêw")
 
     import_test_file("paradigm-change-before.importjson", translate_wordforms=False)
 
     assert Wordform.objects.count() == 1
-    assert Wordform.objects.get(slug="miyotêhêw")
+    assert Wordform.objects.get(slug="miýotêhêw")
 
 
 @parametrize_incremental

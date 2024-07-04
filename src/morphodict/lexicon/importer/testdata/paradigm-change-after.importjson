@@ -1,11 +1,11 @@
 [
   {
-    "analysis": [[], "miyotêhêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
-    "head": "miyotêhêw",
+    "analysis": [[], "miýotêhêw", ["+V", "+TA", "+Ind", "+3Sg", "+4Sg/PlO"]],
+    "head": "miýotêhêw",
     "linguistInfo": {
       "inflectional_category": "VTA-1",
       "pos": "V",
-      "stem": "miyotêh-",
+      "stem": "miýotêh-",
       "wordclass": "VTA"
     },
     "paradigm": "VTA",
@@ -15,6 +15,6 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "miyotêhêw"
+    "slug": "miýotêhêw"
   }
 ]

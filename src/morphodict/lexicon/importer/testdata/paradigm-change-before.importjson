@@ -1,11 +1,11 @@
 [
   {
-    "analysis": [[], "miyotêhêw", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "head": "miyotêhêw",
+    "analysis": [[], "miýotêhêw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "miýotêhêw",
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "stem": "miyotêhê-",
+      "stem": "miýotêhê-",
       "wordclass": "VAI"
     },
     "paradigm": "VAI",
@@ -19,6 +19,6 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "miyotêhêw"
+    "slug": "miýotêhêw"
   }
 ]
