@@ -66,9 +66,17 @@ MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
     "available": {
         # 'Latn' is Okimāsis/Wolvegrey's SRO
-        "Latn": {"name": "SRO (êîôâ)"},
+        "Latn-y": {
+            "name": "SRO (êîôâ) with y",
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_y"
+            },
+        "Latn": {"name": "SRO (êîôâ) with ý"},
+        "Latn-x-macron-y": {
+            "name": "SRO (ēīōā) with y",
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons_with_y",
+        },
         "Latn-x-macron": {
-            "name": "SRO (ēīōā)",
+            "name": "SRO (ēīōā) with ý",
             "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons",
         },
         "Cans": {

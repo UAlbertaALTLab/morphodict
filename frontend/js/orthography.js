@@ -7,6 +7,8 @@ const AVAILABLE_ORTHOGRAPHIES = new Set([
   "Cans",
   "Latn",
   "Latn-x-macron",
+  "Latn-y",
+  "Latn-x-macron-y",
   "CMRO",
 ]);
 
