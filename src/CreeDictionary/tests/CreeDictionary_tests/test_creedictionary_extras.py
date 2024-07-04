@@ -17,7 +17,9 @@ def test_produces_correct_markup():
         """
         <span lang="cr" data-orth
               data-orth-Latn="wâpamêw"
+              data-orth-Latn-y="wâpamêw"
               data-orth-latn-x-macron="wāpamēw"
+              data-orth-latn-x-macron-y="wāpamēw"
               data-orth-Cans="ᐚᐸᒣᐤ">wâpamêw</span>
         """,
         rendered,
@@ -37,7 +39,9 @@ def test_naughty_html():
         """
         <span lang="cr" data-orth
               data-orth-Latn="&lt;img alt=&quot;tâpwêw&quot;&gt;"
+              data-orth-Latn-y="&lt;img alt=&quot;tâpwêw&quot;&gt;"
               data-orth-latn-x-macron="&lt;img alt=&quot;tāpwēw&quot;&gt;"
+              data-orth-latn-x-macron-y="&lt;img alt=&quot;tāpwēw&quot;&gt;"
               data-orth-Cans="&lt;img alt=&quot;ᑖᐻᐤ&quot;&gt;">&lt;img alt=&quot;tâpwêw&quot;&gt;</span>
         """,
         rendered,
@@ -63,7 +67,9 @@ def test_provide_orthograpy(orth, inner_text):
         f"""
         <span lang="cr" data-orth
               data-orth-Latn="wâpamêw"
+              data-orth-Latn-y="wâpamêw"
               data-orth-latn-x-macron="wāpamēw"
+              data-orth-latn-x-macron-y="wāpamēw"
               data-orth-Cans="ᐚᐸᒣᐤ">{inner_text}</span>
         """,
         rendered,
@@ -95,7 +101,9 @@ def test_orth_template_tag(orth, inner_text):
         f"""
         <span lang="cr" data-orth
               data-orth-Latn="wâpamêw"
+              data-orth-Latn-y="wâpamêw"
               data-orth-latn-x-macron="wāpamēw"
+              data-orth-latn-x-macron-y="wāpamēw"
               data-orth-Cans="ᐚᐸᒣᐤ">{inner_text}</span>
         """,
         rendered,
@@ -117,7 +125,9 @@ def test_cree_example():
         f"""
         like: <span lang="cr" data-orth
               data-orth-Latn="wâpamêw"
+              data-orth-Latn-y="wâpamêw"
               data-orth-latn-x-macron="wāpamēw"
+              data-orth-latn-x-macron-y="wāpamēw"
               data-orth-Cans="ᐚᐸᒣᐤ">ᐚᐸᒣᐤ</span>
         """,
         rendered,
@@ -156,7 +166,9 @@ def test_no_hyphens_in_syllabics():
         f"""
         <span lang="cr" data-orth
               data-orth-Latn="nôhtê-"
+              data-orth-Latn-y="nôhtê-"
               data-orth-latn-x-macron="nōhtē-"
+              data-orth-latn-x-macron-y="nōhtē-"
               data-orth-Cans="ᓅᐦᑌ">ᓅᐦᑌ</span>
         """,
         rendered,
