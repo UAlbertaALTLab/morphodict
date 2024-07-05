@@ -30,18 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 
     outputs:
-      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
-
-    if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev'
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          # ci-skip needs to do a partial checkout
-          fetch-depth: '0'
-      - id: ci-skip
-        uses: mstachniuk/ci-skip@v1
-        with:
-          commit-filter: '[skip deploy]'
+      should-run: ${{ github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev' }}
 
 
   # Run Pytest unit tests
