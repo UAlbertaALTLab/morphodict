@@ -33,6 +33,7 @@ jobs:
       should-run: ${{ github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev' }}
 
     steps:
+      - run: true
 
   # Run Pytest unit tests
   unit-test:
