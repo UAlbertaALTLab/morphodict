@@ -8,23 +8,19 @@ env:
   ACTIONS_NODE_VERSION: 20
 
 jobs:
-  # Skips deploy if [skip deploy] is present in the commit message
+  # Originally, it skipped deploy if [skip deploy] is present in the commit message.
+  # There is currently a github-provided implementation of this behaviour and the
+  # original repo is unmaintained.  Thus the new behaviour is that actions won't trigger
+  # when using [skip ci].  See
+  # https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
   should-deploy:
     runs-on: ubuntu-latest
 
     outputs:
-      should-run: ${{ steps.ci-skip.outputs.ci-skip-not }}
+      should-run: ${{github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main' }}
 
-    if: github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v4
-        with:
-          # ci-skip needs to do a partial checkout
-          fetch-depth: '0'
-      - id: ci-skip
-        uses: mstachniuk/ci-skip@v1
-        with:
-          commit-filter: '[skip deploy]'
+      - run: true
 
   should-update-dev:
     runs-on: ubuntu-latest
