@@ -6,12 +6,12 @@ T	Transitive	Transitive	Someone acts on someone	?
 D	Ditransitive	Ditransitive	Someone gives someone something	?
 E	Experiential Object	Experiential object	Someone experiences something	?
 O	Oblique Object	Oblique object	?	?
-Ipfv	Imperfective	Aspect: imperfective	Unfinished / Non-past	Dú k'àgunììt'a (ák'óo ágùná)
+Ipfv	Imperfective	Aspect: imperfective	Unfinished / Non-past	Dúk'àgunììt'a (ák'óo ágùná)
 Pfv	Perfective	Aspect: perfective 	Finished / Past	K'àgunììt'a (dzánádà ágùjàg)
 Prog	Progressive	Progressive	On-going	Ágùdánáł
 Pot	Potential	Aspect: potential	Possibly	Ágùyiná-hí-gulà
 Rep	Repetitive	Superaspect: repetitive	Again and again	Ánágùt'ìsh
-Ipfv+Rep	Imperfective Repetitive	Aspect: imperfective repetitive	Non-past + Again and again	Dú k'àgunììt'a (ánágùt'ìsh)
+Ipfv+Rep	Imperfective Repetitive	Aspect: imperfective repetitive	Non-past + Again and again	Dúk'àgunììt'a (ánágùt'ìsh)
 Pfv+Rep	Perfective Repetitive	Aspect: perfective repetitive	Past + Again and again	K'àgunììt'a (ánágùyít'ìsh)
 Neg	Negation	Negation	not	chāā
 1Sg	1st person singular	Subject: 1st person singular	I	síní
