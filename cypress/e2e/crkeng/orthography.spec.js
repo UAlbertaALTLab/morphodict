@@ -6,7 +6,9 @@ describe("Orthography selection", function () {
       cy.visit("/");
 
       // Get the introduction: it should be in SRO
-      cy.contains("h2", "tânisi!").as("greeting");
+      cy.get("h2").as("greeting");
+
+      cy.get("@greeting").contains("tânisi!");
 
       // Switch to syllabics
       cy.get("[data-cy=settings-menu]").click().parent("details").as("menu");
