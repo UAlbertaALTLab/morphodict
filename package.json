@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rollup -c",
     "test": "pipenv run scripts/run-cypress --no-interactive",
-    "stop-only": "stop-only --folder cypress/integration",
+    "stop-only": "stop-only --folder cypress/e2e",
     "reformat": "prettier --write '{frontend,cypress}/**/*.js'"
   },
   "repository": {
