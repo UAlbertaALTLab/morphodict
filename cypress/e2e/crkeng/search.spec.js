@@ -101,7 +101,7 @@ context("Searching", () => {
     // there. There's probably a more elegant way to do this but I think that'll come as I become more comfortable with the codebase.
     it("should show the 'info' icon to allow users to access additional information", () => {
       // borrowed the following four lines from above and used 'nipaw' for testing purposes.
-      const searchTerm = "niya";
+      const searchTerm = "nipaw";
       cy.visitSearch(searchTerm);
 
       cy.get("[data-cy=search-result]").find("[data-cy=information-mark]");
