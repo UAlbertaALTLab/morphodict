@@ -206,7 +206,7 @@ context("Searching", () => {
         .and("contain", plainEnglishInflectionalCategory);
 
       // Inflectional category tool tip
-      cy.get("@elaboration").get('[data-cy="elaboration"]').first().click();
+      cy.get("@elaboration").get('[data-cy="elaboration"]').first().trigger("mouseenter",{force: true});
       cy.get("@elaboration").get('[role="tooltip"]').should("be.visible");
       cy.get("@elaboration").contains('[role="tooltip"]', inflectionalCategory);
     });
