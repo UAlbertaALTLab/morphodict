@@ -81,11 +81,11 @@ def test_search_for_exact_lemma(lemma: Wordform):
     exact_match = exact_matches.pop()
     assert exact_match.source_language_match == lemma.text
     assert not exact_match.preverbs
-    # todo: enable the two lines below when #230 is fixed
+    #   the two lines below are enabled after #230 was fixed
     #   https://github.com/UAlbertaALTLab/morphodict/issues/230
-    #   or there will be flaky local tests and ci tests
-    # assert len(exact_match.definitions) >= 1
-    # assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.definitions)
+    #   or there would be flaky local tests and ci tests
+    assert len(exact_match.wordform.definitions.all()) >= 1
+    assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.wordform.definitions.all())
 
 
 @pytest.mark.django_db
