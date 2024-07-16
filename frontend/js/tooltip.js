@@ -3,8 +3,18 @@ import { createPopper } from "@popperjs/core/dist/esm/popper";
 
 const showEvents = ["mouseenter", "focus"];
 const hideEvents = ["mouseleave", "blur"];
+const permanenceChangeEvents = ["click"];
+const outsidePopupCloseEvents = ["click"];
 
-let popperInstance = null;
+/**
+ * prepare the popup and the icon. Attach relevant handlers
+ *
+ * @param icon {Element}: icon that triggers the popup on hover/click/focus
+ * @param popup {Element}: the popup that shows up
+ */
+export function createTooltip(icon, popup) {
+  let permanent = false;
+  let popperInstance = null;
 
 /**
  * @param {Element} icon
@@ -30,24 +40,43 @@ function destroy() {
   }
 }
 
-/**
- * prepare the popup and the icon. Attach relevant handlers
- *
- * @param icon {Element}: icon that triggers the popup on hover/click/focus
- * @param popup {Element}: the popup that shows up
- */
-export function createTooltip(icon, popup) {
-  for (let event of showEvents) {
-    icon.addEventListener(event, () => {
+  function show () {
+    if(!popperInstance){
       popup.setAttribute("data-show", "");
       create(icon, popup);
-    });
+    }
+  }
+  function hide () {
+    if (!permanent && popperInstance) {
+      popup.removeAttribute("data-show");
+      destroy();
+    }
+  }
+  for (let event of showEvents) {
+    icon.addEventListener(event, show);
   }
 
   for (let event of hideEvents) {
+    icon.addEventListener(event, hide);
+  }
+
+  for (let event of permanenceChangeEvents) {
     icon.addEventListener(event, () => {
-      popup.removeAttribute("data-show");
-      destroy();
+      permanent = !permanent;
+      if (!permanent) {
+        hide();
+      } else {
+        show();
+      }
+    });
+  }
+
+  for (let event of outsidePopupCloseEvents) {
+    document.addEventListener(event, (event) => {
+      if (!popup.contains(event.target) && !icon.contains(event.target)){
+        permanent = false;
+        hide();
+      }
     });
   }
 }
