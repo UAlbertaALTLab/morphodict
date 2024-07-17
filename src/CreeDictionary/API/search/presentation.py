@@ -384,7 +384,7 @@ def serialize_definitions(
 def serialize_lexical_entry(lexical_entry: _LexicalEntry) -> dict:
     return {
         "entry": lexical_entry.entry,
-        "text": lexical_entry.text,
+        "text": lexical_entry.text or "",
         "url": lexical_entry.url,
         "id": lexical_entry.id,
         "type": lexical_entry.type,
@@ -412,13 +412,13 @@ def replace_user_friendly_tags(fst_tags: List[FSTTag]) -> List[Label]:
 
 def get_emoji_for_cree_wordclass(
     word_class: Optional[str], animate_emoji: str = AnimateEmoji.default
-) -> Optional[str]:
+) -> str:
     """
     Attempts to get an emoji description of the full wordclass.
     e.g., "👤👵🏽" for "nôhkom"
     """
     if word_class is None:
-        return None
+        return ""
 
     def to_fst_output_style(value):
         if value[0] == "N":
@@ -434,7 +434,7 @@ def get_emoji_for_cree_wordclass(
     ret = original
     if original:
         ret = use_preferred_animate_emoji(original, animate_emoji)
-    return ret
+    return ret or ''
 
 
 def use_preferred_animate_emoji(original: str, animate_emoji: str) -> str:

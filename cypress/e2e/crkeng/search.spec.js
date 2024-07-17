@@ -108,6 +108,16 @@ context("Searching", () => {
     });
   });
 
+  describe("When I search for a word without an emoji", () => {
+    it("should not display None", () => {
+      cy.visitSearch("nipawâkan");
+
+      cy.get("[data-cy=elaboration]")
+
+      cy.contains("None").should('not.exist');
+    })
+  })
+
   describe("A tooltip should show up when the user click/focus on the i icon beside the matched wordform", () => {
     it("should show tooltip when the user focuses on the i icon beside ê-wâpamat", () => {
       cy.visitSearch("ewapamat");
