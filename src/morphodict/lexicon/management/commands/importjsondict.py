@@ -402,7 +402,11 @@ class Import:
                 text=entry["head"],
                 raw_analysis=entry["analysis"],
             )[0]
-            self.create_definitions(wf, entry["senses"])
+
+            # Because we are inserting new definitions, there is a risk of duplicates.
+            # To avoid it, remember the old ones so that they are _not_ added.
+            # Use the InsertBuffer to make sure the set is full
+            self.create_definitions(wf, entry["senses"], True)
 
         self.flush_insert_buffers()
 
@@ -512,7 +516,7 @@ class Import:
             )
         return d
 
-    def create_definitions(self, wordform, senses):
+    def create_definitions(self, wordform, senses, check_uniqueness = False):
         """Create definition objects for the given wordform and senses."""
 
         # Normally definition.citations.all() would tell you the sources, but to
@@ -536,6 +540,10 @@ class Import:
             definitions_and_sources.append((new_definition, sense["sources"]))
 
             keywords.update(stem_keywords(new_definition.semantic_definition))
+
+        if check_uniqueness:
+            keywords -= { kw.text for kw in TargetLanguageKeyword.objects.filter(wordform=wordform)}
+            keywords -= { kw.text for kw in self.target_language_keyword_buffer._buffer if kw.wordform == wordform}
 
         for kw in keywords:
             self.target_language_keyword_buffer.add(
