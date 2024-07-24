@@ -11,10 +11,10 @@ def get_glossary_count(search_run):
 
 
 def prep_freqs():
-    print(
-        "Location of glossary file:",
-        Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt"),
-    )
+    # print(
+    #     "Location of glossary file:",
+    #     Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt"),
+    # )
     lines = (
         Path(shared_res_dir / "crk_glossaries_aggregate_vocab.txt")
         .read_text()

@@ -28,7 +28,7 @@ def fetch_results(search_run: core.SearchRun):
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
     fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
-    print([a.tuple for a in fst_analyses])
+    # print([a.tuple for a in fst_analyses])
 
     db_matches = list(
         Wordform.objects.filter(raw_analysis__in=[a.tuple for a in fst_analyses])
