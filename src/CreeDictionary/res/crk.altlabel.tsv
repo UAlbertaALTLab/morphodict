@@ -210,8 +210,8 @@ Med	Medial	Medial	There	anita
 N		Noun	Naming word	wîhowin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/nouns/
 N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
 N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhowin-itwêwin — tâpiskôc: cîmân, wâwi	💧	
-N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
-N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhowin-itwêwin — tâpiskôc: mîpit	👤💧	
+N+D+A	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
+N+D+I	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhowin-itwêwin — tâpiskôc: mîpit	👤💧	
 						
 NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan		
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy		
