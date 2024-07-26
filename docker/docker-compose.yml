@@ -12,6 +12,7 @@ services:
     hostname: crkeng-dev-container
     image: ghcr.io/ualbertaaltlab/itwewina.altlab.app:dev
     command: /app/app.sh crkeng
+    memory: 2048m
     ports:
       - "8211:8000" # http
       - "9211:9191" # uWSGI stats
