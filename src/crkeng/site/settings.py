@@ -19,7 +19,7 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "itwewina.altlab.dev"
+PRODUCTION_HOST = "itwewina.altlab.app"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
@@ -45,7 +45,7 @@ MORPHODICT_ISO_639_1_CODE = "cr"
 MORPHODICT_SOURCE_LANGUAGE = "crk"
 MORPHODICT_TARGET_LANGUAGE = "eng"
 
-# MORPHODICT_PREVIEW_WARNING = False
+MORPHODICT_PREVIEW_WARNING = False
 
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Plains Cree"
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
@@ -63,7 +63,7 @@ MORPHODICT_LANGUAGE_ENDONYM = "nêhiyawêwin"
 # orthography.
 MORPHODICT_ORTHOGRAPHY = {
     # All entries in Wordform should be written in SRO (êîôâ)
-    "default": "Latn",
+    "default": "Latn-y",
     "available": {
         # 'Latn' is Okimāsis/Wolvegrey's SRO
         "Latn-y": {
