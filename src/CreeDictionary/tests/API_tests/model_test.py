@@ -85,7 +85,9 @@ def test_search_for_exact_lemma(lemma: Wordform):
     #   https://github.com/UAlbertaALTLab/morphodict/issues/230
     #   or there would be flaky local tests and ci tests
     assert len(exact_match.wordform.definitions.all()) >= 1
-    assert all(len(dfn.source_ids) >= 1 for dfn in exact_match.wordform.definitions.all())
+    assert all(
+        len(dfn.source_ids) >= 1 for dfn in exact_match.wordform.definitions.all()
+    )
 
 
 @pytest.mark.django_db

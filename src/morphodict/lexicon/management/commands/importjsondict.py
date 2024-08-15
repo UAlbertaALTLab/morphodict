@@ -516,7 +516,7 @@ class Import:
             )
         return d
 
-    def create_definitions(self, wordform, senses, check_uniqueness = False):
+    def create_definitions(self, wordform, senses, check_uniqueness=False):
         """Create definition objects for the given wordform and senses."""
 
         # Normally definition.citations.all() would tell you the sources, but to
@@ -542,8 +542,15 @@ class Import:
             keywords.update(stem_keywords(new_definition.semantic_definition))
 
         if check_uniqueness:
-            keywords -= { kw.text for kw in TargetLanguageKeyword.objects.filter(wordform=wordform)}
-            keywords -= { kw.text for kw in self.target_language_keyword_buffer._buffer if kw.wordform == wordform}
+            keywords -= {
+                kw.text
+                for kw in TargetLanguageKeyword.objects.filter(wordform=wordform)
+            }
+            keywords -= {
+                kw.text
+                for kw in self.target_language_keyword_buffer._buffer
+                if kw.wordform == wordform
+            }
 
         for kw in keywords:
             self.target_language_keyword_buffer.add(

@@ -51,4 +51,4 @@ def lemmas():
     """
     Strategy to return lemmas from the database.
     """
-    return WordformStrategy(is_lemma=True,raw_analysis__isnull=False)
+    return WordformStrategy(is_lemma=True, raw_analysis__isnull=False)
