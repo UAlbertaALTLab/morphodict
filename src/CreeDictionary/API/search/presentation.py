@@ -434,7 +434,7 @@ def get_emoji_for_cree_wordclass(
     ret = original
     if original:
         ret = use_preferred_animate_emoji(original, animate_emoji)
-    return ret or ''
+    return ret or ""
 
 
 def use_preferred_animate_emoji(original: str, animate_emoji: str) -> str:
