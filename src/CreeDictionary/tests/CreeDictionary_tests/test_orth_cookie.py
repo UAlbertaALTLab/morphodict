@@ -10,7 +10,7 @@ from django.urls import reverse
 from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
 
 
-@pytest.mark.parametrize("orth", ["Cans", "Latn", "Latn-x-macron"])
+@pytest.mark.parametrize("orth", ["Cans", "Latn", "Latn-x-macron","Latn-y", "Latn-x-macron-y"])
 def test_can_set_orth_cookie(orth, client, change_orth_url):
     """
     Test that POSTing to the URL actually sets the orthography.

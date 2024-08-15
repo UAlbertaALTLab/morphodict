@@ -7,15 +7,15 @@ from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
 
 
 def test_morphodict_orthography():
-    assert ORTHOGRAPHY.default == "Latn"
+    assert ORTHOGRAPHY.default == "Latn-y"
     assert {"Latn", "Cans", "Latn-x-macron"} <= set(ORTHOGRAPHY.available)
 
 
 @pytest.mark.parametrize(
     "code,name,example",
     [
-        ("Latn", "SRO", "amiskwaciy-wâskahikanihk"),
-        ("Latn-x-macron", "SRO", "amiskwaciy-wāskahikanihk"),
+        ("Latn-y", "SRO", "amiskwaciy-wâskahikanihk"),
+        ("Latn-x-macron-y", "SRO", "amiskwaciy-wāskahikanihk"),
         ("Cans", "Syllabics", "ᐊᒥᐢᑿᒋᐩ ᐚᐢᑲᐦᐃᑲᓂᕽ"),
     ],
 )
