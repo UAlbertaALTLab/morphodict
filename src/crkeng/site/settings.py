@@ -19,7 +19,7 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "itwewina.altlab.app"
+PRODUCTION_HOST = "itwewina.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
 
@@ -45,7 +45,7 @@ MORPHODICT_ISO_639_1_CODE = "cr"
 MORPHODICT_SOURCE_LANGUAGE = "crk"
 MORPHODICT_TARGET_LANGUAGE = "eng"
 
-MORPHODICT_PREVIEW_WARNING = False
+# MORPHODICT_PREVIEW_WARNING = False
 
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Plains Cree"
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME = "Cree"
@@ -68,8 +68,8 @@ MORPHODICT_ORTHOGRAPHY = {
         # 'Latn' is Okimāsis/Wolvegrey's SRO
         "Latn-y": {
             "name": "SRO (êîôâ) with y",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_y",
-        },
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_y"
+            },
         "Latn": {"name": "SRO (êîôâ) with ý"},
         "Latn-x-macron-y": {
             "name": "SRO (ēīōā) with y",
