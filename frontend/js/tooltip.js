@@ -16,37 +16,37 @@ export function createTooltip(icon, popup) {
   let permanent = false;
   let popperInstance = null;
 
-/**
- * @param {Element} icon
- * @param {Element} popup
- */
-function create(icon, popup) {
-  popperInstance = createPopper(icon, popup, {
-    modifiers: [
-      {
-        name: "offset",
-        options: {
-          offset: [0, 8],
+  /**
+   * @param {Element} icon
+   * @param {Element} popup
+   */
+  function create(icon, popup) {
+    popperInstance = createPopper(icon, popup, {
+      modifiers: [
+        {
+          name: "offset",
+          options: {
+            offset: [0, 8],
+          },
         },
-      },
-    ],
-  });
-}
-
-function destroy() {
-  if (popperInstance) {
-    popperInstance.destroy();
-    popperInstance = null;
+      ],
+    });
   }
-}
 
-  function show () {
-    if(!popperInstance){
+  function destroy() {
+    if (popperInstance) {
+      popperInstance.destroy();
+      popperInstance = null;
+    }
+  }
+
+  function show() {
+    if (!popperInstance) {
       popup.setAttribute("data-show", "");
       create(icon, popup);
     }
   }
-  function hide () {
+  function hide() {
     if (!permanent && popperInstance) {
       popup.removeAttribute("data-show");
       destroy();
@@ -73,7 +73,7 @@ function destroy() {
 
   for (let event of outsidePopupCloseEvents) {
     document.addEventListener(event, (event) => {
-      if (!popup.contains(event.target) && !icon.contains(event.target)){
+      if (!popup.contains(event.target) && !icon.contains(event.target)) {
         permanent = false;
         hide();
       }
