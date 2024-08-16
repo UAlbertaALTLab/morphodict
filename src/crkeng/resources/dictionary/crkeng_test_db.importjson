@@ -1,25 +1,4 @@
-[  {
-    "analysis": [[], "miýotêhêw", ["+V", "+AI", "+Ind", "+3Sg"]],
-    "head": "miýotêhêw",
-    "linguistInfo": {
-      "inflectional_category": "VAI-1",
-      "pos": "V",
-      "stem": "miýotêhê-",
-      "wordclass": "VAI"
-    },
-    "paradigm": "VAI",
-    "senses": [
-      {
-        "definition": "He has a good heart (for people).",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "s/he is good-hearted, s/he has a good heart",
-        "sources": ["CW"]
-      }
-    ],
-    "slug": "miýotêhêw"
-  },
+[
   {
     "analysis": [[], "acâhkos", ["+N", "+A", "+Sg"]],
     "head": "acâhkos",
@@ -1046,6 +1025,28 @@
       }
     ],
     "slug": "misâskwatôminihk"
+  },
+  {
+    "analysis": [[], "miýotêhêw", ["+V", "+AI", "+Ind", "+3Sg"]],
+    "head": "miýotêhêw",
+    "linguistInfo": {
+      "inflectional_category": "VAI-1",
+      "pos": "V",
+      "stem": "miýotêhê-",
+      "wordclass": "VAI"
+    },
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "He has a good heart (for people).",
+        "sources": ["MD"]
+      },
+      {
+        "definition": "s/he is good-hearted, s/he has a good heart",
+        "sources": ["CW"]
+      }
+    ],
+    "slug": "miýotêhêw"
   },
   {
     "analysis": [[], "mîcisow", ["+V", "+AI", "+Ind", "+3Sg"]],
