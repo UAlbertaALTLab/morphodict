@@ -78,7 +78,7 @@ class SearchRun:
     ) -> list[presentation.PresentationResult]:
         results = self.sorted_results()
         prefetch_related_objects(
-            [r.wordform for r in results],
+            [r.wordform for r in results if not r.wordform._state.adding],
             "lemma__definitions__citations",
             "definitions__citations",
         )
