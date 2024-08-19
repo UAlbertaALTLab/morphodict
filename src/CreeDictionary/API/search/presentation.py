@@ -205,7 +205,11 @@ class PresentationResult:
             "definitions": serialize_definitions(
                 # given changes in django 4.1, the previous approach can fail.
                 # check first that the wordform actually exists before trying to get the reverse manager.
-                self.wordform.definitions.all() if not self.wordform._state.adding else [],
+                (
+                    self.wordform.definitions.all()
+                    if not self.wordform._state.adding
+                    else []
+                ),
                 # This is the only place include_auto_definitions is used,
                 # because we only auto-translate non-lemmas, and this is the
                 # only place where a non-lemma search result appears.
