@@ -37,4 +37,4 @@ def to_syllabics(sro_circumflex: str) -> str:
     Transliterate SRO to syllabics.
     """
     # Get rid of - after prefixes, like nôhte-/ᓄᐦᑌ
-    return sro2syllabics(sro_circumflex).rstrip("-")
+    return sro2syllabics(to_y(sro_circumflex)).rstrip("-")
