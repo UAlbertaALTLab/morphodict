@@ -3,7 +3,7 @@ name: Reformats source files
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, dev ]
 
 env:
   ACTIONS_PYTHON_VERSION: '3.10'
