@@ -16,11 +16,11 @@ jobs:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Reformat
@@ -35,11 +35,11 @@ jobs:
     # Ensure this is run **sequentially**
     needs: reformat-altlabel
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Install dependencies
@@ -57,13 +57,13 @@ jobs:
     # Ensure this is run **sequentially**
     needs: reformat-python
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: 20
+        node-version: 22
         cache: npm
     - name: Install dependencies
       run: npm ci
@@ -79,24 +79,24 @@ jobs:
     needs: reformat-javascript
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
       with:
         ref: ${{ github.head_ref }}
 
     # For prettier
     - name: Setup Node.js environment
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: 14
+        node-version: 22
         cache: npm
 
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
       # actions/cache below uses this id to get the exact python version
       id: setup-python
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
-    - uses: actions/cache@v2
+    - uses: actions/cache@v4
       with:
         path: ~/.local/share/virtualenvs
         key: ${{ runner.os }}-python-${{ steps.setup-python.outputs.python-version }}-pipenv-${{ hashFiles('Pipfile.lock') }}
