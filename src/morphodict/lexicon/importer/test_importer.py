@@ -3,7 +3,8 @@ from pathlib import Path
 import pytest
 from django.core.management import call_command
 from django.db import IntegrityError
-from pytest_django.fixtures import _django_db_fixture_helper
+from pytest_django.fixtures import _django_db_helper
+from pytest_django.plugin import DjangoDbBlocker
 
 from morphodict.lexicon.models import (
     Wordform,
@@ -89,7 +90,7 @@ def parametrize_incremental(f):
 
 
 @pytest.fixture(scope="class")
-def class_scoped_db(request, django_db_blocker):
+def class_scoped_db(request: pytest.FixtureRequest, django_db_blocker: DjangoDbBlocker):
     """A class-scoped DB fixture
 
     The normal pytest-django `db` fixture is function-scoped, meaning that it
@@ -99,7 +100,9 @@ def class_scoped_db(request, django_db_blocker):
     with multiple tests in which the same DB transaction is used for all tests
     in the class.
     """
-    _django_db_fixture_helper(request=request, django_db_blocker=django_db_blocker)
+    _django_db_helper(
+        request=request, django_db_setup=None, django_db_blocker=django_db_blocker
+    )
 
 
 # Tests

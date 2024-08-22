@@ -1,7 +1,7 @@
 import logging
 import re
 from http import HTTPStatus
-from typing import Dict, Optional
+from typing import Dict, Optional, cast
 
 import pytest
 from django.http import (
@@ -147,10 +147,13 @@ def test_paradigm_from_full_page_and_api(client: Client):
     # Get fragment from API request:
     response = client.get(
         reverse("cree-dictionary-paradigm-detail"),
-        {
-            "lemma-id": wordform.id,
-            "paradigm-size": paradigm_size,
-        },
+        cast(
+            Dict[str, int | str],
+            {
+                "lemma-id": wordform.id,
+                "paradigm-size": paradigm_size,
+            },
+        ),
     )
     assert response.status_code == HTTPStatus.OK
     html_fragment = response.content.decode("UTF-8")

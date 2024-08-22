@@ -14,12 +14,12 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 import secrets
-from typing import Optional
+from typing import Optional, TypedDict, Dict
 
 from environs import Env
 
 from . import base_dir_setup
-from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL
+from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL, RequiredString
 from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
 
@@ -267,7 +267,6 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
-USE_L10N = True
 
 USE_TZ = True
 
@@ -385,18 +384,24 @@ MORPHODICT_TAG_STYLE = "Plus"
 
 # The name of the source language, written in the target language. Used in
 # default templates to describe what language the dictionary is for.
-MORPHODICT_SOURCE_LANGUAGE_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+MORPHODICT_SOURCE_LANGUAGE_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # An optional, shorter name for the language. Currently only used in the search
 # bar placeholder, to show “Search in Cree” instead of “Search in Plains Cree”
 MORPHODICT_SOURCE_LANGUAGE_SHORT_NAME: Optional[str] = None
 
 # The name of the language, in the language itself, e.g., ‘nêhiyawêwin’
-MORPHODICT_LANGUAGE_ENDONYM = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+MORPHODICT_LANGUAGE_ENDONYM: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 
 # The marketing / brand / public-facing name of the dictionary
-MORPHODICT_DICTIONARY_NAME = _MORPHODICT_REQUIRED_SETTING_SENTINEL
+MORPHODICT_DICTIONARY_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
 # Used for the bulk search API
 SPEECH_DB_EQ = ["_"]
+
+Orthography = TypedDict("Orthography", {"name": str, "converter": str}, total=False)
+
+Orthographies = TypedDict(
+    "Orthographies", {"default": str, "available": Dict[str, Orthography]}
+)

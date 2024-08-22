@@ -127,9 +127,13 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
         print(f"wordform: {wordform.text} {wordform.analysis}")
 
         lemma = wordform.lemma
+
+        if lemma is None:
+            continue
+
         print(f"  lemma: {lemma.analysis}")
 
-        for d in wordform.lemma.definitions.all():
+        for d in lemma.definitions.all():
             # Don’t try to re-translate already-translated items
             if d.auto_translation_source_id is not None:
                 continue

@@ -61,15 +61,15 @@ MORPHODICT_LANGUAGE_ENDONYM = "nêhiyawêwin"
 #
 # Morphodict assumes that the `text` of all Wordform are written in the default
 # orthography.
-MORPHODICT_ORTHOGRAPHY = {
+MORPHODICT_ORTHOGRAPHY: Orthographies = {
     # All entries in Wordform should be written in SRO (êîôâ)
     "default": "Latn-y",
     "available": {
         # 'Latn' is Okimāsis/Wolvegrey's SRO
         "Latn-y": {
             "name": "SRO (êîôâ) with y",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_y"
-            },
+            "converter": "CreeDictionary.CreeDictionary.orthography.to_y",
+        },
         "Latn": {"name": "SRO (êîôâ) with ý"},
         "Latn-x-macron-y": {
             "name": "SRO (ēīōā) with y",

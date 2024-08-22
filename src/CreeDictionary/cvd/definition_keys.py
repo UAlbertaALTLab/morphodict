@@ -33,7 +33,7 @@ def definition_to_cvd_key(d: Definition) -> CvdKey:
         json.dumps(
             [
                 # Every lemma has a stable unique identifier
-                d.wordform.lemma.slug,
+                getattr(d.wordform.lemma, "slug"),
                 # These next two should fields should identify non-lemma wordforms
                 d.wordform.text,
                 d.wordform.raw_analysis,
@@ -71,5 +71,5 @@ def wordform_query_matches(query: WordformQuery, wordform: Wordform):
             ("raw_analysis" in query and wordform.raw_analysis == query["raw_analysis"])
             or ("raw_analysis__isnull" in query and wordform.raw_analysis is None)
         )
-        and wordform.lemma.slug == query["lemma__slug"]
+        and getattr(wordform.lemma, "slug") == query["lemma__slug"]
     )

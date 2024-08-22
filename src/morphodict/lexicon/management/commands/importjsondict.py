@@ -369,7 +369,7 @@ class Import:
             # Avoid dupes for this wordform
             seen_source_language_keywords: set[str] = set()
 
-            slug_base = wf.slug.split("@")[0]
+            slug_base = wf.slug.split("@")[0] if wf.slug else None
             if wf.text != slug_base and slug_base:
                 self.add_source_language_keyword(
                     wf, slug_base, seen_source_language_keywords

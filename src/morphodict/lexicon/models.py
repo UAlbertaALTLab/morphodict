@@ -33,7 +33,7 @@ class WordformLemmaManager(models.Manager):
 
 
 # This type is the int pk for a saved wordform, or (text, analysis) for an unsaved one.
-WordformKey = Union[int, tuple[str, str]]
+WordformKey = Union[str, int, tuple[str, str]]
 
 
 class DiacriticPreservingJsonEncoder(DjangoJSONEncoder):

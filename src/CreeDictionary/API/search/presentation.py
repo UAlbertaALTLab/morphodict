@@ -205,7 +205,11 @@ class PresentationResult:
             "definitions": serialize_definitions(
                 # given changes in django 4.1, the previous approach can fail.
                 # check first that the wordform actually exists before trying to get the reverse manager.
-                self.wordform.definitions.all() if not self.wordform._state.adding else [],
+                (
+                    self.wordform.definitions.all()
+                    if not self.wordform._state.adding
+                    else []
+                ),
                 # This is the only place include_auto_definitions is used,
                 # because we only auto-translate non-lemmas, and this is the
                 # only place where a non-lemma search result appears.
@@ -359,7 +363,7 @@ def serialize_wordform(
         if key not in result:
             result[key] = wordform.linguist_info[key]
 
-    return result
+    return cast(SerializedWordform, result)
 
 
 def serialize_definitions(
@@ -452,7 +456,7 @@ def emoji_for_value(choice: str) -> str:
 
 
 def get_lexical_info(
-    result_analysis: RichAnalysis,
+    result_analysis: Optional[RichAnalysis],
     animate_emoji: str,
     show_emoji: str,
     dict_source: list,

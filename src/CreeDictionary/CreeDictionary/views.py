@@ -48,13 +48,13 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
-    lemma = Wordform.objects.filter(slug=slug, is_lemma=True)
+    lemmas = Wordform.objects.filter(slug=slug, is_lemma=True)
 
-    if lemma.count() != 1:
+    if lemmas.count() != 1:
         # The result is either empty or ambiguous; either way, do a search!
         return redirect(url_for_query(slug.split("@")[0] or ""))
 
-    lemma = lemma.get()
+    lemma = lemmas.get()
 
     if rich_analysis := lemma.analysis:
         morphemes = rich_analysis.generate_with_morphemes(lemma.text)
@@ -81,8 +81,7 @@ def entry_details(request, slug: str):
             if size not in sizes:
                 size = default_size
 
-        paradigm = paradigm_for(lemma, size)
-        paradigm = get_recordings_from_paradigm(paradigm, request)
+        paradigm = get_recordings_from_paradigm(paradigm_for(lemma, size), request)
 
         paradigm_context.update(
             paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
@@ -306,7 +305,7 @@ def query_help(request):  # pragma: no cover
     )
 
 
-@staff_member_required()
+@staff_member_required
 def fst_tool(request):
     context = {}
 
@@ -405,10 +404,10 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     manager = default_paradigm_manager()
 
     if name := wordform.paradigm:
-        fst_lemma = wordform.lemma.text
+        fst_lemma = wordform.lemma.text if wordform.lemma else None
 
         if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
-            fst_lemma = wordform.lemma.fst_lemma
+            fst_lemma = wordform.lemma.fst_lemma if wordform.lemma else None
 
         if paradigm := manager.paradigm_for(name, fst_lemma, paradigm_size):
             return paradigm

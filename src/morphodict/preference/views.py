@@ -35,6 +35,10 @@ def change_preference(request: HttpRequest, name: str):
     if value not in preference.choices:
         return HttpResponse(status=HTTPStatus.BAD_REQUEST)
 
+    # Make the typechecker see that value is not None after the previous check:
+    if value is None:
+        return HttpResponse(status=HTTPStatus.BAD_REQUEST)
+
     if who_asked_us := request.headers.get("Referer"):
         # Force the browser to refresh the page that issued this request.
         response = HttpResponse(status=HTTPStatus.SEE_OTHER)

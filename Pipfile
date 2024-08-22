@@ -4,24 +4,23 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = ">=19.10b0"
-pytest = "==7.4.4"
-pytest-django = "==4.4.0"
+black = "*"
+pytest = "*"
+pytest-django = "*"
 pytest-cov = "*"
 pytest-datadir = "*"
 pytest-mypy = "*"
 hypothesis = {version = "*", extras = ["django"]}
-codecov = "*"
 pysnooper = "*"
 python-levenshtein = "*"
-django-debug-toolbar = "~=3.6"
+django-debug-toolbar = "*"
 isort = "*"
 toml = "*"
-mypy = "*"
+mypy = "~=1.7"
+django-stubs = "~=4.2"
 pytest-env = "*"
 jupyterlab = "*"
 appnope = "*"
-nb_black = "==1.0.5"
 pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
@@ -29,16 +28,16 @@ sphinx = "*"
 myst-parser = "*"
 
 [packages]
-colorama = "~=0.4"
+colorama = "*"
 coverage = "*"
 cree-sro-syllabics = ">=2020.6.23"
 Django = "~=4.2"
-typing-extensions = "~=4.0"
-attrs = "~=23.2"
-django-js-reverse = "~=0.9"
+typing-extensions = "*"
+attrs = "*"
+django-js-reverse = "*"
 secure = "*"
 snowballstemmer = "*"
-dawg2 = "~=0.12"
+dawg2 = "*"
 environs = {extras = ["django"], version = "*"}
 hfst-optimized-lookup = "*"
 tqdm = "*"
@@ -46,8 +45,8 @@ whitenoise = "*"
 foma = {subdirectory = "foma/python", git = "https://github.com/andrewdotn/foma"}
 uwsgi = "*"
 gensim = "*"
-scipy = "==1.10.1"
-more-itertools = "~=8.7.0"
+scipy = "*"
+more-itertools = "*"
 types-requests = "*"
 requests = "*"
 
@@ -62,7 +61,3 @@ ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
 
 [requires]
 python_version = "3.10"
-
-[pipenv]
-# this allows "black>=19.10b0" to work
-allow_prereleases = true

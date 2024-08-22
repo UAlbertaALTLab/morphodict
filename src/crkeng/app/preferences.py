@@ -20,7 +20,7 @@ class DisplayMode(Preference):
         # (Short) linguistic labels; e.g., 1Sg → 2Sg, Present Tense
         "linguistic": "Linguistic labels",
         # nêhiyawêwin labels; e.g., niya → kiya, mêkwâc
-        "source_language": settings.MORPHODICT_LANGUAGE_ENDONYM + " labels",
+        "source_language": str(settings.MORPHODICT_LANGUAGE_ENDONYM) + " labels",
     }
     default = "english"
 

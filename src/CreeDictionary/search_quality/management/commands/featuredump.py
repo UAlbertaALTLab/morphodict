@@ -59,7 +59,9 @@ class Command(BaseCommand):
                     ret = r.features()
                     ret["query"] = query
                     ret["wordform_text"] = r.wordform.text
-                    ret["lemma_wordform_text"] = r.wordform.lemma.text
+                    ret["lemma_wordform_text"] = (
+                        r.wordform.lemma.text if r.wordform.lemma else None
+                    )
                     ret["definitions"] = [
                         [d.text, ", ".join(c.abbrv for c in d.citations.all())]
                         for d in r.wordform.definitions.all()
