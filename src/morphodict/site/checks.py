@@ -2,8 +2,10 @@ from django.conf import settings
 from django.core.checks import Error, register
 from typing import Optional
 
+
 class MorphodictSentinel:
     pass
+
 
 _MORPHODICT_REQUIRED_SETTING_SENTINEL = MorphodictSentinel()
 
