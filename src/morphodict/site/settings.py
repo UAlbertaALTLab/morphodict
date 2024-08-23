@@ -180,6 +180,7 @@ if DEBUG:
 else:  # pragma: no cover
     ALLOWED_HOSTS = [HOSTNAME, "localhost"]
 
+CSRF_TRUSTED_ORIGINS = [HOSTNAME]
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
