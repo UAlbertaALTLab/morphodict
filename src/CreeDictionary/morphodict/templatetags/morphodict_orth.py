@@ -2,6 +2,7 @@ from django import template
 from django.conf import settings
 from django.utils.html import format_html
 
+from morphodict.lexicon.models import Definition
 from ..orthography import ORTHOGRAPHY
 
 register = template.Library()
@@ -74,3 +75,25 @@ def current_orthography_name(context):
     # Determine the currently requested orthography:
     request_orth = ORTHOGRAPHY.from_request(context.request)
     return ORTHOGRAPHY.name_of(request_orth)
+
+
+@register.simple_tag(name="convert", takes_context=True)
+def convert_to_standardized(context, definition: str):
+    if settings.MORPHODICT_DICTIONARY_NAME == "Lacombe":
+        orth = context.request.COOKIES.get("orth")
+        if orth == "Original":
+            return definition
+        d = Definition.objects.filter(text=definition).first()
+        if not d:
+            return definition
+        wf = d.wordform
+        if not wf:
+            return definition
+
+        if wf.linguist_info:
+            if "standardized" in wf.linguist_info:
+                return wf.linguist_info["standardized"]["senses"][0]["definition"]
+        else:
+            return definition
+
+    return definition

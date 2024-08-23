@@ -350,7 +350,7 @@ class Import:
                 slug=entry["slug"],
                 rw_domains=rw_domains,
                 rw_indices=rw_indices,
-                wn_synsets=wn_synsets,
+                wn_synsets_string=wn_synsets,
                 is_lemma=True,
                 linguist_info=entry.get("linguistInfo", {}),
                 import_hash=freshness_check.importjson_hash_for_slug(entry["slug"]),

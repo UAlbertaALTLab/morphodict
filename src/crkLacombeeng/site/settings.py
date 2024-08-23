@@ -43,8 +43,9 @@ MORPHODICT_SOURCE_LANGUAGE_NAME = "Lacombe Cree"
 MORPHODICT_PREVIEW_WARNING = False
 
 MORPHODICT_ORTHOGRAPHY = {
-    "default": "Latn",
+    "default": "Original",
     "available": {
-        "Latn": {"name": "Latin"},
+        "Original": {"name": "Original", "converter": "crkLacombeeng.app.orthography.to_original"},
+        "Standardized": {"name": "Standardized",  "converter": "crkLacombeeng.app.orthography.to_standardized"}
     },
 }

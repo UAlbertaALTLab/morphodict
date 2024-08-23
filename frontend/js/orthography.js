@@ -10,6 +10,8 @@ const AVAILABLE_ORTHOGRAPHIES = new Set([
   "Latn-y",
   "Latn-x-macron-y",
   "CMRO",
+  "Standardized",
+  "Original",
 ]);
 
 /**
