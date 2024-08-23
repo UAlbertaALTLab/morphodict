@@ -24,6 +24,7 @@ PRODUCTION_HOST = "itwiwina.altlab.dev"
 DEFAULT_RUNSERVER_PORT = 8005
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
+CSRF_TRUSTED_ORIGINS.append("https://" + PRODUCTION_HOST)
 
 FST_TOOL_SAMPLES = [
     "kika-nîminaw",
