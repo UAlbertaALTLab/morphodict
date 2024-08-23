@@ -166,6 +166,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
+      - name: Rename docker-compose for dev
+        run: mv docker/docker-compose-dev.yml docker/docker-compose.yml
+      - name: Change crkeng settings to dev
+        run: sed -i 's/itwewina.altlab.app/itwewina.altlab.dev/g' src/crkeng/site/settings.py
+      - name: Ensure banner appears on dev
+        run: sed -i 's/MORPHODICT_PREVIEW_WARNING = False/# MORPHODICT_PREVIEW_WARNING = False/' src/crkeng/site/settings.py  
       - name: Build and push Docker images
         uses: docker/build-push-action@v6
         with:

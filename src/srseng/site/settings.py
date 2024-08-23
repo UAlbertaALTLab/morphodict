@@ -24,6 +24,7 @@ PRODUCTION_HOST = "old.gunaha.altlab.dev"
 DEFAULT_RUNSERVER_PORT = 8009
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
+CSRF_TRUSTED_ORIGINS.append("https://" + PRODUCTION_HOST)
 
 INSTALLED_APPS.insert(0, "srseng.app")
 
