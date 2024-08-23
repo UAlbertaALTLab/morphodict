@@ -22,7 +22,7 @@ from morphodict.site.settings import *
 PRODUCTION_HOST = "itwewina.altlab.app"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
-CSRF_TRUSTED_ORIGINS.append(PRODUCTION_HOST)
+CSRF_TRUSTED_ORIGINS.append('https://'+PRODUCTION_HOST)
 
 INSTALLED_APPS.insert(0, "crkeng.app")
 
