@@ -286,7 +286,9 @@ To add a new site:
             access_log /var/log/nginx/$SUBDOMAIN.dev.access.log;
 
             location / {
-                proxy_set_header Host $host;
+                proxy_set_header Host $host;	proxy_set_header X-Real-IP $remote_addr;
+              	proxy_http_version 1.1;
+              	proxy_set_header Connection "";
                 proxy_pass http://altlab-itw:$PORT;
             }
         }
