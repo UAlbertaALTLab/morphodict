@@ -2049,7 +2049,7 @@
     "slug": "wâpiw@2"
   },
   {
-    "head": "wiya",
+    "head": "wiýa",
     "linguistInfo": {
       "inflectional_category": "PrA",
       "pos": "Pron",
@@ -2071,10 +2071,10 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "wiya@1"
+    "slug": "wiýa@1"
   },
   {
-    "head": "wiya",
+    "head": "wiýa",
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "Ipc",
@@ -2088,10 +2088,10 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "wiya@2"
+    "slug": "wiýa@2"
   },
   {
-    "head": "wiya",
+    "head": "wiýa",
     "linguistInfo": {
       "inflectional_category": "IPC",
       "pos": "Ipc",
@@ -2109,6 +2109,6 @@
         "sources": ["CW"]
       }
     ],
-    "slug": "wiya@3"
+    "slug": "wiýa@3"
   }
 ]
