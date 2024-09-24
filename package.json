@@ -41,7 +41,7 @@
     "postcss-import": "^16.1.0",
     "postcss-loader": "^8.1.1",
     "prettier": "^2.3.2",
-    "rollup": "^4.18.0",
+    "rollup": "^4.22.4",
     "rollup-plugin-postcss": "^4.0.2"
   }
 }
