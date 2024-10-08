@@ -506,16 +506,20 @@ def get_lexical_info(
                                 entries.append(entry)
                 url = "search?q=" + preverb_text
                 _type = "Preverb"
-                id: Optional[int] = entries[0]["id"]
-                result = _LexicalEntry(
-                    entry=cast(Any, entries),
-                    text=preverb_text,
-                    url=url,
-                    id=id,
-                    type=_type,
-                    original_tag=tag,
-                )
-                lexical_info.append(result)
+                try:
+                    id: Optional[int] = entries[0]["id"]
+                    result = _LexicalEntry(
+                        entry=cast(Any, entries),
+                        text=preverb_text,
+                        url=url,
+                        id=id,
+                        type=_type,
+                        original_tag=tag,
+                    )
+                    lexical_info.append(result)
+                except IndexError:
+                    # Pretend we didn't find it.
+                    preverb_result1 = Wordform(text=preverb_text, is_lemma=True)
             else:
                 # Can't find a match for the preverb in the database.
                 # This happens when searching against the test database for
