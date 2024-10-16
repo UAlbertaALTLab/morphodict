@@ -37,7 +37,7 @@ def django_db_setup(request, django_db_blocker):
     """
 
     # If this environment variable is set, a conditional in settings.py
-    # should have pointed the database at CreeDictionary/test_db.sqlite3
+    # should have pointed the database at db/test_db.sqlite3
     assert settings.USE_TEST_DB
 
     # We’d like the output from the DB setup to go directly to stdout regardless

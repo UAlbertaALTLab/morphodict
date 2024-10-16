@@ -6,7 +6,7 @@ from hypothesis import assume, given
 
 from CreeDictionary.API.search import search
 from CreeDictionary.API.search.util import to_sro_circumflex
-from CreeDictionary.tests.conftest import lemmas
+from morphodict.tests.conftest import lemmas
 from morphodict.lexicon.models import Wordform
 
 

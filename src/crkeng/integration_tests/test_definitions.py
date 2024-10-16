@@ -1,7 +1,7 @@
 import pytest
 
 from CreeDictionary.API.search import search
-from CreeDictionary.conftest import django_db_setup
+from morphodict.conftest import django_db_setup
 from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 
 # This no-op keeps PyCharm for optimizing the required import away
