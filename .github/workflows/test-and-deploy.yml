@@ -14,7 +14,7 @@ jobs:
   # when using [skip ci].  See
   # https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
   should-deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     outputs:
       should-run: ${{github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main' }}
@@ -23,7 +23,7 @@ jobs:
       - run: true
 
   should-update-dev:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     outputs:
       should-run: ${{ github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev' }}
@@ -93,7 +93,7 @@ jobs:
 
   # Runs Cypress acceptance tests
   integration-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     steps:
       - uses: actions/checkout@v4
@@ -151,7 +151,7 @@ jobs:
             cypress/videos
 
   build-docker-image-dev:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -189,7 +189,7 @@ jobs:
             ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   update-docker-dev-tag:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     needs:
       - should-update-dev
@@ -219,7 +219,7 @@ jobs:
           GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
 
   build-docker-image:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -251,7 +251,7 @@ jobs:
             ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   trigger-deployment:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
 
     needs:
       - should-deploy
