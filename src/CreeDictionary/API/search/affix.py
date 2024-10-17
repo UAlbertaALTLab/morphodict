@@ -179,5 +179,16 @@ class _Cache:
         self.source_language_affix_searcher
         self.target_language_affix_searcher
 
+    def flush(self):
+        """Flush caches"""
+        try:
+            del self.source_language_affix_searcher
+        except AttributeError:
+            pass
+        try:
+            del self.target_language_affix_searcher
+        except AttributeError:
+            pass
+
 
 cache = _Cache()

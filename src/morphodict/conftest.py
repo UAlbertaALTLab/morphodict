@@ -1,12 +1,13 @@
 import pytest
 from django.conf import settings
+from CreeDictionary.API.search.affix import cache as affix_cache
 
 # See “`conftest.py`: sharing fixtures across multiple files”
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files
 from django.core.management import call_command
 
 
-@pytest.fixture(scope="module")
+@pytest.fixture(scope="session")
 def django_db_setup(request, django_db_blocker):
     """
     Normally pytest-django creates a new, empty in-memory database and runs
@@ -50,3 +51,5 @@ def django_db_setup(request, django_db_blocker):
         with django_db_blocker.unblock():
             print("\nSyncing test database")
             call_command("ensuretestdb", verbosity=0)
+            affix_cache.flush()
+            affix_cache.preload()
