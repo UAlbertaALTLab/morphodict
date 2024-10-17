@@ -23,7 +23,8 @@ class Command(BaseCommand):
 
         def importjson_newer_than_db():
             return (
-                DEFAULT_TEST_IMPORTJSON_FILE.stat().st_mtime
+                not settings.TEST_DB_FILE.exists()
+                or DEFAULT_TEST_IMPORTJSON_FILE.stat().st_mtime
                 > settings.TEST_DB_FILE.stat().st_mtime
             )
 
