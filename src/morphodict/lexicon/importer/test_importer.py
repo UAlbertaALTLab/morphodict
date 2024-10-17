@@ -89,20 +89,6 @@ def parametrize_incremental(f):
     )(f)
 
 
-@pytest.fixture(scope="class")
-def class_scoped_db(request: pytest.FixtureRequest, django_db_blocker: DjangoDbBlocker):
-    """A class-scoped DB fixture
-
-    The normal pytest-django `db` fixture is function-scoped, meaning that it
-    gets torn down and set up again for every test case in a class.
-
-    This reproduces the core bits of that with class scope, allowing a class
-    with multiple tests in which the same DB transaction is used for all tests
-    in the class.
-    """
-    pass
-
-
 # Tests
 
 
