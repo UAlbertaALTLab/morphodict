@@ -100,9 +100,7 @@ def class_scoped_db(request: pytest.FixtureRequest, django_db_blocker: DjangoDbB
     with multiple tests in which the same DB transaction is used for all tests
     in the class.
     """
-    _django_db_helper(
-        request=request, django_db_setup=None, django_db_blocker=django_db_blocker
-    )
+    pass
 
 
 # Tests
