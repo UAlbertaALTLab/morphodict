@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.management import call_command
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture(scope="module")
 def django_db_setup(request, django_db_blocker):
     """
     Normally pytest-django creates a new, empty in-memory database and runs
