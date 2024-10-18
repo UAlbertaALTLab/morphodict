@@ -20,7 +20,7 @@ from typing import Iterable
 import django
 import foma
 
-from CreeDictionary.phrase_translate.definition_processing import remove_parentheticals
+from morphodict.phrase_translate.definition_processing import remove_parentheticals
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 
@@ -36,7 +36,7 @@ if package_dir not in sys.path:
     sys.path.append(package_dir)
 
 
-from CreeDictionary.phrase_translate.crk_tag_map import (
+from morphodict.phrase_translate.crk_tag_map import (
     noun_wordform_to_phrase,
     verb_wordform_to_phrase,
 )

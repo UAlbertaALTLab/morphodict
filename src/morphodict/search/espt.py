@@ -12,7 +12,7 @@ from morphodict.search.espt_crk import (
     crk_noun_tags,
 )
 from morphodict.search.types import Result
-from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
+from morphodict.phrase_translate.translate import eng_phrase_to_crk_features_fst
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 from morphodict.lexicon.models import Wordform

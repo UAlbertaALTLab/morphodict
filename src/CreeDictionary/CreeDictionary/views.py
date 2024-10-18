@@ -17,7 +17,7 @@ import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
-from CreeDictionary.phrase_translate.translate import (
+from morphodict.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
     eng_verb_entry_to_inflected_phrase_fst,
