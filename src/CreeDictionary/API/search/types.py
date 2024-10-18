@@ -10,7 +10,7 @@ from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
 from CreeDictionary.API.search import ranking
-from CreeDictionary.CreeDictionary.relabelling import LABELS
+from morphodict.relabelling import LABELS
 
 
 Preverb = Wordform

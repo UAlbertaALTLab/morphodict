@@ -14,7 +14,7 @@ from django.utils.safestring import mark_safe
 from CreeDictionary.CreeDictionary.paradigm.crkeng_corpus_frequency import (
     observed_wordforms,
 )
-from CreeDictionary.CreeDictionary.relabelling import read_labels
+from morphodict.relabelling import read_labels
 from CreeDictionary.CreeDictionary.utils import url_for_query
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from morphodict.lexicon.models import Wordform

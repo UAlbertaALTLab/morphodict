@@ -8,7 +8,7 @@ from typing import Sequence
 from django import template
 from django.template import Context
 
-from CreeDictionary.CreeDictionary.relabelling import read_labels
+from morphodict.relabelling import read_labels
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
 from CreeDictionary.utils.types import FSTTag
 from crkeng.app.preferences import DisplayMode
