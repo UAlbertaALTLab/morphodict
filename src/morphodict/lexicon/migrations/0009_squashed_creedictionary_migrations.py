@@ -22,12 +22,10 @@ def change_example_to_production_site(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    replaces = [('API', '0001_initial'), ('API', '0002_definition_auto_translation_source'), ('API', '0003_wordform_indexes'), ('API', '0004_more_wordform_indexes'), ('API', '0005_wordform_paradigm'), ('API', '0007_base_migrations_squashed'), ('API', '0006_drop_api_tables'), ('API', '0008_merge_20241018_1823'), ('CreeDictionary', '0001_insert_bibliographic_data'), ('CreeDictionary', '0002_change_example_site_to_cree_dictionary_site'), ('CreeDictionary', '0003_add_wordform_paradigms')]
-
     initial = True
 
     dependencies = [
-        ('lexicon', '0001_initial'),
+        ('lexicon', '0008_add_semantic_fields'),
     ]
 
     operations = [
