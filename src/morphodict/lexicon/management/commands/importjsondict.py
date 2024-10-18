@@ -334,7 +334,7 @@ class Import:
 
             if "rw_indices" in entry:
                 rw_indices = "; ".join(
-                    [index for list in entry.values() for index in list]
+                    [index for list in entry["rw_indices"].values() for index in list]
                 )
             else:
                 rw_indices = ""
