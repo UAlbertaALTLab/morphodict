@@ -22,8 +22,6 @@ def change_example_to_production_site(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    replaces = [('CreeDictionary', '0001_insert_bibliographic_data'), ('CreeDictionary', '0002_change_example_site_to_cree_dictionary_site'), ('CreeDictionary', '0003_add_wordform_paradigms')]
-
     initial = True
 
     dependencies = [
