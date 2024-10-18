@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     "morphodict.lexicon",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
-    "CreeDictionary.API.apps.APIConfig",
+    "morphodict.api.apps.APIConfig",
     "CreeDictionary.CreeDictionary.apps.CreeDictionaryConfig",
     "CreeDictionary.cvd",
     "CreeDictionary.search_quality",

@@ -9,7 +9,6 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
-import CreeDictionary.API.views as api_views
 from CreeDictionary.CreeDictionary import views
 from CreeDictionary.CreeDictionary.sitemaps import sitemaps
 
@@ -49,22 +48,11 @@ urlpatterns = [
     # See morphodict.preference.urls for all available views
     # Hint: You will probably use preference:change the most!
     path("_preference/", include("morphodict.preference.urls", namespace="preference")),
-    ################################ Click in text #################################
-    # cree word translation for click-in-text
-    path(
-        "click-in-text/",
-        api_views.click_in_text,
-        name="cree-dictionary-word-click-in-text-api",
-    ),
-    path(
-        "click-in-text-embedded-test/",
-        api_views.click_in_text_embedded_test,
-        name="cree-dictionary-click-in-text-embedded-test",
-    ),
     ############################## Other applications ##############################
     path("admin/", admin.site.urls),
     path("search-quality/", include("CreeDictionary.search_quality.urls")),
     path("", include("CreeDictionary.morphodict.urls")),
+    path("", include("morphodict.api.urls")),
     path(
         "sitemap.xml",
         sitemap,
@@ -74,6 +62,7 @@ urlpatterns = [
     ################################# Special URLS #################################
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
+
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):

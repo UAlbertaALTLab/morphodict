@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 
 
 class APIConfig(AppConfig):
-    name = "CreeDictionary.API"
+    name = "morphodict.api"
 
     def ready(self) -> None:
         # This function is called when you restart dev server or touch wsgi.py

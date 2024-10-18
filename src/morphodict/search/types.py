@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import NewType, Optional, Protocol, cast, Iterable, Tuple
 
-from CreeDictionary.API.schema import SerializedLinguisticTag
+from morphodict.api.schema import SerializedLinguisticTag
 from CreeDictionary.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
 from morphodict.search import ranking

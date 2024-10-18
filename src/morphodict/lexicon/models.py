@@ -9,7 +9,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.functional import cached_property
 
-from CreeDictionary.API.schema import SerializedDefinition
+from morphodict.api.schema import SerializedDefinition
 from CreeDictionary.utils import (
     shared_res_dir,
 )
