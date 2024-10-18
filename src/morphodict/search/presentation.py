@@ -22,7 +22,7 @@ from crkeng.app.preferences import (
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
-from morphodict.api.schema import (
+from morphodict.search.serializer import (
     SerializedDefinition,
     SerializedWordform,
     SerializedLinguisticTag,

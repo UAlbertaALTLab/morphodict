@@ -10,7 +10,7 @@ from json import load
 from os import PathLike
 from typing import cast, TypedDict, Optional
 
-from morphodict.api.schema import SerializedSearchResult
+from morphodict.search.serializer import SerializedSearchResult
 from . import DEFAULT_SAMPLE_FILE, SampleSearchResultsJson
 from .sample import load_sample_definition, SampleDefinition
 

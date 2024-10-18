@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import TypedDict
 
-from morphodict.api.schema import SerializedSearchResult
+from morphodict.search.serializer import SerializedSearchResult
 
 
 class SearchResult(TypedDict):
