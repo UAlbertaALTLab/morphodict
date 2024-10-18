@@ -333,7 +333,9 @@ class Import:
                 rw_domains = ""
 
             if "rw_indices" in entry:
-                rw_indices = "; ".join(entry["rw_indices"])
+                rw_indices = "; ".join(
+                    entry["rw_indices"]["CW"] + entry["rw_indices"]["MD"]
+                )
             else:
                 rw_indices = ""
 
