@@ -25,6 +25,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
+        ("sites", "0002_alter_domain_unique"),
         ('lexicon', '0008_add_semantic_fields'),
     ]
 
