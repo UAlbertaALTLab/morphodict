@@ -4,10 +4,10 @@ import logging
 
 from django.db.models import Q
 
-from CreeDictionary.utils import (
+from morphodict.utils import (
     get_modified_distance,
 )
-from CreeDictionary.utils.english_keyword_extraction import stem_keywords
+from morphodict.utils.english_keyword_extraction import stem_keywords
 from morphodict.analysis import (
     strict_generator,
     rich_analyze_relaxed,

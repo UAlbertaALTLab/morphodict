@@ -1,8 +1,8 @@
 import logging
 from functools import cache
 
-from CreeDictionary.utils import shared_res_dir
-from CreeDictionary.utils.types import ConcatAnalysis
+from morphodict.utils import shared_res_dir
+from morphodict.utils.types import ConcatAnalysis
 
 CORPUS_FREQUENCY_FILE = shared_res_dir / "corpus_frequency.txt"
 

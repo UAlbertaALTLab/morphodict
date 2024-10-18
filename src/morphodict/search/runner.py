@@ -17,7 +17,7 @@ from morphodict.search.pos_matches import find_pos_matches
 from morphodict.search.query import CvdSearchType
 from morphodict.search.types import Result
 from morphodict.search.util import first_non_none_value
-from CreeDictionary.utils.types import cast_away_optional
+from morphodict.utils.types import cast_away_optional
 
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 

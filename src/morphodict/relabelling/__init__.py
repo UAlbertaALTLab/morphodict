@@ -7,8 +7,8 @@ from typing import Iterable, Optional, TextIO, Tuple, TypedDict
 
 from django.conf import settings
 
-from CreeDictionary.utils import shared_res_dir
-from CreeDictionary.utils.types import FSTTag, Label, cast_away_optional
+from morphodict.utils import shared_res_dir
+from morphodict.utils.types import FSTTag, Label, cast_away_optional
 from morphodict.site.util import cache_unless
 
 

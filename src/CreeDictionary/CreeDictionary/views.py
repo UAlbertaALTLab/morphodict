@@ -27,7 +27,7 @@ from morphodict.lexicon.models import Wordform
 
 from .paradigm.manager import ParadigmDoesNotExistError
 from .paradigm.panes import Paradigm, WordformCell
-from .utils import url_for_query
+from morphodict.utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.

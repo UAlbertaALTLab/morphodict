@@ -18,8 +18,8 @@ import dawg
 from django.conf import settings
 
 from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
-from CreeDictionary.utils import get_modified_distance
-from CreeDictionary.utils.cree_lev_dist import remove_cree_diacritics
+from morphodict.utils import get_modified_distance
+from morphodict.utils.cree_lev_dist import remove_cree_diacritics
 from morphodict.lexicon.util import to_source_language_keyword
 from .types import (
     InternalForm,

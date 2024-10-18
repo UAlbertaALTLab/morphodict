@@ -9,10 +9,9 @@ from django.forms import model_to_dict
 
 from morphodict.search import core, types
 from morphodict.relabelling import read_labels, LABELS
-from CreeDictionary.utils import get_modified_distance
-from CreeDictionary.utils.fst_analysis_parser import partition_analysis
+from morphodict.utils.fst_analysis_parser import partition_analysis
 from morphodict.search.types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
-from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
+from morphodict.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import (
     DisplayMode,
     AnimateEmoji,
@@ -22,7 +21,7 @@ from crkeng.app.preferences import (
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
-from morphodict.search.serializer import (
+from morphodict.utils.serializer import (
     SerializedDefinition,
     SerializedWordform,
     SerializedLinguisticTag,

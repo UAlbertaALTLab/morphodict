@@ -41,7 +41,7 @@ from CreeDictionary.phrase_translate.crk_tag_map import (
     verb_wordform_to_phrase,
 )
 
-from CreeDictionary.utils.shared_res_dir import shared_fst_dir
+from morphodict.utils.shared_res_dir import shared_fst_dir
 
 logger = logging.getLogger(__name__)
 

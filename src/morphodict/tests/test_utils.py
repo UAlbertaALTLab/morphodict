@@ -1,7 +1,7 @@
 from string import printable as ascii_printable
 
 import pytest
-from CreeDictionary.CreeDictionary.utils import url_for_query
+from morphodict.utils import url_for_query
 
 
 @pytest.mark.parametrize("query", ["awa", "wâpamêw", "ᐚᐸᒣᐤ"])

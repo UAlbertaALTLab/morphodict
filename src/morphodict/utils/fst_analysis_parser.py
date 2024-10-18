@@ -1,7 +1,7 @@
 import re
 from typing import List, Tuple
 
-from CreeDictionary.utils.types import FSTLemma, FSTTag
+from morphodict.utils.types import FSTLemma, FSTTag
 
 analysis_pattern = re.compile(
     r"(?P<category>\+N\+A(\+D(?=\+))?|\+N\+I(\+D(?=\+))?|\+V\+AI|\+V\+T[AI]|\+V\+II|(\+Num)?\+Ipc|\+Pron).*?$"

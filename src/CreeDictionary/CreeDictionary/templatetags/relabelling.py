@@ -10,7 +10,7 @@ from django.template import Context
 
 from morphodict.relabelling import read_labels
 from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
-from CreeDictionary.utils.types import FSTTag
+from morphodict.utils.types import FSTTag
 from crkeng.app.preferences import DisplayMode
 
 logger = logging.getLogger(__name__)

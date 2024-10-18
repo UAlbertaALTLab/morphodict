@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from CreeDictionary.utils import shared_res_dir
+from morphodict.utils import shared_res_dir
 
 DOCUMENT_FREQUENCY = {}
 

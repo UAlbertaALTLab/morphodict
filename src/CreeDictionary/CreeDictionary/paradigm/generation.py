@@ -9,7 +9,7 @@ from CreeDictionary.CreeDictionary.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )
-from CreeDictionary.utils import shared_res_dir
+from morphodict.utils import shared_res_dir
 from morphodict.site.util import cache_unless
 
 

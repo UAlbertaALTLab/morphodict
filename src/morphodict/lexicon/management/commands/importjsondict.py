@@ -22,7 +22,7 @@ from CreeDictionary.phrase_translate.translate import (
     translate_single_definition,
     TranslationStats,
 )
-from CreeDictionary.utils.english_keyword_extraction import stem_keywords
+from morphodict.utils.english_keyword_extraction import stem_keywords
 from morphodict.analysis import RichAnalysis, strict_generator
 from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE
 from morphodict.lexicon.management.commands.buildtestimportjson import entry_sort_key
