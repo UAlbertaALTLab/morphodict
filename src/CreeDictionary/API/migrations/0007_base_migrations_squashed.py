@@ -13,8 +13,7 @@ def change_example_to_production_site(apps, schema_editor):
 
     if not created:
         # See: https://github.com/django/django/blob/876dc0c1a7dbf569782eb64f62f339c1daeb75e0/django/contrib/sites/management.py#L11-L38
-        assert site.name == "example.com"
-        print("overwriting the default site")
+        print(f"overwriting the site {site.domain} (displayed {site.name}) with new site {settings.PRODUCTION_HOST}")
 
     site.name = site.domain = settings.PRODUCTION_HOST
     site.save()
