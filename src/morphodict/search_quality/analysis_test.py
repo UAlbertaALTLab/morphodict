@@ -1,4 +1,4 @@
-from CreeDictionary.search_quality.analyze_results import (
+from morphodict.search_quality.analyze_results import (
     count_and_annotate_dupes,
     DuplicateAnnotatedSearchResult,
 )
