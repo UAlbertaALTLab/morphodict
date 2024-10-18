@@ -28,7 +28,7 @@ services:
       - "./.env:/app/.env"
       - "../src/crkeng/resources/vector_models/:/app/src/crkeng/resources/vector_models/"
       - "../src/crkeng/db/:/app/src/crkeng/db/"
-      - "../src/crkeng/CreeDictionary/search_quality/:/app/src/crkeng/CreeDictionary/search_quality/"
+      - "../src/crkeng/morphodict/search_quality/:/app/src/crkeng/morphodict/search_quality/"
 
   cwdeng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -44,7 +44,7 @@ services:
       - "./.env:/app/.env"
       - "../src/cwdeng/resources/vector_models/:/app/src/cwdeng/resources/vector_models/"
       - "../src/cwdeng/db/:/app/src/cwdeng/db/"
-      - "../src/cwdeng/CreeDictionary/search_quality/:/app/src/cwdeng/CreeDictionary/search_quality/"
+      - "../src/cwdeng/morphodict/search_quality/:/app/src/cwdeng/morphodict/search_quality/"
 
   srseng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -60,7 +60,7 @@ services:
       - "./.env:/app/.env"
       - "../src/srseng/resources/vector_models/:/app/src/srseng/resources/vector_models/"
       - "../src/srseng/db/:/app/src/srseng/db/"
-      - "../src/srseng/CreeDictionary/search_quality/:/app/src/srseng/CreeDictionary/search_quality/"
+      - "../src/srseng/morphodict/search_quality/:/app/src/srseng/morphodict/search_quality/"
 
   arpeng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -76,7 +76,7 @@ services:
       - "./.env:/app/.env"
       - "../src/arpeng/resources/vector_models/:/app/src/arpeng/resources/vector_models/"
       - "../src/arpeng/db/:/app/src/arpeng/db/"
-      - "../src/arpeng/CreeDictionary/search_quality/:/app/src/arpeng/CreeDictionary/search_quality/"
+      - "../src/arpeng/morphodict/search_quality/:/app/src/arpeng/morphodict/search_quality/"
 
   hdneng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -92,7 +92,7 @@ services:
       - "./.env:/app/.env"
       - "../src/hdneng/resources/vector_models/:/app/src/hdneng/resources/vector_models/"
       - "../src/hdneng/db/:/app/src/hdneng/db/"
-      - "../src/hdneng/CreeDictionary/search_quality/:/app/src/hdneng/CreeDictionary/search_quality/"
+      - "../src/hdneng/morphodict/search_quality/:/app/src/hdneng/morphodict/search_quality/"
 
   crkLacombeeng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -108,7 +108,7 @@ services:
       - "./.env:/app/.env"
       - "../src/crkLacombeeng/resources/vector_models/:/app/src/crkLacombeeng/resources/vector_models/"
       - "../src/crkLacombeeng/db/:/app/src/crkLacombeeng/db/"
-      - "../src/crkLacombeeng/CreeDictionary/search_quality/:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
+      - "../src/crkLacombeeng/morphodict/search_quality/:/app/src/crkLacombeeng/morphodict/search_quality/"
 
   blaeng:
     # In prod, we *always* want the apps running, including on boot; that’s
@@ -124,5 +124,5 @@ services:
       - "./.env:/app/.env"
       - "../src/blaeng/resources/vector_models/:/app/src/blaeng/resources/vector_models/"
       - "../src/blaeng/db/:/app/src/blaeng/db/"
-      - "../src/blaeng/CreeDictionary/search_quality/:/app/src/blaeng/CreeDictionary/search_quality/"
+      - "../src/blaeng/morphodict/search_quality/:/app/src/blaeng/morphodict/search_quality/"
 

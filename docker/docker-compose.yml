@@ -27,7 +27,7 @@ services:
 
       - "/data_local/application-data/crkeng/vector_models:/app/src/crkeng/resources/vector_models/"
       - "/data_local/application-data/crkeng/db:/app/src/crkeng/db/"
-      - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/crkeng/search_quality:/app/src/crkeng/morphodict/search_quality/"
   cwdeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -50,7 +50,7 @@ services:
 
       - "/data_local/application-data/cwdeng/vector_models:/app/src/cwdeng/resources/vector_models/"
       - "/data_local/application-data/cwdeng/db:/app/src/cwdeng/db/"
-      - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/cwdeng/search_quality:/app/src/cwdeng/morphodict/search_quality/"
   srseng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -73,7 +73,7 @@ services:
 
       - "/data_local/application-data/srseng/vector_models:/app/src/srseng/resources/vector_models/"
       - "/data_local/application-data/srseng/db:/app/src/srseng/db/"
-      - "/data_local/application-data/srseng/search_quality:/app/src/srseng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/srseng/search_quality:/app/src/srseng/morphodict/search_quality/"
   arpeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -96,7 +96,7 @@ services:
 
       - "/data_local/application-data/arpeng/vector_models:/app/src/arpeng/resources/vector_models/"
       - "/data_local/application-data/arpeng/db:/app/src/arpeng/db/"
-      - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/arpeng/search_quality:/app/src/arpeng/morphodict/search_quality/"
   hdneng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -119,7 +119,7 @@ services:
 
       - "/data_local/application-data/hdneng/vector_models:/app/src/hdneng/resources/vector_models/"
       - "/data_local/application-data/hdneng/db:/app/src/hdneng/db/"
-      - "/data_local/application-data/hdneng/search_quality:/app/src/hdneng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/hdneng/search_quality:/app/src/hdneng/morphodict/search_quality/"
   crkLacombeeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -142,7 +142,7 @@ services:
 
       - "/data_local/application-data/crkLacombeeng/vector_models:/app/src/crkLacombeeng/resources/vector_models/"
       - "/data_local/application-data/crkLacombeeng/db:/app/src/crkLacombeeng/db/"
-      - "/data_local/application-data/crkLacombeeng/search_quality:/app/src/crkLacombeeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/crkLacombeeng/search_quality:/app/src/crkLacombeeng/morphodict/search_quality/"
   blaeng:
     restart: always
     # Specify hostname to make it clearer which container is active when
@@ -165,4 +165,4 @@ services:
 
       - "/data_local/application-data/blaeng/vector_models:/app/src/blaeng/resources/vector_models/"
       - "/data_local/application-data/blaeng/db:/app/src/blaeng/db/"
-      - "/data_local/application-data/blaeng/search_quality:/app/src/blaeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/blaeng/search_quality:/app/src/blaeng/morphodict/search_quality/"

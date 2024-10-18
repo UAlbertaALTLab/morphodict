@@ -4,7 +4,7 @@ import morphodict.api.views as api_views
 ################################ Click in text #################################
 # cree word translation for click-in-text
 urlpatterns = [
-        path(
+    path(
         "click-in-text/",
         api_views.click_in_text,
         name="cree-dictionary-word-click-in-text-api",

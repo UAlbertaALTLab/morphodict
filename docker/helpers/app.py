@@ -34,7 +34,7 @@ class App:
         return [
             DataMount(self, "resources/vector_models/"),
             DataMount(self, "db/"),
-            DataMount(self, "CreeDictionary/search_quality/"),
+            DataMount(self, "morphodict/search_quality/"),
         ]
 
 

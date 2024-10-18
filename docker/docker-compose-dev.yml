@@ -31,4 +31,4 @@ services:
 
       - "/data_local/application-data/crkeng-dev/vector_models:/app/src/crkeng/resources/vector_models/"
       - "/data_local/application-data/crkeng-dev/db:/app/src/crkeng/db/"
-      - "/data_local/application-data/crkeng-dev/search_quality:/app/src/crkeng/CreeDictionary/search_quality/"
+      - "/data_local/application-data/crkeng-dev/search_quality:/app/src/crkeng/morphodict/search_quality/"

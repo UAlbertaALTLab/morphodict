@@ -62,7 +62,6 @@ urlpatterns = [
     ################################# Special URLS #################################
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
-
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):
