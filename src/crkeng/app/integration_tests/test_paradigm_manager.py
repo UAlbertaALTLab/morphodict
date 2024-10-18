@@ -7,8 +7,8 @@ from pathlib import Path
 import pytest
 from more_itertools import first, ilen
 
-from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
-from CreeDictionary.CreeDictionary.paradigm.manager import (
+from morphodict.paradigm.generation import default_paradigm_manager
+from morphodict.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )

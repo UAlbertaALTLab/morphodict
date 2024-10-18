@@ -1,7 +1,7 @@
 from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 
-from CreeDictionary.CreeDictionary.paradigm.panes import RowLabel
+from morphodict.paradigm.panes import RowLabel
 from crkeng.app.preferences import DisplayMode
 
 

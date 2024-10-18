@@ -5,5 +5,5 @@ arbitrary ways to test what the importer would do if you made arbitrary changes
 to the input data.
 
 It would have been better to use sample data not related to a specific language,
-with a stubbed or special-purpose FST, as CreeDictionary.paradigm.test_manager
+with a stubbed or special-purpose FST, as morphodict.paradigm.test_manager
 does.

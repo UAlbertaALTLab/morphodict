@@ -7,7 +7,7 @@ from typing import Iterable
 import pytest
 from more_itertools import first
 
-from CreeDictionary.CreeDictionary.paradigm.manager import (
+from morphodict.paradigm.manager import (
     ONLY_SIZE,
     ParadigmDoesNotExistError,
     ParadigmManager,

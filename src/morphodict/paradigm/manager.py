@@ -8,7 +8,7 @@ from typing import Collection, Iterable, Optional, Protocol
 
 from django.conf import settings
 
-from CreeDictionary.CreeDictionary.paradigm.panes import Paradigm, ParadigmLayout
+from morphodict.paradigm.panes import Paradigm, ParadigmLayout
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
 ONLY_SIZE = "<only-size>"

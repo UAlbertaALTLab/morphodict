@@ -16,7 +16,7 @@ from django.views.decorators.http import require_GET
 import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
-from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
+from morphodict.paradigm.generation import default_paradigm_manager
 from morphodict.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
@@ -25,8 +25,8 @@ from morphodict.phrase_translate.translate import (
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
-from .paradigm.manager import ParadigmDoesNotExistError
-from .paradigm.panes import Paradigm, WordformCell
+from morphodict.paradigm.manager import ParadigmDoesNotExistError
+from morphodict.paradigm.panes import Paradigm, WordformCell
 from morphodict.utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";

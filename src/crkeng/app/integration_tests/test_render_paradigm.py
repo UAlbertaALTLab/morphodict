@@ -4,10 +4,10 @@ Test paradigm generation for the itwêwina (crkeng) dictionary.
 
 from more_itertools import first
 
-from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
+from morphodict.paradigm.generation import default_paradigm_manager
 
 # mîcisow - s/he eats (basic vocabulary)
-from CreeDictionary.CreeDictionary.paradigm.panes import CompoundRow, RowLabel
+from morphodict.paradigm.panes import CompoundRow, RowLabel
 
 VAI_LEMMA = "mîcisow"
 

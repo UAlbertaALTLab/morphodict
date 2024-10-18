@@ -9,7 +9,7 @@ from more_itertools import first
 from more_itertools import ilen as count
 from more_itertools import one
 
-from CreeDictionary.CreeDictionary.paradigm.panes import (
+from morphodict.paradigm.panes import (
     ColumnLabel,
     ContentRow,
     EmptyCell,

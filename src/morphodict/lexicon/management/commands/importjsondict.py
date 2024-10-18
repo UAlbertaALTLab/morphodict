@@ -17,7 +17,7 @@ from django.db import transaction
 from django.db.models import Max
 from tqdm import tqdm
 
-from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
+from morphodict.paradigm.generation import default_paradigm_manager
 from morphodict.phrase_translate.translate import (
     translate_single_definition,
     TranslationStats,

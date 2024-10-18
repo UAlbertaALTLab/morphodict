@@ -5,7 +5,7 @@ Unit tests for the paradigm pane module.
 import pytest
 from more_itertools import first, ilen, last, one
 
-from CreeDictionary.CreeDictionary.paradigm.panes import (
+from morphodict.paradigm.panes import (
     CompoundRow,
     EmptyCell,
     MissingForm,

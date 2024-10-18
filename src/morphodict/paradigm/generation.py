@@ -5,7 +5,7 @@ Handles paradigm generation.
 from django.conf import settings
 
 import morphodict.analysis
-from CreeDictionary.CreeDictionary.paradigm.manager import (
+from morphodict.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )
