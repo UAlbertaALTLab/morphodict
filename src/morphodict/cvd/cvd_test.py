@@ -3,8 +3,8 @@ import random
 import pytest
 
 from morphodict.lexicon.models import Wordform, Definition
-from CreeDictionary.cvd import extract_keyed_words
-from CreeDictionary.cvd.definition_keys import (
+from morphodict.cvd import extract_keyed_words
+from morphodict.cvd.definition_keys import (
     definition_to_cvd_key,
     cvd_key_to_wordform_query,
 )

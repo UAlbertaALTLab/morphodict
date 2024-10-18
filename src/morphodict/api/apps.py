@@ -4,7 +4,7 @@ import os
 from django.apps import AppConfig
 from django.conf import settings
 
-from CreeDictionary import cvd
+from morphodict import cvd
 
 logger = logging.getLogger(__name__)
 

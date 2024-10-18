@@ -3,14 +3,14 @@ import logging
 
 from morphodict.search.core import SearchRun
 from morphodict.search.types import Result
-from CreeDictionary.cvd import (
+from morphodict.cvd import (
     definition_vectors,
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     DefinitionVectorsNotFoundException,
 )
-from CreeDictionary.cvd.definition_keys import (
+from morphodict.cvd.definition_keys import (
     cvd_key_to_wordform_query,
     wordform_query_matches,
 )

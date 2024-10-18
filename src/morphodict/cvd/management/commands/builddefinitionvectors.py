@@ -8,13 +8,13 @@ from django.core.management import BaseCommand
 from gensim.models import KeyedVectors
 from tqdm import tqdm
 
-from CreeDictionary.cvd import (
+from morphodict.cvd import (
     google_news_vectors,
     extract_keyed_words,
     vector_for_keys,
     definition_vectors_path,
 )
-from CreeDictionary.cvd.definition_keys import definition_to_cvd_key
+from morphodict.cvd.definition_keys import definition_to_cvd_key
 from morphodict.lexicon.models import Definition
 
 logger = logging.getLogger(__name__)

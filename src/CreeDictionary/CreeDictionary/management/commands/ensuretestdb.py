@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
-from CreeDictionary.cvd import definition_vectors_path
+from morphodict.cvd import definition_vectors_path
 from morphodict.lexicon import DEFAULT_TEST_IMPORTJSON_FILE
 
 
