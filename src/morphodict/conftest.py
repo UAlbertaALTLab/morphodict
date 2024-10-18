@@ -1,6 +1,6 @@
 import pytest
 from django.conf import settings
-from CreeDictionary.API.search.affix import cache as affix_cache
+from morphodict.search.affix import cache as affix_cache
 
 # See “`conftest.py`: sharing fixtures across multiple files”
 # https://docs.pytest.org/en/stable/fixture.html#conftest-py-sharing-fixtures-across-multiple-files

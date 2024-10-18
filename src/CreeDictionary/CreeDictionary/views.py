@@ -14,7 +14,7 @@ from django.shortcuts import redirect, render
 from django.views.decorators.http import require_GET
 
 import morphodict.analysis
-from CreeDictionary.API.search import presentation, search_with_affixes
+from morphodict.search import presentation, search_with_affixes
 from CreeDictionary.CreeDictionary.forms import WordSearchForm
 from CreeDictionary.CreeDictionary.paradigm.generation import default_paradigm_manager
 from CreeDictionary.phrase_translate.translate import (

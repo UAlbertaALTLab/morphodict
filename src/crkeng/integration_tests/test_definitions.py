@@ -1,6 +1,6 @@
 import pytest
 
-from CreeDictionary.API.search import search
+from morphodict.search import search
 from morphodict.conftest import django_db_setup
 from morphodict.lexicon.models import Wordform, TargetLanguageKeyword
 

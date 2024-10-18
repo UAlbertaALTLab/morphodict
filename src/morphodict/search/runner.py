@@ -2,21 +2,21 @@ import re
 
 from django.conf import settings
 
-from CreeDictionary.API.search.affix import (
+from morphodict.search.affix import (
     do_source_language_affix_search,
     do_target_language_affix_search,
     query_would_return_too_many_results,
 )
-from CreeDictionary.API.search.core import SearchRun
-from CreeDictionary.API.search.cvd_search import do_cvd_search
-from CreeDictionary.API.search.lemma_freq import get_lemma_freq
-from CreeDictionary.API.search.glossary_count import get_glossary_count
-from CreeDictionary.API.search.espt import EsptSearch
-from CreeDictionary.API.search.lookup import fetch_results
-from CreeDictionary.API.search.pos_matches import find_pos_matches
-from CreeDictionary.API.search.query import CvdSearchType
-from CreeDictionary.API.search.types import Result
-from CreeDictionary.API.search.util import first_non_none_value
+from morphodict.search.core import SearchRun
+from morphodict.search.cvd_search import do_cvd_search
+from morphodict.search.lemma_freq import get_lemma_freq
+from morphodict.search.glossary_count import get_glossary_count
+from morphodict.search.espt import EsptSearch
+from morphodict.search.lookup import fetch_results
+from morphodict.search.pos_matches import find_pos_matches
+from morphodict.search.query import CvdSearchType
+from morphodict.search.types import Result
+from morphodict.search.util import first_non_none_value
 from CreeDictionary.utils.types import cast_away_optional
 
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")

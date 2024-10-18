@@ -32,7 +32,7 @@ class APIConfig(AppConfig):
             self.perform_time_consuming_initializations()
 
     def perform_time_consuming_initializations(self):
-        from CreeDictionary.API.search import affix
+        from morphodict.search import affix
         from morphodict.lexicon.models import wordform_cache
 
         logger.debug("preloading caches")

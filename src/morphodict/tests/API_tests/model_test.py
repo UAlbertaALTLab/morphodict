@@ -4,8 +4,8 @@ import logging
 import pytest
 from hypothesis import assume, given
 
-from CreeDictionary.API.search import search
-from CreeDictionary.API.search.util import to_sro_circumflex
+from morphodict.search import search
+from morphodict.search.util import to_sro_circumflex
 from morphodict.tests.conftest import lemmas
 from morphodict.lexicon.models import Wordform
 

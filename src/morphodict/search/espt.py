@@ -6,12 +6,12 @@ import logging
 import re
 from dataclasses import dataclass
 
-from CreeDictionary.API.search.espt_crk import (
+from morphodict.search.espt_crk import (
     verb_tag_map,
     noun_tag_map,
     crk_noun_tags,
 )
-from CreeDictionary.API.search.types import Result
+from morphodict.search.types import Result
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError

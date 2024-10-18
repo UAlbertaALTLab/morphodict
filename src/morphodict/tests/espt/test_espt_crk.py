@@ -1,8 +1,8 @@
 import pytest
 
-from CreeDictionary.API.search.core import SearchRun
-from CreeDictionary.API.search.espt import EsptSearch, PhraseAnalyzedQuery
-from CreeDictionary.API.search.types import Result
+from morphodict.search.core import SearchRun
+from morphodict.search.espt import EsptSearch, PhraseAnalyzedQuery
+from morphodict.search.types import Result
 from morphodict.lexicon.models import Wordform
 
 

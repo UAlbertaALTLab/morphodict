@@ -7,11 +7,11 @@ from typing import Any, Dict, Iterable, List, Literal, Optional, TypedDict, cast
 from django.conf import settings
 from django.forms import model_to_dict
 
-from CreeDictionary.API.search import core, types
+from morphodict.search import core, types
 from morphodict.relabelling import read_labels, LABELS
 from CreeDictionary.utils import get_modified_distance
 from CreeDictionary.utils.fst_analysis_parser import partition_analysis
-from .types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
+from morphodict.search.types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from CreeDictionary.utils.types import ConcatAnalysis, FSTTag, Label
 from crkeng.app.preferences import (
     DisplayMode,
@@ -22,8 +22,12 @@ from crkeng.app.preferences import (
 from morphodict.analysis import RichAnalysis
 from morphodict.lexicon.models import Wordform, SourceLanguageKeyword
 
-from ..schema import SerializedDefinition, SerializedWordform, SerializedLinguisticTag
-from .types import Preverb
+from CreeDictionary.API.schema import (
+    SerializedDefinition,
+    SerializedWordform,
+    SerializedLinguisticTag,
+)
+from morphodict.search.types import Preverb
 
 
 class AbstractResult:

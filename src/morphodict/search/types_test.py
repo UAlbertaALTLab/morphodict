@@ -1,5 +1,5 @@
 from morphodict.lexicon.models import Wordform
-from CreeDictionary.API.search.types import Result
+from morphodict.search.types import Result
 
 
 def test_result_adding_cvd():

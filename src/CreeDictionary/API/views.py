@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
 from django.shortcuts import render
 
-from .search import simple_search
+from morphodict.search import simple_search
 
 
 def click_in_text(request) -> HttpResponse:

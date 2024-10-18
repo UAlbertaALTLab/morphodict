@@ -1,4 +1,4 @@
-from CreeDictionary.API.search.query import Query
+from morphodict.search.query import Query
 
 
 def test_basic_query():

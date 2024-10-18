@@ -1,4 +1,4 @@
-from CreeDictionary.API.search.core import SearchRun
+from morphodict.search.core import SearchRun
 from CreeDictionary.phrase_translate.translate import eng_phrase_to_crk_features_fst
 from morphodict.analysis import rich_analyze_relaxed
 

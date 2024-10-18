@@ -1,8 +1,8 @@
 import itertools
 import logging
 
-from CreeDictionary.API.search.core import SearchRun
-from CreeDictionary.API.search.types import Result
+from morphodict.search.core import SearchRun
+from morphodict.search.types import Result
 from CreeDictionary.cvd import (
     definition_vectors,
     google_news_vectors,

@@ -9,7 +9,7 @@ from typing import NewType, Optional, Protocol, cast, Iterable, Tuple
 from CreeDictionary.API.schema import SerializedLinguisticTag
 from CreeDictionary.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
-from CreeDictionary.API.search import ranking
+from morphodict.search import ranking
 from morphodict.relabelling import LABELS
 
 
