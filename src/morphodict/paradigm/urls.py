@@ -10,4 +10,9 @@ urlpatterns = [
         views.paradigm_internal,
         name="morphodict-paradigm-detail",
     ),
+    path(
+        "_paradigm_layout/",
+        views.paradigm_for_lemma,
+        name="morphodict-paradigm-layout"
+    )
 ]

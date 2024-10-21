@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.utils.html import escape, format_html
 from django.utils.safestring import mark_safe
 
-from morphodict.paradigm.crkeng_corpus_frequency import (
+from morphodict.search.crkeng_corpus_frequency import (
     observed_wordforms,
 )
 from morphodict.relabelling import read_labels
