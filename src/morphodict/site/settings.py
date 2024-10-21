@@ -75,12 +75,14 @@ INSTALLED_APPS = [
     "morphodict.lexicon",
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
+    "morphodict.relabelling",
     "morphodict.api",
     "morphodict.frontend",
     "morphodict.cvd",
     "morphodict.search_quality",
     "morphodict.phrase_translate",
     "morphodict.orthography",
+    "morphodict.paradigm",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]

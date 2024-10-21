@@ -8,6 +8,6 @@ urlpatterns = [
     path(
         "_paradigm_details/",
         views.paradigm_internal,
-        name="cree-dictionary-paradigm-detail",
+        name="morphodict-paradigm-detail",
     ),
 ]

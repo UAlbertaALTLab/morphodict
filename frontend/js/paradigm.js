@@ -45,7 +45,7 @@ function setupParadigmSizeToggleButton(currentParadigmSize) {
     displayButtonAsLoading(toggleButton);
 
     fetch(
-      window.Urls["cree-dictionary-paradigm-detail"]() +
+      window.Urls["morphodict-paradigm-detail"]() +
         `?lemma-id=${lemmaId}&paradigm-size=${nextParadigmSize}`
     )
       .then((r) => {

@@ -52,14 +52,14 @@ class TestLemmaDetailsInternal4xx:
             get_data["lemma-id"] = lemma_id
         if paradigm_size is not None:
             get_data["paradigm-size"] = paradigm_size
-        response = c.get(reverse("cree-dictionary-paradigm-detail"), get_data)
+        response = c.get(reverse("morphodict-paradigm-detail"), get_data)
         assert response.status_code == expected_code
 
     @pytest.mark.parametrize(("method",), (("post",), ("put",), ("delete",)))
     def test_paradigm_details_internal_wrong_method(self, method: str):
         c = Client()
         response = getattr(c, method)(
-            reverse("cree-dictionary-paradigm-detail"),
+            reverse("morphodict-paradigm-detail"),
             {"lemma-id": 1, "paradigm-size": "BASIC"},
         )
         assert response.status_code == HttpResponseNotAllowed.status_code
@@ -146,7 +146,7 @@ def test_paradigm_from_full_page_and_api(client: Client):
 
     # Get fragment from API request:
     response = client.get(
-        reverse("cree-dictionary-paradigm-detail"),
+        reverse("morphodict-paradigm-detail"),
         cast(
             Dict[str, int | str],
             {
