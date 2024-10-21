@@ -30,7 +30,7 @@
                 </dfn>
             </h1>
 
-            {% include "CreeDictionary/components/definition__elaboration.html" with lemma=wordform verbose=True %}
+            {% include "morphodict/components/definition__elaboration.html" with lemma=wordform verbose=True %}
         </header>
 
         <section class="multiple-recordings definition__recordings--not-loaded" id="recordings-dropdown"
@@ -63,7 +63,7 @@
             <ol class="meanings">
                 {% for def in wordform.definitions %}
                     <li class="meanings__meaning">{{ def.text }}
-                        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                        {% include "morphodict/components/citations.html" with dictionary_sources=def.source_ids %}
                     </li>
                 {% endfor %}
             </ol>

@@ -9,4 +9,4 @@ coverage:
 
 ignore:
   # Ignore Django Migrations
-  - "CreeDictionary/API/migrations/**/*"
+  - "src/**/migrations/**/*"

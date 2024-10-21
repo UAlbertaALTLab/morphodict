@@ -57,8 +57,8 @@
 {% endif %}
 <a href="#start-of-content" tabindex="0" class="skip-to-content">Skip to content</a>
 {% csrf_token %}
-{% include 'CreeDictionary/svg-sprites.html' %}
-{% include 'CreeDictionary/components/header.html' %}
+{% include 'morphodict/svg-sprites.html' %}
+{% include 'morphodict/components/header.html' %}
 
 {% spaceless %}
     {# The 🔊 button template. Gets inflated by JavaScript. #}
@@ -93,13 +93,13 @@
         <div class="search-results">
             <ol class="search-results__results" id="search-result-list">
                 {% if did_search %}
-                    {% include "CreeDictionary/search-results.html" %}
+                    {% include "morphodict/search-results.html" %}
                 {% endif %}
             </ol>
         </div>
 
         {% if displaying_paradigm %}
-            {% include 'CreeDictionary/word-detail.html' %}
+            {% include 'morphodict/word-detail.html' %}
         {% endif %}
     {% endblock %}{# content #}
 </main>

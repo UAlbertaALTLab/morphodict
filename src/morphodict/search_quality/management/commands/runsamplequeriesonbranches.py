@@ -227,6 +227,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options) -> None:
+        raise NotImplementedError("Still dependent on CreeDictionary code")
         if not options["branch"]:
             options["branch"] = DEFAULT_BRANCHES
 
@@ -258,7 +259,7 @@ class Command(BaseCommand):
             shutil.copy(
                 sample_csv_file,
                 branch.checkout_dir
-                / "CreeDictionary"
+                / "morphodict"
                 / "search_quality"
                 / "sample.csv",
             )

@@ -25,8 +25,8 @@ services:
       # LFS mounts
       - "../src/morphodict/lexicon/resources/vector_models/:/app/src/morphodict/lexicon/resources/vector_models/:ro"
       - "../src/crkeng/resources/fst:/app/src/crkeng/resources/fst:ro"
-      - "../src/CreeDictionary/res/fst/:/app/src/CreeDictionary/res/fst/:ro"
-      - "../src/CreeDictionary/res/:/app/src/CreeDictionary/res/:ro"
+      - "../src/morphodict/resources/fst/:/app/src/morphodict/resources/fst/:ro"
+      - "../src/morphodict/resources/:/app/src/morphodict/resources/:ro"
       - "../src/crkeng/resources/dictionary/:/app/src/crkeng/resources/dictionary/:ro"
 
       - "/data_local/application-data/crkeng-dev/vector_models:/app/src/crkeng/resources/vector_models/"

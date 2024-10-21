@@ -6,9 +6,9 @@ The process to update the auto-translated phrases is as follows:
     quick.mk fsts.zip`
 
  2. Copy the generated `transcriptor-cw-eng*` files to
-    `CreeDictionary/res/fst` in this repo.
+    `morphodict/resources/fst` in this repo.
 
- 3. Run the unit tests: `pipenv run pytest CreeDictionary`
+ 3. Run the unit tests: `pipenv run pytest src`
 
  4. The english phrase FSTs are used:
     - By by the `importjsondict` django command, which populates the auto definitions

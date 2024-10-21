@@ -12,7 +12,7 @@ from crkeng.app.preferences import DisplayMode
 @pytest.fixture(autouse=True)
 def ensure_context_processors_are_enabled(settings):
     desired_processor = (
-        "CreeDictionary.CreeDictionary.context_processors.display_options"
+        "morphodict.frontend.context_processors.display_options"
     )
     settings.TEMPLATES = [
         {

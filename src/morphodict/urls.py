@@ -1,5 +1,5 @@
 """
-Definition of urls for CreeDictionary.
+Definition of urls for morphodict.
 """
 
 from django.conf import settings
@@ -9,8 +9,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
 
-from CreeDictionary.CreeDictionary import views
-from CreeDictionary.CreeDictionary.sitemaps import sitemaps
+from morphodict.frontend import views
+from morphodict.frontend.sitemaps import sitemaps
 
 # TODO: use URL namespaces:
 # e.g., cree-dictionary:index instead of cree-dictionary-index

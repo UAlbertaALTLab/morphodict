@@ -15,7 +15,7 @@ from django.views.decorators.http import require_GET
 
 import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
-from CreeDictionary.CreeDictionary.forms import WordSearchForm
+from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.generation import default_paradigm_manager
 from morphodict.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
@@ -108,7 +108,7 @@ def entry_details(request, slug: str):
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     context["morphemes"] = morphemes
     context["show_ic"] = request.COOKIES.get("show_inflectional_category")
-    return render(request, "CreeDictionary/index.html", context)
+    return render(request, "morphodict/index.html", context)
 
 
 def index(request):  # pragma: no cover
@@ -164,7 +164,7 @@ def index(request):  # pragma: no cover
         context["verbose_messages"] = json.dumps(
             search_run.verbose_messages, indent=2, ensure_ascii=False
         )
-    return render(request, "CreeDictionary/index.html", context)
+    return render(request, "morphodict/index.html", context)
 
 
 def search_results(request, query_string: str):  # pragma: no cover
@@ -188,7 +188,7 @@ def search_results(request, query_string: str):  # pragma: no cover
 
     return render(
         request,
-        "CreeDictionary/search-results.html",
+        "morphodict/search-results.html",
         {
             "query_string": query_string,
             "search_results": results,
@@ -240,7 +240,7 @@ def paradigm_internal(request):
         return HttpResponseBadRequest("paradigm does not exist")
     return render(
         request,
-        "CreeDictionary/components/paradigm.html",
+        "morphodict/components/paradigm.html",
         {
             "lemma": lemma,
             "paradigm_size": paradigm_size,
@@ -254,7 +254,7 @@ def settings_page(request):
     # TODO: clean up template so that this weird hack is no longer needed.
     context = create_context_for_index_template("info-page")
     context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
-    return render(request, "CreeDictionary/settings.html", context)
+    return render(request, "morphodict/settings.html", context)
 
 
 def about(request):  # pragma: no cover
@@ -264,7 +264,7 @@ def about(request):  # pragma: no cover
     context = create_context_for_index_template("info-page")
     return render(
         request,
-        "CreeDictionary/about.html",
+        "morphodict/about.html",
         context,
     )
 
@@ -276,7 +276,7 @@ def contact_us(request):  # pragma: no cover
     context = create_context_for_index_template("info-page")
     return render(
         request,
-        "CreeDictionary/contact-us.html",
+        "morphodict/contact-us.html",
         context,
     )
 
@@ -288,7 +288,7 @@ def legend(request):  # pragma: no cover
     context = create_context_for_index_template("info-page")
     return render(
         request,
-        "CreeDictionary/legend.html",
+        "morphodict/legend.html",
         context,
     )
 
@@ -300,7 +300,7 @@ def query_help(request):  # pragma: no cover
     context = create_context_for_index_template("info-page")
     return render(
         request,
-        "CreeDictionary/query-help.html",
+        "morphodict/query-help.html",
         context,
     )
 
@@ -334,12 +334,12 @@ def fst_tool(request):
             ),
         }
 
-    return render(request, "CreeDictionary/fst-tool.html", context)
+    return render(request, "morphodict/fst-tool.html", context)
 
 
 def create_context_for_index_template(mode: IndexPageMode, **kwargs) -> Dict[str, Any]:
     """
-    Creates the context vars for anything using the CreeDictionary/index.html template.
+    Creates the context vars for anything using the morphodict/index.html template.
     """
 
     context: Dict[str, Any]

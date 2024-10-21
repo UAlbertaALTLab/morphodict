@@ -48,9 +48,9 @@
 
     <article class="definition box box--rounded" data-cy="search-result">
         <header class="definition__header">
-            {% include "CreeDictionary/components/definition-title.html" %}
+            {% include "morphodict/components/definition-title.html" %}
             {% if result.is_lemma %}
-                {% include "CreeDictionary/components/definition__elaboration.html" with lemma=result.lemma_wordform %}
+                {% include "morphodict/components/definition__elaboration.html" with lemma=result.lemma_wordform %}
             {% endif %}
         </header>
 
@@ -58,12 +58,12 @@
         <ol class="meanings meanings--search-result">
             {% for def in result.definitions %}
                 <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-                    {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                    {% include "morphodict/components/citations.html" with dictionary_sources=def.source_ids %}
                 </li>
             {% endfor %}
         </ol>
 
-        {% include "CreeDictionary/components/lexical-info.html" %}
+        {% include "morphodict/components/lexical-info.html" %}
 
         {# Show the matched lemma (when this is NOT a lemma). #}
         {% if not result.is_lemma and result.show_form_of %}
@@ -91,14 +91,14 @@
                     </dfn>
                 </h2>
 
-                {% include 'CreeDictionary/components/definition__elaboration.html' with lemma=result.lemma_wordform %}
+                {% include 'morphodict/components/definition__elaboration.html' with lemma=result.lemma_wordform %}
             </header>
 
             {# Theses are the definitions for the lemma, guaranteed to exist in the database #}
             <ol class="meanings meanings--search-result">
                 {% for def in result.lemma_wordform.definitions %}
                     <li class="meanings__meaning" data-cy="lemma-meaning">{{ def.text }}
-                        {% include "CreeDictionary/components/citations.html" with dictionary_sources=def.source_ids %}
+                        {% include "morphodict/components/citations.html" with dictionary_sources=def.source_ids %}
                     </li>
                 {% endfor %}
             </ol>

@@ -12,7 +12,7 @@ from pathlib import Path
 
 # Figure out shared_res_dir
 top_dir = Path(__file__).parent.parent
-add_to_path = top_dir / "src" / "CreeDictionary"
+add_to_path = top_dir / "src" / "morphodict"
 assert add_to_path.is_dir()
 sys.path.insert(0, str(add_to_path))
 shared_res_dir = __import__("utils").shared_res_dir

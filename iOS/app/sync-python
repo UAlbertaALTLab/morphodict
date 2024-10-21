@@ -21,7 +21,7 @@ SRC_DIR="${PROJECT_DIR}/../../src"
 # Where to sync it so that a copy ends up inside the iOS app
 APP_PYTHON_DIR="${PROJECT_DIR}/app_python"
 
-STYLES_FILE="${SRC_DIR}/${SSSTTT}/collected-static/CreeDictionary/css/styles.css"
+STYLES_FILE="${SRC_DIR}/${SSSTTT}/collected-static/morphodict/styles.css"
 if ! [ -f "${STYLES_FILE}" ]; then
     echo "${PROG}: styles file ${STYLES_FILE} not found" 1>&2
     echo "run ‘npx rollup -c && ./${SSSTTT}-manage collectstatic’ first" 1>&2
@@ -46,7 +46,6 @@ rsync -avv --delete --delete-excluded \
         --include="/${SSSTTT}" \
         --include='/mobile.py' \
         --include='/morphodict' \
-        --include='/CreeDictionary' \
         --exclude='/*' \
         --include='**/' \
         --include='*.py' \

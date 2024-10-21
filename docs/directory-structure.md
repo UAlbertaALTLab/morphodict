@@ -63,28 +63,11 @@ to:
     │   ├ reformat-altlabels
     │   └ …
     └── src/
-        ├── CreeDictionary/         # existing code, eventually goes away
-        │   ├── __init__.py
-        │   ├── API/                # this name goes away :(
-        │   └── CreeDictionary/     # this goes away too
-        │       ├── __init__.py
-        │       ├── models.py
-        │       ├── views.py
-        │       └── …
-        │
         ├── morphodict/             # python package for language-independent code
         │   ├── __init__.py
-        │   ├── cvd/
-        │   ├── lexicon/            # django app with primary database tables
-        │   │   ├── __init__.py
-        │   │   ├── models.py
-        │   │   ├── management/
-        │   │   │   └── commands/
-        │   │   │       └── importjsondict.py
-        │   │   ├── parser.py
-        │   │   ├── test_parser.py  # test_* files are mixed in with non-test source code
-        │   │   └── testdata/       # Use `testdata` directories for test data
-        │   ├── paradigm_filler/
+        │   ├── analysis/           # package containing FST analysis code
+        │   ├── api/                # back-end api endpoints, currently just for click_in_text
+        │   ├── cvd/                # vector-based similarity (Cosine Vector Distance)
         │   ├── frontend/           # The existing front-end code moves here from src
         │   │   ├── dom-utils.js
         │   │   ├── index.js
@@ -94,6 +77,26 @@ to:
         │   ⋮       ├── styles.css
         │           ├── variables.css
         │           └── …
+        │   ├── lexicon/            # django app with primary database tables
+        │   │   ├── __init__.py
+        │   │   ├── models.py
+        │   │   ├── management/
+        │   │   │   └── commands/
+        │   │   │       └── importjsondict.py
+        │   │   ├── parser.py
+        │   │   ├── test_parser.py  # test_* files are mixed in with non-test source code
+        │   │   └── testdata/       # Use `testdata` directories for test data
+        │   ├── orthography/        # Multi-orthography setup
+        │   ├── paradigm/
+        │   ├── phrase_translate/   # English Phrase Translation generalcode
+        │   │   ├── sssttt/         # Source to Target (e.g. cwd -> eng) 
+        │   │   └── tttsss/         # Target to Source (e.g. eng -> cwd)
+        │   ├── preference/        
+        │   ├── relabelling/        # Code for relabellings
+        │   ├── search/             # Code for search        
+        │   │   └── quality/        # Search quality code previously in search_quality
+        │   ├── tests/              # Most of the tests.        
+        │   └── utils/              # General-purpose utility code        
         │
         ├── crkeng/                 # python package for itwêwina
         │   ├── __init__.py
@@ -211,7 +214,12 @@ by all means, update this plan.
 The rough idea is:
 
   - A `crkeng` directory is created for itwêwina following the new structure.
-    It imports all the code from `CreeDictionary`.
+    It imports all the code from `CreeDictionary`.  **Note: As of October 2024,**
+    **the `CreeDictionary` package has been removed.**  It is referenced in
+    this document for historical reasons.  We are keeping it around in this
+    document until the internal package refactorings in `morphodict` reaches
+    a stable state so that we can guarantee it is truly a language independent
+    dictionary system.  
 
   - Work on itwêwina continues in the `CreeDictionary` package as normal,
     it’s just moved into the `src` directory, and gets run from

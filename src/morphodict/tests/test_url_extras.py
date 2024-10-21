@@ -9,7 +9,7 @@ def test_abstatic():
     """
     Test that the {% abstatic %} tag returns a static path.
     """
-    asset = "CreeDictionary/favicon.ico"
+    asset = "frontend/favicon.ico"
 
     django_builtin_static = render_builtin_django_static(asset)
     assert not django_builtin_static.startswith("http")
@@ -27,7 +27,7 @@ def test_abstatic_static_url_set(settings):
     """
     settings.STATIC_URL = "https://cdn.example.com"
 
-    asset = "CreeDictionary/favicon.ico"
+    asset = "frontend/favicon.ico"
 
     django_builtin_static = render_builtin_django_static(asset)
     abstatic_url = render_with_abstatic(asset)

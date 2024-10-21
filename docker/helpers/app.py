@@ -16,9 +16,9 @@ class App:
         return [
             "morphodict/lexicon/resources/vector_models/",
             f"{self.name}/resources/fst",
-            # Holds phrase-translation FSTs
-            "CreeDictionary/res/fst/",
-            "CreeDictionary/res/",
+            # Holds phrase-translation FSTs TODO move to phrase_translate package
+            "morphodict/resources/fst/",
+            "morphodict/resources/",
             # Not actually an LFS thing, but this is where production dictionary
             # files get stored so they can be imported.
             f"{self.name}/resources/dictionary/",

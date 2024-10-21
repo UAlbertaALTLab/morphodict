@@ -76,7 +76,7 @@ INSTALLED_APPS = [
     # Internal apps
     # TODO: our internal app organization is kind of a mess 🙃
     "morphodict.api",
-    "CreeDictionary.CreeDictionary.apps.CreeDictionaryConfig",
+    "morphodict.frontend",
     "morphodict.cvd",
     "morphodict.search_quality",
     "morphodict.phrase_translate",
@@ -111,7 +111,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                "CreeDictionary.CreeDictionary.context_processors.display_options",
+                "morphodict.frontend.context_processors.display_options",
                 "morphodict.lexicon.context_processors.morphodict_settings",
                 "morphodict.preference.context_processors.preferences",
             ]
