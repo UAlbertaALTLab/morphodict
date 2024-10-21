@@ -12,6 +12,7 @@ from django_js_reverse.views import urls_js
 from morphodict.frontend import views
 from morphodict.frontend.sitemaps import sitemaps
 
+
 # TODO: use URL namespaces:
 # e.g., cree-dictionary:index instead of cree-dictionary-index
 # See: https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces
@@ -39,12 +40,6 @@ urlpatterns = [
         views.search_results,
         name="cree-dictionary-search-results",
     ),
-    # internal use to render paradigm and only the paradigm
-    path(
-        "_paradigm_details/",
-        views.paradigm_internal,
-        name="cree-dictionary-paradigm-detail",
-    ),
     # See morphodict.preference.urls for all available views
     # Hint: You will probably use preference:change the most!
     path("_preference/", include("morphodict.preference.urls", namespace="preference")),
@@ -53,6 +48,7 @@ urlpatterns = [
     path("search-quality/", include("morphodict.search_quality.urls")),
     path("", include("morphodict.orthography.urls")),
     path("", include("morphodict.api.urls")),
+    path("", include("morphodict.paradigm.urls")),
     path(
         "sitemap.xml",
         sitemap,

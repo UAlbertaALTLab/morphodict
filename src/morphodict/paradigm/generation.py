@@ -4,6 +4,7 @@ Handles paradigm generation.
 
 from django.conf import settings
 
+
 import morphodict.analysis
 from morphodict.paradigm.manager import (
     ParadigmManager,

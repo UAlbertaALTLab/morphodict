@@ -2,21 +2,18 @@ from __future__ import annotations
 
 import json
 import logging
-import urllib
-import numpy as np
-from typing import Any, Dict, Literal, Optional
 
-import requests
+from typing import Any, Dict, Literal
+
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from django.views.decorators.http import require_GET
 
 import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
 from morphodict.frontend.forms import WordSearchForm
-from morphodict.paradigm.generation import default_paradigm_manager
+from morphodict.paradigm.views import paradigm_context_for_lemma
 from morphodict.phrase_translate.translate import (
     eng_noun_entry_to_inflected_phrase_fst,
     eng_phrase_to_crk_features_fst,
@@ -25,8 +22,7 @@ from morphodict.phrase_translate.translate import (
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
-from morphodict.paradigm.manager import ParadigmDoesNotExistError
-from morphodict.paradigm.panes import Paradigm, WordformCell
+
 from morphodict.utils import url_for_query
 
 # The index template expects to be rendered in the following "modes";
@@ -61,32 +57,6 @@ def entry_details(request, slug: str):
     else:
         morphemes = None
 
-    paradigm_context: dict[str, Any] = {}
-
-    paradigm = lemma.paradigm
-    if paradigm is not None:
-        paradigm_manager = default_paradigm_manager()
-        sizes = list(paradigm_manager.sizes_of(paradigm))
-        if "basic" in sizes:
-            default_size = "basic"
-        else:
-            default_size = sizes[0]
-
-        if len(sizes) <= 1:
-            size = default_size
-        else:
-            size = request.GET.get("paradigm-size")
-            if size:
-                size = size.lower()
-            if size not in sizes:
-                size = default_size
-
-        paradigm = get_recordings_from_paradigm(paradigm_for(lemma, size), request)
-
-        paradigm_context.update(
-            paradigm=paradigm, paradigm_size=size, paradigm_sizes=sizes
-        )
-
     animate_emoji = AnimateEmoji.current_value_from_request(request)  # type: ignore
     dict_source = get_dict_source(request)  # type: ignore
     should_show_emoji = ShowEmoji.current_value_from_request(request)  # type: ignore
@@ -103,7 +73,7 @@ def entry_details(request, slug: str):
             dict_source=dict_source,
             show_emoji=should_show_emoji,
         ),
-        **paradigm_context,
+        **paradigm_context_for_lemma(lemma, request)
     )
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     context["morphemes"] = morphemes
@@ -194,58 +164,6 @@ def search_results(request, query_string: str):  # pragma: no cover
             "search_results": results,
             "show_morphemes": request.COOKIES.get("show_morphemes"),
             "show_ic": request.COOKIES.get("show_inflectional_category"),
-        },
-    )
-
-
-@require_GET
-def paradigm_internal(request):
-    """
-    Render word-detail.html for a lemma. `index` view function renders a whole page that contains word-detail.html too.
-    This function, however, is used by javascript to dynamically replace the paradigm with the ones of different sizes.
-
-    `lemma-id` and `paradigm-size` are the expected query params in the request
-
-    4xx errors will have a single string as error message
-
-    :raise 400 Bad Request: when the query params are not as expected or inappropriate
-    :raise 404 Not Found: when the lemma-id isn't found in the database
-    :raise 405 Method Not Allowed: when method other than GET is used
-    """
-    lemma_id = request.GET.get("lemma-id")
-    paradigm_size = request.GET.get("paradigm-size")
-    # guards
-    if lemma_id is None or paradigm_size is None:
-        return HttpResponseBadRequest("query params missing")
-    try:
-        lemma_id = int(lemma_id)
-    except ValueError:
-        return HttpResponseBadRequest("lemma-id should be a non-negative integer")
-    else:
-        if lemma_id < 0:
-            return HttpResponseBadRequest(
-                "lemma-id is negative and should be non-negative"
-            )
-
-    try:
-        lemma = Wordform.objects.get(id=lemma_id, is_lemma=True)
-    except Wordform.DoesNotExist:
-        return HttpResponseNotFound("specified lemma-id is not found in the database")
-    # end guards
-
-    try:
-        paradigm = paradigm_for(lemma, paradigm_size)
-        paradigm = get_recordings_from_paradigm(paradigm, request)
-    except ParadigmDoesNotExistError:
-        return HttpResponseBadRequest("paradigm does not exist")
-    return render(
-        request,
-        "morphodict/components/paradigm.html",
-        {
-            "lemma": lemma,
-            "paradigm_size": paradigm_size,
-            "paradigm": paradigm,
-            "show_morphemes": request.COOKIES.get("show_morphemes"),
         },
     )
 
@@ -394,118 +312,3 @@ def get_dict_source(request):
     return None
 
 
-def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
-    """
-    Returns a paradigm for the given wordform at the desired size.
-
-    If a paradigm cannot be found, None is returned
-    """
-
-    manager = default_paradigm_manager()
-
-    if name := wordform.paradigm:
-        fst_lemma = wordform.lemma.text if wordform.lemma else None
-
-        if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
-            fst_lemma = wordform.lemma.fst_lemma if wordform.lemma else None
-
-        if paradigm := manager.paradigm_for(name, fst_lemma, paradigm_size):
-            return paradigm
-        logger.warning(
-            "Could not retrieve static paradigm %r " "associated with wordform %r",
-            name,
-            wordform,
-        )
-
-    return None
-
-
-def get_recordings_from_paradigm(paradigm, request):
-    if request.COOKIES.get("paradigm_audio") in ["no", None]:
-        return paradigm
-
-    query_terms = []
-    matched_recordings = {}
-    if source := request.COOKIES.get("audio_source"):
-        if source != "both":
-            speech_db_eq = [remove_diacritics(source)]
-        else:
-            speech_db_eq = settings.SPEECH_DB_EQ
-    else:
-        speech_db_eq = settings.SPEECH_DB_EQ
-    if speech_db_eq == ["_"]:
-        return paradigm
-
-    if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
-        speech_db_eq.insert(0, "synth")
-
-    for pane in paradigm.panes:
-        for row in pane.tr_rows:
-            if not row.is_header:
-                for cell in row.cells:
-                    if cell.is_inflection:
-                        query_terms.append(str(cell))
-
-    for search_terms in divide_chunks(query_terms, 30):
-        for source in speech_db_eq:
-            url = f"https://speech-db.altlab.app/{source}/api/bulk_search"
-            matched_recordings.update(
-                get_recordings_from_url(search_terms, url, speech_db_eq)
-            )
-
-    for pane in paradigm.panes:
-        for row in pane.tr_rows:
-            if not row.is_header:
-                for cell in row.cells:
-                    if cell.is_inflection and isinstance(cell, WordformCell):
-                        if cell.inflection in matched_recordings.keys():
-                            cell.add_recording(matched_recordings[str(cell)])
-
-    return paradigm
-
-
-def get_recordings_from_url(search_terms, url, speech_db_eq):
-    matched_recordings = {}
-    query_params = [("q", term) for term in search_terms]
-    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
-    recordings = response.json()
-
-    for recording in recordings["matched_recordings"]:
-        if "moswacihk" in speech_db_eq:
-            entry = macron_to_circumflex(recording["wordform"])
-        else:
-            entry = recording["wordform"]
-        matched_recordings[entry] = {}
-        matched_recordings[entry]["recording_url"] = recording["recording_url"]
-        matched_recordings[entry]["speaker"] = recording["speaker"]
-
-    return matched_recordings
-
-
-# Yield successive n-sized
-# chunks from l.
-# https://www.geeksforgeeks.org/break-list-chunks-size-n-python/
-def divide_chunks(terms, size):
-    # looping till length l
-    for i in range(0, len(terms), size):
-        yield terms[i : i + size]
-
-
-def macron_to_circumflex(item):
-    """
-    >>> macron_to_circumflex("wāpamēw")
-    'wâpamêw'
-    """
-    item = item.translate(str.maketrans("ēīōā", "êîôâ"))
-    return item
-
-
-def remove_diacritics(item):
-    """
-    >>> remove_diacritics("mōswacīhk")
-    'moswacihk'
-    >>> remove_diacritics("maskwacîs")
-    'maskwacis'
-    """
-    item = item.translate(str.maketrans("ēīōāêîôâ", "eioaeioa"))
-    return item
