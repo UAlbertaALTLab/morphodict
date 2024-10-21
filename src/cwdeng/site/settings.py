@@ -74,11 +74,11 @@ MORPHODICT_ORTHOGRAPHY = {
     "available": {
         "Latn-x-macron": {
             "name": "SRO (ēīōā)",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons",
+            "converter": "morphodict.orthography.utils.to_macrons",
         },
         "Cans": {
             "name": "Syllabics",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
+            "converter": "morphodict.orthography.utils.to_syllabics",
         },
         "CMRO": {"name": "CMRO", "converter": "cwdeng.app.orthography.to_cmro"},
     },

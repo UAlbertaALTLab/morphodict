@@ -2,7 +2,7 @@ import pytest
 from django.http import HttpRequest
 from django.template import RequestContext, Template
 
-from CreeDictionary.CreeDictionary.orthography import to_macrons, to_syllabics
+from morphodict.orthography.utils import to_macrons, to_syllabics
 from morphodict.paradigm.panes import RowLabel
 from morphodict.orthography import ORTHOGRAPHY
 from pytest_django.asserts import assertInHTML

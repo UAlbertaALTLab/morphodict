@@ -69,20 +69,20 @@ MORPHODICT_ORTHOGRAPHY: Orthographies = {
         # 'Latn' is Okimāsis/Wolvegrey's SRO
         "Latn-y": {
             "name": "SRO (êîôâ) with y",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_y",
+            "converter": "morphodict.orthography.utils.to_y",
         },
         "Latn": {"name": "SRO (êîôâ) with ý"},
         "Latn-x-macron-y": {
             "name": "SRO (ēīōā) with y",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons_with_y",
+            "converter": "morphodict.orthography.utils.to_macrons_with_y",
         },
         "Latn-x-macron": {
             "name": "SRO (ēīōā) with ý",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_macrons",
+            "converter": "morphodict.orthography.utils.to_macrons",
         },
         "Cans": {
             "name": "Syllabics",
-            "converter": "CreeDictionary.CreeDictionary.orthography.to_syllabics",
+            "converter": "morphodict.orthography.utils.to_syllabics",
         },
     },
 }
