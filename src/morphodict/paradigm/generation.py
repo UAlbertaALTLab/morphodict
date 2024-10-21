@@ -10,7 +10,6 @@ from morphodict.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )
-from morphodict.utils import shared_res_dir
 from morphodict.site.util import cache_unless
 
 

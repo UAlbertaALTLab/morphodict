@@ -1,20 +1,8 @@
-import logging
-import re
 from http import HTTPStatus
-from typing import Dict, Optional, cast
 
 import pytest
-from django.http import (
-    HttpResponseBadRequest,
-    HttpResponseNotAllowed,
-    HttpResponseNotFound,
-)
 from django.test import Client
 from django.urls import reverse
-from pytest_django.asserts import assertInHTML
-
-from crkeng.app.preferences import DisplayMode
-from morphodict.lexicon.models import Wordform
 
 @pytest.mark.parametrize(
     ("lemma_text", "layout", "paradigm_size", "entries"),

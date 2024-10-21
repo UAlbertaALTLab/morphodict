@@ -1,8 +1,8 @@
 from __future__ import annotations
 
 from django.conf import settings
-from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound
-from django.shortcuts import redirect, render
+from django.http import HttpResponseBadRequest, HttpResponseNotFound
+from django.shortcuts import render
 from django.views.decorators.http import require_GET
 from typing import Optional, Any
 import logging
