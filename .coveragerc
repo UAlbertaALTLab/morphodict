@@ -4,7 +4,7 @@
 branch = True
 omit =
   src/crkeng/site/settings.py
-  src/CreeDictionary/tests/*
+  src/morphodict/tests/*
 
 [report]
 exclude_lines =

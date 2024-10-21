@@ -18,7 +18,7 @@ node_modules/
 **/*.sqlite3
 
 # Tests
-src/CreeDictionary/tests/
+src/morphodict/tests/
 cypress/
 
 # Development files
@@ -29,7 +29,7 @@ cypress/
 
 # Giant model files that are better to mount from filesystem/git-lfs than
 # to push around in every docker image
-src/CreeDictionary/res/vector_models/
+src/**/resources/vector_models/
 
 # When running `make debug-context`, prevent from adding itself
 context/
