@@ -377,14 +377,14 @@ follows:
   analysis inference during import, and then the database contents were exported
   in the new importjson format.
 
-  - For Woods Cree, the `munge/cwdeng/cwdize` script transliterates the
+  - For Woods Cree, the `UAlbertaALTLab/munge:/cwdeng/cwdize` script transliterates the
     production `crkeng_dictionary.importjson` file, using the
     `database.ndjson` file from the ALTLab repo to get the proto-Cree
     forms.
 
   - For Arapaho, the [private arp-db
     repo](https://github.com/UAlbertaALTLab/arp-db) has
-    `arapaho_lexicon.json`, and the `munge/arpeng/toimportjson.ts`
+    `arapaho_lexicon.json`, and the `UAlbertaALTLab/munge:/arpeng/toimportjson.ts`
     script transforms that to importjson.
 
   - For Tsuut’ina, there’s a deprecated spreadsheet on Google Drive. Get
@@ -392,7 +392,7 @@ follows:
     intended to be public.
 
     Download the single-tab spreadsheet as a .tsv file, and
-    `munge/srseng/toimportjson.ts` will transform that to importjson.
+    `UAlbertaALTLab/munge:/srseng/toimportjson.ts` will transform that to importjson.
 
 None of these are publicly available as the creators of the source content
 have not given permission to make them publicly available in that form. For
@@ -403,6 +403,7 @@ sufficiently official confirmation of that.
 
 To install the prerequisites of the munge scripts:
 
+    git clone git@github.com:UAlbertaALTLab/munge.git
     cd munge
     npm install
 
