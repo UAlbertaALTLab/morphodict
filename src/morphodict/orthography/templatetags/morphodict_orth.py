@@ -2,7 +2,7 @@ from django import template
 from django.conf import settings
 from django.utils.html import format_html
 
-from ..orthography import ORTHOGRAPHY
+from morphodict.orthography import ORTHOGRAPHY
 
 register = template.Library()
 

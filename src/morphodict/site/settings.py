@@ -80,7 +80,7 @@ INSTALLED_APPS = [
     "morphodict.cvd",
     "morphodict.search_quality",
     "morphodict.phrase_translate",
-    "CreeDictionary.morphodict.apps.MorphodictConfig",
+    "morphodict.orthography",
     # This comes last so that other apps can override templates
     "django.contrib.admin",
 ]
@@ -98,7 +98,7 @@ MIDDLEWARE = [
     "morphodict.site.securemiddleware.set_secure_headers",
 ]
 
-ROOT_URLCONF = "CreeDictionary.CreeDictionary.urls"
+ROOT_URLCONF = "morphodict.urls"
 
 TEMPLATES = [
     {

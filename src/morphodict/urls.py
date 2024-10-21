@@ -51,7 +51,7 @@ urlpatterns = [
     ############################## Other applications ##############################
     path("admin/", admin.site.urls),
     path("search-quality/", include("morphodict.search_quality.urls")),
-    path("", include("CreeDictionary.morphodict.urls")),
+    path("", include("morphodict.orthography.urls")),
     path("", include("morphodict.api.urls")),
     path(
         "sitemap.xml",

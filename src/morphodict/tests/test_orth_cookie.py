@@ -7,7 +7,7 @@ from http import HTTPStatus
 import pytest
 from django.urls import reverse
 
-from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
+from morphodict.orthography import ORTHOGRAPHY
 
 
 @pytest.mark.parametrize(
@@ -62,4 +62,4 @@ def test_no_orthography(client, change_orth_url):
 
 @pytest.fixture
 def change_orth_url():
-    return reverse("morphodict:change-orthography")
+    return reverse("morphodict.orthography:change-orthography")

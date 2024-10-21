@@ -6,7 +6,7 @@ from http import HTTPStatus
 from django.http import HttpResponse
 from django.views import View
 
-from .orthography import ORTHOGRAPHY
+from morphodict.orthography import ORTHOGRAPHY
 
 
 class ChangeOrthography(View):

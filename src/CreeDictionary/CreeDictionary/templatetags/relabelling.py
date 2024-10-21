@@ -9,7 +9,7 @@ from django import template
 from django.template import Context
 
 from morphodict.relabelling import read_labels
-from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
+from morphodict.orthography.templatetags.morphodict_orth import orth_tag
 from morphodict.utils.types import FSTTag
 from crkeng.app.preferences import DisplayMode
 

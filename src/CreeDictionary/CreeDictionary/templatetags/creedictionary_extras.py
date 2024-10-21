@@ -16,7 +16,7 @@ from morphodict.paradigm.crkeng_corpus_frequency import (
 )
 from morphodict.relabelling import read_labels
 from morphodict.utils import url_for_query
-from CreeDictionary.morphodict.templatetags.morphodict_orth import orth_tag
+from morphodict.orthography.templatetags.morphodict_orth import orth_tag
 from morphodict.lexicon.models import Wordform
 
 register = template.Library()

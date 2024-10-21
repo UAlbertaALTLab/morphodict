@@ -4,7 +4,7 @@ from django.template import RequestContext, Template
 
 from CreeDictionary.CreeDictionary.orthography import to_macrons, to_syllabics
 from morphodict.paradigm.panes import RowLabel
-from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
+from morphodict.orthography import ORTHOGRAPHY
 from pytest_django.asserts import assertInHTML
 from crkeng.app.preferences import DisplayMode
 

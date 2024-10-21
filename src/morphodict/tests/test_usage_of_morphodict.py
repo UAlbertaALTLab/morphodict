@@ -3,7 +3,7 @@ Test the integration of itwêwina's settings.py against the morphodict applicati
 """
 
 import pytest
-from CreeDictionary.morphodict.orthography import ORTHOGRAPHY
+from morphodict.orthography import ORTHOGRAPHY
 
 
 def test_morphodict_orthography():

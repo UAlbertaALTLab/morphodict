@@ -2,7 +2,7 @@ from django.urls import path
 
 from . import views
 
-app_name = "morphodict"
+app_name = "morphodict.orthography"
 urlpatterns = [
     path(
         "change-orthography",
