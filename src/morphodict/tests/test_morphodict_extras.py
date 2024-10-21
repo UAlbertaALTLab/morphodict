@@ -118,7 +118,7 @@ def test_cree_example():
     request.COOKIES["orth"] = "Cans"
 
     context = RequestContext(request, {"example": "like: wâpamêw"})
-    template = Template("{% load creedictionary_extras %}" "{% cree_example example %}")
+    template = Template("{% load morphodict_extras %}" "{% cree_example example %}")
     rendered = template.render(context)
 
     assertInHTML(
@@ -181,7 +181,7 @@ def test_url_for_query_tag():
     """
 
     context = Context({"query": "wapamew"})
-    template = Template("{% load creedictionary_extras %}" "{% url_for_query query %}")
+    template = Template("{% load morphodict_extras %}" "{% url_for_query query %}")
 
     rendered = template.render(context)
     assert "search" in rendered
@@ -204,7 +204,7 @@ def test_definition_link(db, orthography: str, wordform: str):
     request.COOKIES["orth"] = orthography
     context = RequestContext(request, {})
     template = Template(
-        "{% load creedictionary_extras %}" '{% definition_link "wâpamêw" %}'
+        "{% load morphodict_extras %}" '{% definition_link "wâpamêw" %}'
     )
     rendered = template.render(context)
     assert rendered.startswith("<a")
@@ -222,7 +222,7 @@ def test_definition_link(db, orthography: str, wordform: str):
 def test_observed_or_unobserved(wordform: str, classname: str):
     context = Context({"wordform": wordform})
     template = Template(
-        "{% load creedictionary_extras %}"
+        "{% load morphodict_extras %}"
         "<span class='wordform--{% observed_or_unobserved wordform %}'>"
     )
 
