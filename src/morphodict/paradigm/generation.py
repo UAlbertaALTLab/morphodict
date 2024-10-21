@@ -24,7 +24,7 @@ def default_paradigm_manager() -> ParadigmManager:
       - MORPHODICT_PARADIGM_SIZE_ORDER
     """
 
-    layout_dir = shared_res_dir / "layouts"
+    layout_dir = settings.BASE_DIR / ".." / "morphodict" / "paradigm" / "layouts"
 
     site_specific_layout_dir = settings.BASE_DIR / "resources" / "layouts"
     if site_specific_layout_dir.exists():
