@@ -7,9 +7,21 @@ See: https://owasp.org/www-project-secure-headers/
 Based on: https://github.com/TypeError/secure/blob/main/docs/frameworks.md#django
 """
 
-from secure import Secure
+from secure import Secure, ContentSecurityPolicy
 
-secure_headers = Secure.with_default_headers()
+# TODO Improve precision of style_src and remove unsafe-inline CSS
+
+csp = (
+    ContentSecurityPolicy()
+    .default_src("'self'")
+    .script_src("'self'", "cdn.example.com")
+    .style_src("'self'", "fonts.googleapis.com", "'unsafe-inline'")
+    .img_src("'self'")
+    .connect_src("'self'", "speech-db.altlab.app")
+    .font_src("'self'", "fonts.gstatic.com", "fonts.googleapis.com")
+)
+
+secure_headers = Secure(csp=csp)
 
 
 def set_secure_headers(get_response):
