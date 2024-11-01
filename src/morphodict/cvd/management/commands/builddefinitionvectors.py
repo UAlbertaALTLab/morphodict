@@ -47,7 +47,12 @@ class Command(BaseCommand):
         with create_debug_output(debug_output_file) as debug_output:
             for d in tqdm(definitions.iterator(), total=count):
                 keys = extract_keyed_words(
-                    d.semantic_definition, news_vectors, unknown_words
+                    d.semantic_definition,
+                    news_vectors,
+                    unknown_words,
+                    analysis=(
+                        d.wordform.raw_analysis[2] if d.wordform.raw_analysis else []
+                    ),
                 )
                 debug_output(
                     json.dumps(

@@ -7,6 +7,7 @@ from django.conf import settings
 from gensim.models import KeyedVectors
 
 from morphodict.lexicon import MORPHODICT_LEXICON_RESOURCE_DIR
+from morphodict.relabelling import LABELS
 
 logger = logging.getLogger(__name__)
 
@@ -74,6 +75,9 @@ def uniq(l: list) -> list:
     return list(dict.fromkeys(l))
 
 
+# Note: The computation of this vector for definition is memoized by the builddefinitionvectors django command.
+# They are not live-computed.  If there are changes to this code, please make sure to re-run builddefinitionvectors
+# as a command.
 def vector_for_keys(keyed_vectors, keys: list[str]):
     """Return the sum of vectors in keyed_vectors for the given keys"""
     if not keys:
@@ -85,7 +89,7 @@ def vector_for_keys(keyed_vectors, keys: list[str]):
 RE_PUNCTUATION = re.compile(r'[!,.\[\]\(\)\{\};:"/\?]+')
 
 
-def extract_keyed_words(query: str, keys, already_warned=None):
+def extract_keyed_words(query: str, keys, already_warned=None, analysis=[]):
     """Split query into a list of words that occur in keys
 
     already_warned is an optional set, used to reduce debug log verbosity
@@ -112,6 +116,12 @@ def extract_keyed_words(query: str, keys, already_warned=None):
                     _warn(piece, f"not found: {word!r} piece {piece!r}", already_warned)
         else:
             _warn(word, f"not found: {word!r}", already_warned)
+    analysis = LABELS.linguistic_short.get_longest(
+        tuple([t.strip("+") for t in analysis])
+    )
+
+    if analysis:
+        ret.extend(extract_keyed_words(analysis, keys, already_warned))
 
     return uniq(ret)
 
