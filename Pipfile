@@ -27,6 +27,7 @@ statsmodels = "*"
 pandas-stubs = "*"
 sphinx = "*"
 myst-parser = "*"
+jupyter = "*"
 
 [packages]
 colorama = "*"
