@@ -16,6 +16,8 @@ from morphodict.cvd.definition_keys import (
 )
 from morphodict.lexicon.models import Wordform
 
+from numpy import float16
+
 logger = logging.getLogger(__name__)
 
 

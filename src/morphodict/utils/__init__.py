@@ -1,10 +1,11 @@
 from .cree_lev_dist import get_modified_distance  # Unused but exported
-from .shared_res_dir import shared_res_dir        # Unused but exported
+from .shared_res_dir import shared_res_dir  # Unused but exported
 from urllib.parse import ParseResult, urlencode, urlunparse
 
 from django.urls import reverse
 import requests
 import urllib
+
 
 def url_for_query(user_query: str) -> str:
     """

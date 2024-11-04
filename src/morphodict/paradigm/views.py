@@ -66,6 +66,7 @@ def paradigm_internal(request):
         },
     )
 
+
 @require_GET
 def paradigm_for_lemma(request):
     """
@@ -86,13 +87,13 @@ def paradigm_for_lemma(request):
     paradigm_size = request.GET.get("paradigm-size")
 
     manager = default_paradigm_manager()
-    
+
     try:
         if not (paradigm := manager.paradigm_for(layout, lemma, paradigm_size)):
             return HttpResponseBadRequest("paradigm does not exist")
     except ParadigmDoesNotExistError:
         return HttpResponseBadRequest("paradigm does not exist")
-    
+
     return render(
         request,
         "morphodict/components/paradigm.html",
@@ -103,6 +104,7 @@ def paradigm_for_lemma(request):
             "show_morphemes": request.COOKIES.get("show_morphemes"),
         },
     )
+
 
 def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
     """
@@ -150,15 +152,14 @@ def paradigm_context_for_lemma(lemma: Wordform, request) -> dict[str, Any]:
             if size not in sizes:
                 size = default_size
 
-        paradigm = get_recordings_from_paradigm(paradigm_for(lemma, size), **recordings_info(request))
+        paradigm = get_recordings_from_paradigm(
+            paradigm_for(lemma, size), **recordings_info(request)
+        )
 
-        return {
-            "paradigm": paradigm,
-            "paradigm_size": size,
-            "paradigm_sizes": sizes
-        }
-    
+        return {"paradigm": paradigm, "paradigm_size": size, "paradigm_sizes": sizes}
+
     return {}
+
 
 def recordings_info(request) -> dict:
     if source := request.COOKIES.get("audio_source"):
@@ -171,10 +172,10 @@ def recordings_info(request) -> dict:
 
     if request.COOKIES.get("synthesized_audio_in_paradigm") == "yes":
         speech_db_eq.insert(0, "synth")
-    
+
     return {
         "paradigm_audio": not request.COOKIES.get("paradigm_audio") in ["no", None],
-        "speech_db_eq": speech_db_eq
+        "speech_db_eq": speech_db_eq,
     }
 
 

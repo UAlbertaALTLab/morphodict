@@ -73,7 +73,7 @@ def entry_details(request, slug: str):
             dict_source=dict_source,
             show_emoji=should_show_emoji,
         ),
-        **paradigm_context_for_lemma(lemma, request)
+        **paradigm_context_for_lemma(lemma, request),
     )
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     context["morphemes"] = morphemes
@@ -310,5 +310,3 @@ def get_dict_source(request):
             ret = [r.upper() for r in ret]
             return ret
     return None
-
-

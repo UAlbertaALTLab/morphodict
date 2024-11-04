@@ -11,9 +11,7 @@ from crkeng.app.preferences import DisplayMode
 
 @pytest.fixture(autouse=True)
 def ensure_context_processors_are_enabled(settings):
-    desired_processor = (
-        "morphodict.frontend.context_processors.display_options"
-    )
+    desired_processor = "morphodict.frontend.context_processors.display_options"
     settings.TEMPLATES = [
         {
             "BACKEND": "django.template.backends.django.DjangoTemplates",

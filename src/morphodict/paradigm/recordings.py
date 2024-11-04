@@ -1,7 +1,10 @@
 from morphodict.utils import get_recordings_from_url
 from morphodict.paradigm.panes import WordformCell
 
-def get_recordings_from_paradigm(paradigm, paradigm_audio: bool, speech_db_eq: list[str]):
+
+def get_recordings_from_paradigm(
+    paradigm, paradigm_audio: bool, speech_db_eq: list[str]
+):
     if not paradigm_audio:
         return paradigm
 

@@ -258,10 +258,7 @@ class Command(BaseCommand):
 
             shutil.copy(
                 sample_csv_file,
-                branch.checkout_dir
-                / "morphodict"
-                / "search_quality"
-                / "sample.csv",
+                branch.checkout_dir / "morphodict" / "search_quality" / "sample.csv",
             )
 
             branch.setup_package_managers()
