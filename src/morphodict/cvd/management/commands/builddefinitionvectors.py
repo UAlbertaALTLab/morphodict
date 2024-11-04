@@ -1,6 +1,6 @@
 import json
 import logging
-from argparse import ArgumentParser
+from argparse import ArgumentParser, BooleanOptionalAction
 from contextlib import contextmanager
 from os import fspath
 
@@ -27,7 +27,18 @@ class Command(BaseCommand):
         parser.add_argument("--output-file", default=definition_vectors_path())
         parser.add_argument("--debug-output-file")
 
-    def handle(self, output_file, debug_output_file, **options):
+        parser.add_argument(
+            "--include-analysis-in-vector",
+            action=BooleanOptionalAction,
+            default=True,
+            help="""
+                Include Raw Analysis in vector definitions for entries, by performing a relabelling to plain english.
+            """,
+        )
+
+    def handle(
+        self, output_file, debug_output_file, include_analysis_in_vector, **options
+    ):
         logger.info("Building definition vectors")
         logger.info(output_file)
 
@@ -51,7 +62,9 @@ class Command(BaseCommand):
                     news_vectors,
                     unknown_words,
                     analysis=(
-                        d.wordform.raw_analysis[2] if d.wordform.raw_analysis else []
+                        d.wordform.raw_analysis[2]
+                        if d.wordform.raw_analysis and include_analysis_in_vector
+                        else []
                     ),
                 )
                 debug_output(
