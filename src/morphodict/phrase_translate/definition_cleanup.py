@@ -44,7 +44,7 @@ _RE_PARENTHETICAL = re.compile(
 )
 
 
-def trim_target_definition_for_translation(text):
+def cleanup_target_definition_for_translation(text):
     text = _RE_UNWANTED_ENDING.sub("", text)
     text = _RE_PARENTHETICAL.sub("", text)
     text = text.strip()

@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.phrase_translate.definition_processing import trim_target_definition_for_translation
+from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
 
 SHOULD_NOT_CHANGE = object()
 
@@ -27,7 +27,7 @@ SHOULD_NOT_CHANGE = object()
         ("He has a good heart (for people).", "He has a good heart."),
     ],
 )
-def test_trim_target_definition_for_translation(input, expected):
+def test_cleanup_target_definition_for_translation(input, expected):
     if expected == SHOULD_NOT_CHANGE:
         expected = input
-    assert trim_target_definition_for_translation(input) == expected
+    assert cleanup_target_definition_for_translation(input) == expected

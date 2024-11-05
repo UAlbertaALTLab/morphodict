@@ -20,7 +20,7 @@ from typing import Iterable
 import django
 import foma
 
-from morphodict.phrase_translate.definition_processing import trim_target_definition_for_translation
+from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 
@@ -204,7 +204,7 @@ def translate_single_definition(wordform, text, stats: TranslationStats):
     #     return
 
     try:
-        input_text = trim_target_definition_for_translation(text)
+        input_text = cleanup_target_definition_for_translation(text)
 
         phrase = inflect_english_phrase(wordform.analysis, input_text)
     except UnknownTagError as e:
