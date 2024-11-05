@@ -18,10 +18,7 @@ from django.db.models import Max
 from tqdm import tqdm
 
 from morphodict.paradigm.generation import default_paradigm_manager
-from morphodict.phrase_translate.translate import (
-    translate_single_definition,
-    TranslationStats,
-)
+from morphodict.phrase_translate.to_source import TranslationStats, translate_single_definition
 from morphodict.utils.english_keyword_extraction import stem_keywords
 from morphodict.analysis import RichAnalysis, strict_generator
 from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE

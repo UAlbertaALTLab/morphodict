@@ -95,10 +95,10 @@ class TranslationStats:
         return "\n".join(ret)
 
 
-def translate_single_definition(wordform, text, stats: TranslationStats):
+def translate_single_definition(inflected_wordform, lemma_definition, stats: TranslationStats):
     stats.wordforms_examined += 1
 
-    assert wordform.analysis
+    assert inflected_wordform.analysis
 
     # if any(
     #     t.startswith("PV/")
@@ -119,24 +119,24 @@ def translate_single_definition(wordform, text, stats: TranslationStats):
     #     return
 
     try:
-        input_text = cleanup_target_definition_for_translation(text)
+        input_text = cleanup_target_definition_for_translation(lemma_definition)
 
-        phrase = inflect_english_phrase(wordform.analysis, input_text)
+        phrase = inflect_english_phrase(inflected_wordform.analysis, input_text)
     except UnknownTagError as e:
-        logger.debug(f"Unknown tag in {wordform.text} {wordform.analysis}: {e}")
+        logger.debug(f"Unknown tag in {inflected_wordform.text} {inflected_wordform.analysis}: {e}")
         stats.unknown_tags_during_auto_translation[e.args[0]] += 1
         return None
     except FomaLookupNotFoundException as e:
-        logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+        logger.debug(f"Couldn’t handle {inflected_wordform.text}: {e}")
         stats.no_phrase_analysis_count += 1
         return None
     except FomaLookupMultipleFoundException as e:
-        logger.debug(f"Couldn’t handle {wordform.text}: {e}")
+        logger.debug(f"Couldn’t handle {inflected_wordform.text}: {e}")
         stats.multiple_phrase_analyses_count += 1
         return None
 
     if not phrase:
-        logger.debug(f"no translation for {wordform.text} {wordform.analysis}")
+        logger.debug(f"no translation for {inflected_wordform.text} {inflected_wordform.analysis}")
         stats.no_translation_count += 1
         return None
 
