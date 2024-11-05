@@ -44,7 +44,7 @@ _RE_PARENTHETICAL = re.compile(
 )
 
 
-def remove_parentheticals(text):
+def trim_target_definition_for_translation(text):
     text = _RE_UNWANTED_ENDING.sub("", text)
     text = _RE_PARENTHETICAL.sub("", text)
     text = text.strip()

@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.phrase_translate.definition_processing import remove_parentheticals
+from morphodict.phrase_translate.definition_processing import trim_target_definition_for_translation
 
 SHOULD_NOT_CHANGE = object()
 
@@ -27,7 +27,7 @@ SHOULD_NOT_CHANGE = object()
         ("He has a good heart (for people).", "He has a good heart."),
     ],
 )
-def test_remove_parentheticals(input, expected):
+def test_trim_target_definition_for_translation(input, expected):
     if expected == SHOULD_NOT_CHANGE:
         expected = input
-    assert remove_parentheticals(input) == expected
+    assert trim_target_definition_for_translation(input) == expected
