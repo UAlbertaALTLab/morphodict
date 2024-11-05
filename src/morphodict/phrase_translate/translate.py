@@ -291,6 +291,21 @@ def main():
         # using libedit aka editline
         readline.write_history_file(history_file)
 
+def fst_analyses(text):
+    def decode_foma_results(fst, query):
+        return [r.decode("UTF-8") for r in fst[query]]
+    
+    return {
+            "eng_noun_entry2inflected-phrase": decode_foma_results(
+                eng_noun_entry_to_inflected_phrase_fst(), text
+            ),
+            "eng_verb_entry2inflected-phrase": decode_foma_results(
+                eng_verb_entry_to_inflected_phrase_fst(), text
+            ),
+            "eng_phrase_to_crk_features": decode_foma_results(
+                eng_phrase_to_crk_features_fst(), text
+            ),
+    }
 
 if __name__ == "__main__":
     main()

@@ -14,11 +14,7 @@ import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
 from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.views import paradigm_context_for_lemma
-from morphodict.phrase_translate.translate import (
-    eng_noun_entry_to_inflected_phrase_fst,
-    eng_phrase_to_crk_features_fst,
-    eng_verb_entry_to_inflected_phrase_fst,
-)
+from morphodict.phrase_translate.translate import fst_analyses as phrase_translate_fst_analyses
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
@@ -233,24 +229,13 @@ def fst_tool(request):
     if text is not None:
         context.update({"text": text, "repr_text": repr(text)})
 
-    def decode_foma_results(fst, query):
-        return [r.decode("UTF-8") for r in fst[query]]
-
     if text is not None:
         context["analyses"] = {
             "relaxed_analyzer": morphodict.analysis.relaxed_analyzer().lookup(text),
             "strict_analyzer": morphodict.analysis.strict_analyzer().lookup(text),
             "strict_generator": morphodict.analysis.strict_generator().lookup(text),
-            "eng_noun_entry2inflected-phrase": decode_foma_results(
-                eng_noun_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_verb_entry2inflected-phrase": decode_foma_results(
-                eng_verb_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_phrase_to_crk_features": decode_foma_results(
-                eng_phrase_to_crk_features_fst(), text
-            ),
         }
+        context["analyses"].update(phrase_translate_fst_analyses(text))
 
     return render(request, "morphodict/fst-tool.html", context)
 
