@@ -6,7 +6,7 @@ import logging
 import re
 from dataclasses import dataclass
 
-from morphodict.search.espt_crk import (
+from morphodict.phrase_translate.to_source.source_data import (
     verb_tag_map,
     noun_tag_map,
     crk_noun_tags,
