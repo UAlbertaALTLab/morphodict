@@ -1,5 +1,5 @@
 from morphodict.search.core import SearchRun
-from morphodict.phrase_translate.translate import eng_phrase_to_crk_features_fst
+from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.analysis import rich_analyze_relaxed
 
 
@@ -61,9 +61,9 @@ class AnalyzedQuery:
                 self.has_tags = True
 
         else:
-            phrase_analyses = eng_phrase_to_crk_features_fst()[query]
+            phrase_analyses = source_phrase_analyses(query)
             if phrase_analyses:
-                phrase_analysis = phrase_analyses[0].decode("utf-8")
+                phrase_analysis = phrase_analyses[0]
                 self.has_tags = True
                 split_tags = (
                     phrase_analysis.split()[1].split("+")

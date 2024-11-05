@@ -12,7 +12,7 @@ from morphodict.phrase_translate.to_source.source_data import (
     source_noun_tags,
 )
 from morphodict.search.types import Result
-from morphodict.phrase_translate.translate import eng_phrase_to_crk_features_fst
+from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 from morphodict.lexicon.models import Wordform
@@ -221,9 +221,7 @@ class PhraseAnalyzedQuery:
         self.has_tags = False
         self.filtered_query = None
         self.tags = None
-        phrase_analyses: list[str] = [
-            r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
-        ]
+        phrase_analyses: list[str] = source_phrase_analyses(query)
 
         if add_verbose_message:
             add_verbose_message(phrase_analyses=phrase_analyses)

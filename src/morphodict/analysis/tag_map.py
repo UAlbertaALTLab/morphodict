@@ -80,7 +80,7 @@ class TagMap:
 
     def __init__(self, *tag_definitions):
         """
-        See the docs in crk_tag_map.py.
+        See the docs in source_tag_map.py.
         """
         self._multi_mappings = []
         self._tag_mapping = {}

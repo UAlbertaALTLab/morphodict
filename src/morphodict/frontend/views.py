@@ -14,7 +14,7 @@ import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
 from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.views import paradigm_context_for_lemma
-from morphodict.phrase_translate.translate import fst_analyses as phrase_translate_fst_analyses
+from morphodict.phrase_translate.fst import fst_analyses as phrase_translate_fst_analyses
 from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 

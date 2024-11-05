@@ -13,15 +13,13 @@ from argparse import (
 from argparse import BooleanOptionalAction
 from collections import Counter
 from dataclasses import dataclass, asdict, field
-from functools import cache
 from pathlib import Path
 from typing import Iterable
 
 import django
-import foma
 
 from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
-from morphodict.analysis import RichAnalysis
+from morphodict.phrase_translate.fst import inflect_english_phrase, FomaLookupNotFoundException, FomaLookupMultipleFoundException
 from morphodict.analysis.tag_map import UnknownTagError
 
 if typing.TYPE_CHECKING:
@@ -36,90 +34,7 @@ if package_dir not in sys.path:
     sys.path.append(package_dir)
 
 
-from morphodict.phrase_translate.crk_tag_map import (
-    noun_wordform_to_phrase,
-    verb_wordform_to_phrase,
-)
-
-from morphodict.utils.shared_res_dir import shared_fst_dir
-
 logger = logging.getLogger(__name__)
-
-
-@cache
-def eng_noun_entry_to_inflected_phrase_fst():
-    return foma.FST.load(
-        shared_fst_dir
-        / "transcriptor-cw-eng-noun-entry2inflected-phrase-w-flags.fomabin"
-    )
-
-
-@cache
-def eng_verb_entry_to_inflected_phrase_fst():
-    return foma.FST.load(
-        shared_fst_dir
-        / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags-and-templates.fomabin"
-    )
-
-
-@cache
-def eng_phrase_to_crk_features_fst():
-    return foma.FST.load(
-        shared_fst_dir / "transcriptor-eng-phrase2crk-features.fomabin"
-    )
-
-
-class FomaLookupException(Exception):
-    pass
-
-
-class FomaLookupNotFoundException(FomaLookupException):
-    def __init__(self, thing_to_lookup):
-        super().__init__(f"{thing_to_lookup!r} not found in FST")
-
-
-class FomaLookupMultipleFoundException(FomaLookupException):
-    def __init__(self, thing_to_lookup, result_list):
-        super().__init__(
-            f"{len(result_list)} things were returned, but only 1 was expected for {thing_to_lookup!r}: {result_list!r}"
-        )
-
-
-def foma_lookup(fst, thing_to_lookup):
-    # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
-    # the FST object built by the C-language `apply_init()` function in libfoma,
-    # so they are about 100x slower than calling the C-language `apply_up` and
-    # `apply_down` directly.
-    #
-    # But __getitem__ does do the caching and runs at an acceptable speed.
-    l = fst[thing_to_lookup]
-    if len(l) == 0:
-        raise FomaLookupNotFoundException(thing_to_lookup)
-    if len(l) > 1:
-        raise FomaLookupMultipleFoundException(thing_to_lookup, l)
-    return l[0].decode("UTF-8")
-
-
-def inflect_english_phrase(analysis, lemma_definition):
-    if isinstance(analysis, tuple):
-        analysis = RichAnalysis(analysis)
-    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
-
-    if "+N" in cree_wordform_tag_list:
-        tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
-        return phrase.strip()
-
-    elif "+V" in cree_wordform_tag_list:
-        tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
-        return phrase.strip()
 
 
 def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
@@ -291,21 +206,6 @@ def main():
         # using libedit aka editline
         readline.write_history_file(history_file)
 
-def fst_analyses(text):
-    def decode_foma_results(fst, query):
-        return [r.decode("UTF-8") for r in fst[query]]
-    
-    return {
-            "eng_noun_entry2inflected-phrase": decode_foma_results(
-                eng_noun_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_verb_entry2inflected-phrase": decode_foma_results(
-                eng_verb_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_phrase_to_crk_features": decode_foma_results(
-                eng_phrase_to_crk_features_fst(), text
-            ),
-    }
 
 if __name__ == "__main__":
     main()
