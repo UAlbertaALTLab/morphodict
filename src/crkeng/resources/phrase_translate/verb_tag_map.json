@@ -1,0 +1,35 @@
+[
+    # Tense
+	["+Prt", ["PV/ki+", "+Ind"], 1],  # Preterite aka simple past
+	["+Cond", ["+Fut", "+Cond"], 1],  # Future conditional
+	["+Imm", ["+Imp", "+Imm"], 1],  # Immediate imperative
+	["+Del", ["+Imp", "+Del"], 1],  # Delayed imperative
+	["+Fut", ["PV/wi+", "+Ind"], 1],  # Future
+	# TODO: also handle ["+Fut", "PV/wi+", 1]  # Also accept PV/wi without independent as future?
+	# Note that these crk features as disjoint, but both are needed for the eng feature
+	["+Def", ["PV/ka+", "+Ind"], 1],
+	["+Inf", ["PV/ka+", "+Cnj"], 1],
+	["TagMap.DEFAULT", "+Ind", 1],
+	# Person - see https://github.com/UAlbertaALTLab/morphodict/issues/891
+	["+0Sg", "+3Sg", 2],
+	[
+	    "+21Pl",
+	    "+12Pl",
+	    2
+	],  # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
+	["+XPl", "+X", 2],
+	# Person - object
+	["+0SgO", [], 3],
+	[
+	    "+21PlO",
+	    "+12PlO",
+	    3
+	],
+	["+XPlO", "+XO", 3],
+	[
+	    "+PV/pimi",
+	    ["PV/pimi+"],
+	    3
+	]  # see https://github.com/UAlbertaALTLab/morphodict/issues/1005
+	# TODO: also handle "+Inf": ["PV/ta+", "+Cnj"]  # future definite?
+]

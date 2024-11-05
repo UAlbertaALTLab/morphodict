@@ -1,0 +1,40 @@
+{
+    "0": [
+        # word class
+        "+V",
+        "+TA",
+        "+AI",
+        "+II",
+        "+TI"
+    ],
+    "2": [
+        # V: Person - subject
+        "+1Sg",
+        "+2Sg",
+        "+3Sg",
+        "+1Pl",
+        # "+12Pl", # Needs to be recoded: 21 -> 12
+        "+2Pl",
+        "+3Pl",
+        "+4Sg/Pl",
+        "+5Sg/Pl",
+        "+X",
+        "+XPl"
+    ],
+    "3": [
+        # V: Person - object
+        "+1SgO",
+        "+2SgO",
+        "+3SgO",
+        "+1PlO",
+        # "+21PlO", # Needs to be recoded: 21 -> 12
+        "+2PlO",
+        "+3PlO",
+        "+4Pl",
+        "+4Sg",
+        "+4Sg/PlO",
+        "+5Sg/PlO",
+        "+XO",
+        "+XPlO"
+    ]
+}
