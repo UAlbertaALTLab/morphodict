@@ -9,7 +9,7 @@ from dataclasses import dataclass
 from morphodict.phrase_translate.to_source.source_data import (
     verb_tag_map,
     noun_tag_map,
-    crk_noun_tags,
+    source_noun_tags,
 )
 from morphodict.search.types import Result
 from morphodict.phrase_translate.translate import eng_phrase_to_crk_features_fst
@@ -164,7 +164,7 @@ class EsptSearch:
                 noun_tags = [
                     tag
                     for tag in word.wordform.analysis.suffix_tags
-                    if tag in crk_noun_tags
+                    if tag in source_noun_tags
                 ]
                 if "+N" in tags_starting_with_plus:
                     tags_starting_with_plus.remove("+N")

@@ -22,7 +22,7 @@ def read_phrase_translate_json(filename, default=[]):
 
 
 # tags needed for FST generator
-crk_noun_tags = read_phrase_translate_json("noun_tags.json")
+source_noun_tags = read_phrase_translate_json("noun_tags.json")
 
 
 # TagMaps can’t automatically pass through unknown tags because they wouldn’t
