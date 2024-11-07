@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.phrase_translate.fst import inflect_target_language_phrase
+from morphodict.phrase_translate.to_target import inflect_target_language_phrase
 
 ARBITRARY_DEFINITION = "s/he sees s.o."
 

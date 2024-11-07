@@ -1,15 +1,8 @@
 import foma
 from functools import cache
-import logging
 
 from morphodict.utils.shared_res_dir import shared_fst_dir
-from morphodict.analysis import RichAnalysis
-from morphodict.phrase_translate.source_tag_map import (
-    noun_wordform_to_phrase,
-    verb_wordform_to_phrase,
-)
 
-logger = logging.getLogger(__name__)
 
 @cache
 def eng_noun_entry_to_inflected_phrase_fst():
@@ -74,27 +67,6 @@ def source_phrase_analyses(query):
     return [
         r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
     ]
-
-def inflect_target_language_phrase(analysis, lemma_definition):
-    if isinstance(analysis, tuple):
-        analysis = RichAnalysis(analysis)
-    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
-
-    if "+N" in cree_wordform_tag_list:
-        tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = inflect_target_noun_phrase(tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
-        return phrase.strip()
-
-    elif "+V" in cree_wordform_tag_list:
-        tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = inflect_target_verb_phrase(tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
-        return phrase.strip()
 
 
 def fst_analyses(text):

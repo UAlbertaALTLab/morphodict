@@ -19,7 +19,8 @@ from typing import Iterable
 import django
 
 from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
-from morphodict.phrase_translate.fst import inflect_target_language_phrase, FomaLookupNotFoundException, FomaLookupMultipleFoundException
+from morphodict.phrase_translate.to_target import inflect_target_language_phrase
+from morphodict.phrase_translate.fst import FomaLookupNotFoundException, FomaLookupMultipleFoundException
 from morphodict.analysis.tag_map import UnknownTagError
 
 if typing.TYPE_CHECKING:
