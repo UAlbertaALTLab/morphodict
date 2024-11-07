@@ -6,11 +6,12 @@ import logging
 import re
 from dataclasses import dataclass
 
-from morphodict.phrase_translate.to_source.source_data import (
+from morphodict.phrase_translate.tag_maps import (
     verb_tag_map,
     noun_tag_map,
     source_noun_tags,
 )
+
 from morphodict.search.types import Result
 from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.analysis import RichAnalysis

@@ -79,4 +79,4 @@ class AnalyzedQuery:
                 self.analysis = analysis
 
     def __repr__(self):
-        return f"<PhraseAnalyzedQuery {self.__dict__!r}>"
+        return f"<AnalyzedQuery {self.__dict__!r}>"
