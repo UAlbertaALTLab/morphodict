@@ -75,7 +75,7 @@ def source_phrase_analyses(query):
         r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
     ]
 
-def inflect_english_phrase(analysis, lemma_definition):
+def inflect_target_language_phrase(analysis, lemma_definition):
     if isinstance(analysis, tuple):
         analysis = RichAnalysis(analysis)
     cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags

@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.phrase_translate.fst import inflect_english_phrase
+from morphodict.phrase_translate.fst import inflect_target_language_phrase
 
 ARBITRARY_DEFINITION = "s/he sees s.o."
 
@@ -80,4 +80,4 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
     ),
 )
 def test_translations(analysis, definition, english_phrase):
-    assert inflect_english_phrase(analysis, definition) == english_phrase
+    assert inflect_target_language_phrase(analysis, definition) == english_phrase
