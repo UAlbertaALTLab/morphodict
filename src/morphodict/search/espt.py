@@ -3,7 +3,6 @@ ESPT: English simple phrase translation
 """
 
 import logging
-import re
 from dataclasses import dataclass
 
 from morphodict.phrase_translate.tag_maps import (
@@ -126,13 +125,7 @@ class EsptSearch:
                 )
             )
 
-    def _generate_inflected_results(self) -> list[_EipResult]:
-        """
-        From the results, sort out the inflectable wordforms, then inflect them
-        using the new set of tags.
-        Return the inflected wordforms.
-        """
-
+    def _collect_non_inflected_results(self) -> list[Result]:
         words = []
         for r in self.search_run.unsorted_results():
             if not r.is_lemma:
@@ -146,6 +139,17 @@ class EsptSearch:
                 words.append(r)
             if "+N" in self.new_tags and r.is_lemma and "+N" in analysis_tags:
                 words.append(r)
+
+        return words
+
+    def _generate_inflected_results(self) -> list[_EipResult]:
+        """
+        From the results, sort out the inflectable wordforms, then inflect them
+        using the new set of tags.
+        Return the inflected wordforms.
+        """
+
+        words = self._collect_non_inflected_results()
 
         orig_tags_starting_with_plus: list[str] = []
         tags_ending_with_plus: list[str] = []
