@@ -1,13 +1,13 @@
-	| Ind
-_ 1Sg	${lemma}+VAI+Ind+1Sg
-_ 2Sg	${lemma}+VAI+Ind+2Sg
-_ 3Sg	${lemma}+VAI+Ind+3Sg
-_ 1Pl	${lemma}+VAI+Ind+1Pl
-_ 21Pl	${lemma}+VAI+Ind+21Pl
-_ 2Pl	${lemma}+VAI+Ind+2Pl
-_ 3Pl	${lemma}+VAI+Ind+3Pl
-_ 4Sg	${lemma}+VAI+Ind+4Sg
-_ 4Pl	${lemma}+VAI+Ind+4Pl
+	| Pos	| Neg
+_ 1Sg	${lemma}+VAI+Ind+1Sg	Neg+${lemma}+VAI+Ind+1Sg
+_ 2Sg	${lemma}+VAI+Ind+2Sg	Neg+${lemma}+VAI+Ind+2Sg
+_ 3Sg	${lemma}+VAI+Ind+3Sg	Neg+${lemma}+VAI+Ind+3Sg
+_ 1Pl	${lemma}+VAI+Ind+1Pl	Neg+${lemma}+VAI+Ind+1Pl
+_ 21Pl	${lemma}+VAI+Ind+21Pl	Neg+${lemma}+VAI+Ind+21Pl
+_ 2Pl	${lemma}+VAI+Ind+2Pl	Neg+${lemma}+VAI+Ind+2Pl
+_ 3Pl	${lemma}+VAI+Ind+3Pl	Neg+${lemma}+VAI+Ind+3Pl
+_ 4Sg	${lemma}+VAI+Ind+4Sg	Neg+${lemma}+VAI+Ind+4Sg
+_ 4Pl	${lemma}+VAI+Ind+4Pl	Neg+${lemma}+VAI+Ind+4Pl
 	
 	| Cnj
 _ 1Sg	${lemma}+VAI+Cnj+1Sg
