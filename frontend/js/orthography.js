@@ -116,7 +116,8 @@ function updateCookies(orth) {
     throw new Error("djangoCSRFToken is unset!");
   }
 
-  let changeOrthURL = window.Urls["morphodict.orthography:change-orthography"]();
+  let changeOrthURL =
+    window.Urls["morphodict.orthography:change-orthography"]();
   fetch(changeOrthURL, {
     method: "POST",
     body: new URLSearchParams({
