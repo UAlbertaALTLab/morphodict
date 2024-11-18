@@ -1,5 +1,24 @@
-from morphodict.utils import get_recordings_from_url
 from morphodict.paradigm.panes import WordformCell
+from morphodict.utils import macron_to_circumflex
+import requests
+import urllib
+
+def get_recordings_from_url(search_terms, url, speech_db_eq):
+    matched_recordings = {}
+    query_params = [("q", term) for term in search_terms]
+    response = requests.get(url + "?" + urllib.parse.urlencode(query_params))
+    recordings = response.json()
+
+    for recording in recordings["matched_recordings"]:
+        if "moswacihk" in speech_db_eq:
+            entry = macron_to_circumflex(recording["wordform"])
+        else:
+            entry = recording["wordform"]
+        matched_recordings[entry] = {}
+        matched_recordings[entry]["recording_url"] = recording["recording_url"]
+        matched_recordings[entry]["speaker"] = recording["speaker"]
+
+    return matched_recordings
 
 
 def get_recordings_from_paradigm(
