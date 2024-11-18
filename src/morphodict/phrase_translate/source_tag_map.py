@@ -1,4 +1,5 @@
 from morphodict.analysis.tag_map import TagMap
+
 # TODO Migrate to json files
 
 COPY_TAG_NAME = TagMap.COPY_TAG_NAME

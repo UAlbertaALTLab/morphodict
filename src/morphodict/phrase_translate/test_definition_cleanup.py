@@ -1,6 +1,8 @@
 import pytest
 
-from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
+from morphodict.phrase_translate.definition_cleanup import (
+    cleanup_target_definition_for_translation,
+)
 
 SHOULD_NOT_CHANGE = object()
 

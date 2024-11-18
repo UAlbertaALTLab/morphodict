@@ -3,6 +3,7 @@ from morphodict.utils import macron_to_circumflex
 import requests
 import urllib
 
+
 def get_recordings_from_url(search_terms, url, speech_db_eq):
     matched_recordings = {}
     query_params = [("q", term) for term in search_terms]

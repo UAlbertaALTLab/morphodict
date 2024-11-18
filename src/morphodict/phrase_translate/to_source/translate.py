@@ -18,9 +18,14 @@ from typing import Iterable
 
 import django
 
-from morphodict.phrase_translate.definition_cleanup import cleanup_target_definition_for_translation
+from morphodict.phrase_translate.definition_cleanup import (
+    cleanup_target_definition_for_translation,
+)
 from morphodict.phrase_translate.to_target import inflect_target_language_phrase
-from morphodict.phrase_translate.fst import FomaLookupNotFoundException, FomaLookupMultipleFoundException
+from morphodict.phrase_translate.fst import (
+    FomaLookupNotFoundException,
+    FomaLookupMultipleFoundException,
+)
 from morphodict.analysis.tag_map import UnknownTagError
 
 if typing.TYPE_CHECKING:
@@ -55,7 +60,9 @@ def translate_and_print_wordforms(wordforms: Iterable[Wordform]):
                 continue
 
             print(f"    definition: {d} →")
-            phrase = inflect_target_language_phrase(wordform.analysis, d.core_definition)
+            phrase = inflect_target_language_phrase(
+                wordform.analysis, d.core_definition
+            )
             if phrase is None:
                 phrase = "(not supported)"
             print(f"      {phrase}")
@@ -96,7 +103,9 @@ class TranslationStats:
         return "\n".join(ret)
 
 
-def translate_single_definition(inflected_wordform, lemma_definition, stats: TranslationStats):
+def translate_single_definition(
+    inflected_wordform, lemma_definition, stats: TranslationStats
+):
     stats.wordforms_examined += 1
 
     assert inflected_wordform.analysis
@@ -124,7 +133,9 @@ def translate_single_definition(inflected_wordform, lemma_definition, stats: Tra
 
         phrase = inflect_target_language_phrase(inflected_wordform.analysis, input_text)
     except UnknownTagError as e:
-        logger.debug(f"Unknown tag in {inflected_wordform.text} {inflected_wordform.analysis}: {e}")
+        logger.debug(
+            f"Unknown tag in {inflected_wordform.text} {inflected_wordform.analysis}: {e}"
+        )
         stats.unknown_tags_during_auto_translation[e.args[0]] += 1
         return None
     except FomaLookupNotFoundException as e:
@@ -137,7 +148,9 @@ def translate_single_definition(inflected_wordform, lemma_definition, stats: Tra
         return None
 
     if not phrase:
-        logger.debug(f"no translation for {inflected_wordform.text} {inflected_wordform.analysis}")
+        logger.debug(
+            f"no translation for {inflected_wordform.text} {inflected_wordform.analysis}"
+        )
         stats.no_translation_count += 1
         return None
 

@@ -7,7 +7,7 @@ from morphodict.phrase_translate.source_tag_map import (
 )
 from morphodict.phrase_translate.fst import (
     inflect_target_noun_phrase,
-    inflect_target_verb_phrase
+    inflect_target_verb_phrase,
 )
 
 

@@ -57,30 +57,31 @@ def foma_lookup(fst, thing_to_lookup):
         raise FomaLookupMultipleFoundException(thing_to_lookup, l)
     return l[0].decode("UTF-8")
 
+
 def inflect_target_noun_phrase(tagged_phrase):
     return foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
+
 
 def inflect_target_verb_phrase(tagged_phrase):
     return foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
 
+
 def source_phrase_analyses(query):
-    return [
-        r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]
-    ]
+    return [r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]]
 
 
 def fst_analyses(text):
     def decode_foma_results(fst, query):
         return [r.decode("UTF-8") for r in fst[query]]
-    
+
     return {
-            "eng_noun_entry2inflected-phrase": decode_foma_results(
-                eng_noun_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_verb_entry2inflected-phrase": decode_foma_results(
-                eng_verb_entry_to_inflected_phrase_fst(), text
-            ),
-            "eng_phrase_to_crk_features": decode_foma_results(
-                eng_phrase_to_crk_features_fst(), text
-            ),
+        "eng_noun_entry2inflected-phrase": decode_foma_results(
+            eng_noun_entry_to_inflected_phrase_fst(), text
+        ),
+        "eng_verb_entry2inflected-phrase": decode_foma_results(
+            eng_verb_entry_to_inflected_phrase_fst(), text
+        ),
+        "eng_phrase_to_crk_features": decode_foma_results(
+            eng_phrase_to_crk_features_fst(), text
+        ),
     }

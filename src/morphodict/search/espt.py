@@ -194,6 +194,3 @@ class EsptSearch:
                     )
                 )
         return results
-
-
-

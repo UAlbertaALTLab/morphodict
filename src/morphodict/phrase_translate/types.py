@@ -12,6 +12,7 @@ PHRASE_ANALYSIS_OUTPUT_RE = re.compile(
     re.VERBOSE,
 )
 
+
 class PhraseAnalyzedQuery:
     """A structured object holding pieces of, and info about, a phrase query.
 

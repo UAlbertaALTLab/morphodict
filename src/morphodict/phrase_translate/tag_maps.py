@@ -13,7 +13,9 @@ def read_phrase_translate_json(filename, default=[]):
     # Note that, in general, this might interact with the JSON file contents, but we are not using # for
     # anything in our json files yet, so we can use them.
     try:
-        with open(settings.BASE_DIR / "resources" / "phrase_translate" / filename, "r") as f:
+        with open(
+            settings.BASE_DIR / "resources" / "phrase_translate" / filename, "r"
+        ) as f:
             contents = f.read()
             ans = json.loads(re.sub("(^|\s)+#.*\n", "", contents))
     except FileNotFoundError:
@@ -31,9 +33,9 @@ source_noun_tags = read_phrase_translate_json("noun_tags.json")
 # +V+TA and before +1Sg, so it needs precedence values for all of those tags.
 #
 # So we list everything.
-noun_passthrough_tags = read_phrase_translate_json("noun_passthrough_tags.json",{})
+noun_passthrough_tags = read_phrase_translate_json("noun_passthrough_tags.json", {})
 
-verb_passthrough_tags = read_phrase_translate_json("verb_passthrough_tags.json",{})
+verb_passthrough_tags = read_phrase_translate_json("verb_passthrough_tags.json", {})
 
 
 def passthrough_tags_to_tuples(passthrough_tags):
@@ -43,17 +45,21 @@ def passthrough_tags_to_tuples(passthrough_tags):
         for tag in tag_list
     )
 
+
 def lists_to_tuple(l):
     def element_process(x):
-        if isinstance(x,list):
+        if isinstance(x, list):
             return tuple(x)
         if x == "TagMap.DEFAULT":
             return TagMap.DEFAULT
         return x
+
     return tuple(element_process(x) for x in l)
+
 
 def tagmap_json_to_tuples(json):
     return [lists_to_tuple(t) for t in json]
+
 
 verb_tag_map = TagMap(
     *tagmap_json_to_tuples(read_phrase_translate_json("verb_tag_map.json")),
