@@ -25,7 +25,7 @@
   "devDependencies": {
     "@cypress/skip-test": "^2.5.1",
     "cypress": "^13.13.1",
-    "stop-only": "^3.3.1",
+    "stop-only": "^1.2.1",
     "wait-on": "^8.0.0"
   },
   "dependencies": {
