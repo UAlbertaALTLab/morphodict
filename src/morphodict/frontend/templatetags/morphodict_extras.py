@@ -15,7 +15,7 @@ from morphodict.search.crkeng_corpus_frequency import (
     observed_wordforms,
 )
 from morphodict.relabelling import read_labels
-from morphodict.utils import url_for_query
+from morphodict.utils.views import url_for_query
 from morphodict.orthography.templatetags.morphodict_orth import orth_tag
 from morphodict.lexicon.models import Wordform
 

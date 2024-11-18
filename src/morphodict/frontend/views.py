@@ -19,7 +19,7 @@ from crkeng.app.preferences import DisplayMode, AnimateEmoji, ShowEmoji
 from morphodict.lexicon.models import Wordform
 
 
-from morphodict.utils import url_for_query
+from morphodict.utils.views import url_for_query
 
 # The index template expects to be rendered in the following "modes";
 # The mode dictates which variables MUST be present in the context.
