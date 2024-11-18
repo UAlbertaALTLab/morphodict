@@ -1,0 +1,19 @@
+[
+  {
+    "head": "yúda",
+    "linguistInfo": {
+      "inflectional_category": "VT-Y",
+      "pos": "V",
+      "stem": "yúda",
+      "wordclass": "VT-Y"
+    },
+    "paradigm": "VT-Y",
+    "senses": [
+      {
+        "definition": "to eat something",
+        "sources": ["EXAMPLE"]
+      }
+    ],
+    "slug": "yúda"
+  }
+]

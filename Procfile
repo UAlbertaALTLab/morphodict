@@ -15,4 +15,5 @@ srseng: ./srseng-manage runserver 0.0.0.0:8009
 hdneng: ./hdneng-manage runserver 0.0.0.0:8010
 lacombe:  ./crkLacombeeng-manage runserver 0.0.0.0:8016
 blaeng: ./blaeng-manage runserver 0.0.0.0:8011
+stoeng: ./stoeng-manage runserver 0.0.0.0:8018
 
