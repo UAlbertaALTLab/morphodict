@@ -1,0 +1,47 @@
+# Prs		
+	| Dec	| Irr
+_ 1Sg _ 2SgO	${lemma}+1Sg+2SgO	${lemma}+1Sg+2SgO+Irr
+_ 1Sg _ 3SgO	${lemma}+1Sg+3SgO+Dec	${lemma}+1Sg+3SgO+Irr
+_ 1Sg _ 2PlO	${lemma}+1Sg+2PlO+Dec	${lemma}+1Sg+2PlO+Irr
+_ 1Sg _ 3PlO	${lemma}+1Sg+3PlO+Dec	${lemma}+1Sg+3PlO+Irr
+		
+	| Dec	| Irr
+_ 2Sg _ 1SgO	${lemma}+2Sg+1SgO+Dec	${lemma}+2Sg+1SgO+Irr
+_ 2Sg _ 3SgO	${lemma}+2Sg+3SgO+Dec	${lemma}+2Sg+3SgO+Irr
+_ 2Sg _ 1PlO	${lemma}+2Sg+1PlO+Dec	${lemma}+2Sg+1PlO+Irr
+_ 2Sg _ 3PlO	${lemma}+2Sg+3PlO+Dec	${lemma}+2Sg+3PlO+Irr
+		
+	| Dec	| Irr
+_ 3Sg _ 1SgO	${lemma}+3Sg+1SgO+Dec	${lemma}+3Sg+1SgO+Irr
+_ 3Sg _ 2SgO	${lemma}+3Sg+2SgO+Dec	${lemma}+3Sg+2SgO+Irr
+_ 3Sg _ 1PlO	${lemma}+3Sg+1PlO+Dec	${lemma}+3Sg+1PlO+Irr
+_ 3Sg _ 12PlO	${lemma}+3Sg+12PlO+Dec	${lemma}+3Sg+12PlO+Irr
+_ 3Sg _ 2PlO	${lemma}+3Sg+2PlO+Dec	${lemma}+3Sg+2PlO+Irr
+_ 3Sg _ 3SgO	${lemma}+3Sg+3SgO+Dec	${lemma}+3Sg+3SgO+Irr
+_ 3Sg _ 3PlO	${lemma}+3Sg+3PlO+Dec	${lemma}+3Sg+3PlO+Irr
+		
+	| Dec	| Irr
+_ 1Pl _ 2SgO	${lemma}+1Pl+2SgO+Dec	${lemma}+1Pl+2SgO+Irr
+_ 1Pl _ 3SgO	${lemma}+1Pl+3SgO+Dec	${lemma}+1Pl+3SgO+Irr
+_ 1Pl _ 2PlO	${lemma}+1Pl+2PlO+Dec	${lemma}+1Pl+2PlO+Irr
+_ 1Pl _ 3PlO	${lemma}+1Pl+3PlO+Dec	${lemma}+1Pl+3PlO+Irr
+		
+	| Dec	| Irr
+_ 12Pl _ 3SgO	${lemma}+12Pl+3SgO+Dec	${lemma}+12Pl+3SgO+Irr
+_ 12Pl _ 3PlO	${lemma}+12Pl+3PlO+Dec	${lemma}+12Pl+3PlO+Irr
+_ 12Pl _ 3SgO	${lemma}+12Pl+3SgO+Dec	${lemma}+12Pl+3SgO+Irr
+_ 12Pl _ 3PlO	${lemma}+12Pl+3PlO+Dec	${lemma}+12Pl+3PlO+Irr
+		
+	| Dec	| Irr
+_ 2Pl _ 1SgO	${lemma}+2Pl+1SgO+Dec	${lemma}+2Pl+1SgO+Irr
+_ 2Pl _ 3SgO	${lemma}+2Pl+3SgO+Dec	${lemma}+2Pl+3SgO+Irr
+_ 2Pl _ 1PlO	${lemma}+2Pl+1PlO+Dec	${lemma}+2Pl+1PlO+Irr
+_ 2Pl _ 3PlO	${lemma}+2Pl+3PlO+Dec	${lemma}+2Pl+3PlO+Irr
+		
+	| Dec	| Irr
+_ 3Pl _ 1SgO	${lemma}+3Pl+1SgO+Dec	${lemma}+3Pl+1SgO+Irr
+_ 3Pl _ 2SgO	${lemma}+3Pl+2SgO+Dec	${lemma}+3Pl+2SgO+Irr
+_ 3Pl _ 1PlO	${lemma}+3Pl+1PlO+Dec	${lemma}+3Pl+1PlO+Irr
+_ 3Pl _ 12PlO	${lemma}+3Pl+12PlO+Dec	${lemma}+3Pl+12PlO+Irr
+_ 3Pl _ 3SgO	${lemma}+3Pl+3SgO+Dec	${lemma}+3Pl+3SgO+Irr
+_ 3Pl _ 3PlO	${lemma}+3Pl+3PlO+Dec	${lemma}+3Pl+3PlO+Irr
