@@ -400,6 +400,10 @@ MORPHODICT_LANGUAGE_ENDONYM: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTI
 # The marketing / brand / public-facing name of the dictionary
 MORPHODICT_DICTIONARY_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTINEL
 
+# An optional list of tags used for the phrase translation stage, useful for prototyping in new languages
+
+DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS : Optional[tuple[str, ...]]= tuple()
+
 # Used for the bulk search API
 SPEECH_DB_EQ = ["_"]
 

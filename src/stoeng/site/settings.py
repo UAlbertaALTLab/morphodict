@@ -45,6 +45,12 @@ RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-dict-norm.hfstol"
 STRICT_ANALYZER_FST_FILENAME = RELAXED_ANALYZER_FST_FILENAME
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-dict-norm.hfstol"
 
+FST_TOOL_SAMPLES = [ "yúda", "myudad" ]
+
+# Without this, importjson by default will not attempt to add inflected definitions using phrase translation.
+MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = True
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS = ("+V",)
 
 MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
