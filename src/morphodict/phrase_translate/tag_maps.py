@@ -52,6 +52,8 @@ def lists_to_tuple(l):
             return tuple(x)
         if x == "TagMap.DEFAULT":
             return TagMap.DEFAULT
+        if x == "TagMap.COPY_TAG_NAME":
+            return TagMap.COPY_TAG_NAME
         return x
 
     return tuple(element_process(x) for x in l)

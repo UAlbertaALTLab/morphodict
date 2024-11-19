@@ -1,5 +1,5 @@
 import logging
-
+from django.conf import settings
 from morphodict.analysis import RichAnalysis
 from morphodict.phrase_translate.source_tag_map import (
     noun_wordform_to_phrase,
@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 def inflect_target_language_phrase(analysis, lemma_definition):
     if isinstance(analysis, tuple):
         analysis = RichAnalysis(analysis)
-    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags
+    cree_wordform_tag_list = analysis.prefix_tags + analysis.suffix_tags + settings.DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS
 
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
