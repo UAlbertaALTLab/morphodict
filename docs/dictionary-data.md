@@ -419,7 +419,7 @@ that for you, so it could be as simple as `./run.js --help`.
 ## Cree `linguistInfo`
 
 For the Plains Cree dictionary, the following `linguistInfo` fields are
-used to display linguistic info in search results, and for showing emoji:
+used to display linguistic info in search results, to provide semantic class information, and for showing emoji:
 
   - `inflectional_category`, String: The inflectional category for an
     entry, with hyphen, e.g., `NI-1`. (CW's `\ps`)
@@ -427,6 +427,15 @@ used to display linguistic info in search results, and for showing emoji:
   - `pos`, String: The part of speech for this entry (`N` / `V` / `PRON`).
     If we were naming this today following our glossary, we would call it
     the *general word class*.
+
+  - `rw_domains`, list of String:  The RapidWords semantic classification domain names for this entry, in the canonical form defined in both rapidwords.net and semdom.org: e.g. `[ "Sleep" ]`
+  
+  - `rw_indices`, dictionary mapping String to a list of String:  For each of the sources in the entry (using the same short abbreviations as in `source`), we provide the list of indices for the RapidWords semantic classification domains for the entry, in the canonical form defined in both rapidwords.net and semdom.org: e.g.:
+    ```
+    {
+      "CW": [ "5.7.1" ]
+    }
+    ```
 
   - `stem`, String: The FST stem for this entry.
 
@@ -458,6 +467,8 @@ used to display linguistic info in search results, and for showing emoji:
     and does not include a separate CW stem in the importjson. If display
     of the minimal CW stem were some day added to morphodict, that would of
     course require the dictionary data to include that data at that time.
+
+  - `wn_domains`, a list of String:  The WordNet semantic classifications for this entry, using the same format as in the Altlab wordnet server, e.g., `[ "(v) sleep#1", "(adv) together#4" ]`.
 
   - `wordclass`, String: The word class for this entry (`VTA` / `VAI` / etc.).
     At one time our glossary called this a *specific word class*.
