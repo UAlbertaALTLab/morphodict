@@ -1,0 +1,23 @@
+	| Dec
+_ 1Sg _ 2SgO	${lemma}+1Sg+2SgO+Dec
+_ 1Sg _ 3SgO	${lemma}+1Sg+3SgO+Dec
+_ 2Sg _ 1SgO	${lemma}+2Sg+1SgO+Dec
+_ 2Sg _ 3SgO	${lemma}+2Sg+3SgO+Dec
+_ 3Sg _ 1SgO	${lemma}+3Sg+1SgO+Dec
+_ 3Sg _ 2SgO	${lemma}+3Sg+2SgO+Dec
+_ 3Sg _ 3SgO	${lemma}+3Sg+3SgO+Dec
+_ 3Sg _ 3PlO	${lemma}+3Sg+3PlO+Dec
+	
+	| Irr
+_ 1Sg _ 2SgO	PV/î+${lemma}+1Sg+2SgO+Irr
+_ 1Sg _ 3SgO	PV/î+${lemma}+1Sg+3SgO+Irr
+_ 2Sg _ 1SgO	PV/î+${lemma}+2Sg+1SgO+Irr
+_ 2Sg _ 3SgO	PV/î+${lemma}+2Sg+3SgO+Irr
+_ 3Sg _ 1SgO	PV/î+${lemma}+3Sg+1SgO+Irr
+_ 3Sg _ 2SgO	PV/î+${lemma}+3Sg+2SgO+Irr
+_ 3Sg _ 3SgO	PV/î+${lemma}+3Sg+3SgO+Irr
+_ 3Sg _ 3PlO	PV/î+${lemma}+3Sg+3PlO+Irr
+	
+# Imp	
+_ 2Sg _ 1SgO	${lemma}+2Sg+1SgO+Imp+Imm
+_ 2Sg _ 3SgO	${lemma}+2Sg+3SgO+Imp+Imm
