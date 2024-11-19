@@ -1,0 +1,15 @@
+	| Dec
+_ 1Pl	${lemma}+1Pl+Dec
+_ 1Sg	${lemma}+1Sg+Dec
+_ 2Pl	${lemma}+2Pl+Dec
+_ 2Sg	${lemma}+2Sg+Dec
+_ 3Pl	${lemma}+3Pl+Dec
+_ 3Sg	${lemma}+3Sg+Dec
+	
+	| Irr
+_ 1Pl	${lemma}+1Pl+Irr
+_ 1Sg	${lemma}+1Sg+Irr
+_ 2Pl	${lemma}+2Pl+Irr
+_ 2Sg	${lemma}+2Sg+Irr
+_ 3Pl	${lemma}+3Pl+Irr
+_ 3Sg	${lemma}+3Sg+Irr

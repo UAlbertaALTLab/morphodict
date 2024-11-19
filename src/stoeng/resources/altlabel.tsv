@@ -1,4 +1,4 @@
-FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI	LINK
+FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NAKODA	EMOJI	LINK
 12Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiistónnoon		
 21Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiistónnoon		
 1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	niistónnaan		
@@ -557,7 +557,9 @@ V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word —
 V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
 V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
 V+TA	Transitive animate verb	Verb — transitive animate	Action word — like: wîcihêw, itêw	ispayin-itwêwin — tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽	
-						
+Dec	Dec	Declarative	Declarative	Declarative
+Irr	Irr	Irrealis	Irrealis	Irrealis
+
 Voc	Vocative	Vocative	call/address	kitowin		
 						
 VAI-1	VAI-1	vowel-final animate intransitive verb	like: nipâw	tâpiskôc: nipâw		
