@@ -1,19 +1,162 @@
 [
   {
-    "head": "yúda",
+    "head": "cîga",
     "linguistInfo": {
-      "inflectional_category": "VT-Y",
+      "inflectional_category": "wa-ya-Reg",
       "pos": "V",
-      "stem": "yúda",
-      "wordclass": "VT-Y"
+      "stem": "0_cîga",
     },
-    "paradigm": "VT-Y",
+    "paradigm": "VI",
     "senses": [
       {
-        "definition": "to eat something",
-        "sources": ["EXAMPLE"]
+        "definition": "for S to want him/her/it",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "cîga"
+  },
+  {
+    "head": "hnuda",
+    "linguistInfo": {
+      "inflectional_category": "wa-ya-Reg",
+      "pos": "V",
+      "stem": "0_hnuda",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to eat their own O",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "hnuda"
+  },
+  {
+    "head": "agdaa",
+    "linguistInfo": {
+      "inflectional_category": "wa-ya-Reg",
+      "pos": "V",
+      "stem": "a_gdaa",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to run",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "agdaa"
+  },
+  {
+    "head": "hnagda",
+    "linguistInfo": {
+      "inflectional_category": "wa-ya-Reg",
+      "pos": "V",
+      "stem": "0_hnagda",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to drink their own",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "hnagda"
+  },
+  {
+    "head": "yúda",
+    "linguistInfo": {
+      "inflectional_category": "m-n-Stems",
+      "pos": "V",
+      "stem": "0_y2uda",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to eat it",
+        "sources": "McA&K&C"
       }
     ],
     "slug": "yúda"
+  },
+  {
+    "head": "yagda",
+    "linguistInfo": {
+      "inflectional_category": "m-n-Stems",
+      "pos": "V",
+      "stem": "0_y2agda",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to drink it",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "yagda"
+  },
+  {
+    "head": "ishdima",
+    "linguistInfo": {
+      "inflectional_category": "m-n-Stems",
+      "pos": "V",
+      "stem": "0_ishdima",
+    },
+    "paradigm": "VI",
+    "senses": [
+      {
+        "definition": "for S to be asleep",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "ishdima"
+  },
+  {
+    "head": "uge",
+    "linguistInfo": {
+      "inflectional_category": "poly-wa-ya",
+      "pos": "V",
+      "stem": "u_ge",
+    },
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "for S to help O",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "uge"
+  },
+  {
+    "head": "apa",
+    "linguistInfo": {
+      "inflectional_category": "poly-wa-ya",
+      "pos": "V",
+      "stem": "a_pa",
+    },
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "for S to hit O",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "apa"
+  },
+  {
+    "head": "nata",
+    "linguistInfo": {
+      "inflectional_category": "poly-wa-ya",
+      "pos": "V",
+      "stem": "na_ta",
+    },
+    "paradigm": "VT",
+    "senses": [
+      {
+        "definition": "for S to kick O",
+        "sources": "McA&K&C"
+      }
+    ],
+    "slug": "nata"
   }
 ]
