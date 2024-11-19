@@ -10,7 +10,7 @@
     "senses": [
       {
         "definition": "for S to run",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "agdaa"
@@ -26,7 +26,7 @@
     "senses": [
       {
         "definition": "for S to hit O",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "apa"
@@ -42,7 +42,7 @@
     "senses": [
       {
         "definition": "for S to want him/her/it",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "cîga"
@@ -58,7 +58,7 @@
     "senses": [
       {
         "definition": "for S to drink their own",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "hnagda"
@@ -74,7 +74,7 @@
     "senses": [
       {
         "definition": "for S to eat their own O",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "hnuda"
@@ -90,7 +90,7 @@
     "senses": [
       {
         "definition": "for S to be asleep",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "ishdima"
@@ -106,7 +106,7 @@
     "senses": [
       {
         "definition": "for S to kick O",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "nata"
@@ -122,7 +122,7 @@
     "senses": [
       {
         "definition": "for S to help O",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "uge"
@@ -138,7 +138,7 @@
     "senses": [
       {
         "definition": "for S to drink it",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "yagda"
@@ -154,7 +154,7 @@
     "senses": [
       {
         "definition": "for S to eat it",
-        "sources": "McA&K&C"
+        "sources": [ "McA&K&C" ]
       }
     ],
     "slug": "yúda"
