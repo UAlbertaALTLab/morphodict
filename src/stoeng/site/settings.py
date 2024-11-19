@@ -49,7 +49,7 @@ FST_TOOL_SAMPLES = [ "yúda", "myudad" ]
 
 # Without this, importjson by default will not attempt to add inflected definitions using phrase translation.
 MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = True
-MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+
 DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS = ("+V",)
 
 MORPHODICT_ORTHOGRAPHY = {
