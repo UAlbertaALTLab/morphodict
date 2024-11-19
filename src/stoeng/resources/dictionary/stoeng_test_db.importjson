@@ -4,7 +4,7 @@
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
-      "stem": "0_cîga",
+      "stem": "0_cîga"
     },
     "paradigm": "VI",
     "senses": [
@@ -20,7 +20,7 @@
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
-      "stem": "0_hnuda",
+      "stem": "0_hnuda"
     },
     "paradigm": "VI",
     "senses": [
@@ -36,7 +36,7 @@
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
-      "stem": "a_gdaa",
+      "stem": "a_gdaa"
     },
     "paradigm": "VI",
     "senses": [
@@ -52,7 +52,7 @@
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
-      "stem": "0_hnagda",
+      "stem": "0_hnagda"
     },
     "paradigm": "VI",
     "senses": [
@@ -68,7 +68,7 @@
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
-      "stem": "0_y2uda",
+      "stem": "0_y2uda"
     },
     "paradigm": "VI",
     "senses": [
@@ -84,7 +84,7 @@
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
-      "stem": "0_y2agda",
+      "stem": "0_y2agda"
     },
     "paradigm": "VI",
     "senses": [
@@ -100,7 +100,7 @@
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
-      "stem": "0_ishdima",
+      "stem": "0_ishdima"
     },
     "paradigm": "VI",
     "senses": [
@@ -116,7 +116,7 @@
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
-      "stem": "u_ge",
+      "stem": "u_ge"
     },
     "paradigm": "VT",
     "senses": [
@@ -132,7 +132,7 @@
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
-      "stem": "a_pa",
+      "stem": "a_pa"
     },
     "paradigm": "VT",
     "senses": [
@@ -148,7 +148,7 @@
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
-      "stem": "na_ta",
+      "stem": "na_ta"
     },
     "paradigm": "VT",
     "senses": [
