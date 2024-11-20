@@ -1,19 +1,12 @@
 [
   {
+    "analysis": [[], "agdaa", ["+3Sg", "+ContentInterr"]],
     "head": "agdaa",
-    "analysis": [
-      [],
-      "agdaa",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
       "stem": "a_gdaa",
-      "wordclass" : "VI"
+      "wordclass": "VI"
     },
     "paradigm": "VI",
     "senses": [
@@ -25,16 +18,8 @@
     "slug": "agdaa"
   },
   {
+    "analysis": [[], "apa", ["+3Sg", "+3SgO", "+ContentInterr"]],
     "head": "apa",
-    "analysis": [
-      [],
-      "apa",
-      [
-        "+3Sg",
-        "+3SgO",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
@@ -50,15 +35,8 @@
     "slug": "apa"
   },
   {
+    "analysis": [[], "cîga", ["+3Sg", "+ContentInterr"]],
     "head": "cîga",
-    "analysis": [
-      [],
-      "cîga",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
@@ -74,15 +52,8 @@
     "slug": "cîga"
   },
   {
+    "analysis": [[], "hnagda", ["+3Sg", "+ContentInterr"]],
     "head": "hnagda",
-    "analysis": [
-      [],
-      "hnagda",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
@@ -98,15 +69,8 @@
     "slug": "hnagda"
   },
   {
+    "analysis": [[], "hnuda", ["+3Sg", "+ContentInterr"]],
     "head": "hnuda",
-      "analysis": [
-      [],
-      "hnuda",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "wa-ya-Reg",
       "pos": "V",
@@ -122,15 +86,8 @@
     "slug": "hnuda"
   },
   {
+    "analysis": [[], "ishdima", ["+3Sg", "+ContentInterr"]],
     "head": "ishdima",
-    "analysis": [
-      [],
-      "ishdima",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
@@ -146,16 +103,8 @@
     "slug": "ishdima"
   },
   {
+    "analysis": [[], "nata", ["+3Sg", "+3SgO", "+ContentInterr"]],
     "head": "nata",
-    "analysis": [
-      [],
-      "nata",
-      [
-        "+3Sg",
-        "+3SgO",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
@@ -171,16 +120,8 @@
     "slug": "nata"
   },
   {
+    "analysis": [[], "uge", ["+3Sg", "+3SgO", "+ContentInterr"]],
     "head": "uge",
-    "analysis": [
-      [],
-      "uge",
-      [
-        "+3Sg",
-        "+3SgO",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "poly-wa-ya",
       "pos": "V",
@@ -196,15 +137,8 @@
     "slug": "uge"
   },
   {
+    "analysis": [[], "yagda", ["+3Sg", "+ContentInterr"]],
     "head": "yagda",
-    "analysis": [
-      [],
-      "yagda",
-      [
-        "+3Sg",
-        "+ContentInterr"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
@@ -220,16 +154,8 @@
     "slug": "yagda"
   },
   {
+    "analysis": [[], "yúda", ["+2Sg", "+Imp", "+Imm"]],
     "head": "yúda",
-    "analysis": [
-      [],
-      "yúda",
-      [
-        "+2Sg",
-        "+Imp",
-        "+Imm"
-      ]
-    ],
     "linguistInfo": {
       "inflectional_category": "m-n-Stems",
       "pos": "V",
