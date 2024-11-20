@@ -402,7 +402,7 @@ MORPHODICT_DICTIONARY_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTIN
 
 # An optional list of tags used for the phrase translation stage, useful for prototyping in new languages
 
-DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS : Optional[tuple[str, ...]]= tuple()
+DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS: Optional[tuple[str, ...]] = tuple()
 
 # Used for the bulk search API
 SPEECH_DB_EQ = ["_"]
