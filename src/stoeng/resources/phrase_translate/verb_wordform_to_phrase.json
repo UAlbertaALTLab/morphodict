@@ -1,0 +1,48 @@
+[ 
+    ["+V", null, 0],
+    ["+TA", null, 0],
+    ["+AI", null, 0],
+    ["+II", null, 0],
+    ["+TI", null, 0],
+    # Tense/Aspect
+    ["PV/ki+", "Prt+", 1],  # Preterite aka simple past
+    [["PV/ki+", "+Ind"], "Prt+", 1],  # Preterite aka simple past
+    [["+Fut", "+Cond"], "Cond+", 1],  # Future conditional
+    [["+Imp", "+Imm"], "Imm+", 1],  # Immediate imperative
+    [["+Imp", "+Del"], "Del+", 1],  # Delayed imperative
+    [["PV/wi+", "+Ind"], "Fut+", 1],  # Future
+    ["PV/wi+", "Fut+", 1],  # Also accept PV/wi without indicative as future
+    [["PV/e+", "+Cnj"], null, 1],  # conjunctive marker
+    # Note that these crk features as disjoint, but both are needed for the eng feature
+    [["PV/ka+", "+Ind"], "Def+", 1],
+    [["PV/ka+", "+Cnj"], "Inf+", 1],
+    [["PV/ta+", "+Cnj"], "Inf+", 1],  # future definite
+    ["+Ind", "Prs+", 1],
+    ["TagMap.DEFAULT", "Prs+", 1],  # default to present tense
+    ["+Dec", "Prs+", 1],
+    # ["+Irr", null, 1], # Replace null with the corresponding phrase translation tag
+    # Person - Subject
+    ["+1Sg", "TagMap.COPY_TAG_NAME", 2],
+    ["+2Sg", "TagMap.COPY_TAG_NAME", 2],
+    ["+3Sg", "TagMap.COPY_TAG_NAME", 2],
+    ["+1Pl", "TagMap.COPY_TAG_NAME", 2],
+    ["+12Pl", "21Pl+", 2],
+    ["+2Pl", "TagMap.COPY_TAG_NAME", 2],
+    ["+3Pl", "TagMap.COPY_TAG_NAME", 2],
+    ["+4Sg/Pl", "TagMap.COPY_TAG_NAME", 2],
+    ["+5Sg/Pl", "TagMap.COPY_TAG_NAME", 2],
+    ["+X", "XPl+", 2],
+    # Person - Object
+    ["+1SgO", "TagMap.COPY_TAG_NAME", 3],
+    ["+2SgO", "TagMap.COPY_TAG_NAME", 3],
+    ["+3SgO", "TagMap.COPY_TAG_NAME", 3],
+    ["+1PlO", "TagMap.COPY_TAG_NAME", 3],
+    ["+12PlO", "21PlO+", 3],
+    ["+2PlO", "TagMap.COPY_TAG_NAME", 3],
+    ["+3PlO", "TagMap.COPY_TAG_NAME", 3],
+    ["+4Pl", "TagMap.COPY_TAG_NAME", 3],
+    ["+4Sg", "TagMap.COPY_TAG_NAME", 3],
+    ["+4Sg/PlO", "TagMap.COPY_TAG_NAME", 3],
+    ["+5Sg/PlO", "TagMap.COPY_TAG_NAME", 3],
+    ["+XO", "XPlO+", 3]
+]

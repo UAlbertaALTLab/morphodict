@@ -1,0 +1,31 @@
+{
+    "0": [
+        # word class
+        "+N",
+        "+A",
+        "+I",
+        "+D"
+    ],
+    "2": [
+        # N: Possessives
+        "+Px1Sg",
+        "+Px2Sg",
+        "+Px3Sg",
+        "+Px1Pl",
+        "+Px2Pl",
+        # "+Px12Pl", # Needs to be recoded: 21 -> 12
+        "+Px3Pl",
+        "+Px4Sg/Pl",
+        "+PxX",
+        "+PxXPl"
+    ],
+    "3": [
+        # N: number
+        "+Sg",
+        "+Pl",
+        "+Obv",
+        "+Loc",
+        "+Distr"
+    ]
+}
+
