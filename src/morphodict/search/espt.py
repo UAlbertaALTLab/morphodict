@@ -16,6 +16,7 @@ from morphodict.phrase_translate.types import PhraseAnalyzedQuery
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
 from morphodict.lexicon.models import Wordform
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -138,6 +139,8 @@ class EsptSearch:
             if "+V" in self.new_tags and r.is_lemma and "+V" in analysis_tags:
                 words.append(r)
             if "+N" in self.new_tags and r.is_lemma and "+N" in analysis_tags:
+                words.append(r)
+            if settings.DEFAULT_PHRASE_TRANSLATE_CHECK(self.new_tags):
                 words.append(r)
 
         return words
