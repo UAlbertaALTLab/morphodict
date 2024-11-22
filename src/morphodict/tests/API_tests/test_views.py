@@ -11,9 +11,7 @@ EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
 )
 def test_click_in_text_correct_usage(client):
     # niskak means goose in plains Cree
-    response = client.get(
-        reverse("dictionary-word-click-in-text-api") + "?q=niskak"
-    )
+    response = client.get(reverse("dictionary-word-click-in-text-api") + "?q=niskak")
 
     assert b"goose" in response.content
 
