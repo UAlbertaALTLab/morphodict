@@ -69,10 +69,10 @@ class TestLemmaDetailsInternal4xx:
 @pytest.mark.parametrize(
     "url",
     [
-        reverse("cree-dictionary-index"),
-        reverse("cree-dictionary-search") + "?q=kotiskâwêw",
-        reverse("cree-dictionary-about"),
-        reverse("cree-dictionary-contact-us"),
+        reverse("dictionary-index"),
+        reverse("dictionary-search") + "?q=kotiskâwêw",
+        reverse("dictionary-about"),
+        reverse("dictionary-contact-us"),
         # Note: do NOT test word-detail page, as this page has tonnes of "errors"
         # checking for things like is_title, is_label, is_heading, etc.
     ],
@@ -112,7 +112,7 @@ def test_retrieve_paradigm(
     if slug_disambiguator:
         query_args["slug"] = slug_disambiguator
     wf = Wordform.objects.get(text=lexeme, **query_args)
-    url = reverse("cree-dictionary-index-with-lemma", args=[wf.slug])
+    url = reverse("dictionary-index-with-lemma", args=[wf.slug])
     response = client.get(url)
 
     assert response.status_code == 200
@@ -137,7 +137,7 @@ def test_paradigm_from_full_page_and_api(client: Client):
 
     # Get standalone page:
     response = client.get(
-        reverse("cree-dictionary-index-with-lemma", args=[lemma_text]),
+        reverse("dictionary-index-with-lemma", args=[lemma_text]),
         {"paradigm-size": paradigm_size},
     )
     assert response.status_code == HTTPStatus.OK
@@ -163,7 +163,7 @@ def test_paradigm_from_full_page_and_api(client: Client):
 
 
 @pytest.mark.parametrize("mode", DisplayMode.choices)
-@pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
+@pytest.mark.parametrize("whence", [None, reverse("dictionary-about")])
 def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     """
     Changing the display mode should set some cookies and MAYBE do a redirect.
@@ -191,7 +191,7 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
 
 
 @pytest.mark.parametrize("option", DisplayMode.choices)
-@pytest.mark.parametrize("whence", [None, reverse("cree-dictionary-about")])
+@pytest.mark.parametrize("whence", [None, reverse("dictionary-about")])
 def test_change_paradigm_label_preference(option, whence, client: Client):
     """
     Changing the display mode should set some cookies and MAYBE do a redirect.

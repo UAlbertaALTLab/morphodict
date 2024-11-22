@@ -18,7 +18,7 @@ def test_can_set_orth_cookie(orth, client, change_orth_url):
     Test that POSTing to the URL actually sets the orthography.
     """
     # By default, there should be no orth cookie.
-    index_url = reverse("cree-dictionary-index")
+    index_url = reverse("dictionary-index")
     response = client.get(index_url)
     assert response.status_code == 200
     assert ORTHOGRAPHY.COOKIE_NAME not in response.cookies

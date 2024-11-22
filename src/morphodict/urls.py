@@ -14,31 +14,31 @@ from morphodict.frontend.sitemaps import sitemaps
 
 
 # TODO: use URL namespaces:
-# e.g., cree-dictionary:index instead of cree-dictionary-index
+# e.g., dictionary:index instead of dictionary-index
 # See: https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces
 
 urlpatterns = [
     ################################# Primary URLs #################################
-    path("", views.index, name="cree-dictionary-index"),
-    path("search", views.index, name="cree-dictionary-search"),
+    path("", views.index, name="dictionary-index"),
+    path("search", views.index, name="dictionary-search"),
     # "word" is a user-friendly alternative for the linguistic term "lemma"
     path(
         "word/<str:slug>/",
         views.entry_details,
-        name="cree-dictionary-index-with-lemma",
+        name="dictionary-index-with-lemma",
     ),
-    path("about", views.about, name="cree-dictionary-about"),
-    path("contact-us", views.contact_us, name="cree-dictionary-contact-us"),
-    path("query-help", views.query_help, name="cree-dictionary-query-help"),
-    path("legend", views.legend, name="cree-dictionary-legend"),
-    path("settings", views.settings_page, name="cree-dictionary-settings"),
-    path("admin/fst-tool", views.fst_tool, name="cree-dictionary-fst-tool"),
+    path("about", views.about, name="dictionary-about"),
+    path("contact-us", views.contact_us, name="dictionary-contact-us"),
+    path("query-help", views.query_help, name="dictionary-query-help"),
+    path("legend", views.legend, name="dictionary-legend"),
+    path("settings", views.settings_page, name="dictionary-settings"),
+    path("admin/fst-tool", views.fst_tool, name="dictionary-fst-tool"),
     ################################# Internal API #################################
     # internal use to render boxes of search results
     path(
         "_search_results/<str:query_string>/",
         views.search_results,
-        name="cree-dictionary-search-results",
+        name="dictionary-search-results",
     ),
     # See morphodict.preference.urls for all available views
     # Hint: You will probably use preference:change the most!

@@ -1,7 +1,7 @@
 {% extends "admin/base.html" %}
 
 {% block userlinks %}
-  <a href="{% url 'cree-dictionary-query-help' %}">Query help</a> /
-  <a href="{% url 'cree-dictionary-fst-tool' %}">FST tool</a> /
+  <a href="{% url 'dictionary-query-help' %}">Query help</a> /
+  <a href="{% url 'dictionary-fst-tool' %}">FST tool</a> /
 {{ block.super }}
 {% endblock %}

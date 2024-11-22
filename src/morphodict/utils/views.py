@@ -11,7 +11,7 @@ def url_for_query(user_query: str) -> str:
         scheme="",
         netloc="",
         params="",
-        path=reverse("cree-dictionary-search"),
+        path=reverse("dictionary-search"),
         query=urlencode((("q", user_query),)),
         fragment="",
     )

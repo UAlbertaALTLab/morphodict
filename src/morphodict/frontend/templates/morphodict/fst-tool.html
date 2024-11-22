@@ -5,7 +5,7 @@
 {% block prose %}
 <section id="query-help" class="prose box box--spaced">
   <h2 class="prose__section-title">FST tool</h2>
-  <form action='{% url "cree-dictionary-fst-tool" %}' style="display:flex">
+  <form action='{% url "dictionary-fst-tool" %}' style="display:flex">
     <input name="text" value="{{ text }}" style="flex-grow: 1" />
     <input type="submit" name="Analyze" />
   </form>

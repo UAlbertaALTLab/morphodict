@@ -110,15 +110,15 @@
             <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
                    rel="noopener">Help</a></li>
             {% if MORPHODICT_DICTIONARY_NAME == "itwêwina" %}
-                <li><a href="{% url 'cree-dictionary-legend' %}" class="footer-links__link">Legend of abbreviations</a></li>
+                <li><a href="{% url 'dictionary-legend' %}" class="footer-links__link">Legend of abbreviations</a></li>
             {% endif %}
-            <li><a href="{% url 'cree-dictionary-about' %}" class="footer-links__link">About</a></li>
-            <li><a href="{% url 'cree-dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
+            <li><a href="{% url 'dictionary-about' %}" class="footer-links__link">About</a></li>
+            <li><a href="{% url 'dictionary-contact-us' %}" class="footer-links__link">Contact us</a></li>
         </ul>
 
         <div class="footer__links footer__advanced-links">
             <ul class="footer__links">
-                <li><a href="{% url 'cree-dictionary-settings' %}" class="footer-links__link">Settings</a></li>
+                <li><a href="{% url 'dictionary-settings' %}" class="footer-links__link">Settings</a></li>
             </ul>
 
             <h2 class="footer__option-header"> View search results with: </h2>

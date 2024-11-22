@@ -73,7 +73,7 @@ def definition_link(context, slug: str) -> str:
     wordform = Wordform.objects.get(slug=slug)
     return format_html(
         '<a href="{}">{}</a>',
-        reverse("cree-dictionary-index-with-lemma", kwargs=dict(slug=slug)),
+        reverse("dictionary-index-with-lemma", kwargs=dict(slug=slug)),
         orth_tag(context, wordform.text),
     )
 

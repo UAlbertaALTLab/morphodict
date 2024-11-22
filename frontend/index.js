@@ -182,7 +182,7 @@ function loadSearchResults(searchInput) {
   }
 
   function issueSearch() {
-    let searchURL = Urls["cree-dictionary-search-results"](userQuery);
+    let searchURL = Urls["dictionary-search-results"](userQuery);
 
     window.history.replaceState(null, "", urlForQuery(userQuery));
     hideProse();
@@ -216,7 +216,7 @@ function loadSearchResults(searchInput) {
   }
 
   function goToHomePage() {
-    window.history.replaceState(null, "", Urls["cree-dictionary-index"]());
+    window.history.replaceState(null, "", Urls["dictionary-index"]());
 
     showProse();
 
@@ -282,10 +282,10 @@ function setupAudioOnPageLoad() {
 /**
  * Makes all URL paths relative to '/'.
  * In development, the root path is '/', so nothing changes.
- * On Sapir (as of 2020-03-09), the root path is '/cree-dictionary/'.
+ * On Sapir (as of 2020-03-09), the root path is '/dictionary/'.
  */
 function makeRouteRelativeToSlash(route) {
-  let baseURL = Urls["cree-dictionary-index"]();
+  let baseURL = Urls["dictionary-index"]();
   return route.replace(baseURL, "/");
 }
 

@@ -12,7 +12,7 @@ EXPECTED_SUFFIX_SEARCH_RESULT = "asawâpamêw"
 def test_click_in_text_correct_usage(client):
     # niskak means goose in plains Cree
     response = client.get(
-        reverse("cree-dictionary-word-click-in-text-api") + "?q=niskak"
+        reverse("dictionary-word-click-in-text-api") + "?q=niskak"
     )
 
     assert b"goose" in response.content
@@ -20,7 +20,7 @@ def test_click_in_text_correct_usage(client):
 
 @pytest.mark.django_db
 def test_click_in_text_no_params(client):
-    response = client.get(reverse("cree-dictionary-word-click-in-text-api"))
+    response = client.get(reverse("dictionary-word-click-in-text-api"))
 
     assert response.status_code == 400
 
@@ -36,7 +36,7 @@ def test_normal_search_uses_affix_search(client):
     should return both "wâpamêw" and "asawâpamêw"
     """
     normal_search_response = client.get(
-        reverse("cree-dictionary-search") + f"?q={ASCII_WAPAMEW}"
+        reverse("dictionary-search") + f"?q={ASCII_WAPAMEW}"
     ).content.decode("utf-8")
     assert EXPECTED_SUFFIX_SEARCH_RESULT in normal_search_response
 
@@ -52,6 +52,6 @@ def test_click_in_text_disables_affix_search(client):
     should return "wâpamêw" but NOT "asawâpamêw"
     """
     click_in_text_response = client.get(
-        reverse("cree-dictionary-word-click-in-text-api") + f"?q={ASCII_WAPAMEW}"
+        reverse("dictionary-word-click-in-text-api") + f"?q={ASCII_WAPAMEW}"
     ).content.decode("utf-8")
     assert EXPECTED_SUFFIX_SEARCH_RESULT not in click_in_text_response

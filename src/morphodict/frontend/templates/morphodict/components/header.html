@@ -3,7 +3,7 @@
 
 <div class="top-bar app__header">
   <header class="branding top-bar__logo">
-    <a class="branding__logo" href="{% url 'cree-dictionary-index' %}">
+    <a class="branding__logo" href="{% url 'dictionary-index' %}">
       <img class="branding__image"
            src="{% static 'morphodict/img/morphodict-default-logo-192.png' %}"
            alt="mîkiwâhp (teepee) logo">
@@ -40,7 +40,7 @@
         <hr class="menu__separator">
 
         <div class="menu__category">
-          <a href="{% url 'cree-dictionary-settings' %}" class="menu-choice" data-cy="settings-link">
+          <a href="{% url 'dictionary-settings' %}" class="menu-choice" data-cy="settings-link">
             <span class="menu-choice__label fill-width"> View all settings</span>
           </a>
         </div>
