@@ -36,7 +36,7 @@ class StaticViewSitemap(Sitemap):
         return ["index", "about", "contact-us"]
 
     def location(self, item):
-        return reverse(f"cree-dictionary-{item}")
+        return reverse(f"dictionary-{item}")
 
 
 sitemaps = {
