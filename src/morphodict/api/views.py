@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
 from django.shortcuts import render
 
-from morphodict.search import simple_search
+from morphodict.search import api_search
 
 
 def click_in_text(request) -> HttpResponse:
@@ -17,7 +17,7 @@ def click_in_text(request) -> HttpResponse:
     elif q == "":
         return HttpResponseBadRequest("query param q is an empty string")
 
-    results = simple_search(q, include_auto_definitions=False)
+    results = api_search(q, include_auto_definitions=False)
 
     response = {"results": results}
 

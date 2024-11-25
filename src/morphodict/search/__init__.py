@@ -19,7 +19,7 @@ def search_with_affixes(
     )
 
 
-def simple_search(
+def api_search(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
 ):
     """
