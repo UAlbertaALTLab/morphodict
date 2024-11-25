@@ -19,7 +19,6 @@ from morphodict.search.types import Result
 from morphodict.search.util import first_non_none_value
 from morphodict.utils.types import cast_away_optional
 
-CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
 
 def search(
@@ -88,6 +87,7 @@ def search(
 
     return search_run
 
+CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
 def is_almost_certainly_cree(search_run: SearchRun) -> bool:
     """

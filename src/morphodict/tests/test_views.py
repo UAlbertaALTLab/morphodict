@@ -13,7 +13,7 @@ from django.test import Client
 from django.urls import reverse
 from pytest_django.asserts import assertInHTML
 
-from crkeng.app.preferences import DisplayMode
+from morphodict.paradigm.preferences import DisplayMode
 from morphodict.lexicon.models import Wordform
 
 # The test wants an ID that never exists. Never say never; I have no idea if we'll

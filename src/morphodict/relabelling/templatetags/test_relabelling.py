@@ -2,7 +2,7 @@ from django.http import HttpRequest
 from django.template import Context, RequestContext, Template
 
 from morphodict.paradigm.panes import RowLabel
-from crkeng.app.preferences import DisplayMode
+from morphodict.paradigm.preferences import DisplayMode
 
 
 def test_relabel_tag():

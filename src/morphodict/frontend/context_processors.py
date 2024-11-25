@@ -4,7 +4,7 @@ Django (template) context processors.
 
 from django.http import HttpRequest
 
-from crkeng.app.preferences import DisplayMode
+from morphodict.paradigm.preferences import DisplayMode
 
 
 def display_options(request: HttpRequest):

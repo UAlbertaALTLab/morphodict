@@ -6,7 +6,7 @@ from morphodict.orthography.utils import to_macrons, to_syllabics
 from morphodict.paradigm.panes import RowLabel
 from morphodict.orthography import ORTHOGRAPHY
 from pytest_django.asserts import assertInHTML
-from crkeng.app.preferences import DisplayMode
+from morphodict.paradigm.preferences import DisplayMode
 
 # Choose a tag whose label:
 #  - probably won't change (or the tests will break)

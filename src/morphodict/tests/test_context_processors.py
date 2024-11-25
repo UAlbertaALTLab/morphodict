@@ -6,7 +6,7 @@ import pytest
 from django.http import HttpRequest
 from django.template import RequestContext, Template
 
-from crkeng.app.preferences import DisplayMode
+from morphodict.paradigm.preferences import DisplayMode
 
 
 @pytest.fixture(autouse=True)

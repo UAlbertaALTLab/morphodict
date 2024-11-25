@@ -12,8 +12,8 @@ from morphodict.relabelling import read_labels, LABELS
 from morphodict.utils.fst_analysis_parser import partition_analysis
 from morphodict.search.types import Preverb, LinguisticTag, linguistic_tag_from_fst_tags
 from morphodict.utils.types import ConcatAnalysis, FSTTag, Label
+from morphodict.paradigm.preferences import DisplayMode
 from crkeng.app.preferences import (
-    DisplayMode,
     AnimateEmoji,
     DictionarySource,
     ShowEmoji,

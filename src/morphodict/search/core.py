@@ -2,8 +2,8 @@ from typing import Iterable, Callable, Any, Optional
 
 from django.db.models import prefetch_related_objects
 
+from morphodict.paradigm.preferences import DisplayMode
 from crkeng.app.preferences import (
-    DisplayMode,
     AnimateEmoji,
     DictionarySource,
     ShowEmoji,
