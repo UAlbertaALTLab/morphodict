@@ -97,7 +97,7 @@ def do_affix_search(query: InternalForm, affixes: AffixSearcher) -> Iterable[Wor
     return Wordform.objects.filter(id__in=matched_ids)
 
 
-def do_target_language_affix_search(search_run: core.SearchRun):
+def do_target_language_affix_search(search_run: core.SearchResults):
     matching_words = do_affix_search(
         search_run.internal_query,
         cache.target_language_affix_searcher,
@@ -106,7 +106,7 @@ def do_target_language_affix_search(search_run: core.SearchRun):
         search_run.add_result(Result(word, target_language_affix_match=True))
 
 
-def do_source_language_affix_search(search_run: core.SearchRun):
+def do_source_language_affix_search(search_run: core.SearchResults):
     matching_words = do_affix_search(
         search_run.internal_query,
         cache.source_language_affix_searcher,

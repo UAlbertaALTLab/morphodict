@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.search.core import SearchRun
+from morphodict.search.core import SearchResults
 from morphodict.search.espt import EsptSearch, PhraseAnalyzedQuery
 from morphodict.search.types import Result
 from morphodict.lexicon.models import Wordform
@@ -92,7 +92,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
     ],
 )
 def test_espt_search(db, search, params):
-    search_run = SearchRun(search)
+    search_run = SearchResults(search)
     espt_search = EsptSearch(search_run)
     espt_search.analyze_query()
     assert search_run.query.query_terms == params["expected_query_terms"]
@@ -116,7 +116,7 @@ def test_espt_search(db, search, params):
 
 
 def test_espt_search_doesnt_crash_when_no_analysis(db):
-    search_run = SearchRun("my little bears")
+    search_run = SearchResults("my little bears")
     espt_search = EsptSearch(search_run)
     espt_search.analyze_query()
 

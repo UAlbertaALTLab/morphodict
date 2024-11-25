@@ -15,7 +15,7 @@ from .types import Result
 from .util import first_non_none_value
 
 
-class SearchRun:
+class SearchResults:
     """
     Holds a query and gathers results into a result collection.
 
@@ -154,7 +154,7 @@ class SearchRun:
         return self.query.query_string
 
     def __repr__(self):
-        return f"SearchRun<query={self.query!r}>"
+        return f"SearchResults<query={self.query!r}>"
 
 
 def cvd(val):

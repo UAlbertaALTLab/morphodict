@@ -20,7 +20,7 @@ from .types import Result
 logger = logging.getLogger(__name__)
 
 
-def fetch_results(search_run: core.SearchRun):
+def fetch_results(search_run: core.SearchResults):
     fetch_results_from_target_language_keywords(search_run)
     fetch_results_from_source_language_keywords(search_run)
 

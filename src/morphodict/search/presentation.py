@@ -112,7 +112,7 @@ class PresentationResult:
         self,
         result: types.Result,
         *,
-        search_run: core.SearchRun,
+        search_run: core.SearchResults,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
         show_emoji=ShowEmoji.default,

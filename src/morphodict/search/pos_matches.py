@@ -1,9 +1,9 @@
-from morphodict.search.core import SearchRun
+from morphodict.search.core import SearchResults
 from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.analysis import rich_analyze_relaxed
 
 
-def find_pos_matches(search_run: SearchRun) -> None:
+def find_pos_matches(search_run: SearchResults) -> None:
     analyzed_query = AnalyzedQuery(search_run.internal_query)
     # print(search_run.verbose_messages["new_tags"])
 

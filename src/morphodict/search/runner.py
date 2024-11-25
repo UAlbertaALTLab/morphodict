@@ -7,7 +7,7 @@ from morphodict.search.affix import (
     do_target_language_affix_search,
     query_would_return_too_many_results,
 )
-from morphodict.search.core import SearchRun
+from morphodict.search.core import SearchResults
 from morphodict.search.cvd_search import do_cvd_search
 from morphodict.search.lemma_freq import get_lemma_freq
 from morphodict.search.glossary_count import get_glossary_count
@@ -27,14 +27,14 @@ def search(
     include_affixes=True,
     include_auto_definitions=False,
     inflect_english_phrases=False
-) -> SearchRun:
+) -> SearchResults:
     """
     Perform an actual search, using the provided options.
 
     This class encapsulates the logic of which search methods to try, and in
-    which order, to build up results in a SearchRun.
+    which order, to build up results in a SearchResults.
     """
-    search_run = SearchRun(
+    search_run = SearchResults(
         query=query, include_auto_definitions=include_auto_definitions
     )
     initial_query_terms = search_run.query.query_terms[:]
@@ -89,7 +89,7 @@ def search(
 
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
-def is_almost_certainly_cree(search_run: SearchRun) -> bool:
+def is_almost_certainly_cree(search_run: SearchResults) -> bool:
     """
     Heuristics intended to AVOID doing an English search.
     """

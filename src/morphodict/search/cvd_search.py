@@ -1,7 +1,7 @@
 import itertools
 import logging
 
-from morphodict.search.core import SearchRun
+from morphodict.search.core import SearchResults
 from morphodict.search.types import Result
 from morphodict.cvd import (
     definition_vectors,
@@ -19,7 +19,7 @@ from morphodict.lexicon.models import Wordform
 logger = logging.getLogger(__name__)
 
 
-def do_cvd_search(search_run: SearchRun):
+def do_cvd_search(search_run: SearchResults):
     """Use cosine vector distance to add results to the search run.
 
     Keywords from the query string are turned into vectors from Google News,
