@@ -91,17 +91,17 @@ def index(request):  # pragma: no cover
 
     user_query = request.GET.get("q", None)
     dict_source = get_dict_source(request)
-    search_run = None
+    search_results = None
 
     if user_query:
         include_auto_definitions = should_include_auto_definitions(request)
         inflect_english_phrases = should_inflect_phrases(request)
-        search_run = search_with_affixes(
+        search_results = search_with_affixes(
             user_query,
             include_auto_definitions=include_auto_definitions,
             inflect_english_phrases=inflect_english_phrases,
         )
-        search_results = search_run.serialized_presentation_results(
+        search_results_presentation = search_results.serialized_presentation_results(
             display_mode=DisplayMode.current_value_from_request(request),
             animate_emoji=AnimateEmoji.current_value_from_request(request),
             show_emoji=ShowEmoji.current_value_from_request(request),
@@ -110,7 +110,7 @@ def index(request):  # pragma: no cover
         did_search = True
 
     else:
-        search_results = []
+        search_results_presentation = []
         did_search = False
 
     if did_search:
@@ -123,15 +123,15 @@ def index(request):  # pragma: no cover
         word_search_form=WordSearchForm(),
         # when we have initial query word to search and display
         query_string=user_query,
-        search_results=search_results,
+        search_results=search_results_presentation,
         did_search=did_search,
     )
     context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     context["show_ic"] = request.COOKIES.get("show_inflectional_category")
-    if search_run and search_run.verbose_messages and search_run.query.verbose:
+    if search_results and search_results.verbose_messages and search_results.query.verbose:
         context["verbose_messages"] = json.dumps(
-            search_run.verbose_messages, indent=2, ensure_ascii=False
+            search_results.verbose_messages, indent=2, ensure_ascii=False
         )
     return render(request, "morphodict/index.html", context)
 

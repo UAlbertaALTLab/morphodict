@@ -3,14 +3,14 @@ from morphodict.phrase_translate.fst import source_phrase_analyses
 from morphodict.analysis import rich_analyze_relaxed
 
 
-def find_pos_matches(search_run: SearchResults) -> None:
-    analyzed_query = AnalyzedQuery(search_run.internal_query)
-    # print(search_run.verbose_messages["new_tags"])
+def find_pos_matches(search_results: SearchResults) -> None:
+    analyzed_query = AnalyzedQuery(search_results.internal_query)
+    # print(search_results.verbose_messages["new_tags"])
 
-    if len(search_run.verbose_messages) <= 1:
+    if len(search_results.verbose_messages) <= 1:
         return
-    tags = search_run.verbose_messages[1].get("tags")
-    [pos_match(result, tags) for result in search_run.unsorted_results()]
+    tags = search_results.verbose_messages[1].get("tags")
+    [pos_match(result, tags) for result in search_results.unsorted_results()]
 
 
 def pos_match(result, tags):

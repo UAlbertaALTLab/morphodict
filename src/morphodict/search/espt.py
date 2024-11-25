@@ -39,12 +39,12 @@ class EsptSearch:
         other methods.
     """
 
-    def __init__(self, search_run):
-        self.search_run = search_run
+    def __init__(self, search_results):
+        self.search_results = search_results
         self.query_analyzed_ok = False
 
-    def analyze_query(self):
-        """Analyze this search’s search_run query, possibly updating it.
+    def convert_search_query_to_espt(self):
+        """Analyze this search’s search_results query, possibly updating it.
 
         If the phrase-parsing FST returns an analysis, e.g., “ crawls
         +V+AI+Prt+3Pl” for “they crawled”, then the tags are saved for
@@ -53,8 +53,8 @@ class EsptSearch:
         """
         self.new_tags = []
         analyzed_query = PhraseAnalyzedQuery(
-            self.search_run.internal_query,
-            add_verbose_message=self.search_run.add_verbose_message,
+            self.search_results.internal_query,
+            add_verbose_message=self.search_results.add_verbose_message,
         )
         if analyzed_query.has_tags:
             if "+N" in analyzed_query.tags:
@@ -68,13 +68,13 @@ class EsptSearch:
                 self.new_tags = tag_map.map_tags(analyzed_query.tags)
             except UnknownTagError as e:
                 logger.error(f"Unable to map tags for {analyzed_query}", exc_info=True)
-                self.search_run.add_verbose_message(espt_analysis_error=repr(e))
+                self.search_results.add_verbose_message(espt_analysis_error=repr(e))
                 return
 
-            self.search_run.query.replace_query(analyzed_query.filtered_query)
+            self.search_results.query.replace_query(analyzed_query.filtered_query)
             self.query_analyzed_ok = True
 
-        self.search_run.add_verbose_message(
+        self.search_results.add_verbose_message(
             filtered_query=analyzed_query.filtered_query,
             tags=analyzed_query.tags,
             new_tags=self.new_tags,
@@ -116,10 +116,10 @@ class EsptSearch:
 
             # if there are multiple inflections for the same original result, we
             # may already have removed it
-            if self.search_run.has_result(result.original_result):
-                self.search_run.remove_result(result.original_result)
+            if self.search_results.has_result(result.original_result):
+                self.search_results.remove_result(result.original_result)
 
-            self.search_run.add_result(
+            self.search_results.add_result(
                 result.original_result.create_related_result(
                     wordform,
                     is_espt_result=True,
@@ -128,7 +128,7 @@ class EsptSearch:
 
     def _collect_non_inflected_results(self) -> list[Result]:
         words = []
-        for r in self.search_run.unsorted_results():
+        for r in self.search_results.unsorted_results():
             if not r.is_lemma:
                 continue
             analysis = r.wordform.analysis

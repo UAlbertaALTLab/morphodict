@@ -20,14 +20,14 @@ from .types import Result
 logger = logging.getLogger(__name__)
 
 
-def fetch_results(search_run: core.SearchResults):
-    fetch_results_from_target_language_keywords(search_run)
-    fetch_results_from_source_language_keywords(search_run)
+def fetch_results(search_results: core.SearchResults):
+    fetch_results_from_target_language_keywords(search_results)
+    fetch_results_from_source_language_keywords(search_results)
 
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
-    fst_analyses = set(rich_analyze_relaxed(search_run.internal_query))
+    fst_analyses = set(rich_analyze_relaxed(search_results.internal_query))
     # print([a.tuple for a in fst_analyses])
 
     db_matches = list(
@@ -35,12 +35,12 @@ def fetch_results(search_run: core.SearchResults):
     )
 
     for wf in db_matches:
-        search_run.add_result(
+        search_results.add_result(
             Result(
                 wf,
                 source_language_match=wf.text,
                 query_wordform_edit_distance=get_modified_distance(
-                    wf.text, search_run.internal_query
+                    wf.text, search_results.internal_query
                 ),
             )
         )
@@ -61,7 +61,7 @@ def fetch_results(search_run: core.SearchResults):
             logger.error(
                 "Cannot generate normative form for analysis: %s (query: %s)",
                 analysis,
-                search_run.internal_query,
+                search_results.internal_query,
             )
             continue
 
@@ -69,7 +69,7 @@ def fetch_results(search_run: core.SearchResults):
         # closest to what the user typed.
         normatized_user_query = min(
             normatized_form_for_analysis,
-            key=lambda f: get_modified_distance(f, search_run.internal_query),
+            key=lambda f: get_modified_distance(f, search_results.internal_query),
         )
 
         possible_lemma_wordforms = best_lemma_matches(
@@ -82,12 +82,12 @@ def fetch_results(search_run: core.SearchResults):
                 raw_analysis=analysis.tuple,
                 lemma=lemma_wordform,
             )
-            search_run.add_result(
+            search_results.add_result(
                 Result(
                     synthetic_wordform,
                     analyzable_inflection_match=True,
                     query_wordform_edit_distance=get_modified_distance(
-                        search_run.internal_query,
+                        search_results.internal_query,
                         normatized_user_query,
                     ),
                 )
@@ -136,27 +136,27 @@ def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:
     ]
 
 
-def fetch_results_from_target_language_keywords(search_run):
-    for stemmed_keyword in stem_keywords(search_run.internal_query):
+def fetch_results_from_target_language_keywords(search_results):
+    for stemmed_keyword in stem_keywords(search_results.internal_query):
         for wordform in Wordform.objects.filter(
             target_language_keyword__text__iexact=stemmed_keyword
         ):
-            search_run.add_result(
+            search_results.add_result(
                 Result(wordform, target_language_keyword_match=[stemmed_keyword])
             )
 
 
-def fetch_results_from_source_language_keywords(search_run):
+def fetch_results_from_source_language_keywords(search_results):
     res = SourceLanguageKeyword.objects.filter(
-        Q(text=to_source_language_keyword(search_run.internal_query))
+        Q(text=to_source_language_keyword(search_results.internal_query))
     )
     for kw in res:
-        search_run.add_result(
+        search_results.add_result(
             Result(
                 kw.wordform,
                 source_language_keyword_match=[kw.text],
                 query_wordform_edit_distance=get_modified_distance(
-                    search_run.internal_query, kw.wordform.text
+                    search_results.internal_query, kw.wordform.text
                 ),
             )
         )

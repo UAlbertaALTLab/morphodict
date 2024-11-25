@@ -112,14 +112,14 @@ class PresentationResult:
         self,
         result: types.Result,
         *,
-        search_run: core.SearchResults,
+        search_results: core.SearchResults,
         display_mode="community",
         animate_emoji=AnimateEmoji.default,
         show_emoji=ShowEmoji.default,
         dict_source=None,
     ):
         self._result = result
-        self._search_run = search_run
+        self._search_results = search_results
         self._relabeller = {
             "english": read_labels().english,
             "linguistic": read_labels().linguistic_long,
@@ -216,7 +216,7 @@ class PresentationResult:
                 # This is the only place include_auto_definitions is used,
                 # because we only auto-translate non-lemmas, and this is the
                 # only place where a non-lemma search result appears.
-                include_auto_definitions=self._search_run.include_auto_definitions,
+                include_auto_definitions=self._search_results.include_auto_definitions,
                 dict_source=self.dict_source,
             ),
             "lexical_info": self.lexical_info,
@@ -229,13 +229,13 @@ class PresentationResult:
                 self.is_lemma,
                 self.lemma_wordform,
                 self.dict_source,
-                self._search_run.include_auto_definitions,
+                self._search_results.include_auto_definitions,
             ),
             "relevant_tags": tuple(t.serialize() for t in self.relevant_tags),
             "morphemes": self.morphemes,
             "lemma_morphemes": self.lemma_morphemes,
         }
-        if self._search_run.query.verbose:
+        if self._search_results.query.verbose:
             cast(Any, ret)["verbose_info"] = self._result
 
         return ret
@@ -319,6 +319,7 @@ def should_show_form_of(
         return True
     if is_lemma:
         return True
+    # TODO Refactor inner for-loop using instead a search via django .values
     for definition in lemma_wordform.definitions.all():
         for source in definition.source_ids:
             if source in dict_source:

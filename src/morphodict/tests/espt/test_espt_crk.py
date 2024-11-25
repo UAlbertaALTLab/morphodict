@@ -92,16 +92,16 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
     ],
 )
 def test_espt_search(db, search, params):
-    search_run = SearchResults(search)
-    espt_search = EsptSearch(search_run)
-    espt_search.analyze_query()
-    assert search_run.query.query_terms == params["expected_query_terms"]
-    assert search_run.query.query_string == " ".join(params["expected_query_terms"])
+    search_results = SearchResults(search)
+    espt_search = EsptSearch(search_results)
+    espt_search.convert_search_query_to_espt()
+    assert search_results.query.query_terms == params["expected_query_terms"]
+    assert search_results.query.query_string == " ".join(params["expected_query_terms"])
     assert espt_search.new_tags == params["expected_new_tags"]
 
     lemma1 = Wordform.objects.get(slug=params["slug"], is_lemma=True)
 
-    search_run.add_result(
+    search_results.add_result(
         Result(
             wordform=lemma1,
             target_language_keyword_match=params["expected_query_terms"],
@@ -111,19 +111,19 @@ def test_espt_search(db, search, params):
     espt_search.inflect_search_results()
 
     assert params["expected_inflection"] in [
-        entry.wordform.text for entry in list(search_run.unsorted_results())
+        entry.wordform.text for entry in list(search_results.unsorted_results())
     ]
 
 
 def test_espt_search_doesnt_crash_when_no_analysis(db):
-    search_run = SearchResults("my little bears")
-    espt_search = EsptSearch(search_run)
-    espt_search.analyze_query()
+    search_results = SearchResults("my little bears")
+    espt_search = EsptSearch(search_results)
+    espt_search.convert_search_query_to_espt()
 
     wordform = Wordform(text="pê-")
     wordform.lemma = wordform
     wordform.is_lemma = True
-    search_run.add_result(
+    search_results.add_result(
         Result(wordform=wordform, target_language_keyword_match=["bear"])
     )
 

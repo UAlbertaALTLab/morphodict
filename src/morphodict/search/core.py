@@ -85,7 +85,7 @@ class SearchResults:
         return [
             presentation.PresentationResult(
                 r,
-                search_run=self,
+                search_results=self,
                 display_mode=display_mode,
                 animate_emoji=animate_emoji,
                 show_emoji=show_emoji,
@@ -129,7 +129,7 @@ class SearchResults:
 
         Protip! Use keyword arguments as syntactic sugar for adding a dictionary, e.g.,
 
-            search_run.add_verbose_message(foo="bar")
+            search_results.add_verbose_message(foo="bar")
 
         Will appear as:
 

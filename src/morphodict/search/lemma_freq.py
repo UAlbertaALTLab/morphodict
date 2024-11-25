@@ -20,9 +20,9 @@ def load_lemma_data():
                 LEMMA_FREQUENCY[l] = int(l_freq) / max
 
 
-def get_lemma_freq(search_run):
+def get_lemma_freq(search_results):
     load_lemma_data()
-    [find_lemma_freq(result) for result in search_run.unsorted_results()]
+    [find_lemma_freq(result) for result in search_results.unsorted_results()]
 
 
 def find_lemma_freq(result):

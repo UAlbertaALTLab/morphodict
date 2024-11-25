@@ -22,32 +22,33 @@ from morphodict.utils.types import cast_away_optional
 
 
 def search(
-    *,
     query: str,
     include_affixes=True,
     include_auto_definitions=False,
-    inflect_english_phrases=False
+    inflect_english_phrases=False,
 ) -> SearchResults:
     """
     Perform an actual search, using the provided options.
 
     This class encapsulates the logic of which search methods to try, and in
-    which order, to build up results in a SearchResults.
+    which order, to build up results in a SearchResults object.
     """
-    search_run = SearchResults(
+    search_results = SearchResults(
         query=query, include_auto_definitions=include_auto_definitions
     )
-    initial_query_terms = search_run.query.query_terms[:]
 
-    if (search_run.query.espt or inflect_english_phrases) and (
+    initial_query_terms = search_results.query.query_terms[:]
+
+    # If we need to do english simple phrase search
+    if (search_results.query.espt or inflect_english_phrases) and (
         len(initial_query_terms) > 1
     ):
-        espt_search = EsptSearch(search_run)
-        espt_search.analyze_query()
+        espt_search = EsptSearch(search_results)
+        espt_search.convert_search_query_to_espt()
 
     if settings.MORPHODICT_ENABLE_CVD:
         cvd_search_type = cast_away_optional(
-            first_non_none_value(search_run.query.cvd, default=CvdSearchType.DEFAULT)
+            first_non_none_value(search_results.query.cvd, default=CvdSearchType.DEFAULT)
         )
 
         # For when you type 'cvd:exclusive' in a query to debug ONLY CVD results!
@@ -56,54 +57,54 @@ def search(
             def sort_by_cvd(r: Result):
                 return r.cosine_vector_distance
 
-            search_run.sort_function = sort_by_cvd
-            do_cvd_search(search_run)
-            return search_run
+            search_results.sort_function = sort_by_cvd
+            do_cvd_search(search_results)
+            return search_results
 
-    fetch_results(search_run)
+    fetch_results(search_results)
 
     if (
         settings.MORPHODICT_ENABLE_AFFIX_SEARCH
         and include_affixes
-        and not query_would_return_too_many_results(search_run.internal_query)
+        and not query_would_return_too_many_results(search_results.internal_query)
     ):
-        do_source_language_affix_search(search_run)
-        do_target_language_affix_search(search_run)
+        do_source_language_affix_search(search_results)
+        do_target_language_affix_search(search_results)
 
     if settings.MORPHODICT_ENABLE_CVD:
         if cvd_search_type.should_do_search() and not is_almost_certainly_cree(
-            search_run
+            search_results
         ):
-            do_cvd_search(search_run)
+            do_cvd_search(search_results)
 
-    if (search_run.query.espt or inflect_english_phrases) and (
+    if (search_results.query.espt or inflect_english_phrases) and (
         len(initial_query_terms) > 1
     ):
         espt_search.inflect_search_results()
 
-    find_pos_matches(search_run)
-    get_glossary_count(search_run)
-    get_lemma_freq(search_run)
+    find_pos_matches(search_results)
+    get_glossary_count(search_results)
+    get_lemma_freq(search_results)
 
-    return search_run
+    return search_results
 
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
 
-def is_almost_certainly_cree(search_run: SearchResults) -> bool:
+def is_almost_certainly_cree(search_results: SearchResults) -> bool:
     """
     Heuristics intended to AVOID doing an English search.
     """
-    query = search_run.query
+    query = search_results.query
 
     # If there is a word with two or more dashes in it, it's probably Cree:
     if any(term.count("-") >= 2 for term in query.query_terms):
-        search_run.add_verbose_message(
+        search_results.add_verbose_message(
             "Skipping CVD because query has too many hyphens"
         )
         return True
 
     if CREE_LONG_VOWEL.search(query.query_string):
-        search_run.add_verbose_message("Skipping CVD because query has Cree diacritics")
+        search_results.add_verbose_message("Skipping CVD because query has Cree diacritics")
         return True
 
     return False

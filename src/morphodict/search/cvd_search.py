@@ -19,17 +19,17 @@ from morphodict.lexicon.models import Wordform
 logger = logging.getLogger(__name__)
 
 
-def do_cvd_search(search_run: SearchResults):
+def do_cvd_search(search_results: SearchResults):
     """Use cosine vector distance to add results to the search run.
 
     Keywords from the query string are turned into vectors from Google News,
     added together, and then compared against pre-computed definition vectors.
     """
-    keys = extract_keyed_words(search_run.query.query_string, google_news_vectors())
+    keys = extract_keyed_words(search_results.query.query_string, google_news_vectors())
     if not keys:
         return
 
-    search_run.add_verbose_message(cvd_extracted_keys=keys)
+    search_results.add_verbose_message(cvd_extracted_keys=keys)
     query_vector = vector_for_keys(google_news_vectors(), keys)
 
     try:
@@ -71,4 +71,4 @@ def do_cvd_search(search_run: SearchResults):
         else:
             for wf in wordforms_for_query:
                 if wordform_query_matches(wordform_query, wf):
-                    search_run.add_result(Result(wf, cosine_vector_distance=distance))
+                    search_results.add_result(Result(wf, cosine_vector_distance=distance))

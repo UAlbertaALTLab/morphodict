@@ -5,9 +5,9 @@ from morphodict.utils import shared_res_dir
 DOCUMENT_FREQUENCY = {}
 
 
-def get_glossary_count(search_run):
+def get_glossary_count(search_results):
     prep_freqs()
-    [find_glossary_count(result) for result in search_run.unsorted_results()]
+    [find_glossary_count(result) for result in search_results.unsorted_results()]
 
 
 def prep_freqs():

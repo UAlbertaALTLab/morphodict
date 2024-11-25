@@ -57,8 +57,8 @@ def test_model_evaluation(expected, kwargs):
 
 @pytest.mark.skip()
 def test_cvd_exclusive_only_uses_cvd_for_ranking(db):
-    search_run = search(query="dance cvd:2")
-    results = search_run.sorted_results()
+    search_results = search(query="dance cvd:2")
+    results = search_results.sorted_results()
     assert len(results) > 2
 
     def is_sorted_by_cvd(results: list[Result]):
