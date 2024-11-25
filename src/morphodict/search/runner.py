@@ -34,8 +34,9 @@ def search(
 
     search_query = Query(query)
     search_results = SearchResults(
-        search_query,
-        include_auto_definitions=include_auto_definitions
+        auto=search_query.auto,
+        verbose=search_query.verbose,
+        include_auto_definitions=include_auto_definitions,
     )
 
     initial_query_terms = search_query.query_terms[:]
@@ -49,9 +50,9 @@ def search(
 
     if settings.MORPHODICT_ENABLE_CVD:
         cvd_search_type = first_non_none_value(
-            search_query.cvd, 
-            default=CvdSearchType.DEFAULT)
-        
+            search_query.cvd, default=CvdSearchType.DEFAULT
+        )
+
         # For when you type 'cvd:exclusive' in a query to debug ONLY CVD results!
         if cvd_search_type == CvdSearchType.EXCLUSIVE:
 
@@ -74,8 +75,7 @@ def search(
 
     if settings.MORPHODICT_ENABLE_CVD:
         if cvd_search_type.should_do_search() and not is_almost_certainly_cree(
-            search_query,
-            search_results
+            search_query, search_results
         ):
             do_cvd_search(search_query, search_results)
 
@@ -90,7 +90,9 @@ def search(
 
     return search_results
 
+
 CREE_LONG_VOWEL = re.compile("[êîôâēīōā]")
+
 
 def is_almost_certainly_cree(query: Query, search_results: SearchResults) -> bool:
     """
@@ -105,7 +107,9 @@ def is_almost_certainly_cree(query: Query, search_results: SearchResults) -> boo
         return True
 
     if CREE_LONG_VOWEL.search(query.query_string):
-        search_results.add_verbose_message("Skipping CVD because query has Cree diacritics")
+        search_results.add_verbose_message(
+            "Skipping CVD because query has Cree diacritics"
+        )
         return True
 
     return False

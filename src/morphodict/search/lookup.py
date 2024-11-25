@@ -136,7 +136,9 @@ def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:
     ]
 
 
-def fetch_results_from_target_language_keywords(query: core.Query,search_results: core.SearchResults):
+def fetch_results_from_target_language_keywords(
+    query: core.Query, search_results: core.SearchResults
+):
     for stemmed_keyword in stem_keywords(query.query_string):
         for wordform in Wordform.objects.filter(
             target_language_keyword__text__iexact=stemmed_keyword
@@ -146,7 +148,9 @@ def fetch_results_from_target_language_keywords(query: core.Query,search_results
             )
 
 
-def fetch_results_from_source_language_keywords(query: core.Query, search_results: core.SearchResults):
+def fetch_results_from_source_language_keywords(
+    query: core.Query, search_results: core.SearchResults
+):
     res = SourceLanguageKeyword.objects.filter(
         Q(text=to_source_language_keyword(query.query_string))
     )

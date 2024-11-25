@@ -1,6 +1,7 @@
 from .runner import search
 from .core import SearchResults
 
+
 def search_with_affixes(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
 ) -> SearchResults:

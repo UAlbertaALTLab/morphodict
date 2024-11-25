@@ -24,11 +24,11 @@ class SearchResults:
     and to add results to the result collection for future ranking.
     """
 
-    def __init__(self, query: Query, include_auto_definitions=None):
+    def __init__(self, auto=None, verbose=False, include_auto_definitions=None):
         self.include_auto_definitions = first_non_none_value(
-            query.auto, include_auto_definitions, default=False
+            auto, include_auto_definitions, default=False
         )
-        self.verbose = query.verbose
+        self.verbose = verbose
         self._results = {}
         self._verbose_messages = []
 
@@ -149,7 +149,6 @@ class SearchResults:
     @property
     def verbose_messages(self):
         return self._verbose_messages
-
 
     def __repr__(self):
         return f"SearchResults<query={self.query!r}>"

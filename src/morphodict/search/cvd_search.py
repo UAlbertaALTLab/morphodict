@@ -71,4 +71,6 @@ def do_cvd_search(query: Query, search_results: SearchResults):
         else:
             for wf in wordforms_for_query:
                 if wordform_query_matches(wordform_query, wf):
-                    search_results.add_result(Result(wf, cosine_vector_distance=distance))
+                    search_results.add_result(
+                        Result(wf, cosine_vector_distance=distance)
+                    )
