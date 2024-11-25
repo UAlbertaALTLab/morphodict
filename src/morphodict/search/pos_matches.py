@@ -1,12 +1,13 @@
 from morphodict.search.core import SearchResults
 from morphodict.phrase_translate.fst import source_phrase_analyses
+from morphodict.search.espt import EsptSearch
 from morphodict.analysis import rich_analyze_relaxed
 
 
-def find_pos_matches(search_results: SearchResults) -> None:
-    if len(search_results.verbose_messages) <= 1:
+def find_pos_matches(tag_source: EsptSearch | None, search_results: SearchResults) -> None:
+    if not tag_source:
         return
-    tags = search_results.verbose_messages[1].get("tags")
+    tags = tag_source.tags
     [pos_match(result, tags) for result in search_results.unsorted_results()]
 
 

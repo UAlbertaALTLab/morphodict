@@ -43,6 +43,7 @@ class EsptSearch:
         self.search_results = search_results
         self.query = query
         self.query_analyzed_ok = False
+        self.tags = None
 
     def convert_search_query_to_espt(self):
         """Analyze this search’s search_results query, possibly updating it.
@@ -80,6 +81,7 @@ class EsptSearch:
             tags=analyzed_query.tags,
             new_tags=self.new_tags,
         )
+        self.tags = analyzed_query.tags
 
     def inflect_search_results(self):
         if not self.query_analyzed_ok:

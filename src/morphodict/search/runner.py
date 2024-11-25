@@ -49,6 +49,8 @@ def search(
         espt_search = EsptSearch(search_query, search_results)
         espt_search.convert_search_query_to_espt()
 
+    # Now, check if we were asked to do only vector distance results, and if so,
+    # compute them and return them:
     if settings.MORPHODICT_ENABLE_CVD:
         cvd_search_type: CvdSearchType = first_non_none_value(
             search_query.cvd, default=CvdSearchType.DEFAULT
@@ -64,8 +66,13 @@ def search(
             do_cvd_search(search_query, search_results)
             return search_results
 
+    # We were NOT asked for only vector distance results, so now we actually
+    # go and perform the search.
+
+    # First, fetch keyword-based and FST-based orthography-relaxed results
     fetch_results(search_query, search_results)
 
+    # If allowed, add affix search candidates
     if (
         settings.MORPHODICT_ENABLE_AFFIX_SEARCH
         and include_affixes
@@ -74,21 +81,31 @@ def search(
         do_source_language_affix_search(search_query, search_results)
         do_target_language_affix_search(search_query, search_results)
 
+    # Now, if we wanted to do vector search (not exclusively), add the results.
     if settings.MORPHODICT_ENABLE_CVD:
         if cvd_search_type.should_do_search() and not is_almost_certainly_cree(
             search_query, search_results
         ):
             do_cvd_search(search_query, search_results)
 
+    # If we did an english phrase search, we have to inflect back the results!
     if (search_query.espt or inflect_english_phrases) and (
         len(initial_query_terms) > 1
     ):
         espt_search.inflect_search_results()
 
-    find_pos_matches(search_results)
+    # Annotate every entry in search results with the POS match when that is available 
+    if espt_search:
+        find_pos_matches(espt_search, search_results)
+    
+    # Annotate every entry with a frequency count from the glossary
     get_glossary_count(search_results)
+
+    # Annotate every entry with a lemma frequency from lemma_frequency.txt
     get_lemma_freq(search_results)
 
+    # Return. NOTE THAT WE HAVE NOT SORTED RESULTS YET!
+    # This will be done when we call sorted_results
     return search_results
 
 

@@ -21,8 +21,16 @@ logger = logging.getLogger(__name__)
 
 
 def fetch_results(query: core.Query, search_results: core.SearchResults):
+    # First collect some candidate results via keywords.
+    # We split the query string into keywords, and collect all the entries that
+    # match exactly as keywords in the database, both source and target.
+
     fetch_results_from_target_language_keywords(query, search_results)
     fetch_results_from_source_language_keywords(query, search_results)
+
+    # Then we proceed to analyze the query, if successfull, we look for those 
+    # entries in the dictionary that share the analysis with the FST result.
+    # This introduces source-level spelling relaxation if the FST supports it.
 
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
@@ -51,6 +59,8 @@ def fetch_results(query: core.Query, search_results: core.SearchResults):
     # fst_analyses has now been thinned by calls to `fst_analyses.remove()`
     # above; remaining items are analyses which are not in the database,
     # although their lemmas should be.
+    #
+    # Therefore, we will make on the go the extra entries.
     for analysis in fst_analyses:
         # When the user query is outside of paradigm tables
         # e.g. mad preverb and reduplication: ê-mâh-misi-nâh-nôcihikocik
