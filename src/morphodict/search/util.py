@@ -5,7 +5,7 @@ from cree_sro_syllabics import syllabics2sro
 T = TypeVar("T")
 
 
-def first_non_none_value(*l: T, default: Optional[T] = None) -> T:
+def first_non_none_value(*l: Optional[T], default: Optional[T] = None) -> T:
     """
     Return the first item in the iterable that is not None.
 

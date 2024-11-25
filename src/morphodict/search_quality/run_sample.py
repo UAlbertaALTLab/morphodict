@@ -44,10 +44,10 @@ def gen_run_sample(
 
         combined_results[query] = {
             "time_taken_seconds": time_taken,
-            "results": results,
+            "results": results.serialized_presentation_results(),
         }
 
-        count = count_results(results)
+        count = count_results(results.serialized_presentation_results())
         yield f"{count:,} results for ‘{query}’ in {time_taken:0.3}s"
 
     # "wt" because although gzip is a binary file format, json.dump is going to

@@ -33,6 +33,7 @@ def search(
     """
 
     search_query = Query(query)
+
     search_results = SearchResults(
         auto=search_query.auto,
         verbose=search_query.verbose,
@@ -49,7 +50,7 @@ def search(
         espt_search.convert_search_query_to_espt()
 
     if settings.MORPHODICT_ENABLE_CVD:
-        cvd_search_type = first_non_none_value(
+        cvd_search_type: CvdSearchType = first_non_none_value(
             search_query.cvd, default=CvdSearchType.DEFAULT
         )
 
