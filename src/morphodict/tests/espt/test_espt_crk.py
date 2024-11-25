@@ -1,6 +1,6 @@
 import pytest
 
-from morphodict.search.core import SearchResults
+from morphodict.search.core import SearchResults, Query
 from morphodict.search.espt import EsptSearch, PhraseAnalyzedQuery
 from morphodict.search.types import Result
 from morphodict.lexicon.models import Wordform
@@ -92,11 +92,12 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
     ],
 )
 def test_espt_search(db, search, params):
-    search_results = SearchResults(search)
-    espt_search = EsptSearch(search_results)
+    search_query = Query(search)
+    search_results = SearchResults(search_query)
+    espt_search = EsptSearch(search_query,search_results)
     espt_search.convert_search_query_to_espt()
-    assert search_results.query.query_terms == params["expected_query_terms"]
-    assert search_results.query.query_string == " ".join(params["expected_query_terms"])
+    assert search_query.query_terms == params["expected_query_terms"]
+    assert search_query.query_string == " ".join(params["expected_query_terms"])
     assert espt_search.new_tags == params["expected_new_tags"]
 
     lemma1 = Wordform.objects.get(slug=params["slug"], is_lemma=True)
@@ -116,8 +117,9 @@ def test_espt_search(db, search, params):
 
 
 def test_espt_search_doesnt_crash_when_no_analysis(db):
-    search_results = SearchResults("my little bears")
-    espt_search = EsptSearch(search_results)
+    search_query = Query("my little bears")
+    search_results = SearchResults(search_query)
+    espt_search = EsptSearch(search_query,search_results)
     espt_search.convert_search_query_to_espt()
 
     wordform = Wordform(text="pê-")

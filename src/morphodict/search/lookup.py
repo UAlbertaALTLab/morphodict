@@ -20,14 +20,14 @@ from .types import Result
 logger = logging.getLogger(__name__)
 
 
-def fetch_results(search_results: core.SearchResults):
-    fetch_results_from_target_language_keywords(search_results)
-    fetch_results_from_source_language_keywords(search_results)
+def fetch_results(query: core.Query, search_results: core.SearchResults):
+    fetch_results_from_target_language_keywords(query, search_results)
+    fetch_results_from_source_language_keywords(query, search_results)
 
     # Use the spelling relaxation to try to decipher the query
     #   e.g., "atchakosuk" becomes "acâhkos+N+A+Pl" --
     #         thus, we can match "acâhkos" in the dictionary!
-    fst_analyses = set(rich_analyze_relaxed(search_results.internal_query))
+    fst_analyses = set(rich_analyze_relaxed(query.query_string))
     # print([a.tuple for a in fst_analyses])
 
     db_matches = list(
@@ -40,7 +40,7 @@ def fetch_results(search_results: core.SearchResults):
                 wf,
                 source_language_match=wf.text,
                 query_wordform_edit_distance=get_modified_distance(
-                    wf.text, search_results.internal_query
+                    wf.text, query.query_string
                 ),
             )
         )
@@ -61,7 +61,7 @@ def fetch_results(search_results: core.SearchResults):
             logger.error(
                 "Cannot generate normative form for analysis: %s (query: %s)",
                 analysis,
-                search_results.internal_query,
+                query.query_string,
             )
             continue
 
@@ -69,7 +69,7 @@ def fetch_results(search_results: core.SearchResults):
         # closest to what the user typed.
         normatized_user_query = min(
             normatized_form_for_analysis,
-            key=lambda f: get_modified_distance(f, search_results.internal_query),
+            key=lambda f: get_modified_distance(f, query.query_string),
         )
 
         possible_lemma_wordforms = best_lemma_matches(
@@ -87,7 +87,7 @@ def fetch_results(search_results: core.SearchResults):
                     synthetic_wordform,
                     analyzable_inflection_match=True,
                     query_wordform_edit_distance=get_modified_distance(
-                        search_results.internal_query,
+                        query.query_string,
                         normatized_user_query,
                     ),
                 )
@@ -136,8 +136,8 @@ def best_lemma_matches(analysis, possible_lemmas) -> list[Wordform]:
     ]
 
 
-def fetch_results_from_target_language_keywords(search_results):
-    for stemmed_keyword in stem_keywords(search_results.internal_query):
+def fetch_results_from_target_language_keywords(query: core.Query,search_results: core.SearchResults):
+    for stemmed_keyword in stem_keywords(query.query_string):
         for wordform in Wordform.objects.filter(
             target_language_keyword__text__iexact=stemmed_keyword
         ):
@@ -146,9 +146,9 @@ def fetch_results_from_target_language_keywords(search_results):
             )
 
 
-def fetch_results_from_source_language_keywords(search_results):
+def fetch_results_from_source_language_keywords(query: core.Query, search_results: core.SearchResults):
     res = SourceLanguageKeyword.objects.filter(
-        Q(text=to_source_language_keyword(search_results.internal_query))
+        Q(text=to_source_language_keyword(query.query_string))
     )
     for kw in res:
         search_results.add_result(
@@ -156,7 +156,7 @@ def fetch_results_from_source_language_keywords(search_results):
                 kw.wordform,
                 source_language_keyword_match=[kw.text],
                 query_wordform_edit_distance=get_modified_distance(
-                    search_results.internal_query, kw.wordform.text
+                    query.query_string, kw.wordform.text
                 ),
             )
         )

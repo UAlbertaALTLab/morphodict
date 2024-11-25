@@ -235,7 +235,7 @@ class PresentationResult:
             "morphemes": self.morphemes,
             "lemma_morphemes": self.lemma_morphemes,
         }
-        if self._search_results.query.verbose:
+        if self._search_results.verbose:
             cast(Any, ret)["verbose_info"] = self._result
 
         return ret

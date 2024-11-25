@@ -39,8 +39,9 @@ class EsptSearch:
         other methods.
     """
 
-    def __init__(self, search_results):
+    def __init__(self, query, search_results):
         self.search_results = search_results
+        self.query = query
         self.query_analyzed_ok = False
 
     def convert_search_query_to_espt(self):
@@ -53,7 +54,7 @@ class EsptSearch:
         """
         self.new_tags = []
         analyzed_query = PhraseAnalyzedQuery(
-            self.search_results.internal_query,
+            self.query.query_string,
             add_verbose_message=self.search_results.add_verbose_message,
         )
         if analyzed_query.has_tags:
@@ -71,7 +72,7 @@ class EsptSearch:
                 self.search_results.add_verbose_message(espt_analysis_error=repr(e))
                 return
 
-            self.search_results.query.replace_query(analyzed_query.filtered_query)
+            self.query.replace_query(analyzed_query.filtered_query)
             self.query_analyzed_ok = True
 
         self.search_results.add_verbose_message(

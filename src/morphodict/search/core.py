@@ -24,18 +24,19 @@ class SearchResults:
     and to add results to the result collection for future ranking.
     """
 
-    def __init__(self, query: str, include_auto_definitions=None):
-        self.query = Query(query)
+    def __init__(self, query: Query, include_auto_definitions=None):
         self.include_auto_definitions = first_non_none_value(
-            self.query.auto, include_auto_definitions, default=False
+            query.auto, include_auto_definitions, default=False
         )
+        self.verbose = query.verbose
         self._results = {}
         self._verbose_messages = []
 
-    include_auto_definition: bool
+    include_auto_definitions: bool
     _results: dict[WordformKey, types.Result]
     VerboseMessage = dict[str, str]
     _verbose_messages: list[VerboseMessage]
+    verbose: bool
     # Set this to use a custom sort function
     sort_function: Optional[Callable[[Result], Any]] = None
 
@@ -149,9 +150,6 @@ class SearchResults:
     def verbose_messages(self):
         return self._verbose_messages
 
-    @property
-    def internal_query(self):
-        return self.query.query_string
 
     def __repr__(self):
         return f"SearchResults<query={self.query!r}>"

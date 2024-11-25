@@ -129,7 +129,7 @@ def index(request):  # pragma: no cover
     context["show_dict_source_setting"] = settings.SHOW_DICT_SOURCE_SETTING
     context["show_morphemes"] = request.COOKIES.get("show_morphemes")
     context["show_ic"] = request.COOKIES.get("show_inflectional_category")
-    if search_results and search_results.verbose_messages and search_results.query.verbose:
+    if search_results and search_results.verbose_messages and search_results.verbose:
         context["verbose_messages"] = json.dumps(
             search_results.verbose_messages, indent=2, ensure_ascii=False
         )

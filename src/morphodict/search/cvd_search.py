@@ -1,7 +1,7 @@
 import itertools
 import logging
 
-from morphodict.search.core import SearchResults
+from morphodict.search.core import SearchResults, Query
 from morphodict.search.types import Result
 from morphodict.cvd import (
     definition_vectors,
@@ -19,13 +19,13 @@ from morphodict.lexicon.models import Wordform
 logger = logging.getLogger(__name__)
 
 
-def do_cvd_search(search_results: SearchResults):
+def do_cvd_search(query: Query, search_results: SearchResults):
     """Use cosine vector distance to add results to the search run.
 
     Keywords from the query string are turned into vectors from Google News,
     added together, and then compared against pre-computed definition vectors.
     """
-    keys = extract_keyed_words(search_results.query.query_string, google_news_vectors())
+    keys = extract_keyed_words(query.query_string, google_news_vectors())
     if not keys:
         return
 
