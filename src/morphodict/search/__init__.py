@@ -1,9 +1,9 @@
 from .runner import search
-
+from .core import SearchResults
 
 def search_with_affixes(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
-):
+) -> SearchResults:
     """
     Search for wordforms matching:
      - the wordform text
@@ -21,7 +21,7 @@ def search_with_affixes(
 
 def api_search(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
-):
+) -> SearchResults:
     """
     Search, trying to match full wordforms or keywords within definitions.
 
