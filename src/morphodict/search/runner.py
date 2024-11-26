@@ -43,6 +43,7 @@ def search(
     initial_query_terms = search_query.query_terms[:]
 
     # If we need to do english simple phrase search
+    espt_search = None
     if (search_query.espt or inflect_english_phrases) and (
         len(initial_query_terms) > 1
     ):
