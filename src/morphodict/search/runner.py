@@ -92,7 +92,7 @@ def search(
     # If we did an english phrase search, we have to inflect back the results!
     if (search_query.espt or inflect_english_phrases) and (
         len(initial_query_terms) > 1
-    ):
+    ) and espt_search:
         espt_search.inflect_search_results()
 
     # Annotate every entry in search results with the POS match when that is available 
