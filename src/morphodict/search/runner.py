@@ -71,7 +71,8 @@ def search(
     # go and perform the search.
 
     # First, fetch keyword-based and FST-based orthography-relaxed results
-    fetch_results(search_query, search_results)
+    if not search_query.nofetch:
+        fetch_results(search_query, search_results)
 
     # If allowed, add affix search candidates
     if (
