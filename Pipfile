@@ -29,6 +29,7 @@ sphinx = "*"
 myst-parser = "*"
 jupyter = "*"
 
+
 [packages]
 colorama = "*"
 coverage = "*"
@@ -51,6 +52,7 @@ scipy = "*"
 more-itertools = "*"
 types-requests = "*"
 requests = "*"
+nltk = "*"
 
 [scripts]
 # unit tests

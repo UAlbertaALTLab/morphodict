@@ -15,6 +15,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 import secrets
 from typing import Optional, TypedDict, Dict, Callable, Any
+import nltk.data as nltk_data
 
 from environs import Env
 
@@ -415,3 +416,6 @@ Orthography = TypedDict("Orthography", {"name": str, "converter": str}, total=Fa
 Orthographies = TypedDict(
     "Orthographies", {"default": str, "available": Dict[str, Orthography]}
 )
+
+# Location of wordnet data for nltk
+nltk_data.path = [ BASE_DIR / ".." / "morphodict" / "resources" / "nltk_data" ]
