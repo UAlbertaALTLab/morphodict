@@ -46,6 +46,12 @@ class DiacriticPreservingJsonEncoder(DjangoJSONEncoder):
         kwargs = {**kwargs, "ensure_ascii": False}
         super().__init__(*args, **kwargs)
 
+class RapidWords(models.Model):
+    index = models.CharField(max_length=MAX_WORDFORM_LENGTH, primary_key=True)
+    domain = models.CharField(max_length=MAX_TEXT_LENGTH)
+
+class WordNetSynset(models.Model):
+    name = models.CharField(max_length=MAX_TEXT_LENGTH, primary_key=True)
 
 class Wordform(models.Model):
     # Queries always do .select_related("lemma"):
@@ -114,15 +120,6 @@ class Wordform(models.Model):
         """,
     )
 
-    rw_domains = models.CharField(
-        max_length=2048,
-        blank=True,
-        null=True,
-        help_text="""
-            RapidWords domains for an entry, separated by a semicolon
-            """,
-    )
-
     rw_indices = models.CharField(
         max_length=2048,
         blank=True,
@@ -132,6 +129,8 @@ class Wordform(models.Model):
                 """,
     )
 
+    rapidwords = models.ManyToManyField(RapidWords, related_name="wordforms")
+
     wn_synsets = models.CharField(
         max_length=2048,
         blank=True,
@@ -140,6 +139,8 @@ class Wordform(models.Model):
                 WordNet synsets for an entry, separated by a semicolon
                 """,
     )
+
+    synsets = models.ManyToManyField(WordNetSynset, related_name="wordforms")
 
     import_hash = models.CharField(
         max_length=MAX_WORDFORM_LENGTH,
@@ -158,6 +159,7 @@ class Wordform(models.Model):
             #  - affix tree intialization
             #  - sitemap generation
             models.Index(fields=["is_lemma", "text"]),
+            models.Index(fields=["slug"])
         ]
 
     def __str__(self):
