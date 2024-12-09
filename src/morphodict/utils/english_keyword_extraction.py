@@ -5,7 +5,7 @@ import snowballstemmer
 
 word_pattern = re.compile(r"[\w.\-/']+")
 
-stop_words = {"a", "an", "the", "s/he", "s.o.", "s.t."}
+stop_words = {"a", "an", "the", "s/he", "s.o.", "s.t.", "it/him"}
 
 stemmer = snowballstemmer.EnglishStemmer()
 
