@@ -1,0 +1,44 @@
+{% spaceless %}
+{% load morphodict_extras %}
+    {% if verbose_messages %}
+        <li class="search-results__result box">
+            <h3>Messages from search run</h3>
+            <pre>{{ verbose_messages }}</pre>
+        </li>
+    {% endif %}
+    {% for result in search_results %}
+    {% with has_more=search_results|has_next:forloop.counter0 %}
+    
+    <div class="synset" style="background-color: var(--menu-hover-bg-color); border: 4px solid var(--prose-title-color); border-radius:5px; padding: 10px; margin-left:10px; margin-right:10px; margin-top:.5cm; margin-bottom:.5cm;">
+        <a name="result-synset-{{result.wn_entry.nltk_name}}"></a>
+        <section class="prose box box--spaced">
+            <h2 class="prose__section-title">{{result.wn_entry.original_str}} ({{result.wn_entry.pos}})</h2>
+            <p>
+              {{result.wn_entry.definition}}
+            </p>
+            {% if result.wn_entry.synonyms|length > 1 %}
+            <p><strong>Like</strong>:
+            <em>{{result.wn_entry.synonyms|join:", "}}</em>.</p>
+            {% endif %}
+            {% if has_more %}
+            {% with next_element=search_results|next:forloop.counter0 %}
+            <a href="#result-synset-{{next_element.wn_entry.nltk_name}}" style="text-align:right;">Jump to next meaning...</a>
+            {% endwith %}
+            {% endif %}
+          </section>
+        {% for result in result.results %}
+        <li class="search-results__result" data-cy="search-results" style="padding-left: .5cm; padding-right: .5cm">
+            {% include './components/search-result.html' with result=result %}
+        </li>
+        {% endfor %}
+
+    </div>
+    {% endwith %}
+    {% empty %}
+        <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
+            No results found for
+            <output class="query">{{ query_string }}</output>
+        </li>
+    {% endfor %}
+    {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
+{% endspaceless %}

@@ -1,5 +1,6 @@
-from .runner import search
+from .runner import search, wordnet_search as wordnet_runner
 from .core import SearchResults
+from .query import Query
 
 
 def search_with_affixes(
@@ -35,3 +36,11 @@ def api_search(
         include_auto_definitions=include_auto_definitions,
         inflect_english_phrases=inflect_english_phrases,
     ).serialized_presentation_results()
+
+def wordnet_search(
+        query:str) -> list[tuple[str, SearchResults]] | None :
+    # If we are doing an english simple phrase
+    search_query = Query(query)
+    if search_query.wn:
+        return wordnet_runner(search_query)
+    return None

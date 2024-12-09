@@ -14,7 +14,7 @@ from pathlib import Path
 from django.conf import settings
 from django.core.management import BaseCommand, call_command
 from django.db import transaction
-from django.db.models import Max
+from django.db.models import Max, Q
 from tqdm import tqdm
 
 from morphodict.paradigm.generation import default_paradigm_manager
@@ -26,6 +26,7 @@ from morphodict.utils.english_keyword_extraction import stem_keywords
 from morphodict.analysis import RichAnalysis, strict_generator
 from morphodict.lexicon import DEFAULT_IMPORTJSON_FILE
 from morphodict.lexicon.management.commands.buildtestimportjson import entry_sort_key
+from morphodict.search.types import WordnetEntry
 from morphodict.lexicon.models import (
     Wordform,
     Definition,
@@ -33,6 +34,8 @@ from morphodict.lexicon.models import (
     TargetLanguageKeyword,
     SourceLanguageKeyword,
     ImportStamp,
+    RapidWords,
+    WordNetSynset
 )
 from morphodict.lexicon.util import to_source_language_keyword
 
@@ -298,7 +301,7 @@ class Import:
             existing_slugs = self.gather_slugs()
 
         form_definitions = []
-
+        
         for entry in tqdm(self.data, smoothing=0):
             if "formOf" in entry:
                 form_definitions.append(entry)
@@ -327,38 +330,19 @@ class Import:
             elif (analysis := entry.get("analysis")) is not None:
                 fst_lemma = analysis[1]
 
-            if "rw_domains" in entry:
-                rw_domains = "; ".join(entry["rw_domains"])
-            else:
-                rw_domains = ""
-
-            if "rw_indices" in entry:
-                rw_indices = "; ".join(
-                    [index for list in entry["rw_indices"].values() for index in list]
-                )
-            else:
-                rw_indices = ""
-
-            if "wn_synsets" in entry:
-                wn_synsets = "; ".join(entry["wn_synsets"])
-            else:
-                wn_synsets = ""
-
             wf = Wordform(
                 text=entry["head"],
                 raw_analysis=entry.get("analysis", None),
                 fst_lemma=fst_lemma,
                 paradigm=entry.get("paradigm", None),
                 slug=entry["slug"],
-                rw_domains=rw_domains,
-                rw_indices=rw_indices,
-                wn_synsets=wn_synsets,
                 is_lemma=True,
                 linguist_info=entry.get("linguistInfo", {}),
                 import_hash=freshness_check.importjson_hash_for_slug(entry["slug"]),
             )
             self.wordform_buffer.add(wf)
             assert wf.id is not None
+
             wf.lemma_id = wf.id
 
             if "senses" not in entry:
@@ -385,6 +369,55 @@ class Import:
 
         # Make sure everything is saved for upcoming formOf queries
         self.flush_insert_buffers()
+        
+        wordforms = Wordform.objects.all()
+        for wf in tqdm(wordforms.iterator(),total=wordforms.count()):
+            if not wf.linguist_info:
+                continue
+
+            if "rw_indices" in wf.linguist_info:
+                rapidwords = {rw for l in wf.linguist_info["rw_indices"].values() for rw in l}
+                for rw in rapidwords:
+                    index = rw.strip()
+                    try:
+                        rapidword = RapidWords.objects.get(index=index)
+                    except RapidWords.DoesNotExist:
+                        # Try flexible search
+                        try:
+                            try:
+                                candidates = [RapidWords.objects.get(index=".".join(index.split(".")[:-1]))]
+                            except RapidWords.DoesNotExist:
+                                query = Q(domain__iexact=wf.linguist_info["rw_domains"][0])
+                                for domain in wf.linguist_info["rw_domains"][1:]:
+                                    query |= Q(domain__iexact=domain)
+                                universe = RapidWords.objects.filter(query)
+                                candidates = [x for x in universe if index.startswith(x.index)]
+                        except:
+                            candidates=[]
+                        if len(candidates)>0:
+                            candidates.sort(key=lambda x:len(x.index),reverse=True)
+                            rapidword = candidates[0]
+                        else:
+                            print(f"WARNING: ImportJSON error: Slug {wf.slug} is annotated with nonexistent {index} RW index")
+                    if rapidword:
+                        wf.rapidwords.add(rapidword)
+
+            if "wn_domains" in wf.linguist_info:
+                for wn in wf.linguist_info["wn_domains"]:
+                    try:
+                        normalized_name = str(WordnetEntry(wn.strip()))
+                    except:
+                        # This means that the annotated wordnet does not actually live in the dataset.
+                        # Most likely issue is that entry has a different canonical name, either because:
+                        # - canonical POS tag is different (should be "a", "s", "r", "n", "v",
+                        #   which stand for ADJ, ADJ_SAT, ADV, NOUN, VERB)
+                        # - entry annotated with a non-canonical lemma.  Use the canonical lemma appearing in
+                        #   "name" in our wordnet instance site.
+                        print(f"WARNING: ImportJSON error: Slug {wf.slug} is annotated with nonexistent {wn.strip()} WN domain")
+                    if normalized_name:
+                        synset, _ = WordNetSynset.objects.get_or_create(name=normalized_name)
+                        wf.synsets.add(synset)
+
 
         for entry in form_definitions:
             if self.incremental and freshness_check.is_fresh(entry["formOf"]):

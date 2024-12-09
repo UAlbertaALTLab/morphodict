@@ -496,7 +496,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPC"
     },
     "paradigm": null,
@@ -521,7 +521,7 @@
         "CW": [],
         "MD": ["9.2.3.5"]
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "PrA"
     },
     "paradigm": "demonstrative-pronouns",
@@ -597,7 +597,7 @@
         "CW": [],
         "MD": ["9.2.3.4"]
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "PrA"
     },
     "paradigm": null,
@@ -722,7 +722,7 @@
     "linguistInfo": {
       "inflectional_category": "VAI-1",
       "pos": "V",
-      "rw_domains": ["Here", "here_there", "location"],
+      "rw_domains": ["Here", "here_there", "exist"],
       "rw_indices": {
         "CW": ["8.5.1.2", "9.1.1.1.1"],
         "MD": ["8.5.1"]
@@ -767,7 +767,7 @@
     "linguistInfo": {
       "inflectional_category": "VII-2v",
       "pos": "V",
-      "rw_domains": ["Here"],
+      "rw_domains": ["Here", "Exist"],
       "rw_indices": {
         "CW": ["8.5.1.2", "9.1.1.1.1"],
         "MD": []
@@ -821,7 +821,7 @@
     "linguistInfo": {
       "inflectional_category": "VTI-2",
       "pos": "V",
-      "rw_domains": ["Own", "finance", "have_wealth", "own_possess"],
+      "rw_domains": ["Own", "finance", "have_wealth", "own_possess", "Wear_clothing"],
       "rw_indices": {
         "CW": ["6.8.1.1.1", "5.3.7.1"],
         "MD": ["6.8.1.1"]
@@ -1265,7 +1265,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Interjection)"],
+      "wn_domains": [],
       "wordclass": "IPJ"
     },
     "paradigm": null,
@@ -1349,7 +1349,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPV"
     },
     "paradigm": null,
@@ -1381,7 +1381,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPV"
     },
     "paradigm": null,
@@ -1415,7 +1415,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPV"
     },
     "paradigm": null,
@@ -2471,7 +2471,7 @@
         "CW": [],
         "MD": ["9.2.3"]
       },
-      "wn_domains": ["N/A (Pronoun)"],
+      "wn_domains": [],
       "wordclass": "PrA"
     },
     "paradigm": null,
@@ -2506,7 +2506,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Pronoun)"],
+      "wn_domains": [],
       "wordclass": "PrA"
     },
     "paradigm": null,
@@ -2767,7 +2767,7 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "rw_domains": ["Grandfather", "grandfather_grandmother", "relationships"],
+      "rw_domains": ["Grandfather", "grandfather_grandmother", "relationships", "Old_person"],
       "rw_indices": {
         "CW": ["4.1.9.1.1.1", "2.6.4.5.1"],
         "MD": ["4.1.9.1.1"]
@@ -2922,7 +2922,7 @@
         "CW": [],
         "MD": ["9.5.1.6.1"]
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPC"
     },
     "paradigm": null,
@@ -3057,7 +3057,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Pronoun)"],
+      "wn_domains": [],
       "wordclass": "IPC"
     },
     "paradigm": null,
@@ -3100,7 +3100,7 @@
         "CW": [],
         "MD": ["9.2.3.5"]
       },
-      "wn_domains": ["N/A (Pronoun)"],
+      "wn_domains": [],
       "wordclass": "PrI"
     },
     "paradigm": "demonstrative-pronouns",
@@ -3408,7 +3408,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPV"
     },
     "paradigm": null,
@@ -3464,7 +3464,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Functional)"],
+      "wn_domains": [],
       "wordclass": "IPC"
     },
     "paradigm": null,
@@ -3488,7 +3488,7 @@
         "CW": [],
         "MD": []
       },
-      "wn_domains": ["N/A (Interjection)"],
+      "wn_domains": [],
       "wordclass": "IPJ"
     },
     "paradigm": null,

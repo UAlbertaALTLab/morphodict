@@ -39,7 +39,7 @@ def treat_query(query_string):
 
 
 class Query:
-    BOOL_KEYS = ["verbose", "auto", "espt", "nofetch"]
+    BOOL_KEYS = ["verbose", "auto", "espt", "nofetch", "wn"]
 
     def __init__(self, query_string):
         self.raw_query_string = query_string
@@ -95,3 +95,4 @@ class Query:
     cvd: Optional[CvdSearchType] = None
     espt: Optional[bool] = None
     nofetch: Optional[bool] = None
+    wn: Optional[bool] = None

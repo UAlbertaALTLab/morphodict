@@ -7,17 +7,16 @@ LEMMA_FREQUENCY = {}
 
 def load_lemma_data():
     lines = Path(shared_res_dir / "lemma_frequency.txt").read_text().splitlines()
-    max = 32334
+    # max = 32334
     for line in lines:
         cells = line.split("\t")
-        # todo: use the third row
         if len(cells) >= 2:
             a_freq, a, l_freq, l, b, c, d, e = cells
             if l not in LEMMA_FREQUENCY:
                 # we want to normalize the lemma frequency
                 # so I found the max of 32334
                 # and now we divide by that
-                LEMMA_FREQUENCY[l] = int(l_freq) / max
+                LEMMA_FREQUENCY[l] = int(l_freq) #/ max
 
 
 def get_lemma_freq(search_results):

@@ -15,9 +15,10 @@ from morphodict.search.espt import EsptSearch
 from morphodict.search.lookup import fetch_results
 from morphodict.search.pos_matches import find_pos_matches
 from morphodict.search.query import CvdSearchType, Query
-from morphodict.search.types import Result
+from morphodict.search.types import Result, WordnetEntry
 from morphodict.search.util import first_non_none_value
-
+from morphodict.search.wordnet import WordNetSearch
+from morphodict.lexicon.models import Wordform
 
 def search(
     query: str,
@@ -133,3 +134,30 @@ def is_almost_certainly_cree(query: Query, search_results: SearchResults) -> boo
         return True
 
     return False
+
+def wordnet_search(query:Query) -> list[tuple[WordnetEntry,SearchResults]] | None :
+    wordnet_search = WordNetSearch(query)
+    if len(wordnet_search.synsets) > 0:
+        # Wordnet search was successful _at the wordnet level_
+        # Now we must collect the results
+        results = []
+        for synset in wordnet_search.synsets:
+            wn_results = SearchResults()
+            wn_results.sort_function = lambda x: 0-x.lemma_freq if x.lemma_freq else 0
+            wordforms = synset.wordforms.all()
+            if wordforms.count() > 0 :
+                for wordform in wordforms:
+                    r = Result(
+                            wordform,
+                            target_language_wordnet_match=[synset.name]
+                        )
+                    wn_results.add_result(r)
+                wn_entry = WordnetEntry(synset.name)
+                wn_entry.original_str = " ".join(query.query_terms)
+                get_lemma_freq(wn_results)
+                for result in wn_results.unsorted_results():
+                    result.relevance_score = result.lemma_freq
+                results.append((wn_entry,wn_results))
+        return results
+
+    return None

@@ -94,6 +94,8 @@
             <ol class="search-results__results" id="search-result-list">
                 {% if did_search %}
                     {% include "morphodict/search-results.html" %}
+                {% elif did_wordnet_search %}
+                    {% include "morphodict/wordnet-results.html" %}
                 {% endif %}
             </ol>
         </div>

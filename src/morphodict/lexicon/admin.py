@@ -8,8 +8,10 @@ from morphodict.lexicon.models import (
     TargetLanguageKeyword,
     Wordform,
     SourceLanguageKeyword,
+    WordNetSynset
 )
 
+admin.site.register(WordNetSynset)
 
 # https://stackoverflow.com/a/1720961/14558
 def admin_url_for(obj):

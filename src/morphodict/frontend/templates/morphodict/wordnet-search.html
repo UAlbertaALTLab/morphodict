@@ -1,0 +1,12 @@
+{% extends 'morphodict/base.html' %}
+<!-- -->
+{% load morphodict_extras %}
+<!-- -->
+{% block prose %}
+<section id="query-help" class="prose box box--spaced">
+  <h2 class="prose__section-title">Semantic search for <output class="query">{{ query_string }}</output></h2>
+  <p>
+    There might be multiple english meanings for your search.  Here are some options:
+  </p>
+</section>
+{% endblock %}

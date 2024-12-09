@@ -11,7 +11,7 @@ from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 import morphodict.analysis
-from morphodict.search import presentation, search_with_affixes
+from morphodict.search import presentation, search_with_affixes, wordnet_search
 from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.views import paradigm_context_for_lemma
 from morphodict.phrase_translate.fst import (
@@ -96,6 +96,11 @@ def index(request):  # pragma: no cover
     if user_query:
         include_auto_definitions = should_include_auto_definitions(request)
         inflect_english_phrases = should_inflect_phrases(request)
+
+        wordnet_results = wordnet_search(user_query)
+        if wordnet_results:
+            return wordnet(request, user_query, wordnet_results)
+
         search_results = search_with_affixes(
             user_query,
             include_auto_definitions=include_auto_definitions,
@@ -135,6 +140,25 @@ def index(request):  # pragma: no cover
         )
     return render(request, "morphodict/index.html", context)
 
+def wordnet(request, user_query, results):
+    def process_result(r):
+        return {
+            "wn_entry" : r[0],
+            "results": r[1].serialized_presentation_results(
+            display_mode=DisplayMode.current_value_from_request(request),
+            animate_emoji=AnimateEmoji.current_value_from_request(request),
+            show_emoji=ShowEmoji.current_value_from_request(request),
+            dict_source=get_dict_source(request),
+        )
+        }
+    context = create_context_for_index_template(
+        "search-page",
+        word_search_form=WordSearchForm(),
+        query_string=user_query,
+        search_results=[process_result(r) for r in results],
+        did_wordnet_search=True,
+    )
+    return render(request, "morphodict/wordnet-search.html", context)
 
 def search_results(request, query_string: str):  # pragma: no cover
     """
