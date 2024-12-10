@@ -87,11 +87,11 @@ context("Searching", () => {
     });
   });
 
-  it("should leave out not normatized content", () => {
+  it("should include content from MD", () => {
     // nipa means "Kill Him" in MD
     cy.visitSearch("nipa")
       .searchResultsContain("sleeps")
-      .and("not.contain", "Kill");
+      .and("contain", "Kill");
   });
 
   describe("When I perform a search, I should see the 'info' icon on corresponding entries", () => {

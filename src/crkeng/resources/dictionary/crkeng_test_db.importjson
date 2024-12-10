@@ -616,107 +616,6 @@
     "slug": "awîna@pra"
   },
   {
-    "head": "ayâw",
-    "linguistInfo": {
-      "inflectional_category": "V",
-      "pos": "V",
-      "rw_domains": ["finance", "have_wealth", "own_possess"],
-      "rw_indices": {
-        "CW": [],
-        "MD": ["6.8.1.1"]
-      },
-      "wn_domains": [],
-      "wordclass": "V"
-    },
-    "paradigm": null,
-    "senses": [
-      {
-        "definition": "He owns (something).",
-        "semanticDefinition": "owns",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "He is there.",
-        "semanticDefinition": "there",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "You can have it.",
-        "semanticDefinition": "can have",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "He is through",
-        "semanticDefinition": "through",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "He is finished.",
-        "semanticDefinition": "finished",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "He can rise now after being bedridden.",
-        "semanticDefinition": "can rise now after being bedridden",
-        "sources": ["MD"]
-      }
-    ],
-    "slug": "ayâw@v"
-  },
-  {
-    "analysis": [[], "ayâw", ["+V", "+TI", "+Imp", "+Imm", "+2Sg"]],
-    "formOf": "ayâw@v",
-    "head": "ayâ",
-    "senses": [
-      {
-        "definition": "Have it.",
-        "semanticDefinition": "Have",
-        "sources": ["MD"]
-      }
-    ]
-  },
-  {
-    "analysis": [["PV/e+"], "ayâw", ["+V", "+TI", "+Cnj", "+3Pl"]],
-    "formOf": "ayâw@v",
-    "head": "ê-ayâcik",
-    "senses": [
-      {
-        "definition": "They own (something).",
-        "semanticDefinition": "own",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "They are there.",
-        "semanticDefinition": "are there",
-        "sources": ["MD"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "ayâw", ["+V", "+TI", "+Ind", "+2Sg"]],
-    "formOf": "ayâw@v",
-    "head": "kitayân",
-    "senses": [
-      {
-        "definition": "You have it.",
-        "semanticDefinition": "have",
-        "sources": ["MD"]
-      }
-    ]
-  },
-  {
-    "analysis": [[], "ayâw", ["+V", "+TI", "+Ind", "+2Pl"]],
-    "formOf": "ayâw@v",
-    "head": "kitayânâwâw",
-    "senses": [
-      {
-        "definition": "You all have it.",
-        "semanticDefinition": "all have",
-        "sources": ["MD"]
-      }
-    ]
-  },
-  {
     "analysis": [[], "ayâw", ["+V", "+AI", "+Ind", "+3Sg"]],
     "head": "ayâw",
     "linguistInfo": {
@@ -2150,12 +2049,7 @@
       {
         "definition": "s/he sleeps, s/he is asleep",
         "semanticDefinition": "sleeps asleep",
-        "sources": ["CW"]
-      },
-      {
-        "definition": "He sleeps.",
-        "semanticDefinition": "sleeps",
-        "sources": ["MD"]
+        "sources": ["CW", "MD"]
       },
       {
         "definition": "s/he is sleeping",
@@ -2858,34 +2752,6 @@
         "sources": ["AECD"]
       }
     ]
-  },
-  {
-    "head": "nôhtêpayiw",
-    "linguistInfo": {
-      "inflectional_category": "V",
-      "pos": "V",
-      "rw_domains": ["enough", "quantity"],
-      "rw_indices": {
-        "CW": [],
-        "MD": ["8.1.7"]
-      },
-      "wn_domains": [],
-      "wordclass": "V"
-    },
-    "paradigm": null,
-    "senses": [
-      {
-        "definition": "He ran short of it.",
-        "semanticDefinition": "ran short",
-        "sources": ["MD"]
-      },
-      {
-        "definition": "He is short of it.",
-        "semanticDefinition": "short",
-        "sources": ["MD"]
-      }
-    ],
-    "slug": "nôhtêpayiw@v"
   },
   {
     "analysis": [[], "nôhtêpaýiw", ["+V", "+AI", "+Ind", "+3Sg"]],
