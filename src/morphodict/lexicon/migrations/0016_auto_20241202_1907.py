@@ -17,9 +17,14 @@ def migrate_from_linguistinfo(apps, schema_editor):
         if not wf.linguist_info:
             continue
         if "rw_indices" in wf.linguist_info:
-            rapidwords = {
-                rw for l in wf.linguist_info["rw_indices"].values() for rw in l
-            }
+            if isinstance(wf.linguist_info["rw_indices"], dict):
+                rapidwords = {
+                    rw for l in wf.linguist_info["rw_indices"].values() for rw in l
+                }
+            elif isinstance(wf.linguist_info["rw_indices"],list):
+                rapidwords = [rw for rw in wf.linguist_info["rw_indices"]]
+            else:
+                continue
             for rw in rapidwords:
                 index = rw.strip()
                 try:
