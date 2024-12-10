@@ -53,7 +53,7 @@ def migrate_from_linguistinfo(apps, schema_editor):
                         rapidword = candidates[0]
                     else:
                         print(
-                            f"WARNING: ImportJSON error: Slug {wf.slug} is annotated with nonexistent {index} RW index"
+                            f"ERROR: Slug {wf.slug} is annotated with nonexistent {index} RW index"
                         )
                 if rapidword:
                     wf.rapidwords.add(rapidword)
