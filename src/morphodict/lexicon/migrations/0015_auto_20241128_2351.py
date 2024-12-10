@@ -12,7 +12,6 @@ def migrate_semantic_domains(apps, schema_editor):
     # For every wordform, collect the semantic domain information in the old
     # format and place it where it belongs.
     wordforms = Wordform.objects.all()
-    count = wordforms.count()
     for wf in wordforms:
         if wf.rw_indices:
             rapidwords = [x.strip() for x in wf.rw_indices.split(";")]

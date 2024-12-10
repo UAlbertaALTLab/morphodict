@@ -2,6 +2,7 @@
 
 from django.db import migrations
 from morphodict.search.types import WordnetEntry
+from django.db.models import Q
 
 
 def migrate_from_linguistinfo(apps, schema_editor):
@@ -12,7 +13,6 @@ def migrate_from_linguistinfo(apps, schema_editor):
     # For every wordform, collect the semantic domain information in the old
     # format and place it where it belongs.
     wordforms = Wordform.objects.all()
-    count = wordforms.count()
     for wf in wordforms:
         if not wf.linguist_info:
             continue
@@ -23,11 +23,35 @@ def migrate_from_linguistinfo(apps, schema_editor):
             for rw in rapidwords:
                 index = rw.strip()
                 try:
-                    wf.rapidwords.add(RapidWords.objects.get(index=index))
+                    rapidword = RapidWords.objects.get(index=index)
                 except RapidWords.DoesNotExist:
-                    print(
-                        f"ERROR: Slug {wf.slug} is annotated with nonexistent {index} RW index"
-                    )
+                    # Try flexible search
+                    try:
+                        try:
+                            candidates = [
+                                RapidWords.objects.get(
+                                    index=".".join(index.split(".")[:-1])
+                                )
+                            ]
+                        except RapidWords.DoesNotExist:
+                            query = Q(domain__iexact=wf.linguist_info["rw_domains"][0])
+                            for domain in wf.linguist_info["rw_domains"][1:]:
+                                query |= Q(domain__iexact=domain)
+                            universe = RapidWords.objects.filter(query)
+                            candidates = [
+                                x for x in universe if index.startswith(x.index)
+                            ]
+                    except:
+                        candidates = []
+                    if len(candidates) > 0:
+                        candidates.sort(key=lambda x: len(x.index), reverse=True)
+                        rapidword = candidates[0]
+                    else:
+                        print(
+                            f"WARNING: ImportJSON error: Slug {wf.slug} is annotated with nonexistent {index} RW index"
+                        )
+                if rapidword:
+                    wf.rapidwords.add(rapidword)
 
         if "wn_domains" in wf.linguist_info:
             for wn in wf.linguist_info["wn_domains"]:
