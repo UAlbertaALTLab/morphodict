@@ -28,7 +28,7 @@ def fetch_results(query: core.Query, search_results: core.SearchResults):
     fetch_results_from_target_language_keywords(query, search_results)
     fetch_results_from_source_language_keywords(query, search_results)
 
-    # Then we proceed to analyze the query, if successfull, we look for those 
+    # Then we proceed to analyze the query, if successfull, we look for those
     # entries in the dictionary that share the analysis with the FST result.
     # This introduces source-level spelling relaxation if the FST supports it.
 

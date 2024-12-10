@@ -234,7 +234,6 @@ class Result:
 
     target_language_wordnet_match: list[str] = field(default_factory=list)
 
-
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
@@ -287,62 +286,73 @@ class Result:
     def __str__(self):
         return f"Result<wordform={self.wordform}>"
 
-format_regexp = r'^\s*\((?P<pos>\w+)\)\s+(?P<stem>.+)\s*\#\s*(?P<num>\d+)\s*\Z'
+
+format_regexp = r"^\s*\((?P<pos>\w+)\)\s+(?P<stem>.+)\s*\#\s*(?P<num>\d+)\s*\Z"
+
 
 def wordnet_for_nltk(keyword: str) -> str:
     matches = re.match(format_regexp, keyword)
     if matches:
-        return "_".join([x for x in matches['stem'].split(" ") if x])+'.'+matches['pos']+'.'+matches['num']
+        return (
+            "_".join([x for x in matches["stem"].split(" ") if x])
+            + "."
+            + matches["pos"]
+            + "."
+            + matches["num"]
+        )
     return keyword
+
 
 class WordnetEntry:
 
     synset: Synset
-    original_str : str
-    def __init__ (self, entry:str | Synset):
+    original_str: str
+
+    def __init__(self, entry: str | Synset):
         if isinstance(entry, str):
             self.synset = wn.synset(wordnet_for_nltk(entry))
             self.original_str = entry
         else:
             self.synset = entry
             self.original_str = entry.name()
-    
-    def __str__ (self):
+
+    def __str__(self):
         data = self.synset.name().split(".")
         entry = ".".join(data[0:-2])
         return f"({data[-2]}) {entry}#{int(data[-1])}"
-    
-    def hyponyms(self) -> list[WordnetEntry] :
+
+    def hyponyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.hyponyms())
-    
-    def hypernyms(self) -> list[WordnetEntry] :
+
+    def hypernyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.hyponyms())
-    
+
     def member_holonyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.member_holonyms())
-    
+
     def definition(self) -> str:
         return self.synset.definition()
-    
+
     def heading(self) -> str:
-        return self.synset.lemmas()[0].name()+f" ({self.synset.pos()})"
-    
+        return self.synset.lemmas()[0].name() + f" ({self.synset.pos()})"
+
     def pos(self) -> str:
         return self.synset.pos()
-    
+
     def synonyms(self) -> list[str]:
         return [" ".join(l.name().split("_")) for l in self.synset.lemmas()]
-    
+
     def lemmas(self) -> list[WNLemma]:
         return self.synset.lemmas()
 
     def ranking(self) -> int:
         return sum([l.count() for l in self.synset.lemmas()])
-    
+
     def nltk_name(self) -> str:
         return self.synset.name()
-    
-def produce_entries(origin: str, entries:Iterable[Synset]) -> list[WordnetEntry]:
+
+
+def produce_entries(origin: str, entries: Iterable[Synset]) -> list[WordnetEntry]:
     ans = [WordnetEntry(e) for e in entries]
     for e in ans:
         e.original_str = origin

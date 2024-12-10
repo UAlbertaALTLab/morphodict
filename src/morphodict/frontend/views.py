@@ -140,17 +140,19 @@ def index(request):  # pragma: no cover
         )
     return render(request, "morphodict/index.html", context)
 
+
 def wordnet(request, user_query, results):
     def process_result(r):
         return {
-            "wn_entry" : r[0],
+            "wn_entry": r[0],
             "results": r[1].serialized_presentation_results(
-            display_mode=DisplayMode.current_value_from_request(request),
-            animate_emoji=AnimateEmoji.current_value_from_request(request),
-            show_emoji=ShowEmoji.current_value_from_request(request),
-            dict_source=get_dict_source(request),
-        )
+                display_mode=DisplayMode.current_value_from_request(request),
+                animate_emoji=AnimateEmoji.current_value_from_request(request),
+                show_emoji=ShowEmoji.current_value_from_request(request),
+                dict_source=get_dict_source(request),
+            ),
         }
+
     context = create_context_for_index_template(
         "search-page",
         word_search_form=WordSearchForm(),
@@ -159,6 +161,7 @@ def wordnet(request, user_query, results):
         did_wordnet_search=True,
     )
     return render(request, "morphodict/wordnet-search.html", context)
+
 
 def search_results(request, query_string: str):  # pragma: no cover
     """

@@ -192,13 +192,15 @@ def sort_sources(sources: list):
         ret = sources
     return ret
 
+
 @register.filter(name="next")
 def next(some_list, current_index):
     try:
         return some_list[int(current_index) + 1]
     except:
-        return ''
-    
+        return ""
+
+
 @register.filter(name="has_next")
 def has_next(some_list, current_index):
     return not current_index >= len(some_list) - 1

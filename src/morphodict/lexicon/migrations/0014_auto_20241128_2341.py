@@ -5,18 +5,21 @@ from django.conf import settings
 from tqdm import tqdm
 import json
 
+
 def load_rapidwords(apps, schema_editor):
     RapidWords = apps.get_model("lexicon", "RapidWords")
-    RAPIDWORDS_JSON_FILE = settings.BASE_DIR / ".." / "morphodict" / "resources" / "rapidwords.json"
+    RAPIDWORDS_JSON_FILE = (
+        settings.BASE_DIR / ".." / "morphodict" / "resources" / "rapidwords.json"
+    )
 
-    with open(RAPIDWORDS_JSON_FILE,'r') as f:
+    with open(RAPIDWORDS_JSON_FILE, "r") as f:
         rw_data = json.load(f)
-    
+
     rw_entries = []
 
     for key, items in tqdm(rw_data.items()):
         rw_entries.append(RapidWords(index=key, domain=items["domain"]))
-    
+
     RapidWords.objects.bulk_create(rw_entries)
 
 
@@ -26,6 +29,4 @@ class Migration(migrations.Migration):
         ("lexicon", "0013_wordnetsynset_wordform_rapidwords_wordform_synsets"),
     ]
 
-    operations = [
-        migrations.RunPython(load_rapidwords)
-    ]
+    operations = [migrations.RunPython(load_rapidwords)]

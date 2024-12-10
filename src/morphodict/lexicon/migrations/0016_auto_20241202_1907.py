@@ -3,11 +3,12 @@
 from django.db import migrations
 from morphodict.search.types import WordnetEntry
 
+
 def migrate_from_linguistinfo(apps, schema_editor):
     RapidWords = apps.get_model("lexicon", "RapidWords")
     WordNetSynset = apps.get_model("lexicon", "WordNetSynset")
     Wordform = apps.get_model("lexicon", "Wordform")
-    
+
     # For every wordform, collect the semantic domain information in the old
     # format and place it where it belongs.
     wordforms = Wordform.objects.all()
@@ -16,13 +17,17 @@ def migrate_from_linguistinfo(apps, schema_editor):
         if not wf.linguist_info:
             continue
         if "rw_indices" in wf.linguist_info:
-            rapidwords = {rw for l in wf.linguist_info["rw_indices"].values() for rw in l}
+            rapidwords = {
+                rw for l in wf.linguist_info["rw_indices"].values() for rw in l
+            }
             for rw in rapidwords:
                 index = rw.strip()
                 try:
                     wf.rapidwords.add(RapidWords.objects.get(index=index))
                 except RapidWords.DoesNotExist:
-                    print(f"ERROR: Slug {wf.slug} is annotated with nonexistent {index} RW index")    
+                    print(
+                        f"ERROR: Slug {wf.slug} is annotated with nonexistent {index} RW index"
+                    )
 
         if "wn_domains" in wf.linguist_info:
             for wn in wf.linguist_info["wn_domains"]:
@@ -36,11 +41,14 @@ def migrate_from_linguistinfo(apps, schema_editor):
                     #   which stand for ADJ, ADJ_SAT, ADV, NOUN, VERB)
                     # - entry annotated with a non-canonical lemma.  Use the canonical lemma appearing in
                     #   "name" in our wordnet instance site.
-                    print(f"ERROR: Slug {wf.slug} is annotated with nonexistent {wn.strip()} WN domain")
+                    print(
+                        f"ERROR: Slug {wf.slug} is annotated with nonexistent {wn.strip()} WN domain"
+                    )
                 if normalized_name:
-                    synset, _ = WordNetSynset.objects.get_or_create(name=normalized_name)
+                    synset, _ = WordNetSynset.objects.get_or_create(
+                        name=normalized_name
+                    )
                     wf.synsets.add(synset)
-                
 
 
 class Migration(migrations.Migration):
@@ -49,6 +57,4 @@ class Migration(migrations.Migration):
         ("lexicon", "0015_auto_20241128_2351"),
     ]
 
-    operations = [
-        migrations.RunPython(migrate_from_linguistinfo)
-    ]
+    operations = [migrations.RunPython(migrate_from_linguistinfo)]

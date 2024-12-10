@@ -4,7 +4,9 @@ from morphodict.search.espt import EsptSearch
 from morphodict.analysis import rich_analyze_relaxed
 
 
-def find_pos_matches(tag_source: EsptSearch | None, search_results: SearchResults) -> None:
+def find_pos_matches(
+    tag_source: EsptSearch | None, search_results: SearchResults
+) -> None:
     if not tag_source:
         return
     tags = tag_source.tags

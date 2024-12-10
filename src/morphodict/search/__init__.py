@@ -4,6 +4,7 @@ from .presentation import SerializedPresentationResult
 from .query import Query
 from .wordnet import WordnetEntry
 
+
 def search_with_affixes(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
 ) -> SearchResults:
@@ -38,8 +39,8 @@ def api_search(
         inflect_english_phrases=inflect_english_phrases,
     ).serialized_presentation_results()
 
-def wordnet_search(
-        query:str) -> list[tuple[WordnetEntry, SearchResults]] | None :
+
+def wordnet_search(query: str) -> list[tuple[WordnetEntry, SearchResults]] | None:
     # If we are doing an english simple phrase
     search_query = Query(query)
     if search_query.wn:

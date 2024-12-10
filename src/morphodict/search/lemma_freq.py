@@ -16,7 +16,7 @@ def load_lemma_data():
                 # we want to normalize the lemma frequency
                 # so I found the max of 32334
                 # and now we divide by that
-                LEMMA_FREQUENCY[l] = int(l_freq) #/ max
+                LEMMA_FREQUENCY[l] = int(l_freq)  # / max
 
 
 def get_lemma_freq(search_results):

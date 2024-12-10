@@ -3,11 +3,12 @@
 from django.db import migrations
 from morphodict.search.types import WordnetEntry
 
+
 def migrate_semantic_domains(apps, schema_editor):
     RapidWords = apps.get_model("lexicon", "RapidWords")
     WordNetSynset = apps.get_model("lexicon", "WordNetSynset")
     Wordform = apps.get_model("lexicon", "Wordform")
-    
+
     # For every wordform, collect the semantic domain information in the old
     # format and place it where it belongs.
     wordforms = Wordform.objects.all()
@@ -18,10 +19,10 @@ def migrate_semantic_domains(apps, schema_editor):
         else:
             rapidwords = []
         if wf.wn_synsets:
-            synsets    = [x.strip() for x in wf.wn_synsets.split(";")]
+            synsets = [x.strip() for x in wf.wn_synsets.split(";")]
         else:
-            synsets    = []
-        
+            synsets = []
+
         for rw in rapidwords:
             try:
                 if rw:
@@ -32,9 +33,9 @@ def migrate_semantic_domains(apps, schema_editor):
             if wn:
                 normalized_entry = str(WordnetEntry(wn))
                 wf.synsets.add(
-                    WordNetSynset.objects.get_or_create(
-                        name=normalized_entry
-                ))
+                    WordNetSynset.objects.get_or_create(name=normalized_entry)
+                )
+
 
 class Migration(migrations.Migration):
 
@@ -42,6 +43,4 @@ class Migration(migrations.Migration):
         ("lexicon", "0014_auto_20241128_2341"),
     ]
 
-    operations = [
-        migrations.RunPython(migrate_semantic_domains)
-    ]
+    operations = [migrations.RunPython(migrate_semantic_domains)]

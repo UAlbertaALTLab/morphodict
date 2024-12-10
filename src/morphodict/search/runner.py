@@ -20,6 +20,7 @@ from morphodict.search.util import first_non_none_value
 from morphodict.search.wordnet import WordNetSearch
 from morphodict.lexicon.models import Wordform
 
+
 def search(
     query: str,
     include_affixes=True,
@@ -92,15 +93,17 @@ def search(
             do_cvd_search(search_query, search_results)
 
     # If we did an english phrase search, we have to inflect back the results!
-    if (search_query.espt or inflect_english_phrases) and (
-        len(initial_query_terms) > 1
-    ) and espt_search:
+    if (
+        (search_query.espt or inflect_english_phrases)
+        and (len(initial_query_terms) > 1)
+        and espt_search
+    ):
         espt_search.inflect_search_results()
 
-    # Annotate every entry in search results with the POS match when that is available 
+    # Annotate every entry in search results with the POS match when that is available
     if espt_search:
         find_pos_matches(espt_search, search_results)
-    
+
     # Annotate every entry with a frequency count from the glossary
     get_glossary_count(search_results)
 
@@ -135,7 +138,8 @@ def is_almost_certainly_cree(query: Query, search_results: SearchResults) -> boo
 
     return False
 
-def wordnet_search(query:Query) -> list[tuple[WordnetEntry,SearchResults]] | None :
+
+def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | None:
     wordnet_search = WordNetSearch(query)
     if len(wordnet_search.synsets) > 0:
         # Wordnet search was successful _at the wordnet level_
@@ -143,21 +147,18 @@ def wordnet_search(query:Query) -> list[tuple[WordnetEntry,SearchResults]] | Non
         results = []
         for synset in wordnet_search.synsets:
             wn_results = SearchResults()
-            wn_results.sort_function = lambda x: 0-x.lemma_freq if x.lemma_freq else 0
+            wn_results.sort_function = lambda x: 0 - x.lemma_freq if x.lemma_freq else 0
             wordforms = synset.wordforms.all()
-            if wordforms.count() > 0 :
+            if wordforms.count() > 0:
                 for wordform in wordforms:
-                    r = Result(
-                            wordform,
-                            target_language_wordnet_match=[synset.name]
-                        )
+                    r = Result(wordform, target_language_wordnet_match=[synset.name])
                     wn_results.add_result(r)
                 wn_entry = WordnetEntry(synset.name)
                 wn_entry.original_str = " ".join(query.query_terms)
                 get_lemma_freq(wn_results)
                 for result in wn_results.unsorted_results():
                     result.relevance_score = result.lemma_freq
-                results.append((wn_entry,wn_results))
+                results.append((wn_entry, wn_results))
         return results
 
     return None

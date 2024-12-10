@@ -418,4 +418,4 @@ Orthographies = TypedDict(
 )
 
 # Location of wordnet data for nltk
-nltk_data.path = [ BASE_DIR / ".." / "morphodict" / "resources" / "nltk_data" ]
+nltk_data.path = [BASE_DIR / ".." / "morphodict" / "resources" / "nltk_data"]
