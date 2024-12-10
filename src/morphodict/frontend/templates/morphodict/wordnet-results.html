@@ -18,7 +18,7 @@
               {{result.wn_entry.definition}}
             </p>
             {% if result.wn_entry.synonyms|length > 1 %}
-            <p><strong>Like</strong>:
+            <p><strong>{% relabel_one 'Synonyms' %}</strong>:
             <em>{{result.wn_entry.synonyms|join:", "}}</em>.</p>
             {% endif %}
             {% if has_more %}
