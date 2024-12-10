@@ -557,3 +557,9 @@ A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pêyak (awa)
 A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcêt (awa)		
 I+Sg+Title	I+Sg	Singular, Inanimate	One (ôma word)	pêyak (ôma)		
 I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcêt (ôma)		
+						
+(v)	Verb	Verb	Action word	ispayin-itwêwin		https://en.wikipedia.org/wiki/Verb
+(n)	Noun	Noun	Naming word	wîhowin-itwêwin		https://en.wikipedia.org/wiki/Noun
+(a)	Adj	Adjective	Description word	wîhtam-itwêwin		https://en.wikipedia.org/wiki/Adjective
+(s)	AdjSat	Adjective Satellite	Description word	wîhtam-itwêwin		https://en.wikipedia.org/wiki/Adjective
+(r)	Adv	Adverb	Word that changes another word	âhtawêw-itwêwin		https://en.wikipedia.org/wiki/Adverb

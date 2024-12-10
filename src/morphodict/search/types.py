@@ -307,6 +307,7 @@ class WordnetEntry:
 
     synset: Synset
     original_str: str
+    numbering: Optional[int]
 
     def __init__(self, entry: str | Synset):
         if isinstance(entry, str):
@@ -338,6 +339,9 @@ class WordnetEntry:
 
     def pos(self) -> str:
         return self.synset.pos()
+    
+    def paren_pos(self) -> str:
+        return f"({self.synset.pos()})"
 
     def synonyms(self) -> list[str]:
         return [" ".join(l.name().split("_")) for l in self.synset.lemmas()]

@@ -1,5 +1,6 @@
 {% spaceless %}
 {% load morphodict_extras %}
+{% load relabelling %}
     {% if verbose_messages %}
         <li class="search-results__result box">
             <h3>Messages from search run</h3>
@@ -12,7 +13,7 @@
     <div class="synset" style="background-color: var(--menu-hover-bg-color); border: 4px solid var(--prose-title-color); border-radius:5px; padding: 10px; margin-left:10px; margin-right:10px; margin-top:.5cm; margin-bottom:.5cm;">
         <a name="result-synset-{{result.wn_entry.nltk_name}}"></a>
         <section class="prose box box--spaced">
-            <h2 class="prose__section-title">{{result.wn_entry.original_str}} ({{result.wn_entry.pos}})</h2>
+            <h2 class="prose__section-title">{{result.wn_entry.numbering}}. {{result.wn_entry.original_str}} ({% relabel_one result.wn_entry.paren_pos %})</h2>
             <p>
               {{result.wn_entry.definition}}
             </p>

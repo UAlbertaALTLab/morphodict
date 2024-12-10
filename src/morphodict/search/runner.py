@@ -145,6 +145,7 @@ def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | N
         # Wordnet search was successful _at the wordnet level_
         # Now we must collect the results
         results = []
+        synsets: dict[str, list[WordnetEntry]]= dict()
         for synset in wordnet_search.synsets:
             wn_results = SearchResults()
             wn_results.sort_function = lambda x: 0 - x.lemma_freq if x.lemma_freq else 0
@@ -155,6 +156,8 @@ def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | N
                     wn_results.add_result(r)
                 wn_entry = WordnetEntry(synset.name)
                 wn_entry.original_str = " ".join(query.query_terms)
+                synsets.setdefault(wn_entry.pos(),[]).append(wn_entry)
+                wn_entry.numbering=len(synsets[wn_entry.pos()])
                 get_lemma_freq(wn_results)
                 for result in wn_results.unsorted_results():
                     result.relevance_score = result.lemma_freq
