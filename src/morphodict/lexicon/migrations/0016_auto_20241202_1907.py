@@ -13,7 +13,7 @@ def migrate_from_linguistinfo(apps, schema_editor):
     # For every wordform, collect the semantic domain information in the old
     # format and place it where it belongs.
     wordforms = Wordform.objects.all()
-    for wf in wordforms:
+    for wf in wordforms.iterator():
         if not wf.linguist_info:
             continue
         if "rw_indices" in wf.linguist_info:
