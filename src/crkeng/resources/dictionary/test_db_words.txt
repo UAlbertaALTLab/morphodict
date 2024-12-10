@@ -1,4 +1,6 @@
 # Headwords listed in this file will be used to build the test database.
+# legend wordclass
+wiýa
 
 # VTA examples
 wâpamêw

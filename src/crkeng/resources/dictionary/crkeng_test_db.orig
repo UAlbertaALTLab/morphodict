@@ -6125,5 +6125,149 @@
    }
   ],
   "slug": "wâpiw@3"
+ },
+ {
+  "head": "wiýa",
+  "linguistInfo": {
+   "analysis": "<p><table colspan=1><tr><td>Alt</td></tr>\n<tr><td><strong>sC: wîńa</strong></td></tr>\n<tr><td><strong>wC: wîtha</strong></td></tr></table></p>",
+   "inflectional_category": "PrA",
+   "pos": "Pron",
+   "rw_domains": [
+    "part_of_speech",
+    "pronouns"
+   ],
+   "rw_indices": {
+    "CW": [],
+    "MD": [
+     "9.2.3"
+    ]
+   },
+   "wn_domains": [
+    "N/A (Pronoun)"
+   ],
+   "wordclass": "PrA"
+  },
+  "paradigm": null,
+  "senses": [
+   {
+    "definition": "he, she, it",
+    "sources": [
+     "CW"
+    ]
+   },
+   {
+    "definition": "him, her, it",
+    "sources": [
+     "CW"
+    ]
+   },
+   {
+    "definition": "his, hers, its",
+    "semanticDefinition": "hers",
+    "sources": [
+     "CW"
+    ]
+   },
+   {
+    "definition": "He or she.",
+    "sources": [
+     "MD"
+    ]
+   },
+   {
+    "definition": "Him or her.",
+    "sources": [
+     "MD"
+    ]
+   },
+   {
+    "definition": "she/he, her/him",
+    "sources": [
+     "AECD"
+    ]
+   }
+  ],
+  "slug": "wiýa@1"
+ },
+ {
+  "analysis": [
+   [],
+   "wiýa",
+   [
+    "+Ipc"
+   ]
+  ],
+  "head": "wiýa",
+  "linguistInfo": {
+   "inflectional_category": "IPC",
+   "pos": "Ipc",
+   "rw_domains": [],
+   "rw_indices": {
+    "CW": [],
+    "MD": []
+   },
+   "wn_domains": [
+    "N/A (Functional)"
+   ],
+   "wordclass": "IPC"
+  },
+  "paradigm": null,
+  "senses": [
+   {
+    "definition": "for, because",
+    "semanticDefinition": "because",
+    "sources": [
+     "CW"
+    ]
+   },
+   {
+    "definition": "of course, to be sure, in fact",
+    "semanticDefinition": "course be sure in fact",
+    "sources": [
+     "CW"
+    ]
+   }
+  ],
+  "slug": "wiýa@2"
+ },
+ {
+  "analysis": [
+   [],
+   "wiýa",
+   [
+    "+Ipc"
+   ]
+  ],
+  "head": "wiýa",
+  "linguistInfo": {
+   "inflectional_category": "IPC",
+   "pos": "Ipc",
+   "rw_domains": [],
+   "rw_indices": {
+    "CW": [],
+    "MD": []
+   },
+   "wn_domains": [
+    "N/A (Functional)"
+   ],
+   "wordclass": "IPC"
+  },
+  "paradigm": null,
+  "senses": [
+   {
+    "definition": "this, that",
+    "sources": [
+     "CW"
+    ]
+   },
+   {
+    "definition": "as for, by contrast",
+    "semanticDefinition": "contrast",
+    "sources": [
+     "CW"
+    ]
+   }
+  ],
+  "slug": "wiýa@3"
  }
 ]
