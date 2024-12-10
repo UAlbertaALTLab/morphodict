@@ -10,9 +10,10 @@ logger = logging.getLogger(__name__)
 # Maps text with (legacy) part-of-speech to a paradigm.
 # See res/layouts/static for a list of valid paradigms.
 # Last updated: 2021-05-10
+# TODO remove whole file.
 WORDFORM_TO_PARADIGM = [
     # Personal pronouns
-    ("niya", "PRON", "personal-pronouns"),
+    ("niýa", "PRON", "personal-pronouns"),
     ("kiya", "PRON", "personal-pronouns"),
     ("wiya", "PRON", "personal-pronouns"),
     ("niyanân", "PRON", "personal-pronouns"),

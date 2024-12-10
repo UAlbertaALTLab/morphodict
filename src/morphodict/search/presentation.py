@@ -342,6 +342,8 @@ def serialize_wordform(
         wordform.definitions.all(), dict_source=dict_source
     )
     result["lemma_url"] = wordform.get_absolute_url()
+    result["rapidwords"] = [str(rw) for rw in wordform.rapidwords.all()]
+    result["synsets"] = [str(wn) for wn in wordform.synsets.all()]
 
     if wordform.linguist_info:
         if inflectional_category := wordform.linguist_info.get(

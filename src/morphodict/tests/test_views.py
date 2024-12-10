@@ -97,7 +97,7 @@ def test_pages_render_without_template_errors(url: str, client: Client, caplog):
 @pytest.mark.parametrize(
     ("lexeme", "slug_disambiguator", "example_forms"),
     [
-        ("niya", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
+        ("niýa", None, ["niyanân", "kiyânaw", "kiyawâw", "wiyawâw"]),
         ("awa", "awa@pra", ["ôma", "awa", "ana"]),
         ("minôs", None, ["minôs", "minôsa", "niminôsim"]),
     ],
@@ -118,7 +118,7 @@ def test_retrieve_paradigm(
     assert response.status_code == 200
     body = response.content.decode("UTF-8")
 
-    assertInHTML(lexeme, body)
+    assert lexeme in body
     for wordform in example_forms:
         assertInHTML(wordform, body)
 

@@ -14,10 +14,10 @@ def first_definition_for(slug):
 
 
 def test_db_has_custom_fields(db):
-    defn = first_definition_for("kwâskwêpayihôs")
+    defn = first_definition_for("kwâskwêpaýihôs")
     assert (
         defn.text
-        == 'mule deer [literally: "jumper; leaper"; Lt: Odocoileus hemionus hemionus]'
+        == 'mule deer [literally: "jumper; leaper"; Lat. Odocoileus hemionus hemionus]'
     )
     assert (
         defn.semantic_definition
@@ -36,7 +36,7 @@ def test_db_has_custom_fields(db):
 @pytest.mark.parametrize("search_term", ["jumper", "Odocoileus"])
 def test_extra_pieces_searchable(db, search_term):
     search_results = search(query=search_term).presentation_results()
-    assert any(r.wordform.text == "kwâskwêpayihôs" for r in search_results)
+    assert any(r.wordform.text == "kwâskwêpaýihôs" for r in search_results)
 
 
 def test_auto_translation_works(db):

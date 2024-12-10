@@ -474,7 +474,7 @@
       "wn_domains": [],
       "wordclass": "DPR"
     },
-    "paradigm": null,
+    "paradigm": "demonstrative-pronouns",
     "senses": [
       {
         "coreDefinition": "This one",
@@ -2474,7 +2474,7 @@
       "wn_domains": [],
       "wordclass": "PrA"
     },
-    "paradigm": null,
+    "paradigm": "personal-pronouns",
     "senses": [
       {
         "definition": "I, me, mine",
@@ -2509,7 +2509,7 @@
       "wn_domains": [],
       "wordclass": "PrA"
     },
-    "paradigm": null,
+    "paradigm": "personal-pronouns",
     "senses": [
       {
         "definition": "we, us, our",

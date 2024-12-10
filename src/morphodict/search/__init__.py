@@ -1,7 +1,8 @@
 from .runner import search, wordnet_search as wordnet_runner
 from .core import SearchResults
+from .presentation import SerializedPresentationResult
 from .query import Query
-
+from .wordnet import WordnetEntry
 
 def search_with_affixes(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
@@ -23,7 +24,7 @@ def search_with_affixes(
 
 def api_search(
     query: str, include_auto_definitions=False, inflect_english_phrases=False
-) -> SearchResults:
+) -> list[SerializedPresentationResult]:
     """
     Search, trying to match full wordforms or keywords within definitions.
 
@@ -38,7 +39,7 @@ def api_search(
     ).serialized_presentation_results()
 
 def wordnet_search(
-        query:str) -> list[tuple[str, SearchResults]] | None :
+        query:str) -> list[tuple[WordnetEntry, SearchResults]] | None :
     # If we are doing an english simple phrase
     search_query = Query(query)
     if search_query.wn:
