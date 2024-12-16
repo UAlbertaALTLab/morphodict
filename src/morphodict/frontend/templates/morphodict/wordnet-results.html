@@ -7,6 +7,7 @@
             <pre>{{ verbose_messages }}</pre>
         </li>
     {% endif %}
+    <div id="resultsContainer">
     {% for result in search_results %}
     {% with has_more=search_results|has_next:forloop.counter0 %}
     
@@ -21,18 +22,21 @@
             <p><strong>{% relabel_one 'Synonyms' %}</strong>:
             <em>{{result.wn_entry.synonyms|join:", "}}</em>.</p>
             {% endif %}
+            <a href="#" class="expand-accordion" style="text-align:right;" data-bs-toggle="collapse" data-bs-target="#synset-results-{{result.wn_entry.nltk_name}}" aria-expanded="{%if forloop.counter0 == 0 %}true{%else%}false{%endif%}" aria-controls="synset-results-{{result.wn_entry.nltk_name}}"></a>
             {% if has_more %}
             {% with next_element=search_results|next:forloop.counter0 %}
-            <a href="#result-synset-{{next_element.wn_entry.nltk_name}}" style="text-align:right;">Jump to next meaning...</a>
+            <a href="#result-synset-{{next_element.wn_entry.nltk_name}}" data-bs-toggle="collapse" data-bs-target="#synset-results-{{next_element.wn_entry.nltk_name}}" aria-expanded="false" aria-controls="synset-results-{{next_element.wn_entry.nltk_name}}" style="text-align:right;">⏩</a>
             {% endwith %}
             {% endif %}
           </section>
-        {% for result in result.results %}
-        <li class="search-results__result" data-cy="search-results" style="padding-left: .5cm; padding-right: .5cm">
-            {% include './components/search-result.html' with result=result %}
-        </li>
-        {% endfor %}
-
+          
+        <div id="synset-results-{{result.wn_entry.nltk_name}}" data-bs-parent="#resultsContainer" class="collapse {% if forloop.counter0 == 0 %}show{% endif %}">
+            {% for result in result.results %}
+            <li class="search-results__result" data-cy="search-results" style="padding-left: .5cm; padding-right: .5cm">
+                {% include './components/search-result.html' with result=result %}
+            </li>
+            {% endfor %}
+        </div>
     </div>
     {% endwith %}
     {% empty %}
@@ -41,5 +45,6 @@
             <output class="query">{{ query_string }}</output>
         </li>
     {% endfor %}
+    </div>
     {# vim: set ft=htmldjango et sw=2 ts=2 sts=2: #}
 {% endspaceless %}

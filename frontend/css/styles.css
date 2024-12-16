@@ -1494,3 +1494,15 @@ a[target=_blank]:not([rel~=noopener]) {
 .legend q > dfn {
   font-weight: var(--strong-font-weight);
 }
+
+.expand-accordion:before {
+
+  content:'🔽'
+
+}
+
+.expand-accordion[aria-expanded="true"]:before {
+
+   content:'🔼';
+
+}

@@ -29,6 +29,9 @@ import * as settings from "./js/settings-page.js";
 import * as toast from "./js/toast.js";
 import { loadParadigmAudio } from "./js/paradigm-recording";
 
+import '../node_modules/bootstrap/js/dist/collapse.js'
+//import './css/bootstrap.scss';
+//import '../node_modules/bootstrap/dist/css/bootstrap.css'
 ///////////////////////////////// Constants //////////////////////////////////
 
 const NO_BREAK_SPACE = "\u00A0";
