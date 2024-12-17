@@ -70,6 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (route === "/search") {
     // Search page
     prepareSearchResults(getSearchResultList());
+    setupRefocus();
   } else if (route.match(/^[/]word[/].+/)) {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead());
@@ -329,4 +330,18 @@ function createAudioButton(recordingURL, element) {
  */
 function getSearchResultList() {
   return document.getElementById("search-result-list");
+}
+
+function setupRefocus(){
+  // add an action on click to refocus when data-md-focus is available
+  document.querySelectorAll("[data-md-focus]").forEach((object) => {
+    let focus_obj = document.getElementById(object.getAttribute("data-md-focus"))
+    focus_obj.addEventListener("shown.bs.collapse", function(){
+      focus_obj.scrollIntoView({
+        beahior:"smooth",
+        block:"start",
+        inline:"start"
+      });
+    })
+  })
 }
