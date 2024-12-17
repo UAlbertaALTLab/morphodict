@@ -14,7 +14,6 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import postcss from 'rollup-plugin-postcss'
 
-
 ///////////////////////////////// Constants //////////////////////////////////
 
 const BUILD_DIR = 'generated/frontend/morphodict';
@@ -40,6 +39,7 @@ export default [ {
         extract: "styles.css",
         minimize: production,
         sourcemap: true,
+        extensions: ['.css', '.sss', '.pcss', '.scss']
       }),
       production && terser(), // minify, but only in production
       
