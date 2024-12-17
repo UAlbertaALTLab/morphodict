@@ -354,6 +354,9 @@ class WordnetEntry:
 
     def nltk_name(self) -> str:
         return self.synset.name()
+    
+    def sources(self) -> list[str]:
+        return ["WN"]
 
 
 def produce_entries(origin: str, entries: Iterable[Synset]) -> list[WordnetEntry]:
