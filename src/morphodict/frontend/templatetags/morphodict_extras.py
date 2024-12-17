@@ -203,4 +203,17 @@ def next(some_list, current_index):
 
 @register.filter(name="has_next")
 def has_next(some_list, current_index):
-    return not current_index >= len(some_list) - 1
+    return current_index < len(some_list) - 1
+
+
+@register.filter(name="previous")
+def previous(some_list, current_index):
+    try:
+        return some_list[int(current_index) - 1]
+    except:
+        return ""
+
+
+@register.filter(name="has_previous")
+def has_previous(some_list, current_index):
+    return current_index > 0

@@ -10,6 +10,7 @@
     <div id="resultsContainer">
     {% for result in search_results %}
     {% with has_more=search_results|has_next:forloop.counter0 %}
+    {% with has_previous=search_results|has_previous:forloop.counter0 %}
     
     <div class="synset" style="background-color: var(--menu-hover-bg-color); border: 4px solid var(--prose-title-color); border-radius:5px; padding: 10px; margin-left:10px; margin-right:10px; margin-top:.5cm; margin-bottom:.5cm;">
         <a name="result-synset-{{result.wn_entry.nltk_name}}"></a>
@@ -22,12 +23,19 @@
             <p><strong>{% relabel_one 'Synonyms' %}</strong>:
             <em>{{result.wn_entry.synonyms|join:", "}}</em>.</p>
             {% endif %}
-            <a href="#" class="expand-accordion" style="text-align:right;" data-bs-toggle="collapse" data-bs-target="#synset-results-{{result.wn_entry.nltk_name}}" aria-expanded="{%if forloop.counter0 == 0 %}true{%else%}false{%endif%}" aria-controls="synset-results-{{result.wn_entry.nltk_name}}"></a>
-            {% if has_more %}
-            {% with next_element=search_results|next:forloop.counter0 %}
-            <a href="#result-synset-{{next_element.wn_entry.nltk_name}}" data-bs-toggle="collapse" data-bs-target="#synset-results-{{next_element.wn_entry.nltk_name}}" aria-expanded="false" aria-controls="synset-results-{{next_element.wn_entry.nltk_name}}" style="text-align:right;">⏩</a>
+            <div style="display:flex; justify-content:flex-end;">
+            {% if has_previous %}
+            {% with previous_element=search_results|previous:forloop.counter0 %}
+            <a href="#result-synset-{{previous_element.wn_entry.nltk_name}}" style="text-decoration:none;" data-bs-toggle="collapse" data-bs-target="#synset-results-{{previous_element.wn_entry.nltk_name}}" aria-expanded="false" aria-controls="synset-results-{{previous_element.wn_entry.nltk_name}}" style="text-align:right;">⏪</a>
             {% endwith %}
             {% endif %}
+            <a href="#" class="expand-accordion" style="text-decoration:none;" data-bs-toggle="collapse" data-bs-target="#synset-results-{{result.wn_entry.nltk_name}}" aria-expanded="{%if forloop.counter0 == 0 %}true{%else%}false{%endif%}" aria-controls="synset-results-{{result.wn_entry.nltk_name}}"></a>
+            {% if has_more %}
+            {% with next_element=search_results|next:forloop.counter0 %}
+            <a href="#result-synset-{{next_element.wn_entry.nltk_name}}" style="text-decoration:none;" data-bs-toggle="collapse" data-bs-target="#synset-results-{{next_element.wn_entry.nltk_name}}" aria-expanded="false" aria-controls="synset-results-{{next_element.wn_entry.nltk_name}}" style="text-align:right;">⏩</a>
+            {% endwith %}
+            {% endif %}
+            </div>
           </section>
           
         <div id="synset-results-{{result.wn_entry.nltk_name}}" data-bs-parent="#resultsContainer" class="collapse {% if forloop.counter0 == 0 %}show{% endif %}">
@@ -38,6 +46,7 @@
             {% endfor %}
         </div>
     </div>
+    {% endwith %}
     {% endwith %}
     {% empty %}
         <li class="search-results__no-result box box--rounded box--bad-outcome" data-cy="no-search-result">
