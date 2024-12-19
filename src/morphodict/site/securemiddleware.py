@@ -19,6 +19,7 @@ csp = (
     .img_src("'self'")
     .connect_src("'self'", "speech-db.altlab.app")
     .font_src("'self'", "fonts.gstatic.com", "fonts.googleapis.com")
+    .media_src("'self'", "speech-db.altlab.app")
 )
 
 secure_headers = Secure(csp=csp)
