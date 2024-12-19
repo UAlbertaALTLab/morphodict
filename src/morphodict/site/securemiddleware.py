@@ -14,7 +14,7 @@ from secure import Secure, ContentSecurityPolicy
 csp = (
     ContentSecurityPolicy()
     .default_src("'self'", "speech-db.altlab.app")
-    .script_src("'self'", "cdn.example.com")
+    .script_src("'self'")
     .style_src("'self'", "fonts.googleapis.com", "'unsafe-inline'")
     .img_src("'self'")
     .connect_src("'self'", "speech-db.altlab.app")
