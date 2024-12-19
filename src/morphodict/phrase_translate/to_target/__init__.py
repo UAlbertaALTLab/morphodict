@@ -14,7 +14,7 @@ from morphodict.phrase_translate.fst import (
 logger = logging.getLogger(__name__)
 
 
-def inflect_target_language_phrase(analysis, lemma_definition):
+def inflect_target_language_phrase(analysis, lemma_definition) -> str | None:
     if isinstance(analysis, tuple):
         analysis = RichAnalysis(analysis)
     cree_wordform_tag_list = (
@@ -38,3 +38,5 @@ def inflect_target_language_phrase(analysis, lemma_definition):
         phrase = inflect_target_verb_phrase(tagged_phrase)
         logger.debug("phrase = %s\n", phrase)
         return phrase.strip()
+
+    return None

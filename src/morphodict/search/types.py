@@ -339,7 +339,7 @@ class WordnetEntry:
 
     def pos(self) -> str:
         return self.synset.pos()
-    
+
     def paren_pos(self) -> str:
         return f"({self.synset.pos()})"
 
@@ -354,7 +354,7 @@ class WordnetEntry:
 
     def nltk_name(self) -> str:
         return self.synset.name()
-    
+
     def sources(self) -> list[str]:
         return ["WN"]
 

@@ -129,27 +129,21 @@ class Wordform(models.Model):
         """,
     )
 
-    rw_indices = models.CharField(
-        max_length=2048,
-        blank=True,
-        null=True,
+    rapidwords = models.ManyToManyField(
+        RapidWords,
+        related_name="wordforms",
         help_text="""
-                RapidWords indices for an entry, separated by a semicolon
+                RapidWords indices for an entry
                 """,
     )
 
-    rapidwords = models.ManyToManyField(RapidWords, related_name="wordforms")
-
-    wn_synsets = models.CharField(
-        max_length=2048,
-        blank=True,
-        null=True,
+    synsets = models.ManyToManyField(
+        WordNetSynset,
+        related_name="wordforms",
         help_text="""
-                WordNet synsets for an entry, separated by a semicolon
-                """,
+                  WordNet synsets for an entry
+                  """,
     )
-
-    synsets = models.ManyToManyField(WordNetSynset, related_name="wordforms")
 
     import_hash = models.CharField(
         max_length=MAX_WORDFORM_LENGTH,

@@ -105,7 +105,7 @@ class TranslationStats:
 
 def translate_single_definition(
     inflected_wordform, lemma_definition, stats: TranslationStats
-):
+) -> str | None:
     stats.wordforms_examined += 1
 
     assert inflected_wordform.analysis

@@ -43,7 +43,7 @@ class FomaLookupMultipleFoundException(FomaLookupException):
         )
 
 
-def foma_lookup(fst, thing_to_lookup):
+def foma_lookup(fst, thing_to_lookup) -> str:
     # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
     # the FST object built by the C-language `apply_init()` function in libfoma,
     # so they are about 100x slower than calling the C-language `apply_up` and
@@ -58,11 +58,11 @@ def foma_lookup(fst, thing_to_lookup):
     return l[0].decode("UTF-8")
 
 
-def inflect_target_noun_phrase(tagged_phrase):
+def inflect_target_noun_phrase(tagged_phrase) -> str:
     return foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
 
 
-def inflect_target_verb_phrase(tagged_phrase):
+def inflect_target_verb_phrase(tagged_phrase) -> str:
     return foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
 
 
