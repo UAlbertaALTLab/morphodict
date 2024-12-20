@@ -161,6 +161,12 @@ def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | N
                 get_lemma_freq(wn_results)
                 for result in wn_results.unsorted_results():
                     result.relevance_score = result.lemma_freq
+                if wordnet_search.analyzed_query:
+                    # Then it is an inflected query that should be Espt-Search based
+                    espt_search = EsptSearch(query, wn_results)
+                    espt_search.convert_search_query_to_espt()
+                    espt_search.inflect_search_results()
+                    find_pos_matches(espt_search, wn_results)
                 results.append((wn_entry, wn_results))
         return results
 
