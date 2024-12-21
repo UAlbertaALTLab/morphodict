@@ -167,6 +167,10 @@ def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | N
                     espt_search.convert_search_query_to_espt()
                     espt_search.inflect_search_results()
                     find_pos_matches(espt_search, wn_results)
+                    if wordnet_search.analyzed_query.filtered_query:
+                        wn_entry.original_str = str(
+                            wordnet_search.analyzed_query.filtered_query
+                        )
                 results.append((wn_entry, wn_results))
         return results
 

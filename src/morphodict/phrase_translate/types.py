@@ -29,7 +29,7 @@ class PhraseAnalyzedQuery:
     def __init__(self, query: str, add_verbose_message=None):
         self.query = query
         self.has_tags = False
-        self.filtered_query = None
+        self.filtered_query: str | None = None
         self.tags = None
         phrase_analyses: list[str] = source_phrase_analyses(query)
 
