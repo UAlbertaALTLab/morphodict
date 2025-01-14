@@ -40,9 +40,7 @@ def api_search(
     ).serialized_presentation_results()
 
 
-def wordnet_search(query: str) -> list[tuple[WordnetEntry, SearchResults]] | None:
+def wordnet_search(query: str) -> list[tuple[WordnetEntry, str, SearchResults]] | None:
     # If we are doing an english simple phrase
     search_query = Query(query)
-    if search_query.wn:
-        return wordnet_runner(search_query)
-    return None
+    return wordnet_runner(search_query)

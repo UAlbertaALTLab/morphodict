@@ -313,6 +313,33 @@
                 </div>
             </form>
         </section>
+
+        <section>
+            <h3 id="attempt-semantic-search" class="setting__title">Attempt semantic search for English queries</h3>
+
+            <form method="POST" action="{% url "preference:change" "attempt_semantic_search" %}"
+                  data-save-preference="attempt_semantic_search">
+                <ul class="unbullet">
+                    {% for value, label in preferences.attempt_semantic_search.choices_with_labels %}
+                        <li class="option">
+                            <label class="option__label">
+                                <input type="radio" name="attempt_semantic_search" value="{{ value }}" class="option__control"
+                                       {% if preferences.attempt_semantic_search.current_choice == value %}checked{% endif %}>
+                                <span class="option__label-text">{{ value|capfirst }}</span>
+                            </label>
+                            <p class="option__description">
+                                {{ label }}
+                            </p>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="action-bar">
+                    {% csrf_token %}
+                    <button type="submit"> Save settings</button>
+                </div>
+            </form>
+        </section>
     <section>
             <h3 id="inflect-english-phrase" class="setting__title">Automatically translate English phrases into Cree word-forms </h3>
 

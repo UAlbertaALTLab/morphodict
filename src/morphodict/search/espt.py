@@ -12,6 +12,8 @@ from morphodict.phrase_translate.tag_maps import (
 )
 
 from morphodict.search.types import Result
+from morphodict.search.core import SearchResults
+from morphodict.search.query import Query
 from morphodict.phrase_translate.types import PhraseAnalyzedQuery
 from morphodict.analysis import RichAnalysis
 from morphodict.analysis.tag_map import UnknownTagError
@@ -39,7 +41,7 @@ class EsptSearch:
         other methods.
     """
 
-    def __init__(self, query, search_results):
+    def __init__(self, query: Query, search_results: SearchResults):
         self.search_results = search_results
         self.query = query
         self.query_analyzed_ok = False

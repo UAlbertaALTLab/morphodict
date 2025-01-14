@@ -96,10 +96,10 @@ def index(request):  # pragma: no cover
     if user_query:
         include_auto_definitions = should_include_auto_definitions(request)
         inflect_english_phrases = should_inflect_phrases(request)
-
-        wordnet_results = wordnet_search(user_query)
-        if wordnet_results:
-            return wordnet(request, user_query, wordnet_results)
+        if should_attempt_semantic_search(request, user_query):
+            wordnet_results = wordnet_search(user_query)
+            if wordnet_results:
+                return wordnet(request, user_query, wordnet_results)
 
         search_results = search_with_affixes(
             user_query,
@@ -145,7 +145,8 @@ def wordnet(request, user_query, results):
     def process_result(r):
         return {
             "wn_entry": r[0],
-            "results": r[1].serialized_presentation_results(
+            "definition": r[1],
+            "results": r[2].serialized_presentation_results(
                 display_mode=DisplayMode.current_value_from_request(request),
                 animate_emoji=AnimateEmoji.current_value_from_request(request),
                 show_emoji=ShowEmoji.current_value_from_request(request),
@@ -170,6 +171,34 @@ def search_results(request, query_string: str):  # pragma: no cover
     dict_source = get_dict_source(request)  # type: ignore
     include_auto_definitions = should_include_auto_definitions(request)
     inflect_english_phrases = should_inflect_phrases(request)
+    if should_attempt_semantic_search(request, query_string):
+        wordnet_results = wordnet_search(query_string)
+        if wordnet_results:
+
+            def process_result(r):
+                return {
+                    "wn_entry": r[0],
+                    "definition": r[1],
+                    "results": r[2].serialized_presentation_results(
+                        display_mode=DisplayMode.current_value_from_request(request),
+                        animate_emoji=AnimateEmoji.current_value_from_request(request),
+                        show_emoji=ShowEmoji.current_value_from_request(request),
+                        dict_source=get_dict_source(request),
+                    ),
+                }
+
+            return render(
+                request,
+                "morphodict/wordnet-results.html",
+                {
+                    "query_string": query_string,
+                    "search_results": [process_result(r) for r in wordnet_results],
+                    "show_morphemes": request.COOKIES.get("show_morphemes"),
+                    "show_ic": request.COOKIES.get("show_inflectional_category"),
+                    "did_wordnet_search": True,
+                },
+            )
+
     results = search_with_affixes(
         query_string,
         include_auto_definitions=include_auto_definitions,
@@ -316,6 +345,25 @@ def should_include_auto_definitions(request):
 
 def should_inflect_phrases(request):
     return False if request.COOKIES.get("inflect_english_phrase") == "no" else True
+
+
+def should_attempt_semantic_search(request, query):
+    if query:
+        tokens = [x.strip()[3:] for x in query.split() if x.strip().startswith("wn:")]
+
+        def true(term):
+            return not (
+                term == "0"
+                or term.lower() == "n"
+                or term.lower() == "f"
+                or term.lower() == "false"
+                or term.lower() == "no"
+            )
+
+        if len(tokens) > 0:
+            return true(tokens[-1])
+
+    return False if request.COOKIES.get("attempt_semantic_search") == "no" else True
 
 
 def get_dict_source(request):

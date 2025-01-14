@@ -16,7 +16,7 @@ def test_wordnet_success(db):
     search_results = wordnet_search(query="see wn:1")
 
     assert len(search_results) > 1
-    for wn_entry, results in search_results:
+    for wn_entry, wn_defn, results in search_results:
         assert len(results.sorted_results()) > 0
 
 
@@ -24,5 +24,5 @@ def test_wordnet_space_success(db):
     search_results = wordnet_search(query="Ursa Major wn:1")
 
     assert len(search_results) > 0
-    for wn_entry, results in search_results:
+    for wn_entry, wn_defn, results in search_results:
         assert len(results.sorted_results()) > 0

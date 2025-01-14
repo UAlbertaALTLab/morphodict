@@ -18,7 +18,6 @@ from morphodict.search.query import CvdSearchType, Query
 from morphodict.search.types import Result, WordnetEntry
 from morphodict.search.util import first_non_none_value
 from morphodict.search.wordnet import WordNetSearch
-from morphodict.lexicon.models import Wordform
 
 
 def search(
@@ -139,7 +138,9 @@ def is_almost_certainly_cree(query: Query, search_results: SearchResults) -> boo
     return False
 
 
-def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | None:
+def wordnet_search(
+    query: Query,
+) -> list[tuple[WordnetEntry, str, SearchResults]] | None:
     wordnet_search = WordNetSearch(query)
     if len(wordnet_search.synsets) > 0:
         # Wordnet search was successful _at the wordnet level_
@@ -155,23 +156,28 @@ def wordnet_search(query: Query) -> list[tuple[WordnetEntry, SearchResults]] | N
                     r = Result(wordform, target_language_wordnet_match=[synset.name])
                     wn_results.add_result(r)
                 wn_entry = WordnetEntry(synset.name)
+                definition = wn_entry.definition()
                 wn_entry.original_str = " ".join(query.query_terms)
                 synsets.setdefault(wn_entry.pos(), []).append(wn_entry)
                 wn_entry.numbering = len(synsets[wn_entry.pos()])
                 get_lemma_freq(wn_results)
                 for result in wn_results.unsorted_results():
                     result.relevance_score = result.lemma_freq
-                if wordnet_search.analyzed_query:
+                """
+                if wordnet_search.espt:
                     # Then it is an inflected query that should be Espt-Search based
                     espt_search = EsptSearch(query, wn_results)
                     espt_search.convert_search_query_to_espt()
                     espt_search.inflect_search_results()
                     find_pos_matches(espt_search, wn_results)
-                    if wordnet_search.analyzed_query.filtered_query:
+                    if wordnet_search.espt.query_analyzed_ok:
                         wn_entry.original_str = str(
-                            wordnet_search.analyzed_query.filtered_query
+                            wordnet_search.espt.query.old_query_terms
                         )
-                results.append((wn_entry, wn_results))
+                    definition = wordnet_search.inflect_wordnet_definition(wn_entry)
+                """
+                definition = wn_entry.definition()
+                results.append((wn_entry, definition, wn_results))
         return results
 
     return None

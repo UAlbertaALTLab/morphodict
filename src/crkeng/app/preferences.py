@@ -175,6 +175,20 @@ class InflectEnglishPhrase(Preference):
 
 
 @register_preference
+class AttemptSemanticSearch(Preference):
+    """
+    Should we do semantic search? (Wordnet)
+    """
+
+    cookie_name = "attempt_semantic_search"
+    choices = {
+        "yes": "Attempt semantic search to provide results distinguishing between different English meanings when data is available",
+        "no": "Use only the standard language search",
+    }
+    default = "no"
+
+
+@register_preference
 class AutoTranslateDefs(Preference):
     """
     Should we show synthesized audio in the paradigms?
