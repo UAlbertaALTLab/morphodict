@@ -163,7 +163,7 @@ def wordnet_search(
                 get_lemma_freq(wn_results)
                 for result in wn_results.unsorted_results():
                     result.relevance_score = result.lemma_freq
-                """
+
                 if wordnet_search.espt:
                     # Then it is an inflected query that should be Espt-Search based
                     espt_search = EsptSearch(query, wn_results)
@@ -175,8 +175,7 @@ def wordnet_search(
                             wordnet_search.espt.query.old_query_terms
                         )
                     definition = wordnet_search.inflect_wordnet_definition(wn_entry)
-                """
-                definition = wn_entry.definition()
+
                 results.append((wn_entry, definition, wn_results))
         return results
 

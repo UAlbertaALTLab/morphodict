@@ -234,6 +234,8 @@ class Result:
 
     target_language_wordnet_match: list[str] = field(default_factory=list)
 
+    rapidwords_match: Optional[bool] = None
+
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):

@@ -1,8 +1,9 @@
 from .runner import search, wordnet_search as wordnet_runner
-from .core import SearchResults
+from .core import SearchResults, Result
 from .presentation import SerializedPresentationResult
 from .query import Query
 from .wordnet import WordnetEntry
+from morphodict.lexicon.models import RapidWords
 
 
 def search_with_affixes(
@@ -44,3 +45,15 @@ def wordnet_search(query: str) -> list[tuple[WordnetEntry, str, SearchResults]] 
     # If we are doing an english simple phrase
     search_query = Query(query)
     return wordnet_runner(search_query)
+
+
+def wordnet_index_search(index: str) -> SearchResults | None:
+    try:
+        rw_category = RapidWords.objects.get(index=index.strip())
+        results = SearchResults()
+        for word in rw_category.wordforms.all():
+            results.add_result(Result(word, rapidwords_match=True))
+        return results
+    except:
+        pass
+    return None

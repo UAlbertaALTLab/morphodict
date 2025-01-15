@@ -14,4 +14,10 @@ urlpatterns = [
         api_views.click_in_text_embedded_test,
         name="dictionary-click-in-text-embedded-test",
     ),
+    # API for semantic explorer
+    path(
+        "api/rapidwords-index/",
+        api_views.rapidwords_index,
+        name="dictionary-rapidwords-index-api",
+    ),
 ]
