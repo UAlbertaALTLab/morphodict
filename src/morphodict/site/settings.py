@@ -385,6 +385,11 @@ MORPHODICT_PREVIEW_WARNING = True
 # a different style, with tags like `[VERB][TA]`.
 MORPHODICT_TAG_STYLE = "Plus"
 
+# The basic password setup system.
+MORPHODICT_REQUIRES_LOGIN_IN_GROUP = env(
+    "MORPHODICT_REQUIRES_LOGIN_IN_GROUP", default=False
+)
+
 # The name of the source language, written in the target language. Used in
 # default templates to describe what language the dictionary is for.
 MORPHODICT_SOURCE_LANGUAGE_NAME: RequiredString = _MORPHODICT_REQUIRED_SETTING_SENTINEL

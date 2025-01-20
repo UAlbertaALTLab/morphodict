@@ -12,6 +12,7 @@ from django.shortcuts import redirect, render
 
 import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes
+from django.contrib.auth import logout
 from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.views import paradigm_context_for_lemma
 from morphodict.phrase_translate.fst import (
@@ -87,6 +88,15 @@ def index(request):  # pragma: no cover
     :param query_string: optional initial search results to display
     :return:
     """
+
+    if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP:
+        if not request.user.is_authenticated:
+            return redirect("/accounts/login/?next=%s" % request.path)
+        else:
+            groupnames = [x["name"] for x in request.user.groupsvalues("name")]
+            if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
+                logout(request)
+                return redirect("/accounts/login/?next=%s" % request.path)
 
     user_query = request.GET.get("q", None)
     dict_source = get_dict_source(request)
