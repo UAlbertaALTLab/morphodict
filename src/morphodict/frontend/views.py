@@ -93,7 +93,7 @@ def index(request):  # pragma: no cover
         if not request.user.is_authenticated:
             return redirect("/accounts/login/?next=%s" % request.path)
         else:
-            groupnames = [x["name"] for x in request.user.groupsvalues("name")]
+            groupnames = [x["name"] for x in request.user.groups.values("name")]
             if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
                 logout(request)
                 return redirect("/accounts/login/?next=%s" % request.path)
