@@ -45,7 +45,7 @@ def main():
 
     # Create the gunaha user!
     for script in manage_scripts:
-        with open('./create_gunaha_user') as stdin:
+        with open( script_dir / 'create_gunaha_user') as stdin:
             check_call([script, "shell"], env=m_env, stdin=stdin)
 
     servers = []
