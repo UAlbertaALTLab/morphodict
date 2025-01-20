@@ -95,8 +95,9 @@ def index(request):  # pragma: no cover
         else:
             groupnames = [x["name"] for x in request.user.groups.values("name")]
             if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
+                path = request.path
                 logout(request)
-                return redirect("/accounts/login/?next=%s" % request.path)
+                return redirect("/accounts/login/?next=%s" % path)
 
     user_query = request.GET.get("q", None)
     dict_source = get_dict_source(request)
