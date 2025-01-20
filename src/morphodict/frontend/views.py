@@ -43,6 +43,16 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
+    if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP:
+        if not request.user.is_authenticated:
+            return redirect("/accounts/login/?next=%s" % request.path)
+        else:
+            groupnames = [x["name"] for x in request.user.groups.values("name")]
+            if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
+                path = request.path
+                logout(request)
+                return redirect("/accounts/login/?next=%s" % path)
+
     lemmas = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemmas.count() != 1:

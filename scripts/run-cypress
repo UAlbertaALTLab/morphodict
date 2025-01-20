@@ -43,6 +43,11 @@ def main():
     for script in manage_scripts:
         check_call([script, "ensuretestdb"], env=m_env)
 
+    # Create the gunaha user!
+    for script in manage_scripts:
+        with open('./create_gunaha_user') as stdin:
+            check_call([script, "shell"], env=m_env, stdin=stdin)
+
     servers = []
     for script in manage_scripts:
         servers.append(Popen([script, "runserver"], env=m_env))
