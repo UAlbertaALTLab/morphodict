@@ -39,7 +39,7 @@ Cypress.Commands.add(
     });
     return cy.visit(`${baseUrl}/search?q=${encodeURIComponent(searchQuery)}`, {
       escapeComponents: false,
-      headers
+      headers,
     });
   }
 );
@@ -144,25 +144,25 @@ Cypress.Commands.add("user_login", (url) => {
   cy.get("@csrfToken").then(function (token) {
     cy.request({
       method: "POST",
-        url: url,
-        form: true,
-        body: {
-          username : "test_user",
-          password : "test",
-          next: "/",
-          csrfmiddlewaretoken: token,
-        },
-        headers: {
-          "X-CSRFTOKEN": token,
-        },
-        followRedirect: true,
-      }).then((response) => {
-        expect(response.status).to.eql(200);
-        cy.getCookies().then(cookies => {
-          Cypress.env('cookies', cookies)
-      })
+      url: url,
+      form: true,
+      body: {
+        username: "test_user",
+        password: "test",
+        next: "/",
+        csrfmiddlewaretoken: token,
+      },
+      headers: {
+        "X-CSRFTOKEN": token,
+      },
+      followRedirect: true,
+    }).then((response) => {
+      expect(response.status).to.eql(200);
+      cy.getCookies().then((cookies) => {
+        Cypress.env("cookies", cookies);
       });
     });
+  });
 });
 
 /**
