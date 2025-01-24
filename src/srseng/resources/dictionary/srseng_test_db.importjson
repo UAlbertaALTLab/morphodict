@@ -1,286 +1,725 @@
 [
-  {
-    "analysis": [
-      [],
-      "átłàyidiʔò",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]
-    ],
-    "head": "átłàyidiʔò",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>átłàyidiʔò</td></tr><tr><td>Pfv</b></td><td>átłàyidìníʔó</td></tr><tr><td>Prog</b></td><td>átłàyidìyiʔół</td></tr><tr><td>Ipfv+Rep</b></td><td>átłànáyidìʔósh</td></tr><tr><td>Pot</b></td><td>átłàyidìyiʔół</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yídiskid",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "yídiskid",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yídiskid</td></tr><tr><td>Pfv</b></td><td>yídíyískid</td></tr><tr><td>Prog</b></td><td>yídíyiskił</td></tr><tr><td>Ipfv+Rep</b></td><td>náyídiikiizh</td></tr><tr><td>Pot</b></td><td>yídíyiskid</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will ask him/her/it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yídiskid"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will close it (solid obj.)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "átłàyidiʔò"
-  },
-  {
-    "analysis": [[], "átłákòd", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "átłákòd",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>átłákòd</td></tr><tr><td>Pfv</b></td><td>átłáyíkòd</td></tr><tr><td>Prog</b></td><td>átłáyikòł</td></tr><tr><td>Ipfv+Rep</b></td><td>átłánákòsh</td></tr><tr><td>Pot</b></td><td>átłáyikòd</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "nàmo",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "nàmo",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàmo</td></tr><tr><td>Pfv</b></td><td>nàsimí</td></tr><tr><td>Prog</b></td><td>yimíł</td></tr><tr><td>Ipfv+Rep</b></td><td>nanámísh</td></tr><tr><td>Pot</b></td><td>nàyimò</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it is bathing, he/she/it is swimming",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "nàmo"
     },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it is clapping, he/she/it will clap",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "átłákòd"
-  },
-  {
-    "analysis": [[], "didús", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "didús",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>didús</td></tr><tr><td>Pfv</b></td><td>dìsdúúz</td></tr><tr><td>Prog</b></td><td>yidús</td></tr><tr><td>Ipfv+Rep</b></td><td>nádidúsh</td></tr><tr><td>Pot</b></td><td>dídús</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yàniyìgás",
+            [
+                "+V",
+                "+O",
+                "+Ipfv",
+                "+SbjSg3",
+                "+IObjSg3"
+            ]
+        ],
+        "head": "yàniyìgás",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yàniyìgás</td></tr><tr><td>Pfv</b></td><td>yàniyìsgààz</td></tr><tr><td>Prog</b></td><td>yàniyiigis</td></tr><tr><td>Ipfv+Rep</b></td><td>yànániyììgish</td></tr><tr><td>Pot</b></td><td>yànìyigás</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VO",
+        "senses": [
+            {
+                "definition": "he/she/it will bite him/her/it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yàniyìgás"
     },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it will start to crawl",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "didús"
-  },
-  {
-    "analysis": [[], "ditsá", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "ditsá",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ditsá</td></tr><tr><td>Pfv</b></td><td>dìstsày</td></tr><tr><td>Prog</b></td><td>didátsáł</td></tr><tr><td>Ipfv+Rep</b></td><td>nádichásh</td></tr><tr><td>Pot</b></td><td>dítsá</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yitł'ùn",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "yitł'ùn",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yitł'ùn</td></tr><tr><td>Pfv</b></td><td>yìstł'ún</td></tr><tr><td>Prog</b></td><td>yátł'úł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyitł'úsh</td></tr><tr><td>Pot</b></td><td>yítł'ùn</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will braid it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yitł'ùn"
     },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it will start to cry",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "ditsá"
-  },
-  {
-    "analysis": [
-      [],
-      "idiniʔòł",
-      ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjIndef"]
-    ],
-    "head": "idiniʔòł",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>idiniʔòł</td></tr><tr><td>Pfv</b></td><td>idináʔótł'</td></tr><tr><td>Prog</b></td><td>idináʔòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náadiniʔòlsh</td></tr><tr><td>Pot</b></td><td>idiníʔòł</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yik'áyìs",
+            [
+                "+V",
+                "+O",
+                "+Ipfv",
+                "+SbjSg3",
+                "+IObjSg3"
+            ]
+        ],
+        "head": "yik'áyìs",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yik'áyìs</td></tr><tr><td>Pfv</b></td><td>yik'áníyìdz</td></tr><tr><td>Prog</b></td><td>yik'áyiyìs</td></tr><tr><td>Ipfv+Rep</b></td><td>yik'ánáyìsh</td></tr><tr><td>Pot</b></td><td>yik'áyiyìs</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VO",
+        "senses": [
+            {
+                "definition": "he/she/it will break it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yik'áyìs"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will start to chew something",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "idiniʔòł"
-  },
-  {
-    "analysis": [[], "itsiy", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "itsiy",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>itsiy</td></tr><tr><td>Pfv</b></td><td>yítsày</td></tr><tr><td>Prog</b></td><td>yitsáł</td></tr><tr><td>Ipfv+Rep</b></td><td>náchish</td></tr><tr><td>Pot</b></td><td>yitsiy</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yidiʔò",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "yidiʔò",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yidiʔò</td></tr><tr><td>Pfv</b></td><td>yidìsʔó</td></tr><tr><td>Prog</b></td><td>yáʔół</td></tr><tr><td>Ipfv+Rep</b></td><td>náyidiʔósh</td></tr><tr><td>Pot</b></td><td>yidíʔò</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will carry it (solid obj.)",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yidiʔò"
     },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it is crying",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "itsiy"
-  },
-  {
-    "analysis": [[], "nàmo", ["+V", "+I", "+Ipfv", "+SbjSg3"]],
-    "head": "nàmo",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nàmo</td></tr><tr><td>Pfv</b></td><td>nàsimí</td></tr><tr><td>Prog</b></td><td>yimíł</td></tr><tr><td>Ipfv+Rep</b></td><td>nanámísh</td></tr><tr><td>Pot</b></td><td>nàyimò</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yinììchúd",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "yinììchúd",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yinììchúd</td></tr><tr><td>Pfv</b></td><td>yinììchùd</td></tr><tr><td>Prog</b></td><td>yinìyiichuł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyinììchuuzh</td></tr><tr><td>Pot</b></td><td>yinìyiichúd</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will arrest him/her/it",
+                "sources": [
+                    "TVPD"
+                ]
+            },
+            {
+                "definition": "he/she/it will catch him/her/it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yinììchúd"
     },
-    "paradigm": "VI",
-    "senses": [
-      {
-        "definition": "he/she/it will bathe, he/she/it will swim",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "nàmo"
-  },
-  {
-    "analysis": [[], "yàniyìgás", ["+V", "+O", "+Ipfv", "+SbjSg3", "+IObjSg3"]],
-    "head": "yàniyìgás",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yàniyìgás</td></tr><tr><td>Pfv</b></td><td>yàniyìsgààz</td></tr><tr><td>Prog</b></td><td>yàniyìyigás</td></tr><tr><td>Ipfv+Rep</b></td><td>yànániyìgásh</td></tr><tr><td>Pot</b></td><td>yàniyìyigás</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yiʔòł",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "yiʔòł",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yiʔòł</td></tr><tr><td>Pfv</b></td><td>yáʔótł'</td></tr><tr><td>Prog</b></td><td>yáʔòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyiʔòlsh</td></tr><tr><td>Pot</b></td><td>yíʔòł</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it is chewing it, he/she/it will chew it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yiʔòł"
     },
-    "paradigm": "VO",
-    "senses": [
-      {
-        "definition": "he/she/it will bite him/her/it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yàniyìgás"
-  },
-  {
-    "analysis": [[], "yidiniʔòł", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yidiniʔòł",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yidiniʔòł</td></tr><tr><td>Pfv</b></td><td>yidináʔótł'</td></tr><tr><td>Prog</b></td><td>yidináʔòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyidiniʔòlsh</td></tr><tr><td>Pot</b></td><td>yidiníʔòł</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "iʔòł",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "iʔòł",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>iʔòł</td></tr><tr><td>Pfv</b></td><td>áʔótł'</td></tr><tr><td>Prog</b></td><td>áʔòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náaʔòlsh</td></tr><tr><td>Pot</b></td><td>íʔòł</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it is chewing something, he/she/it will chew something",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "iʔòł"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will start to chew it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yidiniʔòł"
-  },
-  {
-    "analysis": [[], "yidiʔò", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yidiʔò",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yidiʔò</td></tr><tr><td>Pfv</b></td><td>yidìsʔó</td></tr><tr><td>Prog</b></td><td>yáʔół</td></tr><tr><td>Ipfv+Rep</b></td><td>náyidiʔósh</td></tr><tr><td>Pot</b></td><td>yidíʔół</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "átłákòd",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "átłákòd",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>átłákòd</td></tr><tr><td>Pfv</b></td><td>átłáyíkòd</td></tr><tr><td>Prog</b></td><td>átłáyikòł</td></tr><tr><td>Ipfv+Rep</b></td><td>átłánákòsh</td></tr><tr><td>Pot</b></td><td>átłáyikòd</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it is clapping, he/she/it will clap",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "átłákòd"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will carry it (solid obj.)",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yidiʔò"
-  },
-  {
-    "analysis": [[], "yik'át'òs", ["+V", "+O", "+Ipfv", "+SbjSg3", "+IObjSg3"]],
-    "head": "yik'át'òs",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yik'át'òs</td></tr><tr><td>Pfv</b></td><td>yik'ánít'óóz</td></tr><tr><td>Prog</b></td><td>yik'áyit'òs</td></tr><tr><td>Ipfv+Rep</b></td><td>yik'ánát'òsh</td></tr><tr><td>Pot</b></td><td>yik'áyit'òs</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "átłàyidìʔò",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "átłàyidìʔò",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>átłàyidìʔò</td></tr><tr><td>Pfv</b></td><td>átłàyidìníʔó</td></tr><tr><td>Prog</b></td><td>átłàyidáʔół</td></tr><tr><td>Ipfv+Rep</b></td><td>átłànáyidìʔósh</td></tr><tr><td>Pot</b></td><td>átłàyidìyiʔół</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will close it (solid obj.)",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "átłàyidìʔò"
     },
-    "paradigm": "VO",
-    "senses": [
-      {
-        "definition": "he/she/it will cut it off",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yik'át'òs"
-  },
-  {
-    "analysis": [[], "yik'áyìs", ["+V", "+O", "+Ipfv", "+SbjSg3", "+IObjSg3"]],
-    "head": "yik'áyìs",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yik'áyìs</td></tr><tr><td>Pfv</b></td><td>yik'áníyììz</td></tr><tr><td>Prog</b></td><td>yik'áyiyìs</td></tr><tr><td>Ipfv+Rep</b></td><td>yik'ánáyìsh</td></tr><tr><td>Pot</b></td><td>yik'áyiyìs</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "didús",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "didús",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>didús</td></tr><tr><td>Pfv</b></td><td>dìsdúúz</td></tr><tr><td>Prog</b></td><td>yidús</td></tr><tr><td>Ipfv+Rep</b></td><td>nádidúsh</td></tr><tr><td>Pot</b></td><td>dídús</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it will start to crawl",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "didús"
     },
-    "paradigm": "VO",
-    "senses": [
-      {
-        "definition": "he/she/it will break it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yik'áyìs"
-  },
-  {
-    "analysis": [[], "yitł'ùn", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yitł'ùn",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yitł'ùn</td></tr><tr><td>Pfv</b></td><td>yìstł'ún</td></tr><tr><td>Prog</b></td><td>yátł'úł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyitł'úsh</td></tr><tr><td>Pot</b></td><td>yítł'ùn</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "itsiy",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "itsiy",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>itsiy</td></tr><tr><td>Pfv</b></td><td>yítsày</td></tr><tr><td>Prog</b></td><td>yitsáł</td></tr><tr><td>Ipfv+Rep</b></td><td>náchish</td></tr><tr><td>Pot</b></td><td>yitsiy</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it is crying",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "itsiy"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will braid it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yitł'ùn"
-  },
-  {
-    "analysis": [[], "yiʔòł", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yiʔòł",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yiʔòł</td></tr><tr><td>Pfv</b></td><td>yáʔótł'</td></tr><tr><td>Prog</b></td><td>yáʔòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyiʔòlsh/náaʔòlsh</td></tr><tr><td>Pot</b></td><td>yíʔòł</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "ditsá",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "ditsá",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ditsá</td></tr><tr><td>Pfv</b></td><td>dìstsày</td></tr><tr><td>Prog</b></td><td>didátsáł</td></tr><tr><td>Ipfv+Rep</b></td><td>nádichish</td></tr><tr><td>Pot</b></td><td>dítsá</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it will start to cry",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "ditsá"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it is chewing it, he/she/it will chew it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yiʔòł"
-  },
-  {
-    "analysis": [[], "yìschúd", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yìschúd",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yìschúd</td></tr><tr><td>Pfv</b></td><td>yìschùd</td></tr><tr><td>Prog</b></td><td>yìyischúł</td></tr><tr><td>Ipfv+Rep</b></td><td>náyìschùùzh</td></tr><tr><td>Pot</b></td><td>yìyischúd</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "yik'át'òs",
+            [
+                "+V",
+                "+O",
+                "+Ipfv",
+                "+SbjSg3",
+                "+IObjSg3"
+            ]
+        ],
+        "head": "yik'át'òs",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yik'át'òs</td></tr><tr><td>Pfv</b></td><td>yik'ánít'óóz</td></tr><tr><td>Prog</b></td><td>yik'áyit'òs</td></tr><tr><td>Ipfv+Rep</b></td><td>yik'ánát'òsh</td></tr><tr><td>Pot</b></td><td>yik'áyit'òs</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VO",
+        "senses": [
+            {
+                "definition": "he/she/it will cut it off",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "yik'át'òs"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will catch him/her/it",
-        "sources": ["TVPD"]
-      },
-      {
-        "definition": "he/she/it will catch it in a trap, he/she/it will trap it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yìschúd"
-  },
-  {
-    "analysis": [[], "yídiskid", ["+V", "+T", "+Ipfv", "+SbjSg3", "+DObjSg3"]],
-    "head": "yídiskid",
-    "linguistInfo": {
-      "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>yídiskid</td></tr><tr><td>Pfv</b></td><td>yídíyískid</td></tr><tr><td>Prog</b></td><td>yídíyiskił</td></tr><tr><td>Ipfv+Rep</b></td><td>náyídiskiizh</td></tr><tr><td>Pot</b></td><td>yídíyiskid</td></tr></table>",
-      "inflectional_category": "V",
-      "pos": "V"
+    {
+        "analysis": [
+            [],
+            "tadììtł'á",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "tadììtł'á",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>tadììtł'á</td></tr><tr><td>Pfv</b></td><td>tadììtł'o</td></tr><tr><td>Prog</b></td><td>taatł'ásh</td></tr><tr><td>Ipfv+Rep</b></td><td>tanádììtł'ásh</td></tr><tr><td>Pot</b></td><td>tadìyiitł'ò</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it will start to dance",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "tadììtł'á"
     },
-    "paradigm": "VT",
-    "senses": [
-      {
-        "definition": "he/she/it will ask him/her/it",
-        "sources": ["TVPD"]
-      }
-    ],
-    "slug": "yídiskid"
-  }
+    {
+        "analysis": [
+            [],
+            "taxàshigidìnò",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "taxàshigidìnò",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>taxàshigidìnò</td></tr><tr><td>Pfv</b></td><td>taxàshigidìsnó</td></tr><tr><td>Prog</b></td><td>taxàshigidìyinòł</td></tr><tr><td>Ipfv+Rep</b></td><td>tanáxàshigidìnòsh</td></tr><tr><td>Pot</b></td><td>taxàshigidìyinò</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "they all will start to dance",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "taxàshigidìnò"
+    },
+    {
+        "analysis": [
+            [],
+            "áyìlá",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "áyìlá",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</b></td><td>–</td></tr><tr><td>Prog</b></td><td>áyáláł</td></tr><tr><td>Ipfv+Rep</b></td><td>–</td></tr><tr><td>Pot</b></td><td>áyìyilá</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will make it (an object)",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "áyìlá"
+    },
+    {
+        "analysis": [
+            [],
+            "iditł'ìsh",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "iditł'ìsh",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>iditł'ìsh</td></tr><tr><td>Pfv</b></td><td>idiyítł'ìsh</td></tr><tr><td>Prog</b></td><td>idátł'ìsh</td></tr><tr><td>Ipfv+Rep</b></td><td>náaditł'ìsh</td></tr><tr><td>Pot</b></td><td>idítł'ìsh</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will draw something, he/she/it will write something",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "iditł'ìsh"
+    },
+    {
+        "analysis": [
+            [],
+            "idó",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "idó",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>idó</td></tr><tr><td>Pfv</b></td><td>ádón</td></tr><tr><td>Prog</b></td><td>ádíł</td></tr><tr><td>Ipfv+Rep</b></td><td>náadísh</td></tr><tr><td>Pot</b></td><td>ídòn</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it is drinking something, he/she/it will drink something",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "idó"
+    },
+    {
+        "analysis": [
+            [],
+            "ísno",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "ísno",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ísno</td></tr><tr><td>Pfv</b></td><td>íyísnò</td></tr><tr><td>Prog</b></td><td>íyisnòł</td></tr><tr><td>Ipfv+Rep</b></td><td>náásnòsh</td></tr><tr><td>Pot</b></td><td>íyisnò</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it is eating something now",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "ísno"
+    },
+    {
+        "analysis": [
+            [],
+            "ichiizh",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "ichiizh",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>ichiizh</td></tr><tr><td>Pfv</b></td><td>–</td></tr><tr><td>Prog</b></td><td>–</td></tr><tr><td>Ipfv+Rep</b></td><td>náachiizh</td></tr><tr><td>Pot</b></td><td>íchiizh</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it will eat something",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "ichiizh"
+    },
+    {
+        "analysis": [
+            [],
+            "átsàd",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjIndef"
+            ]
+        ],
+        "head": "átsàd",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>–</td></tr><tr><td>Pfv</b></td><td>átsàd</td></tr><tr><td>Prog</b></td><td>–</td></tr><tr><td>Ipfv+Rep</b></td><td>–</td></tr><tr><td>Pot</b></td><td>–</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it ate something",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "átsàd"
+    },
+    {
+        "analysis": [
+            [],
+            "k'àyisdá",
+            [
+                "+V",
+                "+T",
+                "+Ipfv",
+                "+SbjSg3",
+                "+DObjSg3"
+            ]
+        ],
+        "head": "k'àyisdá",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>k'àyisdá</td></tr><tr><td>Pfv</b></td><td>k'àyiyísdày</td></tr><tr><td>Prog</b></td><td>k'àyásdił</td></tr><tr><td>Ipfv+Rep</b></td><td>k'ànáyisdish</td></tr><tr><td>Pot</b></td><td>k'àyísdá</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VT",
+        "senses": [
+            {
+                "definition": "he/she/it is erasing it, he/she/it will erase it",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "k'àyisdá"
+    },
+    {
+        "analysis": [
+            [],
+            "nààts'íd",
+            [
+                "+V",
+                "+I",
+                "+Ipfv",
+                "+SbjSg3"
+            ]
+        ],
+        "head": "nààts'íd",
+        "linguistInfo": {
+            "analysis": "<table colspan=\"2\"><tr><td><b>Aspect</b></td><td><b>Theme</b></td></tr><tr><td>Ipfv</td><td>nààts'íd</td></tr><tr><td>Pfv</b></td><td>nàyiits'id</td></tr><tr><td>Prog</b></td><td>nàdááts'ił</td></tr><tr><td>Ipfv+Rep</b></td><td>nanáách'iizh</td></tr><tr><td>Pot</b></td><td>nàyiits'íd</td></tr></table>",
+            "inflectional_category": "V",
+            "pos": "V"
+        },
+        "paradigm": "VI",
+        "senses": [
+            {
+                "definition": "he/she/it will fall off",
+                "sources": [
+                    "TVPD"
+                ]
+            }
+        ],
+        "slug": "nààts'íd"
+    }
 ]
