@@ -1,0 +1,84 @@
+	| Ipfv
+_ 1Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjSg4+IObjAreal+Distr
+	
+	| Pfv
+_ 1Sg _ ArealIO	${lemma}+V+O+Pfv+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Pfv+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Pfv+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Pfv+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Pfv+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Pfv+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Pfv+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Pfv+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Pfv+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Pfv+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Pfv+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Pfv+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Pfv+SbjSg4+IObjAreal+Distr
+	
+	| Prog
+_ 1Sg _ ArealIO	${lemma}+V+O+Prog+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Prog+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Prog+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Prog+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Prog+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Prog+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Prog+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Prog+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Prog+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Prog+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Prog+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Prog+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Prog+SbjSg4+IObjAreal+Distr
+	
+	| Ipfv | Rep
+_ 1Sg _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Ipfv+Rep+SbjSg4+IObjAreal+Distr
+	
+	| Pot
+_ 1Sg _ ArealIO	${lemma}+V+O+Pot+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Pot+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Pot+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Pot+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Pot+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Pot+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Pot+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Pot+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Pot+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Pot+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Pot+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Pot+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Pot+SbjSg4+IObjAreal+Distr

@@ -1,0 +1,33 @@
+	| Ipfv
+_ 1Sg _ ArealDO	${lemma}+V+T+Ipfv+SbjSg1+DObjAreal
+_ 2Sg _ ArealDO	${lemma}+V+T+Ipfv+SbjSg2+DObjAreal
+_ 3Sg _ ArealDO	${lemma}+V+T+Ipfv+SbjSg3+DObjAreal
+_ 1Pl _ ArealDO	${lemma}+V+T+Ipfv+SbjPl1+DObjAreal
+_ 2Pl _ ArealDO	${lemma}+V+T+Ipfv+SbjPl2+DObjAreal
+_ 3Pl _ ArealDO	${lemma}+V+T+Ipfv+SbjPl3+DObjAreal
+_ 4Sg _ ArealDO	${lemma}+V+T+Ipfv+SbjSg4+DObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealDO	${lemma}+V+T+Ipfv+SbjSg3+DObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealDO	${lemma}+V+T+Ipfv+SbjSg3+DObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealDO	${lemma}+V+T+Ipfv+SbjPl1+DObjAreal+Distr
+_ 2Pl _ Distr _ ArealDO	${lemma}+V+T+Ipfv+SbjPl2+DObjAreal+Distr
+_ 3Pl _ Distr _ ArealDO	${lemma}+V+T+Ipfv+SbjPl3+DObjAreal+Distr
+_ 4Sg _ Distr _ ArealDO	${lemma}+V+T+Ipfv+SbjSg4+DObjAreal+Distr
+	
+	| Pfv
+_ 1Sg _ ArealDO	${lemma}+V+T+Pfv+SbjSg1+DObjAreal
+_ 2Sg _ ArealDO	${lemma}+V+T+Pfv+SbjSg2+DObjAreal
+_ 3Sg _ ArealDO	${lemma}+V+T+Pfv+SbjSg3+DObjAreal
+_ 1Pl _ ArealDO	${lemma}+V+T+Pfv+SbjPl1+DObjAreal
+_ 2Pl _ ArealDO	${lemma}+V+T+Pfv+SbjPl2+DObjAreal
+_ 3Pl _ ArealDO	${lemma}+V+T+Pfv+SbjPl3+DObjAreal
+_ 4Sg _ ArealDO	${lemma}+V+T+Pfv+SbjSg4+DObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealDO	${lemma}+V+T+Pfv+SbjSg3+DObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealDO	${lemma}+V+T+Pfv+SbjSg3+DObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealDO	${lemma}+V+T+Pfv+SbjPl1+DObjAreal+Distr
+_ 2Pl _ Distr _ ArealDO	${lemma}+V+T+Pfv+SbjPl2+DObjAreal+Distr
+_ 3Pl _ Distr _ ArealDO	${lemma}+V+T+Pfv+SbjPl3+DObjAreal+Distr
+_ 4Sg _ Distr _ ArealDO	${lemma}+V+T+Pfv+SbjSg4+DObjAreal+Distr

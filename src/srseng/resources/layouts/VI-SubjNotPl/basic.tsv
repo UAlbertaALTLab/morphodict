@@ -9,8 +9,3 @@ _ 4Sg	${lemma}+V+I+Ipfv+SbjSg4
 	| Nominalizations
 _ 3Sg _ Nomz	${lemma}+V+I+Ipfv+SbjSg3+Nomz
 _ 3Sg _ NomzA	${lemma}+V+I+Ipfv+SbjSg3+NomzA
-	| DistributivePlurals
-_ 1Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl1+Distr
-_ 2Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl2+Distr
-_ 3Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl3+Distr
-_ 4Sg _ Distr	${lemma}+V+I+Ipfv+SbjSg4+Distr

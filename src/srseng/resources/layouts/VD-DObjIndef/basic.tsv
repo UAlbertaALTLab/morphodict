@@ -1,0 +1,16 @@
+	| Ipfv
+_ 1Sg _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg1+DObjIndef+IObjSg3
+_ 2Sg _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg2+DObjIndef+IObjSg3
+_ 3Sg _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjIndef+IObjSg3
+_ 1Pl _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl1+DObjIndef+IObjSg3
+_ 2Pl _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl2+DObjIndef+IObjSg3
+_ 3Pl _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl3+DObjIndef+IObjSg3
+_ 4Sg _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg4+DObjIndef+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjIndef+IObjSg3+Nomz
+_ 3Sg _ NomzA _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjIndef+IObjSg3+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl1+DObjIndef+IObjSg3+Distr
+_ 2Pl _ Distr _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl2+DObjIndef+IObjSg3+Distr
+_ 3Pl _ Distr _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjPl3+DObjIndef+IObjSg3+Distr
+_ 4Sg _ Distr _ IndefDO _ 3SgIO	${lemma}+V+D+Ipfv+SbjSg4+DObjIndef+IObjSg3+Distr
