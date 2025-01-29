@@ -8,7 +8,7 @@ describe("The Tsúūt'ínà site", function () {
 
   it("works", function () {
     cy.visit(`${urls.srseng}`);
-    cy.get(".branding__heading").contains("Gūnáhà");
+    cy.get(".branding__heading").contains("Gunáhà");
   });
 
   it("can login before anything", function () {
