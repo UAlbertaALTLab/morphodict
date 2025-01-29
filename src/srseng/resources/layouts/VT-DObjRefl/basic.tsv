@@ -1,0 +1,16 @@
+	| Ipfv
+_ 1Sg _ ReflDO	${lemma}+V+T+Ipfv+SbjSg1+DObjRefl
+_ 2Sg _ ReflDO	${lemma}+V+T+Ipfv+SbjSg2+DObjRefl
+_ 3Sg _ ReflDO	${lemma}+V+T+Ipfv+SbjSg3+DObjRefl
+_ 1Pl _ ReflDO	${lemma}+V+T+Ipfv+SbjPl1+DObjRefl
+_ 2Pl _ ReflDO	${lemma}+V+T+Ipfv+SbjPl2+DObjRefl
+_ 3Pl _ ReflDO	${lemma}+V+T+Ipfv+SbjPl3+DObjRefl
+_ 4Sg _ ReflDO	${lemma}+V+T+Ipfv+SbjSg4+DObjRefl
+	| Nominalizations
+_ 3Sg _ Nomz _ ReflDO	${lemma}+V+T+Ipfv+SbjSg3+DObjRefl+Nomz
+_ 3Sg _ NomzA _ ReflDO	${lemma}+V+T+Ipfv+SbjSg3+DObjRefl+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ReflDO	${lemma}+V+T+Ipfv+SbjPl1+DObjRefl+Distr
+_ 2Pl _ Distr _ ReflDO	${lemma}+V+T+Ipfv+SbjPl2+DObjRefl+Distr
+_ 3Pl _ Distr _ ReflDO	${lemma}+V+T+Ipfv+SbjPl3+DObjRefl+Distr
+_ 4Sg _ Distr _ ReflDO	${lemma}+V+T+Ipfv+SbjSg4+DObjRefl+Distr

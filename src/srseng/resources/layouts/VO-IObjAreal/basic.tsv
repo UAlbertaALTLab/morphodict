@@ -1,0 +1,16 @@
+	| Ipfv
+_ 1Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg1+IObjAreal
+_ 2Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg2+IObjAreal
+_ 3Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal
+_ 1Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl1+IObjAreal
+_ 2Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl2+IObjAreal
+_ 3Pl _ ArealIO	${lemma}+V+O+Ipfv+SbjPl3+IObjAreal
+_ 4Sg _ ArealIO	${lemma}+V+O+Ipfv+SbjSg4+IObjAreal
+	| Nominalizations
+_ 3Sg _ Nomz _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal+Nomz
+_ 3Sg _ NomzA _ ArealIO	${lemma}+V+O+Ipfv+SbjSg3+IObjAreal+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl1+IObjAreal+Distr
+_ 2Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl2+IObjAreal+Distr
+_ 3Pl _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjPl3+IObjAreal+Distr
+_ 4Sg _ Distr _ ArealIO	${lemma}+V+O+Ipfv+SbjSg4+IObjAreal+Distr

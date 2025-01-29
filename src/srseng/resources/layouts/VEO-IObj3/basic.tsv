@@ -1,0 +1,8 @@
+	| Ipfv
+_ 3Sg	${lemma}+V+E+Ipfv+SbjSg3+IObjSg3
+_ 3Pl	${lemma}+V+E+Ipfv+SbjSg3+IObjPl3
+	| Nominalizations
+_ 3Sg _ Nomz	${lemma}+V+E+Ipfv+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA	${lemma}+V+E+Ipfv+SbjSg3+IObjSg3+NomzA
+	| DistributivePlurals
+_ 3Pl _ Distr	${lemma}+V+E+Ipfv+SbjSg3+IObjPl3+Distr

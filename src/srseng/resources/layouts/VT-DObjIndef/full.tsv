@@ -1,0 +1,84 @@
+	| Ipfv
+_ 1Sg _ IndefDO	${lemma}+V+T+Ipfv+SbjSg1+DObjIndef
+_ 2Sg _ IndefDO	${lemma}+V+T+Ipfv+SbjSg2+DObjIndef
+_ 3Sg _ IndefDO	${lemma}+V+T+Ipfv+SbjSg3+DObjIndef
+_ 1Pl _ IndefDO	${lemma}+V+T+Ipfv+SbjPl1+DObjIndef
+_ 2Pl _ IndefDO	${lemma}+V+T+Ipfv+SbjPl2+DObjIndef
+_ 3Pl _ IndefDO	${lemma}+V+T+Ipfv+SbjPl3+DObjIndef
+_ 4Sg _ IndefDO	${lemma}+V+T+Ipfv+SbjSg4+DObjIndef
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO	${lemma}+V+T+Ipfv+SbjSg3+DObjIndef+Nomz
+_ 3Sg _ NomzA _ IndefDO	${lemma}+V+T+Ipfv+SbjSg3+DObjIndef+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+SbjPl1+DObjIndef+Distr
+_ 2Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+SbjPl2+DObjIndef+Distr
+_ 3Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+SbjPl3+DObjIndef+Distr
+_ 4Sg _ Distr _ IndefDO	${lemma}+V+T+Ipfv+SbjSg4+DObjIndef+Distr
+	
+	| Pfv
+_ 1Sg _ IndefDO	${lemma}+V+T+Pfv+SbjSg1+DObjIndef
+_ 2Sg _ IndefDO	${lemma}+V+T+Pfv+SbjSg2+DObjIndef
+_ 3Sg _ IndefDO	${lemma}+V+T+Pfv+SbjSg3+DObjIndef
+_ 1Pl _ IndefDO	${lemma}+V+T+Pfv+SbjPl1+DObjIndef
+_ 2Pl _ IndefDO	${lemma}+V+T+Pfv+SbjPl2+DObjIndef
+_ 3Pl _ IndefDO	${lemma}+V+T+Pfv+SbjPl3+DObjIndef
+_ 4Sg _ IndefDO	${lemma}+V+T+Pfv+SbjSg4+DObjIndef
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO	${lemma}+V+T+Pfv+SbjSg3+DObjIndef+Nomz
+_ 3Sg _ NomzA _ IndefDO	${lemma}+V+T+Pfv+SbjSg3+DObjIndef+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO	${lemma}+V+T+Pfv+SbjPl1+DObjIndef+Distr
+_ 2Pl _ Distr _ IndefDO	${lemma}+V+T+Pfv+SbjPl2+DObjIndef+Distr
+_ 3Pl _ Distr _ IndefDO	${lemma}+V+T+Pfv+SbjPl3+DObjIndef+Distr
+_ 4Sg _ Distr _ IndefDO	${lemma}+V+T+Pfv+SbjSg4+DObjIndef+Distr
+	
+	| Prog
+_ 1Sg _ IndefDO	${lemma}+V+T+Prog+SbjSg1+DObjIndef
+_ 2Sg _ IndefDO	${lemma}+V+T+Prog+SbjSg2+DObjIndef
+_ 3Sg _ IndefDO	${lemma}+V+T+Prog+SbjSg3+DObjIndef
+_ 1Pl _ IndefDO	${lemma}+V+T+Prog+SbjPl1+DObjIndef
+_ 2Pl _ IndefDO	${lemma}+V+T+Prog+SbjPl2+DObjIndef
+_ 3Pl _ IndefDO	${lemma}+V+T+Prog+SbjPl3+DObjIndef
+_ 4Sg _ IndefDO	${lemma}+V+T+Prog+SbjSg4+DObjIndef
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO	${lemma}+V+T+Prog+SbjSg3+DObjIndef+Nomz
+_ 3Sg _ NomzA _ IndefDO	${lemma}+V+T+Prog+SbjSg3+DObjIndef+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO	${lemma}+V+T+Prog+SbjPl1+DObjIndef+Distr
+_ 2Pl _ Distr _ IndefDO	${lemma}+V+T+Prog+SbjPl2+DObjIndef+Distr
+_ 3Pl _ Distr _ IndefDO	${lemma}+V+T+Prog+SbjPl3+DObjIndef+Distr
+_ 4Sg _ Distr _ IndefDO	${lemma}+V+T+Prog+SbjSg4+DObjIndef+Distr
+	
+	| Ipfv | Rep
+_ 1Sg _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg1+DObjIndef
+_ 2Sg _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg2+DObjIndef
+_ 3Sg _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg3+DObjIndef
+_ 1Pl _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl1+DObjIndef
+_ 2Pl _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl2+DObjIndef
+_ 3Pl _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl3+DObjIndef
+_ 4Sg _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg4+DObjIndef
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg3+DObjIndef+Nomz
+_ 3Sg _ NomzA _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg3+DObjIndef+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl1+DObjIndef+Distr
+_ 2Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl2+DObjIndef+Distr
+_ 3Pl _ Distr _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjPl3+DObjIndef+Distr
+_ 4Sg _ Distr _ IndefDO	${lemma}+V+T+Ipfv+Rep+SbjSg4+DObjIndef+Distr
+	
+	| Pot
+_ 1Sg _ IndefDO	${lemma}+V+T+Pot+SbjSg1+DObjIndef
+_ 2Sg _ IndefDO	${lemma}+V+T+Pot+SbjSg2+DObjIndef
+_ 3Sg _ IndefDO	${lemma}+V+T+Pot+SbjSg3+DObjIndef
+_ 1Pl _ IndefDO	${lemma}+V+T+Pot+SbjPl1+DObjIndef
+_ 2Pl _ IndefDO	${lemma}+V+T+Pot+SbjPl2+DObjIndef
+_ 3Pl _ IndefDO	${lemma}+V+T+Pot+SbjPl3+DObjIndef
+_ 4Sg _ IndefDO	${lemma}+V+T+Pot+SbjSg4+DObjIndef
+	| Nominalizations
+_ 3Sg _ Nomz _ IndefDO	${lemma}+V+T+Pot+SbjSg3+DObjIndef+Nomz
+_ 3Sg _ NomzA _ IndefDO	${lemma}+V+T+Pot+SbjSg3+DObjIndef+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ IndefDO	${lemma}+V+T+Pot+SbjPl1+DObjIndef+Distr
+_ 2Pl _ Distr _ IndefDO	${lemma}+V+T+Pot+SbjPl2+DObjIndef+Distr
+_ 3Pl _ Distr _ IndefDO	${lemma}+V+T+Pot+SbjPl3+DObjIndef+Distr
+_ 4Sg _ Distr _ IndefDO	${lemma}+V+T+Pot+SbjSg4+DObjIndef+Distr
