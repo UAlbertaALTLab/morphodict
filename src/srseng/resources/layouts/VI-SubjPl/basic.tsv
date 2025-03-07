@@ -1,0 +1,12 @@
+	| Ipfv
+_ 1Pl	${lemma}+V+I+Ipfv+SbjPl1
+_ 2Pl	${lemma}+V+I+Ipfv+SbjPl2
+_ 3Pl	${lemma}+V+I+Ipfv+SbjPl3
+_ 4Sg	${lemma}+V+I+Ipfv+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Ipfv+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Ipfv+SbjSg4+Distr

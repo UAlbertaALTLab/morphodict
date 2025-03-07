@@ -1,0 +1,64 @@
+	| Ipfv
+_ 1Pl	${lemma}+V+I+Ipfv+SbjPl1
+_ 2Pl	${lemma}+V+I+Ipfv+SbjPl2
+_ 3Pl	${lemma}+V+I+Ipfv+SbjPl3
+_ 4Sg	${lemma}+V+I+Ipfv+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Ipfv+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Ipfv+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Ipfv+SbjSg4+Distr
+	
+	| Pfv
+_ 1Pl	${lemma}+V+I+Pfv+SbjPl1
+_ 2Pl	${lemma}+V+I+Pfv+SbjPl2
+_ 3Pl	${lemma}+V+I+Pfv+SbjPl3
+_ 4Sg	${lemma}+V+I+Pfv+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Pfv+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Pfv+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Pfv+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Pfv+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Pfv+SbjSg4+Distr
+	
+	| Prog
+_ 1Pl	${lemma}+V+I+Prog+SbjPl1
+_ 2Pl	${lemma}+V+I+Prog+SbjPl2
+_ 3Pl	${lemma}+V+I+Prog+SbjPl3
+_ 4Sg	${lemma}+V+I+Prog+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Prog+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Prog+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Prog+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Prog+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Prog+SbjSg4+Distr
+	
+	| Ipfv | Rep
+_ 1Pl	${lemma}+V+I+Ipfv+Rep+SbjPl1
+_ 2Pl	${lemma}+V+I+Ipfv+Rep+SbjPl2
+_ 3Pl	${lemma}+V+I+Ipfv+Rep+SbjPl3
+_ 4Sg	${lemma}+V+I+Ipfv+Rep+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Ipfv+Rep+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Ipfv+Rep+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Ipfv+Rep+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Ipfv+Rep+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Ipfv+Rep+SbjSg4+Distr
+	
+	| Pot
+_ 1Pl	${lemma}+V+I+Pot+SbjPl1
+_ 2Pl	${lemma}+V+I+Pot+SbjPl2
+_ 3Pl	${lemma}+V+I+Pot+SbjPl3
+_ 4Sg	${lemma}+V+I+Pot+SbjSg4
+	| Nominalizations
+_ 3Pl _ NomzPl	${lemma}+V+I+Pot+SbjPl3+NomzPl
+	| DistributivePlurals
+_ 1Pl _ Distr	${lemma}+V+I+Pot+SbjPl1+Distr
+_ 2Pl _ Distr	${lemma}+V+I+Pot+SbjPl2+Distr
+_ 3Pl _ Distr	${lemma}+V+I+Pot+SbjPl3+Distr
+_ 4Sg _ Distr	${lemma}+V+I+Pot+SbjSg4+Distr

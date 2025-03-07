@@ -19,7 +19,7 @@ base_dir_setup.set_base_dir(BASE_DIR)
 from morphodict.site.settings import *
 
 # Where this application should be deployed:
-PRODUCTION_HOST = "old.gunaha.altlab.dev"
+PRODUCTION_HOST = "gunaha.altlab.dev"
 
 DEFAULT_RUNSERVER_PORT = 8009
 
@@ -34,20 +34,20 @@ FST_TOOL_SAMPLES = ["istsiy", "itsiy+V+I+Ipfv+SbjSg1"]
 
 # Morphodict configuration
 
-MORPHODICT_DICTIONARY_NAME = "Gūnáhà"
+MORPHODICT_DICTIONARY_NAME = "Gunáhà"
 
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
-# The ISO 639-1 code is used in the lang="" attributes in HTML.
+# The ISO 639-3 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "srs"
 
 MORPHODICT_SOURCE_LANGUAGE = "srs"
 MORPHODICT_TARGET_LANGUAGE = "eng"
 
 MORPHODICT_SOURCE_LANGUAGE_NAME = "Tsuut’ina"
-MORPHODICT_LANGUAGE_ENDONYM = "Tsúūt'ínà"
+MORPHODICT_LANGUAGE_ENDONYM = "Tsúut'ínà"
 
 MORPHODICT_ORTHOGRAPHY = {
     "default": "Latn",
@@ -57,3 +57,5 @@ MORPHODICT_ORTHOGRAPHY = {
 }
 
 SPEECH_DB_EQ = ["tsuutina"]
+
+MORPHODICT_REQUIRES_LOGIN_IN_GROUP = "gunaha"

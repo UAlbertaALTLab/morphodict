@@ -32,13 +32,14 @@ Cypress.Commands.overwrite("visit", (originalVisit, url, options) => {
 Cypress.Commands.add(
   "visitSearch",
   { prevSubject: false },
-  (searchQuery, baseUrl = urls.crkeng) => {
+  (searchQuery, baseUrl = urls.crkeng, headers = {}) => {
     Cypress.log({
       name: "visitSearch",
       message: `visiting search page for: ${searchQuery}`,
     });
     return cy.visit(`${baseUrl}/search?q=${encodeURIComponent(searchQuery)}`, {
       escapeComponents: false,
+      headers,
     });
   }
 );
@@ -129,6 +130,36 @@ Cypress.Commands.add("login", () => {
         expect(response.status).to.eql(302);
         expect(response.headers).to.have.property("location");
         expect(response.headers.location).to.not.contain("login");
+      });
+    });
+  });
+});
+
+Cypress.Commands.add("user_login", (url) => {
+  cy.visit(url);
+  cy.get("[name=csrfmiddlewaretoken]")
+    .should("exist")
+    .should("have.attr", "value")
+    .as("csrfToken");
+  cy.get("@csrfToken").then(function (token) {
+    cy.request({
+      method: "POST",
+      url: url,
+      form: true,
+      body: {
+        username: "test_user",
+        password: "test",
+        next: "/",
+        csrfmiddlewaretoken: token,
+      },
+      headers: {
+        "X-CSRFTOKEN": token,
+      },
+      followRedirect: true,
+    }).then((response) => {
+      expect(response.status).to.eql(200);
+      cy.getCookies().then((cookies) => {
+        Cypress.env("cookies", cookies);
       });
     });
   });

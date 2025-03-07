@@ -1,0 +1,59 @@
+	| Ipfv
+_ 1Sg _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg1+IObjSg3
+_ 2Sg _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg2+IObjSg3
+_ 3Sg _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg3+IObjSg3
+_ 1Pl _ 3SgIO	${lemma}+V+O+Ipfv+SbjPl1+IObjSg3
+_ 2Pl _ 3SgIO	${lemma}+V+O+Ipfv+SbjPl2+IObjSg3
+_ 3Pl _ 3SgIO	${lemma}+V+O+Ipfv+SbjPl3+IObjSg3
+_ 4Sg _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg4+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgIO	${lemma}+V+O+Ipfv+SbjSg3+IObjSg3+NomzA
+	
+	| Pfv
+_ 1Sg _ 3SgIO	${lemma}+V+O+Pfv+SbjSg1+IObjSg3
+_ 2Sg _ 3SgIO	${lemma}+V+O+Pfv+SbjSg2+IObjSg3
+_ 3Sg _ 3SgIO	${lemma}+V+O+Pfv+SbjSg3+IObjSg3
+_ 1Pl _ 3SgIO	${lemma}+V+O+Pfv+SbjPl1+IObjSg3
+_ 2Pl _ 3SgIO	${lemma}+V+O+Pfv+SbjPl2+IObjSg3
+_ 3Pl _ 3SgIO	${lemma}+V+O+Pfv+SbjPl3+IObjSg3
+_ 4Sg _ 3SgIO	${lemma}+V+O+Pfv+SbjSg4+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgIO	${lemma}+V+O+Pfv+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgIO	${lemma}+V+O+Pfv+SbjSg3+IObjSg3+NomzA
+	
+	| Prog
+_ 1Sg _ 3SgIO	${lemma}+V+O+Prog+SbjSg1+IObjSg3
+_ 2Sg _ 3SgIO	${lemma}+V+O+Prog+SbjSg2+IObjSg3
+_ 3Sg _ 3SgIO	${lemma}+V+O+Prog+SbjSg3+IObjSg3
+_ 1Pl _ 3SgIO	${lemma}+V+O+Prog+SbjPl1+IObjSg3
+_ 2Pl _ 3SgIO	${lemma}+V+O+Prog+SbjPl2+IObjSg3
+_ 3Pl _ 3SgIO	${lemma}+V+O+Prog+SbjPl3+IObjSg3
+_ 4Sg _ 3SgIO	${lemma}+V+O+Prog+SbjSg4+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgIO	${lemma}+V+O+Prog+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgIO	${lemma}+V+O+Prog+SbjSg3+IObjSg3+NomzA
+	
+	| Ipfv | Rep
+_ 1Sg _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg1+IObjSg3
+_ 2Sg _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg2+IObjSg3
+_ 3Sg _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjSg3
+_ 1Pl _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjPl1+IObjSg3
+_ 2Pl _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjPl2+IObjSg3
+_ 3Pl _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjPl3+IObjSg3
+_ 4Sg _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg4+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgIO	${lemma}+V+O+Ipfv+Rep+SbjSg3+IObjSg3+NomzA
+	
+	| Pot
+_ 1Sg _ 3SgIO	${lemma}+V+O+Pot+SbjSg1+IObjSg3
+_ 2Sg _ 3SgIO	${lemma}+V+O+Pot+SbjSg2+IObjSg3
+_ 3Sg _ 3SgIO	${lemma}+V+O+Pot+SbjSg3+IObjSg3
+_ 1Pl _ 3SgIO	${lemma}+V+O+Pot+SbjPl1+IObjSg3
+_ 2Pl _ 3SgIO	${lemma}+V+O+Pot+SbjPl2+IObjSg3
+_ 3Pl _ 3SgIO	${lemma}+V+O+Pot+SbjPl3+IObjSg3
+_ 4Sg _ 3SgIO	${lemma}+V+O+Pot+SbjSg4+IObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgIO	${lemma}+V+O+Pot+SbjSg3+IObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgIO	${lemma}+V+O+Pot+SbjSg3+IObjSg3+NomzA

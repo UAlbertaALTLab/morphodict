@@ -12,6 +12,7 @@ from django.shortcuts import redirect, render
 
 import morphodict.analysis
 from morphodict.search import presentation, search_with_affixes, wordnet_search
+from django.contrib.auth import logout
 from morphodict.frontend.forms import WordSearchForm
 from morphodict.paradigm.views import paradigm_context_for_lemma
 from morphodict.phrase_translate.fst import (
@@ -43,6 +44,16 @@ def entry_details(request, slug: str):
 
     :param slug: the stable unique ID of the lemma
     """
+    if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP:
+        if not request.user.is_authenticated:
+            return redirect("/accounts/login/?next=%s" % request.path)
+        else:
+            groupnames = [x["name"] for x in request.user.groups.values("name")]
+            if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
+                path = request.path
+                logout(request)
+                return redirect("/accounts/login/?next=%s" % path)
+
     lemmas = Wordform.objects.filter(slug=slug, is_lemma=True)
 
     if lemmas.count() != 1:
@@ -88,6 +99,16 @@ def index(request):  # pragma: no cover
     :param query_string: optional initial search results to display
     :return:
     """
+
+    if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP:
+        if not request.user.is_authenticated:
+            return redirect("/accounts/login/?next=%s" % request.path)
+        else:
+            groupnames = [x["name"] for x in request.user.groups.values("name")]
+            if settings.MORPHODICT_REQUIRES_LOGIN_IN_GROUP not in groupnames:
+                path = request.path
+                logout(request)
+                return redirect("/accounts/login/?next=%s" % path)
 
     user_query = request.GET.get("q", None)
     dict_source = get_dict_source(request)

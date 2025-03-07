@@ -1,0 +1,5 @@
+from django.contrib.auth.models import User, Group
+user=User.objects.create_user('test_user', password='test')
+group, _ = Group.objects.get_or_create(name="gunaha")
+user.groups.add(group)
+user.save()

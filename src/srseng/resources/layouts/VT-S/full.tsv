@@ -1,0 +1,32 @@
+	| Ipfv
+_ 1Sg _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg1+DObjSg3
+_ 2Sg _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg2+DObjSg3
+_ 3Sg _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg3+DObjSg3
+_ 1Pl _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl1+DObjSg3
+_ 2Pl _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl2+DObjSg3
+_ 3Pl _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl3+DObjSg3
+_ 4Sg _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg4+DObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg3+DObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg3+DObjSg3+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl1+DObjSg3+Distr
+_ 2Pl _ Distr _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl2+DObjSg3+Distr
+_ 3Pl _ Distr _ 3SgDO	${lemma}+V+T+Ipfv+SbjPl3+DObjSg3+Distr
+_ 4Sg _ Distr _ 3SgDO	${lemma}+V+T+Ipfv+SbjSg4+DObjSg3+Distr
+	
+	| Pfv
+_ 1Sg _ 3SgDO	${lemma}+V+T+Pfv+SbjSg1+DObjSg3
+_ 2Sg _ 3SgDO	${lemma}+V+T+Pfv+SbjSg2+DObjSg3
+_ 3Sg _ 3SgDO	${lemma}+V+T+Pfv+SbjSg3+DObjSg3
+_ 1Pl _ 3SgDO	${lemma}+V+T+Pfv+SbjPl1+DObjSg3
+_ 2Pl _ 3SgDO	${lemma}+V+T+Pfv+SbjPl2+DObjSg3
+_ 3Pl _ 3SgDO	${lemma}+V+T+Pfv+SbjPl3+DObjSg3
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO	${lemma}+V+T+Pfv+SbjSg3+DObjSg3+Nomz
+_ 3Sg _ NomzA _ 3SgDO	${lemma}+V+T+Pfv+SbjSg3+DObjSg3+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO	${lemma}+V+T+Pfv+SbjPl1+DObjSg3+Distr
+_ 2Pl _ Distr _ 3SgDO	${lemma}+V+T+Pfv+SbjPl2+DObjSg3+Distr
+_ 3Pl _ Distr _ 3SgDO	${lemma}+V+T+Pfv+SbjPl3+DObjSg3+Distr
+_ 4Sg _ Distr _ 3SgDO	${lemma}+V+T+Pfv+SbjSg4+DObjSg3+Distr

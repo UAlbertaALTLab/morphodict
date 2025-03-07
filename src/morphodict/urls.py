@@ -5,6 +5,7 @@ Definition of urls for morphodict.
 from django.conf import settings
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
+from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
@@ -58,6 +59,7 @@ urlpatterns = [
     ################################# Special URLS #################################
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
+    path("accounts/login/", auth_views.LoginView.as_view(), name="user_login"),
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):

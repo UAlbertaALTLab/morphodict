@@ -140,6 +140,7 @@ def main():
 
     class LfDialect(csv.excel):
         "Avoid git warning, “CRLF will be replaced by LF”"
+
         lineterminator = "\n"
 
     csv_out = csv.writer(output_text, dialect=LfDialect)
