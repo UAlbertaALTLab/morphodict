@@ -550,7 +550,34 @@ html {
   filter: brightness(100%);
 }
 
-.definition-title__play-button:hover {
+
+.definition-title__corpus-button {
+  /* Reset the button appearance: */
+  width: 1em;
+  padding: 0;
+  border: 0;
+  margin: 0;
+
+  /* Inline properties: */
+  vertical-align: middle;
+
+  /* Color: */
+  color: var(--play-button-color);
+  background: transparent;
+
+  /* Make it look like a link. */
+  cursor: pointer;
+
+  /* Subtle transition when hovering. */
+  transition: 0.1s filter;
+  filter: brightness(100%);
+
+  /* If <a>, do not show underline */
+  text-decoration: none;
+}
+
+.definition-title__play-button:hover,
+.definition-title__corpus-button:hover {
   /* Make the button lighter when hovered. */
   filter: brightness(150%);
 }

@@ -17,7 +17,7 @@ csp = (
     .script_src("'self'")
     .style_src("'self'", "fonts.googleapis.com", "'unsafe-inline'")
     .img_src("'self'")
-    .connect_src("'self'", "speech-db.altlab.app")
+    .connect_src("'self'", "speech-db.altlab.app", "korp-backend.altlab.dev")
     .font_src("'self'", "fonts.gstatic.com", "fonts.googleapis.com")
     .media_src("'self'", "http://speech-db.altlab.app", "https://speech-db.altlab.app")
 )

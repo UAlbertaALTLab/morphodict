@@ -11,6 +11,8 @@ urlpatterns = [
         name="morphodict-paradigm-detail",
     ),
     path(
-        "api/paradigm_layout/", views.paradigm_for_lemma, name="morphodict-paradigm-layout"
+        "api/paradigm_layout/",
+        views.paradigm_for_lemma,
+        name="morphodict-paradigm-layout",
     ),
 ]

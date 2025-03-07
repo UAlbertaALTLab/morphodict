@@ -10,6 +10,9 @@ import {
   fetchRecordingURLForEachWordform,
   retrieveListOfSpeakers,
 } from "./js/recordings.js";
+import {
+  fetchCorpusURL
+} from "./js/corpus.js";
 import * as orthography from "./js/orthography.js";
 import {
   emptyElement,
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Word detail/paradigm page. This one has the 🔊 button.
     setSubtitle(getEntryHead());
     setupAudioOnPageLoad();
+    setupCorpusOnPageLoad();
     setupParadigm();
     prepareTooltips();
     loadParadigmAudio();
@@ -118,6 +122,7 @@ function hideProse() {
 function prepareSearchResults(searchResultsList) {
   prepareTooltips();
   loadRecordingsForAllSearchResults(searchResultsList);
+  loadCorpusForAllSearchResults(searchResultsList);
 }
 
 /**
@@ -153,6 +158,32 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     }
   }
 }
+
+/**
+ * Given a list of search results, this will attempt to match a recording to
+ * its match wordform.
+ *
+ * @param {Element} searchResultsList
+ */
+async function loadCorpusForAllSearchResults(searchResultsList) {
+  let elementWithWordform = [];
+  let requestedWordforms = new Set();
+
+  for (let element of searchResultsList.querySelectorAll("[data-wordform]")) {
+    let wordform = element.dataset.wordform;
+    elementWithWordform.push([element, wordform]);
+    requestedWordforms.add(wordform);
+  }
+
+  for (let [element, wordform] of elementWithWordform) {
+    
+    let corpusURL = await fetchCorpusURL(wordform);
+    if (corpusURL) {
+      createCorpusButton(corpusURL, element);
+    }
+  }
+}
+
 
 /**
  * Attach relevant handlers to **ALL** tooltip icons on the page.
@@ -284,6 +315,34 @@ function setupAudioOnPageLoad() {
 }
 
 /**
+ * Sets up the (rudimentary) audio link on page load.
+ */
+function setupCorpusOnPageLoad() {
+  let title = document.getElementById("head");
+  if (!title) {
+    // Could not find a head on the page.
+    return;
+  }
+
+  // TODO: setup baseURL from <link rel=""> or something.
+  let wordform = getEntryHead();
+
+  fetchCorpusURL(wordform)
+    .then((corpusURL) => {
+      if (corpusURL === undefined) {
+        // Corpus has nothing for this wordform ¯\_(ツ)_/¯
+        return;
+      }
+
+      createCorpusButton(corpusURL, title);
+    })
+    .catch(() => {
+      // TODO: display an error message?
+    });
+}
+
+
+/**
  * Makes all URL paths relative to '/'.
  * In development, the root path is '/', so nothing changes.
  * On Sapir (as of 2020-03-09), the root path is '/dictionary/'.
@@ -316,6 +375,22 @@ function createAudioButton(recordingURL, element) {
 
   // Place "&nbsp;<button>...</button>"
   // at the end of the element
+  let nbsp = document.createTextNode(NO_BREAK_SPACE);
+  element.appendChild(nbsp);
+  element.appendChild(button);
+
+  return button;
+}
+
+/**
+ * Creates the 📚 button and places it beside the desired element.
+ */
+function createCorpusButton(href, element){
+  let template = document.getElementById("template:corpus-button");
+
+  let fragment = template.content.cloneNode(true);
+  let button = fragment.querySelector("a");
+  button.href = href
   let nbsp = document.createTextNode(NO_BREAK_SPACE);
   element.appendChild(nbsp);
   element.appendChild(button);
