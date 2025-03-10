@@ -2,7 +2,7 @@ from django.conf import settings
 from django.http import HttpResponse, HttpResponseBadRequest, JsonResponse, Http404
 from django.shortcuts import render
 
-from morphodict.search import api_search, wordnet_index_search
+from morphodict.search import api_search, rapidwords_index_search
 
 
 def click_in_text(request) -> HttpResponse:
@@ -44,7 +44,7 @@ def rapidwords_index(request) -> HttpResponse:
     elif rw_index == "":
         return HttpResponseBadRequest("index param rw_index is an empty string")
 
-    results = wordnet_index_search(index=rw_index)
+    results = rapidwords_index_search(index=rw_index)
     if results:
         response = {"results": results.serialized_presentation_results()}
     else:

@@ -47,7 +47,7 @@ def wordnet_search(query: str) -> list[tuple[WordnetEntry, str, SearchResults]] 
     return wordnet_runner(search_query)
 
 
-def wordnet_index_search(index: str) -> SearchResults | None:
+def rapidwords_index_search(index: str) -> SearchResults | None:
     try:
         rw_category = RapidWords.objects.get(index=index.strip())
         results = SearchResults()
