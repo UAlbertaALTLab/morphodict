@@ -59,3 +59,6 @@ MORPHODICT_ORTHOGRAPHY = {
 SPEECH_DB_EQ = ["tsuutina"]
 
 MORPHODICT_REQUIRES_LOGIN_IN_GROUP = "gunaha"
+
+MORPHODICT_CONTACT_EMAIL = "altlab+gunaha@ualberta.ca"
+MORPHODICT_CONTACT_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdsBPVPoadoRQEV9ZRKAHbHgolFtmvjWnfpZZYCvX-n2EFwZg/viewform"

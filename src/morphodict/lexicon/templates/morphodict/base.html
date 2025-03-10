@@ -114,7 +114,7 @@
 {% spaceless %}
     <footer class="footer app__footer">
         <ul class="footer__links footer__basic-links ">
-            <li><a href="http://altlab.artsrn.ualberta.ca/itwewina#help" class="footer-links__link" target="_blank"
+            <li><a href="{{ MORPHODICT_HELP_URL }}" class="footer-links__link" target="_blank"
                    rel="noopener">Help</a></li>
             {% if MORPHODICT_DICTIONARY_NAME == "itwêwina" %}
                 <li><a href="{% url 'dictionary-legend' %}" class="footer-links__link">Legend of abbreviations</a></li>

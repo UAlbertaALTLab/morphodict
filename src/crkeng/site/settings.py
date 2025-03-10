@@ -99,3 +99,6 @@ MORPHODICT_PARADIGM_SIZES = [
 ]
 
 SPEECH_DB_EQ = ["maskwacis", "moswacihk"]
+
+MORPHODICT_CONTACT_EMAIL = "altlab+itwewina@ualberta.ca"
+MORPHODICT_CONTACT_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdsBPVPoadoRQEV9ZRKAHbHgolFtmvjWnfpZZYCvX-n2EFwZg/viewform"
