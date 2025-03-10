@@ -83,7 +83,6 @@ class Query:
         Inflected phrase search discards functional words like "they" using this method
         Does not affect flags
         """
-        self.old_query_terms = self.query_terms
         query_string = treat_query(new_query)
         self.query_terms = query_string.split()
 

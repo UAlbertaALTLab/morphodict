@@ -166,14 +166,10 @@ def wordnet_search(
 
                 if wordnet_search.espt:
                     # Then it is an inflected query that should be Espt-Search based
-                    espt_search = EsptSearch(query, wn_results)
-                    espt_search.convert_search_query_to_espt()
+                    espt_search = wordnet_search.espt
+                    espt_search.search_results = wn_results
                     espt_search.inflect_search_results()
                     find_pos_matches(espt_search, wn_results)
-                    if wordnet_search.espt.query_analyzed_ok:
-                        wn_entry.original_str = str(
-                            wordnet_search.espt.query.old_query_terms
-                        )
                     definition = wordnet_search.inflect_wordnet_definition(wn_entry)
 
                 results.append((wn_entry, definition, wn_results))
