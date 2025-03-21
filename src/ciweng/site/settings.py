@@ -30,7 +30,7 @@ INSTALLED_APPS.insert(0, "ciweng.app")
 
 # Morphodict configuration
 
-FST_TOOL_SAMPLES : list[str]= []
+FST_TOOL_SAMPLES: list[str] = []
 
 # The ISO 639-1 code is used in the lang="" attributes in HTML.
 MORPHODICT_ISO_639_1_CODE = "ciw"
@@ -57,9 +57,6 @@ MORPHODICT_ORTHOGRAPHY = {
     },
 }
 
-MORPHODICT_PARADIGM_SIZES = [
-    "basic",
-    "full"
-]
+MORPHODICT_PARADIGM_SIZES = ["basic", "full"]
 
 SPEECH_DB_EQ = []
