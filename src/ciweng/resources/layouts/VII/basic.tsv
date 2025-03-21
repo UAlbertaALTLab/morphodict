@@ -1,0 +1,7 @@
+	| Ind
+_ 0Sg _ Prs	${lemma}+VII+Ind+Pos+Neu+0SgSubj
+_ 0Pl _ Prs	${lemma}+VII+Ind+Pos+Neu+0PlSubj
+	
+	| Cnj
+_ 0Sg _ Prs	${lemma}+VII+Cnj+Pos+Neu+0SgSubj
+_ 0Pl _ Prs	${lemma}+VII+Cnj+Pos+Neu+0PlSubj

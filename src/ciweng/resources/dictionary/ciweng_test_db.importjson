@@ -1,0 +1,53 @@
+[
+  {
+    "head": "waabam",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "V",
+      "stem": "waabam",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "sees s.o.",
+        "sources": ["OPD"]
+      }
+    ],
+    "slug": "waabam"
+  },
+    {
+    "head": "abaabasige",
+    "linguistInfo": {
+      "inflectional_category": "VAI",
+      "pos": "V",
+      "stem": "abaabasige",
+      "wordclass": "VAI"
+    },
+    "paradigm": "VAI",
+    "senses": [
+      {
+        "definition": "s/he smudges, censes things",
+        "sources": ["OPD"]
+      }
+    ],
+    "slug": "abaabasige"
+  },
+  {
+    "head": "abide",
+    "linguistInfo": {
+      "inflectional_category": "VII",
+      "pos": "V",
+      "stem": "abide",
+      "wordclass": "VII"
+    },
+    "paradigm": "VII",
+    "senses": [
+      {
+        "definition": "it warms up, is warmed at a fire or stove",
+        "sources": ["OPD"]
+      }
+    ],
+    "slug": "abide"
+  }
+]
