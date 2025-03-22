@@ -1,22 +1,5 @@
 [
   {
-    "head": "waabam",
-    "linguistInfo": {
-      "inflectional_category": "VTA",
-      "pos": "V",
-      "stem": "waabam",
-      "wordclass": "VTA"
-    },
-    "paradigm": "VTA",
-    "senses": [
-      {
-        "definition": "sees s.o.",
-        "sources": ["OPD"]
-      }
-    ],
-    "slug": "waabam"
-  },
-    {
     "head": "abaabasige",
     "linguistInfo": {
       "inflectional_category": "VAI",
@@ -49,5 +32,22 @@
       }
     ],
     "slug": "abide"
+  },
+  {
+    "head": "waabam",
+    "linguistInfo": {
+      "inflectional_category": "VTA",
+      "pos": "V",
+      "stem": "waabam",
+      "wordclass": "VTA"
+    },
+    "paradigm": "VTA",
+    "senses": [
+      {
+        "definition": "sees s.o.",
+        "sources": ["OPD"]
+      }
+    ],
+    "slug": "waabam"
   }
 ]
