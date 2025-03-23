@@ -42,15 +42,25 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
        six=0;
        for(j=1; j<=nf; j++)
           {
-            if(match(f[j], "\"head\": \"([^\"]+)\"", ff)!=0) { entry=ff[1]; six=0; }
+            if(match(f[j], "\"head\": \"([^\"]+)\"", ff)!=0) { entry0=ff[1]; entry=entry0; gsub("ý","y",entry); orig[entry]=entry0; six=0; }
+            if(match(f[j], "\"inflectional_category\": \"([^\"]+)\"", ff)!=0) { lc=ff[1]; lex_cat[entry "_" pos]=lc; }
             if(match(f[j], "\"paradigm\": \"([^\"]+)\"", ff)!=0) pos=ff[1];
 #            if(match(f[j], "\"definition\": \"([^\"]+)\"", ff)!=0) sense[entry "_" pos][ff[1]]=++six;
             if(match(f[j], "\"definition\": \"([^\"]+)\"", ff)!=0)
               {
                 def=ff[1];
+                rest="";
+                for(k=j+1; k<=nf; k++)
+                   rest=rest f[k];
+                match(rest, "\"sources\":[^\"]+([^\\]]+)", fff);
+                src=fff[1]; gsub("[ \t\n\"]+","",src);
+
                 ns=split(def, fff, "[ ]*[;][ ]*");
                 for(k=1; k<=ns; k++)
-                   sense[entry "_" pos][fff[k]]=++six;
+                   {
+                     sense[entry "_" pos][fff[k]]=++six;
+                     source[entry "_" pos][fff[k]]=src;
+                   }
               }
 	  }
      }
@@ -59,6 +69,7 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
 
   # Interpreting crk cell specifications and generating corresponding eng anl,
   # then outputting corresponding eng phrase
+  fs=FS; rs=RS; FS="\t";
   while((getline < pdgm)!=0)
      {
        for(i=1; i<=NF; i++)
@@ -67,6 +78,7 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
               # Tag mapping from crk to eng
               crk_anl=f[1] "_" f[2];
 
+              POS="";
               if(index(crk_anl, "+V+")!=0)
                 {
                   if(index(crk_anl, "+V+II+")!=0) POS="VII";
@@ -96,7 +108,15 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
 
                   # lemma=rank[POS][++pos_ix];
                   # lemma=rank["VTA"][3];
-                  do { lemma=rank[POS][++pos_ix]; }
+                }
+
+             if(pos!="")
+                {
+                  do {
+                       lemma=rank[POS][++pos_ix];
+                       if(!(lemma "_" POS in sense))
+                         printf "%i / 0 - %s (%i)\n", pos_ix, lemma, frq[POS][lemma];
+                     }
                   while (!(lemma "_" POS in sense));
 
                   PROCINFO["sorted_in"]="@val_num_asc";
@@ -112,13 +132,15 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
                          sub("\\.$", "", def0);
 
                        six=sense[lemma "_" POS][def];
+                       src=source[lemma "_" POS][def];
 
                        eng_phr=lookup("flookup -i -b", fst, eng_anl def0);
-                       printf "%i / %i - %s (%i): %s -> %s\t%s\n", pos_ix, six, lemma, frq[POS][lemma], crk_anl, eng_anl, eng_phr;
+                       printf "%i / %i - %s (%i): %s -> %s\t%s\t%s\t%s\n", pos_ix, six, orig[lemma], frq[POS][lemma], crk_anl, eng_anl, eng_phr, def0, src;
                      }
                 }
             }
      }
+   FS=fs; RS=rs;
 }
 
 
