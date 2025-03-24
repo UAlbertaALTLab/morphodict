@@ -1,6 +1,9 @@
 #!/bin/sh
 
-gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=PARADIGM; dict=DICTIONARY; corp=CORPUS; fst=ENGGENFST;
+gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 -v SUBCAT=$5 -v NRECYCLE=$6 'BEGIN { pdgm=PARADIGM; dict=DICTIONARY; corp=CORPUS; fst=ENGGENFST; subcat=SUBCAT; nrecycle=NRECYCLE;
+
+  gsub("[-\\.\\+\\*]", "\\\\&", subcat);
+  if(nrecycle*1==0) nrecycle=0;
 
   # Read in entire corpus, extracting 1) lemma, 2) pos, and 3) lemma frequency
   fs=FS; rs=RS; FS="\t"; RS="\n";
@@ -43,8 +46,8 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
        for(j=1; j<=nf; j++)
           {
             if(match(f[j], "\"head\": \"([^\"]+)\"", ff)!=0) { entry0=ff[1]; entry=entry0; gsub("ý","y",entry); orig[entry]=entry0; six=0; }
-            if(match(f[j], "\"inflectional_category\": \"([^\"]+)\"", ff)!=0) { lc=ff[1]; lex_cat[entry "_" pos]=lc; }
-            if(match(f[j], "\"paradigm\": \"([^\"]+)\"", ff)!=0) pos=ff[1];
+            if(match(f[j], "\"inflectional_category\": \"([^\"]+)\"", ff)!=0) lc=ff[1];
+            if(match(f[j], "\"paradigm\": \"([^\"]+)\"", ff)!=0) { pos=ff[1]; lex_cat[entry "_" pos]=lc; }
 #            if(match(f[j], "\"definition\": \"([^\"]+)\"", ff)!=0) sense[entry "_" pos][ff[1]]=++six;
             if(match(f[j], "\"definition\": \"([^\"]+)\"", ff)!=0)
               {
@@ -114,10 +117,14 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
                 {
                   do {
                        lemma=rank[POS][++pos_ix];
+                       lc=lex_cat[orig[lemma] "_" POS];
+
                        if(!(lemma "_" POS in sense))
                          printf "%i / 0 - %s (%i)\n", pos_ix, lemma, frq[POS][lemma];
+                       if(frq[POS][lemma]==0)
+                          pos_ix=0;
                      }
-                  while (!(lemma "_" POS in sense));
+                  while (!(lemma "_" POS in sense && match(lc, subcat)!=0));
 
                   PROCINFO["sorted_in"]="@val_num_asc";
                   # if(lemma "_" POS in sense)
@@ -136,8 +143,16 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 'BEGIN { pdgm=
 
                        eng_phr=lookup("flookup -i -b", fst, eng_anl def0);
                        printf "%i / %i - %s (%i): %s -> %s\t%s\t%s\t%s\n", pos_ix, six, orig[lemma], frq[POS][lemma], crk_anl, eng_anl, eng_phr, def0, src;
+
                      }
                 }
+
+                nentry++;
+                if(nentry>=nrecycle && nrecycle!=0)
+                  {
+                    nentry=0;
+                    pos_ix=0;
+		  }
             }
      }
    FS=fs; RS=rs;
