@@ -113,6 +113,26 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 -v SUBCAT=$5 -
                   # lemma=rank["VTA"][3];
                 }
 
+              if(index(crk_anl, "+N+")!=0)
+                {
+                  if(index(crk_anl, "+N+A+")!=0 && index(crk_anl, "+D+")==0) POS="NA";
+                  if(index(crk_anl, "+N+I+")!=0 && index(crk_anl, "+D+")==0) POS="NI";
+                  if(index(crk_anl, "+N+A+D+")!=0) POS="NDA";
+                  if(index(crk_anl, "+N+I+D+")!=0) POS="NDI";
+
+                  poss=""; number=""; dim="";
+                  if(index(crk_anl, "+Sg")!=0) number="Sg+";
+                  if(index(crk_anl, "+Pl")!=0) number="Pl+";
+                  if(index(crk_anl, "+Obv")!=0) number="Obv+";
+                  if(index(crk_anl, "+Loc")!=0) number="Loc+";
+                  if(index(crk_anl, "+Distr")!=0) number="Distr+";
+                  if(index(crk_anl, "+Der/Dim")!=0) dim="Dim+";
+                  if(match(crk_anl, "\\+(Px[^\\+]+)\\+", f)!=0) poss=f[1] "+";
+                  # sub("12", "21", poss);
+                  # sub("X","XPl", poss);
+                  eng_anl=number dim poss " "; # print eng_anl;
+                }
+
              if(pos!="")
                 {
                   do {
@@ -131,9 +151,10 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 -v SUBCAT=$5 -
                     for(def in sense[lemma "_" POS])
                      {
                        def0=def;
-                       gsub("[ ]\\[[^\\]]+\\]", "", def0);
-                       gsub("[ ]\\(e\\.g\\.[^\\)]+\\)", "", def0);
-                       gsub("[ ]\\(i\\.e\\.[^\\)]+\\)", "", def0);
+                       gsub("\\[[^\\]]+\\]", "", def0);
+                       gsub("\\(e\\.g\\.[^\\)]+\\)", "", def0);
+                       gsub("\\(i\\.e\\.[^\\)]+\\)", "", def0);
+                       gsub("[ ]+", " ", def0);
 
                        if(match(def0, " s\\.[ot]\\.$")==0)
                          sub("\\.$", "", def0);
@@ -147,6 +168,7 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 -v SUBCAT=$5 -
                      }
                 }
 
+                # Checking whether lemmas (and English definitions) should be recycled.
                 nentry++;
                 if(nentry>=nrecycle && nrecycle!=0)
                   {
