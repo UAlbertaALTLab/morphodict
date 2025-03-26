@@ -20,4 +20,5 @@ urlpatterns = [
         api_views.rapidwords_index,
         name="dictionary-rapidwords-index-api",
     ),
+    path("api/search/", api_views.search_api, name="dictionary-search-api"),
 ]
