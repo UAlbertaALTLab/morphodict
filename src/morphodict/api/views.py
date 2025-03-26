@@ -89,6 +89,11 @@ def search_api(request: HttpRequest) -> JsonResponse:
     """
 
     query_string = request.GET.get("query")
+
+    json_response = JsonResponse(
+        {"query_string": "", "search_results": [], "did_search": False}
+    )
+
     if query_string:
         search_run = search_with_affixes(
             query_string,
@@ -97,7 +102,7 @@ def search_api(request: HttpRequest) -> JsonResponse:
         )
         search_results = search_run.serialized_presentation_results()
 
-        return JsonResponse(
+        json_response = JsonResponse(
             {
                 "query_string": query_string,
                 "search_results": search_results,
@@ -105,4 +110,5 @@ def search_api(request: HttpRequest) -> JsonResponse:
             }
         )
 
-    return JsonResponse({"query_string": "", "search_results": [], "did_search": False})
+    json_response["Access-Control-Allow-Origin"] = "*"
+    return json_response
