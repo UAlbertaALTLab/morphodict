@@ -1,0 +1,5 @@
+	| Ind
+_ 0Sg _ Prs	${lemma}+V+II+Ind+3Sg
+	
+	| Cnj
+_ 0Sg _ Prs	PV/e+${lemma}+V+II+Cnj+3Sg
