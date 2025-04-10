@@ -384,7 +384,7 @@ def should_attempt_semantic_search(request, query):
         if len(tokens) > 0:
             return true(tokens[-1])
 
-    return False if request.COOKIES.get("attempt_semantic_search") == "no" else True
+    return True if request.COOKIES.get("attempt_semantic_search") == "yes" else False
 
 
 def get_dict_source(request):
