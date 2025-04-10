@@ -16,8 +16,14 @@ from morphodict.frontend.views import (
     should_inflect_phrases,
 )
 from morphodict.paradigm.preferences import DisplayMode
-from morphodict.search import api_search, rapidwords_index_search, search_with_affixes
+from morphodict.search import (
+    api_search,
+    rapidwords_index_search,
+    wordnet_index_search,
+    search_with_affixes,
+)
 from morphodict.search.presentation import SerializedPresentationResult
+from morphodict.search.types import WordnetEntry
 
 
 class SearchApiDict(TypedDict):
@@ -77,6 +83,52 @@ def rapidwords_index(request) -> HttpResponse:
     json_response = JsonResponse(response)
     json_response["Access-Control-Allow-Origin"] = "*"
     return json_response
+
+
+@require_GET
+def wordnet_index(request) -> HttpResponse:
+    """
+    rapidwords by index
+    see SerializedSearchResult in schema.py for API specifications
+    """
+
+    wn = request.GET.get("wn")
+    if not wn:
+        return HttpResponseBadRequest("index param wn is missing")
+
+    results = wordnet_index_search(index=wn)
+    if results:
+        response = {"results": results.serialized_presentation_results()}
+    else:
+        response = {"results": []}
+
+    json_response = JsonResponse(response)
+    json_response["Access-Control-Allow-Origin"] = "*"
+    return json_response
+
+
+@require_GET
+def wordnet_synset(request) -> HttpResponse:
+    wn = request.GET.get("wn")
+    if not wn:
+        return HttpResponseBadRequest("index param wn is missing")
+    try:
+        entry = WordnetEntry(wn)
+        json_response = JsonResponse(
+            {
+                "synset": str(entry),
+                "hypernyms": [str(h) for h in entry.hypernyms()],
+                "hyponyms": [str(h) for h in entry.hyponyms()],
+                "hyponyms_of_hypernyms": [
+                    str(h) for hyper in entry.hypernyms() for h in hyper.hyponyms()
+                ],
+                "definition": entry.definition(),
+            }
+        )
+        json_response["Access-Control-Allow-Origin"] = "*"
+        return json_response
+    except:
+        return HttpResponseBadRequest("problem with request")
 
 
 @require_GET

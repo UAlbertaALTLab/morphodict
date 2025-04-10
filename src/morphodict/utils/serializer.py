@@ -15,6 +15,11 @@ class SerializedDefinition(TypedDict):
     is_auto_translation: bool
 
 
+class SerializedRapidWord(TypedDict):
+    index: str
+    domain: str
+
+
 class SerializedWordform(TypedDict):
     id: int
     text: str
@@ -36,6 +41,7 @@ class SerializedWordform(TypedDict):
 
     # ---- foreign keys ----
     definitions: List[SerializedDefinition]
+    rapidwords: List[SerializedRapidWord]
 
 
 class SerializedLinguisticTag(TypedDict):

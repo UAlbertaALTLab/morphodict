@@ -236,6 +236,8 @@ class Result:
 
     rapidwords_match: Optional[bool] = None
 
+    wordnet_match: Optional[bool] = None
+
     def features(self):
         ret = {}
         for field in dataclasses.fields(Result):
@@ -328,7 +330,13 @@ class WordnetEntry:
         return produce_entries(self.original_str, self.synset.hyponyms())
 
     def hypernyms(self) -> list[WordnetEntry]:
-        return produce_entries(self.original_str, self.synset.hyponyms())
+        return produce_entries(self.original_str, self.synset.hypernyms())
+
+    def similar_to(self) -> list[WordnetEntry]:
+        return produce_entries(self.original_str, self.synset.similar_tos())
+
+    def also_see(self) -> list[WordnetEntry]:
+        return produce_entries(self.original_str, self.synset.also_sees())
 
     def member_holonyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.member_holonyms())

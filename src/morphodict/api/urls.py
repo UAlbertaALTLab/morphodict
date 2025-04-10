@@ -20,5 +20,15 @@ urlpatterns = [
         api_views.rapidwords_index,
         name="dictionary-rapidwords-index-api",
     ),
+    path(
+        "api/wordnet-index/",
+        api_views.wordnet_index,
+        name="dictionary-wordnet-index-api",
+    ),
+    path(
+        "api/wordnet-synset/",
+        api_views.wordnet_synset,
+        name="dictionary-wordnet-synset-api",
+    ),
     path("api/search/", api_views.search_api, name="dictionary-search-api"),
 ]

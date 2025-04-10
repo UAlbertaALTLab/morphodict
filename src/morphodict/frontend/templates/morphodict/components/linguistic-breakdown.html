@@ -40,6 +40,28 @@
                 </ol>
             </div>
 
+            {% if result.lemma_wordform.rapidwords or result.lemma_wordform.synsets %}
+            <div>
+                <h4>Related words</h4>
+                {% if result.lemma_wordform.rapidwords %}
+                {{result.lemma_wordform.text}} is in the RapidWords categor{% if result.lemma_wordform.rapidwords|length > 1%}ies{% else %}y{%endif%}:
+                <ul>
+                {% for rw in result.lemma_wordform.rapidwords %}
+                    <li><a href="https://vocabulary.altlab.dev/?rw_search={{rw.index}}+{{rw.domain}}">{{rw.domain}}</a> ({{rw.index}}) </li>
+                {% endfor %}
+                </ul>
+                {% endif %}
+                {% if result.lemma_wordform.synsets %}
+                {{result.lemma_wordform.text}} is in the WordNet categor{% if result.lemma_wordform.synsets|length > 1%}ies{% else %}y{%endif%}:
+                <ul>
+                {% for wn in result.lemma_wordform.synsets %}
+                    <li><a href="https://vocabulary.altlab.dev/?wn_search={{wn}}">{{wn}}</a> </li>
+                {% endfor %}
+                </ul>            
+                {% endif %}
+            </div>
+            {% endif %}
+            
             <div class="tooltip__arrow" data-popper-arrow></div>
         </div>
         {# NB: the "Play recording" icon will be appened here #}

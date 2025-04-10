@@ -3,7 +3,7 @@ from .core import SearchResults, Result
 from .presentation import SerializedPresentationResult
 from .query import Query
 from .wordnet import WordnetEntry
-from morphodict.lexicon.models import RapidWords
+from morphodict.lexicon.models import RapidWords, WordNetSynset
 
 
 def search_with_affixes(
@@ -53,6 +53,18 @@ def rapidwords_index_search(index: str) -> SearchResults | None:
         results = SearchResults()
         for word in rw_category.wordforms.all():
             results.add_result(Result(word, rapidwords_match=True))
+        return results
+    except:
+        pass
+    return None
+
+
+def wordnet_index_search(index: str) -> SearchResults | None:
+    try:
+        wn_category = WordNetSynset.objects.get(name=index.strip())
+        results = SearchResults()
+        for word in wn_category.wordforms.all():
+            results.add_result(Result(word, wordnet_match=True))
         return results
     except:
         pass
