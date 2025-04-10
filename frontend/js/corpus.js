@@ -6,6 +6,9 @@ function getCorporaFromLocation() {
     if (location.includes(`itwewina`) || location.includes(`crk`)) {
         return "MASKWACIS-SENTENCES,WOLFART_AHENAKEW"
     }
+    if (location.includes(`ikidowinan`) || location.includes(`ciw`)) {
+        return "OJIBWE"
+    }
     return ""
 }
 
