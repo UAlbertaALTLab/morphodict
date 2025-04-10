@@ -51,6 +51,7 @@
                                         <td class="paradigm-cell paradigm-cell--empty"></td>
                                     {% else %}
                                         <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
+                                            <div data-has-tooltip data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}">
                                             {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
                                                 {% if cell.morphemes %}
                                                     {% orth cell.morphemes|join:"·" %}
@@ -81,7 +82,12 @@
                                                     </svg>
                                                 </button>
                                             {% endif %}
-                                        </td>
+                                        </div>                                        
+                                        <div class="tooltip" role="tooltip">
+                                            Testing testing
+                                           <div class="tooltip__arrow" data-popper-arrow></div>
+                                       </div>
+                                    </td>
                                     {% endif %}
                                 {% endfor %}
                             </tr>
