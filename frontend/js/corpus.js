@@ -12,21 +12,25 @@ function getCorporaFromLocation() {
     return ""
 }
 
-function createCorpusSearchURL(wordform){
+function createCorpusSearchURL(wordform,lemma){
+    if (lemma) {
+        return `${CORPUS_URL}#?corpus=${CORPORA.toLowerCase()}&search=cqp|[lemma=\"${wordform}\"]&cqp=[]`    
+    }
     return `${CORPUS_URL}#?corpus=${CORPORA.toLowerCase()}&search=word|${wordform}&cqp=[]`
 }
 
-export async function fetchCorpusURL(wordform) {
+export async function fetchCorpusURL(wordform, lemma=false) {
     if (!CORPORA) {
         return undefined
     }
+    let key = lemma? "lemma" : "word";
     let result = await fetch(
-        `${COUNT_API}?corpus=${CORPORA}&cqp=[word="${wordform}"]`)
+        `${COUNT_API}?corpus=${CORPORA}&cqp=[${key}="${wordform}"]`)
             .then((count_request) => {
             return count_request.json()
             }).then((count_json) => {
                 if (count_json["count"]){
-                    return createCorpusSearchURL(wordform)
+                    return createCorpusSearchURL(wordform,lemma)
                 }
             })
     return result

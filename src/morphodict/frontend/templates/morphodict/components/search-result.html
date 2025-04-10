@@ -89,6 +89,8 @@
                                 {% orth result.lemma_wordform.text %}
                             {% endif %}</a>
                     </dfn>
+                    &#32;
+                    {% include "morphodict/components/definition__icons.html" with main_lemma=True %}
                 </h2>
 
                 {% include 'morphodict/components/definition__elaboration.html' with lemma=result.lemma_wordform %}

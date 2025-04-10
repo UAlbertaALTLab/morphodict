@@ -1,0 +1,35 @@
+ {% spaceless %}
+{% load morphodict_orth %}
+{% load static %}
+{% if rapidwords or synsets %}
+<div tabindex="0" class="definition__icon definition-title__tooltip-icon" data-has-tooltip
+data-cy="information-mark">
+&#x00A0;<img
+       src="{% static 'morphodict/img/fa/project-diagram.svg' %}"
+       alt="related words">
+</div>
+<div class="tooltip" role="tooltip">
+    <div data-cy="related-words">
+        <h4>Related words</h4>
+        {% if rapidwords %}
+        {{text}} is in the RapidWords categor{% if rapidwords|length > 1%}ies{% else %}y{%endif%}:
+        <ul>
+        {% for rw in rapidwords %}
+            <li><a href="https://vocabulary.altlab.dev/?rw_search={{rw.index}}+{{rw.domain}}">{{rw.domain}}</a> ({{rw.index}}) </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+        {% if synsets %}
+        {{text}} is in the WordNet categor{% if synsets|length > 1%}ies{% else %}y{%endif%}:
+        <ul>
+        {% for wn in synsets %}
+            <li><a href="https://vocabulary.altlab.dev/?wn_search={{wn}}">{{wn}}</a> </li>
+        {% endfor %}
+        </ul>            
+        {% endif %}
+    </div>
+    
+    <div class="tooltip__arrow" data-popper-arrow></div>
+</div>
+{%endif %}
+{% endspaceless %}

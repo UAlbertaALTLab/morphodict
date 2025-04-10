@@ -176,8 +176,7 @@ async function loadCorpusForAllSearchResults(searchResultsList) {
   }
 
   for (let [element, wordform] of elementWithWordform) {
-    
-    let corpusURL = await fetchCorpusURL(wordform);
+    let corpusURL = await fetchCorpusURL(wordform,element.hasAttribute("data-main-lemma"));
     if (corpusURL) {
       createCorpusButton(corpusURL, element);
     }
@@ -327,7 +326,7 @@ function setupCorpusOnPageLoad() {
   // TODO: setup baseURL from <link rel=""> or something.
   let wordform = getEntryHead();
 
-  fetchCorpusURL(wordform)
+  fetchCorpusURL(wordform,true)
     .then((corpusURL) => {
       if (corpusURL === undefined) {
         // Corpus has nothing for this wordform ¯\_(ツ)_/¯

@@ -28,8 +28,9 @@
                         {% endif %}
                     </data>
                 </dfn>
+                {% include "morphodict/components/related-words.html" with rapidwords=wordform.rapidwords synsets=wordform.synsets text=wordform.text %}
             </h1>
-
+        
             {% include "morphodict/components/definition__elaboration.html" with lemma=wordform verbose=True %}
         </header>
 
