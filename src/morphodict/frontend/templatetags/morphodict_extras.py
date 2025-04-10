@@ -217,3 +217,8 @@ def previous(some_list, current_index):
 @register.filter(name="has_previous")
 def has_previous(some_list, current_index):
     return current_index > 0
+
+
+@register.filter(name="filter_inflections")
+def filter_inflections(wordform, inflection):
+    return wordform.inflections.filter(text=inflection)

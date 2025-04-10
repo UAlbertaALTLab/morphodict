@@ -84,7 +84,14 @@
                                             {% endif %}
                                         </div>                                        
                                         <div class="tooltip" role="tooltip">
-                                            Testing testing
+                                            <strong>{{cell.inflection}}</strong>:
+                                            <ol>
+                                            {% for inflection in lemma|filter_inflections:cell.inflection %}
+                                                {% for definition in inflection.definitions.all %}
+                                                <li>{{definition}}</li>
+                                                {% endfor %}
+                                            {% endfor %}
+                                            </ol>
                                            <div class="tooltip__arrow" data-popper-arrow></div>
                                        </div>
                                     </td>
