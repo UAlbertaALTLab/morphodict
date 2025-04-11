@@ -22,7 +22,89 @@
     {% load morphodict_orth %}
     {% load morphodict_extras %}
     {% load relabelling %}
+    <script>
+        var request_entries = {{paradigm.recording_list|safe}}
+        var url;
+        function entry_key(s) {
+            {% if "moswacihk" in paradigm.speechdb_sources %}
+            return s["wordform"].replaceAll("ē", "ê").replaceAll("ī", "î").replaceAll("ō", "ô").replaceAll("ā", "â")
+            {% else %}
+            return s["wordform"]
+            {% endif %}
+        }
+        var chunks = []
+        var chunk = request_entries.splice(0,30)
+        while(chunk.length > 0){
+            chunks.push(chunk)
+            chunk = request_entries.splice(0,30)
+        }
+        var promises = []
+        {% for source in paradigm.speechdb_sources %}
+            chunks.forEach((chunk) => {
+            url = new URL("https://speech-db.altlab.app/{{source}}/api/bulk_search")
+            chunk.forEach(element => {
+                url.searchParams.append('q',element)
+            });
+            promises.push(fetch(url).then(res => res.json()).then((json) =>{
+                let ok = {}
+                let best = {}
+                json["matched_recordings"].forEach((recording) => {
+                    if (recording["is_best"]) {
+                        best[entry_key(recording)]={                        
+                            "recording_url": recording["recording_url"],
+                        "speaker": recording["speaker"],
+                        }
+                    } else {
+                        ok[entry_key(recording)]={                        
+                            "recording_url": recording["recording_url"],
+                        "speaker": recording["speaker"],
+                        }
+                    }
+                });                
+                return {"ok":ok, "best": best}   
+            }).catch((reason) => console.log(reason)));
 
+        })
+        {% endfor %}
+        Promise.all(promises).then((values) => {
+            let ok = {}
+            let best = {}
+            values.forEach((result) => {
+                for (const [key, value] of Object.entries(result["ok"])){
+                    ok[key] = value
+                }
+
+                for (const [key, value] of Object.entries(result["best"])){
+                    best[key] = value
+                }
+            })
+            {% comment %}
+                now I can begin adding the elements as they belong
+                {% endcomment %}
+                for (var element of document.getElementsByClassName("paradigm-cell-recording")){
+                    let word = element.getAttribute("data-inflection")
+                    var recording = best[word]
+
+                    if(!recording){
+                        recording = ok[word]
+                    }
+                    if(recording){
+                        if (recording["recording_speaker"] == "SDOL"){
+                            element.innerHTML = ("&nbsp;🤖")
+                        } else {
+                            element.innerHTML = ("&nbsp;🧑🏽‍🦱")
+                        }
+                        let audio = new Audio(recording["recording_url"]);
+                        audio.preload = "none";
+                        let button = document.getElementById("template:play-button").content.cloneNode(true);                     
+                        button.querySelector("button").addEventListener("click", () => {audio.play(); console.log(audio)}
+                    );
+                        element.appendChild(button)
+                        
+                    }
+                }
+        })
+    </script>
     <section class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
         {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
         <div class="HACK-overflow-x-scroll">
@@ -51,7 +133,7 @@
                                         <td class="paradigm-cell paradigm-cell--empty"></td>
                                     {% else %}
                                         <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
-                                            <div data-has-tooltip data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}">
+                                            <div data-has-tooltip data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}" style="float:left;">
                                             {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
                                                 {% if cell.morphemes %}
                                                     {% orth cell.morphemes|join:"·" %}
@@ -60,27 +142,6 @@
                                                 {% endif %}
                                             {% else %}
                                                 {% orth cell.inflection %}
-                                            {% endif %}
-                                            {% if cell.recording %}
-                                                &nbsp;
-                                                {% if cell.recording_speaker == "SDOL" %}🤖 {% else %} 🧑🏽‍🦱 {% endif %}
-                                                <audio preload=none id="recording-url-paradigm-{{ cell.inflection }}"
-                                                       style="display: none;">
-                                                    <source src="{{ cell.recording }}" type="audio/mp4"/>
-                                                </audio>
-                                                {% comment %}
-                              I had to add the data-inflection tag to both the svg and the <use /> tag since sometimes
-                              the button is triggered, and sometimes the <use /> tag is triggered instead
-                              {% endcomment %}
-                                                <button aria-label="Play recording"
-                                                        class="definition__icon definition-title__play-button"
-                                                        data-cy="play-recording-paradigm">
-                                                    <svg class="definition-title__play-icon" focusable="false"
-                                                         data-inflection="{{ cell.inflection }}">
-                                                        <use xlink:href="#fa-volume-up-solid"
-                                                             data-inflection="{{ cell.inflection }}"/>
-                                                    </svg>
-                                                </button>
                                             {% endif %}
                                         </div>                                        
                                         <div class="tooltip" role="tooltip">
@@ -94,6 +155,7 @@
                                             </ol>
                                            <div class="tooltip__arrow" data-popper-arrow></div>
                                        </div>
+                                       <div class="paradigm-cell-recording" data-inflection="{{cell.inflection}}"></div>
                                     </td>
                                     {% endif %}
                                 {% endfor %}

@@ -866,6 +866,10 @@ a.multiple-recordings__action-button {
   vertical-align: top; /* When a label applies to multiple wordforms */
 }
 
+.paradigm-cell-recording {
+  float:right;
+}
+
 /********************************** PROSE **********************************/
 
 /**

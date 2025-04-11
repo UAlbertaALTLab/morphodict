@@ -49,6 +49,8 @@ class Paradigm:
 
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
+        self.recordings = set()
+        self.speechdb_sources = []
 
     @property
     def panes(self) -> Iterable[Pane]:
@@ -66,6 +68,11 @@ class Paradigm:
         True if the wordform is found ANYWHERE in the paradigm.
         """
         return any(pane.contains_wordform(wordform) for pane in self.panes)
+    
+    def add_recordings(self, recordings : list[str]):
+        self.recordings.update(recordings)
+    def recording_list(self):
+        return list(self.recordings)
 
 
 class ParadigmLayout(Paradigm):
