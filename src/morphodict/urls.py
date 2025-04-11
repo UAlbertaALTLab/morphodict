@@ -9,6 +9,7 @@ from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import include, path
 from django_js_reverse.views import urls_js
+from django.shortcuts import redirect
 
 from morphodict.frontend import views
 from morphodict.frontend.sitemaps import sitemaps
@@ -60,6 +61,7 @@ urlpatterns = [
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
     path("accounts/login/", auth_views.LoginView.as_view(), name="user_login"),
+    path("feedback", lambda request: redirect(settings.MORPHODICT_CONTACT_FORM))
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):
