@@ -49,8 +49,8 @@ class Paradigm:
 
     def __init__(self, panes: Iterable[Pane]):
         self._panes = tuple(panes)
-        self.recordings = set()
-        self.speechdb_sources = []
+        self.recordings : set[str]= set()
+        self.speechdb_sources: list[str] = []
 
     @property
     def panes(self) -> Iterable[Pane]:
