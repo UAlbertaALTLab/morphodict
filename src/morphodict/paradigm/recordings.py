@@ -38,7 +38,6 @@ def get_recordings_from_paradigm(
                     if cell.is_inflection:
                         query_terms.append(str(cell))
 
-    
     # for search_terms in divide_chunks(query_terms, 30):
     #     for source in speech_db_eq:
     #         url = f"https://speech-db.altlab.app/{source}/api/bulk_search"

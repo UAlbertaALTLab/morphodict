@@ -61,7 +61,7 @@ urlpatterns = [
     # Reverse URLs in JavaScript:  https://github.com/ierror/django-js-reverse
     path("jsreverse", urls_js, name="js_reverse"),
     path("accounts/login/", auth_views.LoginView.as_view(), name="user_login"),
-    path("feedback", lambda request: redirect(settings.MORPHODICT_CONTACT_FORM))
+    path("feedback", lambda request: redirect(settings.MORPHODICT_CONTACT_FORM)),
 ]
 
 if hasattr(settings, "GOOGLE_SITE_VERIFICATION"):
