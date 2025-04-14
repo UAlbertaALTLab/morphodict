@@ -17,7 +17,7 @@ def read_phrase_translate_json(filename, default=[]):
             settings.BASE_DIR / "resources" / "phrase_translate" / filename, "r"
         ) as f:
             contents = f.read()
-            ans = json.loads(re.sub("(^|\s)+#.*\n", "", contents))
+            ans = json.loads(re.sub(r"(^|\s)+#.*\n", "", contents))
     except FileNotFoundError:
         return default
     return ans
