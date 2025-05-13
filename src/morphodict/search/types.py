@@ -16,7 +16,7 @@ from morphodict.utils.types import FSTTag, Label
 from morphodict.lexicon.models import Wordform, wordform_cache
 from morphodict.search import ranking
 from morphodict.relabelling import LABELS
-
+from functools import lru_cache
 
 Preverb = Wordform
 Lemma = NewType("Lemma", Wordform)
@@ -368,7 +368,7 @@ class WordnetEntry:
     def sources(self) -> list[str]:
         return ["WN"]
 
-
+@lru_cache(maxsize=10240)
 def produce_entries(origin: str, entries: Iterable[Synset]) -> list[WordnetEntry]:
     ans = [WordnetEntry(e) for e in entries]
     for e in ans:

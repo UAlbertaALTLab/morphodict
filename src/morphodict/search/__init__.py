@@ -1,4 +1,4 @@
-from .runner import search, wordnet_search as wordnet_runner
+from .runner import is_almost_certainly_cree, search, wordnet_search as wordnet_runner
 from .core import SearchResults, Result
 from .presentation import SerializedPresentationResult
 from .query import Query
@@ -44,6 +44,8 @@ def api_search(
 def wordnet_search(query: str) -> list[tuple[WordnetEntry, str, SearchResults]] | None:
     # If we are doing an english simple phrase
     search_query = Query(query)
+    if is_almost_certainly_cree(search_query, SearchResults()):
+        return None
     return wordnet_runner(search_query)
 
 

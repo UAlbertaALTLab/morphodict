@@ -12,7 +12,12 @@ from morphodict.phrase_translate.tag_maps import (
 from morphodict.phrase_translate.definition_cleanup import (
     cleanup_target_definition_for_translation,
 )
+from functools import lru_cache
 
+
+@lru_cache(maxsize=10240)
+def wn_synsets(query: str):
+   return wordnet.synsets(query) 
 
 class WordNetSearch:
     synsets: list[WordNetSynset]
@@ -29,15 +34,13 @@ class WordNetSearch:
                 self.espt = None
             else:
                 canonical_query = self.espt.query.query_terms
-        lemmas = wordnet.synsets("_".join(canonical_query))
+        lemmas = wn_synsets("_".join(canonical_query))
         candidate_infinitive = [x.removesuffix("s") for x in canonical_query]
         if canonical_query != candidate_infinitive:
-            lemmas.extend(wordnet.synsets("_".join(candidate_infinitive)))
-        self.synsets = list(
-            WordNetSynset.objects.filter(
+            lemmas.extend(wn_synsets("_".join(candidate_infinitive)))
+        self.synsets = list(WordNetSynset.objects.filter(
                 name__in=produce_entries(" ".join(canonical_query), lemmas)
-            )
-        )
+            ))
 
         def ranking(synset: WordNetSynset) -> int:
             return WordnetEntry(synset.name).ranking()
@@ -55,20 +58,20 @@ class WordNetSearch:
                         orig_tags_starting_with_plus.append(t)
                     else:
                         tags_ending_with_plus.append(t)
-                    tags_starting_with_plus = orig_tags_starting_with_plus[:]
-                    noun_tags = []
-                    if "+N" in self.espt.tags:
-                        noun_tags = [
-                            tag for tag in self.espt.tags if tag in source_noun_tags
-                        ]
-                        if "+N" in tags_starting_with_plus:
-                            tags_starting_with_plus.remove("+N")
-                        if "+Der/Dim" in tags_starting_with_plus:
-                            # noun tags need to be repeated in this case
-                            insert_index = tags_starting_with_plus.index("+Der/Dim") + 1
-                            tags_starting_with_plus[insert_index:insert_index] = (
-                                noun_tags
-                            )
+                tags_starting_with_plus = orig_tags_starting_with_plus[:]
+                noun_tags = []
+                if "+N" in self.espt.tags:
+                    noun_tags = [
+                        tag for tag in self.espt.tags if tag in source_noun_tags
+                    ]
+                    if "+N" in tags_starting_with_plus:
+                        tags_starting_with_plus.remove("+N")
+                    if "+Der/Dim" in tags_starting_with_plus:
+                        # noun tags need to be repeated in this case
+                        insert_index = tags_starting_with_plus.index("+Der/Dim") + 1
+                        tags_starting_with_plus[insert_index:insert_index] = (
+                            noun_tags
+                        )
 
                 analysis = RichAnalysis(
                     (
