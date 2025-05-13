@@ -1,0 +1,72 @@
+{% spaceless %}
+
+    {% comment %}
+    The paradigm table.
+
+    Parameters:
+      paradigm_tables: Paradigm (see morphodict.paradigm.panes.Paradigm)
+
+    Example:
+
+        |             | One     | Many      |
+        | Here        | ôma     | ôhi       |
+        | There       | anima   | anihi     |
+        | Over Yonder | nêma    | nêhi      |
+
+    JavaScript hooks:
+     - .js-replaceable-paradigm: encapsulates the ENTIRE paradigm so that
+       JavaScript can replace the contents with a different paradigm.
+
+  {% endcomment %}
+
+    {% load morphodict_orth %}
+    {% load morphodict_extras %}
+    {% load relabelling %}
+
+    <div class="definition__paradigm paradigm js-replaceable-paradigm" data-cy="paradigm">
+    {# TODO: use dynamic pane arrangements to get rid of this hacky class. #}
+        <table class="paradigm__table">
+            {% for pane in paradigm.panes %}
+                <tbody>
+                {% for row in pane.tr_rows %}
+                    {% if row.is_header %}
+                        <tr>
+                            <th class="paradigm-header" colspan="{{ paradigm.max_num_columns }}"
+                            >{% relabel row.fst_tags %}</th>
+                        </tr>
+                    {% else %}
+                        <tr class="paradigm-row">
+                            {% for cell in row.cells %}
+                                {% if cell.should_suppress_output %}
+                                    {% comment %} Produce NO output! {% endcomment %}
+                                {% elif cell.is_label %}
+                                    <th scope="{{ cell.label_for }}" rowspan="{{ cell.row_span }}"
+                                        class="paradigm-label paradigm-label--{{ cell.label_for }}">
+                                        {% relabel cell.fst_tags %}
+                                    </th>
+                                {% elif cell.is_missing %}
+                                    <td class="paradigm-cell paradigm-cell--missing">&mdash;</td>
+                                {% elif cell.is_empty %}
+                                    <td class="paradigm-cell paradigm-cell--empty"></td>
+                                {% else %}
+                                    <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
+                                        {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
+                                            {% if cell.morphemes %}
+                                                {% orth cell.morphemes|join:"·" %}
+                                            {% else %}
+                                                {% orth cell.inflection %}
+                                            {% endif %}
+                                        {% else %}
+                                            {% orth cell.inflection %}
+                                        {% endif %}
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endif %}
+                {% endfor %} {# /rows #}
+                </tbody>
+            {% endfor %} {# /paradigm.panes #}
+        </table>
+    </div>
+{% endspaceless %}
