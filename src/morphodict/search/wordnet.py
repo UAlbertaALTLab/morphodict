@@ -17,7 +17,8 @@ from functools import lru_cache
 
 @lru_cache(maxsize=10240)
 def wn_synsets(query: str):
-   return wordnet.synsets(query) 
+    return wordnet.synsets(query)
+
 
 class WordNetSearch:
     synsets: list[WordNetSynset]
@@ -38,9 +39,11 @@ class WordNetSearch:
         candidate_infinitive = [x.removesuffix("s") for x in canonical_query]
         if canonical_query != candidate_infinitive:
             lemmas.extend(wn_synsets("_".join(candidate_infinitive)))
-        self.synsets = list(WordNetSynset.objects.filter(
+        self.synsets = list(
+            WordNetSynset.objects.filter(
                 name__in=produce_entries(" ".join(canonical_query), lemmas)
-            ))
+            )
+        )
 
         def ranking(synset: WordNetSynset) -> int:
             return WordnetEntry(synset.name).ranking()
@@ -69,9 +72,7 @@ class WordNetSearch:
                     if "+Der/Dim" in tags_starting_with_plus:
                         # noun tags need to be repeated in this case
                         insert_index = tags_starting_with_plus.index("+Der/Dim") + 1
-                        tags_starting_with_plus[insert_index:insert_index] = (
-                            noun_tags
-                        )
+                        tags_starting_with_plus[insert_index:insert_index] = noun_tags
 
                 analysis = RichAnalysis(
                     (

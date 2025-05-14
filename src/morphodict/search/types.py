@@ -368,7 +368,8 @@ class WordnetEntry:
     def sources(self) -> list[str]:
         return ["WN"]
 
-#@lru_cache(maxsize=10240)
+
+# @lru_cache(maxsize=10240)
 def produce_entries(origin: str, entries: Iterable[Synset]) -> list[WordnetEntry]:
     ans = [WordnetEntry(e) for e in entries]
     for e in ans:
