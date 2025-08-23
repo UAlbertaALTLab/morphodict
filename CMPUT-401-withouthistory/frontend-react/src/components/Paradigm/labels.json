@@ -1,0 +1,42 @@
+{
+  "Sg": { "english": "One" },
+  "Pl": { "english": "Many" },
+  "Obv": { "english": "Further" },
+  "Distr": { "english": "Among" },
+  "Imm": { "english": "Now" },
+  "Del": { "english": "Later" },
+
+  "Ind": { "english": "ni-/ki- word" },
+  "Cnj": { "english": "ê-/kâ- word" },
+
+  "Poss": { "english": "whose / whom something belongs to" },
+  "Der/Dim": { "english": "smaller / younger / lesser" },
+
+  "Prs": { "english": "Something is happening now" },
+  "Prt": { "english": "something happened earlier" },
+  "Fut": { "english": "something is going to happen" },
+  "Fut": { "english": "something will certainly happen" },
+  "Fut": { "english": "when/if something happens" },
+  "Inf": { "english": "for something to happen" },
+  "Imp": { "english": "command/request" },
+
+  "Px1Sg": { "english": "Me" },
+  "Px2Sg": { "english": "Your (One)" },
+  "Px3Sg": { "english": "His/Her" },
+  "Px1Pl": { "english": "our (but not your)" },
+  "Px12Pl": { "english": "your and our" },
+  "Px2Pl": { "english": "your (all)" },
+  "Px3Pl": { "english": "their" },
+  "Px4Sg/Pl": { "english": "his/her/their" },
+  "PxX": { "english": "someone's" },
+
+  "1Sg": { "english": "I" },
+  "2Sg": { "english": "You (One)" },
+  "3Sg": { "english": "S/he" },
+  "1Pl": { "english": "We (but not you)" },
+  "12Pl": { "english": "you and we" },
+  "2Pl": { "english": "you (all)" },
+  "3Pl": { "english": "S/he/they" },
+  "4Sg/Pl": { "english": "his/her/their" },
+  "X": { "english": "someone" }
+}
