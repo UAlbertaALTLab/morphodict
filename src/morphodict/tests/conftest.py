@@ -1,11 +1,9 @@
 from datetime import timedelta
 from os.path import dirname
 from pathlib import Path
-from itertools import cycle
 
 import pytest
 from hypothesis import settings
-from hypothesis.strategies import SearchStrategy, builds
 
 from morphodict.lexicon.models import Wordform
 
@@ -22,26 +20,24 @@ def topmost_datadir() -> Path:
     return Path(dirname(__file__)) / "data"
 
 
-def wordforms(**filter_args) -> SearchStrategy[Wordform]:
+@pytest.fixture(params={"is_lemma": True, "raw_analysis__isnull": False})
+def lemmas(db):
     """
-    Strategy that fetches Wordform objects from the database LAZILY.
+    Strategy to return lemmas from the database.
+
+    It fetches Wordform objects from the database LAZILY.
 
     The query isn't executed until the first example requested.
 
     NOTE: This is NOT reproducible given a random seed,
     because of its reliance on the database engine's random sort.
     """
-    query_set = Wordform.objects.filter(**filter_args).order_by("?")
-    iterator = cycle(iter(query_set))
 
-    def strategy():
-        return next(iterator)
-
-    return builds(strategy)
+    return iter(
+        Wordform.objects.filter(is_lemma=True, raw_analysis__isnull=False).order_by("?")
+    )
 
 
-def lemmas() -> SearchStrategy[Wordform]:
-    """
-    Strategy to return lemmas from the database.
-    """
-    return wordforms(is_lemma=True, raw_analysis__isnull=False)
+@pytest.fixture
+def lemma(db, lemmas) -> Wordform:
+    return next(lemmas)
