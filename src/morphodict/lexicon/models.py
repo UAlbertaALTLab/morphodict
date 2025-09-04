@@ -150,6 +150,9 @@ class Wordform(models.Model):
         """,
     )
 
+    definitions: models.Manager[Definition]
+    id: models.BigAutoField
+
     class Meta:
         indexes = [
             models.Index(fields=["text", "raw_analysis"]),

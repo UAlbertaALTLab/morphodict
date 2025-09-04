@@ -15,6 +15,9 @@ from .types import Result
 from .util import first_non_none_value
 
 
+VerboseMessage = dict[str, str]
+
+
 class SearchRun:
     """
     Holds a query and gathers results into a result collection.
@@ -34,7 +37,6 @@ class SearchRun:
 
     include_auto_definition: bool
     _results: dict[WordformKey, types.Result]
-    VerboseMessage = dict[str, str]
     _verbose_messages: list[VerboseMessage]
     # Set this to use a custom sort function
     sort_function: Optional[Callable[[Result], Any]] = None
@@ -122,7 +124,7 @@ class SearchRun:
 
         return [r for r in serialized if has_definition(r)]
 
-    def add_verbose_message(self, message=None, **messages):
+    def add_verbose_message(self, message: Optional[str] = None, **messages):
         """
         Add any arbitrary JSON-serializable data to be displayed to the user at the
         top of the search page, if a search is run with verbose:1.
@@ -141,7 +143,7 @@ class SearchRun:
             raise TypeError("must provide a message or messages")
 
         if message is not None:
-            self._verbose_messages.append(message)
+            self._verbose_messages.append(dict({"message": message}))
         if messages:
             self._verbose_messages.append(messages)
 
