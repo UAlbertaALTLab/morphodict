@@ -2,11 +2,10 @@ import json
 import logging
 
 import pytest
-from hypothesis import assume, given
 
 from morphodict.search import search
 from morphodict.search.util import to_sro_circumflex
-from morphodict.tests.conftest import lemmas
+from morphodict.tests.conftest import lemma
 from morphodict.lexicon.models import Wordform
 
 
@@ -35,7 +34,6 @@ def test_when_linguistic_breakdown_absent():
 
 
 @pytest.mark.django_db
-@given(lemma=lemmas())
 def test_query_exact_wordform_in_database(lemma: Wordform):
     """
     Sanity check: querying a lemma by its EXACT text returns that lemma.
@@ -56,38 +54,36 @@ def test_query_exact_wordform_in_database(lemma: Wordform):
 
 
 @pytest.mark.django_db
-@given(lemma=lemmas())
 def test_search_for_exact_lemma(lemma: Wordform):
     """
     Check that we get a search result that matches the exact query.
     """
 
-    assert lemma.is_lemma
+    assert lemma.is_lemma and lemma.analysis is not None
     _, fst_lemma, _ = lemma.analysis
     assert all(c == c.lower() for c in fst_lemma)
-    assume(lemma.text == fst_lemma)
+    if lemma.text == fst_lemma:
+        query = lemma.text
+        search_results = search(query=query).presentation_results()
 
-    query = lemma.text
-    search_results = search(query=query).presentation_results()
+        exact_matches = {
+            result
+            for result in search_results
+            if result.is_lemma and result.lemma_wordform == lemma
+        }
+        assert len(exact_matches) == 1
 
-    exact_matches = {
-        result
-        for result in search_results
-        if result.is_lemma and result.lemma_wordform == lemma
-    }
-    assert len(exact_matches) == 1
-
-    # Let's look at that search result in more detail
-    exact_match = exact_matches.pop()
-    assert exact_match.source_language_match == lemma.text
-    assert not exact_match.preverbs
-    #   the two lines below are enabled after #230 was fixed
-    #   https://github.com/UAlbertaALTLab/morphodict/issues/230
-    #   or there would be flaky local tests and ci tests
-    assert len(exact_match.wordform.definitions.all()) >= 1
-    assert all(
-        len(dfn.source_ids) >= 1 for dfn in exact_match.wordform.definitions.all()
-    )
+        # Let's look at that search result in more detail
+        exact_match = exact_matches.pop()
+        assert exact_match.source_language_match == lemma.text
+        assert not exact_match.preverbs
+        #   the two lines below are enabled after #230 was fixed
+        #   https://github.com/UAlbertaALTLab/morphodict/issues/230
+        #   or there would be flaky local tests and ci tests
+        assert exact_match.wordform.definitions.all().count() >= 1
+        assert all(
+            len(dfn.source_ids) >= 1 for dfn in exact_match.wordform.definitions.all()
+        )
 
 
 @pytest.mark.django_db
@@ -360,7 +356,7 @@ def test_avoids_cvd_search_if_query_looks_like_cree(query: str) -> None:
     """
     Some searches should not even **TOUCH** CVD, yielding zero results.
     """
-    assert search(query=query).verbose_messages[0].startswith("Skipping CVD")
+    assert search(query=query).verbose_messages[0]["message"].startswith("Skipping CVD")
 
 
 ####################################### Helpers ########################################

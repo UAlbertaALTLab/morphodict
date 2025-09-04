@@ -13,7 +13,7 @@
 #
 
 ################################ Build stage #################################
-FROM python:3.10-slim-bookworm AS builder
+FROM python:3.12-slim-bookworm AS builder
 
 LABEL maintainer="Felipe Bañados Schwerter <banadoss@ualberta.ca>"
 
@@ -77,7 +77,7 @@ RUN npm run build \
 
 ############################# Application image ##############################
 
-FROM python:3.10-slim-bookworm
+FROM python:3.12-slim-bookworm
 LABEL maintainer="Felipe Bañados Schwerter <banadoss@ualberta.ca>"
 
 # Choose an ID that will be consistent across all machines in the network

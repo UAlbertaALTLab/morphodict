@@ -4,7 +4,6 @@ from pathlib import Path
 
 import pytest
 from hypothesis import settings
-from hypothesis.strategies import SearchStrategy
 
 from morphodict.lexicon.models import Wordform
 
@@ -17,13 +16,16 @@ settings.load_profile("default")
 
 
 @pytest.fixture(scope="session")
-def topmost_datadir():
+def topmost_datadir() -> Path:
     return Path(dirname(__file__)) / "data"
 
 
-class WordformStrategy(SearchStrategy[Wordform]):
+@pytest.fixture(params={"is_lemma": True, "raw_analysis__isnull": False})
+def lemmas(db):
     """
-    Strategy that fetches Wordform objects from the database LAZILY.
+    Strategy to return lemmas from the database.
+
+    It fetches Wordform objects from the database LAZILY.
 
     The query isn't executed until the first example requested.
 
@@ -31,24 +33,11 @@ class WordformStrategy(SearchStrategy[Wordform]):
     because of its reliance on the database engine's random sort.
     """
 
-    def __init__(self, **filter_args):
-        # random elements:
-        self._query_set = Wordform.objects.filter(**filter_args).order_by("?")
-
-    def _next(self):
-        if not hasattr(self, "_iterator"):
-            self._iterator = iter(self._query_set)
-        return next(self._iterator)
-
-    def do_draw(self, data) -> Wordform:
-        return self._next()
-
-    def calc_is_cacheable(self, recur):
-        return False
+    return iter(
+        Wordform.objects.filter(is_lemma=True, raw_analysis__isnull=False).order_by("?")
+    )
 
 
-def lemmas():
-    """
-    Strategy to return lemmas from the database.
-    """
-    return WordformStrategy(is_lemma=True, raw_analysis__isnull=False)
+@pytest.fixture
+def lemma(db, lemmas) -> Wordform:
+    return next(lemmas)

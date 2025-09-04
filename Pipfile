@@ -10,7 +10,7 @@ pytest-django = "*"
 pytest-cov = "*"
 pytest-datadir = "*"
 pytest-mypy = "*"
-hypothesis = {version = "*", extras = ["django"]}
+hypothesis = {version = ">=6.138", extras = ["django"]}
 pysnooper = "*"
 python-levenshtein = "*"
 django-debug-toolbar = "*"
@@ -64,4 +64,4 @@ format = "black src"
 ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"

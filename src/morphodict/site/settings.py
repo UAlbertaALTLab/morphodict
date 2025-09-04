@@ -6,10 +6,10 @@ To be used as,
     from morphodict.site.settings import *
 
 For more information on this file, see
-https://docs.djangoproject.com/en/3.2/topics/settings/
+https://docs.djangoproject.com/en/4.2/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/3.2/ref/settings/
+https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
@@ -303,9 +303,10 @@ else:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Logging
-
-log_level = env.log_level("LOG_LEVEL", default="INFO")
-query_log_level = env.log_level("QUERY_LOG_LEVEL", default="INFO")
+log_level = env.log_level("LOG_LEVEL", default="INFO")  # type:ignore[call-overload]
+query_log_level = env.log_level(
+    "QUERY_LOG_LEVEL", default="INFO"
+)  # type:ignore[call-overload]
 
 # To debug what the *actual* config ends up being, use the logging_tree package
 # See https://stackoverflow.com/a/53058203/14558

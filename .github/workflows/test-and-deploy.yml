@@ -3,7 +3,7 @@ on: [ push, pull_request ]
 
 env:
   # Version required to run itwêwina:
-  ACTIONS_PYTHON_VERSION: '3.10'
+  ACTIONS_PYTHON_VERSION: '3.12'
   # Version required to run npm build:
   ACTIONS_NODE_VERSION: 22
 
@@ -14,7 +14,7 @@ jobs:
   # when using [skip ci].  See
   # https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/
   should-deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     outputs:
       should-run: ${{github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/main' }}
@@ -23,7 +23,7 @@ jobs:
       - run: true
 
   should-update-dev:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     outputs:
       should-run: ${{ github.repository_owner == 'UAlbertaALTLab' && github.ref == 'refs/heads/dev' }}
@@ -33,7 +33,7 @@ jobs:
 
   # Run Pytest unit tests
   unit-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -46,7 +46,7 @@ jobs:
       - name: 🖥 Install system dependencies
         run: sudo apt-get install -y libfoma0
       - name: ☤ Install pipenv
-        run: python3 -m pip install pipenv==2021.11.9
+        run: python3 -m pip install pipenv
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
@@ -93,7 +93,7 @@ jobs:
 
   # Runs Cypress acceptance tests
   integration-test:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     steps:
       - uses: actions/checkout@v4
@@ -108,9 +108,9 @@ jobs:
           node-version: ${{ env.ACTIONS_NODE_VERSION }}
           cache: npm
       - name: 🖥 Install system dependencies
-        run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libgconf-2-4 libnss3 libxss1 libasound2 libxtst6 xauth xvfb
+        run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
       - name: ☤ Install pipenv
-        run: python3 -m pip install pipenv==2021.11.9
+        run: python3 -m pip install pipenv
 
       # This started out life as a copy-paste from
       # https://github.com/actions/cache/blob/main/examples.md#python---pipenv
@@ -151,7 +151,7 @@ jobs:
             cypress/videos
 
   build-docker-image-dev:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -189,7 +189,7 @@ jobs:
             ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   update-docker-dev-tag:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     needs:
       - should-update-dev
@@ -219,7 +219,7 @@ jobs:
           GHCR_PERSONAL_ACCESS_TOKEN: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
 
   build-docker-image:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     # Only build the Docker Image when we're deploying!
     needs:
@@ -251,7 +251,7 @@ jobs:
             ghcr.io/ualbertaaltlab/itwewina.altlab.app:${{ github.sha }}
 
   trigger-deployment:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
 
     needs:
       - should-deploy
