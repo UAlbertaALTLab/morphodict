@@ -62,4 +62,4 @@ format = "black src"
 ensuretestdb = "env USE_TEST_DB=true ./crkeng-manage ensuretestdb"
 
 [requires]
-python_version = "3.10"
+python_version = "3.12"
