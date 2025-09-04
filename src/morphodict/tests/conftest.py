@@ -1,10 +1,11 @@
 from datetime import timedelta
 from os.path import dirname
 from pathlib import Path
+from itertools import cycle
 
 import pytest
 from hypothesis import settings
-from hypothesis.strategies import SearchStrategy
+from hypothesis.strategies import SearchStrategy, builds
 
 from morphodict.lexicon.models import Wordform
 
@@ -17,11 +18,11 @@ settings.load_profile("default")
 
 
 @pytest.fixture(scope="session")
-def topmost_datadir():
+def topmost_datadir() -> Path:
     return Path(dirname(__file__)) / "data"
 
 
-class WordformStrategy(SearchStrategy[Wordform]):
+def wordforms(**filter_args) -> SearchStrategy[Wordform]:
     """
     Strategy that fetches Wordform objects from the database LAZILY.
 
@@ -30,25 +31,17 @@ class WordformStrategy(SearchStrategy[Wordform]):
     NOTE: This is NOT reproducible given a random seed,
     because of its reliance on the database engine's random sort.
     """
+    query_set = Wordform.objects.filter(**filter_args).order_by("?")
+    iterator = cycle(iter(query_set))
 
-    def __init__(self, **filter_args):
-        # random elements:
-        self._query_set = Wordform.objects.filter(**filter_args).order_by("?")
+    def strategy():
+        return next(iterator)
 
-    def _next(self):
-        if not hasattr(self, "_iterator"):
-            self._iterator = iter(self._query_set)
-        return next(self._iterator)
-
-    def do_draw(self, data) -> Wordform:
-        return self._next()
-
-    def calc_is_cacheable(self, recur):
-        return False
+    return builds(strategy)
 
 
-def lemmas():
+def lemmas() -> SearchStrategy[Wordform]:
     """
     Strategy to return lemmas from the database.
     """
-    return WordformStrategy(is_lemma=True, raw_analysis__isnull=False)
+    return wordforms(is_lemma=True, raw_analysis__isnull=False)

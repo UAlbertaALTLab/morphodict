@@ -10,7 +10,7 @@ pytest-django = "*"
 pytest-cov = "*"
 pytest-datadir = "*"
 pytest-mypy = "*"
-hypothesis = {version = "*", extras = ["django"]}
+hypothesis = {version = ">=6.138", extras = ["django"]}
 pysnooper = "*"
 python-levenshtein = "*"
 django-debug-toolbar = "*"
