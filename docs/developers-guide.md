@@ -34,7 +34,7 @@ with `brew install git-lfs`.
 
 ### Install Python
 
-Get Python 3.10 and [Pipenv](https://github.com/pypa/pipenv#installation).
+Get Python 3.12 and [Pipenv](https://github.com/pypa/pipenv#installation).
 
 Within the directory, install all Python dependencies:
 
@@ -49,7 +49,7 @@ If you run into trouble, the following notes may help:
     elsewhere.
 
     Go to <https://www.python.org/downloads/> on your mac and click the
-    yellow, easy-to-overlook button to “Download Python 3.10.x” (any 3.10.x
+    yellow, easy-to-overlook button to “Download Python 3.12.x” (any 3.12.x
     version is fine) underneath the “Download the latest version for macOS”
     heading.
 
@@ -57,10 +57,10 @@ If you run into trouble, the following notes may help:
 
   - On macOS, if the `pipenv` command is not found, you can try:
 
-        python3.10 -m ensurepip --user --upgrade
-        python3.10 -m pip install --user --upgrade pipenv
+        python3.12 -m ensurepip --user --upgrade
+        python3.12 -m pip install --user --upgrade pipenv
 
-    and then run `python3.10 -m pipenv install --dev`. Running `python3.10 -m
+    and then run `python3.12 -m pipenv install --dev`. Running `python3.12 -m
     pipenv` does the same thing as running `pipenv` is supposed to, but is
     more likely to work if you have multiple versions of Python and/or
     pipenv installed, or if you haven’t adjusted your shell’s `PATH`.
@@ -71,15 +71,15 @@ If you run into trouble, the following notes may help:
         ls -l $(which python)
 
     If it is not
-    `/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10`,
+    `/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12`,
     you can make it be that with
 
         pipenv install --dev \
-            --python=/Library/Frameworks/Python.framework/Versions/3.10/bin/python3.10
+            --python=/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12
 
 ### Install NodeJS
 
-Install [NodeJS][] version 20 or greater.
+Install [NodeJS][] version 22 or greater.
 
 [NodeJS]: https://nodejs.org/
 
