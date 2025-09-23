@@ -6,10 +6,10 @@ To be used as,
     from morphodict.site.settings import *
 
 For more information on this file, see
-https://docs.djangoproject.com/en/4.2/topics/settings/
+https://docs.djangoproject.com/en/5.2/topics/settings/
 
 For the full list of settings and their values, see
-https://docs.djangoproject.com/en/4.2/ref/settings/
+https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
@@ -289,13 +289,19 @@ STATICFILES_DIRS = [
     / "frontend"
 ]
 
+STORAGES = {"default": {"BACKEND": "django.core.files.storage.FileSystemStorage"}}
+
 if DEBUG:
     # Use the default static storage backed for debug purposes.
-    STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+    STORAGES["staticfiles"] = {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"
+    }
 else:
     # In production, use a manifest to encourage aggressive caching
     # Note requires `manage.py collectstatic`!
-    STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    STORAGES["staticfiles"] = {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"
+    }
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -371,7 +371,7 @@ class Import:
         self.flush_insert_buffers()
 
         wordforms = Wordform.objects.all()
-        for wf in tqdm(wordforms.iterator(), total=wordforms.count()):
+        for wf in tqdm(wordforms.iterator(chunk_size=2000), total=wordforms.count()):
             if not wf.linguist_info:
                 continue
 
