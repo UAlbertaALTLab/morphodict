@@ -5,7 +5,7 @@ env:
   # Version required to run itwêwina:
   ACTIONS_PYTHON_VERSION: '3.12'
   # Version required to run npm build:
-  ACTIONS_NODE_VERSION: 22
+  ACTIONS_NODE_VERSION: 24
 
 jobs:
   # Originally, it skipped deploy if [skip deploy] is present in the commit message.
