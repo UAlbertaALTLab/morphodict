@@ -120,6 +120,9 @@ def wordnet_synset(request) -> HttpResponse:
         return HttpResponseBadRequest("index param wn is missing")
     try:
         entry = WordnetEntry(wn)
+        siblings = [h for hyper in entry.hypernyms() for h in hyper.hyponyms()]
+        if not siblings:
+            siblings.append(entry)
         json_response = JsonResponse(
             {
                 "synset": str(entry),
@@ -132,9 +135,7 @@ def wordnet_synset(request) -> HttpResponse:
                     for h in entry.hyponyms()
                 ],
                 "hyponyms_of_hypernyms": [
-                    {"synset": str(h), "definition": h.definition()}
-                    for hyper in entry.hypernyms()
-                    for h in hyper.hyponyms()
+                    {"synset": str(h), "definition": h.definition()} for h in siblings
                 ],
                 "definition": entry.definition(),
             }
