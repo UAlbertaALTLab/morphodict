@@ -108,6 +108,8 @@ class PresentationResult:
     presentation things like labels.
     """
 
+    lemma_wordform: types.Lemma
+
     def __init__(
         self,
         result: types.Result,

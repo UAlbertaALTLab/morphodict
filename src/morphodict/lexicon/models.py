@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Dict, Literal, Union
+from typing import Dict, Literal, Union, Any
 
 from django.core.serializers.json import DjangoJSONEncoder
 from django.db import models
@@ -119,7 +119,7 @@ class Wordform(models.Model):
         """,
     )
 
-    linguist_info = models.JSONField(
+    linguist_info: models.JSONField[dict[str, Any]] = models.JSONField(
         blank=True,
         null=True,
         help_text="""
