@@ -26,6 +26,11 @@ urlpatterns = [
         name="dictionary-wordnet-index-api",
     ),
     path(
+        "api/wordnet-index-search/",
+        api_views.wordnet_index_search,
+        name="dictionary-wordnet-index-search-api",
+    ),
+    path(
         "api/wordnet-synset/",
         api_views.wordnet_synset,
         name="dictionary-wordnet-synset-api",

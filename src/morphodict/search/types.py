@@ -307,6 +307,13 @@ def wordnet_for_nltk(keyword: str) -> str:
     return keyword
 
 
+def normalize_wordnet_keyword(keyword: str) -> str:
+    matches = re.match(format_regexp, keyword)
+    if matches:
+        return matches["stem"] + "." + matches["pos"] + "." + matches["num"]
+    return "_".join(keyword.split())
+
+
 class WordnetEntry:
 
     synset: Synset
