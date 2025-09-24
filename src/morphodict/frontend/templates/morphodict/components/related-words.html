@@ -15,7 +15,7 @@ data-cy="information-mark">
         {{text}} is in the RapidWords categor{% if rapidwords|length > 1%}ies{% else %}y{%endif%}:
         <ul>
         {% for rw in rapidwords %}
-            <li><a href="https://vocabulary.altlab.dev/?rw_search={{rw.index}}+{{rw.domain}}">{{rw.domain}}</a> ({{rw.index}}) </li>
+            <li><a href="https://vocabulary.altlab.dev/rapidwords/?rw_search={{rw.domain}}">{{rw.domain}}</a> ({{rw.index}}) </li>
         {% endfor %}
         </ul>
         {% endif %}
@@ -23,7 +23,7 @@ data-cy="information-mark">
         {{text}} is in the WordNet categor{% if synsets|length > 1%}ies{% else %}y{%endif%}:
         <ul>
         {% for wn in synsets %}
-            <li><a href="https://vocabulary.altlab.dev/?wn_search={{wn}}">{{wn}}</a> </li>
+            <li><a href="https://vocabulary.altlab.dev/wordnet/?wn_search={{wn}}">{{wn}}</a> </li>
         {% endfor %}
         </ul>            
         {% endif %}
