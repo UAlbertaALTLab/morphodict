@@ -1,0 +1,84 @@
+	| Ipfv
+_ 1Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg1+DObjSg3+IObjSg1
+_ 2Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg2+DObjSg3+IObjSg1
+_ 3Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjSg3+IObjSg1
+_ 1Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl1+DObjSg3+IObjSg1
+_ 2Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl2+DObjSg3+IObjSg1
+_ 3Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl3+DObjSg3+IObjSg1
+_ 4Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg4+DObjSg3+IObjSg1
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjSg3+IObjSg1+Nomz
+_ 3Sg _ NomzA _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg3+DObjSg3+IObjSg1+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl1+DObjSg3+IObjSg1+Distr
+_ 2Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl2+DObjSg3+IObjSg1+Distr
+_ 3Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjPl3+DObjSg3+IObjSg1+Distr
+_ 4Sg _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+SbjSg4+DObjSg3+IObjSg1+Distr
+	
+	| Pfv
+_ 1Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg1+DObjSg3+IObjSg1
+_ 2Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg2+DObjSg3+IObjSg1
+_ 3Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg3+DObjSg3+IObjSg1
+_ 1Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl1+DObjSg3+IObjSg1
+_ 2Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl2+DObjSg3+IObjSg1
+_ 3Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl3+DObjSg3+IObjSg1
+_ 4Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg4+DObjSg3+IObjSg1
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg3+DObjSg3+IObjSg1+Nomz
+_ 3Sg _ NomzA _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg3+DObjSg3+IObjSg1+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl1+DObjSg3+IObjSg1+Distr
+_ 2Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl2+DObjSg3+IObjSg1+Distr
+_ 3Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjPl3+DObjSg3+IObjSg1+Distr
+_ 4Sg _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pfv+SbjSg4+DObjSg3+IObjSg1+Distr
+	
+	| Prog
+_ 1Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg1+DObjSg3+IObjSg1
+_ 2Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg2+DObjSg3+IObjSg1
+_ 3Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg3+DObjSg3+IObjSg1
+_ 1Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl1+DObjSg3+IObjSg1
+_ 2Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl2+DObjSg3+IObjSg1
+_ 3Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl3+DObjSg3+IObjSg1
+_ 4Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg4+DObjSg3+IObjSg1
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg3+DObjSg3+IObjSg1+Nomz
+_ 3Sg _ NomzA _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg3+DObjSg3+IObjSg1+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl1+DObjSg3+IObjSg1+Distr
+_ 2Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl2+DObjSg3+IObjSg1+Distr
+_ 3Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjPl3+DObjSg3+IObjSg1+Distr
+_ 4Sg _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Prog+SbjSg4+DObjSg3+IObjSg1+Distr
+	
+	| Ipfv | Rep
+_ 1Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg1+DObjSg3+IObjSg1
+_ 2Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg2+DObjSg3+IObjSg1
+_ 3Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg3+DObjSg3+IObjSg1
+_ 1Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl1+DObjSg3+IObjSg1
+_ 2Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl2+DObjSg3+IObjSg1
+_ 3Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl3+DObjSg3+IObjSg1
+_ 4Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg4+DObjSg3+IObjSg1
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg3+DObjSg3+IObjSg1+Nomz
+_ 3Sg _ NomzA _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg3+DObjSg3+IObjSg1+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl1+DObjSg3+IObjSg1+Distr
+_ 2Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl2+DObjSg3+IObjSg1+Distr
+_ 3Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjPl3+DObjSg3+IObjSg1+Distr
+_ 4Sg _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Ipfv+Rep+SbjSg4+DObjSg3+IObjSg1+Distr
+	
+	| Pot
+_ 1Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg1+DObjSg3+IObjSg1
+_ 2Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg2+DObjSg3+IObjSg1
+_ 3Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg3+DObjSg3+IObjSg1
+_ 1Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl1+DObjSg3+IObjSg1
+_ 2Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl2+DObjSg3+IObjSg1
+_ 3Pl _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl3+DObjSg3+IObjSg1
+_ 4Sg _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg4+DObjSg3+IObjSg1
+	| Nominalizations
+_ 3Sg _ Nomz _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg3+DObjSg3+IObjSg1+Nomz
+_ 3Sg _ NomzA _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg3+DObjSg3+IObjSg1+NomzA
+	| DistributivePlurals
+_ 1Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl1+DObjSg3+IObjSg1+Distr
+_ 2Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl2+DObjSg3+IObjSg1+Distr
+_ 3Pl _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjPl3+DObjSg3+IObjSg1+Distr
+_ 4Sg _ Distr _ 3SgDO _ 1SgIO	${lemma}+V+D+Pot+SbjSg4+DObjSg3+IObjSg1+Distr

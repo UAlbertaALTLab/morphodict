@@ -1,0 +1,12 @@
+	| Ipfv
+_ 3SgIm	${lemma}+V+Im+Ipfv+SbjSg3
+	| Nominalizations
+_ 3SgIm _ Nomz	${lemma}+V+Im+Ipfv+SbjSg3+Nomz
+_ 3SgIm _ NomzA	${lemma}+V+Im+Ipfv+SbjSg3+NomzA
+
+	| Pfv
+_ 3SgIm	${lemma}+V+Im+Pfv+SbjSg3
+	| Nominalizations
+_ 3SgIm _ Nomz	${lemma}+V+Im+Pfv+SbjSg3+Nomz
+_ 3SgIm _ NomzA	${lemma}+V+Im+Pfv+SbjSg3+NomzA
+
