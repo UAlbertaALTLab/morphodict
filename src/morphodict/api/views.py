@@ -115,6 +115,12 @@ def wordnet_index(request: HttpRequest) -> HttpResponse:
 
 @require_GET
 def wordnet_synset(request: HttpRequest) -> HttpResponse:
+    """
+    GET api gets two parameters: wn and in_dictionary.
+    wn should be a wordnet synset identifier in the format presented in morphodict.
+    in_dictionary should be a boolean-like item to filter the hyponyms_of_hypernyms set to only include synsets that have words in the dictionary
+    note that this is a private API, whose behaviour is expected to change in the future (especially the in_dictionary semantics)
+    """
     wn = request.GET.get("wn")
     filter_in_dictionary = request.GET.get("in_dictionary", False)
 
