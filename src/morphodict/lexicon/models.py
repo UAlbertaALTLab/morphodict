@@ -66,7 +66,7 @@ class Wordform(models.Model):
     # Queries always do .select_related("lemma"):
     objects = WordformLemmaManager()
 
-    text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
+    text: models.CharField = models.CharField(max_length=MAX_WORDFORM_LENGTH)
 
     raw_analysis = models.JSONField(null=True, encoder=DiacriticPreservingJsonEncoder)
 
@@ -191,7 +191,7 @@ class Wordform(models.Model):
             return self.slug
         if self.id is not None:
             return self.id
-        return (self.text, self.analysis)
+        return (self.text, str(self.analysis))
 
     def get_absolute_url(self, ambiguity: Literal["allow", "avoid"] = "avoid") -> str:
         """
@@ -306,7 +306,7 @@ class Definition(models.Model):
         return {
             "text": self.text,
             "source_ids": self.source_ids,
-            "is_auto_translation": self.auto_translation_source_id is not None,
+            "is_auto_translation": self.auto_translation_source is not None,
         }
 
     def __str__(self):
@@ -314,6 +314,8 @@ class Definition(models.Model):
 
 
 class TargetLanguageKeyword(models.Model):
+    id: models.BigAutoField
+
     text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
 
     wordform = models.ForeignKey(
@@ -342,6 +344,8 @@ class SourceLanguageKeyword(models.Model):
     later—we store variants here, such as the version without diacritics, so
     that they’re still searchable even if what the user typed in isn’t exact.
     """
+
+    id: models.BigAutoField
 
     text = models.CharField(max_length=MAX_WORDFORM_LENGTH)
 

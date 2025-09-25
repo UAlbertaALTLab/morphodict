@@ -12,12 +12,13 @@ from typing import TypedDict
 
 from nltk.corpus import wordnet as wn
 
-from crkeng.app.preferences import DictionarySource
 from morphodict.frontend.views import (
     should_include_auto_definitions,
     should_inflect_phrases,
 )
-from morphodict.paradigm.preferences import DisplayMode
+from morphodict.lexicon.models import WordNetSynset
+from django.db.models import Count
+
 from morphodict.search import (
     api_search,
     rapidwords_index_search,
@@ -28,7 +29,6 @@ from morphodict.search.presentation import SerializedPresentationResult
 from morphodict.search.types import (
     WordnetEntry,
     normalize_wordnet_keyword,
-    wordnet_for_nltk,
 )
 
 
@@ -39,7 +39,7 @@ class SearchApiDict(TypedDict):
 
 
 @require_GET
-def click_in_text(request) -> HttpResponse:
+def click_in_text(request: HttpRequest) -> HttpResponse:
     """
     click-in-text api
     see SerializedSearchResult in schema.py for API specifications
@@ -61,14 +61,14 @@ def click_in_text(request) -> HttpResponse:
 
 
 @require_GET
-def click_in_text_embedded_test(request):
+def click_in_text_embedded_test(request: HttpRequest):
     if not settings.DEBUG:
         raise Http404()
     return render(request, "API/click-in-text-embedded-test.html")
 
 
 @require_GET
-def rapidwords_index(request) -> HttpResponse:
+def rapidwords_index(request: HttpRequest) -> HttpResponse:
     """
     rapidwords by index
     see SerializedSearchResult in schema.py for API specifications
@@ -92,7 +92,7 @@ def rapidwords_index(request) -> HttpResponse:
 
 
 @require_GET
-def wordnet_index(request) -> HttpResponse:
+def wordnet_index(request: HttpRequest) -> HttpResponse:
     """
     rapidwords by index
     see SerializedSearchResult in schema.py for API specifications
@@ -114,8 +114,10 @@ def wordnet_index(request) -> HttpResponse:
 
 
 @require_GET
-def wordnet_synset(request) -> HttpResponse:
+def wordnet_synset(request: HttpRequest) -> HttpResponse:
     wn = request.GET.get("wn")
+    filter_in_dictionary = request.GET.get("in_dictionary", False)
+
     if not wn:
         return HttpResponseBadRequest("index param wn is missing")
     try:
@@ -123,20 +125,56 @@ def wordnet_synset(request) -> HttpResponse:
         siblings = [h for hyper in entry.hypernyms() for h in hyper.hyponyms()]
         if not siblings:
             siblings.append(entry)
+
+        hypernyms = [
+            {"synset": str(h), "definition": h.definition()} for h in entry.hypernyms()
+        ]
+        hyponyms = [
+            {"synset": str(h), "definition": h.definition()} for h in entry.hyponyms()
+        ]
+        hyponyms_of_hypernyms = [
+            {"synset": str(h), "definition": h.definition()} for h in siblings
+        ]
+
+        hyponyms_of_hypernyms_of_hypernyms = [
+            {"synset": str(a), "definition": a.definition()}
+            for h in entry.hypernyms()
+            for hh in h.hypernyms()
+            for a in hh.hyponyms()
+        ]
+
+        if filter_in_dictionary:
+            synsets = (
+                {s["synset"] for s in hypernyms}
+                | {s["synset"] for s in hyponyms}
+                | {s["synset"] for s in hyponyms_of_hypernyms}
+                | {s["synset"] for s in hyponyms_of_hypernyms_of_hypernyms}
+            )
+            check = (
+                WordNetSynset.objects.filter(name__in=synsets)
+                .annotate(wordforms_count=Count("wordforms"))
+                .values("name", "wordforms_count")
+            )
+
+            def filter_only_with_wordforms(input):
+                def has_wordforms(h):
+                    if h["synset"] == wn:
+                        # Keep the entry searched as sibling!
+                        return True
+                    candidate = check.filter(name=h["synset"]).first()
+                    return candidate and candidate["wordforms_count"] > 0
+
+                return [h for h in input if has_wordforms(h)]
+
+            hyponyms_of_hypernyms = filter_only_with_wordforms(hyponyms_of_hypernyms)
+
         json_response = JsonResponse(
             {
                 "synset": str(entry),
-                "hypernyms": [
-                    {"synset": str(h), "definition": h.definition()}
-                    for h in entry.hypernyms()
-                ],
-                "hyponyms": [
-                    {"synset": str(h), "definition": h.definition()}
-                    for h in entry.hyponyms()
-                ],
-                "hyponyms_of_hypernyms": [
-                    {"synset": str(h), "definition": h.definition()} for h in siblings
-                ],
+                "hypernyms": hypernyms,
+                "hyponyms": hyponyms,
+                "hyponyms_of_hypernyms": hyponyms_of_hypernyms,
+                "hyponyms_of_hypernyms_of_hypernyms": hyponyms_of_hypernyms_of_hypernyms,
                 "definition": entry.definition(),
             }
         )
@@ -147,7 +185,7 @@ def wordnet_synset(request) -> HttpResponse:
 
 
 @require_GET
-def wordnet_index_search(request) -> HttpResponse:
+def wordnet_index_search(request: HttpRequest) -> HttpResponse:
     wn_search = request.GET.get("wn")
     if not wn_search:
         return HttpResponseBadRequest("index param wn is missing")
@@ -155,6 +193,7 @@ def wordnet_index_search(request) -> HttpResponse:
         entries = [
             WordnetEntry(set)
             for set in wn.synsets(normalize_wordnet_keyword(wn_search))
+            if set
         ]
         if not entries:
             try:
