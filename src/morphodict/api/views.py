@@ -17,7 +17,7 @@ from morphodict.frontend.views import (
     should_inflect_phrases,
 )
 from morphodict.lexicon.models import WordNetSynset
-from django.db.models import Count
+from django.db.models import Count, Sum
 
 from morphodict.search import (
     api_search,
@@ -128,59 +128,60 @@ def wordnet_synset(request: HttpRequest) -> HttpResponse:
         return HttpResponseBadRequest("index param wn is missing")
     try:
         entry = WordnetEntry(wn)
-        siblings = [h for hyper in entry.hypernyms() for h in hyper.hyponyms()]
-        if not siblings:
-            siblings.append(entry)
-
-        hypernyms = [
-            {"synset": str(h), "definition": h.definition()} for h in entry.hypernyms()
-        ]
-        hyponyms = [
-            {"synset": str(h), "definition": h.definition()} for h in entry.hyponyms()
-        ]
+        hypernyms = entry.hypernyms()
+        hyponyms = entry.hyponyms()
         hyponyms_of_hypernyms = [
-            {"synset": str(h), "definition": h.definition()} for h in siblings
+            hypo for hyper in hypernyms for hypo in hyper.hyponyms()
         ]
-
+        if not hyponyms_of_hypernyms:
+            hyponyms_of_hypernyms.append(entry)
         hyponyms_of_hypernyms_of_hypernyms = [
-            {"synset": str(a), "definition": a.definition()}
-            for h in entry.hypernyms()
-            for hh in h.hypernyms()
-            for a in hh.hyponyms()
+            hhh for h in hypernyms for hh in h.hypernyms() for hhh in hh.hyponyms()
         ]
+        synsets = {
+            str(we)
+            for we in hypernyms
+            + hyponyms
+            + hyponyms_of_hypernyms
+            + hyponyms_of_hypernyms_of_hypernyms
+            + [hh for h in hyponyms for hh in h.hyponyms_closure()]
+        }
 
-        if filter_in_dictionary:
-            synsets = (
-                {s["synset"] for s in hypernyms}
-                | {s["synset"] for s in hyponyms}
-                | {s["synset"] for s in hyponyms_of_hypernyms}
-                | {s["synset"] for s in hyponyms_of_hypernyms_of_hypernyms}
-            )
-            check = (
-                WordNetSynset.objects.filter(name__in=synsets)
-                .annotate(wordforms_count=Count("wordforms"))
-                .values("name", "wordforms_count")
-            )
+        wordforms_in_synsets = (
+            WordNetSynset.objects.filter(name__in=synsets)
+            .annotate(wordforms_count=Count("wordforms", distinct=True))
+            .values("name", "wordforms_count")
+        )
 
-            def filter_only_with_wordforms(input):
-                def has_wordforms(h):
-                    if h["synset"] == wn:
-                        # Keep the entry searched as sibling!
-                        return True
-                    candidate = check.filter(name=h["synset"]).first()
-                    return candidate and candidate["wordforms_count"] > 0
-
-                return [h for h in input if has_wordforms(h)]
-
-            hyponyms_of_hypernyms = filter_only_with_wordforms(hyponyms_of_hypernyms)
+        def generate_api_repr_with_counts(
+            entries: list[WordnetEntry], add_closure_count: bool = False
+        ):
+            answer = []
+            for entry in entries:
+                api_repr = entry.api_repr()
+                api_repr["wordform_count"] = wordforms_in_synsets.filter(
+                    name=api_repr["synset"]
+                ).aggregate(Sum("wordforms_count", default=0))["wordforms_count__sum"]
+                if add_closure_count:
+                    api_repr["wordform_closure_count"] = wordforms_in_synsets.filter(
+                        name__in={str(a) for a in entry.hyponyms_closure()}
+                    ).aggregate(Sum("wordforms_count", default=0))[
+                        "wordforms_count__sum"
+                    ]
+                answer.append(api_repr)
+            return answer
 
         json_response = JsonResponse(
             {
                 "synset": str(entry),
-                "hypernyms": hypernyms,
-                "hyponyms": hyponyms,
-                "hyponyms_of_hypernyms": hyponyms_of_hypernyms,
-                "hyponyms_of_hypernyms_of_hypernyms": hyponyms_of_hypernyms_of_hypernyms,
+                "hypernyms": generate_api_repr_with_counts(hypernyms),
+                "hyponyms": generate_api_repr_with_counts(hyponyms, True),
+                "hyponyms_of_hypernyms": generate_api_repr_with_counts(
+                    hyponyms_of_hypernyms
+                ),
+                "hyponyms_of_hypernyms_of_hypernyms": generate_api_repr_with_counts(
+                    hyponyms_of_hypernyms_of_hypernyms
+                ),
                 "definition": entry.definition(),
             }
         )

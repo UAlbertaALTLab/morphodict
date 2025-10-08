@@ -319,14 +319,20 @@ class WordnetEntry:
     synset: Synset
     original_str: str
     numbering: Optional[int]
+    hyponyms_closure_cache: list[WordnetEntry] | None
 
     def __init__(self, entry: str | Synset):
+        self.hyponyms_closure_cache = None
+
         if isinstance(entry, str):
             self.synset = wn.synset(wordnet_for_nltk(entry))
             self.original_str = entry
         else:
             self.synset = entry
             self.original_str = entry.name()
+
+    def api_repr(self):
+        return {"synset": str(self), "definition": self.definition()}
 
     def __str__(self):
         data = self.synset.name().split(".")
@@ -335,6 +341,13 @@ class WordnetEntry:
 
     def hyponyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.hyponyms())
+
+    def hyponyms_closure(self) -> list[WordnetEntry]:
+        if self.hyponyms_closure_cache is None:
+            self.hyponyms_closure_cache = produce_entries(
+                self.original_str, self.synset.closure(lambda s: s.hyponyms())
+            )
+        return self.hyponyms_closure_cache
 
     def hypernyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.hypernyms())
