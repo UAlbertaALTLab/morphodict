@@ -8,7 +8,7 @@ from django.http import (
 )
 from django.shortcuts import render
 from django.views.decorators.http import require_GET
-from typing import TypedDict
+from typing import Any, TypedDict
 
 from nltk.corpus import wordnet as wn
 
@@ -17,7 +17,7 @@ from morphodict.frontend.views import (
     should_inflect_phrases,
 )
 from morphodict.lexicon.models import WordNetSynset
-from django.db.models import Count, Sum
+from django.db.models import Count, QuerySet, Sum
 
 from morphodict.search import (
     api_search,
@@ -103,26 +103,61 @@ def wordnet_index(request: HttpRequest) -> HttpResponse:
         return HttpResponseBadRequest("index param wn is missing")
 
     results = wordnet_index_search_internal(index=wn)
-    if results:
-        response = {"results": results.serialized_presentation_results()}
-    else:
-        response = {"results": []}
+
+    try:
+        entry = WordnetEntry(wn)
+        hyponym_entries = entry.hyponyms()
+        generate_api_repr_with_counts = generate_api_counts_with_prefetch(
+            WordNetSynset.objects.filter(
+                name__in={str(h) for h in hyponym_entries} | {str(entry)}
+            )
+            .annotate(wordforms_count=Count("wordforms", distinct=True))
+            .values("name", "wordforms_count")
+        )
+
+        hyponyms = generate_api_repr_with_counts(hyponym_entries, True)
+    except:
+        hyponyms = []
+
+    response = {
+        "results": results.serialized_presentation_results() if results else [],
+        "hyponyms": hyponyms,
+    }
 
     json_response = JsonResponse(response)
     json_response["Access-Control-Allow-Origin"] = "*"
     return json_response
 
 
+def generate_api_counts_with_prefetch(
+    wordforms_in_synsets: QuerySet[WordNetSynset, dict[str, Any]],
+):
+    def generate_api_repr_with_counts(
+        entries: list[WordnetEntry], add_closure_count: bool = False
+    ):
+        answer = []
+        for entry in entries:
+            api_repr = entry.api_repr()
+            api_repr["wordform_count"] = wordforms_in_synsets.filter(
+                name=api_repr["synset"]
+            ).aggregate(Sum("wordforms_count", default=0))["wordforms_count__sum"]
+            if add_closure_count:
+                api_repr["wordform_closure_count"] = wordforms_in_synsets.filter(
+                    name__in={str(a) for a in entry.hyponyms_closure()} | {str(entry)}
+                ).aggregate(Sum("wordforms_count", default=0))["wordforms_count__sum"]
+            answer.append(api_repr)
+        return answer
+
+    return generate_api_repr_with_counts
+
+
 @require_GET
 def wordnet_synset(request: HttpRequest) -> HttpResponse:
     """
-    GET api gets two parameters: wn and in_dictionary.
+    GET api takes one parameter, wn.
     wn should be a wordnet synset identifier in the format presented in morphodict.
-    in_dictionary should be a boolean-like item to filter the hyponyms_of_hypernyms set to only include synsets that have words in the dictionary
-    note that this is a private API, whose behaviour is expected to change in the future (especially the in_dictionary semantics)
     """
     wn = request.GET.get("wn")
-    filter_in_dictionary = request.GET.get("in_dictionary", False)
 
     if not wn:
         return HttpResponseBadRequest("index param wn is missing")
@@ -147,29 +182,11 @@ def wordnet_synset(request: HttpRequest) -> HttpResponse:
             + [hh for h in hyponyms for hh in h.hyponyms_closure()]
         }
 
-        wordforms_in_synsets = (
+        generate_api_repr_with_counts = generate_api_counts_with_prefetch(
             WordNetSynset.objects.filter(name__in=synsets)
             .annotate(wordforms_count=Count("wordforms", distinct=True))
             .values("name", "wordforms_count")
         )
-
-        def generate_api_repr_with_counts(
-            entries: list[WordnetEntry], add_closure_count: bool = False
-        ):
-            answer = []
-            for entry in entries:
-                api_repr = entry.api_repr()
-                api_repr["wordform_count"] = wordforms_in_synsets.filter(
-                    name=api_repr["synset"]
-                ).aggregate(Sum("wordforms_count", default=0))["wordforms_count__sum"]
-                if add_closure_count:
-                    api_repr["wordform_closure_count"] = wordforms_in_synsets.filter(
-                        name__in={str(a) for a in entry.hyponyms_closure()}
-                    ).aggregate(Sum("wordforms_count", default=0))[
-                        "wordforms_count__sum"
-                    ]
-                answer.append(api_repr)
-            return answer
 
         json_response = JsonResponse(
             {
