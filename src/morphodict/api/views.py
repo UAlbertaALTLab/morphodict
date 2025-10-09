@@ -165,20 +165,21 @@ def wordnet_synset(request: HttpRequest) -> HttpResponse:
         entry = WordnetEntry(wn)
         hypernyms = entry.hypernyms()
         hyponyms = entry.hyponyms()
-        hyponyms_of_hypernyms = [
+        hyponyms_of_hypernyms = {
             hypo for hyper in hypernyms for hypo in hyper.hyponyms()
-        ]
+        }
         if not hyponyms_of_hypernyms:
-            hyponyms_of_hypernyms.append(entry)
-        hyponyms_of_hypernyms_of_hypernyms = [
+            hyponyms_of_hypernyms.add(entry)
+        hyponyms_of_hypernyms_of_hypernyms = {
             hhh for h in hypernyms for hh in h.hypernyms() for hhh in hh.hyponyms()
-        ]
+        }
+
         synsets = {
             str(we)
             for we in hypernyms
             + hyponyms
-            + hyponyms_of_hypernyms
-            + hyponyms_of_hypernyms_of_hypernyms
+            + list(hyponyms_of_hypernyms)
+            + list(hyponyms_of_hypernyms_of_hypernyms)
             + [hh for h in hyponyms for hh in h.hyponyms_closure()]
         }
 
@@ -194,17 +195,17 @@ def wordnet_synset(request: HttpRequest) -> HttpResponse:
                 "hypernyms": generate_api_repr_with_counts(hypernyms),
                 "hyponyms": generate_api_repr_with_counts(hyponyms, True),
                 "hyponyms_of_hypernyms": generate_api_repr_with_counts(
-                    hyponyms_of_hypernyms
+                    [h for h in hyponyms_of_hypernyms]
                 ),
                 "hyponyms_of_hypernyms_of_hypernyms": generate_api_repr_with_counts(
-                    hyponyms_of_hypernyms_of_hypernyms
+                    [h for h in hyponyms_of_hypernyms_of_hypernyms]
                 ),
                 "definition": entry.definition(),
             }
         )
         json_response["Access-Control-Allow-Origin"] = "*"
         return json_response
-    except:
+    except Exception as e:
         return HttpResponseBadRequest("problem with request")
 
 

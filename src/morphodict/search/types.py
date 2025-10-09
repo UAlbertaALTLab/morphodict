@@ -339,6 +339,15 @@ class WordnetEntry:
         entry = ".".join(data[0:-2])
         return f"({data[-2]}) {entry}#{int(data[-1])}"
 
+    # Making WordnetEntries Hashable to be able to store them in sets
+    def __hash__(self):
+        return hash((self.synset.name))
+
+    def __eq__(self, other):
+        if not isinstance(other, WordnetEntry):
+            return NotImplemented
+        return self.synset.name == other.synset.name
+
     def hyponyms(self) -> list[WordnetEntry]:
         return produce_entries(self.original_str, self.synset.hyponyms())
 
