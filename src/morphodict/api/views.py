@@ -16,9 +16,10 @@ from morphodict.frontend.views import (
     should_include_auto_definitions,
     should_inflect_phrases,
 )
-from morphodict.lexicon.models import WordNetSynset
+from morphodict.lexicon.models import WordNetSynset, Wordform
 from django.db.models import Count, QuerySet, Sum
 
+from morphodict.analysis import rich_analyze_relaxed
 from morphodict.search import (
     api_search,
     rapidwords_index_search,
@@ -215,16 +216,26 @@ def wordnet_index_search(request: HttpRequest) -> HttpResponse:
     if not wn_search:
         return HttpResponseBadRequest("index param wn is missing")
     try:
-        entries = [
+        entries = {
             WordnetEntry(set)
             for set in wn.synsets(normalize_wordnet_keyword(wn_search))
             if set
-        ]
+        }
         if not entries:
             try:
-                entries.append(WordnetEntry(wn_search))
+                entries.add(WordnetEntry(wn_search))
             except:
+                # There's no wordnet category, so search for target language words
                 pass
+            if not entries:
+                wordforms = Wordform.objects.filter(
+                    raw_analysis__in={a.tuple for a in rich_analyze_relaxed(wn_search)}
+                )
+                for wordform in wordforms:
+                    entries.update(
+                        {WordnetEntry(entry.name) for entry in wordform.synsets.all()}
+                    )
+
         json_response = JsonResponse(
             {
                 "results": [
