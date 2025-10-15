@@ -28,6 +28,7 @@ class WordNetSearch:
     def __init__(self, query: Query):
         self.espt = None
         canonical_query: list[str] = query.query_terms
+        canonical_query_original: list[str] = canonical_query
         if 1 < len(query.query_terms):
             self.espt = EsptSearch(query, SearchResults())
             self.espt.convert_search_query_to_espt()
@@ -39,6 +40,9 @@ class WordNetSearch:
         candidate_infinitive = [x.removesuffix("s") for x in canonical_query]
         if canonical_query != candidate_infinitive:
             lemmas.extend(wn_synsets("_".join(candidate_infinitive)))
+        if not lemmas:
+            canonical_query = canonical_query_original
+            lemmas.extend(wn_synsets("_".join(canonical_query)))
         self.synsets = list(
             WordNetSynset.objects.filter(
                 name__in=produce_entries(" ".join(canonical_query), lemmas)
