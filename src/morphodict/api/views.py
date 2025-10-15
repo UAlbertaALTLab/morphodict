@@ -17,7 +17,7 @@ from morphodict.frontend.views import (
     should_inflect_phrases,
 )
 from morphodict.lexicon.models import WordNetSynset, Wordform
-from django.db.models import Count, QuerySet, Sum
+from django.db.models import Q, Count, QuerySet, Sum
 
 from morphodict.analysis import rich_analyze_relaxed
 from morphodict.search import (
@@ -228,8 +228,10 @@ def wordnet_index_search(request: HttpRequest) -> HttpResponse:
                 # There's no wordnet category, so search for target language words
                 pass
             if not entries:
+                analyses = rich_analyze_relaxed(wn_search)
                 wordforms = Wordform.objects.filter(
-                    raw_analysis__in={a.tuple for a in rich_analyze_relaxed(wn_search)}
+                    Q(raw_analysis__in={a.tuple for a in analyses})
+                    | Q(text__in={x for a in analyses for x in a.generate()})
                 )
                 for wordform in wordforms:
                     entries.update(
