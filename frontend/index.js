@@ -10,9 +10,7 @@ import {
   fetchRecordingURLForEachWordform,
   retrieveListOfSpeakers,
 } from "./js/recordings.js";
-import {
-  fetchCorpusURL
-} from "./js/corpus.js";
+import { fetchCorpusURL } from "./js/corpus.js";
 import * as orthography from "./js/orthography.js";
 import {
   emptyElement,
@@ -32,8 +30,8 @@ import * as settings from "./js/settings-page.js";
 import * as toast from "./js/toast.js";
 import { loadParadigmAudio } from "./js/paradigm-recording";
 
-import 'bootstrap/js/dist/collapse.js'
-import './css/bootstrap.scss';
+import "bootstrap/js/dist/collapse.js";
+import "./css/bootstrap.scss";
 //import '../node_modules/bootstrap/dist/css/bootstrap.css'
 ///////////////////////////////// Constants //////////////////////////////////
 
@@ -176,13 +174,15 @@ async function loadCorpusForAllSearchResults(searchResultsList) {
   }
 
   for (let [element, wordform] of elementWithWordform) {
-    let corpusURL = await fetchCorpusURL(wordform,element.hasAttribute("data-main-lemma"));
+    let corpusURL = await fetchCorpusURL(
+      wordform,
+      element.hasAttribute("data-main-lemma")
+    );
     if (corpusURL) {
       createCorpusButton(corpusURL, element);
     }
   }
 }
-
 
 /**
  * Attach relevant handlers to **ALL** tooltip icons on the page.
@@ -326,7 +326,7 @@ function setupCorpusOnPageLoad() {
   // TODO: setup baseURL from <link rel=""> or something.
   let wordform = getEntryHead();
 
-  fetchCorpusURL(wordform,true)
+  fetchCorpusURL(wordform, true)
     .then((corpusURL) => {
       if (corpusURL === undefined) {
         // Corpus has nothing for this wordform ¯\_(ツ)_/¯
@@ -339,7 +339,6 @@ function setupCorpusOnPageLoad() {
       // TODO: display an error message?
     });
 }
-
 
 /**
  * Makes all URL paths relative to '/'.
@@ -384,12 +383,12 @@ function createAudioButton(recordingURL, element) {
 /**
  * Creates the 📚 button and places it beside the desired element.
  */
-function createCorpusButton(href, element){
+function createCorpusButton(href, element) {
   let template = document.getElementById("template:corpus-button");
 
   let fragment = template.content.cloneNode(true);
   let button = fragment.querySelector("a");
-  button.href = href
+  button.href = href;
   let nbsp = document.createTextNode(NO_BREAK_SPACE);
   element.appendChild(nbsp);
   element.appendChild(button);
@@ -406,16 +405,18 @@ function getSearchResultList() {
   return document.getElementById("search-result-list");
 }
 
-function setupRefocus(){
+function setupRefocus() {
   // add an action on click to refocus when data-md-focus is available
   document.querySelectorAll("[data-md-focus]").forEach((object) => {
-    let focus_obj = document.getElementById(object.getAttribute("data-md-focus"))
-    focus_obj.addEventListener("shown.bs.collapse", function(){
+    let focus_obj = document.getElementById(
+      object.getAttribute("data-md-focus")
+    );
+    focus_obj.addEventListener("shown.bs.collapse", function () {
       focus_obj.scrollIntoView({
-        beahior:"smooth",
-        block:"start",
-        inline:"start"
+        beahior: "smooth",
+        block: "start",
+        inline: "start",
       });
-    })
-  })
+    });
+  });
 }
