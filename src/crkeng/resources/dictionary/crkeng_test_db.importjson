@@ -720,7 +720,13 @@
     "linguistInfo": {
       "inflectional_category": "VTI-2",
       "pos": "V",
-      "rw_domains": ["Own", "finance", "have_wealth", "own_possess", "Wear_clothing"],
+      "rw_domains": [
+        "Own",
+        "finance",
+        "have_wealth",
+        "own_possess",
+        "Wear_clothing"
+      ],
       "rw_indices": {
         "CW": ["6.8.1.1.1", "5.3.7.1"],
         "MD": ["6.8.1.1"]
@@ -2661,7 +2667,12 @@
     "linguistInfo": {
       "inflectional_category": "NDA-1",
       "pos": "N",
-      "rw_domains": ["Grandfather", "grandfather_grandmother", "relationships", "Old_person"],
+      "rw_domains": [
+        "Grandfather",
+        "grandfather_grandmother",
+        "relationships",
+        "Old_person"
+      ],
       "rw_indices": {
         "CW": ["4.1.9.1.1.1", "2.6.4.5.1"],
         "MD": ["4.1.9.1.1"]
