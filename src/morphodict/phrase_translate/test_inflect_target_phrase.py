@@ -51,7 +51,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
                 ("+V", "+TA", "+Cnj", "+1Sg", "+2SgO"),
             ),
             "s/he sits with s.o., s/he stays with s.o., s/he is present with s.o.",
-            "I sit with you, I stay with you, I am present with you",
+            "as I sit with you, as I stay with you, as I am present with you",
         ),
         (
             (
@@ -105,7 +105,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
                 ("+V", "+TA", "+Cnj", "+1Sg", "+3PlO"),
             ),
             ARBITRARY_DEFINITION,
-            "I am going to see them",
+            "as I am going to see them",
         ),
         (
             (
