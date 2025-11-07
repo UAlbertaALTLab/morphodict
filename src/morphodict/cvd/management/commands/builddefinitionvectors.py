@@ -44,7 +44,7 @@ class Command(BaseCommand):
 
         definitions = Definition.objects.filter(
             auto_translation_source_id__isnull=True
-        ).prefetch_related("wordform__lemma")
+        )
 
         count = definitions.count()
 
