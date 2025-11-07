@@ -42,9 +42,7 @@ class Command(BaseCommand):
         logger.info("Building definition vectors")
         logger.info(output_file)
 
-        definitions = Definition.objects.filter(
-            auto_translation_source_id__isnull=True
-        )
+        definitions = Definition.objects.filter(auto_translation_source_id__isnull=True)
 
         count = definitions.count()
 
