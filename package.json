@@ -31,7 +31,7 @@
   "dependencies": {
     "@altlab/click-in-text": "^0.1.2",
     "@popperjs/core": "^2.6.0",
-    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-terser": "^0.4.4",
     "acorn": "^7.4.1",
