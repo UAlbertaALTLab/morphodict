@@ -44,6 +44,7 @@
             url = new URL("https://speech-db.altlab.app/{{source}}/api/bulk_search")
             chunk.forEach(element => {
                 url.searchParams.append('q',element)
+                url.searchParams.append('exact', true)
             });
             promises.push(fetch(url).then(res => res.json()).then((json) =>{
                 let ok = {}

@@ -197,6 +197,7 @@ async function _fetchRecordingUsingBulkSearch(bulkApiUrl, requestedWordforms) {
   let searchParams = new URLSearchParams();
   for (let wordform of requestedWordforms) {
     searchParams.append("q", wordform);
+    searchParams.append("exact", true);
   }
   let url = new URL(bulkApiUrl);
   url.search = searchParams;
