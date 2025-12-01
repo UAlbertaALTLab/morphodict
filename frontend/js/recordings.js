@@ -135,13 +135,17 @@ export async function retrieveListOfSpeakers() {
 
 async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
   let retObject = { matched_recordings: [], not_found: [] };
-  function search_key(s, source){
-    if ("moswacihk" == source){
-      return s.replaceAll("ê", "ē").replaceAll("î", "ī").replaceAll("ô", "ō").replaceAll("â", "ā")
-    } else if ("maskwacis" == source){
-      return s.replaceAll("ý", "y")
-    } else {
+  function search_key(s, source) {
+    if ("moswacihk" == source) {
       return s
+        .replaceAll("ê", "ē")
+        .replaceAll("î", "ī")
+        .replaceAll("ô", "ō")
+        .replaceAll("â", "ā");
+    } else if ("maskwacis" == source) {
+      return s.replaceAll("ý", "y");
+    } else {
+      return s;
     }
   }
   for (let LANGUAGE_CODE of LANGUAGE_CODES) {
