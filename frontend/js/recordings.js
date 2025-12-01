@@ -135,11 +135,20 @@ export async function retrieveListOfSpeakers() {
 
 async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
   let retObject = { matched_recordings: [], not_found: [] };
+  function search_key(s, source){
+    if ("moswacihk" == source){
+      return s.replaceAll("ê", "ē").replaceAll("î", "ī").replaceAll("ô", "ō").replaceAll("â", "ā")
+    } else if ("maskwacis" == source){
+      return s.replaceAll("ý", "y")
+    } else {
+      return s
+    }
+  }
   for (let LANGUAGE_CODE of LANGUAGE_CODES) {
     let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
     let response = await fetchRecordingUsingBulkSearch(
       bulkApiUrl,
-      requestedWordforms
+      requestedWordforms.map((key) => search_key(key, LANGUAGE_CODE))
     );
     retObject["matched_recordings"] = retObject["matched_recordings"].concat(
       response["matched_recordings"]
