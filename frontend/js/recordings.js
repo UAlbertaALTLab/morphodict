@@ -152,7 +152,9 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
     let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
     let response = await fetchRecordingUsingBulkSearch(
       bulkApiUrl,
-      Array.from(requestedWordforms).map((key) => search_key(key, LANGUAGE_CODE))
+      Array.from(requestedWordforms).map((key) =>
+        search_key(key, LANGUAGE_CODE)
+      )
     );
     retObject["matched_recordings"] = retObject["matched_recordings"].concat(
       response["matched_recordings"]
