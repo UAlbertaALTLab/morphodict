@@ -144,7 +144,7 @@ async function loadRecordingsForAllSearchResults(searchResultsList) {
     wordform2recordingURL = await fetchRecordingURLForEachWordform(
       requestedWordforms
     );
-  } catch {
+  } catch (error) {
     // fail silently ¯\_(ツ)_/¯
     return;
   }
