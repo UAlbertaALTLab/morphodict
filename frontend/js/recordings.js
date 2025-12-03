@@ -153,7 +153,7 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
     let spelling_encodings = new Map(Array.from(requestedWordforms).map((key) => [key, search_key(key, LANGUAGE_CODE)]))
     let response = await fetchRecordingUsingBulkSearch(
       bulkApiUrl,
-      spelling_encodings.values()    
+      Array.from(spelling_encodings.values())
     );
     retObject["matched_recordings"] = retObject["matched_recordings"].concat(
       response["matched_recordings"]
@@ -162,7 +162,7 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
       response["not_found"]
     );
     spelling_encodings.forEach((value, key) => {
-      if (! retObject["spelling_matches"].hasOwn(value)) {
+      if (! Object.hasOwn(retObject["spelling_matches"], value)) {
         retObject["spelling_matches"][value] = []
       }
       retObject["spelling_matches"][value].push(key)
@@ -241,8 +241,8 @@ function mapWordformsToBestRecordingURL(response) {
   let wordform2recordingURL = new Map();
 
   for (let result of response["matched_recordings"]) {
-    let wordforms = response["spelling_matches"].has(result["wordform"]) ?
-      response["spelling_matches"].get(result["wordform"]) :
+    let wordforms = Object.hasOwn(response["spelling_matches"],result["wordform"]) ?
+      response["spelling_matches"][result["wordform"]] :
       [ result["wordform"] ];
     for (const wordform of wordforms){
       if (!wordform2recordingURL.has(wordform)) {

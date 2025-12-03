@@ -9,7 +9,6 @@ import {
   fetchFirstRecordingURL,
   fetchRecordingURLForEachWordform,
   retrieveListOfSpeakers,
-  search_key,
 } from "./js/recordings.js";
 import { fetchCorpusURL } from "./js/corpus.js";
 import * as orthography from "./js/orthography.js";
