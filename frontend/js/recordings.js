@@ -171,8 +171,8 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
       response["not_found"]
     );
     spelling_encodings.forEach((value, key) => {
-      if (! Object.hasOwn(retObject["spelling_matches"], value)) {
-        retObject["spelling_matches"][value] = []
+      if (!Object.hasOwn(retObject["spelling_matches"], value)) {
+        retObject["spelling_matches"][value] = [];
       }
       retObject["spelling_matches"][value].push(key);
     });
@@ -250,10 +250,13 @@ function mapWordformsToBestRecordingURL(response) {
   let wordform2recordingURL = new Map();
 
   for (let result of response["matched_recordings"]) {
-    let wordforms = Object.hasOwn(response["spelling_matches"],result["wordform"]) ?
-      response["spelling_matches"][result["wordform"]] :
-      [ result["wordform"] ];
-    for (const wordform of wordforms){
+    let wordforms = Object.hasOwn(
+      response["spelling_matches"],
+      result["wordform"]
+    )
+      ? response["spelling_matches"][result["wordform"]]
+      : [result["wordform"]];
+    for (const wordform of wordforms) {
       if (!wordform2recordingURL.has(wordform)) {
         // Assume the first result returned is the best recording:
         wordform2recordingURL.set(wordform, result["recording_url"]);
