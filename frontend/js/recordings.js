@@ -134,7 +134,11 @@ export async function retrieveListOfSpeakers() {
 }
 
 async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
-  let retObject = { matched_recordings: [], not_found: [], spelling_matches: {} };
+  let retObject = {
+    matched_recordings: [],
+    not_found: [],
+    spelling_matches: {},
+  };
   function search_key(s, source) {
     if ("moswacihk" == source) {
       return s
@@ -150,7 +154,12 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
   }
   for (let LANGUAGE_CODE of LANGUAGE_CODES) {
     let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
-    let spelling_encodings = new Map(Array.from(requestedWordforms).map((key) => [key, search_key(key, LANGUAGE_CODE)]))
+    let spelling_encodings = new Map(
+      Array.from(requestedWordforms).map((key) => [
+        key,
+        search_key(key, LANGUAGE_CODE),
+      ])
+    );
     let response = await fetchRecordingUsingBulkSearch(
       bulkApiUrl,
       Array.from(spelling_encodings.values())
@@ -165,8 +174,8 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
       if (! Object.hasOwn(retObject["spelling_matches"], value)) {
         retObject["spelling_matches"][value] = []
       }
-      retObject["spelling_matches"][value].push(key)
-    })
+      retObject["spelling_matches"][value].push(key);
+    });
   }
   return retObject;
 }
