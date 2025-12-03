@@ -134,7 +134,11 @@ export async function retrieveListOfSpeakers() {
 }
 
 async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
-  let retObject = { matched_recordings: [], not_found: [], spelling_matches: {} };
+  let retObject = {
+    matched_recordings: [],
+    not_found: [],
+    spelling_matches: {},
+  };
   function search_key(s, source) {
     if ("moswacihk" == source) {
       return s
@@ -150,10 +154,15 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
   }
   for (let LANGUAGE_CODE of LANGUAGE_CODES) {
     let bulkApiUrl = `${BASE_URL}/${LANGUAGE_CODE}/api/bulk_search`;
-    let spelling_encodings = new Map(Array.from(requestedWordforms).map((key) => [key, search_key(key, LANGUAGE_CODE)]))
+    let spelling_encodings = new Map(
+      Array.from(requestedWordforms).map((key) => [
+        key,
+        search_key(key, LANGUAGE_CODE),
+      ])
+    );
     let response = await fetchRecordingUsingBulkSearch(
       bulkApiUrl,
-      spelling_encodings.values()    
+      spelling_encodings.values()
     );
     retObject["matched_recordings"] = retObject["matched_recordings"].concat(
       response["matched_recordings"]
@@ -162,11 +171,11 @@ async function getRecordingsForWordformsFromMultipleUrls(requestedWordforms) {
       response["not_found"]
     );
     spelling_encodings.forEach((value, key) => {
-      if (! retObject["spelling_matches"].hasOwn(value)) {
-        retObject["spelling_matches"][value] = []
+      if (!retObject["spelling_matches"].hasOwn(value)) {
+        retObject["spelling_matches"][value] = [];
       }
-      retObject["spelling_matches"][value].push(key)
-    })
+      retObject["spelling_matches"][value].push(key);
+    });
   }
   return retObject;
 }
@@ -241,10 +250,10 @@ function mapWordformsToBestRecordingURL(response) {
   let wordform2recordingURL = new Map();
 
   for (let result of response["matched_recordings"]) {
-    let wordforms = response["spelling_matches"].has(result["wordform"]) ?
-      response["spelling_matches"].get(result["wordform"]) :
-      [ result["wordform"] ];
-    for (const wordform of wordforms){
+    let wordforms = response["spelling_matches"].has(result["wordform"])
+      ? response["spelling_matches"].get(result["wordform"])
+      : [result["wordform"]];
+    for (const wordform of wordforms) {
       if (!wordform2recordingURL.has(wordform)) {
         // Assume the first result returned is the best recording:
         wordform2recordingURL.set(wordform, result["recording_url"]);
