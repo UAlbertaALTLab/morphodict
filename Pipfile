@@ -54,6 +54,7 @@ more-itertools = "*"
 types-requests = "*"
 requests = "*"
 nltk = "*"
+urllib3 = ">=2.6.3"
 
 [scripts]
 # unit tests
