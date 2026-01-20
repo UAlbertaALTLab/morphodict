@@ -10,7 +10,6 @@ from morphodict.phrase_translate.fst import (
     inflect_target_verb_phrase,
 )
 
-
 logger = logging.getLogger(__name__)
 
 

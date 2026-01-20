@@ -24,7 +24,6 @@ from .checks import _MORPHODICT_REQUIRED_SETTING_SENTINEL, RequiredString
 from .hostutils import HOSTNAME
 from .save_secret_key import save_secret_key
 
-
 BASE_DIR = base_dir_setup.get_base_dir()
 
 
@@ -309,10 +308,10 @@ else:
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Logging
-log_level = env.log_level("LOG_LEVEL", default="INFO")  # type:ignore[call-overload]
+log_level = env.log_level("LOG_LEVEL", default="INFO")  # type: ignore[call-overload]
 query_log_level = env.log_level(
     "QUERY_LOG_LEVEL", default="INFO"
-)  # type:ignore[call-overload]
+)  # type: ignore[call-overload]
 
 # To debug what the *actual* config ends up being, use the logging_tree package
 # See https://stackoverflow.com/a/53058203/14558

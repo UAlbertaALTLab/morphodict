@@ -5,6 +5,7 @@ This repo contains multiple django sites. To allow developers to more easily run
 several of them at once, we extend the default runserver command to optionally
 take its default port from settings.
 """
+
 from argparse import BooleanOptionalAction
 
 from django.conf import settings

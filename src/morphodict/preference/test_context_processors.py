@@ -32,13 +32,11 @@ def test_can_access_choice_and_labels_in_template():
 
     request = HttpRequest()
     empty_context = RequestContext(request, {})
-    template = Template(
-        """
+    template = Template("""
     {% for choice, label in preferences.cheese_pizza.choices_with_labels %}
         <option value="{{ choice }}">{{ label|title }}</option>
     {% endfor %}
-    """
-    )
+    """)
 
     html = template.render(empty_context)
 
@@ -69,11 +67,9 @@ def test_choice_and_label_from_request_context(choice, label):
     if choice is not None:
         request.COOKIES[Pets.cookie_name] = choice
     context_that_likes_label = RequestContext(request, {})
-    template = Template(
-        """
+    template = Template("""
         I like {{ preferences.pets.current_label }}.
-    """
-    )
+    """)
     rendered = template.render(context_that_likes_label)
 
     assert rendered.strip() == f"I like {label}."
