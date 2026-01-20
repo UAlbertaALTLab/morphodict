@@ -52,7 +52,7 @@
             chunks.forEach((chunk) => {
             url = new URL("https://speech-db.altlab.app/{{source}}/api/bulk_search")
             chunk.forEach(element => {
-                url.searchParams.append('q',search_key(element, source))
+                url.searchParams.append('q',search_key(element, "{{source}}"))
                 url.searchParams.append('exact', true)
             });
             promises.push(fetch(url).then(res => res.json()).then((json) =>{
@@ -91,7 +91,7 @@
             {% comment %}
                 now I can begin adding the elements as they belong
                 {% endcomment %}
-                for (var element of document.getElementsByClassName("paradigm-cell-recording")){
+                for (const element of document.getElementsByClassName("paradigm-cell-recording")){
                     let word = element.getAttribute("data-inflection")
                     var recording = best[word]
 
@@ -110,7 +110,7 @@
                         button.querySelector("button").addEventListener("click", () => {audio.play(); console.log(audio)}
                     );
                         element.appendChild(button)
-                        
+                        element.setAttribute("data-cy","play-paradigm-recording")
                     }
                 }
         })

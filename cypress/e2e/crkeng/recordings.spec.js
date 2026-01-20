@@ -22,7 +22,7 @@ context("Recordings", function () {
   describe("On the definition page", () => {
     beforeEach(() => {
       // Intercept calls to our API
-      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*", {
+      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*q=w%C3%A2pam%C3%AAw*", {
         fixture: "recording/bulk_search/wâpamêw.json",
       }).as("recordingsResults");
     });
@@ -80,6 +80,21 @@ context("Recordings", function () {
       cy.get("a[data-cy=learn-about-speaker]")
         // clicking the link should open a new tab
         .should("have.attr", "target", "_blank");
+    });
+
+    it("should display and play recordings inside the paradigm", function () {
+      // Get to the definition/paradigm page for "wâpamêw"
+      cy.setCookie("paradigm_audio", "yes");
+      cy.visitLemma("wâpamêw");
+      cy.wait("@recordingsResults");
+
+      // And we should be able to click it.
+      cy.get("div[data-cy=play-paradigm-recording][data-inflection=wâpamêw]").click();
+
+      // Note: figuring out if the audio actually played is... involved,
+      // and error-prone, so it is not tested.
+      // If you *want* to mock the Audio constructor... I mean, you can...
+      // https://github.com/cypress-io/cypress/issues/1750#issuecomment-390751415
     });
   });
 
