@@ -30,6 +30,7 @@ There is some unpleasant hackery here because we don't know which command class
 to subclass until runtime as it depends on which INSTALLED_APPS we have, so we
 have to determine this dynamically.
 """
+
 from importlib import import_module
 
 from django.apps import apps
