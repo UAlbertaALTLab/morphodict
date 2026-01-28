@@ -2658,13 +2658,6 @@
             "markers": "python_version >= '3.8'",
             "version": "==0.3.0"
         },
-        "pytz": {
-            "hashes": [
-                "sha256:360b9e3dbb49a209c21ad61809c7fb453643e048b38924c765813546746e81c3",
-                "sha256:5ddf76296dd8c44c26eb8f4b6f35488f3ccbf6fbbd7adee0b7262d43f0ec2f00"
-            ],
-            "version": "==2025.2"
-        },
         "pyyaml": {
             "hashes": [
                 "sha256:00c4bdeba853cc34e7dd471f16b4114f4162dc03e6b7afcc2128711f0eca823c",
@@ -2976,14 +2969,6 @@
             "hashes": [
                 "sha256:231287018a8788bf8c0718482a08c15b90458523ea1d840a18a791a86d4583b3",
                 "sha256:4131feb23ba1a542494873e4cee7844ec8d226a750134efc65ceb20939ed33c9"
-            ],
-            "markers": "python_version >= '3.10'",
-            "version": "==4.0.0"
-        },
-        "roman-numerals-py": {
-            "hashes": [
-                "sha256:dfcecf6e0cddbf2ee1112e7e2ebf58ba771984f075cb57a30e1811cee4f06332",
-                "sha256:f7fa8dff5b7b7251d3a7586b97c57a0698e2e28898fa42c23bcc0cf51b02aee9"
             ],
             "markers": "python_version >= '3.10'",
             "version": "==4.0.0"
