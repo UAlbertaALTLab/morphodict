@@ -19,7 +19,7 @@ toml = "*"
 mypy = "*"
 django-stubs = "~=5.2"
 pytest-env = "*"
-jupyterlab = "*"
+# jupyterlab = "*" # We should not really need jupyter notebooks.
 certifi = ">=2024.07.04"
 appnope = "*"
 numpy = "~=1.26"
@@ -28,7 +28,7 @@ statsmodels = "*"
 pandas-stubs = "*"
 sphinx = "*"
 myst-parser = "*"
-jupyter = "*"
+# jupyter = "*" # We should not really need jupyter notebooks.
 
 
 [packages]
