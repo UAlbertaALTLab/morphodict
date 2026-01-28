@@ -22,9 +22,12 @@ context("Recordings", function () {
   describe("On the definition page", () => {
     beforeEach(() => {
       // Intercept calls to our API
-      cy.intercept("https://speech-db.altlab.app/maskwacis/api/bulk_search?*q=w%C3%A2pam%C3%AAw*", {
-        fixture: "recording/bulk_search/wâpamêw.json",
-      }).as("recordingsResults");
+      cy.intercept(
+        "https://speech-db.altlab.app/maskwacis/api/bulk_search?*q=w%C3%A2pam%C3%AAw*",
+        {
+          fixture: "recording/bulk_search/wâpamêw.json",
+        }
+      ).as("recordingsResults");
     });
 
     it("should play a recording via a 🔊 icon", function () {
@@ -89,7 +92,9 @@ context("Recordings", function () {
       cy.wait("@recordingsResults");
 
       // And we should be able to click it.
-      cy.get("div[data-cy=play-paradigm-recording][data-inflection=wâpamêw]").click();
+      cy.get(
+        "div[data-cy=play-paradigm-recording][data-inflection=wâpamêw]"
+      ).click();
 
       // Note: figuring out if the audio actually played is... involved,
       // and error-prone, so it is not tested.

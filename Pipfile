@@ -29,7 +29,7 @@ pandas-stubs = "*"
 sphinx = "*"
 myst-parser = "*"
 # jupyter = "*" # We should not really need jupyter notebooks.
-
+pytz = "*" # Pandas dependency that doesn't seem to be explicitly declared.
 
 [packages]
 colorama = "*"
