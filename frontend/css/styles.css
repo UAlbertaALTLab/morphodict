@@ -827,8 +827,7 @@ a.multiple-recordings__action-button {
 .paradigm-title,
 .paradigm-header {
   text-align: center;
-  font-style: italic;
-  font-weight: var(--body-font-weight);
+  font-weight: var(--strong-font-weight);
 }
 
 .paradigm-label {
@@ -837,7 +836,7 @@ a.multiple-recordings__action-button {
 }
 
 .paradigm-label--row {
-  font-style: italic;
+  font-weight: var(--strong-font-weight);
 }
 
 .paradigm-label--col {
@@ -853,14 +852,16 @@ a.multiple-recordings__action-button {
 }
 
 .paradigm-cell--observed{
-  font-weight: var(--strong-font-weight);
+  font-weight: var(--body-font-weight);
+}
+
+.paradigm-cell--unobserved{
+  font-style: italic;
 }
 
 .paradigm-cell--no-analysis{
   background-color: lightgray;
 }
-
-
 
 .paradigm-label--row, .paradigm-cell {
   vertical-align: top; /* When a label applies to multiple wordforms */
