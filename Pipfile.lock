@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "04d2a94d925f6576ef6157b44333d9b0e65971a58be144e930c036fcb36e9856"
+            "sha256": "91b5fd51934607280660c31c2c8ef9cb8b15366d67c027fed20aa21a4f9c0df9"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -388,6 +388,15 @@
             ],
             "markers": "python_version >= '3.10'",
             "version": "==14.5.0"
+        },
+        "filelock": {
+            "hashes": [
+                "sha256:b64ece2b38f4ca29dd3e810287aa8c48182bbecd1ae6e9ae126c9b35f1382694",
+                "sha256:ca8afb0da15f229774c9ad1b455ed96e85a81373065fb10446672f64444ddf70"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.10'",
+            "version": "==3.25.2"
         },
         "foma": {
             "git": "https://github.com/andrewdotn/foma",
@@ -1317,11 +1326,12 @@
         },
         "filelock": {
             "hashes": [
-                "sha256:15d9e9a67306188a44baa72f569d2bfd803076269365fdea0934385da4dc361a",
-                "sha256:b8360948b351b80f420878d8516519a2204b07aefcdcfd24912a5d33127f188c"
+                "sha256:b64ece2b38f4ca29dd3e810287aa8c48182bbecd1ae6e9ae126c9b35f1382694",
+                "sha256:ca8afb0da15f229774c9ad1b455ed96e85a81373065fb10446672f64444ddf70"
             ],
+            "index": "pypi",
             "markers": "python_version >= '3.10'",
-            "version": "==3.20.1"
+            "version": "==3.25.2"
         },
         "hypothesis": {
             "extras": [
