@@ -38,7 +38,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: 'true'      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+          submodules: 'true'
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         # actions/cache below uses this id to get the exact python version
         id: setup-python
@@ -244,7 +245,8 @@ jobs:
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
         with:
-          submodules: 'true'      - name: Build and push Docker images
+          submodules: 'true'
+      - name: Build and push Docker images
         uses: docker/build-push-action@v6
         with:
           # build-push-action with the default ‘git context’ ignores the
@@ -280,7 +282,8 @@ jobs:
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
         with:
-          submodules: 'true'      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+          submodules: 'true'
+      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
