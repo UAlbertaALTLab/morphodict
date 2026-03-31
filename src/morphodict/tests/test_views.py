@@ -169,7 +169,7 @@ def test_change_display_mode_sets_cookie(mode, whence, client: Client):
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("preference:change", args=[DisplayMode.name])
+    url = reverse("preference:change", args=[DisplayMode.cookie_name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP
@@ -197,7 +197,7 @@ def test_change_paradigm_label_preference(option, whence, client: Client):
     Changing the display mode should set some cookies and MAYBE do a redirect.
     """
 
-    url = reverse("preference:change", args=[DisplayMode.name])
+    url = reverse("preference:change", args=[DisplayMode.cookie_name])
     headers = {}
     if whence:
         # referer (sic) is the correct spelling in HTTP

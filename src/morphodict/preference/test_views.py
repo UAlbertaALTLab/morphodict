@@ -61,7 +61,7 @@ def pet_preference() -> Preference:
         cookie_name = "pet"
         choices = {"cats": "Cats", "dogs": "Dogs"}
 
-    return registry()[Pet.name]
+    return registry()[Pet.cookie_name]
 
 
 def arbitrary_string() -> str:

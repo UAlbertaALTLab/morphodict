@@ -8,7 +8,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from functools import cache
-from typing import Union
+from typing import Union, dataclass_transform
 
 from django.http import HttpRequest
 from django.template import Context
@@ -68,8 +68,8 @@ def all_preferences():
     """
     return registry().items()
 
-
-def register_preference(declaration) -> Preference:
+@dataclass_transform()
+def register_preference(declaration: type) -> Preference:
     """
     Keep track of a preference in the currently running site.
 
