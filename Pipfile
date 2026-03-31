@@ -22,7 +22,7 @@ pytest-env = "*"
 # jupyterlab = "*" # We should not really need jupyter notebooks.
 certifi = ">=2024.07.04"
 appnope = "*"
-numpy = "~=1.26"
+numpy = "*"
 pandas = "*"
 statsmodels = "*"
 pandas-stubs = "*"
