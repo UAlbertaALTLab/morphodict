@@ -37,7 +37,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        with:
+          submodules: 'true'      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         # actions/cache below uses this id to get the exact python version
         id: setup-python
@@ -97,6 +98,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         id: setup-python
@@ -168,6 +171,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
       - name: Rename docker-compose for dev
         run: mv docker/docker-compose-dev.yml docker/docker-compose.yml
       - name: Change crkeng settings to dev
@@ -209,6 +214,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'      
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
@@ -236,7 +243,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
-      - name: Build and push Docker images
+        with:
+          submodules: 'true'      - name: Build and push Docker images
         uses: docker/build-push-action@v6
         with:
           # build-push-action with the default ‘git context’ ignores the
@@ -271,7 +279,8 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
       - uses: actions/checkout@v4
-      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
+        with:
+          submodules: 'true'      - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}

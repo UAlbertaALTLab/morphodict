@@ -1,0 +1,3 @@
+[submodule "src/srseng/resources/tsuutina-phrase-translation"]
+	path = src/srseng/resources/tsuutina-phrase-translation
+	url = https://github.com/coxchristopher/tsuutina-phrase-translation
