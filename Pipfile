@@ -54,6 +54,7 @@ requests = "*"
 nltk = ">=3.9.3"
 urllib3 = ">=2.6.3"
 filelock = ">=3.20.3" # Dependency, dependabot
+tsuutina-phrase-translation = {editable = true, ref = "main", git = "https://github.com/fbanados/tsuutina-phrase-translation.git"}
 
 [scripts]
 # unit tests
