@@ -117,7 +117,7 @@ class TagMap:
                 else:
                     self._precedences[output_tag_spec] = prec
 
-    def map_tags(self, input_tags):
+    def map_tags(self, input_tags: list[str]) -> list[str]:
         output_tags = []
 
         # copy input, because we may mutate it

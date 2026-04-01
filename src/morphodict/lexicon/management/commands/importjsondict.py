@@ -285,7 +285,7 @@ class Import:
             deps=[self.wordform_buffer],
         )
 
-    def run(self):
+    def run(self) -> None:
         """Run the import process.
 
         This is the only method that external code should call.

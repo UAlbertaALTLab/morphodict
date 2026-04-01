@@ -26,18 +26,12 @@ def inflect_target_language_phrase(
 
     if "+N" in cree_wordform_tag_list:
         tags_for_phrase = noun_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = inflect_target_noun_phrase(tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
+        phrase = inflect_target_noun_phrase(tags_for_phrase, lemma_definition)
         return phrase.strip()
 
     elif "+V" in cree_wordform_tag_list:
         tags_for_phrase = verb_wordform_to_phrase.map_tags(cree_wordform_tag_list)
-        tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
-        logger.debug("tagged_phrase = %s\n", tagged_phrase)
-        phrase = inflect_target_verb_phrase(tagged_phrase)
-        logger.debug("phrase = %s\n", phrase)
+        phrase = inflect_target_verb_phrase(tags_for_phrase, lemma_definition)
         return phrase.strip()
 
     return None
