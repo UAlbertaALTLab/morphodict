@@ -68,6 +68,7 @@ def all_preferences():
     """
     return registry().items()
 
+
 @dataclass_transform()
 def register_preference(declaration: type) -> Preference:
     """
