@@ -129,3 +129,96 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
 )
 def test_translations(analysis, definition, english_phrase):
     assert inflect_target_language_phrase(analysis, definition) == english_phrase
+
+
+TSUUTINA_ARBITRARY_DEFINITION = "he/she/it will ask him/her/it"
+
+
+@pytest.mark.parametrize(
+    ("analysis", "definition", "english_phrase", "extra_args"),
+    (
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Ipfv", "+SbjSg1", "+DObjSg3"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "I will ask him/her/it",
+            {},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Prog", "+SbjSg1", "+DObjSg3"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "I am asking him/her/it",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Pfv", "+SbjPl2", "+DObjSg3"),
+            ),  # V+T+Pfv as well"
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "you both asked him/her/it",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Prog", "+SbjPl2", "+DObjSg3", "+Distr"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "each and every one of you is asking him/her/it",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Ipfv", "+Rep", "+SbjSg2", "+DObjSg3"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "you ask him/her/it again and again",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Pot", "+SbjSg3", "+DObjSg3", "+Nomz"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "the one who might ask him/her/it",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Pot", "+SbjPl3", "+DObjSg3", "+Distr"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "each and every one of them might ask him/her/it",
+            {"adjust_tense": "event"},
+        ),
+        (
+            (
+                (),
+                "target_arbitrary_lemma_(irrelevant_for_test)",
+                ("+V", "+T", "+Pfv", "+SbjPl3", "+DObjSg3", "+Distr"),
+            ),
+            TSUUTINA_ARBITRARY_DEFINITION,
+            "each and every one of them asked him/her/it",
+            {"adjust_tense": "event"},
+        ),
+    ),
+)
+def test_tsuutina_translations(analysis, definition, english_phrase, extra_args):
+    inflection = inflect_target_language_phrase(analysis, definition, False, extra_args)
+    assert inflection == english_phrase

@@ -419,6 +419,9 @@ DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS: Optional[tuple[str, ...]] = tuple()
 # phrase_translation default check (workaround for alternative FST tag systems)
 DEFAULT_PHRASE_TRANSLATE_CHECK: Callable[[Any], bool] = lambda x: False
 
+# phrase translation functions
+USE_FST_PHRASE_TRANSLATE: bool = True
+
 # Used for the bulk search API
 SPEECH_DB_EQ = ["_"]
 
