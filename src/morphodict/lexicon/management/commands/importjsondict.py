@@ -450,7 +450,7 @@ class Import:
             wf = Wordform.objects.get_or_create(
                 lemma=lemma,
                 text=entry["head"],
-                raw_analysis=entry["analysis"],
+                raw_analysis=entry.get("analysis", None),
             )[0]
 
             # Because we are inserting new definitions, there is a risk of duplicates.

@@ -64,3 +64,4 @@ MORPHODICT_CONTACT_EMAIL = "altlab+gunaha@ualberta.ca"
 MORPHODICT_CONTACT_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdsBPVPoadoRQEV9ZRKAHbHgolFtmvjWnfpZZYCvX-n2EFwZg/viewform"
 
 USE_FST_PHRASE_TRANSLATE = False  # Use the tpt package instead.
+MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
