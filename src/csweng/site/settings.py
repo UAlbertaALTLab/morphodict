@@ -37,9 +37,17 @@ MORPHODICT_SOURCE_LANGUAGE = "csw"
 MORPHODICT_TARGET_LANGUAGE = "eng"
 
 MORPHODICT_ORTHOGRAPHY = {
-    "default": "Latn",
+    "default": "Latn-accent",
     "available": {
-        "Latn": {"name": "SRO"},
+        "Latn-accent": {
+            "name": "SRO (éíóá)",
+            "converter": "morphodict.orthography.utils.to_accents",
+        },
+        "Latn": {"name": "SRO (êîôâ)"},
+        "Latn-x-macron-y": {
+            "name": "SRO (ēīōā)",
+            "converter": "morphodict.orthography.utils.to_macrons_with_y",
+        },
         "Cans": {
             "name": "Syllabics",
             "converter": "morphodict.orthography.utils.to_syllabics",
