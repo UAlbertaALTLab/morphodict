@@ -1,23 +1,23 @@
 FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI	LINK
-12Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kithânaw		
-1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	nithanân		
-1PlO	→ 1p	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kithânaw		
-1Sg	1s	Actor: 1st Person Singular	I	nitha		
-1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ nitha		
-2Pl	2p (excl)	Actor: 2nd Person Plural	you (all)	kithawâw		
-2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kithawâw		
-2Sg	2s	Actor: 2nd Person Singular	you (one)	kitha		
-2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kitha		
-3Pl	3p	Actor: 3rd Person Plural	they	withawâw		
-3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ withawâw		
-3Sg	3s	Actor: 3rd Person Singular	s/he	witha		
-3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ witha		
-4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	withawâw (anihi)		
-4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	witha (anihi)		
-4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	another/others	kotaka/anihi/awitha		
-4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ another/others	→ kotaka/anihi/awitha		
-5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	yet another/further	kotaka/nîhi/awitha		
-5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ yet another/others	→ kotaka/nîhi/awitha		
+12Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kinânaw		
+1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	ninanân		
+1PlO	→ 1p	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kinânaw		
+1Sg	1s	Actor: 1st Person Singular	I	nina		
+1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ nina		
+2Pl	2p (excl)	Actor: 2nd Person Plural	you (all)	kinawâw		
+2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kinawâw		
+2Sg	2s	Actor: 2nd Person Singular	you (one)	kina		
+2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kina		
+3Pl	3p	Actor: 3rd Person Plural	they	wimawâw		
+3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ winawâw		
+3Sg	3s	Actor: 3rd Person Singular	s/he	wina		
+3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wina		
+4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	winawâw (anihi)		
+4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wina (anihi)		
+4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	another/others	kotaka/anihi/awina		
+4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ another/others	→ kotaka/anihi/awina		
+5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	yet another/further	kotaka/nîhi/awina		
+5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ yet another/others	→ kotaka/nîhi/awina		
 0Sg	0	Impersonal / Actor: Existential / Inanimate Singular	it / there (is)	ôma		
 0Pl	0p	Actor: Existential / Inanimate Plural	they / there (are)	ôhi		
 0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
