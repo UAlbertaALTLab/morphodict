@@ -338,7 +338,7 @@ class Import:
                 slug=entry["slug"],
                 is_lemma=True,
                 linguist_info=entry.get("linguistInfo", {}),
-                translation_templates=entry.get("translationTemplates", {}),
+                translation_templates=entry.get("translationTemplates", []),
                 import_hash=freshness_check.importjson_hash_for_slug(entry["slug"]),
             )
             self.wordform_buffer.add(wf)

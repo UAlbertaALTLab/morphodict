@@ -224,7 +224,7 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         if paradigm := manager.paradigm_for(
             name,
             fst_lemma,
-            wordform.translation_templates if wordform.translation_templates else {},
+            extract_translation_templates(wordform.translation_templates),
             paradigm_size,
         ):
             return paradigm
@@ -235,6 +235,11 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         )
 
     return None
+
+
+def extract_translation_templates(data: list[dict[str, Any]] | None) -> dict[str, str]:
+    candidates = data if data else []
+    return {entry.get("name", ""): entry.get("definition", "") for entry in candidates}
 
 
 def paradigm_context_for_lemma(lemma: Wordform, request) -> dict[str, Any]:

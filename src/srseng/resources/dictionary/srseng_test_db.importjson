@@ -426,6 +426,49 @@
         "sources": ["PG24"]
       }
     ],
+    "translationTemplates": [
+{
+		"name": "IPFV",
+		"definition": "he/she/it will ask him/her/it",
+		"sources": [
+			"PG24"
+		],
+		"translation_arguments": {}
+	},
+	{
+		"name": "PFV",
+		"definition": "he/she/it asked him/her/it",
+		"sources": [
+			"PG24"
+		],
+		"translation_arguments": {}
+	},
+	{
+		"name": "PROG",
+		"definition": "he/she/it is asking him/her/it",
+		"sources": [
+			"PG24"
+		],
+		"translation_arguments": {}
+	},
+	{
+		"name": "REP",
+		"definition": "he/she/it asks him/her/it again and again",
+		"sources": [
+			"PG24"
+		],
+		"translation_arguments": {
+		}
+	},
+	{
+		"name": "POT",
+		"definition": "he/she/it might ask him/her/it",
+		"sources": [
+			"PG24"
+		],
+		"translation_arguments": {}
+	}
+    ],
     "slug": "yídiskid"
   }
 ]

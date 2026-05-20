@@ -542,6 +542,7 @@ class Cell:
     is_inflection: bool = False
     is_missing: bool = False
     is_empty: bool = False
+    is_translation: bool = False
     should_suppress_output: bool = False
 
     @classmethod
@@ -716,6 +717,8 @@ class TranslationCell(WordformCell):
     """
     A translation cell does not have morpheme markers, but besides that, for now, it should just look like a normal wordform.
     """
+
+    is_translation = True
 
     def add_morphemes(self):
         pass
