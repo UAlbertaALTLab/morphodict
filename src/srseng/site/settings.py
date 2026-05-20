@@ -65,3 +65,4 @@ MORPHODICT_CONTACT_FORM = "https://docs.google.com/forms/d/e/1FAIpQLSdsBPVPoadoR
 
 USE_FST_PHRASE_TRANSLATE = False  # Use the tpt package instead.
 MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = True
+MORPHODICT_SUPPORTS_AUTO_DEFINITIONS = True

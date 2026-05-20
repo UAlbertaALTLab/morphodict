@@ -8,7 +8,7 @@ from typing import Collection, Iterable, Optional, Protocol
 
 from django.conf import settings
 
-from morphodict.paradigm.panes import Paradigm, ParadigmLayout
+from morphodict.paradigm.panes import Paradigm, ParadigmLayout, translation_string_re
 from morphodict.phrase_translate.to_target import inflect_target_language_phrase
 
 # I would *like* a singleton for this, but, currently, it interacts poorly with mypy :/
@@ -158,6 +158,27 @@ class ParadigmManager:
                 else:
                     raise Exception(f"Unsupported {settings.MORPHODICT_TAG_STYLE=!r}")
         return ret.values()
+
+    def all_translations(
+        self, paradigm_name, translation_templates
+    ) -> dict[str, set[str]]:
+        """ """
+        data: set[tuple[str, str, str]] = set()
+        for layout in self._name_to_layout[paradigm_name].values():
+            data.update(layout.generate_translation_templates(translation_templates))
+        return bulk_inflect_target_language_phrases(data)
+
+    def translation_templates_used_for_tags(
+        self, paradigm_name, translation_templates, tags
+    ) -> set[str]:
+        return set(
+            translation_string_re.match(key).groupdict()["name"]
+            for key in self.all_translations(
+                paradigm_name, translation_templates
+            ).keys()
+            if translation_string_re.match(key)
+            and tags == translation_string_re.match(key).groupdict()["tags"]
+        )
 
     def _inflect(
         self, layout: ParadigmLayout, lemma: str, translation_templates: dict[str, str]

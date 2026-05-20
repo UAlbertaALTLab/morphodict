@@ -517,10 +517,6 @@ class Import:
         ) in self.paradigm_manager.all_analysis_template_tags(wf.paradigm):
             analysis = RichAnalysis((prefix_tags, lemma_text, suffix_tags))
             for generated in strict_generator().lookup(analysis.smushed()):
-                # Skip re-instantiating lemma
-                if analysis == wf.analysis:
-                    continue
-
                 inflected_wordform = Wordform(
                     # For now, leaving paradigm and linguist_info empty;
                     # code can get that info from the lemma instead.
@@ -529,6 +525,43 @@ class Import:
                     lemma=wf,
                     is_lemma=False,
                 )
+
+                # Collect definitions from template usage as well
+                tags = "".join(prefix_tags) + "".join(suffix_tags)
+                template_candidates = (
+                    self.paradigm_manager.translation_templates_used_for_tags(
+                        wf.paradigm, wf.extract_translation_templates(), tags
+                    )
+                )
+                if template_candidates:
+                    candidate = template_candidates.pop()
+                    alternative_sources = {
+                        source
+                        for x in wf.translation_templates
+                        if x["name"] == candidate
+                        for source in x["sources"]
+                    }
+                    translations = self.paradigm_manager.all_translations(
+                        wf.paradigm, wf.extract_translation_templates()
+                    )[f"T({candidate},{tags})"]
+
+                    is_inflected_wordform_unsaved = inflected_wordform.id is None
+                    if is_inflected_wordform_unsaved:
+                        self.wordform_buffer.add(inflected_wordform)
+
+                    for translation in translations:
+                        self._add_definition(
+                            inflected_wordform,
+                            translation,
+                            ["🤖" + source for source in alternative_sources],
+                            auto_translation_source=None,
+                        )
+
+                    continue
+
+                # Skip re-instantiating lemma
+                if analysis == wf.analysis:
+                    continue
 
                 for d, sources in definitions_and_sources:
                     translation = translate_single_definition(
@@ -544,7 +577,7 @@ class Import:
                     self._add_definition(
                         inflected_wordform,
                         translation,
-                        ("🤖" + source for source in sources),
+                        ["🤖" + source for source in sources],
                         auto_translation_source=d,
                     )
 

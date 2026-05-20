@@ -129,7 +129,7 @@ class Wordform(models.Model):
         """,
     )
 
-    translation_templates: models.JSONField[dict[str, str]] = models.JSONField(
+    translation_templates: models.JSONField[dict[str, Any]] = models.JSONField(
         blank=True,
         null=True,
         help_text="""
@@ -211,6 +211,12 @@ class Wordform(models.Model):
         assert self.is_lemma, "There is no page for non-lemmas"
         # FIXME: will return '/word/None' if no slug
         return reverse("dictionary-index-with-lemma", kwargs={"slug": self.slug})
+
+    def extract_translation_templates(self) -> dict[str, str]:
+        candidates = self.translation_templates if self.translation_templates else []
+        return {
+            entry.get("name", ""): entry.get("definition", "") for entry in candidates
+        }
 
 
 class DictionarySource(models.Model):
