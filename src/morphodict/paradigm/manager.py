@@ -171,14 +171,16 @@ class ParadigmManager:
     def translation_templates_used_for_tags(
         self, paradigm_name, translation_templates, tags
     ) -> set[str]:
-        return set(
-            translation_string_re.match(key).groupdict()["name"]
+        candidates = [
+            translation_string_re.match(key)
             for key in self.all_translations(
                 paradigm_name, translation_templates
             ).keys()
             if translation_string_re.match(key)
-            and tags == translation_string_re.match(key).groupdict()["tags"]
-        )
+        ]
+
+        successfull_candidates = [x.groupdict() for x in candidates if x]
+        return {x["name"] for x in successfull_candidates if tags == x["tags"]}
 
     def _inflect(
         self, layout: ParadigmLayout, lemma: str, translation_templates: dict[str, str]
