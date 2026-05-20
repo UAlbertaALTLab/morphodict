@@ -69,6 +69,12 @@ class Paradigm:
         """
         return any(pane.contains_wordform(wordform) for pane in self.panes)
 
+    def contains_translation(self, translation: str) -> bool:
+        """
+        True if the wordform is found ANYWHERE in the paradigm.
+        """
+        return any(pane.contains_translation(translation) for pane in self.panes)
+
     def add_recordings(self, recordings: list[str]):
         self.recordings.update(recordings)
 
@@ -87,6 +93,11 @@ class ParadigmLayout(Paradigm):
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
         for pane in self.panes:
             yield from pane.inflection_cells
+
+    @property
+    def translation_cells(self) -> Iterable[TranslationTemplate]:
+        for pane in self.panes:
+            yield from pane.translation_cells
 
     @classmethod
     def load(cls, layout_file: TextIO) -> ParadigmLayout:
@@ -141,6 +152,21 @@ class ParadigmLayout(Paradigm):
             for inflection in self.inflection_cells
         }
 
+    def generate_translation_templates(
+        self, translation_templates: dict[str, str]
+    ) -> set[tuple[str, str, str]]:
+        """
+        Generates a set of translations required for the paradigm
+        """
+        return {
+            (
+                translation._translation_name,
+                translation_templates.get(translation._translation_name, ""),
+                translation._translation_tags,
+            )
+            for translation in self.translation_cells
+        }
+
     def fill(self, forms: Mapping[str, Collection[str]]) -> Paradigm:
         """
         Given a mapping from analysis to a collection of wordforms, returns a
@@ -191,6 +217,11 @@ class Pane:
             yield from row.inflection_cells
 
     @property
+    def translation_cells(self) -> Iterable[TranslationTemplate]:
+        for row in self.rows:
+            yield from row.translation_cells
+
+    @property
     def rows(self) -> Iterable[Row]:
         yield from self._rows
 
@@ -239,6 +270,9 @@ class Pane:
     def contains_wordform(self, wordform: str) -> bool:
         return any(row.contains_wordform(wordform) for row in self.rows)
 
+    def contains_translation(self, translation: str) -> bool:
+        return any(row.contains_translation(translation) for row in self.rows)
+
     def fill(self, forms: Mapping[str, Collection[str]]) -> Pane:
         return Pane(row.fill(forms) for row in self.rows)
 
@@ -246,10 +280,18 @@ class Pane:
 class Row:
     is_header: bool
     has_content: bool
-    num_cells: int
+
+    @property
+    def num_cells(self) -> int:
+        raise NotImplementedError
 
     @property
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
+        # subclasses MUST implement this somehow
+        raise NotImplementedError
+
+    @property
+    def translation_cells(self) -> Iterable[TranslationTemplate]:
         # subclasses MUST implement this somehow
         raise NotImplementedError
 
@@ -282,6 +324,9 @@ class Row:
     def contains_wordform(self, wordform: str) -> bool:
         raise NotImplementedError
 
+    def contains_translation(self, translation: str) -> bool:
+        raise NotImplementedError
+
     def fill(self, forms: Mapping[str, Collection[str]]) -> Row:
         if not self.has_content:
             # Just labels; can return ourselves verbatim
@@ -289,8 +334,8 @@ class Row:
         # Subclass must override this (i.e., ContentRow)
         raise NotImplementedError
 
-    @staticmethod
-    def parse(text: str) -> Row:
+    @classmethod
+    def parse(cls, text: str) -> Row:
         if text.startswith("# "):
             return HeaderRow.parse(text)
 
@@ -334,8 +379,15 @@ class ContentRow(Row):
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
         return (c for c in self.cells if isinstance(c, InflectionTemplate))
 
+    @property
+    def translation_cells(self) -> Iterable[TranslationTemplate]:
+        return (c for c in self.cells if isinstance(c, TranslationTemplate))
+
     def contains_wordform(self, wordform: str) -> bool:
         return any(cell.contains_wordform(wordform) for cell in self.cells)
+
+    def contains_translation(self, translation: str) -> bool:
+        return any(cell.contains_translation(translation) for cell in self.cells)
 
     def fill(self, forms: Mapping[str, Collection[str]]) -> ContentRow | CompoundRow:
         """
@@ -373,10 +425,7 @@ class ContentRow(Row):
         return all(a == b for a, b in zip_longest(self.cells, other.cells))
 
     def __str__(self):
-        try:
-            return "\t".join(str(cell[0]) for cell in self.cells)
-        except TypeError as e:
-            return "\t".join(str(cell) for cell in self.cells)
+        return "\t".join(str(cell) for cell in self.cells)
 
     def __repr__(self):
         name = type(self).__qualname__
@@ -392,7 +441,10 @@ class HeaderRow(Row):
     prefix = "#"
     is_header = True
     has_content = False
-    num_cells = 0
+
+    @property
+    def num_cells(self):
+        return 0
 
     def __init__(self, tags):
         super().__init__()
@@ -401,6 +453,10 @@ class HeaderRow(Row):
     @property
     def inflection_cells(self) -> Iterable[InflectionTemplate]:
         # a header, by definition, has no inflections.
+        return ()
+
+    @property
+    def translation_cells(self) -> Iterable[TranslationTemplate]:
         return ()
 
     @property
@@ -424,6 +480,9 @@ class HeaderRow(Row):
         """
         A header **never** contains a wordform, so this always returns False.
         """
+        return False
+
+    def contains_translation(self, translation: str) -> bool:
         return False
 
     @classmethod
@@ -470,6 +529,9 @@ class CompoundRow(Row):
     def contains_wordform(self, wordform: str) -> bool:
         return any(row.contains_wordform(wordform) for row in self._rows)
 
+    def contains_translation(self, translation: str) -> bool:
+        return any(row.contains_translation(translation) for row in self._rows)
+
 
 class Cell:
     """
@@ -482,8 +544,8 @@ class Cell:
     is_empty: bool = False
     should_suppress_output: bool = False
 
-    @staticmethod
-    def parse(text: str) -> Cell:
+    @classmethod
+    def parse(cls, text: str) -> Cell:
         if text == "":
             return EmptyCell()
         elif text == "--":
@@ -494,10 +556,18 @@ class Cell:
             return ColumnLabel.parse(text)
         elif looks_like_analysis_string(text):
             return InflectionTemplate.parse(text)
+        elif looks_like_translation_string(text):
+            return TranslationTemplate.parse(text)
         else:
             return WordformCell.parse(text)
 
     def contains_wordform(self, wordform: str) -> bool:
+        if not self.is_inflection:
+            return False
+        # Must be overridden in subclasses
+        raise NotImplementedError
+
+    def contains_translation(self, translation: str) -> bool:
         if not self.is_inflection:
             return False
         # Must be overridden in subclasses
@@ -513,7 +583,7 @@ class Cell:
         # Namely, InflectionTemplate should override this.
         raise NotImplementedError
 
-    def add_recording(self, recording):
+    def add_recording(self, recording_object):
         pass
 
 
@@ -541,6 +611,9 @@ class WordformCell(Cell):
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
+
+    def contains_translation(self, translation: str) -> bool:
+        return False
 
     def add_recording(self, recording_object):
         self.recording = recording_object["recording_url"]
@@ -570,7 +643,9 @@ class WordformCell(Cell):
 
     @classmethod
     def parse(cls, text: str):
-        assert not looks_like_analysis_string(text)
+        assert (not looks_like_analysis_string(text)) and (
+            not looks_like_translation_string(text)
+        )
         return cls(text)
 
 
@@ -601,8 +676,8 @@ class InflectionTemplate(Cell):
     def __str__(self):
         return self.analysis_template
 
-    @staticmethod
-    def parse(text: str) -> InflectionTemplate:
+    @classmethod
+    def parse(cls, text: str) -> InflectionTemplate:
         if not looks_like_analysis_string(text):
             raise ParseError(f"cell does not look like an inflection: {text!r}")
         return InflectionTemplate(text)
@@ -635,6 +710,76 @@ class InflectionTemplate(Cell):
             return (MissingForm(),)
 
         return tuple(WordformCell(form) for form in cell_forms)
+
+
+class TranslationCell(WordformCell):
+    """
+    A translation cell does not have morpheme markers, but besides that, for now, it should just look like a normal wordform.
+    """
+
+    def add_morphemes(self):
+        pass
+
+    def contains_wordform(self, wordform: str) -> bool:
+        return False
+
+    def contains_translation(self, translation: str) -> bool:
+        return translation in self.inflection
+
+
+class TranslationTemplate(Cell):
+    """
+    A cell that contains an english translation.
+    Originally intended for Tsuut'ina standard paradigms.
+    """
+
+    is_inflection = True
+
+    def __init__(self, translation: str):
+        match_ = translation_string_re.match(translation)
+        assert match_
+        matchgroups = match_.groupdict()
+        self._translation_name: str = matchgroups["name"]
+        self._translation_tags: str = matchgroups["tags"]
+
+    def __eq__(self, other) -> bool:
+        if isinstance(other, TranslationTemplate):
+            return (
+                self._translation_name == other._translation_name
+            ) and self._translation_tags == other._translation_tags
+        return False
+
+    def __str__(self):
+        return f"T({self._translation_name},{self._translation_tags})"
+
+    @classmethod
+    def parse(cls, text: str) -> TranslationTemplate:
+        if not looks_like_translation_string(text):
+            raise ParseError(f"cell does not look like a translation pattern: {text!r}")
+        return TranslationTemplate(text)
+
+    def fill(
+        self, forms: Mapping[str, Collection[str]]
+    ) -> tuple[TranslationCell | MissingForm, ...]:
+        """
+        Return one or more cells with the forms given.
+        :raises ParadigmGenerationError: when the translation is missing from the given
+            forms mapping.
+        """
+
+        try:
+            cell_forms = forms[str(self)]
+        except KeyError:
+            raise ParadigmGenerationError(
+                "no form(s) provided for " f"translation: {self}"
+            )
+
+        if len(cell_forms) == 0:
+            # It's a missing form (accidental gap/lacuna).
+            # See: https://en.wikipedia.org/wiki/Accidental_gap#Morphological_gaps
+            return (MissingForm(),)
+
+        return tuple(TranslationCell(form) for form in cell_forms)
 
 
 class SingletonMixin:
@@ -673,6 +818,9 @@ class MissingForm(Cell, SingletonMixin):
         """
         A missing form does not contain a wordform, be definition.
         """
+        return False
+
+    def contains_translation(self, translation: str) -> bool:
         return False
 
     def fill(self, forms: Mapping[str, Collection[str]]) -> tuple[Cell, ...]:
@@ -791,6 +939,16 @@ def looks_like_analysis_string(text: str) -> bool:
     Returns true if the cell might be analysis.
     """
     return "${lemma}" in text
+
+
+translation_string_re = re.compile(r"T\((?P<name>.*)\,(?P<tags>.*)\)")
+
+
+def looks_like_translation_string(text: str) -> bool:
+    """
+    Returns true if the cell might be a translation string
+    """
+    return translation_string_re.match(text) is not None
 
 
 def pairs(seq):

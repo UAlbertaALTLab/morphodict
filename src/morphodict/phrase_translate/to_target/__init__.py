@@ -1,5 +1,8 @@
 import logging
+from typing import Iterable
+
 from django.conf import settings
+
 from morphodict.analysis import RichAnalysis
 from morphodict.phrase_translate.source_tag_map import (
     noun_wordform_to_phrase,
@@ -17,7 +20,7 @@ logger = logging.getLogger(__name__)
 def inflect_target_language_phrase(
     analysis: tuple | RichAnalysis,
     lemma_definition,
-    use_fst: bool = settings.USE_FST_PHRASE_TRANSLATE,
+    use_fst: bool | None = None,
     extra_args: dict = {},
 ) -> str | None:
     if isinstance(analysis, tuple):
@@ -27,6 +30,8 @@ def inflect_target_language_phrase(
         + analysis.suffix_tags
         + settings.DEFAULT_TARGET_LANGUAGE_PHRASE_TAGS
     )
+    if use_fst is None:
+        use_fst = settings.USE_FST_PHRASE_TRANSLATE
 
     if not use_fst:
         phrase = tsuutina_inflect_target_phrase(

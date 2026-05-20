@@ -12,6 +12,7 @@ from morphodict.paradigm.manager import (
     ParadigmManager,
     ParadigmManagerWithExplicitSizes,
 )
+from morphodict.paradigm.panes import ParadigmLayout
 
 
 def test_paradigm_sizes_are_ordered(paradigm_manager):
@@ -22,7 +23,7 @@ def test_paradigm_sizes_are_ordered(paradigm_manager):
 
 
 def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
-    paradigm = paradigm_manager.paradigm_for("personal-pronouns")
+    paradigm = paradigm_manager.paradigm_for("personal-pronouns", None, {})
     assert paradigm is not None
 
     # I don't know how many panes there will be, but the first should DEFINITELY have
@@ -56,7 +57,9 @@ def test_generates_personal_pronoun_paradigm(paradigm_manager) -> None:
 )
 def test_paradigm(paradigm_manager, name, lemma, examples: list[str]):
     default_size = first(paradigm_manager.sizes_of(name))
-    paradigm = paradigm_manager.paradigm_for(name, lemma=lemma, size=default_size)
+    paradigm = paradigm_manager.paradigm_for(
+        name, lemma=lemma, translation_templates={}, size=default_size
+    )
 
     for form in examples:
         assert paradigm.contains_wordform(form)
@@ -72,7 +75,9 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
     inflections = ["minôsa", "minôsak", "niminôsim"]
 
     default_size = first(paradigm_manager.sizes_of(word_class))
-    paradigm = paradigm_manager.paradigm_for(word_class, lemma=lemma, size=default_size)
+    paradigm = paradigm_manager.paradigm_for(
+        word_class, lemma=lemma, translation_templates={}, size=default_size
+    )
 
     for form in inflections:
         assert paradigm.contains_wordform(form)
@@ -81,3 +86,20 @@ def test_generates_na_paradigm(paradigm_manager) -> None:
 @pytest.fixture
 def paradigm_manager() -> ParadigmManager:
     return default_paradigm_manager()
+
+
+@pytest.fixture(autouse=False)
+def use_tsuutina_phrase_translation(settings):
+    settings.USE_FST_PHRASE_TRANSLATE = False
+
+
+def test_translation_paradigm(paradigm_manager, use_tsuutina_phrase_translation):
+    translation_layout = ParadigmLayout.loads(
+        "_ 1Sg _ 3SgDO\t${lemma}+V+T+Ipfv+SbjSg1+DObjSg3\tT(IPFV,+V+T+Ipfv+SbjSg1+DObjSg3)\n"
+    )
+    paradigm = paradigm_manager._inflect(
+        translation_layout,
+        "lemma_unneccessary",
+        {"IPFV": "he/she/it will ask him/her/it"},
+    )
+    assert paradigm.contains_translation("I will ask him/her/it")

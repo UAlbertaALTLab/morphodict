@@ -129,6 +129,15 @@ class Wordform(models.Model):
         """,
     )
 
+    translation_templates: models.JSONField[dict[str, str]] = models.JSONField(
+        blank=True,
+        null=True,
+        help_text="""
+            Translation templates available for T(name,tags) templates in
+            paradigm tables.
+        """,
+    )
+
     rapidwords = models.ManyToManyField(
         RapidWords,
         related_name="wordforms",

@@ -95,7 +95,7 @@ def paradigm_for_lemma(request):
     manager = default_paradigm_manager()
 
     try:
-        if not (paradigm := manager.paradigm_for(layout, lemma, paradigm_size)):
+        if not (paradigm := manager.paradigm_for(layout, lemma, {}, paradigm_size)):
             return HttpResponseBadRequest("paradigm does not exist")
     except ParadigmDoesNotExistError:
         return HttpResponseBadRequest("paradigm does not exist")
@@ -220,7 +220,13 @@ def paradigm_for(wordform: Wordform, paradigm_size: str) -> Optional[Paradigm]:
         if settings.MORPHODICT_ENABLE_FST_LEMMA_SUPPORT:
             fst_lemma = wordform.lemma.fst_lemma if wordform.lemma else None
 
-        if paradigm := manager.paradigm_for(name, fst_lemma, paradigm_size):
+        # TODO: The empty translation template set should be activated with something after importjson can include them.
+        if paradigm := manager.paradigm_for(
+            name,
+            fst_lemma,
+            wordform.translation_templates if wordform.translation_templates else {},
+            paradigm_size,
+        ):
             return paradigm
         logger.warning(
             "Could not retrieve static paradigm %r " "associated with wordform %r",
