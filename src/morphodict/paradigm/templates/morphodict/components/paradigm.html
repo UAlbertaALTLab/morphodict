@@ -143,7 +143,7 @@
                                         <td class="paradigm-cell paradigm-cell--empty"></td>
                                     {% else %}
                                         <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
-                                            <div data-has-tooltip data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}" style="float:left;">
+                                            <div {% if not cell.is_translation %}data-has-tooltip {% endif %}data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}" style="float:left;">
                                             {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
                                                 {% if cell.morphemes %}
                                                     {% orth cell.morphemes|join:"·" %}
