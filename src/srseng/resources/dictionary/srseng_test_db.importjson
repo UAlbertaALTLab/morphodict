@@ -426,49 +426,38 @@
         "sources": ["PG24"]
       }
     ],
+    "slug": "yídiskid",
     "translationTemplates": [
-{
-		"name": "IPFV",
-		"definition": "he/she/it will ask him/her/it",
-		"sources": [
-			"PG24"
-		],
-		"translation_arguments": {}
-	},
-	{
-		"name": "PFV",
-		"definition": "he/she/it asked him/her/it",
-		"sources": [
-			"PG24"
-		],
-		"translation_arguments": {}
-	},
-	{
-		"name": "PROG",
-		"definition": "he/she/it is asking him/her/it",
-		"sources": [
-			"PG24"
-		],
-		"translation_arguments": {}
-	},
-	{
-		"name": "REP",
-		"definition": "he/she/it asks him/her/it again and again",
-		"sources": [
-			"PG24"
-		],
-		"translation_arguments": {
-		}
-	},
-	{
-		"name": "POT",
-		"definition": "he/she/it might ask him/her/it",
-		"sources": [
-			"PG24"
-		],
-		"translation_arguments": {}
-	}
-    ],
-    "slug": "yídiskid"
+      {
+        "definition": "he/she/it will ask him/her/it",
+        "name": "IPFV",
+        "sources": ["PG24"],
+        "translation_arguments": {}
+      },
+      {
+        "definition": "he/she/it asked him/her/it",
+        "name": "PFV",
+        "sources": ["PG24"],
+        "translation_arguments": {}
+      },
+      {
+        "definition": "he/she/it is asking him/her/it",
+        "name": "PROG",
+        "sources": ["PG24"],
+        "translation_arguments": {}
+      },
+      {
+        "definition": "he/she/it asks him/her/it again and again",
+        "name": "REP",
+        "sources": ["PG24"],
+        "translation_arguments": {}
+      },
+      {
+        "definition": "he/she/it might ask him/her/it",
+        "name": "POT",
+        "sources": ["PG24"],
+        "translation_arguments": {}
+      }
+    ]
   }
 ]
