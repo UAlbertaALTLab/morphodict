@@ -1,4 +1,3 @@
-import { skipOn } from "@cypress/skip-test";
 
 describe("Orthography selection", function () {
   describe("switching orthography", function () {
@@ -44,17 +43,12 @@ describe("Orthography selection", function () {
     });
 
     it("should persist my preference after a page load", function () {
-      // XXX: This test fails in headless mode for Electron version < v6.0
-      // There was a bug with setting cookies via fetch():
-      //    https://github.com/cypress-io/cypress/issues/4433
-      // This should work in Cypress 3.5.0 using Chrome.
-      // TODO: switch CI to use Chrome instead of Electron!
-      skipOn("electron");
-
+      
       cy.visit("/");
 
       // Get the introduction: it should be in SRO
-      cy.contains("h2", "tânisi!").as("greeting");
+      cy.get("h2").as("greeting");
+      cy.get("@greeting").contains("tânisi!");
 
       // Switch to syllabics
       cy.get("[data-cy=settings-menu]").click().parent("details").as("menu");
@@ -64,6 +58,7 @@ describe("Orthography selection", function () {
       cy.getCookie("orth").should("exist").its("value").should("eq", "Cans");
 
       // It changed on the current page:
+
       cy.get("@greeting").contains("ᑖᓂᓯ!");
 
       // Now try a different page.
