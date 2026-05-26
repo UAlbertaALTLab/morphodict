@@ -1,4 +1,3 @@
-
 describe("Orthography selection", function () {
   describe("switching orthography", function () {
     it("should switch to syllabics when I click on the menu", function () {
@@ -43,7 +42,6 @@ describe("Orthography selection", function () {
     });
 
     it("should persist my preference after a page load", function () {
-      
       cy.visit("/");
 
       // Get the introduction: it should be in SRO
