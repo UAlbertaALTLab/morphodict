@@ -36,11 +36,11 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         # actions/cache below uses this id to get the exact python version
         id: setup-python
         with:
@@ -102,12 +102,12 @@ jobs:
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         id: setup-python
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.ACTIONS_NODE_VERSION }}
           cache: npm
@@ -171,7 +171,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'
       - name: Rename docker-compose for dev
@@ -214,11 +214,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'      
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests
@@ -243,7 +243,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'
       - name: Build and push Docker images
@@ -280,11 +280,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests

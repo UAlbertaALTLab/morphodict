@@ -16,17 +16,17 @@ jobs:
     if: "! contains(toJSON(github.event.commits.*.message), '[skip reformat]')"
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: ${{ github.head_ref }}
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Reformat
       run: ./scripts/reformat-altlabels
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "🤖🧹 reformat crk.altlabel [skip ci]"
 
@@ -35,11 +35,11 @@ jobs:
     # Ensure this is run **sequentially**
     needs: reformat-altlabel
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: ${{ github.head_ref }}
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - name: Install dependencies
@@ -48,7 +48,7 @@ jobs:
       run: |
         black .
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "🤖🧹 reformat Python files [skip ci]"
 
@@ -57,11 +57,11 @@ jobs:
     # Ensure this is run **sequentially**
     needs: reformat-python
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: ${{ github.head_ref }}
     - name: Setup Node.js environment
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: 24
         cache: npm
@@ -70,7 +70,7 @@ jobs:
     - name: Reformat JavaScript
       run: npm run reformat
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "🤖🧹 reformat JavaScript files [skip ci]"
 
@@ -79,13 +79,13 @@ jobs:
     needs: reformat-javascript
     runs-on: ubuntu-24.04
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v6
       with:
         ref: ${{ github.head_ref }}
 
     # For prettier
     - name: Setup Node.js environment
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v6
       with:
         node-version: 24
         cache: npm
@@ -93,7 +93,7 @@ jobs:
     - name: Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
       # actions/cache below uses this id to get the exact python version
       id: setup-python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
     - uses: actions/cache@v4
@@ -114,6 +114,6 @@ jobs:
       run: "pipenv run ./crkeng-manage sortimportjson --git-files"
 
     - name: Git Auto Commit
-      uses: stefanzweifel/git-auto-commit-action@v5
+      uses: stefanzweifel/git-auto-commit-action@v7
       with:
         commit_message: "🤖🧹 reformat importjson files [skip ci]"
