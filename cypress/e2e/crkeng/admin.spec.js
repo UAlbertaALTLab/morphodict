@@ -2,7 +2,7 @@ context("Admin interface", () => {
   it("should redirect anonymous users to the login page", function () {
     cy.visit("/admin");
 
-    cy.env(["admin_login_url"]).then(({admin_login_url}) =>{
+    cy.env(["admin_login_url"]).then(({ admin_login_url }) => {
       cy.location().then(({ pathname }) =>
         expect(pathname).to.contain(admin_login_url)
       );
@@ -20,7 +20,7 @@ context("Admin interface", () => {
       cy.get(".submit-row > input").click();
     });
 
-    cy.env(["admin_url"]).then(({admin_url}) =>{
+    cy.env(["admin_url"]).then(({ admin_url }) => {
       cy.location("pathname").should("eq", admin_url);
     });
   });
@@ -41,8 +41,7 @@ context("Admin interface", () => {
 
   it("should not show the FST tool to non-admin users", function () {
     cy.visit("/admin/fst-tool");
-    cy.env(["admin_login_url"]).then(({admin_login_url}) =>{
-
+    cy.env(["admin_login_url"]).then(({ admin_login_url }) => {
       cy.location().then(({ pathname }) =>
         expect(pathname).to.contain(admin_login_url)
       );

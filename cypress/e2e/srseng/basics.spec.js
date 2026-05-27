@@ -2,8 +2,8 @@ import urls from "../../support/urls";
 
 describe("The Tsúūt'ínà site", function () {
   this.beforeEach(() => {
-    cy.task("get",["cookies"]).then(({cookies}) => {
-      if(cookies){
+    cy.task("get", ["cookies"]).then(({ cookies }) => {
+      if (cookies) {
         cookies.forEach((c) => cy.setCookie(c.name, c.value));
       }
     });
@@ -23,7 +23,7 @@ describe("The Tsúūt'ínà site", function () {
         name: "cookies",
         message: `${values}`,
       });
-      cy.task("set", {"cookies": cookies});
+      cy.task("set", { cookies: cookies });
     });
     cy.visit(`${urls.srseng}`);
   });
