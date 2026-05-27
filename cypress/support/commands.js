@@ -105,31 +105,36 @@ Cypress.Commands.add("readCypressUserCredentials", () => {
  * privileges.
  */
 Cypress.Commands.add("login", () => {
-  cy.visit(Cypress.env("admin_login_url"));
-  cy.get("[name=csrfmiddlewaretoken]")
-    .should("exist")
-    .should("have.attr", "value")
-    .as("csrfToken");
+  cy.env(["admin_login_url"]).then(({admin_login_url}) => {
+    cy.visit(admin_login_url);
+    cy.get("[name=csrfmiddlewaretoken]")
+      .should("exist")
+      .should("have.attr", "value")
+      .as("csrfToken");
 
-  cy.readCypressUserCredentials().then(({ username, password }) => {
-    cy.get("@csrfToken").then(function (token) {
-      cy.request({
-        method: "POST",
-        url: Cypress.env("admin_login_url"),
-        form: true,
-        body: {
-          username,
-          password,
-          next: Cypress.env("admin_url"),
-        },
-        headers: {
-          "X-CSRFTOKEN": token,
-        },
-        followRedirect: false,
-      }).then((response) => {
-        expect(response.status).to.eql(302);
-        expect(response.headers).to.have.property("location");
-        expect(response.headers.location).to.not.contain("login");
+    cy.readCypressUserCredentials().then(({ username, password }) => {
+      cy.get("@csrfToken").then(function (token) {
+        cy.env(["admin_login_url", "admin_url"]).then(
+          ({admin_login_url, admin_url}) => {
+            cy.request({
+            method: "POST",
+            url: admin_login_url,
+            form: true,
+            body: {
+            username,
+              password,
+              next: admin_url,
+            },
+            headers: {
+              "X-CSRFTOKEN": token,
+            },
+            followRedirect: false,
+          }).then((response) => {
+            expect(response.status).to.eql(302);
+            expect(response.headers).to.have.property("location");
+            expect(response.headers.location).to.not.contain("login");
+          });
+        });
       });
     });
   });
@@ -159,7 +164,7 @@ Cypress.Commands.add("user_login", (url) => {
     }).then((response) => {
       expect(response.status).to.eql(200);
       cy.getCookies().then((cookies) => {
-        Cypress.env("cookies", cookies);
+        cy.task("set", {"cookies": cookies});
       });
     });
   });

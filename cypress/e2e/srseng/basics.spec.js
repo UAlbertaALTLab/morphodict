@@ -2,8 +2,11 @@ import urls from "../../support/urls";
 
 describe("The Tsúūt'ínà site", function () {
   this.beforeEach(() => {
-    const cookies = Cypress.env("cookies") || [];
-    cookies.forEach((c) => cy.setCookie(c.name, c.value));
+    cy.task("get",["cookies"]).then(({cookies}) => {
+      if(cookies){
+        cookies.forEach((c) => cy.setCookie(c.name, c.value));
+      }
+    });
   });
 
   it("works", function () {
@@ -20,7 +23,7 @@ describe("The Tsúūt'ínà site", function () {
         name: "cookies",
         message: `${values}`,
       });
-      Cypress.env("cookies", cookies);
+      cy.task("set", {"cookies": cookies});
     });
     cy.visit(`${urls.srseng}`);
   });

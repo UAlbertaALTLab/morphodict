@@ -1,9 +1,12 @@
 context("Admin interface", () => {
   it("should redirect anonymous users to the login page", function () {
     cy.visit("/admin");
-    cy.location().then(({ pathname }) =>
-      expect(pathname).to.contain(Cypress.env("admin_login_url"))
-    );
+
+    cy.env(["admin_login_url"]).then(({admin_login_url}) =>{
+      cy.location().then(({ pathname }) =>
+        expect(pathname).to.contain(admin_login_url)
+      );
+    });
   });
 
   it("should allow login", function () {
@@ -16,7 +19,10 @@ context("Admin interface", () => {
       cy.get("#id_password").type(cypressUser.password);
       cy.get(".submit-row > input").click();
     });
-    cy.location("pathname").should("eq", Cypress.env("admin_url"));
+
+    cy.env(["admin_url"]).then(({admin_url}) =>{
+      cy.location("pathname").should("eq", admin_url);
+    });
   });
 
   specify("the FST tool should work", function () {
@@ -35,8 +41,11 @@ context("Admin interface", () => {
 
   it("should not show the FST tool to non-admin users", function () {
     cy.visit("/admin/fst-tool");
-    cy.location().then(({ pathname }) =>
-      expect(pathname).to.contain(Cypress.env("admin_login_url"))
-    );
+    cy.env(["admin_login_url"]).then(({admin_login_url}) =>{
+
+      cy.location().then(({ pathname }) =>
+        expect(pathname).to.contain(admin_login_url)
+      );
+    });
   });
 });

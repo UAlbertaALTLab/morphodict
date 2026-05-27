@@ -4,13 +4,17 @@ context("The Legend page", function () {
       cy.visit("/");
       cy.get("footer").contains("a", "Legend").click();
 
-      cy.url().should("contain", Cypress.env("legend_url"));
+      cy.env(["legend_url"]).then(({legend_url}) =>{
+        cy.url().should("contain", legend_url);
+      });
     });
   });
 
   describe("Visiting the legend page", () => {
     beforeEach(function () {
-      cy.visit(Cypress.env("legend_url"));
+      cy.env(["legend_url"]).then(({legend_url}) =>{
+        cy.visit(legend_url);
+      });
     });
 
     it("should have a title", () => {
