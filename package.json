@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/UAlbertaALTLab/morphodict#readme",
   "devDependencies": {
-    "cypress": "^15.15.0",
+    "cypress": "^15.16.0",
+    "qs": ">=6.15.2",
     "stop-only": "^1.2.1",
     "wait-on": "^8.0.0"
   },
