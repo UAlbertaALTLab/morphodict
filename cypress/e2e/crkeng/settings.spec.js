@@ -15,7 +15,7 @@ context("The settings page", () => {
     it("should set the preference without a submit button", () => {
       let checkedValue;
 
-      cy.env(["settings_url"]).then(({settings_url}) =>{
+      cy.env(["settings_url"]).then(({ settings_url }) => {
         cy.visit(settings_url);
         cy.clearCookie(PREFERENCE_COOKIE);
 
@@ -36,7 +36,7 @@ context("The settings page", () => {
     });
 
     it("should show an error message if the save did not succeed", () => {
-      cy.env(["settings_url"]).then(({settings_url}) =>{
+      cy.env(["settings_url"]).then(({ settings_url }) => {
         cy.visit(settings_url);
 
         cy.get(`input[name=${PREFERENCE_COOKIE}]`)
@@ -80,7 +80,7 @@ context("The settings page", () => {
         expect(cookie).to.be.null;
       });
 
-      cy.env(["settings_url"]).then(({settings_url}) =>{
+      cy.env(["settings_url"]).then(({ settings_url }) => {
         cy.visit(settings_url);
 
         cy.get("[data-cy=animate-emoji-choice]")
@@ -94,7 +94,7 @@ context("The settings page", () => {
     });
 
     it("should changes the emoji on the search page", () => {
-      cy.env(["settings_url"]).then(({settings_url}) =>{
+      cy.env(["settings_url"]).then(({ settings_url }) => {
         cy.visit(settings_url);
 
         cy.get("[data-cy=animate-emoji-choice]")
@@ -120,7 +120,7 @@ context("The settings page", () => {
     });
 
     it("should changes the emoji on the details page", () => {
-      cy.env(["settings_url"]).then(({settings_url}) =>{
+      cy.env(["settings_url"]).then(({ settings_url }) => {
         cy.visit(settings_url);
 
         cy.get("[data-cy=animate-emoji-choice]")

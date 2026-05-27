@@ -4,7 +4,7 @@ context("The Legend page", function () {
       cy.visit("/");
       cy.get("footer").contains("a", "Legend").click();
 
-      cy.env(["legend_url"]).then(({legend_url}) =>{
+      cy.env(["legend_url"]).then(({ legend_url }) => {
         cy.url().should("contain", legend_url);
       });
     });
@@ -12,7 +12,7 @@ context("The Legend page", function () {
 
   describe("Visiting the legend page", () => {
     beforeEach(function () {
-      cy.env(["legend_url"]).then(({legend_url}) =>{
+      cy.env(["legend_url"]).then(({ legend_url }) => {
         cy.visit(legend_url);
       });
     });
