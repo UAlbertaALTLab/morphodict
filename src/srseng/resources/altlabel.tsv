@@ -10,6 +10,7 @@ Pfv+Rep	Perfective Repetitive	Aspect: perfective, Superaspect: repetitive	Past R
 1Sg	1st person singular	Subject: 1st person singular	I	síní
 2Sg	2nd person singular	Subject: 2nd person singular	you	níní
 3Sg	3rd person singular	Subject: 3rd person singular	he/she/it	idíní
+3SgIm	3Srd person singular impersonal	Subject: 3rd person singular impersonal	it	áts’ída
 4Sg	4th person singular	Subject: 4th person singular	someone	gúní
 1Pl	1st person plural	Subject: 1st person plural	we both	naàhíní
 2Pl	2nd person plural	Subject: 2nd person plural	you both	naxíní
@@ -21,6 +22,8 @@ Pfv+Rep	Perfective Repetitive	Aspect: perfective, Superaspect: repetitive	Past R
 3Sg+Nomz	Nominalization with –í	Deverbal nominalization with –í	the one that	?
 3Sg+NomzA	Nominalization with –à	Deverbal nominalization with –à	the one who	?
 3Pl+NomzPl	Nominalization with –ná	Deverbal nominalized with human plural –ná	the ones that	?
+3SgIm+Nomz	Nominalization with –í	Deverbal nominalization with –í	the one that	?
+3SgIm+NomzA	Nominalization with –à	Deverbal nominalization with –à	the one who	?
 1SgDO	DO: 1st person singular	Direct Object: 1st person singular	→ me	→ síní
 2SgDO	DO: 2nd person singular	Direct Object: 2nd person singular	→ you (one)	→ níní
 3SgDO	DO: 3rd person singular	Direct Object: 3rd person singular	→ him/her/it	→ idíní
@@ -196,6 +199,34 @@ EmphaticIO	IO: emphatic	Indirect Object: emphatic	⇉ to him/her/it	⇉ idíní
 3Pl+Distr+RecipDO+3SgIO	S: 3rd person distributive plural, DO: reciprocal, IO: 3rd person singular	Subject: 3rd person distributive plural, Direct Object: reciprocal, Indirect Object: 3rd person singular	each and every one of them → each other ⇉ him/her/it	igidíní (tłát'a) → átłits'í ⇉ idíní
 4Sg+Distr+RecipDO+3SgIO	S: 4th person distributive plural, DO: reciprocal, IO: 3rd person singular	Subject: 4th person distributive plural, Direct Object: reciprocal, Indirect Object: 3rd person singular	each and every one → each other ⇉ him/her/it	gúní (tłát'a) → átłits'í ⇉ idíní
 3Pl+NomzPl+RecipDO+3SgIO	S: 3rd person plural, DO: reciprocal, IO: 3rd person singular, nominalization with –ná	Deverbal nominalized with human plural –ná, Subject: 3rd person plural, Direct Object: reciprocal, Indirect Object: 3rd person singular	the ones that → each other ⇉ him/her/it	? → átłits'í ⇉ idíní
+1Sg+3SgDO+1SgIO	S: 1st person singular, DO: 3rd person singular, IO: 1st person singular	Subject: 1st person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	I → him/her/it ⇉ me	síní → idíní ⇉ síní
+2Sg+3SgDO+1SgIO	S: 2nd person singular, DO: 3rd person singular, IO: 1st person singular	Subject: 2nd person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	you → him/her/it ⇉ me	níní → idíní ⇉ síní
+3Sg+3SgDO+1SgIO	S: 3rd person singular, DO: 3rd person singular, IO: 1st person singular	Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	he/she/it → him/her/it ⇉ me	idíní → idíní ⇉ síní
+4Sg+3SgDO+1SgIO	S: 4th person singular, DO: 3rd person singular, IO: 1st person singular	Subject: 4th person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	someone → him/her/it ⇉ me	gúní → idíní ⇉ síní
+1Pl+3SgDO+1SgIO	S: 1st person plural, DO: 3rd person singular, IO: 1st person singular	Subject: 1st person plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	we both → him/her/it ⇉ me	naàhíní → idíní ⇉ síní
+2Pl+3SgDO+1SgIO	S: 2nd person plural, DO: 3rd person singular, IO: 1st person singular	Subject: 2nd person plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	you both → him/her/it ⇉ me	naxíní → idíní ⇉ síní
+3Pl+3SgDO+1SgIO	S: 3rd person plural, DO: 3rd person singular, IO: 1st person singular	Subject: 3rd person plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	they both → him/her/it ⇉ me	igidíní → idíní ⇉ síní
+1Pl+Distr+3SgDO+1SgIO	S: 1st person distributive plural, DO: 3rd person singular, IO: 1st person singular	Subject: 1st person distributive plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	each and every one of us → him/her/it ⇉ me	naàhíní (tłát'a) → idíní ⇉ síní
+2Pl+Distr+3SgDO+1SgIO	S: 2nd person distributive plural, DO: 3rd person singular, IO: 1st person singular	Subject: 2nd person distributive plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	each and every one of you → him/her/it ⇉ me	naxíní (tłát'a) → idíní ⇉ síní
+3Pl+Distr+3SgDO+1SgIO	S: 3rd person distributive plural, DO: 3rd person singular, IO: 1st person singular	Subject: 3rd person distributive plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	each and every one of them → him/her/it ⇉ me	igidíní (tłát'a) → idíní ⇉ síní
+4Sg+Distr+3SgDO+1SgIO	S: 4th person distributive plural, DO: 3rd person singular, IO: 1st person singular	Subject: 4th person distributive plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	each and every one → him/her/it ⇉ me	gúní (tłát'a) → idíní ⇉ síní
+3Sg+Nomz+3SgDO+1SgIO	S: 3rd person singular, DO: 3rd person singular, IO: 1st person singular, nominalization with –í	Deverbal nominalization with –í, Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	the one that → him/her/it ⇉ me	? → idíní ⇉ síní
+3Sg+NomzA+3SgDO+1SgIO	S: 3rd person singular, DO: 3rd person singular, IO: 1st person singular, nominalization with –à	Deverbal nominalization with –à, Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: 1st person singular	the one who → him/her/it ⇉ me	? → idíní ⇉ síní
+3Pl+NomzPl+3SgDO+1SgIO	S: 3rd person plural, DO: 3rd person singular, IO: 1st person singular, nominalization with –ná	Deverbal nominalized with human plural –ná, Subject: 3rd person plural, Direct Object: 3rd person singular, Indirect Object: 1st person singular	the ones that → him/her/it ⇉ me	? → idíní ⇉ síní
+1Sg+3SgDO+ReflIO	S: 1st person singular, DO: 3rd person singular, IO: reflexive	Subject: 1st person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	I → him/her/it ⇉ myself	síní → idíní ⇉ idits'í
+2Sg+3SgDO+ReflIO	S: 2nd person singular, DO: 3rd person singular, IO: reflexive	Subject: 2nd person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	you → him/her/it ⇉ yourself	níní → idíní ⇉ idits'í
+3Sg+3SgDO+ReflIO	S: 3rd person singular, DO: 3rd person singular, IO: reflexive	Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	he/she/it → him/her/it ⇉ himself/herself/itself	idíní → idíní ⇉ idits'í
+4Sg+3SgDO+ReflIO	S: 4th person singular, DO: 3rd person singular, IO: reflexive	Subject: 4th person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	someone → him/her/it ⇉ themself	gúní → idíní ⇉ idits'í
+1Pl+3SgDO+ReflIO	S: 1st person plural, DO: 3rd person singular, IO: reflexive	Subject: 1st person plural, Direct Object: 3rd person singular, Indirect Object: reflexive	we both → him/her/it ⇉ ourselves	naàhíní → idíní ⇉ idits'í
+2Pl+3SgDO+ReflIO	S: 2nd person plural, DO: 3rd person singular, IO: reflexive	Subject: 2nd person plural, Direct Object: 3rd person singular, Indirect Object: reflexive	you both → him/her/it ⇉ yourselves	naxíní → idíní ⇉ idits'í
+3Pl+3SgDO+ReflIO	S: 3rd person plural, DO: 3rd person singular, IO: reflexive	Subject: 3rd person plural, Direct Object: 3rd person singular, Indirect Object: reflexive	they both → him/her/it ⇉ themselves	igidíní → idíní ⇉ idits'í
+1Pl+Distr+3SgDO+ReflIO	S: 1st person distributive plural, DO: 3rd person singular, IO: reflexive	Subject: 1st person distributive plural, Direct Object: 3rd person singular, Indirect Object: reflexive	each and every one of us → him/her/it ⇉ ourselves	naàhíní (tłát'a) → idíní ⇉ idits'í
+2Pl+Distr+3SgDO+ReflIO	S: 2nd person distributive plural, DO: 3rd person singular, IO: reflexive	Subject: 2nd person distributive plural, Direct Object: 3rd person singular, Indirect Object: reflexive	each and every one of you → him/her/it ⇉ yourselves	naxíní (tłát'a) → idíní ⇉ idits'í
+3Pl+Distr+3SgDO+ReflIO	S: 3rd person distributive plural, DO: 3rd person singular, IO: reflexive	Subject: 3rd person distributive plural, Direct Object: 3rd person singular, Indirect Object: reflexive	each and every one of them → him/her/it ⇉ themselves	igidíní (tłát'a) → idíní ⇉ idits'í
+4Sg+Distr+3SgDO+ReflIO	S: 4th person distributive plural, DO: 3rd person singular, IO: reflexive	Subject: 4th person distributive plural, Direct Object: 3rd person singular, Indirect Object: reflexive	each and every one → him/her/it ⇉ themselves	gúní (tłát'a) → idíní ⇉ idits'í
+3Sg+Nomz+3SgDO+ReflIO	S: 3rd person singular, DO: 3rd person singular, IO: reflexive, nominalization with –í	Deverbal nominalization with –í, Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	the one that → him/her/it ⇉ himself/herself/itself	? → idíní ⇉ idits'í
+3Sg+NomzA+3SgDO+ReflIO	S: 3rd person singular, DO: 3rd person singular, IO: reflexive, nominalization with –à	Deverbal nominalization with –à, Subject: 3rd person singular, Direct Object: 3rd person singular, Indirect Object: reflexive	the one who → him/her/it ⇉ himself/herself/itself	? → idíní ⇉ idits'í
+3Pl+NomzPl+3SgDO+ReflIO	S: 3rd person plural, DO: 3rd person singular, IO: reflexive, nominalization with –ná	Deverbal nominalized with human plural –ná, Subject: 3rd person plural, Direct Object: 3rd person singular, Indirect Object: reflexive	the ones that → him/her/it ⇉ himself/herself/itself	? → idíní ⇉ idits'í
 Distr	Distributive	Distributive	each and every one	?
 Nomz	Nominalization with –í	Deverbal nominalization with –í	the one that	?
 NomzA	Nominalization with –à	Deverbal nominalization with –à	the one who	?
@@ -210,10 +241,13 @@ VED	Monovalent verb (DO)	Monovalent verb (direct object inflection)	Verb phrase 
 VEO	Monovalent verb (IO)	Monovalent verb (indirect object inflection)	Verb phrase with one participant (with outer object morphemes)	?
 VT	Bivalent verb (S, DO)	Bivalent verb (subject and direct object inflection)	Verb phrase with two participants (with inner subject and inner object morphemes)	?
 VO	Bivalent verb (S, IO)	Bivalent verb (subject and indirect object inflection)	Verb phrase with two participants (with inner subject and outer object morphemes)	?
-VIm	Impersonal verb (S)	Impersonal verb	Verb phrase with no specific participants	?
+VIm	Impersonal verb (dynamic)	Dynamic impersonal verb	Verb phrase with no specific participants	?
+VIm-S	Impersonal verb (stative)	Stative impersonal verb	Verb phrase with no specific participants	?
 VD	Ditransitive (dynamic)	Dynamic ditransitive verb	Verb phrase with three participants	?
 VD-DObjAreal	Ditransitive (dynamic, areal DO)	Dynamic ditransitive verb with areal direct object	Verb phrase with three participants (with an inner object morpheme that is areal)	?
 VD-DObjIndef	Ditransitive (dynamic, indef. DO)	Dynamic ditransitive verb with indefinite direct object	Verb phrase with three participants (with an inner object morpheme meaning “something”)	?
+VD-DObjSg3-IObjSg1	Ditransitive (dynamic, 3sg. DO, 1Sg. IO)	Dynamic ditransitive verb with third-person singular direct object and first-person singular indirect object	Verb phrase with three participants (with an inner object meaning “him/her/it” and an outer object meaning “me”)	?
+VD-DObjSg3-IObjRefl	Ditransitive (dynamic, 3sg. DO, refl. IO)	Dynamic ditransitive verb with third-person singular direct object and reflexive indirect object	Verb phrase with three participants (with an inner object meaning “him/her/it” and an outer object meaning “oneself”)	?
 VD-SubjPl	Ditransitive (dynamic, pl. S)	Dynamic ditransitive verb with plural subject	Verb phrase with three participants (subject is 3+ people)	?
 VD-SubjPl-DObjRecip	Ditransitive (dynamic, pl. S and recip. DO)	Dynamic ditransitive verb with plural subject and reciprocal direct object	Verb phrase with three participants (subject is 3+ people and inner object is “each other”)	?
 VED	Experiencer (dynamic, DO)	Dynamic experiencer verb with direct object marking	Verb phrase with one participant (with an inner object morpheme)	?
