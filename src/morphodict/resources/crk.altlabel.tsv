@@ -172,9 +172,32 @@ Fut+Def	Future Definite	Future definite tense: ka- (~ ta-)	something will certai
 Del	Delayed	Delayed	later	mwêstas		
 Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
+						
 Der/Com	Comitative	Derived comitative	with another person	wîci-		
 Der/Dim	Diminutive	Derived diminutive	smaller / younger	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Rflx	Reflexive	Derived reflexive	oneself	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Rcpr	Reciprocal	Derived reciprocal	one another	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Caus	Causative	Derived causative	make someone do something	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Bnf	Benefactive	Derived benefactive	for the benefit of another	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Pass	Passive	Derived passive	highlighting the goal	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Antip	Antipassive	Derived antipassive	highlighting the actor	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Dtr	Detransitive	Derived detransitive	unhighlighting the goal	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/MedPass	Medio-Passive	Derived medio-passive	unhighlighting the goal	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Trans	Transitive	Derived transitive	adding the goal	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Nom	Nominalization (I)	Derived nominalization (Type I)	action word for action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Nom2	Nominization (II)	Derived nominalization (Type II)	word for action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Ins	Instrument (I)	Derived instrument (Type I)	tool used in action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Ins2	Instrument (II)	Derived instrument (Type II)	tool used in action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Ins3	Instrument (III)	Derived instrument (Type III)	tool used in action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Age	Agent	Derived agent	who does something	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Goa	Goal	Derived goal	object of action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Ex	Existential (I)	Derived existential (Type I)	there/it/s/he is something	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Ex2	Existential (II)	Derived existential (Type II)	there/it/s/he is something	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Poss	Possessor	Derived possessor	who possesses something	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Manuf	Manufacture	Derived manufacture	result of action	 kâ-apisisîhiht / kâ-apisisîhcâhk		
+Der/Hab	Habitual	Derived habitual	something that is done often	 kâ-apisisîhiht / kâ-apisisîhcâhk		
 Der/X		Derived unspecified actor				
+						
 Dim	Diminutive	Diminutive	smaller / younger	nawac apisîs / ayiwâk osk-âyis		
 DimNA	Diminutive	Diminutive	smaller / younger	nawac ê-apisîsisit / nawac ê-osk-âyiwit		
 DimNI	Diminutive	Diminutive	smaller	nawac ê-apisâsik		
