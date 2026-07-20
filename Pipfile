@@ -51,7 +51,7 @@ scipy = "*"
 more-itertools = "*"
 types-requests = "*"
 requests = "*"
-nltk = ">=3.9.3"
+nltk = ">=3.10.0"
 urllib3 = ">=2.7.0" # Dependency, dependabot
 filelock = ">=3.20.3" # Dependency, dependabot
 idna = ">=3.15" # Dependency, dependabot
