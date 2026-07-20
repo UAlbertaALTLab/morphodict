@@ -46,5 +46,10 @@
     "rollup-plugin-postcss": "^4.0.2",
     "sass": "1.77.6",
     "scss": "^0.2.4"
+  },
+  "allowScripts": {
+    "cypress@15.18.1": true,
+    "fsevents@2.3.3": true,
+    "core-js-pure@3.49.0": true
   }
 }
