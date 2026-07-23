@@ -90,7 +90,7 @@
             })
             {% comment %}
                 now I can begin adding the elements as they belong
-                {% endcomment %}
+            {% endcomment %}
                 for (const element of document.getElementsByClassName("paradigm-cell-recording")){
                     let word = element.getAttribute("data-inflection")
                     var recording = best[word]
@@ -99,7 +99,7 @@
                         recording = ok[word]
                     }
                     if(recording){
-                        if (recording["recording_speaker"] == "SDOL"){
+                        if (recording["speaker"] == "SDOL"){
                             element.innerHTML = ("&nbsp;🤖")
                         } else {
                             element.innerHTML = ("&nbsp;🧑🏽‍🦱")
