@@ -310,6 +310,9 @@ class Row:
 
         return ContentRow(Cell.parse(t) for t in cell_texts)
 
+    def cls(self) -> str:
+        return type(self).__qualname__
+
 
 class ContentRow(Row):
     """
@@ -513,9 +516,6 @@ class Cell:
         # Namely, InflectionTemplate should override this.
         raise NotImplementedError
 
-    def add_recording(self, recording):
-        pass
-
 
 class WordformCell(Cell):
     """
@@ -535,16 +535,13 @@ class WordformCell(Cell):
     def __init__(self, inflection: str):
         self.inflection = inflection
         self.recording = None
-        self.recording_speaker = None
-        self.morphemes = None
         self.add_morphemes()
 
     def contains_wordform(self, wordform: str) -> bool:
         return self.inflection == wordform
 
-    def add_recording(self, recording_object):
-        self.recording = recording_object["recording_url"]
-        self.recording_speaker = recording_object["speaker"]
+    def contains_translation(self, translation: str) -> bool:
+        return False
 
     def add_morphemes(self):
         analysis = rich_analyze_strict(self.inflection)

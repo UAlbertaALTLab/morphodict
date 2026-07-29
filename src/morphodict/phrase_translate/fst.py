@@ -1,4 +1,4 @@
-import foma
+from hfst_altlab import TransducerFile
 from functools import cache
 
 from morphodict.utils.shared_res_dir import shared_fst_dir
@@ -6,7 +6,7 @@ from morphodict.utils.shared_res_dir import shared_fst_dir
 
 @cache
 def eng_noun_entry_to_inflected_phrase_fst():
-    return foma.FST.load(
+    return TransducerFile(
         shared_fst_dir
         / "transcriptor-cw-eng-noun-entry2inflected-phrase-w-flags.fomabin"
     )
@@ -14,7 +14,7 @@ def eng_noun_entry_to_inflected_phrase_fst():
 
 @cache
 def eng_verb_entry_to_inflected_phrase_fst():
-    return foma.FST.load(
+    return TransducerFile(
         shared_fst_dir
         / "transcriptor-cw-eng-verb-entry2inflected-phrase-w-flags-and-templates.fomabin"
     )
@@ -22,7 +22,7 @@ def eng_verb_entry_to_inflected_phrase_fst():
 
 @cache
 def eng_phrase_to_crk_features_fst():
-    return foma.FST.load(
+    return TransducerFile(
         shared_fst_dir / "transcriptor-eng-phrase2crk-features.fomabin"
     )
 
@@ -43,19 +43,17 @@ class FomaLookupMultipleFoundException(FomaLookupException):
         )
 
 
-def foma_lookup(fst, thing_to_lookup) -> str:
-    # Caution: Python `foma.FST.apply_up` and `foma.FST.apply_down` do not cache
-    # the FST object built by the C-language `apply_init()` function in libfoma,
-    # so they are about 100x slower than calling the C-language `apply_up` and
-    # `apply_down` directly.
-    #
-    # But __getitem__ does do the caching and runs at an acceptable speed.
-    l = fst[thing_to_lookup]
+def foma_lookup(fst:TransducerFile, thing_to_lookup:str) -> str:
+    # Updated from FOMA lookup - currently using an HFST lookup instead,
+    # This reduces dependencies and allows for migration to python 3.14.
+
+    l = fst.lookup(thing_to_lookup)
+
     if len(l) == 0:
         raise FomaLookupNotFoundException(thing_to_lookup)
     if len(l) > 1:
         raise FomaLookupMultipleFoundException(thing_to_lookup, l)
-    return l[0].decode("UTF-8")
+    return l[0]
 
 
 def inflect_target_noun_phrase(tagged_phrase) -> str:
@@ -66,13 +64,13 @@ def inflect_target_verb_phrase(tagged_phrase) -> str:
     return foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
 
 
-def source_phrase_analyses(query):
-    return [r.decode("UTF-8") for r in eng_phrase_to_crk_features_fst()[query]]
+def source_phrase_analyses(query: str) -> list[str]:
+    return [r for r in eng_phrase_to_crk_features_fst().lookup(query)]
 
 
 def fst_analyses(text):
-    def decode_foma_results(fst, query):
-        return [r.decode("UTF-8") for r in fst[query]]
+    def decode_foma_results(fst: TransducerFile, query: str):
+        return [r for r in fst.lookup(query)]
 
     return {
         "eng_noun_entry2inflected-phrase": decode_foma_results(
