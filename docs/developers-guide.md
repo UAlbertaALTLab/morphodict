@@ -251,7 +251,11 @@ main repository.
 
 **Note**: *If you get odd problems with `git push` seeming to hang*, even
 when pushing to your own fork, you may be running into a firewall issue
-with Git LFS. There are two things you can try to fix that:
+with Git LFS, which might be trying to use SSH (firewall protected) instead of HTTPS (allowed).  One way of working around this issue is to tell Git LFS to only use the HTTPS protocol:
+
+    git config lfs.sshtransfer never
+
+If this does not work, there are two things you can try to fix that:
 
    - Run `GIT_LFS_SKIP_PUSH=1 git push` instead of `git push` by itself
 

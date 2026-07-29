@@ -32,6 +32,15 @@
             return s["wordform"]
             {% endif %}
         }
+        function search_key(s, source){
+            if ("moswacihk" == source){
+                return s.replaceAll("ê", "ē").replaceAll("î", "ī").replaceAll("ô", "ō").replaceAll("â", "ā")
+            } else if ("maskwacis" == source){
+                return s.replaceAll("ý", "y")
+            } else {
+                return s
+            }
+        }
         var chunks = []
         var chunk = request_entries.splice(0,30)
         while(chunk.length > 0){
@@ -43,7 +52,8 @@
             chunks.forEach((chunk) => {
             url = new URL("https://speech-db.altlab.app/{{source}}/api/bulk_search")
             chunk.forEach(element => {
-                url.searchParams.append('q',element)
+                url.searchParams.append('q',search_key(element, "{{source}}"))
+                url.searchParams.append('exact', true)
             });
             promises.push(fetch(url).then(res => res.json()).then((json) =>{
                 let ok = {}
@@ -80,8 +90,8 @@
             })
             {% comment %}
                 now I can begin adding the elements as they belong
-                {% endcomment %}
-                for (var element of document.getElementsByClassName("paradigm-cell-recording")){
+            {% endcomment %}
+                for (const element of document.getElementsByClassName("paradigm-cell-recording")){
                     let word = element.getAttribute("data-inflection")
                     var recording = best[word]
 
@@ -89,7 +99,7 @@
                         recording = ok[word]
                     }
                     if(recording){
-                        if (recording["recording_speaker"] == "SDOL"){
+                        if (recording["speaker"] == "SDOL"){
                             element.innerHTML = ("&nbsp;🤖")
                         } else {
                             element.innerHTML = ("&nbsp;🧑🏽‍🦱")
@@ -100,7 +110,7 @@
                         button.querySelector("button").addEventListener("click", () => {audio.play(); console.log(audio)}
                     );
                         element.appendChild(button)
-                        
+                        element.setAttribute("data-cy","play-paradigm-recording")
                     }
                 }
         })
@@ -133,7 +143,7 @@
                                         <td class="paradigm-cell paradigm-cell--empty"></td>
                                     {% else %}
                                         <td class="paradigm-cell paradigm-cell--{% observed_or_unobserved cell.inflection %}">
-                                            <div data-has-tooltip data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}" style="float:left;">
+                                            <div {% if not cell.is_translation %}data-has-tooltip {% endif %}data-cy="paradigm-cell--{% observed_or_unobserved cell.inflection %}" style="float:left;">
                                             {% if show_morphemes == "everywhere" or show_morphemes == "paradigm" %}
                                                 {% if cell.morphemes %}
                                                     {% orth cell.morphemes|join:"·" %}
@@ -144,6 +154,7 @@
                                                 {% orth cell.inflection %}
                                             {% endif %}
                                         </div>                                        
+                                        {% if not cell.is_translation %}
                                         <div class="tooltip" role="tooltip">
                                             <strong>{{cell.inflection}}</strong>:
                                             <ol>
@@ -155,6 +166,7 @@
                                             </ol>
                                            <div class="tooltip__arrow" data-popper-arrow></div>
                                        </div>
+                                       {% endif %}
                                        <div class="paradigm-cell-recording" data-inflection="{{cell.inflection}}"></div>
                                     </td>
                                     {% endif %}

@@ -17,3 +17,4 @@ lacombe:  ./crkLacombeeng-manage runserver 0.0.0.0:8016
 blaeng: ./blaeng-manage runserver 0.0.0.0:8011
 stoeng: ./stoeng-manage runserver 0.0.0.0:8018
 ciweng: ./ciweng-manage runserver 0.0.0.0:8019
+csweng: ./csweng-manage runserver 0.0.0.0:8020

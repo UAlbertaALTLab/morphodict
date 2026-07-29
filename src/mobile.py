@@ -52,36 +52,30 @@ def setup_database():
         result = {}
 
         with sqlite3.connect(f"file:{db_file}?immutable=1") as db:
-            cursor = db.execute(
-                """
+            cursor = db.execute("""
                     -- timestamp of last migration
                     SELECT MAX(applied)
                     FROM django_migrations
-                """
-            )
+                """)
             result["migration_timestamp"] = cursor.fetchone()[0]
 
             # The user may be upgrading from a version of the app from before
             # the import timestamp was in the database. In that case, the table
             # does not exist.
-            cursor = db.execute(
-                """
+            cursor = db.execute("""
                     -- timestamp of last migration
                     SELECT COUNT(*)
                     FROM sqlite_master
                     WHERE type = 'table'
                     AND tbl_name = 'lexicon_importstamp'
-                """
-            )
+                """)
             has_importstamp = cursor.fetchone()[0] != 0
 
             if has_importstamp:
-                cursor = db.execute(
-                    """
+                cursor = db.execute("""
                         SELECT MAX(timestamp)
                         FROM lexicon_importstamp
-                    """
-                )
+                    """)
                 result["import_timestamp"] = cursor.fetchone()[0]
             else:
                 result["import_timestamp"] = None

@@ -36,9 +36,11 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         # actions/cache below uses this id to get the exact python version
         id: setup-python
         with:
@@ -97,18 +99,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         id: setup-python
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Setup Node ${{ env.ACTIONS_NODE_VERSION }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: ${{ env.ACTIONS_NODE_VERSION }}
           cache: npm
       - name: 🖥 Install system dependencies
-        run: sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfoma0 libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2t64 libxtst6 xauth xvfb
       - name: ☤ Install pipenv
         run: python3 -m pip install pipenv
 
@@ -165,7 +171,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'
       - name: Rename docker-compose for dev
         run: mv docker/docker-compose-dev.yml docker/docker-compose.yml
       - name: Change crkeng settings to dev
@@ -206,9 +214,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'      
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests
@@ -233,7 +243,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'
       - name: Build and push Docker images
         uses: docker/build-push-action@v6
         with:
@@ -268,9 +280,11 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GHCR_PERSONAL_ACCESS_TOKEN }}
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+        with:
+          submodules: 'true'
       - name: 🐍 Set up Python ${{ env.ACTIONS_PYTHON_VERSION }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ env.ACTIONS_PYTHON_VERSION }}
       - name: Install requests

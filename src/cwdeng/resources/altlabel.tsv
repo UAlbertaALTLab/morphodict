@@ -1,222 +1,222 @@
 FST TAG	LINGUISTIC (SHORT)	LINGUISTIC (LONG)	ENGLISH	NÊHIYAWÊWIN	EMOJI	LINK
-12Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kiyânaw		
-1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	niyanân		
-1PlO	→ 1p	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kiyânaw		
-1Sg	1s	Actor: 1st Person Singular	I	niya		
-1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ niya		
-2Pl	2p (excl)	Actor: 2nd Person Plural	you (all)	kiyawâw		
-2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kiyawâw		
-2Sg	2s	Actor: 2nd Person Singular	you (one)	kiya		
-2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kiya		
-3Pl	3p	Actor: 3rd Person Plural	they	wiyawâw		
-3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ wiyawâw		
-3Sg	3s	Actor: 3rd Person Singular	s/he	wiya		
-3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ wiya		
-4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	wiyawâw (anihi)		
-4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	wiya (anihi)		
-4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	another/others	kotaka/anihi/awiya		
-4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ another/others	→ kotaka/anihi/awiya		
-5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	yet another/further	kotaka/nêhi/awiya		
-5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ yet another/others	→ kotaka/nêhi/awiya		
+12Pl	21p (incl)	Actor: 1st Person Plural (Inclusive)	you and we	kithânaw		
+1Pl	1p (excl)	Actor: 1st Person Plural (Exclusive)	we (but not you)	nithanân		
+1PlO	→ 1p	Goal: 1st Person Plural (Exclusive)	→ you (but not us)	→ kithânaw		
+1Sg	1s	Actor: 1st Person Singular	I	nitha		
+1SgO	→ 1s	Goal: 1st Person Singular	→ me	→ nitha		
+2Pl	2p (excl)	Actor: 2nd Person Plural	you (all)	kithawâw		
+2PlO	→ 2p	Goal: 2nd Person Plural	→ you (all)	→ kithawâw		
+2Sg	2s	Actor: 2nd Person Singular	you (one)	kitha		
+2SgO	→ 2s	Goal: 2nd Person Singular	→ you (one)	→ kitha		
+3Pl	3p	Actor: 3rd Person Plural	they	withawâw		
+3PlO	→ 3p	Goal: 3rd Person Plural	→ them	→ withawâw		
+3Sg	3s	Actor: 3rd Person Singular	s/he	witha		
+3SgO	→ 3s	Goal: 3rd Person Singular	→ him/her/it	→ witha		
+4Pl	4p	Actor: 3rd Person Plural (Obviative)	they (further)	withawâw (anihi)		
+4Sg	4s	Actor: 3rd Person Singular (Obviative)	s/he (further)	witha (anihi)		
+4Sg/Pl	4	Actor: 3rd Person Singular/Plural (Obviative)	another/others	kotaka/anihi/awitha		
+4Sg/PlO	→ 4	Goal: 3rd Person Singular/Plural (Obviative)	→ another/others	→ kotaka/anihi/awitha		
+5Sg/Pl	5	Actor: 3rd Person Singular/Plural (Further Obviative)	yet another/further	kotaka/nîhi/awitha		
+5Sg/PlO	→ 5	Goal: 3rd Person Singular/Plural (Obviative)	→ yet another/others	→ kotaka/nîhi/awitha		
 0Sg	0	Impersonal / Actor: Existential / Inanimate Singular	it / there (is)	ôma		
 0Pl	0p	Actor: Existential / Inanimate Plural	they / there (are)	ôhi		
-0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 0SgO	→ 0	Goal: Inanimate Singular	→ it	→ ôma		
-0PlO	→ 0p	Goal: Inanimate Plural	→ them (further)	→ nêhi		
+0PlO	→ 0p	Goal: Inanimate Plural	→ them (further)	→ nîhi		
 						
 0Sg+Prs	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is	ôma		
 0Pl+Prs	0p	Actor: Existential / Inanimate Plural	they / there are	ôhi		
-0Sg+Obv+Prs	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Prs	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Prs	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Prs	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Prt	0	Impersonal / Actor: Existential / Inanimate Singular	it / there was	ôma		
 0Pl+Prt	0p	Actor: Existential / Inanimate Plural	they / there were	ôhi		
-0Sg+Obv+Prt	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Prt	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Prt	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Prt	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Fut+Def	0	Impersonal / Actor: Existential / Inanimate Singular	it / there will be	ôma		
 0Pl+Fut+Def	0p	Actor: Existential / Inanimate Plural	they / there will be	ôhi		
-0Sg+Obv+Fut+Def	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Fut+Def	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Fut+Def	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Fut+Def	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Fut+Int	0	Impersonal / Actor: Existential / Inanimate Singular	it / there is going to be	ôma		
 0Pl+Fut+Int	0p	Actor: Existential / Inanimate Plural	they / there is going to be	ôhi		
-0Sg+Obv+Fut+Int	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Fut+Int	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Fut+Int	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Fut+Int	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Fut+Cond	0	Impersonal / Actor: Existential / Inanimate Singular	it / when there is	ôma		
 0Pl+Fut+Cond	0p	Actor: Existential / Inanimate Plural	they / when there is	ôhi		
-0Sg+Obv+Fut+Cond	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Fut+Cond	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Fut+Cond	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Fut+Cond	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Inf+PV/ka	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma		
 0Pl+Inf+PV/ka	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi		
-0Sg+Obv+Inf+PV/ka	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Inf+PV/ka	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Inf+PV/ka	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Inf+PV/ka	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
 0Sg+Inf+PV/ta	0	Impersonal / Actor: Existential / Inanimate Singular	it / for there to be	ôma		
 0Pl+Inf+Pv/ta	0p	Actor: Existential / Inanimate Plural	they / for there to be	ôhi		
-0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nêma		
-0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (further)	nêhi		
+0Sg+Obv+Inf+PV/ta	0'	Actor: Inanimate Singular Obviative	it (further)	nîma		
+0Pl+Obv+Inf+PV/ta	0p'	Actor: Inanimate Plural Obviative	they (further)	nîhi		
 						
-Inf+PV/ka	Conjunct (ka-)	Infinitive / Irrealis (with ka-)	ka- word	ka- itwêwin		
-Inf+PV/ta	Conjunct (ta-)	Infinitive / Irrealis (with ta-)	ta- word	ta- itwêwin		
+Inf+PV/ka	Conjunct (ka-)	Infinitive / Irrealis (with ka-)	ka- word	ka- itwîwin		
+Inf+PV/ta	Conjunct (ta-)	Infinitive / Irrealis (with ta-)	ta- word	ta- itwîwin		
 						
 						
 						
-1Sg+2SgO	1s → 2s	Actor: 1st Person Singular → Goal: 2nd Person Singular	I → you (one)	niya → kiya		
-1Sg+3SgO	1s → 3s	Actor: 1st Person Singular → Goal: 3rd Person Singular	I → him/her	niya → wiya		
-1Sg+1PlO	1s → 1p (excl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Exclusive)	I → we (but not you)	niya → niyanân		
-1Sg+12PlO	1s → 21p (incl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Inclusive)	I → you and us	niya → kiyânaw		
-1Sg+2PlO	1s → 2p (excl)	Actor: 1st Person Singular → Goal: 2nd Person Plural	I → you (all)	niya → kiyâwaw		
-1Sg+3PlO	1s → 3p	Actor: 1st Person Singular → Goal: 3rd Person Plural	I → them	niya → wiyawâw		
-1Sg+4Sg/PlO	1s → 4	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	I → another/others	niya → kotaka/anihi/awiya		
-1Sg+5Sg/PlO	1s → 5	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	I → yet another/others	kotaka/nêhi/awiya		
+1Sg+2SgO	1s → 2s	Actor: 1st Person Singular → Goal: 2nd Person Singular	I → you (one)	nitha → kitha		
+1Sg+3SgO	1s → 3s	Actor: 1st Person Singular → Goal: 3rd Person Singular	I → him/her	nitha → witha		
+1Sg+1PlO	1s → 1p (excl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Exclusive)	I → we (but not you)	nitha → nithanân		
+1Sg+12PlO	1s → 21p (incl)	Actor: 1st Person Singular → Goal: 1st Person Plural (Inclusive)	I → you and us	nitha → kithânaw		
+1Sg+2PlO	1s → 2p (excl)	Actor: 1st Person Singular → Goal: 2nd Person Plural	I → you (all)	nitha → kithâwaw		
+1Sg+3PlO	1s → 3p	Actor: 1st Person Singular → Goal: 3rd Person Plural	I → them	nitha → withawâw		
+1Sg+4Sg/PlO	1s → 4	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	I → another/others	nitha → kotaka/anihi/awitha		
+1Sg+5Sg/PlO	1s → 5	Actor: 1st Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	I → yet another/others	kotaka/nîhi/awitha		
 						
-2Sg+1SgO	2s → 1s	Actor: 2nd Person Singular → Goal: 1st Person Singular	you (one) → me	kiya → niya		
-2Sg+3SgO	2s → 3s	Actor: 2nd Person Singular → Goal: 3rd Person Singular	you (one) → him/her	kiya → wiya		
-2Sg+1PlO	2s → 1p (excl)	Actor: 2nd Person Singular → Goal: 1st Person Plural (Exclusive)	you (one) → we (but not you)	kiya → niyanân		
-2Sg+12PlO	2s → 1p (incl)	Actor: 2nd Person Singular → Goal: 1st Person Plural (Inclusive)	you (one) → you and us	kiya → kiyânaw		
-2Sg+2PlO	2s → 2p	Actor: 2nd Person Singular → Goal: 2nd Person Plural	you (one) → you (all)	kiya → kiyâwaw		
-2Sg+3PlO	2s → 3p	Actor: 2nd Person Singular → Goal: 3rd Person Plural	you (one) → them	kiya → wiyawâw		
-2Sg+4Sg/PlO	2s → 4	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	you (one) → another/others	kiya → kotaka/anihi/awiya		
-2Sg+5Sg/PlO	2s → 5	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	you (one) → yet another/others	kiya → kotaka/nêhi/awiya		
+2Sg+1SgO	2s → 1s	Actor: 2nd Person Singular → Goal: 1st Person Singular	you (one) → me	kitha → nitha		
+2Sg+3SgO	2s → 3s	Actor: 2nd Person Singular → Goal: 3rd Person Singular	you (one) → him/her	kitha → witha		
+2Sg+1PlO	2s → 1p (excl)	Actor: 2nd Person Singular → Goal: 1st Person Plural (Exclusive)	you (one) → we (but not you)	kitha → nithanân		
+2Sg+12PlO	2s → 1p (incl)	Actor: 2nd Person Singular → Goal: 1st Person Plural (Inclusive)	you (one) → you and us	kitha → kithânaw		
+2Sg+2PlO	2s → 2p	Actor: 2nd Person Singular → Goal: 2nd Person Plural	you (one) → you (all)	kitha → kithâwaw		
+2Sg+3PlO	2s → 3p	Actor: 2nd Person Singular → Goal: 3rd Person Plural	you (one) → them	kitha → withawâw		
+2Sg+4Sg/PlO	2s → 4	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	you (one) → another/others	kitha → kotaka/anihi/awitha		
+2Sg+5Sg/PlO	2s → 5	Actor: 2nd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	you (one) → yet another/others	kitha → kotaka/nîhi/awitha		
 						
-3Sg+1SgO	3s → 1s	Actor: 3rd Person Singular → Goal: 1st Person Singular	s/he → me	wiya → niya		
-3Sg+2SgO	3s → 2s	Actor: 3rd Person Singular → Goal: 2nd Person Singular	s/he → you (one)	wiya → kiya		
-3Sg+1PlO	3s → 1p (excl)	Actor: 3rd Person Singular → Goal: 1st Person Plural (Exclusive)	s/he → we (but not you)	wiya → niyanân		
-3Sg+12PlO	3s → 1p (incl)	Actor: 3rd Person Singular → Goal: 1st Person Plural (Inclusive)	s/he → you and us	wiya → kiyânaw		
-3Sg+2PlO	3s → 2p	Actor: 3rd Person Singular → Goal: 2nd Person Plural	s/he → you (all)	wiya → kiyâwaw		
-3Sg+3PlO	3s → 3p	Actor: 3rd Person Singular → Goal: 3rd Person Plural	s/he → them	wiya → wiyawâw		
-3Sg+4Sg/PlO	3s → 4	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	s/he → another/others	wiya → kotaka/anihi/awiya		
-3Sg+5Sg/PlO	3s → 5	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	s/he → yet another/others	wiya → kotaka/nêhi/awiya		
+3Sg+1SgO	3s → 1s	Actor: 3rd Person Singular → Goal: 1st Person Singular	s/he → me	witha → nitha		
+3Sg+2SgO	3s → 2s	Actor: 3rd Person Singular → Goal: 2nd Person Singular	s/he → you (one)	witha → kitha		
+3Sg+1PlO	3s → 1p (excl)	Actor: 3rd Person Singular → Goal: 1st Person Plural (Exclusive)	s/he → we (but not you)	witha → nithanân		
+3Sg+12PlO	3s → 1p (incl)	Actor: 3rd Person Singular → Goal: 1st Person Plural (Inclusive)	s/he → you and us	witha → kithânaw		
+3Sg+2PlO	3s → 2p	Actor: 3rd Person Singular → Goal: 2nd Person Plural	s/he → you (all)	witha → kithâwaw		
+3Sg+3PlO	3s → 3p	Actor: 3rd Person Singular → Goal: 3rd Person Plural	s/he → them	witha → withawâw		
+3Sg+4Sg/PlO	3s → 4	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Obviative)	s/he → another/others	witha → kotaka/anihi/awitha		
+3Sg+5Sg/PlO	3s → 5	Actor: 3rd Person Singular → Goal: 3rd Person Singular/Plural (Further Obviative)	s/he → yet another/others	witha → kotaka/nîhi/awitha		
 						
-X+1SgO	X → 1s	Actor: Unspecified → Goal: 1st Person Singular	people → me	(awiya) → niya		
-X+2SgO	X → 2s	Actor: Unspecified → Goal: 2nd Person Singular	people → you (one)	(awiya) → kiya		
-X+3SgO	X → 3s	Actor: Unspecified → Goal: 3rd Person Singular	people → him/her	(awiya) → wiya		
-X+1PlO	X → 1p (excl)	Actor: Unspecified → Goal: 1st Person Plural (Exclusive)	people → us (but not you)	(awiya) → niyanân		
-X+12PlO	X → 1p (incl)	Actor: Unspecified → Goal: 1st Person Plural (Inclusive)	people → you and us	(awiya) → kiyânaw		
-X+2PlO	X → 2p	Actor: Unspecified → Goal: 2nd Person Plural	people → you (all)	(awiya) → kiyâwaw		
-X+3PlO	X → 3p	Actor: Unspecified → Goal: 3rd Person Plural	people → them	(awiya) → wiyawâw		
-X+4Sg/PlO	X → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	people → another/others	(awiya) → kotaka/anihi/awiya		
-X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	people → yet another/others	(awiya) → kotaka/nêhi/awiya		
+X+1SgO	X → 1s	Actor: Unspecified → Goal: 1st Person Singular	people → me	(awitha) → nitha		
+X+2SgO	X → 2s	Actor: Unspecified → Goal: 2nd Person Singular	people → you (one)	(awitha) → kitha		
+X+3SgO	X → 3s	Actor: Unspecified → Goal: 3rd Person Singular	people → him/her	(awitha) → witha		
+X+1PlO	X → 1p (excl)	Actor: Unspecified → Goal: 1st Person Plural (Exclusive)	people → us (but not you)	(awitha) → nithanân		
+X+12PlO	X → 1p (incl)	Actor: Unspecified → Goal: 1st Person Plural (Inclusive)	people → you and us	(awitha) → kithânaw		
+X+2PlO	X → 2p	Actor: Unspecified → Goal: 2nd Person Plural	people → you (all)	(awitha) → kithâwaw		
+X+3PlO	X → 3p	Actor: Unspecified → Goal: 3rd Person Plural	people → them	(awitha) → withawâw		
+X+4Sg/PlO	X → 4	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Obviative)	people → another/others	(awitha) → kotaka/anihi/awitha		
+X+5Sg/PlO	X → 5	Actor: Unspecified → Goal: 3rd Person Singular/Plural (Further Obviative)	people → yet another/others	(awitha) → kotaka/nîhi/awitha		
 						
-1Pl+1SgO	1p (excl) → 1s	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Singular	we (but not you) → me	niyanân → niya		
-1Pl+2SgO	1p (excl) → 2s	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Singular	we (but not you) → you (one)	niyanân → kiya		
-1Pl+3SgO	1p (excl) → 3s	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular	we (but not you) → him/her	niyanân → wiya		
-1Pl+12PlO	1p (excl) → 1p (incl)	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Plural (Inclusive)	we (but not you) → you and us	niyanân → kiyânaw		
-1Pl+2PlO	1p (excl) → 2p	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Plural	we (but not you) → you (all)	niyanân → kiyâwaw		
-1Pl+3PlO	1p (excl) → 3p	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Plural	we (but not you) → them	niyanân → wiyawâw		
-1Pl+4Sg/PlO	1p (excl) → 4	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Obviative)	we (but not you) → another/others	niyanân → kotaka/anihi/awiya		
-1Pl+5Sg/PlO	1p (excl) → 5	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	we (but not you) → yet another/others	niyanân → kotaka/nêhi/awiya		
+1Pl+1SgO	1p (excl) → 1s	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Singular	we (but not you) → me	nithanân → nitha		
+1Pl+2SgO	1p (excl) → 2s	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Singular	we (but not you) → you (one)	nithanân → kitha		
+1Pl+3SgO	1p (excl) → 3s	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular	we (but not you) → him/her	nithanân → witha		
+1Pl+12PlO	1p (excl) → 1p (incl)	Actor: 1st Person Plural (Exclusive) → Goal: 1st Person Plural (Inclusive)	we (but not you) → you and us	nithanân → kithânaw		
+1Pl+2PlO	1p (excl) → 2p	Actor: 1st Person Plural (Exclusive) → Goal: 2nd Person Plural	we (but not you) → you (all)	nithanân → kithâwaw		
+1Pl+3PlO	1p (excl) → 3p	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Plural	we (but not you) → them	nithanân → withawâw		
+1Pl+4Sg/PlO	1p (excl) → 4	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Obviative)	we (but not you) → another/others	nithanân → kotaka/anihi/awitha		
+1Pl+5Sg/PlO	1p (excl) → 5	Actor: 1st Person Plural (Exclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	we (but not you) → yet another/others	nithanân → kotaka/nîhi/awitha		
 						
-12Pl+1SgO	21p (incl) → 1s	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Singular	you and we → me	kiyânaw → niya		
-12Pl+2SgO	21p (incl) → 2s	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Singular	you and we → you (one)	kiyânaw → kiya		
-12Pl+3SgO	21p (incl) → 3s	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular	you and we → him/her	kiyânaw → wiya		
-12Pl+1PlO	21p (incl) → 1p (excl)	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Plural (Exclusive)	you and we → you and us	kiyânaw → niyanân		
-12Pl+2PlO	21p (incl) → 2p (excl)	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Plural	you and we → you (all)	kiyânaw → kiyâwaw		
-12Pl+3PlO	21p (incl) → 3p	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Plural	you and we → them	kiyânaw → wiyawâw		
-12Pl+4Sg/PlO	21p (incl) → 4	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Obviative)	you and we → another/others	kiyânaw → kotaka/anihi/awiya		
-12Pl+5Sg/PlO	21p (incl) → 5	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	you and we → yet another/others	kiyânaw → kotaka/nêhi/awiya		
+12Pl+1SgO	21p (incl) → 1s	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Singular	you and we → me	kithânaw → nitha		
+12Pl+2SgO	21p (incl) → 2s	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Singular	you and we → you (one)	kithânaw → kitha		
+12Pl+3SgO	21p (incl) → 3s	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular	you and we → him/her	kithânaw → witha		
+12Pl+1PlO	21p (incl) → 1p (excl)	Actor: 1st Person Plural (Inclusive) → Goal: 1st Person Plural (Exclusive)	you and we → you and us	kithânaw → nithanân		
+12Pl+2PlO	21p (incl) → 2p (excl)	Actor: 1st Person Plural (Inclusive) → Goal: 2nd Person Plural	you and we → you (all)	kithânaw → kithâwaw		
+12Pl+3PlO	21p (incl) → 3p	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Plural	you and we → them	kithânaw → withawâw		
+12Pl+4Sg/PlO	21p (incl) → 4	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Obviative)	you and we → another/others	kithânaw → kotaka/anihi/awitha		
+12Pl+5Sg/PlO	21p (incl) → 5	Actor: 1st Person Plural (Inclusive) → Goal: 3rd Person Singular/Plural (Further Obviative)	you and we → yet another/others	kithânaw → kotaka/nîhi/awitha		
 						
-2Pl+1SgO	2p (excl) → 1s	Actor: 2nd Person Plural → Goal: 1st Person Singular	you (all) → me	kiyâwaw → niya		
-2Pl+2SgO	2p (excl) → 2s	Actor: 2nd Person Plural → Goal: 2nd Person Singular	you (all) → you (one)	kiyâwaw → kiya		
-2Pl+3SgO	2p (excl) → 3s	Actor: 2nd Person Plural → Goal: 3rd Person Singular	you (all) → him/her	kiyâwaw → wiya		
-2Pl+1PlO	2p (excl) → 1p (excl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Exclusive)	you (all) → us (but not you)	kiyâwaw → niyanân		
-2Pl+12PlO	2p (excl) → 1p (incl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Inclusive)	you (all) → you and us	kiyâwaw → kiyânaw		
-2Pl+3PlO	2p (excl) → 3p	Actor: 2nd Person Plural → Goal: 3rd Person Plural	you (all) → them	kiyâwaw → wiyawâw		
-2Pl+4Sg/PlO	2p (excl) → 4	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	you (all) → another/others	kiyâwaw → kotaka/anihi/awiya		
-2Pl+5Sg/PlO	2p (excl) → 5	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	you (all) → yet another/others	kiyâwaw → kotaka/nêhi/awiya		
+2Pl+1SgO	2p (excl) → 1s	Actor: 2nd Person Plural → Goal: 1st Person Singular	you (all) → me	kithâwaw → nitha		
+2Pl+2SgO	2p (excl) → 2s	Actor: 2nd Person Plural → Goal: 2nd Person Singular	you (all) → you (one)	kithâwaw → kitha		
+2Pl+3SgO	2p (excl) → 3s	Actor: 2nd Person Plural → Goal: 3rd Person Singular	you (all) → him/her	kithâwaw → witha		
+2Pl+1PlO	2p (excl) → 1p (excl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Exclusive)	you (all) → us (but not you)	kithâwaw → nithanân		
+2Pl+12PlO	2p (excl) → 1p (incl)	Actor: 2nd Person Plural → Goal: 1st Person Plural (Inclusive)	you (all) → you and us	kithâwaw → kithânaw		
+2Pl+3PlO	2p (excl) → 3p	Actor: 2nd Person Plural → Goal: 3rd Person Plural	you (all) → them	kithâwaw → withawâw		
+2Pl+4Sg/PlO	2p (excl) → 4	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	you (all) → another/others	kithâwaw → kotaka/anihi/awitha		
+2Pl+5Sg/PlO	2p (excl) → 5	Actor: 2nd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	you (all) → yet another/others	kithâwaw → kotaka/nîhi/awitha		
 						
-3Pl+1SgO	3p → 1s	Actor: 3rd Person Plural → Goal: 1st Person Singular	they → me	wiyâwaw → niya		
-3Pl+2SgO	3p → 2s	Actor: 3rd Person Plural → Goal: 2nd Person Singular	they → you (one)	wiyâwaw → kiya		
-3Pl+3SgO	3p → 3s	Actor: 3rd Person Plural → Goal: 3rd Person Singular	they → him/her	wiyâwaw → wiya		
-3Pl+1PlO	3p → 1p (excl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Exclusive)	they → us (but not you)	wiyâwaw → niyanân		
-3Pl+12PlO	3p → 21p (incl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Inclusive)	they → you and us	wiyâwaw → kiyânaw		
-3Pl+2PlO	3p → 2p (excl)	Actor: 3rd Person Plural → Goal: 2nd Person Plural	they → you (all)	wiyâwaw → kiyâwaw		
-3Pl+4Sg/PlO	3p → 4	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	they → another/others	wiyâwaw → kotaka/anihi/awiya		
-3Pl+5Sg/PlO	3p → 5	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	they → yet another/others	wiyâwaw → kotaka/nêhi/awiya		
+3Pl+1SgO	3p → 1s	Actor: 3rd Person Plural → Goal: 1st Person Singular	they → me	withâwaw → nitha		
+3Pl+2SgO	3p → 2s	Actor: 3rd Person Plural → Goal: 2nd Person Singular	they → you (one)	withâwaw → kitha		
+3Pl+3SgO	3p → 3s	Actor: 3rd Person Plural → Goal: 3rd Person Singular	they → him/her	withâwaw → witha		
+3Pl+1PlO	3p → 1p (excl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Exclusive)	they → us (but not you)	withâwaw → nithanân		
+3Pl+12PlO	3p → 21p (incl)	Actor: 3rd Person Plural → Goal: 1st Person Plural (Inclusive)	they → you and us	withâwaw → kithânaw		
+3Pl+2PlO	3p → 2p (excl)	Actor: 3rd Person Plural → Goal: 2nd Person Plural	they → you (all)	withâwaw → kithâwaw		
+3Pl+4Sg/PlO	3p → 4	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Obviative)	they → another/others	withâwaw → kotaka/anihi/awitha		
+3Pl+5Sg/PlO	3p → 5	Actor: 3rd Person Plural → Goal: 3rd Person Singular/Plural (Further Obviative)	they → yet another/others	withâwaw → kotaka/nîhi/awitha		
 						
-4Sg/Pl+1SgO	4 → 1s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Singular	another/others → me	kotaka/anihi/awiya → niya		
-4Sg/Pl+2SgO	4 → 2s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Singular	another/others → you (one)	kotaka/anihi/awiya → kiya		
-4Sg/Pl+3SgO	4 → 3s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Singular	another/others → him/her	kotaka/anihi/awiya → wiya		
-4Sg/Pl+1PlO	4 → 1p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Exclusive)	another/others → us (but not you)	kotaka/anihi/awiya → niyanân		
-4Sg/Pl+12PlO	4 → 21p (incl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Inclusive)	another/others → you and us	kotaka/anihi/awiya → kiyânaw		
-4Sg/Pl+2PlO	4 → 2p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Plural	another/others → you (all)	kotaka/anihi/awiya → kiyâwaw		
-4Sg/Pl+3PlO	4 → 3p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Plural	another/others → another/others	kotaka/anihi/awiya → wiyawâw		
-4Sg/Pl+5Sg/PlO	4 → 5	Actor: 3rd Person Singular/Plural (Obviative) → 5	another/others → yet another/others	wiya/wiyawâw (ana/aniki) → kotaka/nêhi/awiya		
+4Sg/Pl+1SgO	4 → 1s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Singular	another/others → me	kotaka/anihi/awitha → nitha		
+4Sg/Pl+2SgO	4 → 2s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Singular	another/others → you (one)	kotaka/anihi/awitha → kitha		
+4Sg/Pl+3SgO	4 → 3s	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Singular	another/others → him/her	kotaka/anihi/awitha → witha		
+4Sg/Pl+1PlO	4 → 1p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Exclusive)	another/others → us (but not you)	kotaka/anihi/awitha → nithanân		
+4Sg/Pl+12PlO	4 → 21p (incl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 1st Person Plural (Inclusive)	another/others → you and us	kotaka/anihi/awitha → kithânaw		
+4Sg/Pl+2PlO	4 → 2p (excl)	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 2nd Person Plural	another/others → you (all)	kotaka/anihi/awitha → kithâwaw		
+4Sg/Pl+3PlO	4 → 3p	Actor: 3rd Person Singular/Plural (Obviative) → Goal: 3rd Person Plural	another/others → another/others	kotaka/anihi/awitha → withawâw		
+4Sg/Pl+5Sg/PlO	4 → 5	Actor: 3rd Person Singular/Plural (Obviative) → 5	another/others → yet another/others	witha/withawâw (ana/aniki) → kotaka/nîhi/awitha		
 						
-5Sg/Pl+1SgO	5 → 1s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Singular	yet another/others → me	kotaka/nêhi/awiya → niya		
-5Sg/Pl+2SgO	5 → 2s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Singular	yet another/others → you (one)	kotaka/nêhi/awiya → kiya		
-5Sg/Pl+3SgO	5 → 3s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular	yet another/others → him/her	kotaka/nêhi/awiya → wiya		
-5Sg/Pl+1PlO	5 → 1p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Exclusive)	yet another/others → us (but not you)	kotaka/nêhi/awiya → niyanân		
-5Sg/Pl+12PlO	5 → 21p (incl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Inclusive)	yet another/others → you and us	kotaka/nêhi/awiya → kiyânaw		
-5Sg/Pl+2PlO	5 → 2p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Plural	yet another/others → you (all)	kotaka/nêhi/awiya → kiyâwaw		
-5Sg/Pl+3PlO	5 → 3p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Plural	yet another/others → another/others	kotaka/nêhi/awiya → wiyawâw		
-5Sg/Pl+4Sg/PlO	5 → 4	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular/Plural (Obviative)	yet another/others → another/others	kotaka/nêhi/awiya → kotaka/anihi/awiya		
+5Sg/Pl+1SgO	5 → 1s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Singular	yet another/others → me	kotaka/nîhi/awitha → nitha		
+5Sg/Pl+2SgO	5 → 2s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Singular	yet another/others → you (one)	kotaka/nîhi/awitha → kitha		
+5Sg/Pl+3SgO	5 → 3s	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular	yet another/others → him/her	kotaka/nîhi/awitha → witha		
+5Sg/Pl+1PlO	5 → 1p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Exclusive)	yet another/others → us (but not you)	kotaka/nîhi/awitha → nithanân		
+5Sg/Pl+12PlO	5 → 21p (incl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 1st Person Plural (Inclusive)	yet another/others → you and us	kotaka/nîhi/awitha → kithânaw		
+5Sg/Pl+2PlO	5 → 2p (excl)	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 2nd Person Plural	yet another/others → you (all)	kotaka/nîhi/awitha → kithâwaw		
+5Sg/Pl+3PlO	5 → 3p	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Plural	yet another/others → another/others	kotaka/nîhi/awitha → withawâw		
+5Sg/Pl+4Sg/PlO	5 → 4	Actor: 3rd Person Singular/Plural (Further Obviative) → Goal: 3rd Person Singular/Plural (Obviative)	yet another/others → another/others	kotaka/nîhi/awitha → kotaka/anihi/awitha		
 						
 A	Animate	Animate	like: asikan, iyiniw, maskwa	tâpiskôc: asikan, iyiniw, maskwa		
 AI		Animate Intransitive	like: mîcisow, nipâw	tâpiskôc: mîcisow, nipâw		
 						
 Arab		Arabic	like: 0, 1, 2, ...	tâpiskôc: 0, 1, 2, ...		
-CC		Co-ordinating Conjunction	like: êkwa	tâpiskôc: êkwa		
+CC		Co-ordinating Conjunction	like: îkwa	tâpiskôc: îkwa		
 CS		Subordinate Conjunction	like: mâka	tâpiskôc: mâka		
-Cnj	Conjunct	Conjunct	ê-/kâ- word	ê-/kâ- itwêwin		
-Cond		Conditional	when/if something happens	kisik/kîsâspin ê-ispayik		
-Fut+Cond	Future Conditional	Future conditional	when/if something happens	kisik/kîsâspin ê-ispayik		
-Core	Core	Core forms	Key forms	âpâpiskahikan-itwêwina		
+Cnj	Conjunct	Conjunct	î-/kâ- word	î-/kâ- itwîwin		
+Cond		Conditional	when/if something happens	kisik/kîsâspin î-ispayik		
+Fut+Cond	Future Conditional	Future conditional	when/if something happens	kisik/kîsâspin î-ispayik		
+Core	Core	Core forms	Key forms	âpâpiskahikan-itwîwina		
 D		Dependent	like: nôhkom, mîpit	tâpiskôc: nôhkom, mîpit		
-Def		Definite	certainly	cikêmâ		
-Fut+Def	Future Definite	Future definite tense: ka- (~ ta-)	something will certainly happen	ka-ispayik nîkânihk/cikêmâ		
-Del	Delayed	Delayed	later	mwêstas		
-Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkêwin ka-ispayik mwêstâs		
+Def		Definite	certainly	cikîmâ		
+Fut+Def	Future Definite	Future definite tense: ka- (~ ta-)	something will certainly happen	ka-ispayik nîkânihk/cikîmâ		
+Del	Delayed	Delayed	later	mwîstas		
+Imp+Del		Delayed imperative	command/request that something will happen later	nitotamâkîwin ka-ispayik mwîstâs		
 Dem		Demonstrative	like: awa, ôma	tâpiskôc: awa, ôma		
 Der/Com	Comitative	Derived comitative	with another person	wîci-		
 Der/Dim	Diminutive	Derived diminutive	smaller / younger	 kâ-apisisîhiht / kâ-apisisîhcâhk		
 Der/X		Derived unspecified actor				
 Dim	Diminutive	Diminutive	smaller / younger	nawac apisîs / ayiwâk osk-âyis		
-DimNA	Diminutive	Diminutive	smaller / younger	nawac ê-apisîsisit / nawac ê-osk-âyiwit		
-DimNI	Diminutive	Diminutive	smaller	nawac ê-apisâsik		
-Dist	Distal	Distal	Over yonder	nêta		
+DimNA	Diminutive	Diminutive	smaller / younger	nawac î-apisîsisit / nawac î-osk-âyiwit		
+DimNI	Diminutive	Diminutive	smaller	nawac î-apisâsik		
+Dist	Distal	Distal	Over yonder	nîta		
 Distr	Distributive	Distributive	among	âkine		
 Err/Orth		(Sub-standard form)				
 Foc		Focus				
-Fut	Future	Future tense	something is happening later on	ê-ispayik mwêstas/nîkânihk		
+Fut	Future	Future tense	something is happening later on	î-ispayik mwîstas/nîkânihk		
 I		Inanimate	like: cîmân, wâwi	tâpiskôc: cîmân, wâwi		
 IC	Initial change	Initial change	like: wiyâpamât	tâpiskôc: wiyâpamât		
 II		Inanimate Intransitive	like: mîthwâsin, miskwâw	tâpiskôc: mîthwâsin, miskwâw		
 INM	Name	Name	like: otôskwanihk	tâpiskôc: otôskwanihk		
-Interr	Interrogative	Interrogative	Question	kakwêcihkêmowin		
+Interr	Interrogative	Interrogative	Question	kakwîcihkîmowin		
 IPC	Particle	Particle	like: anohc	tâpiskôc: anohc	⚡	
-Ipc		Independent Particle	Connecting word	âniskohtâwin-itwêwin	⚡️	https://plainscree.atlas-ling.ca/grammar/words/particles/
-IPH	Phrase	Phrase	like: êkosi pitamâ	tâpiskôc: êkosi pitamâ		
+Ipc		Independent Particle	Connecting word	âniskohtâwin-itwîwin	⚡️	https://plainscree.atlas-ling.ca/grammar/words/particles/
+IPH	Phrase	Phrase	like: îkosi pitamâ	tâpiskôc: îkosi pitamâ		
 IPJ	Interjection	Interjection	like: hay hay	tâpiskôc: hay hay	⚡	
 IPN	Prenoun	Prenoun	like: amisko-	tâpiskôc: amisko-	⚡	
 IPP	Particle	Particle	like: akâmi-	tâpiskîc: akâmi- 	⚡️	
-IPV	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️	
-Ipv	Preverb	Preverb	like: pê-	tâpiskôc: pê-	⚡️	
-Imm	Immediate	Immediate	now	mêkwâc/kîsac		
-Imp	Imperative	Imperative	command/request	nitotamâkêwin		
-Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkêwin piko ka-ispayik		
-Ind	Independent	Independent	ni-/ki- word	ni-/ki- itwêwin		
+IPV	Preverb	Preverb	like: pî-	tâpiskôc: pî-	⚡️	
+Ipv	Preverb	Preverb	like: pî-	tâpiskôc: pî-	⚡️	
+Imm	Immediate	Immediate	now	mîkwâc/kîsac		
+Imp	Imperative	Imperative	command/request	nitotamâkîwin		
+Imp+Imm		Immediate imperative	command/request that something happens immediately	nitotamâkîwin piko ka-ispayik		
+Ind	Independent	Independent	ni-/ki- word	ni-/ki- itwîwin		
 Inf	Infinitive	Infinitive form	for something to happen	ka-ispaiyk / ta-ispayik		
 Int	Intentional	Intentional	be going to	akâwâtamowin		
-Fut+Int	Future Intentional	Future intentional / prospective aspect: wî-	something is going to happen	ê-wî-ihkik nîkânihk		
-Interj		Interjection	Shouting word	têpwêwin-itwêwin		
-Loc	Locative	Locative	in/on/at / place	itê ê-ayâk/ê-ayât kîkway / itê ê-ayât awiyak		
+Fut+Int	Future Intentional	Future intentional / prospective aspect: wî-	something is going to happen	î-wî-ihkik nîkânihk		
+Interj		Interjection	Shouting word	tîpwîwin-itwîwin		
+Loc	Locative	Locative	in/on/at / place	itî î-ayâk/î-ayât kîkway / itî î-ayât awiyak		
 Med	Medial	Medial	There	anita		
 						
-N		Noun	Naming word	wîhowin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/nouns/
-N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhowin-itwêwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
-N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhowin-itwêwin — tâpiskôc: cîmân, wâwi	💧	
-N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhowin-itwêwin — tâpiskôc: nôhkom	👤🧑🏽	
-N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhowin-itwêwin — tâpiskôc: mîpit	👤💧	
+N		Noun	Naming word	wîhowin-itwîwin		https://plainscree.atlas-ling.ca/grammar/words/nouns/
+N+A	Animate noun	Noun — animate	Naming word — like: asikan, iyiniw, maskwa	wîhowin-itwîwin — tâpiskôc: asikan, iyiniw, maskwa 	🧑🏽	
+N+I	Inanimate noun	Noun — inanimate	Naming word — like: cîmân, wâwi	wîhowin-itwîwin — tâpiskôc: cîmân, wâwi	💧	
+N+A+D	Dependent animate noun	Noun — dependent animate	Naming word — like: nôhkom	wîhowin-itwîwin — tâpiskôc: nôhkom	👤🧑🏽	
+N+I+D	Dependent inanimate noun	Noun — dependent animate	Naming word — like: mîpit	wîhowin-itwîwin — tâpiskôc: mîpit	👤💧	
 						
-NA-1	NA-1	Regular animate noun stem	like: pahkwêsikan, asikan	tâpiskôc: pahkwêsikan, asikan		
+NA-1	NA-1	Regular animate noun stem	like: pahkwîsikan, asikan	tâpiskôc: pahkwîsikan, asikan		
 NA-2	NA-2	Vowel-glide animate noun stem	like: kihc-ôkiniy, ayapiy	tâpiskôc: kihc-ôkiniy, ayapiy		
 NA-3	NA-3	Consonant-/w/ animate noun stem	like: masinahikanāhtik(w), askihk(w)	tâpiskôc: masinahikanāhtik(w), askihk(w)		
-NA-4	NA-4	Single-syllable animate noun stem	like: niska, êsa	tâpiskôc: niska, êsa		
+NA-4	NA-4	Single-syllable animate noun stem	like: niska, îsa	tâpiskôc: niska, îsa		
 NA-4w	NA-4w	Single-syllable-/w/ animate noun stem	like: wâhkwa, ihkwa	tâpiskôc: wâhkwa, ihkwa		
 NA-?	NA-?					
 NDA-1	NDA-1	Regular animate dependent noun stem	like: mitâs (-tâs-), mohpan (-ohpan-)	tâpiskôc: mitâs (-tâs-), mohpan (-ohpan-)		
@@ -225,23 +225,23 @@ NDA-3	NDA-3	Consonant-/w/ animate dependent noun stem	like: ninîkihik(w), nîti
 NDA-4	NDA-4	Single-syllable animate dependent noun stem	like: nîwa (-îw-)	tâpiskôc: nîwa (-îw-)		
 NDA-4w	NDA-4w	Single-syllable-/w/ animate dependent noun stem	like: nîskwa (-îskw-)	tâpiskôc: nîskwa (-îskw-)		
 NDA-x	NDA-x					
-NDI-1	NDI-1	Regular inanimate dependent noun stem	like: mitêh (-têh-), mîpit (-îpit-)	tâpiskôc: mitêh (-têh-), mîpit (-îpit-)		
-NDI-2	NDI-2	Consonant-glide inanimate dependent noun stem	like: miskotâkay, mêstakay	tâpiskôc: miskotâkay, mêstakay		
+NDI-1	NDI-1	Regular inanimate dependent noun stem	like: mitîh (-tîh-), mîpit (-îpit-)	tâpiskôc: mitîh (-tîh-), mîpit (-îpit-)		
+NDI-2	NDI-2	Consonant-glide inanimate dependent noun stem	like: miskotâkay, mîstakay	tâpiskôc: miskotâkay, mîstakay		
 NDI-3	NDI-3	Consonant-/w/ inanimate dependent noun stem	like: miskîsik, mayakask	tâpiskôc: miskîsik, mayakask		
 NDI-4	NDI-4	Single-syllable inanimate dependent noun stem	like: mîki, mîwas	tâpiskôc: mîki, mîwas		
 NDI-?	NDI-?					
 NDI-x	NDI-x					
 NI-1	NI-1	Regular inanimate noun stem	like: cîmân, astotin	tâpiskôc: cîmân, astotin		
 NI-2	NI-2	Vowel-glide inanimate noun stem	like: mîkisasâkay, oskasâkay	tâpiskôc: mîkisasâkay, oskasâkay		
-NI-3	NI-3	Consonant-/w/ inanimate noun stem	like: pahkêkin(w), askêkin(w)	tâpiskôc: pahkêkin(w), askêkin(w)		
+NI-3	NI-3	Consonant-/w/ inanimate noun stem	like: pahkîkin(w), askîkin(w)	tâpiskôc: pahkîkin(w), askîkin(w)		
 NI-4	NI-4	Single-syllable inanimate noun stem	like: wâwi, osk-âyi	tâpiskôc: wâwi, osk-âyi		
 NI-5	NI-5	Single-syllable-/w/ inanimate noun stem	like: ôsi, mihko	tâpiskôc: ôsi, mihko		
 NI-?	NI-?					
 Neg	Negation	Negation	not	nâmoya		
-Nonposs	Non-possessed	Non-possessed forms	No ownership	êkâ awiyak kâ-tipêyihtahk		
+Nonposs	Non-possessed	Non-possessed forms	No ownership	îkâ awiyak kâ-tipîyihtahk		
 Num	Numeral	Numeral	Number	akihtâson		
-Obv	Obviative	Obviative	another / others	kotaka / anihi / awiya		
-Poss	Possession	Possessed forms	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)		
+Obv	Obviative	Obviative	another / others	kotaka / anihi / awitha		
+Poss	Possession	Possessed forms	whose / whom something belongs to	tipîyihcikîwin / awîni (kâ-tipîyihtahk)		
 Pers	Person	Person	Person	iyiniw		
 PV		Preverb				
 PV/acici	Preverb: acici-		head down; upside down			
@@ -262,21 +262,21 @@ PV/apisci	Preverb: apisci-		small, little
 PV/apisi	Preverb: apisi-		small, tiny			
 PV/apisisi	Preverb: apisîsi-		small			
 PV/asawi	Preverb: âsawi-		in passing something on			
-PV/ase	Preverb: âsê-		see: asê-			
-PV/aseya	Preverb: asêya-		in a group			
+PV/ase	Preverb: âsî-		see: asî-			
+PV/aseya	Preverb: asîya-		in a group			
 PV/asowi	Preverb: âsowi-		in turn, in succession			
-PV/aste	Preverb: âstê-		ceasing; quit			
+PV/aste	Preverb: âstî-		ceasing; quit			
 PV/ata	Preverb: âta-		although, in vain			
 PV/ati	Preverb: ati-		begin to, beginning; progressively, proceed to, going on, progressing; on the way			
 PV/atimi	Preverb: atimi-		going away from speaker, towards addressee			
 PV/ayamihawi	Preverb: ayamihâwi-		prayer, pertaining to Christian prayer; of the Christian religion, of church			
-PV/ayamihewi	Preverb: ayamihêwi-		of the Christian religion, of church			
+PV/ayamihewi	Preverb: ayamihîwi-		of the Christian religion, of church			
 PV/ayaso	Preverb: ayâsô-		a little here and there			
 PV/ayi	Preverb: ayi-		ah, hm			
 PV/ayici	Preverb: âyîci-		firmly, tightly			
-PV/cipehtako	Preverb: cîpêhtako-		blue, greyish blue, grey			
+PV/cipehtako	Preverb: cîpîhtako-		blue, greyish blue, grey			
 PV/î	Preverb: î-		grammatical preverb: complementizer; defines a changed conjunct clause			
-PV/ikate	Preverb: îkatê-		aside, off to one side			
+PV/ikate	Preverb: îkatî-		aside, off to one side			
 PV/isi	Preverb: isi-		so, this way, thus, thither, such			
 PV/isko	Preverb: isko-		so far, to such an extent			
 PV/ispi	Preverb: ispi-		then, when			
@@ -286,24 +286,24 @@ PV/ka	Preverb: ka-		grammatical preverb: future will, shall; infinitive; optativ
 PV/ka-ki	Preverb: ka-kî-		can, be able to; may; should, ought to			
 PV/kaa	Preverb: kâ-		grammatical preverb; defines a changed conjunct clause; often a relative clause, i.e. who, which			
 PV/kah	Preverb: kâh-		would, ought to; likely to			
-PV/kah-kape	Preverb: kâh-kapê-		all the time			
-PV/kakepaci	Preverb: kakêpâci-		stupidly			
+PV/kah-kape	Preverb: kâh-kapî-		all the time			
+PV/kakepaci	Preverb: kakîpâci-		stupidly			
 PV/kakwahyaki	Preverb: kakwâhyaki-		greatly, extremely, overwhelmingly; with startled surprise			
 PV/kakwayaki	Preverb: kakwâyaki-		greatly, extremely			
-PV/kakwe	Preverb: kakwê-		try to, attempt to			
-PV/kakweci	Preverb: kakwêci-		inquire			
+PV/kakwe	Preverb: kakwî-		try to, attempt to			
+PV/kakweci	Preverb: kakwîci-		inquire			
 PV/kamwaci	Preverb: kâmwâci-		quietly			
 PV/kanaci	Preverb: kanâci-		clean			
-PV/kape	Preverb: kapê-		for the full duration of; always			
+PV/kape	Preverb: kapî-		for the full duration of; always			
 PV/kaski	Preverb: kaski-		dense			
-PV/kaskitewi	Preverb: kaskitêwi-		black			
+PV/kaskitewi	Preverb: kaskitîwi-		black			
 PV/kaspi	Preverb: kâspi-		crunching			
 PV/kawi	Preverb: kâwi-		again; back, in return			
 PV/kayasi	Preverb: kayâsi-		old			
-PV/ke	Preverb: kê-		grammatical preverb; future, conditional: shall; defines a changed conjunct clause			
-PV/kekaci	Preverb: kêkâci-		almost			
-PV/ket	Preverb: kêt-		take off, remove			
-PV/ketiski	Preverb: kêtiski-		to exact measure			
+PV/ke	Preverb: kî-		grammatical preverb; future, conditional: shall; defines a changed conjunct clause			
+PV/kekaci	Preverb: kîkâci-		almost			
+PV/ket	Preverb: kît-		take off, remove			
+PV/ketiski	Preverb: kîtiski-		to exact measure			
 PV/ki	Preverb: kî-		grammatical preverb; past, completion			
 PV/kici	Preverb: kici-		so that			
 PV/kihci	Preverb: kihci-		great, big, important			
@@ -311,32 +311,32 @@ PV/kika	Preverb: kika-		grammatical preverb; future; defines a conjunct clause
 PV/kimoci	Preverb: kîmôci-		secretly, by stealth			
 PV/kipi	Preverb: kîpi-		quickly			
 PV/kisci	Preverb: kisci-		big			
-PV/kise	Preverb: kisê-		great, gentle			
+PV/kise	Preverb: kisî-		great, gentle			
 PV/kisi	Preverb: kîsi-		finish; completely, to completion; completing, having done			
 PV/kisipi	Preverb: kisipi-		end, finish, ending			
 PV/kisiska	Preverb: kisiskâ-		fast, quickly			
 PV/kisiwi	Preverb: kisîwi-		angrily, in anger			
 PV/kiski	Preverb: kîski-		severing, breaking, cutting off			
-PV/kisopwe	Preverb: kîsopwê-		with hot weather			
+PV/kisopwe	Preverb: kîsopwî-		with hot weather			
 PV/kita	Preverb: kita-		[grammatical preverb]; future: will, shall; infinitive; optative: ought, should			
 PV/kita-ki	Preverb: kita-kî-		can, be able to; may; ought to			
 PV/kitimaki	Preverb: kitimâki-		pitiable, pitiably			
 PV/kiwaci	Preverb: kîwâci-		orphaned, stray; lonely, desolately			
-PV/kiwe	Preverb: kîwê-		back, homeward			
-PV/kiye	Preverb: kiyê-		grammatical preverb; future; in changed conjunct clauses			
+PV/kiwe	Preverb: kîwî-		back, homeward			
+PV/kiye	Preverb: kiyî-		grammatical preverb; future; in changed conjunct clauses			
 PV/kiyi	Preverb: kiyi-		grammatical preverb; future; defines a conjunct clause			
 PV/koci	Preverb: koci-		try to			
 PV/kota	Preverb: kôta-		long for, be deprived of			
-PV/kotate	Preverb: kôtatê-		at a loss, making no attempt			
+PV/kotate	Preverb: kôtatî-		at a loss, making no attempt			
 PV/kwahci	Preverb: kwâhci-		far off			
-PV/kwaskwe	Preverb: kwâskwê-		upwards			
+PV/kwaskwe	Preverb: kwâskwî-		upwards			
 PV/kwataki	Preverb: kwâtaki-		distressing, tormenting, tortuous			
 PV/kwayaci	Preverb: kwayâci-		in readiness, already; in preparation; beforehand			
 PV/kwayako	Preverb: kwayako-		taking out, directly			
 PV/kwayaski	Preverb: kwayaski-		properly			
 PV/kwayasko	Preverb: kwayasko-		straight; properly, correctly			
-PV/kweski	Preverb: kwêski-		turning			
-PV/kwetawi	Preverb: kwêtawi-		doubtful			
+PV/kweski	Preverb: kwîski-		turning			
+PV/kwetawi	Preverb: kwîtawi-		doubtful			
 PV/kwitawi	Preverb: kwîtawi-		impatiently			
 PV/maaci	Preverb: mâci-		begin to, start to; commencement; initially			
 PV/maci	Preverb: maci-		bad, evil, wicked, wrong, ill			
@@ -349,22 +349,22 @@ PV/mani	Preverb: mani-		with the intent of, with the purpose of
 PV/maninakisko	Preverb: mâninâkisko-		without hesitation, entirely			
 PV/maski	Preverb: mâski-		crippled; defective, deformed			
 PV/masta	Preverb: mastâ-		later			
-PV/matwe	Preverb: matwê-		audibly, visibly; perceptibly; loudly; heard or seen from a distance			
+PV/matwe	Preverb: matwî-		audibly, visibly; perceptibly; loudly; heard or seen from a distance			
 PV/mayaci	Preverb: mâyâci-		bad			
 PV/mayi	Preverb: mâyi-		bad, evil; badly, evilly, wickedly			
-PV/mecimwaci	Preverb: mêcimwâci-		permanently, for good			
-PV/mesci	Preverb: mêsci-		exhaustively, till all is gone			
-PV/mesti	Preverb: mêsti-		it is used up, it is burnt out, it is spent			
+PV/mecimwaci	Preverb: mîcimwâci-		permanently, for good			
+PV/mesci	Preverb: mîsci-		exhaustively, till all is gone			
+PV/mesti	Preverb: mîsti-		it is used up, it is burnt out, it is spent			
 PV/mihko	Preverb: mihko-		red			
-PV/mihyawe	Preverb: mihyawê-		with fur or body hair			
-PV/misakame	Preverb: misakâmê-		all the way			
+PV/mihyawe	Preverb: mihyawî-		with fur or body hair			
+PV/misakame	Preverb: misakâmî-		all the way			
 PV/misi	Preverb: misi-		big, greatly; much, a lot; very, extremely, to the extreme			
 PV/mistiko	Preverb: mistiko-		wood, of wood, wooden			
 PV/miyo	Preverb: miyo-		good, well, beautifully			
 PV/mohco	Preverb: môhco-		silly, crazy			
 PV/mosci	Preverb: mosci-		just, merely, plainly, simply, directly, without mediation, without instrumentality; by hand			
 PV/mwayi	Preverb: mwayî-		before, prior to			
-PV/mêkwa	Preverb: mêkwâ-		currently, presently, right now; while, during, in the meantime, in the act or place			
+PV/mîkwa	Preverb: mîkwâ-		currently, presently, right now; while, during, in the meantime, in the act or place			
 PV/naci	Preverb: nâci-		getting			
 PV/nahi	Preverb: nahi-		well, fair			
 PV/nahta	Preverb: nahtâ-		able; good at, competent, practised, experienced, skillful at, expert at, known as one who does s.t. habitually; well			
@@ -376,10 +376,10 @@ PV/natakasi	Preverb: nâtakâsi-		into the bush country
 PV/natawi	Preverb: natawi-		go to			
 PV/nawaci	Preverb: nawaci-		better			
 PV/nawayawi	Preverb: nâwayawi-		one behind the other, in a row			
-PV/nehiyawi	Preverb: nêhiyawi-		Cree, in Cree			
+PV/nehithawi	Preverb: nîhithawi-		Cree, in Cree			
 PV/nihci	Preverb: nîhci-		down, downwards; bottom			
 PV/nihta	Preverb: nihtâ-		able; good at, competent, practised, experienced, skillful at, expert at, known as one who does s.t. habitually; well			
-PV/nihtaciwe	Preverb: nîhtaciwê-		downhill, down			
+PV/nihtaciwe	Preverb: nîhtaciwî-		downhill, down			
 PV/nikani	Preverb: nîkâni-		in front, ahead, at the head, in the future			
 PV/nimi	Preverb: nîmi-		take along			
 PV/nipa	Preverb: nîpâ-		at night, in the dark			
@@ -387,7 +387,7 @@ PV/nipahi	Preverb: nipahi-		really, very, extremely
 PV/nisihkaci	Preverb: nisîhkâci-		gently, carefully, slowly			
 PV/niso	Preverb: nîso-		two			
 PV/nitawi	Preverb: nitawi-		go and, go to; engaged in			
-PV/nohte	Preverb: nôhtê-		want to, desire to; lack			
+PV/nohte	Preverb: nôhtî-		want to, desire to; lack			
 PV/o	Preverb: ô-		from there, for that reason; with, by means of; [grammatical preverb]			
 PV/ocihci	Preverb: ocihci-		back in time; far back; from before, earlier; having lived long enough for something; chance to, live to, live to see			
 PV/oh	Preverb: ôh-		from there, for that reason; with, by means of; [past preverb in negative clauses]			
@@ -410,11 +410,11 @@ PV/pasci	Preverb: pâsci-		over, beyond
 PV/pasici	Preverb: pâsici-		stepping over, skipping			
 PV/pasiko	Preverb: pasikô-		get up (from sitting)			
 PV/paspi	Preverb: paspi-		through narrow opening			
-PV/pe	Preverb: pê-		come and; towards, approaching; hither; thence, from there on down; [towards focus]			
-PV/peyako	Preverb: pêyako-		alone, only; as one			
+PV/pe	Preverb: pî-		come and; towards, approaching; hither; thence, from there on down; [towards focus]			
+PV/peyako	Preverb: pîyako-		alone, only; as one			
 PV/pihci	Preverb: pîhci-		inside, in, within			
-PV/pihtawe	Preverb: pîhtawê-		under; double			
-PV/pihtoke	Preverb: pîhtokê-		entering to the inside, entering house			
+PV/pihtawe	Preverb: pîhtawî-		under; double			
+PV/pihtoke	Preverb: pîhtokî-		entering to the inside, entering house			
 PV/pikiskaci	Preverb: pîkiskâci-		sorry, sad, lonely			
 PV/pimi	Preverb: pîmi-		twisted			
 PV/pimici	Preverb: pimici-		crosswise, from side, at right angle			
@@ -426,19 +426,19 @@ PV/poni	Preverb: pôni-		stop, terminate, cease; after
 PV/posko	Preverb: pôsko-		the same			
 PV/pwana	Preverb: pwâna-		unable, fail to			
 PV/pwatawi	Preverb: pwâtawi-		unable to do, failing			
-PV/sakewe	Preverb: sâkêwê-		behind obstacle to vision, into view			
+PV/sakewe	Preverb: sâkîwî-		behind obstacle to vision, into view			
 PV/sapo	Preverb: sâpo-		fully, exhaustively, through, through and through, right through, from end to end; beyond			
 PV/saposci	Preverb: sâposci-		through			
 PV/sasakici	Preverb: sâsakici-		backwards; supine			
 PV/saskaci	Preverb: saskaci-		weary, tired of			
-PV/sehke	Preverb: sêhkê-		by itself, of own accord; move ahead of own accord; willingly			
-PV/sesawi	Preverb: sêsâwi-		stretching, exercising			
+PV/sehke	Preverb: sîhkî-		by itself, of own accord; move ahead of own accord; willingly			
+PV/sesawi	Preverb: sîsâwi-		stretching, exercising			
 PV/sikaci	Preverb: sikaci-		impatiently, bored with			
 PV/sikawi	Preverb: sîkawi-		pouring, flooding			
 PV/simaci	Preverb: simaci-		upright; straightened			
-PV/sipwe	Preverb: sipwê-		leaving, departing, going away; starting out, commencement			
+PV/sipwe	Preverb: sipwî-		leaving, departing, going away; starting out, commencement			
 PV/sisikoci	Preverb: sisikoci-		suddenly			
-PV/sisiwe	Preverb: sisiwê-		spread, scatter			
+PV/sisiwe	Preverb: sisiwî-		spread, scatter			
 PV/sohkahat	Preverb: sôhkahât-		greatly, powerfully			
 PV/sohki	Preverb: sôhki-		hard, strongly, intensively, vigourously, properly			
 PV/soniyawi	Preverb: sôniyâwi-		with respect to money, in financial matters			
@@ -454,26 +454,26 @@ PV/tako	Preverb: tako-		in addition to, on top, over and above; with, having alo
 PV/tapi	Preverb: tâpi-		through the same place			
 PV/tapisi	Preverb: tâpisi-		threading, inserting			
 PV/tasi	Preverb: tasi-		for such a time, for the duration; an action at a time, while			
-PV/tehci	Preverb: têhci-		on, on top of something			
-PV/tepi	Preverb: têpi-		sufficiently; enough; reaching			
-PV/tewi	Preverb: têwi-		pain			
-PV/teyi	Preverb: têyi-		pain			
+PV/tehci	Preverb: tîhci-		on, on top of something			
+PV/tepi	Preverb: tîpi-		sufficiently; enough; reaching			
+PV/tewi	Preverb: tîwi-		pain			
+PV/teyi	Preverb: tîyi-		pain			
 PV/tipi	Preverb: tipi-		equal			
 PV/tita	Preverb: tita-		[grammatical preverb; future]			
 PV/tomi	Preverb: tômi-		oily, greasy			
 PV/wa	Preverb: wâ-		intend to, be about to			
 PV/wah	Preverb: wâh-		whenever in future			
-PV/wahke	Preverb: wahkê-		addicted to, easily led to			
+PV/wahke	Preverb: wahkî-		addicted to, easily led to			
 PV/waki	Preverb: wâki-		curving			
 PV/wani	Preverb: wani-		dim, dark, indistinctly, blurred; lose; destroy			
 PV/wapani	Preverb: wâpani-		dawn; at, until dawn			
 PV/wapohki	Preverb: wâpôhki-		white			
 PV/wasa	Preverb: wâsâ-		around			
-PV/wase	Preverb: wâsê-		clear; bright			
-PV/wawiye	Preverb: wâwiyê-		round, spherical			
+PV/wase	Preverb: wâsî-		clear; bright			
+PV/wawiye	Preverb: wâwiyî-		round, spherical			
 PV/wayawi	Preverb: wayawî-		outside; out from inside, out from the tipi			
-PV/wayesi	Preverb: wayêsi-		deceitfully			
-PV/wehci	Preverb: wêhci-		easily			
+PV/wayesi	Preverb: wayîsi-		deceitfully			
+PV/wehci	Preverb: wîhci-		easily			
 PV/wi	Preverb: wî-		grammatical preverb: intend to, be about to			
 PV/wihpi	Preverb: wîhpi-		hollowing out			
 PV/wini	Preverb: wîni-		soil, dirty			
@@ -483,8 +483,8 @@ PV/wisaki	Preverb: wîsaki-		painfully
 PV/wito	Preverb: wîto-		want, intend			
 PV/wiyipi	Preverb: wiyîpi-		dirty looking; dull brown, drab			
 PV/yahki	Preverb: yahki-		act of pushing forward; increasing, increasingly, adding, more and more			
-PV/yikate	Preverb: yîkatê-		aside			
-PV/yipe	Preverb: yîpê-		on a slant, on a slope, on the side, sideways			
+PV/yikate	Preverb: yîkatî-		aside			
+PV/yipe	Preverb: yîpî-		on a slant, on a slope, on the side, sideways			
 PV/yoski	Preverb: yôski-		soft, softly			
 Pl	Plural	Plural	two or more	nîso ahpô ayiwâk		
 PlO	→ Pl	Goal: Plural	→ two or more	→ nîso ahpô ayiwâk		
@@ -492,43 +492,43 @@ PlO	→ Pl	Goal: Plural	→ two or more	→ nîso ahpô ayiwâk
 PrA		Pronoun: Animate	like: awa	tâpiskôc: awa	➡️🧑🏽	
 PrI		Pronoun: Inanimate	like: ôma	tâpiskôc: ôma	➡️💧	
 						
-Pron		Pronoun	Pointing word	itâskonamin-itwêwin	➡️	https://plainscree.atlas-ling.ca/grammar/words/pronouns/
+Pron		Pronoun	Pointing word	itâskonamin-itwîwin	➡️	https://plainscree.atlas-ling.ca/grammar/words/pronouns/
 Prop		Proper	how something/someone is called	isiyihkâsowin		
 Prox	Proximal	Proximate	Here	ôtâ		
-Prs	Present	Present tense	something is happening now	ê-ispayik anohc/mêkwâc/mâna		
-Prt	Past	Past tense: kî-	something happened earlier	ê-ispayik kwayâc		
-Px	Possession	Possessed forms	whose / whom something belongs to	tipêyihcikêwin / awîni (kâ-tipêyihtahk)		
-Px12Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw		
-Px1Pl	Possessor: 1p (excl)	Possessor: 1st Person Plural (Exclusive)	our (but not your)	niyanân		
-Px1Sg	Possessor: 1s	Possessor: 1st Person Singular	my	niya		
-Px21Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kiyânaw		
-Px2Pl	Possessor: 2p (excl)	Possessor: 2nd Person Plural	your (all)	kiyawâw		
-Px2Sg	Possessor: 2s	Possessor: 2nd Person Singular	your (one)	kiya		
-Px3Pl	Possessor: 3p	Possessor: 3rd Person Plural	their	wiyawâw		
-Px3Sg	Possessor: 3s	Possessor: 3rd Person Singular	his/her	wiya		
-Px4Pl	Possessor: 4p	Possessor: 3rd Person Plural (Obviative)	another's	kotaka/anihi/awiya		
-Px4Sg	Possessor: 4s	Possessor: 3rd Person Singular (Obviative)	others'	kotaka/anihi/awiya		
-Px4Sg/Pl	Possessor: 4	Possessor: 3rd Person Singular/Plural (Obviative)	another's/others'	kotaka/anihi/awiya		
-PxX	Possessor: X	Possessor: Unspecified	someone's	(awiya)		
+Prs	Present	Present tense	something is happening now	î-ispayik anohc/mîkwâc/mâna		
+Prt	Past	Past tense: kî-	something happened earlier	î-ispayik kwayâc		
+Px	Possession	Possessed forms	whose / whom something belongs to	tipîyihcikîwin / awîni (kâ-tipîyihtahk)		
+Px12Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kithânaw		
+Px1Pl	Possessor: 1p (excl)	Possessor: 1st Person Plural (Exclusive)	our (but not your)	nithanân		
+Px1Sg	Possessor: 1s	Possessor: 1st Person Singular	my	nitha		
+Px21Pl	Possessor: 21p (incl)	Possessor: 1st Person Plural (Inclusive)	your and our	kithânaw		
+Px2Pl	Possessor: 2p (excl)	Possessor: 2nd Person Plural	your (all)	kithawâw		
+Px2Sg	Possessor: 2s	Possessor: 2nd Person Singular	your (one)	kitha		
+Px3Pl	Possessor: 3p	Possessor: 3rd Person Plural	their	withawâw		
+Px3Sg	Possessor: 3s	Possessor: 3rd Person Singular	his/her	witha		
+Px4Pl	Possessor: 4p	Possessor: 3rd Person Plural (Obviative)	another's	kotaka/anihi/awitha		
+Px4Sg	Possessor: 4s	Possessor: 3rd Person Singular (Obviative)	others'	kotaka/anihi/awitha		
+Px4Sg/Pl	Possessor: 4	Possessor: 3rd Person Singular/Plural (Obviative)	another's/others'	kotaka/anihi/awitha		
+PxX	Possessor: X	Possessor: Unspecified	someone's	(awitha)		
 						
 RdplS		Reduplication: Strong/Heavy	Intense	tâpiskôc: nâh-nipâw		
 RdplW		Reduplication: Weak/Light	Repeated	tâpiskôc: na-nipâw		
 Rel		Relative				
 Rom		Roman	like: I, V, X	tâpiskôc: I, V, X		
 						
-Sg	Singular	Singular	only one	pêyak piko		
+Sg	Singular	Singular	only one	pîyak piko		
 						
 						
 						
 						
-TA	Transitive Animate		like: wîcihêw, itêw	tâpiskôc: wîcihêw, itêw		
+TA	Transitive Animate		like: wîcihîw, itîw	tâpiskôc: wîcihîw, itîw		
 TI	Transitive Inaminate		like: nâtam, mîciw	tâpiskôc: nâtam, mîciw		
 						
-V	Verb		Action word	ispayin-itwêwin		https://plainscree.atlas-ling.ca/grammar/words/verbs/
-V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: mithwâsin, miskwâw	ispayin-itwêwin — tâpiskôc: mithwâsin, miskwâw	💧➡️	
-V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwêwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
-V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwêwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
-V+TA	Transitive animate verb	Verb — transitive animate	Action word — like: wîcihêw, itêw	ispayin-itwêwin — tâpiskôc: wîcihêw, itêw	🧑🏽➡️🧑🏽	
+V	Verb		Action word	ispayin-itwîwin		https://plainscree.atlas-ling.ca/grammar/words/verbs/
+V+II	Inanimate intransitive verb	Verb — inanimate intransitive	Action word — like: mithwâsin, miskwâw	ispayin-itwîwin — tâpiskôc: mithwâsin, miskwâw	💧➡️	
+V+AI	Animate intransitive verb	Verb — animate intransitive	Action word — like: mîcisow, nipâw	ispayin-itwîwin — tâpiskôc: mîcisow, nipâw	🧑🏽➡️	
+V+TI	Transitive inanimate verb	Verb — transitive inanimate	Action word — like: nâtam, mîciw	ispayin-itwîwin — tâpiskôc: nâtam, mîciw	🧑🏽➡️💧	
+V+TA	Transitive animate verb	Verb — transitive animate	Action word — like: wîcihîw, itîw	ispayin-itwîwin — tâpiskôc: wîcihîw, itîw	🧑🏽➡️🧑🏽	
 						
 Voc	Vocative	Vocative	call/address	kitowin		
 						
@@ -540,19 +540,19 @@ VII-1n	VII-1n	n-final impersonal inanimate intransitive verb	like: kimiwan	tâpi
 VII-2n	VII-2n	n-final pluralizable inanimate intransitive verb	like: miywâsin	tâpiskôc: miywâsin		
 VII-1v	VII-1v	vowel-final impersonal inanimate intransitive verb	like: kîsikâw	tâpiskôc: kîsikâw		
 VII-2v	VII-2v	vowel-final pluralizable  inanimate intransitive verb	like: mihkwâw	tâpiskôc: mihkwâw		
-VTA-1	VTA-1	transitive animate verb – class 1: regular	like: wîcihêw	tâpiskôc: wîcihêw		
-VTA-2	VTA-2	transitive animate verb – class 2	like: nitonawêw	tâpiskôc: nitonawêw		
-VTA-3	VTA-3	transitive animate verb – class 3	like: kîskiswêw	tâpiskôc: kîskiswêw		
-VTA-4	VTA-4	transitive animate verb – class 4	like: nakatêw	tâpiskôc: nakatêw		
-VTA-5	VTA-5	transitive animate verb – class 5	like: itêw	tâpiskôc: itêw		
+VTA-1	VTA-1	transitive animate verb – class 1: regular	like: wîcihîw	tâpiskôc: wîcihîw		
+VTA-2	VTA-2	transitive animate verb – class 2	like: nitonawîw	tâpiskôc: nitonawîw		
+VTA-3	VTA-3	transitive animate verb – class 3	like: kîskiswîw	tâpiskôc: kîskiswîw		
+VTA-4	VTA-4	transitive animate verb – class 4	like: nakatîw	tâpiskôc: nakatîw		
+VTA-5	VTA-5	transitive animate verb – class 5	like: itîw	tâpiskôc: itîw		
 VTI-1	VTI-1	transitive inanimate verb – class 1: regular	like: nâtam	tâpiskôc: nâtam		
 VTI-2	VTI-2	transitive inanimate verb – class 2: stem-final -â	like: kisihtâw	tâpiskôc: kisihtâw		
 VTI-3	VTI-3	transitive inanimate verb – class 3	like: mîciw	tâpiskôc: mîciw		
 						
-X	X	Actor: Unspecified	people	(awiya)		
-XO	→ X	Goal: Unspecified	→ people	→ (awiya)		
+X	X	Actor: Unspecified	people	(awitha)		
+XO	→ X	Goal: Unspecified	→ people	→ (awitha)		
 						
-A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pêyak (awa)		
-A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcêt (awa)		
-I+Sg+Title	I+Sg	Singular, Inanimate	One (ôma word)	pêyak (ôma)		
-I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcêt (ôma)		
+A+Sg+Title	A+Sg	Singular, Animate	One (awa word)	pîyak (awa)		
+A+Pl+Title	A+Pl	Plural, Animate	Many (awa word)	mihcît (awa)		
+I+Sg+Title	I+Sg	Singular, Inanimate	One (ôma word)	pîyak (ôma)		
+I+Pl+Title	I+Pl	Plural, Inanimate	Many (ôma word)	mihcît (ôma)		

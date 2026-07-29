@@ -56,11 +56,19 @@ def foma_lookup(fst:TransducerFile, thing_to_lookup:str) -> str:
     return l[0]
 
 
-def inflect_target_noun_phrase(tagged_phrase) -> str:
+def inflect_target_noun_phrase(
+    tags_for_phrase: list[str], lemma_definition: str
+) -> str:
+    tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
+
     return foma_lookup(eng_noun_entry_to_inflected_phrase_fst(), tagged_phrase)
 
 
-def inflect_target_verb_phrase(tagged_phrase) -> str:
+def inflect_target_verb_phrase(
+    tags_for_phrase: list[str], lemma_definition: str
+) -> str:
+    tagged_phrase = f"{''.join(tags_for_phrase)} {lemma_definition}"
+
     return foma_lookup(eng_verb_entry_to_inflected_phrase_fst(), tagged_phrase)
 
 

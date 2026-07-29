@@ -6,9 +6,7 @@ from io import StringIO
 import pytest
 from morphodict.relabelling import Relabelling
 
-labels = Relabelling.from_tsv(
-    StringIO(
-        """
+labels = Relabelling.from_tsv(StringIO("""
 FST TAG\tLINGUISTIC (SHORT)\tLINGUISTIC (LONG)\tENGLISH\tNÊHIYAWÊWIN\tEMOJI
 3Sg\t3s\tActor: 3rd Person Singular\ts/he\twiya (awa) -\t
 3Sg+4Sg/PlO\t\t\ts/he → him/her/them\twiya → wiya/wiyawâw (ana/aniki)\t-
@@ -22,9 +20,7 @@ V+II\tInanimate intransitive verb\tVerb - inanimate intransitive\tAction word - 
 V+TA\tTransitive animate verb\tVerb - transitive animate\tAction word - like: wîcihêw, itêw\tispayin-itwêwin - tâpiskôc: wîcihêw, itêw\t🧑🏽➡️🧑🏽
 V+TI\tTransitive inanimate verb\tVerb - transitive inanimate\tAction word - like: nâtam, mîciw\tispayin-itwêwin - tâpiskôc: nâtam, mîciw\t🧑🏽➡️
 V\tVerb\tVerb\tAction word\tispayin-itwêwin
-""".lstrip()
-    )
-)
+""".lstrip()))
 
 
 def test_getting_a_pos_and_word_class_label():

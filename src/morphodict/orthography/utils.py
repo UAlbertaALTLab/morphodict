@@ -8,6 +8,7 @@ Orthography conversion utilities.
 from cree_sro_syllabics import sro2syllabics
 
 CIRCUMFLEX_TO_MACRON = str.maketrans("êîôâ", "ēīōā")
+CIRCUMFLEX_TO_ACCENTS = str.maketrans("êîôâ", "éíóá")
 ACCENTED_Y_TO_Y = str.maketrans("ý", "y")
 
 
@@ -23,6 +24,13 @@ def to_macrons(sro_circumflex: str) -> str:
     Transliterate SRO to macrons.
     """
     return sro_circumflex.translate(CIRCUMFLEX_TO_MACRON)
+
+
+def to_accents(sro_circumflex: str) -> str:
+    """
+    Transliterate SRO to accents.
+    """
+    return sro_circumflex.translate(CIRCUMFLEX_TO_ACCENTS)
 
 
 def to_macrons_with_y(sro_circumflex: str) -> str:

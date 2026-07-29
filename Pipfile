@@ -4,7 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-black = "*"
+black = ">=26.3.1"
 pytest = "*"
 pytest-django = "*"
 pytest-cov = "*"
@@ -19,7 +19,6 @@ toml = "*"
 mypy = "*"
 django-stubs = "~=5.2"
 pytest-env = "*"
-jupyterlab = "*"
 certifi = ">=2024.07.04"
 appnope = "*"
 numpy = "*"
@@ -28,8 +27,7 @@ statsmodels = "*"
 pandas-stubs = "*"
 sphinx = "*"
 myst-parser = "*"
-jupyter = "*"
-
+pytz = "*" # Pandas dependency that doesn't seem to be explicitly declared.
 
 [packages]
 colorama = "*"
@@ -52,7 +50,12 @@ scipy = "*"
 more-itertools = "*"
 types-requests = "*"
 requests = "*"
-nltk = "*"
+nltk = ">=3.10.0"
+urllib3 = ">=2.7.0" # Dependency, dependabot
+filelock = ">=3.20.3" # Dependency, dependabot
+idna = ">=3.15" # Dependency, dependabot
+
+tsuutina-phrase-translation = {editable = true, ref = "main", git = "https://github.com/fbanados/tsuutina-phrase-translation.git"}
 
 [scripts]
 # unit tests

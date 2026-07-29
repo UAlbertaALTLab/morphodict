@@ -2,7 +2,6 @@ from django.db import transaction
 from django.core.management import call_command
 import pytest
 
-
 # Make sure we are using the default in-memory database setup for import tests.
 
 

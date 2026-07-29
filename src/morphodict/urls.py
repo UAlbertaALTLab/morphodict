@@ -14,7 +14,6 @@ from django.shortcuts import redirect
 from morphodict.frontend import views
 from morphodict.frontend.sitemaps import sitemaps
 
-
 # TODO: use URL namespaces:
 # e.g., dictionary:index instead of dictionary-index
 # See: https://docs.djangoproject.com/en/2.2/topics/http/urls/#url-namespaces

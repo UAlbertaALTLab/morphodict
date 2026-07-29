@@ -47,7 +47,9 @@ def test_vai_paradigm() -> None:
 
     name = "VAI"
     size = first(manager.sizes_of(name))
-    paradigm = manager.paradigm_for(name, lemma=VAI_LEMMA, size=size)
+    paradigm = manager.paradigm_for(
+        name, lemma=VAI_LEMMA, translation_templates={}, size=size
+    )
     first_pane = first(paradigm.panes)
 
     for form in EXPECTED_BASIC_VAI_FORMS:

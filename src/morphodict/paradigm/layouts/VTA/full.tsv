@@ -117,6 +117,7 @@ _ 3Pl _ 1SgO	PV/ki+${lemma}+V+TA+Ind+3Pl+1SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+1
 _ 3Pl _ 2SgO	PV/ki+${lemma}+V+TA+Ind+3Pl+2SgO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+2SgO
 _ 3Pl _ 1PlO	PV/ki+${lemma}+V+TA+Ind+3Pl+1PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+1PlO
 _ 3Pl _ 12PlO	PV/ki+${lemma}+V+TA+Ind+3Pl+12PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+12PlO
+_ 3Pl _ 2PlO	PV/ki+${lemma}+V+TA+Ind+3Pl+12PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+2PlO
 _ 3Pl _ 4Sg/PlO	PV/ki+${lemma}+V+TA+Ind+3Pl+4Sg/PlO	PV/e+PV/ki+${lemma}+V+TA+Cnj+3Pl+4Sg/PlO
 		
 	| Ind	| Cnj

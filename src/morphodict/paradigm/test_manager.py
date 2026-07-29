@@ -20,7 +20,7 @@ def test_one_size(paradigm_manager: ParadigmManager):
     assert set(paradigm_manager.sizes_of("has-only-one-size")) == {ONLY_SIZE}
 
     paradigm = paradigm_manager.paradigm_for(
-        "has-only-one-size", lemma="everything bagel"
+        "has-only-one-size", lemma="everything bagel", translation_templates={}
     )
 
     all_forms = [
@@ -83,12 +83,14 @@ def test_can_find_wordforms_in_multiple_sizes(paradigm_manager: ParadigmManager)
     # "grande" is the medium size
     # "venti" is the largest size
     # Pedantic note: There's also "short" and "trenti", but let's not.
-    tall = paradigm_manager.paradigm_for("has-multiple-sizes", lemma=lemma, size="tall")
+    tall = paradigm_manager.paradigm_for(
+        "has-multiple-sizes", lemma=lemma, translation_templates={}, size="tall"
+    )
     grande = paradigm_manager.paradigm_for(
-        "has-multiple-sizes", lemma=lemma, size="grande"
+        "has-multiple-sizes", lemma=lemma, translation_templates={}, size="grande"
     )
     venti = paradigm_manager.paradigm_for(
-        "has-multiple-sizes", lemma=lemma, size="venti"
+        "has-multiple-sizes", lemma=lemma, translation_templates={}, size="venti"
     )
 
     present_in_all_sizes = [lemma]
@@ -124,7 +126,7 @@ def test_paradigm_for_raises_does_not_exist_error(paradigm_manager: ParadigmMana
 
     with pytest.raises(ParadigmDoesNotExistError) as error:
         paradigm_manager.paradigm_for(
-            bad_paradigm_name, lemma=create_arbitrary_string()
+            bad_paradigm_name, lemma=create_arbitrary_string(), translation_templates={}
         )
 
     assert bad_paradigm_name in str(error)
@@ -157,7 +159,7 @@ def identity_transducer() -> Transducer:
     return IdentityTransducer()
 
 
-class IdentityTransducer:
+class IdentityTransducer(Transducer):
     """
     For each lookup, returns the query unchanged -- .lookup() is the identity function.
 
@@ -165,9 +167,9 @@ class IdentityTransducer:
     just be whatever is in the paradigm cell, with all the substitutions finished.
     """
 
-    def bulk_lookup(self, analyses: Iterable[str]) -> dict[str, set[str]]:
+    def bulk_lookup(self, strings: Iterable[str]) -> dict[str, set[str]]:
         result = {}
-        for analysis in analyses:
+        for analysis in strings:
             result[analysis] = {self.lookup(analysis)}
         return result
 

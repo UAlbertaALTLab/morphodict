@@ -14,6 +14,7 @@ The algorithm is:
       1. Add up all the points for all the results across all lists
       2. Sort by highest points first
 """
+
 import csv
 from argparse import ArgumentParser, BooleanOptionalAction
 from collections import defaultdict
@@ -126,12 +127,10 @@ class SurveyCollection:
 def main():
     script_dir = Path(__file__).parent
 
-    parser = ArgumentParser(
-        description="""
+    parser = ArgumentParser(description="""
         Use ranked voting to combine files in survey_sample/*.csv into
         sample.csv.
-        """
-    )
+        """)
     parser.add_argument("--write", action=BooleanOptionalAction, default="yes")
     parser.add_argument("--output-file", default=script_dir / "sample.csv")
     args = parser.parse_args()

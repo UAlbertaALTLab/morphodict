@@ -22,6 +22,7 @@ from morphodict.site.settings import *
 PRODUCTION_HOST = "{{ sssttt }}.altlab.dev"
 
 ALLOWED_HOSTS.append(PRODUCTION_HOST)
+CSRF_TRUSTED_ORIGINS.append("https://" + PRODUCTION_HOST)
 
 DEFAULT_RUNSERVER_PORT = {{ port }}
 

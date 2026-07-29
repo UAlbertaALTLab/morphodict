@@ -21,6 +21,7 @@ for LANG_PAIR in \
     cwdeng \
     srseng \
     blaeng \
+    csweng \
 ; do
     for USE_TEST_DB in true false; do
         export USE_TEST_DB
@@ -31,5 +32,7 @@ for LANG_PAIR in \
         if ${USE_TEST_DB}; then
             ./${LANG_PAIR}-manage ensuretestdb
         fi
+
+	echo yes | run ./${LANG_PAIR}-manage collectstatic
     done
 done

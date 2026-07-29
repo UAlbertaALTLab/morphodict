@@ -5,6 +5,7 @@
     ["+II", null, 0],
     ["+TI", null, 0],
     # Tense/Aspect
+    [["PV/e+", "+Cnj"], "Cnj+", 0],  # conjunctive marker
     ["PV/ki+", "Prt+", 1],  # Preterite aka simple past
     [["PV/ki+", "+Ind"], "Prt+", 1],  # Preterite aka simple past
     [["+Fut", "+Cond"], "Cond+", 1],  # Future conditional
@@ -12,7 +13,6 @@
     [["+Imp", "+Del"], "Del+", 1],  # Delayed imperative
     [["PV/wi+", "+Ind"], "Fut+", 1],  # Future
     ["PV/wi+", "Fut+", 1],  # Also accept PV/wi without indicative as future
-    [["PV/e+", "+Cnj"], null, 1],  # conjunctive marker
     # Note that these crk features as disjoint, but both are needed for the eng feature
     [["PV/ka+", "+Ind"], "Def+", 1],
     [["PV/ka+", "+Cnj"], "Inf+", 1],

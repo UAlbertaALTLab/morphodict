@@ -14,7 +14,6 @@ from .query import Query
 from .types import Result
 from .util import first_non_none_value
 
-
 VerboseMessage = dict[str, str]
 
 
