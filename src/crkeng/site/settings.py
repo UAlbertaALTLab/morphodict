@@ -33,6 +33,9 @@ FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2S
 SHOW_DICT_SOURCE_SETTING = True
 
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
+STRICT_GENERATOR_WITH_BOUNDARIES_FST_FILENAME = (
+    "generator-gt-norm-bound.hfstol"
+)
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
 

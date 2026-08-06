@@ -14,7 +14,14 @@ def strict_generator():
 
 @cache
 def strict_generator_with_morpheme_boundaries():
-    return TransducerFile(FST_DIR / "generator-gt-norm-bound.hfstol")
+    try:
+        return TransducerFile(
+            FST_DIR / settings.STRICT_GENERATOR_WITH_BOUNDARIES_FST_FILENAME
+        )
+    except IsADirectoryError:
+        return strict_generator()
+    except FileNotFoundError:
+        return strict_generator()
 
 
 @cache
