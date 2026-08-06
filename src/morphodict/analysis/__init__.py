@@ -2,7 +2,7 @@ import re
 from functools import cache
 
 from django.conf import settings
-from hfst_optimized_lookup import TransducerFile, Analysis
+from hfst_altlab import TransducerFile, Analysis
 
 FST_DIR = settings.BASE_DIR / "resources" / "fst"
 

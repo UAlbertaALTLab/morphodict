@@ -1,6 +1,6 @@
 import logging
 from functools import cache
-from hfst_optimized_lookup import TransducerFile
+from hfst_altlab import TransducerFile
 from django.conf import settings
 
 logger = logging.getLogger(__name__)
