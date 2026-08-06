@@ -33,6 +33,7 @@ FST_TOOL_SAMPLES = ["kika-nîminaw", "kikaniminaw", "PV/ka+nîminêw+V+TA+Ind+2S
 SHOW_DICT_SOURCE_SETTING = True
 
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-dict-norm.hfstol"
+STRICT_GENERATOR_WITH_BOUNDARIES_FST_FILENAME = "generator-gt-dict-norm-with-boundaries.hfstol"
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-dict-norm.hfstol"
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-dict-desc.hfstol"
 
