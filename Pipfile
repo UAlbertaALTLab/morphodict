@@ -41,7 +41,7 @@ secure = "*"
 snowballstemmer = "*"
 dawg2 = "*"
 environs = {extras = ["django"], version = "*"}
-hfst-altlab = ">=0.1.4"
+hfst-altlab = ">=0.1.6"
 tqdm = "*"
 whitenoise = "*"
 uwsgi = "*"
