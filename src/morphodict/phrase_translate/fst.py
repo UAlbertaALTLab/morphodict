@@ -43,7 +43,7 @@ class FomaLookupMultipleFoundException(FomaLookupException):
         )
 
 
-def foma_lookup(fst:TransducerFile, thing_to_lookup:str) -> str:
+def foma_lookup(fst: TransducerFile, thing_to_lookup: str) -> str:
     # Updated from FOMA lookup - currently using an HFST lookup instead,
     # This reduces dependencies and allows for migration to python 3.14.
 
