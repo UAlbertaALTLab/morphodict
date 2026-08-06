@@ -379,6 +379,7 @@ MORPHODICT_ENABLE_FST_LEMMA_SUPPORT = False
 
 # Default names for FST files
 STRICT_ANALYZER_FST_FILENAME = "analyser-gt-norm.hfstol"
+STRICT_GENERATOR_WITH_BOUNDARIES_FST_FILENAME = ""
 RELAXED_ANALYZER_FST_FILENAME = "analyser-gt-desc.hfstol"
 STRICT_GENERATOR_FST_FILENAME = "generator-gt-norm.hfstol"
 
