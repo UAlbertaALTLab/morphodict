@@ -3,5 +3,5 @@ _ 0Sg _ Prs	${lemma}+V+II+Ind+3Sg
 _ 0Pl _ Prs	${lemma}+V+II+Ind+3Pl
 	
 	| Cnj
-_ 0Sg _ Prs	PV/e+${lemma}+V+II+Cnj+3Sg
-_ 0Pl _ Prs	PV/e+${lemma}+V+II+Cnj+3Pl
+_ 0Sg _ Prs	PV/ê+${lemma}+V+II+Cnj+3Sg
+_ 0Pl _ Prs	PV/ê+${lemma}+V+II+Cnj+3Pl

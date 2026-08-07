@@ -8,7 +8,7 @@ noun_wordform_to_phrase = TagMap(
 # list specifies exceptions to that rule for grammatical preverbs.
 #
 # (This could be automatically extracted from the TagMap object.)
-permitted_preverb_tags = {"PV/e+", "PV/ki+", "PV/ka+", "PV/ta+", "PV/wi+"}
+permitted_preverb_tags = {"PV/ê+", "PV/kî+", "PV/ka+", "PV/ta+", "PV/wî+"}
 
 # Cree tense/aspects:
 verb_wordform_to_phrase = TagMap(

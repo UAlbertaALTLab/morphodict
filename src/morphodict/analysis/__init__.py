@@ -49,7 +49,7 @@ def rich_analyze_strict(text):
 class RichAnalysis:
     """The one true FST analysis class.
 
-    Put all your methods for dealing with things like `PV/e+nipâw+V+AI+Cnj+3Pl`
+    Put all your methods for dealing with things like `PV/ê+nipâw+V+AI+Cnj+3Pl`
     here.
     """
 

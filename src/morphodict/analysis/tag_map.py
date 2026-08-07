@@ -51,7 +51,7 @@ class TagMap:
 
     input_tag can be:
       - A literal tag, e.g., "N+", which will be matched exactly
-      - A tuple of tags, e.g., ("PV/e+, "+Ind") which will be matched as a
+      - A tuple of tags, e.g., ("PV/ê+, "+Ind") which will be matched as a
         subsequence
       - DEFAULT if this output_tag should be used if no other mapping
       applies at this precedence level

@@ -46,7 +46,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
         ),
         (
             (
-                ("PV/e+",),
+                ("PV/ê+",),
                 "target_lemma_for_long_definition_(irrelevant_for_test)",
                 ("+V", "+TA", "+Cnj", "+1Sg", "+2SgO"),
             ),
@@ -82,7 +82,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
         ),
         (
             (
-                ("PV/ki+",),
+                ("PV/kî+",),
                 "target_arbitrary_lemma_(irrelevant_for_test)",
                 ("+V", "+TA", "+Ind", "+2Pl", "+1PlO"),
             ),
@@ -91,7 +91,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
         ),
         (
             (
-                ("PV/wi+",),
+                ("PV/wî+",),
                 "target_arbitrary_lemma_(irrelevant_for_test)",
                 ("+V", "+TA", "+Ind", "+4Sg/Pl", "+3PlO"),
             ),
@@ -100,7 +100,7 @@ ARBITRARY_DEFINITION = "s/he sees s.o."
         ),
         (
             (
-                ("PV/e+", "PV/wi+"),
+                ("PV/ê+", "PV/wî+"),
                 "target_arbitrary_lemma_(irrelevant_for_test)",
                 ("+V", "+TA", "+Cnj", "+1Sg", "+3PlO"),
             ),

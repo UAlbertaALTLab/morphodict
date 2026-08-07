@@ -517,7 +517,7 @@ A [multicharacter symbol] that represents a linguistic feature.
 #### In Plains Cree
 
 In the Plains Cree FST, these tags either end with a `+` for prefixes (e.g.,
-`PV/e+`, or start with `+` sign for everything else (e.g., `+N`, `+TA`,
+`PV/ê+`, or start with `+` sign for everything else (e.g., `+N`, `+TA`,
 `+V`).
 
  - General word class: `+V`, `+N`, `+Ipc`, `+Prop`
@@ -528,7 +528,7 @@ In the Plains Cree FST, these tags either end with a `+` for prefixes (e.g.,
  - Subject: `+1Sg`, `+3Pl`, `+4Sg/Pl`, `+5Sg/Pl`
  - Object: `+1SgO`, `+3PlO`, `+4Sg/PlO`
  - The possessor of a noun: `+Px1Sg`, `+Px2Sg`, `+Px4Sg`
- - Preverbs: `PV/e+`, `PV/kaa+`
+ - Preverbs: `PV/ê+`, `PV/kî+`, `PV/ka+`, `PV/ta+`, `PV/wî+`
  - Reduplcation: `RdplW+`, `RdplS+`
  - and many more!
 

@@ -577,7 +577,7 @@ def extract_first_letters(analysis: RichAnalysis) -> List[str]:
 
     For example, "ê-kâh-kîmôci-kotiskâwêyahk", you have the following analysis:
 
-    >>> a = RichAnalysis((("PV/e+", "RdplS+", "PV/nitawi+"), "kotiskâwêw", ("+V", "+AI", "+Cnj", "+12Pl")))
+    >>> a = RichAnalysis((("PV/ê+", "RdplS+", "PV/nitawi+"), "kotiskâwêw", ("+V", "+AI", "+Cnj", "+12Pl")))
 
     Then extracting the first letters of the preverbs and lemma:
 

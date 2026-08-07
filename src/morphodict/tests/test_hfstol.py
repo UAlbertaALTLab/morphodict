@@ -27,7 +27,7 @@ def test_analyze_wordform(wordform, lemma, suffix):
 @pytest.mark.parametrize(
     "wordform,lemma,prefix",
     [
-        ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/e+"),
+        ("ê-kî-kotiskâwêyâhk", "kotiskâwêw", "PV/ê+"),
         ("ê-kî-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/kimoci+"),
         ("ê-kî-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "RdplS+"),
         ("ê-kî-nitawi-kâh-kîmôci-kotiskâwêyâhk", "kotiskâwêw", "PV/nitawi+"),
@@ -51,7 +51,7 @@ def test_analyze_nonword():
     "analysis,wordform",
     [
         ("wâpamêw+V+TA+Ind+3Sg+4Sg/PlO", "wâpamêw"),
-        ("PV/e+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO", "ê-wâpamât"),
+        ("PV/ê+wâpamêw+V+TA+Cnj+3Sg+4Sg/PlO", "ê-wâpamât"),
         ("IC+nipâw+V+AI+Cnj+3Sg", "nêpât"),
     ],
 )

@@ -90,10 +90,10 @@ gawk -v PARADIGM=$1 -v DICTIONARY=$2 -v CORPUS=$3 -v ENGGENFST=$4 -v SUBCAT=$5 -
                   if(index(crk_anl, "+V+TA+")!=0) POS="VTA";
 
                   tense=""; subj=""; obj=""; order="";
-                  if(index(crk_anl, "+Cnj")!=0 && index(crk_anl, "PV/e+")!=0) order="Cnj+";
-                  if(index(crk_anl, "PV/ki+")!=0) tense="Prt+";
+                  if(index(crk_anl, "+Cnj")!=0 && index(crk_anl, "PV/ê+")!=0) order="Cnj+";
+                  if(index(crk_anl, "PV/kî+")!=0) tense="Prt+";
                   if(index(crk_anl, "PV/ka+")!=0 && index(crk_anl, "+Cnj")==0) tense="Def+";
-                  if(index(crk_anl, "PV/wi+")!=0) tense="Fut+";
+                  if(index(crk_anl, "PV/wî+")!=0) tense="Fut+";
                   if(index(crk_anl, "PV/ka+")!=0 && index(crk_anl, "+Cnj")!=0) tense="Inf+";
                   if(index(crk_anl, "PV/ta+")!=0 && index(crk_anl, "+Cnj")!=0) tense="Inf+";
                   if(index(crk_anl, "+Cond")!=0) tense="Cond+";

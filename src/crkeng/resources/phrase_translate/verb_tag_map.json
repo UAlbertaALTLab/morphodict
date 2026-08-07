@@ -1,20 +1,20 @@
 [
     # Tense
-	["+Prt", ["PV/ki+", "+Ind"], 1],  # Preterite aka simple past
+	["+Prt", ["PV/kî+", "+Ind"], 1],  # Preterite aka simple past
 	["+Cond", ["+Fut", "+Cond"], 1],  # Future conditional
 	["+Imm", ["+Imp", "+Imm"], 1],  # Immediate imperative
 	["+Del", ["+Imp", "+Del"], 1],  # Delayed imperative
-	["+Fut", ["PV/wi+", "+Ind"], 1],  # Future Intentional
-	# TODO: ["+Int", ["PV/wi+", "+Ind"], 1],  # Future Intentional, variation ?
+	["+Fut", ["PV/wî+", "+Ind"], 1],  # Future Intentional
+	# TODO: ["+Int", ["PV/wî+", "+Ind"], 1],  # Future Intentional, variation ?
 	# TODO: Also accept PV/wi without independent as future?
 	# Note that these crk features as disjoint, but both are needed for the eng feature
 	["+Def", ["PV/ka+", "+Ind"], 1],
 	["+Inf", ["PV/ka+", "+Cnj"], 1],
 	# Conjunct
-	[["+Cnj", "+Prt"], ["PV/e+", "PV/ki+", "+Cnj"], 1],
-	[["+Cnj", "+Fut"], ["PV/e+", "PV/wi+", "+Cnj"], 1],
-	# TODO: [["+Cnj", "+Int"], ["PV/e+", "PV/wi+", "+Cnj"], 1], # Fut Int Conj, variation?
-	["+Cnj", ["PV/e+", "+Cnj"], 1],
+	[["+Cnj", "+Prt"], ["PV/ê+", "PV/kî+", "+Cnj"], 1],
+	[["+Cnj", "+Fut"], ["PV/ê+", "PV/wî+", "+Cnj"], 1],
+	# TODO: [["+Cnj", "+Int"], ["PV/ê+", "PV/wî+", "+Cnj"], 1], # Fut Int Conj, variation?
+	["+Cnj", ["PV/ê+", "+Cnj"], 1],
 	["TagMap.DEFAULT", "+Ind", 1],
 	# Person - see https://github.com/UAlbertaALTLab/morphodict/issues/891
 	["+0Sg", "+3Sg", 2],

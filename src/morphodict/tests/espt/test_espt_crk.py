@@ -29,7 +29,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             "they crawled",
             {
                 "expected_query_terms": ["crawls"],
-                "expected_new_tags": ["+V", "+AI", "PV/ki+", "+Ind", "+3Pl"],
+                "expected_new_tags": ["+V", "+AI", "PV/kî+", "+Ind", "+3Pl"],
                 "slug": "pimitâcimow",
                 "expected_inflection": "kî-pimitâcimowak",
             },
@@ -38,7 +38,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             "they saw me",
             {
                 "expected_query_terms": ["see"],
-                "expected_new_tags": ["+V", "+TA", "PV/ki+", "+Ind", "+3Pl", "+1SgO"],
+                "expected_new_tags": ["+V", "+TA", "PV/kî+", "+Ind", "+3Pl", "+1SgO"],
                 "slug": "wâpamêw",
                 "expected_inflection": "nikî-wâpamikwak",
             },
@@ -65,7 +65,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             "you ate it",
             {
                 "expected_query_terms": ["eat"],
-                "expected_new_tags": ["+V", "+TI", "PV/ki+", "+Ind", "+2Sg"],
+                "expected_new_tags": ["+V", "+TI", "PV/kî+", "+Ind", "+2Sg"],
                 "slug": "mîciw",
                 "expected_inflection": "kikî-mîcin",
             },
@@ -74,7 +74,7 @@ def test_search_with_tags(query, has_tags, tags, filtered_query):
             "they ran",
             {
                 "expected_query_terms": ["run"],
-                "expected_new_tags": ["+V", "+AI", "PV/ki+", "+Ind", "+3Pl"],
+                "expected_new_tags": ["+V", "+AI", "PV/kî+", "+Ind", "+3Pl"],
                 "slug": "kotiskâwêw",
                 "expected_inflection": "kî-kotiskâwêwak",
             },

@@ -1,23 +1,23 @@
 	"Something is happening now"	
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"it"	${lemma}+V+II+Ind+3Sg	PV/e+${lemma}+V+II+Cnj+3Sg
-"they"	${lemma}+V+II+Ind+3Pl	PV/e+${lemma}+V+II+Cnj+3Pl
-"it (further)"	${lemma}+V+II+Ind+4Sg	PV/e+${lemma}+V+II+Cnj+4Sg
-"they (further)"	${lemma}+V+II+Ind+4Pl	PV/e+${lemma}+V+II+Cnj+4Pl
+"it"	${lemma}+V+II+Ind+3Sg	PV/ê+${lemma}+V+II+Cnj+3Sg
+"they"	${lemma}+V+II+Ind+3Pl	PV/ê+${lemma}+V+II+Cnj+3Pl
+"it (further)"	${lemma}+V+II+Ind+4Sg	PV/ê+${lemma}+V+II+Cnj+4Sg
+"they (further)"	${lemma}+V+II+Ind+4Pl	PV/ê+${lemma}+V+II+Cnj+4Pl
 		
 	"Something happened earlier"	
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"it"	PV/ki+${lemma}+V+II+Ind+3Sg	PV/e+PV/ki+${lemma}+V+II+Cnj+3Sg
-"they"	PV/ki+${lemma}+V+II+Ind+3Pl	PV/e+PV/ki+${lemma}+V+II+Cnj+3Pl
-"it (further)"	PV/ki+${lemma}+V+II+Ind+4Sg	PV/e+PV/ki+${lemma}+V+II+Cnj+4Sg
-"they (further)"	PV/ki+${lemma}+V+II+Ind+4Pl	PV/e+PV/ki+${lemma}+V+II+Cnj+4Pl
+"it"	PV/kî+${lemma}+V+II+Ind+3Sg	PV/ê+PV/kî+${lemma}+V+II+Cnj+3Sg
+"they"	PV/kî+${lemma}+V+II+Ind+3Pl	PV/ê+PV/kî+${lemma}+V+II+Cnj+3Pl
+"it (further)"	PV/kî+${lemma}+V+II+Ind+4Sg	PV/ê+PV/kî+${lemma}+V+II+Cnj+4Sg
+"they (further)"	PV/kî+${lemma}+V+II+Ind+4Pl	PV/ê+PV/kî+${lemma}+V+II+Cnj+4Pl
 		
 	"Someone wants something to happen"	
 	: "ni-/ki- word"	: "ê-/kâ- word"
-"it"	PV/wi+${lemma}+V+II+Ind+3Sg	PV/e+PV/wi+${lemma}+V+II+Cnj+3Sg
-"they"	PV/wi+${lemma}+V+II+Ind+3Pl	PV/e+PV/wi+${lemma}+V+II+Cnj+3Pl
-"it (further)"	PV/wi+${lemma}+V+II+Ind+4Sg	PV/e+PV/wi+${lemma}+V+II+Cnj+4Sg
-"they (further)"	PV/wi+${lemma}+V+II+Ind+4Pl	PV/e+PV/wi+${lemma}+V+II+Cnj+4Pl
+"it"	PV/wî+${lemma}+V+II+Ind+3Sg	PV/ê+PV/wî+${lemma}+V+II+Cnj+3Sg
+"they"	PV/wî+${lemma}+V+II+Ind+3Pl	PV/ê+PV/wî+${lemma}+V+II+Cnj+3Pl
+"it (further)"	PV/wî+${lemma}+V+II+Ind+4Sg	PV/ê+PV/wî+${lemma}+V+II+Cnj+4Sg
+"they (further)"	PV/wî+${lemma}+V+II+Ind+4Pl	PV/ê+PV/wî+${lemma}+V+II+Cnj+4Pl
 		
 	"Something will certainly happen"	
 	: "ni-/ki- word"	
