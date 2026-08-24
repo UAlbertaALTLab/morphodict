@@ -48,8 +48,8 @@
     "scss": "^0.2.4"
   },
   "allowScripts": {
-    "cypress@15.18.1": true,
     "fsevents@2.3.3": true,
-    "core-js-pure@3.49.0": true
+    "core-js-pure@3.50.0": true,
+    "cypress@15.21.0": true
   }
 }
